@@ -169,7 +169,6 @@ namespace detail_graph{
         DistanceMap     distMap_;
     };
 
-
 } // namespace nifty::graph::detail_graph
 } // namespace nifty::graph
 } // namespace nifty
