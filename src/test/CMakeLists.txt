@@ -2,7 +2,7 @@
 #-------------------------------------------------------------------------------------------------------------------
 # unittest
 #-------------------------------------------------------------------------------------------------------------------
-find_package(Boost COMPONENTS system filesystem unit_test_framework REQUIRED)
+find_package(Boost COMPONENTS  unit_test_framework REQUIRED)
 ADD_DEFINITIONS(-DBOOST_TEST_DYN_LINK) 
 
 SET(TEST_LIBS
