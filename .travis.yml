@@ -28,6 +28,7 @@ matrix:
         #
         - cmake -DPYBIND11_PYTHON_VERSION=3.5 -DCMAKE_CXX_COMPILER=g++-4.8
         - make -j2
+        - make test
         #- source venv/bin/activate
         #- pip install numpy
         #- CTEST_OUTPUT_ON_FAILURE=TRUE make test
