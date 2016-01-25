@@ -7,7 +7,8 @@ project(nifty)
 include(CheckCXXCompilerFlag)
 
 
-option(WITH_BOOST_COMPUTE True)
+option(WITH_BOOST_COMPUTE OFF)
+option(BUILD_NIFTY_PYTHON OFF)
 
 
 #-------------------------------------------------------------------------------------------------------------------

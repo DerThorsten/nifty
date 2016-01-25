@@ -2,4 +2,7 @@
 # src folder
 #-------------------------------------------------------------------------------------------------------------------
 add_subdirectory(test)
-add_subdirectory(python)
+
+if(BUILD_NIFTY_PYTHON)
+    add_subdirectory(python)
+endif()
