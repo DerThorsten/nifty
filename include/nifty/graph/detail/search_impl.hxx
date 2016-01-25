@@ -14,14 +14,16 @@ namespace detail_graph{
 
     template<class T>
     struct LiFo : public std::stack<T>{
-        using std::stack<T>::stack;
+        // CLANG DOES NOT LIKE THESE
+        //using std::stack<T>::stack;
         const T & nextElement(){
             return this->top();
         }
     };
     template<class T>
     struct FiFo : public std::queue<T>{
-        using std::queue<T>::queue;
+        // CLANG DOES NOT LIKE THESE
+        //using std::queue<T>::queue;
         const T & nextElement(){
             return this->front();
         }
