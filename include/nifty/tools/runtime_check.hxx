@@ -86,6 +86,8 @@
         throw std::runtime_error(s.str()); \
     }
 
+#define NIFTY_TEST_EQ_TOL(a,b,tol) NIFTY_CHECK_EQ_TOL(a,b,tol)
+
 #define NIFTY_CHECK_NUMBER(number) \
    { \
    std::stringstream s; \

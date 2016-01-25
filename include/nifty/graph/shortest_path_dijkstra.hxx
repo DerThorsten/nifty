@@ -31,36 +31,71 @@ namespace graph{
             distMap_(g){
         }
 
-        template<class EDGE_WEGIHTS, class SOURCE_T>
-        void run(
+
+
+
+        // run single source single target
+        // no  callback no mask exposed
+        template<class EDGE_WEGIHTS>
+        void runSingleSourceSingleTarget(
             EDGE_WEGIHTS edgeWeights,
-            const std::initializer_list<SOURCE_T> & sources
+            const int64_t source,
+            const int64_t target = -1
         ){
-            this->run(edgeWeights, sources.begin(), sources.end());
-        }
-
-
-        template<class EDGE_WEGIHTS, class SOURCE_ITER>
-        void run(
-            EDGE_WEGIHTS edgeWeights,
-            SOURCE_ITER sourceBegin, 
-            SOURCE_ITER sourceEnd
-        ){
-            this->initializeMaps(sourceBegin, sourceEnd);
-
             // subgraph mask
             DefaultSubgraphMask<Graph> subgraphMask;
-
             // visitor
-            auto visitor = []
+            auto visitor = [&]
             (   
                 int64_t topNode,
                 const DistanceMap     & distances,
                 const PredecessorsMap & predecessors
             ){
+                return topNode != target;
+            };
+
+            this->initializeMaps(&source, &source +1);
+            runImpl(edgeWeights, subgraphMask, visitor);
+        }
+
+
+        // run single source  ALL targets
+        // no  callback no mask exposed
+        template<class EDGE_WEGIHTS>
+        void runSingleSource(
+            EDGE_WEGIHTS edgeWeights,
+            const int64_t source
+        ){
+
+            // subgraph mask
+            DefaultSubgraphMask<Graph> subgraphMask;
+            this->initializeMaps(&source, &source +1);
+            // visitor
+            auto visitor = [](   int64_t topNode,
+                const DistanceMap     & distances,
+                const PredecessorsMap & predecessors
+            ){
                 return true;
             };
-            this->runImpl(edgeWeights, sourceBegin, sourceEnd,subgraphMask,visitor);
+            runImpl(edgeWeights, subgraphMask, visitor);
+        }
+
+
+
+
+
+
+
+        template<class EDGE_WEGIHTS, class SOURCE_ITER, class SUBGRAPH_MASK, class VISITOR>
+        void run(
+            EDGE_WEGIHTS edgeWeights,
+            SOURCE_ITER sourceBegin, 
+            SOURCE_ITER sourceEnd,
+            const SUBGRAPH_MASK &  subgraphMask,
+            VISITOR && visitor
+        ){
+            this->initializeMaps(sourceBegin, sourceEnd);
+            this->runImpl(edgeWeights,subgraphMask,visitor);
         }
 
         const DistanceMap & distances()const{
@@ -73,14 +108,11 @@ namespace graph{
 
         template<
             class EDGE_WEGIHTS, 
-            class SOURCE_ITER,
             class SUBGRAPH_MASK,
             class VISITOR 
         >
         void runImpl(
             EDGE_WEGIHTS edgeWeights,
-            SOURCE_ITER sourceBegin, 
-            SOURCE_ITER sourceEnd,
             const SUBGRAPH_MASK &  subgraphMask,
             VISITOR && visitor
         ){
@@ -88,8 +120,11 @@ namespace graph{
             //target_ = lemon::INVALID;
             while(!pq_.empty() ){ //&& !finished){
                 const auto topNode =  pq_.top();
-                visitor(topNode, distMap_, predMap_);
-                pq_.pop();                
+                pq_.pop();
+
+                if(!visitor(topNode, distMap_, predMap_)){
+                    break;
+                }               
                 if(subgraphMask.useNode(topNode)){
                     // loop over all neigbours
                     for(auto adj : g_.adjacency(topNode)){
