@@ -44,9 +44,6 @@ namespace detail_graph{
             distMap_(g){
         }
 
-
-
-
         // run single source single target
         // no  callback no mask exposed
         void runSingleSourceSingleTarget(

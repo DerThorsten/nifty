@@ -1,6 +1,6 @@
 #pragma once
-#ifndef NIFTY_GRAPH_SHORTEST_PATH_DEPTH_FIRST_SEARCH_HXX
-#define NIFTY_GRAPH_SHORTEST_PATH_DEPTH_FIRST_SEARCH_HXX
+#ifndef NIFTY_GRAPH_DEPTH_FIRST_SEARCH_HXX
+#define NIFTY_GRAPH_DEPTH_FIRST_SEARCH_HXX
 
 #include "nifty/graph/subgraph_mask.hxx"
 #include "nifty/graph/detail/search_impl.hxx"
@@ -15,4 +15,4 @@ namespace graph{
 } // namespace nifty::graph
 } // namespace nifty
 
-#endif  // NIFTY_GRAPH_SHORTEST_PATH_DEPTH_FIRST_SEARCH_HXX
+#endif  // NIFTY_GRAPH_DEPTH_FIRST_SEARCH_HXX
