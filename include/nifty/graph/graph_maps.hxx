@@ -2,12 +2,9 @@
 #ifndef NIFTY_UNDIRECTED_GRAPH_GRAPH_MAPS_HXX
 #define NIFTY_UNDIRECTED_GRAPH_GRAPH_MAPS_HXX
 
-
 namespace nifty{
 namespace graph{
 namespace graph_maps{
-
-
 
 template<class G, class T>
 struct NodeMap : public std::vector<T>{
@@ -27,9 +24,6 @@ struct EdgeMap : public std::vector<T>{
     :   std::vector<T>( ){
     }
 };
-
-
-
 
 
 } // namespace nifty::graph::graph_maps

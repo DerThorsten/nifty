@@ -162,15 +162,11 @@ namespace graph{
             }
         }
 
-
-
         const GRAPH & g_;
         PqType pq_;
         PredecessorsMap predMap_;
         DistanceMap     distMap_;
     };
-
-
 
 } // namespace nifty::graph
 } // namespace nifty

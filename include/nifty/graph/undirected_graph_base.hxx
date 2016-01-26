@@ -11,10 +11,6 @@
 namespace nifty{
 namespace graph{
 
-
-
-
-
 template<
     class CHILD_GRAPH
 >
@@ -70,9 +66,6 @@ private:
        return *static_cast<const ChildGraph *>(this);
     }
 };
-
-
-
 
 } // namespace nifty::graph
 } // namespace nifty
