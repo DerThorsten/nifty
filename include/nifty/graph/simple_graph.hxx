@@ -10,7 +10,7 @@
 #include "nifty/tools/runtime_check.hxx"
 #include "nifty/graph/undirected_graph_base.hxx"
 #include "nifty/graph/detail/adjacency.hxx"
-#include "nifty/graph/graph_iterators.hxx"
+
 
 namespace nifty{
 namespace graph{
