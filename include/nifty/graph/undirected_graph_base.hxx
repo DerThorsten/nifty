@@ -12,12 +12,14 @@ namespace nifty{
 namespace graph{
 
 template<
-    class CHILD_GRAPH
+    class CHILD_GRAPH,
+    class NODE_ITER,
+    class EDGE_ITER
 >
 class UndirectedGraphBase{
 public:
     typedef CHILD_GRAPH ChildGraph;
-    typedef UndirectedGraphBase<ChildGraph> Self;
+    typedef UndirectedGraphBase<ChildGraph, NODE_ITER, EDGE_ITER> Self;
 
     template<class T>
     struct NodeMap : graph_maps::NodeMap<ChildGraph,T> {
@@ -57,6 +59,16 @@ public:
     AdjacencyIterRange<ChildGraph > adjacency(const int64_t node) const{
         return AdjacencyIterRange<ChildGraph>(_child().adjacencyBegin(node),_child().adjacencyEnd(node));
     }
+
+    // make the graph also a digraph
+    int64_t numberOfArcs()const{
+        return _child().numberOfEdges()*2;
+    }
+    int64_t maxArcId()const{
+        return _child.maxEdgeId()*2 +1;
+    }
+    
+    
 
 private:
     ChildGraph & _child(){

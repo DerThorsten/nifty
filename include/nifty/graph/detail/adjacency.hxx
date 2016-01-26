@@ -71,6 +71,9 @@ public:
     ARC_RETURN_TYPE arc()const{
         return this->edgeOrArc();
     }
+    ARC_RETURN_TYPE edge()const{
+        return this->edgeOrArc();
+    }
 };
 
 

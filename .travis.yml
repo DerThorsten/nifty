@@ -17,6 +17,14 @@ addons:
       - python3.5-venv
       #- python3.5-dev:i386
       - libboost-test-dev 
+before_script:
+  - wget https://github.com/wjakob/pybind11/archive/v1.1.tar.gz -O /tmp/v1.1.tar.gz
+
+install:
+  - wget https://github.com/wjakob/pybind11/archive/v1.1.tar.gz
+  - tar -xzvf v1.1.tar.gz
+  - cd pybind11-1.1 && cmake . && make && sudo make install
+  #
 matrix:
   include:
     - os: linux
@@ -26,7 +34,7 @@ matrix:
         #
         #- cmake -DPYBIND11_PYTHON_VERSION=3.5 -DPYTHON_INCLUDE_DIR:PATH=/usr/include/python3.5m -DPYTHON_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libpython3.5m.so -DPYTHON_EXECUTABLE:FILEPATH=`pwd`/venv/bin/python3.5 -DCMAKE_CXX_COMPILER=g++-4.8
         #
-        - cmake -DPYBIND11_PYTHON_VERSION=3.5 -DCMAKE_CXX_COMPILER=g++-4.8
+        - cmake -DBUILD_NIFTY_PYTHON=ON -DCMAKE_CXX_COMPILER=g++-4.8
         - make -j2
         - CTEST_OUTPUT_ON_FAILURE=TRUE make test
         #- source venv/bin/activate

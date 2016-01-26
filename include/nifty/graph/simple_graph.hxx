@@ -7,19 +7,22 @@
 
 #include <boost/iterator/counting_iterator.hpp>
 
+#include "nifty/tools/runtime_check.hxx"
 #include "nifty/graph/undirected_graph_base.hxx"
 #include "nifty/graph/detail/adjacency.hxx"
-#include "nifty/tools/runtime_check.hxx"
+#include "nifty/graph/graph_iterators.hxx"
+
 namespace nifty{
 namespace graph{
 
 
 template<class EDGE_INTERANL_TYPE = int64_t, 
          class NODE_INTERNAL_TYPE = int64_t>
-
 class InsertOnlyGraph : public
     UndirectedGraphBase<
-        InsertOnlyGraph<EDGE_INTERANL_TYPE,NODE_INTERNAL_TYPE>
+        InsertOnlyGraph<EDGE_INTERANL_TYPE,NODE_INTERNAL_TYPE>,
+        boost::counting_iterator<int64_t>,
+        boost::counting_iterator<int64_t>
     >
 {
 private:

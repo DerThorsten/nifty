@@ -7,7 +7,7 @@
 
 #include <boost/iterator/counting_iterator.hpp>
 
-#include "nifty/graph/undirected_graph_base.hxx"
+#include "nifty/graph/directed_graph_base.hxx"
 #include "nifty/graph/detail/adjacency.hxx"
 #include "nifty/tools/runtime_check.hxx"
 namespace nifty{
@@ -16,7 +16,9 @@ namespace graph{
 
 template<class ARC_INTERANL_TYPE = int64_t, 
          class NODE_INTERNAL_TYPE = int64_t>
-class SimpleDirectedGraph 
+class SimpleDirectedGraph : public DirectedGraphBase<
+    SimpleDirectedGraph<ARC_INTERANL_TYPE, NODE_INTERNAL_TYPE>
+>
 {
 private:
     typedef ARC_INTERANL_TYPE ArcInternalType;
@@ -31,22 +33,21 @@ public:
 
     typedef typename DirectedNodeStorage::const_iterator AdjacencyInIter;
     typedef typename DirectedNodeStorage::const_iterator AdjacencyOutIter;
-    // MUST IMPL INTERFACE
-    int64_t source(const int64_t a)const{
-        NIFTY_ASSERT_OP(a,<,numberOfArcs());
-        return arcs_[a].first;
-    }
-    int64_t target(const int64_t a)const{
-        NIFTY_ASSERT_OP(a,<,numberOfArcs());
-        return arcs_[a].second;
+    
+    // constructors
+    SimpleDirectedGraph(const uint64_t numberOfNodes = 0, const uint64_t reserveNumberOfArcs = 0)
+    :   nodes_(numberOfNodes),
+        arcs_()
+    {
+        arcs_.reserve(reserveNumberOfArcs);
     }
 
     int64_t insertArc(const int64_t s, const int64_t t){
         // from s to t
-        auto sOut & = nodes_[s].first;
-        auto tIn  & = nodes_[t].second;
-        const auto fRes = sOut.find(NodeAdjacency(t);
-        if(fRes == sOut.end())){
+        auto & sOut = nodes_[s].first;
+        auto & tIn  = nodes_[t].second;
+        const auto fRes = sOut.find(NodeAdjacency(t));
+        if(fRes == sOut.end()){
             auto arc = arcs_.size();
             sOut.insert(NodeAdjacency(t,arc));
             tIn.insert(NodeAdjacency(s,arc));
@@ -58,10 +59,22 @@ public:
         }
     }
 
+    // MUST IMPL INTERFACE
+    int64_t source(const int64_t a)const{
+        NIFTY_ASSERT_OP(a,<,numberOfArcs());
+        return arcs_[a].first;
+    }
+    int64_t target(const int64_t a)const{
+        NIFTY_ASSERT_OP(a,<,numberOfArcs());
+        return arcs_[a].second;
+    }
+
+
+
     int64_t findArc(const int64_t s, const int64_t t){
-        auto sOut & = nodes_[s].first;
-        auto tIn  & = nodes_[t].second;
-        const auto fRes = sOut.find(NodeAdjacency(t);
+        auto & sOut = nodes_[s].first;
+        auto & tIn  = nodes_[t].second;
+        const auto fRes = sOut.find(NodeAdjacency(t));
         return fRes == sOut.end() ? -1 : fRes->arc();
     }
 
@@ -71,6 +84,10 @@ public:
     int64_t numberOfNodes() const{return nodes_.size();}
 
 
+    NodeIter nodesBegin()const{return NodeIter(0);}
+    NodeIter nodesEnd()const{return NodeIter(this->numberOfNodes());}
+    ArcIter arcsBegin()const{return ArcIter(0);}
+    ArcIter arcsEnd()const{return ArcIter(this->numberOfArcs());}
 
     AdjacencyOutIter adjacencyOutBegin(const int64_t node)const{
         NIFTY_ASSERT_OP(node,<,numberOfNodes());

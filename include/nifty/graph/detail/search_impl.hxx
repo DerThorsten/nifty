@@ -37,7 +37,7 @@ namespace detail_graph{
         typedef typename Graph:: template NodeMap<int64_t>     PredecessorsMap;
         typedef typename Graph:: template NodeMap<int64_t>  DistanceMap;
     private:
-        typedef QUEUE    Queue;
+        typedef QUEUE Queue;
     public:
         SearchImpl(const Graph & g)
         :   g_(g),
@@ -57,11 +57,15 @@ namespace detail_graph{
             // visitor
             auto visitor = [&]
             (   
-                int64_t topNode,
-                const DistanceMap     & distances,
-                const PredecessorsMap & predecessors
+                int64_t toNode,
+                int64_t predecessorNode,
+                int64_t edge,
+                int64_t distance,
+                bool & continueSeach,
+                bool & addToNode
             ){
-                return topNode != target;
+                continueSeach =  (toNode != target);
+                addToNode = true;
             };
 
             this->initializeMaps(&source, &source +1);
@@ -79,20 +83,21 @@ namespace detail_graph{
             DefaultSubgraphMask<Graph> subgraphMask;
             this->initializeMaps(&source, &source +1);
             // visitor
-            auto visitor = [](   int64_t topNode,
-                const DistanceMap     & distances,
-                const PredecessorsMap & predecessors
+            auto visitor = [&]
+            (   
+                int64_t toNode,
+                int64_t predecessorNode,
+                int64_t edge,
+                int64_t distance,
+                bool & continueSeach,
+                bool & addToNode
             ){
-                return true;
+                // algorithm has these initialized to true
+                //continueSeach =  true;
+                //addToNode = true;
             };
             runImpl(subgraphMask, visitor);
         }
-
-
-
-
-
-
 
         template<class SOURCE_ITER, class SUBGRAPH_MASK, class VISITOR>
         void run(
@@ -121,31 +126,31 @@ namespace detail_graph{
             const SUBGRAPH_MASK &  subgraphMask,
             VISITOR && visitor
         ){
-
-            while(!queue_.empty()){
+            auto continueSeach = true;
+            while(continueSeach && !queue_.empty()){
                 auto u = queue_.nextElement();
                 queue_.pop();
-
-                // exit on visitors demand
-                if(!visitor(u, distMap_, predMap_)){
-                    break;
-                }
-
                 // if node == gloal node
                 //  break
                 for(auto adj : g_.adjacency(u)){
                     const auto v = adj.node();
                     const auto e = adj.edge();
                     if(predMap_[v] == -1 &&  subgraphMask.useNode(v) && subgraphMask.useEdge(e)){
-                        predMap_[v] = u;
-                        distMap_[v] = distMap_[u] + 1;
-                        queue_.push(v);
+
+                        const auto newDistance = distMap_[u] + 1;
+                        auto addToNode = true;
+                        visitor(v,u,e,newDistance,continueSeach, addToNode);
+                        if(addToNode){
+                            predMap_[v] = u;
+                            distMap_[v] = newDistance;
+                            queue_.push(v);
+                        }
+                        if(!continueSeach)
+                            break;                        
                     }
                 }
             }
-            
         }
-
 
         template<class SOURCE_ITER>
         void initializeMaps(SOURCE_ITER sourceBegin, SOURCE_ITER sourceEnd){
@@ -162,8 +167,6 @@ namespace detail_graph{
                 queue_.push(n);
             }
         }
-
-
 
         const GRAPH & g_;
         Queue queue_;
