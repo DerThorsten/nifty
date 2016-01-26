@@ -60,15 +60,7 @@ public:
         return AdjacencyIterRange<ChildGraph>(_child().adjacencyBegin(node),_child().adjacencyEnd(node));
     }
 
-    // make the graph also a digraph
-    int64_t numberOfArcs()const{
-        return _child().numberOfEdges()*2;
-    }
-    int64_t maxArcId()const{
-        return _child.maxEdgeId()*2 +1;
-    }
-    
-    
+
 
 private:
     ChildGraph & _child(){
