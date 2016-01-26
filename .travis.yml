@@ -24,7 +24,7 @@ install:
   - wget https://github.com/wjakob/pybind11/archive/master.zip
   - unzip master.zip -d .
   - cd pybind11-master 
-  - cmake . 
+  - cmake -DCMAKE_CXX_COMPILER=g++-4.8
   - make 
   - sudo make install
   #
