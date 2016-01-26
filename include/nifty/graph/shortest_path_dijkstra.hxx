@@ -1,16 +1,12 @@
 #pragma once
-#ifndef NIFTY_GRAPH_SHORTEST_PATH_HXX
-#define NIFTY_GRAPH_SHORTEST_PATH_HXX
+#ifndef NIFTY_GRAPH_SHORTEST_PATH_DIJKSTRA_HXX
+#define NIFTY_GRAPH_SHORTEST_PATH_DIJKSTRA_HXX
 
 #include "nifty/graph/subgraph_mask.hxx"
 #include "nifty/queue/changeable_priority_queue.hxx"
 
 namespace nifty{
 namespace graph{
-
-
-    
-
 
     template<class GRAPH, class WEIGHT_TYPE>
     class ShortestPathDijkstra{
@@ -30,9 +26,6 @@ namespace graph{
             predMap_(g),
             distMap_(g){
         }
-
-
-
 
         // run single source single target
         // no  callback no mask exposed
@@ -58,7 +51,6 @@ namespace graph{
             runImpl(edgeWeights, subgraphMask, visitor);
         }
 
-
         // run single source  ALL targets
         // no  callback no mask exposed
         template<class EDGE_WEGIHTS>
@@ -79,12 +71,6 @@ namespace graph{
             };
             runImpl(edgeWeights, subgraphMask, visitor);
         }
-
-
-
-
-
-
 
         template<class EDGE_WEGIHTS, class SOURCE_ITER, class SUBGRAPH_MASK, class VISITOR>
         void run(
@@ -189,4 +175,4 @@ namespace graph{
 } // namespace nifty::graph
 } // namespace nifty
 
-#endif  // NIFTY_GRAPH_SHORTEST_PATH_HXX
+#endif  // NIFTY_GRAPH_SHORTEST_PATH_DIJKSTRA_HXX

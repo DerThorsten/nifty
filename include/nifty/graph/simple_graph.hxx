@@ -25,10 +25,11 @@ class InsertOnlyGraph : public
 private:
     typedef EDGE_INTERANL_TYPE EdgeInternalType;
     typedef NODE_INTERNAL_TYPE NodeInteralType;
-    typedef detail_graph::Adjacency<int64_t,int64_t,NodeInteralType,EdgeInternalType> NodeAdjacency;
+    typedef detail_graph::UndirectedAdjacency<int64_t,int64_t,NodeInteralType,EdgeInternalType> NodeAdjacency;
     typedef std::set<NodeAdjacency > NodeStorage;
+
+    typedef std::pair<NodeInteralType,NodeInteralType> EdgeStorage;
 public:
-    // typedefs which are needed ?
     typedef boost::counting_iterator<int64_t> NodeIter;
     typedef boost::counting_iterator<int64_t> EdgeIter;
     typedef typename NodeStorage::const_iterator AdjacencyIter;
@@ -101,7 +102,6 @@ public:
 private:
 
 
-    typedef std::pair<NodeInteralType,NodeInteralType> EdgeStorage;
 
     std::vector<NodeStorage> nodes_;
     std::vector<EdgeStorage> edges_;

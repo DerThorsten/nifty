@@ -13,31 +13,65 @@ namespace detail_graph{
 // => implementation detail
 template<
     class NODE_RETURN_TYPE = int64_t,
-    class EDGE_RETURN_TYPE = int64_t,
+    class EDGE_OR_ARG_RETURN_TYPE = int64_t,
     class NODE_INTERANL_TYPE = int64_t,
-    class EDGE_INTERANL_TYPE = int64_t
+    class EDGE_OR_ARC_INTERNAL_TYPE = int64_t
 >
-class Adjacency {
+class AdjacencyImpl {
 public:
-    Adjacency(const NODE_INTERANL_TYPE node =0, const EDGE_INTERANL_TYPE edge=0)
+    AdjacencyImpl(const NODE_INTERANL_TYPE node =0, const EDGE_OR_ARC_INTERNAL_TYPE edgeOrArc=0)
     :   node_(node),
-        edge_(edge){
+        edgeOrArc_(edgeOrArc){
     }
     NODE_RETURN_TYPE  node() const{
         return node_;
     }
-    EDGE_RETURN_TYPE  edge() const{
-        return edge_;
-    }
-    bool operator<(const Adjacency & other) const{
+    bool operator<(const AdjacencyImpl & other) const{
         return  node_ < other.node_;
+    }
+protected:
+    EDGE_OR_ARG_RETURN_TYPE  edgeOrArc() const{
+        return edgeOrArc_;
     }
 private:
     NODE_INTERANL_TYPE node_;
-    EDGE_INTERANL_TYPE edge_;
+    EDGE_OR_ARC_INTERNAL_TYPE edgeOrArc_;
 };
 
 
+template<
+    class NODE_RETURN_TYPE = int64_t,
+    class EDGE_RETURN_TYPE = int64_t,
+    class NODE_INTERANL_TYPE = int64_t,
+    class EDGE_INTERNAL_TYPE = int64_t
+>
+class UndirectedAdjacency : public AdjacencyImpl<NODE_RETURN_TYPE,EDGE_RETURN_TYPE,NODE_INTERANL_TYPE,EDGE_INTERNAL_TYPE>
+{
+public:
+    UndirectedAdjacency(const NODE_INTERANL_TYPE node =0, const EDGE_INTERNAL_TYPE edge=0)
+    :   AdjacencyImpl<NODE_RETURN_TYPE,EDGE_RETURN_TYPE,NODE_INTERANL_TYPE,EDGE_INTERNAL_TYPE>(node,edge){
+    }
+    EDGE_RETURN_TYPE edge()const{
+        return this->edgeOrArc();
+    }
+};
+
+template<
+    class NODE_RETURN_TYPE = int64_t,
+    class ARC_RETURN_TYPE = int64_t,
+    class NODE_INTERANL_TYPE = int64_t,
+    class ARC_INTERNAL_TYPE = int64_t
+>
+class DirectedAdjacency : public AdjacencyImpl<NODE_RETURN_TYPE,ARC_RETURN_TYPE,NODE_INTERANL_TYPE,ARC_INTERNAL_TYPE>
+{
+public:
+    DirectedAdjacency(const NODE_INTERANL_TYPE node =0, const ARC_INTERNAL_TYPE arc=0)
+    :   AdjacencyImpl<NODE_RETURN_TYPE,ARC_RETURN_TYPE,NODE_INTERANL_TYPE,ARC_INTERNAL_TYPE>(node,arc){
+    }
+    ARC_RETURN_TYPE arc()const{
+        return this->edgeOrArc();
+    }
+};
 
 
 
