@@ -22,7 +22,7 @@ before_script:
 
 install:
   - wget https://github.com/wjakob/pybind11/archive/master.zip
-  - unzip -d .
+  - unzip master.zip -d .
   - cd pybind11-master 
   - cmake . 
   - make 
