@@ -11,7 +11,7 @@
 
 BOOST_AUTO_TEST_CASE(BreadthFirstSearchTest)
 {
-    typedef nifty::graph::InsertOnlyGraph<>  Graph;
+    typedef nifty::graph::UndirectedGraph<>  Graph;
     Graph g(6);
 
     //   0 | 1 |

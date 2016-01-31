@@ -10,7 +10,7 @@
 BOOST_AUTO_TEST_CASE(UndirectedGraphTest)
 {
     auto e = 0;
-    nifty::graph::InsertOnlyGraph<> graph(4);
+    nifty::graph::UndirectedGraph<> graph(4);
     NIFTY_TEST_OP(graph.numberOfNodes(),==,4);
     NIFTY_TEST_OP(graph.numberOfEdges(),==,0);
 
