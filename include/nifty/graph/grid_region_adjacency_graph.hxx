@@ -55,7 +55,7 @@ namespace graph{
             // find in slice edges
             nifty::parallel::parallel_foreach(threadpool,nZ,[&]
             (int threadIndex,int z){
-                const size_t begin[3] = {0,0,z};
+                const size_t begin[3] = {0,0,size_t(z)};
                 const size_t shape[3] = {size_t(shape[0]),size_t(shape[1]),1}; 
                 const auto labels2d = labels.view(begin, shape).squeeze();
                 auto & inSliceEdges = inSliceEdgesVec[z];
@@ -75,8 +75,8 @@ namespace graph{
             // find between slice edges
             nifty::parallel::parallel_foreach(threadpool,nZ-1,[&]
             (int threadIndex,int z){
-                const size_t beginA[3] = {0, 0, z};
-                const size_t beginB[3] = {0, 0, z+1};
+                const size_t beginA[3] = {0, 0, size_t(z)};
+                const size_t beginB[3] = {0, 0, size_t(z+1)};
                 const size_t shape[3] = {size_t(shape[0]),size_t(shape[1]),1}; 
                 const auto labelsA = labels.view(beginA, shape).squeeze();
                 const auto labelsB = labels.view(beginA, shape).squeeze();
