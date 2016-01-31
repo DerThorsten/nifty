@@ -198,7 +198,7 @@ private:
 
 
 
-} // namespace nifty::graph
+} // namespace nifty::queue
 } // namespace nifty
 
 #endif  // NIFTY_QUEUES_CHANGEABLE_PRIORITY_QUEUE_HXX

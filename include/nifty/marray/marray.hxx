@@ -65,6 +65,11 @@
 #ifndef ANDRES_MARRAY_HXX
 #define ANDRES_MARRAY_HXX
 
+#define HAVE_CPP11_VARIADIC_TEMPLATES 1
+#define HAVE_CPP11_INITIALIZER_LISTS 1
+#define HAVE_CPP11_TEMPLATE_ALIASES 1
+
+
 #include <cassert>
 #include <cstddef>
 #include <stdexcept> // runtime_error

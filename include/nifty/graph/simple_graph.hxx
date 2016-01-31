@@ -18,9 +18,9 @@ namespace graph{
 
 template<class EDGE_INTERANL_TYPE = int64_t, 
          class NODE_INTERNAL_TYPE = int64_t>
-class InsertOnlyGraph : public
+class UndirectedGraph : public
     UndirectedGraphBase<
-        InsertOnlyGraph<EDGE_INTERANL_TYPE,NODE_INTERNAL_TYPE>,
+        UndirectedGraph<EDGE_INTERANL_TYPE,NODE_INTERNAL_TYPE>,
         boost::counting_iterator<int64_t>,
         boost::counting_iterator<int64_t>
     >
@@ -38,7 +38,7 @@ public:
     typedef typename NodeStorage::const_iterator AdjacencyIter;
 
     // constructors
-    InsertOnlyGraph(const uint64_t numberOfNodes = 0, const uint64_t reserveNumberOfEdges = 0)
+    UndirectedGraph(const uint64_t numberOfNodes = 0, const uint64_t reserveNumberOfEdges = 0)
     :   nodes_(numberOfNodes),
         edges_()
     {
