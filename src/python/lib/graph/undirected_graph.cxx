@@ -38,21 +38,6 @@ namespace graph{
                     }
                 }
             )
-            .def("__repr__",
-                [](const Graph & g) {
-                    std::stringstream ss;
-                    auto first = true;
-                    for(auto edge : g.edges()){
-                        if(first){
-                            first = false;
-                            ss<<g.u(edge)<<"-"<<g.v(edge);
-                        }
-                        else
-                            ss<<"\n"<<g.u(edge)<<"-"<<g.v(edge);
-                    }
-                    return ss.str();
-                }
-            )
         ;
 
         // export the base graph API (others might derive)

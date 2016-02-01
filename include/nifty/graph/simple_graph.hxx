@@ -45,7 +45,12 @@ public:
         edges_.reserve(reserveNumberOfEdges);
     }
 
-
+    void assign(const uint64_t numberOfNodes = 0, const uint64_t reserveNumberOfEdges = 0){
+        nodes_.clear();
+        edges_.clear();
+        nodes_.resize(numberOfNodes);
+        edges_.reserve(reserveNumberOfEdges);
+    }
 
     int64_t insertEdge(const int64_t u, const int64_t v){
         auto & adjU = nodes_[u];

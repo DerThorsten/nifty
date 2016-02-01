@@ -27,23 +27,13 @@ namespace graph{
             end_(endIter),
             gRef_(gRef)
         {
-
-        }
-        PyGraphIter( 
-            const G & g, 
-            py::object gRef
-        )   :
-            g_(g),
-            current_(g.edgesBegin()),
-            end_(g.edgesEnd()),
-            gRef_(gRef)
-        {
-
         }
 
         ReturnType next(){
             if(current_ == end_){
                 throw py::stop_iteration();
+            }
+            else{
             }
             const auto ret = *current_;
             ++current_;
@@ -70,16 +60,59 @@ namespace graph{
         typedef typename G::EdgeIter EdgeIter;
         typedef PyGraphIter<G,EdgeIter> PyEdgeIter;
         auto edgeIterClsName = clsName + std::string("EdgeIter");
-
         py::class_<PyEdgeIter>(graphModule, edgeIterClsName.c_str())
             .def("__iter__", [](PyEdgeIter &it) -> PyEdgeIter& { return it; })
             .def("__next__", &PyEdgeIter::next);
         ;
 
+        typedef typename G::NodeIter NodeIter;
+        typedef PyGraphIter<G,NodeIter> PyNodeIter;
+        auto nodeIterClsName = clsName + std::string("NodeIter");
+        py::class_<PyNodeIter>(graphModule, nodeIterClsName.c_str())
+            .def("__iter__", [](PyNodeIter &it) -> PyNodeIter& { return it; })
+            .def("__next__", &PyNodeIter::next);
+        ;
+
+
+
         cls
             .def("numberOfNodes",&G::numberOfNodes)
             .def("numberOfEdges",&G::numberOfEdges)
-            .def("edges", [](py::object g) { return PyEdgeIter(g.cast<const G &>(), g); })
+            .def("findEdge",&G::findEdge)
+            .def("u",&G::u)
+            .def("v",&G::v)
+            .def("edges", [](py::object g) { 
+                const auto & gg = g.cast<const G &>();
+                return PyEdgeIter(gg,g,gg.edgesBegin(),gg.edgesEnd()); 
+            })
+            .def("nodes", [](py::object g) { 
+                const auto & gg = g.cast<const G &>();
+                return PyEdgeIter(gg,g,gg.nodesBegin(),gg.nodesEnd()); 
+            })
+
+            .def("__str__",
+                [](const G & g) {
+                    std::stringstream ss;
+                    ss<<"#Nodes "<<g.numberOfNodes()<<" #Edges "<<g.numberOfEdges();
+                    return ss.str();
+                }
+            )
+            .def("__repr__",
+                [](const G & g) {
+                    std::stringstream ss;
+                    auto first = true;
+                    for(auto edge : g.edges()){
+                        if(first){
+                            first = false;
+                            ss<<g.u(edge)<<"-"<<g.v(edge);
+                        }
+                        else
+                            ss<<"\n"<<g.u(edge)<<"-"<<g.v(edge);
+                    }
+                    return ss.str();
+                }
+            )
+
         ;
     }
     

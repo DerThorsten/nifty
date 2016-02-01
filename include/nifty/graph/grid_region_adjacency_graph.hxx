@@ -2,6 +2,8 @@
 #ifndef NIFTY_GRID_REGION_ADJACENCY_GRAPH_HXX
 #define NIFTY_GRID_REGION_ADJACENCY_GRAPH_HXX
 
+#include <algorithm>
+
 #include <boost/iterator/transform_iterator.hpp>
 
 #include "nifty/marray/marray.hxx"
@@ -32,8 +34,14 @@ namespace graph{
     public:
 
         template<class T>
-        void assign(const nifty::marray::View<T> & labels){
-            const auto shape = labels.shape();
+        void assignLabels(const nifty::marray::View<T> & labels){
+
+            //std::cout<<"find max \n";
+
+            auto nLabels = *std::max_element(labels.begin(),labels.end())+1;
+            this->assign(nLabels);
+
+            const std::vector<uint64_t> shape(labels.shapeBegin(),labels.shapeEnd());
             const auto nZ = shape[2];
 
             typedef std::pair< int64_t, int64_t> Edge;
@@ -45,49 +53,59 @@ namespace graph{
 
             nifty::parallel::ThreadPool  threadpool(-1);
             
-            auto insertEdgeIfDifferent = [](EdgeSet & edgeSet, int64_t l, int64_t ol){
+            auto insertEdgeIfDifferent = [](EdgeSet & edgeSet, T l, T ol){
                 if(l != ol){
                     const auto e = Edge(std::min(l, ol), std::max(l, ol));
                     edgeSet.insert(e);
                 }
             };
 
+            //std::cout<<"in slices edges \n";
             // find in slice edges
             nifty::parallel::parallel_foreach(threadpool,nZ,[&]
             (int threadIndex,int z){
-                const size_t begin[3] = {0,0,size_t(z)};
-                const size_t shape[3] = {size_t(shape[0]),size_t(shape[1]),1}; 
-                const auto labels2d = labels.view(begin, shape).squeeze();
+                const auto labels2d = labels.boundView(2,z);
                 auto & inSliceEdges = inSliceEdgesVec[z];
 
                 for(auto y=0; y<shape[1]; ++y)
                 for(auto x=0; x<shape[0]; ++x){
-                    const auto l = labels(x, y);
+                    const auto l = labels2d(x, y);
                     if(x + 1 < shape[0]){
-                        insertEdgeIfDifferent(l, labels(x + 1, y));
+                        insertEdgeIfDifferent(inSliceEdges, l, labels2d(x + 1, y));
                     }
                     if(y + 1 < shape[1]){
-                        insertEdgeIfDifferent(l, labels(x, y + 1));
+                        insertEdgeIfDifferent(inSliceEdges, l, labels2d(x, y + 1));
                     }
                 }
             });
-
+            //std::cout<<"between slice edges \n";
             // find between slice edges
             nifty::parallel::parallel_foreach(threadpool,nZ-1,[&]
             (int threadIndex,int z){
-                const size_t beginA[3] = {0, 0, size_t(z)};
-                const size_t beginB[3] = {0, 0, size_t(z+1)};
-                const size_t shape[3] = {size_t(shape[0]),size_t(shape[1]),1}; 
-                const auto labelsA = labels.view(beginA, shape).squeeze();
-                const auto labelsB = labels.view(beginA, shape).squeeze();
+                const auto labelsA = labels.boundView(2,z);
+                const auto labelsB = labels.boundView(2,z+1);
                 auto & betweenSliceEdges = betweenSliceEdgesVec[z];
                 for(auto y=0; y<shape[1]; ++y)
                 for(auto x=0; x<shape[0]; ++x){
-                    insertEdgeIfDifferent(labelsA(x, y), labelsB(x, y));
+                    insertEdgeIfDifferent(betweenSliceEdges, labelsA(x, y), labelsB(x, y));
                 }
             });
 
-            // 
+            //std::cout<<"add edges in slices\n";
+            // add edges in serial
+            for(const auto & inSliceEdges  :inSliceEdgesVec){
+                for(const auto & edge : inSliceEdges){
+                    this->insertEdge(edge.first,edge.second);
+                }
+            }
+
+            //std::cout<<"add edges between slices\n";
+            // add edges in serial
+            for(const auto & betweenSliceEdges  :betweenSliceEdgesVec){
+                for(const auto & edge : betweenSliceEdges){
+                    this->insertEdge(edge.first,edge.second);
+                }
+            }
 
         }
 

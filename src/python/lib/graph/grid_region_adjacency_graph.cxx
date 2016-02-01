@@ -28,10 +28,30 @@ namespace graph{
 
     }
 
+    void exportGridRegionAdjacencyGraphRag3d2d(py::module & graphModule) {
+    
+        typedef UndirectedGraph<> Base;
+        typedef Rag3d2d Graph;
+        const auto clsName = std::string("Rag3d2d");
+        auto graphCls = py::class_<Graph>(graphModule, clsName.c_str(),py::base<Base>());
+
+        graphCls
+            .def(py::init<>())
+            .def("assignLabels",
+                [](Graph & g, py::array_t<uint64_t> pyArray) {
+                    NumpyArray<uint64_t> array(pyArray);
+                    NIFTY_CHECK_OP(array.dimension(),==,3,"wrong dimensions");
+                    g.assignLabels(array);
+                }
+            )
+        ;
+
+    }
+
 
     void exportGridRegionAdjacencyGraph(py::module & graphModule) {
         exportGridRegionAdjacencyGraphRag3d(graphModule);
-        
+        exportGridRegionAdjacencyGraphRag3d2d(graphModule);
     }
 
 }
