@@ -5,6 +5,7 @@
 #include <iostream> 
 #include <typeinfo>
 #include <typeindex>
+#include <sstream>
 #include <vector>
 #include <array>
 
@@ -34,6 +35,10 @@ BOOST_AUTO_TEST_CASE(ArrayTest)
     aVec/=bVec;
     aVec-=bVec;
     aVec*=bVec;
+    aVec+=2;
+    aVec+=4;
+
+    std::cout<<aVec;
 }
 
 BOOST_AUTO_TEST_CASE(StaticArrayTest)
@@ -52,4 +57,18 @@ BOOST_AUTO_TEST_CASE(StaticArrayTest)
     aVec/=bVec;
     aVec-=bVec;
     aVec*=bVec;
+    std::cout<<bVec;
+}
+
+
+BOOST_AUTO_TEST_CASE(ArrayCoutOperator)
+{
+    
+    typedef nifty::array::ArrayExtender<nifty::array::StaticArray<int,2> > IntVec;
+    IntVec aVec({int(4),int(1)});
+    IntVec bVec({int(2),int(3)});
+
+    std::stringstream ss;
+    ss<<aVec;
+    std::cout<<ss.str();
 }

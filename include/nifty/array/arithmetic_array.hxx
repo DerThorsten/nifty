@@ -15,31 +15,25 @@ namespace array{
     public:
         using ARRAY_CLASS::ARRAY_CLASS;
 
-
-
-
     private:
 
     };
 
-
-    // Addition
-    template< typename T, typename Op1 , typename Op2 >
-    class VecAdd {
-    private:
-       const Op1 &op1;
-       const Op2 &op2;
-
-    public:
-       VecAdd(const Op1 &a, const Op2 &b ) :
-          op1(a), op2(b) {}
-
-       T operator[](const size_t i) const
-       { return op1[i] + op2[i]; }
-
-       size_t size() const
-       { return op1.size(); }
-    };
+    template<class STREAM, class ARRAY_CLASS>
+    STREAM& operator << (STREAM &out, const ArrayExtender<ARRAY_CLASS> & array){
+        out<<"[";
+        auto first = true;
+        for(const auto & val : array){
+            if (first){
+                first = false;
+                out<<" "<<val;
+            }
+            else
+                out<<", "<<val;
+        }
+        out<<" ]";
+        return out;
+    }
 
   
 
@@ -54,34 +48,50 @@ namespace array{
         for(auto i=0; i<a.size(); ++i){ \
             a[i] operatorSymbol b[i]; \
         } \
+    } \
+    template<class ARRAY_CLASS> \
+    ArrayExtender<ARRAY_CLASS> & operator operatorSymbol ( \
+        ArrayExtender<ARRAY_CLASS> & a, \
+        typename ArrayExtender<ARRAY_CLASS>::const_reference  b \
+    ){ \
+        for(auto i=0; i<a.size(); ++i){ \
+            a[i] operatorSymbol b; \
+        } \
     } 
 
     NIFTY_MACRO_BINARY_OP_INPLACE(+=);
     NIFTY_MACRO_BINARY_OP_INPLACE(-=);
     NIFTY_MACRO_BINARY_OP_INPLACE(*=);
     NIFTY_MACRO_BINARY_OP_INPLACE(/=);
-
+    NIFTY_MACRO_BINARY_OP_INPLACE(&=);
+    NIFTY_MACRO_BINARY_OP_INPLACE(|=);
     #undef NIFTY_MACRO_BINARY_OP_INPLACE
 
 
 
 
-
+    // to give std::array a proper constructor
+    // since it is an aggregate we need
+    // to impl. this 
+    // => we are giving up the aggregate status
     template<class T, unsigned int DIM>
-    class StaticArray : public std::array<T,DIM>{
+    class StaticArrayBase : public std::array<T,DIM>{
     public:
         //using std::array<T,DIM>::array;
-        StaticArray()
+        StaticArrayBase()
         :   std::array<T,DIM>(){}
 
         template <typename... Args>
-        StaticArray(Args &&... args) : std::array<T,DIM>({std::forward<Args>(args)...}) {
+        StaticArrayBase(Args &&... args) : std::array<T,DIM>({std::forward<Args>(args)...}) {
         }
     };
 
 
+    template<class T,unsigned int SIZE>
+    using StaticArray = ArrayExtender< StaticArrayBase<T,SIZE> >; 
 
-
+    template<class T, class ALLOCATOR = std::allocator<T> >
+    using Vector = ArrayExtender< std::vector<T,ALLOCATOR> >; 
 
 
 } // namespace nifty::graph

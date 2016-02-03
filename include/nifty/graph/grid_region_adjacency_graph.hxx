@@ -6,6 +6,7 @@
 
 #include <boost/iterator/transform_iterator.hpp>
 
+#include "nifty/array/arithmetic_array.hxx"
 #include "nifty/marray/marray.hxx"
 #include "nifty/graph/simple_graph.hxx"
 #include "nifty/graph/graph_maps.hxx"
@@ -126,13 +127,34 @@ namespace graph{
             return EdgeRange(beginIter+r.first, beginIter+r.second);
         }
 
+        template<
+            class LABELS,
+            class DATA
+        >
+        void accumulateEdgeFeatures(
+            const LABELS & labels,
+            const DATA   & data
+        )const{
+
+        }
     private:
 
+        nifty::array::StaticArray<size_t ,3> shape_;
 
         std::vector<std::pair<uint64_t,uint64_t> > inSliceNodeRanges_;
         std::vector<std::pair<uint64_t,uint64_t> > inSliceEdgeRanges_;
         std::vector<std::pair<uint64_t,uint64_t> > betweenSliceEdgeRanges_;
     };
+
+
+
+    /*
+     *  Rag 3d2d features
+     *
+     *
+     */
+
+
 
 
 
