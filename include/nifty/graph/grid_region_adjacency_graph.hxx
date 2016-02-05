@@ -127,16 +127,97 @@ namespace graph{
             return EdgeRange(beginIter+r.first, beginIter+r.second);
         }
 
+        /**
+         * @brief      accumulated statistics over edges
+         * 
+         *
+         * @param[in]  labels  input labels which generated rag
+         * @param[in]  data    pixel wise data 
+         *
+         * @tparam     LABELS  pixel wise label input type, must fulfill the slice-vol requirements
+         * @tparam     DATA    pixel wise data input type, must fulfill the slice-vol requirements
+         * 
+         *   Compute statistics as :
+         *      - Mean
+         *      - Min,Max
+         *      - Quantiles (0.1,0.25,0.5,0.75,0.9)
+         *      - StdDev
+         *      - Kurtosis
+         *    Over all nodes and edges
+         *    And derive features from that.
+         *    the features will take min mean sum prod etc. between
+         *    adjacent nodes to generate edge features from node features.
+         *    In Total we have 11 features.
+         *    
+         * 
+         */
         template<
             class LABELS,
-            class DATA
+            class DATA,
+            class T
         >
         void accumulateEdgeFeatures(
             const LABELS & labels,
-            const DATA   & data
+            const DATA   & data,
+            nifty::marray::View<T> & features
         )const{
+            const auto nZ  = shape_[2];
+            nifty::parallel::ThreadPool  threadpool(-1);
 
+            std::vector<nifty::features::DefaultAccumulatedStatistics<T> >  accs_(this->numberOfEdges());
+
+
+            // do the accumulation
+            nifty::parallel::parallel_foreach(threadpool,nZ,[&](int threadIndex,int z){
+
+                auto labelsZ = labels.slice(z);
+                auto dataZ = data.slice(z);
+
+                // little lambda to make code cleaner
+                auto accInSliceEdges = [&](const int x,const int y){
+                    const auto l = labelsZ(x, y);
+                    if(x + 1 < shape[0]){
+                        const auto ol = labelsZ(x+1, y);
+                        if(l!=ol)
+                            accs_[this->findEdge(l,ol)].acc(dataZ(x,y)).acc(dataZ(x+1,y));
+                    }
+                    if(y + 1 < shape[1]){
+                        const auto ol = labelsZ(x, y+1);
+                        if(l!=ol)
+                            accs_[this->findEdge(l,ol)].acc(dataZ(x,y)).acc(dataZ(x,y+1));
+                    }
+                };
+
+                if(z+1<nZ){
+                    auto labelsZ1 = labels.slice(z+1);
+                    auto dataZ1 = data.slice(z+1);
+                    for(auto y=0; y<shape[1]; ++y)
+                    for(auto x=0; x<shape[0]; ++x){
+                        // in slide edges
+                        accInSliceEdges(x,y);
+                        // between slide edges
+                        accs_[this->findEdge(l, labelsZ1(x,y))].acc(dataZ(x,y)).acc(dataZ1(x,y));
+                    }
+                }
+                else{
+                    for(auto y=0; y<shape[1]; ++y)
+                    for(auto x=0; x<shape[0]; ++x){
+                        accInSliceEdges(x,y);
+                    }
+                }
+            });
+
+            // store the resulting features
+            nifty::parallel::parallel_foreach(threadpool,this->numberOfEdges(),[&](int threadIndex,int edge){
+                auto featureEdge = featues.bindView(1,edge)
+                accs_[edge].result(featureEdge.begin(),featureEdge.end());
+            }
+
+            // and we are done
         }
+
+
+        
     private:
 
         nifty::array::StaticArray<size_t ,3> shape_;

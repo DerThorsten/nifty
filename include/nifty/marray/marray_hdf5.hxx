@@ -59,6 +59,16 @@ namespace marray{
 /// HDF5 import/export support.
 namespace hdf5 {
 
+
+
+
+class MarrayHdf5ReadOnly{
+    
+};
+
+
+
+
 // assertion testing
 
 // \cond suppress doxygen

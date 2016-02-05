@@ -2,7 +2,7 @@
 #-------------------------------------------------------------------------------------------------------------------
 # unittest
 #-------------------------------------------------------------------------------------------------------------------
-find_package(Boost COMPONENTS system filesystem unit_test_framework REQUIRED)
+find_package(Boost COMPONENTS  unit_test_framework REQUIRED)
 ADD_DEFINITIONS(-DBOOST_TEST_DYN_LINK) 
 
 SET(TEST_LIBS
@@ -12,4 +12,9 @@ SET(TEST_LIBS
 )
 
 add_subdirectory(test_graph)
-add_subdirectory(test_graph)
+add_subdirectory(test_array)
+add_subdirectory(test_array)
+
+if(WITH_BOOST_COMPUTE)
+    add_subdirectory(test_compute)
+endif()

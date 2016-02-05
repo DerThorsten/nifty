@@ -13,10 +13,6 @@
 #include "nifty/tools/runtime_check.hxx"
 
 
-template<class A, class B>
-struct OpAdd{
-    typedef typename std::result_of<std::multiplies<A>(A, B)>::type type;
-};
 
 BOOST_AUTO_TEST_CASE(ArrayTest)
 {
