@@ -14,16 +14,30 @@
 namespace nifty{
 namespace features{
 
-    namespace boost::accumulators bacc;
+    namespace bacc = boost::accumulators;
 
     template<class T>
     class DefaultAccumulatedStatistics{
     public:
 
+
+        typedef bacc::accumulator_set<
+            T, 
+            bacc::stats<
+                bacc::tag::count,
+                bacc::tag::mean,
+                bacc::tag::min, 
+                bacc::tag::max,
+                bacc::tag::moment<2>,
+                bacc::tag::moment<3>,
+                bacc::tag::tail_quantile<bacc::right>
+            > 
+        > AccType;
+
         typedef std::integral_constant<int, 2> NFeatures;
 
         DefaultAccumulatedStatistics(const size_t rightTailCacheSize = 1000)
-        :   acc_(bacc::right_tail_cache_size = ){
+        :   acc_(bacc::right_tail_cache_size = rightTailCacheSize){
 
         }
         DefaultAccumulatedStatistics & acc(const T & val){
@@ -61,24 +75,16 @@ namespace features{
             else
                 return replaceVal;
         }
-    };
 
-
-        typedef bacc::accumulator_set<
-            T, 
-            bacc::stats<
-                bacc::tag::count,
-                bacc::tag::mean,
-                bacc::tag::min, 
-                bacc::tag::max,
-                bacc::tag::moment<2>,
-                bacc::tag::moment<3>,
-                bacc::tag::tail_quantile<bacc::right>
-            > 
-        > AccType;
 
         AccType acc_;
+
+
     };
+
+
 
 }
 }
+
+#endif /*NIFTY_FEATURES_ACCUMULATED_FEATURES_HXX*/

@@ -12,6 +12,7 @@
 #include "nifty/graph/graph_maps.hxx"
 #include "nifty/tools/const_iterator_range.hxx"
 #include "nifty/parallel/threadpool.hxx"
+#include "nifty/features/accumulated_features.hxx"
 
 
 namespace nifty{
@@ -176,12 +177,12 @@ namespace graph{
                 // little lambda to make code cleaner
                 auto accInSliceEdges = [&](const int x,const int y){
                     const auto l = labelsZ(x, y);
-                    if(x + 1 < shape[0]){
+                    if(x + 1 < shape_[0]){
                         const auto ol = labelsZ(x+1, y);
                         if(l!=ol)
                             accs_[this->findEdge(l,ol)].acc(dataZ(x,y)).acc(dataZ(x+1,y));
                     }
-                    if(y + 1 < shape[1]){
+                    if(y + 1 < shape_[1]){
                         const auto ol = labelsZ(x, y+1);
                         if(l!=ol)
                             accs_[this->findEdge(l,ol)].acc(dataZ(x,y)).acc(dataZ(x,y+1));
@@ -191,8 +192,9 @@ namespace graph{
                 if(z+1<nZ){
                     auto labelsZ1 = labels.slice(z+1);
                     auto dataZ1 = data.slice(z+1);
-                    for(auto y=0; y<shape[1]; ++y)
-                    for(auto x=0; x<shape[0]; ++x){
+                    for(auto y=0; y<shape_[1]; ++y)
+                    for(auto x=0; x<shape_[0]; ++x){
+                        const auto l = labelsZ(x, y);
                         // in slide edges
                         accInSliceEdges(x,y);
                         // between slide edges
@@ -200,8 +202,8 @@ namespace graph{
                     }
                 }
                 else{
-                    for(auto y=0; y<shape[1]; ++y)
-                    for(auto x=0; x<shape[0]; ++x){
+                    for(auto y=0; y<shape_[1]; ++y)
+                    for(auto x=0; x<shape_[0]; ++x){
                         accInSliceEdges(x,y);
                     }
                 }
@@ -209,9 +211,9 @@ namespace graph{
 
             // store the resulting features
             nifty::parallel::parallel_foreach(threadpool,this->numberOfEdges(),[&](int threadIndex,int edge){
-                auto featureEdge = featues.bindView(1,edge)
+                auto featureEdge = features.bindView(1,edge);
                 accs_[edge].result(featureEdge.begin(),featureEdge.end());
-            }
+            });
 
             // and we are done
         }
