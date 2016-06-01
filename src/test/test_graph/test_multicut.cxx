@@ -8,7 +8,16 @@
 #include "nifty/graph/simple_graph.hxx"
 #include "nifty/graph/multicut/multicut_objective.hxx"
 #include "nifty/graph/multicut/multicut_ilp.hxx"
+
+#ifdef WITH_GUROBI
 #include "nifty/ilp/gurobi.hxx"
+#endif
+
+#ifdef WITH_CPLEX
+#define IL_STD 1
+#include "nifty/ilp/cplex.hxx"
+#endif
+
 
 BOOST_AUTO_TEST_CASE(RandomizedMulticutTest)
 {
@@ -23,8 +32,7 @@ BOOST_AUTO_TEST_CASE(RandomizedMulticutTest)
     typedef nifty::graph::UndirectedGraph<> Graph;
     typedef nifty::graph::MulticutObjective<Graph, WeightType> Objective;
 
-    typedef nifty::ilp::Gurobi IlpSolver;
-    typedef nifty::graph::MulticutIlp<Objective, IlpSolver> Solver;
+
 
     // create a grid graph
     const size_t s = 30;
@@ -51,12 +59,18 @@ BOOST_AUTO_TEST_CASE(RandomizedMulticutTest)
     for(auto e : g.edges())
         weights[e] =  dis(gen);
 
+    // optimize gurobi
+    #ifdef WITH_GUROBI
+    {
+        typedef nifty::ilp::Gurobi IlpSolver;
+        typedef nifty::graph::MulticutIlp<Objective, IlpSolver> Solver;
+        // optimize 
+        Solver solver(objective);
 
-    // optimize 
-    Solver solver(objective);
-
-    nifty::graph::graph_maps::EdgeMap<Graph, uint8_t> outputEdgeLabels(g,0);
-    solver.optimize(outputEdgeLabels);
+        nifty::graph::graph_maps::EdgeMap<Graph, uint8_t> outputEdgeLabels(g,0);
+        solver.optimize(outputEdgeLabels);
+    }
+    #endif
 }
 
 
@@ -73,8 +87,7 @@ BOOST_AUTO_TEST_CASE(SimpleMulticutTest)
     typedef nifty::graph::UndirectedGraph<> Graph;
     typedef nifty::graph::MulticutObjective<Graph, WeightType> Objective;
 
-    typedef nifty::ilp::Gurobi IlpSolver;
-    typedef nifty::graph::MulticutIlp<Objective, IlpSolver> Solver;
+
 
 
     // create a grid graph
@@ -113,21 +126,47 @@ BOOST_AUTO_TEST_CASE(SimpleMulticutTest)
         weights[e] = -10.0;
     }
 
-
-
-    // optimize 
-    Solver solver(objective);
-
-    nifty::graph::graph_maps::EdgeMap<Graph, uint16_t> outputEdgeLabels(g,0);
-    solver.optimize(outputEdgeLabels);
-
     typename Graph::EdgeMap<uint16_t> shouldSolution(g,0);
     for(size_t y=0; y<sy; ++y){
         auto e = g.findEdge( node(3, y), node(3+1, y)  );
         shouldSolution[e] = 1;
     }
 
-    for(auto e : g.edges()){
-        NIFTY_TEST_OP(shouldSolution[e],==,outputEdgeLabels[e]);
+
+
+    // optimize gurobi
+    #ifdef WITH_GUROBI
+    {
+        typedef nifty::ilp::Gurobi IlpSolver;
+        typedef nifty::graph::MulticutIlp<Objective, IlpSolver> Solver;
+        Solver solver(objective);
+
+        nifty::graph::graph_maps::EdgeMap<Graph, uint16_t> outputEdgeLabels(g,0);
+        solver.optimize(outputEdgeLabels);
+
+
+
+        for(auto e : g.edges()){
+            NIFTY_TEST_OP(shouldSolution[e],==,outputEdgeLabels[e]);
+        }
     }
+    #endif
+
+    // optimize cplex
+    #ifdef WITH_CPLEX
+    {
+        typedef nifty::ilp::Cplex IlpSolver;
+        typedef nifty::graph::MulticutIlp<Objective, IlpSolver> Solver;
+        Solver solver(objective);
+
+        nifty::graph::graph_maps::EdgeMap<Graph, uint16_t> outputEdgeLabels(g,0);
+        solver.optimize(outputEdgeLabels);
+
+
+
+        for(auto e : g.edges()){
+            NIFTY_TEST_OP(shouldSolution[e],==,outputEdgeLabels[e]);
+        }
+    }
+    #endif
 }

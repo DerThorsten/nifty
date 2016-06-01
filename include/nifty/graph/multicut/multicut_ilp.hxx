@@ -38,9 +38,12 @@ namespace graph{
     public:
 
         struct Settings{
+
             size_t numberOfIterations{0};
             bool verbose { true };
             bool addThreeCyclesConstraints{true};
+
+            
         };
 
 
@@ -54,6 +57,8 @@ namespace graph{
             coefficients_(std::max(uint64_t(3),uint64_t(graph_.numberOfEdges())))
         {
             this->initializeIlp(ilpSolver_);
+
+            ilpSolver_.setVerbosity(settings_.verboseIlp);
 
             // add explicit constraints
             if(settings_.addThreeCyclesConstraints){

@@ -91,6 +91,7 @@ find_package(Boost  REQUIRED)
 if(WITH_CPLEX)
     find_package(CPLEX REQUIRED)
     include_directories(${CPLEX_INCLUDE_DIRS})
+    add_definitions(-DWITH_CPLEX)
 endif()
 
 #-------------------------------------------------------------------------------------------------------------------
@@ -99,7 +100,7 @@ endif()
 if(WITH_GUROBI)
     find_package(GUROBI)
     include_directories(${GUROBI_INCLUDE_DIR})
-    MESSAGE(STATUS "A" ${GUROBI_VERSION} "B")
+    add_definitions(-DWITH_GUROBI)
 endif()
 
 
