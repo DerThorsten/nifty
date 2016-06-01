@@ -18,6 +18,14 @@ add_executable(test_depth_first_search test_depth_first_search.cxx )
 target_link_libraries(test_depth_first_search ${TEST_LIBS})
 add_test(test_depth_first_search test_depth_first_search)
 
-add_executable(test_rag test_rag.cxx )
-target_link_libraries(test_rag ${TEST_LIBS})
-add_test(test_rag test_rag)
+add_executable(test_multicut test_multicut.cxx )
+target_link_libraries(test_multicut ${TEST_LIBS})
+add_test(test_multicut test_multicut)
+
+if(WITH_GUROBI)
+    target_link_libraries(test_multicut ${GUROBI_LIBRARIES})
+endif(WITH_GUROBI)
+
+if(WITH_CPLEX)
+    target_link_libraries(test_multicut ${CPLEX_LIBRARIES})
+endif(WITH_CPLEX)

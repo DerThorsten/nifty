@@ -16,13 +16,30 @@ namespace nifty{
 namespace graph{
 
 
+namespace detail_graph{
+    template<class EDGE_INTERANL_TYPE, class NODE_INTERNAL_TYPE >
+    struct UndirectedGraphTypeHelper{
+        typedef EDGE_INTERANL_TYPE EdgeInternalType;
+        typedef NODE_INTERNAL_TYPE NodeInteralType;
+        typedef detail_graph::UndirectedAdjacency<int64_t,int64_t,NodeInteralType,EdgeInternalType> NodeAdjacency;
+        typedef std::set<NodeAdjacency > NodeStorage;
+
+        typedef std::pair<NodeInteralType,NodeInteralType> EdgeStorage;
+        typedef boost::counting_iterator<int64_t> NodeIter;
+        typedef boost::counting_iterator<int64_t> EdgeIter;
+        typedef typename NodeStorage::const_iterator AdjacencyIter;
+    };
+};
+
+
 template<class EDGE_INTERANL_TYPE = int64_t, 
          class NODE_INTERNAL_TYPE = int64_t>
 class UndirectedGraph : public
     UndirectedGraphBase<
         UndirectedGraph<EDGE_INTERANL_TYPE,NODE_INTERNAL_TYPE>,
         boost::counting_iterator<int64_t>,
-        boost::counting_iterator<int64_t>
+        boost::counting_iterator<int64_t>,
+        detail_graph::UndirectedGraphTypeHelper<EDGE_INTERANL_TYPE,NODE_INTERNAL_TYPE>
     >
 {
 private:
@@ -79,7 +96,7 @@ public:
         NIFTY_ASSERT_OP(e,<,numberOfEdges());
         return edges_[e].second;
     }
-    int64_t findEdge(const int64_t u, const int64_t v){
+    int64_t findEdge(const int64_t u, const int64_t v)const{
         NIFTY_ASSERT_OP(u,<,numberOfNodes());
         NIFTY_ASSERT_OP(v,<,numberOfNodes());
         const auto fres =  nodes_[u].find(NodeAdjacency(v));
@@ -107,6 +124,10 @@ public:
         return nodes_[node].end();
     }
 
+
+    AdjacencyIter adjacencyOutBegin(const int64_t node)const{
+        return adjacencyBegin(node);
+    }
 private:
 
 

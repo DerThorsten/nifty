@@ -66,7 +66,13 @@ public:
         return AdjacencyIterRange<ChildGraph>(_child().adjacencyOutBegin(node),_child().adjacencyOutEnd(node));
     }
 
-
+    int64_t findEdge(const uint64_t u, const uint64_t v){
+        const auto ef =  _child().findArc(u,v); 
+        if(ef != -1) 
+            return _child().findArc(u, v);
+        else 
+            return _child().findArc(v, u);
+    }
 
     int64_t maxEdgeId() const {return _child().maxArcId();}
     int64_t numberOfEdges() const {return _child().numberOfArcs();}

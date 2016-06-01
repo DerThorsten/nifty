@@ -72,6 +72,31 @@ namespace detail_graph{
             runImpl(subgraphMask, visitor);
         }
 
+        template<class SUBGRAPH_MASK>
+        void runSingleSourceSingleTarget(
+            const int64_t source,
+            const int64_t target,
+            const SUBGRAPH_MASK & subgraphMask
+        ){
+
+            // visitor
+            auto visitor = [&]
+            (   
+                int64_t toNode,
+                int64_t predecessorNode,
+                int64_t edge,
+                int64_t distance,
+                bool & continueSeach,
+                bool & addToNode
+            ){
+                continueSeach =  (toNode != target);
+                addToNode = true;
+            };
+
+            this->initializeMaps(&source, &source +1);
+            runImpl(subgraphMask, visitor);
+        }
+
 
         // run single source  ALL targets
         // no  callback no mask exposed

@@ -39,7 +39,6 @@ add_library(nifty SHARED
   # ... extra files go here ...
   graph/graph.cxx
   graph/undirected_graph.cxx
-  graph/grid_region_adjacency_graph.cxx
 )
 
 # Don't add a 'lib' prefix to the shared library

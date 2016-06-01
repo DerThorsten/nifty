@@ -14,12 +14,13 @@ namespace graph{
 template<
     class CHILD_GRAPH,
     class NODE_ITER,
-    class EDGE_ITER
+    class EDGE_ITER,
+    class ADJACENCY_ITER
 >
 class UndirectedGraphBase{
 public:
     typedef CHILD_GRAPH ChildGraph;
-    typedef UndirectedGraphBase<ChildGraph, NODE_ITER, EDGE_ITER> Self;
+    typedef UndirectedGraphBase<ChildGraph, NODE_ITER, EDGE_ITER, ADJACENCY_ITER> Self;
 
     template<class T>
     struct NodeMap : graph_maps::NodeMap<ChildGraph,T> {
@@ -59,8 +60,25 @@ public:
     AdjacencyIterRange<ChildGraph > adjacency(const int64_t node) const{
         return AdjacencyIterRange<ChildGraph>(_child().adjacencyBegin(node),_child().adjacencyEnd(node));
     }
+    AdjacencyIterRange<ChildGraph > adjacencyIn(const int64_t node) const{
+        return _child().adjacency(node);
+    }
+    AdjacencyIterRange<ChildGraph > adjacencyOut(const int64_t node) const{
+        return _child().adjacency(node);
+    }
+    ADJACENCY_ITER adjacencyOutBegin(const int64_t node)const{
+        return _child().adjacencyBegin(node);
+    }
+    ADJACENCY_ITER adjacencyOutEnd(const int64_t node)const{
+        return _child().adjacencyEnd(node);
+    }
 
-
+    ADJACENCY_ITER adjacencyInBegin(const int64_t node)const{
+        return _child().adjacencyBegin(node);
+    }
+    ADJACENCY_ITER adjacencyInEnd(const int64_t node)const{
+        return _child().adjacencyEnd(node);
+    }
 
 private:
     ChildGraph & _child(){
