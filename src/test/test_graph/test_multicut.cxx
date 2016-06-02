@@ -14,7 +14,6 @@
 #endif
 
 #ifdef WITH_CPLEX
-#define IL_STD 1
 #include "nifty/graph/multicut/ilp_backend/cplex.hxx"
 #endif
 
