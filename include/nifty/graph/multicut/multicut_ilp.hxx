@@ -8,6 +8,7 @@
 #include "nifty/graph/three_cycles.hxx"
 #include "nifty/graph/breadth_first_search.hxx"
 #include "nifty/graph/bidirectional_breadth_first_search.hxx"
+#include "nifty/graph/multicut/ilp_backend/ilp_backend.hxx"
 
 namespace nifty{
 namespace graph{
@@ -19,6 +20,7 @@ namespace graph{
 
         typedef OBJECTIVE Objective;
         typedef ILP_SOLVER IlpSovler;
+        typedef typename IlpSovler::Settings IlpSettings;
         typedef typename Objective::Graph Graph;
     private:
         typedef ComponentsUfd<Graph> Components;
@@ -44,14 +46,14 @@ namespace graph{
             bool verboseIlp{false};
             bool addThreeCyclesConstraints{true};
 
-            
+            IlpSettings ilpSettigns_;
         };
 
 
         MulticutIlp(const Objective & objective, const Settings & settings = Settings())
         :   objective_(objective),
             graph_(objective.graph()),
-            ilpSolver_(),
+            ilpSolver_(settings.ilpSettigns_),
             components_(graph_),
             settings_(settings),
             variables_(   std::max(uint64_t(3),uint64_t(graph_.numberOfEdges()))),
@@ -59,8 +61,7 @@ namespace graph{
         {
             this->initializeIlp(ilpSolver_);
 
-            ilpSolver_.setVerbosity(settings_.verboseIlp);
-
+        
             // add explicit constraints
             if(settings_.addThreeCyclesConstraints){
                 this->addThreeCyclesConstraintsExplicitly();

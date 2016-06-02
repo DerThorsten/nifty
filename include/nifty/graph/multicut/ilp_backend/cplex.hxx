@@ -1,116 +1,70 @@
 #pragma once
-#ifndef NIFTY_ILP_GUROBI_HXX
-#define NIFTY_ILP_GUROBI_HXX
+#ifndef NIFTY_GRAPH_MULTICUT_ILP_BACKEND_CPLEX_HXX
+#define NIFTY_GRAPH_MULTICUT_ILP_BACKEND_CPLEX_HXX
 
 #include <limits>
 #define IL_STD 1
 #include <ilcplex/ilocplex.h>
 
-namespace nifty {
-namespace ilp {
+#include "nifty/graph/multicut/ilp_backend/ilp_backend.hxx"
 
+namespace nifty {
+namespace graph {
+namespace ilp_backend{
+    
 class Cplex {
 public:
-    enum PreSolver {PRE_SOLVER_AUTO, PRE_SOLVER_PRIMAL, PRE_SOLVER_DUAL, PRE_SOLVER_NONE};
-    enum LPSolver {LP_SOLVER_PRIMAL_SIMPLEX, LP_SOLVER_DUAL_SIMPLEX, LP_SOLVER_BARRIER, LP_SOLVER_SIFTING};
-    
-    Cplex();
-    ~Cplex();
-    void setNumberOfThreads(const size_t);
-    void setAbsoluteGap(const double);
-    void setRelativeGap(const double);
-    void setVerbosity(const bool);
-    void setLPSolver(const LPSolver);
-    void setPreSolver(const PreSolver, const int = -1);
-    void initModel(const size_t, const double*);
-    template<class Iterator>
-        void setStart(Iterator);
-    template<class VariableIndexIterator, class CoefficientIterator>
-        void addConstraint(VariableIndexIterator, VariableIndexIterator,
-                           CoefficientIterator, const double, const double);
-    void optimize();
+    typedef IlpBackendSettings Settings;
 
+    Cplex(const Settings & settings = Settings());
+    //~Cplex();
+
+    void initModel(const size_t, const double*);
+
+    template<class Iterator>
+    void setStart(Iterator);
+
+    template<class VariableIndexIterator, class CoefficientIterator>
+    void addConstraint(VariableIndexIterator, VariableIndexIterator,CoefficientIterator, const double, const double);
+    void optimize();
     double label(const size_t) const;
-    size_t numberOfThreads() const;
-    double absoluteGap() const;
-    double relativeGap() const;
+
 
 private:
-   uint64_t       nVariables_;
-   IloEnv         env_;
-   IloModel       model_;
-   IloNumVarArray x_;
-   IloRangeArray  c_;
-   IloObjective   obj_;
-   IloNumArray    sol_;
-   IloCplex       cplex_;
+   Settings         settings_;
+   uint64_t         nVariables_;
+   IloEnv           env_;
+   IloModel         model_;
+   IloNumVarArray   x_;
+   IloRangeArray    c_;
+   IloObjective     obj_;
+   IloNumArray      sol_;
+   IloCplex         cplex_;
 };
 
-inline
-Cplex::Cplex() 
+inline Cplex::Cplex(const Settings & settings) 
+:   settings_(settings),
+    nVariables_(0),
+    env_(),
+    model_(),
+    x_(),
+    c_(),
+    obj_(),
+    sol_(),
+    cplex_()
 {
     
 }
 
-inline
-Cplex::~Cplex() {
 
-}
 
-inline void
-Cplex::setNumberOfThreads(
-    const size_t numberOfThreads
-) {
-    cplex_.setParam(IloCplex::Threads, numberOfThreads);
-}
-
-inline void
-Cplex::setAbsoluteGap(
-    const double gap
-) {
-    
-}
-
-inline void
-Cplex::setRelativeGap(
-    const double gap
-) {
-    
-}
-
-inline void
-Cplex::setVerbosity(
-    const bool verbosity
-) {
-
-   cplex_.setParam(IloCplex::MIPDisplay, int(verbosity));
-   cplex_.setParam(IloCplex::BarDisplay, int(verbosity));
-   cplex_.setParam(IloCplex::SimDisplay, int(verbosity));
-   cplex_.setParam(IloCplex::NetDisplay, int(verbosity));
-   cplex_.setParam(IloCplex::SiftDisplay,int(verbosity));
-  
-}
-
-inline void
-Cplex::setPreSolver(
-    const PreSolver preSolver,
-    const int passes
-) {
-   
-}
-
-inline void
-Cplex::setLPSolver(
-    const LPSolver lpSolver
-) {
-
-}
 
 inline void
 Cplex::initModel(
     const size_t numberOfVariables,
     const double* coefficients
 ) {
+
     IloInt N = numberOfVariables;
     model_ = IloModel(env_);
     x_     = IloNumVarArray(env_);
@@ -128,6 +82,23 @@ Cplex::initModel(
     obj_.setLinearCoefs(x_,obj);
     model_.add(obj_); 
     cplex_ = IloCplex(model_);
+
+
+    // set the parameter
+    if(settings_.absoluteGap >= 0.0)
+        cplex_.setParam(IloCplex::EpAGap,settings_.absoluteGap);
+    if(settings_.relativeGap >= 0.0)
+        cplex_.setParam(IloCplex::EpGap,settings_.relativeGap);
+
+    // nThreads
+    cplex_.setParam(IloCplex::Threads, settings_.numberOfThreads);
+
+    // verbosity
+    cplex_.setParam(IloCplex::MIPDisplay, int(settings_.verbosity));
+    cplex_.setParam(IloCplex::BarDisplay, int(settings_.verbosity));
+    cplex_.setParam(IloCplex::SimDisplay, int(settings_.verbosity));
+    cplex_.setParam(IloCplex::NetDisplay, int(settings_.verbosity));
+    cplex_.setParam(IloCplex::SiftDisplay,int(settings_.verbosity));
 }
 
 inline void
@@ -155,21 +126,6 @@ Cplex::label(
     const size_t variableIndex
 ) const {
     return sol_[variableIndex];
-}
-
-inline size_t
-Cplex::numberOfThreads() const {
-    return cplex_.getParam(IloCplex::Threads);
-}
-
-inline double
-Cplex::absoluteGap() const {
-    return 1.0;
-}
-
-inline double
-Cplex::relativeGap() const {
-    return 1.0;
 }
 
 template<class VariableIndexIterator, class CoefficientIterator>
@@ -200,7 +156,8 @@ Cplex::setStart(
     
 }
 
-} // namespace ilp
-} // namespace andres
+} // namespace ilp_backend
+} // namespace graph
+} // namespace nifty
 
-#endif // #ifndef NIFTY_ILP_GUROBI_HXX
+#endif // #ifndef NIFTY_GRAPH_MULTICUT_ILP_BACKEND_CPLEX_HXX

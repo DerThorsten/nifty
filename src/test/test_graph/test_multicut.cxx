@@ -61,7 +61,7 @@ BOOST_AUTO_TEST_CASE(RandomizedMulticutTest)
     // optimize gurobi
     #ifdef WITH_GUROBI
     {
-        typedef nifty::ilp::Gurobi IlpSolver;
+        typedef nifty::graph::ilp_backend::Gurobi IlpSolver;
         typedef nifty::graph::MulticutIlp<Objective, IlpSolver> Solver;
         // optimize 
         Solver solver(objective);
@@ -136,7 +136,7 @@ BOOST_AUTO_TEST_CASE(SimpleMulticutTest)
     // optimize gurobi
     #ifdef WITH_GUROBI
     {
-        typedef nifty::ilp::Gurobi IlpSolver;
+        typedef nifty::graph::ilp_backend::Gurobi IlpSolver;
         typedef nifty::graph::MulticutIlp<Objective, IlpSolver> Solver;
         Solver solver(objective);
 
@@ -154,7 +154,7 @@ BOOST_AUTO_TEST_CASE(SimpleMulticutTest)
     // optimize cplex
     #ifdef WITH_CPLEX
     {
-        typedef nifty::ilp::Cplex IlpSolver;
+        typedef nifty::graph::ilp_backend::Cplex IlpSolver;
         typedef nifty::graph::MulticutIlp<Objective, IlpSolver> Solver;
         Solver solver(objective);
 

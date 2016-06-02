@@ -3,25 +3,20 @@
 #define NIFTY_ILP_GUROBI_HXX
 
 #include <limits>
-
 #include "gurobi_c++.h"
+#include <nifty/graph/multicut/ilp_backend/ilp_backend.hxx>
 
 namespace nifty {
 namespace ilp {
 
 class Gurobi {
 public:
-    enum PreSolver {PRE_SOLVER_AUTO, PRE_SOLVER_PRIMAL, PRE_SOLVER_DUAL, PRE_SOLVER_NONE};
-    enum LPSolver {LP_SOLVER_PRIMAL_SIMPLEX, LP_SOLVER_DUAL_SIMPLEX, LP_SOLVER_BARRIER, LP_SOLVER_SIFTING};
 
-    Gurobi();
+    typedef IlpBackendSettings Settings;
+
+    Gurobi(const Settings & settings = Settings());
     ~Gurobi();
-    void setNumberOfThreads(const size_t);
-    void setAbsoluteGap(const double);
-    void setRelativeGap(const double);
-    void setVerbosity(const bool);
-    void setLPSolver(const LPSolver);
-    void setPreSolver(const PreSolver, const int = -1);
+
     void initModel(const size_t, const double*);
     template<class Iterator>
         void setStart(Iterator);
@@ -31,9 +26,7 @@ public:
     void optimize();
 
     double label(const size_t) const;
-    size_t numberOfThreads() const;
-    double absoluteGap() const;
-    double relativeGap() const;
+
 
 private:
     GRBEnv gurobiEnvironment_;
@@ -43,15 +36,15 @@ private:
     size_t nVariables_;
 };
 
-inline
-Gurobi::Gurobi() :
+inline Gurobi::Gurobi(const Settings & settings)
+:   settings_(settings),
     gurobiEnvironment_(),
     gurobiModel_(NULL),
     gurobiVariables_(NULL),
     gurobiObjective_(),
     nVariables_(0)
 {
-    setVerbosity(false);
+
 }
 
 inline
@@ -63,92 +56,7 @@ Gurobi::~Gurobi() {
         delete[] gurobiVariables_;
 }
 
-inline void
-Gurobi::setNumberOfThreads(
-    const size_t numberOfThreads
-) {
-    gurobiEnvironment_.set(GRB_IntParam_Threads, numberOfThreads);
-}
 
-inline void
-Gurobi::setAbsoluteGap(
-    const double gap
-) {
-    gurobiEnvironment_.set(GRB_DoubleParam_MIPGapAbs, gap);
-}
-
-inline void
-Gurobi::setRelativeGap(
-    const double gap
-) {
-    gurobiEnvironment_.set(GRB_DoubleParam_MIPGap, gap);
-}
-
-inline void
-Gurobi::setVerbosity(
-    const bool verbosity
-) {
-    if(verbosity) {
-        gurobiEnvironment_.set(GRB_IntParam_OutputFlag, 1);
-    }
-    else {
-        gurobiEnvironment_.set(GRB_IntParam_OutputFlag, 0);
-    }
-}
-
-inline void
-Gurobi::setPreSolver(
-    const PreSolver preSolver,
-    const int passes
-) {
-    switch(preSolver) {
-    case PRE_SOLVER_NONE:
-        gurobiEnvironment_.set(GRB_IntParam_Presolve, 0);
-        return;
-    case PRE_SOLVER_AUTO:
-        gurobiEnvironment_.set(GRB_IntParam_PreDual, -1);
-        break;
-    case PRE_SOLVER_PRIMAL:
-        gurobiEnvironment_.set(GRB_IntParam_PreDual, 0);
-        break;
-    case PRE_SOLVER_DUAL:
-        gurobiEnvironment_.set(GRB_IntParam_PreDual, 1);
-        break;
-    }
-    gurobiEnvironment_.set(GRB_IntParam_PrePasses, passes);
-
-    // crushing allows the solver to translate variable indices in cuts 
-    // to variable indices of the pre-solved problem
-    /*
-    if(crush) {
-        gurobiEnvironment_.set(GRB_IntParam_PreCrush, 1);
-    }
-    else {
-        gurobiEnvironment_.set(GRB_IntParam_PreCrush, 0);
-    }
-    */
-}
-
-inline void
-Gurobi::setLPSolver(
-    const LPSolver lpSolver
-) {
-    switch(lpSolver) {
-    case LP_SOLVER_PRIMAL_SIMPLEX:
-        gurobiEnvironment_.set(GRB_IntParam_NodeMethod, 0);
-        break;
-    case LP_SOLVER_DUAL_SIMPLEX:
-        gurobiEnvironment_.set(GRB_IntParam_NodeMethod, 1);
-        break;
-    case LP_SOLVER_BARRIER:
-        gurobiEnvironment_.set(GRB_IntParam_NodeMethod, 2);
-        break;
-    case LP_SOLVER_SIFTING:
-        gurobiEnvironment_.set(GRB_IntParam_NodeMethod, 1); // dual simplex
-        gurobiEnvironment_.set(GRB_IntParam_SiftMethod, 1); // moderate, 2 = aggressive
-        break;
-    }
-}
 
 inline void
 Gurobi::initModel(
@@ -162,6 +70,59 @@ Gurobi::initModel(
 
     if (gurobiVariables_ != NULL)
         delete[] gurobiVariables_;
+
+    // verbosity
+    gurobiEnvironment_.set(GRB_IntParam_OutputFlag, settings_.verbosity);
+
+    // lp solver
+    switch(settings_.lpSolver) {
+        case Settings:LP_SOLVER_PRIMAL_SIMPLEX:
+            gurobiEnvironment_.set(GRB_IntParam_NodeMethod, 0);
+            break;
+        case Settings:LP_SOLVER_DUAL_SIMPLEX:
+            gurobiEnvironment_.set(GRB_IntParam_NodeMethod, 1);
+            break;
+        case Settings:LP_SOLVER_BARRIER:
+            gurobiEnvironment_.set(GRB_IntParam_NodeMethod, 2);
+            break;
+        case Settings:LP_SOLVER_SIFTING:
+            gurobiEnvironment_.set(GRB_IntParam_NodeMethod, 1); // dual simplex
+            gurobiEnvironment_.set(GRB_IntParam_SiftMethod, 1); // moderate, 2 = aggressive
+            break;
+        default:
+            break;
+    }
+
+    // number of threads
+    gurobiEnvironment_.set(GRB_IntParam_Threads, settings_.numberOfThreads);
+
+    // mip gaps
+    if(settings_.absoluteGap >= 0.0)
+        gurobiEnvironment_.set(GRB_DoubleParam_MIPGapAbs, settings_.absoluteGap);
+    if(settings_.relativeGap >= 0.0)
+        gurobiEnvironment_.set(GRB_DoubleParam_MIPGap, settings_.relativeGap);
+
+    // presolver
+    switch(settings_.preSolver) {
+    case PRE_SOLVER_NONE:
+            gurobiEnvironment_.set(GRB_IntParam_Presolve, 0);
+            return;
+        case PRE_SOLVER_AUTO:
+            gurobiEnvironment_.set(GRB_IntParam_PreDual, -1);
+            break;
+        case PRE_SOLVER_PRIMAL:
+            gurobiEnvironment_.set(GRB_IntParam_PreDual, 0);
+            break;
+        case PRE_SOLVER_DUAL:
+            gurobiEnvironment_.set(GRB_IntParam_PreDual, 1);
+            break;
+        default:
+            break;
+    }
+    if(settings_.prePasses > -1){
+        gurobiEnvironment_.set(GRB_IntParam_PrePasses, settings_.prePasses);
+    }
+
 
     gurobiModel_ = new GRBModel(gurobiEnvironment_);
     gurobiVariables_ = gurobiModel_->addVars(numberOfVariables, GRB_BINARY);
@@ -182,20 +143,7 @@ Gurobi::label(
     return gurobiVariables_[variableIndex].get(GRB_DoubleAttr_X);
 }
 
-inline size_t
-Gurobi::numberOfThreads() const {
-    return gurobiEnvironment_.get(GRB_IntParam_Threads);
-}
 
-inline double
-Gurobi::absoluteGap() const {
-    return gurobiEnvironment_.get(GRB_DoubleParam_MIPGapAbs);
-}
-
-inline double
-Gurobi::relativeGap() const {
-    return gurobiEnvironment_.get(GRB_DoubleParam_MIPGap);
-}
 
 template<class VariableIndexIterator, class CoefficientIterator>
 inline void
