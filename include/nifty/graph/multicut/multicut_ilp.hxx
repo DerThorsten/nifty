@@ -41,6 +41,7 @@ namespace graph{
 
             size_t numberOfIterations{0};
             bool verbose { true };
+            bool verboseIlp{false};
             bool addThreeCyclesConstraints{true};
 
             
