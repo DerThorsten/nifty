@@ -3,7 +3,7 @@
 #define NIFTY_ILP_GUROBI_HXX
 
 #include <limits>
-
+#define IL_STD 1
 #include <ilcplex/ilocplex.h>
 
 namespace nifty {

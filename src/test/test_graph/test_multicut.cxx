@@ -10,12 +10,12 @@
 #include "nifty/graph/multicut/multicut_ilp.hxx"
 
 #ifdef WITH_GUROBI
-#include "nifty/ilp/gurobi.hxx"
+#include "nifty/graph/multicut/ilp_backend/gurobi.hxx"
 #endif
 
 #ifdef WITH_CPLEX
 #define IL_STD 1
-#include "nifty/ilp/cplex.hxx"
+#include "nifty/graph/multicut/ilp_backend/cplex.hxx"
 #endif
 
 

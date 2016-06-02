@@ -2,9 +2,8 @@
 #ifndef NIFTY_MARRAY_MARRAY_HDF5_HXX
 #define NIFTY_MARRAY_MARRAY_HDF5_HXX
 
-#include <nifty/marray/marray.hxx>
-
 #define HAVE_CPP11_INITIALIZER_LISTS
+#include <nifty/marray/marray.hxx>
 #include <andres/marray.hxx>
 #include <andres/marray-hdf5.hxx>
 
