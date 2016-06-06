@@ -23,8 +23,8 @@ PYBIND11_PLUGIN(nifty) {
     py::class_<nifty::NumpyArray<uint64_t>>(niftyModule,"NumpyArrayUInt64")
     ;
 
-    py::implicitly_convertible<py::array_t<float>, nifty::NumpyArray<float> >();
-    py::implicitly_convertible<py::array_t<uint64_t>, nifty::NumpyArray<uint64_t> >();
+    //y::implicitly_convertible<py::array_t<float>, nifty::NumpyArray<float> >();
+    //py::implicitly_convertible<py::array_t<uint64_t>, nifty::NumpyArray<uint64_t> >();
     using namespace nifty;
     graph::initSubmoduleGraph(niftyModule);
 }

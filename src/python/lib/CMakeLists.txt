@@ -1,5 +1,5 @@
-FIND_PACKAGE(PYBIND_ELEVEN REQUIRED)
-include_directories(${PYBIND_ELEVEN_INCLUDE_DIR})
+#FIND_PACKAGE(PYBIND_ELEVEN REQUIRED)
+#include_directories(${PYBIND_ELEVEN_INCLUDE_DIR})
 # Add a CMake parameter for choosing a desired Python version
 set(PYTHON_VERSION "" CACHE STRING "Python version to use for compiling the example library")
 

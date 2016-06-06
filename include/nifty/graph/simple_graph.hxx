@@ -29,6 +29,13 @@ namespace detail_graph{
         typedef boost::counting_iterator<int64_t> EdgeIter;
         typedef typename NodeStorage::const_iterator AdjacencyIter;
     };
+
+
+
+    class SimpleGraphNodeIter : public boost::counting_iterator<int64_t>{
+        using boost::counting_iterator<int64_t>::counting_iterator;
+        using boost::counting_iterator<int64_t>::operator=;
+    };
 };
 
 
@@ -37,7 +44,7 @@ template<class EDGE_INTERANL_TYPE = int64_t,
 class UndirectedGraph : public
     UndirectedGraphBase<
         UndirectedGraph<EDGE_INTERANL_TYPE,NODE_INTERNAL_TYPE>,
-        boost::counting_iterator<int64_t>,
+        detail_graph::SimpleGraphNodeIter,
         boost::counting_iterator<int64_t>,
         detail_graph::UndirectedGraphTypeHelper<EDGE_INTERANL_TYPE,NODE_INTERNAL_TYPE>
     >
@@ -50,7 +57,7 @@ private:
 
     typedef std::pair<NodeInteralType,NodeInteralType> EdgeStorage;
 public:
-    typedef boost::counting_iterator<int64_t> NodeIter;
+    typedef detail_graph::SimpleGraphNodeIter NodeIter;
     typedef boost::counting_iterator<int64_t> EdgeIter;
     typedef typename NodeStorage::const_iterator AdjacencyIter;
 

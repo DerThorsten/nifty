@@ -87,7 +87,7 @@ namespace graph{
             })
             .def("nodes", [](py::object g) { 
                 const auto & gg = g.cast<const G &>();
-                return PyEdgeIter(gg,g,gg.nodesBegin(),gg.nodesEnd()); 
+                return PyNodeIter(gg,g,gg.nodesBegin(),gg.nodesEnd()); 
             })
 
             .def("__str__",

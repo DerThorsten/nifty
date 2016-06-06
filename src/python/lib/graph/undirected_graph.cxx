@@ -25,8 +25,9 @@ namespace graph{
         undirectedGraphCls
             .def(py::init<const uint64_t,const uint64_t>()
               ,
+               //py::arg("numberOfNodes"),
                py::arg("numberOfNodes"),
-               py::arg("reserveEdges") = 0
+               py::arg_t<uint64_t>("reserveEdges",0)
             )
             .def("insertEdges",
                 [](Graph & g, py::array_t<uint64_t> pyArray) {
