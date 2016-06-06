@@ -4,10 +4,12 @@
 
 #include <limits>
 #include "gurobi_c++.h"
-#include <nifty/graph/multicut/ilp_backend/ilp_backend.hxx>
+
+#include "nifty/graph/multicut/ilp_backend/ilp_backend.hxx"
 
 namespace nifty {
-namespace ilp {
+namespace graph {
+namespace ilp_backend{
 
 class Gurobi {
 public:
@@ -18,8 +20,10 @@ public:
     ~Gurobi();
 
     void initModel(const size_t, const double*);
+
     template<class Iterator>
-        void setStart(Iterator);
+    void setStart(Iterator);
+
     template<class VariableIndexIterator, class CoefficientIterator>
         void addConstraint(VariableIndexIterator, VariableIndexIterator,
                            CoefficientIterator, const double, const double);
@@ -29,6 +33,7 @@ public:
 
 
 private:
+    Settings settings_;
     GRBEnv gurobiEnvironment_;
     GRBModel* gurobiModel_;
     GRBVar* gurobiVariables_;
@@ -76,16 +81,16 @@ Gurobi::initModel(
 
     // lp solver
     switch(settings_.lpSolver) {
-        case Settings:LP_SOLVER_PRIMAL_SIMPLEX:
+        case Settings::LP_SOLVER_PRIMAL_SIMPLEX:
             gurobiEnvironment_.set(GRB_IntParam_NodeMethod, 0);
             break;
-        case Settings:LP_SOLVER_DUAL_SIMPLEX:
+        case Settings::LP_SOLVER_DUAL_SIMPLEX:
             gurobiEnvironment_.set(GRB_IntParam_NodeMethod, 1);
             break;
-        case Settings:LP_SOLVER_BARRIER:
+        case Settings::LP_SOLVER_BARRIER:
             gurobiEnvironment_.set(GRB_IntParam_NodeMethod, 2);
             break;
-        case Settings:LP_SOLVER_SIFTING:
+        case Settings::LP_SOLVER_SIFTING:
             gurobiEnvironment_.set(GRB_IntParam_NodeMethod, 1); // dual simplex
             gurobiEnvironment_.set(GRB_IntParam_SiftMethod, 1); // moderate, 2 = aggressive
             break;
@@ -104,16 +109,16 @@ Gurobi::initModel(
 
     // presolver
     switch(settings_.preSolver) {
-    case PRE_SOLVER_NONE:
+        case Settings::PRE_SOLVER_NONE:
             gurobiEnvironment_.set(GRB_IntParam_Presolve, 0);
             return;
-        case PRE_SOLVER_AUTO:
+        case Settings::PRE_SOLVER_AUTO:
             gurobiEnvironment_.set(GRB_IntParam_PreDual, -1);
             break;
-        case PRE_SOLVER_PRIMAL:
+        case Settings::PRE_SOLVER_PRIMAL:
             gurobiEnvironment_.set(GRB_IntParam_PreDual, 0);
             break;
-        case PRE_SOLVER_DUAL:
+        case Settings::PRE_SOLVER_DUAL:
             gurobiEnvironment_.set(GRB_IntParam_PreDual, 1);
             break;
         default:
@@ -184,7 +189,9 @@ Gurobi::setStart(
     }
 }
 
-} // namespace ilp
-} // namespace andres
+} // namespace ilp_backend
+} // namespace graph
+} // namespace nifty
+
 
 #endif // #ifndef NIFTY_ILP_GUROBI_HXX

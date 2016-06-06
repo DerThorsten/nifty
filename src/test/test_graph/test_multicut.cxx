@@ -67,7 +67,7 @@ BOOST_AUTO_TEST_CASE(RandomizedMulticutTest)
         Solver solver(objective);
 
         nifty::graph::graph_maps::EdgeMap<Graph, uint8_t> outputEdgeLabels(g,0);
-        solver.optimize(outputEdgeLabels);
+        solver.optimizeOld(outputEdgeLabels);
     }
     #endif
 }
@@ -141,7 +141,7 @@ BOOST_AUTO_TEST_CASE(SimpleMulticutTest)
         Solver solver(objective);
 
         nifty::graph::graph_maps::EdgeMap<Graph, uint16_t> outputEdgeLabels(g,0);
-        solver.optimize(outputEdgeLabels);
+        solver.optimizeOld(outputEdgeLabels);
 
 
 
@@ -159,7 +159,7 @@ BOOST_AUTO_TEST_CASE(SimpleMulticutTest)
         Solver solver(objective);
 
         nifty::graph::graph_maps::EdgeMap<Graph, uint16_t> outputEdgeLabels(g,0);
-        solver.optimize(outputEdgeLabels);
+        solver.optimizeOld(outputEdgeLabels);
 
 
 

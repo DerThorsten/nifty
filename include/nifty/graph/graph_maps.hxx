@@ -34,6 +34,10 @@ struct EdgeMap : public std::vector<T>{
 };
 
 
+
+
+
+
 } // namespace nifty::graph::graph_maps
 } // namespace nifty::graph
 } // namespace nifty

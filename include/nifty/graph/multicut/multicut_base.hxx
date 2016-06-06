@@ -8,27 +8,38 @@
 namespace nifty {
 namespace graph {
 
-    template<class GRAPH>
+    template<class OBJECTIVE> 
+    class MulticutVisitorBase{
+    
+    public:
+
+    private:
+
+    };
+
+    template<class OBJECTIVE>
     class MulticutBase{
     
     public:
-        typedef GRAPH Graph;
-        typedef typename Graph:: template<uint8_t>  EdgeLabels;
-        typedef typename Graph:: template<uint64_t> NodeLabels;
+        typedef OBJECTIVE Objective;
+        typedef MulticutVisitorBase<OBJECTIVE> VisitorBase;
+        typedef typename Objective::Graph Graph;
+        typedef typename Graph:: template EdgeMap<uint8_t>  EdgeLabels;
+        typedef typename Graph:: template NodeMap<uint64_t> NodeLabels;
 
-        void optimize() = 0;
+        virtual void optimize(NodeLabels & nodeLabels, VisitorBase * visitor) = 0;
 
 
 
+        /*
         virtual void setStartNodeLabels(const NodeLabels & ndoeLabels) = 0; 
         virtual void getNodeLabels(NodeLabels & ndoeLabels) = 0;
         virtual uint64_t getNodeLabel(uint64_t node) = 0;
-
         // with default implementation
         virtual void setStartEdgeLabels(const EdgeLabels & edgeLabels);
         virtual void getEdgeLabels(EdgeLabels & edgeLabels);
         virtual uint8_t getEdgeLabel(uint64_t edge);
-
+    */
 
     };
 

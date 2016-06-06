@@ -64,7 +64,7 @@ Cplex::initModel(
     const size_t numberOfVariables,
     const double* coefficients
 ) {
-
+    nVariables_ = numberOfVariables;
     IloInt N = numberOfVariables;
     model_ = IloModel(env_);
     x_     = IloNumVarArray(env_);
@@ -153,7 +153,13 @@ inline void
 Cplex::setStart(
     Iterator valueIterator
 ) {
-    
+    IloNumArray startVal(env_, nVariables_);
+    for (auto i = 0; i < nVariables_; ++i) {
+        startVal[i] = *valueIterator;
+        ++valueIterator;
+    }
+
+    cplex_.addMIPStart(x_, startVal);
 }
 
 } // namespace ilp_backend

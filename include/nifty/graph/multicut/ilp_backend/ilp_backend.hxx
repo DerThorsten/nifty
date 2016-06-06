@@ -34,7 +34,7 @@ namespace ilp_backend{
         int prePasses{-1};
 
         PreSolver preSolver{PRE_SOLVER_DEFAULT};
-        LPSolver  LPSolver{LP_SOLVER_DEFAULT};
+        LPSolver  lpSolver{LP_SOLVER_DEFAULT};
 
         size_t numberOfThreads{1};
         size_t verbosity{0};
