@@ -10,6 +10,8 @@
 #include "nifty/graph/directed_graph_base.hxx"
 #include "nifty/graph/detail/adjacency.hxx"
 #include "nifty/tools/runtime_check.hxx"
+#include "nifty/graph/graph_tags.hxx"
+
 namespace nifty{
 namespace graph{
 
@@ -33,7 +35,9 @@ public:
 
     typedef typename DirectedNodeStorage::const_iterator AdjacencyInIter;
     typedef typename DirectedNodeStorage::const_iterator AdjacencyOutIter;
-    
+    typedef ContiguousTag ArcIdTag;
+    typedef ContiguousTag EdgeIdTag;
+    typedef ContiguousTag NodeIdTag;
     // constructors
     SimpleDirectedGraph(const uint64_t numberOfNodes = 0, const uint64_t reserveNumberOfArcs = 0)
     :   nodes_(numberOfNodes),

@@ -80,6 +80,12 @@ public:
         return _child().adjacencyEnd(node);
     }
 
+    std::pair<int64_t,int64_t> uv(const int64_t edge)const{
+        const auto u = _child().u(edge);
+        const auto v = _child().v(edge);
+        return std::pair<int64_t, int64_t>(u, v);
+    }
+
 private:
     ChildGraph & _child(){
        return *static_cast<ChildGraph *>(this);

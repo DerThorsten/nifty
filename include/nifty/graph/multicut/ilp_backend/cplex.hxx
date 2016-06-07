@@ -72,7 +72,7 @@ Cplex::initModel(
     obj_   = IloMinimize(env_);
     sol_   = IloNumArray(env_,N);
     // set variables and objective
-    x_.add(IloNumVarArray(env_, N, 0, 1, ILOFLOAT));
+    x_.add(IloNumVarArray(env_, N, 0, 1, ILOBOOL));
 
     IloNumArray    obj(env_,N);
 
@@ -153,13 +153,28 @@ inline void
 Cplex::setStart(
     Iterator valueIterator
 ) {
+    //std::cout<<"set start for n var "<<nVariables_<<"\n";
     IloNumArray startVal(env_, nVariables_);
     for (auto i = 0; i < nVariables_; ++i) {
-        startVal[i] = *valueIterator;
+        sol_[i] = *valueIterator;
+        //std::cout<<i<<" x_ "<<x_[i]<<"\n";
         ++valueIterator;
     }
-
-    cplex_.addMIPStart(x_, startVal);
+    
+    //try{
+    cplex_.addMIPStart(x_, sol_);
+    //}
+    //catch (IloException& e) {
+    //    std::cout<<" error "<<e.getMessage()<<"\n";
+    //    e.end();
+    //}
+    //catch (const std::runtime_error & e) {
+    //    std::cout<<" error "<<e.what()<<"\n";
+    //}
+    //catch (const std::exception & e) {
+    //    std::cout<<" error "<<e.what()<<"\n";
+    //}
+    
 }
 
 } // namespace ilp_backend

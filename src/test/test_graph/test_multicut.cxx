@@ -63,6 +63,7 @@ BOOST_AUTO_TEST_CASE(RandomizedMulticutTest)
     {
         typedef nifty::graph::ilp_backend::Gurobi IlpSolver;
         typedef nifty::graph::MulticutIlp<Objective, IlpSolver> Solver;
+        typedef typename Solver::NodeLabels NodeLabels;
         // optimize 
         Solver solver(objective);
 
@@ -85,6 +86,7 @@ BOOST_AUTO_TEST_CASE(SimpleMulticutTest)
     typedef double WeightType;
     typedef nifty::graph::UndirectedGraph<> Graph;
     typedef nifty::graph::MulticutObjective<Graph, WeightType> Objective;
+    typedef nifty::graph::MulticutVerboseVisitor<Objective> VerboseVisitor;
 
 
 
@@ -138,11 +140,16 @@ BOOST_AUTO_TEST_CASE(SimpleMulticutTest)
     {
         typedef nifty::graph::ilp_backend::Gurobi IlpSolver;
         typedef nifty::graph::MulticutIlp<Objective, IlpSolver> Solver;
+        
+        typedef typename Solver::NodeLabels NodeLabels;
         Solver solver(objective);
 
         nifty::graph::graph_maps::EdgeMap<Graph, uint16_t> outputEdgeLabels(g,0);
         solver.optimizeOld(outputEdgeLabels);
 
+        VerboseVisitor visitor; 
+        NodeLabels nodeLabels(g, 0);
+        solver.optimize(nodeLabels, &visitor);
 
 
         for(auto e : g.edges()){
@@ -154,14 +161,23 @@ BOOST_AUTO_TEST_CASE(SimpleMulticutTest)
     // optimize cplex
     #ifdef WITH_CPLEX
     {
+        std::cout<<"opt cplex \n";
         typedef nifty::graph::ilp_backend::Cplex IlpSolver;
         typedef nifty::graph::MulticutIlp<Objective, IlpSolver> Solver;
-        Solver solver(objective);
+        typedef typename Solver::NodeLabels NodeLabels;
 
+        std::cout<<"construct \n";
+        Solver solver(objective);
         nifty::graph::graph_maps::EdgeMap<Graph, uint16_t> outputEdgeLabels(g,0);
+
+        std::cout<<"opt old \n";
         solver.optimizeOld(outputEdgeLabels);
 
 
+        VerboseVisitor visitor; 
+        NodeLabels nodeLabels(g, 0);
+        std::cout<<"opt new \n";
+        solver.optimize(nodeLabels, &visitor);
 
         for(auto e : g.edges()){
             NIFTY_TEST_OP(shouldSolution[e],==,outputEdgeLabels[e]);

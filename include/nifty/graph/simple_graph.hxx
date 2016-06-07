@@ -10,7 +10,7 @@
 #include "nifty/tools/runtime_check.hxx"
 #include "nifty/graph/undirected_graph_base.hxx"
 #include "nifty/graph/detail/adjacency.hxx"
-
+#include "nifty/graph/graph_tags.hxx"
 
 namespace nifty{
 namespace graph{
@@ -36,6 +36,11 @@ namespace detail_graph{
         using boost::counting_iterator<int64_t>::counting_iterator;
         using boost::counting_iterator<int64_t>::operator=;
     };
+
+    class SimpleGraphEdgeIter : public boost::counting_iterator<int64_t>{
+        using boost::counting_iterator<int64_t>::counting_iterator;
+        using boost::counting_iterator<int64_t>::operator=;
+    };
 };
 
 
@@ -45,7 +50,7 @@ class UndirectedGraph : public
     UndirectedGraphBase<
         UndirectedGraph<EDGE_INTERANL_TYPE,NODE_INTERNAL_TYPE>,
         detail_graph::SimpleGraphNodeIter,
-        boost::counting_iterator<int64_t>,
+        detail_graph::SimpleGraphEdgeIter,
         detail_graph::UndirectedGraphTypeHelper<EDGE_INTERANL_TYPE,NODE_INTERNAL_TYPE>
     >
 {
@@ -54,12 +59,15 @@ private:
     typedef NODE_INTERNAL_TYPE NodeInteralType;
     typedef detail_graph::UndirectedAdjacency<int64_t,int64_t,NodeInteralType,EdgeInternalType> NodeAdjacency;
     typedef std::set<NodeAdjacency > NodeStorage;
-
-    typedef std::pair<NodeInteralType,NodeInteralType> EdgeStorage;
+    typedef std::pair<EdgeInternalType,EdgeInternalType> EdgeStorage;
 public:
     typedef detail_graph::SimpleGraphNodeIter NodeIter;
     typedef boost::counting_iterator<int64_t> EdgeIter;
     typedef typename NodeStorage::const_iterator AdjacencyIter;
+
+
+    typedef ContiguousTag EdgeIdTag;
+    typedef ContiguousTag NodeIdTag;
 
     // constructors
     UndirectedGraph(const uint64_t numberOfNodes = 0, const uint64_t reserveNumberOfEdges = 0)
@@ -103,6 +111,13 @@ public:
         NIFTY_ASSERT_OP(e,<,numberOfEdges());
         return edges_[e].second;
     }
+
+
+    std::pair<int64_t,int64_t> uv(const int64_t e)const{
+        const auto _uv = edges_[e];
+        return std::pair<int64_t,int64_t>(_uv.first, _uv.second);
+    }
+
     int64_t findEdge(const int64_t u, const int64_t v)const{
         NIFTY_ASSERT_OP(u,<,numberOfNodes());
         NIFTY_ASSERT_OP(v,<,numberOfNodes());

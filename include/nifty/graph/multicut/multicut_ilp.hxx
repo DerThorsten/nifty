@@ -10,6 +10,8 @@
 #include "nifty/graph/breadth_first_search.hxx"
 #include "nifty/graph/bidirectional_breadth_first_search.hxx"
 #include "nifty/graph/multicut/ilp_backend/ilp_backend.hxx"
+#include "nifty/graph/detail/contiguous_indices.hxx"
+#include "nifty/graph/detail/node_labels_to_edge_labels_iterator.hxx"
 
 namespace nifty{
 namespace graph{
@@ -79,8 +81,13 @@ namespace graph{
 
         const Objective & objective_;
         const Graph & graph_;
+
         IlpSovler ilpSolver_;
         Components components_;
+        // for all so far existing graphs EdgeIndicesToContiguousEdgeIndices
+        // is a zero overhead function which just returns the edge itself
+        // since all so far existing graphs have contiguous edge ids
+        detail_graph::EdgeIndicesToContiguousEdgeIndices<Graph> denseIds_;
         BidirectionalBreadthFirstSearch<Graph> bibfs_;
         Settings settings_;
         std::vector<size_t> variables_;
@@ -98,6 +105,7 @@ namespace graph{
         graph_(objective.graph()),
         ilpSolver_(settings.ilpSettings_),
         components_(graph_),
+        denseIds_(graph_),
         bibfs_(graph_),
         settings_(settings),
         variables_(   std::max(uint64_t(3),uint64_t(graph_.numberOfEdges()))),
@@ -116,6 +124,10 @@ namespace graph{
     optimize(
         NodeLabels & nodeLabels,  VisitorBase * visitor
     ){
+        // set the starting point 
+        auto edgeLabelIter = detail_graph::nodeLabelsToEdgeLabelsIterBegin(graph_, nodeLabels);
+        ilpSolver_.setStart(edgeLabelIter);
+
         
     }
 
@@ -167,7 +179,7 @@ namespace graph{
                         continue;
 
                     for (size_t j = 0; j < sz - 1; ++j){
-                        variables_[j] = graph_.findEdge(path[j], path[j + 1]);
+                        variables_[j] = denseIds_[graph_.findEdge(path[j], path[j + 1])];
                         coefficients_[j] = 1.0;
                     }
 

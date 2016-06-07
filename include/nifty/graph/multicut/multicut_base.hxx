@@ -10,12 +10,17 @@ namespace graph {
 
     template<class OBJECTIVE> 
     class MulticutVisitorBase{
-    
     public:
-
     private:
-
     };
+
+
+    template<class OBJECTIVE> 
+    class MulticutVerboseVisitor : public MulticutVisitorBase<OBJECTIVE>{
+    public:
+    private:
+    };
+
 
     template<class OBJECTIVE>
     class MulticutBase{
