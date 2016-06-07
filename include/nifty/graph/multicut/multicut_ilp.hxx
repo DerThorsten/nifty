@@ -33,7 +33,7 @@ namespace graph{
 
     private:
         typedef ComponentsUfd<Graph> Components;
-
+        typedef detail_graph::EdgeIndicesToContiguousEdgeIndices<Graph> DenseIds;
 
         struct SubgraphWithCut {
             SubgraphWithCut(const IlpSovler& ilpSolver)
@@ -42,8 +42,10 @@ namespace graph{
             bool useNode(const size_t v) const
                 { return true; }
             bool useEdge(const size_t e) const
-                { return ilpSolver_.label(e) == 0; }
+                { return ilpSolver_.label(denseIds_[e]) == 0; }
+
             const IlpSovler& ilpSolver_;
+            const  DenseIds & denseIds_;
         };
 
     public:
@@ -87,7 +89,7 @@ namespace graph{
         // for all so far existing graphs EdgeIndicesToContiguousEdgeIndices
         // is a zero overhead function which just returns the edge itself
         // since all so far existing graphs have contiguous edge ids
-        detail_graph::EdgeIndicesToContiguousEdgeIndices<Graph> denseIds_;
+        DenseIds denseIds_;
         BidirectionalBreadthFirstSearch<Graph> bibfs_;
         Settings settings_;
         std::vector<size_t> variables_;
@@ -128,7 +130,7 @@ namespace graph{
         auto edgeLabelIter = detail_graph::nodeLabelsToEdgeLabelsIterBegin(graph_, nodeLabels);
         ilpSolver_.setStart(edgeLabelIter);
 
-        
+
     }
 
     template<class OBJECTIVE, class ILP_SOLVER>
@@ -158,13 +160,17 @@ namespace graph{
     size_t MulticutIlp<OBJECTIVE, ILP_SOLVER>::
     addCycleInequalities(
     ){
-        components_.build(SubgraphWithCut(ilpSolver_));
+        components_.build(SubgraphWithCut(ilpSolver_, denseIds_));
 
         // search for violated non-chordal cycles and add corresp. inequalities
         size_t nCycle = 0;
 
-        for (size_t edge = 0; edge < graph_.numberOfEdges(); ++edge){
-            if (ilpSolver_.label(edge) > 0.5){
+        // we iterate over edges and the corresponding lpEdge 
+        // for a graph with dense contiguous edge ids the lpEdge 
+        // is equivalent to the graph edge
+        auto lpEdge =  0;
+        for (auto edge : graph_.edges()){
+            if (ilpSolver_.label(lpEdge) > 0.5){
 
                 auto v0 = graph_.u(edge);
                 auto v1 = graph_.v(edge);
@@ -183,7 +189,7 @@ namespace graph{
                         coefficients_[j] = 1.0;
                     }
 
-                    variables_[sz - 1] = edge;
+                    variables_[sz - 1] = lpEdge;
                     coefficients_[sz - 1] = -1.0;
 
                     ilpSolver_.addConstraint(variables_.begin(), variables_.begin() + sz, 
@@ -191,6 +197,7 @@ namespace graph{
                     ++nCycle;
                 }
             }
+            ++lpEdge;
         }
         std::cout<<"nCycle "<<nCycle<<"\n";
         return nCycle;
