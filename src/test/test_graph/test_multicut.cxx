@@ -177,7 +177,7 @@ BOOST_AUTO_TEST_CASE(SimpleMulticutTest)
         VerboseVisitor visitor; 
         NodeLabels nodeLabels(g, 0);
         std::cout<<"opt new \n";
-        solver.optimize(nodeLabels, &visitor);
+        //solver.optimize(nodeLabels, &visitor);
 
         for(auto e : g.edges()){
             NIFTY_TEST_OP(shouldSolution[e],==,outputEdgeLabels[e]);

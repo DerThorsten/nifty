@@ -56,6 +56,14 @@ public:
         return ufd_.find(u) == ufd_.find(v);
     }
 
+    uint64_t componentLabel(const uint64_t u) const{
+        return ufd_.find(u);
+    }
+
+    uint64_t componentLabel(const uint64_t u){
+        return ufd_.find(u);
+    }
+
 private:
     const Graph & graph_;
     nifty::ufd::Ufd< > ufd_;

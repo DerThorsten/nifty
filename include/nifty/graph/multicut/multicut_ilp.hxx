@@ -36,16 +36,17 @@ namespace graph{
         typedef detail_graph::EdgeIndicesToContiguousEdgeIndices<Graph> DenseIds;
 
         struct SubgraphWithCut {
-            SubgraphWithCut(const IlpSovler& ilpSolver)
-                : ilpSolver_(ilpSolver) 
+            SubgraphWithCut(const IlpSovler& ilpSolver, const DenseIds & denseIds)
+                :   ilpSolver_(ilpSolver),
+                    denseIds_(denseIds)
             {}
             bool useNode(const size_t v) const
                 { return true; }
             bool useEdge(const size_t e) const
                 { return ilpSolver_.label(denseIds_[e]) == 0; }
 
-            const IlpSovler& ilpSolver_;
-            const  DenseIds & denseIds_;
+            const IlpSovler & ilpSolver_;
+            const DenseIds & denseIds_;
         };
 
     public:
@@ -78,6 +79,11 @@ namespace graph{
 
         template<class SOL>
         void repairSolution(SOL & sol);
+
+        template<class SOL>
+        void repairSolutionNew(SOL & sol);
+
+
         size_t addCycleInequalities();
         void addThreeCyclesConstraintsExplicitly();
 
@@ -131,6 +137,19 @@ namespace graph{
         ilpSolver_.setStart(edgeLabelIter);
 
 
+        for (size_t i = 0; settings_.numberOfIterations == 0 || i < settings_.numberOfIterations; ++i){
+            if (i != 0){
+                repairSolutionNew(nodeLabels);
+            }
+            ilpSolver_.optimize();
+            if (addCycleInequalities() == 0){
+                break;
+            }
+        }
+        repairSolutionNew(nodeLabels);
+
+
+
     }
 
     template<class OBJECTIVE, class ILP_SOLVER>
@@ -168,7 +187,7 @@ namespace graph{
         // we iterate over edges and the corresponding lpEdge 
         // for a graph with dense contiguous edge ids the lpEdge 
         // is equivalent to the graph edge
-        auto lpEdge =  0;
+        auto lpEdge = 0;
         for (auto edge : graph_.edges()){
             if (ilpSolver_.label(lpEdge) > 0.5){
 
@@ -177,18 +196,18 @@ namespace graph{
 
                 if (components_.areConnected(v0, v1)){   
 
-                    bibfs_.runSingleSourceSingleTarget(v0, v1, SubgraphWithCut(ilpSolver_));
+                    bibfs_.runSingleSourceSingleTarget(v0, v1, SubgraphWithCut(ilpSolver_, denseIds_));
                     const auto & path = bibfs_.path();
                     const auto sz = path.size(); //buildPathInLargeEnoughBuffer(v0, v1, bfs.predecessors(), path.begin());
 
-                    if (findChord(graph_, path.begin(), path.end(), true) != -1)
+                    if (findChord(graph_, path.begin(), path.end(), true) != -1){
+                        ++lpEdge;
                         continue;
-
+                    }
                     for (size_t j = 0; j < sz - 1; ++j){
                         variables_[j] = denseIds_[graph_.findEdge(path[j], path[j + 1])];
                         coefficients_[j] = 1.0;
                     }
-
                     variables_[sz - 1] = lpEdge;
                     coefficients_[sz - 1] = -1.0;
 
@@ -217,6 +236,20 @@ namespace graph{
         }
 
         ilpSolver_.setStart(sol.begin());
+    }
+
+
+    template<class OBJECTIVE, class ILP_SOLVER>
+    template<class SOL>
+    void MulticutIlp<OBJECTIVE, ILP_SOLVER>::
+    repairSolutionNew(
+        SOL & nodeLabels
+    ){
+        for (auto node: graph_.nodes()){
+            nodeLabels[node] = components_.componentLabel(node);
+        }
+        auto edgeLabelIter = detail_graph::nodeLabelsToEdgeLabelsIterBegin(graph_, nodeLabels);
+        ilpSolver_.setStart(edgeLabelIter);
     }
 
     template<class OBJECTIVE, class ILP_SOLVER>

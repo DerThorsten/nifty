@@ -156,13 +156,13 @@ Cplex::setStart(
     //std::cout<<"set start for n var "<<nVariables_<<"\n";
     IloNumArray startVal(env_, nVariables_);
     for (auto i = 0; i < nVariables_; ++i) {
-        sol_[i] = *valueIterator;
+        //sol_[i] = *valueIterator;
         //std::cout<<i<<" x_ "<<x_[i]<<"\n";
         ++valueIterator;
     }
     
     //try{
-    cplex_.addMIPStart(x_, sol_);
+    //cplex_.addMIPStart(x_, sol_);
     //}
     //catch (IloException& e) {
     //    std::cout<<" error "<<e.getMessage()<<"\n";
