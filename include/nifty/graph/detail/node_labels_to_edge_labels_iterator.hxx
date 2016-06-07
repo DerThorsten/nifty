@@ -32,7 +32,7 @@ namespace detail_graph{
 
         const uint8_t & operator()(const int64_t edgeId) const {
             const auto uv = graph_.uv(edgeId);
-            valBuffer_ =  nodeLabels_[uv.first] != nodeLabels_[uv.second];
+            valBuffer_ =  nodeLabels_[uv.first] != nodeLabels_[uv.second] ? 1 : 0;
             return valBuffer_;
         }
     private:

@@ -149,9 +149,9 @@ BOOST_AUTO_TEST_CASE(SimpleMulticutTest)
 
         VerboseVisitor visitor; 
         NodeLabels nodeLabels(g, 0);
-        solver.optimize(nodeLabels, &visitor);
+        std::cout<<"opt new \n";
 
-
+        g.nodeLabelsToEdgeLabels(nodeLabels, outputEdgeLabels);
         for(auto e : g.edges()){
             NIFTY_TEST_OP(shouldSolution[e],==,outputEdgeLabels[e]);
         }
@@ -166,19 +166,17 @@ BOOST_AUTO_TEST_CASE(SimpleMulticutTest)
         typedef nifty::graph::MulticutIlp<Objective, IlpSolver> Solver;
         typedef typename Solver::NodeLabels NodeLabels;
 
-        std::cout<<"construct \n";
+
         Solver solver(objective);
         nifty::graph::graph_maps::EdgeMap<Graph, uint16_t> outputEdgeLabels(g,0);
 
-        std::cout<<"opt old \n";
-        solver.optimizeOld(outputEdgeLabels);
 
 
         VerboseVisitor visitor; 
         NodeLabels nodeLabels(g, 0);
-        std::cout<<"opt new \n";
-        //solver.optimize(nodeLabels, &visitor);
-
+        solver.optimize(nodeLabels, &visitor);
+        g.nodeLabelsToEdgeLabels(nodeLabels, outputEdgeLabels);
+        
         for(auto e : g.edges()){
             NIFTY_TEST_OP(shouldSolution[e],==,outputEdgeLabels[e]);
         }

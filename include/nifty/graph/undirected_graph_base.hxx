@@ -86,6 +86,22 @@ public:
         return std::pair<int64_t, int64_t>(u, v);
     }
 
+    template<class NODE_LABELS, class EDGE_LABELS>
+    void nodeLabelsToEdgeLabels(const NODE_LABELS & nodeLabels, EDGE_LABELS & edgeLabels){
+        _child().forEachEdge([&](const int64_t edge){
+            const auto uv = _child().uv(edge);
+            edgeLabels[edge] = nodeLabels[uv.first] != nodeLabels[uv.second] ? 1 : 0;
+        });
+    }
+
+
+    template<class F>
+    void forEachEdge(F && f){
+        for(auto edge : _child().edges()){
+            f(edge);
+        }
+    }
+
 private:
     ChildGraph & _child(){
        return *static_cast<ChildGraph *>(this);

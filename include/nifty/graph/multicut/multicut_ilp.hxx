@@ -77,11 +77,8 @@ namespace graph{
         void addThreeCyclesConstraintsExplicitly(const IlpSovler & ilpSolver);
         void initializeIlp(IlpSovler & ilpSolver);
 
-        template<class SOL>
-        void repairSolution(SOL & sol);
 
-        template<class SOL>
-        void repairSolutionNew(SOL & sol);
+        void repairSolution(NodeLabels & nodeLabels);
 
 
         size_t addCycleInequalities();
@@ -136,45 +133,18 @@ namespace graph{
         auto edgeLabelIter = detail_graph::nodeLabelsToEdgeLabelsIterBegin(graph_, nodeLabels);
         ilpSolver_.setStart(edgeLabelIter);
 
-
         for (size_t i = 0; settings_.numberOfIterations == 0 || i < settings_.numberOfIterations; ++i){
             if (i != 0){
-                repairSolutionNew(nodeLabels);
+                repairSolution(nodeLabels);
             }
             ilpSolver_.optimize();
             if (addCycleInequalities() == 0){
                 break;
             }
         }
-        repairSolutionNew(nodeLabels);
-
-
-
+        repairSolution(nodeLabels);
     }
 
-    template<class OBJECTIVE, class ILP_SOLVER>
-    template<class OUTPUT_EDGE_LABLES>
-    void MulticutIlp<OBJECTIVE, ILP_SOLVER>::
-    optimizeOld(
-        OUTPUT_EDGE_LABLES & outputEdgeLabels
-    ){
-
-
-        ilpSolver_.setStart(outputEdgeLabels.begin());    
-
-        for (size_t i = 0; settings_.numberOfIterations == 0 || i < settings_.numberOfIterations; ++i){
-            if (i != 0){
-                repairSolution(outputEdgeLabels);
-            }
-            ilpSolver_.optimize();
-            if (addCycleInequalities() == 0){
-                break;
-            }
-        }
-        repairSolution(outputEdgeLabels);
-    }   
-
-    
     template<class OBJECTIVE, class ILP_SOLVER>
     size_t MulticutIlp<OBJECTIVE, ILP_SOLVER>::
     addCycleInequalities(
@@ -223,27 +193,9 @@ namespace graph{
     }
 
     template<class OBJECTIVE, class ILP_SOLVER>
-    template<class SOL>
     void MulticutIlp<OBJECTIVE, ILP_SOLVER>::
     repairSolution(
-        SOL & sol
-    ){
-        for (size_t edge = 0; edge < graph_.numberOfEdges(); ++edge){
-            auto v0 = graph_.u(edge);
-            auto v1 = graph_.v(edge);
-
-            sol[edge] = components_.areConnected(v0, v1) ? 0 : 1;
-        }
-
-        ilpSolver_.setStart(sol.begin());
-    }
-
-
-    template<class OBJECTIVE, class ILP_SOLVER>
-    template<class SOL>
-    void MulticutIlp<OBJECTIVE, ILP_SOLVER>::
-    repairSolutionNew(
-        SOL & nodeLabels
+        NodeLabels & nodeLabels
     ){
         for (auto node: graph_.nodes()){
             nodeLabels[node] = components_.componentLabel(node);
@@ -295,7 +247,6 @@ namespace graph{
             }
         }
     }
-
 
 
 } // namespace nifty::graph

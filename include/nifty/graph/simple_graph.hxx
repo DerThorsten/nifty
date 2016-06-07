@@ -112,12 +112,6 @@ public:
         return edges_[e].second;
     }
 
-
-    std::pair<int64_t,int64_t> uv(const int64_t e)const{
-        const auto _uv = edges_[e];
-        return std::pair<int64_t,int64_t>(_uv.first, _uv.second);
-    }
-
     int64_t findEdge(const int64_t u, const int64_t v)const{
         NIFTY_ASSERT_OP(u,<,numberOfNodes());
         NIFTY_ASSERT_OP(v,<,numberOfNodes());
@@ -150,6 +144,20 @@ public:
     AdjacencyIter adjacencyOutBegin(const int64_t node)const{
         return adjacencyBegin(node);
     }
+
+    // optional (with default impl in base)
+    std::pair<int64_t,int64_t> uv(const int64_t e)const{
+        const auto _uv = edges_[e];
+        return std::pair<int64_t,int64_t>(_uv.first, _uv.second);
+    }
+    template<class F>
+    void forEachEdge(F && f){
+        for(uint64_t edge=0; edge< numberOfEdges(); ++edge){
+            f(edge);
+        }
+    }
+
+
 private:
 
 
