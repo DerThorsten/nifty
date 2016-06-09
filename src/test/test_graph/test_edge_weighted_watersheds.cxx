@@ -1,7 +1,9 @@
 #define BOOST_TEST_MODULE NiftyEdgeWeightedWatershedsTest
 
 #include <boost/test/unit_test.hpp>
+
 #include <iostream> 
+#include <random>
 
 #include "nifty/tools/runtime_check.hxx"
 #include "nifty/graph/simple_graph.hxx"
