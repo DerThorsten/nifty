@@ -30,6 +30,7 @@ BOOST_AUTO_TEST_CASE(RandomizedMulticutTest)
     typedef double WeightType;
     typedef nifty::graph::UndirectedGraph<> Graph;
     typedef nifty::graph::MulticutObjective<Graph, WeightType> Objective;
+    typedef nifty::graph::MulticutVerboseVisitor<Objective> VerboseVisitor;
 
 
 
@@ -66,9 +67,12 @@ BOOST_AUTO_TEST_CASE(RandomizedMulticutTest)
         typedef typename Solver::NodeLabels NodeLabels;
         // optimize 
         Solver solver(objective);
-
         nifty::graph::graph_maps::EdgeMap<Graph, uint8_t> outputEdgeLabels(g,0);
-        solver.optimizeOld(outputEdgeLabels);
+        
+        VerboseVisitor visitor; 
+        NodeLabels nodeLabels(g, 0);
+        solver.optimize(nodeLabels, &visitor);
+        g.nodeLabelsToEdgeLabels(nodeLabels, outputEdgeLabels);     
     }
     #endif
 }
@@ -145,11 +149,11 @@ BOOST_AUTO_TEST_CASE(SimpleMulticutTest)
         Solver solver(objective);
 
         nifty::graph::graph_maps::EdgeMap<Graph, uint16_t> outputEdgeLabels(g,0);
-        solver.optimizeOld(outputEdgeLabels);
 
         VerboseVisitor visitor; 
         NodeLabels nodeLabels(g, 0);
-        std::cout<<"opt new \n";
+        solver.optimize(nodeLabels, &visitor);
+        g.nodeLabelsToEdgeLabels(nodeLabels, outputEdgeLabels);
 
         g.nodeLabelsToEdgeLabels(nodeLabels, outputEdgeLabels);
         for(auto e : g.edges()){

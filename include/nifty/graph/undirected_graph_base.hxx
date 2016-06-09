@@ -96,7 +96,7 @@ public:
 
 
     template<class F>
-    void forEachEdge(F && f){
+    void forEachEdge(F && f)const{
         for(auto edge : _child().edges()){
             f(edge);
         }

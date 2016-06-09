@@ -39,6 +39,9 @@ add_library(nifty SHARED
   # ... extra files go here ...
   graph/graph.cxx
   graph/undirected_graph.cxx
+  graph/multicut/multicut.cxx
+  graph/multicut/multicut_objective.cxx
+  graph/multicut/multicut_factory.cxx
 )
 
 # Don't add a 'lib' prefix to the shared library

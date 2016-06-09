@@ -13,8 +13,4 @@ SET(TEST_LIBS
 
 add_subdirectory(test_graph)
 add_subdirectory(test_array)
-add_subdirectory(test_marray)
 
-if(WITH_BOOST_COMPUTE)
-    add_subdirectory(test_compute)
-endif()

@@ -11,7 +11,7 @@
                      
 #include "nifty/graph/subgraph_mask.hxx"
 #include "nifty/graph/detail/search_impl.hxx"
-#include "nifty/queue/changeable_priority_queue.hxx"
+
 
 namespace nifty{
 namespace graph{

@@ -18,6 +18,11 @@ add_executable(test_depth_first_search test_depth_first_search.cxx )
 target_link_libraries(test_depth_first_search ${TEST_LIBS})
 add_test(test_depth_first_search test_depth_first_search)
 
+add_executable(test_edge_weighted_watersheds test_edge_weighted_watersheds.cxx )
+target_link_libraries(test_edge_weighted_watersheds ${TEST_LIBS})
+add_test(test_edge_weighted_watersheds test_edge_weighted_watersheds)
+
+
 
 
 if(WITH_GUROBI OR WITH_CPLEX)

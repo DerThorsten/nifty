@@ -151,7 +151,7 @@ public:
         return std::pair<int64_t,int64_t>(_uv.first, _uv.second);
     }
     template<class F>
-    void forEachEdge(F && f){
+    void forEachEdge(F && f)const{
         for(uint64_t edge=0; edge< numberOfEdges(); ++edge){
             f(edge);
         }

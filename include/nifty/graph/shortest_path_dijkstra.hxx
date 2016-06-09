@@ -3,7 +3,7 @@
 #define NIFTY_GRAPH_SHORTEST_PATH_DIJKSTRA_HXX
 
 #include "nifty/graph/subgraph_mask.hxx"
-#include "nifty/queue/changeable_priority_queue.hxx"
+#include "vigra/priority_queue.hxx"
 
 namespace nifty{
 namespace graph{
@@ -18,7 +18,7 @@ namespace graph{
         typedef typename Graph:: template NodeMap<int64_t>     PredecessorsMap;
         typedef typename Graph:: template NodeMap<WeightType>  DistanceMap;
     private:
-        typedef nifty::queue::ChangeablePriorityQueue<WeightType>    PqType;
+        typedef vigra::ChangeablePriorityQueue<WeightType>    PqType;
     public:
         ShortestPathDijkstra(const Graph & g)
         :   g_(g),

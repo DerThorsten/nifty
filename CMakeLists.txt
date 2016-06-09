@@ -67,6 +67,8 @@ endif()
 #-------------------------------------------------------------------------------------------------------------------
 include_directories( "${CMAKE_CURRENT_SOURCE_DIR}/externals/marray/include")
 include_directories( "${CMAKE_CURRENT_SOURCE_DIR}/externals/pybind11/include")
+include_directories( "${CMAKE_CURRENT_SOURCE_DIR}/externals/vigra/include")
+
 
 #-------------------------------------------------------------------------------------------------------------------
 # hdf5 libs

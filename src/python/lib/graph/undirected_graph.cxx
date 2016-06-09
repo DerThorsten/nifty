@@ -29,6 +29,7 @@ namespace graph{
                py::arg("numberOfNodes"),
                py::arg_t<uint64_t>("reserveEdges",0)
             )
+            .def("insertEdge",&Graph::insertEdge)
             .def("insertEdges",
                 [](Graph & g, py::array_t<uint64_t> pyArray) {
                     NumpyArray<uint64_t> array(pyArray);

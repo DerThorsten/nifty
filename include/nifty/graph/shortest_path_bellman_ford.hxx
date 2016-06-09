@@ -3,7 +3,6 @@
 #define NIFTY_GRAPH_SHORTEST_PATH_HXX
 
 #include "nifty/graph/subgraph_mask.hxx"
-#include "nifty/queue/changeable_priority_queue.hxx"
 
 namespace nifty{
 namespace graph{

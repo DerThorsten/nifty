@@ -76,8 +76,8 @@ namespace graph{
 
 
         cls
-            .def("numberOfNodes",&G::numberOfNodes)
-            .def("numberOfEdges",&G::numberOfEdges)
+            .def_property_readonly("numberOfNodes",&G::numberOfNodes)
+            .def_property_readonly("numberOfEdges",&G::numberOfEdges)
             .def("findEdge",&G::findEdge)
             .def("u",&G::u)
             .def("v",&G::v)
