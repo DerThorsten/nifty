@@ -3,8 +3,6 @@
 #define NIFTY_GRAPH_MULTICUT_ILP_BACKEND_HXX
 
 #include <limits>
-#define IL_STD 1
-#include <ilcplex/ilocplex.h>
 
 namespace nifty {
 namespace graph {
