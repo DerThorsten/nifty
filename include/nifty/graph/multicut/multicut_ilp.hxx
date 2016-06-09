@@ -56,7 +56,7 @@ namespace graph{
             size_t numberOfIterations{0};
             bool verbose { true };
             bool verboseIlp{false};
-            bool addThreeCyclesConstraints{true};
+            bool addThreeCyclesConstraints{false};
             IlpSettings ilpSettings_;
         };
 
@@ -64,11 +64,10 @@ namespace graph{
         MulticutIlp(const Objective & objective, const Settings & settings = Settings());
 
 
-        void optimize(NodeLabels & nodeLabels, VisitorBase * visitor);
+        virtual void optimize(NodeLabels & nodeLabels, VisitorBase * visitor);
+        virtual const Objective & objective() const;
 
 
-        template<class OUTPUT_EDGE_LABLES>
-        void optimizeOld(OUTPUT_EDGE_LABLES & outputEdgeLabels);
 
 
 
@@ -143,6 +142,13 @@ namespace graph{
             }
         }
         repairSolution(nodeLabels);
+    }
+
+    template<class OBJECTIVE, class ILP_SOLVER>
+    const typename MulticutIlp<OBJECTIVE, ILP_SOLVER>::Objective &
+    MulticutIlp<OBJECTIVE, ILP_SOLVER>::
+    objective()const{
+        return objective_;
     }
 
     template<class OBJECTIVE, class ILP_SOLVER>

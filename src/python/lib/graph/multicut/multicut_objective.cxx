@@ -41,26 +41,6 @@ namespace graph{
             py::arg("graph"),py::arg("weights")  
         );
 
-        //multicutObjectiveCls
-        //    .def(py::init<const uint64_t,const uint64_t>()
-        //      ,
-        //       //py::arg("numberOfNodes"),
-        //       py::arg("numberOfNodes"),
-        //       py::arg_t<uint64_t>("reserveEdges",0)
-        //    )
-        //    //.def("insertEdges",
-        //    //    [](Graph & g, py::array_t<uint64_t> pyArray) {
-        //    //        NumpyArray<uint64_t> array(pyArray);
-        //    //        NIFTY_CHECK_OP(array.dimension(),==,2,"wrong dimensions");
-        //    //        NIFTY_CHECK_OP(array.shape(1),==,2,"wrong shape");
-        //    //        for(size_t i=0; i<array.shape(0); ++i){
-        //    //            g.insertEdge(array(i,0),array(i,1));
-        //    //        }
-        //    //    }
-        //    //)
-        //;
-
-
     }
 
 }

@@ -44,9 +44,23 @@ def test_multicut():
                 v = f(x, y + 1)
                 g.insertEdge(u, v)
 
-    w = numpy.random.rand(g.numberOfEdges)
+    w = numpy.random.rand(g.numberOfEdges)-0.5
     obj = nifty.graph.multicut.multicutObjective(g,w)
 
-    
+    mcIlpFactory = nifty.graph.multicut.MulticutIlpCplexFactoryUndirectedGraph()
+    print(type(mcIlpFactory))
+    import inspect
+    #print(inspect.getmro(mcIlpFactory.__class__))
+
+    mcIlp = mcIlpFactory.create(obj)
+    ret = mcIlp.optimize()
+
+    print(ret) 
+
+
+    #print(mcIlpFactory)
     
 test_multicut()
+
+import sys
+print(sys.version)

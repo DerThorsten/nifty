@@ -5,6 +5,9 @@
 #include "../../converter.hxx"
 #include "py_multicut_factory.hxx"
 
+
+
+
 namespace py = pybind11;
 
 
@@ -16,22 +19,31 @@ namespace graph{
     void exportMulticutFactory(py::module & multicutModule) {
 
         typedef UndirectedGraph<> Graph;
-        typedef MulticutObjective<Graph, double> McObjective;
-        typedef PyMulticutFactoryBase<McObjective> PyMcFactoryBase;
-        typedef MulticutFactoryBase<McObjective> McFactoryBase;
+        typedef MulticutObjective<Graph, double> Objective;
+        typedef PyMulticutFactoryBase<Objective> PyMcFactoryBase;
+        typedef MulticutFactoryBase<Objective> McFactoryBase;
 
+
+        // base factory
         py::class_<
             McFactoryBase, 
             std::unique_ptr<McFactoryBase>, 
             PyMcFactoryBase 
-        > mcFactoryBase(multicutModule, "MulticutFactoryBase");
+        > mcFactoryBase(multicutModule, "MulticutFactoryBaseUndirectedGraph");
         
         mcFactoryBase
             .def(py::init<>())
-            //.def("go", &Animal::go);
+
+            .def("create", 
+                //&McFactoryBase::create,
+                [](McFactoryBase * self, const Objective & obj){
+                    return self->createRawPtr(obj);
+                },
+                //,
+                py::return_value_policy::take_ownership,
+                py::keep_alive<0,2>()
+                )
         ;
-
-
 
     }
 

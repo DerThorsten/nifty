@@ -18,7 +18,8 @@ namespace graph {
         typedef OBJECTIVE Objective;
         typedef MulticutBase<Objective> MulticutBaseType;
         virtual ~MulticutFactoryBase(){}
-        virtual std::shared_ptr<MulticutBaseType> create(const Objective & objective) = 0;
+        virtual std::shared_ptr<MulticutBaseType> createSharedPtr(const Objective & objective) = 0;
+        virtual MulticutBaseType * createRawPtr(const Objective & objective) = 0;
     };
 
 
@@ -34,8 +35,12 @@ namespace graph {
         :   MulticutFactoryBase<Objective>(),
             options_(settings){
         }
-        virtual std::shared_ptr<MulticutBaseType> create(const Objective & objective){
+        virtual std::shared_ptr<MulticutBaseType> createSharedPtr(const Objective & objective){
             return std::make_shared<Solver>(objective, options_);
+        }
+        virtual MulticutBaseType * createRawPtr(const Objective & objective){
+            MulticutBaseType *  p =  new Solver(objective, options_);
+            return p;
         }
     private:
         Settings options_;

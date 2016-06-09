@@ -42,7 +42,23 @@ add_library(nifty SHARED
   graph/multicut/multicut.cxx
   graph/multicut/multicut_objective.cxx
   graph/multicut/multicut_factory.cxx
+  graph/multicut/multicut_ilp.cxx
+  graph/multicut/multicut_base.cxx
 )
+
+
+
+if(WITH_GUROBI)
+    target_link_libraries(nifty ${GUROBI_LIBRARIES})
+endif()
+
+if(WITH_CPLEX)
+    target_link_libraries(nifty ${CPLEX_LIBRARIES})
+endif()
+
+
+
+
 
 # Don't add a 'lib' prefix to the shared library
 set_target_properties(nifty PROPERTIES PREFIX "")

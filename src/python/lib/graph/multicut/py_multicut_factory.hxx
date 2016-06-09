@@ -36,11 +36,19 @@ public:
     typedef OBJECTIVE Objective;
     typedef MulticutBase<Objective> MulticutBaseType;
     /* Trampoline (need one for each virtual function) */
-    std::shared_ptr<MulticutBaseType> create(const Objective & objective) {
+    std::shared_ptr<MulticutBaseType> createSharedPtr(const Objective & objective) {
         PYBIND11_OVERLOAD_PURE(
             std::shared_ptr<MulticutBaseType>, /* Return type */
             MulticutFactoryBase<Objective>,    /* Parent class */
-            create,                            /* Name of function */
+            createSharedPtr,                   /* Name of function */
+            objective                          /* Argument(s) */
+        );
+    }
+    MulticutBaseType * createRawPtr(const Objective & objective) {
+        PYBIND11_OVERLOAD_PURE(
+            MulticutBaseType* ,                /* Return type */
+            MulticutFactoryBase<Objective>,    /* Parent class */
+            createRawPtr,                            /* Name of function */
             objective                          /* Argument(s) */
         );
     }
