@@ -29,7 +29,7 @@ test_undirected_graph()
 def test_multicut():
 
     # build the graph
-    shape = 10,10
+    shape = 2,2
     g =  nifty.graph.UndirectedGraph(shape[0]*shape[1])
     def f(x,y):
         return x + shape[0]*y
@@ -44,20 +44,21 @@ def test_multicut():
                 v = f(x, y + 1)
                 g.insertEdge(u, v)
 
-    w = numpy.random.rand(g.numberOfEdges)-0.5
+    w = numpy.array(
+        [4,5,6,7]
+    )
     obj = nifty.graph.multicut.multicutObjective(g,w)
-    mcIlpFactory = nifty.graph.multicut.MulticutIlpCplexFactoryUndirectedGraph()
-    print(type(mcIlpFactory))
-    import inspect
-    #print(inspect.getmro(mcIlpFactory.__class__))
+    setttings = nifty.graph.multicut.MulticutGreedyAdditiveSettingsUndirectedGraph()
+    factory = nifty.graph.multicut.MulticutGreedyAdditiveFactoryUndirectedGraph(setttings)
 
-    mcIlp = mcIlpFactory.create(obj)
-    ret = mcIlp.optimize()
+
+    solver = factory.create(obj)
+    ret = solver.optimize()
 
     print(ret) 
 
 
-    #print(mcIlpFactory)
+    #print(factory)
     
 test_multicut()
 

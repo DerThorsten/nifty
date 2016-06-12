@@ -51,7 +51,7 @@ class UndirectedGraph : public
         UndirectedGraph<EDGE_INTERANL_TYPE,NODE_INTERNAL_TYPE>,
         detail_graph::SimpleGraphNodeIter,
         detail_graph::SimpleGraphEdgeIter,
-        detail_graph::UndirectedGraphTypeHelper<EDGE_INTERANL_TYPE,NODE_INTERNAL_TYPE>
+        typename detail_graph::UndirectedGraphTypeHelper<EDGE_INTERANL_TYPE,NODE_INTERNAL_TYPE>::AdjacencyIter
     >
 {
 private:

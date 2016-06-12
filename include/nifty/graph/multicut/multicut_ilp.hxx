@@ -57,6 +57,7 @@ namespace graph{
             bool verbose { true };
             bool verboseIlp{false};
             bool addThreeCyclesConstraints{false};
+            bool addOnlyViolatedThreeCyclesConstraints{true};
             IlpSettings ilpSettings_;
         };
 
@@ -212,13 +213,6 @@ namespace graph{
 
     template<class OBJECTIVE, class ILP_SOLVER>
     void MulticutIlp<OBJECTIVE, ILP_SOLVER>::
-    addThreeCyclesConstraintsExplicitly(
-        const IlpSovler & ilpSolver
-    ){
-    }
-
-    template<class OBJECTIVE, class ILP_SOLVER>
-    void MulticutIlp<OBJECTIVE, ILP_SOLVER>::
     initializeIlp(
         IlpSovler & ilpSolver
     ){
@@ -237,21 +231,51 @@ namespace graph{
         std::array<size_t, 3> variables;
         std::array<double, 3> coefficients;
         auto threeCycles = findThreeCyclesEdges(graph_);
-        for(auto & tce : threeCycles){
-            for(auto i=0; i<3; ++i){
-                variables[i] = tce[i];
-            }
-            for(auto i=0; i<3; ++i){
-                for(auto j=0; j<3; ++j){
-                    if(i != j){
-                        coefficients[i] = 1.0;
-                    }
+        auto c = 0;
+        if(!settings_.addOnlyViolatedThreeCyclesConstraints){
+            for(const auto & tce : threeCycles){
+                for(auto i=0; i<3; ++i){
+                    variables[i] = tce[i];
                 }
-                coefficients[i] = -1.0;
-                ilpSolver_.addConstraint(variables.begin(), variables.begin() + 3, 
-                                    coefficients.begin(), 0, std::numeric_limits<double>::infinity());
+                for(auto i=0; i<3; ++i){
+                    for(auto j=0; j<3; ++j){
+                        if(i != j){
+                            coefficients[j] = 1.0;
+                        }
+                    }
+                    coefficients[i] = -1.0;
+                    ilpSolver_.addConstraint(variables.begin(), variables.begin() + 3, 
+                        coefficients.begin(), 0, std::numeric_limits<double>::infinity());
+                    ++c;
+                }
             }
         }
+        else{
+            const auto & weights = objective_.weights();
+            for(const auto & tce : threeCycles){
+                // count negative edges
+                auto nNeg = 0 ;
+                auto negIndex = 0;
+                for(auto i=0; i<3; ++i){
+                    const auto edge = tce[i];
+                    if(weights[edge]<0.0){
+                        ++nNeg;
+                        negIndex = i;
+                    }
+                }
+                if(nNeg == 1){
+                    for(auto i=0; i<3; ++i){
+                        coefficients[i] = 1.0;
+                        variables[i] = tce[i];
+                    }
+                    coefficients[negIndex] = -1.0;
+                    ilpSolver_.addConstraint(variables.begin(), variables.begin() + 3, 
+                        coefficients.begin(), 0, std::numeric_limits<double>::infinity());
+                    ++c;
+                }
+            }
+        }
+        std::cout<<"added "<<c<<" explicit constraints\n";
     }
 
 

@@ -2,6 +2,10 @@
 #ifndef NIFTY_GRAPH_THREE_CYCLES_HXX
 #define NIFTY_GRAPH_THREE_CYCLES_HXX
 
+
+#include <algorithm>
+#include <set>
+
 #include "nifty/graph/subgraph_mask.hxx"
 #include "nifty/graph/detail/search_impl.hxx"
 
@@ -15,34 +19,34 @@ namespace graph{
     ){
         typedef std::array<uint64_t, 3> ThreeCycleEdges;
         threeCycles.clear();
+        for(auto edge : graph.edges()){
+            const auto uv = graph.uv(edge);
+            const auto u = uv.first;
+            const auto v = uv.second;
 
-        for(auto u : graph.nodes() ){
-            for(auto av : graph.adjacency(u)){
-                const auto v = av.node();
-                if(u<v){
-                    for(auto aw : graph.adjacency(v)){
-                        const auto w = aw.node();
-                        if(v < w){
-                            for(auto auu : graph.adjacency(w)){
-                                const auto uu = auu.node();
-                                if(uu == u){
-                                    ThreeCycleEdges tce{{
-                                                            static_cast<uint64_t>(av.edge()),
-                                                            static_cast<uint64_t>(aw.edge()),
-                                                            static_cast<uint64_t>(auu.edge())
-                                                        }};
-                                    threeCycles.push_back(tce);
-                                    goto exitNestedLoop;
-                                }
-                            }
-                        }
+            for(auto adj : graph.adjacency(u)){
+                const auto w = adj.node();
+                const auto secondEdge = adj.edge();
+                if(w != v && secondEdge < edge){
+                    auto thirdEdge = graph.findEdge(w, v);
+                    if(thirdEdge != -1 ){//thirdEdge < secondEdge){
+                        
+                        //ThreeCycle tc(edge,secondEdge,thirdEdge);
+                        //cycleSet.insert(tc);
+                        ThreeCycleEdges tce{{
+                           static_cast<uint64_t>(edge),
+                           static_cast<uint64_t>(secondEdge),
+                           static_cast<uint64_t>(thirdEdge)
+                        }};
+                        threeCycles.push_back(tce);
                     }
-                }   
+                }
             }
-            exitNestedLoop:
-            ;
         }
-    }
+        //for(auto c : cycleSet)
+        //    threeCycles.push_back(c.edges_);
+        //std::cout<<threeCycles.size()<<"\n";
+    }   
 
     template<class GRAPH>
     std::vector< std::array<uint64_t, 3 > > 

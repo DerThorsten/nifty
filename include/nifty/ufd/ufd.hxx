@@ -19,9 +19,11 @@ public:
     Ufd(const Index = 0);
     void assign(const Index = 0);
     void reset(){
-        numberOfSets_ = parents_.size();
-        for(Index j = 0; j < numberOfSets_; ++j) {
-            parents_[static_cast<uint64_t>(j)] = j;
+        if(numberOfSets_ < parents_.size()){
+            numberOfSets_ = parents_.size();
+            for(Index j = 0; j < numberOfSets_; ++j) {
+                parents_[static_cast<uint64_t>(j)] = j;
+            }
         }  
     }
     Index find(const Index) const; // without path compression
