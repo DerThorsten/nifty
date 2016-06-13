@@ -21,6 +21,12 @@ namespace graph {
     private:
     };
 
+    template<class OBJECTIVE> 
+    class MulticutEmptyVisitor : public MulticutVisitorBase<OBJECTIVE>{
+    public:
+    private:
+    };
+
 
     template<class OBJECTIVE>
     class MulticutBase{

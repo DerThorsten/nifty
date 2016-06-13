@@ -48,7 +48,7 @@ namespace graph{
                     py::array_t<uint64_t> pyArray
                 ){
                     const auto graph = self->objective().graph();
-                    std::cout<<"optimize that damn thing\n";
+                    //std::cout<<"optimize that damn thing\n";
                     NumpyArray<uint64_t> array(pyArray);
 
 

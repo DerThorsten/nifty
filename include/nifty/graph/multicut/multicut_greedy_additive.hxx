@@ -3,7 +3,7 @@
 #define NIFTY_GRAPH_MULTICUT_MULTICUT_GREEDY_ADDITIVE_HXX
 
 
-#include <map>
+#include <random>
 #include <functional>
 
 #include "vigra/priority_queue.hxx"
@@ -12,6 +12,7 @@
 #include "nifty/ufd/ufd.hxx"
 #include "nifty/graph/detail/adjacency.hxx"
 #include "nifty/graph/multicut/multicut_base.hxx"
+
 //#include "nifty/graph/detail/contiguous_indices.hxx"
 
 
@@ -44,6 +45,10 @@ namespace graph{
             double weightStopCond{0.0};
             double nodeNumStopCond{-1};
             int verbose { 1 };
+
+            int seed {42};
+            bool addNoise {false};
+            double sigma{1.0};
         };
 
 
@@ -51,9 +56,11 @@ namespace graph{
         virtual void optimize(NodeLabels & nodeLabels, VisitorBase * visitor);
         virtual const Objective & objective() const;
 
+        void reset();
+        void changeSettings(const Settings & settings);
     private:
 
-        void reset();
+        
         bool stopContraction();
         void relabelEdge(const uint64_t edge,const uint64_t deadNode, const uint64_t aliveNode);
 
@@ -67,6 +74,10 @@ namespace graph{
         nifty::ufd::Ufd< > ufd_;
         EdgeWeights weights_;
         uint64_t currentNodeNum_;
+
+
+        std::mt19937 gen_;
+        std::normal_distribution<> dist_;
     };
 
     
@@ -84,7 +95,9 @@ namespace graph{
         edges_(graph_),
         ufd_(graph_.maxNodeId()+1),
         weights_(graph_),
-        currentNodeNum_(graph_.numberOfNodes())
+        currentNodeNum_(graph_.numberOfNodes()),
+        gen_(settings.seed),
+        dist_(0.0, settings.sigma)
     {
         // do the setup
         this->reset();
@@ -229,14 +242,28 @@ namespace graph{
         }
         while(!pq_.empty())
             pq_.pop();
+        
         // edges:
         const auto & weights = objective_.weights();
         for(const auto edge: graph_.edges()){
             const auto uv = graph_.uv(edge);
             const auto edgeStorage = EdgeStorage(uv.first, uv.second);
             edges_[edge] = edgeStorage;
-            pq_.push(edge, weights[edge]);
+            if(!settings_.addNoise)
+                pq_.push(edge, weights[edge]);
+            else{
+                pq_.push(edge, weights[edge] + dist_(gen_));
+            }
         }            
+    }
+
+    template<class OBJECTIVE>
+    inline void 
+    MulticutGreedyAdditive<OBJECTIVE>::
+    changeSettings(
+        const Settings & settings
+    ){
+        settings_ = settings;
     }
 
     template<class OBJECTIVE>

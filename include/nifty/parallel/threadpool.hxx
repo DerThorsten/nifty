@@ -39,8 +39,8 @@ class ParallelOptions
         NoThreads  =  0  ///< Switch off multi-threading (i.e. execute tasks sequentially)
     };
 
-    ParallelOptions()
-    :   numThreads_(actualNumThreads(Auto))
+    ParallelOptions(int nT = Auto)
+    :   numThreads_(actualNumThreads(nT))
     {}
 
         /** \brief Get desired number of threads.

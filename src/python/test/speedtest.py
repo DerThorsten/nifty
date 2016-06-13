@@ -4,7 +4,7 @@ import nifty
 import numpy
 
 f = "/home/tbeier/Desktop/mc_models/knott-3d-300/gm_knott_3d_079.h5"
-f = "/home/tbeier/Desktop/mc_models/knott-3d-150/gm_knott_3d_032.h5"
+#f = "/home/tbeier/Desktop/mc_models/knott-3d-150/gm_knott_3d_032.h5"
 gm = opengm.loadGm(f)
 weights = []
 uvs = []
@@ -28,15 +28,26 @@ g.insertEdges(uvs)
 obj = nifty.graph.multicut.multicutObjective(g, weights)
 
 
+
+with vigra.Timer("nifty fm"):
+    setttings = nifty.graph.multicut.FusionMoveBasedGreedyAdditiveSettingsUndirectedGraph()
+    #setttings.addThreeCyclesConstraints = True
+    #setttings.addOnlyViolatedThreeCyclesConstraints = True
+    mcIlpFactory = nifty.graph.multicut.FusionMoveBasedGreedyAdditiveFactoryUndirectedGraph(setttings)
+    mcIlp = mcIlpFactory.create(obj)
+    ret = mcIlp.optimize()
+
+
+
+
 with vigra.Timer("nifty gadd"):
     setttings = nifty.graph.multicut.MulticutGreedyAdditiveSettingsUndirectedGraph()
-    #setttings.addThreeCyclesConstraints = True
+    setttings.verbose = 0
     #setttings.addOnlyViolatedThreeCyclesConstraints = True
     mcIlpFactory = nifty.graph.multicut.MulticutGreedyAdditiveFactoryUndirectedGraph(setttings)
     mcIlp = mcIlpFactory.create(obj)
     ret = mcIlp.optimize()
 
-sys.exit(0)
 
 
 with vigra.Timer("nifty"):

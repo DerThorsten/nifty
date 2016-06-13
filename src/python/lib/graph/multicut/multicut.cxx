@@ -12,6 +12,7 @@ namespace graph{
     void exportMulticutBase(py::module &);
     void exportMulticutIlp(py::module &);
     void exportMulticutGreedyAdditive(py::module &);
+    void exportFusionMoveBased(py::module &);
 
 
     void initSubmoduleMulticut(py::module &graphModule) {
@@ -22,7 +23,7 @@ namespace graph{
         exportMulticutFactory(multicutModule);
         exportMulticutIlp(multicutModule);
         exportMulticutGreedyAdditive(multicutModule);
-
+        exportFusionMoveBased(multicutModule);
     }
 
 }
