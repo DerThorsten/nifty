@@ -14,7 +14,7 @@
 
 namespace py = pybind11;
 
-//PYBIND11_DECLARE_HOLDER_TYPE(T, std::shared_ptr<T>);
+
 
 
 
@@ -30,15 +30,17 @@ namespace graph{
     ){
 
         typedef SOLVER Solver;
+        typedef typename Solver::Objective Objective;
         typedef typename Solver::Settings Settings;
         typedef MulticutFactory<Solver> Factory;
-
+        typedef MulticutFactoryBase<Objective> McFactoryBase;
 
         const std::string factoryBaseName = std::string("MulticutFactoryBase")+graphName;
         const std::string solverBaseName = std::string("MulticutBase")+graphName;
         const std::string settingsName = solverName + std::string("Settings")+graphName;
         const std::string factoryName = solverName + std::string("Factory")+graphName;
-
+        std::string factoryFactoryName = factoryName;
+        factoryFactoryName[0] = std::tolower(factoryFactoryName[0]);
 
 
         py::object factoryBase = multicutModule.attr(factoryBaseName.c_str());
@@ -49,7 +51,7 @@ namespace graph{
         ;
 
         // factory
-        py::class_<Factory>(multicutModule, factoryName.c_str(),  factoryBase)
+        py::class_<Factory, std::shared_ptr<Factory> >(multicutModule, factoryName.c_str(),  factoryBase)
             .def(py::init<const Settings &>(),
                 py::arg_t<Settings>("setttings",Settings())
             )

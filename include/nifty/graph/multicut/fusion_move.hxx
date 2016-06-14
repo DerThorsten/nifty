@@ -3,10 +3,12 @@
 #define NIFTY_GRAPH_MULTICUT_FUSION_MOVE_HXX
 
 #include <mutex>          // std::mutex
+#include <memory>
 
 #include "nifty/tools/runtime_check.hxx"
 #include "nifty/ufd/ufd.hxx"
 #include "nifty/graph/multicut/multicut_base.hxx"
+#include "nifty/graph/multicut/multicut_factory.hxx"
 #include "nifty/graph/multicut/multicut_objective.hxx"
 #include "nifty/graph/simple_graph.hxx"
 
@@ -21,9 +23,16 @@ namespace graph{
         typedef OBJECTIVE Objective;
         typedef typename Objective::Graph Graph;
         typedef typename Graph:: template NodeMap<uint64_t> NodeLabels;
+        typedef MulticutFactoryBase<Objective> McFactoryBase;
+
+        typedef UndirectedGraph<> FmGraph;
+        typedef MulticutObjective<FmGraph, double> FmObjective;
+        typedef MulticutBase<FmObjective> FmMcBase;
+        typedef MulticutEmptyVisitor<FmObjective> FmEmptyVisitor;
+        typedef typename  FmMcBase::NodeLabels FmNodeLabels;
 
         struct Settings{
-
+            std::shared_ptr<McFactoryBase> mcFactory;
         };
 
         FusionMove(const Objective & objective, const Settings & settings = Settings())
@@ -63,6 +72,27 @@ namespace graph{
                     ufd_.merge(u, v);
             }
             this->fuseImpl(result);
+
+            // evaluate if the result
+            // is indeed better than each proposal
+            // Iff the result is not better we
+            // use the best proposal as a result
+            auto eMin = std::numeric_limits<double>::infinity();
+            auto eMinIndex = 0;
+            for(auto i=0; i<proposals.size(); ++i){
+                const auto p = proposals[i];
+                const auto e = objective_.evalNodeLabels(*p);
+                if(e < eMin){
+                    eMin = e;
+                    eMinIndex = i;
+                }
+            }
+            const auto eResult = objective_.evalNodeLabels(*result);            
+            if(eMin < eResult){
+                for(auto node : graph_.nodes()){
+                    result->operator[](node) = proposals[eMinIndex]->operator[](node);
+                }
+            }
         }
 
     private:
@@ -70,16 +100,77 @@ namespace graph{
         void fuseImpl(NODE_MAP * result){
 
             // dense relabeling
-            std::set<uint64_t> relabeling;
+            std::set<uint64_t> relabelingSet;
             for(const auto node: graph_.nodes()){
-                relabeling.insert(ufd_.find(node));
+                relabelingSet.insert(ufd_.find(node));
             }
             auto denseLabel = 0;
-            for(auto sparse: relabeling){
+            for(auto sparse: relabelingSet){
                 nodeToDense_[sparse] = denseLabel;
                 ++denseLabel;
             }
+            const auto numberOfNodes = relabelingSet.size();
             
+            // build the graph
+            FmGraph fmGraph(numberOfNodes);
+            
+            for(auto edge : graph_.edges()){
+                const auto uv = graph_.uv(edge);
+                const auto u = uv.first;
+                const auto v = uv.second;
+                const auto lu = nodeToDense_[ufd_.find(u)];
+                const auto lv = nodeToDense_[ufd_.find(v)];
+                NIFTY_CHECK_OP(lu,<,numberOfNodes,"");
+                NIFTY_CHECK_OP(lv,<,numberOfNodes,"");
+                if(lu != lv){
+                    fmGraph.insertEdge(lu, lv);
+                }
+            }
+            
+            // setup objective
+            FmObjective fmObjective(fmGraph);
+            auto & fmWeights = fmObjective.weights();
+            for(auto edge : graph_.edges()){
+                const auto uv = graph_.uv(edge);
+                const auto u = uv.first;
+                const auto v = uv.second;
+                const auto lu = nodeToDense_[ufd_.find(u)];
+                const auto lv = nodeToDense_[ufd_.find(v)];
+                if(lu != lv){
+                    auto e = fmGraph.findEdge(lu, lv);
+                    NIFTY_CHECK_OP(e,!=,-1,"");
+                    fmWeights[e] += objective_.weights()[edge];
+                }
+            }
+
+            // solve that thing
+            
+            NIFTY_CHECK(bool(settings_.mcFactory),"factory is still empty");
+            
+            auto solverPtr = settings_.mcFactory->createRawPtr(fmObjective);
+            FmNodeLabels fmLabels(fmGraph);
+            FmEmptyVisitor fmVisitor;
+            
+            solverPtr->optimize(fmLabels, &fmVisitor);
+            
+            delete solverPtr;
+
+            
+            for(auto edge : graph_.edges()){
+                const auto uv = graph_.uv(edge);
+                const auto u = uv.first;
+                const auto v = uv.second;
+                const auto lu = nodeToDense_[ufd_.find(u)];
+                const auto lv = nodeToDense_[ufd_.find(v)];
+                if(lu != lv){
+                    if(fmLabels[lu] == fmLabels[lv]){
+                        ufd_.merge(u, v);
+                    }
+                }
+            }
+            for(const auto node : graph_.nodes()){
+                result->operator[](node)  = ufd_.find(node);
+            }
         }
 
 

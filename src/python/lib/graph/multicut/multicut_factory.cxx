@@ -27,7 +27,7 @@ namespace graph{
         // base factory
         py::class_<
             McFactoryBase, 
-            std::unique_ptr<McFactoryBase>, 
+            std::shared_ptr<McFactoryBase>, 
             PyMcFactoryBase 
         > mcFactoryBase(multicutModule, "MulticutFactoryBaseUndirectedGraph");
         

@@ -44,7 +44,7 @@ namespace graph{
 
             double weightStopCond{0.0};
             double nodeNumStopCond{-1};
-            int verbose { 1 };
+            int verbose { 0 };
 
             int seed {42};
             bool addNoise {false};

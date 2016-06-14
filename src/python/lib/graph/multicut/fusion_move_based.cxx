@@ -3,6 +3,7 @@
 #include "nifty/graph/multicut/multicut_objective.hxx"
 #include "nifty/graph/simple_graph.hxx"
 #include "nifty/graph/multicut/fusion_move_based.hxx"
+#include "nifty/graph/multicut/fusion_move.hxx"
 #include "nifty/graph/multicut/proposal_generators/greedy_additive_proposals.hxx"
 
 #include "../../converter.hxx"
@@ -10,7 +11,7 @@
 
 namespace py = pybind11;
 
-//PYBIND11_DECLARE_HOLDER_TYPE(T, std::shared_ptr<T>);
+PYBIND11_DECLARE_HOLDER_TYPE(T, std::shared_ptr<T>);
 
 namespace nifty{
 namespace graph{
@@ -26,6 +27,20 @@ namespace graph{
         typedef MulticutObjective<Graph, double> Objective;
 
 
+        // the fusion mover parameter itself
+        {
+            typedef FusionMove<Objective> FusionMoveType;
+            typedef typename FusionMoveType::Settings FusionMoveSettings;
+
+            py::class_<FusionMoveSettings>(multicutModule, "FusionMoveSettingsUndirectedGraph")
+                .def(py::init<>())
+                .def_readwrite("mcFactory",&FusionMoveSettings::mcFactory)
+            ;
+
+        }
+
+
+        // the inference 
         {
             typedef GreedyAdditiveProposals<Objective> ProposalGen;
             typedef typename ProposalGen::Settings ProposalGenSettings;
@@ -44,6 +59,7 @@ namespace graph{
                 .def_readwrite("verbose", &Settings::verbose)
                 .def_readwrite("numberOfIterations", &Settings::numberOfIterations)
                 .def_readwrite("proposalGenSettings", &Settings::proposalGenSettings)
+                .def_readwrite("fusionMoveSettings",  &Settings::fusionMoveSettings)
 
             ;
         }
