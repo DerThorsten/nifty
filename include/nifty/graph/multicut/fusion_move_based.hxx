@@ -211,7 +211,7 @@ namespace graph{
                 //std::cout<<"nFuse            "<<nFuse<<"\n";
                 //std::cout<<"pSizse           "<<pSize<<"\n";
 
-                nifty::parallel::parallel_foreach(0, pSize,
+                nifty::parallel::parallel_foreach(threadPool, pSize,
                 [&](const size_t threadId, const size_t ii){
                     auto i = ii*nFuse;
 

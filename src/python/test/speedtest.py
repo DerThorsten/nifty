@@ -45,6 +45,16 @@ with vigra.Timer("nifty fm"):
     ret = fmSolver.optimize()
 print("fm",obj.evalNodeLabels(ret))
 
+with vigra.Timer("nifty gadd"):
+    setttings = nifty.graph.multicut.MulticutGreedyAdditiveSettingsUndirectedGraph()
+    setttings.verbose = 0
+    #setttings.addOnlyViolatedThreeCyclesConstraints = True
+    mcIlpFactory = nifty.graph.multicut.MulticutGreedyAdditiveFactoryUndirectedGraph(setttings)
+    mcIlp = mcIlpFactory.create(obj)
+    ret = mcIlp.optimize()
+print("greedy",obj.evalNodeLabels(ret))
+
+
 with vigra.Timer("nifty"):
     setttings = nifty.graph.multicut.MulticutIlpCplexSettingsUndirectedGraph()
     setttings.addThreeCyclesConstraints = True
@@ -54,15 +64,8 @@ with vigra.Timer("nifty"):
     ret = mcIlp.optimize()
 print("ilpres",obj.evalNodeLabels(ret))
 
-sys.exit()
 
-with vigra.Timer("nifty gadd"):
-    setttings = nifty.graph.multicut.MulticutGreedyAdditiveSettingsUndirectedGraph()
-    setttings.verbose = 0
-    #setttings.addOnlyViolatedThreeCyclesConstraints = True
-    mcIlpFactory = nifty.graph.multicut.MulticutGreedyAdditiveFactoryUndirectedGraph(setttings)
-    mcIlp = mcIlpFactory.create(obj)
-    ret = mcIlp.optimize()
+
 
 
 
