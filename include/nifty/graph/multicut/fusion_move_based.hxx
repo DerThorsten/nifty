@@ -1,6 +1,6 @@
 #pragma once
-#ifndef NIFTY_GRAPH_MULTICUT_FUSION_MOVES_HXX
-#define NIFTY_GRAPH_MULTICUT_FUSION_MOVES_HXX
+#ifndef NIFTY_GRAPH_MULTICUT_FUSION_MOVE_BASED_HXX
+#define NIFTY_GRAPH_MULTICUT_FUSION_MOVE_BASED_HXX
 
 #include <mutex>          // std::mutex
 
@@ -8,6 +8,7 @@
 #include "nifty/ufd/ufd.hxx"
 #include "nifty/graph/detail/adjacency.hxx"
 #include "nifty/graph/multicut/multicut_base.hxx"
+#include "nifty/graph/multicut/fusion_move.hxx"
 #include "nifty/parallel/threadpool.hxx"
 
 
@@ -15,28 +16,6 @@ namespace nifty{
 namespace graph{
 
 
-
-    template<class OBJECTIVE>
-    class FusionMove{
-    public:
-        typedef OBJECTIVE Objective;
-        typedef typename Objective::Graph Graph;
-
-        struct Settings{
-
-        };
-
-        FusionMove(const Objective & objective, const Settings & settings = Settings()){
-
-        }
-
-        template<class NODE_MAP_PTR_ITER, class NODE_MAP >
-        void fuse(NODE_MAP_PTR_ITER toFuseBegin, NODE_MAP_PTR_ITER toFuseEnd, NODE_MAP * result ){
-
-        }
-    private:
-
-    };
 
 
 
@@ -69,8 +48,8 @@ namespace graph{
         struct Settings{
             int verbose { 1 };
             int numberOfThreads {-1};
-            size_t numberOfIterations {10};
-            size_t numberOfParallelProposals {100};
+            size_t numberOfIterations {1};
+            size_t numberOfParallelProposals {10};
             size_t fuseN{2};
             ProposalGenSettings proposalGenSettings;
             FusionMoveSettings fusionMoveSettings;
@@ -98,6 +77,7 @@ namespace graph{
         std::vector<NodeLabels *>  solBufferIn_;
         std::vector<NodeLabels *>  solBufferOut_;
         std::vector<FusionMoveType * > fusionMoves_;
+        double bestEnergy_;
         NodeLabels currentBest_;
 
     };
@@ -114,11 +94,14 @@ namespace graph{
         parallelOptions_(settings.numberOfThreads),
         pgens_(),
         proposals_(),
+        bestEnergy_(0.0),
         currentBest_(objective.graph())
     {
         const auto nt = parallelOptions_.getActualNumThreads();
         pgens_.resize(nt);
         fusionMoves_.resize(nt);
+        solBufferIn_.resize(nt);
+        solBufferOut_.resize(nt);
         for(size_t i=0; i<nt; ++i){
             pgens_[i] = new ProposalGen(objective_, settings_.proposalGenSettings, i);
             fusionMoves_[i] = new FusionMoveType(objective_, settings_.fusionMoveSettings);
@@ -154,6 +137,13 @@ namespace graph{
         NodeLabels & nodeLabels,  VisitorBase * visitor
     ){
 
+        currentBest_ = nodeLabels;
+        auto e = objective_.evalNodeLabels(currentBest_);
+        bestEnergy_ = e;
+        bool hastStartingPoint = bestEnergy_ < -0.000001;
+
+
+
         nifty::parallel::ThreadPool threadPool(parallelOptions_);
         std::mutex mtx;
 
@@ -161,18 +151,98 @@ namespace graph{
         std::vector<NodeLabels> proposals;
 
         for(auto iter=0; iter<settings_.numberOfIterations; ++iter){
-
             // generate the proposals and fuse with the current best
             nifty::parallel::parallel_foreach(threadPool,settings_.numberOfParallelProposals,
                 [&](const size_t threadId, int proposalIndex){
 
                     // 
-                    auto & pgen = *pgens_[proposalIndex];
+                    auto & pgen = *pgens_[threadId];
                     auto & proposal = *solBufferIn_[threadId];
                     pgen.generate(currentBest_, proposal);
 
+                    // evaluate the energy of the proposal
+                    const auto eProposal = objective_.evalNodeLabels(proposal);
+                    
+                    
+                
+                    if(bestEnergy_ < -0.00001 || iter != 0){  // fuse with current best
+                        mtx.lock();
+
+                        mtx.unlock();
+                    }
+                    else{  // just keep this one and do not fuse with current best
+                        mtx.lock();
+                        proposals.push_back(proposal);
+                        mtx.unlock();                
+                    }   
             });
         }
+
+        std::cout<<"proposals size "<<proposals.size()<<"\n\n";
+        // recursive thing
+        std::vector<NodeLabels> proposals2;
+        size_t nFuse = 3;
+
+        while(proposals.size()!= 1){
+            NIFTY_CHECK_OP(proposals.size(),>=,2,"");
+            nFuse = std::min(nFuse, proposals.size());
+
+
+
+            auto pSize = proposals.size() / nFuse;
+            if( proposals.size() % nFuse != 0){
+                std::cout<<"bra\n";
+                ++pSize;
+            }
+            else{
+
+            }
+
+            std::cout<<"proposals 1 size "<<proposals.size()<<"\n";
+            std::cout<<"nFuse            "<<nFuse<<"\n";
+            std::cout<<"pSizse           "<<pSize<<"\n";
+
+            nifty::parallel::parallel_foreach(threadPool, pSize,
+            [&](const size_t threadId, const size_t ii){
+                auto i = ii*nFuse;
+
+                std::vector<NodeLabels*> toFuse;
+                for(size_t j=0; j<nFuse; ++j){
+                    auto k = i + j < proposals.size() ? i+j : i+j - proposals.size();
+                    toFuse.push_back(&proposals[k]);
+                }
+
+                // here we start to fuse them
+                NodeLabels res(graph_);
+                auto & fm = *(fusionMoves_[threadId]);
+
+                // actual fuse
+                fm.fuse(toFuse, &res);
+
+                mtx.lock();
+                proposals2.push_back(res);
+                mtx.unlock();
+            });
+
+
+
+            /*
+            for(size_t i=0; i<proposals.size(); i+=nFuse){
+
+
+
+                
+            }
+            */
+
+
+            std::cout<<"proposals 2 size "<<proposals2.size()<<"\n\n";
+            proposals = proposals2;
+            proposals2.clear();
+        }
+
+
+
     }
 
     template< class PROPPOSAL_GEN>
@@ -187,4 +257,4 @@ namespace graph{
 } // namespace nifty::graph
 } // namespace nifty
 
-#endif  // NIFTY_GRAPH_MULTICUT_FUSION_MOVES_HXX
+#endif  // NIFTY_GRAPH_MULTICUT_FUSION_MOVE_BASED_HXX

@@ -13,10 +13,29 @@ namespace graph{
     class MulticutObjectiveBase{
     public:
 
-    typedef CHILD_OBJECTIVE ChildObjective;
-    typedef MulticutObjectiveBase<ChildObjective, GRAPH, WEIGHT_TYPE> Self;
+        typedef CHILD_OBJECTIVE ChildObjective;
+        typedef MulticutObjectiveBase<ChildObjective, GRAPH, WEIGHT_TYPE> Self;
 
+        template<class NODE_LABELS>
+        WEIGHT_TYPE evalNodeLabels(const NODE_LABELS & nodeLabels)const{
+            WEIGHT_TYPE sum = static_cast<WEIGHT_TYPE>(0.0);
+            const auto & w = _child().weights();
+            const auto & g = _child().graph();
+            for(const auto edge: g.edges()){
+                const auto uv = g.uv(edge);
+                if(nodeLabels[uv.first] != nodeLabels[uv.second]){
+                    sum += w[edge];
+                }
+            }
+            return sum;
+        }
     private:
+        ChildObjective & _child(){
+           return *static_cast<ChildObjective *>(this);
+        }
+        const ChildObjective & _child()const{
+           return *static_cast<const ChildObjective *>(this);
+        }
 
     };
 

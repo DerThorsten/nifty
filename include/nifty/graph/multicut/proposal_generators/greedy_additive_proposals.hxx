@@ -64,6 +64,7 @@ namespace graph{
             MulticutEmptyVisitor<Objective> visitor;
 
             solver_->optimize(proposal, &visitor);
+            ++proposalNumber_;
         }
 
     private:

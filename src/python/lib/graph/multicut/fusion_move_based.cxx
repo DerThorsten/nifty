@@ -42,6 +42,7 @@ namespace graph{
             exportMulticutSolver<Solver>(multicutModule,"FusionMoveBasedGreedyAdditive","UndirectedGraph")
                 .def(py::init<>())
                 .def_readwrite("verbose", &Settings::verbose)
+                .def_readwrite("numberOfIterations", &Settings::numberOfIterations)
                 .def_readwrite("proposalGenSettings", &Settings::proposalGenSettings)
 
             ;

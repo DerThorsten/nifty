@@ -31,7 +31,7 @@ obj = nifty.graph.multicut.multicutObjective(g, weights)
 
 with vigra.Timer("nifty fm"):
     setttings = nifty.graph.multicut.FusionMoveBasedGreedyAdditiveSettingsUndirectedGraph()
-    #setttings.addThreeCyclesConstraints = True
+    setttings.numberOfIterations = 1
     #setttings.addOnlyViolatedThreeCyclesConstraints = True
     mcIlpFactory = nifty.graph.multicut.FusionMoveBasedGreedyAdditiveFactoryUndirectedGraph(setttings)
     mcIlp = mcIlpFactory.create(obj)
