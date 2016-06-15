@@ -72,12 +72,12 @@ namespace graph{
         nifty::parallel::ParallelOptions parallelOptions_;
 
         std::vector<ProposalGen *>     pgens_;
-        std::vector<NodeLabels *>      proposals_;
         std::vector<NodeLabels *>      solBufferIn_;
         std::vector<NodeLabels *>      solBufferOut_;
         std::vector<FusionMoveType * > fusionMoves_;
         NodeLabels currentBest_;
 
+        nifty::parallel::ThreadPool threadPool_;
     };
 
     template<class PROPPOSAL_GEN>
@@ -91,27 +91,32 @@ namespace graph{
         settings_(settings),
         parallelOptions_(settings.numberOfThreads),
         pgens_(),
-        proposals_()
+        threadPool_(parallelOptions_)
     {
 
+        if (settings_.verbose >=2)
+                std::cout<<"constructor\n";
         //NIFTY_CHECK(bool(settings_.fusionMoveSettings.mcFactory),"factory is empty");
         const auto nt = parallelOptions_.getActualNumThreads();
         pgens_.resize(nt);
         fusionMoves_.resize(nt);
         solBufferIn_.resize(nt);
         solBufferOut_.resize(nt);
-        for(size_t i=0; i<nt; ++i){
-            pgens_[i] = new ProposalGen(objective_, settings_.proposalGenSettings, i);
-            fusionMoves_[i] = new FusionMoveType(objective_, settings_.fusionMoveSettings);
-            solBufferIn_[i] = new NodeLabels(graph_);
-            solBufferOut_[i] = new NodeLabels(graph_);
-        }
 
-        const auto np = settings_.numberOfParallelProposals*2;
-        proposals_.resize(np);
-        for(auto i=0; i<np; ++i){
-            proposals_[i] = new NodeLabels(graph_);
-        }
+
+        nifty::parallel::parallel_foreach(threadPool_,nt,
+            [&](const size_t threadId, const size_t i){
+                if (settings_.verbose >=2)
+                    std::cout<<"constructing pgen "<<i<<"\n";
+                pgens_[i] = new ProposalGen(objective_, settings_.proposalGenSettings, i);
+                fusionMoves_[i] = new FusionMoveType(objective_, settings_.fusionMoveSettings);
+                solBufferIn_[i] = new NodeLabels(graph_);
+                solBufferOut_[i] = new NodeLabels(graph_);
+        });
+
+
+        if (settings_.verbose >=2)
+                std::cout<<"constructor done \n";
     }
 
     template<class PROPPOSAL_GEN>
@@ -123,9 +128,6 @@ namespace graph{
             delete fusionMoves_[i];
             delete solBufferIn_[i];
             delete solBufferOut_[i];
-        }
-        for(size_t i=0; i<proposals_.size(); ++i){
-            delete proposals_[i];
         }
     }
 
@@ -139,16 +141,17 @@ namespace graph{
         auto bestEnergy = objective_.evalNodeLabels(currentBest);
     
 
-        nifty::parallel::ThreadPool threadPool(parallelOptions_);
         std::mutex mtx;
 
 
         std::vector<NodeLabels> proposals;
 
         for(auto iter=0; iter<settings_.numberOfIterations; ++iter){
+            if (settings_.verbose >=2)
+                std::cout<<"main loop iter "<<iter<<"\n";
             proposals.resize(0);
             // generate the proposals and fuse with the current best
-            nifty::parallel::parallel_foreach(threadPool,settings_.numberOfParallelProposals,
+            nifty::parallel::parallel_foreach(threadPool_,settings_.numberOfParallelProposals,
                 [&](const size_t threadId, int proposalIndex){
 
                     // 
@@ -205,7 +208,7 @@ namespace graph{
                 //std::cout<<"nFuse            "<<nFuse<<"\n";
                 //std::cout<<"pSizse           "<<pSize<<"\n";
 
-                nifty::parallel::parallel_foreach(threadPool, pSize,
+                nifty::parallel::parallel_foreach(threadPool_, pSize,
                 [&](const size_t threadId, const size_t ii){
                     auto i = ii*nFuse;
 

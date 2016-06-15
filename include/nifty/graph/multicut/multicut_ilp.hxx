@@ -116,7 +116,11 @@ namespace graph{
         variables_(   std::max(uint64_t(3),uint64_t(graph_.numberOfEdges()))),
         coefficients_(std::max(uint64_t(3),uint64_t(graph_.numberOfEdges())))
     {
+        if (settings_.verbose >=2)
+                std::cout<<"init cplex \n";
         this->initializeIlp(ilpSolver_);
+        if (settings_.verbose >=2)
+                std::cout<<"init cplex done \n";
 
         // add explicit constraints
         if(settings_.addThreeCyclesConstraints){
@@ -129,15 +133,24 @@ namespace graph{
     optimize(
         NodeLabels & nodeLabels,  VisitorBase * visitor
     ){
+        if (settings_.verbose >=2){
+            std::cout<<"start to optimzie\n";
+        }
         // set the starting point 
         auto edgeLabelIter = detail_graph::nodeLabelsToEdgeLabelsIterBegin(graph_, nodeLabels);
         ilpSolver_.setStart(edgeLabelIter);
 
         for (size_t i = 0; settings_.numberOfIterations == 0 || i < settings_.numberOfIterations; ++i){
+            if (settings_.verbose >=2)
+                std::cout<<"iter "<<i<<"\n";
             if (i != 0){
                 repairSolution(nodeLabels);
             }
+            if (settings_.verbose >=2)
+                std::cout<<"ilp optimize \n";
             ilpSolver_.optimize();
+            if (settings_.verbose >=2)
+                std::cout<<"add cycles \n";
             if (addCycleInequalities() == 0){
                 break;
             }
@@ -220,7 +233,17 @@ namespace graph{
         std::vector<double> costs(graph_.numberOfEdges(),0.0);
         const auto & weights = objective_.weights();
         for(auto e : graph_.edges()){
-            costs[e] = weights[e];
+            if(std::abs(weights[e])<=0.000000001){
+                if(weights[e]<0.0){
+                    costs[e] = -0.00000001;
+                }
+                else{
+                    costs[e] =  0.00000001;
+                }
+            }
+            else{
+                costs[e] = weights[e];
+            }
         }
         ilpSolver.initModel(graph_.numberOfEdges(), costs.data());
     }

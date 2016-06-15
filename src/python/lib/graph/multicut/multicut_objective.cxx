@@ -52,7 +52,7 @@ namespace graph{
                 auto obj = new McObjective(graph);
                 auto & weights = obj->weights();
                 graph.forEachEdge([&](int64_t edge){
-                    weights[edge]=array(edge);
+                    weights[edge] += array(edge);
                 });
                 return obj;
             },
