@@ -40,6 +40,7 @@ namespace graph{
         }
 
 
+
         // the inference 
         {
             typedef GreedyAdditiveProposals<Objective> ProposalGen;
@@ -51,13 +52,20 @@ namespace graph{
             const std::string solverName = "FusionMoveBasedGreedyAdditive";
             const std::string pgenSettingsName = solverName + std::string("ProposalGenSettings") + graphName;
 
-            py::class_<ProposalGenSettings>(multicutModule, solverName.c_str())
+            py::class_<ProposalGenSettings>(multicutModule, pgenSettingsName.c_str())
+                .def(py::init<>())
+                .def_readwrite("sigma", &ProposalGenSettings::sigma)
+                .def_readwrite("weightStopCond", &ProposalGenSettings::weightStopCond)
+                .def_readwrite("nodeNumStopCond",  &ProposalGenSettings::nodeNumStopCond)
             ;
 
             exportMulticutSolver<Solver>(multicutModule,"FusionMoveBasedGreedyAdditive","UndirectedGraph")
                 .def(py::init<>())
                 .def_readwrite("verbose", &Settings::verbose)
                 .def_readwrite("numberOfIterations", &Settings::numberOfIterations)
+                .def_readwrite("numberOfParallelProposals",&Settings::numberOfParallelProposals)
+                .def_readwrite("fuseN",&Settings::fuseN)
+                .def_readwrite("stopIfNoImprovement",&Settings::stopIfNoImprovement)
                 .def_readwrite("proposalGenSettings", &Settings::proposalGenSettings)
                 .def_readwrite("fusionMoveSettings",  &Settings::fusionMoveSettings)
 

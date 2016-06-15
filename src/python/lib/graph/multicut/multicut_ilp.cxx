@@ -56,7 +56,26 @@ namespace graph{
             ;
         #endif
         }
+        { // scope for name reusing
+        #ifdef WITH_GUROBI
 
+
+            
+            typedef ilp_backend::Gurobi IlpSolver;
+            typedef MulticutIlp<Objective, IlpSolver> Solver;
+            typedef typename Solver::Settings Settings;
+            typedef MulticutFactory<Solver> Factory;
+
+            exportMulticutSolver<Solver>(multicutModule,"MulticutIlpGurobi","UndirectedGraph")
+                .def(py::init<>())
+                .def_readwrite("numberOfIterations", &Settings::numberOfIterations)
+                .def_readwrite("verbose", &Settings::verbose)
+                .def_readwrite("verboseIlp", &Settings::verboseIlp)
+                .def_readwrite("addThreeCyclesConstraints", &Settings::addThreeCyclesConstraints)
+                .def_readwrite("addOnlyViolatedThreeCyclesConstraints", &Settings::addOnlyViolatedThreeCyclesConstraints)
+            ;
+        #endif
+        }
 
 
     }

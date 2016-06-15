@@ -5,6 +5,7 @@
 #include <mutex>          // std::mutex
 #include <memory>
 
+#include "nifty/graph/multicut/multicut_greedy_additive.hxx"
 #include "nifty/tools/runtime_check.hxx"
 #include "nifty/ufd/ufd.hxx"
 #include "nifty/graph/multicut/multicut_base.hxx"
@@ -42,8 +43,22 @@ namespace graph{
             ufd_(objective.graph().maxNodeId()+1),
             nodeToDense_(objective.graph())
         {
-
+            if(!bool(settings_.mcFactory)){
+                typedef MulticutGreedyAdditive<FmObjective> FmSolver;
+                typedef MulticutFactory<FmSolver> FmFactory;
+                settings_.mcFactory = std::make_shared<FmFactory>();
+            }
         }
+
+        template<class NODE_MAP>
+        void fuse(
+            std::initializer_list<NODE_MAP *> proposals,
+            NODE_MAP * result
+        ){
+            std::vector<NODE_MAP *> p(proposals);
+            fuse(p, result);
+        }
+
 
         template<class NODE_MAP >
         void fuse(

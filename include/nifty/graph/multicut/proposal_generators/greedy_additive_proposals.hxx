@@ -25,6 +25,8 @@ namespace graph{
 
         struct Settings{
             double sigma{1.0};
+            double weightStopCond{0.0};
+            double nodeNumStopCond{-1.0};
         };
 
 
@@ -44,6 +46,9 @@ namespace graph{
             SolverSettings solverSettings;
             solverSettings.verbose = 0;
             solverSettings.addNoise = true;
+            solverSettings.sigma = settings_.sigma;
+            solverSettings.weightStopCond  = settings_.weightStopCond;
+            solverSettings.nodeNumStopCond  = settings_.nodeNumStopCond;
             solverSettings.seed = threadIndex_;
             solver_ = new Solver(objective_, solverSettings);
         }

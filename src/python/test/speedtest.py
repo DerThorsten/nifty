@@ -4,7 +4,9 @@ import nifty
 import numpy
 
 f = "/home/tbeier/Desktop/mc_models/knott-3d-300/gm_knott_3d_079.h5"
-#f = "/home/tbeier/Desktop/mc_models/knott-3d-150/gm_knott_3d_032.h5"
+# f = "/home/tbeier/Desktop/mc_models/knott-3d-150/gm_knott_3d_032.h5"
+# f = "/home/tbeier/Desktop/mc_models/knot-3d-550/gm_knott_3d_119.h5"
+# f = "/home/tbeier/Desktop/mc_models/knott-3d-450/gm_knott_3d_096.h5"
 gm = opengm.loadGm(f)
 weights = []
 uvs = []
@@ -29,43 +31,32 @@ obj = nifty.graph.multicut.multicutObjective(g, weights)
 
 
 
-with vigra.Timer("nifty fm"):
-
-    factory = nifty.graph.multicut.MulticutGreedyAdditiveFactoryUndirectedGraph()
-    fmSettings = nifty.graph.multicut.FusionMoveSettingsUndirectedGraph()
-    fmSettings.mcFactory = factory
-
-
-    setttings = nifty.graph.multicut.FusionMoveBasedGreedyAdditiveSettingsUndirectedGraph()
-    setttings.numberOfIterations = 10
-    setttings.fusionMoveSettings = fmSettings
-    #setttings.addOnlyViolatedThreeCyclesConstraints = True
-    fmFactory = nifty.graph.multicut.FusionMoveBasedGreedyAdditiveFactoryUndirectedGraph(setttings)
-    fmSolver = fmFactory.create(obj)
-    ret = fmSolver.optimize()
+with vigra.Timer("fm"):
+    factory = nifty.fusionMoveBasedFactory(
+        fusionMove=nifty.fusionMoveSettings(mcFactory=nifty.multicutIlpCplexFactory()),
+        proposalGen=nifty.greedyAdditiveProposals(sigma=2.0,nodeNumStopCond=-1.0)
+    )
+    solver = factory.create(obj)
+    ret = solver.optimize()
 print("fm",obj.evalNodeLabels(ret))
 
-with vigra.Timer("nifty gadd"):
-    setttings = nifty.graph.multicut.MulticutGreedyAdditiveSettingsUndirectedGraph()
-    setttings.verbose = 0
-    #setttings.addOnlyViolatedThreeCyclesConstraints = True
-    mcIlpFactory = nifty.graph.multicut.MulticutGreedyAdditiveFactoryUndirectedGraph(setttings)
-    mcIlp = mcIlpFactory.create(obj)
-    ret = mcIlp.optimize()
+
+with vigra.Timer("gac"):
+    solver = nifty.greedyAdditiveFactory(verbose=0).create(obj)
+    ret = solver.optimize()
 print("greedy",obj.evalNodeLabels(ret))
 
 
-with vigra.Timer("nifty"):
-    setttings = nifty.graph.multicut.MulticutIlpCplexSettingsUndirectedGraph()
-    setttings.addThreeCyclesConstraints = True
-    setttings.addOnlyViolatedThreeCyclesConstraints = True
-    mcIlpFactory = nifty.graph.multicut.MulticutIlpCplexFactoryUndirectedGraph(setttings)
-    mcIlp = mcIlpFactory.create(obj)
-    ret = mcIlp.optimize()
-print("ilpres",obj.evalNodeLabels(ret))
+with vigra.Timer("ilp-gurobi"):
+    solver = nifty.multicutIlpFactory(ilpSolver='gurobi',verbose=1).create(obj)
+    ret = solver.optimize()
+print("ilp-gurobi",obj.evalNodeLabels(ret))
 
 
-
+with vigra.Timer("ilp-cplex"):
+    solver = nifty.multicutIlpFactory(ilpSolver='cplex',verbose=1).create(obj)
+    ret = solver.optimize()
+print("ilp-cplex",obj.evalNodeLabels(ret))
 
 
 

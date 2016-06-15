@@ -11,7 +11,6 @@
 #include "nifty/graph/multicut/fusion_move.hxx"
 #include "nifty/parallel/threadpool.hxx"
 
-
 namespace nifty{
 namespace graph{
 
@@ -51,6 +50,7 @@ namespace graph{
             size_t numberOfIterations {10};
             size_t numberOfParallelProposals {4};
             size_t fuseN{2};
+            size_t stopIfNoImprovement{4};
             ProposalGenSettings proposalGenSettings;
             FusionMoveSettings fusionMoveSettings;
         };
@@ -64,20 +64,18 @@ namespace graph{
     private:
 
         void reset();
-        bool stopContraction();
-        void relabelEdge(const uint64_t edge,const uint64_t deadNode, const uint64_t aliveNode);
+
 
         const Objective & objective_;
         const Graph & graph_;
         Settings settings_;
         nifty::parallel::ParallelOptions parallelOptions_;
 
-        std::vector<ProposalGen *> pgens_;
-        std::vector<NodeLabels *>  proposals_;
-        std::vector<NodeLabels *>  solBufferIn_;
-        std::vector<NodeLabels *>  solBufferOut_;
+        std::vector<ProposalGen *>     pgens_;
+        std::vector<NodeLabels *>      proposals_;
+        std::vector<NodeLabels *>      solBufferIn_;
+        std::vector<NodeLabels *>      solBufferOut_;
         std::vector<FusionMoveType * > fusionMoves_;
-        double bestEnergy_;
         NodeLabels currentBest_;
 
     };
@@ -93,11 +91,10 @@ namespace graph{
         settings_(settings),
         parallelOptions_(settings.numberOfThreads),
         pgens_(),
-        proposals_(),
-        bestEnergy_(0.0),
-        currentBest_(objective.graph())
+        proposals_()
     {
-        NIFTY_CHECK(bool(settings_.fusionMoveSettings.mcFactory),"factory is empty");
+
+        //NIFTY_CHECK(bool(settings_.fusionMoveSettings.mcFactory),"factory is empty");
         const auto nt = parallelOptions_.getActualNumThreads();
         pgens_.resize(nt);
         fusionMoves_.resize(nt);
@@ -138,12 +135,9 @@ namespace graph{
         NodeLabels & nodeLabels,  VisitorBase * visitor
     ){
 
-        currentBest_ = nodeLabels;
-        auto e = objective_.evalNodeLabels(currentBest_);
-        bestEnergy_ = e;
-        bool hastStartingPoint = bestEnergy_ < -0.000001;
-
-
+        auto & currentBest = nodeLabels;
+        auto bestEnergy = objective_.evalNodeLabels(currentBest);
+    
 
         nifty::parallel::ThreadPool threadPool(parallelOptions_);
         std::mutex mtx;
@@ -160,22 +154,22 @@ namespace graph{
                     // 
                     auto & pgen = *pgens_[threadId];
                     auto & proposal = *solBufferIn_[threadId];
-                    pgen.generate(currentBest_, proposal);
+                    pgen.generate(currentBest, proposal);
 
                     // evaluate the energy of the proposal
                     const auto eProposal = objective_.evalNodeLabels(proposal);
                     
                     
                 
-                    if(bestEnergy_ < -0.00001 || iter != 0){  // fuse with current best
+                    if(bestEnergy < -0.00001 || iter != 0){  // fuse with current best
                         
                         std::vector<NodeLabels*> toFuse;
                         toFuse.push_back(&proposal);
-                        toFuse.push_back(&currentBest_);
+                        toFuse.push_back(&currentBest);
                         NodeLabels res(graph_);
                         
                         auto & fm = *(fusionMoves_[threadId]);
-                        fm.fuse(toFuse, &res);
+                        fm.fuse( {&proposal, &currentBest}, &res);
                         mtx.lock();
                         proposals.push_back(res);
                         mtx.unlock();
@@ -238,12 +232,12 @@ namespace graph{
                 proposals2.clear();
             }
 
-            currentBest_ = proposals[0];
-            bestEnergy_ = objective_.evalNodeLabels(currentBest_);
-            std::cout<<"bestEnergy "<<bestEnergy_<<"\n";
+            currentBest = proposals[0];
+            bestEnergy = objective_.evalNodeLabels(currentBest);
+            std::cout<<"bestEnergy "<<bestEnergy<<"\n";
         }
-        for(auto node : graph_.nodes())
-            nodeLabels[node] = currentBest_[node];
+        //for(auto node : graph_.nodes())
+        //    nodeLabels[node] = currentBest[node];
     }
 
     template< class PROPPOSAL_GEN>

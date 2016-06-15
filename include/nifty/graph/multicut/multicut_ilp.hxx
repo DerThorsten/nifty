@@ -54,9 +54,9 @@ namespace graph{
         struct Settings{
 
             size_t numberOfIterations{0};
-            bool verbose { true };
+            int verbose { 0 };
             bool verboseIlp{false};
-            bool addThreeCyclesConstraints{false};
+            bool addThreeCyclesConstraints{true};
             bool addOnlyViolatedThreeCyclesConstraints{true};
             IlpSettings ilpSettings_;
         };
@@ -195,7 +195,8 @@ namespace graph{
             }
             ++lpEdge;
         }
-        std::cout<<"nCycle "<<nCycle<<"\n";
+        if(settings_.verbose > 0)
+            std::cout<<"nCycle "<<nCycle<<"\n";
         return nCycle;
     }
 
@@ -275,7 +276,7 @@ namespace graph{
                 }
             }
         }
-        std::cout<<"added "<<c<<" explicit constraints\n";
+        //std::cout<<"added "<<c<<" explicit constraints\n";
     }
 
 
