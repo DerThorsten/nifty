@@ -149,7 +149,7 @@ namespace graph{
         for(auto iter=0; iter<settings_.numberOfIterations; ++iter){
             if (settings_.verbose >=2)
                 std::cout<<"main loop iter "<<iter<<"\n";
-            proposals.resize(0);
+            proposals.clear();
             // generate the proposals and fuse with the current best
             nifty::parallel::parallel_foreach(threadPool_,settings_.numberOfParallelProposals,
                 [&](const size_t threadId, int proposalIndex){
@@ -166,6 +166,12 @@ namespace graph{
                 
                     if(bestEnergy < -0.00001 || iter != 0){  // fuse with current best
                         
+
+                        mtx.lock();
+                        NodeLabels bestCopy = currentBest;
+                        auto eBestCopy = objective_.evalNodeLabels(currentBest);
+                        mtx.unlock(); 
+
                         std::vector<NodeLabels*> toFuse;
                         toFuse.push_back(&proposal);
                         toFuse.push_back(&currentBest);
@@ -173,11 +179,24 @@ namespace graph{
                         
                         auto & fm = *(fusionMoves_[threadId]);
                         fm.fuse( {&proposal, &currentBest}, &res);
+                        auto eFuse = objective_.evalNodeLabels(res);
+
                         mtx.lock();
+                        if(eFuse < eBestCopy){
+                            currentBest = res;
+                            bestEnergy = eFuse;
+                        }
                         proposals.push_back(res);
                         mtx.unlock();
                     }
                     else{  // just keep this one and do not fuse with current best
+                        
+                        mtx.lock();
+                        NodeLabels bestCopy = currentBest;
+                        auto eBestCopy = objective_.evalNodeLabels(currentBest);
+                        mtx.unlock(); 
+
+
                         mtx.lock();
                         proposals.push_back(proposal);
                         mtx.unlock();                
@@ -187,7 +206,7 @@ namespace graph{
             //std::cout<<"proposals size "<<proposals.size()<<"\n\n";
             // recursive thing
             std::vector<NodeLabels> proposals2;
-            size_t nFuse = 3;
+            size_t nFuse = settings_.fuseN;
 
             while(proposals.size()!= 1){
                 NIFTY_CHECK_OP(proposals.size(),>=,2,"");

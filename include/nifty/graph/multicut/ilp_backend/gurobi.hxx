@@ -101,6 +101,7 @@ Gurobi::initModel(
     // number of threads
     gurobiEnvironment_.set(GRB_IntParam_Threads, settings_.numberOfThreads);
 
+    /*
     // mip gaps
     if(settings_.absoluteGap >= 0.0)
         gurobiEnvironment_.set(GRB_DoubleParam_MIPGapAbs, settings_.absoluteGap);
@@ -127,7 +128,7 @@ Gurobi::initModel(
     if(settings_.prePasses > -1){
         gurobiEnvironment_.set(GRB_IntParam_PrePasses, settings_.prePasses);
     }
-
+    */
 
     gurobiModel_ = new GRBModel(gurobiEnvironment_);
     gurobiVariables_ = gurobiModel_->addVars(numberOfVariables, GRB_BINARY);

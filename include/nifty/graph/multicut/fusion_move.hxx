@@ -165,9 +165,7 @@ namespace graph{
             auto solverPtr = settings_.mcFactory->createRawPtr(fmObjective);
             FmNodeLabels fmLabels(fmGraph);
             FmEmptyVisitor fmVisitor;
-            
             solverPtr->optimize(fmLabels, &fmVisitor);
-            
             delete solverPtr;
 
             

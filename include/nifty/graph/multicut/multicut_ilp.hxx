@@ -169,10 +169,12 @@ namespace graph{
     size_t MulticutIlp<OBJECTIVE, ILP_SOLVER>::
     addCycleInequalities(
     ){
+
         components_.build(SubgraphWithCut(ilpSolver_, denseIds_));
 
         // search for violated non-chordal cycles and add corresp. inequalities
         size_t nCycle = 0;
+
 
         // we iterate over edges and the corresponding lpEdge 
         // for a graph with dense contiguous edge ids the lpEdge 
@@ -186,14 +188,18 @@ namespace graph{
 
                 if (components_.areConnected(v0, v1)){   
 
-                    bibfs_.runSingleSourceSingleTarget(v0, v1, SubgraphWithCut(ilpSolver_, denseIds_));
+                    auto hasPath = bibfs_.runSingleSourceSingleTarget(v0, v1, SubgraphWithCut(ilpSolver_, denseIds_));
+                    NIFTY_CHECK(hasPath,"damn");
                     const auto & path = bibfs_.path();
+                    NIFTY_CHECK_OP(path.size(),>,0,"");
                     const auto sz = path.size(); //buildPathInLargeEnoughBuffer(v0, v1, bfs.predecessors(), path.begin());
+
 
                     if (findChord(graph_, path.begin(), path.end(), true) != -1){
                         ++lpEdge;
                         continue;
                     }
+
                     for (size_t j = 0; j < sz - 1; ++j){
                         variables_[j] = denseIds_[graph_.findEdge(path[j], path[j + 1])];
                         coefficients_[j] = 1.0;
@@ -232,18 +238,20 @@ namespace graph{
     ){
         std::vector<double> costs(graph_.numberOfEdges(),0.0);
         const auto & weights = objective_.weights();
+        auto lpEdge = 0;
         for(auto e : graph_.edges()){
-            if(std::abs(weights[e])<=0.000000001){
+            if(true && std::abs(weights[e])<=0.000000001){
                 if(weights[e]<0.0){
-                    costs[e] = -0.00000001;
+                    costs[lpEdge] = -0.00000001;
                 }
                 else{
-                    costs[e] =  0.00000001;
+                    costs[lpEdge] =  0.00000001;
                 }
             }
             else{
-                costs[e] = weights[e];
+                costs[lpEdge] = weights[e];
             }
+            ++lpEdge;
         }
         ilpSolver.initModel(graph_.numberOfEdges(), costs.data());
     }

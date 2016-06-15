@@ -38,6 +38,7 @@ namespace graph {
         typedef typename Graph:: template EdgeMap<uint8_t>  EdgeLabels;
         typedef typename Graph:: template NodeMap<uint64_t> NodeLabels;
 
+        virtual ~MulticutBase(){};
         virtual void optimize(NodeLabels & nodeLabels, VisitorBase * visitor) = 0;
         virtual const Objective & objective() const = 0;
 

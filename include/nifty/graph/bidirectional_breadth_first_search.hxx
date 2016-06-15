@@ -18,16 +18,16 @@ namespace graph{
 
     namespace detail_bfs{
 
-        template<class T>
+        template<class T, class DEQUEUE_TYPE>
         inline void
         singleSourceSingleTargetHelper(
             const std::vector<std::ptrdiff_t>& parents,
             const T vPositive,
             const T vNegative,
-            std::deque<T>& path
+            DEQUEUE_TYPE& path
         ) {
-            assert(vPositive >= 0);
-            assert(vNegative >= 0);
+            //NIFTY_ASSERT_OP(vPositive,>= ,0,"");
+            //NIFTY_ASSERT_OP(vNegative,>= ,0,"");
             T t = vPositive;
             for(;;) {
                 path.push_front(t);
@@ -49,8 +49,44 @@ namespace graph{
                 }
             }
         }
-
     };  // end namespace detail bfs
+
+
+    template<class T>
+    class RestrictedDeque{
+    public:
+
+
+        void push_front(const T & val){
+            frontVec_.push_back(val);
+        }
+        void push_back(const T & val){
+            backVec_.push_back(val);
+        }
+        void clear(){
+            frontVec_.resize(0);
+            backVec_.resize(0);
+        }
+
+        const T & operator[](const size_t i) const{
+            if(i < frontVec_.size()){
+                const auto j = frontVec_.size() - 1 - i;
+            }
+            else{
+                const auto j = i - frontVec_.size();
+            }
+        }
+        
+        size_t size()const{
+            return frontVec_ + backVec_;
+        }
+    private:
+        std::vector<T> frontVec_;
+        std::vector<T> backVec_;
+    };
+
+
+
 
     template<class GRAPH>
     class BidirectionalBreadthFirstSearch{
@@ -60,7 +96,7 @@ namespace graph{
             ReturnFalse,
             ContinueSeach
         };
-
+        typedef std::deque<uint64_t> DequeType; //
     public:
         typedef GRAPH Graph;
         typedef typename Graph:: template NodeMap<int64_t> Parents;
@@ -80,9 +116,6 @@ namespace graph{
             return this->runSingleSourceSingleTarget(source,target,subgraphMask);
         }
 
-    
-
-
         template<class SUBGRAPH_MASK>
         bool runSingleSourceSingleTarget(
             const int64_t source,
@@ -101,9 +134,11 @@ namespace graph{
             parents_[target] =  -static_cast<int64_t>(target) - 1;
 
             // clear queues
-            for(auto q=0; q<2; ++q)
-                while(!queues_[q].empty())
+            for(auto q=0; q<2; ++q){
+                while(!queues_[q].empty()){
                     queues_[q].pop();
+                }
+            }
 
             queues_[0].push(source);
             queues_[1].push(target);
@@ -111,39 +146,58 @@ namespace graph{
 
             for(auto q = 0; true; q = 1 - q) { // infinite loop, alternating queues
                 const auto numberOfNodesAtFront = queues_[q].size();
+                //std::cout<<"numberOfNodesAtFront q="<<q<<" "<<numberOfNodesAtFront<<"\n";
                 for(auto n = 0; n < numberOfNodesAtFront; ++n) {
+                    //std::cout<<"n="<<n<<"\n";
                     auto v = queues_[q].front();
                     queues_[q].pop();
 
 
                     auto fHelper = [&](const uint64_t otherNode, const uint64_t edge){
-                        if(!mask.useEdge(edge) || !mask.useNode(otherNode))
+                        //std::cout<<"other node"<<otherNode<<" edge "<<edge<<"\n";
+                        if(!mask.useEdge(edge) || !mask.useNode(otherNode)){
+                            //std::cout<<"cont..\n";
                             return ContinueSeach;
-
+                        }
                         const auto p = parents_[otherNode];
-                        if(p < 0 && q == 0){
+                        if(parents_[otherNode] < 0 && q == 0){
+                            //std::cout<<"aaaa\n";
                             detail_bfs::singleSourceSingleTargetHelper(parents_, v, otherNode, path_);
+                            //NIFTY_ASSERT(path_[0] == source,"");
+                            //NIFTY_ASSERT(path_.back() == target,"");
                             return ReturnTrue;
                         }
-                        else if(p > 0 && q == 1){
+                        else if(parents_[otherNode] > 0 && q == 1){
+                            //std::cout<<"bbb\n";
                             detail_bfs::singleSourceSingleTargetHelper(parents_, otherNode, v, path_);
+                            //NIFTY_ASSERT(path_[0] == source,"");
+                            //NIFTY_ASSERT(path_.back() == target,"");
                             return ReturnTrue;
                         }
-                        else if(p == 0){
-                            if(q == 0)
+                        else if(parents_[otherNode] == 0){
+                            ////std::cout<<"cccc\n";
+                            if(q == 0){
+                                //std::cout<<"cccc q=0\n";
                                 parents_[otherNode] = v + 1;
-                            else
+                            }
+                            else{
+                                //std::cout<<"cccc q=1\n";
                                 parents_[otherNode] = -static_cast<int64_t>(v) - 1;
+                            }
                             queues_[q].push(otherNode);
                         }
-
+                        else{
+                            return ContinueSeach;
+                        }
+                        return ContinueSeach;
                     };
 
                     if(q == 0){
                         for(auto adj : graph_.adjacencyOut(v)){
                             auto retFlag = fHelper(adj.node(), adj.edge());
-                            if(retFlag == ContinueSeach)
-                                continue;
+                            if(retFlag == ContinueSeach){
+                                //continue;
+                            }
                             else if(retFlag == ReturnTrue)
                                 return true;
                         }
@@ -151,8 +205,9 @@ namespace graph{
                     else{
                         for(auto adj : graph_.adjacencyIn(v)){
                             auto retFlag = fHelper(adj.node(), adj.edge());
-                            if(retFlag == ContinueSeach)
-                                continue;
+                            if(retFlag == ContinueSeach){
+                                //continue;
+                            }
                             else if(retFlag == ReturnTrue)
                                 return true;
                         }          
@@ -162,20 +217,18 @@ namespace graph{
                     return false;
                 }
             }
-
+            //NIFTY_ASSERT(false,"");
         }
-        const std::deque<uint64_t> & path() const {
+        const DequeType & path() const {
             return path_;
         }
     private:
 
 
-
-
         const Graph & graph_;
         Parents parents_;
         std::array< std::queue<uint64_t> , 2> queues_;
-        std::deque<uint64_t> path_;
+        DequeType path_;
     };
 } // namespace nifty::graph
 } // namespace nifty

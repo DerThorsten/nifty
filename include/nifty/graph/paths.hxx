@@ -4,6 +4,7 @@
 
 #include <cstddef>
 #include <utility> // std::pair
+#include <queue>
 
 #include "nifty/graph/subgraph_mask.hxx" // DefaultSubgraphMask
 
@@ -29,6 +30,8 @@ findChord(
         ignoreEdgeBetweenFirstAndLast);
 }
 
+
+
 /// Search a path for a chord.
 ///
 /// \param graph Graph.
@@ -46,14 +49,20 @@ findChord(
     ITERATOR end,
     const bool ignoreEdgeBetweenFirstAndLast = false
 ) {
-    for(ITERATOR it = begin; it != end - 1; ++it) 
-    for(ITERATOR it2 = it + 2; it2 != end; ++it2) {
-        if(ignoreEdgeBetweenFirstAndLast && it == begin && it2 == end - 1) {
-            continue;
-        }
-        const auto p = graph.findEdge(*it, *it2);
-        if(p !=- 1 && mask.useEdge(p)) {
-            return p;
+    //std::cout<<"path size "<<std::distance(begin, end)<<"\n";
+    //std::cout<<" * \n";
+    for(ITERATOR it = begin; it != end - 1; ++it){
+        //std::cout<<" *** \n";
+        for(ITERATOR it2 = it + 2; it2 != end; ++it2) {
+            if(ignoreEdgeBetweenFirstAndLast && it == begin && it2 == end - 1) {
+                continue;
+            }
+            //std::cout<<" findEdge "<<*it<<" "<<*it2<<" \n";
+
+            const auto p = graph.findEdge(*it, *it2);
+            if(p !=- 1 && mask.useEdge(p)) {
+                return p;
+            }
         }
     }
     return -1;

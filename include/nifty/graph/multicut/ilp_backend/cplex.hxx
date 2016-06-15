@@ -94,8 +94,26 @@ Cplex::initModel(
         if(settings_.relativeGap >= 0.0)
             cplex_.setParam(IloCplex::EpGap,settings_.relativeGap);
 
+
+       cplex_.setParam(IloCplex::Threads, 0);
+       cplex_.setParam(IloCplex::CutUp,  1.0e+75);
+       cplex_.setParam(IloCplex::MIPDisplay,0);
+       cplex_.setParam(IloCplex::BarDisplay,0);
+       cplex_.setParam(IloCplex::NetDisplay,0);
+       cplex_.setParam(IloCplex::SiftDisplay,0);
+       cplex_.setParam(IloCplex::SimDisplay,0);
+
+       cplex_.setParam(IloCplex::EpOpt,1e-9);
+       cplex_.setParam(IloCplex::EpRHS,1e-8); //setting this to 1e-9 seemed to be to agressive!
+       cplex_.setParam(IloCplex::EpInt,0);
+       cplex_.setParam(IloCplex::EpAGap,0);
+       cplex_.setParam(IloCplex::EpGap,0);
+
+
+
+
         // nThreads
-        cplex_.setParam(IloCplex::Threads, settings_.numberOfThreads);
+        //cplex_.setParam(IloCplex::Threads, settings_.numberOfThreads);
 
         // verbosity
         cplex_.setParam(IloCplex::MIPDisplay, int(settings_.verbosity));

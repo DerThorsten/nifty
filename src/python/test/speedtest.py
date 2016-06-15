@@ -3,13 +3,13 @@ import vigra
 import nifty
 import numpy
 
-f = "/home/tbeier/Desktop/mc_models/knott-3d-300/gm_knott_3d_079.h5"
-# f = "/home/tbeier/Desktop/mc_models/knott-3d-150/gm_knott_3d_032.h5"
+
+f = "/home/tbeier/Desktop/mc_models/knott-3d-150/gm_knott_3d_039.h5"
 #f = "/home/tbeier/Desktop/mc_models/knot-3d-550/gm_knott_3d_119.h5"
 # f = "/home/tbeier/Desktop/mc_models/knott-3d-450/gm_knott_3d_096.h5"
 #f = "/home/tbeier/Downloads/gm_large_3.gm"
 f = "/home/tbeier/Downloads/gm_small_1.gm"
-
+#f = "/home/tbeier/Desktop/mc_models/knott-3d-300/gm_knott_3d_072.h5"
 gm = opengm.loadGm(f)
 
 
@@ -32,21 +32,60 @@ def opengmToNumpy(gm):
     return nNodes,weights,vis
 
 nNodes,weights, uvs = opengmToNumpy(gm)
-#sys.exit(0)
+nFac = weights.shape[0]
+
+
+print weights.min(),weights.max()
 
 
 g =  nifty.graph.UndirectedGraph(int(nNodes))
 g.insertEdges(uvs)
+assert g.numberOfEdges == weights.shape[0]
+assert g.numberOfEdges == uvs.shape[0]
 obj = nifty.graph.multicut.multicutObjective(g, weights)
+
+
+greedy=nifty.greedyAdditiveFactory().create(obj)
+ret = greedy.optimize()
+print("greedy",obj.evalNodeLabels(ret))
+
+with vigra.Timer("fm"):
+    ilpFac = nifty.multicutIlpFactory(ilpSolver='cplex',verbose=1,
+        addThreeCyclesConstraints=True,
+        addOnlyViolatedThreeCyclesConstraints=True
+    )
+    greedy=nifty.greedyAdditiveFactory()
+    factory = nifty.fusionMoveBasedFactory(
+        verbose=1,
+        fusionMove=nifty.fusionMoveSettings(mcFactory=greedy),
+        #fusionMove=nifty.fusionMoveSettings(mcFactory=ilpFac),
+        proposalGen=nifty.greedyAdditiveProposals(sigma=200,nodeNumStopCond=100,weightStopCond=-1000.0),
+        numberOfIterations=100,
+        numberOfParallelProposals=8,
+        fuseN=2
+    )
+    solver = factory.create(obj)
+    ret = solver.optimize(ret)
+print("fm",obj.evalNodeLabels(ret))
 
 
 
 with vigra.Timer("ilp-cplex"):
     solver = nifty.multicutIlpFactory(ilpSolver='cplex',verbose=1,
-        addThreeCyclesConstraints=False
+        addThreeCyclesConstraints=False,
+        addOnlyViolatedThreeCyclesConstraints=False
     ).create(obj)
     ret = solver.optimize()
 print("ilp-cplex",obj.evalNodeLabels(ret))
+
+
+# with vigra.Timer("ilp-cplex"):
+#     solver = nifty.multicutIlpFactory(ilpSolver='cplex',verbose=1,
+#         addThreeCyclesConstraints=False
+#     ).create(obj)
+#     ret = solver.optimize()
+# print("ilp-cplex",obj.evalNodeLabels(ret))
+
 
 with vigra.Timer("opengm"):
     param = opengm.InfParam(workflow="(IC)(CC-IFD)")
@@ -58,15 +97,7 @@ print("ogm",obj.evalNodeLabels(arg))
 
 
 
-# with vigra.Timer("fm"):
-#     factory = nifty.fusionMoveBasedFactory(
-#         verbose=0,
-#         fusionMove=nifty.fusionMoveSettings(mcFactory=nifty.greedyAdditiveFactory()),
-#         proposalGen=nifty.greedyAdditiveProposals(sigma=2.0,nodeNumStopCond=-1.0)
-#     )
-#     solver = factory.create(obj)
-#     ret = solver.optimize()
-# print("fm",obj.evalNodeLabels(ret))
+
 
 
 # with vigra.Timer("gac"):
@@ -84,9 +115,12 @@ print("ogm",obj.evalNodeLabels(arg))
 
 
 
-
+fails = 0
 for uv in uvs:
     eshould = arg[uv[0]] != arg[uv[1]]
     enifty  = ret[uv[0]] != ret[uv[1]]
-    assert enifty == eshould
-    #print eshould,enifty
+    if enifty != eshould:
+        fails +=1
+        print uv,eshould,enifty
+
+print "nFails ",fails
