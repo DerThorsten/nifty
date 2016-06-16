@@ -56,6 +56,7 @@ namespace graph{
             ;
         #endif
         }
+        
         { // scope for name reusing
         #ifdef WITH_GUROBI
 

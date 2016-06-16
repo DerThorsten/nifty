@@ -5,6 +5,8 @@
 #include "nifty/graph/multicut/fusion_move_based.hxx"
 #include "nifty/graph/multicut/fusion_move.hxx"
 #include "nifty/graph/multicut/proposal_generators/greedy_additive_proposals.hxx"
+#include "nifty/graph/multicut/proposal_generators/watershed_proposals.hxx"
+
 
 #include "../../converter.hxx"
 #include "export_multicut_solver.hxx"
@@ -59,7 +61,7 @@ namespace graph{
                 .def_readwrite("nodeNumStopCond",  &ProposalGenSettings::nodeNumStopCond)
             ;
 
-            exportMulticutSolver<Solver>(multicutModule,"FusionMoveBasedGreedyAdditive","UndirectedGraph")
+            exportMulticutSolver<Solver>(multicutModule,solverName.c_str(),graphName.c_str())
                 .def(py::init<>())
                 .def_readwrite("verbose", &Settings::verbose)
                 .def_readwrite("numberOfIterations", &Settings::numberOfIterations)
@@ -68,7 +70,35 @@ namespace graph{
                 .def_readwrite("stopIfNoImprovement",&Settings::stopIfNoImprovement)
                 .def_readwrite("proposalGenSettings", &Settings::proposalGenSettings)
                 .def_readwrite("fusionMoveSettings",  &Settings::fusionMoveSettings)
+            ;
+        }
 
+        // the inference 
+        {
+            typedef WatershedProposals<Objective> ProposalGen;
+            typedef typename ProposalGen::Settings ProposalGenSettings;
+            typedef FusionMoveBased<ProposalGen> Solver;
+            typedef typename Solver::Settings Settings;
+
+            const std::string graphName = "UndirectedGraph";
+            const std::string solverName = "FusionMoveBasedWatershed";
+            const std::string pgenSettingsName = solverName + std::string("ProposalGenSettings") + graphName;
+
+            py::class_<ProposalGenSettings>(multicutModule, pgenSettingsName.c_str())
+                .def(py::init<>())
+                .def_readwrite("sigma", &ProposalGenSettings::sigma)
+                .def_readwrite("seedFraction", &ProposalGenSettings::seedFraction)
+            ;
+
+            exportMulticutSolver<Solver>(multicutModule,solverName.c_str(),graphName.c_str())
+                .def(py::init<>())
+                .def_readwrite("verbose", &Settings::verbose)
+                .def_readwrite("numberOfIterations", &Settings::numberOfIterations)
+                .def_readwrite("numberOfParallelProposals",&Settings::numberOfParallelProposals)
+                .def_readwrite("fuseN",&Settings::fuseN)
+                .def_readwrite("stopIfNoImprovement",&Settings::stopIfNoImprovement)
+                .def_readwrite("proposalGenSettings", &Settings::proposalGenSettings)
+                .def_readwrite("fusionMoveSettings",  &Settings::fusionMoveSettings)
             ;
         }
      

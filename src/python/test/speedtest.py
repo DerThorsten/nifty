@@ -58,9 +58,10 @@ if True:
         greedy=nifty.greedyAdditiveFactory()
         factory = nifty.fusionMoveBasedFactory(
             verbose=1,
-            fusionMove=nifty.fusionMoveSettings(mcFactory=greedy),
-            #fusionMove=nifty.fusionMoveSettings(mcFactory=ilpFac),
-            proposalGen=nifty.greedyAdditiveProposals(sigma=100,nodeNumStopCond=-1,weightStopCond=0.0),
+            #fusionMove=nifty.fusionMoveSettings(mcFactory=greedy),
+            fusionMove=nifty.fusionMoveSettings(mcFactory=ilpFac),
+            #proposalGen=nifty.greedyAdditiveProposals(sigma=100,nodeNumStopCond=-1,weightStopCond=0.0),
+            proposalGen=nifty.watershedProposals(sigma=10,seedFraction=0.001),
             numberOfIterations=100,
             numberOfParallelProposals=10,
             fuseN=2
@@ -69,7 +70,7 @@ if True:
         ret = solver.optimize(ret)
     print("fm",obj.evalNodeLabels(ret))
 
-
+sys.exit()
 
 with vigra.Timer("ilp-cplex"):
     solver = nifty.multicutIlpFactory(ilpSolver='cplex',verbose=1,

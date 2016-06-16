@@ -11,6 +11,12 @@ def greedyAdditiveProposals(sigma=1.0, weightStopCond=0.0, nodeNumStopCond=-1.0)
     s.nodeNumStopCond = float(nodeNumStopCond)
     return s
 
+def watershedProposals(sigma=1.0, seedFraction=0.0):
+    s = graph.multicut.FusionMoveBasedWatershedProposalGenSettingsUndirectedGraph()
+    s.sigma = float(sigma)
+    s.seedFraction = float(seedFraction)
+    return s
+
 def greedyAdditiveFactory(verbose=0):
     s = graph.multicut.MulticutGreedyAdditiveSettingsUndirectedGraph()
     s.verbose = int(verbose)
@@ -63,8 +69,12 @@ def fusionMoveBasedFactory(numberOfIterations=10,verbose=0,
     if isinstance(proposalGen, graph.multicut.FusionMoveBasedGreedyAdditiveProposalGenSettingsUndirectedGraph):
         solverSettings = graph.multicut.FusionMoveBasedGreedyAdditiveSettingsUndirectedGraph()
         factoryCls = graph.multicut.FusionMoveBasedGreedyAdditiveFactoryUndirectedGraph
+    elif isinstance(proposalGen, graph.multicut.FusionMoveBasedWatershedProposalGenSettingsUndirectedGraph):
+        solverSettings = graph.multicut.FusionMoveBasedWatershedSettingsUndirectedGraph()
+        factoryCls = graph.multicut.FusionMoveBasedWatershedFactoryUndirectedGraph
     else:
-        assert False
+        raise TypeError(str(proposalGen)+" is of unknown type")
+
     solverSettings.fusionMoveSettings = fusionMove
     solverSettings.proposalGenSettings = proposalGen
     solverSettings.numberOfIterations = int(numberOfIterations)
