@@ -151,6 +151,7 @@ namespace graph{
                 std::cout<<"main loop iter "<<iter<<"\n";
             proposals.clear();
             // generate the proposals and fuse with the current best
+            //std::cout<<"generate "<<settings_.numberOfParallelProposals<<" proposals\n";
             nifty::parallel::parallel_foreach(threadPool_,settings_.numberOfParallelProposals,
                 [&](const size_t threadId, int proposalIndex){
 
@@ -194,6 +195,10 @@ namespace graph{
                         mtx.lock();
                         NodeLabels bestCopy = currentBest;
                         auto eBestCopy = objective_.evalNodeLabels(currentBest);
+                        if(eProposal < eBestCopy){
+                            bestEnergy = eProposal;
+                            currentBest = proposal;
+                        }
                         mtx.unlock(); 
 
 
@@ -201,13 +206,15 @@ namespace graph{
                         proposals.push_back(proposal);
                         mtx.unlock();                
                     }   
-            });
+                }
+            );
           
             //std::cout<<"proposals size "<<proposals.size()<<"\n\n";
             // recursive thing
             std::vector<NodeLabels> proposals2;
             size_t nFuse = settings_.fuseN;
 
+            //std::cout<<"fuse "<<proposals.size()<<" proposals\n";
             while(proposals.size()!= 1){
                 NIFTY_CHECK_OP(proposals.size(),>=,2,"");
                 nFuse = std::min(nFuse, proposals.size());

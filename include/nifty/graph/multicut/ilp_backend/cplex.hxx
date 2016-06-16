@@ -94,33 +94,31 @@ Cplex::initModel(
         if(settings_.relativeGap >= 0.0)
             cplex_.setParam(IloCplex::EpGap,settings_.relativeGap);
 
-
-       cplex_.setParam(IloCplex::Threads, 0);
-       cplex_.setParam(IloCplex::CutUp,  1.0e+75);
-       cplex_.setParam(IloCplex::MIPDisplay,0);
-       cplex_.setParam(IloCplex::BarDisplay,0);
-       cplex_.setParam(IloCplex::NetDisplay,0);
-       cplex_.setParam(IloCplex::SiftDisplay,0);
-       cplex_.setParam(IloCplex::SimDisplay,0);
-
-       cplex_.setParam(IloCplex::EpOpt,1e-9);
-       cplex_.setParam(IloCplex::EpRHS,1e-8); //setting this to 1e-9 seemed to be to agressive!
-       cplex_.setParam(IloCplex::EpInt,0);
-       cplex_.setParam(IloCplex::EpAGap,0);
-       cplex_.setParam(IloCplex::EpGap,0);
+        cplex_.setParam(IloCplex::Threads, settings_.numberOfThreads);
+        // cplex_.setParam(IloCplex::EpAGap,0);
+        // cplex_.setParam(IloCplex::EpGap,0);
 
 
-
-
-        // nThreads
-        //cplex_.setParam(IloCplex::Threads, settings_.numberOfThreads);
-
-        // verbosity
+        //cplex_.setParam(IloCplex::Threads, 1);
+        cplex_.setParam(IloCplex::CutUp,  1.0e+75);
         cplex_.setParam(IloCplex::MIPDisplay, int(settings_.verbosity));
         cplex_.setParam(IloCplex::BarDisplay, int(settings_.verbosity));
         cplex_.setParam(IloCplex::SimDisplay, int(settings_.verbosity));
         cplex_.setParam(IloCplex::NetDisplay, int(settings_.verbosity));
         cplex_.setParam(IloCplex::SiftDisplay,int(settings_.verbosity));
+
+        cplex_.setParam(IloCplex::EpOpt,1e-9);
+        cplex_.setParam(IloCplex::EpRHS,1e-8); //setting this to 1e-9 seemed to be to agressive!
+        cplex_.setParam(IloCplex::EpInt,0);
+
+
+
+
+        // nThreads
+        //
+
+        // verbosity
+
 
     }
     catch (IloException& e) {
@@ -214,24 +212,23 @@ Cplex::setStart(
     //std::cout<<"set start for n var "<<nVariables_<<"\n";
     //IloNumArray startVal(env_, nVariables_);
     for (auto i = 0; i < nVariables_; ++i) {
-        //sol_[i] = *valueIterator;
+        sol_[i] = *valueIterator;
         //std::cout<<i<<" x_ "<<x_[i]<<"\n";
         ++valueIterator;
     }
-    
-    //try{
-    //cplex_.addMIPStart(x_, sol_);
-    //}
-    //catch (IloException& e) {
-    //    std::cout<<" error "<<e.getMessage()<<"\n";
-    //    e.end();
-    //}
-    //catch (const std::runtime_error & e) {
-    //    std::cout<<" error "<<e.what()<<"\n";
-    //}
-    //catch (const std::exception & e) {
-    //    std::cout<<" error "<<e.what()<<"\n";
-    //}
+    try{
+        cplex_.addMIPStart(x_, sol_);
+    }
+    catch (IloException& e) {
+       std::cout<<" error "<<e.getMessage()<<"\n";
+       e.end();
+    }
+    catch (const std::runtime_error & e) {
+       std::cout<<" error "<<e.what()<<"\n";
+    }
+    catch (const std::exception & e) {
+       std::cout<<" error "<<e.what()<<"\n";
+    }
     
 }
 

@@ -45,28 +45,29 @@ assert g.numberOfEdges == uvs.shape[0]
 obj = nifty.graph.multicut.multicutObjective(g, weights)
 
 
-greedy=nifty.greedyAdditiveFactory().create(obj)
-ret = greedy.optimize()
-print("greedy",obj.evalNodeLabels(ret))
+if True:
 
-with vigra.Timer("fm"):
-    ilpFac = nifty.multicutIlpFactory(ilpSolver='cplex',verbose=1,
-        addThreeCyclesConstraints=True,
-        addOnlyViolatedThreeCyclesConstraints=True
-    )
-    greedy=nifty.greedyAdditiveFactory()
-    factory = nifty.fusionMoveBasedFactory(
-        verbose=1,
-        fusionMove=nifty.fusionMoveSettings(mcFactory=greedy),
-        #fusionMove=nifty.fusionMoveSettings(mcFactory=ilpFac),
-        proposalGen=nifty.greedyAdditiveProposals(sigma=200,nodeNumStopCond=100,weightStopCond=-1000.0),
-        numberOfIterations=100,
-        numberOfParallelProposals=8,
-        fuseN=2
-    )
-    solver = factory.create(obj)
-    ret = solver.optimize(ret)
-print("fm",obj.evalNodeLabels(ret))
+    greedy=nifty.greedyAdditiveFactory().create(obj)
+    ret = greedy.optimize()
+    print("greedy",obj.evalNodeLabels(ret))
+    with vigra.Timer("fm"):
+        ilpFac = nifty.multicutIlpFactory(ilpSolver='cplex',verbose=1,
+            addThreeCyclesConstraints=True,
+            addOnlyViolatedThreeCyclesConstraints=True
+        )
+        greedy=nifty.greedyAdditiveFactory()
+        factory = nifty.fusionMoveBasedFactory(
+            verbose=1,
+            fusionMove=nifty.fusionMoveSettings(mcFactory=greedy),
+            #fusionMove=nifty.fusionMoveSettings(mcFactory=ilpFac),
+            proposalGen=nifty.greedyAdditiveProposals(sigma=100,nodeNumStopCond=-1,weightStopCond=0.0),
+            numberOfIterations=100,
+            numberOfParallelProposals=10,
+            fuseN=2
+        )
+        solver = factory.create(obj)
+        ret = solver.optimize(ret)
+    print("fm",obj.evalNodeLabels(ret))
 
 
 
@@ -88,7 +89,7 @@ print("ilp-cplex",obj.evalNodeLabels(ret))
 
 
 with vigra.Timer("opengm"):
-    param = opengm.InfParam(workflow="(IC)(CC-IFD)")
+    param = opengm.InfParam(workflow="(IC)(CC-IFD)",initializeWith3Cycles=False,numThreads=1)
     inf = opengm.inference.Multicut(gm,parameter=param)
     inf.infer()
     arg = inf.arg()

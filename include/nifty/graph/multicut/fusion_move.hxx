@@ -160,7 +160,6 @@ namespace graph{
 
             // solve that thing
             
-            NIFTY_CHECK(bool(settings_.mcFactory),"factory is still empty");
             
             auto solverPtr = settings_.mcFactory->createRawPtr(fmObjective);
             FmNodeLabels fmLabels(fmGraph);
