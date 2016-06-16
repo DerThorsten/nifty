@@ -108,14 +108,13 @@ namespace graph{
     optimize(
         NodeLabels & nodeLabels,  VisitorBase * visitor
     ){
-        int nodeNum = graph_.numberOfNodes();
         while(!pq_.empty() ){
             
             // get and pop top edge and check 
             // if we are done
             const auto edgeToContract = pq_.top();
             if(settings_.verbose >= 1)
-                std::cout<<"node num "<<nodeNum<<" highestWeight "<<pq_.topPriority()<<"\n"; 
+                std::cout<<"node num "<<currentNodeNum_<<" highestWeight "<<pq_.topPriority()<<"\n"; 
             if(this->stopContraction())
                 break;
             pq_.pop();
@@ -129,7 +128,7 @@ namespace graph{
 
             // merge them into a single node
             ufd_.merge(u, v);
-            --nodeNum;
+            --currentNodeNum_;
 
             // check which of u and v is the new representative node
             // also known as 'aliveNode' and which is the deadNode
@@ -279,10 +278,12 @@ namespace graph{
             uint64_t ns;
             if(nnsc >= 1.0){
                 ns = static_cast<uint64_t>(nnsc);
-               // if node
             }
             else{
                 ns = static_cast<uint64_t>(double(graph_.numberOfNodes())*nnsc +0.5);
+            }
+            if(currentNodeNum_ <= ns){
+                return true;
             }
         }
         return false;

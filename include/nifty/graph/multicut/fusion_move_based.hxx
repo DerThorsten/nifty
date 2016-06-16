@@ -145,8 +145,10 @@ namespace graph{
 
 
         std::vector<NodeLabels> proposals;
-
+        auto iterWithoutImprovement = 0;
         for(auto iter=0; iter<settings_.numberOfIterations; ++iter){
+
+            const auto oldBestEnergy = bestEnergy;
             if (settings_.verbose >=2)
                 std::cout<<"main loop iter "<<iter<<"\n";
             proposals.clear();
@@ -264,6 +266,13 @@ namespace graph{
             currentBest = proposals[0];
             bestEnergy = objective_.evalNodeLabels(currentBest);
             std::cout<<"bestEnergy "<<bestEnergy<<"\n";
+
+            if(bestEnergy < oldBestEnergy)
+                iterWithoutImprovement = 0;
+            else
+                ++iterWithoutImprovement;
+            if(iterWithoutImprovement > settings_.stopIfNoImprovement)
+                break;
         }
         //for(auto node : graph_.nodes())
         //    nodeLabels[node] = currentBest[node];
