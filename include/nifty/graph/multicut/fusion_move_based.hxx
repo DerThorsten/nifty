@@ -188,8 +188,9 @@ namespace graph{
                         if(eFuse < eBestCopy){
                             currentBest = res;
                             bestEnergy = eFuse;
+                            proposals.push_back(res);
                         }
-                        proposals.push_back(res);
+                        
                         mtx.unlock();
                     }
                     else{  // just keep this one and do not fuse with current best
@@ -201,12 +202,8 @@ namespace graph{
                             bestEnergy = eProposal;
                             currentBest = proposal;
                         }
-                        mtx.unlock(); 
-
-
-                        mtx.lock();
                         proposals.push_back(proposal);
-                        mtx.unlock();                
+                        mtx.unlock();       
                     }   
                 }
             );
@@ -216,54 +213,55 @@ namespace graph{
             std::vector<NodeLabels> proposals2;
             size_t nFuse = settings_.fuseN;
 
-            //std::cout<<"fuse "<<proposals.size()<<" proposals\n";
-            while(proposals.size()!= 1){
-                NIFTY_CHECK_OP(proposals.size(),>=,2,"");
-                nFuse = std::min(nFuse, proposals.size());
+            if(!proposals.empty()){
+                while(proposals.size()!= 1){
+                    NIFTY_CHECK_OP(proposals.size(),>=,2,"");
+                    nFuse = std::min(nFuse, proposals.size());
 
 
 
-                auto pSize = proposals.size() / nFuse;
-                if( proposals.size() % nFuse != 0){
-                    //std::cout<<"bra\n";
-                    ++pSize;
-                }
-                else{
+                    auto pSize = proposals.size() / nFuse;
+                    if( proposals.size() % nFuse != 0){
+                        //std::cout<<"bra\n";
+                        ++pSize;
+                    }
+                    else{
 
-                }
-
-                //std::cout<<"proposals 1 size "<<proposals.size()<<"\n";
-                //std::cout<<"nFuse            "<<nFuse<<"\n";
-                //std::cout<<"pSizse           "<<pSize<<"\n";
-
-                nifty::parallel::parallel_foreach(threadPool_, pSize,
-                [&](const size_t threadId, const size_t ii){
-                    auto i = ii*nFuse;
-
-                    std::vector<NodeLabels*> toFuse;
-                    for(size_t j=0; j<nFuse; ++j){
-                        auto k = i + j < proposals.size() ? i+j : i+j - proposals.size();
-                        toFuse.push_back(&proposals[k]);
                     }
 
-                    // here we start to fuse them
-                    NodeLabels res(graph_);
-                    auto & fm = *(fusionMoves_[threadId]);
+                    //std::cout<<"proposals 1 size "<<proposals.size()<<"\n";
+                    //std::cout<<"nFuse            "<<nFuse<<"\n";
+                    //std::cout<<"pSizse           "<<pSize<<"\n";
 
-                    // actual fuse
-                    fm.fuse(toFuse, &res);
+                    nifty::parallel::parallel_foreach(threadPool_, pSize,
+                    [&](const size_t threadId, const size_t ii){
+                        auto i = ii*nFuse;
 
-                    mtx.lock();
-                    proposals2.push_back(res);
-                    mtx.unlock();
-                });
+                        std::vector<NodeLabels*> toFuse;
+                        for(size_t j=0; j<nFuse; ++j){
+                            auto k = i + j < proposals.size() ? i+j : i+j - proposals.size();
+                            toFuse.push_back(&proposals[k]);
+                        }
 
-                //std::cout<<"proposals 2 size "<<proposals2.size()<<"\n\n";
-                proposals = proposals2;
-                proposals2.clear();
+                        // here we start to fuse them
+                        NodeLabels res(graph_);
+                        auto & fm = *(fusionMoves_[threadId]);
+
+                        // actual fuse
+                        fm.fuse(toFuse, &res);
+
+                        mtx.lock();
+                        proposals2.push_back(res);
+                        mtx.unlock();
+                    });
+
+                    //std::cout<<"proposals 2 size "<<proposals2.size()<<"\n\n";
+                    proposals = proposals2;
+                    proposals2.clear();
+                }
+                currentBest = proposals[0];
             }
 
-            currentBest = proposals[0];
             bestEnergy = objective_.evalNodeLabels(currentBest);
             std::cout<<"bestEnergy "<<bestEnergy<<"\n";
 

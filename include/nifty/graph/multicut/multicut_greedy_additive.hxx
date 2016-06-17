@@ -51,7 +51,7 @@ namespace graph{
             double sigma{1.0};
         };
 
-
+        virtual ~MulticutGreedyAdditive(){}
         MulticutGreedyAdditive(const Objective & objective, const Settings & settings = Settings());
         virtual void optimize(NodeLabels & nodeLabels, VisitorBase * visitor);
         virtual const Objective & objective() const;

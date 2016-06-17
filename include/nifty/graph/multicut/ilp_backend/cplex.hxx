@@ -17,7 +17,9 @@ public:
     typedef IlpBackendSettings Settings;
 
     Cplex(const Settings & settings = Settings());
-    //~Cplex();
+    ~Cplex(){
+        env_.end();
+    }
 
     void initModel(const size_t, const double*);
 

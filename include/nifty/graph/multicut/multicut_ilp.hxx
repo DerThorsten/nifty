@@ -61,7 +61,7 @@ namespace graph{
             IlpSettings ilpSettings_;
         };
 
-
+        virtual ~MulticutIlp(){}
         MulticutIlp(const Objective & objective, const Settings & settings = Settings());
 
 
