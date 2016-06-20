@@ -57,8 +57,10 @@ namespace graph{
 
                     if(array.size() == 0 ){
 
-                        self->optimize(nodeLabels, &visitor);
-
+                        {
+                            py::gil_scoped_release allowThreads;
+                            self->optimize(nodeLabels, &visitor);
+                        }
                         std::vector<size_t> strides = {sizeof(uint64_t)};
                         std::vector<size_t> shape = {size_t(graph.numberOfNodes())};
                         size_t ndim = 1;
@@ -97,3 +99,4 @@ namespace graph{
 
 }
 }
+    

@@ -61,10 +61,10 @@ if True:
             #fusionMove=nifty.fusionMoveSettings(mcFactory=greedy),
             fusionMove=nifty.fusionMoveSettings(mcFactory=ilpFac),
             #proposalGen=nifty.greedyAdditiveProposals(sigma=30,nodeNumStopCond=-1,weightStopCond=0.0),
-            proposalGen=nifty.watershedProposals(sigma=1,seedFraction=0.01),
-            numberOfIterations=1000,
-            numberOfParallelProposals=40,
-            stopIfNoImprovement=200,
+            proposalGen=nifty.watershedProposals(sigma=1,seedFraction=0.001),
+            numberOfIterations=30,
+            numberOfParallelProposals=16,
+            stopIfNoImprovement=3,
             fuseN=2,
         )
         solver = factory.create(obj)
@@ -74,8 +74,8 @@ if True:
 
 with vigra.Timer("ilp-cplex"):
     solver = nifty.multicutIlpFactory(ilpSolver='cplex',verbose=1,
-        addThreeCyclesConstraints=False,
-        addOnlyViolatedThreeCyclesConstraints=False
+        addThreeCyclesConstraints=True,
+        addOnlyViolatedThreeCyclesConstraints=True
     ).create(obj)
     ret = solver.optimize()
 print("ilp-cplex",obj.evalNodeLabels(ret))
@@ -90,7 +90,9 @@ print("ilp-cplex",obj.evalNodeLabels(ret))
 
 
 with vigra.Timer("opengm"):
-    param = opengm.InfParam(workflow="(IC)(CC-IFD)",initializeWith3Cycles=False,numThreads=1)
+    param = opengm.InfParam(workflow="(IC)(CC-IFD)",
+                            #initializeWith3Cycles=False,
+                            numThreads=1)
     inf = opengm.inference.Multicut(gm,parameter=param)
     inf.infer()
     arg = inf.arg()

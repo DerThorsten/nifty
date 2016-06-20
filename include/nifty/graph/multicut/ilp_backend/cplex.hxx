@@ -18,6 +18,7 @@ public:
 
     Cplex(const Settings & settings = Settings());
     ~Cplex(){
+        cplex_.end();
         env_.end();
     }
 
