@@ -11,6 +11,7 @@ namespace graph{
 
     void exportMulticutObjective(py::module &);
     void exportMulticutFactory(py::module &);
+    void exportMulticutVisitorBase(py::module &);
     void exportMulticutBase(py::module &);
     void exportMulticutIlp(py::module &);
     void exportMulticutGreedyAdditive(py::module &);
@@ -21,6 +22,7 @@ namespace graph{
 
         auto multicutModule = graphModule.def_submodule("multicut","multicut submodule");
         exportMulticutObjective(multicutModule);
+        exportMulticutVisitorBase(multicutModule);
         exportMulticutBase(multicutModule);
         exportMulticutFactory(multicutModule);
         exportMulticutIlp(multicutModule);

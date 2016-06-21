@@ -41,6 +41,7 @@ add_library(nifty SHARED
   graph/undirected_graph.cxx
   graph/multicut/multicut.cxx
   graph/multicut/multicut_objective.cxx
+  graph/multicut/multicut_visitor_base.cxx
   graph/multicut/multicut_base.cxx
   graph/multicut/multicut_factory.cxx
   graph/multicut/multicut_ilp.cxx

@@ -2,6 +2,11 @@ from nifty import *
 
 
 
+def multicutVerboseVisitor(visitNth=1):
+    return graph.multicut.MulticutVerboseVisitorUndirectedGraph(visitNth)
+
+
+
 
 
 def greedyAdditiveProposals(sigma=1.0, weightStopCond=0.0, nodeNumStopCond=-1.0):

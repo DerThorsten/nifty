@@ -9,7 +9,8 @@ include(CheckCXXCompilerFlag)
 
 option(WITH_BOOST_COMPUTE OFF)
 option(WITH_GUROBI OFF)
-option(WITH_CPLEX ON)
+option(WITH_CPLEX OFF)
+option(WITH_GLPK OFF)
 
 option(BUILD_NIFTY_PYTHON OFF)
 
@@ -119,6 +120,16 @@ if(WITH_GUROBI)
     include_directories(${GUROBI_INCLUDE_DIR})
     add_definitions(-DWITH_GUROBI)
 endif()
+
+#-------------------------------------------------------------------------------------------------------------------
+# find glpk
+#-------------------------------------------------------------------------------------------------------------------
+if(WITH_GLPK)
+    find_package(GLPK)
+    include_directories(${GLPK_INCLUDE_DIR})
+    add_definitions(-DWITH_GLPK)
+endif()
+
 
 
 #-------------------------------------------------------------------------------------------------------------------

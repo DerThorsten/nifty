@@ -30,7 +30,8 @@ namespace graph{
         typedef MulticutObjective<Graph, double> Objective;
         typedef PyMulticutBase<Objective> PyMcBase;
         typedef MulticutBase<Objective> McBase;
-        typedef MulticutVerboseVisitor<Objective> VerboseVisitor;
+        typedef MulticutEmptyVisitor<Objective> EmptyVisitor;
+        typedef MulticutVisitorBase<Objective> McVisitorBase;
         //PYBIND11_DECLARE_HOLDER_TYPE(McBase, std::shared_ptr<McBase>);
 
         // base factory
@@ -53,7 +54,7 @@ namespace graph{
 
 
                     typename McBase::NodeLabels nodeLabels(graph,0);
-                    VerboseVisitor visitor;
+                    EmptyVisitor visitor;
 
                     if(array.size() == 0 ){
 
@@ -81,7 +82,10 @@ namespace graph{
                         for(auto node : graph.nodes()){
                             nodeLabels[node] = array(node);
                         }
-                        self->optimize(nodeLabels, &visitor);
+                        {
+                            py::gil_scoped_release allowThreads;
+                            self->optimize(nodeLabels, &visitor);
+                        }
                         for(auto node : graph.nodes()){
                              array(node) = nodeLabels[node];
                         }
@@ -92,7 +96,63 @@ namespace graph{
                     }
                 },
                 py::arg_t< py::array_t<uint64_t> >("nodeLabels", py::list() )
-            );
+            )
+            .def("optimizeWithVisitor", 
+                [](
+                    McBase * self,
+                    McVisitorBase * visitor,
+                    py::array_t<uint64_t> pyArray
+                ){
+                    const auto graph = self->objective().graph();
+                    //std::cout<<"optimize that damn thing\n";
+                    NumpyArray<uint64_t> array(pyArray);
+
+
+                    typename McBase::NodeLabels nodeLabels(graph,0);
+
+                    if(array.size() == 0 ){
+
+                        {
+                            py::gil_scoped_release allowThreads;
+                            self->optimize(nodeLabels, visitor);
+                        }
+                        std::vector<size_t> strides = {sizeof(uint64_t)};
+                        std::vector<size_t> shape = {size_t(graph.numberOfNodes())};
+                        size_t ndim = 1;
+
+                        py::array_t<uint64_t> retArray =  py::array(py::buffer_info(NULL, sizeof(uint64_t),
+                            py::format_descriptor<uint64_t>::value,
+                            ndim, shape, strides)
+                        );
+                        NumpyArray<uint64_t> rarray(retArray);
+                        for(auto node : graph.nodes()){
+                            rarray(node) = nodeLabels[node];
+                        }
+                        return retArray;
+
+
+                    }
+                    else if(array.size() == graph.numberOfNodes()){
+                        for(auto node : graph.nodes()){
+                            nodeLabels[node] = array(node);
+                        }
+                        {
+                            py::gil_scoped_release allowThreads;
+                            self->optimize(nodeLabels, visitor);
+                        }
+                        for(auto node : graph.nodes()){
+                             array(node) = nodeLabels[node];
+                        }
+                        return pyArray;
+                    }
+                    else{
+                        throw std::runtime_error("input node labels have wrong shape");
+                    }
+                },
+                py::arg("visitor"),
+                py::arg_t< py::array_t<uint64_t> >("nodeLabels", py::list() )
+            )
+            ;
         ;
 
     }

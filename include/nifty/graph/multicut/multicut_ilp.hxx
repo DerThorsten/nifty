@@ -69,7 +69,9 @@ namespace graph{
         virtual const Objective & objective() const;
 
 
-
+        virtual const NodeLabels & currentBestNodeLabels( ){
+            return *currentBest_;
+        }
 
 
     private:
@@ -97,6 +99,7 @@ namespace graph{
         Settings settings_;
         std::vector<size_t> variables_;
         std::vector<double> coefficients_;
+        NodeLabels * currentBest_;
     };
 
     
@@ -132,30 +135,44 @@ namespace graph{
     void MulticutIlp<OBJECTIVE, ILP_SOLVER>::
     optimize(
         NodeLabels & nodeLabels,  VisitorBase * visitor
-    ){
-        if (settings_.verbose >=2){
-            std::cout<<"start to optimzie\n";
-        }
+    ){  
+        if(visitor!=nullptr)
+            visitor->addLogNames({"violatedConstraints"});
+
+        currentBest_ = &nodeLabels;
+        if(visitor!=nullptr)
+            visitor->begin(this);
+
         // set the starting point 
         auto edgeLabelIter = detail_graph::nodeLabelsToEdgeLabelsIterBegin(graph_, nodeLabels);
         ilpSolver_.setStart(edgeLabelIter);
 
         for (size_t i = 0; settings_.numberOfIterations == 0 || i < settings_.numberOfIterations; ++i){
-            if (settings_.verbose >=2)
-                std::cout<<"iter "<<i<<"\n";
-            if (i != 0){
-                repairSolution(nodeLabels);
-            }
-            if (settings_.verbose >=2)
-                std::cout<<"ilp optimize \n";
+
+            // solve ilp
             ilpSolver_.optimize();
-            if (settings_.verbose >=2)
-                std::cout<<"add cycles \n";
-            if (addCycleInequalities() == 0){
-                break;
+
+            // find violated constraints
+            auto nViolated = addCycleInequalities();
+
+            // repair the solution
+            repairSolution(nodeLabels);
+
+            // call visitor
+            if(visitor!=nullptr){
+                // add additional logs
+                visitor->setLogValue(0,nViolated);
+                // visit visitor
+                if(!visitor->visit(this))
+                    break;
             }
+            // exit if we do not violate constraints
+            if (nViolated == 0)
+                break;
         }
-        repairSolution(nodeLabels);
+
+        if(visitor!=nullptr)
+            visitor->end(this);
     }
 
     template<class OBJECTIVE, class ILP_SOLVER>
@@ -214,8 +231,6 @@ namespace graph{
             }
             ++lpEdge;
         }
-        if(settings_.verbose > 0)
-            std::cout<<"nCycle "<<nCycle<<"\n";
         return nCycle;
     }
 

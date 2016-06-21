@@ -38,6 +38,22 @@ public:
         );
     }
 
+    const NodeLabels & currentBestNodeLabels()  {
+        PYBIND11_OVERLOAD_PURE(
+            const NodeLabels &,                  /* Return type */
+            McBase,                             /* Parent class */
+            currentBestNodeLabels,              /* Name of function */
+        );
+    }
+
+    double currentBestEnergy()  {
+        PYBIND11_OVERLOAD_PURE(
+            double,                  /* Return type */
+            McBase,                             /* Parent class */
+            currentBestEnergy,              /* Name of function */
+        );
+    }
+
     const Objective & objective() const {
         PYBIND11_OVERLOAD_PURE(
             const Objective & ,    /* Return type */

@@ -58,6 +58,16 @@ namespace graph{
 
         void reset();
         void changeSettings(const Settings & settings);
+
+        virtual const NodeLabels & currentBestNodeLabels( ){
+
+            for(auto node : graph_.nodes()){
+                currentBest_->operator[](node) = ufd_.find(node);
+            }
+            return *currentBest_;
+        }
+
+
     private:
 
         
@@ -74,7 +84,7 @@ namespace graph{
         nifty::ufd::Ufd< > ufd_;
         EdgeWeights weights_;
         uint64_t currentNodeNum_;
-
+        NodeLabels * currentBest_;
 
         std::mt19937 gen_;
         std::normal_distribution<> dist_;
@@ -108,6 +118,12 @@ namespace graph{
     optimize(
         NodeLabels & nodeLabels,  VisitorBase * visitor
     ){
+        if(visitor!=nullptr){
+            visitor->addLogNames({"#nodes","topWeight"});
+            visitor->begin(this);
+        }
+
+        currentBest_ = & nodeLabels;
         while(!pq_.empty() ){
             
             // get and pop top edge and check 
@@ -186,10 +202,19 @@ namespace graph{
                 }
                 
             }
+            if(visitor!=nullptr){
+                visitor->setLogValue(0, currentNodeNum_);
+                visitor->setLogValue(1, pq_.topPriority());
+                if(!visitor->visit(this)){
+                    break;
+                }
+            }
         }
         for(auto node : graph_.nodes()){
             nodeLabels[node] = ufd_.find(node);
         }
+        if(visitor!=nullptr)
+            visitor->end(this);
     }
 
     template<class OBJECTIVE>

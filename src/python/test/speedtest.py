@@ -5,10 +5,10 @@ import numpy
 
 
 f = "/home/tbeier/Desktop/mc_models/knott-3d-150/gm_knott_3d_039.h5"
-f = "/home/tbeier/Desktop/mc_models/knot-3d-550/gm_knott_3d_119.h5"
-f = "/home/tbeier/Desktop/mc_models/knott-3d-450/gm_knott_3d_103.h5"
+#f = "/home/tbeier/Desktop/mc_models/knot-3d-550/gm_knott_3d_119.h5"
+#f = "/home/tbeier/Desktop/mc_models/knott-3d-450/gm_knott_3d_103.h5"
 #f = "/home/tbeier/Downloads/gm_large_3.gm"
-f = "/home/tbeier/Downloads/gm_small_1.gm"
+#f = "/home/tbeier/Downloads/gm_small_1.gm"
 #f = "/home/tbeier/Desktop/mc_models/knott-3d-300/gm_knott_3d_072.h5"
 gm = opengm.loadGm(f)
 
@@ -45,10 +45,11 @@ assert g.numberOfEdges == uvs.shape[0]
 obj = nifty.graph.multicut.multicutObjective(g, weights)
 
 
-if False:
+if True:
 
     greedy=nifty.greedyAdditiveFactory().create(obj)
-    ret = greedy.optimize()
+    visitor = nifty.multicutVerboseVisitor()
+    ret = greedy.optimizeWithVisitor(visitor=visitor)
     print("greedy",obj.evalNodeLabels(ret))
     with vigra.Timer("fm"):
         ilpFac = nifty.multicutIlpFactory(ilpSolver='cplex',verbose=0,
@@ -57,7 +58,6 @@ if False:
         )
         greedy=nifty.greedyAdditiveFactory()
         factory = nifty.fusionMoveBasedFactory(
-            verbose=1,
             #fusionMove=nifty.fusionMoveSettings(mcFactory=greedy),
             fusionMove=nifty.fusionMoveSettings(mcFactory=ilpFac),
             #proposalGen=nifty.greedyAdditiveProposals(sigma=30,nodeNumStopCond=-1,weightStopCond=0.0),
@@ -68,7 +68,8 @@ if False:
             fuseN=2,
         )
         solver = factory.create(obj)
-        ret = solver.optimize(ret)
+        visitor = nifty.multicutVerboseVisitor()
+        ret = solver.optimizeWithVisitor(visitor=visitor,nodeLabels=ret)
     print("fm",obj.evalNodeLabels(ret))
 
 
@@ -78,7 +79,8 @@ with vigra.Timer("ilp-cplex"):
         addOnlyViolatedThreeCyclesConstraints=True,
         memLimit= 0.01
     ).create(obj)
-    ret = solver.optimize()
+    visitor = nifty.multicutVerboseVisitor()
+    ret = solver.optimizeWithVisitor(visitor=visitor)
 print("ilp-cplex",obj.evalNodeLabels(ret))
 
 

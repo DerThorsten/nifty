@@ -61,6 +61,12 @@ namespace graph{
         virtual void optimize(NodeLabels & nodeLabels, VisitorBase * visitor);
         virtual const Objective & objective() const;
 
+
+        virtual const NodeLabels & currentBestNodeLabels( ){
+            return *currentBest_;
+        }
+
+
     private:
 
         void reset();
@@ -75,7 +81,7 @@ namespace graph{
         std::vector<NodeLabels *>      solBufferIn_;
         std::vector<NodeLabels *>      solBufferOut_;
         std::vector<FusionMoveType * > fusionMoves_;
-        NodeLabels currentBest_;
+        NodeLabels * currentBest_;
 
         nifty::parallel::ThreadPool threadPool_;
     };
@@ -94,8 +100,7 @@ namespace graph{
         threadPool_(parallelOptions_)
     {
 
-        if (settings_.verbose >=2)
-                std::cout<<"constructor\n";
+
         //NIFTY_CHECK(bool(settings_.fusionMoveSettings.mcFactory),"factory is empty");
         const auto nt = parallelOptions_.getActualNumThreads();
         pgens_.resize(nt);
@@ -106,8 +111,6 @@ namespace graph{
 
         nifty::parallel::parallel_foreach(threadPool_,nt,
             [&](const size_t threadId, const size_t i){
-                if (settings_.verbose >=2)
-                    std::cout<<"constructing pgen "<<i<<"\n";
                 pgens_[i] = new ProposalGen(objective_, settings_.proposalGenSettings, i);
                 fusionMoves_[i] = new FusionMoveType(objective_, settings_.fusionMoveSettings);
                 solBufferIn_[i] = new NodeLabels(graph_);
@@ -115,8 +118,7 @@ namespace graph{
         });
 
 
-        if (settings_.verbose >=2)
-                std::cout<<"constructor done \n";
+
     }
 
     template<class PROPPOSAL_GEN>
@@ -137,6 +139,11 @@ namespace graph{
         NodeLabels & nodeLabels,  VisitorBase * visitor
     ){
 
+        currentBest_ = &nodeLabels;
+        if(visitor!=nullptr){
+            visitor->addLogNames({"IterationWithoutImprovement"});
+            visitor->begin(this);
+        }
         auto & currentBest = nodeLabels;
         auto bestEnergy = objective_.evalNodeLabels(currentBest);
     
@@ -147,10 +154,7 @@ namespace graph{
         std::vector<NodeLabels> proposals;
         auto iterWithoutImprovement = 0;
         for(auto iter=0; iter<settings_.numberOfIterations; ++iter){
-
             const auto oldBestEnergy = bestEnergy;
-            if (settings_.verbose >=2)
-                std::cout<<"main loop iter "<<iter<<"\n";
             proposals.clear();
             // generate the proposals and fuse with the current best
             //std::cout<<"generate "<<settings_.numberOfParallelProposals<<" proposals\n";
@@ -172,7 +176,7 @@ namespace graph{
 
                         mtx.lock();
                         NodeLabels bestCopy = currentBest;
-                        auto eBestCopy = objective_.evalNodeLabels(currentBest);
+                        auto eBestCopy = objective_.evalNodeLabels(bestCopy);
                         mtx.unlock(); 
 
                         std::vector<NodeLabels*> toFuse;
@@ -197,7 +201,7 @@ namespace graph{
                         
                         mtx.lock();
                         NodeLabels bestCopy = currentBest;
-                        auto eBestCopy = objective_.evalNodeLabels(currentBest);
+                        auto eBestCopy = objective_.evalNodeLabels(bestCopy);
                         if(eProposal < eBestCopy){
                             bestEnergy = eProposal;
                             currentBest = proposal;
@@ -260,20 +264,34 @@ namespace graph{
                     proposals2.clear();
                 }
                 currentBest = proposals[0];
+
+
             }
 
             bestEnergy = objective_.evalNodeLabels(currentBest);
-            std::cout<<"bestEnergy "<<bestEnergy<<"\n";
 
-            if(bestEnergy < oldBestEnergy)
+            // call the visitor and see if we need to continue
+            if(visitor!= nullptr){
+                visitor->setLogValue(0,iterWithoutImprovement);
+                if(!visitor->visit(this))
+                    break;
+            }
+ 
+            if(bestEnergy < oldBestEnergy){
                 iterWithoutImprovement = 0;
-            else
+            }
+            else{
                 ++iterWithoutImprovement;
-            if(iterWithoutImprovement > settings_.stopIfNoImprovement)
+            }
+            if(iterWithoutImprovement > settings_.stopIfNoImprovement){
                 break;
+            }
         }
+
         //for(auto node : graph_.nodes())
         //    nodeLabels[node] = currentBest[node];
+        if(visitor!=nullptr)
+            visitor->end(this);
     }
 
     template< class PROPPOSAL_GEN>
