@@ -58,7 +58,7 @@ namespace graph{
             bool verboseIlp{false};
             bool addThreeCyclesConstraints{true};
             bool addOnlyViolatedThreeCyclesConstraints{true};
-            IlpSettings ilpSettings_;
+            IlpSettings ilpSettings;
         };
 
         virtual ~MulticutIlp(){}
@@ -108,7 +108,7 @@ namespace graph{
     )
     :   objective_(objective),
         graph_(objective.graph()),
-        ilpSolver_(settings.ilpSettings_),
+        ilpSolver_(settings.ilpSettings),
         components_(graph_),
         denseIds_(graph_),
         bibfs_(graph_),

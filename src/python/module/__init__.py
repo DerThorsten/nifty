@@ -26,34 +26,49 @@ def greedyAdditiveFactory(verbose=0):
 
 
 
+def ilpSettings(relativeGap=0.0, absoluteGap=0.0, memLimit=-1.0):
+    s = graph.multicut.IlpBackendSettings()
+    s.relativeGap = float(relativeGap)
+    s.absoluteGap = float(absoluteGap)
+    s.memLimit = float(memLimit)
+
+    return s
+
 def multicutIlpCplexFactory(verbose=0, addThreeCyclesConstraints=True,
-                            addOnlyViolatedThreeCyclesConstraints=True):
+                            addOnlyViolatedThreeCyclesConstraints=True,
+                            relativeGap=0.0, absoluteGap=0.0, memLimit=-1.0
+                            ):
     s = graph.multicut.MulticutIlpCplexSettingsUndirectedGraph()
     s.verbose = int(verbose)
     s.addThreeCyclesConstraints = bool(addThreeCyclesConstraints)
     s.addOnlyViolatedThreeCyclesConstraints = bool(addOnlyViolatedThreeCyclesConstraints)
+    s.ilpSettings = ilpSettings(relativeGap=relativeGap, absoluteGap=absoluteGap, memLimit=memLimit)
     factory = graph.multicut.MulticutIlpCplexFactoryUndirectedGraph(s)
     return factory
 
 def multicutIlpGurobiFactory(verbose=0, addThreeCyclesConstraints=True,
-                            addOnlyViolatedThreeCyclesConstraints=True):
+                            addOnlyViolatedThreeCyclesConstraints=True,
+                            relativeGap=0.0, absoluteGap=0.0, memLimit=-1.0):
     s = graph.multicut.MulticutIlpGurobiSettingsUndirectedGraph()
     s.verbose = int(verbose)
     s.addThreeCyclesConstraints = bool(addThreeCyclesConstraints)
     s.addOnlyViolatedThreeCyclesConstraints = bool(addOnlyViolatedThreeCyclesConstraints)
+    s.ilpSettings = ilpSettings(relativeGap=relativeGap, absoluteGap=absoluteGap, memLimit=memLimit)
     factory = graph.multicut.MulticutIlpGurobiFactoryUndirectedGraph(s)
     return factory
 
 def multicutIlpFactory( ilpSolver = 'cplex',
-                            verbose=0, addThreeCyclesConstraints=True,
-                            addOnlyViolatedThreeCyclesConstraints=True):
+                        verbose=0, addThreeCyclesConstraints=True,
+                        addOnlyViolatedThreeCyclesConstraints=True,
+                        relativeGap=0.0, absoluteGap=0.0, memLimit=-1.0):
     
     if ilpSolver == 'cplex':
         f = multicutIlpCplexFactory
     else:
         f = multicutIlpGurobiFactory
     return f(verbose=verbose,addThreeCyclesConstraints=addThreeCyclesConstraints,
-            addOnlyViolatedThreeCyclesConstraints=addOnlyViolatedThreeCyclesConstraints)
+            addOnlyViolatedThreeCyclesConstraints=addOnlyViolatedThreeCyclesConstraints,
+            relativeGap=relativeGap, absoluteGap=absoluteGap, memLimit=memLimit)
 
 def fusionMoveSettings(mcFactory=greedyAdditiveFactory()):
     s = graph.multicut.FusionMoveSettingsUndirectedGraph()

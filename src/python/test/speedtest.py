@@ -45,7 +45,7 @@ assert g.numberOfEdges == uvs.shape[0]
 obj = nifty.graph.multicut.multicutObjective(g, weights)
 
 
-if True:
+if False:
 
     greedy=nifty.greedyAdditiveFactory().create(obj)
     ret = greedy.optimize()
@@ -61,7 +61,7 @@ if True:
             #fusionMove=nifty.fusionMoveSettings(mcFactory=greedy),
             fusionMove=nifty.fusionMoveSettings(mcFactory=ilpFac),
             #proposalGen=nifty.greedyAdditiveProposals(sigma=30,nodeNumStopCond=-1,weightStopCond=0.0),
-            proposalGen=nifty.watershedProposals(sigma=1,seedFraction=0.001),
+            proposalGen=nifty.watershedProposals(sigma=1,seedFraction=0.01),
             numberOfIterations=30,
             numberOfParallelProposals=16,
             stopIfNoImprovement=3,
@@ -75,7 +75,8 @@ if True:
 with vigra.Timer("ilp-cplex"):
     solver = nifty.multicutIlpFactory(ilpSolver='cplex',verbose=1,
         addThreeCyclesConstraints=True,
-        addOnlyViolatedThreeCyclesConstraints=True
+        addOnlyViolatedThreeCyclesConstraints=True,
+        memLimit= 0.01
     ).create(obj)
     ret = solver.optimize()
 print("ilp-cplex",obj.evalNodeLabels(ret))

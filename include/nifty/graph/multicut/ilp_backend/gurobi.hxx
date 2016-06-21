@@ -130,8 +130,16 @@ Gurobi::initModel(
     }
     */
 
+    // set the memory limit
+    if(settings_.memLimit > 0.0)
+        gurobiEnvironment_.set(GRB_DoubleParam_NodefileStart, settings_.memLimit);
+
+
     gurobiModel_ = new GRBModel(gurobiEnvironment_);
     gurobiVariables_ = gurobiModel_->addVars(numberOfVariables, GRB_BINARY);
+
+
+
     gurobiModel_->update();
     gurobiObjective_.addTerms(coefficients, gurobiVariables_, numberOfVariables);
     gurobiModel_->setObjective(gurobiObjective_);

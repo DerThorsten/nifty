@@ -97,6 +97,11 @@ Cplex::initModel(
         if(settings_.relativeGap >= 0.0)
             cplex_.setParam(IloCplex::EpGap,settings_.relativeGap);
 
+
+        if(settings_.memLimit > 0.0)
+            cplex_.setParam(IloCplex::TreLim,settings_.memLimit*1024.0);
+
+
         cplex_.setParam(IloCplex::Threads, settings_.numberOfThreads);
         // cplex_.setParam(IloCplex::EpAGap,0);
         // cplex_.setParam(IloCplex::EpGap,0);

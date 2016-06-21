@@ -36,6 +36,18 @@ namespace graph{
 
 
 
+        
+
+
+        py::class_<ilp_backend::IlpBackendSettings>(multicutModule, "IlpBackendSettings")
+            .def(py::init<>())
+            .def_readwrite("relativeGap", &ilp_backend::IlpBackendSettings::relativeGap)
+            .def_readwrite("absoluteGap", &ilp_backend::IlpBackendSettings::absoluteGap)
+            .def_readwrite("memLimit",  &ilp_backend::IlpBackendSettings::memLimit)
+        ;
+
+
+
         { // scope for name reusing
         #ifdef WITH_CPLEX
 
@@ -53,6 +65,7 @@ namespace graph{
                 .def_readwrite("verboseIlp", &Settings::verboseIlp)
                 .def_readwrite("addThreeCyclesConstraints", &Settings::addThreeCyclesConstraints)
                 .def_readwrite("addOnlyViolatedThreeCyclesConstraints", &Settings::addOnlyViolatedThreeCyclesConstraints)
+                .def_readwrite("ilpSettings",&Settings::ilpSettings)
             ;
         #endif
         }
@@ -74,6 +87,7 @@ namespace graph{
                 .def_readwrite("verboseIlp", &Settings::verboseIlp)
                 .def_readwrite("addThreeCyclesConstraints", &Settings::addThreeCyclesConstraints)
                 .def_readwrite("addOnlyViolatedThreeCyclesConstraints", &Settings::addOnlyViolatedThreeCyclesConstraints)
+                .def_readwrite("ilpSettings",&Settings::ilpSettings)
             ;
         #endif
         }
