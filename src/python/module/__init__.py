@@ -36,8 +36,7 @@ def ilpSettings(relativeGap=0.0, absoluteGap=0.0, memLimit=-1.0):
 
 def multicutIlpCplexFactory(verbose=0, addThreeCyclesConstraints=True,
                             addOnlyViolatedThreeCyclesConstraints=True,
-                            relativeGap=0.0, absoluteGap=0.0, memLimit=-1.0
-                            ):
+                            relativeGap=0.0, absoluteGap=0.0, memLimit=-1.0):
     s = graph.multicut.MulticutIlpCplexSettingsUndirectedGraph()
     s.verbose = int(verbose)
     s.addThreeCyclesConstraints = bool(addThreeCyclesConstraints)
@@ -64,8 +63,10 @@ def multicutIlpFactory( ilpSolver = 'cplex',
     
     if ilpSolver == 'cplex':
         f = multicutIlpCplexFactory
-    else:
+    elif ilpSolver == 'gurobi':
         f = multicutIlpGurobiFactory
+    else:
+        raise RuntimeError("%s is an unknown ilp solver"%str(ilpSolver))
     return f(verbose=verbose,addThreeCyclesConstraints=addThreeCyclesConstraints,
             addOnlyViolatedThreeCyclesConstraints=addOnlyViolatedThreeCyclesConstraints,
             relativeGap=relativeGap, absoluteGap=absoluteGap, memLimit=memLimit)
