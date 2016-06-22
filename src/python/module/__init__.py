@@ -1,4 +1,4 @@
-from nifty import *
+from _nifty import *
 
 
 

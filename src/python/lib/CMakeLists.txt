@@ -34,7 +34,7 @@ include_directories(${PYTHON_INCLUDE_DIR})
 
 
 # Create the binding library
-add_library(nifty SHARED
+add_library(_nifty SHARED
   nifty.cxx
   # ... extra files go here ...
   graph/graph.cxx
@@ -52,11 +52,11 @@ add_library(nifty SHARED
 
 
 if(WITH_GUROBI)
-    target_link_libraries(nifty ${GUROBI_LIBRARIES})
+    target_link_libraries(_nifty ${GUROBI_LIBRARIES})
 endif()
 
 if(WITH_CPLEX)
-    target_link_libraries(nifty ${CPLEX_LIBRARIES})
+    target_link_libraries(_nifty ${CPLEX_LIBRARIES})
 endif()
 
 
@@ -64,7 +64,7 @@ endif()
 
 
 # Don't add a 'lib' prefix to the shared library
-set_target_properties(nifty PROPERTIES PREFIX "")
+set_target_properties(_nifty PROPERTIES PREFIX "")
 
 if (WIN32)
     if (MSVC)
@@ -72,13 +72,13 @@ if (WIN32)
         # on MSVC (~30% smaller binaries in experiments). /bigobj is needed
         # for bigger binding projects due to the limit to 64k addressable sections
         # /MP enables multithreaded builds (relevant when there are many files).
-        set_target_properties(nifty PROPERTIES COMPILE_FLAGS "/Os /GL /MP /bigobj")
-        set_target_properties(nifty PROPERTIES LINK_FLAGS "/LTCG")
+        set_target_properties(_nifty PROPERTIES COMPILE_FLAGS "/Os /GL /MP /bigobj")
+        set_target_properties(_nifty PROPERTIES LINK_FLAGS "/LTCG")
     endif()
     # .PYD file extension on Windows
-    set_target_properties(nifty PROPERTIES SUFFIX ".pyd")
+    set_target_properties(_nifty PROPERTIES SUFFIX ".pyd")
     # Link against the Python shared library
-    target_link_libraries(nifty ${PYTHON_LIBRARY})
+    target_link_libraries(_nifty ${PYTHON_LIBRARY})
 elseif (UNIX)
     # It's quite common to have multiple copies of the same Python version
     # installed on one's system. E.g.: one copy from the OS and another copy
@@ -94,35 +94,35 @@ elseif (UNIX)
     # import time.
 
     # .SO file extension on Linux/Mac OS
-    set_target_properties(nifty PROPERTIES SUFFIX ".so")
+    set_target_properties(_nifty PROPERTIES SUFFIX ".so")
 
     # Strip unnecessary sections of the binary on Linux/Mac OS
     if(APPLE)
-        set_target_properties(nifty PROPERTIES MACOSX_RPATH ".")
-        set_target_properties(nifty PROPERTIES LINK_FLAGS "-undefined dynamic_lookup -dead_strip")
+        set_target_properties(_nifty PROPERTIES MACOSX_RPATH ".")
+        set_target_properties(_nifty PROPERTIES LINK_FLAGS "-undefined dynamic_lookup -dead_strip")
         if (NOT ${U_CMAKE_BUILD_TYPE} MATCHES DEBUG)
-            add_custom_command(TARGET nifty POST_BUILD COMMAND strip -u -r ${CMAKE_CURRENT_BINARY_DIR}/nifty.so)
+            add_custom_command(TARGET _nifty POST_BUILD COMMAND strip -u -r ${CMAKE_CURRENT_BINARY_DIR}/_nifty.so)
         endif()
     else()
         if (NOT ${U_CMAKE_BUILD_TYPE} MATCHES DEBUG)
-            add_custom_command(TARGET nifty POST_BUILD COMMAND strip ${CMAKE_CURRENT_BINARY_DIR}/nifty.so)
+            add_custom_command(TARGET _nifty POST_BUILD COMMAND strip ${CMAKE_CURRENT_BINARY_DIR}/_nifty.so)
         endif()
     endif()
 endif()
 
-file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/python/nifty)
+file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/python/_nifty)
 file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/test_python/)
 
 ADD_CUSTOM_COMMAND(
-        TARGET nifty
+        TARGET _nifty
         POST_BUILD
-        COMMAND ${CMAKE_COMMAND} ARGS -E copy_if_different $<TARGET_FILE:nifty> ${CMAKE_BINARY_DIR}/python/nifty/
+        COMMAND ${CMAKE_COMMAND} ARGS -E copy_if_different $<TARGET_FILE:_nifty> ${CMAKE_BINARY_DIR}/python/_nifty/
         COMMENT "Copying target _graph to temporary module directory")
 
 add_custom_target(copy_python__init__ ALL#POST_BUILD
     COMMAND cmake -E copy_if_different 
     ${CMAKE_SOURCE_DIR}/src/python/module/__init__.py 
-    ${CMAKE_BINARY_DIR}/python/nifty/__init__.py)
+    ${CMAKE_BINARY_DIR}/python/_nifty/__init__.py)
 
 
 

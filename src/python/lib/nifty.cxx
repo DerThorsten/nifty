@@ -15,8 +15,8 @@ namespace graph{
 
 PYBIND11_DECLARE_HOLDER_TYPE(T, std::shared_ptr<T>);
 
-PYBIND11_PLUGIN(nifty) {
-    py::module niftyModule("nifty", "nifty python bindings");
+PYBIND11_PLUGIN(_nifty) {
+    py::module niftyModule("_nifty", "nifty python bindings");
 
 
     py::class_<nifty::NumpyArray<float>>(niftyModule,"NumpyArrayFloat")
