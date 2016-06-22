@@ -110,19 +110,19 @@ elseif (UNIX)
     endif()
 endif()
 
-file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/python/_nifty)
+file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/python/nifty)
 file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/test_python/)
 
 ADD_CUSTOM_COMMAND(
         TARGET _nifty
         POST_BUILD
-        COMMAND ${CMAKE_COMMAND} ARGS -E copy_if_different $<TARGET_FILE:_nifty> ${CMAKE_BINARY_DIR}/python/_nifty/
+        COMMAND ${CMAKE_COMMAND} ARGS -E copy_if_different $<TARGET_FILE:_nifty> ${CMAKE_BINARY_DIR}/python/nifty/
         COMMENT "Copying target _graph to temporary module directory")
 
 add_custom_target(copy_python__init__ ALL#POST_BUILD
     COMMAND cmake -E copy_if_different 
     ${CMAKE_SOURCE_DIR}/src/python/module/__init__.py 
-    ${CMAKE_BINARY_DIR}/python/_nifty/__init__.py)
+    ${CMAKE_BINARY_DIR}/python/nifty/__init__.py)
 
 
 
