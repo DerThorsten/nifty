@@ -166,6 +166,7 @@ namespace graph{
                 if(!visitor->visit(this))
                     break;
             }
+            
             // exit if we do not violate constraints
             if (nViolated == 0)
                 break;
