@@ -21,7 +21,7 @@ namespace graph{
         template<class T, class DEQUEUE_TYPE>
         inline void
         singleSourceSingleTargetHelper(
-            const std::vector<std::ptrdiff_t>& parents,
+            const std::vector<int64_t>& parents,
             const T vPositive,
             const T vNegative,
             DEQUEUE_TYPE& path
