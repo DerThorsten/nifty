@@ -2,11 +2,12 @@
 #ifndef NIFTY_GRAPH_EDGE_CONTRACTION_GRAPH_HXX
 #define NIFTY_GRAPH_EDGE_CONTRACTION_GRAPH_HXX
 
-#include <boost/version.hpp>
-#if BOOST_VERSION  < 104700
-#include <boost/interprocess/containers/flat_set.hpp>
-#else
+// for strange reason travis does not find the boost flat set
+#ifndef WITHIN_TRAVIS
+#define setimpl std::set
 #include <boost/container/flat_set.hpp>
+#else
+#define setimpl boost::container::flat_set
 #endif
 
 #include "nifty/tools/runtime_check.hxx"
@@ -29,7 +30,7 @@ namespace graph{
         private:
             typedef detail_graph::UndirectedAdjacency<int64_t,int64_t,int64_t,int64_t> NodeAdjacency;
             //typedef std::set<NodeAdjacency> NodeStorage;
-            typedef boost::container::flat_set<NodeAdjacency> NodeStorage;
+            typedef setimpl <NodeAdjacency> NodeStorage;
             typedef typename Graph:: template NodeMap<NodeStorage> NodesContainer;
             typedef std::pair<int64_t,int64_t> EdgeStorage;
             typedef typename Graph:: template EdgeMap<EdgeStorage> EdgeContainer;

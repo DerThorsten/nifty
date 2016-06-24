@@ -105,6 +105,14 @@ include_directories(${Boost_INCLUDE_DIRS})
 MESSAGE( STATUS ${Boost_INCLUDE_DIRS})
 include_directories(${Boost_INCLUDE_DIR})
 MESSAGE( STATUS ${Boost_INCLUDE_DIR})
+
+
+if(DWITHIN_TRAVIS)
+    add_definitions(-DWITHIN_TRAVIS)
+endif()
+
+
+
 #-------------------------------------------------------------------------------------------------------------------
 # find cplex
 #-------------------------------------------------------------------------------------------------------------------
@@ -115,7 +123,7 @@ if(WITH_CPLEX)
 endif()
 
 #-------------------------------------------------------------------------------------------------------------------
-# find cplex
+# find gurobi
 #-------------------------------------------------------------------------------------------------------------------
 if(WITH_GUROBI)
     find_package(GUROBI)
