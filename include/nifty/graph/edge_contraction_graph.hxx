@@ -2,8 +2,12 @@
 #ifndef NIFTY_GRAPH_EDGE_CONTRACTION_GRAPH_HXX
 #define NIFTY_GRAPH_EDGE_CONTRACTION_GRAPH_HXX
 
-
+#include <boost/version.hpp>
+#if BOOST_VERSION  < 104700
+#include <boost/interprocess/container/flat_set.hpp>
+#else
 #include <boost/container/flat_set.hpp>
+#endif
 
 #include "nifty/tools/runtime_check.hxx"
 #include "nifty/ufd/ufd.hxx"

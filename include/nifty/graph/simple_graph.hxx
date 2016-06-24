@@ -3,7 +3,14 @@
 #define NIFTY_GRAPH_SIMPLE_GRAPH_HXX
 
 #include <vector>
+#include <boost/version.hpp>
+
+#if BOOST_VERSION  < 104700
+#include <boost/interprocess/container/flat_set.hpp>
+#else
 #include <boost/container/flat_set.hpp>
+#endif
+
 #include <boost/iterator/counting_iterator.hpp>
 
 #include "nifty/tools/runtime_check.hxx"
