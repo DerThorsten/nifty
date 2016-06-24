@@ -7,6 +7,7 @@
 
 #if BOOST_VERSION  < 104700
 #include <boost/interprocess/container/flat_set.hpp>
+#include <boost/interprocess/containers/flat_set.hpp>
 #else
 #include <boost/container/flat_set.hpp>
 #endif
