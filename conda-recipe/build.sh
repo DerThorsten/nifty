@@ -97,7 +97,12 @@ if [[ "$WITH_GUROBI" == "" ]]; then
     CPLEX_ARGS=""
     LINKER_FLAGS=""
 else
-    GUROBI_ARGS="-DWITH_GUROBI=ON -DGUROBI_ROOT_DIR=${GUROBI_ROOT_DIR} -DGUROBI_LIBRARY=${GUROBI_ROOT_DIR}/lib/libgurobi65.so -DGUROBI_INCLUDE_DIR=${GUROBI_ROOT_DIR}/include -DGUROBI_CPP_LIBRARY=${GUROBI_ROOT_DIR}/lib/libgurobi_c++.a"
+    GUROBI_ARGS=""
+    GUROBI_ARGS="${GUROBI_ARGS} -DWITH_GUROBI=ON"
+    GUROBI_ARGS="${GUROBI_ARGS} -DGUROBI_ROOT_DIR=${GUROBI_ROOT_DIR}"
+    GUROBI_ARGS="${GUROBI_ARGS} -DGUROBI_LIBRARY=$(ls ${GUROBI_ROOT_DIR}/lib/libgurobi*.so*)"
+    GUROBI_ARGS="${GUROBI_ARGS} -DGUROBI_INCLUDE_DIR=${GUROBI_ROOT_DIR}/include"
+    GUROBI_ARGS="${GUROBI_ARGS} -DGUROBI_CPP_LIBRARY=${GUROBI_ROOT_DIR}/lib/libgurobi_c++.a"
 fi
 
 ##
@@ -172,14 +177,13 @@ fi
 ##
 if [[ "$WITH_GUROBI" != "" ]]; then
     (
-        #if [ `uname` == "Darwin" ]; then
-            #    # Set install names according using @rpath
-            #install_name_tool -change ${CPLEX_LIB_DIR}/libcplex.dylib     @rpath/libcplex.dylib    ${NIFTY_MODULE_SO}
-            #install_name_tool -change ${CPLEX_LIB_DIR}/libilocplex.dylib  @rpath/libilocplex.dylib ${NIFTY_MODULE_SO}
-            #install_name_tool -change ${CONCERT_LIB_DIR}/libconcert.dylib @rpath/libconcert.dylib  ${NIFTY_MODULE_SO}
-        #fi
+        if [ `uname` == "Darwin" ]; then
+            # Set install name according using @rpath
+            fullpath=$(ls ${GUROBI_ROOT_DIR}/lib/libgurobi*.so*)
+            install_name_tool -change $fullpath @rpath/$(basename $fullpath) ${NIFTY_MODULE_SO} 
+        fi
 
-        # Rename the nifty package to 'nifty_with_cplex'
+        # Rename the nifty package to 'nifty_with_gurobi'
         cd "${PREFIX}/lib/python2.7/site-packages/"
         mv nifty nifty_with_gurobi
     )
