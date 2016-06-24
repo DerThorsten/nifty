@@ -6,11 +6,11 @@
 #include <boost/version.hpp>
 
 // for strange reason travis does not find the boost flat set
-#ifndef WITHIN_TRAVIS
-#define setimpl std::set
-#include <boost/container/flat_set.hpp>
+#ifdef WITHIN_TRAVIS
+#define __setimpl std::set
 #else
-#define setimpl boost::container::flat_set
+#include <boost/container/flat_set.hpp>
+#define __setimpl boost::container::flat_set
 #endif
 
 #include <boost/iterator/counting_iterator.hpp>
@@ -31,7 +31,7 @@ namespace detail_graph{
         typedef NODE_INTERNAL_TYPE NodeInteralType;
         typedef detail_graph::UndirectedAdjacency<int64_t,int64_t,NodeInteralType,EdgeInternalType> NodeAdjacency;
         //typedef std::set<NodeAdjacency > NodeStorage;
-        typedef setimpl <NodeAdjacency> NodeStorage;
+        typedef __setimpl <NodeAdjacency> NodeStorage;
 
         typedef std::pair<NodeInteralType,NodeInteralType> EdgeStorage;
         typedef boost::counting_iterator<int64_t> NodeIter;
