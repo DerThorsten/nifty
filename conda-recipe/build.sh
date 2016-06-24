@@ -93,6 +93,17 @@ else
     CPLEX_ARGS="${CPLEX_ARGS} -DCPLEX_BIN_DIR=${CPLEX_CONCERT_LIBRARY}"
 fi
 
+if [[ "$WITH_GUROBI" == "" ]]; then
+    CPLEX_ARGS=""
+    LINKER_FLAGS=""
+else
+    GUROBI_ARGS=""
+    GUROBI_ARGS="${GUROBI_ARGS} -DWITH_GUROBI=ON"
+    GUROBI_ARGS="${GUROBI_ARGS} -DGUROBI_ROOT_DIR=${GUROBI_ROOT_DIR}"
+    GUROBI_ARGS="${GUROBI_ARGS} -DGUROBI_LIBRARY=$(ls ${GUROBI_ROOT_DIR}/lib/libgurobi*.so*)"
+    GUROBI_ARGS="${GUROBI_ARGS} -DGUROBI_INCLUDE_DIR=${GUROBI_ROOT_DIR}/include"
+    GUROBI_ARGS="${GUROBI_ARGS} -DGUROBI_CPP_LIBRARY=${GUROBI_ROOT_DIR}/lib/libgurobi_c++.a"
+fi
 
 ##
 ## START THE BUILD
@@ -122,6 +133,7 @@ cmake .. \
 \
         -DBOOST_ROOT=${PREFIX} \
         ${CPLEX_ARGS} \
+        ${GUROBI_ARGS} \
 \
         -DBUILD_NIFTY_PYTHON=ON \
         -DPYTHON_EXECUTABLE=${PYTHON} \
@@ -157,14 +169,22 @@ if [[ "$WITH_CPLEX" != "" ]]; then
         # Rename the nifty package to 'nifty_with_cplex'
         cd "${PREFIX}/lib/python2.7/site-packages/"
         mv nifty nifty_with_cplex
-        cd nifty_with_cplex
-        
-        ## This sed command works on Mac and Linux
-        #for f in $(find . -name "*.py"); do
-           #sed -i.bak 's|import nifty[:space]*$|import nifty_with_cplex|g' "$f"
-           #sed -i.bak 's|from nifty import|from nifty_with_cplex import|g' "$f"
-           #rm "$f.bak"
-        #done
     )
 fi
 
+##
+## Rename the python module entirely, and change cplex lib install names.
+##
+if [[ "$WITH_GUROBI" != "" ]]; then
+    (
+        if [ `uname` == "Darwin" ]; then
+            # Set install name according using @rpath
+            fullpath=$(ls ${GUROBI_ROOT_DIR}/lib/libgurobi*.so*)
+            install_name_tool -change $fullpath @rpath/$(basename $fullpath) ${NIFTY_MODULE_SO} 
+        fi
+
+        # Rename the nifty package to 'nifty_with_gurobi'
+        cd "${PREFIX}/lib/python2.7/site-packages/"
+        mv nifty nifty_with_gurobi
+    )
+fi
