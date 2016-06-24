@@ -42,7 +42,8 @@ namespace graph {
 
         MulticutVerboseVisitor(const int printNth = 1)
         :   printNth_(printNth),
-            runOpt_(true){
+            runOpt_(true),
+            iter_(1){
         }
 
         virtual void begin(McBase * solver) {
@@ -50,13 +51,16 @@ namespace graph {
             std::cout<<"begin inference\n";
         }
         virtual bool visit(McBase * solver) {
-            std::stringstream ss;
-            ss<<solver->currentBestEnergy()<<" ";
-            for(size_t i=0; i<logNames_.size(); ++i){
-                ss<<logNames_[i]<<" "<<logValues_[i]<<" ";
+            if(iter_%printNth_ == 0){
+                std::stringstream ss;
+                ss<<solver->currentBestEnergy()<<" ";
+                for(size_t i=0; i<logNames_.size(); ++i){
+                    ss<<logNames_[i]<<" "<<logValues_[i]<<" ";
+                }
+                ss<<"\n";
+                std::cout<<ss.str();
             }
-            ss<<"\n";
-            std::cout<<ss.str();
+            ++iter_;
             return runOpt_;
         }
         virtual void end(McBase * solver)   {
@@ -75,6 +79,7 @@ namespace graph {
     private:
         bool runOpt_;
         int printNth_;
+        int iter_;
         std::vector<std::string> logNames_;
         std::vector<double> logValues_;
     };

@@ -35,12 +35,6 @@ namespace graph{
         typedef PROPPOSAL_GEN ProposalGen;
         typedef typename ProposalGen::Settings ProposalGenSettings;
         typedef typename FusionMoveType::Settings FusionMoveSettings;
-    private:
-        typedef detail_graph::UndirectedAdjacency<int64_t,int64_t,int64_t,int64_t> NodeAdjacency;
-        typedef std::set<NodeAdjacency> NodeStorage;
-        typedef typename Graph:: template NodeMap<NodeStorage> NodesContainer;
-        typedef std::pair<int64_t,int64_t> EdgeStorage;
-        typedef typename Graph:: template EdgeMap<EdgeStorage> EdgeContainer;
         typedef typename Graph:: template EdgeMap<double> EdgeWeights;
     public:
 

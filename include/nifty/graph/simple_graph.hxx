@@ -3,7 +3,7 @@
 #define NIFTY_GRAPH_SIMPLE_GRAPH_HXX
 
 #include <vector>
-#include <set>
+#include <boost/container/flat_set.hpp>
 
 #include <boost/iterator/counting_iterator.hpp>
 
@@ -22,7 +22,8 @@ namespace detail_graph{
         typedef EDGE_INTERANL_TYPE EdgeInternalType;
         typedef NODE_INTERNAL_TYPE NodeInteralType;
         typedef detail_graph::UndirectedAdjacency<int64_t,int64_t,NodeInteralType,EdgeInternalType> NodeAdjacency;
-        typedef std::set<NodeAdjacency > NodeStorage;
+        //typedef std::set<NodeAdjacency > NodeStorage;
+        typedef boost::container::flat_set<NodeAdjacency> NodeStorage;
 
         typedef std::pair<NodeInteralType,NodeInteralType> EdgeStorage;
         typedef boost::counting_iterator<int64_t> NodeIter;
@@ -58,7 +59,7 @@ private:
     typedef EDGE_INTERANL_TYPE EdgeInternalType;
     typedef NODE_INTERNAL_TYPE NodeInteralType;
     typedef detail_graph::UndirectedAdjacency<int64_t,int64_t,NodeInteralType,EdgeInternalType> NodeAdjacency;
-    typedef std::set<NodeAdjacency > NodeStorage;
+    typedef boost::container::flat_set<NodeAdjacency> NodeStorage;
     typedef std::pair<EdgeInternalType,EdgeInternalType> EdgeStorage;
 public:
     typedef detail_graph::SimpleGraphNodeIter NodeIter;

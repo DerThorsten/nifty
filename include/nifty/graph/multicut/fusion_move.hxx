@@ -4,6 +4,7 @@
 
 #include <mutex>          // std::mutex
 #include <memory>
+#include <unordered_set>
 
 #include "nifty/graph/multicut/multicut_greedy_additive.hxx"
 #include "nifty/tools/runtime_check.hxx"
@@ -115,7 +116,7 @@ namespace graph{
         void fuseImpl(NODE_MAP * result){
 
             // dense relabeling
-            std::set<uint64_t> relabelingSet;
+            std::unordered_set<uint64_t> relabelingSet;
             for(const auto node: graph_.nodes()){
                 relabelingSet.insert(ufd_.find(node));
             }

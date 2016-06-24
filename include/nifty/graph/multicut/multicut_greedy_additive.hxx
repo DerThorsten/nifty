@@ -22,6 +22,8 @@ namespace graph{
 
 
 
+    namespace detail_multicut_greedy_additive{
+
     template<class OBJECTIVE>
     class MulticutGreedyAdditiveCallback{
     public:
@@ -120,7 +122,6 @@ namespace graph{
             return pq_.top();
         }
 
-
         void changeSettings(
             const Settings & settings
         ){
@@ -143,6 +144,7 @@ namespace graph{
         std::normal_distribution<> dist_;
     };
 
+    } // end namespace detail_multicut_greedy_additive
 
 
 
@@ -154,18 +156,12 @@ namespace graph{
 
         typedef OBJECTIVE Objective;
         typedef typename Objective::Graph Graph;
-        typedef MulticutGreedyAdditiveCallback<Objective> Callback;
+        typedef detail_multicut_greedy_additive::MulticutGreedyAdditiveCallback<Objective> Callback;
         typedef MulticutBase<OBJECTIVE> Base;
         typedef typename Base::VisitorBase VisitorBase;
         typedef typename Base::EdgeLabels EdgeLabels;
         typedef typename Base::NodeLabels NodeLabels;
-    private:
-        typedef detail_graph::UndirectedAdjacency<int64_t,int64_t,int64_t,int64_t> NodeAdjacency;
-        typedef std::set<NodeAdjacency> NodeStorage;
-        typedef typename Graph:: template NodeMap<NodeStorage> NodesContainer;
-        typedef std::pair<int64_t,int64_t> EdgeStorage;
-        typedef typename Graph:: template EdgeMap<EdgeStorage> EdgeContainer;
-        typedef typename Graph:: template EdgeMap<double> EdgeWeights;
+
     public:
 
         typedef typename Callback::Settings Settings;

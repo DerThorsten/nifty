@@ -3,7 +3,7 @@
 #define NIFTY_GRAPH_EDGE_CONTRACTION_GRAPH_HXX
 
 
-
+#include <boost/container/flat_set.hpp>
 
 #include "nifty/tools/runtime_check.hxx"
 #include "nifty/ufd/ufd.hxx"
@@ -24,7 +24,8 @@ namespace graph{
             typedef nifty::ufd::Ufd< > UfdType;
         private:
             typedef detail_graph::UndirectedAdjacency<int64_t,int64_t,int64_t,int64_t> NodeAdjacency;
-            typedef std::set<NodeAdjacency> NodeStorage;
+            //typedef std::set<NodeAdjacency> NodeStorage;
+            typedef boost::container::flat_set<NodeAdjacency> NodeStorage;
             typedef typename Graph:: template NodeMap<NodeStorage> NodesContainer;
             typedef std::pair<int64_t,int64_t> EdgeStorage;
             typedef typename Graph:: template EdgeMap<EdgeStorage> EdgeContainer;
@@ -37,7 +38,8 @@ namespace graph{
                 nodes_(graph_),
                 edges_(graph_),
                 ufd_(graph_.maxNodeId()+1),
-                currentNodeNum_(graph_.numberOfNodes())
+                currentNodeNum_(graph_.numberOfNodes()),
+                currentEdgeNum_(graph_.numberOfEdges())
             {
 
             }
@@ -75,13 +77,13 @@ namespace graph{
 
                 // 
                 callback_.contractEdge(edgeToContract);
-
+                --currentEdgeNum_;
                 
                 // get the u and v we need to merge into a single node
                 const auto uv = edges_[edgeToContract];
                 const auto u = uv.first;
                 const auto v = uv.second;
-                NIFTY_TEST_OP(u,!=,v);
+                NIFTY_ASSERT_OP(u,!=,v);
 
                 // merge them into a single node
                 ufd_.merge(u, v);
@@ -90,7 +92,7 @@ namespace graph{
                 // check which of u and v is the new representative node
                 // also known as 'aliveNode' and which is the deadNode
                 const auto aliveNode = ufd_.find(u);
-                NIFTY_TEST(aliveNode==u || aliveNode==v);
+                NIFTY_ASSERT(aliveNode==u || aliveNode==v);
                 const auto deadNode = aliveNode == u ? v : u;      
 
 
@@ -120,9 +122,9 @@ namespace graph{
                     const auto findResIter = adjAlive.find(NodeAdjacency(adjToDeadNode));
                     if(findResIter != adjAlive.end()){ // we found a double edge
 
-                        NIFTY_TEST_OP(findResIter->node(),==,adjToDeadNode)
+                        NIFTY_ASSERT_OP(findResIter->node(),==,adjToDeadNode)
                         const auto edgeInAlive = findResIter->edge();
-                            //NIFTY_TEST(pq_.contains(edgeInAlive));
+                            //NIFTY_ASSERT(pq_.contains(edgeInAlive));
                                 //  const auto wEdgeInAlive = pq_.priority(edgeInAlive);
                                 //  const auto wEdgeInDead = pq_.priority(adjToDeadNodeEdge);
                    
@@ -131,6 +133,7 @@ namespace graph{
                                 //  pq_.changePriority(edgeInAlive, wEdgeInAlive + wEdgeInDead);
                         
                         callback_.mergeEdges(edgeInAlive, adjToDeadNodeEdge);
+                        --currentEdgeNum_;
 
                         // relabel adjacency
                         auto & s = nodes_[adjToDeadNode];
@@ -164,6 +167,9 @@ namespace graph{
             uint64_t numberOfNodes()const{
                 return currentNodeNum_;
             }
+            uint64_t numberOfEdges()const{
+                return currentEdgeNum_;
+            }
 
         private:
 
@@ -176,7 +182,7 @@ namespace graph{
                     uv.second = aliveNode;
                 }
                 else{
-                    NIFTY_TEST(false);
+                    NIFTY_ASSERT(false);
                 } 
             }
 
@@ -189,6 +195,7 @@ namespace graph{
             EdgeContainer edges_;
             UfdType ufd_;
             uint64_t currentNodeNum_;
+            uint64_t currentEdgeNum_;
     };
 
 
