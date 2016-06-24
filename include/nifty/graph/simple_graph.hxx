@@ -68,7 +68,7 @@ private:
     typedef EDGE_INTERANL_TYPE EdgeInternalType;
     typedef NODE_INTERNAL_TYPE NodeInteralType;
     typedef detail_graph::UndirectedAdjacency<int64_t,int64_t,NodeInteralType,EdgeInternalType> NodeAdjacency;
-    typedef boost::container::flat_set<NodeAdjacency> NodeStorage;
+    typedef __setimpl<NodeAdjacency> NodeStorage;
     typedef std::pair<EdgeInternalType,EdgeInternalType> EdgeStorage;
 public:
     typedef detail_graph::SimpleGraphNodeIter NodeIter;
