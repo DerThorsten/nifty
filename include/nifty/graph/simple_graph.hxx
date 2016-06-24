@@ -7,6 +7,7 @@
 
 // for strange reason travis does not find the boost flat set
 #ifdef WITHIN_TRAVIS
+#include <set>
 #define __setimpl std::set
 #else
 #include <boost/container/flat_set.hpp>

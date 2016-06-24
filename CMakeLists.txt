@@ -107,7 +107,7 @@ include_directories(${Boost_INCLUDE_DIR})
 MESSAGE( STATUS ${Boost_INCLUDE_DIR})
 
 
-if(DWITHIN_TRAVIS)
+if(WITHIN_TRAVIS)
     add_definitions(-DWITHIN_TRAVIS)
 endif()
 
