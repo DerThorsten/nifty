@@ -4,7 +4,6 @@
 
 #include <vector>
 #include <boost/container/flat_set.hpp>
-
 #include <boost/iterator/counting_iterator.hpp>
 
 #include "nifty/tools/runtime_check.hxx"
