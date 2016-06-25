@@ -61,6 +61,19 @@ def multicutIlpGurobiFactory(verbose=0, addThreeCyclesConstraints=True,
     factory = graph.multicut.MulticutIlpGurobiFactoryUndirectedGraph(s)
     return factory
 
+def multicutIlpGlpkFactory(verbose=0, addThreeCyclesConstraints=True,
+                            addOnlyViolatedThreeCyclesConstraints=True,
+                            relativeGap=0.0, absoluteGap=0.0, memLimit=-1.0):
+    s = graph.multicut.MulticutIlpGlpkSettingsUndirectedGraph()
+    s.verbose = int(verbose)
+    s.addThreeCyclesConstraints = bool(addThreeCyclesConstraints)
+    s.addOnlyViolatedThreeCyclesConstraints = bool(addOnlyViolatedThreeCyclesConstraints)
+    s.ilpSettings = ilpSettings(relativeGap=relativeGap, absoluteGap=absoluteGap, memLimit=memLimit)
+    factory = graph.multicut.MulticutIlpGlpkFactoryUndirectedGraph(s)
+    return factory
+
+
+
 def multicutIlpFactory( ilpSolver = 'cplex',
                         verbose=0, addThreeCyclesConstraints=True,
                         addOnlyViolatedThreeCyclesConstraints=True,
@@ -70,6 +83,8 @@ def multicutIlpFactory( ilpSolver = 'cplex',
         f = multicutIlpCplexFactory
     elif ilpSolver == 'gurobi':
         f = multicutIlpGurobiFactory
+    elif ilpSolver == 'glpk':
+        f = multicutIlpGlpkFactory
     else:
         raise RuntimeError("%s is an unknown ilp solver"%str(ilpSolver))
     return f(verbose=verbose,addThreeCyclesConstraints=addThreeCyclesConstraints,

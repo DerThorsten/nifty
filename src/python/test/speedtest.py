@@ -8,7 +8,7 @@ f = "/home/tbeier/Desktop/mc_models/knott-3d-150/gm_knott_3d_039.h5"
 #f = "/home/tbeier/Desktop/mc_models/knot-3d-550/gm_knott_3d_119.h5"
 #f = "/home/tbeier/Desktop/mc_models/knott-3d-450/gm_knott_3d_103.h5"
 #f = "/home/tbeier/Downloads/gm_large_3.gm"
-f = "/home/tbeier/Downloads/gm_small_1.gm"
+#f = "/home/tbeier/Downloads/gm_small_1.gm"
 #f = "/home/tbeier/Desktop/mc_models/knott-3d-300/gm_knott_3d_072.h5"
 gm = opengm.loadGm(f)
 
@@ -45,7 +45,7 @@ assert g.numberOfEdges == uvs.shape[0]
 obj = nifty.graph.multicut.multicutObjective(g, weights)
 
 
-if True:
+if False:
 
     greedy=nifty.greedyAdditiveFactory().create(obj)
     visitor = nifty.multicutVerboseVisitor()
@@ -77,6 +77,18 @@ if True:
     print("fm",obj.evalNodeLabels(ret))
 
 
+with vigra.Timer("ilp-glpk"):
+    solver = nifty.multicutIlpFactory(ilpSolver='glpk',verbose=1,
+        addThreeCyclesConstraints=True,
+        addOnlyViolatedThreeCyclesConstraints=True,
+        memLimit= 0.01
+    ).create(obj)
+    visitor = nifty.multicutVerboseVisitor()
+    ret = solver.optimizeWithVisitor(visitor=visitor)
+print("glpk",obj.evalNodeLabels(ret))
+
+
+
 with vigra.Timer("ilp-cplex"):
     solver = nifty.multicutIlpFactory(ilpSolver='cplex',verbose=1,
         addThreeCyclesConstraints=True,
@@ -87,13 +99,6 @@ with vigra.Timer("ilp-cplex"):
     ret = solver.optimizeWithVisitor(visitor=visitor)
 print("ilp-cplex",obj.evalNodeLabels(ret))
 
-
-# with vigra.Timer("ilp-cplex"):
-#     solver = nifty.multicutIlpFactory(ilpSolver='cplex',verbose=1,
-#         addThreeCyclesConstraints=False
-#     ).create(obj)
-#     ret = solver.optimize()
-# print("ilp-cplex",obj.evalNodeLabels(ret))
 
 
 with vigra.Timer("opengm"):

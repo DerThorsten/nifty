@@ -13,6 +13,9 @@
 #include "nifty/graph/multicut/ilp_backend/cplex.hxx"
 #endif
 
+#ifdef WITH_GLPK
+#include "nifty/graph/multicut/ilp_backend/glpk.hxx"
+#endif
 
 #include "../../converter.hxx"
 #include "export_multicut_solver.hxx"
@@ -81,6 +84,29 @@ namespace graph{
             typedef MulticutFactory<Solver> Factory;
 
             exportMulticutSolver<Solver>(multicutModule,"MulticutIlpGurobi","UndirectedGraph")
+                .def(py::init<>())
+                .def_readwrite("numberOfIterations", &Settings::numberOfIterations)
+                .def_readwrite("verbose", &Settings::verbose)
+                .def_readwrite("verboseIlp", &Settings::verboseIlp)
+                .def_readwrite("addThreeCyclesConstraints", &Settings::addThreeCyclesConstraints)
+                .def_readwrite("addOnlyViolatedThreeCyclesConstraints", &Settings::addOnlyViolatedThreeCyclesConstraints)
+                .def_readwrite("ilpSettings",&Settings::ilpSettings)
+            ;
+        #endif
+        }
+
+
+        { // scope for name reusing
+        #ifdef WITH_GLPK
+
+
+            
+            typedef ilp_backend::Glpk IlpSolver;
+            typedef MulticutIlp<Objective, IlpSolver> Solver;
+            typedef typename Solver::Settings Settings;
+            typedef MulticutFactory<Solver> Factory;
+
+            exportMulticutSolver<Solver>(multicutModule,"MulticutIlpGlpk","UndirectedGraph")
                 .def(py::init<>())
                 .def_readwrite("numberOfIterations", &Settings::numberOfIterations)
                 .def_readwrite("verbose", &Settings::verbose)
