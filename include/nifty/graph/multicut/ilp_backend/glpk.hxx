@@ -75,32 +75,41 @@ Glpk::initModel(
     }
 
     lp = glp_create_prob();
-
     //std::cout<<"add cols\n";
-    // add variables to the problem
     glp_add_cols(lp, nVariables_);
 
     //std::cout<<"set coeffs\n";
     for(size_t i=0; i<nVariables_; ++i){
-        //std::cout<<"add col "<<i<<" "<<nVariables_<<"\n";
-        // set coefficients
         glp_set_obj_coef(lp, i+1, coefficients[i]);
 
         // set bounds
         glp_set_col_bnds(lp, i+1, GLP_DB, 0, 1);
-
+        glp_set_col_kind(lp, i+1, GLP_IV);
     }
-    //std::cout<<"init mode donel\n";
+
+    // settings
+    glp_term_out(settings_.verbosity);
 }
 
 inline void
 Glpk::optimize() {
-    glp_simplex(lp, NULL);
+    //glp_simplex(lp, NULL);
     glp_iocp parm;
     glp_init_iocp(&parm);
-    parm.presolve = GLP_ON;
+
+
+    if(settings_.relativeGap >= 0.0){
+        parm.mip_gap = settings_.absoluteGap;
+    }
+    if(settings_.relativeGap >= 0.0){
+        parm.mip_gap = settings_.absoluteGap;
+    }
+
+    if(settings_.preSolver != IlpBackendSettings::PRE_SOLVER_NONE){
+        parm.presolve = GLP_ON;
+        parm.binarize = GLP_ON;
+    }
     int err = glp_intopt(lp, &parm);
-    //std::cout<<"opt model done\n";
 }
 
 inline double
@@ -108,8 +117,7 @@ Glpk::label(
     const size_t variableIndex
 ) const {
     //std::cout<<"get label\n";
-    auto val = glp_get_col_prim(lp, variableIndex+1);
-    std::cout<<"val "<<val<<"\n";
+    auto val = glp_mip_col_val  (lp, variableIndex+1);
     return val;
 }
 
