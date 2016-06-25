@@ -59,8 +59,6 @@ if(WITH_CPLEX)
     target_link_libraries(_nifty ${CPLEX_LIBRARIES})
 endif()
 
-
-
 if(WITH_GLPK)
     target_link_libraries(_nifty ${GLPK_LIBRARY})
 endif()

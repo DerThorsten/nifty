@@ -11,6 +11,8 @@ option(WITH_BOOST_COMPUTE OFF)
 option(WITH_GUROBI OFF)
 option(WITH_CPLEX OFF)
 option(WITH_GLPK OFF)
+option(WITH_COIN OFF)
+
 
 option(BUILD_NIFTY_PYTHON OFF)
 
@@ -126,7 +128,7 @@ endif()
 # find gurobi
 #-------------------------------------------------------------------------------------------------------------------
 if(WITH_GUROBI)
-    find_package(GUROBI)
+    find_package(GUROBI REQUIRED)
     include_directories(${GUROBI_INCLUDE_DIR})
     add_definitions(-DWITH_GUROBI)
 endif()
@@ -135,11 +137,10 @@ endif()
 # find glpk
 #-------------------------------------------------------------------------------------------------------------------
 if(WITH_GLPK)
-    find_package(GLPK)
+    find_package(GLPK REQUIRED)
     include_directories(${GLPK_INCLUDE_DIR})
     add_definitions(-DWITH_GLPK)
 endif()
-
 
 
 #-------------------------------------------------------------------------------------------------------------------

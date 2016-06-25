@@ -17,6 +17,9 @@
 #include "nifty/graph/multicut/ilp_backend/cplex.hxx"
 #endif
 
+#ifdef WITH_GLPK
+#include "nifty/graph/multicut/ilp_backend/glpk.hxx"
+#endif
 
 BOOST_AUTO_TEST_CASE(RandomizedMulticutTest)
 {
@@ -35,7 +38,7 @@ BOOST_AUTO_TEST_CASE(RandomizedMulticutTest)
 
 
     // create a grid graph
-    const size_t s = 30;
+    const size_t s = 15;
     Graph g(s*s);
     for(auto y=0; y<s; ++y)
     for(auto x=0; x<s; ++x){
@@ -63,6 +66,38 @@ BOOST_AUTO_TEST_CASE(RandomizedMulticutTest)
     #ifdef WITH_GUROBI
     {
         typedef nifty::graph::ilp_backend::Gurobi IlpSolver;
+        typedef nifty::graph::MulticutIlp<Objective, IlpSolver> Solver;
+        typedef typename Solver::NodeLabels NodeLabels;
+        // optimize 
+        Solver solver(objective);
+        nifty::graph::graph_maps::EdgeMap<Graph, uint8_t> outputEdgeLabels(g,0);
+        
+        VerboseVisitor visitor; 
+        NodeLabels nodeLabels(g, 0);
+        solver.optimize(nodeLabels, &visitor);
+        g.nodeLabelsToEdgeLabels(nodeLabels, outputEdgeLabels);     
+    }
+    #endif
+
+    #ifdef WITH_GUROBI
+    {
+        typedef nifty::graph::ilp_backend::Cplex IlpSolver;
+        typedef nifty::graph::MulticutIlp<Objective, IlpSolver> Solver;
+        typedef typename Solver::NodeLabels NodeLabels;
+        // optimize 
+        Solver solver(objective);
+        nifty::graph::graph_maps::EdgeMap<Graph, uint8_t> outputEdgeLabels(g,0);
+        
+        VerboseVisitor visitor; 
+        NodeLabels nodeLabels(g, 0);
+        solver.optimize(nodeLabels, &visitor);
+        g.nodeLabelsToEdgeLabels(nodeLabels, outputEdgeLabels);     
+    }
+    #endif
+
+    #ifdef WITH_GLPK
+    {
+        typedef nifty::graph::ilp_backend::Glpk IlpSolver;
         typedef nifty::graph::MulticutIlp<Objective, IlpSolver> Solver;
         typedef typename Solver::NodeLabels NodeLabels;
         // optimize 
@@ -167,6 +202,31 @@ BOOST_AUTO_TEST_CASE(SimpleMulticutTest)
     {
         std::cout<<"opt cplex \n";
         typedef nifty::graph::ilp_backend::Cplex IlpSolver;
+        typedef nifty::graph::MulticutIlp<Objective, IlpSolver> Solver;
+        typedef typename Solver::NodeLabels NodeLabels;
+
+
+        Solver solver(objective);
+        nifty::graph::graph_maps::EdgeMap<Graph, uint16_t> outputEdgeLabels(g,0);
+
+
+
+        VerboseVisitor visitor; 
+        NodeLabels nodeLabels(g, 0);
+        solver.optimize(nodeLabels, &visitor);
+        g.nodeLabelsToEdgeLabels(nodeLabels, outputEdgeLabels);
+        
+        for(auto e : g.edges()){
+            NIFTY_TEST_OP(shouldSolution[e],==,outputEdgeLabels[e]);
+        }
+    }
+    #endif
+
+    // optimize cplex
+    #ifdef WITH_GLPK
+    {
+        std::cout<<"opt glpk \n";
+        typedef nifty::graph::ilp_backend::Glpk IlpSolver;
         typedef nifty::graph::MulticutIlp<Objective, IlpSolver> Solver;
         typedef typename Solver::NodeLabels NodeLabels;
 

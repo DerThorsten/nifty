@@ -25,7 +25,7 @@ add_test(test_edge_weighted_watersheds test_edge_weighted_watersheds)
 
 
 
-if(WITH_GUROBI OR WITH_CPLEX)
+if(WITH_GUROBI OR WITH_CPLEX OR WITH_GLPK)
     add_executable(test_multicut test_multicut.cxx )
     target_link_libraries(test_multicut ${TEST_LIBS})
 
@@ -35,6 +35,10 @@ if(WITH_GUROBI OR WITH_CPLEX)
 
     if(WITH_CPLEX)
         target_link_libraries(test_multicut ${CPLEX_LIBRARIES})
+    endif()
+
+    if(WITH_GLPK)
+        target_link_libraries(test_multicut ${GLPK_LIBRARY})
     endif()
 
     add_test(test_multicut test_multicut)

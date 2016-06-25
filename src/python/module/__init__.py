@@ -73,7 +73,6 @@ def multicutIlpGlpkFactory(verbose=0, addThreeCyclesConstraints=True,
     return factory
 
 
-
 def multicutIlpFactory( ilpSolver = 'cplex',
                         verbose=0, addThreeCyclesConstraints=True,
                         addOnlyViolatedThreeCyclesConstraints=True,
@@ -85,6 +84,8 @@ def multicutIlpFactory( ilpSolver = 'cplex',
         f = multicutIlpGurobiFactory
     elif ilpSolver == 'glpk':
         f = multicutIlpGlpkFactory
+    elif ilpSolver == 'coin-cbc' or ilpSolver == 'cbc':
+        f = multicutIlpCoinCbcFactory
     else:
         raise RuntimeError("%s is an unknown ilp solver"%str(ilpSolver))
     return f(verbose=verbose,addThreeCyclesConstraints=addThreeCyclesConstraints,

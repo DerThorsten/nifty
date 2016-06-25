@@ -77,6 +77,18 @@ if False:
     print("fm",obj.evalNodeLabels(ret))
 
 
+with vigra.Timer("ilp-coin-cbc"):
+    solver = nifty.multicutIlpFactory(ilpSolver='coin-cbc',verbose=1,
+        addThreeCyclesConstraints=True,
+        addOnlyViolatedThreeCyclesConstraints=True,
+        memLimit= 0.01
+    ).create(obj)
+    visitor = nifty.multicutVerboseVisitor()
+    ret = solver.optimizeWithVisitor(visitor=visitor)
+print("coin-cbc",obj.evalNodeLabels(ret))
+
+
+
 with vigra.Timer("ilp-glpk"):
     solver = nifty.multicutIlpFactory(ilpSolver='glpk',verbose=1,
         addThreeCyclesConstraints=True,

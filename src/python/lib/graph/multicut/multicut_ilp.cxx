@@ -17,6 +17,7 @@
 #include "nifty/graph/multicut/ilp_backend/glpk.hxx"
 #endif
 
+
 #include "../../converter.hxx"
 #include "export_multicut_solver.hxx"
 
@@ -117,9 +118,6 @@ namespace graph{
             ;
         #endif
         }
-
-
     }
-
 }
 }
