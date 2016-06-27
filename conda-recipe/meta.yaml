@@ -9,8 +9,8 @@
 package:
   {% if WITH_CPLEX %}
     name: nifty-with-cplex
-  {% elif WITH_CPLEX %}
-    name: nifty-with-cplex
+  {% elif WITH_GUROBI %}
+    name: nifty-with-gurobi
   {% else %}
     name: nifty
   {% endif %}
