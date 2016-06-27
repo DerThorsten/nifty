@@ -79,7 +79,7 @@ BOOST_AUTO_TEST_CASE(RandomizedMulticutTest)
     }
     #endif
 
-    #ifdef WITH_GUROBI
+    #ifdef WITH_CPLEX
     {
         typedef nifty::graph::ilp_backend::Cplex IlpSolver;
         typedef nifty::graph::MulticutIlp<Objective, IlpSolver> Solver;
