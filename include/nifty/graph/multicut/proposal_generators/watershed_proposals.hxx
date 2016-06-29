@@ -2,6 +2,7 @@
 #ifndef NIFTY_GRAPH_MULTICUT_WATERSHED_PROPOSALS_HXX
 #define NIFTY_GRAPH_MULTICUT_WATERSHED_PROPOSALS_HXX
 
+#include <string>
 
 #include "nifty/tools/runtime_check.hxx"
 #include "nifty/graph/multicut/multicut_base.hxx"
@@ -29,6 +30,9 @@ namespace graph{
             double seedFraction{0.001};
         };
 
+        static std::string name(){
+            return std::string("WatershedProposals");
+        }
 
         WatershedProposals(
             const Objective & objective, 

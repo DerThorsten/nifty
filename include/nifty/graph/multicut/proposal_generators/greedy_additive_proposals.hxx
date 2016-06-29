@@ -2,6 +2,7 @@
 #ifndef NIFTY_GRAPH_MULTICUT_PROPOSALS_GREEDY_ADDITIVE_PROPOSALS_HXX
 #define NIFTY_GRAPH_MULTICUT_PROPOSALS_GREEDY_ADDITIVE_PROPOSALS_HXX
 
+#include <string>
 
 #include "nifty/tools/runtime_check.hxx"
 #include "nifty/graph/multicut/multicut_base.hxx"
@@ -29,6 +30,10 @@ namespace graph{
             double nodeNumStopCond{-1.0};
         };
 
+
+        static std::string name(){
+            return std::string("GreedyAdditiveProposals");
+        }
 
         GreedyAdditiveProposals(
             const Objective & objective, 

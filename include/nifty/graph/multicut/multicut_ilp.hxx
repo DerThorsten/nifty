@@ -74,6 +74,10 @@ namespace graph{
             return *currentBest_;
         }
 
+        virtual std::string name()const{
+            return std::string("MulticutIlp") + ILP_SOLVER::name();
+        }
+
         
     private:
 

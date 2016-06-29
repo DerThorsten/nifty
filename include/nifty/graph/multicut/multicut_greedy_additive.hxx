@@ -182,6 +182,10 @@ namespace graph{
             return *currentBest_;
         }
 
+        virtual std::string name()const{
+            return std::string("MulticutGreedyAdditive");
+        }
+
 
     private:
 

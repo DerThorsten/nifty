@@ -3,6 +3,8 @@
 #define NIFTY_ILP_GUROBI_HXX
 
 #include <limits>
+#include <string>
+
 #include "gurobi_c++.h"
 
 #include "nifty/graph/multicut/ilp_backend/ilp_backend.hxx"
@@ -31,6 +33,9 @@ public:
 
     double label(const size_t) const;
 
+    static std::string name(){
+        return std::string("Gurobi");
+    }
 
 private:
     Settings settings_;

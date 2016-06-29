@@ -5,7 +5,8 @@
 #include <string>
 #include <initializer_list>
 #include <sstream>
-
+#include <stdexcept>
+    
 #include "nifty/graph/multicut/multicut_visitor_base.hxx"
 
 namespace nifty {
@@ -13,7 +14,14 @@ namespace graph {
 
 
 
+    class WeightsChangedNotSupported
+    : public std::runtime_error{
+    public:
+        WeightsChangedNotSupported(const std::string msg = std::string())
+        : std::runtime_error(msg){
 
+        }
+    };
 
 
 
@@ -34,9 +42,19 @@ namespace graph {
         virtual const NodeLabels & currentBestNodeLabels() = 0;
 
 
-        //// inform the solver that the objective has changed
-        //virtual void weightsChanged(){
-        //}   
+        virtual std::string name() const = 0 ;
+
+        /**
+         * @brief Inform solver about a change of weights
+         * @details Inform solver that all weights could have changed. 
+         * If a particular solver does not overload this function, a 
+         * 
+         */
+        virtual void weightsChanged(){
+            std::stringstream ss;
+            ss<<this->name()<<" does not support changing weights";
+            throw WeightsChangedNotSupported(ss.str());
+        }   
 
         
 

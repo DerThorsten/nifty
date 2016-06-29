@@ -40,7 +40,7 @@ public:
 
     const NodeLabels & currentBestNodeLabels()  {
         PYBIND11_OVERLOAD_PURE(
-            const NodeLabels &,                  /* Return type */
+            const NodeLabels &,                 /* Return type */
             McBase,                             /* Parent class */
             currentBestNodeLabels,              /* Name of function */
         );
@@ -49,8 +49,8 @@ public:
     double currentBestEnergy()  {
         PYBIND11_OVERLOAD_PURE(
             double,                  /* Return type */
-            McBase,                             /* Parent class */
-            currentBestEnergy,              /* Name of function */
+            McBase,                  /* Parent class */
+            currentBestEnergy,       /* Name of function */
         );
     }
 
@@ -59,6 +59,14 @@ public:
             const Objective & ,    /* Return type */
             McBase,                /* Parent class */
             objective              /* Name of function */
+        );
+    }
+
+    std::string name() const{
+        PYBIND11_OVERLOAD_PURE(
+            std::string ,    /* Return type */
+            McBase,          /* Parent class */
+            name             /* Name of function */
         );
     }
 };

@@ -47,6 +47,7 @@ add_library(_nifty SHARED
   graph/multicut/multicut_ilp.cxx
   graph/multicut/multicut_greedy_additive.cxx
   graph/multicut/fusion_move_based.cxx
+  graph/multicut/perturb_and_map.cxx
 )
 
 

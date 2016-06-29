@@ -3,6 +3,8 @@
 #define NIFTY_GRAPH_MULTICUT_ILP_BACKEND_CPLEX_HXX
 
 #include <limits>
+#include <string>
+
 #define IL_STD 1
 #include <ilcplex/ilocplex.h>
 
@@ -32,6 +34,9 @@ public:
     void optimize();
     double label(const size_t) const;
 
+    static std::string name(){
+        return std::string("Cplex");
+    }
 
 private:
    Settings         settings_;

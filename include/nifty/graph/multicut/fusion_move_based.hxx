@@ -60,6 +60,9 @@ namespace graph{
             return *currentBest_;
         }
 
+        virtual std::string name()const{
+            return std::string("FusionMoveBased") + PROPPOSAL_GEN::name();
+        }
 
     private:
 
