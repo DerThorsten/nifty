@@ -4,6 +4,7 @@
 #include "nifty/graph/multicut/multicut_objective.hxx"
 #include "nifty/graph/simple_graph.hxx"
 #include "nifty/graph/multicut/multicut_base.hxx"
+#include "nifty/graph/multicut/multicut_visitor_base.hxx"
 
 #include "../../converter.hxx"
 #include "py_multicut_visitor_base.hxx"

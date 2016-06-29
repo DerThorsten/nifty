@@ -25,6 +25,7 @@ namespace graph{
         typedef OBJECTIVE Objective;
         typedef MulticutBase<OBJECTIVE> Base;
         typedef typename Base::VisitorBase VisitorBase;
+        typedef typename Base::VisitorProxy VisitorProxy;
         typedef typename Base::EdgeLabels EdgeLabels;
         typedef typename Base::NodeLabels NodeLabels;
         typedef ILP_SOLVER IlpSovler;
@@ -73,7 +74,7 @@ namespace graph{
             return *currentBest_;
         }
 
-
+        
     private:
 
         void addThreeCyclesConstraintsExplicitly(const IlpSovler & ilpSolver);
@@ -136,12 +137,13 @@ namespace graph{
     optimize(
         NodeLabels & nodeLabels,  VisitorBase * visitor
     ){  
-        if(visitor!=nullptr)
-            visitor->addLogNames({"violatedConstraints"});
+        VisitorProxy visitorProxy(visitor);
+
+        visitorProxy.addLogNames({"violatedConstraints"});
 
         currentBest_ = &nodeLabels;
-        if(visitor!=nullptr)
-            visitor->begin(this);
+        
+        visitorProxy.begin(this);
 
         // set the starting point 
         auto edgeLabelIter = detail_graph::nodeLabelsToEdgeLabelsIterBegin(graph_, nodeLabels);
@@ -158,22 +160,19 @@ namespace graph{
             // repair the solution
             repairSolution(nodeLabels);
 
-            // call visitor
-            if(visitor!=nullptr){
-                // add additional logs
-                visitor->setLogValue(0,nViolated);
-                // visit visitor
-                if(!visitor->visit(this))
-                    break;
-            }
+            // add additional logs
+            visitorProxy.setLogValue(0,nViolated);
+            // visit visitor
+            if(!visitorProxy.visit(this))
+                break;
+            
             
             // exit if we do not violate constraints
             if (nViolated == 0)
                 break;
         }
 
-        if(visitor!=nullptr)
-            visitor->end(this);
+        visitorProxy.end(this);
     }
 
     template<class OBJECTIVE, class ILP_SOLVER>
