@@ -24,6 +24,15 @@ namespace graph {
     };
 
 
+    class ResetNotSupported
+    : public std::runtime_error{
+    public:
+        ResetNotSupported(const std::string msg = std::string())
+        : std::runtime_error(msg){
+
+        }
+    };
+
 
     template<class OBJECTIVE>
     class MulticutBase{
@@ -45,9 +54,13 @@ namespace graph {
         virtual std::string name() const = 0 ;
 
         /**
-         * @brief Inform solver about a change of weights
+         * @brief Inform solver about a change of weights.
          * @details Inform solver that all weights could have changed. 
-         * If a particular solver does not overload this function, a 
+         * If a particular solver does not overload this function, an
+         * WeightsChangedNotSupported exception is thrown.
+         * After a call of this function it is save to run optimize
+         * again, therefore it resets the solver
+         * 
          * 
          */
         virtual void weightsChanged(){

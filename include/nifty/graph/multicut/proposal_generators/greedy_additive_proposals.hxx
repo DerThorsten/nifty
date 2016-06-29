@@ -77,6 +77,11 @@ namespace graph{
             ++proposalNumber_;
         }
 
+        void reset(){
+            proposalNumber_ = 0;
+            solver_->reset();
+        }
+
     private:
 
         const Objective & objective_;

@@ -64,9 +64,13 @@ namespace graph{
             return std::string("FusionMoveBased") + PROPPOSAL_GEN::name();
         }
 
+        virtual void weightsChanged(){
+            for(size_t i=0; i<pgens_.size(); ++i){
+                pgens_[i]->reset();
+            }
+        }
     private:
 
-        void reset();
 
 
         const Objective & objective_;

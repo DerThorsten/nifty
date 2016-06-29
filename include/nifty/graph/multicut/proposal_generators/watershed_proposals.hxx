@@ -51,19 +51,7 @@ namespace graph{
             dist_(0.0, settings.sigma),
             intDist_()
         {
-
-            const auto & weights = objective_.weights();
-            for(auto edge: graph_.edges()){
-                if(weights[edge]<0.0){
-                    negativeEdges_.push_back(edge);
-                }
-            }
-            if(!negativeEdges_.empty())
-                intDist_ = std::uniform_int_distribution<> (0, negativeEdges_.size()-1);
-            else{
-                // fallback to not crash, but meaningless since there are no negative edges
-                intDist_ = std::uniform_int_distribution<> (0, 1);
-            }
+            this->reset();
         }
 
         ~WatershedProposals(){
@@ -96,6 +84,22 @@ namespace graph{
             }
             edgeWeightedWatershedsSegmentation(graph_, weights_, seeds_, proposal);
             ++proposalNumber_;
+        }
+        void reset(){
+            proposalNumber_ = 0;
+            negativeEdges_.resize(0);
+            const auto & weights = objective_.weights();
+            for(auto edge: graph_.edges()){
+                if(weights[edge]<0.0){
+                    negativeEdges_.push_back(edge);
+                }
+            }
+            if(!negativeEdges_.empty())
+                intDist_ = std::uniform_int_distribution<> (0, negativeEdges_.size()-1);
+            else{
+                // fallback to not crash, but meaningless since there are no negative edges
+                intDist_ = std::uniform_int_distribution<> (0, 1);
+            }
         }
 
     private:

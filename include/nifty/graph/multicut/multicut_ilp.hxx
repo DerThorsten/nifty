@@ -77,7 +77,9 @@ namespace graph{
         virtual std::string name()const{
             return std::string("MulticutIlp") + ILP_SOLVER::name();
         }
-
+        virtual void weightsChanged(){
+            ilpSolver_.changeObjective(objective_.weights().begin());
+        }
         
     private:
 

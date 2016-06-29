@@ -36,6 +36,12 @@ public:
     static std::string name(){
         return std::string("Glpk");
     }
+    template<class OBJECTIVE_ITERATOR>
+    void changeObjective(
+        OBJECTIVE_ITERATOR objectiveIter
+    ){
+        throw WeightsChangedNotSupported();
+    }
 
 private:
     Settings settings_;

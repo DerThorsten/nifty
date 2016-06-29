@@ -174,6 +174,9 @@ namespace graph{
         void reset();
         void changeSettings(const Settings & settings);
 
+        virtual void weightsChanged(){
+            this->reset();
+        }
         virtual const NodeLabels & currentBestNodeLabels( ){
             auto & ufd  = edgeContractionGraph_.ufd();
             for(auto node : graph_.nodes()){

@@ -24,6 +24,8 @@ public:
         env_.end();
     }
 
+    
+
     void initModel(const size_t, const double*);
 
     template<class Iterator>
@@ -36,6 +38,18 @@ public:
 
     static std::string name(){
         return std::string("Cplex");
+    }
+    
+    template<class OBJECTIVE_ITERATOR>
+    void changeObjective(
+        OBJECTIVE_ITERATOR objectiveIter
+    ){
+        IloNumArray    obj(env_,nVariables_);
+        for(size_t v=0; v<nVariables_; ++v){
+            obj[v] = *objectiveIter;
+            ++objectiveIter;
+        }
+        obj_.setLinearCoefs(x_,obj);
     }
 
 private:

@@ -83,7 +83,7 @@ namespace graph{
 
         multicutModule.def("perturbAndMap",
             [](const McObjective & objective, const PerturbAndMapSettingsType & s){
-                auto perturbAndMap = new PerturbAndMapType(objective);
+                auto perturbAndMap = new PerturbAndMapType(objective, s);
                 return perturbAndMap;
             },
             py::return_value_policy::take_ownership,

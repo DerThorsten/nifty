@@ -37,6 +37,14 @@ public:
         return std::string("Gurobi");
     }
 
+    template<class OBJECTIVE_ITERATOR>
+    void changeObjective(
+        OBJECTIVE_ITERATOR objectiveIter
+    ){
+        throw WeightsChangedNotSupported();
+
+    }
+
 private:
     Settings settings_;
     GRBEnv gurobiEnvironment_;
