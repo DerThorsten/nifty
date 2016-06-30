@@ -5,7 +5,7 @@ import numpy
 
 
 f = "/home/tbeier/Desktop/mc_models/knott-3d-150/gm_knott_3d_039.h5"
-#f = "/home/tbeier/Desktop/mc_models/knot-3d-550/gm_knott_3d_119.h5"
+f = "/home/tbeier/Desktop/mc_models/knot-3d-550/gm_knott_3d_119.h5"
 #f = "/home/tbeier/Desktop/mc_models/knott-3d-450/gm_knott_3d_103.h5"
 #f = "/home/tbeier/Downloads/gm_large_3.gm"
 #f = "/home/tbeier/Downloads/gm_small_1.gm"

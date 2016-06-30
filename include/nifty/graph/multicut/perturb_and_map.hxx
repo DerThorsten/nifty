@@ -95,15 +95,15 @@ namespace graph {
                 auto solver = solvers_[0]; // fixme, atm fixed to first thread
                 this->perturbWeights(obj->weights());
                 solver->weightsChanged();
-                std::cout<<"fill nl\n";
+
                 NodeLabels arg(graph_);
-                for(const auto node : graph_.nodes()){
+                for(const auto node : graph_.nodes())
                     arg[node] = startingPoint[node];
-                }
-                MulticutVerboseVisitor<Objective> v;
-                std::cout<<"optimize nl\n";
-                solver->optimize(arg, &v);//nullptr);
-                std::cout<<" arg pobj "<<obj->evalNodeLabels(arg)<<" oobj "<<objective_.evalNodeLabels(arg)<<"\n";
+                
+                //MulticutVerboseVisitor<Objective> v;
+                //solver->optimize(arg, &v);
+                solver->optimize(arg, nullptr);
+                //std::cout<<" arg pobj "<<obj->evalNodeLabels(arg)<<" oobj "<<objective_.evalNodeLabels(arg)<<"\n";
             }
 
         }
