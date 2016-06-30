@@ -32,7 +32,7 @@ namespace graph{
         const auto settingsClsName = std::string("PerturbAndMapSettingsUndirectedGraph");
 
 
-        auto multicutObjectiveCls = py::class_<PerturbAndMapType>(multicutModule, clsName.c_str())
+        auto pAndMapCls = py::class_<PerturbAndMapType>(multicutModule, clsName.c_str())
             .def("optimize",
             [](
                 PerturbAndMapType * self,
@@ -74,10 +74,24 @@ namespace graph{
         ;
 
 
-        py::class_<PerturbAndMapSettingsType>(multicutModule, settingsClsName.c_str())
+        py::enum_<PerturbAndMapType::NoiseType>(pAndMapCls, "NoiseType")
+            .value("UNIFORM_NOISE", PerturbAndMapType::UNIFORM_NOISE)
+            .value("NORMAL_NOISE", PerturbAndMapType::NORMAL_NOISE)
+            .value("MAKE_LESS_CERTAIN", PerturbAndMapType::MAKE_LESS_CERTAIN)
+            .export_values();
+
+
+        auto settings = py::class_<PerturbAndMapSettingsType>(multicutModule, settingsClsName.c_str())
             .def(py::init<>())
             .def_readwrite("mcFactory",&PerturbAndMapSettingsType::mcFactory)
+            .def_readwrite("numberOfIterations",&PerturbAndMapSettingsType::numberOfIterations)
+            .def_readwrite("numberOfThreads",&PerturbAndMapSettingsType::numberOfThreads)
+            .def_readwrite("verbose",&PerturbAndMapSettingsType::verbose)
+            .def_readwrite("noiseType",&PerturbAndMapSettingsType::noiseType)
+            .def_readwrite("noiseMagnitude",&PerturbAndMapSettingsType::noiseMagnitude)
         ;
+
+
 
 
 

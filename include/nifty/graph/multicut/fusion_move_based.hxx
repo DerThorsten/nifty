@@ -195,11 +195,8 @@ namespace graph{
                         auto eBestCopy = objective_.evalNodeLabels(bestCopy);
                         mtx.unlock(); 
 
-                        std::vector<NodeLabels*> toFuse;
-                        toFuse.push_back(&proposal);
-                        toFuse.push_back(&currentBest);
+
                         NodeLabels res(graph_);
-                        
                         auto & fm = *(fusionMoves_[threadId]);
                         fm.fuse( {&proposal, &currentBest}, &res);
                         auto eFuse = objective_.evalNodeLabels(res);
@@ -242,16 +239,8 @@ namespace graph{
 
                     auto pSize = proposals.size() / nFuse;
                     if( proposals.size() % nFuse != 0){
-                        //std::cout<<"bra\n";
                         ++pSize;
                     }
-                    else{
-
-                    }
-
-                    //std::cout<<"proposals 1 size "<<proposals.size()<<"\n";
-                    //std::cout<<"nFuse            "<<nFuse<<"\n";
-                    //std::cout<<"pSizse           "<<pSize<<"\n";
 
                     nifty::parallel::parallel_foreach(threadPool_, pSize,
                     [&](const size_t threadId, const size_t ii){
@@ -280,19 +269,15 @@ namespace graph{
                     proposals2.clear();
                 }
                 currentBest = proposals[0];
-
-
             }
 
             bestEnergy = objective_.evalNodeLabels(currentBest);
-
             // call the visitor and see if we need to continue
             if(visitor!= nullptr){
                 visitor->setLogValue(0,iterWithoutImprovement);
                 if(!visitor->visit(this))
                     break;
             }
- 
             if(bestEnergy < oldBestEnergy){
                 iterWithoutImprovement = 0;
             }
@@ -338,7 +323,7 @@ namespace graph{
             auto & proposal = *solBufferIn_[0];
             pgen.generate(currentBest, proposal);
 
-            if(bestEnergy>=-0.000000001){
+            if(bestEnergy>=-0.000000001 && iter==0){
                 currentBest = proposal;
                 bestEnergy = objective_.evalNodeLabels(currentBest);
                 iterWithoutImprovement = 0;

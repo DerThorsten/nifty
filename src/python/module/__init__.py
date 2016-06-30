@@ -152,8 +152,28 @@ def __addStaticMethodsToUndirectedGraphAndMulticutObjectiveUndirectedGraph():
 
 
 
-    def perturbAndMapSettings(mcFactory):
+    def perturbAndMapSettings(  numberOfIterations=1000,
+                                numberOfThreads=-1,
+                                verbose=1,
+                                noiseType='normal',
+                                noiseMagnitude=1.0,
+                                mcFactory=fusionMoveBasedFactory(numberOfThreads=0)):
         s = graph.multicut.PerturbAndMapSettingsUndirectedGraph()
+
+        s.numberOfIterations = int(numberOfIterations)
+        s.numberOfThreads = int(numberOfThreads)
+        s.verbose = int(verbose)
+        s.noiseMagnitude = float(noiseMagnitude)
+
+        if(noiseType == 'normal'):
+            s.noiseType = graph.multicut.PerturbAndMapUndirectedGraph.NORMAL_NOISE
+        elif(noiseType == 'uniform'):
+            s.noiseType = graph.multicut.PerturbAndMapUndirectedGraph.UNIFORM_NOISE
+        elif(noiseType == 'makeLessCertain'):
+            s.noiseType = graph.multicut.PerturbAndMapUndirectedGraph.MAKE_LESS_CERTAIN
+        else:
+            raise RuntimeError("'%s' is an unknown noise type. Must be 'normal' or 'uniform' or 'makeLessCertain' "%str(noiseType))
+
         s.mcFactory = mcFactory
         return s
     G.perturbAndMapSettings = staticmethod(perturbAndMapSettings)

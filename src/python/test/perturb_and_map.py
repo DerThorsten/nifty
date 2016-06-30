@@ -5,7 +5,7 @@ import numpy
 
 
 f = "/home/tbeier/Desktop/mc_models/knott-3d-150/gm_knott_3d_039.h5"
-f = "/home/tbeier/Desktop/mc_models/knot-3d-550/gm_knott_3d_119.h5"
+#f = "/home/tbeier/Desktop/mc_models/knot-3d-550/gm_knott_3d_119.h5"
 #f = "/home/tbeier/Desktop/mc_models/knott-3d-450/gm_knott_3d_103.h5"
 #f = "/home/tbeier/Downloads/gm_large_3.gm"
 #f = "/home/tbeier/Downloads/gm_small_1.gm"
@@ -47,23 +47,32 @@ ilpFactory = obj.multicutIlpFactory(ilpSolver='cplex',
 )
 
 
+
+greedy=obj.greedyAdditiveFactory().create(obj)
+visitor = obj.multicutVerboseVisitor(1000)
+ret = greedy.optimizeWithVisitor(visitor=visitor)
+
 greedy=obj.greedyAdditiveFactory()
 fmFactory = obj.fusionMoveBasedFactory(
     #fusionMove=nifty.fusionMoveSettings(mcFactory=greedy),
     fusionMove=obj.fusionMoveSettings(mcFactory=ilpFactory),
     #proposalGen=nifty.greedyAdditiveProposals(sigma=30,nodeNumStopCond=-1,weightStopCond=0.0),
     proposalGen=obj.watershedProposals(sigma=1,seedFraction=0.01),
-    numberOfIterations=300,
+    numberOfIterations=100,
     numberOfParallelProposals=16, # no effect if nThreads equals 0 or 1
     numberOfThreads=0,
-    stopIfNoImprovement=10,
+    stopIfNoImprovement=20,
     fuseN=2,
 )
 
 
 
-s = g.perturbAndMapSettings(fmFactory)
+s = g.perturbAndMapSettings(mcFactory=fmFactory,noiseMagnitude=4.2,numberOfThreads=-1,
+                            numberOfIterations=10000, noiseType='uniform')
 pAndMap = g.perturbAndMap(obj, s)
-print pAndMap.optimize()
+res =  pAndMap.optimize(ret)
 
+
+for x in range(30):
+    print res[x]," ",
 

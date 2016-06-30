@@ -28,11 +28,24 @@ namespace graph {
         typedef typename Graph:: template NodeMap<uint64_t> NodeLabels;
         typedef typename Graph:: template EdgeMap<double>   EdgeState;
         typedef std::shared_ptr<InternalMcFactoryBase> FactorySmartPtr;
+
+
+
+        enum NoiseType{
+            UNIFORM_NOISE,
+            NORMAL_NOISE,
+            MAKE_LESS_CERTAIN
+        };
+
+
         struct Settings{
             FactorySmartPtr mcFactory;
-            size_t numberOfIterations{1000};
+            size_t numberOfIterations{100};
             int numberOfThreads{-1};
             int verbose = 2;
+            int seed = 42;
+            NoiseType noiseType{UNIFORM_NOISE};
+            double noiseMagnitude;
         };
 
         PerturbAndMap(const Objective & objective, const Settings settings = Settings());
@@ -50,24 +63,25 @@ namespace graph {
     private:
 
         struct ThreadData{
-            ThreadData(const size_t threadId, const Graph & graph)
+            ThreadData(const size_t threadId,const int seed, const Graph & graph)
             :   objective_(graph),
                 solver_(nullptr),
-                gen_(threadId),
-                dis_(0,10){
+                gen_(threadId+seed),
+                distUniform01_(0,1),
+                distNormal_(0,1){
 
             }
 
             InternalObjective  objective_;
             MulticutBaseType * solver_;
             std::mt19937 gen_;
-            std::uniform_real_distribution<> dis_;
-
+            std::uniform_real_distribution<> distUniform01_;
+            std::normal_distribution<> distNormal_;
         };
 
 
         template<class WEIGHTS>
-        void perturbWeights( WEIGHTS & perturbedWeights);
+        void perturbWeights(const size_t threadId, WEIGHTS & perturbedWeights);
 
 
 
@@ -95,7 +109,7 @@ namespace graph {
         threadDataVec_.resize(popt.getActualNumThreads(),nullptr);
 
         NIFTY_CHECK(bool(settings_.mcFactory),"factory must not be empty");
-        
+
         // nthreads
         auto nThreads = threadDataVec_.size();
         const auto & weightsOriginal = objective_.weights();
@@ -105,7 +119,7 @@ namespace graph {
             popt.getActualNumThreads(),
             [&](size_t threadId, int tid){
                 auto & threadDataPtr = threadDataVec_[tid];
-                threadDataPtr = new ThreadData(tid, graph_);
+                threadDataPtr = new ThreadData(tid, settings_.seed, graph_);
                 // copy weights
                 auto & weightsCopy = threadDataVec_[tid]->objective_.weights();
                 for(const auto edge : this->graph().edges())
@@ -171,11 +185,12 @@ namespace graph {
                 auto & obj = threadData.objective_;
                 auto solver = threadData.solver_;
 
-                this->perturbWeights(obj.weights());
+                this->perturbWeights(threadId, obj.weights());
                 solver->weightsChanged();
                 NodeLabels arg(graph_);
                 for(const auto node : graph_.nodes())
                     arg[node] = startingPoint[node];
+                MulticutVerboseVisitor<Objective> v;
                 solver->optimize(arg, nullptr);
 
                 mtx.lock();
@@ -198,19 +213,39 @@ namespace graph {
     template<class WEIGHTS>
     void PerturbAndMap<OBJECTIVE>::
     perturbWeights( 
+        const size_t threadId,
         WEIGHTS & perturbedWeights
     ){
 
-
-
-        // fixme, all threads want to store their own randgen
-        std::random_device rd;
-        std::mt19937 gen(rd());
-        std::uniform_real_distribution<> dis(-1, 1);
-
+        auto & td = *threadDataVec_[threadId];
+        auto & gen = td.gen_;
+        const auto noiseMag = settings_.noiseMagnitude;
         const auto originalWeights = objective_.weights();
-        for(auto edge : graph_.edges()){
-            perturbedWeights[edge] = originalWeights[edge] + dis(gen);
+
+
+        if(settings_.noiseType == UNIFORM_NOISE){
+            auto & d = td.distUniform01_;
+            for(auto edge : graph_.edges()){
+                perturbedWeights[edge] = originalWeights[edge] + (d(gen)-0.5)*2.0*noiseMag;
+            }
+        }
+        else if(settings_.noiseType == NORMAL_NOISE){
+            auto & d = td.distNormal_;
+            for(auto edge : graph_.edges()){
+                perturbedWeights[edge] = originalWeights[edge] + d(gen)*noiseMag;
+            }
+        }
+        else if(settings_.noiseType == MAKE_LESS_CERTAIN){
+            auto & d = td.distUniform01_;
+            for(auto edge : graph_.edges()){
+
+                const auto ow = originalWeights[edge];
+                const auto sgn = ow < 0.0 ? -1.0 : 1.0;
+                const auto rawNoise = d(gen);
+                const auto noise = std::abs(ow)*-1.0*rawNoise*sgn*noiseMag;
+                //std::cout<<"ow "<<ow<<" noise "<<noise<<"\n";
+                perturbedWeights[edge] = originalWeights[edge] + noise;
+            }
         }
     }
 
