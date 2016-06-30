@@ -70,6 +70,7 @@ namespace graph{
                 .def_readwrite("stopIfNoImprovement",&Settings::stopIfNoImprovement)
                 .def_readwrite("proposalGenSettings", &Settings::proposalGenSettings)
                 .def_readwrite("fusionMoveSettings",  &Settings::fusionMoveSettings)
+                .def_readwrite("numberOfThreads",  &Settings::numberOfThreads)
             ;
         }
 
@@ -99,6 +100,7 @@ namespace graph{
                 .def_readwrite("stopIfNoImprovement",&Settings::stopIfNoImprovement)
                 .def_readwrite("proposalGenSettings", &Settings::proposalGenSettings)
                 .def_readwrite("fusionMoveSettings",  &Settings::fusionMoveSettings)
+                .def_readwrite("numberOfThreads",  &Settings::numberOfThreads)
             ;
         }
      

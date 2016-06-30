@@ -124,6 +124,7 @@ def __addStaticMethodsToUndirectedGraphAndMulticutObjectiveUndirectedGraph():
     def fusionMoveBasedFactory(numberOfIterations=10,verbose=0,
                                numberOfParallelProposals=10, fuseN=2,
                                stopIfNoImprovement=4,
+                               numberOfThreads=-1,
                                proposalGen=greedyAdditiveProposals(),
                                fusionMove=fusionMoveSettings()):
         solverSettings = None
@@ -143,7 +144,7 @@ def __addStaticMethodsToUndirectedGraphAndMulticutObjectiveUndirectedGraph():
         solverSettings.numberOfParallelProposals = int(numberOfParallelProposals)
         solverSettings.fuseN = int(fuseN)
         solverSettings.stopIfNoImprovement = int(stopIfNoImprovement)
-
+        solverSettings.numberOfThreads = int(numberOfThreads)
         factory = factoryCls(solverSettings)
         return factory
     G.fusionMoveBasedFactory = staticmethod(fusionMoveBasedFactory)

@@ -40,15 +40,29 @@ g.insertEdges(uvs)
 obj = nifty.graph.multicut.multicutObjective(g, weights)
 
 
-factory = obj.multicutIlpFactory(ilpSolver='cplex',verbose=1,
+ilpFactory = obj.multicutIlpFactory(ilpSolver='cplex',
     addThreeCyclesConstraints=True,
-    addOnlyViolatedThreeCyclesConstraints=True,
-    memLimit= 0.01
+    addOnlyViolatedThreeCyclesConstraints=True
+    #memLimit= 0.01
+)
+
+
+greedy=obj.greedyAdditiveFactory()
+fmFactory = obj.fusionMoveBasedFactory(
+    #fusionMove=nifty.fusionMoveSettings(mcFactory=greedy),
+    fusionMove=obj.fusionMoveSettings(mcFactory=ilpFactory),
+    #proposalGen=nifty.greedyAdditiveProposals(sigma=30,nodeNumStopCond=-1,weightStopCond=0.0),
+    proposalGen=obj.watershedProposals(sigma=1,seedFraction=0.01),
+    numberOfIterations=300,
+    numberOfParallelProposals=16, # no effect if nThreads equals 0 or 1
+    numberOfThreads=0,
+    stopIfNoImprovement=10,
+    fuseN=2,
 )
 
 
 
-s = g.perturbAndMapSettings(factory)
+s = g.perturbAndMapSettings(fmFactory)
 pAndMap = g.perturbAndMap(obj, s)
 print pAndMap.optimize()
 

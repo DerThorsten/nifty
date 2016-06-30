@@ -62,7 +62,10 @@ namespace graph{
             IlpSettings ilpSettings;
         };
 
-        virtual ~MulticutIlp(){}
+        virtual ~MulticutIlp(){
+            if(ilpSolver_ != nullptr)
+                delete ilpSolver_;
+        }
         MulticutIlp(const Objective & objective, const Settings & settings = Settings());
 
 
@@ -78,13 +81,26 @@ namespace graph{
             return std::string("MulticutIlp") + ILP_SOLVER::name();
         }
         virtual void weightsChanged(){
-            ilpSolver_.changeObjective(objective_.weights().begin());
+
+            if(numberOfOptRuns_<1){
+                ilpSolver_->changeObjective(objective_.weights().begin());
+            }
+            else{
+                delete ilpSolver_;
+                numberOfOptRuns_ = 0;
+                addedConstraints_ = 0;
+                ilpSolver_ = new IlpSovler(settings_.ilpSettings);
+                this->initializeIlp();
+                if(settings_.addThreeCyclesConstraints){
+                    this->addThreeCyclesConstraintsExplicitly();
+                }
+            }
         }
         
     private:
 
         void addThreeCyclesConstraintsExplicitly(const IlpSovler & ilpSolver);
-        void initializeIlp(IlpSovler & ilpSolver);
+        void initializeIlp();
 
 
         void repairSolution(NodeLabels & nodeLabels);
@@ -96,7 +112,7 @@ namespace graph{
         const Objective & objective_;
         const Graph & graph_;
 
-        IlpSovler ilpSolver_;
+        IlpSovler * ilpSolver_;
         Components components_;
         // for all so far existing graphs EdgeIndicesToContiguousEdgeIndices
         // is a zero overhead function which just returns the edge itself
@@ -107,6 +123,8 @@ namespace graph{
         std::vector<size_t> variables_;
         std::vector<double> coefficients_;
         NodeLabels * currentBest_;
+        size_t addedConstraints_;
+        size_t numberOfOptRuns_;
     };
 
     
@@ -118,7 +136,7 @@ namespace graph{
     )
     :   objective_(objective),
         graph_(objective.graph()),
-        ilpSolver_(settings.ilpSettings),
+        ilpSolver_(nullptr),//settings.ilpSettings),
         components_(graph_),
         denseIds_(graph_),
         bibfs_(graph_),
@@ -126,9 +144,10 @@ namespace graph{
         variables_(   std::max(uint64_t(3),uint64_t(graph_.numberOfEdges()))),
         coefficients_(std::max(uint64_t(3),uint64_t(graph_.numberOfEdges())))
     {
+        ilpSolver_ = new ILP_SOLVER(settings_.ilpSettings);
         if (settings_.verbose >=2)
                 std::cout<<"init cplex \n";
-        this->initializeIlp(ilpSolver_);
+        this->initializeIlp();
         if (settings_.verbose >=2)
                 std::cout<<"init cplex done \n";
 
@@ -143,6 +162,7 @@ namespace graph{
     optimize(
         NodeLabels & nodeLabels,  VisitorBase * visitor
     ){  
+        //std::cout<<"nStartConstraints "<<addedConstraints_<<"\n";
         VisitorProxy visitorProxy(visitor);
 
         visitorProxy.addLogNames({"violatedConstraints"});
@@ -153,12 +173,12 @@ namespace graph{
 
         // set the starting point 
         auto edgeLabelIter = detail_graph::nodeLabelsToEdgeLabelsIterBegin(graph_, nodeLabels);
-        ilpSolver_.setStart(edgeLabelIter);
+        ilpSolver_->setStart(edgeLabelIter);
 
         for (size_t i = 0; settings_.numberOfIterations == 0 || i < settings_.numberOfIterations; ++i){
 
             // solve ilp
-            ilpSolver_.optimize();
+            ilpSolver_->optimize();
 
             // find violated constraints
             auto nViolated = addCycleInequalities();
@@ -177,7 +197,7 @@ namespace graph{
             if (nViolated == 0)
                 break;
         }
-
+        ++numberOfOptRuns_;
         visitorProxy.end(this);
     }
 
@@ -193,7 +213,7 @@ namespace graph{
     addCycleInequalities(
     ){
 
-        components_.build(SubgraphWithCut(ilpSolver_, denseIds_));
+        components_.build(SubgraphWithCut(*ilpSolver_, denseIds_));
 
         // search for violated non-chordal cycles and add corresp. inequalities
         size_t nCycle = 0;
@@ -204,14 +224,14 @@ namespace graph{
         // is equivalent to the graph edge
         auto lpEdge = 0;
         for (auto edge : graph_.edges()){
-            if (ilpSolver_.label(lpEdge) > 0.5){
+            if (ilpSolver_->label(lpEdge) > 0.5){
 
                 auto v0 = graph_.u(edge);
                 auto v1 = graph_.v(edge);
 
                 if (components_.areConnected(v0, v1)){   
 
-                    auto hasPath = bibfs_.runSingleSourceSingleTarget(v0, v1, SubgraphWithCut(ilpSolver_, denseIds_));
+                    auto hasPath = bibfs_.runSingleSourceSingleTarget(v0, v1, SubgraphWithCut(*ilpSolver_, denseIds_));
                     NIFTY_CHECK(hasPath,"damn");
                     const auto & path = bibfs_.path();
                     NIFTY_CHECK_OP(path.size(),>,0,"");
@@ -230,7 +250,8 @@ namespace graph{
                     variables_[sz - 1] = lpEdge;
                     coefficients_[sz - 1] = -1.0;
 
-                    ilpSolver_.addConstraint(variables_.begin(), variables_.begin() + sz, 
+                    ++addedConstraints_;
+                    ilpSolver_->addConstraint(variables_.begin(), variables_.begin() + sz, 
                                              coefficients_.begin(), 0, std::numeric_limits<double>::infinity());
                     ++nCycle;
                 }
@@ -249,14 +270,12 @@ namespace graph{
             nodeLabels[node] = components_.componentLabel(node);
         }
         auto edgeLabelIter = detail_graph::nodeLabelsToEdgeLabelsIterBegin(graph_, nodeLabels);
-        ilpSolver_.setStart(edgeLabelIter);
+        ilpSolver_->setStart(edgeLabelIter);
     }
 
     template<class OBJECTIVE, class ILP_SOLVER>
     void MulticutIlp<OBJECTIVE, ILP_SOLVER>::
-    initializeIlp(
-        IlpSovler & ilpSolver
-    ){
+    initializeIlp(){
         std::vector<double> costs(graph_.numberOfEdges(),0.0);
         const auto & weights = objective_.weights();
         auto lpEdge = 0;
@@ -274,7 +293,7 @@ namespace graph{
             }
             ++lpEdge;
         }
-        ilpSolver.initModel(graph_.numberOfEdges(), costs.data());
+        ilpSolver_->initModel(graph_.numberOfEdges(), costs.data());
     }
 
     template<class OBJECTIVE, class ILP_SOLVER>
@@ -297,7 +316,8 @@ namespace graph{
                         }
                     }
                     coefficients[i] = -1.0;
-                    ilpSolver_.addConstraint(variables.begin(), variables.begin() + 3, 
+                    ++addedConstraints_;
+                    ilpSolver_->addConstraint(variables.begin(), variables.begin() + 3, 
                         coefficients.begin(), 0, std::numeric_limits<double>::infinity());
                     ++c;
                 }
@@ -322,7 +342,7 @@ namespace graph{
                         variables[i] = tce[i];
                     }
                     coefficients[negIndex] = -1.0;
-                    ilpSolver_.addConstraint(variables.begin(), variables.begin() + 3, 
+                    ilpSolver_->addConstraint(variables.begin(), variables.begin() + 3, 
                         coefficients.begin(), 0, std::numeric_limits<double>::infinity());
                     ++c;
                 }

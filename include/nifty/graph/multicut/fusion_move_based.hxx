@@ -28,6 +28,7 @@ namespace graph{
         typedef typename Objective::Graph Graph;
         typedef MulticutBase<Objective> Base;
         typedef typename Base::VisitorBase VisitorBase;
+        typedef typename Base::VisitorProxy VisitorProxy;
         typedef typename Base::EdgeLabels EdgeLabels;
         typedef typename Base::NodeLabels NodeLabels;
 
@@ -70,8 +71,8 @@ namespace graph{
             }
         }
     private:
-
-
+        void optimizeParallel(NodeLabels & nodeLabels, VisitorBase * visitor);
+        void optimizeSerial(NodeLabels & nodeLabels, VisitorBase * visitor);
 
         const Objective & objective_;
         const Graph & graph_;
@@ -137,6 +138,20 @@ namespace graph{
     template<class PROPPOSAL_GEN>
     void FusionMoveBased<PROPPOSAL_GEN>::
     optimize(
+        NodeLabels & nodeLabels,  VisitorBase * visitor
+    ){
+        if(parallelOptions_.getActualNumThreads() > 1){
+            this->optimizeParallel(nodeLabels, visitor);
+        }
+        else{
+            this->optimizeSerial(nodeLabels, visitor);
+        }
+    }
+
+
+    template<class PROPPOSAL_GEN>
+    void FusionMoveBased<PROPPOSAL_GEN>::
+    optimizeParallel(
         NodeLabels & nodeLabels,  VisitorBase * visitor
     ){
 
@@ -293,6 +308,64 @@ namespace graph{
         //    nodeLabels[node] = currentBest[node];
         if(visitor!=nullptr)
             visitor->end(this);
+    }
+
+    template<class PROPPOSAL_GEN>
+    void FusionMoveBased<PROPPOSAL_GEN>::
+    optimizeSerial(
+        NodeLabels & nodeLabels,  VisitorBase * visitor
+    ){
+        VisitorProxy visitorProxy(visitor);
+
+        currentBest_ = &nodeLabels;
+       
+        visitorProxy.addLogNames({"IterationWithoutImprovement"});
+        visitorProxy.begin(this);
+        
+        auto & currentBest = nodeLabels;
+        auto bestEnergy = objective_.evalNodeLabels(currentBest);
+    
+
+
+
+
+        std::vector<NodeLabels> proposals;
+        auto iterWithoutImprovement = 0;
+        for(auto iter=0; iter<settings_.numberOfIterations; ++iter){
+            const auto oldBestEnergy = bestEnergy;
+        
+            auto & pgen = *pgens_[0];
+            auto & proposal = *solBufferIn_[0];
+            pgen.generate(currentBest, proposal);
+
+            if(bestEnergy>=-0.000000001){
+                currentBest = proposal;
+                bestEnergy = objective_.evalNodeLabels(currentBest);
+                iterWithoutImprovement = 0;
+            }
+            else{
+                NodeLabels res(graph_);
+                auto & fm = *(fusionMoves_[0]);
+                fm.fuse( {&proposal, &currentBest}, &res);
+                auto eFuse = objective_.evalNodeLabels(res);
+                if(eFuse<bestEnergy){
+                    bestEnergy = eFuse;
+                    currentBest = res;
+                    iterWithoutImprovement = 0;
+                }   
+                else{
+                    ++iterWithoutImprovement;
+                }
+            }
+            visitorProxy.setLogValue(0,iterWithoutImprovement);
+            if(!visitorProxy.visit(this))
+                break;
+        }
+
+        //for(auto node : graph_.nodes())
+        //    nodeLabels[node] = currentBest[node];
+        
+        visitorProxy.end(this);
     }
 
     template< class PROPPOSAL_GEN>
