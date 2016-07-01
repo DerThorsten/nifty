@@ -11,12 +11,15 @@ namespace graph{
 
 
     void exportUndirectedGraph(py::module &);
+    void exportComputeRag(py::module &);
+
     void initSubmoduleMulticut(py::module &);
 
     void initSubmoduleGraph(py::module &niftyModule) {
         auto graphModule = niftyModule.def_submodule("graph","graph submodule");
 
         exportUndirectedGraph(graphModule);
+        exportComputeRag(graphModule);
         initSubmoduleMulticut(graphModule);
     }
 

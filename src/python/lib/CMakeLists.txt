@@ -39,6 +39,7 @@ add_library(_nifty SHARED
   # ... extra files go here ...
   graph/graph.cxx
   graph/undirected_graph.cxx
+  graph/compute_rag.cxx
   graph/multicut/multicut.cxx
   graph/multicut/multicut_objective.cxx
   graph/multicut/multicut_visitor_base.cxx
