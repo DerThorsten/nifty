@@ -50,6 +50,9 @@ def test_grid_rag():
 
     g =  nifty.graph.rag.explicitLabelsGridRag2D(labels)
 
+    assert g.numberOfNodes == 3
+    assert g.numberOfEdges == 3
+
     insertWorked = True
     try:
         g.insertEdge(0,1)
