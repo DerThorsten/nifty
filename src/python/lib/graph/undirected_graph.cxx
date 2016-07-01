@@ -31,8 +31,7 @@ namespace graph{
             )
             .def("insertEdge",&Graph::insertEdge)
             .def("insertEdges",
-                [](Graph & g, py::array_t<uint64_t> pyArray) {
-                    NumpyArray<uint64_t> array(pyArray);
+                [](Graph & g, nifty::marray::PyView<uint64_t> array) {
                     NIFTY_CHECK_OP(array.dimension(),==,2,"wrong dimensions");
                     NIFTY_CHECK_OP(array.shape(1),==,2,"wrong shape");
                     for(size_t i=0; i<array.shape(0); ++i){

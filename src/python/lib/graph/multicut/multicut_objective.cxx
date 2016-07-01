@@ -21,8 +21,7 @@ namespace graph{
         typedef MulticutObjective<Graph, double> McObjective;
         const auto clsName = std::string("MulticutObjectiveUndirectedGraph");
         auto multicutObjectiveCls = py::class_<McObjective>(multicutModule, clsName.c_str())
-            .def("evalNodeLabels",[](const McObjective & objective,  py::array_t<uint64_t> pyArray){
-                NumpyArray<uint64_t> array(pyArray);
+            .def("evalNodeLabels",[](const McObjective & objective,  nifty::marray::PyView<uint64_t> array){
                 const auto & g = objective.graph();
                 NIFTY_CHECK_OP(array.dimension(),==,1,"wrong dimensions");
                 NIFTY_CHECK_OP(array.shape(0),==,g.numberOfNodes(),"wrong shape");
@@ -44,8 +43,7 @@ namespace graph{
 
 
         multicutModule.def("multicutObjective",
-            [](const Graph & graph,  py::array_t<double> pyArray){
-                NumpyArray<double> array(pyArray);
+            [](const Graph & graph,  nifty::marray::PyView<double> array){
                 NIFTY_CHECK_OP(array.dimension(),==,1,"wrong dimensions");
                 NIFTY_CHECK_OP(array.shape(0),==,graph.numberOfEdges(),"wrong shape");
                 

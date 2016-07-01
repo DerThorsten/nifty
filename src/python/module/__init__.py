@@ -3,8 +3,8 @@ from _nifty import *
 
 
 
-
-
+# delattr(_nifty.graph.rag.ExplicitLabelsGridRag2D,'insertEdge')
+# delattr(_nifty.graph.rag.ExplicitLabelsGridRag2D,'insertEdges')
 
 
 

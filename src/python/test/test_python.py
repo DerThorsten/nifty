@@ -14,52 +14,22 @@ def test_undirected_graph():
     nodeList = [e for e in g.nodes()]
     assert nodeList == [0,1,2,3]
 
-    assert g.u(0) == 0 
+    assert g.u(0) == 0
     assert g.v(0) == 1 
     assert g.u(1) == 0 
     assert g.v(1) == 2 
     assert g.u(2) == 0 
     assert g.v(2) == 3 
 
-test_undirected_graph()
 
 
 
+def test_grid_rag():
+    g =  nifty.graph.rag.ExplicitLabelsGridRag2D()
 
-def test_multicut():
-
-    # build the graph
-    shape = 10,10
-    g =  nifty.graph.UndirectedGraph(shape[0]*shape[1])
-    def f(x,y):
-        return x + shape[0]*y
-
-    for y in range(shape[0]):
-        for x in range(shape[1]):
-            u = f(x, y)
-            if x + 1 < shape[0]:
-                v = f(x + 1, y)
-                g.insertEdge(u, v)
-            if y + 1 < shape[1]:
-                v = f(x, y + 1)
-                g.insertEdge(u, v)
-
-    w = numpy.random.rand(g.numberOfEdges)-0.5
-    obj = nifty.graph.multicut.multicutObjective(g,w)
-    mcIlpFactory = nifty.graph.multicut.MulticutIlpCplexFactoryUndirectedGraph()
-    print(type(mcIlpFactory))
-    import inspect
-    #print(inspect.getmro(mcIlpFactory.__class__))
-
-    mcIlp = mcIlpFactory.create(obj)
-    ret = mcIlp.optimize()
-
-    print(ret) 
-
-
-    #print(mcIlpFactory)
-    
-test_multicut()
-
-import sys
-print(sys.version)
+    insertWorked = True
+    try:
+        g.insertEdge(0,1)
+    except:
+        insertWorked = False
+    assert insertWorked == False

@@ -43,69 +43,15 @@ namespace graph{
         
         mcBase
             .def(py::init<>())
-            .def("optimize", 
-                [](
-                    McBase * self,
-                    py::array_t<uint64_t> pyArray
-                ){
-                    const auto graph = self->objective().graph();
-                    //std::cout<<"optimize that damn thing\n";
-                    NumpyArray<uint64_t> array(pyArray);
-
-
-                    typename McBase::NodeLabels nodeLabels(graph,0);
-                    EmptyVisitor visitor;
-
-                    if(array.size() == 0 ){
-
-                        {
-                            py::gil_scoped_release allowThreads;
-                            self->optimize(nodeLabels, &visitor);
-                        }
-                        std::vector<size_t> strides = {sizeof(uint64_t)};
-                        std::vector<size_t> shape = {size_t(graph.numberOfNodes())};
-                        size_t ndim = 1;
-
-                        py::array_t<uint64_t> retArray =  py::array(py::buffer_info(NULL, sizeof(uint64_t),
-                            py::format_descriptor<uint64_t>::value,
-                            ndim, shape, strides)
-                        );
-                        NumpyArray<uint64_t> rarray(retArray);
-                        for(auto node : graph.nodes()){
-                            rarray(node) = nodeLabels[node];
-                        }
-                        return retArray;
-
-
-                    }
-                    else if(array.size() == graph.numberOfNodes()){
-                        for(auto node : graph.nodes()){
-                            nodeLabels[node] = array(node);
-                        }
-                        {
-                            py::gil_scoped_release allowThreads;
-                            self->optimize(nodeLabels, &visitor);
-                        }
-                        for(auto node : graph.nodes()){
-                             array(node) = nodeLabels[node];
-                        }
-                        return pyArray;
-                    }
-                    else{
-                        throw std::runtime_error("input node labels have wrong shape");
-                    }
-                },
-                py::arg_t< py::array_t<uint64_t> >("nodeLabels", py::list() )
-            )
             .def("optimizeWithVisitor", 
                 [](
                     McBase * self,
                     McVisitorBase * visitor,
-                    py::array_t<uint64_t> pyArray
+                    nifty::marray::PyView<uint64_t> array
                 ){
                     const auto graph = self->objective().graph();
                     //std::cout<<"optimize that damn thing\n";
-                    NumpyArray<uint64_t> array(pyArray);
+            
 
 
                     typename McBase::NodeLabels nodeLabels(graph,0);
@@ -116,20 +62,12 @@ namespace graph{
                             py::gil_scoped_release allowThreads;
                             self->optimize(nodeLabels, visitor);
                         }
-                        std::vector<size_t> strides = {sizeof(uint64_t)};
                         std::vector<size_t> shape = {size_t(graph.numberOfNodes())};
-                        size_t ndim = 1;
-
-                        py::array_t<uint64_t> retArray =  py::array(py::buffer_info(NULL, sizeof(uint64_t),
-                            py::format_descriptor<uint64_t>::value,
-                            ndim, shape, strides)
-                        );
-                        NumpyArray<uint64_t> rarray(retArray);
+                        nifty::marray::PyView<uint64_t> rarray(shape.begin(),shape.end());
                         for(auto node : graph.nodes()){
                             rarray(node) = nodeLabels[node];
                         }
-                        return retArray;
-
+                        return rarray;
 
                     }
                     else if(array.size() == graph.numberOfNodes()){
@@ -143,7 +81,7 @@ namespace graph{
                         for(auto node : graph.nodes()){
                              array(node) = nodeLabels[node];
                         }
-                        return pyArray;
+                        return array;
                     }
                     else{
                         throw std::runtime_error("input node labels have wrong shape");

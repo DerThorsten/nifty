@@ -49,7 +49,7 @@ ilpFactory = obj.multicutIlpFactory(ilpSolver='cplex',
 
 
 greedy=obj.greedyAdditiveFactory().create(obj)
-visitor = obj.multicutVerboseVisitor(1000)
+visitor = obj.multicutVerboseVisitor(10)
 ret = greedy.optimizeWithVisitor(visitor=visitor)
 
 greedy=obj.greedyAdditiveFactory()

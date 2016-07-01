@@ -36,14 +36,14 @@ namespace graph{
             .def("optimize",
             [](
                 PerturbAndMapType * self,
-                py::array_t<uint64_t> pyNodeLabels
+                nifty::marray::PyView<uint64_t> nodeLabelsArray
             )
             {
                 const auto & graph = self->graph();
                 const auto nNodes = graph.numberOfNodes();
                 const auto nEdges = graph.numberOfEdges();
 
-                NumpyArray<uint64_t> nodeLabelsArray(pyNodeLabels);
+
 
                 EdgeState edgeState(graph);
 
@@ -62,10 +62,10 @@ namespace graph{
                 }
 
 
-                NumpyArray<double> rarray({nEdges},{1});
+                nifty::marray::PyView<double> rarray(&nEdges,&nEdges+1);
                 for(auto edge: graph.edges())
                     rarray(edge) = edgeState[edge];
-                return rarray.pyArray();
+                return rarray;
     
 
             },
