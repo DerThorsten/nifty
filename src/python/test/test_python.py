@@ -24,8 +24,31 @@ def test_undirected_graph():
 
 
 
+def make2x2Rag():
+
+    labels = numpy.zeros(shape=[2,2],dtype='uint32')
+    print(labels.shape)
+
+    labels[0,0] = 0 
+    labels[1,0] = 1 
+    labels[0,1] = 0 
+    labels[1,1] = 2 
+
+    g =  nifty.graph.rag.explicitLabelsGridRag2D(labels)
+
+    return g
+
 def test_grid_rag():
-    g =  nifty.graph.rag.ExplicitLabelsGridRag2D()
+
+    labels = numpy.zeros(shape=[2,2],dtype='uint32')
+    print(labels.shape)
+
+    labels[0,0] = 0 
+    labels[1,0] = 1 
+    labels[0,1] = 0 
+    labels[1,1] = 2 
+
+    g =  nifty.graph.rag.explicitLabelsGridRag2D(labels)
 
     insertWorked = True
     try:
@@ -33,3 +56,6 @@ def test_grid_rag():
     except:
         insertWorked = False
     assert insertWorked == False
+
+
+test_grid_rag()
