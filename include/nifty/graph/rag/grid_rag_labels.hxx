@@ -3,28 +3,10 @@
 #define NIFTY_GRAPH_RAG_GRID_RAG_LABELS_HXX
 
 
-#include <random>
-#include <functional>
-#include <ctime>
-#include <stack>
 #include <algorithm>
 
-// for strange reason travis does not find the boost flat set
-#ifdef WITHIN_TRAVIS
-#include <set>
-#define __setimpl std::set
-#else
-#include <boost/container/flat_set.hpp>
-#define __setimpl boost::container::flat_set
-#endif
-
-
-#include <parallel/algorithm>
-#include <unordered_set>
 #include "nifty/marray/marray.hxx"
-#include "nifty/graph/simple_graph.hxx"
-#include "nifty/parallel/threadpool.hxx"
-#include "nifty/tools/timer.hxx"
+#include "nifty/tools/runtime_check.hxx"
 //#include "nifty/graph/detail/contiguous_indices.hxx"
 
 
