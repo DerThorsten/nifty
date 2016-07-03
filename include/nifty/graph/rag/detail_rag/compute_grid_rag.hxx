@@ -8,6 +8,7 @@
 #include <ctime>
 #include <stack>
 #include <algorithm>
+#include <unordered_set>
 
 // for strange reason travis does not find the boost flat set
 #ifdef WITHIN_TRAVIS
@@ -18,8 +19,6 @@
 #define __setimpl boost::container::flat_set
 #endif
 
-#include <parallel/algorithm>
-#include <unordered_set>
 
 #include "nifty/graph/rag/grid_rag_labels.hxx"
 #include "nifty/marray/marray.hxx"
