@@ -29,13 +29,17 @@ public:
     bool operator<(const AdjacencyImpl & other) const{
         return  node_ < other.node_;
     }
+
+    void changeEdgeIndex(const EDGE_OR_ARC_INTERNAL_TYPE newEdge)const{
+        edgeOrArc_ = newEdge;
+    }
 protected:
     EDGE_OR_ARG_RETURN_TYPE  edgeOrArc() const{
         return edgeOrArc_;
     }
 private:
     NODE_INTERANL_TYPE node_;
-    EDGE_OR_ARC_INTERNAL_TYPE edgeOrArc_;
+    mutable EDGE_OR_ARC_INTERNAL_TYPE edgeOrArc_;
 };
 
 

@@ -115,6 +115,10 @@ namespace graph{
                     return true;
                 }
             }
+            if(currentNodeNum_<=1)
+                return true;
+            if(pq_.empty())
+                return true;
             return false;
         }
 

@@ -187,3 +187,37 @@ def __addStaticMethodsToUndirectedGraphAndMulticutObjectiveUndirectedGraph():
 
 __addStaticMethodsToUndirectedGraphAndMulticutObjectiveUndirectedGraph()
 del __addStaticMethodsToUndirectedGraphAndMulticutObjectiveUndirectedGraph
+
+
+
+
+def __addStaticMethodsToUndirectedGraph():
+
+    G = graph.UndirectedGraph
+
+    def _getGala():
+        return graph.gala.GalaUndirectedGraph()
+    G.gala = staticmethod(_getGala)
+
+__addStaticMethodsToUndirectedGraph()
+del __addStaticMethodsToUndirectedGraph
+
+
+
+def __extendRag():
+
+    def gridRag(labels, numberOfThreads=-1, lockFreeAlg=False):
+        if labels.ndim == 2:
+            return graph.rag.explicitLabelsGridRag2D(labels, numberOfThreads=int(numberOfThreads),
+                                           lockFreeAlg=bool(lockFreeAlg))
+        elif labels.ndim == 3:
+            return graph.rag.explicitLabelsGridRag2D(labels, numberOfThreads=int(numberOfThreads),
+                                           lockFreeAlg=bool(lockFreeAlg))
+        else:
+            raise RuntimeError("wrong dimension, currently only 2D and 3D is implemented")
+
+    gridRag.__module__ = "nifty.graphs.rag"
+    graph.rag.gridRag = gridRag
+
+__extendRag()
+del __extendRag

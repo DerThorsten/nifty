@@ -35,23 +35,28 @@ include_directories(${PYTHON_INCLUDE_DIR})
 
 # Create the binding library
 add_library(_nifty SHARED
-  nifty.cxx
-  # ... extra files go here ...
-  graph/graph.cxx
-  graph/undirected_graph.cxx
-  # rag
-  graph/rag/rag.cxx
-  graph/rag/grid_rag.cxx
-  # multicut
-  graph/multicut/multicut.cxx
-  graph/multicut/multicut_objective.cxx
-  graph/multicut/multicut_visitor_base.cxx
-  graph/multicut/multicut_base.cxx
-  graph/multicut/multicut_factory.cxx
-  graph/multicut/multicut_ilp.cxx
-  graph/multicut/multicut_greedy_additive.cxx
-  graph/multicut/fusion_move_based.cxx
-  graph/multicut/perturb_and_map.cxx
+    nifty.cxx
+    # ... extra files go here ...
+    graph/graph.cxx
+    graph/undirected_graph.cxx
+    # rag
+    graph/rag/rag.cxx
+    graph/rag/grid_rag.cxx
+    graph/rag/graph_accumulator.cxx
+    # gala
+    graph/gala/gala.cxx
+    graph/gala/gala_main_class.cxx
+    graph/gala/gala_feature_base.cxx
+    # multicut
+    graph/multicut/multicut.cxx
+    graph/multicut/multicut_objective.cxx
+    graph/multicut/multicut_visitor_base.cxx
+    graph/multicut/multicut_base.cxx
+    graph/multicut/multicut_factory.cxx
+    graph/multicut/multicut_ilp.cxx
+    graph/multicut/multicut_greedy_additive.cxx
+    graph/multicut/fusion_move_based.cxx
+    graph/multicut/perturb_and_map.cxx
 )
 
 

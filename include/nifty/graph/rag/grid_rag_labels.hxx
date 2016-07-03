@@ -1,0 +1,83 @@
+#pragma once
+#ifndef NIFTY_GRAPH_RAG_GRID_RAG_LABELS_HXX
+#define NIFTY_GRAPH_RAG_GRID_RAG_LABELS_HXX
+
+
+#include <random>
+#include <functional>
+#include <ctime>
+#include <stack>
+#include <algorithm>
+
+// for strange reason travis does not find the boost flat set
+#ifdef WITHIN_TRAVIS
+#include <set>
+#define __setimpl std::set
+#else
+#include <boost/container/flat_set.hpp>
+#define __setimpl boost::container::flat_set
+#endif
+
+
+#include <parallel/algorithm>
+#include <unordered_set>
+#include "nifty/marray/marray.hxx"
+#include "nifty/graph/simple_graph.hxx"
+#include "nifty/parallel/threadpool.hxx"
+#include "nifty/tools/timer.hxx"
+//#include "nifty/graph/detail/contiguous_indices.hxx"
+
+
+namespace nifty{
+namespace graph{
+
+template<unsigned int DIM, class LABEL_TYPE>
+class ExplicitLabels{
+public:
+
+    typedef nifty::marray::View<LABEL_TYPE> ViewType;
+
+    ExplicitLabels(const nifty::marray::View<LABEL_TYPE, false> & labels = nifty::marray::View<LABEL_TYPE, false>())
+    :   labels_(labels){
+        //for(size_t i=0; i<labels_.dimension(); ++i){
+        //    std::cout<<labels_.stridesBegin()[i]<<" ";
+        //}
+    }
+
+
+    // part of the API
+    uint64_t numberOfLabels() const {
+        auto  startPtr = &labels_(0);
+        auto  lastElement = &labels_(labels_.size()-1);
+        auto d = lastElement - startPtr + 1;
+
+        if(d == labels_.size()){
+            return *std::max_element(startPtr, startPtr+labels_.size())+1;
+        }
+        else if(labels_.isSimple()){
+            
+            NIFTY_CHECK_OP(d,==,labels_.size(),"");
+            return *std::max_element(startPtr, startPtr+labels_.size())+1;
+        }
+        else {
+            LABEL_TYPE nLabels = 0;
+            for(size_t i=0; i<labels_.size(); i++)
+                nLabels = std::max(labels_(i), nLabels);
+            return nLabels+1;
+        }
+    }
+
+    // not part of the general API
+    const ViewType & labels() const{
+        return labels_;
+    }
+
+private:
+    nifty::marray::View<LABEL_TYPE> labels_;
+};
+
+}
+}
+
+
+#endif /* NIFTY_GRAPH_RAG_GRID_RAG_LABELS_HXX */

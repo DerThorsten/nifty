@@ -11,6 +11,7 @@
 #define __setimpl boost::container::flat_set
 #endif
 
+#include "nifty/container/flat_set.hxx"
 #include "nifty/tools/runtime_check.hxx"
 #include "nifty/ufd/ufd.hxx"
 #include "nifty/graph/detail/adjacency.hxx"
@@ -31,7 +32,7 @@ namespace graph{
         private:
             typedef detail_graph::UndirectedAdjacency<int64_t,int64_t,int64_t,int64_t> NodeAdjacency;
             //typedef std::set<NodeAdjacency> NodeStorage;
-            typedef __setimpl <NodeAdjacency> NodeStorage;
+            typedef nifty::container::FlatSet <NodeAdjacency> NodeStorage;
             typedef typename Graph:: template NodeMap<NodeStorage> NodesContainer;
             typedef std::pair<int64_t,int64_t> EdgeStorage;
             typedef typename Graph:: template EdgeMap<EdgeStorage> EdgeContainer;

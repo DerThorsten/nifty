@@ -14,8 +14,10 @@
 #define __setimpl boost::container::flat_set
 #endif
 
+
 #include <boost/iterator/counting_iterator.hpp>
 
+#include "nifty/container/flat_set.hxx"
 #include "nifty/tools/runtime_check.hxx"
 #include "nifty/graph/undirected_graph_base.hxx"
 #include "nifty/graph/detail/adjacency.hxx"
@@ -25,6 +27,8 @@ namespace nifty{
 namespace graph{
 
 
+
+
 namespace detail_graph{
     template<class EDGE_INTERANL_TYPE, class NODE_INTERNAL_TYPE >
     struct UndirectedGraphTypeHelper{
@@ -32,7 +36,7 @@ namespace detail_graph{
         typedef NODE_INTERNAL_TYPE NodeInteralType;
         typedef detail_graph::UndirectedAdjacency<int64_t,int64_t,NodeInteralType,EdgeInternalType> NodeAdjacency;
         //typedef std::set<NodeAdjacency > NodeStorage;
-        typedef __setimpl <NodeAdjacency> NodeStorage;
+        typedef nifty::container::FlatSet <NodeAdjacency> NodeStorage;
 
         typedef std::pair<NodeInteralType,NodeInteralType> EdgeStorage;
         typedef boost::counting_iterator<int64_t> NodeIter;
@@ -64,11 +68,11 @@ class UndirectedGraph : public
         typename detail_graph::UndirectedGraphTypeHelper<EDGE_INTERANL_TYPE,NODE_INTERNAL_TYPE>::AdjacencyIter
     >
 {
-private:
+protected:
     typedef EDGE_INTERANL_TYPE EdgeInternalType;
     typedef NODE_INTERNAL_TYPE NodeInteralType;
     typedef detail_graph::UndirectedAdjacency<int64_t,int64_t,NodeInteralType,EdgeInternalType> NodeAdjacency;
-    typedef __setimpl<NodeAdjacency> NodeStorage;
+    typedef nifty::container::FlatSet<NodeAdjacency> NodeStorage;
     typedef std::pair<EdgeInternalType,EdgeInternalType> EdgeStorage;
 public:
     typedef detail_graph::SimpleGraphNodeIter NodeIter;
@@ -95,8 +99,7 @@ public:
     }
 
     int64_t insertEdge(const int64_t u, const int64_t v){
-        auto & adjU = nodes_[u];
-        auto & adjV = nodes_[v];    
+   
         const auto fres =  nodes_[u].find(NodeAdjacency(v));
         if(fres != nodes_[u].end())
             return fres->edge();
@@ -111,6 +114,8 @@ public:
             return ei;
         }
     }
+
+
 
     // MUST IMPL INTERFACE
     int64_t u(const int64_t e)const{
@@ -168,8 +173,56 @@ public:
     }
 
 
-private:
+protected:
 
+
+    template<class MUTEX>
+    int64_t inserEdgeWithMutex(
+        const int64_t u, 
+        const int64_t v,
+        MUTEX & edgeMutex,
+        MUTEX * nodeMutexArray,
+        const size_t nMutex
+    ){
+        const auto mu = u%nMutex;
+        const auto mv = v%nMutex;
+        auto & uMtx =  nodeMutexArray[mu];
+        auto & vMtx =  nodeMutexArray[mv];   
+        uMtx.lock();
+        const auto fres =  nodes_[u].find(NodeAdjacency(v));
+        const auto foundThisEdge = (fres != nodes_[u].end());
+        uMtx.unlock();
+        if(foundThisEdge){
+            return fres->edge();
+        }
+        else{
+            const auto uu = std::min(u,v);
+            const auto vv = std::max(u,v);
+            auto e = EdgeStorage(uu, vv);
+
+            edgeMutex.lock();
+            auto ei = edges_.size();
+            edges_.push_back(e);
+            edgeMutex.unlock();
+
+            if(mu!=mv){
+                uMtx.lock();
+                nodes_[u].insert(NodeAdjacency(v,ei));
+                uMtx.unlock();
+
+                vMtx.lock();
+                nodes_[v].insert(NodeAdjacency(u,ei));
+                vMtx.unlock();
+            }
+            else{
+                uMtx.lock();
+                nodes_[u].insert(NodeAdjacency(v,ei));
+                nodes_[v].insert(NodeAdjacency(u,ei));
+                uMtx.unlock();
+            }
+            return ei;
+        }
+    }
 
 
     std::vector<NodeStorage> nodes_;
