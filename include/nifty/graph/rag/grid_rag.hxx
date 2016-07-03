@@ -18,7 +18,7 @@
 #define __setimpl boost::container::flat_set
 #endif
 
-#include <parallel/algorithm>
+//#include <parallel/algorithm>
 #include <unordered_set>
 
 #include "nifty/graph/rag/grid_rag_labels.hxx"
