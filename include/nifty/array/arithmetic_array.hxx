@@ -48,6 +48,7 @@ namespace array{
         for(auto i=0; i<a.size(); ++i){ \
             a[i] operatorSymbol b[i]; \
         } \
+        return a; \
     } \
     template<class ARRAY_CLASS> \
     ArrayExtender<ARRAY_CLASS> & operator operatorSymbol ( \
@@ -57,6 +58,7 @@ namespace array{
         for(auto i=0; i<a.size(); ++i){ \
             a[i] operatorSymbol b; \
         } \
+        return a; \
     } 
 
     NIFTY_MACRO_BINARY_OP_INPLACE(+=);
