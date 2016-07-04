@@ -61,7 +61,12 @@ namespace marray
         PyView()
         {
         }
-
+        const Type & operator[](const uint64_t index)const{
+            return this->operator()(index);
+        }
+        Type & operator[](const uint64_t index){
+            return this->operator()(index);
+        }
         template <class ShapeIterator> PyView(ShapeIterator begin, ShapeIterator end)
         {
             std::vector<size_t> shape, strides;
@@ -88,7 +93,8 @@ namespace marray
         }
 
     #ifdef HAVE_CPP11_INITIALIZER_LISTS
-        PyView(std::initializer_list<std::size_t> shape) : PyView(shape.begin(), shape.end())
+        template<class T_INIT>
+        PyView(std::initializer_list<T_INIT> shape) : PyView(shape.begin(), shape.end())
         {
         }
     #endif
@@ -157,26 +163,6 @@ namespace pybind11
         //};
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

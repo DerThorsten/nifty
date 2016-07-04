@@ -28,6 +28,19 @@ namespace graph{
             sumVal_ += val;
             ++countVal_;
         }
+        void merge(const DefaultAcc & other){
+            minVal_ = std::min(other.minVal_, minVal_);
+            maxVal_ = std::max(other.maxVal_, maxVal_);
+            sumVal_ += other.sumVal_;
+            countVal_ +=other.countVal_;
+        }
+        void getFeatures(T * featuresOut){
+            featuresOut[0] = minVal_;
+            featuresOut[1] = maxVal_;
+            featuresOut[2] = sumVal_;
+            featuresOut[3] = sumVal_/static_cast<T>(countVal_);
+            featuresOut[4] = static_cast<T>(countVal_);
+        }
     private:
         T minVal_,maxVal_,sumVal_;
         uint64_t countVal_;
@@ -39,8 +52,11 @@ namespace graph{
     {
     public:
         typedef GRAPH Graph;
-        DefaultAccMapBase(const Graph & graph, const T globalMinVal, const T globalMaxVal)
-        :   currentPass_(0),
+        DefaultAccMapBase(const Graph & graph, const T globalMinVal = std::numeric_limits<T>::infinity(), const T globalMaxVal=-1.0*std::numeric_limits<T>::infinity())
+        :   graph_(graph),
+            currentPass_(0),
+            globalMinVal_(globalMinVal),
+            globalMaxVal_(globalMaxVal),
             accs_(graph){
 
         }
@@ -55,8 +71,26 @@ namespace graph{
         size_t numberOfPasses()const{
             return 1.0;
         }
+        void merge(const uint64_t alive,  const uint64_t dead){
+            accs_[alive].merge(accs_[dead]);
+        }
+        uint64_t numberOfFeatures() const {
+            return 5;
+        }
+        void getFeatures(const uint64_t item, T * featuresOut){
+            accs_[item].getFeatures(featuresOut);
+        }   
+        void resetFrom(const DefaultAccMapBase & other){
+            std::copy(other.accs_.begin(), other.accs_.end(), accs_.begin());
+            globalMinVal_ = other.globalMinVal_;
+            globalMinVal_ = other.globalMaxVal_;
+            currentPass_ = other.currentPass_;
+        }
     private:
+        const GRAPH & graph_;
         size_t currentPass_;
+        T globalMinVal_;
+        T globalMaxVal_;
         ITEM_MAP<DefaultAcc<T, NBINS> > accs_;
     };
 
@@ -134,6 +168,41 @@ namespace graph{
             }
         }
     }
+
+
+
+    template<class LABELS_TYPE, class LABELS, class NODE_MAP>
+    void gridRagAccumulateLabels(
+        const ExplicitLabelsGridRag<2, LABELS_TYPE> & graph,
+        nifty::marray::View<LABELS> data,
+        NODE_MAP &  nodeMap
+    ){
+        const auto labelsProxy = graph.labelsProxy();
+        const auto labels = labelsProxy.labels(); 
+
+        std::vector<  std::unordered_map<uint64_t, uint64_t> > overlaps(graph.numberOfNodes());
+     
+        for(size_t x=0; x<labels.shape(0); ++x)
+        for(size_t y=0; y<labels.shape(1); ++y){
+            const auto node = labels(x, y);            
+            const auto l  = data(x,y);
+            overlaps[node][l] += 1;
+        }
+        for(const auto node : graph.nodes()){
+            const auto & ol = overlaps[node];
+            // find max ol 
+            uint64_t maxOl = 0 ;
+            uint64_t maxOlLabel = 0;
+            for(auto kv : ol){
+                if(kv.second > maxOl){
+                    maxOl = kv.second;
+                    maxOlLabel = kv.first;
+                }
+            }
+            nodeMap[node] = maxOlLabel;
+        }
+    }
+    
 
 } // end namespace graph
 } // end namespace nifty

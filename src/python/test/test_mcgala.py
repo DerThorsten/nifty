@@ -4,7 +4,6 @@ import numpy
 
 import numpy
 import vigra
-from progressbar import *
 import glob
 import os
 from functools import partial
@@ -101,13 +100,20 @@ def test_mcgala():
     # gala class
     gala = nifty.graph.UndirectedGraph.gala()
 
-    # use dummy features atm
-    f = ngala.GalaDummyFeatureUndirectedGraph()
-    edgeGt = numpy.zeros(ragTrain.numberOfEdges,dtype='uint8')
+    # acc feature op
+    featureOp = ngala.galaDefaultAccFeature(graph=ragTrain, edgeFeatures=edgeFeatures, nodeFeatures=nodeFeatures)
+    
+    # get the gt
+    nodeGt = nrag.gridRagAccumulateLabels(ragTrain, gts[0])
+    uvIds = ragTrain.uvIds()
+    edgeGt = (nodeGt[uvIds[:,0]] != nodeGt[uvIds[:,1]]).astype('uint8')
+    
+    print(numpy.mean(edgeGt))
+    
 
-    trainingInstance  = ngala.galaTrainingInstance(ragTrain, f, edgeGt)
+    trainingInstance  = ngala.galaTrainingInstance(ragTrain, featureOp, edgeGt)
     gala.addInstance(trainingInstance)
     
-    #gala.addInstance(ragTrain, edgeGt)
+    gala.train()
 
 test_mcgala()

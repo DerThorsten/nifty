@@ -12,18 +12,23 @@ namespace graph{
     public:
         typedef GRAPH GraphType;
         typedef GalaFeatureBase<GraphType, T>     FeatureBaseType;
-        typedef std::shared_ptr<FeatureBaseType>  FeatureBaseTypeSharedPtr;
 
         Instance(
             const GraphType & graph, 
-            FeatureBaseTypeSharedPtr features
+            FeatureBaseType * features
         )
         :   graph_(graph),
             features_(features){
         }
-    private:
+        const uint64_t numberOfFeatures(){
+            return features_->numberOfFeatures();
+        }
+        const uint64_t initalNumberOfEdges(){
+            return graph_.numberOfEdges();
+        }
+    protected:
         const GraphType & graph_;
-        FeatureBaseTypeSharedPtr  features_;
+        FeatureBaseType *  features_;
     };
 
     template<class GRAPH, class T>
@@ -32,14 +37,13 @@ namespace graph{
         typedef Instance<GRAPH,T> BaseType;
         typedef typename BaseType::GraphType GraphType;
         typedef typename BaseType::FeatureBaseType FeatureBaseType;
-        typedef typename BaseType::FeatureBaseTypeSharedPtr FeatureBaseTypeSharedPtr;
         typedef typename GraphType:: template EdgeMap<uint8_t>  EdgeGtType;
         typedef typename GraphType:: template NodeMap<uint64_t> NodeGtType;
 
         template<class EDGE_GT>
         TrainingInstance(
             const GraphType & graph, 
-            FeatureBaseTypeSharedPtr features, 
+            FeatureBaseType * features, 
             const EDGE_GT & edgeGt
         )
         :   BaseType(graph, features),
@@ -48,6 +52,11 @@ namespace graph{
                 edgeGt_[edge] = edgeGt[edge];
             }
         }
+
+        const uint64_t initalNumberOfLabeldEdges(){
+            //return this->graph_.numberOfEdges();
+        }
+
     private:
         EdgeGtType edgeGt_;
     };

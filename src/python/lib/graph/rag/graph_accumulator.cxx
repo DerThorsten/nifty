@@ -36,6 +36,26 @@ namespace graph{
         );
     }
 
+    template<class RAG,class T,unsigned int DATA_DIM>
+    void exportGridRagAccumulateLabelsT(py::module & ragModule){
+
+        ragModule.def("gridRagAccumulateLabels",
+            [](
+                const RAG & rag,
+                nifty::marray::PyView<T, DATA_DIM> labels
+            ){  
+                nifty::marray::PyView<T> nodeLabels({rag.numberOfNodes()});
+                {
+                    py::gil_scoped_release allowThreads;
+                    gridRagAccumulateLabels(rag, labels, nodeLabels);
+                }
+                return nodeLabels;
+
+            },
+            py::arg("graph"),py::arg("labels")
+        );
+    }
+
 
     void exportGraphAccumulator(py::module & ragModule, py::module & graphModule) {
 
@@ -83,10 +103,13 @@ namespace graph{
                 );
             }
 
+            // accumulate features
             typedef ExplicitLabelsGridRag<2, uint32_t> ExplicitLabelsGridRag2D;
             typedef ExplicitLabelsGridRag<2, uint32_t> ExplicitLabelsGridRag3D;
-
             exportGridRagAccumulateFeaturesT<ExplicitLabelsGridRag2D, float, 2, EdgeMapType, NodeMapType>(ragModule);
+
+            // accumulate labels
+            exportGridRagAccumulateLabelsT<ExplicitLabelsGridRag2D, uint32_t, 2>(ragModule);
         }
     }
 

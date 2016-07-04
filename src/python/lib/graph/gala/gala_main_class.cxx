@@ -26,9 +26,8 @@ namespace graph{
         typedef Gala<GraphType, FeatureValueType> GalaType;
         typedef typename GalaType::InstanceType InstanceType;
         typedef typename GalaType::TrainingInstanceType TrainingInstanceType;
-        typedef typename GalaType::FeatureBaseTypeSharedPtr FeatureBaseTypeSharedPtr;
         typedef typename TrainingInstanceType::EdgeGtType EdgeGtType;
-
+        typedef typename TrainingInstanceType::FeatureBaseType FeatureBaseType;
         py::class_<GalaType>(galaModule,"GalaUndirectedGraph")
             .def(py::init<>())
             .def("addInstance",[](
@@ -40,6 +39,9 @@ namespace graph{
                 py::arg("trainingInstance"), 
                 py::keep_alive<1,2>()
             )
+            .def("train",[](GalaType & gala){
+                gala.train();
+            })
         ;
 
         auto instanceCls = py::class_<InstanceType>(galaModule,"GalaInstanceUndirectedGraph");
@@ -53,13 +55,14 @@ namespace graph{
         galaModule.def("galaInstance",
             [](
                 const GraphType & graph,
-                FeatureBaseTypeSharedPtr features
+                FeatureBaseType * features
             ){
                 auto ptr = new InstanceType(graph, features);
                 return ptr;
             },
             py::return_value_policy::take_ownership,
             py::keep_alive<0,1>(),
+            py::keep_alive<0,2>(),
             py::arg("graph"), 
             py::arg("features")
         );
@@ -67,7 +70,7 @@ namespace graph{
         galaModule.def("galaTrainingInstance",
             [](
                 const GraphType & graph,
-                FeatureBaseTypeSharedPtr features,
+                FeatureBaseType * features,
                 nifty::marray::PyView<uint8_t, 1> edgeGt
             ){
                 EdgeGtType egt(graph);
@@ -78,6 +81,7 @@ namespace graph{
             },
             py::return_value_policy::take_ownership,
             py::keep_alive<0,1>(),
+            py::keep_alive<0,2>(),
             py::arg("graph"), 
             py::arg("features"), 
             py::arg("edgeGt")

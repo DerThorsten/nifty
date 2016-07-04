@@ -12,7 +12,7 @@
 
 namespace py = pybind11;
 
-PYBIND11_DECLARE_HOLDER_TYPE(__T, std::shared_ptr<__T>);
+//PYBIND11_DECLARE_HOLDER_TYPE(__T, std::shared_ptr<__T>);
 
 namespace nifty{
 namespace graph{
@@ -34,21 +34,46 @@ namespace graph{
         // base factory
         py::class_<
             GalaFeatureBaseType, 
-            std::shared_ptr<GalaFeatureBaseType>, 
+            std::unique_ptr<GalaFeatureBaseType>, 
             PyGalaFeatureBaseType 
         > galaFeatureBase(galaModule, "GalaFeatureBaseTypeUndirectedGraph");
         
         galaFeatureBase
         ;
 
-        
+
+        typedef DefaultAccEdgeMap<GraphType, FeatureValueType> EdgeMapType;
+        typedef DefaultAccNodeMap<GraphType, FeatureValueType> NodeMapType;
+
+
         // concrete visitors
-        typedef DummyFeature<GraphType, FeatureValueType> GalaDummyFeature; 
-        
-        py::class_<GalaDummyFeature, std::shared_ptr<GalaDummyFeature> >(galaModule, "GalaDummyFeatureUndirectedGraph",  galaFeatureBase)
-            .def(py::init<>())
+        typedef GalaDefaultAccFeature<GraphType, FeatureValueType> GalaDefaultAccFeatureType; 
+
+        py::class_<GalaDefaultAccFeatureType >(galaModule, "GalaDefaultAccFeatureUndirectedGraph",  galaFeatureBase)
+        .def(py::init<const GraphType &, const EdgeMapType & , const NodeMapType &>(),
+                py::arg("graph"), 
+                py::arg("edgeFeatures"), 
+                py::arg("nodeFeatures"),
+                py::keep_alive<1,2>(),
+                py::keep_alive<1,3>(),
+                py::keep_alive<1,4>()
+            )
         ;
         
+        galaModule.def("galaDefaultAccFeature",
+            [](const GraphType & g, const EdgeMapType & e, const NodeMapType & n){
+                auto ptr = new GalaDefaultAccFeatureType(g,e,n);
+                return ptr;
+            },
+            py::return_value_policy::take_ownership,
+            py::arg("graph"), 
+            py::arg("edgeFeatures"), 
+            py::arg("nodeFeatures"),
+            py::keep_alive<0,1>(),
+            py::keep_alive<0,2>(),
+            py::keep_alive<0,3>()
+        );
+
     }
 
 }

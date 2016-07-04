@@ -5,6 +5,8 @@
 #include <vector>
 #include <memory>
 
+#include "nifty/graph/rag/grid_rag_features.hxx"
+
 namespace nifty{
 namespace graph{
 
@@ -23,28 +25,72 @@ namespace graph{
         virtual void reset() =0;
     };
 
-    template<class GRAPH, class T>
-    class DummyFeature{
+
+    template<class GRAPH, class T, unsigned int NBINS = 40>
+    class GalaDefaultAccFeature  : GalaFeatureBase<GRAPH, T>{
+
     public:
-        virtual ~DummyFeature(){
+        typedef GRAPH GraphType;
+        typedef DefaultAccNodeMap<GRAPH, T, NBINS> NodeMap;
+        typedef DefaultAccEdgeMap<GRAPH, T, NBINS> EdgeMap;
+
+        GalaDefaultAccFeature(const GRAPH & graph, const EdgeMap & edgeMap, const NodeMap & nodeMap)
+        :   graph_(graph),
+            edgeMapIn_(edgeMap),
+            nodeMapIn_(nodeMap),
+            edgeMap_(graph),
+            nodeMap_(graph){
+
+            // clone content
+            this->reset();
         }
         virtual uint64_t numberOfFeatures() const {
-           return  2;
+            return edgeMapIn_.numberOfFeatures() + 4*nodeMapIn_.numberOfFeatures();
         }
-        virtual void mergeEdges(const uint64_t aliveEdge, const uint64_t deadEdge) {
-
+        virtual void mergeEdges(const uint64_t alive, const uint64_t dead) {
+            edgeMap_.merge(alive, dead);
         }
-        virtual void mergeNodes(const uint64_t aliveEdge, const uint64_t deadEdge) {
-
+        virtual void mergeNodes(const uint64_t alive, const uint64_t dead) {
+            nodeMap_.merge(alive, dead);
         }
         virtual void getFeatures(const uint64_t edge, T * featuresOut) {
-            featuresOut[0] = 1.0;
-            featuresOut[1] = 2.0;
+
+            T * fOut = featuresOut;
+            edgeMap_.getFeatures(edge, fOut);
+            fOut += edgeMapIn_.numberOfFeatures();
+
+            const auto uv = graph_.uv(edge);
+            std::vector<T> uFeat(nodeMapIn_.numberOfFeatures());
+            std::vector<T> vFeat(nodeMapIn_.numberOfFeatures());
+            nodeMap_.getFeatures(uv.first, uFeat.data());
+            nodeMap_.getFeatures(uv.second, uFeat.data());
+
+            for(size_t i=0; i<uFeat.size(); ++i){
+                fOut[i*4 + 0] = std::min(uFeat[i],vFeat[i]);
+                fOut[i*4 + 1] = std::max(uFeat[i],vFeat[i]);
+                fOut[i*4 + 1] = std::abs(uFeat[i]-vFeat[i]);
+                fOut[i*4 + 1] = uFeat[i]+vFeat[i];
+            }
         }
         virtual void reset() {
-
+            edgeMap_.resetFrom(edgeMapIn_);
+            nodeMap_.resetFrom(nodeMapIn_);
         }
+
+    private:
+        const GraphType & graph_;
+        const EdgeMap & edgeMapIn_;
+        const NodeMap & nodeMapIn_;
+        EdgeMap edgeMap_;
+        NodeMap nodeMap_;
+        
+
     };
+
+
+
+
+
 
     template<class GRAPH, class T>
     class GalaFeatureCollection : GalaFeatureBase<GRAPH, T>{
@@ -83,7 +129,7 @@ namespace graph{
             }
         }
     private:
-        std::vector<FeatureBaseTypeSharedPtr> featuresSharedPtr_;
+        //std::vector<FeatureBaseTypeSharedPtr> featuresSharedPtr_;
         std::vector<FeatureBaseType *>        featuresRawPtr_;
     };
 
