@@ -63,13 +63,13 @@ namespace graph{
             std::vector<T> uFeat(nodeMapIn_.numberOfFeatures());
             std::vector<T> vFeat(nodeMapIn_.numberOfFeatures());
             nodeMap_.getFeatures(uv.first, uFeat.data());
-            nodeMap_.getFeatures(uv.second, uFeat.data());
+            nodeMap_.getFeatures(uv.second, vFeat.data());
 
             for(size_t i=0; i<uFeat.size(); ++i){
                 fOut[i*4 + 0] = std::min(uFeat[i],vFeat[i]);
                 fOut[i*4 + 1] = std::max(uFeat[i],vFeat[i]);
-                fOut[i*4 + 1] = std::abs(uFeat[i]-vFeat[i]);
-                fOut[i*4 + 1] = uFeat[i]+vFeat[i];
+                fOut[i*4 + 2] = std::abs(uFeat[i]-vFeat[i]);
+                fOut[i*4 + 3] = uFeat[i]+vFeat[i];
             }
         }
         virtual void reset() {

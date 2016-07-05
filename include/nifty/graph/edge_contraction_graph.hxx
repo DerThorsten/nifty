@@ -33,6 +33,8 @@ namespace graph{
             typedef detail_graph::UndirectedAdjacency<int64_t,int64_t,int64_t,int64_t> NodeAdjacency;
             //typedef std::set<NodeAdjacency> NodeStorage;
             typedef nifty::container::FlatSet <NodeAdjacency> NodeStorage;
+            typedef typename NodeStorage::const_iterator AdjacencyIter;
+
             typedef typename Graph:: template NodeMap<NodeStorage> NodesContainer;
             typedef std::pair<int64_t,int64_t> EdgeStorage;
             typedef typename Graph:: template EdgeMap<EdgeStorage> EdgeContainer;
@@ -48,7 +50,28 @@ namespace graph{
                 currentNodeNum_(graph_.numberOfNodes()),
                 currentEdgeNum_(graph_.numberOfEdges())
             {
+                this->reset();
+            }
 
+            struct AdjacencyIterRange :  public tools::ConstIteratorRange<AdjacencyIter>{
+                using tools::ConstIteratorRange<AdjacencyIter>::ConstIteratorRange;
+            };
+            AdjacencyIterRange adjacency(const int64_t node) const{
+                return AdjacencyIterRange(adjacencyBegin(node),adjacencyEnd(node));
+            }
+
+            AdjacencyIter adjacencyBegin(const int64_t node)const{
+                NIFTY_ASSERT_OP(node,<,numberOfNodes());
+                return nodes_[node].begin();
+            }
+
+            AdjacencyIter adjacencyEnd(const int64_t node)const{
+                NIFTY_ASSERT_OP(node,<,numberOfNodes());
+                return nodes_[node].end();
+            }
+
+            AdjacencyIter adjacencyOutBegin(const int64_t node)const{
+                return adjacencyBegin(node);
             }
 
 
@@ -178,6 +201,18 @@ namespace graph{
                 return currentEdgeNum_;
             }
 
+            uint64_t findRepresentativeNode(const uint64_t node)const{
+                return ufd_.find(node);
+            }
+            uint64_t findRepresentativeNode(const uint64_t node){
+                return ufd_.find(node);
+            }
+
+            uint64_t nodeOfDeadEdge(const uint64_t deadEdge)const{
+                auto uv = edges_[deadEdge];
+                NIFTY_TEST_OP(ufd_.find(uv.first),==, ufd_.find(uv.second));
+                return ufd_.find(uv.first);
+            }
         private:
 
             void relabelEdge(const uint64_t edge,const uint64_t deadNode, const uint64_t aliveNode){

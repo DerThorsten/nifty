@@ -26,7 +26,6 @@ namespace graph{
         typedef Gala<GraphType, FeatureValueType> GalaType;
         typedef typename GalaType::InstanceType InstanceType;
         typedef typename GalaType::TrainingInstanceType TrainingInstanceType;
-        typedef typename TrainingInstanceType::EdgeGtType EdgeGtType;
         typedef typename TrainingInstanceType::FeatureBaseType FeatureBaseType;
         py::class_<GalaType>(galaModule,"GalaUndirectedGraph")
             .def(py::init<>())
@@ -71,12 +70,9 @@ namespace graph{
             [](
                 const GraphType & graph,
                 FeatureBaseType * features,
-                nifty::marray::PyView<uint8_t, 1> edgeGt
+                nifty::marray::PyView<double, 1> edgeGt
             ){
-                EdgeGtType egt(graph);
-                for(const auto edge: graph.edges())
-                    egt[edge] = edgeGt(edge);
-                auto ptr = new TrainingInstanceType(graph, features, egt);
+                auto ptr = new TrainingInstanceType(graph, features, edgeGt);
                 return ptr;
             },
             py::return_value_policy::take_ownership,
@@ -85,6 +81,25 @@ namespace graph{
             py::arg("graph"), 
             py::arg("features"), 
             py::arg("edgeGt")
+        );
+
+        galaModule.def("galaTrainingInstance",
+            [](
+                const GraphType & graph,
+                FeatureBaseType * features,
+                nifty::marray::PyView<double, 1> edgeGt,
+                nifty::marray::PyView<double, 1> edgeGtUncertainty
+            ){
+                auto ptr = new TrainingInstanceType(graph, features, edgeGt, edgeGtUncertainty);
+                return ptr;
+            },
+            py::return_value_policy::take_ownership,
+            py::keep_alive<0,1>(),
+            py::keep_alive<0,2>(),
+            py::arg("graph"), 
+            py::arg("features"), 
+            py::arg("edgeGt"),
+            py::arg("edgeGtUncertainty")
         );
     }
 

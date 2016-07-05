@@ -26,6 +26,12 @@ namespace graph{
         const uint64_t initalNumberOfEdges(){
             return graph_.numberOfEdges();
         }
+        const GraphType & graph() const{
+            return graph_;
+        }
+        FeatureBaseType * features() {
+            return features_;
+        }
     protected:
         const GraphType & graph_;
         FeatureBaseType *  features_;
@@ -37,7 +43,8 @@ namespace graph{
         typedef Instance<GRAPH,T> BaseType;
         typedef typename BaseType::GraphType GraphType;
         typedef typename BaseType::FeatureBaseType FeatureBaseType;
-        typedef typename GraphType:: template EdgeMap<uint8_t>  EdgeGtType;
+        typedef typename GraphType:: template EdgeMap<double>  FuzzyEdgeGtType;
+        typedef typename GraphType:: template EdgeMap<double>  EdgeGtUncertainty;
         typedef typename GraphType:: template NodeMap<uint64_t> NodeGtType;
 
         template<class EDGE_GT>
@@ -47,18 +54,37 @@ namespace graph{
             const EDGE_GT & edgeGt
         )
         :   BaseType(graph, features),
-            edgeGt_(graph){
+            edgeGt_(graph),
+            edgeGtUncertainty_(graph,0.0){
             for(const auto edge: graph.edges()){
                 edgeGt_[edge] = edgeGt[edge];
             }
         }
 
-        const uint64_t initalNumberOfLabeldEdges(){
-            //return this->graph_.numberOfEdges();
+        template<class EDGE_GT, class EDGE_GT_UNCERTAINTY>
+        TrainingInstance(
+            const GraphType & graph, 
+            FeatureBaseType * features, 
+            const EDGE_GT & edgeGt,
+            const EDGE_GT_UNCERTAINTY & edgeGtUncertainty
+        )
+        :   BaseType(graph, features),
+            edgeGt_(graph),
+            edgeGtUncertainty_(graph){
+            for(const auto edge: graph.edges()){
+                edgeGt_[edge] = edgeGt[edge];
+                edgeGtUncertainty_[edge] = edgeGtUncertainty[edge];
+            }
         }
-
+        const FuzzyEdgeGtType & edgeGt()const{
+            return edgeGt_;
+        }
+        const EdgeGtUncertainty & edgeGtUncertainty()const{
+            return edgeGtUncertainty_;
+        }
     private:
-        EdgeGtType edgeGt_;
+        FuzzyEdgeGtType edgeGt_;
+        EdgeGtUncertainty edgeGtUncertainty_;
     };
     
 

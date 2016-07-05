@@ -106,8 +106,7 @@ def test_mcgala():
     # get the gt
     nodeGt = nrag.gridRagAccumulateLabels(ragTrain, gts[0])
     uvIds = ragTrain.uvIds()
-    edgeGt = (nodeGt[uvIds[:,0]] != nodeGt[uvIds[:,1]]).astype('uint8')
-    
+    edgeGt = (nodeGt[uvIds[:,0]] != nodeGt[uvIds[:,1]]).astype('double')
     print(numpy.mean(edgeGt))
     
 
