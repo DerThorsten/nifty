@@ -11,6 +11,7 @@
 #define __setimpl boost::container::flat_set
 #endif
 
+#include "nifty/graph/simple_graph.hxx"
 #include "nifty/container/flat_set.hxx"
 #include "nifty/tools/runtime_check.hxx"
 #include "nifty/ufd/ufd.hxx"
@@ -21,6 +22,95 @@
 
 namespace nifty{
 namespace graph{
+
+    template<class GRAPH, class CALLBACK>
+    class EdgeContractionGraph;
+
+    template<class GRAPH, class OUTER_CALLBACK, class SET>
+    class EdgeContractionGraphWithSets;
+
+    namespace detail_edge_contraction_graph{
+
+        template<class GRAPH, class OUTER_CALLBACK, class SET>
+        class InnerCallback{
+        public:
+            typedef GRAPH GraphType;
+            typedef OUTER_CALLBACK OuterCallbackType;
+            typedef SET SetType;
+            InnerCallback(const GraphType & g, OuterCallbackType & outerCallback)
+            :   graph_(g),
+                outerCallback_(outerCallback){
+                this->initSets();
+            }
+            void initSets(){
+                edgesSet_.clear();
+                nodesSet_.clear();
+                for(const auto edge : graph_.edges()){
+                    edgesSet_.insert(edge);
+                }
+                for(const auto node : graph_.nodes()){
+                    nodesSet_.insert(node);
+                }
+            }
+            void reset(){
+                this->initSets();
+                outerCallback_.reset();
+            }
+
+            void contractEdge(const uint64_t edgeToContract){
+                edgesSet_.erase(edgeToContract);
+                outerCallback_.contractEdge(edgeToContract);
+            }
+
+            void mergeNodes(const uint64_t aliveNode, const uint64_t deadNode){
+                nodesSet_.erase(deadNode);
+                outerCallback_.mergeNodes(aliveNode, deadNode);
+            }
+
+            void mergeEdges(const uint64_t aliveEdge, const uint64_t deadEdge){
+                edgesSet_.erase(deadEdge);
+                outerCallback_.mergeEdges(aliveEdge, deadEdge);
+            }
+
+            void contractEdgeDone(const uint64_t edgeToContract){
+                outerCallback_.contractEdgeDone(edgeToContract);
+            }
+
+
+        private:
+            const GraphType & graph_;
+            OuterCallbackType & outerCallback_;
+            SetType nodesSet_;
+            SetType edgesSet_;
+
+
+        };
+
+    }
+
+
+
+    template<class GRAPH, class OUTER_CALLBACK, class SET>
+    class EdgeContractionGraphWithSets :
+        public EdgeContractionGraph<GRAPH, detail_edge_contraction_graph::InnerCallback<GRAPH, OUTER_CALLBACK, SET> >{
+    public:
+        typedef EdgeContractionGraphWithSets<GRAPH, OUTER_CALLBACK, SET> SelfType;
+        typedef EdgeContractionGraph<GRAPH, detail_edge_contraction_graph::InnerCallback<GRAPH, OUTER_CALLBACK, SET> > BaseType;
+        typedef GRAPH GraphType;
+        typedef OUTER_CALLBACK OuterCallbackType;
+        typedef SET SetType;
+        
+        EdgeContractionGraphWithSets(const GraphType & graph, OuterCallbackType & outerCallback)
+        :   innerCallback_(graph, outerCallback),
+            BaseType(graph, innerCallback_){
+                innerCallback_.initSets();
+        }
+
+    private:
+        typedef detail_edge_contraction_graph::InnerCallback<GraphType, OuterCallbackType, SetType> InnerCallbackType;
+        InnerCallbackType innerCallback_;
+    };
+
 
 
     template<class GRAPH, class CALLBACK>
@@ -78,7 +168,7 @@ namespace graph{
             void reset(){
                 ufd_.reset();
                 currentNodeNum_ = graph_.numberOfNodes();
-                // shortcuts
+                currentEdgeNum_ = graph_.numberOfEdges();
                 
 
                 // fill the data-structures for the dynamic graph
@@ -186,6 +276,10 @@ namespace graph{
                 callback_.contractEdgeDone(edgeToContract);
             }
 
+            EdgeStorage uv(const uint64_t edge)const{
+                return edges_[edge];
+            }
+
             const UfdType & ufd() const {
                 return ufd_;
             }
@@ -212,6 +306,9 @@ namespace graph{
                 auto uv = edges_[deadEdge];
                 NIFTY_TEST_OP(ufd_.find(uv.first),==, ufd_.find(uv.second));
                 return ufd_.find(uv.first);
+            }
+            const Graph & baseGraph()const{
+                return graph_;
             }
         private:
 

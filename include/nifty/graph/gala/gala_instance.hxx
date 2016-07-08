@@ -65,15 +65,15 @@ namespace graph{
         TrainingInstance(
             const GraphType & graph, 
             FeatureBaseType * features, 
-            const EDGE_GT & edgeGt,
-            const EDGE_GT_UNCERTAINTY & edgeGtUncertainty
+            const EDGE_GT & edgeGt__,
+            const EDGE_GT_UNCERTAINTY & edgeGtUncertainty__
         )
         :   BaseType(graph, features),
             edgeGt_(graph),
             edgeGtUncertainty_(graph){
             for(const auto edge: graph.edges()){
-                edgeGt_[edge] = edgeGt[edge];
-                edgeGtUncertainty_[edge] = edgeGtUncertainty[edge];
+                edgeGt_[edge] = edgeGt_[edge];
+                edgeGtUncertainty_[edge] = edgeGtUncertainty_[edge];
             }
         }
         const FuzzyEdgeGtType & edgeGt()const{
