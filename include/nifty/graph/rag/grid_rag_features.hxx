@@ -6,6 +6,7 @@
 #include "nifty/graph/rag/grid_rag.hxx"
 #include "nifty/marray/marray.hxx"
 
+#include "nifty/tools/for_each_coordinate.hxx"
 
 namespace nifty{
 namespace graph{
@@ -171,23 +172,31 @@ namespace graph{
 
 
 
-    template<class LABELS_TYPE, class LABELS, class NODE_MAP>
+
+    template<unsigned int DIM, class LABELS_TYPE, class LABELS, class NODE_MAP>
     void gridRagAccumulateLabels(
-        const ExplicitLabelsGridRag<2, LABELS_TYPE> & graph,
+        const ExplicitLabelsGridRag<DIM, LABELS_TYPE> & graph,
         nifty::marray::View<LABELS> data,
         NODE_MAP &  nodeMap
     ){
+        typedef std::array<int64_t, DIM> Coord;
+
         const auto labelsProxy = graph.labelsProxy();
+        const auto & shape = labelsProxy.shape();
         const auto labels = labelsProxy.labels(); 
 
         std::vector<  std::unordered_map<uint64_t, uint64_t> > overlaps(graph.numberOfNodes());
-     
-        for(size_t x=0; x<labels.shape(0); ++x)
-        for(size_t y=0; y<labels.shape(1); ++y){
-            const auto node = labels(x, y);            
+        
+
+
+        nifty::tools::forEachCoordinate(shape,[&](const Coord & coord){
+            const auto x = coord[0];
+            const auto y = coord[1];
+            const auto node = labels(x,y);            
             const auto l  = data(x,y);
             overlaps[node][l] += 1;
-        }
+        });
+
         for(const auto node : graph.nodes()){
             const auto & ol = overlaps[node];
             // find max ol 

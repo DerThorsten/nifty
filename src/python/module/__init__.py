@@ -193,11 +193,27 @@ del __addStaticMethodsToUndirectedGraphAndMulticutObjectiveUndirectedGraph
 
 def __addStaticMethodsToUndirectedGraph():
 
-    G = graph.UndirectedGraph
 
-    def _getGala():
-        return graph.gala.GalaUndirectedGraph()
+
+
+    G = graph.UndirectedGraph
+    def _getGalaSettings(threshold0=0.1, threshold1=0.9, thresholdU=0.1, numberOfEpochs=3, numberOfTrees=100):
+        s =  graph.gala.GalaSettingsUndirectedGraph()
+        s.threshold0 = float(threshold0)
+        s.threshold1 = float(threshold1)
+        s.thresholdU = float(thresholdU)
+        s.numberOfEpochs = int(numberOfEpochs)
+        s.numberOfTrees = int(numberOfTrees)
+        return s
+
+    G.galaSettings = staticmethod(_getGalaSettings)
+
+
+    G = graph.UndirectedGraph
+    def _getGala(settings = G.galaSettings()):
+        return graph.gala.GalaUndirectedGraph(settings)
     G.gala = staticmethod(_getGala)
+
 
 __addStaticMethodsToUndirectedGraph()
 del __addStaticMethodsToUndirectedGraph

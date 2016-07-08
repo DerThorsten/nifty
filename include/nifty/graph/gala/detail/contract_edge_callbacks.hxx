@@ -52,9 +52,9 @@ namespace graph{
         typedef  std::tuple<uint64_t,uint64_t,uint64_t,uint64_t> HashType;
         typedef Gala<GraphType, T, CLASSIFIER> GalaType;
 
-        //typedef EdgeContractionGraph<GraphType, Self>   TrainingEdgeContractionGraphType;
+        //typedef EdgeContractionGraph<GraphType, Self>   EdgeContractionGraphType;
 
-        typedef EdgeContractionGraphWithSets<GraphType, Self, std::set<uint64_t> >   TrainingEdgeContractionGraphType;
+        typedef EdgeContractionGraphWithSets<GraphType, Self, std::set<uint64_t> >   EdgeContractionGraphType;
 
         typedef vigra::ChangeablePriorityQueue< double ,std::less<double> > QueueType;
 
@@ -184,7 +184,7 @@ namespace graph{
         }
 
         TrainingInstanceType & trainingInstance_;
-        TrainingEdgeContractionGraphType contractionGraph_;
+        EdgeContractionGraphType contractionGraph_;
         QueueType pq_;
 
         EdgeMapDouble edgeGt_;
@@ -195,6 +195,100 @@ namespace graph{
         NodeHash nodeHash_;
         size_t ownIndex_;
         GalaType & gala_;
+    };
+
+
+
+    template<class GRAPH, class T, class CLASSIFIER>
+    struct TestCallback{
+        
+        typedef GRAPH GraphType;
+        typedef TestCallback<GraphType, T, CLASSIFIER> Self;
+        typedef Instance<GraphType, T>     InstanceType;
+        typedef GalaFeatureBase<GraphType, T>     FeatureBaseType;
+        typedef Gala<GraphType, T, CLASSIFIER> GalaType;
+
+
+        typedef EdgeContractionGraphWithSets<GraphType, Self, std::set<uint64_t> >   EdgeContractionGraphType;
+        typedef vigra::ChangeablePriorityQueue< double ,std::less<double> > QueueType;
+
+        typedef typename GraphType:: template EdgeMap<double>  EdgeMapDouble;
+        typedef typename GraphType:: template EdgeMap<uint64_t>  EdgeHash;
+        typedef typename GraphType:: template NodeMap<uint64_t>  NodeHash;
+
+        TestCallback(InstanceType & instance, const GalaType & gala)
+        :   instance_(instance),
+            contractionGraph_(instance.graph(), *this),
+            pq_(instance.graph().maxEdgeId()+1),
+            gala_(gala){
+        }
+
+        const GraphType & graph()const{
+            return instance_.graph();
+        }
+
+        FeatureBaseType * features(){
+            return instance_.features();
+        }
+        const uint64_t numberOfFeatures()const{
+            return instance_.numberOfFeatures();
+        }
+
+        void reset(){
+            this->features()->reset();
+            contractionGraph_.reset();
+            while(!pq_.empty()){
+                pq_.pop();
+            }
+        }
+
+        void contractEdge(const uint64_t edgeToContract){
+            NIFTY_TEST(pq_.contains(edgeToContract));
+            pq_.deleteItem(edgeToContract);
+        }
+
+        void mergeNodes(const uint64_t aliveNode, const uint64_t deadNode){
+           instance_.features()->mergeNodes(aliveNode, deadNode);
+        }
+
+        void mergeEdges(const uint64_t aliveEdge, const uint64_t deadEdge){
+            instance_.features()->mergeEdges(aliveEdge, deadEdge);
+            pq_.deleteItem(deadEdge);
+        }
+
+        void contractEdgeDone(const uint64_t edgeToContract){
+            // recompute features  
+            const auto u = contractionGraph_.nodeOfDeadEdge(edgeToContract);
+            for(auto adj :contractionGraph_.adjacency(u)){
+                const auto edge = adj.edge();
+                this->recomputeFeaturesAndPredictImpl(edge);
+            }
+        }
+        void initalPrediction(){ 
+            for(const auto edge: this->graph().edges()){
+                this->recomputeFeaturesAndPredictImpl(edge);
+            }
+        }
+
+        void recomputeFeaturesAndPredictImpl(const uint64_t edgeToUpdate){ 
+
+            const auto nf = this->numberOfFeatures();
+            std::vector<T> f(nf);
+            this->features()->getFeatures(edgeToUpdate, f.data());
+            auto pRf = gala_.classifier_.predictProbability(f.data());
+            pq_.push(edgeToUpdate, pRf);
+        }
+
+        void toContract(std::vector<uint64_t> & toContract){
+            toContract.resize(0);
+            toContract.push_back(pq_.top());
+
+        }
+
+        InstanceType & instance_;
+        EdgeContractionGraphType contractionGraph_;
+        QueueType pq_;
+        const GalaType & gala_;
     };
 
 

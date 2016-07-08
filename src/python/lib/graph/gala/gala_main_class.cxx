@@ -24,22 +24,48 @@ namespace graph{
         typedef UndirectedGraph<> GraphType;
         typedef double FeatureValueType;
         typedef Gala<GraphType, FeatureValueType> GalaType;
+        typedef typename GalaType::Settings GalaSettingsType;
         typedef typename GalaType::InstanceType InstanceType;
         typedef typename GalaType::TrainingInstanceType TrainingInstanceType;
         typedef typename TrainingInstanceType::FeatureBaseType FeatureBaseType;
-        py::class_<GalaType>(galaModule,"GalaUndirectedGraph")
+
+
+
+        py::class_<GalaSettingsType>(galaModule,"GalaSettingsUndirectedGraph")
             .def(py::init<>())
-            .def("addInstance",[](
+            .def_readwrite("threshold0", &GalaSettingsType::threshold0)
+            .def_readwrite("threshold1", &GalaSettingsType::threshold1)
+            .def_readwrite("thresholdU", &GalaSettingsType::thresholdU)
+            .def_readwrite("numberOfEpochs", &GalaSettingsType::numberOfEpochs)
+            .def_readwrite("numberOfTrees", &GalaSettingsType::numberOfTrees)
+        ;
+
+        py::class_<GalaType>(galaModule,"GalaUndirectedGraph")
+            .def(py::init<const GalaSettingsType & >(),py::arg("settings"))
+            .def(py::init<>())
+            .def("addTrainingInstance",[](
                 GalaType * self, 
-                TrainingInstanceType * trainingInstance
+                TrainingInstanceType & trainingInstance
             ){
                 self->addTrainingInstance(trainingInstance);
             },
                 py::arg("trainingInstance"), 
                 py::keep_alive<1,2>()
             )
+
             .def("train",[](GalaType & gala){
                 gala.train();
+            })
+
+
+            .def("predict",[](
+                GalaType & gala, 
+                InstanceType & instance
+
+            ){
+                nifty::marray::PyView<uint64_t, 1> nodeLabels({instance.graph().numberOfNodes()});
+                gala.predict(instance, nodeLabels);
+                return nodeLabels;
             })
         ;
 

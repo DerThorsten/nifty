@@ -20,10 +20,11 @@ public:
     typedef nifty::marray::View<LABEL_TYPE> ViewType;
 
     ExplicitLabels(const nifty::marray::View<LABEL_TYPE, false> & labels = nifty::marray::View<LABEL_TYPE, false>())
-    :   labels_(labels){
-        //for(size_t i=0; i<labels_.dimension(); ++i){
-        //    std::cout<<labels_.stridesBegin()[i]<<" ";
-        //}
+    :   labels_(labels),
+        shape_()
+    {
+        for(size_t i=0; i<DIM; ++i)
+            shape_[i] = labels_.shape(i);
     }
 
 
@@ -54,8 +55,13 @@ public:
         return labels_;
     }
 
+    const std::array<int64_t, DIM> & shape()const{
+        return  shape_;
+    }
+
 private:
     nifty::marray::View<LABEL_TYPE> labels_;
+    std::array<int64_t, DIM> shape_;
 };
 
 }

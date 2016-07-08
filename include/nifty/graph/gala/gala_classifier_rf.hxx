@@ -13,8 +13,9 @@ namespace graph{
     template<class T>
     class RfClassifier{
     public:
-        RfClassifier()
-        :   classifier_(nullptr){
+        RfClassifier(const size_t numberOfTrees=255)
+        :   classifier_(nullptr),
+            numberOfTrees_(numberOfTrees){
 
         }
         void initialize(const size_t numberOfFeatures){
@@ -33,7 +34,7 @@ namespace graph{
                 delete classifier_;
             }
             auto rfOpts = vigra::RandomForestOptions();  
-            rfOpts.tree_count(100);
+            rfOpts.tree_count(numberOfTrees_);
             rfOpts.predict_weighted();
             classifier_ = new  vigra::RandomForest<uint8_t>(rfOpts);
 
@@ -44,7 +45,7 @@ namespace graph{
             std::cout << "the out-of-bag error is: " << oob_v.oob_breiman << "\n"; 
         }
 
-        double predictProbability(const T * features){
+        double predictProbability(const T * features)const{
             // copy stuff atm 
             vigra::MultiArray<2, T>       f(vigra::Shape2(1,numberOfFeatures_));     
             vigra::MultiArray<2, double>  p(vigra::Shape2(1,2));
@@ -86,6 +87,7 @@ namespace graph{
 
 
         vigra::RandomForest<uint8_t> *  classifier_;
+        const size_t                    numberOfTrees_;
         vigra::MultiArray<2, T>         rfFeatures_;     
         vigra::MultiArray<2, uint8_t>   rfLabels_;
 
