@@ -5,18 +5,18 @@
 #include <iostream>
 
 #include "vigra/multi_array.hxx"
-//#include "vigra/random_forest.hxx"
+#include "vigra/random_forest.hxx"
 #include "vigra/random_forest_3.hxx"
 #include "nifty/tools/timer.hxx"
 
 namespace nifty{
 namespace graph{
 
-    /*
+    
     template<class T>
-    class RfClassifierOld{
+    class RfClassifier{
     public:
-        RfClassifierOld(const size_t numberOfTrees=255)
+        RfClassifier(const size_t numberOfTrees=255)
         :   classifier_(nullptr),
             numberOfTrees_(numberOfTrees){
 
@@ -105,8 +105,9 @@ namespace graph{
         std::vector<uint8_t>    newRfLabels_;
         uint64_t numberOfFeatures_;
     };
-    */
+    
 
+    /*
     template<class T>
     class RfClassifier{
     public:
@@ -203,6 +204,7 @@ namespace graph{
         std::vector<uint8_t>    newRfLabels_;
         uint64_t numberOfFeatures_;
     };
+    */
 
 } // namespace nifty::graph
 } // namespace nifty
