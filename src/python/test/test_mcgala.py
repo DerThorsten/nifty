@@ -52,7 +52,7 @@ def makeRag(raw, showSeg = False):
     #ew = vigra.filters.gaussianGradientMagnitude(raw, 1.0)#[:,:,0]
     #seg, nseg = vigra.analysis.watershedsNew(ew)
 
-    seg, nseg = vigra.analysis.slicSuperpixels(raw,intensityScaling=3.0, seedDistance=15)
+    seg, nseg = vigra.analysis.slicSuperpixels(raw,intensityScaling=5.0, seedDistance=6)
 
     seg = seg.squeeze()
     if showSeg:
@@ -92,10 +92,17 @@ def makeFeatureOp(rag, raw, minVals=None, maxVals=None):
     filterFuc = [
         partial(vigra.filters.gaussianSmoothing,sigma=0.5),
         partial(vigra.filters.gaussianSmoothing,sigma=1.0),
+        partial(vigra.filters.gaussianSmoothing,sigma=2.0),
+        partial(vigra.filters.gaussianSmoothing,sigma=4.0),
+        partial(vigra.filters.gaussianGradientMagnitude,sigma=1.0),
         partial(vigra.filters.gaussianGradientMagnitude,sigma=2.0),
-        partial(vigra.filters.gaussianGradientMagnitude,sigma=3.0),
+        partial(vigra.filters.gaussianGradientMagnitude,sigma=4.0),
         partial(vigra.filters.hessianOfGaussianEigenvalues,scale=1.0),
-        partial(vigra.filters.hessianOfGaussianEigenvalues,scale=2.0)
+        partial(vigra.filters.hessianOfGaussianEigenvalues,scale=2.0),
+        partial(vigra.filters.hessianOfGaussianEigenvalues,scale=4.0),
+        partial(vigra.filters.structureTensorEigenvalues,innerScale=1.0,outerScale=2.0),
+        partial(vigra.filters.structureTensorEigenvalues,innerScale=2.0,outerScale=4.0),
+        partial(vigra.filters.structureTensorEigenvalues,innerScale=4.0,outerScale=8.0)
     ]
     fCollection = ngala.galaFeatureCollection(rag)
 
@@ -137,7 +144,7 @@ def test_mcgala():
 
 
     # get the dataset
-    imgs,gts = make_dataset(10, noise=4.0, shape=(200,200))
+    imgs,gts = make_dataset(10, noise=5.0, shape=(200,200))
 
 
     greedyFactory = G.greedyAdditiveFactory()
@@ -171,14 +178,14 @@ def test_mcgala():
 
 
 
-    ragTrain  = makeRag(imgs[0], showSeg=True)
+    ragTrain  = makeRag(imgs[0], showSeg= True)
     fOpTrain, minVal, maxVal = makeFeatureOp(ragTrain, imgs[0])
     edgeGt = makeEdgeGt(ragTrain, gts[0])
 
 
     # gala class
     settings = G.galaSettings(threshold0=0.1, threshold1=0.9, thresholdU=0.1,
-                              numberOfEpochs=2, numberOfTrees=255,
+                              numberOfEpochs=5, numberOfTrees=100,
                               mapFactory=fmFactoryA,
                               perturbAndMapFactory=fmFactoryB)
     gala = G.gala(settings)

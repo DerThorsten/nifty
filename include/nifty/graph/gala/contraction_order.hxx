@@ -37,6 +37,12 @@ namespace graph{
 
 
 
+struct McGreedyHybridSetttings{
+    
+    std::array<double, 4> weights{{1.0,1.0,1.0,0.001}};
+    double stopWeight{0.5};
+    double localRfDamping{0.001};
+};
 
 
 
@@ -51,11 +57,7 @@ private:
     typedef vigra::ChangeablePriorityQueue< ValueType ,std::less<ValueType> > QueueType;
 
 public: 
-    struct Setttings{
-        std::array<ValueType, 4> weights{{ValueType(1),ValueType(1),ValueType(1),ValueType(1)}};
-        ValueType stopWeight{0.5};
-        ValueType localRfDamping = 0.001;
-    };
+    typedef McGreedyHybridSetttings Setttings;
 
     McGreedyHybridBase(CALLBACK & callback,
         const bool training,
@@ -73,8 +75,7 @@ public:
         wardProbs_(callback.graph()),
         constraints_(callback.graph(),0),
         hasMcPerturbAndMapProbs_(false),
-        hasMcMapProbs_(false),
-        hasWardProbs_(false)
+        hasMcMapProbs_(false)
     {
 
     }
@@ -101,7 +102,11 @@ public:
     }
 
     void setInitalLocalRfProb(const uint64_t edge, const ValueType prob){
+
+        // initialization
         localRfProbs_[edge] = prob;
+
+        this->updateWardProbs(edge,false);
         this->updatePriority(edge);
     }
 
@@ -110,6 +115,21 @@ public:
         const auto d = settings_.localRfDamping;
         localRfProbs_[edge] = (1.0 - d)*newProb + d*oldProb;
         this->updatePriority(edge);
+    }
+
+    void updateWardProbs(const uint64_t edge, const bool update=true){
+        const auto uv = cgraph_.uv(edge);
+        const auto su = callback_.currentNodeSizes()[uv.first];
+        const auto sv = callback_.currentNodeSizes()[uv.second];
+
+        const auto ssu = 1.0 - std::exp(-4.0*su);
+        const auto ssv = 1.0 - std::exp(-4.0*sv);
+
+        const auto ward = 2.0 /( (1.0/ssu) + (1.0/ssv));
+        wardProbs_[edge] = ward;
+        if(update){
+            this->updatePriority(edge);
+        }
     }
     
     void constraintsEdge(const uint64_t edge){
@@ -125,7 +145,12 @@ public:
     }
 
     void mergeNodes(const uint64_t aliveNode, const uint64_t deadNode){
-        // do nothing
+
+        const auto sa = callback_.currentNodeSizes()[aliveNode];
+        const auto sd = callback_.currentNodeSizes()[deadNode];
+        const auto s = sa + sd;
+
+
     }
 
     void mergeEdges(const uint64_t aliveEdge, const uint64_t deadEdge){
@@ -146,7 +171,14 @@ public:
     }
 
     void contractEdgeDone(const uint64_t edgeToContract){
-        // do nothing
+        // update wardness
+
+        const auto u = cgraph_.nodeOfDeadEdge(edgeToContract);
+        for(auto adj : cgraph_.adjacency(u)){
+            const auto edge = adj.edge();
+            this->updateWardProbs(edge);
+        }
+
     }
 
 private:
@@ -179,10 +211,10 @@ private:
                 pAcc += w[2]*mcMapProbs_[edge];
             }
 
-            if(hasWardProbs_){
-                wSum += w[3];
-                pAcc += w[3]*wardProbs_[edge];
-            }
+            
+            wSum += w[3];
+            pAcc += w[3]*wardProbs_[edge];
+            
 
             return pAcc/wSum;
         }

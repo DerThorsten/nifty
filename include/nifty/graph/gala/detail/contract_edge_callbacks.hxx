@@ -252,6 +252,7 @@ namespace graph{
 
 
         typedef typename GraphType:: template EdgeMap<double>  EdgeMapDouble;
+        typedef typename GraphType:: template NodeMap<double>  NodeMapDouble;
 
         typedef typename GraphType:: template EdgeMap<uint64_t>  EdgeHash;
         typedef typename GraphType:: template NodeMap<uint64_t>  NodeHash;
@@ -263,6 +264,7 @@ namespace graph{
             edgeGt_(trainingInstance.graph()),
             edgeGtUncertainty_(trainingInstance.graph()),
             edgeSizes_(trainingInstance.graph()),
+            nodeSizes_(trainingInstance.graph()),
             edgeHash_(trainingInstance.graph()),
             nodeHash_(trainingInstance.graph()),
             ownIndex_(ownIndex),
@@ -281,12 +283,16 @@ namespace graph{
             }
             for(const auto node : this->graph().nodes()){
                 nodeHash_[node] = myHash(node);
+                nodeSizes_[node] = getInstance().nodeSizes()[node];
             }
 
         }
 
         const EdgeMapDouble & currentEdgeSizes()const{
             return edgeSizes_;
+        }
+        const NodeMapDouble & currentNodeSizes()const{
+            return nodeSizes_;
         }
 
         TrainingInstanceType & getInstance(){
@@ -319,6 +325,7 @@ namespace graph{
             };
             for(const auto node : this->graph().nodes()){
                 nodeHash_[node] = myHash(node);
+                nodeSizes_[node] = getInstance().nodeSizes()[node];
             }
 
         }
@@ -328,9 +335,12 @@ namespace graph{
         }
 
         void mergeNodes(const uint64_t aliveNode, const uint64_t deadNode){
-           trainingInstance_.features()->mergeNodes(aliveNode, deadNode);
-           nodeHash_[aliveNode] = myHash(nodeHash_[aliveNode] + nodeHash_[deadNode]);
-           contractionOrder_.mergeNodes(aliveNode, deadNode);
+
+
+            trainingInstance_.features()->mergeNodes(aliveNode, deadNode);
+            nodeHash_[aliveNode] = myHash(nodeHash_[aliveNode] + nodeHash_[deadNode]);
+            contractionOrder_.mergeNodes(aliveNode, deadNode);
+            nodeSizes_[aliveNode] += nodeSizes_[deadNode];
         }
 
         void mergeEdges(const uint64_t aliveEdge, const uint64_t deadEdge){
@@ -402,7 +412,7 @@ namespace graph{
         EdgeMapDouble edgeGt_;
         EdgeMapDouble edgeGtUncertainty_;
         EdgeMapDouble edgeSizes_;
-
+        NodeMapDouble nodeSizes_;
         EdgeHash edgeHash_;
         NodeHash nodeHash_;
         size_t ownIndex_;
@@ -432,13 +442,13 @@ namespace graph{
         typedef vigra::ChangeablePriorityQueue< double ,std::less<double> > QueueType;
 
         typedef typename GraphType:: template EdgeMap<double>  EdgeMapDouble;
-        typedef typename GraphType:: template EdgeMap<uint64_t>  EdgeHash;
-        typedef typename GraphType:: template NodeMap<uint64_t>  NodeHash;
+        typedef typename GraphType:: template NodeMap<double>  NodeMapDouble;
 
         TestCallback(InstanceType & instance, const GalaType & gala)
         :   instance_(instance),
             contractionGraph_(instance.graph(), *this),
             edgeSizes_(instance.graph()),
+            nodeSizes_(instance.graph()),
             gala_(gala),
             mcOrder_(instance.graph(), contractionGraph_,
                      gala.trainingSettings_.mapFactory,
@@ -448,13 +458,18 @@ namespace graph{
             for(const auto edge : this->graph().edges()){
                 edgeSizes_[edge] = getInstance().edgeSizes()[edge];
             };
+            for(const auto node : this->graph().nodes()){
+                nodeSizes_[node] = getInstance().nodeSizes()[node];
+            }
 
         }
 
         const EdgeMapDouble & currentEdgeSizes()const{
             return edgeSizes_;
         }
-
+        const NodeMapDouble & currentNodeSizes()const{
+            return nodeSizes_;
+        }
         InstanceType & getInstance(){
             return instance_;
         }
@@ -479,6 +494,9 @@ namespace graph{
             for(const auto edge : this->graph().edges()){
                 edgeSizes_[edge] = getInstance().edgeSizes()[edge];
             };
+            for(const auto node : this->graph().nodes()){
+                nodeSizes_[node] = getInstance().nodeSizes()[node];
+            }
         }
 
         void contractEdge(const uint64_t edgeToContract){
@@ -488,6 +506,7 @@ namespace graph{
         void mergeNodes(const uint64_t aliveNode, const uint64_t deadNode){
            instance_.features()->mergeNodes(aliveNode, deadNode);
            contractionOrder_.mergeNodes(aliveNode, deadNode);
+           nodeSizes_[aliveNode] += nodeSizes_[deadNode];
         }
 
         void mergeEdges(const uint64_t aliveEdge, const uint64_t deadEdge){
@@ -529,7 +548,9 @@ namespace graph{
 
         InstanceType & instance_;
         EdgeContractionGraphType contractionGraph_;
+
         EdgeMapDouble edgeSizes_;
+        NodeMapDouble nodeSizes_;
 
         const GalaType & gala_;
         McOrder mcOrder_;
