@@ -46,7 +46,19 @@ public:
     ){
         IloNumArray    obj(env_,nVariables_);
         for(size_t v=0; v<nVariables_; ++v){
-            obj[v] = *objectiveIter;
+            const auto val = *objectiveIter;
+
+            if(std::abs(val)<=0.00000001){
+                if(val<0.0){
+                    obj[v] = -0.00000001;
+                }
+                else{
+                    obj[v] =  0.00000001;
+                }
+            }
+            else{
+                obj[v] = val;
+            }
             ++objectiveIter;
         }
         obj_.setLinearCoefs(x_,obj);

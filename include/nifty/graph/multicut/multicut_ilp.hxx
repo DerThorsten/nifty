@@ -280,7 +280,7 @@ namespace graph{
         const auto & weights = objective_.weights();
         auto lpEdge = 0;
         for(auto e : graph_.edges()){
-            if(true && std::abs(weights[e])<=0.000000001){
+            if(std::abs(weights[e])<=0.00000001){
                 if(weights[e]<0.0){
                     costs[lpEdge] = -0.00000001;
                 }

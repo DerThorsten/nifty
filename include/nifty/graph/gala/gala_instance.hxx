@@ -12,13 +12,16 @@ namespace graph{
     public:
         typedef GRAPH GraphType;
         typedef GalaFeatureBase<GraphType, T>     FeatureBaseType;
-
+        typedef typename GraphType:: template EdgeMap<T>  EdgeSizeMap;
+        typedef typename GraphType:: template NodeMap<T>  NodeSizeMap;
         Instance(
             const GraphType & graph, 
             FeatureBaseType * features
         )
         :   graph_(graph),
-            features_(features){
+            features_(features),
+            edgeSizes_(graph,1),
+            nodeSizes_(graph,1){
         }
         const uint64_t numberOfFeatures(){
             return features_->numberOfFeatures();
@@ -32,9 +35,17 @@ namespace graph{
         FeatureBaseType * features() {
             return features_;
         }
+        const EdgeSizeMap & edgeSizes()const{
+            return edgeSizes_;
+        }
+        const NodeSizeMap & nodeSizes()const{
+            return nodeSizes_;
+        }
     protected:
         const GraphType & graph_;
         FeatureBaseType *  features_;
+        EdgeSizeMap edgeSizes_;
+        NodeSizeMap nodeSizes_;
     };
 
     template<class GRAPH, class T>

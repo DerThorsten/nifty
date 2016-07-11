@@ -222,36 +222,33 @@ namespace graph{
         }
         for(auto trainingCallback : trainingCallbacks_){  
 
-            auto & pq = trainingCallback->pq_;
+
             auto & contractionGraph = trainingCallback->contractionGraph_;
         
-            while(!pq.empty() ){
+
+            while(!trainingCallback->stopContraction() ){
+
                 const auto nEdges = contractionGraph.numberOfEdges();
                 const auto nNodes = contractionGraph.numberOfNodes();
-                std::cout<<"#Edges "<<nEdges<<" #PQ "<<pq.size()<<" top "<<pq.topPriority()<<" #Nodes "<<nNodes<<" #ufd "<< contractionGraph.ufd().numberOfSets()<<"\n";
-                if(pq.topPriority() > 10.0){
-                    break;
-                }
+                std::cout<<"#Edges "<<nEdges<<" #Nodes "<<nNodes<<" #ufd "<< contractionGraph.ufd().numberOfSets()<<"\n";
+
+
+
                 if(nEdges == 0 || nNodes <=1){
                     break;
                 }
-                std::vector<uint64_t> edgesToContract;
-                trainingCallback->toContract(edgesToContract);
-                for(const auto edge : edgesToContract){
-                    if(pq.contains(edge)){
 
-                        // fetch the gt 
-                        const auto fgt = trainingCallback->trainingInstance_.edgeGt()[edge];
-                        const auto ugt = trainingCallback->trainingInstance_.edgeGtUncertainty()[edge];
-                        if(fgt < trainingSettings_.threshold0 && ugt < trainingSettings_.thresholdU){
-                            contractionGraph.contractEdge(edge);
-                        }
-                        else{
-                            std::cout<<"policy is wrong\n";
-                            pq.push(edge, std::numeric_limits<T>::infinity());
-                            trainingCallback->currentProbability_[edge] = std::numeric_limits<T>::infinity();
-                        }
-                    }   
+                const auto toContract = trainingCallback->edgeToContractNext();
+                
+                // fetch the gt 
+                const auto fgt = trainingCallback->trainingInstance_.edgeGt()[toContract];
+                const auto ugt = trainingCallback->trainingInstance_.edgeGtUncertainty()[toContract];
+                if(fgt < trainingSettings_.threshold0 && ugt < trainingSettings_.thresholdU){
+                    contractionGraph.contractEdge(toContract);
+                }
+                else{
+                    std::cout<<"policy is wrong\n";
+                    trainingCallback->contractionOrder_.constraintsEdge(toContract);
                 }
             }
         }
@@ -273,30 +270,17 @@ namespace graph{
 
         const auto & graph = callback.graph();
         auto features  = callback.features();
-        const auto & pq  = callback.pq_;
         auto & contractionGraph = callback.contractionGraph_;
         // do the initial prediction
         callback.initalPrediction();
 
         //std::cout<<"start to predict\n";
-        while(pq.topPriority()<0.5 && !pq.empty()){
+        while(!callback.stopContraction()){
 
             std::cout<<contractionGraph.numberOfNodes()<<" "<<graph.numberOfNodes()<<"\n";
-            std::vector<uint64_t> edgesToContract;
-            bool isDone = callback.toContract(edgesToContract);
-            if(isDone){
-                std::cout<<"done\n";
-                break;
-            }
-            for(const auto edge : edgesToContract){
-                //if(pq.topPriority()<0.5){
-                if(pq.contains(edge))
-                    contractionGraph.contractEdge(edge);
-                //}
-                //else{
-                //    break;
-                //}   
-            }
+            const auto toContract = callback.edgeToContractNext();
+            contractionGraph.contractEdge(toContract);
+
         }
 
         for(const auto node : graph.nodes()){

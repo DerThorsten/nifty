@@ -1,3 +1,41 @@
+#pragma once
+#ifndef NIFTY_GRAPH_GALA_CONTRACTION_ORDER_HXX
+#define NIFTY_GRAPH_GALA_CONTRACTION_ORDER_HXX
+
+#include <iostream>
+#include <set>
+#include <tuple> 
+
+#include "vigra/multi_array.hxx"
+#include "vigra/random_forest.hxx"
+#include "vigra/priority_queue.hxx"
+#include "vigra/algorithm.hxx"
+
+#include "nifty/tools/runtime_check.hxx"
+#include "nifty/graph/simple_graph.hxx"
+#include "nifty/graph/gala/gala_feature_base.hxx"
+#include "nifty/graph/gala/gala_instance.hxx"
+
+
+
+#include "nifty/graph/multicut/multicut_base.hxx"
+#include "nifty/graph/multicut/multicut_visitor_base.hxx"
+#include "nifty/graph/multicut/multicut_factory.hxx"
+#include "nifty/graph/multicut/fusion_move_based.hxx"
+#include "nifty/graph/multicut/multicut_greedy_additive.hxx"
+#include "nifty/graph/multicut/proposal_generators/watershed_proposals.hxx"
+#include "nifty/graph/multicut/multicut_objective.hxx"
+#include "nifty/graph/multicut/perturb_and_map.hxx"
+
+
+
+
+namespace nifty{
+namespace graph{
+
+
+
+
 
 
 
@@ -6,42 +44,43 @@ template< class CALLBACK>
 class McGreedyHybridBase{
 private:
     typedef CALLBACK CallbackType;
-    typedef typename CallbackType::ValueType                          ValueType
-    typedef typename CallbackType::GraphType                          GraphType
-    typedef typename CallbackType::EdgeContractionGraphType           CGraphType
+    typedef typename CallbackType::ValueType                          ValueType;
+    typedef typename CallbackType::GraphType                          GraphType;
+    typedef typename CallbackType::EdgeContractionGraphType           CGraphType;
     typedef typename GraphType:: template EdgeMap<ValueType>          EdgeMapDouble;
-    typedef vigra::ChangeablePriorityQueue< T ,std::less<ValueType> > QueueType;
+    typedef vigra::ChangeablePriorityQueue< ValueType ,std::less<ValueType> > QueueType;
 
 public: 
     struct Setttings{
-        std::array<T, 4> weights_{ValueType(1),ValueType(1),ValueType(1),ValueType(1)};
-        T stopWeight{0.5};
+        std::array<ValueType, 4> weights{{ValueType(1),ValueType(1),ValueType(1),ValueType(1)}};
+        ValueType stopWeight{0.5};
+        ValueType localRfDamping = 0.001;
     };
 
-    McGreedyHybridBase(
-        const GRAPH & graph, 
-        const CGraphType & cgraph,
+    McGreedyHybridBase(CALLBACK & callback,
         const bool training,
         const Setttings & settings = Setttings()
     )
-    :   graph_(graph),
-        cgraph_(cgraph),
+    :   callback_(callback),
+        graph_(callback.graph()),
+        cgraph_(callback.cgraph()),
         training_(training),
         settings_(settings),
-        pq_(graph.maxEdgeId()+1),
-        localRfProbs_(graph),
-        mcPerturbAndMapProbs_(graph),
-        mcMapProbs_(graph),
-        wardProbs_(graph),
-        constraints_(graph,0),
+        pq_(callback.graph().maxEdgeId()+1),
+        localRfProbs_(callback.graph()),
+        mcPerturbAndMapProbs_(callback.graph()),
+        mcMapProbs_(callback.graph()),
+        wardProbs_(callback.graph()),
+        constraints_(callback.graph(),0),
         hasMcPerturbAndMapProbs_(false),
-        hasMcMapProbs_(false)
+        hasMcMapProbs_(false),
+        hasWardProbs_(false)
     {
 
     }
 
     uint64_t edgeToContractNext(){
-        
+        return pq_.top();
     }
 
     bool stopContraction(){
@@ -61,8 +100,63 @@ public:
         hasMcMapProbs_ = false;
     }
 
+    void setInitalLocalRfProb(const uint64_t edge, const ValueType prob){
+        localRfProbs_[edge] = prob;
+        this->updatePriority(edge);
+    }
+
+    void updateLocalRfProb(const uint64_t edge, const ValueType newProb){
+        const auto oldProb = localRfProbs_[edge];
+        const auto d = settings_.localRfDamping;
+        localRfProbs_[edge] = (1.0 - d)*newProb + d*oldProb;
+        this->updatePriority(edge);
+    }
+    
+    void constraintsEdge(const uint64_t edge){
+        constraints_[edge] = std::numeric_limits<ValueType>::infinity();
+        this->updatePriority(edge);
+    }
+
+
+    // call from external
+    void contractEdge(const uint64_t edgeToContract){
+        NIFTY_TEST(pq_.contains(edgeToContract));
+        pq_.deleteItem(edgeToContract);
+    }
+
+    void mergeNodes(const uint64_t aliveNode, const uint64_t deadNode){
+        // do nothing
+    }
+
+    void mergeEdges(const uint64_t aliveEdge, const uint64_t deadEdge){
+        // TODO merge the maps!
+        pq_.deleteItem(deadEdge);
+
+        // sizes are NOT YET merged, therefore it is save to do this
+        const auto sa = callback_.currentEdgeSizes()[aliveEdge];
+        const auto sd = callback_.currentEdgeSizes()[deadEdge];
+        const auto s = sa + sd;
+
+        localRfProbs_[sa]         = (sa*localRfProbs_[aliveEdge]         + sd*localRfProbs_[deadEdge])/s;
+        mcPerturbAndMapProbs_[sa] = (sa*mcPerturbAndMapProbs_[aliveEdge] + sd*mcPerturbAndMapProbs_[deadEdge])/s;
+        mcMapProbs_[sa]           = (sa*mcMapProbs_[aliveEdge]           + sd*mcMapProbs_[deadEdge])/s;
+        wardProbs_[sa]            = (sa*wardProbs_[aliveEdge]            + sd*wardProbs_[deadEdge])/s;
+        constraints_[sa]          = (sa*constraints_[aliveEdge]          + sd*constraints_[deadEdge])/s;
+
+    }
+
+    void contractEdgeDone(const uint64_t edgeToContract){
+        // do nothing
+    }
+
 private:
-    T makeTotalWeight(const uint64_t edge)const{
+
+    void updatePriority(const uint64_t edge){
+        const auto newTotalP = makeTotalProb(edge);
+        pq_.push(edge, newTotalP);
+    }
+
+    ValueType makeTotalProb(const uint64_t edge)const{
 
         if(constraints_[edge] > 0.000001){
             return std::numeric_limits<ValueType>::infinity();
@@ -70,7 +164,7 @@ private:
         else{
             ValueType wSum = 0.0;
             ValueType pAcc = 0.0;
-            const auto & w = weights_;
+            const auto & w = settings_.weights;
 
             wSum += w[0];
             pAcc += w[0]*localRfProbs_[edge];
@@ -85,27 +179,32 @@ private:
                 pAcc += w[2]*mcMapProbs_[edge];
             }
 
-            wSum += w[3];
-            pAcc += w[3]*wardProbs_[edge];
-
+            if(hasWardProbs_){
+                wSum += w[3];
+                pAcc += w[3]*wardProbs_[edge];
+            }
 
             return pAcc/wSum;
         }
     }
 
+    CALLBACK & callback_;
     const GraphType & graph_;
     const CGraphType & cgraph_;
 
+    bool training_;
     Setttings settings_;
     QueueType pq_;
+
     EdgeMapDouble localRfProbs_;
     EdgeMapDouble mcPerturbAndMapProbs_;
     EdgeMapDouble mcMapProbs_;
     EdgeMapDouble wardProbs_;
     EdgeMapDouble constraints_;
+
     bool hasMcPerturbAndMapProbs_;
     bool hasMcMapProbs_;
-
+    bool hasWardProbs_;
 };
 
 
@@ -122,3 +221,10 @@ struct McGreedy{
         typedef McGreedyHybridBase<CB> ResultType;
     };
 };
+
+
+
+} // namespace nifty::graph
+} // namespace nifty
+
+#endif  // NIFTY_GRAPH_GALA_CONTRACTION_ORDER_HXX

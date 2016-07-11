@@ -15,6 +15,7 @@
 #include "nifty/graph/simple_graph.hxx"
 #include "nifty/graph/gala/gala_feature_base.hxx"
 #include "nifty/graph/gala/gala_instance.hxx"
+#include "nifty/graph/gala/contraction_order.hxx"
 
 
 
@@ -231,10 +232,13 @@ namespace graph{
         typedef T ValueType;
         typedef GRAPH GraphType;
         typedef TrainingCallback<GraphType, T, CLASSIFIER> Self;
+        typedef McGreedyHybridBase<Self> ContractionOrder;
         typedef TrainingInstance<GraphType, T>     TrainingInstanceType;
         typedef GalaFeatureBase<GraphType, T>     FeatureBaseType;
         typedef  std::tuple<uint64_t,uint64_t,uint64_t,uint64_t> HashType;
         typedef Gala<GraphType, T, CLASSIFIER> GalaType;
+
+
 
         //typedef EdgeContractionGraph<GraphType, Self>   EdgeContractionGraphType;
 
@@ -255,32 +259,43 @@ namespace graph{
         TrainingCallback(TrainingInstanceType & trainingInstance, GalaType & gala, const size_t ownIndex)
         :   trainingInstance_(trainingInstance),
             contractionGraph_(trainingInstance.graph(), *this),
-            pq_(trainingInstance.graph().maxEdgeId()+1),
-            currentProbability_(trainingInstance.graph()),
             gala_(gala),
             edgeGt_(trainingInstance.graph()),
             edgeGtUncertainty_(trainingInstance.graph()),
-            edgeSize_(trainingInstance.graph()),
+            edgeSizes_(trainingInstance.graph()),
             edgeHash_(trainingInstance.graph()),
             nodeHash_(trainingInstance.graph()),
             ownIndex_(ownIndex),
             mcOrder_(trainingInstance.graph(), contractionGraph_,
                      gala.trainingSettings_.mapFactory,
-                     gala.trainingSettings_.perturbAndMapFactory)
+                     gala.trainingSettings_.perturbAndMapFactory),
+            contractionOrder_(*this,true)
             {
 
             // 
             for(const auto edge : this->graph().edges()){
                 edgeGt_[edge] = trainingInstance_.edgeGt()[edge];
                 edgeGtUncertainty_[edge] = trainingInstance_.edgeGtUncertainty()[edge];
-                edgeSize_[edge] = 1;
+                edgeSizes_[edge] = getInstance().edgeSizes()[edge];
                 edgeHash_[edge] = myHash(edge);
             }
             for(const auto node : this->graph().nodes()){
                 nodeHash_[node] = myHash(node);
             }
+
         }
 
+        const EdgeMapDouble & currentEdgeSizes()const{
+            return edgeSizes_;
+        }
+
+        TrainingInstanceType & getInstance(){
+            return trainingInstance_;
+        }
+
+        const EdgeContractionGraphType & cgraph()const{
+            return contractionGraph_;
+        }
         const GraphType & graph()const{
             return trainingInstance_.graph();
         }
@@ -295,28 +310,27 @@ namespace graph{
         void reset(){
             this->features()->reset();
             contractionGraph_.reset();
-            while(!pq_.empty()){
-                pq_.pop();
-            }
+            contractionOrder_.reset();
             for(const auto edge : this->graph().edges()){
                 edgeGt_[edge] = trainingInstance_.edgeGt()[edge];
                 edgeGtUncertainty_[edge] = trainingInstance_.edgeGtUncertainty()[edge];
-                edgeSize_[edge] = 1;
+                edgeSizes_[edge] = getInstance().edgeSizes()[edge];
                 edgeHash_[edge] = myHash(edge);
             };
             for(const auto node : this->graph().nodes()){
                 nodeHash_[node] = myHash(node);
             }
+
         }
 
         void contractEdge(const uint64_t edgeToContract){
-            NIFTY_TEST(pq_.contains(edgeToContract));
-            pq_.deleteItem(edgeToContract);
+            contractionOrder_.contractEdge(edgeToContract);
         }
 
         void mergeNodes(const uint64_t aliveNode, const uint64_t deadNode){
            trainingInstance_.features()->mergeNodes(aliveNode, deadNode);
            nodeHash_[aliveNode] = myHash(nodeHash_[aliveNode] + nodeHash_[deadNode]);
+           contractionOrder_.mergeNodes(aliveNode, deadNode);
         }
 
         void mergeEdges(const uint64_t aliveEdge, const uint64_t deadEdge){
@@ -324,16 +338,19 @@ namespace graph{
 
             edgeHash_[aliveEdge] = myHash(edgeHash_[aliveEdge] + edgeHash_[deadEdge]);
 
-            const auto sa = edgeSize_[aliveEdge];
-            const auto sd = edgeSize_[deadEdge];
+            const auto sa = edgeSizes_[aliveEdge];
+            const auto sd = edgeSizes_[deadEdge];
             const auto s = sa + sd;
 
-            edgeSize_[aliveEdge] = s;
+
+            trainingInstance_.features()->mergeEdges(aliveEdge, deadEdge);
+            contractionOrder_.mergeEdges(aliveEdge, deadEdge);
+
+
+            edgeSizes_[aliveEdge] = s;
             edgeGt_[aliveEdge] = (sa*edgeGt_[aliveEdge] + sd*edgeGt_[deadEdge])/s;
             edgeGtUncertainty_[aliveEdge] = (sa*edgeGtUncertainty_[aliveEdge] + sd*edgeGtUncertainty_[deadEdge])/s;
 
-            trainingInstance_.features()->mergeEdges(aliveEdge, deadEdge);
-            pq_.deleteItem(deadEdge);
            
         }
 
@@ -344,13 +361,13 @@ namespace graph{
             for(auto adj :contractionGraph_.adjacency(u)){
                 const auto edge = adj.edge();
                 const auto p = this->recomputeFeaturesAndPredictImpl(edge, true);
-                currentProbability_[edge] = p;
             }
+            contractionOrder_.contractEdgeDone(edgeToContract);
         }
         void initalPrediction(){ 
             for(const auto edge: this->graph().edges()){
                 const auto p = this->recomputeFeaturesAndPredictImpl(edge, false);
-                currentProbability_[edge] = p;
+                contractionOrder_.setInitalLocalRfProb(edge, p);
             }
         }
 
@@ -360,6 +377,7 @@ namespace graph{
             std::vector<T> f(nf);
             this->features()->getFeatures(edgeToUpdate, f.data());
             const auto p = gala_.classifier_.predictProbability(f.data());
+            contractionOrder_.updateLocalRfProb(edgeToUpdate, p);
 
             if(useNewExamples){
                 const auto labelGt = edgeGt_[edgeToUpdate];
@@ -369,28 +387,28 @@ namespace graph{
                 HashType hash(ownIndex_, edgeHash_[edgeToUpdate],nodeHash_[uv.first],nodeHash_[uv.second]);
                 gala_.discoveredExample(f.data(), p, labelGt, edgeGtUncertainty_[edgeToUpdate],hash );
             }
-            pq_.push(edgeToUpdate, p);
             return p;
         }
 
-        void toContract(std::vector<uint64_t> & toContract){
-            toContract.resize(0);
-            mcOrder_.run(currentProbability_, toContract, true);
+        uint64_t edgeToContractNext(){
+            return contractionOrder_.edgeToContractNext();
         }
-
+        bool stopContraction(){
+            return contractionOrder_.stopContraction();
+        }
         TrainingInstanceType & trainingInstance_;
         EdgeContractionGraphType contractionGraph_;
-        QueueType pq_;
-        EdgeMapDouble currentProbability_;
+
         EdgeMapDouble edgeGt_;
         EdgeMapDouble edgeGtUncertainty_;
-        EdgeMapDouble edgeSize_;
+        EdgeMapDouble edgeSizes_;
 
         EdgeHash edgeHash_;
         NodeHash nodeHash_;
         size_t ownIndex_;
         GalaType & gala_;
         McOrder mcOrder_;
+        ContractionOrder contractionOrder_;
     };
 
 
@@ -398,8 +416,10 @@ namespace graph{
     template<class GRAPH, class T, class CLASSIFIER>
     struct TestCallback{
         
+        typedef T ValueType;
         typedef GRAPH GraphType;
         typedef TestCallback<GraphType, T, CLASSIFIER> Self;
+        typedef McGreedyHybridBase<Self> ContractionOrder;
         typedef Instance<GraphType, T>     InstanceType;
         typedef GalaFeatureBase<GraphType, T>     FeatureBaseType;
         typedef Gala<GraphType, T, CLASSIFIER> GalaType;
@@ -418,14 +438,30 @@ namespace graph{
         TestCallback(InstanceType & instance, const GalaType & gala)
         :   instance_(instance),
             contractionGraph_(instance.graph(), *this),
-            pq_(instance.graph().maxEdgeId()+1),
-            currentProbability_(instance.graph()),
+            edgeSizes_(instance.graph()),
             gala_(gala),
             mcOrder_(instance.graph(), contractionGraph_,
                      gala.trainingSettings_.mapFactory,
-                     gala.trainingSettings_.perturbAndMapFactory){
+                     gala.trainingSettings_.perturbAndMapFactory),
+            contractionOrder_(*this,false){
+
+            for(const auto edge : this->graph().edges()){
+                edgeSizes_[edge] = getInstance().edgeSizes()[edge];
+            };
+
         }
 
+        const EdgeMapDouble & currentEdgeSizes()const{
+            return edgeSizes_;
+        }
+
+        InstanceType & getInstance(){
+            return instance_;
+        }
+
+        const EdgeContractionGraphType & cgraph()const{
+            return contractionGraph_;
+        }
         const GraphType & graph()const{
             return instance_.graph();
         }
@@ -440,23 +476,23 @@ namespace graph{
         void reset(){
             this->features()->reset();
             contractionGraph_.reset();
-            while(!pq_.empty()){
-                pq_.pop();
-            }
+            for(const auto edge : this->graph().edges()){
+                edgeSizes_[edge] = getInstance().edgeSizes()[edge];
+            };
         }
 
         void contractEdge(const uint64_t edgeToContract){
-            NIFTY_TEST(pq_.contains(edgeToContract));
-            pq_.deleteItem(edgeToContract);
+            contractionOrder_.contractEdge(edgeToContract);
         }
 
         void mergeNodes(const uint64_t aliveNode, const uint64_t deadNode){
            instance_.features()->mergeNodes(aliveNode, deadNode);
+           contractionOrder_.mergeNodes(aliveNode, deadNode);
         }
 
         void mergeEdges(const uint64_t aliveEdge, const uint64_t deadEdge){
             instance_.features()->mergeEdges(aliveEdge, deadEdge);
-            pq_.deleteItem(deadEdge);
+            contractionOrder_.mergeEdges(aliveEdge, deadEdge);
         }
 
         void contractEdgeDone(const uint64_t edgeToContract){
@@ -465,13 +501,13 @@ namespace graph{
             for(auto adj :contractionGraph_.adjacency(u)){
                 const auto edge = adj.edge();
                 const auto p = this->recomputeFeaturesAndPredictImpl(edge);
-                currentProbability_[edge] = p;
             }
+            contractionOrder_.contractEdgeDone(edgeToContract);
         }
         void initalPrediction(){ 
             for(const auto edge: this->graph().edges()){
                 const auto p = this->recomputeFeaturesAndPredictImpl(edge);
-                currentProbability_[edge] = p;
+                contractionOrder_.setInitalLocalRfProb(edge, p);
             }
         }
 
@@ -481,26 +517,23 @@ namespace graph{
             std::vector<T> f(nf);
             this->features()->getFeatures(edgeToUpdate, f.data());
             auto p = gala_.classifier_.predictProbability(f.data());
-            pq_.push(edgeToUpdate, p);
             return p;
         }
 
-        bool toContract(std::vector<uint64_t> & toContract){
-            toContract.resize(0);
-            auto topP = mcOrder_.run(currentProbability_, toContract,false);
-            if (topP > 0.5){
-                //std::cout<<"top P "<<topP<<"\n";
-                return true;
-            }
-            return false;
+        uint64_t edgeToContractNext(){
+            return contractionOrder_.edgeToContractNext();
+        }
+        bool stopContraction(){
+            return contractionOrder_.stopContraction();
         }
 
         InstanceType & instance_;
         EdgeContractionGraphType contractionGraph_;
-        QueueType pq_;
-        EdgeMapDouble currentProbability_;
+        EdgeMapDouble edgeSizes_;
+
         const GalaType & gala_;
         McOrder mcOrder_;
+        ContractionOrder contractionOrder_;
     };
 
 
