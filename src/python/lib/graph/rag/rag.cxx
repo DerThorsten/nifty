@@ -11,12 +11,14 @@ namespace graph{
 
     void exportGridRag(py::module &, py::module &);
     void exportGraphAccumulator(py::module &, py::module &);
+    void exportProjectToPixels(py::module &);
 
     void initSubmoduleRag(py::module &graphModule) {
 
         auto ragModule = graphModule.def_submodule("rag","rag submodule");
         exportGridRag(ragModule, graphModule);
         exportGraphAccumulator(ragModule, graphModule);
+        exportProjectToPixels(ragModule);
     }
 
 }

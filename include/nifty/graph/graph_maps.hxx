@@ -24,7 +24,6 @@ struct NodeMap : public std::vector<T>{
     }
 };
 
-
 template<class G, class T>
 struct EdgeMap : public std::vector<T>{
     EdgeMap( const G & g, const T & val)
@@ -39,6 +38,13 @@ struct EdgeMap : public std::vector<T>{
     :   std::vector<T>( ){
     }
 };
+
+
+
+
+
+
+
 
 
 

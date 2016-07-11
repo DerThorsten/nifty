@@ -32,8 +32,8 @@ namespace graph{
     namespace detail_edge_contraction_graph{
 
         template<class GRAPH, class OUTER_CALLBACK, class SET>
-        class InnerCallback{
-        public:
+        struct InnerCallback{
+        //public:
             typedef GRAPH GraphType;
             typedef OUTER_CALLBACK OuterCallbackType;
             typedef SET SetType;
@@ -77,7 +77,7 @@ namespace graph{
             }
 
 
-        private:
+        //private:
             const GraphType & graph_;
             OuterCallbackType & outerCallback_;
             SetType nodesSet_;
@@ -106,6 +106,22 @@ namespace graph{
                 innerCallback_.initSets();
         }
 
+        template<class F>
+        void forEachEdge(F && f)const{
+            for(const auto edge : innerCallback_.edgesSet_){
+                f(edge);
+            }
+        }
+        template<class F>
+        void forEachNode(F && f)const{
+            for(const auto node : innerCallback_.nodesSet_){
+                f(node);
+            }
+        }
+        void reset(){
+            BaseType::reset();
+            innerCallback_.initSets();
+        }
     private:
         typedef detail_edge_contraction_graph::InnerCallback<GraphType, OuterCallbackType, SetType> InnerCallbackType;
         InnerCallbackType innerCallback_;
@@ -151,12 +167,10 @@ namespace graph{
             }
 
             AdjacencyIter adjacencyBegin(const int64_t node)const{
-                NIFTY_ASSERT_OP(node,<,numberOfNodes());
                 return nodes_[node].begin();
             }
 
             AdjacencyIter adjacencyEnd(const int64_t node)const{
-                NIFTY_ASSERT_OP(node,<,numberOfNodes());
                 return nodes_[node].end();
             }
 
@@ -194,7 +208,6 @@ namespace graph{
 
             void contractEdge(const uint64_t edgeToContract){
 
-
                 // 
                 callback_.contractEdge(edgeToContract);
                 --currentEdgeNum_;
@@ -203,7 +216,7 @@ namespace graph{
                 const auto uv = edges_[edgeToContract];
                 const auto u = uv.first;
                 const auto v = uv.second;
-                NIFTY_ASSERT_OP(u,!=,v);
+                NIFTY_TEST_OP(u,!=,v);
 
                 // merge them into a single node
                 ufd_.merge(u, v);
@@ -242,7 +255,7 @@ namespace graph{
                     const auto findResIter = adjAlive.find(NodeAdjacency(adjToDeadNode));
                     if(findResIter != adjAlive.end()){ // we found a double edge
 
-                        NIFTY_ASSERT_OP(findResIter->node(),==,adjToDeadNode)
+                        NIFTY_TEST_OP(findResIter->node(),==,adjToDeadNode)
                         const auto edgeInAlive = findResIter->edge();
                             //NIFTY_ASSERT(pq_.contains(edgeInAlive));
                                 //  const auto wEdgeInAlive = pq_.priority(edgeInAlive);

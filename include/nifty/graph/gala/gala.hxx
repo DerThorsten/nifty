@@ -7,16 +7,40 @@
 #include "vigra/multi_array.hxx"
 #include "vigra/priority_queue.hxx"
 
+
+#include "nifty/tools/timer.hxx"
 #include "nifty/graph/edge_contraction_graph.hxx"
-
-
 #include "nifty/graph/gala/detail/contract_edge_callbacks.hxx"
 #include "nifty/graph/gala/gala_classifier_rf.hxx"
 #include "nifty/graph/gala/gala_feature_base.hxx"
 #include "nifty/graph/gala/gala_instance.hxx"
 
+
+#include "nifty/graph/multicut/multicut_base.hxx"
+#include "nifty/graph/multicut/multicut_factory.hxx"
+#include "nifty/graph/simple_graph.hxx"
+
+
 namespace nifty{
 namespace graph{
+
+
+    struct GalaSettings{
+
+        typedef nifty::graph::UndirectedGraph<> McOrderGraph;
+        typedef nifty::graph::MulticutObjective<McOrderGraph, double> McOrderObjective;
+        typedef nifty::graph::MulticutFactoryBase<McOrderObjective> McOrderFactoryBaseType;
+        typedef std::shared_ptr<McOrderFactoryBaseType> McFactory;
+
+        double threshold0{0.25};
+        double threshold1{0.75};
+        double thresholdU{0.25};
+        uint64_t numberOfEpochs{3};
+        uint64_t numberOfTrees{100};
+        McFactory mapFactory;
+        McFactory perturbAndMapFactory;
+    };
+    
 
 
     template<class GRAPH, class T, class CLASSIFIER = RfClassifier<T>  >
@@ -26,6 +50,7 @@ namespace graph{
         friend class detail_gala::TrainingCallback<GRAPH,T, CLASSIFIER> ;
         friend class detail_gala::TestCallback<GRAPH,T, CLASSIFIER> ;
 
+        typedef GalaSettings Settings;
         typedef GRAPH GraphType;
         typedef CLASSIFIER ClassifierType;
         typedef detail_gala::TrainingCallback<GRAPH,T, CLASSIFIER> TrainingCallbackType;
@@ -36,14 +61,15 @@ namespace graph{
         typedef Instance<GraphType, T>              InstanceType;
         typedef TrainingInstance<GraphType, T>      TrainingInstanceType;
 
-        struct Settings{
-            double threshold0{0.25};
-            double threshold1{0.75};
-            double thresholdU{0.25};
-            uint64_t numberOfEpochs{3};
-            uint64_t numberOfTrees{100};
-        };
-        
+
+
+
+
+        typedef nifty::graph::UndirectedGraph<> McOrderGraph;
+        typedef nifty::graph::MulticutObjective<McOrderGraph, double> McOrderObjective;
+        typedef nifty::graph::MulticutFactoryBase<McOrderObjective> McOrderFactoryBaseType;
+
+
 
         Gala(const Settings & settings = Settings());
         ~Gala();
@@ -63,7 +89,7 @@ namespace graph{
         void discoveredExample(const F & features, const double pRf, const double pGt, const double uGt, const HashType & h);
 
 
-        Settings settings_;
+        Settings trainingSettings_;
 
         // training edge contraction callbacks and graphs
         std::vector<TrainingCallbackType *> trainingCallbacks_;
@@ -77,7 +103,7 @@ namespace graph{
     Gala(
         const Settings & settings
     )
-    :   settings_(settings),
+    :   trainingSettings_(settings),
         trainingCallbacks_(),
         classifier_(settings.numberOfTrees),
         addedExamples_(){
@@ -96,10 +122,23 @@ namespace graph{
     template<class GRAPH, class T, class CLASSIFIER>
     void Gala<GRAPH,T,CLASSIFIER>::
     train(){
+        tools::VerboseTimer t;
+        t.startAndPrint("trainInitalRf");
         this->trainInitalRf();  
-        for(size_t i=0; i<settings_.numberOfEpochs; ++i){  
+        t.stopAndPrint();
+        t.reset();
+        for(size_t i=0; i<trainingSettings_.numberOfEpochs; ++i){  
+
+            t.startAndPrint("trainEpoch");
             this->trainEpoch();    
+            t.stopAndPrint();
+            t.reset();
+
+            t.startAndPrint("classifier_.train()");
             classifier_.train(); 
+            t.stopAndPrint();
+            t.reset();
+
         }
     }
 
@@ -114,7 +153,7 @@ namespace graph{
         const HashType & h
     ){
         // check if the training example is credible
-        if((pGt < settings_.threshold0 || pGt > settings_.threshold1) && uGt < settings_.thresholdU){
+        if((pGt < trainingSettings_.threshold0 || pGt > trainingSettings_.threshold1) && uGt < trainingSettings_.thresholdU){
             if(addedExamples_.find(h) == addedExamples_.end()){
                 addedExamples_.insert(h);
                 classifier_.addTrainingExample(features, pGt > 0.5 ? 1 : 0);
@@ -137,7 +176,7 @@ namespace graph{
     Gala<GRAPH,T,CLASSIFIER>::
     trainInitalRf(){
 
-        std::cout<<"Start to train gala\n";
+        //std::cout<<"Start to train gala\n";
         const uint64_t numberOfGraphs = trainingCallbacks_.size();
         NIFTY_CHECK_OP(numberOfGraphs,>,0, "training set must not be empty");
 
@@ -159,8 +198,8 @@ namespace graph{
             for(const auto edge : graph.edges()){
                 auto fgt = edgeGt[edge];
                 auto ufgt = edgeGtUncertainty[edge];
-                if((fgt < settings_.threshold0 || fgt> settings_.threshold1) && ufgt < settings_.thresholdU){
-                    const uint8_t label = fgt < settings_.threshold0 ? 0 : 1;
+                if((fgt < trainingSettings_.threshold0 || fgt> trainingSettings_.threshold1) && ufgt < trainingSettings_.thresholdU){
+                    const uint8_t label = fgt < trainingSettings_.threshold0 ? 0 : 1;
                     features->getFeatures(edge, fBuffer.data());
                     classifier_.addTrainingExample(fBuffer.data(), label);                
                 }
@@ -189,9 +228,9 @@ namespace graph{
             while(!pq.empty() ){
                 const auto nEdges = contractionGraph.numberOfEdges();
                 const auto nNodes = contractionGraph.numberOfNodes();
-                //std::cout<<"#Edges "<<nEdges<<" #PQ "<<pq.size()<<" top "<<pq.topPriority()<<" #Nodes "<<nNodes<<" #ufd "<< contractionGraph.ufd().numberOfSets()<<"\n";
-                if(pq.topPriority() > 100.0){
-                    break; 
+                std::cout<<"#Edges "<<nEdges<<" #PQ "<<pq.size()<<" top "<<pq.topPriority()<<" #Nodes "<<nNodes<<" #ufd "<< contractionGraph.ufd().numberOfSets()<<"\n";
+                if(pq.topPriority() > 10.0){
+                    break;
                 }
                 if(nEdges == 0 || nNodes <=1){
                     break;
@@ -204,12 +243,13 @@ namespace graph{
                         // fetch the gt 
                         const auto fgt = trainingCallback->trainingInstance_.edgeGt()[edge];
                         const auto ugt = trainingCallback->trainingInstance_.edgeGtUncertainty()[edge];
-                        if(fgt < settings_.threshold0 && ugt < settings_.thresholdU){
+                        if(fgt < trainingSettings_.threshold0 && ugt < trainingSettings_.thresholdU){
                             contractionGraph.contractEdge(edge);
                         }
                         else{
-                            //std::cout<<"policy is wrong\n";
-                            pq.push(edge, 10000.0);
+                            std::cout<<"policy is wrong\n";
+                            pq.push(edge, std::numeric_limits<T>::infinity());
+                            trainingCallback->currentProbability_[edge] = std::numeric_limits<T>::infinity();
                         }
                     }   
                 }
@@ -238,20 +278,24 @@ namespace graph{
         // do the initial prediction
         callback.initalPrediction();
 
-        std::cout<<"start to predict\n";
+        //std::cout<<"start to predict\n";
         while(pq.topPriority()<0.5 && !pq.empty()){
 
             std::cout<<contractionGraph.numberOfNodes()<<" "<<graph.numberOfNodes()<<"\n";
             std::vector<uint64_t> edgesToContract;
-            callback.toContract(edgesToContract);
+            bool isDone = callback.toContract(edgesToContract);
+            if(isDone){
+                std::cout<<"done\n";
+                break;
+            }
             for(const auto edge : edgesToContract){
-                if(pq.topPriority()<0.5){
-                    if(pq.contains(edge))
-                        contractionGraph.contractEdge(edge);
-                }
-                else{
-                    break;
-                }   
+                //if(pq.topPriority()<0.5){
+                if(pq.contains(edge))
+                    contractionGraph.contractEdge(edge);
+                //}
+                //else{
+                //    break;
+                //}   
             }
         }
 

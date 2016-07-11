@@ -140,7 +140,7 @@ namespace graph{
     optimize(
         NodeLabels & nodeLabels,  VisitorBase * visitor
     ){
-        if(parallelOptions_.getActualNumThreads() > 1){
+        if(parallelOptions_.getNumThreads() > 0){
             this->optimizeParallel(nodeLabels, visitor);
         }
         else{
@@ -170,25 +170,28 @@ namespace graph{
         std::vector<NodeLabels> proposals;
         auto iterWithoutImprovement = 0;
         for(auto iter=0; iter<settings_.numberOfIterations; ++iter){
+            //std::cout<<"iter "<<iter<<"\n";
             const auto oldBestEnergy = bestEnergy;
             proposals.clear();
             // generate the proposals and fuse with the current best
             //std::cout<<"generate "<<settings_.numberOfParallelProposals<<" proposals\n";
-            nifty::parallel::parallel_foreach(threadPool_,settings_.numberOfParallelProposals,
+            nifty::parallel::parallel_foreach(threadPool_,
+                settings_.numberOfParallelProposals,
                 [&](const size_t threadId, int proposalIndex){
 
                     // 
                     auto & pgen = *pgens_[threadId];
                     auto & proposal = *solBufferIn_[threadId];
+                    //std::cout<<"generate\n";
                     pgen.generate(currentBest, proposal);
-
+                    //std::cout<<"generate done\n";
                     // evaluate the energy of the proposal
                     const auto eProposal = objective_.evalNodeLabels(proposal);
                     
                     
                 
                     if(bestEnergy < -0.00001 || iter != 0){  // fuse with current best
-                        
+                        //std::cout<<"a\n";
 
                         mtx.lock();
                         NodeLabels bestCopy = currentBest;
@@ -211,7 +214,7 @@ namespace graph{
                         mtx.unlock();
                     }
                     else{  // just keep this one and do not fuse with current best
-                        
+                        //std::cout<<"a\n";
                         mtx.lock();
                         NodeLabels bestCopy = currentBest;
                         auto eBestCopy = objective_.evalNodeLabels(bestCopy);
@@ -232,6 +235,7 @@ namespace graph{
 
             if(!proposals.empty()){
                 while(proposals.size()!= 1){
+                    //std::cout<<" aaa \n";
                     NIFTY_CHECK_OP(proposals.size(),>=,2,"");
                     nFuse = std::min(nFuse, proposals.size());
 
@@ -244,6 +248,8 @@ namespace graph{
 
                     nifty::parallel::parallel_foreach(threadPool_, pSize,
                     [&](const size_t threadId, const size_t ii){
+
+                        //std::cout<<" ii "<<ii<<" "<<pSize<<"\n";
                         auto i = ii*nFuse;
 
                         std::vector<NodeLabels*> toFuse;
@@ -257,20 +263,22 @@ namespace graph{
                         auto & fm = *(fusionMoves_[threadId]);
 
                         // actual fuse
+                        //std::cout<<"do fuse\n";
                         fm.fuse(toFuse, &res);
+                        //std::cout<<"do fuse done\n";
 
                         mtx.lock();
                         proposals2.push_back(res);
                         mtx.unlock();
                     });
 
-                    //std::cout<<"proposals 2 size "<<proposals2.size()<<"\n\n";
+                    ////std::cout<<"proposals 2 size "<<proposals2.size()<<"\n\n";
                     proposals = proposals2;
                     proposals2.clear();
                 }
                 currentBest = proposals[0];
             }
-
+            //std::cout<<"doish\n";
             bestEnergy = objective_.evalNodeLabels(currentBest);
             // call the visitor and see if we need to continue
             if(visitor!= nullptr){

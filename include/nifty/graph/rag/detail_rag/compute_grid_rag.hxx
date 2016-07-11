@@ -32,10 +32,10 @@ namespace nifty{
 namespace graph{
 
 
-template<unsigned int DIM, class LABEL_TYPE>
+template<size_t DIM, class LABEL_TYPE>
 class ExplicitLabels;
 
-template<unsigned int DIM, class LABELS_PROXY>
+template<size_t DIM, class LABELS_PROXY>
 class GridRag;
 
 

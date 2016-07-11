@@ -3,9 +3,11 @@
 #define NIFTY_GRAPH_GALA_CLASSIFIER_RF_HXX
 
 #include <iostream>
+
 #include "vigra/multi_array.hxx"
 #include "vigra/random_forest.hxx"
 
+#include "nifty/tools/timer.hxx"
 
 namespace nifty{
 namespace graph{
@@ -29,7 +31,13 @@ namespace graph{
             }
         }
         void train(){
+            tools::VerboseTimer t(false);
+            t.startAndPrint("       makeTZrainingSet");
             makeTrainingSet();
+            t.stopAndPrint();
+            t.reset();
+
+             t.startAndPrint("      do training");
             if(classifier_ != nullptr){
                 delete classifier_;
             }
@@ -42,7 +50,8 @@ namespace graph{
             vigra::rf::visitors::OOB_Error oob_v;
             // perform training
             classifier_->learn(rfFeatures_, rfLabels_, vigra::rf::visitors::create_visitor(oob_v));
-            std::cout << "the out-of-bag error is: " << oob_v.oob_breiman << "\n"; 
+            t.stopAndPrint();
+            t.reset();
         }
 
         double predictProbability(const T * features)const{
@@ -62,7 +71,7 @@ namespace graph{
             const auto nAdded = newRfLabels_.size();
             const auto nTotal = nOld + nAdded;
 
-            std::cout<<"new added examples "<<nAdded<<" total "<<nTotal<<"\n";
+            //std::cout<<"new added examples "<<nAdded<<" total "<<nTotal<<"\n";
             vigra::MultiArray<2, T> fNew(vigra::Shape2( nTotal ,numberOfFeatures_));
             vigra::MultiArray<2, uint8_t> lNew(vigra::Shape2( nTotal ,1));
 

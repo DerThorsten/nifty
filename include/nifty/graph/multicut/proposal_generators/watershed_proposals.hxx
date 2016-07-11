@@ -27,7 +27,7 @@ namespace graph{
 
         struct Settings{
             double sigma{1.0};
-            double seedFraction{0.001};
+            double seedFraction{0.1};
         };
 
         static std::string name(){
@@ -59,31 +59,40 @@ namespace graph{
         }
 
         void generate( const NodeLabels & currentBest, NodeLabels & proposal){
-            const size_t nSeeds = settings_.seedFraction <=1.0 ? 
-                size_t(float(graph_.numberOfNodes())*settings_.seedFraction+0.5f) :
-                size_t(settings_.seedFraction + 0.5);
 
-            // get the seeds
-            std::fill(seeds_.begin(), seeds_.end(), 0);
-            for(size_t i=0; i<nSeeds/2; ++i){
-                const auto randIndex = intDist_(gen_);
-                const auto edge  = negativeEdges_[randIndex];
-
-                const auto v0 = graph_.u(edge);
-                const auto v1 = graph_.v(edge);
-
-                seeds_[v0] = (2*i)+1;
-                seeds_[v1] = (2*i+1)+1;
+            if(negativeEdges_.empty()){
+                proposal = currentBest;
             }
+            else{
+                size_t nSeeds = settings_.seedFraction <=1.0 ? 
+                    size_t(float(graph_.numberOfNodes())*settings_.seedFraction+0.5f) :
+                    size_t(settings_.seedFraction + 0.5);
+
+                nSeeds = std::max(size_t(10),nSeeds);
+                nSeeds = std::min(size_t(negativeEdges_.size()-1), nSeeds);
+
+                // get the seeds
+                std::fill(seeds_.begin(), seeds_.end(), 0);
+                for(size_t i=0; i<nSeeds/2; ++i){
+                    const auto randIndex = intDist_(gen_);
+                    const auto edge  = negativeEdges_[randIndex];
+
+                    const auto v0 = graph_.u(edge);
+                    const auto v1 = graph_.v(edge);
+
+                    seeds_[v0] = (2*i)+1;
+                    seeds_[v1] = (2*i+1)+1;
+                }
 
 
-            // randomize the weights
-            const auto & weights = objective_.weights();
-            for(auto edge: graph_.edges()){
-                weights_[edge] = -1.0*weights_[edge] + dist_(gen_);
+                // randomize the weights
+                const auto & weights = objective_.weights();
+                for(auto edge: graph_.edges()){
+                    weights_[edge] = -1.0*weights_[edge] + dist_(gen_);
+                }
+                edgeWeightedWatershedsSegmentation(graph_, weights_, seeds_, proposal);
+                ++proposalNumber_;
             }
-            edgeWeightedWatershedsSegmentation(graph_, weights_, seeds_, proposal);
-            ++proposalNumber_;
         }
         void reset(){
             proposalNumber_ = 0;

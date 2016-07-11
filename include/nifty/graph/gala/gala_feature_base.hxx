@@ -28,7 +28,6 @@ namespace graph{
 
     template<class GRAPH, class T, unsigned int NBINS = 40>
     class GalaDefaultAccFeature  : GalaFeatureBase<GRAPH, T>{
-
     public:
         typedef GRAPH GraphType;
         typedef DefaultAccNodeMap<GRAPH, T, NBINS> NodeMap;
@@ -83,8 +82,6 @@ namespace graph{
         const NodeMap & nodeMapIn_;
         EdgeMap edgeMap_;
         NodeMap nodeMap_;
-        
-
     };
 
 
@@ -99,39 +96,108 @@ namespace graph{
         typedef GalaFeatureBase<GraphType, T>       FeatureBaseType;
         typedef std::shared_ptr<FeatureBaseType>    FeatureBaseTypeSharedPtr;
 
+        GalaFeatureCollection(const GraphType & graph)
+        :   graph_(graph),
+            features_(){
+
+        }
+
+        virtual ~GalaFeatureCollection(){
+        }
+
         virtual uint64_t numberOfFeatures() const {
             auto nf = 0;
-            for(auto f : featuresRawPtr_)
+            for(auto f : features_)
                 nf += f->numberOfFeatures();
             return nf;
         }
         virtual void mergeEdges(const uint64_t alive, const uint64_t dead) {
-            for(auto f : featuresRawPtr_)
+            for(auto f : features_)
                f->mergeEdges(alive, dead);
         }
         virtual void mergeNodes(const uint64_t alive, const uint64_t dead) {
             auto nf = 0;
-            for(auto f : featuresRawPtr_)
+            for(auto f : features_)
                f->mergeNodes(alive, dead);
         }
         virtual void getFeatures(const uint64_t edge, T * featuresOut){
             auto fout = featuresOut;
             auto nf = 0;
-            for(auto f : featuresRawPtr_){
+            for(auto f : features_){
                 auto nf =  f->numberOfFeatures();
                 f->getFeatures(edge, fout);
                 fout += nf;
             }
         }
         virtual void reset(){
-            for(auto f : featuresRawPtr_){
+            for(auto f : features_){
                 f->reset();
             }
         }
-    private:
-        //std::vector<FeatureBaseTypeSharedPtr> featuresSharedPtr_;
-        std::vector<FeatureBaseType *>        featuresRawPtr_;
+
+        void addFeatures(FeatureBaseType * f){
+            features_.push_back(f);
+        }
+    private:       
+        const GraphType & graph_;
+        std::vector<FeatureBaseType *> features_;
     };
+
+
+    template<class GRAPH, class T>
+    class GalaGeometricFeatures : GalaFeatureBase<GRAPH, T>{
+    public:
+        typedef GRAPH GraphType;
+        typedef GalaFeatureBase<GraphType, T>       FeatureBaseType;
+        typedef std::shared_ptr<FeatureBaseType>    FeatureBaseTypeSharedPtr;
+
+        GalaGeometricFeatures(const GraphType & graph)
+        :   graph_(graph),
+            features_(){
+
+        }
+
+        virtual ~GalaGeometricFeatures(){
+        }
+
+        virtual uint64_t numberOfFeatures() const {
+            auto nf = 0;
+            for(auto f : features_)
+                nf += f->numberOfFeatures();
+            return nf;
+        }
+        virtual void mergeEdges(const uint64_t alive, const uint64_t dead) {
+            for(auto f : features_)
+               f->mergeEdges(alive, dead);
+        }
+        virtual void mergeNodes(const uint64_t alive, const uint64_t dead) {
+            auto nf = 0;
+            for(auto f : features_)
+               f->mergeNodes(alive, dead);
+        }
+        virtual void getFeatures(const uint64_t edge, T * featuresOut){
+            auto fout = featuresOut;
+            auto nf = 0;
+            for(auto f : features_){
+                auto nf =  f->numberOfFeatures();
+                f->getFeatures(edge, fout);
+                fout += nf;
+            }
+        }
+        virtual void reset(){
+            for(auto f : features_){
+                f->reset();
+            }
+        }
+
+        void addFeatures(FeatureBaseType * f){
+            features_.push_back(f);
+        }
+    private:       
+        const GraphType & graph_;
+        std::vector<FeatureBaseType *> features_;
+    };
+
 
 
 

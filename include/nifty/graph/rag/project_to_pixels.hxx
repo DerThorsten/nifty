@@ -6,7 +6,7 @@
 #include <algorithm>
 
 #include "nifty/marray/marray.hxx"
-#include "nifty/tools/runtime_check.hxx"
+#include "nifty/tools/for_each_coordinate.hxx"
 //#include "nifty/graph/detail/contiguous_indices.hxx"
 
 
@@ -15,36 +15,34 @@ namespace graph{
 
 
 
-template<class LABELS_TYPE, class LABELS, class NODE_MAP>
-void gridRagAccumulateLabels(
-    const ExplicitLabelsGridRag<2, LABELS_TYPE> & graph,
-    nifty::marray::View<LABELS> data,
-    NODE_MAP &  nodeMap
+template<
+    size_t DIM, 
+    class LABELS_TYPE, 
+    class PIXEL_ARRAY, 
+    class NODE_MAP
+>
+void projectScalarNodeDataToPixels(
+    const ExplicitLabelsGridRag<DIM, LABELS_TYPE> & graph,
+    NODE_MAP & nodeData,
+    PIXEL_ARRAY & pixelData,
+    const int numberOfThreads = -1
 ){
-    const auto labelsProxy = graph.labelsProxy();
-    const auto labels = labelsProxy.labels(); 
+    typedef std::array<int64_t, DIM> Coord;
 
-    std::vector<  std::unordered_map<uint64_t, uint64_t> > overlaps(graph.numberOfNodes());
- 
-    for(size_t x=0; x<labels.shape(0); ++x)
-    for(size_t y=0; y<labels.shape(1); ++y){
-        const auto node = labels(x, y);            
-        const auto l  = data(x,y);
-        overlaps[node][l] += 1;
-    }
-    for(const auto node : graph.nodes()){
-        const auto & ol = overlaps[node];
-        // find max ol 
-        uint64_t maxOl = 0 ;
-        uint64_t maxOlLabel = 0;
-        for(auto kv : ol){
-            if(kv.second > maxOl){
-                maxOl = kv.second;
-                maxOlLabel = kv.first;
-            }
-        }
-        nodeMap[node] = maxOlLabel;
-    }
+    const auto labelsProxy = graph.labelsProxy();
+    const auto & shape = labelsProxy.shape();
+    const auto labels = labelsProxy.labels(); 
+    
+
+    // if scalar 
+    auto pOpt = nifty::parallel::ParallelOptions(numberOfThreads);
+    nifty::parallel::ThreadPool threadpool(pOpt);
+    nifty::tools::parallelForEachCoordinate(threadpool, shape,
+    [&](int tid, const Coord & coord){
+        const auto node = labels(coord);
+        pixelData(coord) = nodeData[node];
+    });
+
 }
 
 

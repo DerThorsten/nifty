@@ -38,6 +38,8 @@ namespace graph{
             .def_readwrite("thresholdU", &GalaSettingsType::thresholdU)
             .def_readwrite("numberOfEpochs", &GalaSettingsType::numberOfEpochs)
             .def_readwrite("numberOfTrees", &GalaSettingsType::numberOfTrees)
+            .def_readwrite("mapFactory", &GalaSettingsType::mapFactory)
+            .def_readwrite("perturbAndMapFactory", &GalaSettingsType::perturbAndMapFactory)
         ;
 
         py::class_<GalaType>(galaModule,"GalaUndirectedGraph")

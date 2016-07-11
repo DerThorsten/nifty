@@ -125,14 +125,17 @@ namespace graph{
 
     
 
-    template<class LABELS_TYPE, class T, class EDGE_MAP, class NODE_MAP>
+    template< size_t DIM, class LABELS_TYPE, class T, class EDGE_MAP, class NODE_MAP>
     void gridRagAccumulateFeatures(
-        const ExplicitLabelsGridRag<2, LABELS_TYPE> & graph,
+        const ExplicitLabelsGridRag<DIM, LABELS_TYPE> & graph,
         nifty::marray::View<T> data,
         EDGE_MAP & edgeMap,
         NODE_MAP &  nodeMap
     ){
+        typedef std::array<int64_t, DIM> Coord;
+
         const auto labelsProxy = graph.labelsProxy();
+        const auto & shape = labelsProxy.shape();
         const auto labels = labelsProxy.labels(); 
         
         const auto numberOfPasses =  std::max(edgeMap.numberOfPasses(),nodeMap.numberOfPasses());
@@ -140,40 +143,31 @@ namespace graph{
             // start path p
             edgeMap.startPass(p);
             nodeMap.startPass(p);
-            for(size_t x=0; x<labels.shape(0); ++x)
-            for(size_t y=0; y<labels.shape(1); ++y){
 
-                const auto lU = labels(x, y);
-                const auto dU = data(x,y);
-
+            nifty::tools::forEachCoordinate(shape,[&](const Coord & coord){
+                const auto lU = labels(coord);
+                const auto dU = data(coord);
                 nodeMap.accumulate(lU, dU);
-
-                if(x+1<labels.shape(0)){
-                    const auto lV = labels(x+1, y);
-                    if(lU != lV){
-                        const auto e = graph.findEdge(lU, lV);
-                        const auto dV = data(x+1,y);
-                        edgeMap.accumulate(e, dU);
-                        edgeMap.accumulate(e, dV);
+                for(size_t axis=0; axis<DIM; ++axis){
+                    Coord coord2 = coord;
+                    coord2[axis] += 1;
+                    if(coord2[axis] < shape[axis]){
+                        const auto lV = labels(coord2);
+                        if(lU != lV){
+                            const auto e = graph.findEdge(lU, lV);
+                            const auto dV = data(coord2);
+                            edgeMap.accumulate(e, dU);
+                            edgeMap.accumulate(e, dV);
+                        }
                     }
                 }
-                if(y+1<labels.shape(1)){
-                    const auto lV = labels(x, y+1);
-                    if(lU != lV){
-                        const auto e = graph.findEdge(lU, lV);
-                        const auto dV = data(x,y+1);
-                        edgeMap.accumulate(e, dU);
-                        edgeMap.accumulate(e, dV);
-                    }
-                }
-            }
+            });
         }
     }
 
 
 
-
-    template<unsigned int DIM, class LABELS_TYPE, class LABELS, class NODE_MAP>
+    template<size_t DIM, class LABELS_TYPE, class LABELS, class NODE_MAP>
     void gridRagAccumulateLabels(
         const ExplicitLabelsGridRag<DIM, LABELS_TYPE> & graph,
         nifty::marray::View<LABELS> data,

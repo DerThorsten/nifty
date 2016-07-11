@@ -17,7 +17,7 @@ namespace graph{
 
     using namespace py;
 
-    template<class RAG,class T,unsigned int DATA_DIM, class EDGE_MAP, class NODE_MAP>
+    template<class RAG,class T,size_t DATA_DIM, class EDGE_MAP, class NODE_MAP>
     void exportGridRagAccumulateFeaturesT(py::module & ragModule){
 
         ragModule.def("gridRagAccumulateFeatures",
@@ -36,7 +36,7 @@ namespace graph{
         );
     }
 
-    template<class RAG,class T,unsigned int DATA_DIM>
+    template<class RAG,class T,size_t DATA_DIM>
     void exportGridRagAccumulateLabelsT(py::module & ragModule){
 
         ragModule.def("gridRagAccumulateLabels",
@@ -105,8 +105,9 @@ namespace graph{
 
             // accumulate features
             typedef ExplicitLabelsGridRag<2, uint32_t> ExplicitLabelsGridRag2D;
-            typedef ExplicitLabelsGridRag<2, uint32_t> ExplicitLabelsGridRag3D;
+            typedef ExplicitLabelsGridRag<3, uint32_t> ExplicitLabelsGridRag3D;
             exportGridRagAccumulateFeaturesT<ExplicitLabelsGridRag2D, float, 2, EdgeMapType, NodeMapType>(ragModule);
+            exportGridRagAccumulateFeaturesT<ExplicitLabelsGridRag3D, float, 3, EdgeMapType, NodeMapType>(ragModule);
 
             // accumulate labels
             exportGridRagAccumulateLabelsT<ExplicitLabelsGridRag2D, uint32_t, 2>(ragModule);

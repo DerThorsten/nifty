@@ -45,7 +45,7 @@ namespace graph {
             int verbose = 2;
             int seed = 42;
             NoiseType noiseType{UNIFORM_NOISE};
-            double noiseMagnitude;
+            double noiseMagnitude{1.0};
         };
 
         PerturbAndMap(const Objective & objective, const Settings settings = Settings());
@@ -171,7 +171,7 @@ namespace graph {
         EdgeState & edgeState
     ){
 
-        std::cout<<"optimize \n";
+        //std::cout<<"optimize \n";
         std::mutex mtx;
         auto nFinished = 0;
 
@@ -185,14 +185,22 @@ namespace graph {
                 auto & obj = threadData.objective_;
                 auto solver = threadData.solver_;
 
+                //std::cout<<"perturb \n";
                 this->perturbWeights(threadId, obj.weights());
+                
+                //std::cout<<"propergate weight change \n";
                 solver->weightsChanged();
+
+                //std::cout<<"set sp \n";
                 NodeLabels arg(graph_);
                 for(const auto node : graph_.nodes())
                     arg[node] = startingPoint[node];
+
+                //std::cout<<"optimize \n";
                 MulticutVerboseVisitor<Objective> v;
                 solver->optimize(arg, nullptr);
 
+                //std::cout<<"write res \n";
                 mtx.lock();
                 for(const auto edge : graph_.edges()){
                     const auto uv = graph_.uv(edge);
@@ -200,8 +208,9 @@ namespace graph {
                         ++edgeCutCounter[edge];
                 }
                 ++nFinished;
-                std::cout<<nFinished<<" / "<<settings_.numberOfIterations<<"\n";
+                //std::cout<<nFinished<<" / "<<settings_.numberOfIterations<<"\n";
                 mtx.unlock();
+                //std::cout<<"done\n";
             }
         );
         for(const auto edge : graph_.edges()){

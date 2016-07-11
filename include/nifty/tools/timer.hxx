@@ -4,88 +4,90 @@
 
 #include <sstream>
 #include <chrono>
+#include <string>
+
+// heavily inspired by http://www.andres.sc/graph.html
 
 
 namespace nifty{
 namespace tools{
 
-class Timer
-{
+class Timer{
 public:
-	Timer();
+    Timer();
 
-	double get_elapsed_seconds() const;
-
-	unsigned long long hours() const;
-
-	unsigned long long minutes() const;
-	
-	void reset();
-
-	double seconds() const;
-
-	void start();
-	
-	void stop();
-	
-	std::string to_string() const;
-	
+    double elapsedSeconds() const;
+    void reset();
+    void start();
+    void stop();
+    
+    std::string toString() const;
+    
 private:
-	double m_seconds;
+    double seconds_;
 
-	decltype(std::chrono::high_resolution_clock::now()) m_timeObject;
+    decltype(std::chrono::high_resolution_clock::now()) timeObject_;
 };
 
 
+class VerboseTimer : public Timer{
+public:
+
+    using Timer::start;
+
+    VerboseTimer(const bool verbose = true, const std::string name = std::string())
+    :   Timer(),
+        verbose_(verbose),
+        name_(name){
+    }
+    void startAndPrint(const std::string name){
+        name_ = name;
+        if(verbose_){
+            std::cout<<name_<<" started\n";
+        }
+        this->start();
+    }
+    void stopAndPrint(){
+        this->stop();
+        if(verbose_){
+            std::cout<<name_<<" took "<<this->toString()<<"\n";
+        }
+    }
+
+private:
+    bool verbose_;
+    std::string name_;
+};
 
 
-inline Timer::Timer()
-{
-	reset();
+inline Timer::Timer(){
+    reset();
 }
 
-inline double Timer::get_elapsed_seconds() const
-{
-	return m_seconds;
+inline double Timer::elapsedSeconds() const{
+    return seconds_;
 }
 
-inline unsigned long long Timer::hours() const
-{
-	return static_cast<unsigned long long>(m_seconds) / 3600ULL;
+inline void Timer::reset(){
+    seconds_ = .0;
 }
 
-inline unsigned long long Timer::minutes() const
-{
-	return (static_cast<unsigned long long>(m_seconds) - hours()*3600ULL) / 60ULL;
+inline void Timer::start(){
+    timeObject_ = std::chrono::high_resolution_clock::now();
 }
 
-inline void Timer::reset()
-{
-	m_seconds = .0;
+inline void Timer::stop(){
+    typedef std::chrono::duration<double> DDouble;
+    seconds_ += std::chrono::duration_cast<DDouble>(std::chrono::high_resolution_clock::now() - timeObject_).count();
 }
 
-inline double Timer::seconds() const
-{
-	return m_seconds - 3600.0*hours() - 60.0*minutes();
-}
-
-inline void Timer::start()
-{
-	m_timeObject = std::chrono::high_resolution_clock::now();
-}
-
-inline void Timer::stop()
-{
-	m_seconds += std::chrono::duration_cast<std::chrono::duration<double>>(std::chrono::high_resolution_clock::now() - m_timeObject).count();
-}
-
-inline std::string Timer::to_string() const
-{
-	std::ostringstream s(std::ostringstream::out);
-	
-	s << hours() << "h " << minutes() << "m " << seconds() << "s";
-	
-	return s.str();
+inline std::string Timer::toString() const{
+    const auto h = static_cast<uint64_t>(seconds_) / 3600;
+    const auto m = (static_cast<uint64_t>(seconds_) - h*3600) / 60;
+    const auto s = seconds_ - 3600.0*h - 60.0*m;
+    std::ostringstream ss(std::ostringstream::out);
+    ss <<h << "h " << m << "m " << s << "s";
+    return ss.str();
 }
 
 

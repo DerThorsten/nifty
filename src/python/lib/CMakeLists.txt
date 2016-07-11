@@ -43,6 +43,7 @@ add_library(_nifty SHARED
     graph/rag/rag.cxx
     graph/rag/grid_rag.cxx
     graph/rag/graph_accumulator.cxx
+    graph/rag/project_to_pixels.cxx
     # gala
     graph/gala/gala.cxx
     graph/gala/gala_main_class.cxx

@@ -48,17 +48,14 @@ def make_dataset(numberOfImages = 10, noise=1.0,shape=(100,100)):
 
     return imgs,gts
 
+def makeRag(raw, showSeg = False):
+    #ew = vigra.filters.gaussianGradientMagnitude(raw, 1.0)#[:,:,0]
+    #seg, nseg = vigra.analysis.watershedsNew(ew)
 
+    seg, nseg = vigra.analysis.slicSuperpixels(raw,intensityScaling=3.0, seedDistance=15)
 
-
-
-
-
-def makeRag(raw):
-    ew = vigra.filters.hessianOfGaussianEigenvalues(raw, 1.0)[:,:,0]
-    seg, nseg = vigra.analysis.watershedsNew(ew)
     seg = seg.squeeze()
-    if False:
+    if showSeg:
         vigra.segShow(raw, seg)
         vigra.show()
 
@@ -68,24 +65,20 @@ def makeRag(raw):
     assert seg.max() == nseg -1 
     return nifty.graph.rag.gridRag(seg)
 
-
-
-
-def makeFeatureOp(rag, raw, minVal=None, maxVal=None):
+def makeFeatureOpFromChannel(rag, data, minVal=None, maxVal=None):
 
     #  feature accumulators
     if minVal is None:
-        minVal = float(raw.min())
+        minVal = float(data.min())
 
     if maxVal is None:
-        maxVal = float(raw.max())
-
+        maxVal = float(data.max())
 
     edgeFeatures = nifty.graph.rag.defaultAccEdgeMap(rag, minVal, maxVal)
     nodeFeatures = nifty.graph.rag.defaultAccNodeMap(rag, minVal, maxVal)
 
     # accumulate features
-    nrag.gridRagAccumulateFeatures(graph=rag,data=raw,
+    nrag.gridRagAccumulateFeatures(graph=rag,data=data,
         edgeMap=edgeFeatures, nodeMap=nodeFeatures)
 
 
@@ -93,30 +86,101 @@ def makeFeatureOp(rag, raw, minVal=None, maxVal=None):
     
     return fOp,minVal, maxVal
 
+def makeFeatureOp(rag, raw, minVals=None, maxVals=None):
+
+
+    filterFuc = [
+        partial(vigra.filters.gaussianSmoothing,sigma=0.5),
+        partial(vigra.filters.gaussianSmoothing,sigma=1.0),
+        partial(vigra.filters.gaussianGradientMagnitude,sigma=2.0),
+        partial(vigra.filters.gaussianGradientMagnitude,sigma=3.0),
+        partial(vigra.filters.hessianOfGaussianEigenvalues,scale=1.0),
+        partial(vigra.filters.hessianOfGaussianEigenvalues,scale=2.0)
+    ]
+    fCollection = ngala.galaFeatureCollection(rag)
+
+    minVals_ = []
+    maxVals_ = []
+    c = 0
+    for f in filterFuc:
+        res = f(raw).squeeze()
+        if res.ndim == 2:
+            res = res[:, :, None]
+        for c in range(res.shape[2]):
+            resC = res[:, :, c]
+
+            if minVals is not None:
+                minv = minVals[c]
+            else:
+                minv = resC.min()
+            if maxVals is not None:
+                maxv = maxVals[c]
+            else:
+                maxv = resC.max()
+            minVals_.append(minv)
+            maxVals_.append(maxv)
+            op, _minVal , _maxVal =  makeFeatureOpFromChannel(rag, resC, minVal=minv, maxVal=maxv)
+            fCollection.addFeatures(op)
+            c +=1
+
+    return fCollection, minVals_, maxVals_
+
 def makeEdgeGt(rag, gt):
     # get the gt
     nodeGt = nrag.gridRagAccumulateLabels(rag, gt)
     uvIds = rag.uvIds()
     edgeGt = (nodeGt[uvIds[:,0]] != nodeGt[uvIds[:,1]]).astype('double')
     return edgeGt
-    
-
 
 def test_mcgala():
 
 
 
     # get the dataset
-    imgs,gts = make_dataset(2,noise=5.0,shape=(100,100))
+    imgs,gts = make_dataset(10, noise=4.0, shape=(200,200))
 
 
-    ragTrain  = makeRag(imgs[0])
+    greedyFactory = G.greedyAdditiveFactory()
+    ilpFactory = G.multicutIlpFactory(ilpSolver='cplex',
+        addThreeCyclesConstraints=True,
+        addOnlyViolatedThreeCyclesConstraints=True
+        #memLimit= 0.01
+    )
+    fmFactoryA = G.fusionMoveBasedFactory(
+        #fusionMove=G.fusionMoveSettings(mcFactory=greedyFactory),
+        fusionMove=G.fusionMoveSettings(mcFactory=ilpFactory),
+        #proposalGen=nifty.greedyAdditiveProposals(sigma=30,nodeNumStopCond=-1,weightStopCond=0.0),
+        proposalGen=G.watershedProposals(sigma=1,seedFraction=0.5),
+        numberOfIterations=20,
+        numberOfParallelProposals=16, # no effect if nThreads equals 0 or 1
+        numberOfThreads=8,
+        stopIfNoImprovement=4,
+        fuseN=2,
+    )
+    fmFactoryB = G.fusionMoveBasedFactory(
+        #fusionMove=G.fusionMoveSettings(mcFactory=greedyFactory),
+        fusionMove=G.fusionMoveSettings(mcFactory=ilpFactory),
+        #proposalGen=nifty.greedyAdditiveProposals(sigma=30,nodeNumStopCond=-1,weightStopCond=0.0),
+        proposalGen=G.watershedProposals(sigma=1,seedFraction=0.1),
+        numberOfIterations=100,
+        numberOfParallelProposals=16, # no effect if nThreads equals 0 or 1
+        numberOfThreads=0,
+        stopIfNoImprovement=40,
+        fuseN=2,
+    )
+
+
+
+    ragTrain  = makeRag(imgs[0], showSeg=True)
     fOpTrain, minVal, maxVal = makeFeatureOp(ragTrain, imgs[0])
     edgeGt = makeEdgeGt(ragTrain, gts[0])
 
 
     # gala class
-    settings = G.galaSettings(threshold0=0.1, threshold1=0.9, thresholdU=0.1,numberOfEpochs=1, numberOfTrees=10)
+    settings = G.galaSettings(threshold0=0.1, threshold1=0.9, thresholdU=0.1,
+                              numberOfEpochs=2, numberOfTrees=255,
+                              mapFactory=fmFactoryA,
+                              perturbAndMapFactory=fmFactoryB)
     gala = G.gala(settings)
 
 
@@ -126,16 +190,22 @@ def test_mcgala():
     gala.train()
 
 
-    ragTest  = makeRag(imgs[1])
-    fOpTest, minVal, maxVal = makeFeatureOp(ragTest, imgs[1])
-    instance  = ngala.galaInstance(ragTest, fOpTest)
-    edgeGt = makeEdgeGt(ragTest, gts[1])
+    for x in range(10):
 
-    nodeRes = gala.predict(instance)
+        ragTest  = makeRag(imgs[x], showSeg=False)
+        fOpTest, minVal, maxVal = makeFeatureOp(ragTest, imgs[x], minVal, maxVal)
+        instance  = ngala.galaInstance(ragTest, fOpTest)
+        edgeGt = makeEdgeGt(ragTest, gts[x])
+
+        nodeRes = gala.predict(instance)
+
+        pixelNodeRes = nrag.projectScalarNodeDataToPixels(ragTest,nodeRes,-1)
+        vigra.segShow(imgs[x], pixelNodeRes)
+        vigra.show()
 
 
-    for edge, uv in enumerate(ragTest.uvIds()):
-        print(edge,edgeGt[edge],nodeRes[uv[0]]!=nodeRes[uv[1]])
+        #for edge, uv in enumerate(ragTest.uvIds()):
+        #    print(edge,edgeGt[edge],nodeRes[uv[0]]!=nodeRes[uv[1]])
 
 
 
