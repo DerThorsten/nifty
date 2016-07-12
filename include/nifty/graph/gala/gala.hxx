@@ -47,8 +47,12 @@ namespace graph{
     class Gala{
     
     public:
+        
+        friend class detail_gala::CallbackBase<GRAPH,T, CLASSIFIER, TrainingInstance<GRAPH, T>  > ;
+        friend class detail_gala::CallbackBase<GRAPH,T, CLASSIFIER, Instance<GRAPH, T>  > ;
         friend class detail_gala::TrainingCallback<GRAPH,T, CLASSIFIER> ;
         friend class detail_gala::TestCallback<GRAPH,T, CLASSIFIER> ;
+
 
         typedef GalaSettings Settings;
         typedef GRAPH GraphType;
@@ -77,7 +81,7 @@ namespace graph{
         void train();
         
         template<class NODE_LABELS>
-        void predict(InstanceType & instance,  NODE_LABELS & nodeLabels)const;
+        void predict(InstanceType & instance,  NODE_LABELS & nodeLabels);
 
     private:
 
@@ -182,7 +186,7 @@ namespace graph{
 
 
         // fetch some information from an arbitrary training example
-        auto & someTrainingInstance =  trainingCallbacks_.front()->trainingInstance_;
+        auto & someTrainingInstance =  trainingCallbacks_.front()->getInstance();
         const uint64_t numberOfFeatures = someTrainingInstance.numberOfFeatures();
 
         classifier_.initialize(numberOfFeatures);
@@ -191,7 +195,7 @@ namespace graph{
         for(auto trainingCallback : trainingCallbacks_){  
             const auto & graph = trainingCallback->graph();
             auto features  = trainingCallback->features();
-            auto & trainingInstance = trainingCallback->trainingInstance_;
+            auto & trainingInstance = trainingCallback->getInstance();
 
             const auto & edgeGt = trainingInstance.edgeGt();
             const auto & edgeGtUncertainty = trainingInstance.edgeGtUncertainty();
@@ -241,8 +245,8 @@ namespace graph{
                 const auto toContract = trainingCallback->edgeToContractNext();
                 
                 // fetch the gt 
-                const auto fgt = trainingCallback->trainingInstance_.edgeGt()[toContract];
-                const auto ugt = trainingCallback->trainingInstance_.edgeGtUncertainty()[toContract];
+                const auto fgt = trainingCallback->getInstance().edgeGt()[toContract];
+                const auto ugt = trainingCallback->getInstance().edgeGtUncertainty()[toContract];
                 if(fgt < trainingSettings_.threshold0 && ugt < trainingSettings_.thresholdU){
                     contractionGraph.contractEdge(toContract);
                 }
@@ -264,7 +268,7 @@ namespace graph{
     predict(
         InstanceType & instance,
         NODE_LABELS & labels
-    )const{
+    ){
 
         TestCallbackType callback(instance, *this);
 

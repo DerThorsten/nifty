@@ -12,5 +12,6 @@ Features:
         * Multicut-Ilp-Gurobi
         * Multicut-Ilp-Glpk
     * Fusion Moves for Correlation clustering (Beier et al. 2015)
+    * Greedy Additive Clustering /  Energy based Hierarchical Clustering (Beier et al. 2015)
 * More is coming soon!!
 

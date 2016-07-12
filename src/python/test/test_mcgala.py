@@ -52,7 +52,7 @@ def makeRag(raw, showSeg = False):
     #ew = vigra.filters.gaussianGradientMagnitude(raw, 1.0)#[:,:,0]
     #seg, nseg = vigra.analysis.watershedsNew(ew)
 
-    seg, nseg = vigra.analysis.slicSuperpixels(raw,intensityScaling=5.0, seedDistance=6)
+    seg, nseg = vigra.analysis.slicSuperpixels(raw,intensityScaling=2.0, seedDistance=6)
 
     seg = seg.squeeze()
     if showSeg:
@@ -144,7 +144,7 @@ def test_mcgala():
 
 
     # get the dataset
-    imgs,gts = make_dataset(10, noise=5.0, shape=(200,200))
+    imgs,gts = make_dataset(10, noise=2.0, shape=(200,200))
 
 
     greedyFactory = G.greedyAdditiveFactory()
@@ -185,7 +185,7 @@ def test_mcgala():
 
     # gala class
     settings = G.galaSettings(threshold0=0.1, threshold1=0.9, thresholdU=0.1,
-                              numberOfEpochs=5, numberOfTrees=100,
+                              numberOfEpochs=2, numberOfTrees=20,
                               mapFactory=fmFactoryA,
                               perturbAndMapFactory=fmFactoryB)
     gala = G.gala(settings)
