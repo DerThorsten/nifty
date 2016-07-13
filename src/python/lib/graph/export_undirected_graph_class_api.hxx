@@ -49,7 +49,6 @@ namespace graph{
     };
 
 
-
     template<class G, class CLS_T>
     void exportUndirectedGraphClassAPI(
         py::module & graphModule,
@@ -80,7 +79,7 @@ namespace graph{
             .def_property_readonly("numberOfEdges",&G::numberOfEdges)
             .def_property_readonly("nodeIdUpperBound",&G::nodeIdUpperBound)
             .def_property_readonly("edgeIdUpperBound",&G::edgeIdUpperBound)
-            
+
             .def("findEdge",&G::findEdge)
             .def("u",&G::u)
             .def("v",&G::v)
