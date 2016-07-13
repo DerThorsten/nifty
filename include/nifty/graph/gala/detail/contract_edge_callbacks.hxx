@@ -5,6 +5,7 @@
 #include <iostream>
 #include <set>
 #include <tuple> 
+#include <functional>
 
 #include "vigra/multi_array.hxx"
 #include "vigra/random_forest.hxx"
@@ -236,7 +237,7 @@ namespace graph{
         typedef Gala<GraphType, T, CLASSIFIER> GalaType;
 
 
-        typedef EdgeContractionGraphWithSets<GraphType, CHILD, std::set<uint64_t> >   EdgeContractionGraphType;
+        typedef EdgeContractionGraphWithSets<GraphType, FlexibleCallback, std::set<uint64_t> >   EdgeContractionGraphType;
         typedef MulticutEdgeOrder<GraphType, EdgeContractionGraphType> McOrder;
 
 
@@ -247,14 +248,22 @@ namespace graph{
 
         CallbackBase(InstanceType & instance, GalaType & gala, CHILD & child)
         :   instance_(instance),
-            contractionGraph_(instance.graph(), child),
+            stdFunctionCallback_(),
+            contractionGraph_(instance.graph(), stdFunctionCallback_),
             edgeSizes_(instance.graph()),
             nodeSizes_(instance.graph()),
             gala_(gala),
-            mcOrder_(instance.graph(), contractionGraph_,
-                     gala.trainingSettings_.mapFactory,
-                     gala.trainingSettings_.perturbAndMapFactory),
-            contractionOrder_(*this,false){
+            //mcOrder_(instance.graph(), contractionGraph_,
+            //         gala.trainingSettings_.mapFactory,
+            //         gala.trainingSettings_.perturbAndMapFactory),
+            contractionOrder_(*this,false)
+        {
+
+            // fill callback with values
+            stdFunctionCallback_.contractEdgeCallback = std::bind(&CHILD::contractEdge,&child,std::placeholders::_1);
+            stdFunctionCallback_.mergeEdgesCallback = std::bind(&CHILD::mergeEdges,&child,std::placeholders::_1, std::placeholders::_2);
+            stdFunctionCallback_.mergeNodesCallback = std::bind(&CHILD::mergeNodes,&child,std::placeholders::_1, std::placeholders::_2);
+            stdFunctionCallback_.contractEdgeDoneCallback = std::bind(&CHILD::contractEdgeDone,&child,std::placeholders::_1);
 
             for(const auto edge : this->graph().edges()){
                 edgeSizes_[edge] = getInstance().edgeSizes()[edge];
@@ -351,13 +360,14 @@ namespace graph{
         }
 
         InstanceType & instance_;
+        FlexibleCallback stdFunctionCallback_;
         EdgeContractionGraphType contractionGraph_;
 
         EdgeMapDouble edgeSizes_;
         NodeMapDouble nodeSizes_;
 
         GalaType & gala_;
-        McOrder mcOrder_;
+        //McOrder mcOrder_;
         ContractionOrder contractionOrder_;
     };
 

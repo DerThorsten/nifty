@@ -185,7 +185,7 @@ def test_mcgala():
 
     # gala class
     settings = G.galaSettings(threshold0=0.1, threshold1=0.9, thresholdU=0.1,
-                              numberOfEpochs=3, numberOfTrees=255,
+                              numberOfEpochs=2, numberOfTrees=20,
                               mapFactory=fmFactoryA,
                               perturbAndMapFactory=fmFactoryB)
     gala = G.gala(settings)

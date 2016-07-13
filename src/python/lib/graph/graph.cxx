@@ -11,6 +11,7 @@ namespace graph{
 
 
     void exportUndirectedGraph(py::module &);
+    void exportEdgeContractionGraphUndirectedGraph(py::module & );
 
     void initSubmoduleMulticut(py::module &);
     void initSubmoduleRag(py::module &);
@@ -19,8 +20,10 @@ namespace graph{
     void initSubmoduleGraph(py::module &niftyModule) {
         auto graphModule = niftyModule.def_submodule("graph","graph submodule");
 
+
         exportUndirectedGraph(graphModule);
-                
+        exportEdgeContractionGraphUndirectedGraph(graphModule);
+
         initSubmoduleMulticut(graphModule);
         initSubmoduleRag(graphModule);
         initSubmoduleGala(graphModule);

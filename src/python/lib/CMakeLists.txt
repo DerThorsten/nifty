@@ -39,6 +39,7 @@ add_library(_nifty SHARED
     # ... extra files go here ...
     graph/graph.cxx
     graph/undirected_graph.cxx
+    graph/edge_contraction_graph_undirected_graph.cxx
     # rag
     graph/rag/rag.cxx
     graph/rag/grid_rag.cxx

@@ -11,7 +11,7 @@ namespace nifty{
 namespace graph{
 
 
-    template<class G, class ITER>
+    template<class G, class ITER, class TAG>
     class PyGraphIter{
     public:
         typedef ITER Iter;
@@ -58,7 +58,7 @@ namespace graph{
     ){
         
         typedef typename G::EdgeIter EdgeIter;
-        typedef PyGraphIter<G,EdgeIter> PyEdgeIter;
+        typedef PyGraphIter<G,EdgeIter, EdgeTag> PyEdgeIter;
         auto edgeIterClsName = clsName + std::string("EdgeIter");
         py::class_<PyEdgeIter>(graphModule, edgeIterClsName.c_str())
             .def("__iter__", [](PyEdgeIter &it) -> PyEdgeIter& { return it; })
@@ -66,7 +66,7 @@ namespace graph{
         ;
 
         typedef typename G::NodeIter NodeIter;
-        typedef PyGraphIter<G,NodeIter> PyNodeIter;
+        typedef PyGraphIter<G,NodeIter,NodeTag> PyNodeIter;
         auto nodeIterClsName = clsName + std::string("NodeIter");
         py::class_<PyNodeIter>(graphModule, nodeIterClsName.c_str())
             .def("__iter__", [](PyNodeIter &it) -> PyNodeIter& { return it; })
@@ -78,6 +78,9 @@ namespace graph{
         cls
             .def_property_readonly("numberOfNodes",&G::numberOfNodes)
             .def_property_readonly("numberOfEdges",&G::numberOfEdges)
+            .def_property_readonly("nodeIdUpperBound",&G::nodeIdUpperBound)
+            .def_property_readonly("edgeIdUpperBound",&G::edgeIdUpperBound)
+            
             .def("findEdge",&G::findEdge)
             .def("u",&G::u)
             .def("v",&G::v)

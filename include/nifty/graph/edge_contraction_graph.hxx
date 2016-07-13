@@ -2,6 +2,8 @@
 #ifndef NIFTY_GRAPH_EDGE_CONTRACTION_GRAPH_HXX
 #define NIFTY_GRAPH_EDGE_CONTRACTION_GRAPH_HXX
 
+#include <functional>
+
 // for strange reason travis does not find the boost flat set
 #ifdef WITHIN_TRAVIS
 #include <set>
@@ -11,7 +13,7 @@
 #define __setimpl boost::container::flat_set
 #endif
 
-#include "nifty/graph/simple_graph.hxx"
+#include "nifty/graph/undirected_graph_base.hxx"
 #include "nifty/container/flat_set.hxx"
 #include "nifty/tools/runtime_check.hxx"
 #include "nifty/ufd/ufd.hxx"
@@ -28,6 +30,42 @@ namespace graph{
 
     template<class GRAPH, class OUTER_CALLBACK, class SET>
     class EdgeContractionGraphWithSets;
+
+
+
+
+    struct FlexibleCallback{
+        inline void contractEdge(const uint64_t edgeToContract){
+            if(contractEdgeCallback)
+                contractEdgeCallback(edgeToContract);
+        }
+
+        inline void mergeNodes(const uint64_t aliveNode, const uint64_t deadNode){
+            if(mergeNodesCallback)
+                mergeNodesCallback(aliveNode, deadNode);
+        }
+
+        inline void mergeEdges(const uint64_t aliveEdge, const uint64_t deadEdge){
+            if(mergeEdgesCallback)
+                mergeEdgesCallback(aliveEdge, deadEdge);
+        }
+
+        inline void contractEdgeDone(const uint64_t edgeToContract){
+            if(contractEdgeCallback)
+                contractEdgeDoneCallback(edgeToContract);
+        }
+        std::function<void(uint64_t) >          contractEdgeCallback;
+        std::function<void(uint64_t,uint64_t) > mergeNodesCallback;
+        std::function<void(uint64_t,uint64_t) > mergeEdgesCallback;
+        std::function<void(uint64_t) >          contractEdgeDoneCallback;
+    };  
+
+
+
+
+
+
+
 
     namespace detail_edge_contraction_graph{
 
@@ -118,23 +156,76 @@ namespace graph{
 
     }
 
-
-
     template<class GRAPH, class OUTER_CALLBACK, class SET>
-    class EdgeContractionGraphWithSets :
-        public EdgeContractionGraph<GRAPH, detail_edge_contraction_graph::InnerCallback<GRAPH, OUTER_CALLBACK, SET> >{
-    public:
-        typedef EdgeContractionGraphWithSets<GRAPH, OUTER_CALLBACK, SET> SelfType;
-        typedef EdgeContractionGraph<GRAPH, detail_edge_contraction_graph::InnerCallback<GRAPH, OUTER_CALLBACK, SET> > BaseType;
+    struct EdgeContractionGraphWithSetsHelper{
         typedef GRAPH GraphType;
         typedef OUTER_CALLBACK OuterCallbackType;
         typedef SET SetType;
+        typedef EdgeContractionGraphWithSets<GraphType, OuterCallbackType, SET> SelfType;
+        typedef detail_edge_contraction_graph::InnerCallback<GraphType, OuterCallbackType, SetType> InnerCallbackType;
+        typedef EdgeContractionGraph<GRAPH, InnerCallbackType > CGraphType;
+        typedef typename CGraphType::AdjacencyIter AdjacencyIter;
+        typedef typename CGraphType::EdgeStorage EdgeStorage;
+        typedef typename CGraphType::UfdType UfdType;
+
+        typedef typename SetType::const_iterator EdgeIter;
+        typedef typename SetType::const_iterator NodeIter;
+    }; 
+
+
+
+    template<class GRAPH, class OUTER_CALLBACK, class SET>
+    class EdgeContractionGraphWithSets : public
+    UndirectedGraphBase<
+        EdgeContractionGraphWithSets<GRAPH, OUTER_CALLBACK, SET>,
+        typename EdgeContractionGraphWithSetsHelper<GRAPH, OUTER_CALLBACK, SET>::NodeIter,
+        typename EdgeContractionGraphWithSetsHelper<GRAPH, OUTER_CALLBACK, SET>::EdgeIter,
+        typename EdgeContractionGraphWithSetsHelper<GRAPH, OUTER_CALLBACK, SET>::AdjacencyIter
+    >
+    {
+
+        typedef EdgeContractionGraphWithSetsHelper<GRAPH,OUTER_CALLBACK,SET> TypeHelper;
+
+        typedef typename TypeHelper::SelfType SelfType;
+        typedef typename TypeHelper::CGraphType CGraphType;
+        typedef typename TypeHelper::EdgeStorage EdgeStorage;
+    public:
+        typedef typename TypeHelper::GraphType GraphType;
+        typedef typename TypeHelper::OuterCallbackType OuterCallbackType;
+        typedef typename TypeHelper::SetType SetType;
+        typedef typename TypeHelper::UfdType UfdType;
+        typedef typename TypeHelper::EdgeIter EdgeIter;
+        typedef typename TypeHelper::NodeIter NodeIter;
+        typedef typename TypeHelper::AdjacencyIter AdjacencyIter;
+
+        typedef SparseTag EdgeIdTag;
+        typedef SparseTag NodeIdTag;
+
+        typedef SortedTag EdgeIdOrderTag;
+        typedef SortedTag NodeIdOrderTag;
+
+
         
         EdgeContractionGraphWithSets(const GraphType & graph, OuterCallbackType & outerCallback)
         :   innerCallback_(graph, outerCallback),
-            BaseType(graph, innerCallback_){
+            cgraph_(graph, innerCallback_){
                 innerCallback_.initSets();
         }
+
+
+        NodeIter nodesBegin()const{
+            return innerCallback_.nodesSet_.begin();
+        }
+        NodeIter nodesEnd()const{
+            return innerCallback_.nodesSet_.end();
+        }
+        EdgeIter edgesBegin()const{
+            return innerCallback_.edgesSet_.begin();
+        }
+        EdgeIter edgesEnd()const{
+            return innerCallback_.edgesSet_.end();
+        }
+
 
         template<class F>
         void forEachEdge(F && f)const{
@@ -148,13 +239,78 @@ namespace graph{
                 f(node);
             }
         }
+ 
+        AdjacencyIter adjacencyBegin(const int64_t node)const{
+            return cgraph_.adjacencyBegin(node);
+        }
+        AdjacencyIter adjacencyEnd(const int64_t node)const{
+            return cgraph_.adjacencyEnd(node);
+        }
+        AdjacencyIter adjacencyOutBegin(const int64_t node)const{
+            return cgraph_.adjacencyOutBegin(node);
+        }
+
+
+        EdgeStorage uv(const uint64_t edge)const{
+            return cgraph_.uv(edge);
+        }
+        int64_t u(const uint64_t edge)const{
+            return cgraph_.u(edge);
+        }
+        int64_t v(const uint64_t edge)const{
+            return cgraph_.v(edge);
+        }
+
+        uint64_t numberOfNodes()const{
+            return cgraph_.numberOfNodes();
+        }
+        uint64_t numberOfEdges()const{
+            return cgraph_.numberOfEdges();
+        }
+
+        uint64_t nodeIdUpperBound() const{
+            return cgraph_.nodeIdUpperBound();
+        }
+        uint64_t edgeIdUpperBound() const{
+            return cgraph_.edgeIdUpperBound();
+        }
+
+        int64_t findEdge(const int64_t u, const int64_t v)const{
+            return cgraph_.findEdge(u, v);
+        }
+
+        
+        void contractEdge(const uint64_t edgeToContract){
+            cgraph_.contractEdge(edgeToContract);
+        }
         void reset(){
-            BaseType::reset();
+            cgraph_.reset();
             innerCallback_.initSets();
         }
+        UfdType & ufd(){
+            return cgraph_.ufd();
+        } 
+        const UfdType & ufd() const{
+            return cgraph_.ufd();
+        }
+        const GraphType & baseGraph()const{
+            return cgraph_.baseGraph();
+        }
+        uint64_t findRepresentativeNode(const uint64_t node)const{
+            return cgraph_.findRepresentativeNode(node);
+        }
+        uint64_t findRepresentativeNode(const uint64_t node){
+            return cgraph_.findRepresentativeNode(node);
+        }
+        uint64_t nodeOfDeadEdge(const uint64_t deadEdge)const{
+            return cgraph_.nodeOfDeadEdge(deadEdge);
+        }
+
+
     private:
         typedef detail_edge_contraction_graph::InnerCallback<GraphType, OuterCallbackType, SetType> InnerCallbackType;
         InnerCallbackType innerCallback_;
+        CGraphType cgraph_;
     };
 
 
@@ -169,10 +325,12 @@ namespace graph{
         typedef detail_graph::UndirectedAdjacency<int64_t,int64_t,int64_t,int64_t> NodeAdjacency;
         //typedef std::set<NodeAdjacency> NodeStorage;
         typedef nifty::container::FlatSet <NodeAdjacency> NodeStorage;
-        typedef typename NodeStorage::const_iterator AdjacencyIter;
-
-        typedef typename Graph:: template NodeMap<NodeStorage> NodesContainer;
+        
+    public:
         typedef std::pair<int64_t,int64_t> EdgeStorage;
+        typedef typename NodeStorage::const_iterator AdjacencyIter;
+    private:
+        typedef typename Graph:: template NodeMap<NodeStorage> NodesContainer; 
         typedef typename Graph:: template EdgeMap<EdgeStorage> EdgeContainer;
     public:
 
@@ -198,6 +356,9 @@ namespace graph{
         uint64_t nodeIdUpperBound() const;
         uint64_t edgeIdUpperBound() const;
         
+        int64_t findEdge(const int64_t u, const int64_t v)const;
+
+
         void contractEdge(const uint64_t edgeToContract);
         void reset();
         UfdType & ufd(); // is this a good idea to have this public
@@ -349,6 +510,21 @@ namespace graph{
     edgeIdUpperBound()const{
         return graph_.edgeIdUpperBound();
     }
+
+    template<class GRAPH, class CALLBACK>
+    inline int64_t 
+    EdgeContractionGraph<GRAPH, CALLBACK>::
+    findEdge(
+        const int64_t u, 
+        const int64_t v
+    )const{
+        const auto fres =  nodes_[u].find(NodeAdjacency(v));
+        if(fres != nodes_[u].end())
+            return fres->edge();
+        else
+            return -1;
+    }
+
 
     template<class GRAPH, class CALLBACK>
     inline void 
