@@ -14,10 +14,10 @@ namespace graph_maps{
 template<class G, class T>
 struct NodeMap : public std::vector<T>{
     NodeMap( const G & g, const T & val)
-    :   std::vector<T>( g.maxNodeId()+1, val){
+    :   std::vector<T>( g.nodeIdUpperBound()+1, val){
     }
     NodeMap( const G & g)
-    :   std::vector<T>( g.maxNodeId()+1){
+    :   std::vector<T>( g.nodeIdUpperBound()+1){
     }
     NodeMap( )
     :   std::vector<T>( ){
@@ -27,11 +27,11 @@ struct NodeMap : public std::vector<T>{
 template<class G, class T>
 struct EdgeMap : public std::vector<T>{
     EdgeMap( const G & g, const T & val)
-    :   std::vector<T>( g.maxEdgeId()+1, val){
+    :   std::vector<T>( g.edgeIdUpperBound()+1, val){
     }
 
     EdgeMap( const G & g)
-    :   std::vector<T>( g.maxEdgeId()+1){
+    :   std::vector<T>( g.edgeIdUpperBound()+1){
     }
     
     EdgeMap( )

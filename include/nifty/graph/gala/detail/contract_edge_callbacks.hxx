@@ -224,19 +224,19 @@ namespace graph{
 
 
 
-    template<class GRAPH, class T, class CLASSIFIER, class INSTANCE>
+    template<class GRAPH, class T, class CLASSIFIER, class INSTANCE, class CHILD>
     struct CallbackBase{
         
         typedef T ValueType;
         typedef GRAPH GraphType;
-        typedef CallbackBase<GraphType, T, CLASSIFIER, INSTANCE> Self;
+        typedef CallbackBase<GraphType, T, CLASSIFIER, INSTANCE, CHILD> Self;
         typedef McGreedyHybridBase<Self> ContractionOrder;
         typedef INSTANCE     InstanceType;
         typedef GalaFeatureBase<GraphType, T>     FeatureBaseType;
         typedef Gala<GraphType, T, CLASSIFIER> GalaType;
 
 
-        typedef EdgeContractionGraphWithSets<GraphType, Self, std::set<uint64_t> >   EdgeContractionGraphType;
+        typedef EdgeContractionGraphWithSets<GraphType, CHILD, std::set<uint64_t> >   EdgeContractionGraphType;
         typedef MulticutEdgeOrder<GraphType, EdgeContractionGraphType> McOrder;
 
 
@@ -245,9 +245,9 @@ namespace graph{
         typedef typename GraphType:: template EdgeMap<double>  EdgeMapDouble;
         typedef typename GraphType:: template NodeMap<double>  NodeMapDouble;
 
-        CallbackBase(InstanceType & instance, GalaType & gala)
+        CallbackBase(InstanceType & instance, GalaType & gala, CHILD & child)
         :   instance_(instance),
-            contractionGraph_(instance.graph(), *this),
+            contractionGraph_(instance.graph(), child),
             edgeSizes_(instance.graph()),
             nodeSizes_(instance.graph()),
             gala_(gala),
@@ -292,6 +292,7 @@ namespace graph{
         void reset(){
             this->features()->reset();
             contractionGraph_.reset();
+            contractionOrder_.reset();
             for(const auto edge : this->graph().edges()){
                 edgeSizes_[edge] = getInstance().edgeSizes()[edge];
             };
@@ -363,12 +364,14 @@ namespace graph{
 
     // also the training callback
     template<class GRAPH, class T, class CLASSIFIER>
-    struct TrainingCallback : public CallbackBase<GRAPH, T, CLASSIFIER, TrainingInstance<GRAPH, T> >{
+    struct TrainingCallback : 
+        public CallbackBase<GRAPH, T, CLASSIFIER, TrainingInstance<GRAPH, T>,  TrainingCallback<GRAPH,T,CLASSIFIER>    >{
     
-        typedef CallbackBase<GRAPH, T, CLASSIFIER, TrainingInstance<GRAPH, T> > Base;
+        
         typedef T ValueType;
         typedef GRAPH GraphType;
         typedef TrainingCallback<GraphType, T, CLASSIFIER> Self;
+        typedef CallbackBase<GRAPH, T, CLASSIFIER, TrainingInstance<GRAPH, T>, Self > Base;
         typedef McGreedyHybridBase<Self> ContractionOrder;
         typedef TrainingInstance<GraphType, T>     TrainingInstanceType;
         typedef GalaFeatureBase<GraphType, T>     FeatureBaseType;
@@ -395,15 +398,13 @@ namespace graph{
         typedef typename GraphType:: template NodeMap<uint64_t>  NodeHash;
 
         TrainingCallback(TrainingInstanceType & trainingInstance, GalaType & gala, const size_t ownIndex)
-        :   Base(trainingInstance, gala),
+        :   Base(trainingInstance, gala, *this),
             edgeGt_(trainingInstance.graph()),
             edgeGtUncertainty_(trainingInstance.graph()),
             edgeHash_(trainingInstance.graph()),
             nodeHash_(trainingInstance.graph()),
             ownIndex_(ownIndex)
-            {
-
-            // 
+        {
             for(const auto edge : this->graph().edges()){
                 edgeGt_[edge] = this->getInstance().edgeGt()[edge];
                 edgeGtUncertainty_[edge] = this->getInstance().edgeGtUncertainty()[edge];
@@ -443,8 +444,18 @@ namespace graph{
             Base::mergeEdges(aliveEdge, deadEdge);
         }
 
-        T recomputeFeaturesAndPredictImpl(const uint64_t edgeToUpdate, bool useNewExamples){ 
 
+        void contractEdgeDone(const uint64_t edgeToContract){
+            // recompute features  
+            const auto u = this->contractionGraph_.nodeOfDeadEdge(edgeToContract);
+            for(auto adj : this->contractionGraph_.adjacency(u)){
+                const auto edge = adj.edge();
+                const auto p = this->recomputeFeaturesAndPredictImpl(edge, true);
+            }
+            this->contractionOrder_.contractEdgeDone(edgeToContract);
+        }
+
+        T recomputeFeaturesAndPredictImpl(const uint64_t edgeToUpdate, bool useNewExamples){ 
             const auto nf = this->numberOfFeatures();
             std::vector<T> f(nf);
             this->features()->getFeatures(edgeToUpdate, f.data());
@@ -476,9 +487,19 @@ namespace graph{
 
 
     template<class GRAPH, class T, class CLASSIFIER>
-    struct TestCallback : public CallbackBase<GRAPH, T, CLASSIFIER, Instance<GRAPH, T> >{
-        typedef  CallbackBase<GRAPH, T, CLASSIFIER, Instance<GRAPH, T> > BaseType;
+    struct TestCallback : public CallbackBase<GRAPH, T, CLASSIFIER, Instance<GRAPH, T>, TestCallback<GRAPH,T,CLASSIFIER> >{
+
+        typedef  CallbackBase<GRAPH, T, CLASSIFIER, Instance<GRAPH, T>,TestCallback<GRAPH,T,CLASSIFIER>  > BaseType;
+
+        typedef Instance<GRAPH, T>    InstanceType;
         using BaseType::BaseType;
+
+        typedef Gala<GRAPH, T, CLASSIFIER> GalaType;
+
+        TestCallback(InstanceType & instance, GalaType & gala)
+        :   BaseType(instance, gala, *this){
+
+        }
     };
 
 

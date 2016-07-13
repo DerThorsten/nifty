@@ -74,7 +74,7 @@ public:
             return _child().findArc(v, u);
     }
 
-    int64_t maxEdgeId() const {return _child().maxArcId();}
+    int64_t edgeIdUpperBound() const {return _child().maxArcId();}
     int64_t numberOfEdges() const {return _child().numberOfArcs();}
 private:
     ChildGraph & _child(){

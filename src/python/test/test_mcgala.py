@@ -178,14 +178,14 @@ def test_mcgala():
 
 
 
-    ragTrain  = makeRag(imgs[0], showSeg= True)
+    ragTrain  = makeRag(imgs[0], showSeg= False)
     fOpTrain, minVal, maxVal = makeFeatureOp(ragTrain, imgs[0])
     edgeGt = makeEdgeGt(ragTrain, gts[0])
 
 
     # gala class
     settings = G.galaSettings(threshold0=0.1, threshold1=0.9, thresholdU=0.1,
-                              numberOfEpochs=2, numberOfTrees=20,
+                              numberOfEpochs=3, numberOfTrees=255,
                               mapFactory=fmFactoryA,
                               perturbAndMapFactory=fmFactoryB)
     gala = G.gala(settings)

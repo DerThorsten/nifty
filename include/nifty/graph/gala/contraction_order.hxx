@@ -68,7 +68,7 @@ public:
         cgraph_(callback.cgraph()),
         training_(training),
         settings_(settings),
-        pq_(callback.graph().maxEdgeId()+1),
+        pq_(callback.graph().edgeIdUpperBound()+1),
         localRfProbs_(callback.graph()),
         mcPerturbAndMapProbs_(callback.graph()),
         mcMapProbs_(callback.graph()),

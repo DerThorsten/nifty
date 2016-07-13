@@ -50,7 +50,7 @@ namespace graph{
         )
         :   objective_(objective),
             graph_(objective.graph()),
-            pq_(objective.graph().maxEdgeId()+1 ),
+            pq_(objective.graph().edgeIdUpperBound()+1 ),
             settings_(settings),
             currentNodeNum_(objective.graph().numberOfNodes()),
             gen_(settings.seed),

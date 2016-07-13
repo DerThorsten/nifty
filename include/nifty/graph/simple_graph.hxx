@@ -83,6 +83,10 @@ public:
     typedef ContiguousTag EdgeIdTag;
     typedef ContiguousTag NodeIdTag;
 
+    typedef SortedTag EdgeIdOrderTag;
+    typedef SortedTag NodeIdOrderTag;
+
+
     // constructors
     UndirectedGraph(const uint64_t numberOfNodes = 0, const uint64_t reserveNumberOfEdges = 0)
     :   nodes_(numberOfNodes),
@@ -136,10 +140,10 @@ public:
         else
             return -1;
     }
-    int64_t maxNodeId() const{return numberOfNodes() == 0 ? -1 : numberOfNodes()-1;}
-    int64_t maxEdgeId() const{return numberOfEdges() == 0 ? -1 : numberOfEdges()-1;}
-    int64_t numberOfEdges() const {return edges_.size();}
-    int64_t numberOfNodes() const{return nodes_.size();}
+    uint64_t nodeIdUpperBound() const{return numberOfNodes() == 0 ? -1 : numberOfNodes()-1;}
+    uint64_t edgeIdUpperBound() const{return numberOfEdges() == 0 ? -1 : numberOfEdges()-1;}
+    uint64_t numberOfEdges() const {return edges_.size();}
+    uint64_t numberOfNodes() const{return nodes_.size();}
 
     NodeIter nodesBegin()const{return NodeIter(0);}
     NodeIter nodesEnd()const{return NodeIter(this->numberOfNodes());}

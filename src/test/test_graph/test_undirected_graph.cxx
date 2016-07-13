@@ -53,7 +53,6 @@ BOOST_AUTO_TEST_CASE(UndirectedGraphTest)
         NIFTY_TEST_OP(node,==,c);
         ++c;
         for(auto adj : graph.adjacency(node)){
-            //std::cout<<"   "<<adj.node()<<"\n";
         }
     }
     NIFTY_TEST_OP(graph.numberOfNodes(),==,c);
@@ -63,7 +62,13 @@ BOOST_AUTO_TEST_CASE(UndirectedGraphTest)
     for(auto & edge : graph.edges()){
         NIFTY_TEST_OP(edge,==,c);
         ++c;
-        //std::cout<<edge<<"\n"<<"   "<<graph.u(edge)<<" "<<graph.v(edge)<<"\n";
+    }
+    NIFTY_TEST_OP(graph.numberOfEdges(),==,c);
+
+    c = 0;
+    for(auto & edge : graph.items<nifty::graph::EdgeTag>()){
+        NIFTY_TEST_OP(edge,==,c);
+        ++c;
     }
     NIFTY_TEST_OP(graph.numberOfEdges(),==,c);
 

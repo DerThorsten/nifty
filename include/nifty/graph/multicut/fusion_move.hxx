@@ -41,7 +41,7 @@ namespace graph{
         :   objective_(objective),
             graph_(objective.graph()),
             settings_(settings),
-            ufd_(objective.graph().maxNodeId()+1),
+            ufd_(objective.graph().nodeIdUpperBound()+1),
             nodeToDense_(objective.graph())
         {
             if(!bool(settings_.mcFactory)){

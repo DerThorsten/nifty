@@ -22,7 +22,7 @@ namespace graph{
     public:
         ShortestPathDijkstra(const Graph & g)
         :   g_(g),
-            pq_(g.maxNodeId()+1),
+            pq_(g.nodeIdUpperBound()+1),
             predMap_(g),
             distMap_(g){
         }

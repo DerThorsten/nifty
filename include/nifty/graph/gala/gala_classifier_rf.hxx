@@ -12,11 +12,11 @@
 namespace nifty{
 namespace graph{
 
-    
+
     template<class T>
-    class RfClassifier{
+    class OldRfClassifier{
     public:
-        RfClassifier(const size_t numberOfTrees=255)
+        OldRfClassifier(const size_t numberOfTrees=255)
         :   classifier_(nullptr),
             numberOfTrees_(numberOfTrees){
 
@@ -72,7 +72,7 @@ namespace graph{
             const auto nAdded = newRfLabels_.size();
             const auto nTotal = nOld + nAdded;
 
-            //std::cout<<"new added examples "<<nAdded<<" total "<<nTotal<<"\n";
+            std::cout<<"new added examples "<<nAdded<<" total "<<nTotal<<"\n";
             vigra::MultiArray<2, T> fNew(vigra::Shape2( nTotal ,numberOfFeatures_));
             vigra::MultiArray<2, uint8_t> lNew(vigra::Shape2( nTotal ,1));
 
@@ -105,9 +105,8 @@ namespace graph{
         std::vector<uint8_t>    newRfLabels_;
         uint64_t numberOfFeatures_;
     };
-    
 
-    /*
+    
     template<class T>
     class RfClassifier{
     public:
@@ -149,6 +148,7 @@ namespace graph{
             vigra::rf3::OOBError oob;
             classifier_ = random_forest(rfFeatures_, rfLabels_, options, create_visitor(oob));
 
+            std::cout<<"OOB  "<<oob.oob_err_<<"\n";
 
             t.stopAndPrint();
             t.reset();
@@ -162,7 +162,8 @@ namespace graph{
                 f[i] = features[i];
             }
             classifier_.predict_proba(f,p);
-            return p(0,1);
+            //std::cout<<"predicted p "<<p<<"\n";
+            return p(0,1)/numberOfTrees_;
         }
     private:
         void makeTrainingSet(){
@@ -171,7 +172,7 @@ namespace graph{
             const auto nAdded = newRfLabels_.size();
             const auto nTotal = nOld + nAdded;
 
-            //std::cout<<"new added examples "<<nAdded<<" total "<<nTotal<<"\n";
+            std::cout<<"new added examples "<<nAdded<<" total "<<nTotal<<"\n";
             Features fNew(vigra::Shape2( nTotal ,numberOfFeatures_));
             Labels lNew = Labels(vigra::Shape1( nTotal));
 
@@ -204,7 +205,8 @@ namespace graph{
         std::vector<uint8_t>    newRfLabels_;
         uint64_t numberOfFeatures_;
     };
-    */
+
+    
 
 } // namespace nifty::graph
 } // namespace nifty

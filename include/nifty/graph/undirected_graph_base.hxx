@@ -4,12 +4,54 @@
 
 #include <boost/iterator/transform_iterator.hpp>
 
+#include "nifty/graph/graph_tags.hxx"
 #include "nifty/graph/graph_maps.hxx"
 #include "nifty/tools/const_iterator_range.hxx"
 
 
 namespace nifty{
 namespace graph{
+
+namespace detail_undirected_graph_base{
+
+
+
+template<class GRAPH, class TAG>
+struct GraphItemGeneralization;
+
+template<class GRAPH>
+struct GraphItemGeneralization<GRAPH, EdgeTag>{
+
+    typedef typename GRAPH::ChildGraph ChildGraph;
+    typedef typename GRAPH:: template EdgeIterRange<ChildGraph> type;
+
+
+    static type items(const ChildGraph & g){
+        return g.edges();
+    }
+
+    static uint64_t numberOfItems(const ChildGraph & g){
+        return g.numberOfEdges();
+    }
+
+};
+
+template<class GRAPH>
+struct GraphItemGeneralization<GRAPH, NodeTag>{
+    typedef typename GRAPH::ChildGraph ChildGraph;
+    typedef typename GRAPH:: template NodeIterRange<ChildGraph> type;
+
+    static type items(const ChildGraph & g){
+        return g.nodes();
+    }
+
+    static uint64_t numberOfItems(const ChildGraph & g){
+        return g.numberOfNodes();
+    }
+};
+
+}
+
 
 template<
     class CHILD_GRAPH,
@@ -19,8 +61,12 @@ template<
 >
 class UndirectedGraphBase{
 public:
+
+
     typedef CHILD_GRAPH ChildGraph;
     typedef UndirectedGraphBase<ChildGraph, NODE_ITER, EDGE_ITER, ADJACENCY_ITER> Self;
+
+
 
     template<class T>
     struct NodeMap : graph_maps::NodeMap<ChildGraph,T> {
@@ -54,6 +100,11 @@ public:
     // For range based loops over all edges
     EdgeIterRange<ChildGraph > edges() const{
         return EdgeIterRange<ChildGraph>(_child().edgesBegin(),_child().edgesEnd());
+    }
+
+    template<class TAG>
+    typename detail_undirected_graph_base::GraphItemGeneralization<Self,TAG>::type items()const{
+        return detail_undirected_graph_base::GraphItemGeneralization<Self,TAG>::items(_child());
     }
 
     // For range based loops over adjacency for one node
@@ -99,6 +150,20 @@ public:
     void forEachEdge(F && f)const{
         for(auto edge : _child().edges()){
             f(edge);
+        }
+    }
+
+    template<class F>
+    void forEachNode(F && f)const{
+        for(auto node : _child().nodes()){
+            f(node);
+        }
+    }
+
+    template<class F, class TAG>
+    void forEachNode(F && f)const{
+        for(auto item : _child().items<TAG>()){
+            f(item);
         }
     }
 

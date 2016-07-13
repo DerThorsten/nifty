@@ -17,7 +17,7 @@ public:
 
     ComponentsUfd(const Graph & graph)
     :   graph_(graph),
-        ufd_(graph.maxNodeId()+1),
+        ufd_(graph.nodeIdUpperBound()+1),
         offset_(ufd_.numberOfElements() - graph_.numberOfNodes()),
         needsReset_(false){
         

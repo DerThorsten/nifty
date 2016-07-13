@@ -48,8 +48,8 @@ namespace graph{
     
     public:
         
-        friend class detail_gala::CallbackBase<GRAPH,T, CLASSIFIER, TrainingInstance<GRAPH, T>  > ;
-        friend class detail_gala::CallbackBase<GRAPH,T, CLASSIFIER, Instance<GRAPH, T>  > ;
+        friend class detail_gala::CallbackBase<GRAPH,T, CLASSIFIER, TrainingInstance<GRAPH, T>,detail_gala::TrainingCallback<GRAPH,T, CLASSIFIER  > >;
+        friend class detail_gala::CallbackBase<GRAPH,T, CLASSIFIER, Instance<GRAPH, T>,detail_gala::TestCallback<GRAPH,T, CLASSIFIER  > >;
         friend class detail_gala::TrainingCallback<GRAPH,T, CLASSIFIER> ;
         friend class detail_gala::TestCallback<GRAPH,T, CLASSIFIER> ;
 
@@ -156,6 +156,7 @@ namespace graph{
         const double uGt, 
         const HashType & h
     ){
+        //std::cout<<"discoveredExample\n";
         // check if the training example is credible
         if((pGt < trainingSettings_.threshold0 || pGt > trainingSettings_.threshold1) && uGt < trainingSettings_.thresholdU){
             if(addedExamples_.find(h) == addedExamples_.end()){
@@ -234,7 +235,7 @@ namespace graph{
 
                 const auto nEdges = contractionGraph.numberOfEdges();
                 const auto nNodes = contractionGraph.numberOfNodes();
-                std::cout<<"#Edges "<<nEdges<<" #Nodes "<<nNodes<<" #ufd "<< contractionGraph.ufd().numberOfSets()<<"\n";
+                //std::cout<<"#Edges "<<nEdges<<" #Nodes "<<nNodes<<" #ufd "<< contractionGraph.ufd().numberOfSets()<<"\n";
 
 
 

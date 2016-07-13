@@ -82,7 +82,7 @@ public:
         return fRes == sOut.end() ? -1 : fRes->arc();
     }
 
-    int64_t maxNodeId() const{return numberOfNodes() == 0 ? -1 : numberOfNodes()-1;}
+    int64_t nodeIdUpperBound() const{return numberOfNodes() == 0 ? -1 : numberOfNodes()-1;}
     int64_t maxArcId() const{return numberOfArcs() == 0 ? -1 : numberOfArcs()-1;}
     int64_t numberOfArcs() const {return arcs_.size();}
     int64_t numberOfNodes() const{return nodes_.size();}
