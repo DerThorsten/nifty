@@ -1,12 +1,14 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/numpy.h>
 
-#include "nifty/graph/multicut/multicut_objective.hxx"
-#include "nifty/graph/simple_graph.hxx"
+#include "nifty/python/graph/simple_graph.hxx"
+#include "nifty/python/graph/edge_contraction_graph.hxx"
+#include "nifty/python/graph/multicut/multicut_objective.hxx"
 
-#include "../../converter.hxx"
-#include "py_multicut_base.hxx"
+#include "nifty/python/converter.hxx"
 
+
+#include "nifty/python/graph/multicut/py_multicut_base.hxx"
 
 
 
@@ -16,30 +18,29 @@ namespace py = pybind11;
 namespace nifty{
 namespace graph{
 
-    typedef UndirectedGraph<> Graph;
-    typedef MulticutObjective<Graph, double> Objective;
-    typedef PyMulticutBase<Objective> PyMcBase;
-    typedef MulticutBase<Objective> McBase;
-
     using namespace py;
     //PYBIND11_DECLARE_HOLDER_TYPE(McBase, std::shared_ptr<McBase>);
 
-    void exportMulticutBase(py::module & multicutModule) {
+    template<class OBJECTIVE>
+    void exportMulticutBaseT(py::module & multicutModule) {
 
-        typedef UndirectedGraph<> Graph;
-        typedef MulticutObjective<Graph, double> Objective;
-        typedef PyMulticutBase<Objective> PyMcBase;
-        typedef MulticutBase<Objective> McBase;
-        typedef MulticutEmptyVisitor<Objective> EmptyVisitor;
-        typedef MulticutVisitorBase<Objective> McVisitorBase;
+
+        typedef OBJECTIVE ObjectiveType;
+        typedef PyMulticutBase<ObjectiveType> PyMcBase;
+        typedef MulticutBase<ObjectiveType> McBase;
+        typedef MulticutEmptyVisitor<ObjectiveType> EmptyVisitor;
+        typedef MulticutVisitorBase<ObjectiveType> McVisitorBase;
         //PYBIND11_DECLARE_HOLDER_TYPE(McBase, std::shared_ptr<McBase>);
 
+
+        const auto objName = MulticutObjectiveName<ObjectiveType>::name();
+        const auto clsName = std::string("MulticutBase") + objName;
         // base factory
         py::class_<
             McBase, 
             std::shared_ptr<McBase>, 
             PyMcBase 
-        > mcBase(multicutModule, "MulticutBaseUndirectedGraph");
+        > mcBase(multicutModule, clsName.c_str());
         
         mcBase
             .def(py::init<>())
@@ -92,9 +93,23 @@ namespace graph{
             )
             ;
         ;
-
     }
 
+    void exportMulticutBase(py::module & multicutModule) {
+
+        {
+            typedef PyUndirectedGraph GraphType;
+            typedef MulticutObjective<GraphType, double> ObjectiveType;
+            exportMulticutBaseT<ObjectiveType>(multicutModule);
+        }
+        {
+            typedef PyContractionGraph<PyUndirectedGraph> GraphType;
+            typedef MulticutObjective<GraphType, double> ObjectiveType;
+            exportMulticutBaseT<ObjectiveType>(multicutModule);
+        }
+    }        
+
+    
 }
 }
     

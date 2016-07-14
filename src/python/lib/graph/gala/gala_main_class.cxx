@@ -1,7 +1,7 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/numpy.h>
 
-#include "../../converter.hxx"
+#include "nifty/python/converter.hxx"
 #include "nifty/graph/simple_graph.hxx"
 #include "nifty/graph/gala/gala.hxx"
 

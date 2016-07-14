@@ -3,10 +3,13 @@
 #include <sstream>
 #include <pybind11/numpy.h>
 
-#include "nifty/graph/simple_graph.hxx"
-#include "nifty/graph/multicut/multicut_objective.hxx"
+
 #include "nifty/graph/multicut/perturb_and_map.hxx"
-#include "../../converter.hxx"
+#include "nifty/python/converter.hxx"
+
+#include "nifty/python/graph/simple_graph.hxx"
+#include "nifty/python/graph/edge_contraction_graph.hxx"
+#include "nifty/python/graph/multicut/multicut_objective.hxx"
 
 namespace py = pybind11;
 
@@ -19,17 +22,19 @@ namespace nifty{
 namespace graph{
 
 
-
-    void exportPerturbAndMap(py::module & multicutModule) {
-
-        typedef UndirectedGraph<> Graph;
+    template<class OBJECTIVE>
+    void exportPerturbAndMapT(py::module & multicutModule) {
+        typedef OBJECTIVE ObjectiveType;
+        typedef typename ObjectiveType::Graph Graph;
         typedef typename Graph:: template EdgeMap<double>   EdgeState;
         typedef typename Graph:: template NodeMap<uint64_t> NodeLabels;
-        typedef MulticutObjective<Graph, double> McObjective;
-        typedef PerturbAndMap<McObjective> PerturbAndMapType;
+        typedef PerturbAndMap<ObjectiveType> PerturbAndMapType;
         typedef typename PerturbAndMapType::Settings PerturbAndMapSettingsType;
-        const auto clsName = std::string("PerturbAndMapUndirectedGraph");
-        const auto settingsClsName = std::string("PerturbAndMapSettingsUndirectedGraph");
+
+
+        const auto objName = MulticutObjectiveName<ObjectiveType>::name();
+        const auto clsName = std::string("PerturbAndMap") + objName;
+        const auto settingsClsName = std::string("PerturbAndMapSettings") + objName;
 
 
         auto pAndMapCls = py::class_<PerturbAndMapType>(multicutModule, clsName.c_str())
@@ -74,7 +79,7 @@ namespace graph{
         ;
 
 
-        py::enum_<PerturbAndMapType::NoiseType>(pAndMapCls, "NoiseType")
+        py::enum_<typename PerturbAndMapType::NoiseType>(pAndMapCls, "NoiseType")
             .value("UNIFORM_NOISE", PerturbAndMapType::UNIFORM_NOISE)
             .value("NORMAL_NOISE", PerturbAndMapType::NORMAL_NOISE)
             .value("MAKE_LESS_CERTAIN", PerturbAndMapType::MAKE_LESS_CERTAIN)
@@ -96,7 +101,7 @@ namespace graph{
 
 
         multicutModule.def("perturbAndMap",
-            [](const McObjective & objective, const PerturbAndMapSettingsType & s){
+            [](const ObjectiveType & objective, const PerturbAndMapSettingsType & s){
                 auto perturbAndMap = new PerturbAndMapType(objective, s);
                 return perturbAndMap;
             },
@@ -104,8 +109,19 @@ namespace graph{
             py::keep_alive<0, 1>(),
             py::arg("objective"),py::arg("settings")
         );
+    }
 
-        
+    void exportPerturbAndMap(py::module & multicutModule) {
+        {
+            typedef PyUndirectedGraph GraphType;
+            typedef MulticutObjective<GraphType, double> ObjectiveType;
+            exportPerturbAndMapT<ObjectiveType>(multicutModule);
+        }
+        {
+            typedef PyContractionGraph<PyUndirectedGraph> GraphType;
+            typedef MulticutObjective<GraphType, double> ObjectiveType;
+            exportPerturbAndMapT<ObjectiveType>(multicutModule);
+        }
     }
 
 }

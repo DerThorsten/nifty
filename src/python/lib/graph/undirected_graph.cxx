@@ -6,7 +6,7 @@
 #include "nifty/graph/simple_graph.hxx"
 
 #include "export_undirected_graph_class_api.hxx"
-#include "../converter.hxx"
+#include "nifty/python/converter.hxx"
 
 namespace py = pybind11;
 

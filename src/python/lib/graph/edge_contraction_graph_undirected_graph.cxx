@@ -3,10 +3,10 @@
 #include <sstream>
 #include <pybind11/numpy.h>
 
-#include "nifty/graph/simple_graph.hxx"
+#include "nifty/python/graph/simple_graph.hxx"
 
 #include "export_edge_contraction_graph.hxx"
-#include "../converter.hxx"
+#include "nifty/python/converter.hxx"
 
 namespace py = pybind11;
 

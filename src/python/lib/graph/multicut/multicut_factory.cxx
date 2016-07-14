@@ -1,9 +1,14 @@
 #include <pybind11/pybind11.h>
-#include "nifty/graph/multicut/multicut_objective.hxx"
-#include "nifty/graph/simple_graph.hxx"
 
-#include "../../converter.hxx"
-#include "py_multicut_factory.hxx"
+
+#include "nifty/python/graph/simple_graph.hxx"
+#include "nifty/python/graph/edge_contraction_graph.hxx"
+#include "nifty/python/graph/multicut/multicut_objective.hxx"
+
+
+#include "nifty/python/converter.hxx"
+#include "nifty/python/graph/multicut/py_multicut_factory.hxx"
+
 
 
 
@@ -15,28 +20,30 @@ namespace nifty{
 namespace graph{
 
 
+    template<class OBJECTIVE>
+    void exportMulticutFactoryT(py::module & multicutModule) {
 
-    void exportMulticutFactory(py::module & multicutModule) {
+        typedef OBJECTIVE ObjectiveType;
+        typedef PyMulticutFactoryBase<ObjectiveType> PyMcFactoryBase;
+        typedef MulticutFactoryBase<ObjectiveType> McFactoryBase;
 
-        typedef UndirectedGraph<> Graph;
-        typedef MulticutObjective<Graph, double> Objective;
-        typedef PyMulticutFactoryBase<Objective> PyMcFactoryBase;
-        typedef MulticutFactoryBase<Objective> McFactoryBase;
 
+        const auto objName = MulticutObjectiveName<ObjectiveType>::name();
+        const auto clsName = std::string("MulticutFactoryBase") + objName;
 
         // base factory
         py::class_<
             McFactoryBase, 
             std::shared_ptr<McFactoryBase>, 
             PyMcFactoryBase 
-        > mcFactoryBase(multicutModule, "MulticutFactoryBaseUndirectedGraph");
+        > mcFactoryBase(multicutModule, clsName.c_str());
         
         mcFactoryBase
             .def(py::init<>())
 
             .def("create", 
                 //&McFactoryBase::create,
-                [](McFactoryBase * self, const Objective & obj){
+                [](McFactoryBase * self, const ObjectiveType & obj){
                     return self->createRawPtr(obj);
                 },
                 //,
@@ -45,6 +52,19 @@ namespace graph{
                 )
         ;
 
+    }
+
+    void exportMulticutFactory(py::module & multicutModule) {
+        {
+            typedef PyUndirectedGraph GraphType;
+            typedef MulticutObjective<GraphType, double> ObjectiveType;
+            exportMulticutFactoryT<ObjectiveType>(multicutModule);
+        }
+        {
+            typedef PyContractionGraph<PyUndirectedGraph> GraphType;
+            typedef MulticutObjective<GraphType, double> ObjectiveType;
+            exportMulticutFactoryT<ObjectiveType>(multicutModule);
+        }
     }
 
 }

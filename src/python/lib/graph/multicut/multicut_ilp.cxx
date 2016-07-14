@@ -1,6 +1,6 @@
 #include <pybind11/pybind11.h>
-#include "nifty/graph/multicut/multicut_objective.hxx"
-#include "nifty/graph/simple_graph.hxx"
+
+
 
 // concrete solvers for concrete factories
 #include "nifty/graph/multicut/multicut_ilp.hxx"
@@ -17,9 +17,11 @@
 #include "nifty/graph/multicut/ilp_backend/glpk.hxx"
 #endif
 
-
-#include "../../converter.hxx"
-#include "export_multicut_solver.hxx"
+#include "nifty/python/graph/simple_graph.hxx"
+#include "nifty/python/graph/edge_contraction_graph.hxx"
+#include "nifty/python/graph/multicut/multicut_objective.hxx"
+#include "nifty/python/converter.hxx"
+#include "nifty/python/graph/multicut/export_multicut_solver.hxx"
 
 namespace py = pybind11;
 
@@ -30,25 +32,12 @@ namespace graph{
     
 
 
-
-    void exportMulticutIlp(py::module & multicutModule) {
-
-
-
-        typedef UndirectedGraph<> Graph;
-        typedef MulticutObjective<Graph, double> Objective;
+    template<class OBJECTIVE>
+    void exportMulticutIlpT(py::module & multicutModule) {
 
 
+        typedef OBJECTIVE ObjectiveType;
 
-        
-
-
-        py::class_<ilp_backend::IlpBackendSettings>(multicutModule, "IlpBackendSettings")
-            .def(py::init<>())
-            .def_readwrite("relativeGap", &ilp_backend::IlpBackendSettings::relativeGap)
-            .def_readwrite("absoluteGap", &ilp_backend::IlpBackendSettings::absoluteGap)
-            .def_readwrite("memLimit",  &ilp_backend::IlpBackendSettings::memLimit)
-        ;
 
 
 
@@ -58,11 +47,11 @@ namespace graph{
 
             
             typedef ilp_backend::Cplex IlpSolver;
-            typedef MulticutIlp<Objective, IlpSolver> Solver;
+            typedef MulticutIlp<ObjectiveType, IlpSolver> Solver;
             typedef typename Solver::Settings Settings;
             typedef MulticutFactory<Solver> Factory;
 
-            exportMulticutSolver<Solver>(multicutModule,"MulticutIlpCplex","UndirectedGraph")
+            exportMulticutSolver<Solver>(multicutModule,"MulticutIlpCplex")
                 .def(py::init<>())
                 .def_readwrite("numberOfIterations", &Settings::numberOfIterations)
                 .def_readwrite("verbose", &Settings::verbose)
@@ -80,11 +69,11 @@ namespace graph{
 
             
             typedef ilp_backend::Gurobi IlpSolver;
-            typedef MulticutIlp<Objective, IlpSolver> Solver;
+            typedef MulticutIlp<ObjectiveType, IlpSolver> Solver;
             typedef typename Solver::Settings Settings;
             typedef MulticutFactory<Solver> Factory;
 
-            exportMulticutSolver<Solver>(multicutModule,"MulticutIlpGurobi","UndirectedGraph")
+            exportMulticutSolver<Solver>(multicutModule,"MulticutIlpGurobi")
                 .def(py::init<>())
                 .def_readwrite("numberOfIterations", &Settings::numberOfIterations)
                 .def_readwrite("verbose", &Settings::verbose)
@@ -103,11 +92,11 @@ namespace graph{
 
             
             typedef ilp_backend::Glpk IlpSolver;
-            typedef MulticutIlp<Objective, IlpSolver> Solver;
+            typedef MulticutIlp<ObjectiveType, IlpSolver> Solver;
             typedef typename Solver::Settings Settings;
             typedef MulticutFactory<Solver> Factory;
 
-            exportMulticutSolver<Solver>(multicutModule,"MulticutIlpGlpk","UndirectedGraph")
+            exportMulticutSolver<Solver>(multicutModule,"MulticutIlpGlpk")
                 .def(py::init<>())
                 .def_readwrite("numberOfIterations", &Settings::numberOfIterations)
                 .def_readwrite("verbose", &Settings::verbose)
@@ -118,6 +107,28 @@ namespace graph{
             ;
         #endif
         }
+    }
+    
+    void exportMulticutIlp(py::module & multicutModule){
+
+                
+        py::class_<ilp_backend::IlpBackendSettings>(multicutModule, "IlpBackendSettings")
+            .def(py::init<>())
+            .def_readwrite("relativeGap", &ilp_backend::IlpBackendSettings::relativeGap)
+            .def_readwrite("absoluteGap", &ilp_backend::IlpBackendSettings::absoluteGap)
+            .def_readwrite("memLimit",  &ilp_backend::IlpBackendSettings::memLimit)
+        ;
+
+        {
+            typedef PyUndirectedGraph GraphType;
+            typedef MulticutObjective<GraphType, double> ObjectiveType;
+            exportMulticutIlpT<ObjectiveType>(multicutModule);
+        }
+        {
+            typedef PyContractionGraph<PyUndirectedGraph> GraphType;
+            typedef MulticutObjective<GraphType, double> ObjectiveType;
+            exportMulticutIlpT<ObjectiveType>(multicutModule);
+        }     
     }
 }
 }

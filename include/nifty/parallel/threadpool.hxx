@@ -11,8 +11,11 @@
 #include <condition_variable>
 #include <stdexcept>
 #include <cmath>
-#include <boost/iterator/transform_iterator.hpp>
 
+#include <boost/iterator/transform_iterator.hpp>
+#include <boost/iterator/counting_iterator.hpp>
+
+#include "nifty/tools/runtime_check.hxx"
 
 namespace nifty{
 namespace parallel{

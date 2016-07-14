@@ -1,46 +1,62 @@
 from _nifty import *
 
+from functools import partial
 
 
 
-# delattr(_nifty.graph.rag.ExplicitLabelsGridRag2D,'insertEdge')
-# delattr(_nifty.graph.rag.ExplicitLabelsGridRag2D,'insertEdges')
 
 
 
-def __addStaticMethodsToUndirectedGraphAndMulticutObjectiveUndirectedGraph():
 
-    G = graph.UndirectedGraph
-    O = graph.multicut.MulticutObjectiveUndirectedGraph
+def __extendObj(objectiveCls, objectiveName):
+
+
+    mcMod = graph.multicut
+
+    def getCls(module, prefix, postfix):
+        return module.__dict__[prefix+postfix]
+
+    def getSettingsCls(baseName):
+        S =  getCls(mcMod, baseName + "Settings" ,objectiveName)
+        return S
+    def getMcCls(baseName):
+        S =  getCls(mcMod, baseName,objectiveName)
+        return S
+    def getSettings(baseName):
+        S =  getSettingsCls(baseName)
+        return S()
+    def getSettingsAndFactoryCls(baseName):
+        s =  getSettings(baseName)
+        F =  getCls(mcMod, baseName + "Factory" ,objectiveName)
+        return s,F
+
+
+    O = objectiveCls
 
     def multicutVerboseVisitor(visitNth=1):
-        return graph.multicut.MulticutVerboseVisitorUndirectedGraph(visitNth)
-    G.multicutVerboseVisitor = staticmethod(multicutVerboseVisitor)
+        V = getMcCls("MulticutVerboseVisitor")
+        return V(visitNth)
     O.multicutVerboseVisitor = staticmethod(multicutVerboseVisitor)
 
     def greedyAdditiveProposals(sigma=1.0, weightStopCond=0.0, nodeNumStopCond=-1.0):
-        s = graph.multicut.FusionMoveBasedGreedyAdditiveProposalGenSettingsUndirectedGraph()
+        s = getSettings('FusionMoveBasedGreedyAdditiveProposalGen')
         s.sigma = float(sigma)
         s.weightStopCond = float(weightStopCond)
         s.nodeNumStopCond = float(nodeNumStopCond)
         return s
-    G.greedyAdditiveProposals = staticmethod(greedyAdditiveProposals)
     O.greedyAdditiveProposals = staticmethod(greedyAdditiveProposals)
 
     def watershedProposals(sigma=1.0, seedFraction=0.0):
-        s = graph.multicut.FusionMoveBasedWatershedProposalGenSettingsUndirectedGraph()
+        s = getSettings('FusionMoveBasedWatershedProposalGen')
         s.sigma = float(sigma)
         s.seedFraction = float(seedFraction)
         return s
-    G.watershedProposals = staticmethod(watershedProposals)
     O.watershedProposals = staticmethod(watershedProposals)
 
     def greedyAdditiveFactory(verbose=0):
-        s = graph.multicut.MulticutGreedyAdditiveSettingsUndirectedGraph()
+        s,F = getSettingsAndFactoryCls("MulticutGreedyAdditive")
         s.verbose = int(verbose)
-        factory = graph.multicut.MulticutGreedyAdditiveFactoryUndirectedGraph(s)
-        return factory
-    G.greedyAdditiveFactory = staticmethod(greedyAdditiveFactory)
+        return F(s)
     O.greedyAdditiveFactory = staticmethod(greedyAdditiveFactory)
 
 
@@ -51,89 +67,62 @@ def __addStaticMethodsToUndirectedGraphAndMulticutObjectiveUndirectedGraph():
         s.memLimit = float(memLimit)
 
         return s
-    G.ilpSettings = staticmethod(ilpSettings)
     O.ilpSettings = staticmethod(ilpSettings)
 
-    def multicutIlpCplexFactory(verbose=0, addThreeCyclesConstraints=True,
-                                addOnlyViolatedThreeCyclesConstraints=True,
-                                relativeGap=0.0, absoluteGap=0.0, memLimit=-1.0):
-        s = graph.multicut.MulticutIlpCplexSettingsUndirectedGraph()
-        s.verbose = int(verbose)
-        s.addThreeCyclesConstraints = bool(addThreeCyclesConstraints)
-        s.addOnlyViolatedThreeCyclesConstraints = bool(addOnlyViolatedThreeCyclesConstraints)
-        s.ilpSettings = ilpSettings(relativeGap=relativeGap, absoluteGap=absoluteGap, memLimit=memLimit)
-        factory = graph.multicut.MulticutIlpCplexFactoryUndirectedGraph(s)
-        return factory
-    G.multicutIlpCplexFactory = staticmethod(multicutIlpCplexFactory)
-    O.multicutIlpCplexFactory = staticmethod(multicutIlpCplexFactory)
 
-    def multicutIlpGurobiFactory(verbose=0, addThreeCyclesConstraints=True,
+    def multicutIlpFactory(verbose=0, addThreeCyclesConstraints=True,
                                 addOnlyViolatedThreeCyclesConstraints=True,
-                                relativeGap=0.0, absoluteGap=0.0, memLimit=-1.0):
-        s = graph.multicut.MulticutIlpGurobiSettingsUndirectedGraph()
-        s.verbose = int(verbose)
-        s.addThreeCyclesConstraints = bool(addThreeCyclesConstraints)
-        s.addOnlyViolatedThreeCyclesConstraints = bool(addOnlyViolatedThreeCyclesConstraints)
-        s.ilpSettings = ilpSettings(relativeGap=relativeGap, absoluteGap=absoluteGap, memLimit=memLimit)
-        factory = graph.multicut.MulticutIlpGurobiFactoryUndirectedGraph(s)
-        return factory
-    G.multicutIlpGurobiFactory = staticmethod(multicutIlpGurobiFactory)
-    O.multicutIlpGurobiFactory = staticmethod(multicutIlpGurobiFactory)
+                                relativeGap=0.0, absoluteGap=0.0, memLimit=-1.0,
+                                ilpSolver = 'cplex'):
 
-    def multicutIlpGlpkFactory(verbose=0, addThreeCyclesConstraints=True,
-                                addOnlyViolatedThreeCyclesConstraints=True,
-                                relativeGap=0.0, absoluteGap=0.0, memLimit=-1.0):
-        s = graph.multicut.MulticutIlpGlpkSettingsUndirectedGraph()
-        s.verbose = int(verbose)
-        s.addThreeCyclesConstraints = bool(addThreeCyclesConstraints)
-        s.addOnlyViolatedThreeCyclesConstraints = bool(addOnlyViolatedThreeCyclesConstraints)
-        s.ilpSettings = ilpSettings(relativeGap=relativeGap, absoluteGap=absoluteGap, memLimit=memLimit)
-        factory = graph.multicut.MulticutIlpGlpkFactoryUndirectedGraph(s)
-        return factory
-    G.multicutIlpGlpkFactory = staticmethod(multicutIlpGlpkFactory)
-    O.multicutIlpGlpkFactory = staticmethod(multicutIlpGlpkFactory)
-
-    def multicutIlpFactory( ilpSolver = 'cplex',
-                            verbose=0, addThreeCyclesConstraints=True,
-                            addOnlyViolatedThreeCyclesConstraints=True,
-                            relativeGap=0.0, absoluteGap=0.0, memLimit=-1.0):
-        
         if ilpSolver == 'cplex':
-            f = multicutIlpCplexFactory
+            s,F = getSettingsAndFactoryCls("MulticutIlpCplex")
         elif ilpSolver == 'gurobi':
-            f = multicutIlpGurobiFactory
+            s,F = getSettingsAndFactoryCls("MulticutIlpGurobi")
         elif ilpSolver == 'glpk':
-            f = multicutIlpGlpkFactory
-        elif ilpSolver == 'coin-cbc' or ilpSolver == 'cbc':
-            f = multicutIlpCoinCbcFactory
+            s,F = getSettingsAndFactoryCls("MulticutIlpGlpk")
         else:
             raise RuntimeError("%s is an unknown ilp solver"%str(ilpSolver))
-        return f(verbose=verbose,addThreeCyclesConstraints=addThreeCyclesConstraints,
-                addOnlyViolatedThreeCyclesConstraints=addOnlyViolatedThreeCyclesConstraints,
-                relativeGap=relativeGap, absoluteGap=absoluteGap, memLimit=memLimit)
-    G.multicutIlpFactory = staticmethod(multicutIlpFactory)
-    O.multicutIlpFactory = staticmethod(multicutIlpFactory)
+        s.verbose = int(verbose)
+        s.addThreeCyclesConstraints = bool(addThreeCyclesConstraints)
+        s.addOnlyViolatedThreeCyclesConstraints = bool(addOnlyViolatedThreeCyclesConstraints)
+        s.ilpSettings = ilpSettings(relativeGap=relativeGap, absoluteGap=absoluteGap, memLimit=memLimit)
+        return F(s)
 
-    def fusionMoveSettings(mcFactory=greedyAdditiveFactory()):
-        s = graph.multicut.FusionMoveSettingsUndirectedGraph()
+    O.multicutIlpFactory = staticmethod(multicutIlpFactory)
+    O.multicutIlpCplexFactory = staticmethod(partial(multicutIlpFactory,ilpSolver='cplex'))
+    O.multicutIlpGurobiFactory = staticmethod(partial(multicutIlpFactory,ilpSolver='gurobi'))
+    O.multicutIlpGlpkFactory = staticmethod(partial(multicutIlpFactory,ilpSolver='glpk'))
+
+
+
+
+    def fusionMoveSettings(mcFactory=None):
+        if mcFactory is None:
+            mcFactory = graph.multicut.MulticutObjectiveUndirectedGraph.greedyAdditiveFactory()
+        s = getSettings('FusionMove')
         s.mcFactory = mcFactory
         return s
-    G.fusionMoveSettings = staticmethod(fusionMoveSettings)
     O.fusionMoveSettings = staticmethod(fusionMoveSettings)
 
     def fusionMoveBasedFactory(numberOfIterations=10,verbose=0,
                                numberOfParallelProposals=10, fuseN=2,
                                stopIfNoImprovement=4,
                                numberOfThreads=-1,
-                               proposalGen=greedyAdditiveProposals(),
-                               fusionMove=fusionMoveSettings()):
+                               proposalGen=None,
+                               fusionMove=None):
+        if proposalGen is None:
+            proposalGen = greedyAdditiveProposals()
+        if fusionMove is None:
+            fusionMove = fusionMoveSettings()
         solverSettings = None
-        if isinstance(proposalGen, graph.multicut.FusionMoveBasedGreedyAdditiveProposalGenSettingsUndirectedGraph):
-            solverSettings = graph.multicut.FusionMoveBasedGreedyAdditiveSettingsUndirectedGraph()
-            factoryCls = graph.multicut.FusionMoveBasedGreedyAdditiveFactoryUndirectedGraph
-        elif isinstance(proposalGen, graph.multicut.FusionMoveBasedWatershedProposalGenSettingsUndirectedGraph):
-            solverSettings = graph.multicut.FusionMoveBasedWatershedSettingsUndirectedGraph()
-            factoryCls = graph.multicut.FusionMoveBasedWatershedFactoryUndirectedGraph
+
+
+
+        if isinstance(proposalGen, getSettingsCls("FusionMoveBasedGreedyAdditiveProposalGen") ):
+            solverSettings, factoryCls = getSettingsAndFactoryCls("FusionMoveBasedGreedyAdditive")
+        elif isinstance(proposalGen, getSettingsCls("FusionMoveBasedWatershedProposalGen") ):
+            solverSettings, factoryCls = getSettingsAndFactoryCls("FusionMoveBasedWatershed")
         else:
             raise TypeError(str(proposalGen)+" is of unknown type")
 
@@ -147,7 +136,6 @@ def __addStaticMethodsToUndirectedGraphAndMulticutObjectiveUndirectedGraph():
         solverSettings.numberOfThreads = int(numberOfThreads)
         factory = factoryCls(solverSettings)
         return factory
-    G.fusionMoveBasedFactory = staticmethod(fusionMoveBasedFactory)
     O.fusionMoveBasedFactory = staticmethod(fusionMoveBasedFactory)
 
 
@@ -157,18 +145,19 @@ def __addStaticMethodsToUndirectedGraphAndMulticutObjectiveUndirectedGraph():
                                 verbose=1,
                                 noiseType='normal',
                                 noiseMagnitude=1.0,
-                                mcFactory=fusionMoveBasedFactory(numberOfThreads=0)):
-        s = graph.multicut.PerturbAndMapSettingsUndirectedGraph()
-
+                                mcFactory=None):
+        if mcFactory is None:
+            mcFactory = fusionMoveBasedFactory(numberOfThreads=0)
+        s = getSettings('PerturbAndMap')
         s.numberOfIterations = int(numberOfIterations)
         s.numberOfThreads = int(numberOfThreads)
         s.verbose = int(verbose)
         s.noiseMagnitude = float(noiseMagnitude)
 
         if(noiseType == 'normal'):
-            s.noiseType = graph.multicut.PerturbAndMapUndirectedGraph.NORMAL_NOISE
+            s.noiseType = getMcCls('PerturbAndMap').NORMAL_NOISE
         elif(noiseType == 'uniform'):
-            s.noiseType = graph.multicut.PerturbAndMapUndirectedGraph.UNIFORM_NOISE
+            s.noiseType = getMcCls('PerturbAndMap').UNIFORM_NOISE
         elif(noiseType == 'makeLessCertain'):
             s.noiseType = graph.multicut.PerturbAndMapUndirectedGraph.MAKE_LESS_CERTAIN
         else:
@@ -176,17 +165,38 @@ def __addStaticMethodsToUndirectedGraphAndMulticutObjectiveUndirectedGraph():
 
         s.mcFactory = mcFactory
         return s
-    G.perturbAndMapSettings = staticmethod(perturbAndMapSettings)
     O.perturbAndMapSettings = staticmethod(perturbAndMapSettings)
 
     def perturbAndMap(objective, settings):
         pAndM = graph.multicut.perturbAndMap(objective, settings)
         return pAndM
-    G.perturbAndMap = staticmethod(perturbAndMap)
     O.perturbAndMap = staticmethod(perturbAndMap)
 
-__addStaticMethodsToUndirectedGraphAndMulticutObjectiveUndirectedGraph()
-del __addStaticMethodsToUndirectedGraphAndMulticutObjectiveUndirectedGraph
+
+__extendObj(graph.multicut.MulticutObjectiveUndirectedGraph, 
+    "MulticutObjectiveUndirectedGraph")
+__extendObj(graph.multicut.MulticutObjectiveEdgeContractionGraphUndirectedGraph, 
+    "MulticutObjectiveEdgeContractionGraphUndirectedGraph")
+del __extendObj
+
+
+
+
+
+
+
+
+
+
+
+
+graph.UndirectedGraph.MulticutObjective = graph.multicut.MulticutObjectiveUndirectedGraph
+graph.EdgeContractionGraphUndirectedGraph.MulticutObjective = graph.multicut.MulticutObjectiveEdgeContractionGraphUndirectedGraph
+
+
+
+
+
 
 
 
@@ -198,7 +208,8 @@ def __addStaticMethodsToUndirectedGraph():
 
     G = graph.UndirectedGraph
     def _getGalaSettings(threshold0=0.1, threshold1=0.9, thresholdU=0.1, numberOfEpochs=3, numberOfTrees=100,
-                         mapFactory=G.fusionMoveBasedFactory(), perturbAndMapFactory=G.fusionMoveBasedFactory()):
+                         mapFactory=G.MulticutObjective.fusionMoveBasedFactory(), 
+                         perturbAndMapFactory=G.MulticutObjective.fusionMoveBasedFactory()):
         s =  graph.gala.GalaSettingsUndirectedGraph()
         s.threshold0 = float(threshold0)
         s.threshold1 = float(threshold1)

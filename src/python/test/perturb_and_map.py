@@ -66,10 +66,9 @@ fmFactory = obj.fusionMoveBasedFactory(
 )
 
 
-
-s = g.perturbAndMapSettings(mcFactory=fmFactory,noiseMagnitude=4.2,numberOfThreads=-1,
+s = obj.perturbAndMapSettings(mcFactory=fmFactory,noiseMagnitude=4.2,numberOfThreads=-1,
                             numberOfIterations=10000, noiseType='uniform')
-pAndMap = g.perturbAndMap(obj, s)
+pAndMap = obj.perturbAndMap(obj, s)
 res =  pAndMap.optimize(ret)
 
 

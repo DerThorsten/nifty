@@ -1,7 +1,7 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/numpy.h>
 
-#include "../../converter.hxx"
+#include "nifty/python/converter.hxx"
 
 #include "nifty/graph/rag/grid_rag.hxx"
 

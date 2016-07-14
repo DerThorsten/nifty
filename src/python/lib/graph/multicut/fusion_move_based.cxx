@@ -1,15 +1,17 @@
 #include <pybind11/pybind11.h>
 
-#include "nifty/graph/multicut/multicut_objective.hxx"
-#include "nifty/graph/simple_graph.hxx"
+
+
 #include "nifty/graph/multicut/fusion_move_based.hxx"
 #include "nifty/graph/multicut/fusion_move.hxx"
 #include "nifty/graph/multicut/proposal_generators/greedy_additive_proposals.hxx"
 #include "nifty/graph/multicut/proposal_generators/watershed_proposals.hxx"
 
-
-#include "../../converter.hxx"
-#include "export_multicut_solver.hxx"
+#include "nifty/python/graph/simple_graph.hxx"
+#include "nifty/python/graph/edge_contraction_graph.hxx"
+#include "nifty/python/graph/multicut/multicut_objective.hxx"
+#include "nifty/python/converter.hxx"
+#include "nifty/python/graph/multicut/export_multicut_solver.hxx"
 
 namespace py = pybind11;
 
@@ -20,21 +22,26 @@ namespace graph{
 
 
 
+    template<class OBJECTIVE>
+    void exportFusionMoveBasedT(py::module & multicutModule) {
 
-    void exportFusionMoveBased(py::module & multicutModule) {
 
 
+        typedef OBJECTIVE ObjectiveType;
 
-        typedef UndirectedGraph<> Graph;
-        typedef MulticutObjective<Graph, double> Objective;
+
+        const auto objName = MulticutObjectiveName<ObjectiveType>::name();
+        const std::string factoryBaseName = std::string("MulticutFactoryBase")+objName;
+        const std::string solverBaseName = std::string("MulticutBase") + objName;
+        
 
 
         // the fusion mover parameter itself
         {
-            typedef FusionMove<Objective> FusionMoveType;
+            typedef FusionMove<ObjectiveType> FusionMoveType;
             typedef typename FusionMoveType::Settings FusionMoveSettings;
-
-            py::class_<FusionMoveSettings>(multicutModule, "FusionMoveSettingsUndirectedGraph")
+            const auto fmSettingsName = std::string("FusionMoveSettings") + objName;
+            py::class_<FusionMoveSettings>(multicutModule, fmSettingsName.c_str())
                 .def(py::init<>())
                 .def_readwrite("mcFactory",&FusionMoveSettings::mcFactory)
             ;
@@ -45,14 +52,13 @@ namespace graph{
 
         // the inference 
         {
-            typedef GreedyAdditiveProposals<Objective> ProposalGen;
+            typedef GreedyAdditiveProposals<ObjectiveType> ProposalGen;
             typedef typename ProposalGen::Settings ProposalGenSettings;
             typedef FusionMoveBased<ProposalGen> Solver;
             typedef typename Solver::Settings Settings;
 
-            const std::string graphName = "UndirectedGraph";
             const std::string solverName = "FusionMoveBasedGreedyAdditive";
-            const std::string pgenSettingsName = solverName + std::string("ProposalGenSettings") + graphName;
+            const std::string pgenSettingsName = solverName + std::string("ProposalGenSettings") + objName;
 
             py::class_<ProposalGenSettings>(multicutModule, pgenSettingsName.c_str())
                 .def(py::init<>())
@@ -61,7 +67,7 @@ namespace graph{
                 .def_readwrite("nodeNumStopCond",  &ProposalGenSettings::nodeNumStopCond)
             ;
 
-            exportMulticutSolver<Solver>(multicutModule,solverName.c_str(),graphName.c_str())
+            exportMulticutSolver<Solver>(multicutModule,solverName.c_str())
                 .def(py::init<>())
                 .def_readwrite("verbose", &Settings::verbose)
                 .def_readwrite("numberOfIterations", &Settings::numberOfIterations)
@@ -76,14 +82,13 @@ namespace graph{
 
         // the inference 
         {
-            typedef WatershedProposals<Objective> ProposalGen;
+            typedef WatershedProposals<ObjectiveType> ProposalGen;
             typedef typename ProposalGen::Settings ProposalGenSettings;
             typedef FusionMoveBased<ProposalGen> Solver;
             typedef typename Solver::Settings Settings;
 
-            const std::string graphName = "UndirectedGraph";
             const std::string solverName = "FusionMoveBasedWatershed";
-            const std::string pgenSettingsName = solverName + std::string("ProposalGenSettings") + graphName;
+            const std::string pgenSettingsName = solverName + std::string("ProposalGenSettings") + objName;
 
             py::class_<ProposalGenSettings>(multicutModule, pgenSettingsName.c_str())
                 .def(py::init<>())
@@ -91,7 +96,7 @@ namespace graph{
                 .def_readwrite("seedFraction", &ProposalGenSettings::seedFraction)
             ;
 
-            exportMulticutSolver<Solver>(multicutModule,solverName.c_str(),graphName.c_str())
+            exportMulticutSolver<Solver>(multicutModule,solverName.c_str())
                 .def(py::init<>())
                 .def_readwrite("verbose", &Settings::verbose)
                 .def_readwrite("numberOfIterations", &Settings::numberOfIterations)
@@ -105,6 +110,20 @@ namespace graph{
         }
      
     }
+
+    void exportFusionMoveBased(py::module & multicutModule) {
+        {
+            typedef PyUndirectedGraph GraphType;
+            typedef MulticutObjective<GraphType, double> ObjectiveType;
+            exportFusionMoveBasedT<ObjectiveType>(multicutModule);
+        }
+        {
+            typedef PyContractionGraph<PyUndirectedGraph> GraphType;
+            typedef MulticutObjective<GraphType, double> ObjectiveType;
+            exportFusionMoveBasedT<ObjectiveType>(multicutModule);
+        }
+    }
+
 
 }
 }

@@ -146,29 +146,30 @@ def test_mcgala():
     # get the dataset
     imgs,gts = make_dataset(10, noise=2.0, shape=(200,200))
 
+    Obj = G.MulticutObjective
 
-    greedyFactory = G.greedyAdditiveFactory()
-    ilpFactory = G.multicutIlpFactory(ilpSolver='cplex',
+    greedyFactory = Obj.greedyAdditiveFactory()
+    ilpFactory = Obj.multicutIlpFactory(ilpSolver='cplex',
         addThreeCyclesConstraints=True,
         addOnlyViolatedThreeCyclesConstraints=True
         #memLimit= 0.01
     )
-    fmFactoryA = G.fusionMoveBasedFactory(
-        #fusionMove=G.fusionMoveSettings(mcFactory=greedyFactory),
-        fusionMove=G.fusionMoveSettings(mcFactory=ilpFactory),
+    fmFactoryA = Obj.fusionMoveBasedFactory(
+        #fusionMove=Obj.fusionMoveSettings(mcFactory=greedyFactory),
+        fusionMove=Obj.fusionMoveSettings(mcFactory=ilpFactory),
         #proposalGen=nifty.greedyAdditiveProposals(sigma=30,nodeNumStopCond=-1,weightStopCond=0.0),
-        proposalGen=G.watershedProposals(sigma=1,seedFraction=0.5),
+        proposalGen=Obj.watershedProposals(sigma=1,seedFraction=0.5),
         numberOfIterations=20,
         numberOfParallelProposals=16, # no effect if nThreads equals 0 or 1
         numberOfThreads=8,
         stopIfNoImprovement=4,
         fuseN=2,
     )
-    fmFactoryB = G.fusionMoveBasedFactory(
-        #fusionMove=G.fusionMoveSettings(mcFactory=greedyFactory),
-        fusionMove=G.fusionMoveSettings(mcFactory=ilpFactory),
+    fmFactoryB = Obj.fusionMoveBasedFactory(
+        #fusionMove=Obj.fusionMoveSettings(mcFactory=greedyFactory),
+        fusionMove=Obj.fusionMoveSettings(mcFactory=ilpFactory),
         #proposalGen=nifty.greedyAdditiveProposals(sigma=30,nodeNumStopCond=-1,weightStopCond=0.0),
-        proposalGen=G.watershedProposals(sigma=1,seedFraction=0.1),
+        proposalGen=Obj.watershedProposals(sigma=1,seedFraction=0.1),
         numberOfIterations=100,
         numberOfParallelProposals=16, # no effect if nThreads equals 0 or 1
         numberOfThreads=0,

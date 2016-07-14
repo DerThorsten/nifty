@@ -25,16 +25,17 @@ namespace graph{
         typedef OBJECTIVE Objective;
         typedef typename Objective::Graph Graph;
         typedef typename Graph:: template NodeMap<uint64_t> NodeLabels;
-        typedef MulticutFactoryBase<Objective> McFactoryBase;
+        
 
         typedef UndirectedGraph<> FmGraph;
         typedef MulticutObjective<FmGraph, double> FmObjective;
+        typedef MulticutFactoryBase<FmObjective> FmMcFactoryBase;
         typedef MulticutBase<FmObjective> FmMcBase;
         typedef MulticutEmptyVisitor<FmObjective> FmEmptyVisitor;
         typedef typename  FmMcBase::NodeLabels FmNodeLabels;
 
         struct Settings{
-            std::shared_ptr<McFactoryBase> mcFactory;
+            std::shared_ptr<FmMcFactoryBase> mcFactory;
         };
 
         FusionMove(const Objective & objective, const Settings & settings = Settings())

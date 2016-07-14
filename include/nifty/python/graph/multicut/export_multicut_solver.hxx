@@ -6,7 +6,7 @@
 
 #include <pybind11/pybind11.h>
 
-#include "nifty/graph/multicut/multicut_objective.hxx"
+#include "nifty/python/graph/multicut/multicut_objective.hxx"
 #include "py_multicut_factory.hxx"
 #include "py_multicut_base.hxx"
 
@@ -25,20 +25,23 @@ namespace graph{
     template<class SOLVER>
     py::class_<typename SOLVER::Settings>  exportMulticutSolver(
         py::module & multicutModule,
-        const std::string & solverName,
-        const std::string & graphName
+        const std::string & solverName
     ){
 
         typedef SOLVER Solver;
-        typedef typename Solver::Objective Objective;
+        typedef typename Solver::Objective ObjectiveType;
         typedef typename Solver::Settings Settings;
         typedef MulticutFactory<Solver> Factory;
-        typedef MulticutFactoryBase<Objective> McFactoryBase;
+        typedef MulticutFactoryBase<ObjectiveType> McFactoryBase;
 
-        const std::string factoryBaseName = std::string("MulticutFactoryBase")+graphName;
-        const std::string solverBaseName = std::string("MulticutBase")+graphName;
-        const std::string settingsName = solverName + std::string("Settings")+graphName;
-        const std::string factoryName = solverName + std::string("Factory")+graphName;
+        const auto objName = MulticutObjectiveName<ObjectiveType>::name();
+
+        const std::string factoryBaseName = std::string("MulticutFactoryBase")+objName;
+        const std::string solverBaseName = std::string("MulticutBase") + objName;
+        
+        const std::string sName = solverName + objName;
+        const std::string settingsName = solverName + std::string("Settings") + objName;
+        const std::string factoryName = solverName + std::string("Factory") + objName;
         std::string factoryFactoryName = factoryName;
         factoryFactoryName[0] = std::tolower(factoryFactoryName[0]);
 
@@ -58,7 +61,7 @@ namespace graph{
         ;
 
         // solver
-        py::class_<Solver >(multicutModule, solverName.c_str(),  solverBase)
+        py::class_<Solver >(multicutModule, sName.c_str(),  solverBase)
             //.def(py::init<>())
         ;
 

@@ -2,6 +2,9 @@
 #ifndef NIFTY_GRAPH_DETAIL_CONTIGUOUS_INDICES_HXX
 #define NIFTY_GRAPH_DETAIL_CONTIGUOUS_INDICES_HXX
 
+
+#include "nifty/graph/graph_tags.hxx"
+
 namespace nifty{
 namespace graph{
 namespace detail_graph{
@@ -20,7 +23,7 @@ namespace detail_graph{
             }        
 
         }
-        int64_t operator[](const int64_t edge){
+        int64_t operator[](const int64_t edge)const{
             return ids_[edge];
         }
     private:

@@ -152,7 +152,7 @@ public:
             f(edge);
         }
     }
-
+    
     template<class F>
     void forEachNode(F && f)const{
         for(auto node : _child().nodes()){
@@ -161,8 +161,8 @@ public:
     }
 
     template<class F, class TAG>
-    void forEachItem(F && f)const{
-        for(auto item : _child(). template items<TAG>()){
+    void forEachNode(F && f)const{
+        for(auto item : _child().items<TAG>()){
             f(item);
         }
     }

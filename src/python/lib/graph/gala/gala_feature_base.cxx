@@ -4,7 +4,7 @@
 #include "nifty/graph/simple_graph.hxx"
 #include "nifty/graph/gala/gala_feature_base.hxx"
 
-#include "../../converter.hxx"
+#include "nifty/python/converter.hxx"
 #include "py_gala_feature_base.hxx"
 
 

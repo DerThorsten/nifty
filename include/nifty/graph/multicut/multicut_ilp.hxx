@@ -3,6 +3,7 @@
 #define NIFTY_GRAPH_MULTICUT_MULTICUT_ILP_HXX
 
 
+#include "nifty/tools/runtime_check.hxx"
 #include "nifty/graph/components.hxx"
 #include "nifty/graph/paths.hxx"
 #include "nifty/graph/multicut/multicut_base.hxx"
