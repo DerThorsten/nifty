@@ -14,6 +14,15 @@ namespace graph{
 
 
 
+    void exportEdgeContractionGraphCallback(
+        py::module & graphModule
+    ){
+        typedef FlexibleCallback Callback;
+        py::class_< Callback >(graphModule, "EdgeContractionGraphCallback")
+            .def(py::init<>())
+        ;
+    }
+
 
     template<class BASE_GRAPH>
     py::class_<
@@ -28,12 +37,23 @@ namespace graph{
         
         typedef BASE_GRAPH BaseGraphType;
         typedef PyContractionGraph<BaseGraphType> GraphType;
+        typedef FlexibleCallback Callback;
+
         const auto clsName = GraphName<GraphType>::name();
 
         auto cls  = py::class_< GraphType >(graphModule, clsName.c_str());
+        cls
+            .def(py::init<const BaseGraphType & ,  Callback & >(),
+                py::keep_alive<1,2>(),
+                py::keep_alive<1,3>()
+            )
+            .def("contractEdge", &GraphType::contractEdge)
+        ;
 
         // export the base graph API (others might derive)
         exportUndirectedGraphClassAPI<GraphType>(graphModule, cls, clsName);
+
+
 
         return cls;
     }   

@@ -18,7 +18,8 @@ namespace graph{
 
     void exportEdgeContractionGraphUndirectedGraph(py::module & graphModule) {
 
-
+        exportEdgeContractionGraphCallback(graphModule);
+        
         typedef UndirectedGraph<> BaseGraphType;
         const auto baseGraphClsName = std::string("UndirectedGraph");
         auto cls = exportEdgeContractionGraph<BaseGraphType>(graphModule, baseGraphClsName);
