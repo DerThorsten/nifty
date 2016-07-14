@@ -1,5 +1,5 @@
 from _nifty import *
-
+import types
 from functools import partial
 
 
@@ -191,10 +191,61 @@ del __extendObj
 
 
 graph.UndirectedGraph.MulticutObjective = graph.multicut.MulticutObjectiveUndirectedGraph
+graph.UndirectedGraph.EdgeContractionGraph = graph.EdgeContractionGraphUndirectedGraph
 graph.EdgeContractionGraphUndirectedGraph.MulticutObjective = graph.multicut.MulticutObjectiveEdgeContractionGraphUndirectedGraph
 
 
 
+def __extendEdgeContractionGraph():
+
+
+    class EdgeContractionGraphCallback(graph.EdgeContractionGraphCallbackImpl):
+        def __init__(self):
+            super(EdgeContractionGraphCallback, self).__init__()
+
+            
+            try:
+                self.contractEdgeCallback = types.MethodType(self.contractEdge, self, 
+                                                EdgeContractionGraphCallback)
+            except AttributeError:
+                pass
+
+            try:    
+                self.mergeEdgesCallback = types.MethodType(self.mergeEdges, self, 
+                                                EdgeContractionGraphCallback)
+            except AttributeError:
+                pass
+
+            try:
+                self.mergeNodesCallback = types.MethodType(self.mergeNodes, self, 
+                                            EdgeContractionGraphCallback)
+            except AttributeError:
+                pass
+
+            try:
+                self.contractEdgeDoneCallback = types.MethodType(self.contractEdgeDone, self, 
+                                            EdgeContractionGraphCallback)
+            except AttributeError:
+                pass
+
+        #def contractEdgeCallback(self, edge):
+        #    pass
+        #def contractEdgeDoneCallback(self, edge):
+        #    pass
+
+    EdgeContractionGraphCallback.__module__ = "nifty.graph"
+    graph.EdgeContractionGraphCallback = EdgeContractionGraphCallback
+    
+    def edgeContractionGraph(g, callback):
+        Ecg = g.__class__.EdgeContractionGraph
+        ecg = Ecg(g, callback)
+        return ecg 
+
+    edgeContractionGraph.__module__ = "nifty.graph"
+    graph.edgeContractionGraph = edgeContractionGraph
+
+__extendEdgeContractionGraph()
+del __extendEdgeContractionGraph
 
 
 
@@ -246,7 +297,7 @@ def __extendRag():
         else:
             raise RuntimeError("wrong dimension, currently only 2D and 3D is implemented")
 
-    gridRag.__module__ = "nifty.graphs.rag"
+    gridRag.__module__ = "nifty.graph.rag"
     graph.rag.gridRag = gridRag
 
 __extendRag()

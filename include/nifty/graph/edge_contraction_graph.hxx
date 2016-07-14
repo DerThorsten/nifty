@@ -51,7 +51,7 @@ namespace graph{
         }
 
         inline void contractEdgeDone(const uint64_t edgeToContract){
-            if(contractEdgeCallback)
+            if(contractEdgeDoneCallback)
                 contractEdgeDoneCallback(edgeToContract);
         }
         std::function<void(uint64_t) >          contractEdgeCallback;

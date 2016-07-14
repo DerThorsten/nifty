@@ -2,6 +2,8 @@
 #ifndef NIFTY_PYTHON_GRAPH_EXPORT_EDGE_CONTRACTION_GRAPH_HXX
 #define NIFTY_PYTHON_GRAPH_EXPORT_EDGE_CONTRACTION_GRAPH_HXX
 
+#include <pybind11/functional.h> 
+
 #include "nifty/python/converter.hxx"
 #include "export_undirected_graph_class_api.hxx"
 #include "nifty/python/graph/edge_contraction_graph.hxx"
@@ -18,8 +20,12 @@ namespace graph{
         py::module & graphModule
     ){
         typedef FlexibleCallback Callback;
-        py::class_< Callback >(graphModule, "EdgeContractionGraphCallback")
+        py::class_< Callback >(graphModule, "EdgeContractionGraphCallbackImpl")
             .def(py::init<>())
+            .def_readwrite("contractEdgeCallback",&Callback::contractEdgeCallback)
+            .def_readwrite("mergeEdgesCallback",&Callback::mergeEdgesCallback)
+            .def_readwrite("mergeNodesCallback",&Callback::mergeNodesCallback)
+            .def_readwrite("contractEdgeDoneCallback",&Callback::contractEdgeDoneCallback)
         ;
     }
 
