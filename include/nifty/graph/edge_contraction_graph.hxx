@@ -143,7 +143,7 @@ namespace graph{
             }
 
             uint64_t size()const{
-                currentSize_;
+                return currentSize_;
             }
 
             
