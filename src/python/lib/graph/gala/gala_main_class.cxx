@@ -2,7 +2,7 @@
 #include <pybind11/numpy.h>
 
 #include "nifty/python/converter.hxx"
-#include "nifty/graph/simple_graph.hxx"
+#include "nifty/python/graph/simple_graph.hxx"
 #include "nifty/graph/gala/gala.hxx"
 
 
@@ -26,23 +26,37 @@ namespace graph{
         typedef Gala<GraphType, FeatureValueType> GalaType;
         typedef typename GalaType::Settings GalaSettingsType;
         typedef typename GalaType::InstanceType InstanceType;
+        typedef typename GalaType::ContractionOrderSettings ContractionOrderSettings;
+
         typedef typename GalaType::TrainingInstanceType TrainingInstanceType;
         typedef typename TrainingInstanceType::FeatureBaseType FeatureBaseType;
 
+        const auto graphName = GraphName<GraphType>::name();
+        const auto settingsName = std::string("GalaSettings") + graphName;
+        const auto cOrderSettingsName = std::string("GalaContractionOrderSettings") + graphName;
+        const auto galaName = std::string("Gala") + graphName;
 
 
-        py::class_<GalaSettingsType>(galaModule,"GalaSettingsUndirectedGraph")
+        py::class_<ContractionOrderSettings>(galaModule,cOrderSettingsName.c_str())
+            .def(py::init<>())
+            .def_readwrite("mcMapFactory", &ContractionOrderSettings::mcMapFactory)
+            .def_readwrite("runMcMapEachNthTime", &ContractionOrderSettings::runMcMapEachNthTime)
+        ;
+
+
+        py::class_<GalaSettingsType>(galaModule, settingsName.c_str())
             .def(py::init<>())
             .def_readwrite("threshold0", &GalaSettingsType::threshold0)
             .def_readwrite("threshold1", &GalaSettingsType::threshold1)
             .def_readwrite("thresholdU", &GalaSettingsType::thresholdU)
             .def_readwrite("numberOfEpochs", &GalaSettingsType::numberOfEpochs)
             .def_readwrite("numberOfTrees", &GalaSettingsType::numberOfTrees)
+            .def_readwrite("contractionOrderSettings", &GalaSettingsType::contractionOrderSettings)
             .def_readwrite("mapFactory", &GalaSettingsType::mapFactory)
             .def_readwrite("perturbAndMapFactory", &GalaSettingsType::perturbAndMapFactory)
         ;
 
-        py::class_<GalaType>(galaModule,"GalaUndirectedGraph")
+        py::class_<GalaType>(galaModule,galaName.c_str())
             .def(py::init<const GalaSettingsType & >(),py::arg("settings"))
             .def(py::init<>())
             .def("addTrainingInstance",[](

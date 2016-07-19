@@ -231,22 +231,32 @@ namespace graph{
         typedef T ValueType;
         typedef GRAPH GraphType;
         typedef CallbackBase<GraphType, T, CLASSIFIER, INSTANCE, CHILD> Self;
+
+        typedef EdgeContractionGraphWithSets<GraphType, FlexibleCallback, std::set<uint64_t> >   EdgeContractionGraphType;
+        
+
         typedef McGreedyHybridBase<Self> ContractionOrder;
+        typedef typename ContractionOrder::Setttings ContractionOrderSettings;
         typedef INSTANCE     InstanceType;
         typedef GalaFeatureBase<GraphType, T>     FeatureBaseType;
         typedef Gala<GraphType, T, CLASSIFIER> GalaType;
 
 
-        typedef EdgeContractionGraphWithSets<GraphType, FlexibleCallback, std::set<uint64_t> >   EdgeContractionGraphType;
         typedef MulticutEdgeOrder<GraphType, EdgeContractionGraphType> McOrder;
-
-
         typedef vigra::ChangeablePriorityQueue< double ,std::less<double> > QueueType;
-
         typedef typename GraphType:: template EdgeMap<double>  EdgeMapDouble;
         typedef typename GraphType:: template NodeMap<double>  NodeMapDouble;
 
-        CallbackBase(InstanceType & instance, GalaType & gala, CHILD & child)
+
+
+
+        CallbackBase(
+            InstanceType & instance, 
+            const ContractionOrderSettings & contractionOrderSettings,
+            const bool training,
+            GalaType & gala, 
+            CHILD & child
+        )
         :   instance_(instance),
             stdFunctionCallback_(),
             contractionGraph_(instance.graph(), stdFunctionCallback_),
@@ -256,7 +266,7 @@ namespace graph{
             //mcOrder_(instance.graph(), contractionGraph_,
             //         gala.trainingSettings_.mapFactory,
             //         gala.trainingSettings_.perturbAndMapFactory),
-            contractionOrder_(*this,false)
+            contractionOrder_(*this,training,contractionOrderSettings)
         {
 
             // fill callback with values
@@ -381,7 +391,11 @@ namespace graph{
         typedef T ValueType;
         typedef GRAPH GraphType;
         typedef TrainingCallback<GraphType, T, CLASSIFIER> Self;
-        typedef CallbackBase<GRAPH, T, CLASSIFIER, TrainingInstance<GRAPH, T>, Self > Base;
+        typedef CallbackBase<GRAPH, T, CLASSIFIER, TrainingInstance<GRAPH, T>, Self > BaseType;
+        typedef typename BaseType::EdgeContractionGraphType EdgeContractionGraphType;
+
+        typedef typename BaseType::ContractionOrderSettings ContractionOrderSettings;
+
         typedef McGreedyHybridBase<Self> ContractionOrder;
         typedef TrainingInstance<GraphType, T>     TrainingInstanceType;
         typedef GalaFeatureBase<GraphType, T>     FeatureBaseType;
@@ -392,7 +406,7 @@ namespace graph{
 
         //typedef EdgeContractionGraph<GraphType, Self>   EdgeContractionGraphType;
 
-        typedef EdgeContractionGraphWithSets<GraphType, Self, std::set<uint64_t> >   EdgeContractionGraphType;
+        
 
         typedef MulticutEdgeOrder<GraphType, EdgeContractionGraphType> McOrder;
 
@@ -407,8 +421,10 @@ namespace graph{
         typedef typename GraphType:: template EdgeMap<uint64_t>  EdgeHash;
         typedef typename GraphType:: template NodeMap<uint64_t>  NodeHash;
 
-        TrainingCallback(TrainingInstanceType & trainingInstance, GalaType & gala, const size_t ownIndex)
-        :   Base(trainingInstance, gala, *this),
+        TrainingCallback(TrainingInstanceType & trainingInstance,
+                        const ContractionOrderSettings & contractionOrderSettings,
+                        GalaType & gala, const size_t ownIndex)
+        :   BaseType(trainingInstance,contractionOrderSettings, true, gala, *this),
             edgeGt_(trainingInstance.graph()),
             edgeGtUncertainty_(trainingInstance.graph()),
             edgeHash_(trainingInstance.graph()),
@@ -426,7 +442,7 @@ namespace graph{
         }
 
         void reset(){
-            Base::reset();
+            BaseType::reset();
             for(const auto edge : this->graph().edges()){
                 edgeGt_[edge] = this->getInstance().edgeGt()[edge];
                 edgeGtUncertainty_[edge] = this->getInstance().edgeGtUncertainty()[edge];
@@ -440,7 +456,7 @@ namespace graph{
    
         void mergeNodes(const uint64_t aliveNode, const uint64_t deadNode){
             nodeHash_[aliveNode] = myHash(nodeHash_[aliveNode] + nodeHash_[deadNode]);
-            Base::mergeNodes(aliveNode, deadNode);
+            BaseType::mergeNodes(aliveNode, deadNode);
         }
 
         void mergeEdges(const uint64_t aliveEdge, const uint64_t deadEdge){
@@ -451,7 +467,7 @@ namespace graph{
             edgeGt_[aliveEdge] = (sa*edgeGt_[aliveEdge] + sd*edgeGt_[deadEdge])/s;
             edgeGtUncertainty_[aliveEdge] = (sa*edgeGtUncertainty_[aliveEdge] + sd*edgeGtUncertainty_[deadEdge])/s;   
 
-            Base::mergeEdges(aliveEdge, deadEdge);
+            BaseType::mergeEdges(aliveEdge, deadEdge);
         }
 
 
@@ -500,14 +516,15 @@ namespace graph{
     struct TestCallback : public CallbackBase<GRAPH, T, CLASSIFIER, Instance<GRAPH, T>, TestCallback<GRAPH,T,CLASSIFIER> >{
 
         typedef  CallbackBase<GRAPH, T, CLASSIFIER, Instance<GRAPH, T>,TestCallback<GRAPH,T,CLASSIFIER>  > BaseType;
+        typedef typename BaseType::ContractionOrderSettings ContractionOrderSettings;
 
         typedef Instance<GRAPH, T>    InstanceType;
         using BaseType::BaseType;
 
         typedef Gala<GRAPH, T, CLASSIFIER> GalaType;
 
-        TestCallback(InstanceType & instance, GalaType & gala)
-        :   BaseType(instance, gala, *this){
+        TestCallback(InstanceType & instance,const ContractionOrderSettings & contractionOrderSettings, GalaType & gala)
+        :   BaseType(instance, contractionOrderSettings, false, gala, *this){
 
         }
     };
