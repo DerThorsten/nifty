@@ -294,6 +294,7 @@ namespace graph{
             }
             ++lpEdge;
         }
+        std::cout<<"init #edges "<<graph_.numberOfEdges()<<"\n";
         ilpSolver_->initModel(graph_.numberOfEdges(), costs.data());
     }
 
@@ -301,6 +302,7 @@ namespace graph{
     void MulticutIlp<OBJECTIVE, ILP_SOLVER>::
     addThreeCyclesConstraintsExplicitly(
     ){
+        std::cout<<"add three cyckes\n";
         std::array<size_t, 3> variables;
         std::array<double, 3> coefficients;
         auto threeCycles = findThreeCyclesEdges(graph_);
@@ -308,7 +310,7 @@ namespace graph{
         if(!settings_.addOnlyViolatedThreeCyclesConstraints){
             for(const auto & tce : threeCycles){
                 for(auto i=0; i<3; ++i){
-                    variables[i] = tce[i];
+                    variables[i] = denseIds_[tce[i]];
                 }
                 for(auto i=0; i<3; ++i){
                     for(auto j=0; j<3; ++j){
@@ -340,7 +342,7 @@ namespace graph{
                 if(nNeg == 1){
                     for(auto i=0; i<3; ++i){
                         coefficients[i] = 1.0;
-                        variables[i] = tce[i];
+                        variables[i] = denseIds_[tce[i]];
                     }
                     coefficients[negIndex] = -1.0;
                     ilpSolver_->addConstraint(variables.begin(), variables.begin() + 3, 
@@ -349,6 +351,7 @@ namespace graph{
                 }
             }
         }
+        std::cout<<"add three done\n";
         //std::cout<<"added "<<c<<" explicit constraints\n";
     }
 

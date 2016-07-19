@@ -52,7 +52,7 @@ def makeRag(raw, showSeg = False):
     #ew = vigra.filters.gaussianGradientMagnitude(raw, 1.0)#[:,:,0]
     #seg, nseg = vigra.analysis.watershedsNew(ew)
 
-    seg, nseg = vigra.analysis.slicSuperpixels(raw,intensityScaling=2.0, seedDistance=6)
+    seg, nseg = vigra.analysis.slicSuperpixels(raw,intensityScaling=4.5, seedDistance=20)
 
     seg = seg.squeeze()
     if showSeg:
@@ -144,38 +144,31 @@ def test_mcgala():
 
 
     # get the dataset
-    imgs,gts = make_dataset(10, noise=2.0, shape=(200,200))
+    imgs,gts = make_dataset(10, noise=4.5, shape=(200,200))
 
     Obj = G.MulticutObjective
+    CG = G.EdgeContractionGraph
+    CGObj = CG.MulticutObjective
+
 
     greedyFactory = Obj.greedyAdditiveFactory()
     ilpFactory = Obj.multicutIlpFactory(ilpSolver='cplex',
-        addThreeCyclesConstraints=True,
-        addOnlyViolatedThreeCyclesConstraints=True
+        addThreeCyclesConstraints=False,
+        addOnlyViolatedThreeCyclesConstraints=False
         #memLimit= 0.01
     )
-    fmFactoryA = Obj.fusionMoveBasedFactory(
-        #fusionMove=Obj.fusionMoveSettings(mcFactory=greedyFactory),
-        fusionMove=Obj.fusionMoveSettings(mcFactory=ilpFactory),
+    fmFactoryA = CGObj.fusionMoveBasedFactory(
+        #fusionMove=CGObj.fusionMoveSettings(mcFactory=greedyFactory),
+        fusionMove=CGObj.fusionMoveSettings(mcFactory=ilpFactory),
         #proposalGen=nifty.greedyAdditiveProposals(sigma=30,nodeNumStopCond=-1,weightStopCond=0.0),
-        proposalGen=Obj.watershedProposals(sigma=1,seedFraction=0.5),
-        numberOfIterations=20,
-        numberOfParallelProposals=16, # no effect if nThreads equals 0 or 1
-        numberOfThreads=8,
-        stopIfNoImprovement=4,
+        proposalGen=CGObj.watershedProposals(sigma=1,seedFraction=0.1),
+        numberOfIterations=10,
+        numberOfParallelProposals=9, # no effect if nThreads equals 0 or 1
+        numberOfThreads=2,
+        stopIfNoImprovement=2,
         fuseN=2,
     )
-    fmFactoryB = Obj.fusionMoveBasedFactory(
-        #fusionMove=Obj.fusionMoveSettings(mcFactory=greedyFactory),
-        fusionMove=Obj.fusionMoveSettings(mcFactory=ilpFactory),
-        #proposalGen=nifty.greedyAdditiveProposals(sigma=30,nodeNumStopCond=-1,weightStopCond=0.0),
-        proposalGen=Obj.watershedProposals(sigma=1,seedFraction=0.1),
-        numberOfIterations=100,
-        numberOfParallelProposals=16, # no effect if nThreads equals 0 or 1
-        numberOfThreads=0,
-        stopIfNoImprovement=40,
-        fuseN=2,
-    )
+
 
 
 
@@ -184,11 +177,17 @@ def test_mcgala():
     edgeGt = makeEdgeGt(ragTrain, gts[0])
 
 
+    cOrderSettigns = G.galaContractionOrderSettings(
+        mcMapFactory=fmFactoryA,
+        runMcMapEachNthTime=1)
+
     # gala class
     settings = G.galaSettings(threshold0=0.1, threshold1=0.9, thresholdU=0.1,
-                              numberOfEpochs=2, numberOfTrees=20,
-                              mapFactory=fmFactoryA,
-                              perturbAndMapFactory=fmFactoryB)
+                              numberOfEpochs=1, numberOfTrees=200,
+                              contractionOrderSettings=cOrderSettigns
+                              #mapFactory=fmFactoryA,
+                              #perturbAndMapFactory=fmFactoryB
+                              )
     gala = G.gala(settings)
 
 
@@ -198,7 +197,7 @@ def test_mcgala():
     gala.train()
 
 
-    for x in range(10):
+    for x in range(1,10):
 
         ragTest  = makeRag(imgs[x], showSeg=False)
         fOpTest, minVal, maxVal = makeFeatureOp(ragTest, imgs[x], minVal, maxVal)

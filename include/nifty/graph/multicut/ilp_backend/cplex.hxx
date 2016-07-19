@@ -161,14 +161,16 @@ Cplex::initModel(
 
     }
     catch (IloException& e) {
-        std::cout<<" error "<<e.getMessage()<<"\n";
+        std::cout<<"0 error "<<e.getMessage()<<"\n";
+        for(size_t i=0; i<numberOfVariables;++i)
+            std::cout<< i <<" "<<coefficients[i]<<"\n";
         e.end();
     }
     catch (const std::runtime_error & e) {
-        std::cout<<" error "<<e.what()<<"\n";
+        std::cout<<"1 error "<<e.what()<<"\n";
     }
     catch (const std::exception & e) {
-        std::cout<<" error "<<e.what()<<"\n";
+        std::cout<<"2 error "<<e.what()<<"\n";
     }
 
 
@@ -180,20 +182,21 @@ Cplex::initModel(
 
 inline void
 Cplex::optimize() {
+    //std::cout<<"run opt\n";
     try{
         if(!cplex_.solve()) {
             std::cout << "failed to optimize. " <<cplex_.getStatus() << std::endl;
         }
     }
     catch (IloException& e) {
-        std::cout<<" error "<<e.getMessage()<<"\n";
+        std::cout<<"a error "<<e.getMessage()<<"\n";
         e.end();
     }
     catch (const std::runtime_error & e) {
-        std::cout<<" error "<<e.what()<<"\n";
+        std::cout<<"b error "<<e.what()<<"\n";
     }
     catch (const std::exception & e) {
-        std::cout<<" error "<<e.what()<<"\n";
+        std::cout<<"c error "<<e.what()<<"\n";
     }
 
     try{
@@ -201,16 +204,16 @@ Cplex::optimize() {
     }
     catch (IloException& e) {
         std::cout<<"nVar == "<<nVariables_<<"\n";
-        std::cout<<" error in get values "<<e<<" "<<e.getMessage()<<"\n";
+        std::cout<<"d error in get values "<<e<<" "<<e.getMessage()<<"\n";
         e.end();
     }
     catch (const std::runtime_error & e) {
-        std::cout<<" error "<<e.what()<<"\n";
+        std::cout<<"e error "<<e.what()<<"\n";
     }
     catch (const std::exception & e) {
-        std::cout<<" error "<<e.what()<<"\n";
+        std::cout<<"f error "<<e.what()<<"\n";
     }
-
+    // std::cout<<"run opt done\n";
 
     
 }
@@ -259,14 +262,14 @@ Cplex::setStart(
         cplex_.addMIPStart(x_, sol_);
     }
     catch (IloException& e) {
-       std::cout<<" error "<<e.getMessage()<<"\n";
+       std::cout<<"aaa error "<<e.getMessage()<<"\n";
        e.end();
     }
     catch (const std::runtime_error & e) {
-       std::cout<<" error "<<e.what()<<"\n";
+       std::cout<<"bbb error "<<e.what()<<"\n";
     }
     catch (const std::exception & e) {
-       std::cout<<" error "<<e.what()<<"\n";
+       std::cout<<"ccc error "<<e.what()<<"\n";
     }
     
 }

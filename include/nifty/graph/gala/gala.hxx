@@ -25,21 +25,6 @@ namespace nifty{
 namespace graph{
 
 
-    struct GalaSettings{
-
-        typedef nifty::graph::UndirectedGraph<> McOrderGraph;
-        typedef nifty::graph::MulticutObjective<McOrderGraph, double> McOrderObjective;
-        typedef nifty::graph::MulticutFactoryBase<McOrderObjective> McOrderFactoryBaseType;
-        typedef std::shared_ptr<McOrderFactoryBaseType> McFactory;
-
-        double threshold0{0.25};
-        double threshold1{0.75};
-        double thresholdU{0.25};
-        uint64_t numberOfEpochs{3};
-        uint64_t numberOfTrees{100};
-        McFactory mapFactory;
-        McFactory perturbAndMapFactory;
-    };
     
 
 
@@ -53,12 +38,33 @@ namespace graph{
         friend class detail_gala::TrainingCallback<GRAPH,T, CLASSIFIER> ;
         friend class detail_gala::TestCallback<GRAPH,T, CLASSIFIER> ;
 
-
-        typedef GalaSettings Settings;
         typedef GRAPH GraphType;
         typedef CLASSIFIER ClassifierType;
         typedef detail_gala::TrainingCallback<GRAPH,T, CLASSIFIER> TrainingCallbackType;
         typedef detail_gala::TestCallback<GRAPH,T, CLASSIFIER> TestCallbackType;
+        typedef typename TrainingCallbackType::ContractionOrderSettings ContractionOrderSettings;
+        
+
+
+        struct Settings{
+
+            typedef nifty::graph::UndirectedGraph<> McOrderGraph;
+            typedef nifty::graph::MulticutObjective<McOrderGraph, double> McOrderObjective;
+            typedef nifty::graph::MulticutFactoryBase<McOrderObjective> McOrderFactoryBaseType;
+            typedef std::shared_ptr<McOrderFactoryBaseType> McFactory;
+
+            double threshold0{0.25};
+            double threshold1{0.75};
+            double thresholdU{0.25};
+            uint64_t numberOfEpochs{3};
+            uint64_t numberOfTrees{100};
+            McFactory mapFactory;
+            McFactory perturbAndMapFactory;
+
+            ContractionOrderSettings contractionOrderSettings;
+        };
+
+
         typedef  std::tuple<uint64_t,uint64_t,uint64_t,uint64_t> HashType;
    
         typedef GalaFeatureBase<GraphType, T>       FeatureBaseType;
@@ -172,7 +178,7 @@ namespace graph{
     addTrainingInstance(
         TrainingInstanceType & trainingInstance
     ){
-        auto cb = new TrainingCallbackType(trainingInstance,*this,trainingCallbacks_.size());
+        auto cb = new TrainingCallbackType(trainingInstance, trainingSettings_.contractionOrderSettings, *this,trainingCallbacks_.size());
         trainingCallbacks_.push_back(cb);
     }      
 
@@ -235,7 +241,7 @@ namespace graph{
 
                 const auto nEdges = contractionGraph.numberOfEdges();
                 const auto nNodes = contractionGraph.numberOfNodes();
-                //std::cout<<"#Edges "<<nEdges<<" #Nodes "<<nNodes<<" #ufd "<< contractionGraph.ufd().numberOfSets()<<"\n";
+                std::cout<<"#Edges "<<nEdges<<" #Nodes "<<nNodes<<" \n";
 
 
 
@@ -271,7 +277,7 @@ namespace graph{
         NODE_LABELS & labels
     ){
 
-        TestCallbackType callback(instance, *this);
+        TestCallbackType callback(instance,trainingSettings_.contractionOrderSettings, *this);
 
         const auto & graph = callback.graph();
         auto features  = callback.features();
