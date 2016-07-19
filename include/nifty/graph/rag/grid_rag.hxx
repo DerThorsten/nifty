@@ -69,19 +69,45 @@ private:
 };
 
 
+template<class LABELS_PROXY>
+class GridRagSliced : public GridRag<LABELS_PROXY, 3>{
+    
+    typedef GridRagSliced<LABELS_PROXY> SelfType;
+    friend class detail_rag::ComputeRag< SelfType >;
+    
+    GridRagSliced(const LabelsProxy & labelsProxy, const Settings & settings = Settings())
+    :   settings_(settings),
+        labelsProxy_(labelsProxy)
+    {
+        // TODO
+        // -> implement computeRag(GridRagSliced<ChunkedLabels>)
+        detail_rag::ComputeRag< SelfType >::computeRag(*this, settings_);
+    }
+
+private:
+    Settings settings_;
+    LabelsProxy labelsProxy_;
+
+};
+
+
 template<unsigned int DIM, class LABEL_TYPE>
 using ExplicitLabelsGridRag = GridRag<DIM, ExplicitLabels<DIM, LABEL_TYPE> > ; 
 
 
+template<class LABEL_TYPE>
+using ChunkedLabelsGridRagSliced = GridRagSliced<DIM, ChunkedLabels<3, LABEL_TYPE> > ; 
+
+
+//template<unsigned int DIM, class LABEL_TYPE>
+//using ChunkedLabelsGridRag = GridRag<DIM, ChunkedLabels<DIM, LABEL_TYPE> > ; 
 
 
 
 
 
-
-
-}
-}
+} // namespace graph
+} // namespace nifty
 
 
 #endif /* NIFTY_GRAPH_RAG_GRID_RAG_HXX */

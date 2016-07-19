@@ -8,6 +8,8 @@
 #include "nifty/marray/marray.hxx"
 #include "nifty/tools/runtime_check.hxx"
 //#include "nifty/graph/detail/contiguous_indices.hxx"
+//
+#include "vigra/multi_array_chunked_hdf5.hxx"
 
 
 namespace nifty{
@@ -55,17 +57,60 @@ public:
         return labels_;
     }
 
-    const std::array<int64_t, DIM> & shape()const{
+    const std::array<int64_t, DIM> & shape() const{
         return  shape_;
     }
 
 private:
-    nifty::marray::View<LABEL_TYPE> labels_;
+    ViewType labels_;
     std::array<int64_t, DIM> shape_;
 };
 
-}
-}
+
+
+template<size_t DIM, class LABEL_TYPE>
+class ChunkedLabels{
+public:
+
+    typedef vigra::ChunkedArrayHDF5<DIM, label_type> ViewType;
+
+    ChunkedLabels(const ViewType & labels )
+    : labels_(labels),
+      shape_()
+    {
+        for(size_t i=0; i<DIM; ++i)
+            shape_[i] = labels_.shape(i);
+    }
+    
+    // part of the API
+    // TODO iterate over the chunks in parellel !
+    uint64_t numberOfLabels() const {
+        return *std::max_element(_labels.cbegin(), _labels.cend())+1;
+        //for(auto it = _labels.chunk_begin(); it != _labels.chunk_end; ++it ) P
+        //  
+        //}
+    }
+
+    // not part of the general API
+    const ViewType & labels() const{
+        return labels_;
+    }
+
+    const std::array<int64_t, DIM> & shape() const{
+        return  shape_;
+    }
+
+
+private:
+    ViewType labels_;
+    std::array<int64_t, DIM> shape_;
+
+};
+
+} // namespace graph
+} // namespace nifty
+
+
 
 
 #endif /* NIFTY_GRAPH_RAG_GRID_RAG_LABELS_HXX */
