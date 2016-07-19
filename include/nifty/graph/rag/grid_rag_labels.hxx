@@ -72,7 +72,7 @@ template<size_t DIM, class LABEL_TYPE>
 class ChunkedLabels{
 public:
 
-    typedef vigra::ChunkedArrayHDF5<DIM, label_type> ViewType;
+    typedef vigra::ChunkedArrayHDF5<DIM, LABEL_TYPE> ViewType;
 
     ChunkedLabels(const ViewType & labels )
     : labels_(labels),
@@ -85,7 +85,7 @@ public:
     // part of the API
     // TODO iterate over the chunks in parellel !
     uint64_t numberOfLabels() const {
-        return *std::max_element(_labels.cbegin(), _labels.cend())+1;
+        return *std::max_element(labels_.cbegin(), labels_.cend())+1;
         //for(auto it = _labels.chunk_begin(); it != _labels.chunk_end; ++it ) P
         //  
         //}

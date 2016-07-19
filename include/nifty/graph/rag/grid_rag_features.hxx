@@ -164,8 +164,20 @@ namespace graph{
             });
         }
     }
+    
+    
+    /*
+    template< size_t DIM, class LABELS_TYPE, class T, class EDGE_MAP, class NODE_MAP>
+    void gridRagAccumulateFeatures(
+        const ChunkedLabelsGridRagSliced<LABELS_TYPE> & graph,
+        const vigra::ChunkedArrayHDF5<DIM, T> & data,
+        EDGE_MAP & edgeMap,
+        NODE_MAP &  nodeMap
+    ){
 
 
+    }
+    */
 
     template<size_t DIM, class LABELS_TYPE, class LABELS, class NODE_MAP>
     void gridRagAccumulateLabels(
