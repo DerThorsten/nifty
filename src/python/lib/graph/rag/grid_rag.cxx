@@ -91,38 +91,39 @@ namespace graph{
         }
         
         // export ChunkedLabelsGridRagSliced
-        {
-            py::object undirectedGraph = graphModule.attr("UndirectedGraph");
-            typedef ChunkedLabelsGridRagSliced<uint32_t> ChunkedLabelsGridRagSliced;
+        //{
+        //    py::object undirectedGraph = graphModule.attr("UndirectedGraph");
+        //    typedef ChunkedLabelsGridRagSliced<uint32_t> ChunkedLabelsGridRagSliced;
 
-            py::class_<ChunkedLabelsGridRagSliced>(ragModule, "ChunkedLabelsGridRagSliced", undirectedGraph)
-                // remove a few methods
-                .def("insertEdge", [](ChunkedLabelsGridRagSliced * self,const uint64_t u,const uint64_t ){
-                    throw std::runtime_error("cannot insert edges into 'ChunkedLabelsGridRagSliced'");
-                })
-                .def("insertEdges",[](ChunkedLabelsGridRagSliced * self, py::array_t<uint64_t> pyArray) {
-                    throw std::runtime_error("cannot insert edges into 'ChunkedLabelsGridRagSliced'");
-                })
-            ;
-            ragModule.def("chunkedLabelsGridRagSliced",
-                [](vigra::ChunkedArrayHDF5<3, uint32_t> labels,
-                   const int numberOfThreads,
-                   const bool lockFreeAlg 
-                ){
-                    auto s = typename  ChunkedLabelsGridRagSliced::Settings();
-                    s.numberOfThreads = numberOfThreads;
-                    s.lockFreeAlg = lockFreeAlg;
-                    ChunkedLabels<3 ,uint32_t> chunkedLabels(labels);
-                    auto ptr = new ChunkedLabelsGridRagSliced(chunkedLabels, s);
-                    return ptr;
-                },
-                py::return_value_policy::take_ownership,
-                py::keep_alive<0, 1>(),
-                py::arg("labels"),
-                py::arg_t< int >("numberOfThreads", -1 ),
-                py::arg_t< bool >("lockFreeAlg", false )
-            );
-        }
+        //    py::class_<ChunkedLabelsGridRagSliced>(ragModule, "ChunkedLabelsGridRagSliced", undirectedGraph)
+        //        // remove a few methods
+        //        .def("insertEdge", [](ChunkedLabelsGridRagSliced * self,const uint64_t u,const uint64_t ){
+        //            throw std::runtime_error("cannot insert edges into 'ChunkedLabelsGridRagSliced'");
+        //        })
+        //        .def("insertEdges",[](ChunkedLabelsGridRagSliced * self, py::array_t<uint64_t> pyArray) {
+        //            throw std::runtime_error("cannot insert edges into 'ChunkedLabelsGridRagSliced'");
+        //        })
+        //    ;
+        //    ragModule.def("chunkedLabelsGridRagSliced",
+        //        // FIXME how to export ChunkedArray to python ?
+        //        [](vigra::ChunkedArrayHDF5<3, uint32_t> labels,
+        //           const int numberOfThreads,
+        //           const bool lockFreeAlg 
+        //        ){
+        //            auto s = typename  ChunkedLabelsGridRagSliced::Settings();
+        //            s.numberOfThreads = numberOfThreads;
+        //            s.lockFreeAlg = lockFreeAlg;
+        //            ChunkedLabels<3 ,uint32_t> chunkedLabels(labels);
+        //            auto ptr = new ChunkedLabelsGridRagSliced(chunkedLabels, s);
+        //            return ptr;
+        //        },
+        //        py::return_value_policy::take_ownership,
+        //        py::keep_alive<0, 1>(),
+        //        py::arg("labels"),
+        //        py::arg_t< int >("numberOfThreads", -1 ),
+        //        py::arg_t< bool >("lockFreeAlg", false )
+        //    );
+        //}
     }
 
 } // end namespace graph
