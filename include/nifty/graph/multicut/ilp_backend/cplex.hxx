@@ -4,6 +4,7 @@
 
 #include <limits>
 #include <string>
+#include <sstream>
 
 #define IL_STD 1
 #include <ilcplex/ilocplex.h>
@@ -161,16 +162,15 @@ Cplex::initModel(
 
     }
     catch (IloException& e) {
-        std::cout<<"0 error "<<e.getMessage()<<"\n";
-        for(size_t i=0; i<numberOfVariables;++i)
-            std::cout<< i <<" "<<coefficients[i]<<"\n";
+        const std::string msg = e.getMessage();
         e.end();
+        throw std::runtime_error(std::string("error in initModel ")+msg);
     }
     catch (const std::runtime_error & e) {
-        std::cout<<"1 error "<<e.what()<<"\n";
+        throw std::runtime_error(std::string("error in initModel ")+e.what());
     }
     catch (const std::exception & e) {
-        std::cout<<"2 error "<<e.what()<<"\n";
+        throw std::runtime_error(std::string("error in initModel ")+e.what());
     }
 
 
@@ -186,32 +186,36 @@ Cplex::optimize() {
     try{
         if(!cplex_.solve()) {
             std::cout << "failed to optimize. " <<cplex_.getStatus() << std::endl;
+            std::stringstream ss;
+            ss<<"cplex failed with status: "<<cplex_.getStatus();
+            throw std::runtime_error(ss.str());
         }
     }
     catch (IloException& e) {
-        std::cout<<"a error "<<e.getMessage()<<"\n";
+        const std::string msg = e.getMessage();
         e.end();
+        throw std::runtime_error(std::string("error in optimize: ")+msg);
     }
     catch (const std::runtime_error & e) {
-        std::cout<<"b error "<<e.what()<<"\n";
+        throw std::runtime_error(std::string("error in optimize ")+e.what());
     }
     catch (const std::exception & e) {
-        std::cout<<"c error "<<e.what()<<"\n";
+        throw std::runtime_error(std::string("error in optimize ")+e.what());
     }
 
     try{
         cplex_.getValues(sol_, x_);
     }
     catch (IloException& e) {
-        std::cout<<"nVar == "<<nVariables_<<"\n";
-        std::cout<<"d error in get values "<<e<<" "<<e.getMessage()<<"\n";
+        const std::string msg = e.getMessage();
         e.end();
+        throw std::runtime_error(std::string("error in get values: ")+msg);
     }
     catch (const std::runtime_error & e) {
-        std::cout<<"e error "<<e.what()<<"\n";
+        throw std::runtime_error(std::string("error in optimize ")+e.what());
     }
     catch (const std::exception & e) {
-        std::cout<<"f error "<<e.what()<<"\n";
+        throw std::runtime_error(std::string("error in optimize ")+e.what());
     }
     // std::cout<<"run opt done\n";
 

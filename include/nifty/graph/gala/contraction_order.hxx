@@ -101,11 +101,11 @@ public:
     uint64_t edgeToContractNext(){
 
         if(settings_.runMcMapEachNthTime !=0 &&iteration_ % settings_.runMcMapEachNthTime == 0){
-            std::cout<<"run\n";
+            //std::cout<<"run\n";
             this->runMc();
         }
         else{
-            std::cout<<"skip\n";
+            //std::cout<<"skip\n";
         }
         ++iteration_;
         return pq_.top();

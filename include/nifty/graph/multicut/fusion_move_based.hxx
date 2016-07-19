@@ -176,7 +176,7 @@ namespace graph{
             proposals.clear();
             // generate the proposals and fuse with the current best
             //std::cout<<"generate "<<settings_.numberOfParallelProposals<<" proposals\n";
-            nifty::parallel::parallel_foreach(0,//#threadPool_,
+            nifty::parallel::parallel_foreach(threadPool_,
                 settings_.numberOfParallelProposals,
                 [&](const size_t threadId, int proposalIndex){
                     NIFTY_CHECK_OP(threadId,<,fusionMoves_.size(),"");
@@ -236,7 +236,7 @@ namespace graph{
 
             if(!proposals.empty()){
                 while(proposals.size()!= 1){
-                    std::cout<<" aaa \n";
+                    //std::cout<<" aaa \n";
                     NIFTY_CHECK_OP(proposals.size(),>=,2,"");
                     nFuse = std::min(nFuse, proposals.size());
 

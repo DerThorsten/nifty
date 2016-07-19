@@ -294,7 +294,7 @@ namespace graph{
             }
             ++lpEdge;
         }
-        std::cout<<"init #edges "<<graph_.numberOfEdges()<<"\n";
+        //std::cout<<"init #edges "<<graph_.numberOfEdges()<<"\n";
         ilpSolver_->initModel(graph_.numberOfEdges(), costs.data());
     }
 
@@ -302,7 +302,7 @@ namespace graph{
     void MulticutIlp<OBJECTIVE, ILP_SOLVER>::
     addThreeCyclesConstraintsExplicitly(
     ){
-        std::cout<<"add three cyckes\n";
+        //std::cout<<"add three cyckes\n";
         std::array<size_t, 3> variables;
         std::array<double, 3> coefficients;
         auto threeCycles = findThreeCyclesEdges(graph_);
@@ -351,7 +351,7 @@ namespace graph{
                 }
             }
         }
-        std::cout<<"add three done\n";
+        //std::cout<<"add three done\n";
         //std::cout<<"added "<<c<<" explicit constraints\n";
     }
 

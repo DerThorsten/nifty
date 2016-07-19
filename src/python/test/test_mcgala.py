@@ -32,27 +32,35 @@ def make_dataset(numberOfImages = 10, noise=1.0,shape=(100,100)):
         #print ra 
 
         gtImg = vigra.sampling.rotateImageDegree(gtImg.astype(numpy.float32),int(ra),splineOrder=0)
+        grad = vigra.filters.gaussianGradientMagnitude(gtImg.astype('float32'),1.0)
 
-        #if i<1 :
-        #    vigra.imshow(gtImg)
-        #    vigra.show()
 
-        img = gtImg + numpy.random.random(shape)*float(noise)
+        for x in range(6):
+            ra2 = numpy.random.randint(low=0,high=2,size=gtImg.size)
+            ra2 = ra2.reshape(gtImg.shape)
+            #print ra 
+            grad*=ra2
+
+        grad = grad.squeeze()
+
+        img = numpy.random.random(shape)*float(0.00001)
+        grad+=img
         #if i<1 :
         #    vigra.imshow(img)
         #    vigra.show()
 
-        imgs.append(img.astype('float32'))
+        imgs.append(grad.astype('float32'))
         gts.append(gtImg)
 
 
     return imgs,gts
 
 def makeRag(raw, showSeg = False):
-    #ew = vigra.filters.gaussianGradientMagnitude(raw, 1.0)#[:,:,0]
-    #seg, nseg = vigra.analysis.watershedsNew(ew)
+    #raw = vigra.gaussianSmoothing(raw,1.0)
+    ew = vigra.filters.hessianOfGaussianEigenvalues(-1.0*raw, 2.3)[:,:,0]
+    seg, nseg = vigra.analysis.watershedsNew(ew)
 
-    seg, nseg = vigra.analysis.slicSuperpixels(raw,intensityScaling=4.5, seedDistance=20)
+    #seg, nseg = vigra.analysis.slicSuperpixels(raw,intensityScaling=4.5, seedDistance=20)
 
     seg = seg.squeeze()
     if showSeg:
@@ -163,8 +171,8 @@ def test_mcgala():
         #proposalGen=nifty.greedyAdditiveProposals(sigma=30,nodeNumStopCond=-1,weightStopCond=0.0),
         proposalGen=CGObj.watershedProposals(sigma=1,seedFraction=0.1),
         numberOfIterations=10,
-        numberOfParallelProposals=9, # no effect if nThreads equals 0 or 1
-        numberOfThreads=2,
+        numberOfParallelProposals=40, # no effect if nThreads equals 0 or 1
+        numberOfThreads=40,
         stopIfNoImprovement=2,
         fuseN=2,
     )
@@ -172,14 +180,14 @@ def test_mcgala():
 
 
 
-    ragTrain  = makeRag(imgs[0], showSeg= False)
+    ragTrain  = makeRag(imgs[0], showSeg= True)
     fOpTrain, minVal, maxVal = makeFeatureOp(ragTrain, imgs[0])
     edgeGt = makeEdgeGt(ragTrain, gts[0])
 
 
     cOrderSettigns = G.galaContractionOrderSettings(
         mcMapFactory=fmFactoryA,
-        runMcMapEachNthTime=1)
+        runMcMapEachNthTime=10)
 
     # gala class
     settings = G.galaSettings(threshold0=0.1, threshold1=0.9, thresholdU=0.1,
@@ -197,7 +205,7 @@ def test_mcgala():
     gala.train()
 
 
-    for x in range(1,10):
+    for x in range(3,10):
 
         ragTest  = makeRag(imgs[x], showSeg=False)
         fOpTest, minVal, maxVal = makeFeatureOp(ragTest, imgs[x], minVal, maxVal)
