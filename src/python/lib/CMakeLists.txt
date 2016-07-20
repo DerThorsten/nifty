@@ -24,7 +24,7 @@ if (CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR CMAKE_CXX_COMPILER_ID MATCHES "GNU"
     #CHECK_CXX_COMPILER_FLAG("-flto" HAS_LTO_FLAG)
     #if (HAS_LTO_FLAG)
     #  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -flto")
-    #endif()
+    
   endif()
 endif()
 
@@ -73,6 +73,12 @@ endif()
 
 if(WITH_GLPK)
     target_link_libraries(_nifty ${GLPK_LIBRARY})
+endif()
+
+if(HDF5_FOUND)
+    target_link_libraries(_nifty ${HDF5_LIBRARIES})
+    target_link_libraries(_nifty ${HDF5_CXX_LIBRARIES})
+    target_link_libraries(_nifty ${HDF5_HL_LIBRARIES})
 endif()
 
 
