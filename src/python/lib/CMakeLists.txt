@@ -64,8 +64,8 @@ add_library(_nifty SHARED
 
 
 if(HDF5_FOUND)
-    target_link_libraries(_nifty {${HDF5_HL_LIBRARY})
-    target_link_libraries(_nifty {${HDF5_LIBRARIES})
+    MESSAGE(STATUS "HDF-Libs: " ${HDF5_LIBRARIES})
+    target_link_libraries(_nifty ${HDF5_LIBRARIES})
 endif()
 
 if(WITH_GUROBI)
