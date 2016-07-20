@@ -19,6 +19,7 @@ PYBIND11_PLUGIN(_nifty) {
 
 
 
+
     //y::implicitly_convertible<py::array_t<float>, nifty::NumpyArray<float> >();
     //py::implicitly_convertible<py::array_t<uint64_t>, nifty::NumpyArray<uint64_t> >();
     using namespace nifty;
