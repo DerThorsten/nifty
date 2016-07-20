@@ -254,11 +254,12 @@ struct ComputeRag< GridRagSliced<ChunkedLabels<3, LABEL_TYPE>> > {
 
         const auto labelsProxy = rag.labelsProxy();
         const auto numberOfLabels = labelsProxy.numberOfLabels();
+        // FIXME reference to ChunkedArrayHDF5 is broken
         const auto labels = labelsProxy.labels(); 
 
         std::cout << "Computing Chunked RAG" << std::endl;
         std::cout << numberOfLabels << std::endl;
-        std::cout << *std::max_element(labels.cbegin(), labels.cend())+1 << std::endl;
+        std::cout << *std::max_element(labelsProxy.labels_.cbegin(), labelsProxy.labels_.cend())+1 << std::endl;
         
         rag.assign(numberOfLabels);
 
@@ -287,11 +288,13 @@ struct ComputeRag< GridRagSliced<ChunkedLabels<3, LABEL_TYPE>> > {
             
             // chunks in this slice
             vigra::Shape3 roi_s(z,0,0), roi_e(z+1,y_max,x_max);
-            auto chunk = labels.chunk_begin(roi_s,roi_e), end = labels.chunk_end(roi_s,roi_e);
+            //auto chunk = labels.chunk_begin(roi_s,roi_e), end = labels.chunk_end(roi_s,roi_e);
+            auto chunk = labelsProxy.labels_.chunk_begin(roi_s,roi_e), end = labelsProxy.labels_.chunk_end(roi_s,roi_e);
             
             // chunks in the next slice
             vigra::Shape3 roi_s_up(z+1,0,0), roi_e_up(z+2,y_max,x_max);
-            auto chunk_up = labels.chunk_begin(roi_s_up,roi_e_up);
+            //auto chunk_up = labels.chunk_begin(roi_s_up,roi_e_up);
+            auto chunk_up = labelsProxy.labels_.chunk_begin(roi_s_up,roi_e_up);
 
             for(; chunk != end; ++chunk, ++chunk_up) {
                 
@@ -321,7 +324,8 @@ struct ComputeRag< GridRagSliced<ChunkedLabels<3, LABEL_TYPE>> > {
         }
         // chunks in the last slice
         vigra::Shape3 roi_s(z_max-1,0,0), roi_e(z_max,y_max,x_max);
-        auto chunk = labels.chunk_begin(roi_s,roi_e), end = labels.chunk_end(roi_s,roi_e);
+        //auto chunk = labels.chunk_begin(roi_s,roi_e), end = labels.chunk_end(roi_s,roi_e);
+        auto chunk = labelsProxy.labels_.chunk_begin(roi_s,roi_e), end = labelsProxy.labels_.chunk_end(roi_s,roi_e);
             
         for(; chunk != end; ++chunk) {
             
