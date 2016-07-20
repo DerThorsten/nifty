@@ -109,10 +109,9 @@ namespace graph{
                     throw std::runtime_error("cannot insert edges into 'ChunkedLabelsGridRagSliced'");
                 })
             ;
+            //TODO give chunk shape as parameter ?
             ragModule.def("chunkedLabelsGridRagSliced",
-                // FIXME this is just a work around, would be better if we could directly give the chunked array ?
-                [](//vigra::ChunkedArrayHDF5<3, uint32_t> labels,
-                   const std::string & label_file,
+                [](const std::string & label_file,
                    const std::string & label_key,
                    const int numberOfThreads,
                    const bool lockFreeAlg 
@@ -121,10 +120,16 @@ namespace graph{
                     s.numberOfThreads = numberOfThreads;
                     s.lockFreeAlg = lockFreeAlg;
 
-                    vigra::HDF5File file(label_file, vigra::HDF5File::OpenMode::ReadOnly);
-                    vigra::ChunkedArrayHDF5<3,uint32_t> labels(file, label_key );
+                    // get the array shape
+                    //vigra::HDF5File file(label_file, vigra::HDF5File::ReadOnly);
+                    //vigra::ChunkedArrayHDF5<3,uint32_t> labels(file, label_key );//temp(file, label_key );
                     
-                    ChunkedLabels<3 ,uint32_t> chunkedLabels(labels);
+                    //auto shape = temp.shape();
+                    //// construct array witht the correct chunk shape
+                    //vigra::Shape3 chunk_shape(1,512,512);
+                    //vigra::ChunkedArrayHDF5<3,uint32_t> labels(file, label_key, vigra::HDF5File::ReadOnly, shape, chunk_shape );
+                    
+                    ChunkedLabels<3,uint32_t> chunkedLabels(label_file, label_key);
                     auto ptr = new ChunkedLabelsGridRagSliced(chunkedLabels, s);
                     return ptr;
                 },

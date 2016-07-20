@@ -95,6 +95,12 @@ public:
         return labelsProxy_;
     }
 
+    const typename LabelsProxy::ViewType & labels() const {
+        return labelsProxy_.labels();
+    }
+        
+    
+
 private:
     Settings settings_;
     LabelsProxy labelsProxy_;

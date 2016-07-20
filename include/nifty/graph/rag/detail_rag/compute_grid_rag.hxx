@@ -255,6 +255,10 @@ struct ComputeRag< GridRagSliced<ChunkedLabels<3, LABEL_TYPE>> > {
         const auto labelsProxy = rag.labelsProxy();
         const auto numberOfLabels = labelsProxy.numberOfLabels();
         const auto labels = labelsProxy.labels(); 
+
+        std::cout << "Computing Chunked RAG" << std::endl;
+        std::cout << numberOfLabels << std::endl;
+        std::cout << *std::max_element(labels.cbegin(), labels.cend())+1 << std::endl;
         
         rag.assign(numberOfLabels);
 
@@ -267,16 +271,26 @@ struct ComputeRag< GridRagSliced<ChunkedLabels<3, LABEL_TYPE>> > {
         // We assumes 2d like chunks, e.g. (512,512,1) or (1024,1024,1)
         // we then loop over z and check out the chunks in z and z + 1, looping over them to find all labels
 
-        size_t x_max = labels.shape(0);
+        size_t z_max = labels.shape(0);
         size_t y_max = labels.shape(1);
-        size_t z_max = labels.shape(2);
+        size_t x_max = labels.shape(2);
+
+        //std::cout << x_max << std::endl;
+        //std::cout << y_max << std::endl;
+        //std::cout << z_max << std::endl;
+
+        //std::cout << labels.chunkShape(0) << std::endl;
+        //std::cout << labels.chunkShape(1) << std::endl;
+        //std::cout << labels.chunkShape(2) << std::endl;
 
         for(size_t z = 0; z < z_max - 1; z++) {
+            
             // chunks in this slice
-            vigra::Shape3 roi_s(0,0,z), roi_e(x_max,y_max,z);
+            vigra::Shape3 roi_s(z,0,0), roi_e(z+1,y_max,x_max);
             auto chunk = labels.chunk_begin(roi_s,roi_e), end = labels.chunk_end(roi_s,roi_e);
+            
             // chunks in the next slice
-            vigra::Shape3 roi_s_up(0,0,z+1), roi_e_up(x_max,y_max,z+1);
+            vigra::Shape3 roi_s_up(z+1,0,0), roi_e_up(z+2,y_max,x_max);
             auto chunk_up = labels.chunk_begin(roi_s_up,roi_e_up);
 
             for(; chunk != end; ++chunk, ++chunk_up) {
@@ -284,50 +298,47 @@ struct ComputeRag< GridRagSliced<ChunkedLabels<3, LABEL_TYPE>> > {
                 vigra::MultiArrayView<3, LABEL_TYPE> chunk_view = *chunk;
                 vigra::MultiArrayView<3, LABEL_TYPE> chunk_view_up = *chunk_up;
                 
-                for(size_t x=0; x<chunk_view.shape(0); ++x) {
-                    for(size_t y=0; y<chunk_view.shape(1); ++y) {
+                for(size_t y=0; y<chunk_view.shape(1); ++y) {
+                    for(size_t x=0; x<chunk_view.shape(2); ++x) {
                     
-                        const auto lu = chunk_view(x, y, 0);
+                        const auto lu = chunk_view(0,y,x);
                         if(x+1<labels.shape(0)){
-                            const auto lv = chunk_view(x+1, y);
-                            if(lu != lv){
+                            const auto lv = chunk_view(0, y, x+1);
+                            if(lu != lv)
                                 rag.insertEdge(lu,lv);
-                            }
                         }
                         if(y+1<chunk_view.shape(1)){
-                            const auto lv = chunk_view(x, y+1);
-                            if(lu != lv){
+                            const auto lv = chunk_view(0, y+1, x);
+                            if(lu != lv)
                                 rag.insertEdge(lu,lv);
-                            }
                         }
-                        const auto lv = chunk_view_up(x, y, 0);
-                        if(lu != lv){
+                        const auto lv = chunk_view_up(0, y, x);
+                        if(lu != lv)
                             rag.insertEdge(lu,lv);
-                        }
                     }
                 }
             }
         }
         // chunks in the last slice
-        vigra::Shape3 roi_s(0,0,z_max), roi_e(x_max,y_max,z_max);
+        vigra::Shape3 roi_s(z_max-1,0,0), roi_e(z_max,y_max,x_max);
         auto chunk = labels.chunk_begin(roi_s,roi_e), end = labels.chunk_end(roi_s,roi_e);
             
         for(; chunk != end; ++chunk) {
             
             vigra::MultiArrayView<3, LABEL_TYPE> chunk_view = *chunk;
             
-            for(size_t x=0; x<chunk_view.shape(0); ++x) {
-                for(size_t y=0; y<chunk_view.shape(1); ++y) {
+            for(size_t y=0; y<chunk_view.shape(1); ++y) {
+                for(size_t x=0; x<chunk_view.shape(2); ++x) {
                 
-                    const auto lu = chunk_view(x, y, 0);
+                    const auto lu = chunk_view(0, y, x);
                     if(x+1<labels.shape(0)){
-                        const auto lv = chunk_view(x+1, y);
+                        const auto lv = chunk_view(y, x+1);
                         if(lu != lv){
                             rag.insertEdge(lu,lv);
                         }
                     }
                     if(y+1<chunk_view.shape(1)){
-                        const auto lv = chunk_view(x, y+1);
+                        const auto lv = chunk_view(y+1, x);
                         if(lu != lv){
                             rag.insertEdge(lu,lv);
                         }

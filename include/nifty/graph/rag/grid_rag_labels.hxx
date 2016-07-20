@@ -74,13 +74,21 @@ public:
 
     typedef vigra::ChunkedArrayHDF5<DIM, LABEL_TYPE> ViewType;
 
-    ChunkedLabels(const ViewType & labels )
-    : labels_(labels),
-      shape_()
+    // enable setting the chunk size by overloading the constuctor
+    ChunkedLabels(const std::string & label_file, const std::string & label_key )
+    : labels_(vigra::HDF5File(label_file, vigra::HDF5File::ReadOnly), label_key ),
+      shape_(), label_file_(label_file), label_key_(label_key)
     {
         for(size_t i=0; i<DIM; ++i)
             shape_[i] = labels_.shape(i);
     }
+
+    // need the copy constructor!
+    ChunkedLabels(const ChunkedLabels & src)
+    : labels_(vigra::HDF5File(src.label_file_, vigra::HDF5File::ReadOnly), src.label_key_ ),
+      shape_(src.shape_), label_file_(src.label_file_), label_key_(src.label_key_)
+    {}
+
     
     // part of the API
     // TODO iterate over the chunks in parellel !
@@ -104,6 +112,8 @@ public:
 private:
     ViewType labels_;
     std::array<int64_t, DIM> shape_;
+    std::string label_file_;
+    std::string label_key_;
 
 };
 
