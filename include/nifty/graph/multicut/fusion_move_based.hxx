@@ -270,13 +270,14 @@ namespace graph{
                         auto & fm = *(fusionMoves_[threadId]);
 
                         // actual fuse
-                        //std::cout<<"do fuse\n";
                         //mtx.lock();
+                        //std::cout<<"do fuse\n";
+                        
                         NIFTY_CHECK_OP(toFuse.size(),>=,2,"");
                         fm.fuse(toFuse, &res);
+                        
+                        // std::cout<<"do fuse done\n";
                         //mtx.unlock();
-                        //std::cout<<"do fuse done\n";
-
                         // OLD LOCK POS mtx.lock();
                         mtx.lock();
                         proposals2.push_back(res);

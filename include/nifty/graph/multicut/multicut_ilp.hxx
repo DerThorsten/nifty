@@ -83,17 +83,19 @@ namespace graph{
         }
         virtual void weightsChanged(){
 
-            if(numberOfOptRuns_<1){
-                ilpSolver_->changeObjective(objective_.weights().begin());
-            }
-            else{
-                delete ilpSolver_;
-                numberOfOptRuns_ = 0;
-                addedConstraints_ = 0;
-                ilpSolver_ = new IlpSovler(settings_.ilpSettings);
-                this->initializeIlp();
-                if(settings_.addThreeCyclesConstraints){
-                    this->addThreeCyclesConstraintsExplicitly();
+            if(graph_.numberOfEdges()>0){
+                if(numberOfOptRuns_<1){
+                    ilpSolver_->changeObjective(objective_.weights().begin());
+                }
+                else{
+                    delete ilpSolver_;
+                    numberOfOptRuns_ = 0;
+                    addedConstraints_ = 0;
+                    ilpSolver_ = new IlpSovler(settings_.ilpSettings);
+                    this->initializeIlp();
+                    if(settings_.addThreeCyclesConstraints){
+                        this->addThreeCyclesConstraintsExplicitly();
+                    }
                 }
             }
         }
@@ -147,10 +149,10 @@ namespace graph{
     {
         ilpSolver_ = new ILP_SOLVER(settings_.ilpSettings);
         if (settings_.verbose >=2)
-                std::cout<<"init cplex \n";
+                std::cout<<"init initializeIlp \n";
         this->initializeIlp();
         if (settings_.verbose >=2)
-                std::cout<<"init cplex done \n";
+                std::cout<<"init initializeIlp done \n";
 
         // add explicit constraints
         if(settings_.addThreeCyclesConstraints){
@@ -163,6 +165,7 @@ namespace graph{
     optimize(
         NodeLabels & nodeLabels,  VisitorBase * visitor
     ){  
+
         //std::cout<<"nStartConstraints "<<addedConstraints_<<"\n";
         VisitorProxy visitorProxy(visitor);
 
@@ -171,34 +174,35 @@ namespace graph{
         currentBest_ = &nodeLabels;
         
         visitorProxy.begin(this);
+        if(graph_.numberOfEdges()>0){
+            // set the starting point 
+            auto edgeLabelIter = detail_graph::nodeLabelsToEdgeLabelsIterBegin(graph_, nodeLabels);
+            ilpSolver_->setStart(edgeLabelIter);
 
-        // set the starting point 
-        auto edgeLabelIter = detail_graph::nodeLabelsToEdgeLabelsIterBegin(graph_, nodeLabels);
-        ilpSolver_->setStart(edgeLabelIter);
+            for (size_t i = 0; settings_.numberOfIterations == 0 || i < settings_.numberOfIterations; ++i){
 
-        for (size_t i = 0; settings_.numberOfIterations == 0 || i < settings_.numberOfIterations; ++i){
+                // solve ilp
+                ilpSolver_->optimize();
 
-            // solve ilp
-            ilpSolver_->optimize();
+                // find violated constraints
+                auto nViolated = addCycleInequalities();
 
-            // find violated constraints
-            auto nViolated = addCycleInequalities();
+                // repair the solution
+                repairSolution(nodeLabels);
 
-            // repair the solution
-            repairSolution(nodeLabels);
-
-            // add additional logs
-            visitorProxy.setLogValue(0,nViolated);
-            // visit visitor
-            if(!visitorProxy.visit(this))
-                break;
-            
-            
-            // exit if we do not violate constraints
-            if (nViolated == 0)
-                break;
+                // add additional logs
+                visitorProxy.setLogValue(0,nViolated);
+                // visit visitor
+                if(!visitorProxy.visit(this))
+                    break;
+                
+                
+                // exit if we do not violate constraints
+                if (nViolated == 0)
+                    break;
+            }
+            ++numberOfOptRuns_;
         }
-        ++numberOfOptRuns_;
         visitorProxy.end(this);
     }
 
@@ -294,8 +298,11 @@ namespace graph{
             }
             ++lpEdge;
         }
-        //std::cout<<"init #edges "<<graph_.numberOfEdges()<<"\n";
+        if(settings_.verbose>=2)
+            std::cout<<"init initModel\n";
         ilpSolver_->initModel(graph_.numberOfEdges(), costs.data());
+        if(settings_.verbose>=2)
+            std::cout<<"init initModel done\n";
     }
 
     template<class OBJECTIVE, class ILP_SOLVER>

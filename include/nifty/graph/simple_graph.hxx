@@ -192,12 +192,16 @@ protected:
         const auto mv = v%nMutex;
         auto & uMtx =  nodeMutexArray[mu];
         auto & vMtx =  nodeMutexArray[mv];   
+        int64_t edge = -1;
         uMtx.lock();
         const auto fres =  nodes_[u].find(NodeAdjacency(v));
         const auto foundThisEdge = (fres != nodes_[u].end());
+        if(foundThisEdge){
+            edge = fres->edge;
+        }
         uMtx.unlock();
         if(foundThisEdge){
-            return fres->edge();
+            return edge;
         }
         else{
             const auto uu = std::min(u,v);

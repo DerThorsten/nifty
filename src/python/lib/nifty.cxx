@@ -13,14 +13,40 @@ namespace graph{
 
 PYBIND11_DECLARE_HOLDER_TYPE(T, std::shared_ptr<T>);
 
+
+struct Configuration{
+
+};
+
+
 PYBIND11_PLUGIN(_nifty) {
     py::module niftyModule("_nifty", "nifty python bindings");
 
-
-
-
-    //y::implicitly_convertible<py::array_t<float>, nifty::NumpyArray<float> >();
-    //py::implicitly_convertible<py::array_t<uint64_t>, nifty::NumpyArray<uint64_t> >();
     using namespace nifty;
     graph::initSubmoduleGraph(niftyModule);
+
+
+py::class_<Configuration>(niftyModule, "Configuration")
+    .def_property_readonly_static("WITH_CPLEX", [](py::object /* self */) { 
+        #ifdef  WITH_CPLEX
+        return true;
+        #else
+        return false;
+        #endif
+    })
+    .def_property_readonly_static("WITH_GUROBI", [](py::object /* self */) { 
+        #ifdef  WITH_GUROBI
+        return true;
+        #else
+        return false;
+        #endif
+    })
+    .def_property_readonly_static("WITH_GLPK", [](py::object /* self */) { 
+        #ifdef  WITH_GLPK
+        return true;
+        #else
+        return false;
+        #endif
+    })
+    ;
 }

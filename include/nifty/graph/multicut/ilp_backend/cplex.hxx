@@ -99,81 +99,85 @@ Cplex::initModel(
     const size_t numberOfVariables,
     const double* coefficients
 ) {
+    nVariables_ = numberOfVariables;
+    if(nVariables_>=1){
+        try{
 
-    try{
+            //std::cout<<"init cplex with "<<numberOfVariables<<" numberOfVariables\n";
+
+            
+            IloInt N = numberOfVariables;
+            model_ = IloModel(env_);
+            x_     = IloNumVarArray(env_);
+            c_     = IloRangeArray(env_);
+            obj_   = IloMinimize(env_);
+            sol_   = IloNumArray(env_,N);
+            // set variables and objective
+            //std::cout<<"add var\n";
+            x_.add(IloNumVarArray(env_, N, 0, 1, ILOBOOL));
+
+            //std::cout<<"create obj\n";
+            IloNumArray    obj(env_,N);
+
+            for(size_t v=0; v<numberOfVariables; ++v){
+                obj[v] = coefficients[v];
+            }
+            obj_.setLinearCoefs(x_,obj);
+            model_.add(obj_); 
+            cplex_ = IloCplex(model_);
 
 
-        nVariables_ = numberOfVariables;
-        IloInt N = numberOfVariables;
-        model_ = IloModel(env_);
-        x_     = IloNumVarArray(env_);
-        c_     = IloRangeArray(env_);
-        obj_   = IloMinimize(env_);
-        sol_   = IloNumArray(env_,N);
-        // set variables and objective
-        x_.add(IloNumVarArray(env_, N, 0, 1, ILOBOOL));
+            // set the parameter
+            if(settings_.absoluteGap >= 0.0)
+                cplex_.setParam(IloCplex::EpAGap,settings_.absoluteGap);
+            if(settings_.relativeGap >= 0.0)
+                cplex_.setParam(IloCplex::EpGap,settings_.relativeGap);
 
-        IloNumArray    obj(env_,N);
 
-        for(size_t v=0; v<numberOfVariables; ++v){
-            obj[v] = coefficients[v];
+            if(settings_.memLimit > 0.0)
+                cplex_.setParam(IloCplex::TreLim,settings_.memLimit*1024.0);
+
+
+            cplex_.setParam(IloCplex::Threads, settings_.numberOfThreads);
+            // cplex_.setParam(IloCplex::EpAGap,0);
+            // cplex_.setParam(IloCplex::EpGap,0);
+
+
+            //cplex_.setParam(IloCplex::Threads, 1);
+            cplex_.setParam(IloCplex::CutUp,  1.0e+75);
+            cplex_.setParam(IloCplex::MIPDisplay, int(settings_.verbosity));
+            cplex_.setParam(IloCplex::BarDisplay, int(settings_.verbosity));
+            cplex_.setParam(IloCplex::SimDisplay, int(settings_.verbosity));
+            cplex_.setParam(IloCplex::NetDisplay, int(settings_.verbosity));
+            cplex_.setParam(IloCplex::SiftDisplay,int(settings_.verbosity));
+
+            cplex_.setParam(IloCplex::EpOpt,1e-9);
+            cplex_.setParam(IloCplex::EpRHS,1e-8); //setting this to 1e-9 seemed to be to agressive!
+            cplex_.setParam(IloCplex::EpInt,0);
+
+
+
+
+            // nThreads
+            //
+
+            // verbosity
+
+
         }
-        obj_.setLinearCoefs(x_,obj);
-        model_.add(obj_); 
-        cplex_ = IloCplex(model_);
-
-
-        // set the parameter
-        if(settings_.absoluteGap >= 0.0)
-            cplex_.setParam(IloCplex::EpAGap,settings_.absoluteGap);
-        if(settings_.relativeGap >= 0.0)
-            cplex_.setParam(IloCplex::EpGap,settings_.relativeGap);
-
-
-        if(settings_.memLimit > 0.0)
-            cplex_.setParam(IloCplex::TreLim,settings_.memLimit*1024.0);
-
-
-        cplex_.setParam(IloCplex::Threads, settings_.numberOfThreads);
-        // cplex_.setParam(IloCplex::EpAGap,0);
-        // cplex_.setParam(IloCplex::EpGap,0);
-
-
-        //cplex_.setParam(IloCplex::Threads, 1);
-        cplex_.setParam(IloCplex::CutUp,  1.0e+75);
-        cplex_.setParam(IloCplex::MIPDisplay, int(settings_.verbosity));
-        cplex_.setParam(IloCplex::BarDisplay, int(settings_.verbosity));
-        cplex_.setParam(IloCplex::SimDisplay, int(settings_.verbosity));
-        cplex_.setParam(IloCplex::NetDisplay, int(settings_.verbosity));
-        cplex_.setParam(IloCplex::SiftDisplay,int(settings_.verbosity));
-
-        cplex_.setParam(IloCplex::EpOpt,1e-9);
-        cplex_.setParam(IloCplex::EpRHS,1e-8); //setting this to 1e-9 seemed to be to agressive!
-        cplex_.setParam(IloCplex::EpInt,0);
-
-
-
-
-        // nThreads
-        //
-
-        // verbosity
-
+        catch (IloException& e) {
+            const std::string msg = e.getMessage();
+            e.end();
+            throw std::runtime_error(std::string("error in initModel ")+msg);
+        }
+        catch (const std::runtime_error & e) {
+            throw std::runtime_error(std::string("error in initModel ")+e.what());
+        }
+        catch (const std::exception & e) {
+            throw std::runtime_error(std::string("error in initModel ")+e.what());
+        }
 
     }
-    catch (IloException& e) {
-        const std::string msg = e.getMessage();
-        e.end();
-        throw std::runtime_error(std::string("error in initModel ")+msg);
-    }
-    catch (const std::runtime_error & e) {
-        throw std::runtime_error(std::string("error in initModel ")+e.what());
-    }
-    catch (const std::exception & e) {
-        throw std::runtime_error(std::string("error in initModel ")+e.what());
-    }
-
-
 
 
 
@@ -182,43 +186,43 @@ Cplex::initModel(
 
 inline void
 Cplex::optimize() {
-    //std::cout<<"run opt\n";
-    try{
-        if(!cplex_.solve()) {
-            std::cout << "failed to optimize. " <<cplex_.getStatus() << std::endl;
-            std::stringstream ss;
-            ss<<"cplex failed with status: "<<cplex_.getStatus();
-            throw std::runtime_error(ss.str());
+    if(nVariables_>=1){
+        try{
+            if(!cplex_.solve()) {
+                std::cout << "failed to optimize. " <<cplex_.getStatus() << std::endl;
+                std::stringstream ss;
+                ss<<"cplex failed with status: "<<cplex_.getStatus();
+                throw std::runtime_error(ss.str());
+            }
         }
-    }
-    catch (IloException& e) {
-        const std::string msg = e.getMessage();
-        e.end();
-        throw std::runtime_error(std::string("error in optimize: ")+msg);
-    }
-    catch (const std::runtime_error & e) {
-        throw std::runtime_error(std::string("error in optimize ")+e.what());
-    }
-    catch (const std::exception & e) {
-        throw std::runtime_error(std::string("error in optimize ")+e.what());
-    }
+        catch (IloException& e) {
+            const std::string msg = e.getMessage();
+            e.end();
+            throw std::runtime_error(std::string("error in optimize: ")+msg);
+        }
+        catch (const std::runtime_error & e) {
+            throw std::runtime_error(std::string("error in optimize ")+e.what());
+        }
+        catch (const std::exception & e) {
+            throw std::runtime_error(std::string("error in optimize ")+e.what());
+        }
 
-    try{
-        cplex_.getValues(sol_, x_);
+        try{
+            cplex_.getValues(sol_, x_);
+        }
+        catch (IloException& e) {
+            const std::string msg = e.getMessage();
+            e.end();
+            throw std::runtime_error(std::string("error in get values: ")+msg);
+        }
+        catch (const std::runtime_error & e) {
+            throw std::runtime_error(std::string("error in optimize ")+e.what());
+        }
+        catch (const std::exception & e) {
+            throw std::runtime_error(std::string("error in optimize ")+e.what());
+        }
+        // std::cout<<"run opt done\n";
     }
-    catch (IloException& e) {
-        const std::string msg = e.getMessage();
-        e.end();
-        throw std::runtime_error(std::string("error in get values: ")+msg);
-    }
-    catch (const std::runtime_error & e) {
-        throw std::runtime_error(std::string("error in optimize ")+e.what());
-    }
-    catch (const std::exception & e) {
-        throw std::runtime_error(std::string("error in optimize ")+e.what());
-    }
-    // std::cout<<"run opt done\n";
-
     
 }
 
@@ -226,7 +230,12 @@ inline double
 Cplex::label(
     const size_t variableIndex
 ) const {
-    return sol_[variableIndex];
+    if(nVariables_>=1){
+        return sol_[variableIndex];
+    }
+    else{
+        return 0.0;
+    }
 }
 
 template<class VariableIndexIterator, class CoefficientIterator>
@@ -238,15 +247,16 @@ Cplex::addConstraint(
     const double lowerBound,
     const double upperBound
 ) {
+    if(nVariables_>=1){
+        IloRange constraint(env_, lowerBound, upperBound);
+        while(viBegin!=viEnd){
 
-    IloRange constraint(env_, lowerBound, upperBound);
-    while(viBegin!=viEnd){
-
-        constraint.setLinearCoef(x_[*viBegin], *coefficient);
-        ++viBegin;
-        ++coefficient;
+            constraint.setLinearCoef(x_[*viBegin], *coefficient);
+            ++viBegin;
+            ++coefficient;
+        }
+        model_.add(constraint);
     }
-    model_.add(constraint);
 
 }
 
@@ -255,25 +265,25 @@ inline void
 Cplex::setStart(
     Iterator valueIterator
 ) {
-    //std::cout<<"set start for n var "<<nVariables_<<"\n";
-    //IloNumArray startVal(env_, nVariables_);
-    for (auto i = 0; i < nVariables_; ++i) {
-        sol_[i] = *valueIterator;
-        //std::cout<<i<<" x_ "<<x_[i]<<"\n";
-        ++valueIterator;
-    }
-    try{
-        cplex_.addMIPStart(x_, sol_);
-    }
-    catch (IloException& e) {
-       std::cout<<"aaa error "<<e.getMessage()<<"\n";
-       e.end();
-    }
-    catch (const std::runtime_error & e) {
-       std::cout<<"bbb error "<<e.what()<<"\n";
-    }
-    catch (const std::exception & e) {
-       std::cout<<"ccc error "<<e.what()<<"\n";
+    if(nVariables_>=1){
+        for (auto i = 0; i < nVariables_; ++i) {
+            sol_[i] = *valueIterator;
+            //std::cout<<i<<" x_ "<<x_[i]<<"\n";
+            ++valueIterator;
+        }
+        try{
+            cplex_.addMIPStart(x_, sol_);
+        }
+        catch (IloException& e) {
+           std::cout<<"aaa error "<<e.getMessage()<<"\n";
+           e.end();
+        }
+        catch (const std::runtime_error & e) {
+           std::cout<<"bbb error "<<e.what()<<"\n";
+        }
+        catch (const std::exception & e) {
+           std::cout<<"ccc error "<<e.what()<<"\n";
+        }
     }
     
 }
