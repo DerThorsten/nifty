@@ -255,8 +255,6 @@ struct ComputeRag< GridRagSliced<ChunkedLabels<3, LABEL_TYPE>> > {
         const auto labelsProxy = rag.labelsProxy();
         const auto numberOfLabels = labelsProxy.numberOfLabels();
         const auto & labels = labelsProxy.labels(); 
-
-        std::cout << "Computing Chunked RAG" << std::endl;
         
         rag.assign(numberOfLabels);
 
@@ -314,32 +312,70 @@ struct ComputeRag< GridRagSliced<ChunkedLabels<3, LABEL_TYPE>> > {
                 labels.checkoutSubarray(next_begin, next_slice);
             }
 
-            // TODO in parallel!
-            for(size_t y = 0; y < y_max; y++) {
-                for(size_t x = 0; x < x_max; x++) {
-                    
-                    const auto lu = this_slice(0,y,x);
-                    
-                    if(x < x_max-1) {
-                        const auto lv = this_slice(0,y,x+1);
-                        if(lu != lv)
-                            rag.insertEdge(lu,lv);
-                    }
-                    
-                    if(y < y_max-1) {
-                        const auto lv = this_slice(0,y+1,x);
-                        if(lu != lv)
-                            rag.insertEdge(lu,lv);
-                    }
+            // single core
+            if(pOpts.getActualNumThreads()<=1){
+            
+                for(size_t y = 0; y < y_max; y++) {
+                    for(size_t x = 0; x < x_max; x++) {
+                        
+                        const auto lu = this_slice(0,y,x);
+                        
+                        if(x < x_max-1) {
+                            const auto lv = this_slice(0,y,x+1);
+                            if(lu != lv)
+                                rag.insertEdge(lu,lv);
+                        }
+                        
+                        if(y < y_max-1) {
+                            const auto lv = this_slice(0,y+1,x);
+                            if(lu != lv)
+                                rag.insertEdge(lu,lv);
+                        }
 
-                    if(z < z_max-1) {
-                        const auto lv = next_slice(0,y,x);
-                        if(lu != lv)
-                            rag.insertEdge(lu,lv);
+                        if(z < z_max-1) {
+                            const auto lv = next_slice(0,y,x);
+                            if(lu != lv)
+                                rag.insertEdge(lu,lv);
+                        }
                     }
                 }
             }
 
+            // FIXME this is slower AND does not produce the correct result
+            // multi core, locked
+            else if(!settings.lockFreeAlg){
+                std::mutex mutexArray[5000];
+                std::mutex edgeMutex;
+                nifty::parallel::ThreadPool threadpool(pOpts);
+                nifty::parallel::parallel_foreach(threadpool, y_max,
+                [&](int tid, int y){
+
+                    for(size_t x=0; x<x_max; ++x){
+                        
+                        const auto lu = this_slice(0,y,x);
+                        
+                        if(x+1<x_max){
+                            const auto lv = this_slice(0,y,x+1);
+                            if(lu != lv){
+                                rag.inserEdgeWithMutex(lu,lv, edgeMutex, mutexArray, 5000);
+                            }
+                        }
+                        if(y+1<y_max){
+                            const auto lv = this_slice(0,y+1,x);
+                            if(lu != lv){
+                                rag.inserEdgeWithMutex(lu,lv, edgeMutex, mutexArray, 5000);
+                            }
+                        }
+                        if(z+1<z_max){
+                            const auto lv = next_slice(0, y, x);
+                            if(lu != lv){
+                                rag.inserEdgeWithMutex(lu,lv, edgeMutex, mutexArray, 5000);
+                            }
+                        }
+                    }
+
+                });
+            }
         }
     }
 

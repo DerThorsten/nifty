@@ -136,7 +136,7 @@ namespace graph{
 
         const auto labelsProxy = graph.labelsProxy();
         const auto & shape = labelsProxy.shape();
-        const auto labels = labelsProxy.labels(); 
+        const auto & labels = labelsProxy.labels(); 
         
         const auto numberOfPasses =  std::max(edgeMap.numberOfPasses(),nodeMap.numberOfPasses());
         for(size_t p=0; p<numberOfPasses; ++p){
@@ -166,19 +166,91 @@ namespace graph{
     }
     
     
-    /*
     template< size_t DIM, class LABELS_TYPE, class T, class EDGE_MAP, class NODE_MAP>
     void gridRagAccumulateFeatures(
         const ChunkedLabelsGridRagSliced<LABELS_TYPE> & graph,
-        const vigra::ChunkedArrayHDF5<DIM, T> & data,
+        // FIXME have to extremly cautious when giving this data as mArray, because of different axis order than vigra...
+        // maybe use vigra multi arrays instead ?!
+        const  marray::View<T> & data,
         EDGE_MAP & edgeMap,
-        NODE_MAP &  nodeMap
+        NODE_MAP &  nodeMap,
+        const size_t z0
     ){
+        const auto labelsProxy = graph.labelsProxy();
+        const auto & shape = labelsProxy.shape();
+        const auto & labels = labelsProxy.labels();
+
+        // check that the data covers a whole slice in xy
+        // need to take care of different axis ordering...
+        NIFTY_CHECK_OP(data.shape(0),==,shape(2), "Shape along x does not agree")
+        NIFTY_CHECK_OP(data.shape(1),==,shape(1), "Shape along y does not agree")
+        NIFTY_CHECK_OP(z0+data.shape(2),<,shape(0), "Z offset is too large")
 
 
+        vigra::MultiArray<3,LABELS_TYPE> this_slice(1,shape(1),shape(2));
+        vigra::MultiArray<3,LABELS_TYPE> next_slice(1,shape(1),shape(2));
+        const auto numberOfPasses =  std::max(edgeMap.numberOfPasses(),nodeMap.numberOfPasses());
+        for(size_t p=0; p<numberOfPasses; ++p){
+            // start path p
+            edgeMap.startPass(p);
+            nodeMap.startPass(p);
+
+            for( size_t z = 0; z < data.shape(2); z++ )
+            {
+                vigra::Shape3 this_begin(z+z0,0,0);
+                labels.checkoutSubarray(this_begin, this_slice);
+
+                if( z < data.shape(2) - 1) {
+                    vigra::Shape3 next_begin(z+z0+1,0,0);
+                    labels.checkoutSubarray(next_begin, next_slice);
+                }
+                
+                // TODO parallelize
+                for(size_t y = 0; y < shape(1); y++) {
+                    for(size_t x = 0; x < shape(2); x++) {
+                        
+                        const auto lU = this_slice(0,y,x);
+                        const auto dU = data(x,y,z);
+                        nodeMap.accumulate(lU, dU);
+                        
+                        if( x + 1 < shape(2) ) {
+                            const auto lV = this_slice(0,y,x+1);
+                            const auto dV = data(x+1,y,z);
+                            if( lU != lV) {
+                                const auto e = graph.findEdge(lU, lV);
+                                edgeMap.accumulate(e, dU);
+                                edgeMap.accumulate(e, dV);
+                            }
+                        }
+                        
+                        if( y + 1 < shape(1) ) {
+                            const auto lV = this_slice(0,y+1,x);
+                            const auto dV = data(x,y+1,z);
+                            if( lU != lV) {
+                                const auto e = graph.findEdge(lU, lV);
+                                edgeMap.accumulate(e, dU);
+                                edgeMap.accumulate(e, dV);
+                            }
+                        }
+                        
+                        if( z + 1 < data.shape(2) ) {
+                            const auto lV = next_slice(0,y,x);
+                            const auto dV = data(x,y,z+1);
+                            if( lU != lV) {
+                                const auto e = graph.findEdge(lU, lV);
+                                edgeMap.accumulate(e, dU);
+                                edgeMap.accumulate(e, dV);
+                            }
+                        }
+
+                    }
+                }
+
+            }
+        }
     }
-    */
 
+    
     template<size_t DIM, class LABELS_TYPE, class LABELS, class NODE_MAP>
     void gridRagAccumulateLabels(
         const ExplicitLabelsGridRag<DIM, LABELS_TYPE> & graph,
