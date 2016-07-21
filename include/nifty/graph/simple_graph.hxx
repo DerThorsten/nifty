@@ -197,7 +197,7 @@ protected:
         const auto fres =  nodes_[u].find(NodeAdjacency(v));
         const auto foundThisEdge = (fres != nodes_[u].end());
         if(foundThisEdge){
-            edge = fres->edge;
+            edge = fres->edge();
         }
         uMtx.unlock();
         if(foundThisEdge){
