@@ -88,6 +88,8 @@ public:
     :   settings_(settings),
         labelsProxy_(labelsProxy)
     {
+        // make sure that we have chunks of shape (1,Y,X)
+        NIFTY_CHECK_OP(labelsProxy.labels().chunkShape(0),==,1,"Z chunks have to be of size 1 for sliced rag")
         detail_rag::ComputeRag< SelfType >::computeRag(*this, settings_);
     }
     

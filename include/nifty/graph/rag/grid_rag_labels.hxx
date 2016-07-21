@@ -109,13 +109,11 @@ public:
     }
 
 
-    // FIXME this should be private, but need to expose it for now due
-    // to buggy references to ChunkedArrayHDF5
-    ViewType labels_;
 private:
     std::array<int64_t, DIM> shape_;
     std::string label_file_;
     std::string label_key_;
+    ViewType labels_;
 
 };
 

@@ -95,7 +95,7 @@ struct ComputeRag< GridRag<3,  ExplicitLabels<3, LABEL_TYPE> > > {
 
         const auto labelsProxy = rag.labelsProxy();
         const auto numberOfLabels = labelsProxy.numberOfLabels();
-        const auto labels = labelsProxy.labels(); 
+        const auto & labels = labelsProxy.labels(); 
         
         
         rag.assign(numberOfLabels);
@@ -254,103 +254,93 @@ struct ComputeRag< GridRagSliced<ChunkedLabels<3, LABEL_TYPE>> > {
 
         const auto labelsProxy = rag.labelsProxy();
         const auto numberOfLabels = labelsProxy.numberOfLabels();
-        // FIXME reference to ChunkedArrayHDF5 is broken
-        const auto labels = labelsProxy.labels(); 
+        const auto & labels = labelsProxy.labels(); 
 
         std::cout << "Computing Chunked RAG" << std::endl;
-        std::cout << numberOfLabels << std::endl;
-        std::cout << *std::max_element(labelsProxy.labels_.cbegin(), labelsProxy.labels_.cend())+1 << std::endl;
         
         rag.assign(numberOfLabels);
-
-        // Loop over the chunks of the label volume and extract the edges
-        // FIXME We need an overlap of 1 in x / y blocks to make sure that we hit all edges (maybe should jsut cache these before going to the next chunk)
-        // TODO parallelize (over z axis or inner ?)
-        // TODO benchmark and optimize access pattern
-        
-        // access pattern:
-        // We assumes 2d like chunks, e.g. (512,512,1) or (1024,1024,1)
-        // we then loop over z and check out the chunks in z and z + 1, looping over them to find all labels
 
         size_t z_max = labels.shape(0);
         size_t y_max = labels.shape(1);
         size_t x_max = labels.shape(2);
 
-        //std::cout << x_max << std::endl;
-        //std::cout << y_max << std::endl;
-        //std::cout << z_max << std::endl;
+        //// naive: loop over the array
+        //for(size_t z = 0; z < z_max; z++) {
+        //    for( size_t y = 0; y < y_max; y++) {
+        //        for( size_t x = 0; x < x_max; x++) {
+        //            
+        //            vigra::Shape3 index(z,y,x);
+        //            const auto lu = labels.getItem(index);
+        //            
+        //            if(x+1<x_max) {
+        //                vigra::Shape3 next_index(z,y,x+1);
+        //                const auto lv = labels.getItem(next_index);
+        //                if( lu != lv )
+        //                    rag.insertEdge(lu,lv);
+        //            }
+        //            if(y+1<x_max) {
+        //                vigra::Shape3 next_index(z,y+1,x);
+        //                const auto lv = labels.getItem(next_index);
+        //                if( lu != lv )
+        //                    rag.insertEdge(lu,lv);
+        //            }
+        //            if(z+1<z_max) {
+        //                vigra::Shape3 next_index(z+1,y,x);
+        //                const auto lv = labels.getItem(next_index);
+        //                if( lu != lv )
+        //                    rag.insertEdge(lu,lv);
+        //            }
+        //        }
+        //    }
+        //}
 
-        //std::cout << labels.chunkShape(0) << std::endl;
-        //std::cout << labels.chunkShape(1) << std::endl;
-        //std::cout << labels.chunkShape(2) << std::endl;
+        // TODO parallelize this over the slice
+        // check out the whole slice and then loop over the slice
 
-        for(size_t z = 0; z < z_max - 1; z++) {
+        vigra::Shape3 slice_shape(1, y_max, x_max);
+
+        vigra::MultiArray<3,LABEL_TYPE> this_slice(slice_shape);
+        vigra::MultiArray<3,LABEL_TYPE> next_slice(slice_shape);
+
+        for(size_t z = 0; z < z_max; z++) {
             
-            // chunks in this slice
-            vigra::Shape3 roi_s(z,0,0), roi_e(z+1,y_max,x_max);
-            //auto chunk = labels.chunk_begin(roi_s,roi_e), end = labels.chunk_end(roi_s,roi_e);
-            auto chunk = labelsProxy.labels_.chunk_begin(roi_s,roi_e), end = labelsProxy.labels_.chunk_end(roi_s,roi_e);
-            
-            // chunks in the next slice
-            vigra::Shape3 roi_s_up(z+1,0,0), roi_e_up(z+2,y_max,x_max);
-            //auto chunk_up = labels.chunk_begin(roi_s_up,roi_e_up);
-            auto chunk_up = labelsProxy.labels_.chunk_begin(roi_s_up,roi_e_up);
+            // checkout this sloce
+            vigra::Shape3 slice_begin(z, 0, 0);
+            labels.checkoutSubarray(slice_begin, this_slice);
 
-            for(; chunk != end; ++chunk, ++chunk_up) {
-                
-                vigra::MultiArrayView<3, LABEL_TYPE> chunk_view = *chunk;
-                vigra::MultiArrayView<3, LABEL_TYPE> chunk_view_up = *chunk_up;
-                
-                for(size_t y=0; y<chunk_view.shape(1); ++y) {
-                    for(size_t x=0; x<chunk_view.shape(2); ++x) {
+            if(z < z_max - 1) {
+                // checkout next slice
+                vigra::Shape3 next_begin(z+1, 0, 0);
+                labels.checkoutSubarray(next_begin, next_slice);
+            }
+
+            // TODO in parallel!
+            for(size_t y = 0; y < y_max; y++) {
+                for(size_t x = 0; x < x_max; x++) {
                     
-                        const auto lu = chunk_view(0,y,x);
-                        if(x+1<labels.shape(0)){
-                            const auto lv = chunk_view(0, y, x+1);
-                            if(lu != lv)
-                                rag.insertEdge(lu,lv);
-                        }
-                        if(y+1<chunk_view.shape(1)){
-                            const auto lv = chunk_view(0, y+1, x);
-                            if(lu != lv)
-                                rag.insertEdge(lu,lv);
-                        }
-                        const auto lv = chunk_view_up(0, y, x);
+                    const auto lu = this_slice(0,y,x);
+                    
+                    if(x < x_max-1) {
+                        const auto lv = this_slice(0,y,x+1);
+                        if(lu != lv)
+                            rag.insertEdge(lu,lv);
+                    }
+                    
+                    if(y < y_max-1) {
+                        const auto lv = this_slice(0,y+1,x);
+                        if(lu != lv)
+                            rag.insertEdge(lu,lv);
+                    }
+
+                    if(z < z_max-1) {
+                        const auto lv = next_slice(0,y,x);
                         if(lu != lv)
                             rag.insertEdge(lu,lv);
                     }
                 }
             }
+
         }
-        // chunks in the last slice
-        vigra::Shape3 roi_s(z_max-1,0,0), roi_e(z_max,y_max,x_max);
-        //auto chunk = labels.chunk_begin(roi_s,roi_e), end = labels.chunk_end(roi_s,roi_e);
-        auto chunk = labelsProxy.labels_.chunk_begin(roi_s,roi_e), end = labelsProxy.labels_.chunk_end(roi_s,roi_e);
-            
-        for(; chunk != end; ++chunk) {
-            
-            vigra::MultiArrayView<3, LABEL_TYPE> chunk_view = *chunk;
-            
-            for(size_t y=0; y<chunk_view.shape(1); ++y) {
-                for(size_t x=0; x<chunk_view.shape(2); ++x) {
-                
-                    const auto lu = chunk_view(0, y, x);
-                    if(x+1<labels.shape(0)){
-                        const auto lv = chunk_view(y, x+1);
-                        if(lu != lv){
-                            rag.insertEdge(lu,lv);
-                        }
-                    }
-                    if(y+1<chunk_view.shape(1)){
-                        const auto lv = chunk_view(y+1, x);
-                        if(lu != lv){
-                            rag.insertEdge(lu,lv);
-                        }
-                    }
-                }
-            }
-        }
-        
     }
 
 
