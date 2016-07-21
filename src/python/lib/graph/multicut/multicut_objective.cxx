@@ -25,7 +25,7 @@ namespace graph{
             .def("evalNodeLabels",[](const ObjectiveType & objective,  nifty::marray::PyView<uint64_t> array){
                 const auto & g = objective.graph();
                 NIFTY_CHECK_OP(array.dimension(),==,1,"wrong dimensions");
-                NIFTY_CHECK_OP(array.shape(0),==,g.numberOfNodes(),"wrong shape");
+                NIFTY_CHECK_OP(array.shape(0),==,g.nodeIdUpperBound()+1,"wrong shape");
 
 
                 double sum = static_cast<double>(0.0);
@@ -46,7 +46,7 @@ namespace graph{
         multicutModule.def("multicutObjective",
             [](const Graph & graph,  nifty::marray::PyView<double> array){
                 NIFTY_CHECK_OP(array.dimension(),==,1,"wrong dimensions");
-                NIFTY_CHECK_OP(array.shape(0),==,graph.numberOfEdges(),"wrong shape");
+                NIFTY_CHECK_OP(array.shape(0),==,graph.edgeIdUpperBound()+1,"wrong shape");
                 
                 auto obj = new ObjectiveType(graph);
                 auto & weights = obj->weights();

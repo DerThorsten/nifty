@@ -67,9 +67,10 @@ namespace graph{
             const std::vector<NODE_MAP *> & proposals,
             NODE_MAP * result 
         ){
-            // reset the ufd
+            //std::cout<<"reset ufd\n";
             ufd_.reset();
 
+            //std::cout<<"build cc\n";
             // build the connected components
             for(const auto edge : graph_.edges()){
                 // merge two nodes iff all proposals agree to merge
@@ -88,8 +89,11 @@ namespace graph{
                 if(merge)
                     ufd_.merge(u, v);
             }
+
+            //std::cout<<"fuse impl\n";
             this->fuseImpl(result);
 
+            //std::cout<<"fuse impl done\n";
             // evaluate if the result
             // is indeed better than each proposal
             // Iff the result is not better we
@@ -117,6 +121,7 @@ namespace graph{
         void fuseImpl(NODE_MAP * result){
 
             // dense relabeling
+            //std::cout<<"make dense\n";
             std::unordered_set<uint64_t> relabelingSet;
             for(const auto node: graph_.nodes()){
                 relabelingSet.insert(ufd_.find(node));
@@ -128,6 +133,7 @@ namespace graph{
             }
             const auto numberOfNodes = relabelingSet.size();
             
+            //std::cout<<"fm graph\n";
             // build the graph
             FmGraph fmGraph(numberOfNodes);
             
@@ -143,7 +149,7 @@ namespace graph{
                     fmGraph.insertEdge(lu, lv);
                 }
             }
-            
+            //std::cout<<"fm obj\n";
             // setup objective
             FmObjective fmObjective(fmGraph);
             auto & fmWeights = fmObjective.weights();
@@ -160,16 +166,17 @@ namespace graph{
                 }
             }
 
-            // solve that thing
-            
-            
+            //std::cout<<"fm solve\n";
+            // solve that thin
             auto solverPtr = settings_.mcFactory->createRawPtr(fmObjective);
             FmNodeLabels fmLabels(fmGraph);
             FmEmptyVisitor fmVisitor;
+            //std::cout<<"opt\n";
             solverPtr->optimize(fmLabels, &fmVisitor);
+            //std::cout<<"del ptr\n";
             delete solverPtr;
 
-            
+            //std::cout<<"fm get res\n";
             for(auto edge : graph_.edges()){
                 const auto uv = graph_.uv(edge);
                 const auto u = uv.first;
