@@ -72,6 +72,7 @@ template<size_t DIM, class LABEL_TYPE>
 class ChunkedLabels{
 public:
 
+    // TODO try to use ChunkedArray here instead, s. t. we can use all the classes derived from it
     typedef vigra::ChunkedArrayHDF5<DIM, LABEL_TYPE> ViewType;
 
     // enable setting the chunk size by overloading the constuctor

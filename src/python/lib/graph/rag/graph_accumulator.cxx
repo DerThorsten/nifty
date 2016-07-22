@@ -4,6 +4,7 @@
 #include "nifty/python/converter.hxx"
 
 #include "nifty/graph/rag/grid_rag_features.hxx"
+#include "vigra/multi_array_chunked_hdf5.hxx"
 
 
 
@@ -43,6 +44,46 @@ namespace graph{
             [](
                 const RAG & rag,
                 nifty::marray::PyView<T, DATA_DIM> labels
+            ){  
+                nifty::marray::PyView<T> nodeLabels({rag.numberOfNodes()});
+                {
+                    py::gil_scoped_release allowThreads;
+                    gridRagAccumulateLabels(rag, labels, nodeLabels);
+                }
+                return nodeLabels;
+
+            },
+            py::arg("graph"),py::arg("labels")
+        );
+    }
+    
+    template<class RAG,class T, class EDGE_MAP, class NODE_MAP>
+    void exportGridRagSlicedAccumulateFeaturesT(py::module & ragModule){
+
+        ragModule.def("gridRagSlicedAccumulateFeatures",
+            [](
+                const RAG & rag,
+                nifty::marray::PyView<T, 3> data,
+                EDGE_MAP & edgeMap,
+                NODE_MAP & nodeMap,
+                size_t z0
+            ){  
+                {
+                    py::gil_scoped_release allowThreads;
+                    gridRagAccumulateFeatures(rag, data, edgeMap, nodeMap, z0);
+                }
+            },
+            py::arg("graph"),py::arg("data"),py::arg("edgeMap"),py::arg("nodeMap"),py::arg("z0")
+        );
+    }
+
+    template<class RAG,class T>
+    void exportGridRagSlicedAccumulateLabelsT(py::module & ragModule){
+
+        ragModule.def("gridRagSlicedAccumulateLabels",
+            [](
+                const RAG & rag,
+                vigra::ChunkedArrayHDF5<3,T> labels
             ){  
                 nifty::marray::PyView<T> nodeLabels({rag.numberOfNodes()});
                 {
@@ -109,9 +150,14 @@ namespace graph{
             exportGridRagAccumulateFeaturesT<ExplicitLabelsGridRag2D, float, 2, EdgeMapType, NodeMapType>(ragModule);
             exportGridRagAccumulateFeaturesT<ExplicitLabelsGridRag3D, float, 3, EdgeMapType, NodeMapType>(ragModule);
 
+            typedef ChunkedLabelsGridRagSliced<uint32_t> ChunkedLabelsGridRagSliced;
+            exportGridRagSlicedAccumulateFeaturesT<ChunkedLabelsGridRagSliced, float, EdgeMapType, NodeMapType>(ragModule);
+
             // accumulate labels
             exportGridRagAccumulateLabelsT<ExplicitLabelsGridRag2D, uint32_t, 2>(ragModule);
             exportGridRagAccumulateLabelsT<ExplicitLabelsGridRag3D, uint32_t, 3>(ragModule);
+            
+            exportGridRagSlicedAccumulateLabelsT<ChunkedLabelsGridRagSliced, uint32_t>(ragModule);
         }
     }
 

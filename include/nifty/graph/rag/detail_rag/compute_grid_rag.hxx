@@ -262,47 +262,16 @@ struct ComputeRag< GridRagSliced<ChunkedLabels<3, LABEL_TYPE>> > {
         size_t y_max = labels.shape(1);
         size_t x_max = labels.shape(2);
 
-        //// naive: loop over the array
-        //for(size_t z = 0; z < z_max; z++) {
-        //    for( size_t y = 0; y < y_max; y++) {
-        //        for( size_t x = 0; x < x_max; x++) {
-        //            
-        //            vigra::Shape3 index(z,y,x);
-        //            const auto lu = labels.getItem(index);
-        //            
-        //            if(x+1<x_max) {
-        //                vigra::Shape3 next_index(z,y,x+1);
-        //                const auto lv = labels.getItem(next_index);
-        //                if( lu != lv )
-        //                    rag.insertEdge(lu,lv);
-        //            }
-        //            if(y+1<x_max) {
-        //                vigra::Shape3 next_index(z,y+1,x);
-        //                const auto lv = labels.getItem(next_index);
-        //                if( lu != lv )
-        //                    rag.insertEdge(lu,lv);
-        //            }
-        //            if(z+1<z_max) {
-        //                vigra::Shape3 next_index(z+1,y,x);
-        //                const auto lv = labels.getItem(next_index);
-        //                if( lu != lv )
-        //                    rag.insertEdge(lu,lv);
-        //            }
-        //        }
-        //    }
-        //}
-
-        // TODO parallelize this over the slice
-        // check out the whole slice and then loop over the slice
-
         vigra::Shape3 slice_shape(1, y_max, x_max);
 
         vigra::MultiArray<3,LABEL_TYPE> this_slice(slice_shape);
         vigra::MultiArray<3,LABEL_TYPE> next_slice(slice_shape);
 
+        // TODO parallel versions of the code
+
         for(size_t z = 0; z < z_max; z++) {
             
-            // checkout this sloce
+            // checkout this slice
             vigra::Shape3 slice_begin(z, 0, 0);
             labels.checkoutSubarray(slice_begin, this_slice);
 
@@ -343,6 +312,7 @@ struct ComputeRag< GridRagSliced<ChunkedLabels<3, LABEL_TYPE>> > {
 
             // FIXME this is slower AND does not produce the correct result
             // multi core, locked
+            // Thorstens idea: first iterate over all the slices in parallel, extracting only in slice edges, then extract inter slice edges, this has the advantage that we can also extract a dividing index between xy and z edges 
             else if(!settings.lockFreeAlg){
                 std::mutex mutexArray[5000];
                 std::mutex edgeMutex;
