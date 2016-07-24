@@ -152,7 +152,6 @@ namespace graph{
                 this->optimizeSerial(nodeLabels, visitor);
             }
         }
-        std::cout<<"DONE\n";
     }
 
 
@@ -253,22 +252,16 @@ namespace graph{
                         ++pSize;
                     }
 
-                    std::cout<<"pzie "<<pSize<<"\n";
                     nifty::parallel::parallel_foreach(threadPool_, 
                                                       pSize,
                     [&](const int threadId, const int ii){
 
-                        //mtx.lock();
-                        NIFTY_CHECK_OP(threadId,>=,0,"");
-                        NIFTY_CHECK_OP(threadId,<,fusionMoves_.size(),"");
-                        //std::cout<<" ii "<<ii<<" "<<pSize<<"\n";
+                
                         auto i = ii*nFuse;
 
                         std::vector<const NodeLabels*> toFuse;
                         for(size_t j=0; j<nFuse; ++j){
                             auto k = i + j < proposals.size() ? i+j : i+j - proposals.size();
-                            NIFTY_CHECK_OP(k,>=,0,"");
-                            NIFTY_CHECK_OP(k,<,proposals.size(),"");
                             toFuse.push_back(&proposals[k]);
                         }
 
@@ -276,19 +269,8 @@ namespace graph{
                         NodeLabels res(graph_);
                         auto & fm = *(fusionMoves_[threadId]);
 
-                        // actual fuse
-                        mtx.lock();
-                        std::cout<<"do fuse  "<< threadId<<  "\n";
-                        mtx.unlock();
-
-
-                        NIFTY_CHECK_OP(toFuse.size(),>=,2,"");
                         fm.fuse(toFuse, &res);
-                        
-                        mtx.lock();
-                        std::cout<<"do fuse done"<< threadId<<  "\n";
-                        mtx.unlock();
-                        // OLD LOCK POS mtx.lock();
+                
                         mtx.lock();
                         proposals2.push_back(res);
                         mtx.unlock();

@@ -44,7 +44,7 @@ namespace graph{
         
         mcBase
             .def(py::init<>())
-            .def("optimizeWithVisitor", 
+            .def("optimize", 
                 [](
                     McBase * self,
                     McVisitorBase * visitor,
@@ -88,7 +88,7 @@ namespace graph{
                         throw std::runtime_error("input node labels have wrong shape");
                     }
                 },
-                py::arg("visitor"),
+                py::arg_t< McVisitorBase * >("visitor", nullptr ),
                 py::arg_t< py::array_t<uint64_t> >("nodeLabels", py::list() )
             )
             ;
