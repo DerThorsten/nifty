@@ -108,7 +108,6 @@ namespace graph{
         pgens_.resize(nt);
         fusionMoves_.resize(nt);
         solBufferIn_.resize(nt);
-        solBufferOut_.resize(nt);
 
 
         nifty::parallel::parallel_foreach(threadPool_,nt,
@@ -117,7 +116,6 @@ namespace graph{
                 pgens_[i] = new ProposalGen(objective_, settings_.proposalGenSettings, i);
                 fusionMoves_[i] = new FusionMoveType(objective_, settings_.fusionMoveSettings);
                 solBufferIn_[i] = new NodeLabels(graph_);
-                solBufferOut_[i] = new NodeLabels(graph_);
         });
 
 
@@ -132,7 +130,6 @@ namespace graph{
             delete pgens_[i];
             delete fusionMoves_[i];
             delete solBufferIn_[i];
-            delete solBufferOut_[i];
         }
     }
 
@@ -141,12 +138,21 @@ namespace graph{
     optimize(
         NodeLabels & nodeLabels,  VisitorBase * visitor
     ){
-        if(parallelOptions_.getNumThreads() > 0){
-            this->optimizeParallel(nodeLabels, visitor);
+        if(graph_.numberOfEdges()==0){
+            if(visitor!=nullptr){
+                visitor->begin(this);
+                visitor->end(this);
+            }
         }
         else{
-            this->optimizeSerial(nodeLabels, visitor);
+            if(parallelOptions_.getNumThreads() > 0){
+                this->optimizeParallel(nodeLabels, visitor);
+            }
+            else{
+                this->optimizeSerial(nodeLabels, visitor);
+            }
         }
+        std::cout<<"DONE\n";
     }
 
 
@@ -247,6 +253,7 @@ namespace graph{
                         ++pSize;
                     }
 
+                    std::cout<<"pzie "<<pSize<<"\n";
                     nifty::parallel::parallel_foreach(threadPool_, 
                                                       pSize,
                     [&](const int threadId, const int ii){
@@ -257,7 +264,7 @@ namespace graph{
                         //std::cout<<" ii "<<ii<<" "<<pSize<<"\n";
                         auto i = ii*nFuse;
 
-                        std::vector<NodeLabels*> toFuse;
+                        std::vector<const NodeLabels*> toFuse;
                         for(size_t j=0; j<nFuse; ++j){
                             auto k = i + j < proposals.size() ? i+j : i+j - proposals.size();
                             NIFTY_CHECK_OP(k,>=,0,"");
@@ -270,14 +277,17 @@ namespace graph{
                         auto & fm = *(fusionMoves_[threadId]);
 
                         // actual fuse
-                        //mtx.lock();
-                        //std::cout<<"do fuse\n";
-                        
+                        mtx.lock();
+                        std::cout<<"do fuse  "<< threadId<<  "\n";
+                        mtx.unlock();
+
+
                         NIFTY_CHECK_OP(toFuse.size(),>=,2,"");
                         fm.fuse(toFuse, &res);
                         
-                        // std::cout<<"do fuse done\n";
-                        //mtx.unlock();
+                        mtx.lock();
+                        std::cout<<"do fuse done"<< threadId<<  "\n";
+                        mtx.unlock();
                         // OLD LOCK POS mtx.lock();
                         mtx.lock();
                         proposals2.push_back(res);

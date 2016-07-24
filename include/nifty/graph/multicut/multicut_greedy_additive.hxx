@@ -227,32 +227,35 @@ namespace graph{
     optimize(
         NodeLabels & nodeLabels,  VisitorBase * visitor
     ){
+        
+
         if(visitor!=nullptr){
             visitor->addLogNames({"#nodes","topWeight"});
             visitor->begin(this);
         }
+        if(graph_.numberOfEdges()>0){
+            currentBest_ = & nodeLabels;
+            while(!callback_.done() ){
+                    
+                // get the edge
+                auto edgeToContract = callback_.edgeToContract();
 
-        currentBest_ = & nodeLabels;
-        while(!callback_.done() ){
-                
-            // get the edge
-            auto edgeToContract = callback_.edgeToContract();
+                // contract it
+                edgeContractionGraph_.contractEdge(edgeToContract);
 
-            // contract it
-            edgeContractionGraph_.contractEdge(edgeToContract);
-
-        
-            if(visitor!=nullptr){
-               visitor->setLogValue(0, edgeContractionGraph_.numberOfNodes());
-               visitor->setLogValue(1, callback_.queue().topPriority());
-               if(!visitor->visit(this)){
-                   break;
-               }
+            
+                if(visitor!=nullptr){
+                   visitor->setLogValue(0, edgeContractionGraph_.numberOfNodes());
+                   visitor->setLogValue(1, callback_.queue().topPriority());
+                   if(!visitor->visit(this)){
+                       break;
+                   }
+                }
             }
-        }
-        auto & ufd  = edgeContractionGraph_.ufd();
-        for(auto node : graph_.nodes()){
-            nodeLabels[node] = ufd.find(node);
+            auto & ufd  = edgeContractionGraph_.ufd();
+            for(auto node : graph_.nodes()){
+                nodeLabels[node] = ufd.find(node);
+            }
         }
         if(visitor!=nullptr)
             visitor->end(this);

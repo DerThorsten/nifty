@@ -54,24 +54,23 @@ namespace graph{
 
         template<class NODE_MAP>
         void fuse(
-            std::initializer_list<NODE_MAP *> proposals,
+            std::initializer_list<const NODE_MAP *> proposals,
             NODE_MAP * result
         ){
-            std::vector<NODE_MAP *> p(proposals);
+            std::vector<const NODE_MAP *> p(proposals);
             fuse(p, result);
         }
 
 
         template<class NODE_MAP >
         void fuse(
-            const std::vector<NODE_MAP *> & proposals,
+            const std::vector< const NODE_MAP *> & proposals,
             NODE_MAP * result 
         ){
             //std::cout<<"reset ufd\n";
             ufd_.reset();
 
-            //std::cout<<"build cc\n";
-            // build the connected components
+
             for(const auto edge : graph_.edges()){
                 // merge two nodes iff all proposals agree to merge
                 bool merge = true;
@@ -149,48 +148,62 @@ namespace graph{
                     fmGraph.insertEdge(lu, lv);
                 }
             }
-            //std::cout<<"fm obj\n";
-            // setup objective
-            FmObjective fmObjective(fmGraph);
-            auto & fmWeights = fmObjective.weights();
-            for(auto edge : graph_.edges()){
-                const auto uv = graph_.uv(edge);
-                const auto u = uv.first;
-                const auto v = uv.second;
-                const auto lu = nodeToDense_[ufd_.find(u)];
-                const auto lv = nodeToDense_[ufd_.find(v)];
-                if(lu != lv){
-                    auto e = fmGraph.findEdge(lu, lv);
-                    NIFTY_CHECK_OP(e,!=,-1,"");
-                    fmWeights[e] += objective_.weights()[edge];
+
+            const auto fmEdges = fmGraph.numberOfEdges();
+
+            if(fmEdges == 0){
+                for(const auto node : graph_.nodes()){
+                    result->operator[](node)  = ufd_.find(node);
                 }
             }
+            else{
 
-            //std::cout<<"fm solve\n";
-            // solve that thin
-            auto solverPtr = settings_.mcFactory->createRawPtr(fmObjective);
-            FmNodeLabels fmLabels(fmGraph);
-            FmEmptyVisitor fmVisitor;
-            //std::cout<<"opt\n";
-            solverPtr->optimize(fmLabels, &fmVisitor);
-            //std::cout<<"del ptr\n";
-            delete solverPtr;
+                NIFTY_CHECK_OP(fmGraph.numberOfEdges(),>,0,"");
 
-            //std::cout<<"fm get res\n";
-            for(auto edge : graph_.edges()){
-                const auto uv = graph_.uv(edge);
-                const auto u = uv.first;
-                const auto v = uv.second;
-                const auto lu = nodeToDense_[ufd_.find(u)];
-                const auto lv = nodeToDense_[ufd_.find(v)];
-                if(lu != lv){
-                    if(fmLabels[lu] == fmLabels[lv]){
-                        ufd_.merge(u, v);
+
+                FmObjective fmObjective(fmGraph);
+                auto & fmWeights = fmObjective.weights();
+                for(auto edge : graph_.edges()){
+                    const auto uv = graph_.uv(edge);
+                    const auto u = uv.first;
+                    const auto v = uv.second;
+                    const auto lu = nodeToDense_[ufd_.find(u)];
+                    const auto lv = nodeToDense_[ufd_.find(v)];
+                    NIFTY_CHECK_OP(lu,<,fmGraph.numberOfNodes(),"");
+                    NIFTY_CHECK_OP(lv,<,fmGraph.numberOfNodes(),"");
+                    if(lu != lv){
+                        auto e = fmGraph.findEdge(lu, lv);
+                        NIFTY_CHECK_OP(e,!=,-1,"");
+                        fmWeights[e] += objective_.weights()[edge];
                     }
                 }
-            }
-            for(const auto node : graph_.nodes()){
-                result->operator[](node)  = ufd_.find(node);
+
+                //std::cout<<"fm solve\n";
+                // solve that thin
+                auto solverPtr = settings_.mcFactory->createRawPtr(fmObjective);
+                FmNodeLabels fmLabels(fmGraph);
+                FmEmptyVisitor fmVisitor;
+                //std::cout<<"opt\n";
+                solverPtr->optimize(fmLabels, &fmVisitor);
+                //std::cout<<"del ptr\n";
+                //delete solverPtr;
+
+                //std::cout<<"fm get res\n";
+                for(auto edge : graph_.edges()){
+                    const auto uv = graph_.uv(edge);
+                    const auto u = uv.first;
+                    const auto v = uv.second;
+                    const auto lu = nodeToDense_[ufd_.find(u)];
+                    const auto lv = nodeToDense_[ufd_.find(v)];
+                    if(lu != lv){
+                        if(fmLabels[lu] == fmLabels[lv]){
+                            ufd_.merge(u, v);
+                        }
+                    }
+                }
+                for(const auto node : graph_.nodes()){
+                    result->operator[](node)  = ufd_.find(node);
+                }
             }
         }
 
