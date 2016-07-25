@@ -149,9 +149,6 @@ struct ComputeRag< GridRag<DIM,  ExplicitLabels<DIM, LABEL_TYPE> > > {
     }
 };
 
-} // end namespace detail_rag
-
-
 template<class LABEL_TYPE>
 struct ComputeRag< GridRagSliced<ChunkedLabels<3, LABEL_TYPE>> > {
     
