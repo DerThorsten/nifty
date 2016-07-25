@@ -50,7 +50,7 @@ struct ComputeRag;
 
 template<size_t DIM, class LABEL_TYPE>
 struct ComputeRag< GridRag<DIM,  ExplicitLabels<DIM, LABEL_TYPE> > > {
-    
+
     template<class S>
     static void computeRag(
         GridRag<DIM,  ExplicitLabels<DIM, LABEL_TYPE> > & rag,
@@ -116,6 +116,7 @@ struct ComputeRag< GridRag<DIM,  ExplicitLabels<DIM, LABEL_TYPE> > > {
                     }
                 }
             });
+            
             // merge the node adjacency sets for each node
             nifty::parallel::parallel_foreach(threadpool, numberOfLabels, [&](int tid, int label){
                 auto & set0 = perThreadDataVec[0].adjacency[label];
