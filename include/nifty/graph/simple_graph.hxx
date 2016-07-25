@@ -140,8 +140,8 @@ public:
         else
             return -1;
     }
-    uint64_t nodeIdUpperBound() const{return numberOfNodes() == 0 ? -1 : numberOfNodes()-1;}
-    uint64_t edgeIdUpperBound() const{return numberOfEdges() == 0 ? -1 : numberOfEdges()-1;}
+    int64_t nodeIdUpperBound() const{return numberOfNodes() == 0 ? 0 : numberOfNodes()-1;}
+    int64_t edgeIdUpperBound() const{return numberOfEdges() == 0 ? 0 : numberOfEdges()-1;}
     uint64_t numberOfEdges() const {return edges_.size();}
     uint64_t numberOfNodes() const{return nodes_.size();}
 

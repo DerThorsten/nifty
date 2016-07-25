@@ -5,5 +5,15 @@ add_subdirectory(lib)
 include(PythonLibTest)
 
 if(NOSETESTS_PATH)
-    add_python_test_target(pythonTest _nifty test/test_python.py)
+
+    
+
+    add_python_test_target(pythonTest   _nifty 
+        test/test_python.py
+        test/test_multicut_inference.py
+        test/test_rag.py
+    )
+
+
+
 endif()

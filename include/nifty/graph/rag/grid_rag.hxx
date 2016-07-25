@@ -44,7 +44,6 @@ public:
     typedef LABELS_PROXY LabelsProxy;
     struct Settings{
         int numberOfThreads{-1};
-        bool lockFreeAlg{false};
     };
 
     typedef GridRag<DIM, LABELS_PROXY> SelfType;

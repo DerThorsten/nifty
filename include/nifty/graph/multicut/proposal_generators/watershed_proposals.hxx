@@ -59,7 +59,6 @@ namespace graph{
         }
 
         void generate( const NodeLabels & currentBest, NodeLabels & proposal){
-
             if(negativeEdges_.empty()){
                 proposal = currentBest;
             }
@@ -68,12 +67,16 @@ namespace graph{
                     size_t(float(graph_.numberOfNodes())*settings_.seedFraction+0.5f) :
                     size_t(settings_.seedFraction + 0.5);
 
-                nSeeds = std::max(size_t(10),nSeeds);
+                nSeeds = std::max(size_t(1),nSeeds);
                 nSeeds = std::min(size_t(negativeEdges_.size()-1), nSeeds);
 
+
                 // get the seeds
-                std::fill(seeds_.begin(), seeds_.end(), 0);
-                for(size_t i=0; i<nSeeds/2; ++i){
+                for(const auto node : graph_.nodes())
+                    seeds_[node] = 0;
+
+
+                for(size_t i=0; i <  (nSeeds == 1 ? 1 : nSeeds/2); ++i){
                     const auto randIndex = intDist_(gen_);
                     const auto edge  = negativeEdges_[randIndex];
 

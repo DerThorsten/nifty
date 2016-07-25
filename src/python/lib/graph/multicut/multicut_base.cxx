@@ -38,13 +38,13 @@ namespace graph{
         // base factory
         py::class_<
             McBase, 
-            std::shared_ptr<McBase>, 
+            std::unique_ptr<McBase>, 
             PyMcBase 
         > mcBase(multicutModule, clsName.c_str());
         
         mcBase
             .def(py::init<>())
-            .def("optimizeWithVisitor", 
+            .def("optimize", 
                 [](
                     McBase * self,
                     McVisitorBase * visitor,
@@ -63,7 +63,7 @@ namespace graph{
                             py::gil_scoped_release allowThreads;
                             self->optimize(nodeLabels, visitor);
                         }
-                        std::vector<size_t> shape = {size_t(graph.numberOfNodes())};
+                        std::vector<size_t> shape = {size_t(graph.nodeIdUpperBound()+1)};
                         nifty::marray::PyView<uint64_t> rarray(shape.begin(),shape.end());
                         for(auto node : graph.nodes()){
                             rarray(node) = nodeLabels[node];
@@ -71,7 +71,7 @@ namespace graph{
                         return rarray;
 
                     }
-                    else if(array.size() == graph.numberOfNodes()){
+                    else if(array.size() == graph.nodeIdUpperBound()+1){
                         for(auto node : graph.nodes()){
                             nodeLabels[node] = array(node);
                         }
@@ -80,7 +80,7 @@ namespace graph{
                             self->optimize(nodeLabels, visitor);
                         }
                         for(auto node : graph.nodes()){
-                             array(node) = nodeLabels[node];
+                            array(node) = nodeLabels[node];
                         }
                         return array;
                     }
@@ -88,7 +88,7 @@ namespace graph{
                         throw std::runtime_error("input node labels have wrong shape");
                     }
                 },
-                py::arg("visitor"),
+                py::arg_t< McVisitorBase * >("visitor", nullptr ),
                 py::arg_t< py::array_t<uint64_t> >("nodeLabels", py::list() )
             )
             ;

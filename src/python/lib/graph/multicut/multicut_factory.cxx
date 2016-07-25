@@ -15,9 +15,11 @@
 
 namespace py = pybind11;
 
+PYBIND11_DECLARE_HOLDER_TYPE(McBase, std::shared_ptr<McBase>);
 
 namespace nifty{
 namespace graph{
+
 
 
     template<class OBJECTIVE>

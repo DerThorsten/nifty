@@ -2,6 +2,16 @@ from __future__ import print_function
 import nifty
 import numpy
 
+
+
+G = nifty.graph.UndirectedGraph
+CG = G.EdgeContractionGraph
+
+GMCO = G.MulticutObjective
+CGMCO = CG.MulticutObjective
+
+
+
 def test_undirected_graph():
 
     g =  nifty.graph.UndirectedGraph(4)
@@ -55,7 +65,7 @@ def test_edge_contraction_graph():
 
 
 
-    cb =MyCb()
+    cb = MyCb()
     ecg = nifty.graph.edgeContractionGraph(g,cb)
     ecg.contractEdge(0)
 
@@ -67,7 +77,6 @@ def test_edge_contraction_graph():
 def make2x2Rag():
 
     labels = numpy.zeros(shape=[2,2],dtype='uint32')
-    print(labels.shape)
 
     labels[0,0] = 0 
     labels[1,0] = 1 
@@ -81,7 +90,6 @@ def make2x2Rag():
 def test_grid_rag():
 
     labels = numpy.zeros(shape=[2,2],dtype='uint32')
-    print(labels.shape)
 
     labels[0,0] = 0 
     labels[1,0] = 1 
@@ -95,7 +103,7 @@ def test_grid_rag():
 
     greedy=obj.greedyAdditiveFactory().create(obj)
     visitor = obj.multicutVerboseVisitor()
-    ret = greedy.optimizeWithVisitor(visitor=visitor)
+    ret = greedy.optimize()
     #print("greedy",obj.evalNodeLabels(ret))
 
 
@@ -110,72 +118,3 @@ def test_grid_rag():
     except:
         insertWorked = False
     assert insertWorked == False
-
-
-
-
-def test_edge_contraction_graph_inference():
-
-    G = nifty.graph.UndirectedGraph
-    CG = G.EdgeContractionGraph
-
-    GMCO = G.MulticutObjective
-    CGMCO = CG.MulticutObjective
-
-    chainLength = 3
-    chainEdges =[]
-    for x in range(chainLength-1):
-        chainEdges.append((x,x+1))
-
-
-    class Callback(nifty.graph.EdgeContractionGraphCallback):
-        def __init__(self):
-            super(Callback, self).__init__()
-        def contractEdge(self, edge):
-            pass
-        def mergeEdges(self, alive, dead):
-            pass
-        def mergeNodes(self, alive, dead):
-            pass
-        def contractEdgeDone(self, edge):
-            pass
-
-
-
-    g =  G(chainLength)
-    g.insertEdges(chainEdges)
-
-    callback = Callback()
-    cg = CG(g, callback)
-
-    assert cg.numberOfEdges == chainLength - 1
-    assert cg.numberOfNodes == chainLength
-
-
-
-    while cg.numberOfEdges != 0:
-
-        lastEdge = cg.numberOfEdges - 1
-        cg.contractEdge(lastEdge)
-
-        print("\n","numberofedges",cg.numberOfEdges)
-
-        weights = numpy.ones(chainLength-1)
-        obj = nifty.graph.multicut.multicutObjective(cg, weights)
-
-        fmSubFac = GMCO.greedyAdditiveFactory()
-
-        if nifty.Configuration.WITH_CPLEX:
-            fmSubFac = GMCO.multicutIlpCplexFactory(verbose=2)
-
-        fusionMove = CGMCO.fusionMoveSettings(mcFactory=fmSubFac)
-        fmFac = CGMCO.fusionMoveBasedFactory(fusionMove=fusionMove)
-        solver = fmFac.create(obj)
-
-
-        # run inference
-        visitor = obj.multicutVerboseVisitor()
-        ret = solver.optimizeWithVisitor(visitor=visitor)
-
-
-

@@ -2,6 +2,7 @@
 #ifndef NIFTY_GRAPH_MULTICUT_MULTICUT_OBJECTIVE_HXX
 #define NIFTY_GRAPH_MULTICUT_MULTICUT_OBJECTIVE_HXX
 
+#include "nifty/tools/runtime_check.hxx"
 #include "nifty/graph/subgraph_mask.hxx"
 #include "nifty/graph/graph_maps.hxx"
 
@@ -23,6 +24,14 @@ namespace graph{
             const auto & g = _child().graph();
             for(const auto edge: g.edges()){
                 const auto uv = g.uv(edge);
+
+                NIFTY_CHECK_OP(uv.first,<=,g.nodeIdUpperBound(),"");
+                NIFTY_CHECK_OP(uv.first,<,nodeLabels.size(),"");
+
+
+                NIFTY_CHECK_OP(uv.second,<=,g.nodeIdUpperBound(),"");
+                NIFTY_CHECK_OP(uv.second,<,nodeLabels.size(),"");
+
                 if(nodeLabels[uv.first] != nodeLabels[uv.second]){
                     sum += w[edge];
                 }

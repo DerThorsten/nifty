@@ -96,16 +96,21 @@ namespace graph{
             }
 
             void contractEdge(const uint64_t edgeToContract){
+                NIFTY_ASSERT(edgesSet_.find(edgeToContract)!=edgesSet_.end());
                 edgesSet_.erase(edgeToContract);
                 outerCallback_.contractEdge(edgeToContract);
             }
 
             void mergeNodes(const uint64_t aliveNode, const uint64_t deadNode){
+                NIFTY_ASSERT(nodesSet_.find(aliveNode)!=nodesSet_.end());
+                NIFTY_ASSERT(nodesSet_.find(deadNode)!=nodesSet_.end());
                 nodesSet_.erase(deadNode);
                 outerCallback_.mergeNodes(aliveNode, deadNode);
             }
 
             void mergeEdges(const uint64_t aliveEdge, const uint64_t deadEdge){
+                NIFTY_ASSERT(edgesSet_.find(aliveEdge)!=nodesSet_.end());
+                NIFTY_ASSERT(edgesSet_.find(deadEdge)!=nodesSet_.end());
                 edgesSet_.erase(deadEdge);
                 outerCallback_.mergeEdges(aliveEdge, deadEdge);
             }
@@ -122,36 +127,6 @@ namespace graph{
             SetType edgesSet_;
 
 
-        };
-
-        struct ForwardIterableThing{
-
-            typedef uint64_t KeyType;
-
-
-            ForwardIterableThing(const uint64_t maxId = 0)
-            :   idToNextId_(maxId+1,-1),
-                beginId_(-1),
-                endId_(-1),
-                currentSize_(0){
-
-            }
-
-
-            bool contains(const KeyType & key) const{
-                return idToNextId_[key];
-            }
-
-            uint64_t size()const{
-                return currentSize_;
-            }
-
-            
-            
-            std::vector<int64_t> idToNextId_;
-            int64_t beginId_;
-            int64_t endId_; 
-            uint64_t currentSize_;           
         };
 
     }
@@ -214,15 +189,19 @@ namespace graph{
 
 
         NodeIter nodesBegin()const{
+            NIFTY_ASSERT_OP(innerCallback_.nodesSet_.size(),==,cgraph_.numberOfNodes());
             return innerCallback_.nodesSet_.begin();
         }
         NodeIter nodesEnd()const{
+            NIFTY_ASSERT_OP(innerCallback_.nodesSet_.size(),==,cgraph_.numberOfNodes());
             return innerCallback_.nodesSet_.end();
         }
         EdgeIter edgesBegin()const{
+            NIFTY_ASSERT_OP(innerCallback_.edgesSet_.size(),==,cgraph_.numberOfEdges());
             return innerCallback_.edgesSet_.begin();
         }
         EdgeIter edgesEnd()const{
+            NIFTY_ASSERT_OP(innerCallback_.edgesSet_.size(),==,cgraph_.numberOfEdges());
             return innerCallback_.edgesSet_.end();
         }
 
@@ -241,46 +220,59 @@ namespace graph{
         }
  
         AdjacencyIter adjacencyBegin(const int64_t node)const{
+            NIFTY_ASSERT(innerCallback_.nodesSet_.find(node)!=innerCallback_.nodesSet_.end());
             return cgraph_.adjacencyBegin(node);
         }
         AdjacencyIter adjacencyEnd(const int64_t node)const{
+            NIFTY_ASSERT(innerCallback_.nodesSet_.find(node)!=innerCallback_.nodesSet_.end());
             return cgraph_.adjacencyEnd(node);
         }
         AdjacencyIter adjacencyOutBegin(const int64_t node)const{
+            NIFTY_ASSERT(innerCallback_.nodesSet_.find(node)!=innerCallback_.nodesSet_.end());
             return cgraph_.adjacencyOutBegin(node);
         }
 
 
         EdgeStorage uv(const uint64_t edge)const{
+            NIFTY_ASSERT(innerCallback_.edgesSet_.find(edge)!=innerCallback_.edgesSet_.end());
             return cgraph_.uv(edge);
         }
         int64_t u(const uint64_t edge)const{
+            NIFTY_ASSERT(innerCallback_.edgesSet_.find(edge)!=innerCallback_.edgesSet_.end());
             return cgraph_.u(edge);
         }
         int64_t v(const uint64_t edge)const{
+            NIFTY_ASSERT(innerCallback_.edgesSet_.find(edge)!=innerCallback_.edgesSet_.end());
             return cgraph_.v(edge);
         }
 
         uint64_t numberOfNodes()const{
+            NIFTY_ASSERT_OP(innerCallback_.nodesSet_.size(),==,cgraph_.numberOfNodes());
             return cgraph_.numberOfNodes();
         }
         uint64_t numberOfEdges()const{
+            NIFTY_ASSERT_OP(innerCallback_.edgesSet_.size(),==,cgraph_.numberOfEdges());
             return cgraph_.numberOfEdges();
         }
 
-        uint64_t nodeIdUpperBound() const{
+        int64_t nodeIdUpperBound() const{
+            NIFTY_ASSERT_OP(innerCallback_.nodesSet_.size(),==,cgraph_.numberOfNodes());
             return cgraph_.nodeIdUpperBound();
         }
-        uint64_t edgeIdUpperBound() const{
+        int64_t edgeIdUpperBound() const{
+            NIFTY_ASSERT_OP(innerCallback_.edgesSet_.size(),==,cgraph_.numberOfEdges());
             return cgraph_.edgeIdUpperBound();
         }
 
         int64_t findEdge(const int64_t u, const int64_t v)const{
+            NIFTY_ASSERT(innerCallback_.nodesSet_.find(u)!=innerCallback_.nodesSet_.end());
+            NIFTY_ASSERT(innerCallback_.nodesSet_.find(v)!=innerCallback_.nodesSet_.end());
             return cgraph_.findEdge(u, v);
         }
 
         
         void contractEdge(const uint64_t edgeToContract){
+            NIFTY_ASSERT(innerCallback_.edgesSet_.find(edgeToContract)!=innerCallback_.edgesSet_.end());
             cgraph_.contractEdge(edgeToContract);
         }
         void reset(){
@@ -303,6 +295,7 @@ namespace graph{
             return cgraph_.findRepresentativeNode(node);
         }
         uint64_t nodeOfDeadEdge(const uint64_t deadEdge)const{
+            NIFTY_ASSERT(innerCallback_.edgesSet_.find(deadEdge)==innerCallback_.edgesSet_.end());
             return cgraph_.nodeOfDeadEdge(deadEdge);
         }
 
@@ -574,6 +567,8 @@ namespace graph{
         NIFTY_TEST_OP(u,!=,v);
 
         // merge them into a single node
+        NIFTY_ASSERT_OP(ufd_.find(u),==,u);
+        NIFTY_ASSERT_OP(ufd_.find(v),==,v);
         ufd_.merge(u, v);
         --currentNodeNum_;
 
@@ -581,9 +576,9 @@ namespace graph{
         // also known as 'aliveNode' and which is the deadNode
         const auto aliveNode = ufd_.find(u);
         NIFTY_ASSERT(aliveNode==u || aliveNode==v);
-        const auto deadNode = aliveNode == u ? v : u;      
-
-
+        const auto deadNode = aliveNode == u ? v : u;       
+        NIFTY_ASSERT_OP(ufd_.find(aliveNode),==,aliveNode);
+        NIFTY_ASSERT_OP(ufd_.find(deadNode),!=,deadNode);
 
         callback_.mergeNodes(aliveNode, deadNode);
 
@@ -593,6 +588,11 @@ namespace graph{
         auto & adjDead = nodes_[deadNode];
         
         // remove them from each other
+        // 
+        // 
+        NIFTY_ASSERT(adjAlive.find(NodeAdjacency(deadNode)) != adjAlive.end());
+        NIFTY_ASSERT(adjDead.find(NodeAdjacency(aliveNode)) != adjDead.end());
+
         adjAlive.erase(NodeAdjacency(deadNode));
         adjDead.erase(NodeAdjacency(aliveNode));
 
@@ -634,6 +634,10 @@ namespace graph{
 
                 // relabel adjacency 
                 auto & s = nodes_[adjToDeadNode];
+
+                NIFTY_ASSERT(s.find(NodeAdjacency(deadNode)) != s.end());
+                NIFTY_ASSERT(s.find(NodeAdjacency(aliveNode)) == s.end());
+                
                 s.erase(NodeAdjacency(deadNode));
                 s.insert(NodeAdjacency(aliveNode, adjToDeadNodeEdge));
                 // relabel edge

@@ -148,11 +148,8 @@ namespace graph{
         coefficients_(std::max(uint64_t(3),uint64_t(graph_.numberOfEdges())))
     {
         ilpSolver_ = new ILP_SOLVER(settings_.ilpSettings);
-        if (settings_.verbose >=2)
-                std::cout<<"init initializeIlp \n";
+        
         this->initializeIlp();
-        if (settings_.verbose >=2)
-                std::cout<<"init initializeIlp done \n";
 
         // add explicit constraints
         if(settings_.addThreeCyclesConstraints){
@@ -271,38 +268,38 @@ namespace graph{
     repairSolution(
         NodeLabels & nodeLabels
     ){
-        for (auto node: graph_.nodes()){
-            nodeLabels[node] = components_.componentLabel(node);
+        if(graph_.numberOfEdges()!= 0 ){
+            for (auto node: graph_.nodes()){
+                nodeLabels[node] = components_.componentLabel(node);
+            }
+            auto edgeLabelIter = detail_graph::nodeLabelsToEdgeLabelsIterBegin(graph_, nodeLabels);
+            ilpSolver_->setStart(edgeLabelIter);
         }
-        auto edgeLabelIter = detail_graph::nodeLabelsToEdgeLabelsIterBegin(graph_, nodeLabels);
-        ilpSolver_->setStart(edgeLabelIter);
     }
 
     template<class OBJECTIVE, class ILP_SOLVER>
     void MulticutIlp<OBJECTIVE, ILP_SOLVER>::
     initializeIlp(){
-        std::vector<double> costs(graph_.numberOfEdges(),0.0);
-        const auto & weights = objective_.weights();
-        auto lpEdge = 0;
-        for(auto e : graph_.edges()){
-            if(std::abs(weights[e])<=0.00000001){
-                if(weights[e]<0.0){
-                    costs[lpEdge] = -0.00000001;
+        if(graph_.numberOfEdges()!= 0 ){
+            std::vector<double> costs(graph_.numberOfEdges(),0.0);
+            const auto & weights = objective_.weights();
+            auto lpEdge = 0;
+            for(auto e : graph_.edges()){
+                if(std::abs(weights[e])<=0.00000001){
+                    if(weights[e]<0.0){
+                        costs[lpEdge] = -0.00000001;
+                    }
+                    else{
+                        costs[lpEdge] =  0.00000001;
+                    }
                 }
                 else{
-                    costs[lpEdge] =  0.00000001;
+                    costs[lpEdge] = weights[e];
                 }
+                ++lpEdge;
             }
-            else{
-                costs[lpEdge] = weights[e];
-            }
-            ++lpEdge;
+            ilpSolver_->initModel(graph_.numberOfEdges(), costs.data());
         }
-        if(settings_.verbose>=2)
-            std::cout<<"init initModel\n";
-        ilpSolver_->initModel(graph_.numberOfEdges(), costs.data());
-        if(settings_.verbose>=2)
-            std::cout<<"init initModel done\n";
     }
 
     template<class OBJECTIVE, class ILP_SOLVER>

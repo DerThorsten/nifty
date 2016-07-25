@@ -43,12 +43,10 @@ namespace graph{
             ragModule.def("explicitLabelsGridRag2D",
                 [](
                    nifty::marray::PyView<uint32_t, 2> labels,
-                   const int numberOfThreads,
-                   const bool lockFreeAlg 
+                   const int numberOfThreads
                 ){
                     auto s = typename  ExplicitLabelsGridRag2D::Settings();
                     s.numberOfThreads = numberOfThreads;
-                    s.lockFreeAlg = lockFreeAlg;
                     ExplicitLabels<2, uint32_t> explicitLabels(labels);
                     auto ptr = new ExplicitLabelsGridRag2D(explicitLabels, s);
                     return ptr;
@@ -56,8 +54,7 @@ namespace graph{
                 py::return_value_policy::take_ownership,
                 py::keep_alive<0, 1>(),
                 py::arg("labels"),
-                py::arg_t< int >("numberOfThreads", -1 ),
-                py::arg_t< bool >("lockFreeAlg", false )
+                py::arg_t< int >("numberOfThreads", -1 )
             );
         }
         
@@ -77,12 +74,10 @@ namespace graph{
             ;
             ragModule.def("explicitLabelsGridRag3D",
                 [](nifty::marray::PyView<uint32_t, 3> labels,
-                   const int numberOfThreads,
-                   const bool lockFreeAlg 
+                   const int numberOfThreads
                 ){
                     auto s = typename  ExplicitLabelsGridRag3D::Settings();
                     s.numberOfThreads = numberOfThreads;
-                    s.lockFreeAlg = lockFreeAlg;
                     ExplicitLabels<3 ,uint32_t> explicitLabels(labels);
                     auto ptr = new ExplicitLabelsGridRag3D(explicitLabels, s);
                     return ptr;
@@ -90,8 +85,7 @@ namespace graph{
                 py::return_value_policy::take_ownership,
                 py::keep_alive<0, 1>(),
                 py::arg("labels"),
-                py::arg_t< int >("numberOfThreads", -1 ),
-                py::arg_t< bool >("lockFreeAlg", false )
+                py::arg_t< int >("numberOfThreads", -1 )
             );
         }
         

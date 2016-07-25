@@ -25,6 +25,7 @@
 #include "nifty/graph/simple_graph.hxx"
 #include "nifty/parallel/threadpool.hxx"
 #include "nifty/tools/timer.hxx"
+#include "nifty/tools/for_each_coordinate.hxx"
 //#include "nifty/graph/detail/contiguous_indices.hxx"
 
 
@@ -50,189 +51,97 @@ template< class GRID_RAG>
 struct ComputeRag;
 
 
-template<class LABEL_TYPE>
-struct ComputeRag< GridRag<2,  ExplicitLabels<2, LABEL_TYPE> > > {
+template<size_t DIM, class LABEL_TYPE>
+struct ComputeRag< GridRag<DIM,  ExplicitLabels<DIM, LABEL_TYPE> > > {
+
     template<class S>
     static void computeRag(
-        GridRag<2,  ExplicitLabels<2, LABEL_TYPE> > & rag,
+        GridRag<DIM,  ExplicitLabels<DIM, LABEL_TYPE> > & rag,
         const S & settings
     ){
-        const auto labelsProxy = rag.labelsProxy();
-        const auto numberOfLabels = labelsProxy.numberOfLabels();
-        const auto labels = labelsProxy.labels(); 
-        
-        // assign the number of nodes to the graph
-        rag.assign(numberOfLabels);
-
-        for(size_t x=0; x<labels.shape(0); ++x)
-        for(size_t y=0; y<labels.shape(1); ++y){
-
-            const auto lu = labels(x, y);
-            if(x+1<labels.shape(0)){
-                const auto lv = labels(x+1, y);
-                if(lu != lv){
-                    rag.insertEdge(lu,lv);
-                }
-            }
-            if(y+1<labels.shape(1)){
-                const auto lv = labels(x, y+1);
-                if(lu != lv){
-                    rag.insertEdge(lu,lv);
-                }
-            }
-        }
-    }
-};
-
-template<class LABEL_TYPE>
-struct ComputeRag< GridRag<3,  ExplicitLabels<3, LABEL_TYPE> > > { 
-    static void computeRag(
-        GridRag<3,  ExplicitLabels<3, LABEL_TYPE> > & rag,
-        const typename GridRag<3,  ExplicitLabels<3, LABEL_TYPE> >::Settings & settings
-    ){
-        typedef GridRag<3,  ExplicitLabels<3, LABEL_TYPE> >  Graph;
-        nifty::parallel::ParallelOptions pOpts(settings.numberOfThreads);
+        typedef GridRag<DIM,  ExplicitLabels<DIM, LABEL_TYPE> >  Graph;
+        typedef std::array<int64_t, DIM> Coord;
+        typedef typename Graph::NodeAdjacency NodeAdjacency;
+        typedef typename Graph::EdgeStorage EdgeStorage;
 
         const auto labelsProxy = rag.labelsProxy();
         const auto numberOfLabels = labelsProxy.numberOfLabels();
         const auto & labels = labelsProxy.labels(); 
-        
-        
+        const auto & shape = labelsProxy.shape();
+
+        nifty::parallel::ParallelOptions pOpts(settings.numberOfThreads);
+
         rag.assign(numberOfLabels);
+
+        auto makeCoord2 = [](const Coord & coord,const size_t axis){
+            Coord coord2 = coord;
+            coord2[axis] += 1;
+            return coord2;
+        };
+
         if(pOpts.getActualNumThreads()<=1){
-                 
-            for(size_t x=0; x<labels.shape(0); ++x)
-            for(size_t y=0; y<labels.shape(1); ++y)
-            for(size_t z=0; z<labels.shape(2); ++z){
-                const auto lu = labels(x, y, z);
-                if(x+1<labels.shape(0)){
-                    const auto lv = labels(x+1, y, z);
-                    if(lu != lv){
-                        rag.insertEdge(lu,lv);
-                    }
-                }
-                if(y+1<labels.shape(1)){
-                    const auto lv = labels(x, y+1, z);
-                    if(lu != lv){
-                        rag.insertEdge(lu,lv);
-                    }
-                }
-                if(z+1<labels.shape(2)){
-                    const auto lv = labels(x, y, z+1);
-                    if(lu != lv){
-                        rag.insertEdge(lu,lv);
-                    }
-                }
-            }
-        }
-        else if(!settings.lockFreeAlg){
-            std::mutex mutexArray[5000];
-            std::mutex edgeMutex;
-            nifty::parallel::ThreadPool threadpool(pOpts);
-            nifty::parallel::parallel_foreach(threadpool, labels.shape(0),
-            [&](int tid, int x){
-
-                for(size_t y=0; y<labels.shape(1); ++y)
-                for(size_t z=0; z<labels.shape(2); ++z){
-                    const auto lu = labels(x, y, z);
-                    if(x+1<labels.shape(0)){
-                        const auto lv = labels(x+1, y, z);
-                        if(lu != lv){
-                            //++e;
-                            rag.inserEdgeWithMutex(lu,lv, edgeMutex, mutexArray, 5000);
-                        }
-                    }
-                    if(y+1<labels.shape(1)){
-                        const auto lv = labels(x, y+1, z);
-                        if(lu != lv){
-                            //++e;
-                            rag.inserEdgeWithMutex(lu,lv, edgeMutex, mutexArray, 5000);
-                        }
-                    }
-                    if(z+1<labels.shape(2)){
-                        const auto lv = labels(x, y, z+1);
-                        if(lu != lv){
-                            //++e;
-                            rag.inserEdgeWithMutex(lu,lv, edgeMutex, mutexArray, 5000);
+            nifty::tools::forEachCoordinate(shape,[&](const Coord & coord){
+                const auto lU = labels(coord);
+                for(size_t axis=0; axis<DIM; ++axis){
+                    auto coord2 = makeCoord2(coord, axis);
+                    if(coord2[axis] < shape[axis]){
+                        const auto lV = labels(coord2);
+                        if(lU != lV){
+                            rag.insertEdge(lU,lV);
                         }
                     }
                 }
-
             });
         }
         else{
+            nifty::parallel::ThreadPool threadpool(pOpts);
             struct PerThread{
                 std::vector< __setimpl<uint64_t> > adjacency;
             };
 
             std::vector<PerThread> perThreadDataVec(pOpts.getActualNumThreads());
-            for(size_t i=0; i<perThreadDataVec.size();++i){
+            for(size_t i=0; i<perThreadDataVec.size(); ++i)
                 perThreadDataVec[i].adjacency.resize(numberOfLabels);
-            }
-            nifty::parallel::ThreadPool threadpool(pOpts);
 
-            nifty::parallel::parallel_foreach(threadpool, labels.shape(0),
-            [&](int tid, int x){
-
-                auto & perThreadData = perThreadDataVec[tid];
-                auto & adjacency = perThreadData.adjacency;
-
-                auto fEdgelet = [&](const LABEL_TYPE la, const LABEL_TYPE lb){
-                    if(la!=lb){
-                        adjacency[la].insert(lb);
-                        adjacency[lb].insert(la);
-                    }
-                };
-
-                for(size_t y=0; y<labels.shape(1); ++y)
-                for(size_t z=0; z<labels.shape(2); ++z){
-                    const auto lu = labels(x, y, z);
-                    if(x+1<labels.shape(0)){
-                        fEdgelet(lu,labels(x+1, y, z));
-                    }
-                    if(y+1<labels.shape(1)){
-                        fEdgelet(lu,labels(x, y+1, z));
-                    }
-                    if(z+1<labels.shape(2)){
-                        fEdgelet(lu,labels(x, y, z+1));
+            // collect the node-adjacency sets in parallel which needs to be merged later 
+            nifty::tools::parallelForEachCoordinate(threadpool, shape,[&](const int tid, const Coord & coord){
+                auto & adjacency = perThreadDataVec[tid].adjacency;
+                const auto lU = labels(coord);
+                for(size_t axis=0; axis<DIM; ++axis){
+                    auto coord2 = makeCoord2(coord, axis);
+                    if(coord2[axis] < shape[axis]){
+                        const auto lV = labels(coord2);
+                        if(lU != lV){
+                            adjacency[lV].insert(lU);
+                            adjacency[lU].insert(lV);
+                        }
                     }
                 }
             });
             
-            typedef typename Graph::NodeAdjacency NodeAdjacency;
-            typedef typename Graph::EdgeStorage EdgeStorage;
-            auto & ragNodesAdj  = rag.nodes_;
-            
-            nifty::parallel::parallel_foreach(threadpool, numberOfLabels,
-            [&](int tid, int label){
-
-                auto & set = ragNodesAdj[label];
+            // merge the node adjacency sets for each node
+            nifty::parallel::parallel_foreach(threadpool, numberOfLabels, [&](int tid, int label){
                 auto & set0 = perThreadDataVec[0].adjacency[label];
                 for(size_t i=1; i<perThreadDataVec.size(); ++i){
                     const auto & setI = perThreadDataVec[i].adjacency[label];
                     set0.insert(setI.begin(), setI.end());
                 }
-                for(auto otherNode : set0){
-                    set.insert(NodeAdjacency(otherNode));
-                }
+                for(auto otherNode : set0)
+                     rag.nodes_[label].insert(NodeAdjacency(otherNode));
             });
 
+            // insert the edge index for each edge
             uint64_t edgeIndex = 0;
             auto & edges = rag.edges_;
             for(uint64_t u = 0; u< numberOfLabels; ++u){
-                auto & adjSetU = ragNodesAdj[u];
-                for(auto & vAdj : adjSetU){
+                for(auto & vAdj :  rag.nodes_[u]){
                     const auto v = vAdj.node();
-                    if(u <  v){
+                    if(u < v){
                         edges.push_back(EdgeStorage(u, v));
                         vAdj.changeEdgeIndex(edgeIndex);
-                        auto & adjSetV = ragNodesAdj[v];
-                        auto fres = adjSetV.find(NodeAdjacency(u));
+                        auto fres =  rag.nodes_[v].find(NodeAdjacency(u));
                         fres->changeEdgeIndex(edgeIndex);
                         ++edgeIndex;
-                    }
-                    else{
-                        // do nothing
                     }
                 }
             }
@@ -240,6 +149,7 @@ struct ComputeRag< GridRag<3,  ExplicitLabels<3, LABEL_TYPE> > > {
     }
 };
 
+} // end namespace detail_rag
 
 
 template<class LABEL_TYPE>

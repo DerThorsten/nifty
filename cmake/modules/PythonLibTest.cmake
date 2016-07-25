@@ -54,12 +54,13 @@ function(add_python_test_target TARGET_NAME TARGET_LIB)
             ${CMAKE_CURRENT_SOURCE_DIR}/${pysource} ${COPY_DIR})
     endforeach()
 
-    get_target_property(TARGET_LIB_NAME ${TARGET_LIB} LOCATION)
+    #get_target_property(TARGET_LIB_NAME ${TARGET_LIB} LOCATION)
+    #$<TARGET_FILE:${TARGET_LIB}>
 
     # Add a command to copy the target library into the same folder as the
     # python files.
     add_custom_command(TARGET ${COPY_TARGET}
-        COMMAND ${CMAKE_COMMAND} -E copy ${TARGET_LIB_NAME} ${COPY_DIR}
+        COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:${TARGET_LIB}> ${COPY_DIR}
         )
 
     # Make the copy target a dependency of the testing target to ensure it

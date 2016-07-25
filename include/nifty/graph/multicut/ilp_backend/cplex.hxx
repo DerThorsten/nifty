@@ -268,21 +268,22 @@ Cplex::setStart(
     if(nVariables_>=1){
         for (auto i = 0; i < nVariables_; ++i) {
             sol_[i] = *valueIterator;
-            //std::cout<<i<<" x_ "<<x_[i]<<"\n";
+            //std::cout<<i<<" x_ "<<x_[i]<<" sol "<<sol_[i]<<"\n";
             ++valueIterator;
         }
         try{
             cplex_.addMIPStart(x_, sol_);
         }
         catch (IloException& e) {
-           std::cout<<"aaa error "<<e.getMessage()<<"\n";
-           e.end();
+            const std::string msg = e.getMessage();
+            e.end();
+            throw std::runtime_error(std::string("error in setStart: ")+msg);
         }
         catch (const std::runtime_error & e) {
-           std::cout<<"bbb error "<<e.what()<<"\n";
+           throw std::runtime_error(std::string("error in setStart ")+e.what());
         }
         catch (const std::exception & e) {
-           std::cout<<"ccc error "<<e.what()<<"\n";
+           throw std::runtime_error(std::string("error in setStart ")+e.what());
         }
     }
     
