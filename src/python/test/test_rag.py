@@ -1,27 +1,162 @@
 from __future__ import print_function
 import nifty
 import numpy
-
-# def test_ragrag():
-
-#     print("rfwer\n\n\n\n\nawrewerwr\n\n\nwerwerwr")
-#     g =  nifty.graph.UndirectedGraph(4)
-#     edges =  numpy.array([[0,1],[0,2],[0,3]],dtype='uint64')
-#     g.insertEdges(edges)
-
-#     edgeList = [e for e in g.edges()]
-#     assert edgeList == [0,1,2]
-
-#     nodeList = [e for e in g.nodes()]
-#     assert nodeList == [0,1,2,3]
-
-#     assert g.u(0) == 0
-#     assert g.v(0) == 1 
-#     assert g.u(1) == 0 
-#     assert g.v(1) == 2 
-#     assert g.u(2) == 0 
-#     assert g.v(2) == 3 
+import nifty
 
 
 
+def testExplicitLabelsRag2d():
 
+    labels = [
+        [0,1,2],
+        [0,0,2],
+        [3,3,2],
+        [4,4,4]
+    ]
+
+    ragA = nifty.graph.rag.gridRag(labels,0)
+    ragB = nifty.graph.rag.gridRag(labels)
+
+    assert isinstance(ragA, nifty.graph.rag.ExplicitLabelsGridRag2D)
+    assert isinstance(ragB, nifty.graph.rag.ExplicitLabelsGridRag2D)
+
+    shoudlEdges = [
+        (0,1),
+        (0,2),
+        (0,3),
+        (1,2),
+        (2,3),
+        (2,4),
+        (3,4)
+    ]
+
+    shoudlNotEdges = [
+        (0,4),
+        (1,3),
+        (1,4)
+    ]
+
+
+    assert ragA.numberOfNodes == 5
+    assert ragB.numberOfNodes == 5
+
+    assert ragA.numberOfEdges == len(shoudlEdges)
+    assert ragB.numberOfEdges == len(shoudlEdges)
+
+
+    edgeListA = []
+    for edge in ragA.edges():
+        edgeListA.append(edge)
+
+    edgeListB = []
+    for edge in ragB.edges():
+        edgeListB.append(edge)
+
+    assert len(edgeListA) == len(shoudlEdges)
+    assert len(edgeListB) == len(shoudlEdges)  
+
+
+    for shouldEdge in shoudlEdges:
+
+        fResA = ragA.findEdge(shouldEdge)
+        fResB = ragB.findEdge(shouldEdge)
+        assert fResA >= 0
+        assert fResB >= 0
+        uvA = ragA.uv(fResA)
+        uvB = ragB.uv(fResB)
+        uvA = sorted(uvA)
+        uvB = sorted(uvB)
+        assert uvA[0] == shouldEdge[0]
+        assert uvA[1] == shouldEdge[1]
+        assert uvB[0] == shouldEdge[0]
+        assert uvB[1] == shouldEdge[1]
+
+    for shouldNotEdge in shoudlNotEdges:
+
+        fResA = ragA.findEdge(shouldNotEdge)
+        fResB = ragB.findEdge(shouldNotEdge)
+        assert fResA == -1
+        assert fResB == -1
+
+
+
+def testExplicitLabelsRag3d():
+
+    labels = [
+        [
+            [0,1],
+            [0,0]
+        ],
+        [
+            [1,1],
+            [2,2]
+        ],
+        [
+            [3,3],
+            [3,3]
+        ]
+    ]
+
+    labels = numpy.array(labels)
+
+    ragA = nifty.graph.rag.gridRag(labels,0)
+    ragB = nifty.graph.rag.gridRag(labels)
+
+    assert isinstance(ragA, nifty.graph.rag.ExplicitLabelsGridRag3D)
+    assert isinstance(ragB, nifty.graph.rag.ExplicitLabelsGridRag3D)
+
+
+    shoudlEdges = [
+        (0,1),
+        (0,2),
+        (1,2),
+        (1,3),
+        (2,3)
+        
+    ]
+
+    shoudlNotEdges = [
+       (0,3)
+    ]
+
+
+    assert ragA.numberOfNodes == 4
+    assert ragB.numberOfNodes == 4
+
+    assert ragA.numberOfEdges == len(shoudlEdges)
+    assert ragB.numberOfEdges == len(shoudlEdges)
+
+
+    edgeListA = []
+    for edge in ragA.edges():
+        edgeListA.append(edge)
+
+    edgeListB = []
+    for edge in ragB.edges():
+        edgeListB.append(edge)
+
+    assert len(edgeListA) == len(shoudlEdges)
+    assert len(edgeListB) == len(shoudlEdges)  
+
+
+    for shouldEdge in shoudlEdges:
+
+        fResA = ragA.findEdge(shouldEdge)
+        fResB = ragB.findEdge(shouldEdge)
+        assert fResA >= 0
+        assert fResB >= 0
+        uvA = ragA.uv(fResA)
+        uvB = ragB.uv(fResB)
+        uvA = sorted(uvA)
+        uvB = sorted(uvB)
+        assert uvA[0] == shouldEdge[0]
+        assert uvA[1] == shouldEdge[1]
+        assert uvB[0] == shouldEdge[0]
+        assert uvB[1] == shouldEdge[1]
+
+    for shouldNotEdge in shoudlNotEdges:
+
+        fResA = ragA.findEdge(shouldNotEdge)
+        fResB = ragB.findEdge(shouldNotEdge)
+        assert fResA == -1
+        assert fResB == -1

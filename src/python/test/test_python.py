@@ -12,7 +12,7 @@ CGMCO = CG.MulticutObjective
 
 
 
-def test_undirected_graph():
+def testUndirectedGraph():
 
     g =  nifty.graph.UndirectedGraph(4)
     edges =  numpy.array([[0,1],[0,2],[0,3]],dtype='uint64')
@@ -32,7 +32,7 @@ def test_undirected_graph():
     assert g.v(2) == 3 
 
 
-def test_edge_contraction_graph():
+def testEdgeContractionGraph():
 
     g =  nifty.graph.UndirectedGraph(4)
     edges =  numpy.array([[0,1],[0,2],[0,3]],dtype='uint64')
@@ -87,7 +87,7 @@ def make2x2Rag():
 
     return g
 
-def test_grid_rag():
+def testGridRag():
 
     labels = numpy.zeros(shape=[2,2],dtype='uint32')
 

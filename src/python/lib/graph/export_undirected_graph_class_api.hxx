@@ -80,9 +80,13 @@ namespace graph{
             .def_property_readonly("nodeIdUpperBound",&G::nodeIdUpperBound)
             .def_property_readonly("edgeIdUpperBound",&G::edgeIdUpperBound)
 
+            .def("findEdge",[](const G & self, std::pair<uint64_t, uint64_t> uv){
+                return self.findEdge(uv.first, uv.second);
+            })
             .def("findEdge",&G::findEdge)
             .def("u",&G::u)
             .def("v",&G::v)
+            .def("uv",&G::uv)
             .def("edges", [](py::object g) { 
                 const auto & gg = g.cast<const G &>();
                 return PyEdgeIter(gg,g,gg.edgesBegin(),gg.edgesEnd()); 
