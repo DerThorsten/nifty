@@ -1,7 +1,7 @@
 from _nifty import *
 import types
 from functools import partial
-
+import numpy
 
 
 
@@ -305,13 +305,12 @@ del __addStaticMethodsToUndirectedGraph
 
 def __extendRag():
 
-    def gridRag(labels, numberOfThreads=-1, lockFreeAlg=False):
-        if labels.ndim == 2:
-            return graph.rag.explicitLabelsGridRag2D(labels, numberOfThreads=int(numberOfThreads),
-                                           lockFreeAlg=bool(lockFreeAlg))
-        elif labels.ndim == 3:
-            return graph.rag.explicitLabelsGridRag2D(labels, numberOfThreads=int(numberOfThreads),
-                                           lockFreeAlg=bool(lockFreeAlg))
+    def gridRag(labels, numberOfThreads=-1):
+        labels = numpy.require(labels)
+        if numpy.squeeze(labels).ndim == 2:
+            return graph.rag.explicitLabelsGridRag2D(labels, numberOfThreads=int(numberOfThreads))
+        elif numpy.squeeze(labels).ndim == 3:
+            return graph.rag.explicitLabelsGridRag3D(labels, numberOfThreads=int(numberOfThreads))
         else:
             raise RuntimeError("wrong dimension, currently only 2D and 3D is implemented")
 

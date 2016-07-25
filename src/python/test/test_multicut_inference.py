@@ -12,7 +12,7 @@ CGMCO = CG.MulticutObjective
 
 
 
-def edge_contraction_graph_inference(fmSubFac):
+def edgeContractionGraphInference(fmSubFac):
 
     chainLength = 10
     chainEdges =[]
@@ -66,31 +66,31 @@ def edge_contraction_graph_inference(fmSubFac):
         ret = solver.optimize()#visitor=visitor)
        
 
-def test_edge_contraction_graph_inference_fm_greedy():
+def testEdgeContractionGraphInferenceFmGreedy():
     fmSubFac = GMCO.greedyAdditiveFactory()
-    edge_contraction_graph_inference(fmSubFac=None)
+    edgeContractionGraphInference(fmSubFac=None)
 
 
 if nifty.Configuration.WITH_CPLEX:
 
-   def test_edge_contraction_graph_inference_cplex():
+   def testEdgeContractionGraphInferenceFmCplex():
        fmSubFac = GMCO.multicutIlpCplexFactory()
-       edge_contraction_graph_inference(fmSubFac=fmSubFac)
+       edgeContractionGraphInference(fmSubFac=fmSubFac)
 
 if nifty.Configuration.WITH_GUROBI:
 
-   def test_edge_contraction_graph_inference_gurobi():
+   def testEdgeContractionGraphInferenceFmGurobi():
        fmSubFac = GMCO.multicutIlpGurobiFactory()
-       edge_contraction_graph_inference(fmSubFac=fmSubFac)
+       edgeContractionGraphInference(fmSubFac=fmSubFac)
 
 if nifty.Configuration.WITH_GLPK:
 
-   def test_edge_contraction_graph_inference_gurobi():
+   def testEdgeContractionGraphInferenceFmGlpk():
        fmSubFac = GMCO.multicutIlpGlpkFactory()
-       edge_contraction_graph_inference(fmSubFac=fmSubFac)
+       edgeContractionGraphInference(fmSubFac=fmSubFac)
 
 
-def test_edge_contraction_graph_inference_greedy_additive():
+def testEdgeContractionGraphInferenceGreedyAdditive():
 
     chainLength = 10
     chainEdges =[]
