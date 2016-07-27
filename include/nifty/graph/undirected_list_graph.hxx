@@ -320,9 +320,9 @@ UndirectedGraph<EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE>::
 serialize(ITER iter) const{
 
     *iter = this->numberOfNodes(); 
-    ++iter
+    ++iter;
     *iter = this->numberOfEdges(); 
-    ++iter
+    ++iter;
 
     for(const edge : this->edges()){
         *iter = this->u(edge);

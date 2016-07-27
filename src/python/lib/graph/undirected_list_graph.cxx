@@ -50,6 +50,20 @@ namespace graph{
                     return out;
                 }
             )
+            .def("serialize",
+                [](Graph & g) {
+                    nifty::marray::PyView<uint64_t> out({this->serializationSize()});
+                    auto ptr = &out(0);
+                    this->serialize(ptr);
+                    return out;
+                }
+            )
+            .def("deserialize",
+                [](Graph & g, nifty::marray::PyView<uint64_t,1> serialization) {
+                    auto ptr = &serialization(0);
+                    this->deserialize(ptr);
+                }
+            )
         ;
 
         // export the base graph API (others might derive)
