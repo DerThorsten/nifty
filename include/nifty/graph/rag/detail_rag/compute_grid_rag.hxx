@@ -220,39 +220,39 @@ struct ComputeRag< GridRagSliced<ChunkedLabels<3, LABEL_TYPE>> > {
             // FIXME this is slower AND does not produce the correct result
             // multi core, locked
             // Thorstens idea: first iterate over all the slices in parallel, extracting only in slice edges, then extract inter slice edges, this has the advantage that we can also extract a dividing index between xy and z edges 
-            else if(!settings.lockFreeAlg){
-                std::mutex mutexArray[5000];
-                std::mutex edgeMutex;
-                nifty::parallel::ThreadPool threadpool(pOpts);
-                nifty::parallel::parallel_foreach(threadpool, y_max,
-                [&](int tid, int y){
+            //else if(!settings.lockFreeAlg){
+            //    std::mutex mutexArray[5000];
+            //    std::mutex edgeMutex;
+            //    nifty::parallel::ThreadPool threadpool(pOpts);
+            //    nifty::parallel::parallel_foreach(threadpool, y_max,
+            //    [&](int tid, int y){
 
-                    for(size_t x=0; x<x_max; ++x){
-                        
-                        const auto lu = this_slice(0,y,x);
-                        
-                        if(x+1<x_max){
-                            const auto lv = this_slice(0,y,x+1);
-                            if(lu != lv){
-                                rag.inserEdgeWithMutex(lu,lv, edgeMutex, mutexArray, 5000);
-                            }
-                        }
-                        if(y+1<y_max){
-                            const auto lv = this_slice(0,y+1,x);
-                            if(lu != lv){
-                                rag.inserEdgeWithMutex(lu,lv, edgeMutex, mutexArray, 5000);
-                            }
-                        }
-                        if(z+1<z_max){
-                            const auto lv = next_slice(0, y, x);
-                            if(lu != lv){
-                                rag.inserEdgeWithMutex(lu,lv, edgeMutex, mutexArray, 5000);
-                            }
-                        }
-                    }
+            //        for(size_t x=0; x<x_max; ++x){
+            //            
+            //            const auto lu = this_slice(0,y,x);
+            //            
+            //            if(x+1<x_max){
+            //                const auto lv = this_slice(0,y,x+1);
+            //                if(lu != lv){
+            //                    rag.inserEdgeWithMutex(lu,lv, edgeMutex, mutexArray, 5000);
+            //                }
+            //            }
+            //            if(y+1<y_max){
+            //                const auto lv = this_slice(0,y+1,x);
+            //                if(lu != lv){
+            //                    rag.inserEdgeWithMutex(lu,lv, edgeMutex, mutexArray, 5000);
+            //                }
+            //            }
+            //            if(z+1<z_max){
+            //                const auto lv = next_slice(0, y, x);
+            //                if(lu != lv){
+            //                    rag.inserEdgeWithMutex(lu,lv, edgeMutex, mutexArray, 5000);
+            //                }
+            //            }
+            //        }
 
-                });
-            }
+            //    });
+            //}
         }
     }
 
