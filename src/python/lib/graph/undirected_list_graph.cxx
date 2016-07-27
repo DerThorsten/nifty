@@ -16,7 +16,7 @@ namespace graph{
 
 
 
-    void exportUndirectedGraph(py::module & graphModule) {
+    void exportUndirectedListGraph(py::module & graphModule) {
 
         typedef UndirectedGraph<> Graph;
         const auto clsName = std::string("UndirectedGraph");
@@ -53,7 +53,7 @@ namespace graph{
         ;
 
         // export the base graph API (others might derive)
-        exportUndirectedGraphClassAPI<Graph>(graphModule, undirectedGraphCls,clsName);
+        exportUndirectedListGraphClassAPI<Graph>(graphModule, undirectedGraphCls,clsName);
 
 
     }
