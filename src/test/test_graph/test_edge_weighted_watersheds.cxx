@@ -6,7 +6,7 @@
 #include <random>
 
 #include "nifty/tools/runtime_check.hxx"
-#include "nifty/graph/simple_graph.hxx"
+#include "nifty/graph/undirected_list_graph.hxx"
 #include "nifty/graph/edge_weighted_watersheds.hxx"
 
 

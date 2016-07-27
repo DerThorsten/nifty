@@ -3,7 +3,7 @@
 #include <sstream>
 #include <pybind11/numpy.h>
 
-#include "nifty/graph/simple_graph.hxx"
+#include "nifty/graph/undirected_list_graph.hxx"
 
 #include "export_undirected_graph_class_api.hxx"
 #include "nifty/python/converter.hxx"

@@ -24,7 +24,7 @@
 #include "nifty/graph/rag/grid_rag_labels.hxx"
 #include "nifty/graph/rag/detail_rag/compute_grid_rag.hxx"
 #include "nifty/marray/marray.hxx"
-#include "nifty/graph/simple_graph.hxx"
+#include "nifty/graph/undirected_list_graph.hxx"
 #include "nifty/parallel/threadpool.hxx"
 #include "nifty/tools/timer.hxx"
 //#include "nifty/graph/detail/contiguous_indices.hxx"

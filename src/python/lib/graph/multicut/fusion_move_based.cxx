@@ -7,7 +7,7 @@
 #include "nifty/graph/multicut/proposal_generators/greedy_additive_proposals.hxx"
 #include "nifty/graph/multicut/proposal_generators/watershed_proposals.hxx"
 
-#include "nifty/python/graph/simple_graph.hxx"
+#include "nifty/python/graph/undirected_list_graph.hxx"
 #include "nifty/python/graph/edge_contraction_graph.hxx"
 #include "nifty/python/graph/multicut/multicut_objective.hxx"
 #include "nifty/python/converter.hxx"
