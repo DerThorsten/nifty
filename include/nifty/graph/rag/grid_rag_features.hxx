@@ -8,6 +8,8 @@
 
 #include "nifty/tools/for_each_coordinate.hxx"
 
+#include "vigra/accumulator.hxx"
+
 namespace nifty{
 namespace graph{
 
@@ -48,6 +50,7 @@ namespace graph{
     };
 
 
+    // FIXME min and max val are never passed to the DefaultAcc, afaik
     template<class GRAPH, class T, unsigned int NBINS, template<class> class ITEM_MAP >
     class DefaultAccMapBase 
     {
@@ -60,6 +63,13 @@ namespace graph{
             globalMaxVal_(globalMaxVal),
             accs_(graph){
 
+        }
+        // needed for the getFeatureMatrix gluecode
+        size_t numberOfEdges() {
+            return graph_.numberOfEdges();
+        }
+        size_t numberOfNodes() {
+            return graph_.numberOfNodes();
         }
         void accumulate(const uint64_t item, const T & val){
             if(currentPass_ == 0){
@@ -120,8 +130,109 @@ namespace graph{
     };
 
 
-
     
+    template<class GRAPH, class T, unsigned int NBINS, template<class> class ITEM_MAP >
+    class VigraAccMapBase {
+    public:
+
+        typedef GRAPH Graph;
+        
+        // for now, we hardcode the features here, should be easy to expose them though
+        // Maybe we should get rid of some (Kurtosis / min and max could be replaced by the corresponding quantle 0 resp. 6)
+        // TODO should we expose histogram options ?
+        typedef vigra::acc::StandardQuantiles<vigra::acc::AutoRangeHistogram<0>> Quantiles;
+        typedef vigra::acc::Select<vigra::acc::Mean, vigra::acc::Sum, vigra::acc::Minimum, vigra::acc::Maximum, vigra::acc::Variance, vigra::acc::Skewness, vigra::acc::Kurtosis, Quantiles> features; 
+        typedef vigra::acc::AccumulatorChain<T,features> AccumulatorType;
+        
+        VigraAccMapBase(const Graph & graph )
+        :   graph_(graph),
+            currentPass_(0),
+            accs_(graph) {
+
+            // TODO we could use Auto Histogram instead, but then we would need one more pass
+            vigra::HistogramOptions histo_opts;
+            histo_opts.setBinCount(NBINS);
+
+            for(size_t edge = 0; edge < graph_.numberOfEdges; ++edge)
+                accs_[edge].setHistogramOptions(histo_opts);
+        
+        }
+        
+        void accumulate(const uint64_t item, const T & val){
+            accs_[item].updatePassN(val, currentPass_);
+        }
+        
+        void startPass(const size_t passIndex){
+            currentPass_ = passIndex;
+        }
+        
+        size_t numberOfPasses() const{
+            return accs_[0].passesRequired();
+        }
+        
+        
+        uint64_t numberOfFeatures() const {
+            return 11;
+        }
+        
+        void getFeatures(const uint64_t item, T * featuresOut){
+
+            using namespace vigra::acc;
+
+            const auto & a = accs_[item];
+            featuresOut[0] = get<Mean>(a);
+            featuresOut[1] = get<Minimum>(a);
+            featuresOut[2] = get<Maximum>(a);
+            featuresOut[3] = get<Variance>(a);
+            featuresOut[4] = get<Skewness>(a);
+            featuresOut[5] = get<Kurtosis>(a);
+            vigra::TinyVector<double, 7> quants = get<Quantiles>(a);
+            featuresOut[6] = quants[1]; 
+            featuresOut[7] = quants[2]; 
+            featuresOut[8] = quants[3]; 
+            featuresOut[9] = quants[4]; 
+            featuresOut[10] = quants[5]; 
+        }   
+        
+        //void resetFrom(const DefaultAccMapBase & other){
+        //    std::copy(other.accs_.begin(), other.accs_.end(), accs_.begin());
+        //    globalMinVal_ = other.globalMinVal_;
+        //    globalMinVal_ = other.globalMaxVal_;
+        //    currentPass_ = other.currentPass_;
+        //}
+
+    private:
+        const GRAPH & graph_;
+        size_t currentPass_;
+        //T globalMinVal_;
+        //T globalMaxVal_;
+        ITEM_MAP<AccumulatorType> accs_;
+    };
+    
+    
+    template<class GRAPH, class T, unsigned int NBINS=40>
+    class VigraAccEdgeMap : 
+        public  VigraAccMapBase<GRAPH, T, NBINS, GRAPH:: template EdgeMap >
+    {
+    public:
+        typedef GRAPH Graph;
+        //typedef typename Graph:: template EdgeMap<DefaultAcc<T, NBINS> > BasesBaseType;
+        typedef VigraAccMapBase<Graph, T, NBINS, Graph:: template EdgeMap >  BaseType;
+        using BaseType::BaseType;
+    };
+
+    template<class GRAPH, class T, unsigned int NBINS=40>
+    class VigraAccNodeMap : 
+        public  VigraAccMapBase<GRAPH, T, NBINS, GRAPH:: template NodeMap >
+    {
+    public:
+        typedef GRAPH Graph;
+        //typedef typename Graph:: template NodeMap<DefaultAcc<T, NBINS> > BasesBaseType;
+        typedef VigraAccMapBase<Graph, T, NBINS, Graph:: template NodeMap >  BaseType;
+        using BaseType::BaseType;
+    };
+
+
 
     
 
@@ -166,6 +277,7 @@ namespace graph{
     }
     
     
+    
     template< class LABELS_TYPE, class T, class EDGE_MAP, class NODE_MAP>
     void gridRagAccumulateFeatures(
         const ChunkedLabelsGridRagSliced<LABELS_TYPE> & graph,
@@ -184,7 +296,7 @@ namespace graph{
         // need to take care of different axis ordering...
         NIFTY_CHECK_OP(data.shape(0),==,shape[2], "Shape along x does not agree")
         NIFTY_CHECK_OP(data.shape(1),==,shape[1], "Shape along y does not agree")
-        NIFTY_CHECK_OP(z0+data.shape(2),<,shape[0], "Z offset is too large")
+        NIFTY_CHECK_OP(z0+data.shape(2),<=,shape[0], "Z offset is too large")
 
 
         vigra::Shape3 slice_shape(1,shape[1],shape[2]);
@@ -192,7 +304,7 @@ namespace graph{
         vigra::MultiArray<3,LABELS_TYPE> next_slice(slice_shape);
         const auto numberOfPasses =  std::max(edgeMap.numberOfPasses(),nodeMap.numberOfPasses());
         for(size_t p=0; p<numberOfPasses; ++p){
-            // start path p
+            // start pass p
             edgeMap.startPass(p);
             nodeMap.startPass(p);
 
@@ -234,6 +346,7 @@ namespace graph{
                             }
                         }
                         
+                        // this is shape(2), because it is the shape of a marray !
                         if( z + 1 < data.shape(2)) {
                             const auto lV = next_slice(0,y,x);
                             const auto dV = data(x,y,z+1);
@@ -243,10 +356,8 @@ namespace graph{
                                 edgeMap.accumulate(e, dV);
                             }
                         }
-
                     }
                 }
-
             }
         }
     }
@@ -291,7 +402,7 @@ namespace graph{
     }
     
     
-    // TODO implement
+    // FIXME smthn goes wrong here
     template<class LABELS_TYPE, class LABELS, class NODE_MAP>
     void gridRagAccumulateLabels(
         const ChunkedLabelsGridRagSliced<LABELS_TYPE> & graph,
@@ -322,14 +433,15 @@ namespace graph{
         std::vector<  std::unordered_map<uint64_t, uint64_t> > overlaps(graph.numberOfNodes());
 
         for(size_t z = 0; z < z_max; z++) {
-            
+
             // checkout this slice
             vigra::Shape3 slice_begin(z, 0, 0);
             labels.checkoutSubarray(slice_begin, this_labels);
             data.checkoutSubarray(slice_begin, this_data);
             
             // TODO parallel versions of the code
-            nifty::tools::forEachCoordinate(std::array<int64_t,2>({shape[x_max,y_max]}),[&](const Coord & coord){
+            
+            nifty::tools::forEachCoordinate(std::array<int64_t,2>({(int64_t)x_max,(int64_t)y_max}),[&](const Coord & coord){
                 const auto x = coord[0];
                 const auto y = coord[1];
                 const auto node = this_labels(0,y,x);            

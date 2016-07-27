@@ -83,19 +83,23 @@ namespace graph{
         ragModule.def("gridRagSlicedAccumulateLabels",
             [](
                 const RAG & rag,
-                vigra::ChunkedArrayHDF5<3,T> labels
+                const std::string & labels_file,
+                const std::string & labels_key
             ){  
                 nifty::marray::PyView<T> nodeLabels({rag.numberOfNodes()});
                 {
+                    vigra::HDF5File h5_file(labels_file, vigra::HDF5File::ReadOnly);
+                    vigra::ChunkedArrayHDF5<3,T> labels(h5_file, labels_key);
                     py::gil_scoped_release allowThreads;
                     gridRagAccumulateLabels(rag, labels, nodeLabels);
                 }
                 return nodeLabels;
 
             },
-            py::arg("graph"),py::arg("labels")
+            py::arg("graph"),py::arg("labels_file"),py::arg("labels_key")
         );
     }
+
 
 
     void exportGraphAccumulator(py::module & ragModule, py::module & graphModule) {
@@ -107,12 +111,39 @@ namespace graph{
             typedef DefaultAccEdgeMap<Graph, double> EdgeMapType;
             typedef DefaultAccNodeMap<Graph, double> NodeMapType;
 
+            /* TODO test and export the vigra accumulators
+            typedef VigraAccEdgeMap<Graph, double> VigraEdgeMapType;
+            typedef VigraAccNodeMap<Graph, double> VigraNodeMapType;
+
+            // vigra edge map
+            py::class_<VigraAccEdgeMap>(ragModule, "VigraAccEdgeMapUndirectedGraph")
+                .def("getFeatures",
+                        []() {
+                        
+                        })
+            */
+
             // edge map
             {
                 
                 py::class_<EdgeMapType>(ragModule, "DefaultAccEdgeMapUndirectedGraph")
+                    // move implementation to grid_rag_features.hxx instead?
+                    .def("getFeatureMatrix",[](EdgeMapType * self){
+                            marray::PyView<double> featMat({self->numberOfEdges(),self->numberOfFeatures()});
+                            for(size_t e = 0; e < self->numberOfEdges(); e++) {
+                                double feats[self->numberOfFeatures()];
+                                self->getFeatures(e, feats);
+                                // TODO acces row of the view instead 
+                                for(size_t f = 0; f < self->numberOfFeatures(); f++) {
+                                     featMat(e,f) = feats[f];
+                                }
+                            }
+                            return featMat;
+                        })
                 ;
+                
                 ragModule.def("defaultAccEdgeMap", [](const Graph & graph, const double minVal, const double maxVal){
+
                     EdgeMapType * ptr = nullptr;
                     {
                         py::gil_scoped_release allowThreads;
@@ -129,7 +160,21 @@ namespace graph{
             {
                 
                 py::class_<NodeMapType>(ragModule, "DefaultAccNodeMapUndirectedGraph")
+                    // move implementation to grid_rag_features.hxx instead?
+                    .def("getFeatureMatrix",[](NodeMapType * self){
+                            marray::PyView<double> featMat({self->numberOfNodes(),self->numberOfFeatures()});
+                            for(size_t n = 0; n < self->numberOfNodes(); n++) {
+                                double feats[self->numberOfFeatures()];
+                                self->getFeatures(n, feats);
+                                // TODO acces row of the view instead 
+                                for(size_t f = 0; f < self->numberOfFeatures(); f++) {
+                                     featMat(n,f) = feats[f];
+                                }
+                            }
+                            return featMat;
+                        })
                 ;
+                
                 ragModule.def("defaultAccNodeMap", [](const Graph & graph, const double minVal, const double maxVal){
                     NodeMapType * ptr = nullptr;
                     {
