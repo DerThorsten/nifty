@@ -86,6 +86,7 @@ include_directories( "${CMAKE_CURRENT_SOURCE_DIR}/externals/vigra/include")
 find_package(HDF5)
 if(HDF5_FOUND)
     include_directories(${HDF5_INCLUDE_DIR})
+    add_definitions(-DWITH_HDF5)
 endif()
 
 
