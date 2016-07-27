@@ -51,23 +51,23 @@ namespace graph{
                 }
             )
             .def("serialize",
-                [](Graph & g) {
+                [](const Graph & g) {
                     nifty::marray::PyView<uint64_t> out({g.serializationSize()});
                     auto ptr = &out(0);
-                    this->serialize(ptr);
+                    g.serialize(ptr);
                     return out;
                 }
             )
             .def("deserialize",
                 [](Graph & g, nifty::marray::PyView<uint64_t,1> serialization) {
                     auto ptr = &serialization(0);
-                    this->deserialize(ptr);
+                    g.deserialize(ptr);
                 }
             )
         ;
 
         // export the base graph API (others might derive)
-        exportUndirectedListGraphClassAPI<Graph>(graphModule, undirectedGraphCls,clsName);
+        exportUndirectedGraphClassAPI<Graph>(graphModule, undirectedGraphCls,clsName);
 
 
     }
