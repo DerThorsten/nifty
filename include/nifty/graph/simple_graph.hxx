@@ -116,6 +116,7 @@ public:
     std::pair<int64_t,int64_t> uv(const int64_t e)const;
     template<class F>
     void forEachEdge(F && f)const;
+protected:
 
     std::vector<NodeStorage> nodes_;
     std::vector<EdgeStorage> edges_;
