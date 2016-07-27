@@ -30,15 +30,15 @@ namespace graph{
 
 
 namespace detail_graph{
-    template<class EDGE_INTERANL_TYPE, class NODE_INTERNAL_TYPE >
+    template<class EDGE_INTERNAL_TYPE, class NODE_INTERNAL_TYPE >
     struct UndirectedGraphTypeHelper{
-        typedef EDGE_INTERANL_TYPE EdgeInternalType;
-        typedef NODE_INTERNAL_TYPE NodeInteralType;
-        typedef detail_graph::UndirectedAdjacency<int64_t,int64_t,NodeInteralType,EdgeInternalType> NodeAdjacency;
+        typedef EDGE_INTERNAL_TYPE EdgeInternalType;
+        typedef NODE_INTERNAL_TYPE NodeInternalType;
+        typedef detail_graph::UndirectedAdjacency<int64_t,int64_t,NodeInternalType,EdgeInternalType> NodeAdjacency;
         //typedef std::set<NodeAdjacency > NodeStorage;
         typedef nifty::container::FlatSet <NodeAdjacency> NodeStorage;
 
-        typedef std::pair<NodeInteralType,NodeInteralType> EdgeStorage;
+        typedef std::pair<NodeInternalType,NodeInternalType> EdgeStorage;
         typedef boost::counting_iterator<int64_t> NodeIter;
         typedef boost::counting_iterator<int64_t> EdgeIter;
         typedef typename NodeStorage::const_iterator AdjacencyIter;
@@ -58,20 +58,20 @@ namespace detail_graph{
 };
 
 
-template<class EDGE_INTERANL_TYPE = int64_t, 
+template<class EDGE_INTERNAL_TYPE = int64_t, 
          class NODE_INTERNAL_TYPE = int64_t>
 class UndirectedGraph : public
     UndirectedGraphBase<
-        UndirectedGraph<EDGE_INTERANL_TYPE,NODE_INTERNAL_TYPE>,
+        UndirectedGraph<EDGE_INTERNAL_TYPE,NODE_INTERNAL_TYPE>,
         detail_graph::SimpleGraphNodeIter,
         detail_graph::SimpleGraphEdgeIter,
-        typename detail_graph::UndirectedGraphTypeHelper<EDGE_INTERANL_TYPE,NODE_INTERNAL_TYPE>::AdjacencyIter
+        typename detail_graph::UndirectedGraphTypeHelper<EDGE_INTERNAL_TYPE,NODE_INTERNAL_TYPE>::AdjacencyIter
     >
 {
 protected:
-    typedef EDGE_INTERANL_TYPE EdgeInternalType;
-    typedef NODE_INTERNAL_TYPE NodeInteralType;
-    typedef detail_graph::UndirectedAdjacency<int64_t,int64_t,NodeInteralType,EdgeInternalType> NodeAdjacency;
+    typedef EDGE_INTERNAL_TYPE EdgeInternalType;
+    typedef NODE_INTERNAL_TYPE NodeInternalType;
+    typedef detail_graph::UndirectedAdjacency<int64_t,int64_t,NodeInternalType,EdgeInternalType> NodeAdjacency;
     typedef nifty::container::FlatSet<NodeAdjacency> NodeStorage;
     typedef std::pair<EdgeInternalType,EdgeInternalType> EdgeStorage;
 public:

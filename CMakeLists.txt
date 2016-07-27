@@ -82,9 +82,10 @@ include_directories( "${CMAKE_CURRENT_SOURCE_DIR}/externals/vigra/include")
 #-------------------------------------------------------------------------------------------------------------------
 # hdf5 libs
 #-------------------------------------------------------------------------------------------------------------------
+#find_package(HDF5 COMPONENTS HL REQUIRED)
 find_package(HDF5)
 if(HDF5_FOUND)
-    include_directories(${HDF5_INCLUDE_DIRS})
+    include_directories(${HDF5_INCLUDE_DIR})
 endif()
 
 
