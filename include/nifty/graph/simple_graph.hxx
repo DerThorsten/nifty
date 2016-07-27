@@ -88,7 +88,7 @@ public:
 
 
     // constructors
-    UndirectedGraph(const uint64_t numberOfNodes = 0, const uint64_t reserveNumberOfEdges = 0;
+    UndirectedGraph(const uint64_t numberOfNodes = 0, const uint64_t reserveNumberOfEdges = 0);
     void assign(const uint64_t numberOfNodes = 0, const uint64_t reserveNumberOfEdges = 0);
     int64_t insertEdge(const int64_t u, const int64_t v);
 
@@ -109,10 +109,7 @@ public:
     EdgeIter edgesEnd()const;
 
     AdjacencyIter adjacencyBegin(const int64_t node)const;
-    }
     AdjacencyIter adjacencyEnd(const int64_t node)const;
-
-
     AdjacencyIter adjacencyOutBegin(const int64_t node)const;
 
     // optional (with default impl in base)
