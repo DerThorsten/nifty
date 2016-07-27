@@ -119,7 +119,7 @@ public:
 
     // serialization de-serialization
 
-    void serializationSize() const;
+    uint64_t serializationSize() const;
 
     template<class ITER>
     void serialize(ITER iter) const;
@@ -304,7 +304,7 @@ forEachEdge(F && f)const{
 
 
 template<class EDGE_INTERANL_TYPE, class NODE_INTERNAL_TYPE >
-void 
+uint64_t 
 UndirectedGraph<EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE>::
 serializationSize() const{
     auto size = 0;

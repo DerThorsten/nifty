@@ -52,7 +52,7 @@ namespace graph{
             )
             .def("serialize",
                 [](Graph & g) {
-                    nifty::marray::PyView<uint64_t> out({this->serializationSize()});
+                    nifty::marray::PyView<uint64_t> out({g.serializationSize()});
                     auto ptr = &out(0);
                     this->serialize(ptr);
                     return out;
