@@ -324,7 +324,7 @@ serialize(ITER iter) const{
     *iter = this->numberOfEdges(); 
     ++iter;
 
-    for(const edge : this->edges()){
+    for(const auto edge : this->edges()){
         *iter = this->u(edge);
         ++iter;
         *iter = this->v(edge);
