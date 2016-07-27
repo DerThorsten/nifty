@@ -24,7 +24,7 @@ if (CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR CMAKE_CXX_COMPILER_ID MATCHES "GNU"
     #CHECK_CXX_COMPILER_FLAG("-flto" HAS_LTO_FLAG)
     #if (HAS_LTO_FLAG)
     #  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -flto")
-    
+    #endif()
   endif()
 endif()
 
@@ -63,11 +63,6 @@ add_library(_nifty SHARED
 
 
 
-if(HDF5_FOUND)
-    MESSAGE(STATUS "HDF-Libs: " ${HDF5_LIBRARIES})
-    target_link_libraries(_nifty ${HDF5_LIBRARIES})
-endif()
-
 if(WITH_GUROBI)
     target_link_libraries(_nifty ${GUROBI_LIBRARIES})
 endif()
@@ -79,8 +74,6 @@ endif()
 if(WITH_GLPK)
     target_link_libraries(_nifty ${GLPK_LIBRARY})
 endif()
-
-
 
 
 # Don't add a 'lib' prefix to the shared library
