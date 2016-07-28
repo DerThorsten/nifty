@@ -84,12 +84,6 @@ public:
             shape_[i] = labels_.shape(i);
     }
 
-    // need the copy constructor!
-    ChunkedLabels(const ChunkedLabels & src)
-    : labels_(vigra::HDF5File(src.label_file_, vigra::HDF5File::ReadOnly), src.label_key_ ),
-      shape_(src.shape_), label_file_(src.label_file_), label_key_(src.label_key_)
-    {}
-
     
     // part of the API
     // TODO iterate over the chunks in parellel !
