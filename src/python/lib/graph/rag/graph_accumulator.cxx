@@ -61,6 +61,7 @@ namespace graph{
         );
     }
     
+    // export only if we have HDF5 support
     #ifdef WITH_HDF5
     template<class RAG,class T, class EDGE_MAP, class NODE_MAP>
     void exportGridRagSlicedAccumulateFeaturesT(py::module & ragModule){
