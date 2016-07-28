@@ -61,6 +61,7 @@ namespace graph{
         );
     }
     
+    #ifdef WITH_HDF5
     template<class RAG,class T, class EDGE_MAP, class NODE_MAP>
     void exportGridRagSlicedAccumulateFeaturesT(py::module & ragModule){
 
@@ -103,6 +104,7 @@ namespace graph{
             py::arg("graph"),py::arg("labels_file"),py::arg("labels_key")
         );
     }
+    #endif
 
 
 
