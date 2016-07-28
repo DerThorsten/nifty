@@ -1,11 +1,97 @@
 import nifty
 import vigra
 import numpy
+import os
 
 chunked_rag = nifty.graph.rag.chunkedLabelsGridRagSliced
 normal_rag  = nifty.graph.rag.explicitLabelsGridRag3D
 
-def test_rag_build(labels_file, labels_key):
+
+def testExplicitLabelsRag3d():
+
+    labels = [
+        [
+            [0,1],
+            [0,0]
+        ],
+        [
+            [1,1],
+            [2,2]
+        ],
+        [
+            [3,3],
+            [3,3]
+        ]
+    ]
+
+    labels = numpy.array(labels, dtype = 'uint32')
+
+    vigra.writeHDF5(labels, "tmp.h5", "data", chunks = (2,2,1))
+
+    ragA = chunked_rag("tmp.h5","data")
+    ragB = normal_rag(labels)
+
+    assert isinstance(ragA, nifty.graph.rag.ChunkedLabelsGridRagSliced)
+    assert isinstance(ragB, nifty.graph.rag.ExplicitLabelsGridRag3D)
+
+    shoudlEdges = [
+        (0,1),
+        (0,2),
+        (1,2),
+        (1,3),
+        (2,3)
+
+    ]
+
+    shoudlNotEdges = [
+       (0,3)
+    ]
+
+
+    assert ragA.numberOfNodes == 4
+    assert ragB.numberOfNodes == 4
+
+    assert ragA.numberOfEdges == len(shoudlEdges)
+    assert ragB.numberOfEdges == len(shoudlEdges)
+
+    edgeListA = []
+    for edge in ragA.edges():
+        edgeListA.append(edge)
+
+    edgeListB = []
+    for edge in ragB.edges():
+        edgeListB.append(edge)
+
+    assert len(edgeListA) == len(shoudlEdges)
+    assert len(edgeListB) == len(shoudlEdges)
+
+
+    for shouldEdge in shoudlEdges:
+
+        fResA = ragA.findEdge(shouldEdge)
+        fResB = ragB.findEdge(shouldEdge)
+        assert fResA >= 0
+        assert fResB >= 0
+        uvA = ragA.uv(fResA)
+        uvB = ragB.uv(fResB)
+        uvA = sorted(uvA)
+        uvB = sorted(uvB)
+        assert uvA[0] == shouldEdge[0]
+        assert uvA[1] == shouldEdge[1]
+        assert uvB[0] == shouldEdge[0]
+        assert uvB[1] == shouldEdge[1]
+
+    for shouldNotEdge in shoudlNotEdges:
+
+        fResA = ragA.findEdge(shouldNotEdge)
+        fResB = ragB.findEdge(shouldNotEdge)
+        assert fResA == -1
+        assert fResB == -1
+
+    os.remove("tmp.h5")
+
+
+def compare_rags_from_files(labels_file, labels_key):
 
     with vigra.Timer("Chunked Nifty Rag"):
         rag_c = chunked_rag(labels_file, labels_key, numberOfThreads = 1)
@@ -40,11 +126,13 @@ def test_rag_build(labels_file, labels_key):
 
 if __name__ == '__main__':
 
-    files = ["/home/consti/Work/projects/phd_prototyping/vigra_chunked/test_labels_chunked.h5",
-            "/home/consti/Work/data_neuro/test_block/sliced_data/test-seg.h5",
-            "/home/consti/Work/data_neuro/large_tests/sampleA/sampleA_ws.h5"]
+    testExplicitLabelsRag3d()
 
-    for f in files:
+    #files = ["/home/consti/Work/projects/phd_prototyping/vigra_chunked/test_labels_chunked.h5",
+    #        "/home/consti/Work/data_neuro/test_block/sliced_data/test-seg.h5",
+    #        "/home/consti/Work/data_neuro/large_tests/sampleA/sampleA_ws.h5"]
 
-        print f
-        test_rag_build(f, "data")
+    #for f in files:
+
+    #    print f
+    #    test_rag_build(f, "data")
