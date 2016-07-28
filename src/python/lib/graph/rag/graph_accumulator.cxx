@@ -136,7 +136,8 @@ namespace graph{
                 py::class_<EdgeMapType>(ragModule, "DefaultAccEdgeMapUndirectedGraph")
                     // move implementation to grid_rag_features.hxx instead?
                     .def("getFeatureMatrix",[](EdgeMapType * self){
-                            marray::PyView<double> featMat({self->numberOfEdges(),self->numberOfFeatures()});
+                            size_t shape[] = {self->numberOfEdges(),self->numberOfFeatures()};
+                            marray::PyView<double> featMat(shape,shape+2);
                             for(size_t e = 0; e < self->numberOfEdges(); e++) {
                                 double feats[self->numberOfFeatures()];
                                 self->getFeatures(e, feats);
