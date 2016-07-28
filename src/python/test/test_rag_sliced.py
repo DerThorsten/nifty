@@ -7,7 +7,7 @@ chunked_rag = nifty.graph.rag.chunkedLabelsGridRagSliced
 normal_rag  = nifty.graph.rag.explicitLabelsGridRag3D
 
 
-def testExplicitLabelsRag3d():
+def testChunkedLabelsGridRagSliced():
 
     labels = [
         [
@@ -48,7 +48,7 @@ def testExplicitLabelsRag3d():
     ]
 
 
-    assert ragA.numberOfNodes == 4
+    assert ragA.numberOfNodes == 4, ragA.numberOfNodes
     assert ragB.numberOfNodes == 4
 
     assert ragA.numberOfEdges == len(shoudlEdges)
@@ -89,6 +89,7 @@ def testExplicitLabelsRag3d():
         assert fResB == -1
 
     os.remove("tmp.h5")
+    print "Check"
 
 
 def compare_rags_from_files(labels_file, labels_key):
@@ -126,13 +127,13 @@ def compare_rags_from_files(labels_file, labels_key):
 
 if __name__ == '__main__':
 
-    testExplicitLabelsRag3d()
+    testChunkedLabelsGridRagSliced()
 
     #files = ["/home/consti/Work/projects/phd_prototyping/vigra_chunked/test_labels_chunked.h5",
-    #        "/home/consti/Work/data_neuro/test_block/sliced_data/test-seg.h5",
+    #        "/home/consti/Work/data_neuro/test_block/test-seg.h5",
     #        "/home/consti/Work/data_neuro/large_tests/sampleA/sampleA_ws.h5"]
 
     #for f in files:
 
     #    print f
-    #    test_rag_build(f, "data")
+    #    compare_rags_from_files(f, "data")
