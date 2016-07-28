@@ -4,7 +4,11 @@
 #include "nifty/python/converter.hxx"
 
 #include "nifty/graph/rag/grid_rag_features.hxx"
+
+#ifdef WITH_HDF5
 #include "vigra/multi_array_chunked_hdf5.hxx"
+#include "nifty/graph/rag/grid_rag_features_chunked.hxx"
+#endif
 
 
 
@@ -195,14 +199,17 @@ namespace graph{
             exportGridRagAccumulateFeaturesT<ExplicitLabelsGridRag2D, float, 2, EdgeMapType, NodeMapType>(ragModule);
             exportGridRagAccumulateFeaturesT<ExplicitLabelsGridRag3D, float, 3, EdgeMapType, NodeMapType>(ragModule);
 
-            typedef ChunkedLabelsGridRagSliced<uint32_t> ChunkedLabelsGridRagSliced;
-            exportGridRagSlicedAccumulateFeaturesT<ChunkedLabelsGridRagSliced, float, EdgeMapType, NodeMapType>(ragModule);
 
             // accumulate labels
             exportGridRagAccumulateLabelsT<ExplicitLabelsGridRag2D, uint32_t, 2>(ragModule);
             exportGridRagAccumulateLabelsT<ExplicitLabelsGridRag3D, uint32_t, 3>(ragModule);
             
+            // export sliced rag (only if we have hdf5 support)
+            #ifdef WITH_HDF5
+            typedef ChunkedLabelsGridRagSliced<uint32_t> ChunkedLabelsGridRagSliced;
+            exportGridRagSlicedAccumulateFeaturesT<ChunkedLabelsGridRagSliced, float, EdgeMapType, NodeMapType>(ragModule);
             exportGridRagSlicedAccumulateLabelsT<ChunkedLabelsGridRagSliced, uint32_t>(ragModule);
+            #endif
         }
     }
 

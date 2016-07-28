@@ -12,6 +12,8 @@ option(WITH_GUROBI OFF)
 option(WITH_CPLEX OFF)
 option(WITH_GLPK OFF)
 option(WITH_COIN OFF)
+option(WITH_HDF5 OFF)
+
 
 
 option(BUILD_NIFTY_PYTHON OFF)
@@ -82,9 +84,8 @@ include_directories( "${CMAKE_CURRENT_SOURCE_DIR}/externals/vigra/include")
 #-------------------------------------------------------------------------------------------------------------------
 # hdf5 libs
 #-------------------------------------------------------------------------------------------------------------------
-#find_package(HDF5 COMPONENTS HL REQUIRED)
-find_package(HDF5)
-if(HDF5_FOUND)
+if(WITH_HDF5)
+    find_package(HDF5)
     include_directories(${HDF5_INCLUDE_DIR})
     add_definitions(-DWITH_HDF5)
 endif()

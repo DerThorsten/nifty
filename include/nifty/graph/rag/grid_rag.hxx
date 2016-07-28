@@ -68,57 +68,11 @@ private:
 };
 
 
-template<class LabelsProxy>
-//class GridRagSliced : public GridRag<3, LabelsProxy>{
-class GridRagSliced : public UndirectedGraph<>{
-
-public:
-    
-    typedef GridRagSliced<LabelsProxy> SelfType;
-    friend class detail_rag::ComputeRag< SelfType >;
-    
-    // TODO find the meaningful settings for the gridrag
-    struct Settings{
-        int numberOfThreads{-1};
-        bool lockFreeAlg{false};
-    };
-    
-    GridRagSliced(const LabelsProxy & labelsProxy, const Settings & settings = Settings())
-    :   settings_(settings),
-        labelsProxy_(labelsProxy)
-    {
-        // make sure that we have chunks of shape (1,Y,X)
-        NIFTY_CHECK_OP(labelsProxy.labels().chunkShape(0),==,1,"Z chunks have to be of size 1 for sliced rag")
-        detail_rag::ComputeRag< SelfType >::computeRag(*this, settings_);
-    }
-    
-    const LabelsProxy & labelsProxy() const {
-        return labelsProxy_;
-    }
-
-    const typename LabelsProxy::ViewType & labels() const {
-        return labelsProxy_.labels();
-    }
-        
-    
-
-private:
-    Settings settings_;
-    LabelsProxy labelsProxy_;
-
-};
 
 
 template<unsigned int DIM, class LABEL_TYPE>
 using ExplicitLabelsGridRag = GridRag<DIM, ExplicitLabels<DIM, LABEL_TYPE> >; 
 
-
-template<class LABEL_TYPE>
-using ChunkedLabelsGridRagSliced = GridRagSliced<ChunkedLabels<3, LABEL_TYPE> >; 
-
-
-//template<unsigned int DIM, class LABEL_TYPE>
-//using ChunkedLabelsGridRag = GridRag<DIM, ChunkedLabels<DIM, LABEL_TYPE> > ; 
 
 
 

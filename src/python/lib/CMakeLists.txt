@@ -63,7 +63,7 @@ add_library(_nifty SHARED
 
 
 
-if(HDF5_FOUND)
+if(WITH_HDF5)
     MESSAGE(STATUS "HDF-Libs: " ${HDF5_LIBRARIES})
     target_link_libraries(_nifty ${HDF5_LIBRARIES})
 endif()

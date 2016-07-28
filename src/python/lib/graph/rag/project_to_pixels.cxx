@@ -6,6 +6,10 @@
 #include "nifty/graph/rag/grid_rag.hxx"
 #include "nifty/graph/rag/project_to_pixels.hxx"
 
+#ifdef WITH_HDF5
+#include "nifty/graph/rag/grid_rag_chunked.hxx"
+#include "nifty/graph/rag/project_to_pixels_chunked.hxx"
+#endif
 
 
 namespace py = pybind11;
@@ -42,6 +46,7 @@ namespace graph{
         );
     }
     
+    #ifdef WITH_HDF5
     template<class RAG,class T>
     void exportProjectScalarNodeDataToPixelsSlicedT(py::module & ragModule){
 
@@ -71,6 +76,7 @@ namespace graph{
            py::arg("graph"),py::arg("nodeData"),py::arg("outputFile"),py::arg("key"),py::arg("numberOfThreads")
         );
     }
+    #endif
 
 
 
@@ -80,20 +86,23 @@ namespace graph{
         typedef ExplicitLabelsGridRag<2, uint32_t> ExplicitLabelsGridRag2D;
         typedef ExplicitLabelsGridRag<3, uint32_t> ExplicitLabelsGridRag3D;
         
-        typedef ChunkedLabelsGridRagSliced<uint32_t> ChunkedLabelsGridRag;
-
 
         exportProjectScalarNodeDataToPixelsT<ExplicitLabelsGridRag2D, uint32_t, 2>(ragModule);
         exportProjectScalarNodeDataToPixelsT<ExplicitLabelsGridRag3D, uint32_t, 3>(ragModule);
-        exportProjectScalarNodeDataToPixelsSlicedT<ChunkedLabelsGridRag, uint32_t>(ragModule);
 
         exportProjectScalarNodeDataToPixelsT<ExplicitLabelsGridRag2D, uint64_t, 2>(ragModule);
         exportProjectScalarNodeDataToPixelsT<ExplicitLabelsGridRag3D, uint64_t, 3>(ragModule);
-        exportProjectScalarNodeDataToPixelsSlicedT<ChunkedLabelsGridRag, uint64_t>(ragModule);
 
         exportProjectScalarNodeDataToPixelsT<ExplicitLabelsGridRag2D, float, 2>(ragModule);
         exportProjectScalarNodeDataToPixelsT<ExplicitLabelsGridRag3D, float, 3>(ragModule);
+        
+        // export sliced rag (only if we have hdf5 support)
+        #ifdef WITH_HDF5
+        typedef ChunkedLabelsGridRagSliced<uint32_t> ChunkedLabelsGridRag;
         exportProjectScalarNodeDataToPixelsSlicedT<ChunkedLabelsGridRag, float>(ragModule);
+        exportProjectScalarNodeDataToPixelsSlicedT<ChunkedLabelsGridRag, uint32_t>(ragModule);
+        exportProjectScalarNodeDataToPixelsSlicedT<ChunkedLabelsGridRag, uint64_t>(ragModule);
+        #endif
     }
 
 } // end namespace graph
