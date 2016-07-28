@@ -169,7 +169,8 @@ namespace graph{
                 py::class_<NodeMapType>(ragModule, "DefaultAccNodeMapUndirectedGraph")
                     // move implementation to grid_rag_features.hxx instead?
                     .def("getFeatureMatrix",[](NodeMapType * self){
-                            marray::PyView<double> featMat({self->numberOfNodes(),self->numberOfFeatures()});
+                            size_t shape[] = {self->numberOfNodes(),self->numberOfFeatures()};
+                            marray::PyView<double> featMat(shape, shape+2);
                             for(size_t n = 0; n < self->numberOfNodes(); n++) {
                                 double feats[self->numberOfFeatures()];
                                 self->getFeatures(n, feats);
