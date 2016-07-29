@@ -126,9 +126,9 @@ namespace graph{
 
                     // move implementation to grid_rag_features.hxx instead?
                     .def("getFeatureMatrix",[](EdgeMapType * self){
-                            size_t shape[] = {self->numberOfEdges(),self->numberOfFeatures()};
+                            size_t shape[] = {size_t(self->graph().edgeIdUpperBound()+1),size_t(self->numberOfFeatures())};
                             marray::PyView<double> featMat(shape,shape+2);
-                            for(size_t e = 0; e < self->numberOfEdges(); e++) {
+                            for(size_t e = 0; e < size_t(self->graph().edgeIdUpperBound()+1); e++) {
                                 double feats[self->numberOfFeatures()];
                                 self->getFeatures(e, feats);
                                 // TODO acces row of the view instead 
@@ -159,9 +159,9 @@ namespace graph{
                 py::class_<NodeMapType>(ragModule, "DefaultAccNodeMapUndirectedGraph")
                     // move implementation to grid_rag_features.hxx instead?
                     .def("getFeatureMatrix",[](NodeMapType * self){
-                            size_t shape[] = {self->numberOfNodes(),self->numberOfFeatures()};
+                            size_t shape[] = {size_t(self->graph().nodeIdUpperBound()+1),size_t(self->numberOfFeatures())};
                             marray::PyView<double> featMat(shape, shape+2);
-                            for(size_t n = 0; n < self->numberOfNodes(); n++) {
+                            for(size_t n = 0; n < self->graph().nodeIdUpperBound()+1; n++) {
                                 double feats[self->numberOfFeatures()];
                                 self->getFeatures(n, feats);
                                 // TODO acces row of the view instead 

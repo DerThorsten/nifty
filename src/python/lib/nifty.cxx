@@ -48,5 +48,12 @@ py::class_<Configuration>(niftyModule, "Configuration")
         return false;
         #endif
     })
+    .def_property_readonly_static("WITH_HDF5", [](py::object /* self */) { 
+        #ifdef  WITH_HDF5
+        return true;
+        #else
+        return false;
+        #endif
+    })
     ;
 }
