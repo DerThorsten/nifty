@@ -23,10 +23,8 @@ namespace graph{
         auto undirectedGraphCls = py::class_<Graph>(graphModule, clsName.c_str());
 
         undirectedGraphCls
-            .def(py::init<const uint64_t,const uint64_t>()
-              ,
-               //py::arg("numberOfNodes"),
-               py::arg("numberOfNodes"),
+            .def(py::init<const uint64_t,const uint64_t>(),
+               py::arg_t<uint64_t>("numberOfNodes",0),
                py::arg_t<uint64_t>("reserveEdges",0)
             )
             .def("insertEdge",&Graph::insertEdge)
