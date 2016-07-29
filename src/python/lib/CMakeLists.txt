@@ -45,6 +45,9 @@ add_library(_nifty SHARED
     graph/rag/grid_rag.cxx
     graph/rag/graph_accumulator.cxx
     graph/rag/project_to_pixels.cxx
+    # agglo
+    graph/agglo/agglo.cxx
+    graph/agglo/agglomerative_clustering.cxx
     # gala
     graph/gala/gala.cxx
     graph/gala/gala_main_class.cxx
@@ -62,6 +65,11 @@ add_library(_nifty SHARED
 )
 
 
+
+
+if(WITH_HDF5)
+    target_link_libraries(_nifty ${HDF5_LIBRARIES})
+endif()
 
 if(WITH_GUROBI)
     target_link_libraries(_nifty ${GUROBI_LIBRARIES})

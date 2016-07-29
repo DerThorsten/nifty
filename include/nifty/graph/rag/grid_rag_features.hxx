@@ -61,6 +61,9 @@ namespace graph{
             accs_(graph){
 
         }
+        const Graph & graph()const{
+            return graph_;
+        }
         void accumulate(const uint64_t item, const T & val){
             if(currentPass_ == 0){
                 accs_[item].accumulate(val);

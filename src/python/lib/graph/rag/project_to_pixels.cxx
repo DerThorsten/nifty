@@ -6,6 +6,10 @@
 #include "nifty/graph/rag/grid_rag.hxx"
 #include "nifty/graph/rag/project_to_pixels.hxx"
 
+#ifdef WITH_HDF5
+#include "nifty/graph/rag/grid_rag_chunked.hxx"
+#include "nifty/graph/rag/project_to_pixels_chunked.hxx"
+#endif
 
 
 namespace py = pybind11;
@@ -42,6 +46,40 @@ namespace graph{
         );
     }
 
+    
+    #ifdef WITH_HDF5
+    template<class RAG,class T>
+    void exportProjectScalarNodeDataToPixelsSlicedT(py::module & ragModule){
+
+        ragModule.def("projectScalarNodeDataToPixelsSliced",
+           [](
+                const RAG & rag,
+                nifty::marray::PyView<T, 1> nodeData,
+                const std::string & outputFile,
+                const std::string & key,
+                const int numberOfThreads
+           ){  
+                const auto labelsProxy = rag.labelsProxy();
+                const auto & labels = labelsProxy.labels(); 
+                const auto shape = labels.shape();
+
+                vigra::HDF5File h5_file(outputFile, vigra::HDF5File::ReadWrite);
+                typename vigra::ChunkedArrayHDF5<3, T>::shape_type chunk_shape(labels.file_.getChunkShape(key).begin());
+                vigra::ChunkedArrayHDF5<3, T> pixelData(h5_file, key, 
+                    vigra::HDF5File::ReadWrite, shape, chunk_shape);
+                {
+                    py::gil_scoped_release allowThreads;
+                    projectScalarNodeDataToPixels(rag, nodeData, pixelData, numberOfThreads);
+                }
+                // For now, we don't return it, because there are no proper pythonbindings for the chunked array yet
+                //return pixelData;
+           },
+           py::arg("graph"),py::arg("nodeData"),py::arg("outputFile"),py::arg("key"),py::arg("numberOfThreads")
+        );
+    }
+    #endif
+
+
 
 
     void exportProjectToPixels(py::module & ragModule) {
@@ -49,6 +87,7 @@ namespace graph{
 
         typedef ExplicitLabelsGridRag<2, uint32_t> ExplicitLabelsGridRag2D;
         typedef ExplicitLabelsGridRag<3, uint32_t> ExplicitLabelsGridRag3D;
+
 
 
         exportProjectScalarNodeDataToPixelsT<ExplicitLabelsGridRag2D, uint32_t, 2>(ragModule);
@@ -59,6 +98,16 @@ namespace graph{
 
         exportProjectScalarNodeDataToPixelsT<ExplicitLabelsGridRag2D, float, 2>(ragModule);
         exportProjectScalarNodeDataToPixelsT<ExplicitLabelsGridRag3D, float, 3>(ragModule);
+
+        
+        // export sliced rag (only if we have hdf5 support)
+        #ifdef WITH_HDF5
+        typedef ChunkedLabelsGridRagSliced<uint32_t> ChunkedLabelsGridRag;
+        exportProjectScalarNodeDataToPixelsSlicedT<ChunkedLabelsGridRag, float>(ragModule);
+        exportProjectScalarNodeDataToPixelsSlicedT<ChunkedLabelsGridRag, uint32_t>(ragModule);
+        exportProjectScalarNodeDataToPixelsSlicedT<ChunkedLabelsGridRag, uint64_t>(ragModule);
+        #endif
+
     }
 
 } // end namespace graph

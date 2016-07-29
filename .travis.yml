@@ -36,7 +36,7 @@ matrix:
         #
         #- cmake -DPYBIND11_PYTHON_VERSION=3.5 -DPYTHON_INCLUDE_DIR:PATH=/usr/include/python3.5m -DPYTHON_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libpython3.5m.so -DPYTHON_EXECUTABLE:FILEPATH=`pwd`/venv/bin/python3.5 -DCMAKE_CXX_COMPILER=g++-4.8
         #
-        - cmake -DWITHIN_TRAVIS=ON -DWITH_GLPK=ON -DBUILD_NIFTY_PYTHON=ON -DPYBIND_ELEVEN_INCLUDE_DIR=pybind11-master/include -DCMAKE_CXX_COMPILER=g++-4.8 -DPYBIND11_PYTHON_VERSION=3.5 -DPYTHON_INCLUDE_DIR:PATH=/usr/include/python3.5m -DPYTHON_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libpython3.5m.so -DPYTHON_EXECUTABLE:FILEPATH=`pwd`/venv/bin/python3.5 
+        - cmake -DWITHIN_TRAVIS=ON -DWITH_GLPK=ON -DWITH_HDF5=ON -DBUILD_NIFTY_PYTHON=ON -DPYBIND_ELEVEN_INCLUDE_DIR=pybind11-master/include -DCMAKE_CXX_COMPILER=g++-4.8 -DPYBIND11_PYTHON_VERSION=3.5 -DPYTHON_INCLUDE_DIR:PATH=/usr/include/python3.5m -DPYTHON_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libpython3.5m.so -DPYTHON_EXECUTABLE:FILEPATH=`pwd`/venv/bin/python3.5 
         - make -j2
         - CTEST_OUTPUT_ON_FAILURE=TRUE make test
         #- source venv/bin/activate

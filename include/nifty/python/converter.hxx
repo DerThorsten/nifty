@@ -17,6 +17,14 @@
 namespace py = pybind11;
 
 
+namespace nifty{
+    inline std::string lowerFirst(const std::string & name){
+        auto r = name;
+        r[0] = std::tolower(name[0]);
+        return r;
+    }
+}
+
 
 
 

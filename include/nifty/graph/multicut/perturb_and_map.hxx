@@ -208,7 +208,9 @@ namespace graph {
                         ++edgeCutCounter[edge];
                 }
                 ++nFinished;
-                //std::cout<<nFinished<<" / "<<settings_.numberOfIterations<<"\n";
+                if(settings_.verbose >= 1){
+                    std::cout<<nFinished<<" / "<<settings_.numberOfIterations<<"\n";
+                }
                 mtx.unlock();
                 //std::cout<<"done\n";
             }

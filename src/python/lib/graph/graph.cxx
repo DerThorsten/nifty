@@ -15,6 +15,9 @@ namespace graph{
 
     void initSubmoduleMulticut(py::module &);
     void initSubmoduleRag(py::module &);
+    namespace agglo{
+        void initSubmoduleAgglo(py::module &);
+    }
     void initSubmoduleGala(py::module &);
 
     void initSubmoduleGraph(py::module &niftyModule) {
@@ -26,6 +29,7 @@ namespace graph{
 
         initSubmoduleMulticut(graphModule);
         initSubmoduleRag(graphModule);
+        agglo::initSubmoduleAgglo(graphModule);
         initSubmoduleGala(graphModule);
     }
 

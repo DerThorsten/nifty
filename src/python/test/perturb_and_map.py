@@ -50,7 +50,7 @@ ilpFactory = obj.multicutIlpFactory(ilpSolver='cplex',
 
 greedy=obj.greedyAdditiveFactory().create(obj)
 visitor = obj.multicutVerboseVisitor(10)
-ret = greedy.optimizeWithVisitor(visitor=visitor)
+ret = greedy.optimize(visitor=visitor)
 
 greedy=obj.greedyAdditiveFactory()
 fmFactory = obj.fusionMoveBasedFactory(
@@ -67,7 +67,7 @@ fmFactory = obj.fusionMoveBasedFactory(
 
 
 s = obj.perturbAndMapSettings(mcFactory=fmFactory,noiseMagnitude=4.2,numberOfThreads=-1,
-                            numberOfIterations=10000, noiseType='uniform')
+                            numberOfIterations=10, noiseType='uniform')
 pAndMap = obj.perturbAndMap(obj, s)
 res =  pAndMap.optimize(ret)
 
