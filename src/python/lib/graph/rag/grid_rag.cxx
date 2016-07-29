@@ -5,6 +5,10 @@
 
 #include "nifty/graph/rag/grid_rag.hxx"
 
+#ifdef WITH_HDF5
+#include "nifty/graph/rag/grid_rag_chunked.hxx"
+#endif
+
 
 
 namespace py = pybind11;
@@ -17,6 +21,7 @@ namespace graph{
 
     using namespace py;
     //PYBIND11_DECLARE_HOLDER_TYPE(McBase, std::shared_ptr<McBase>);
+        
 
     void exportGridRag(py::module & ragModule, py::module & graphModule) {
 
@@ -80,8 +85,48 @@ namespace graph{
                 py::arg_t< int >("numberOfThreads", -1 )
             );
         }
+    
+        // export ChunkedLabelsGridRagSliced
+        #ifdef WITH_HDF5
+        {
+            py::object undirectedGraph = graphModule.attr("UndirectedGraph");
+            typedef ChunkedLabelsGridRagSliced<uint32_t> ChunkedLabelsGridRagSliced;
+
+            py::class_<ChunkedLabelsGridRagSliced>(ragModule, "ChunkedLabelsGridRagSliced", undirectedGraph)
+                // remove a few methods
+                .def("insertEdge", [](ChunkedLabelsGridRagSliced * self,const uint64_t u,const uint64_t ){
+                    throw std::runtime_error("cannot insert edges into 'ChunkedLabelsGridRagSliced'");
+                })
+                .def("insertEdges",[](ChunkedLabelsGridRagSliced * self, py::array_t<uint64_t> pyArray) {
+                    throw std::runtime_error("cannot insert edges into 'ChunkedLabelsGridRagSliced'");
+                })
+            ;
+            
+            ragModule.def("chunkedLabelsGridRagSliced",
+                [](const std::string & label_file,
+                   const std::string & label_key,
+                   const int numberOfThreads,
+                   const bool lockFreeAlg 
+                ){
+                    auto s = typename  ChunkedLabelsGridRagSliced::Settings();
+                    s.numberOfThreads = numberOfThreads;
+                    s.lockFreeAlg = lockFreeAlg;
+
+                    ChunkedLabels<3,uint32_t> chunkedLabels(label_file, label_key);
+                    auto ptr = new ChunkedLabelsGridRagSliced(chunkedLabels, s);
+                    return ptr;
+                },
+                py::return_value_policy::take_ownership,
+                py::keep_alive<0, 1>(),
+                py::arg("label_file"),
+                py::arg("label_key"),
+                py::arg_t< int >("numberOfThreads", 1 ),
+                py::arg_t< bool >("lockFreeAlg", false )
+            );
+        }
+        #endif
     }
+        
 
 } // end namespace graph
 } // end namespace nifty
-    

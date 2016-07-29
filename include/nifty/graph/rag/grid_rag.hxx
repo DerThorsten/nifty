@@ -72,15 +72,7 @@ template<unsigned int DIM, class LABEL_TYPE>
 using ExplicitLabelsGridRag = GridRag<DIM, ExplicitLabels<DIM, LABEL_TYPE> > ; 
 
 
-
-
-
-
-
-
-
-}
-}
-
+} // end namespace graph
+} // end namespace nifty
 
 #endif /* NIFTY_GRAPH_RAG_GRID_RAG_HXX */

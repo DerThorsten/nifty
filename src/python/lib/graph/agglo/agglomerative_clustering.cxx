@@ -2,7 +2,7 @@
 #include <pybind11/numpy.h>
 
 #include "nifty/python/converter.hxx"
-#include "nifty/python/graph/simple_graph.hxx"
+#include "nifty/python/graph/undirected_list_graph.hxx"
 
 #include "nifty/graph/agglo/agglomerative_clustering.hxx"
 #include "nifty/graph/agglo/cluster_policies/edge_weighted_cluster_policy.hxx"
