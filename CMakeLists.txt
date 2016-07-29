@@ -11,7 +11,6 @@ option(WITH_BOOST_COMPUTE OFF)
 option(WITH_GUROBI OFF)
 option(WITH_CPLEX OFF)
 option(WITH_GLPK OFF)
-option(WITH_COIN OFF)
 
 
 option(BUILD_NIFTY_PYTHON OFF)
@@ -87,7 +86,11 @@ if(HDF5_FOUND)
     include_directories(${HDF5_INCLUDE_DIRS})
 endif()
 
-
+find_package(HDF5)
+if(HDF5_FOUND)
+    include_directories(${HDF5_INCLUDE_DIR})
+    add_definitions(-DWITH_HDF5)
+endif()
 
 
 if(WITH_BOOST_COMPUTE)

@@ -5,7 +5,7 @@
 #include <string>
 
 #include "nifty/python/graph/graph_name.hxx"
-#include "nifty/graph/simple_graph.hxx"
+#include "nifty/graph/undirected_list_graph.hxx"
 
 
 namespace nifty{

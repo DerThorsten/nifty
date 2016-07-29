@@ -5,7 +5,7 @@
 #include <iostream> 
 
 #include "nifty/tools/runtime_check.hxx"
-#include "nifty/graph/simple_graph.hxx"
+#include "nifty/graph/undirected_list_graph.hxx"
 
 BOOST_AUTO_TEST_CASE(UndirectedGraphTest)
 {

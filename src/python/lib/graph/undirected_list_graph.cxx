@@ -3,7 +3,7 @@
 #include <sstream>
 #include <pybind11/numpy.h>
 
-#include "nifty/graph/simple_graph.hxx"
+#include "nifty/graph/undirected_list_graph.hxx"
 
 #include "export_undirected_graph_class_api.hxx"
 #include "nifty/python/converter.hxx"
@@ -16,7 +16,7 @@ namespace graph{
 
 
 
-    void exportUndirectedGraph(py::module & graphModule) {
+    void exportUndirectedListGraph(py::module & graphModule) {
 
         typedef UndirectedGraph<> Graph;
         const auto clsName = std::string("UndirectedGraph");
@@ -48,6 +48,20 @@ namespace graph{
                         out(edge,1) = uv.second;
                     }
                     return out;
+                }
+            )
+            .def("serialize",
+                [](const Graph & g) {
+                    nifty::marray::PyView<uint64_t> out({g.serializationSize()});
+                    auto ptr = &out(0);
+                    g.serialize(ptr);
+                    return out;
+                }
+            )
+            .def("deserialize",
+                [](Graph & g, nifty::marray::PyView<uint64_t,1> serialization) {
+                    auto ptr = &serialization(0);
+                    g.deserialize(ptr);
                 }
             )
         ;

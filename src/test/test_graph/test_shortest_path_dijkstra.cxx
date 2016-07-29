@@ -5,7 +5,7 @@
 #include <iostream> 
 
 #include "nifty/tools/runtime_check.hxx"
-#include "nifty/graph/simple_graph.hxx"
+#include "nifty/graph/undirected_list_graph.hxx"
 #include "nifty/graph/simple_directed_graph.hxx"
 #include "nifty/graph/shortest_path_dijkstra.hxx"
 

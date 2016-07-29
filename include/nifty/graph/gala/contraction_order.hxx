@@ -12,7 +12,7 @@
 #include "vigra/algorithm.hxx"
 
 #include "nifty/tools/runtime_check.hxx"
-#include "nifty/graph/simple_graph.hxx"
+#include "nifty/graph/undirected_list_graph.hxx"
 #include "nifty/graph/gala/gala_feature_base.hxx"
 #include "nifty/graph/gala/gala_instance.hxx"
 

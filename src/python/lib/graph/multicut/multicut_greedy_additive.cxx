@@ -3,7 +3,7 @@
 #include "nifty/graph/multicut/multicut_objective.hxx"
 #include "nifty/graph/multicut/multicut_greedy_additive.hxx"
 
-#include "nifty/python/graph/simple_graph.hxx"
+#include "nifty/python/graph/undirected_list_graph.hxx"
 #include "nifty/python/graph/edge_contraction_graph.hxx"
 #include "nifty/python/graph/multicut/multicut_objective.hxx"
 #include "nifty/python/converter.hxx"
