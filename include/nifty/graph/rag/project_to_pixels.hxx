@@ -46,8 +46,9 @@ void projectScalarNodeDataToPixels(
 }
 
 
-}
-}
+} // namespace graph
+} // namespace nifty
+
 
 
 #endif /* NIFTY_GRAPH_RAG_PROJECT_TO_PIXELS_HXX */

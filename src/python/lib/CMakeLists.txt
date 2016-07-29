@@ -66,6 +66,11 @@ add_library(_nifty SHARED
 
 
 
+
+if(WITH_HDF5)
+    target_link_libraries(_nifty ${HDF5_LIBRARIES})
+endif()
+
 if(WITH_GUROBI)
     target_link_libraries(_nifty ${GUROBI_LIBRARIES})
 endif()

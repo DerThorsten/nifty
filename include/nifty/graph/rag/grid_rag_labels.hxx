@@ -64,8 +64,11 @@ private:
     std::array<int64_t, DIM> shape_;
 };
 
-}
-}
+
+} // namespace graph
+} // namespace nifty
+
+
 
 
 #endif /* NIFTY_GRAPH_RAG_GRID_RAG_LABELS_HXX */
