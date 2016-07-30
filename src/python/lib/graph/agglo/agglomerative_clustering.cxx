@@ -36,6 +36,7 @@ namespace agglo{
 
         // cls
         py::class_<AgglomerativeClusteringType>(aggloModule, aggloClsName.c_str())
+            .def("run",&AgglomerativeClusteringType::run)
         ;
 
 

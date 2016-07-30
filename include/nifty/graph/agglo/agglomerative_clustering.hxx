@@ -19,6 +19,13 @@ public:
     :  clusterPolicy_(clusterPolicy){
 
     }
+
+    void run(){
+        while(!clusterPolicy_.isDone()){
+            const auto edgeToContractNext = clusterPolicy_.edgeToContractNext();
+            clusterPolicy_.contractEdge(edgeToContractNext);
+        }
+    }
 private:
     ClusterPolicyType & clusterPolicy_;
 };
