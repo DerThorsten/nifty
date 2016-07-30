@@ -14,7 +14,8 @@ template<class CLUSTER_POLICY>
 class AgglomerativeClustering{
 public:
     typedef CLUSTER_POLICY ClusterPolicyType;
-
+    typedef typename ClusterPolicyType::GraphType GraphType;
+    typedef typename ClusterPolicyType::EdgeContractionGraphType EdgeContractionGraphType;
     AgglomerativeClustering(ClusterPolicyType & clusterPolicy)
     :  clusterPolicy_(clusterPolicy){
 
@@ -23,7 +24,21 @@ public:
     void run(){
         while(!clusterPolicy_.isDone()){
             const auto edgeToContractNext = clusterPolicy_.edgeToContractNext();
-            clusterPolicy_.contractEdge(edgeToContractNext);
+            clusterPolicy_.edgeContractionGraph().contractEdge(edgeToContractNext);
+        }
+    }
+
+    const GraphType & graph()const{
+        return clusterPolicy_.edgeContractionGraph().graph();
+    }
+
+    template<class NODE_MAP>
+    void result(NODE_MAP & nodeMap)const{
+        const auto & cgraph = clusterPolicy_.edgeContractionGraph();
+        const auto & ufd  = cgraph.ufd();
+        const auto & graph = cgraph.graph();
+        for(const auto node : graph.nodes()){
+            nodeMap[node] = ufd.find(node);
         }
     }
 private:

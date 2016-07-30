@@ -24,4 +24,8 @@ def testUndirectedGraph():
         edgeSizes=edgeSizes, nodeSizes=nodeSizes)
 
 
-    agglomerativeClustering = nagglo.agglomerativeClustering(clusterPolicy)
+    agglomerativeClustering = nagglo.agglomerativeClustering(clusterPolicy) 
+    agglomerativeClustering.run()
+
+    seg = agglomerativeClustering.result()#out=[1,2,3,4])
+

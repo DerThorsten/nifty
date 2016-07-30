@@ -25,17 +25,22 @@ template<class GRAPH,class EDGE_INDICATORS,class EDGE_SIZES,class NODE_SIZES>
 class EdgeWeightedClusterPolicy{
 
     typedef EdgeWeightedClusterPolicy<GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES> SelfType;
+
+
 public:
     // input types
-    typedef GRAPH                               GraphType;
-    typedef EDGE_INDICATORS                     EdgeIndicatorsType;
-    typedef EDGE_SIZES                          EdgeSizesType;
-    typedef NODE_SIZES                          NodeSizesType;
-    typedef EdgeWeightedClusterPolicySettings   Settings;
+    typedef GRAPH                                       GraphType;
+    typedef EDGE_INDICATORS                             EdgeIndicatorsType;
+    typedef EDGE_SIZES                                  EdgeSizesType;
+    typedef NODE_SIZES                                  NodeSizesType;
+    typedef EdgeWeightedClusterPolicySettings           Settings;
+    typedef EdgeContractionGraph<GraphType, SelfType>   EdgeContractionGraphType;
+
+    friend class EdgeContractionGraph<GraphType, SelfType> ;
 private:
 
     // internal types
-    typedef EdgeContractionGraph<GraphType, SelfType> EdgeContractionGraphType;
+    
     typedef vigra::ChangeablePriorityQueue< double ,std::less<double> > QueueType;
 
 public:
@@ -47,13 +52,15 @@ public:
     bool isDone() const;
 
     // callback called by edge contraction graph
-    void contractEdge(const uint64_t edgeToContract);
+    
+    EdgeContractionGraphType & edgeContractionGraph();
 
 private:
-    void initializeWeights() const;
+    void initializeWeights() ;
     double computeWeight(const uint64_t edge) const;
 
     // callbacks called by edge contraction graph
+    void contractEdge(const uint64_t edgeToContract);
     void mergeNodes(const uint64_t aliveNode, const uint64_t deadNode);
     void mergeEdges(const uint64_t aliveEdge, const uint64_t deadEdge);
     void contractEdgeDone(const uint64_t edgeToContract);
@@ -90,6 +97,7 @@ nodeSizes_(nodeSizes),
 pq_(graph.edgeIdUpperBound()+1),
 settings_(settings),
 edgeContractionGraph_(graph, *this){
+    this->initializeWeights();
 }
 
 template<class GRAPH,class EDGE_INDICATORS,class EDGE_SIZES,class NODE_SIZES>
@@ -110,7 +118,7 @@ isDone() const {
 template<class GRAPH,class EDGE_INDICATORS,class EDGE_SIZES,class NODE_SIZES>
 inline void 
 EdgeWeightedClusterPolicy<GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES>::
-initializeWeights() const {
+initializeWeights() {
     for(const auto edge : graph_.edges())
         pq_.push(edge, this->computeWeight(edge));
 }
@@ -138,6 +146,15 @@ contractEdge(
 ){
     pq_.deleteItem(edgeToContract);
 }
+
+template<class GRAPH,class EDGE_INDICATORS,class EDGE_SIZES,class NODE_SIZES>
+inline typename EdgeWeightedClusterPolicy<GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES>::EdgeContractionGraphType & 
+EdgeWeightedClusterPolicy<GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES>::
+edgeContractionGraph(){
+    return edgeContractionGraph_;
+}
+
+
 
 template<class GRAPH,class EDGE_INDICATORS,class EDGE_SIZES,class NODE_SIZES>
 inline void 

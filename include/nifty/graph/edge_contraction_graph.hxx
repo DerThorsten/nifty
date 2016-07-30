@@ -298,8 +298,6 @@ namespace graph{
             NIFTY_ASSERT(innerCallback_.edgesSet_.find(deadEdge)==innerCallback_.edgesSet_.end());
             return cgraph_.nodeOfDeadEdge(deadEdge);
         }
-
-
     private:
         typedef detail_edge_contraction_graph::InnerCallback<GraphType, OuterCallbackType, SetType> InnerCallbackType;
         InnerCallbackType innerCallback_;
@@ -358,10 +356,11 @@ namespace graph{
                          // 
         const UfdType & ufd() const;
         const Graph & baseGraph()const;
+        const Graph & graph()const;
         uint64_t findRepresentativeNode(const uint64_t node)const;
         uint64_t findRepresentativeNode(const uint64_t node);
         uint64_t nodeOfDeadEdge(const uint64_t deadEdge)const;
-        
+            
 
     private:
 
@@ -683,6 +682,14 @@ namespace graph{
     baseGraph()const{
         return graph_;
     }
+
+    template<class GRAPH, class CALLBACK>
+    inline const typename EdgeContractionGraph<GRAPH, CALLBACK>::Graph & 
+    EdgeContractionGraph<GRAPH, CALLBACK>::
+    graph()const{
+        return graph_;
+    }
+
 
     template<class GRAPH, class CALLBACK>
     inline void 

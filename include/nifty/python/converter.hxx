@@ -18,6 +18,10 @@ namespace py = pybind11;
 
 
 namespace nifty{
+
+    struct MyNone{
+    };
+
     inline std::string lowerFirst(const std::string & name){
         auto r = name;
         r[0] = std::tolower(name[0]);
@@ -66,6 +70,13 @@ namespace marray
 
         }
 
+        PyView(std::nullptr_t){
+
+        }
+        PyView(MyNone none){
+
+        }
+
         PyView()
         {
         }
@@ -75,7 +86,50 @@ namespace marray
         Type & operator[](const uint64_t index){
             return this->operator()(index);
         }
-        template <class ShapeIterator> PyView(ShapeIterator begin, ShapeIterator end)
+
+
+
+
+        template <class ShapeIterator>
+        PyView(ShapeIterator begin, ShapeIterator end)
+        {
+            this->assignFromShape(begin, end);
+        }
+
+        template <class ShapeIterator>
+        void reshapeIfEmpty(ShapeIterator begin, ShapeIterator end){
+            if(this->size() == 0){
+                this->assignFromShape(begin, end);
+            }
+            else{
+                auto c = 0;
+                while(begin!=end){
+                    if(this->shape(c)!=*begin){
+                        throw std::runtime_error("given numpy array has an unusable shape");
+                    }
+                    ++begin;
+                    ++c;
+                }
+            }
+        }
+
+
+
+    #ifdef HAVE_CPP11_INITIALIZER_LISTS
+        template<class T_INIT>
+        PyView(std::initializer_list<T_INIT> shape) : PyView(shape.begin(), shape.end())
+        {
+        }
+
+        template<class T_INIT>
+        void reshapeIfEmpty(std::initializer_list<T_INIT> shape) {
+            this->reshapeIfEmpty(shape.begin(), shape.end());
+        }
+    #endif
+    private:
+
+        template <class ShapeIterator>
+        void assignFromShape(ShapeIterator begin, ShapeIterator end)
         {
             std::vector<size_t> shape, strides;
 
@@ -100,12 +154,6 @@ namespace marray
             this->assign(begin, end, strides.begin(), ptr, LastMajorOrder);
         }
 
-    #ifdef HAVE_CPP11_INITIALIZER_LISTS
-        template<class T_INIT>
-        PyView(std::initializer_list<T_INIT> shape) : PyView(shape.begin(), shape.end())
-        {
-        }
-    #endif
     };
 }
 }

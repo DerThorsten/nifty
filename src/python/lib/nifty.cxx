@@ -1,6 +1,9 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/numpy.h>
 #include <iostream>
+
+#include "nifty/python/converter.hxx"
+
 namespace py = pybind11;
 
 
@@ -23,7 +26,12 @@ PYBIND11_PLUGIN(_nifty) {
     py::module niftyModule("_nifty", "nifty python bindings");
 
     using namespace nifty;
+py::class_<MyNone>(niftyModule, "_MyNone")
+    .def(py::init<>())
+;
+
     graph::initSubmoduleGraph(niftyModule);
+
 
 
 py::class_<Configuration>(niftyModule, "Configuration")

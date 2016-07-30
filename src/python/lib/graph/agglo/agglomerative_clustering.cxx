@@ -37,6 +37,27 @@ namespace agglo{
         // cls
         py::class_<AgglomerativeClusteringType>(aggloModule, aggloClsName.c_str())
             .def("run",&AgglomerativeClusteringType::run,"run clustering")
+
+            .def("result", [](
+                const AgglomerativeClusteringType * self
+            ){
+                const auto graph = self->graph();
+                nifty::marray::PyView<uint64_t> out({size_t(graph.nodeIdUpperBound()+1)});
+                self->result(out);
+                return out;
+            }
+            )
+
+            .def("result", [](
+                const AgglomerativeClusteringType * self,
+                nifty::marray::PyView<uint64_t> out 
+            ){
+                const auto graph = self->graph();
+                self->result(out);
+                return out;
+            },
+            py::arg("out")
+            )
         ;
 
 
