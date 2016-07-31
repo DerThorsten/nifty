@@ -339,7 +339,7 @@ def __extendHdf5():
             if step is not None and  step != 1:
                 raise RuntimeError("currently step must be 1 in slicing but step is %d"%sliceObj.step)
 
-        return self.subarray(roiBegin, roiEnd)
+        return self.readSubarray(roiBegin, roiEnd)
 
 
     for array in hdf5Arrays:

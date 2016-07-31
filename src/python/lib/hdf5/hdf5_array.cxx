@@ -19,12 +19,31 @@ namespace hdf5{
     void exportHdf5ArrayT(py::module & hdf5Module, const std::string & clsName) {
         typedef Hdf5Array<T> Hdf5ArrayType;
         py::class_<Hdf5ArrayType>(hdf5Module, clsName.c_str())
+
             .def(py::init<const hid_t & , const std::string &>())
+
+
+            .def("__init__",[](
+                Hdf5ArrayType & instance,
+                const hid_t & groupHandle,
+                const std::string & datasetName,
+                std::vector<size_t> shape,
+                std::vector<size_t> chunkShape
+            ){
+                NIFTY_CHECK_OP(shape.size(), == ,chunkShape.size(), 
+                    "shape and chunk shape do not match");
+
+                new (&instance) Hdf5ArrayType(groupHandle, datasetName,
+                                              shape.begin(), shape.end(),
+                                              chunkShape.begin());
+            })
+
+
             .def_property_readonly("ndim", &Hdf5ArrayType::dimension)
             .def_property_readonly("shape", [](const Hdf5ArrayType & array){
                 return array.shape();
             })
-            .def("subarray",[](
+            .def("readSubarray",[](
                 const Hdf5ArrayType & array,
                 std::vector<size_t> roiBegin,
                 std::vector<size_t> roiEnd
@@ -38,7 +57,7 @@ namespace hdf5{
                     shape[d] = roiEnd[d] - roiBegin[d];
                 
                 nifty::marray::PyView<uint64_t> out(shape.begin(), shape.end());
-                array.subarray(roiBegin.begin(), out);
+                array.readSubarray(roiBegin.begin(), out);
                 return out;
             })
         ;

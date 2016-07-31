@@ -19,7 +19,58 @@ namespace hdf5{
     template<class T>
     class Hdf5Array{
     public:
-        // reading 
+
+        template<class SHAPE_ITER, class CHUNK_SHAPE_ITER>
+        Hdf5Array(
+            const hid_t& groupHandle,
+            const std::string & datasetName,
+            SHAPE_ITER shapeBegin,
+            SHAPE_ITER shapeEnd,
+            CHUNK_SHAPE_ITER chunkShapeBegin
+        )
+        :   groupHandle_(groupHandle),
+            dataset_(),
+            datatype_()
+        {
+            datatype_ = H5Tcopy(hdf5Type<T>());
+            const auto dim = std::distance(shapeBegin, shapeEnd);
+
+            shape_.resize(dim);
+            std::vector<hsize_t> shape(dim);
+            std::vector<hsize_t> chunkShape(dim);
+
+
+            for(auto d=0; d<dim; ++d){
+                const auto s = *shapeBegin;
+                shape[d] = s;
+                shape_[d] = s;
+                chunkShape[d] = *chunkShapeBegin;
+                ++shapeBegin;
+                ++chunkShapeBegin;
+            }
+
+            // chunk properties
+            hid_t dcplId = H5Pcreate(H5P_DATASET_CREATE);
+            H5Pset_chunk(dcplId, hsize_t(dim), chunkShape.data());
+
+            // dataset shape
+            auto dataspace = H5Screate_simple(hsize_t(dim), shape.data(), NULL);
+
+            // create the dataset
+            dataset_ = H5Dcreate(groupHandle_, datasetName.c_str(), datatype_, dataspace, 
+                        H5P_DEFAULT,dcplId, H5P_DEFAULT);
+
+
+            std::vector<uint64_t> testShape;
+            loadShape(testShape);
+
+            // close the dataspace and the chunk properties
+            H5Sclose(dataspace);
+            H5Pclose(dcplId);
+        }
+
+
+        // constructor for an existing hdf5 files
         Hdf5Array(
             const hid_t& groupHandle,
             const std::string & datasetName
@@ -39,7 +90,7 @@ namespace hdf5{
             }
     
 
-            this->loadShape();
+            this->loadShape(shape_);
         }
 
         ~Hdf5Array(){
@@ -59,7 +110,7 @@ namespace hdf5{
         }
 
         template<class ITER>
-        void subarray(
+        void readSubarray(
             ITER roiBeginIter,
             marray::View<T> & out
         )const{
@@ -97,6 +148,11 @@ namespace hdf5{
                     offset[j] = hsize_t(*baseBegin);
                     slabShape[j] = hsize_t(*shapeBegin);
                     marrayShape[j] = slabShape[j];
+
+                    std::cout<<"offset      "<<j<<" "<<offset[j]<<"\n";
+                    std::cout<<"slabShape   "<<j<<" "<<slabShape[j]<<"\n";
+                    std::cout<<"marrayShape "<<j<<" "<<marrayShape[j]<<"\n";
+
                     ++baseBegin;
                     ++shapeBegin;
                 }
@@ -107,7 +163,7 @@ namespace hdf5{
                 &offset[0], NULL, &slabShape[0], NULL);
             if(status < 0) {
                 H5Sclose(dataspace);
-                throw std::runtime_error("Marray cannot select hyperslab. Check offset and shape!");
+                throw std::runtime_error("Marray cannot select hyperslab. Check offset and shape !");
             }
 
             // select memspace hyperslab
@@ -118,7 +174,7 @@ namespace hdf5{
             if(status < 0) {
                 H5Sclose(memspace); 
                 H5Sclose(dataspace);
-                throw std::runtime_error("Marray cannot select hyperslab. Check offset and shape!");
+                throw std::runtime_error("Marray cannot select hyperslab. Check offset and shape s!");
             }
 
             // read from dataspace into memspace
@@ -145,7 +201,7 @@ namespace hdf5{
         }
 
 
-        void loadShape(){
+        void loadShape(std::vector<uint64_t> & shapeVec){
 
             marray::marray_detail::Assert(marray::MARRAY_NO_ARG_TEST || groupHandle_ >= 0);
             HandleCheck<marray::MARRAY_NO_DEBUG> handleCheck;
@@ -160,15 +216,13 @@ namespace hdf5{
                 throw std::runtime_error("Marray cannot get extension of dataset.");
             }
             // write shape to shape_
-            shape_.resize(dimension);
+            shapeVec.resize(dimension);
             if(H5Aexists(dataset_, reverseShapeAttributeName) > 0) {
-                for(std::size_t j=0; j<shape_.size(); ++j) {
-                   shape_[shape_.size()-j-1] = uint64_t(shape[j]);
-                }
+                NIFTY_CHECK(false, "currently we do not allow to load from datasets with reverseShapeAttribute")
             }
             else {
-                for(std::size_t j=0; j<shape_.size(); ++j) {
-                    shape_[j] = uint64_t(shape[j]);
+                for(std::size_t j=0; j<shapeVec.size(); ++j) {
+                    shapeVec[j] = uint64_t(shape[j]);
                 }
             }
             // clean up
