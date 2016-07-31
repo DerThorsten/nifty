@@ -36,6 +36,9 @@ include_directories(${PYTHON_INCLUDE_DIR})
 # Create the binding library
 add_library(_nifty SHARED
     nifty.cxx
+    #############################
+    # graph module
+    #############################
     # ... extra files go here ...
     graph/graph.cxx
     graph/undirected_list_graph.cxx
@@ -62,6 +65,13 @@ add_library(_nifty SHARED
     graph/multicut/multicut_greedy_additive.cxx
     graph/multicut/fusion_move_based.cxx
     graph/multicut/perturb_and_map.cxx
+
+    #############################
+    # hdf5
+    #############################
+    hdf5/hdf5.cxx
+    hdf5/hdf5_common.cxx
+    hdf5/hdf5_array.cxx
 )
 
 

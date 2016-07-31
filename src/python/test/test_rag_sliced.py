@@ -4,7 +4,7 @@ import vigra
 import numpy
 import os
 
-if nifty.Configuration.WITH_HDF5:
+if nifty.Configuration.WITH_HDF52:
 
     chunked_rag = nifty.graph.rag.chunkedLabelsGridRagSliced
     normal_rag  = nifty.graph.rag.explicitLabelsGridRag3D

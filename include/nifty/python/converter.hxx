@@ -151,7 +151,7 @@ namespace marray
             for (size_t i = 0; i < shape.size(); ++i) {
                 strides[i] /= sizeof(Type);
             }
-            this->assign(begin, end, strides.begin(), ptr, LastMajorOrder);
+            this->assign(begin, end, strides.begin(), ptr, FirstMajorOrder);
         }
 
     };

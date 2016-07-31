@@ -5,7 +5,7 @@
 
 #include "nifty/graph/rag/grid_rag.hxx"
 
-#ifdef WITH_HDF5
+#ifdef WITH_HDF52
 #include "nifty/graph/rag/grid_rag_chunked.hxx"
 #endif
 
@@ -87,7 +87,7 @@ namespace graph{
         }
     
         // export ChunkedLabelsGridRagSliced
-        #ifdef WITH_HDF5
+        #ifdef WITH_HDF52
         {
             py::object undirectedGraph = graphModule.attr("UndirectedGraph");
             typedef ChunkedLabelsGridRagSliced<uint32_t> ChunkedLabelsGridRagSliced;

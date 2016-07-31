@@ -15,6 +15,7 @@ if(NOSETESTS_PATH)
         test/test_rag.py
         test/test_rag_sliced.py
         test/test_agglo.py
+        test/test_hdf5.py
     )
 
 

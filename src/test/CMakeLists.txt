@@ -14,3 +14,10 @@ SET(TEST_LIBS
 add_subdirectory(test_graph)
 add_subdirectory(test_array)
 
+
+
+add_executable(test_marray test_marray.cxx )
+target_link_libraries(test_marray ${TEST_LIBS})
+add_test(test_marray test_marray)
+
+

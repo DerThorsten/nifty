@@ -89,14 +89,14 @@ EdgeWeightedClusterPolicy(
     NodeSizesType       nodeSizes,
     const Settings & settings
 )
-:
-graph_(graph),
-edgeIndicators_(edgeIndicators),
-edgeSizes_(edgeSizes),
-nodeSizes_(nodeSizes),
-pq_(graph.edgeIdUpperBound()+1),
-settings_(settings),
-edgeContractionGraph_(graph, *this){
+:   graph_(graph),
+    edgeIndicators_(edgeIndicators),
+    edgeSizes_(edgeSizes),
+    nodeSizes_(nodeSizes),
+    pq_(graph.edgeIdUpperBound()+1),
+    settings_(settings),
+    edgeContractionGraph_(graph, *this)
+{
     this->initializeWeights();
 }
 

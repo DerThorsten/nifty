@@ -17,20 +17,7 @@ namespace marray{
 
 namespace nifty{
 namespace marray{
-
    namespace hdf5 = andres::hdf5;
-
-
-   namespace hdf5{
-
-
-        template<class T>
-        class Hff5Array{
-
-        };
-
-
-   }
 }
 }
 

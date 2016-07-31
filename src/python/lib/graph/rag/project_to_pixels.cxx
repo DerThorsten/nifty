@@ -6,7 +6,7 @@
 #include "nifty/graph/rag/grid_rag.hxx"
 #include "nifty/graph/rag/project_to_pixels.hxx"
 
-#ifdef WITH_HDF5
+#ifdef WITH_HDF52
 #include "nifty/graph/rag/grid_rag_chunked.hxx"
 #include "nifty/graph/rag/project_to_pixels_chunked.hxx"
 #endif
@@ -47,7 +47,7 @@ namespace graph{
     }
 
     
-    #ifdef WITH_HDF5
+    #ifdef WITH_HDF52
     template<class RAG,class T>
     void exportProjectScalarNodeDataToPixelsSlicedT(py::module & ragModule){
 
@@ -101,7 +101,7 @@ namespace graph{
 
         
         // export sliced rag (only if we have hdf5 support)
-        #ifdef WITH_HDF5
+        #ifdef WITH_HDF52s
         typedef ChunkedLabelsGridRagSliced<uint32_t> ChunkedLabelsGridRag;
         exportProjectScalarNodeDataToPixelsSlicedT<ChunkedLabelsGridRag, float>(ragModule);
         exportProjectScalarNodeDataToPixelsSlicedT<ChunkedLabelsGridRag, uint32_t>(ragModule);

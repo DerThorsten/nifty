@@ -319,3 +319,32 @@ def __extendRag():
 
 __extendRag()
 del __extendRag
+
+
+
+def __extendHdf5():
+    hdf5Arrays = [
+        hdf5.Hdf5ArrayUInt64
+    ]
+
+    def getItem(self, slicing):
+        dim = self.ndim
+        roiBegin = [None]*dim
+        roiEnd = [None]*dim
+        for d in range(dim):
+            sliceObj = slicing[d]
+            roiBegin[d] = int(sliceObj.start)
+            roiEnd[d] = int(sliceObj.stop)
+            step = sliceObj.step
+            if step is not None and  step != 1:
+                raise RuntimeError("currently step must be 1 in slicing but step is %d"%sliceObj.step)
+
+        return self.subarray(roiBegin, roiEnd)
+
+
+    for array in hdf5Arrays:
+        array.__getitem__ = getItem
+
+
+__extendHdf5()
+del __extendHdf5
