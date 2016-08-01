@@ -60,6 +60,16 @@ namespace hdf5{
                 array.readSubarray(roiBegin.begin(), out);
                 return out;
             })
+
+            .def("writeSubarray",[](
+                Hdf5ArrayType & array,
+                std::vector<size_t> roiBegin,
+                nifty::marray::PyView<uint64_t> in
+            ){
+                const auto dim = array.dimension();
+                NIFTY_CHECK_OP(roiBegin.size(),==,dim,"`roiBegin`has wrong size");
+                array.writeSubarray(roiBegin.begin(), in);
+            })
         ;
 
     }

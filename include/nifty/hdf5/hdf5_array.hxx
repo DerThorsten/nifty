@@ -76,7 +76,8 @@ namespace hdf5{
             const std::string & datasetName
         )
         :   groupHandle_(groupHandle),
-            dataset_()
+            dataset_(),
+            datatype_()
         {
             dataset_ = H5Dopen(groupHandle_, datasetName.c_str(), H5P_DEFAULT);
             if(dataset_ < 0) {
@@ -121,6 +122,17 @@ namespace hdf5{
             this->loadHyperslab(roiBeginIter, roiBeginIter+out.dimension(), out.shapeBegin(), out);
         }
 
+        template<class ITER>
+        void writeSubarray(
+            ITER roiBeginIter,
+            const marray::View<T> & in
+        ){
+            NIFTY_CHECK_OP(in.dimension(),==,this->dimension(),"in has wrong dimension");
+            NIFTY_CHECK(in.coordinateOrder() == marray::FirstMajorOrder, 
+                "currently only views with last major order are supported"
+            );
+            this->saveHyperslab(roiBeginIter, roiBeginIter+in.dimension(), in.shapeBegin(), in);
+        }
 
     private:
         template<class BaseIterator, class ShapeIterator>
@@ -199,6 +211,84 @@ namespace hdf5{
             }
             handleCheck.check();
         }
+
+
+
+
+        template<class BaseIterator, class ShapeIterator>
+        void 
+        saveHyperslab(
+            BaseIterator baseBegin,
+            BaseIterator baseEnd,
+            ShapeIterator shapeBegin,
+            const marray::View<T> & in
+        ) {
+            HandleCheck<marray::MARRAY_NO_DEBUG> handleCheck;
+
+            // determine hyperslab shape
+            std::vector<hsize_t> memoryShape(in.dimension());
+            for(std::size_t j=0; j<in.dimension(); ++j) {
+                memoryShape[j] = in.shape(j);
+            }
+            std::size_t size = std::distance(baseBegin, baseEnd);
+            std::vector<hsize_t> offset(size);
+            std::vector<hsize_t> slabShape(size);
+            bool reverseShapeAttribute = (H5Aexists(dataset_, reverseShapeAttributeName) > 0);
+            if(reverseShapeAttribute || in.coordinateOrder() == marray::LastMajorOrder) {
+                NIFTY_CHECK(false, "neither reverseShapeAttribute nor LastMajorOrder are currently supported");
+            }
+            else{
+               for(std::size_t j=0; j<size; ++j) {
+                   offset[j] = hsize_t(*baseBegin);
+                   slabShape[j] = hsize_t(*shapeBegin);
+                   ++baseBegin;
+                   ++shapeBegin;
+               }
+            }
+
+            // select dataspace hyperslab
+            hid_t dataspace = H5Dget_space(dataset_);
+            herr_t status = H5Sselect_hyperslab(dataspace, H5S_SELECT_SET, 
+                &offset[0], NULL, &slabShape[0], NULL);
+            if(status < 0) {
+                H5Sclose(dataspace);
+                H5Dclose(dataset_);
+                throw std::runtime_error("Marray cannot select hyperslab. Check offset and shape!");
+            }
+
+            // select memspace hyperslab
+            hid_t memspace = H5Screate_simple(int(in.dimension()), &memoryShape[0], NULL);
+            std::vector<hsize_t> memoryOffset(int(in.dimension()), 0); // no offset
+            status = H5Sselect_hyperslab(memspace, H5S_SELECT_SET, &memoryOffset[0], NULL,
+                &memoryShape[0], NULL);
+            if(status < 0) {
+                H5Sclose(memspace); ;
+                H5Sclose(dataspace);
+                H5Dclose(dataset_);
+                throw std::runtime_error("Marray cannot select hyperslab. Check offset and shape!");
+            }
+
+            if(in.isSimple()){
+               status = H5Dwrite(dataset_, datatype_, memspace, dataspace, H5P_DEFAULT, &(in(0)));
+            }
+            else{
+                marray::Marray<T> tmp(in);
+                status = H5Dwrite(dataset_, datatype_, memspace, dataspace, H5P_DEFAULT, &(tmp(0)));
+            }
+            // clean up
+            H5Sclose(memspace); 
+            H5Sclose(dataspace);
+            if(status < 0) {
+                throw std::runtime_error("Marray cannot write to dataset.");
+            }
+            handleCheck.check();
+        }
+
+
+
+
+
+
 
 
         void loadShape(std::vector<uint64_t> & shapeVec){

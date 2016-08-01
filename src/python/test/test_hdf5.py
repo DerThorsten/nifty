@@ -64,5 +64,11 @@ if nifty.Configuration.WITH_HDF5:
         assert shape[1] == 102
         assert shape[2] == 103
 
-        subarray  = array[0:10,0:10,0:10]
+        
     
+        toWrite = numpy.arange(1000).reshape([10,10,10])
+        array[0:10,0:10,0:10] = toWrite
+        subarray  = array[0:10,0:10,0:10]
+
+
+        assert numpy.array_equal(toWrite, subarray) == True
