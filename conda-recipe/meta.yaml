@@ -48,6 +48,11 @@ requirements:
     - cplex-shared # Need to make sure that cplex dylibs exist
     {% endif %}
 
+    # Must provide symlinks so that the conda doesn't complain when it 'fixes' linking in _nifty.so
+    {% if WITH_GUROBI is defined and WITH_GUROBI %}
+    - gurobi-symlink
+    {% endif %}
+
   run:
     - libgcc   4.8*
     - boost 1.55.0
