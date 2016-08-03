@@ -144,6 +144,8 @@ cmake .. \
         -DCMAKE_CXX_FLAGS_DEBUG="${CXXFLAGS}" \
 \
         -DBOOST_ROOT=${PREFIX} \
+        -DWITH_HDF5=ON \
+        -DHDF5_INCLUDE_DIR=${PREFIX}/include \
         ${CPLEX_ARGS} \
         ${GUROBI_ARGS} \
 \
