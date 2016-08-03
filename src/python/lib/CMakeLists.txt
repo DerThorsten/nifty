@@ -97,6 +97,9 @@ endif()
 # Don't add a 'lib' prefix to the shared library
 set_target_properties(_nifty PROPERTIES PREFIX "")
 
+# Link against the Python shared library
+target_link_libraries(_nifty ${PYTHON_LIBRARY})
+
 if (WIN32)
     if (MSVC)
         # Enforce size-based optimization and link time code generation
@@ -108,8 +111,6 @@ if (WIN32)
     endif()
     # .PYD file extension on Windows
     set_target_properties(_nifty PROPERTIES SUFFIX ".pyd")
-    # Link against the Python shared library
-    target_link_libraries(_nifty ${PYTHON_LIBRARY})
 elseif (UNIX)
     # It's quite common to have multiple copies of the same Python version
     # installed on one's system. E.g.: one copy from the OS and another copy
