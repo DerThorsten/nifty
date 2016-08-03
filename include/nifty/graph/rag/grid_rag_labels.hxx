@@ -5,6 +5,7 @@
 
 #include <algorithm>
 
+#include "nifty/array/arithmetic_array.hxx"
 #include "nifty/marray/marray.hxx"
 #include "nifty/tools/runtime_check.hxx"
 //#include "nifty/graph/detail/contiguous_indices.hxx"
@@ -16,7 +17,9 @@ namespace graph{
 template<size_t DIM, class LABEL_TYPE>
 class ExplicitLabels{
 public:
+    typedef marray::Marray<LABEL_TYPE> SubarrayViewType;
 
+    // \deprecated
     typedef nifty::marray::View<LABEL_TYPE> ViewType;
 
     ExplicitLabels(const nifty::marray::View<LABEL_TYPE, false> & labels = nifty::marray::View<LABEL_TYPE, false>())
@@ -55,13 +58,13 @@ public:
         return labels_;
     }
 
-    const std::array<int64_t, DIM> & shape()const{
+    const array::StaticArray<int64_t, DIM> & shape()const{
         return  shape_;
     }
 
 private:
     nifty::marray::View<LABEL_TYPE> labels_;
-    std::array<int64_t, DIM> shape_;
+    array::StaticArray<int64_t, DIM> shape_;
 };
 
 

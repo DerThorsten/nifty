@@ -5,7 +5,7 @@
 #include <pybind11/numpy.h>
 
 #include "nifty/python/converter.hxx"
-#include "nifty/hdf5/hdf5_array.hxx"
+#include "nifty/marray/marray_hdf5.hxx"
 
 namespace py = pybind11;
 
@@ -13,7 +13,7 @@ namespace py = pybind11;
 namespace nifty{
 namespace hdf5{
 
-
+    using namespace marray::hdf5;
 
 
     void exportHdf5Common(py::module & hdf5Module) {

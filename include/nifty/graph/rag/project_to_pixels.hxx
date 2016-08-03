@@ -7,6 +7,8 @@
 
 #include "nifty/marray/marray.hxx"
 #include "nifty/tools/for_each_coordinate.hxx"
+#include "nifty/array/arithmetic_array.hxx"
+
 //#include "nifty/graph/detail/contiguous_indices.hxx"
 
 
@@ -27,7 +29,7 @@ void projectScalarNodeDataToPixels(
     PIXEL_ARRAY & pixelData,
     const int numberOfThreads = -1
 ){
-    typedef std::array<int64_t, DIM> Coord;
+    typedef array::StaticArray<int64_t, DIM> Coord;
 
     const auto labelsProxy = graph.labelsProxy();
     const auto & shape = labelsProxy.shape();
@@ -39,8 +41,8 @@ void projectScalarNodeDataToPixels(
     nifty::parallel::ThreadPool threadpool(pOpt);
     nifty::tools::parallelForEachCoordinate(threadpool, shape,
     [&](int tid, const Coord & coord){
-        const auto node = labels(coord);
-        pixelData(coord) = nodeData[node];
+        const auto node = labels(coord.asStdArray());
+        pixelData(coord.asStdArray()) = nodeData[node];
     });
 
 }

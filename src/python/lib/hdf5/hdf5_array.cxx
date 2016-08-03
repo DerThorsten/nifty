@@ -38,10 +38,13 @@ namespace hdf5{
                                               chunkShape.begin());
             })
 
-
+            .def_property_readonly("isChunked", &Hdf5ArrayType::isChunked)
             .def_property_readonly("ndim", &Hdf5ArrayType::dimension)
             .def_property_readonly("shape", [](const Hdf5ArrayType & array){
                 return array.shape();
+            })
+            .def_property_readonly("chunkShape", [](const Hdf5ArrayType & array){
+                return array.chunkShape();
             })
             .def("readSubarray",[](
                 const Hdf5ArrayType & array,

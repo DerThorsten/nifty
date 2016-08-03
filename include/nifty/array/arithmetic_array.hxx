@@ -70,26 +70,69 @@ namespace array{
     #undef NIFTY_MACRO_BINARY_OP_INPLACE
 
 
+    #define NIFTY_MACRO_BINARY_OP(operatorSymbol, inplaceSymbol) \
+    template<class ARRAY_CLASS> \
+    ArrayExtender<ARRAY_CLASS>  operator operatorSymbol ( \
+        const ArrayExtender<ARRAY_CLASS> & a, \
+        const ArrayExtender<ARRAY_CLASS> & b \
+    ){ \
+        NIFTY_ASSERT_OP( a.size(),==,b.size()); \
+        auto res = a; \
+        res inplaceSymbol b; \
+        return res; \
+    } \
+    //template<class ARRAY_CLASS> \
+    //ArrayExtender<ARRAY_CLASS> & operator operatorSymbol ( \
+    //    const ArrayExtender<ARRAY_CLASS> & a, \
+    //    typename ArrayExtender<ARRAY_CLASS>::const_reference  b \
+    //){ \
+    //    for(auto i=0; i<a.size(); ++i){ \
+    //        a[i] operatorSymbol b; \
+    //    } \
+    //    return a; \
+    //} 
+
+    NIFTY_MACRO_BINARY_OP(+, +=);
+    NIFTY_MACRO_BINARY_OP(-, -=);
+    NIFTY_MACRO_BINARY_OP(*, *=);
+    NIFTY_MACRO_BINARY_OP(/, /=);
+    NIFTY_MACRO_BINARY_OP(&, &=);
+    NIFTY_MACRO_BINARY_OP(|, |=);
+    #undef NIFTY_MACRO_BINARY_OP
+
 
 
     // to give std::array a proper constructor
     // since it is an aggregate we need
     // to impl. this 
     // => we are giving up the aggregate status
-    template<class T, unsigned int DIM>
+    template<class T, size_t DIM>
     class StaticArrayBase : public std::array<T,DIM>{
     public:
+        typedef  std::array<T,DIM> BaseType;
         //using std::array<T,DIM>::array;
         StaticArrayBase()
         :   std::array<T,DIM>(){}
 
+        StaticArrayBase(const T & value)
+        :   std::array<T,DIM>(){
+            std::fill(this->begin(), this->end(), value);
+        }
+
         template <typename... Args>
         StaticArrayBase(Args &&... args) : std::array<T,DIM>({std::forward<Args>(args)...}) {
+        }
+
+        const BaseType & asStdArray()const{
+            return  static_cast< const BaseType & >(*this);
+        }
+        BaseType & asStdArray(){
+            return  static_cast< BaseType & >(*this);
         }
     };
 
 
-    template<class T,unsigned int SIZE>
+    template<class T,size_t SIZE>
     using StaticArray = ArrayExtender< StaticArrayBase<T,SIZE> >; 
 
     template<class T, class ALLOCATOR = std::allocator<T> >

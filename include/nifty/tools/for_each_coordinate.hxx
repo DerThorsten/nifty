@@ -6,6 +6,7 @@
 #include <chrono>
 #include <array>
 
+#include "nifty/array/arithmetic_array.hxx"
 namespace nifty{
 namespace tools{
 
@@ -14,11 +15,11 @@ namespace tools{
 
     template<class SHAPE_T, class F>
     void forEachCoordinateImpl(
-        const std::array<SHAPE_T, 1> & shape,
+        const array::StaticArray<SHAPE_T, 1> & shape,
         F && f,
         bool firstCoordinateMajorOrder = true
     ){
-        std::array<int64_t, 1> coord;
+        array::StaticArray<int64_t, 1> coord;
         for(coord[0]=0; coord[0]<shape[0]; ++coord[0]){
             f(coord);
         }
@@ -26,12 +27,12 @@ namespace tools{
 
     template<class SHAPE_T, class F>
     void forEachCoordinateImpl(
-        const std::array<SHAPE_T, 1> & shapeBegin,
-        const std::array<SHAPE_T, 1> & shapeEnd,
+        const array::StaticArray<SHAPE_T, 1> & shapeBegin,
+        const array::StaticArray<SHAPE_T, 1> & shapeEnd,
         F && f,
         bool firstCoordinateMajorOrder = true
     ){
-        std::array<int64_t, 1> coord;
+        array::StaticArray<int64_t, 1> coord;
         for(coord[0]=shapeBegin[0]; coord[0]<shapeEnd[0]; ++coord[0]){
             f(coord);
         }
@@ -39,11 +40,11 @@ namespace tools{
 
     template<class SHAPE_T, class F>
     void forEachCoordinateImpl(
-        const std::array<SHAPE_T, 2> & shape,
+        const array::StaticArray<SHAPE_T, 2> & shape,
         F && f,
         bool firstCoordinateMajorOrder = true
     ){
-        std::array<int64_t, 2> coord;
+        array::StaticArray<int64_t, 2> coord;
         if(firstCoordinateMajorOrder){
             for(coord[0]=0; coord[0]<shape[0]; ++coord[0])
             for(coord[1]=0; coord[1]<shape[1]; ++coord[1]){
@@ -60,12 +61,12 @@ namespace tools{
 
     template<class SHAPE_T, class F>
     void forEachCoordinateImpl(
-        const std::array<SHAPE_T, 2> & shapeBegin,
-        const std::array<SHAPE_T, 2> & shapeEnd,
+        const array::StaticArray<SHAPE_T, 2> & shapeBegin,
+        const array::StaticArray<SHAPE_T, 2> & shapeEnd,
         F && f,
         bool firstCoordinateMajorOrder = true
     ){
-        std::array<int64_t, 2> coord;
+        array::StaticArray<int64_t, 2> coord;
         if(firstCoordinateMajorOrder){
             for(coord[0]=shapeBegin[0]; coord[0]<shapeEnd[0]; ++coord[0])
             for(coord[1]=shapeBegin[1]; coord[1]<shapeEnd[1]; ++coord[1]){
@@ -82,11 +83,11 @@ namespace tools{
 
     template<class SHAPE_T, class F>
     void forEachCoordinateImpl(
-        const std::array<SHAPE_T, 3> & shape,
+        const array::StaticArray<SHAPE_T, 3> & shape,
         F && f,
         bool firstCoordinateMajorOrder = true
     ){
-        std::array<int64_t, 3> coord;
+        array::StaticArray<int64_t, 3> coord;
         if(firstCoordinateMajorOrder){
             for(coord[0]=0; coord[0]<shape[0]; ++coord[0])
             for(coord[1]=0; coord[1]<shape[1]; ++coord[1])
@@ -105,13 +106,13 @@ namespace tools{
 
     template<class SHAPE_T, class F>
     void forEachCoordinateImpl(
-        const std::array<SHAPE_T, 3> & shapeBegin,
-        const std::array<SHAPE_T, 3> & shapeEnd,
+        const array::StaticArray<SHAPE_T, 3> & shapeBegin,
+        const array::StaticArray<SHAPE_T, 3> & shapeEnd,
         F && f,
         bool firstCoordinateMajorOrder = true
     ){
 
-        std::array<int64_t, 3> coord;
+        array::StaticArray<int64_t, 3> coord;
         if(firstCoordinateMajorOrder){
             for(coord[0]=shapeBegin[0]; coord[0]<shapeEnd[0]; ++coord[0])
             for(coord[1]=shapeBegin[1]; coord[1]<shapeEnd[1]; ++coord[1])
@@ -131,12 +132,12 @@ namespace tools{
 
     template<class SHAPE_T, class F>
     void forEachCoordinateImpl(
-        const std::array<SHAPE_T, 4> & shape,
+        const array::StaticArray<SHAPE_T, 4> & shape,
         F && f,
         bool firstCoordinateMajorOrder = true
     ){
 
-        std::array<int64_t, 4> coord;
+        array::StaticArray<int64_t, 4> coord;
         if(firstCoordinateMajorOrder){
             for(coord[0]=0; coord[0]<shape[0]; ++coord[0])
             for(coord[1]=0; coord[1]<shape[1]; ++coord[1])
@@ -157,12 +158,12 @@ namespace tools{
 
     template<class SHAPE_T, class F>
     void forEachCoordinateImpl(
-        const std::array<SHAPE_T, 4> & shapeBegin,
-        const std::array<SHAPE_T, 4> & shapeEnd,
+        const array::StaticArray<SHAPE_T, 4> & shapeBegin,
+        const array::StaticArray<SHAPE_T, 4> & shapeEnd,
         F && f,
         bool firstCoordinateMajorOrder = true
     ){
-        std::array<int64_t, 4> coord;
+        array::StaticArray<int64_t, 4> coord;
         if(firstCoordinateMajorOrder){
             for(coord[0]=shapeBegin[0]; coord[0]<shapeEnd[0]; ++coord[0])
             for(coord[1]=shapeBegin[1]; coord[1]<shapeEnd[1]; ++coord[1])
@@ -183,7 +184,7 @@ namespace tools{
 
     template<class SHAPE_T, size_t DIMENSIONS, class F>
     void forEachCoordinate(
-        const std::array<SHAPE_T, DIMENSIONS> & shape,
+        const array::StaticArray<SHAPE_T, DIMENSIONS> & shape,
         F && f,
         bool firstCoordinateMajorOrder = true
     ){
@@ -192,8 +193,8 @@ namespace tools{
 
     template<class SHAPE_T, size_t DIMENSIONS, class F>
     void forEachCoordinate(
-        const std::array<SHAPE_T, DIMENSIONS> & shapeBegin,
-        const std::array<SHAPE_T, DIMENSIONS> & shapeEnd,
+        const array::StaticArray<SHAPE_T, DIMENSIONS> & shapeBegin,
+        const array::StaticArray<SHAPE_T, DIMENSIONS> & shapeEnd,
         F && f,
         bool firstCoordinateMajorOrder = true
     ){
@@ -206,12 +207,12 @@ namespace tools{
     template<class SHAPE_T, size_t DIM, class F>
     void parallelForEachCoordinate(
         nifty::parallel::ThreadPool & threadpool,                   
-        const std::array<SHAPE_T, DIM> & shape,
+        const array::StaticArray<SHAPE_T, DIM> & shape,
         F && f,
         bool firstCoordinateMajorOrder = true
     ){
         static_assert(DIM<=5,"currently dimension must be smaller or equal to 5");
-        typedef std::array<int64_t, DIM> Coord;
+        typedef array::StaticArray<int64_t, DIM> Coord;
         if(firstCoordinateMajorOrder){
             const auto nItems = shape[0];
             parallel_foreach(threadpool,nItems,[&](const int tid, const int parallelCord){

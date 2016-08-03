@@ -19,7 +19,6 @@ namespace hdf5{
     template<class T>
     class Hdf5Array{
     public:
-
         template<class SHAPE_ITER, class CHUNK_SHAPE_ITER>
         Hdf5Array(
             const hid_t& groupHandle,
@@ -30,21 +29,25 @@ namespace hdf5{
         )
         :   groupHandle_(groupHandle),
             dataset_(),
-            datatype_()
+            datatype_(),
+            isChunked_(true)
         {
             datatype_ = H5Tcopy(hdf5Type<T>());
             const auto dim = std::distance(shapeBegin, shapeEnd);
 
             shape_.resize(dim);
+            chunkShape_.resize(dim);
+
             std::vector<hsize_t> shape(dim);
             std::vector<hsize_t> chunkShape(dim);
 
-
             for(auto d=0; d<dim; ++d){
                 const auto s = *shapeBegin;
+                const auto cs = *chunkShapeBegin;
                 shape[d] = s;
                 shape_[d] = s;
-                chunkShape[d] = *chunkShapeBegin;
+                chunkShape[d] = cs;
+                chunkShape_[d] = cs;
                 ++shapeBegin;
                 ++chunkShapeBegin;
             }
@@ -60,24 +63,19 @@ namespace hdf5{
             dataset_ = H5Dcreate(groupHandle_, datasetName.c_str(), datatype_, dataspace, 
                         H5P_DEFAULT,dcplId, H5P_DEFAULT);
 
-
-            std::vector<uint64_t> testShape;
-            loadShape(testShape);
-
             // close the dataspace and the chunk properties
             H5Sclose(dataspace);
             H5Pclose(dcplId);
         }
 
-
-        // constructor for an existing hdf5 files
         Hdf5Array(
             const hid_t& groupHandle,
             const std::string & datasetName
         )
         :   groupHandle_(groupHandle),
             dataset_(),
-            datatype_()
+            datatype_(),
+            isChunked_(true)
         {
             dataset_ = H5Dopen(groupHandle_, datasetName.c_str(), H5P_DEFAULT);
             if(dataset_ < 0) {
@@ -92,6 +90,7 @@ namespace hdf5{
     
 
             this->loadShape(shape_);
+            this->loadChunkShape(chunkShape_);
         }
 
         ~Hdf5Array(){
@@ -105,9 +104,18 @@ namespace hdf5{
         uint64_t shape(const size_t d)const{
             return shape_[d];
         }
-
         const std::vector<uint64_t> & shape()const{
             return shape_;
+        }
+        uint64_t chunkShape(const size_t d)const{
+            return chunkShape_[d];
+        }
+        const std::vector<uint64_t> & chunkShape()const{
+            return chunkShape_;
+        }
+
+        bool isChunked()const{
+            return isChunked_;
         }
 
         template<class ITER>
@@ -161,10 +169,6 @@ namespace hdf5{
                     slabShape[j] = hsize_t(*shapeBegin);
                     marrayShape[j] = slabShape[j];
 
-                    std::cout<<"offset      "<<j<<" "<<offset[j]<<"\n";
-                    std::cout<<"slabShape   "<<j<<" "<<slabShape[j]<<"\n";
-                    std::cout<<"marrayShape "<<j<<" "<<marrayShape[j]<<"\n";
-
                     ++baseBegin;
                     ++shapeBegin;
                 }
@@ -211,9 +215,6 @@ namespace hdf5{
             }
             handleCheck.check();
         }
-
-
-
 
         template<class BaseIterator, class ShapeIterator>
         void 
@@ -284,13 +285,6 @@ namespace hdf5{
             handleCheck.check();
         }
 
-
-
-
-
-
-
-
         void loadShape(std::vector<uint64_t> & shapeVec){
 
             marray::marray_detail::Assert(marray::MARRAY_NO_ARG_TEST || groupHandle_ >= 0);
@@ -303,7 +297,7 @@ namespace hdf5{
             if(status < 0) {
                 H5Sclose(filespace);
                 delete[] shape;
-                throw std::runtime_error("Marray cannot get extension of dataset.");
+                throw std::runtime_error("MarrayNifty cannot get extension of dataset.");
             }
             // write shape to shape_
             shapeVec.resize(dimension);
@@ -321,10 +315,31 @@ namespace hdf5{
             handleCheck.check();
         }
 
+        void loadChunkShape(std::vector<uint64_t> & chunkShape){
+            const auto d = this->dimension();
+            std::vector<hsize_t> chunkShapeTmp(d);
+            auto plist = H5Dget_create_plist(dataset_);
+            herr_t status = H5Pget_chunk(plist, int(d), chunkShapeTmp.data()); 
+
+            if(status < 0) {
+                isChunked_ = false;
+                chunkShape_ = shape_;
+                //H5Pclose(plist);
+                //throw std::runtime_error("Nifty cannot get chunkShape of dataset");
+            }
+            else{
+                chunkShape_.resize(d);
+                std::copy(chunkShapeTmp.begin(), chunkShapeTmp.end(), chunkShape_.begin());
+            }
+            H5Pclose(plist);
+        }
+
         hid_t groupHandle_;
         hid_t dataset_;
         hid_t datatype_;
         std::vector<uint64_t> shape_;
+        std::vector<uint64_t> chunkShape_;
+        bool isChunked_;
     };
 
 

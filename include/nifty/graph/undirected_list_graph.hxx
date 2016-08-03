@@ -22,6 +22,7 @@
 #include "nifty/graph/undirected_graph_base.hxx"
 #include "nifty/graph/detail/adjacency.hxx"
 #include "nifty/graph/graph_tags.hxx"
+#include "nifty/parallel/threadpool.hxx"
 
 namespace nifty{
 namespace graph{
@@ -128,6 +129,13 @@ public:
     void deserialize(ITER iter);
 
 protected:
+
+    template<class PER_THREAD_DATA_VEC>
+    void mergeAdjacencies(
+        PER_THREAD_DATA_VEC & perThreadDataVec,
+        parallel::ThreadPool & threadpool
+    );
+
     std::vector<NodeStorage> nodes_;
     std::vector<EdgeStorage> edges_;
 };
@@ -353,6 +361,48 @@ deserialize(ITER iter){
     }
 
 }
+
+
+template<class EDGE_INTERANL_TYPE, class NODE_INTERNAL_TYPE >
+template<class PER_THREAD_DATA_VEC>
+inline void 
+UndirectedGraph<EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE>::
+mergeAdjacencies(
+    PER_THREAD_DATA_VEC & perThreadDataVec,
+    parallel::ThreadPool & threadpool
+){
+    const auto numberOfLabels = this->numberOfNodes();
+
+
+
+    // merge the node adjacency sets for each node
+    nifty::parallel::parallel_foreach(threadpool, numberOfLabels, [&](int tid, int label){
+        auto & set0 = perThreadDataVec[0].adjacency[label];
+        for(size_t i=1; i<perThreadDataVec.size(); ++i){
+            const auto & setI = perThreadDataVec[i].adjacency[label];
+            set0.insert(setI.begin(), setI.end());
+        }
+        for(auto otherNode : set0)
+             this->nodes_[label].insert(NodeAdjacency(otherNode));
+    });
+
+    // insert the edge index for each edge
+    uint64_t edgeIndex = 0;
+    auto & edges = this->edges_;
+    for(uint64_t u = 0; u< numberOfLabels; ++u){
+        for(auto & vAdj :  this->nodes_[u]){
+            const auto v = vAdj.node();
+            if(u < v){
+                edges.push_back(EdgeStorage(u, v));
+                vAdj.changeEdgeIndex(edgeIndex);
+                auto fres =  this->nodes_[v].find(NodeAdjacency(u));
+                fres->changeEdgeIndex(edgeIndex);
+                ++edgeIndex;
+            }
+        }
+    }
+}
+
 
 
 

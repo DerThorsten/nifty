@@ -1,7 +1,9 @@
 from __future__ import print_function
 import nifty
 import numpy
-
+import os
+import tempfile
+import shutil
 
 hasH5py = True
 try:
@@ -9,66 +11,140 @@ try:
 except:
     hasH5py = False
 
+def ensureDir(f):
+    d = os.path.dirname(f)
+    if not os.path.exists(d):
+        os.makedirs(d)
+
+
+
+
 
 if nifty.Configuration.WITH_HDF5:
 
     nhdf5 = nifty.hdf5
 
-
     if hasH5py:
 
-        def testHdf5ArrayReadFromExisting():
-
-            # try catch since dataset can only be created once
+        def testHdf5ArrayReadFromExistingH5pyChunked():
+            tempFolder = tempfile.mkdtemp()
+            ensureDir(tempFolder)
+            fpath = os.path.join(tempFolder,'_nifty_test_array_.h5')
             try:
+                
 
+                # try catch since dataset can only be created once
                 shape = (101, 102, 103)
                 data = numpy.ones(shape=shape, dtype='uint64')
-
-                f = h5py.File("/home/tbeier/tmp4.h5")
-                f.create_dataset("data", shape, dtype='uint64', data=data,chunks=(10,10,10))
+                f = h5py.File(fpath)
+                f.create_dataset("data", shape, dtype='uint64', data=data,chunks=(10,20,30))
                 f.close()
-            except:
-                pass
 
 
 
-            hidT = nhdf5.openFile("/home/tbeier/tmp4.h5")
+                hidT = nhdf5.openFile(fpath)
+                array = nhdf5.Hdf5ArrayUInt64(hidT, "data")
+
+                assert array.ndim == 3
+                shape = array.shape
+                assert len(shape) == 3
+                assert shape[0] == 101
+                assert shape[1] == 102
+                assert shape[2] == 103
+
+                assert array.isChunked
+                chunkShape = array.chunkShape
+                assert len(chunkShape) == 3
+                assert chunkShape[0] == 10
+                assert chunkShape[1] == 20
+                assert chunkShape[2] == 30
+
+                subarray  = array[0:10,0:10 ,0:10]
+            finally:
+                try:
+                    os.remove(fpath)
+                    shutil.rmtree(tempFolder)
+
+                except:
+                    pass
+        
+        def testHdf5ArrayReadFromExistingH5pyNonChunked():
+            tempFolder = tempfile.mkdtemp()
+            ensureDir(tempFolder)
+            fpath = os.path.join(tempFolder,'_nifty_test_array_.h5')
+            try:
+                
+
+                # try catch since dataset can only be created once
+                shape = (101, 102, 103)
+                data = numpy.ones(shape=shape, dtype='uint64')
+                f = h5py.File(fpath)
+                f.create_dataset("data", shape, dtype='uint64', data=data)
+                f.close()
 
 
 
-            array = nhdf5.Hdf5ArrayUInt64(hidT, "data")
+                hidT = nhdf5.openFile(fpath)
+                array = nhdf5.Hdf5ArrayUInt64(hidT, "data")
+
+                assert array.ndim == 3
+                shape = array.shape
+                assert len(shape) == 3
+                assert shape[0] == 101
+                assert shape[1] == 102
+                assert shape[2] == 103
+
+                assert not array.isChunked
+                chunkShape = array.chunkShape
+                assert len(chunkShape) == 3
+                assert chunkShape[0] == 101
+                assert chunkShape[1] == 102
+                assert chunkShape[2] == 103
+
+                subarray  = array[0:10,0:10 ,0:10]
+            finally:
+                try:
+                    os.remove(fpath)
+                    shutil.rmtree(tempFolder)
+
+                except:
+                    pass
+
+    def testHdf5ArrayCreateChunked():
+        tempFolder = tempfile.mkdtemp()
+        ensureDir(tempFolder)
+        fpath = os.path.join(tempFolder,'_nifty_test_array_.h5')
+
+        try:
+            hidT = nhdf5.createFile(fpath)
+            array = nhdf5.Hdf5ArrayUInt64(hidT, "data", [101,102,103], [11,12,13])
 
             assert array.ndim == 3
-
             shape = array.shape
             assert shape[0] == 101
             assert shape[1] == 102
             assert shape[2] == 103
 
+            chunkShape = array.chunkShape
+            assert chunkShape[0] == 11
+            assert chunkShape[1] == 12
+            assert chunkShape[2] == 13
+            
+            ends = [10,11,12]
 
-            subarray  = array[0:10,0:10,0:10]
+            toWrite = numpy.arange(ends[0]*ends[1]*ends[2]).reshape(ends)
+            array[0:ends[0], 0:ends[1], 0:ends[2]] = toWrite
+            subarray  = array[0:ends[0], 0:ends[1], 0:ends[2]]
 
+            assert numpy.array_equal(toWrite, subarray) == True
 
-
-
-    def testHdf5ArrayCreateChunked():
-
-        hidT = nhdf5.createFile("/home/tbeier/tmp9.h5")
-
-        array = nhdf5.Hdf5ArrayUInt64(hidT, "data", [101,102,103], [10,10,10])
-
-        assert array.ndim == 3
-        shape = array.shape
-        assert shape[0] == 101
-        assert shape[1] == 102
-        assert shape[2] == 103
-
-        
-    
-        toWrite = numpy.arange(1000).reshape([10,10,10])
-        array[0:10,0:10,0:10] = toWrite
-        subarray  = array[0:10,0:10,0:10]
+        finally:
+            try:
+                os.remove(fpath)
+                shutil.rmtree(tempFolder)
+            except:
+                pass
 
 
-        assert numpy.array_equal(toWrite, subarray) == True
+
+
