@@ -130,7 +130,7 @@ elseif (UNIX)
     # Strip unnecessary sections of the binary on Linux/Mac OS
     if(APPLE)
         set_target_properties(_nifty PROPERTIES MACOSX_RPATH ".")
-        set_target_properties(_nifty PROPERTIES LINK_FLAGS "-undefined dynamic_lookup -dead_strip")
+        #set_target_properties(_nifty PROPERTIES LINK_FLAGS "-undefined dynamic_lookup -dead_strip")
         if (NOT ${U_CMAKE_BUILD_TYPE} MATCHES DEBUG)
             add_custom_command(TARGET _nifty POST_BUILD COMMAND strip -u -r ${CMAKE_CURRENT_BINARY_DIR}/_nifty.so)
         endif()
