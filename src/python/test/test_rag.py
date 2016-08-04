@@ -274,7 +274,7 @@ def testExplicitLabelsRag3d():
         assert fResB == -1
 
 
-if nifty.Configuration.WITH_HDF5:
+if False:#nifty.Configuration.WITH_HDF5:
 
     nhdf5 = nifty.hdf5
 
