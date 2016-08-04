@@ -97,6 +97,9 @@ endif()
 # Don't add a 'lib' prefix to the shared library
 set_target_properties(_nifty PROPERTIES PREFIX "")
 
+# Link against the Python shared library
+target_link_libraries(_nifty ${PYTHON_LIBRARY})
+
 if (WIN32)
     if (MSVC)
         # Enforce size-based optimization and link time code generation
@@ -108,8 +111,6 @@ if (WIN32)
     endif()
     # .PYD file extension on Windows
     set_target_properties(_nifty PROPERTIES SUFFIX ".pyd")
-    # Link against the Python shared library
-    target_link_libraries(_nifty ${PYTHON_LIBRARY})
 elseif (UNIX)
     # It's quite common to have multiple copies of the same Python version
     # installed on one's system. E.g.: one copy from the OS and another copy
@@ -130,7 +131,7 @@ elseif (UNIX)
     # Strip unnecessary sections of the binary on Linux/Mac OS
     if(APPLE)
         set_target_properties(_nifty PROPERTIES MACOSX_RPATH ".")
-        set_target_properties(_nifty PROPERTIES LINK_FLAGS "-undefined dynamic_lookup -dead_strip")
+        #set_target_properties(_nifty PROPERTIES LINK_FLAGS "-undefined dynamic_lookup -dead_strip")
         if (NOT ${U_CMAKE_BUILD_TYPE} MATCHES DEBUG)
             add_custom_command(TARGET _nifty POST_BUILD COMMAND strip -u -r ${CMAKE_CURRENT_BINARY_DIR}/_nifty.so)
         endif()
