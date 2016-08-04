@@ -102,7 +102,19 @@ else
     GUROBI_ARGS="${GUROBI_ARGS} -DGUROBI_ROOT_DIR=${GUROBI_ROOT_DIR}"
     GUROBI_ARGS="${GUROBI_ARGS} -DGUROBI_LIBRARY=$(ls ${GUROBI_ROOT_DIR}/lib/libgurobi*.so)"
     GUROBI_ARGS="${GUROBI_ARGS} -DGUROBI_INCLUDE_DIR=${GUROBI_ROOT_DIR}/include"
-    GUROBI_ARGS="${GUROBI_ARGS} -DGUROBI_CPP_LIBRARY=${GUROBI_ROOT_DIR}/lib/libgurobi_c++.a"
+    
+    if [ $(uname) == "Darwin" ]; then    
+	    # Note: For Mac, the nice Gurobi people provide two versions of the gurobi library,
+	    #       depending on which version of the C++ std library you need to use:
+	    #       - For libstdc++ (from the GNU people), use libgurobi_stdc++.a
+	    #       - For libc++    (from the clang people), use libgurobi_c++.a
+	    #       We use gcc (even on Mac), so we use the libstdc++ version.
+	    GUROBI_ARGS="${GUROBI_ARGS} -DGUROBI_CPP_LIBRARY=${GUROBI_ROOT_DIR}/lib/libgurobi_stdc++.a"    
+    else
+        # Only one choice on Linux. It works with libstdc++ (from the GNU people).
+        # (The naming convention isn't consistent with the name on Mac, but that's okay.)
+        GUROBI_ARGS="${GUROBI_ARGS} -DGUROBI_CPP_LIBRARY=${GUROBI_ROOT_DIR}/lib/libgurobi_c++.a"    
+    fi
 fi
 
 ##
@@ -132,6 +144,8 @@ cmake .. \
         -DCMAKE_CXX_FLAGS_DEBUG="${CXXFLAGS}" \
 \
         -DBOOST_ROOT=${PREFIX} \
+        -DWITH_HDF5=ON \
+        -DHDF5_INCLUDE_DIR=${PREFIX}/include \
         ${CPLEX_ARGS} \
         ${GUROBI_ARGS} \
 \

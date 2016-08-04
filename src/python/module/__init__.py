@@ -374,5 +374,11 @@ def __extendHdf5():
         array.__getitem__ = getItem
         array.__setitem__ = setItem
 
-__extendHdf5()
-del __extendHdf5
+try:
+    import hdf5
+except ImportError:
+    pass
+else:
+    __extendHdf5()
+finally:
+    del __extendHdf5
