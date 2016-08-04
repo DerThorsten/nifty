@@ -324,7 +324,16 @@ del __extendRag
 
 def __extendHdf5():
     hdf5Arrays = [
-        (hdf5.Hdf5ArrayUInt64)
+        hdf5.Hdf5ArrayUInt8,
+        hdf5.Hdf5ArrayUInt16,
+        hdf5.Hdf5ArrayUInt32,
+        hdf5.Hdf5ArrayUInt64,
+        hdf5.Hdf5ArrayInt8,
+        hdf5.Hdf5ArrayInt16,
+        hdf5.Hdf5ArrayInt32,
+        hdf5.Hdf5ArrayInt64,
+        hdf5.Hdf5ArrayFloat32,
+        hdf5.Hdf5ArrayFloat64
     ]
 
     def getItem(self, slicing):

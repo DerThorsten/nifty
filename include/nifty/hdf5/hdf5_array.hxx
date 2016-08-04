@@ -127,6 +127,7 @@ namespace hdf5{
             NIFTY_CHECK(out.coordinateOrder() == marray::FirstMajorOrder, 
                 "currently only views with last major order are supported"
             );
+            //std::cout<<"load hyperslab\n";
             this->loadHyperslab(roiBeginIter, roiBeginIter+out.dimension(), out.shapeBegin(), out);
         }
 
@@ -198,12 +199,22 @@ namespace hdf5{
             //    (&marrayShape[0])+size, coordinateOrder);
             
             if(out.isSimple()){
+                //std::cout<<"is simple\n";
                 status = H5Dread(dataset_, datatype_, memspace, dataspace,
                     H5P_DEFAULT, &(out(0)));
+
+                //std::cout<<"read status "<<status<<"\n";
             }
             else{
+                //std::cout<<"is not simple\n";
                 marray::Marray<T> tmpOut(marray::SkipInitialization, &marrayShape[0], 
                     (&marrayShape[0])+size, coordinateOrder);
+
+                status = H5Dread(dataset_, datatype_, memspace, dataspace,
+                    H5P_DEFAULT, &(tmpOut(0)));
+
+                //std::cout<<"read status "<<status<<"\n";
+
                 out = tmpOut;
             }
 

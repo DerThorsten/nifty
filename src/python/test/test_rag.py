@@ -2,6 +2,16 @@ from __future__ import print_function
 import nifty
 import numpy
 import nifty
+import tempfile
+import shutil
+import os 
+
+nrag = nifty.graph.rag
+
+def ensureDir(f):
+    d = os.path.dirname(f)
+    if not os.path.exists(d):
+        os.makedirs(d)
 
 def testInsert():
 
@@ -109,7 +119,6 @@ def testExplicitLabelsRag2d():
         assert fResA == -1
         assert fResB == -1
 
-
 def testExplicitLabelsRag2dSerializeDeserialize():
 
     labels = [
@@ -182,9 +191,6 @@ def testExplicitLabelsRag2dSerializeDeserialize():
         fResB = ragB.findEdge(shouldNotEdge)
         assert fResA == -1
         assert fResB == -1
-
-
-
 
 def testExplicitLabelsRag3d():
 
@@ -266,3 +272,106 @@ def testExplicitLabelsRag3d():
         fResB = ragB.findEdge(shouldNotEdge)
         assert fResA == -1
         assert fResB == -1
+
+
+if nifty.Configuration.WITH_HDF5:
+
+    nhdf5 = nifty.hdf5
+
+    def testHdf5Rag2d():
+        tempFolder = tempfile.mkdtemp()
+        ensureDir(tempFolder)
+        fpath = os.path.join(tempFolder,'_nifty_test_array4_.h5')
+        
+
+        try:
+            
+            shape = [2,2]
+            hidT = nhdf5.createFile(fpath)
+            array = nhdf5.Hdf5ArrayUInt32(hidT, "data", shape, [1,1])
+
+            assert array.shape[0] == 2
+            assert array.shape[1] == 2
+
+            labels = numpy.array( [
+                [0,  1,],
+                [2,  3,]
+            ],dtype='uint32')
+
+            print(labels.shape)
+
+            array[0:shape[0], 0:shape[1]] = labels
+            resLabels = array[0:shape[0],0:shape[1]]
+
+            print (resLabels)
+
+            assert resLabels.min() == labels.min()
+            assert resLabels.max() == labels.max()
+            assert numpy.array_equal(resLabels, labels) == True
+            
+            labelsProxy = nrag.gridRagHdf5LabelsProxy(array, int(labels.max()+1))
+            rarray = labelsProxy.hdf5Array()
+            resLabels2 = rarray[0:shape[0],0:shape[1]]
+            print (resLabels2)
+
+
+
+
+            print("compute rag")
+            rag = nrag.gridRagHdf5(labelsProxy,[2,2],1)
+
+
+            r3 = rag.labelsProxy().hdf5Array()
+            resLabels3 = r3[0:shape[0],0:shape[1]]
+            print (resLabels3)
+
+
+            # test the rag itself
+            print("test")
+            shoudlEdges = [
+                (0,1),
+                (0,2),
+                (1,2),
+                (1,3),
+                (2,3)
+            ]
+
+            shoudlNotEdges = [
+                (0,3)
+            ]
+
+            print("rag node num",rag.numberOfNodes)
+            print("rag edge num",rag.numberOfEdges) 
+            assert rag.numberOfNodes == labels.max()+1
+            assert rag.numberOfEdges == len(shoudlEdges)
+
+
+
+            edgeList = []
+            for edge in rag.edges():
+                edgeList.append(edge)
+
+            assert len(edgeList) == len(shoudlEdges)
+
+            for shouldEdge in shoudlEdges:
+
+                fRes = rag.findEdge(shouldEdge)
+                assert fRes >= 0
+                uv = rag.uv(fRes)
+                uv = sorted(uv)
+                assert uv[0] == shouldEdge[0]
+                assert uv[1] == shouldEdge[1]
+
+            for shouldNotEdge in shoudlNotEdges:
+                fRes = rag.findEdge(shouldNotEdge)
+                assert fRes == -1
+
+            
+       
+        finally:
+            try:
+                os.remove(fpath)
+                shutil.rmtree(tempFolder)
+
+            except:
+                pass

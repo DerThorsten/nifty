@@ -44,8 +44,15 @@ class GridRag : public UndirectedGraph<>{
 public:
     typedef LABELS_PROXY LabelsProxy;
     struct Settings{
-        int numberOfThreads{-1};
-        array::StaticArray<int64_t, DIM> blockShape{int64_t(100)};
+        Settings()
+        :   numberOfThreads(-1),
+            blockShape()
+        {
+            for(auto d=0; d<DIM; ++d)
+                blockShape[d] = 100;
+        }
+        int numberOfThreads;
+        array::StaticArray<int64_t, DIM> blockShape;
     };
 
     typedef GridRag<DIM, LABELS_PROXY> SelfType;

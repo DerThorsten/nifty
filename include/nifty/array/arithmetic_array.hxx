@@ -81,16 +81,17 @@ namespace array{
         res inplaceSymbol b; \
         return res; \
     } \
-    //template<class ARRAY_CLASS> \
-    //ArrayExtender<ARRAY_CLASS> & operator operatorSymbol ( \
-    //    const ArrayExtender<ARRAY_CLASS> & a, \
-    //    typename ArrayExtender<ARRAY_CLASS>::const_reference  b \
-    //){ \
-    //    for(auto i=0; i<a.size(); ++i){ \
-    //        a[i] operatorSymbol b; \
-    //    } \
-    //    return a; \
-    //} 
+    template<class ARRAY_CLASS> \
+    ArrayExtender<ARRAY_CLASS>  operator operatorSymbol ( \
+        const ArrayExtender<ARRAY_CLASS> & a, \
+        const typename ArrayExtender<ARRAY_CLASS>::const_reference & b \
+    ){ \
+        auto res = a; \
+        for(auto i=0; i<a.size(); ++i){ \
+            res[i] inplaceSymbol b; \
+        } \
+        return res; \
+    } \
 
     NIFTY_MACRO_BINARY_OP(+, +=);
     NIFTY_MACRO_BINARY_OP(-, -=);
@@ -116,12 +117,18 @@ namespace array{
 
         StaticArrayBase(const T & value)
         :   std::array<T,DIM>(){
-            std::fill(this->begin(), this->end(), value);
+           std::fill(this->begin(), this->end(), value);
         }
 
-        template <typename... Args>
-        StaticArrayBase(Args &&... args) : std::array<T,DIM>({std::forward<Args>(args)...}) {
+        template<class INIT_T>
+        StaticArrayBase(const std::initializer_list<INIT_T> & list){
+            std::copy(list.begin(), list.end(), this->begin());
         }
+
+
+        //template <typename... Args>
+        //StaticArrayBase(Args &&... args) : std::array<T,DIM>({std::forward<Args>(args)...}) {
+        //}
 
         const BaseType & asStdArray()const{
             return  static_cast< const BaseType & >(*this);
