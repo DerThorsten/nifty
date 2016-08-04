@@ -321,7 +321,7 @@ __extendRag()
 del __extendRag
 
 
-if nifty.Configuration.WITH_HDF5:
+if Configuration.WITH_HDF5:
 
     def __extendHdf5():
         hdf5Arrays = [
