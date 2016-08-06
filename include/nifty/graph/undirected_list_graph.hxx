@@ -94,6 +94,8 @@ public:
     int64_t insertEdge(const int64_t u, const int64_t v);
 
 
+
+
     // MUST IMPL INTERFACE
     int64_t u(const int64_t e)const;
     int64_t v(const int64_t e)const;
@@ -129,6 +131,8 @@ public:
     void deserialize(ITER iter);
 
 protected:
+
+    bool insertEdgeOnlyInNodeAdj(const int64_t u, const int64_t v);
 
     template<class PER_THREAD_DATA_VEC>
     void mergeAdjacencies(
@@ -403,7 +407,20 @@ mergeAdjacencies(
     }
 }
 
+template<class EDGE_INTERANL_TYPE, class NODE_INTERNAL_TYPE >
+bool 
+UndirectedGraph<EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE>::
+insertEdgeOnlyInNodeAdj(const int64_t u, const int64_t v){
 
+    const auto fres =  nodes_[u].find(NodeAdjacency(v));
+    if(fres != nodes_[u].end())
+        return false;
+    else{
+        nodes_[u].insert(NodeAdjacency(v));
+        nodes_[v].insert(NodeAdjacency(u));
+        return true;
+    }
+}
 
 
 

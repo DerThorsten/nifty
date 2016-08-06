@@ -317,6 +317,45 @@ def __extendRag():
     gridRag.__module__ = "nifty.graph.rag"
     graph.rag.gridRag = gridRag
 
+
+    if Configuration.WITH_HDF5:
+
+        def gridRagHdf5(labels, numberOfLabels, blockShape = None, numberOfThreads=-1):
+
+            dim = labels.ndim
+            if blockShape is None:
+                bs = [100]*dim
+            else:
+                bs = blockShape
+
+            if dim == 2:
+                labelsProxy = graph.rag.gridRag2DHdf5LabelsProxy(labels, int(numberOfLabels))
+                rag = graph.rag.gridRag2DHdf5(labelsProxy,bs,int(numberOfThreads))
+            elif dim == 3:
+                labelsProxy = graph.rag.gridRag3DHdf5LabelsProxy(labels, int(numberOfLabels))
+                rag = graph.rag.gridRag3DHdf5(labelsProxy,bs,int(numberOfThreads))
+            else:
+                raise RuntimeError("gridRagHdf5 is only implemented for 2D and 3D not for %dD"%dim)
+
+            return rag
+
+        gridRagHdf5.__module__ = "nifty.graph.rag"
+        graph.rag.gridRagHdf5 = gridRagHdf5
+
+        def gridRagStacked2DHdf5(labels, numberOfLabels, numberOfThreads=-1):
+            dim = labels.ndim
+            if dim == 3:
+                labelsProxy = graph.rag.gridRag3DHdf5LabelsProxy(labels, int(numberOfLabels))
+                rag = graph.rag.gridRagStacked2DHdf5Impl(labelsProxy,int(numberOfThreads))
+            else:
+                raise RuntimeError("gridRagStacked2DHdf5 is only implemented for 3D not for %dD"%dim)
+
+            return rag
+
+        gridRagStacked2DHdf5.__module__ = "nifty.graph.rag"
+        graph.rag.gridRagStacked2DHdf5 = gridRagStacked2DHdf5
+
+
 __extendRag()
 del __extendRag
 
@@ -374,6 +413,11 @@ if Configuration.WITH_HDF5:
         for array in hdf5Arrays:
             array.__getitem__ = getItem
             array.__setitem__ = setItem
+
+
+
+
+
 
     __extendHdf5()
     del __extendHdf5

@@ -8,10 +8,38 @@ import os
 
 nrag = nifty.graph.rag
 
+
 def ensureDir(f):
     d = os.path.dirname(f)
     if not os.path.exists(d):
         os.makedirs(d)
+
+
+
+def genericRagTest(rag, numberOfNodes, shouldEdges, shouldNotEdges):
+    assert rag.numberOfNodes == numberOfNodes
+    assert rag.numberOfEdges == len(shouldEdges)
+
+    edgeList = []
+    for edge in rag.edges():
+        edgeList.append(edge)
+
+    assert len(edgeList) == len(shouldEdges)
+
+    for shouldEdge in shouldEdges:
+
+        fRes = rag.findEdge(shouldEdge)
+        assert fRes >= 0
+        uv = rag.uv(fRes)
+        uv = sorted(uv)
+        assert uv[0] == shouldEdge[0]
+        assert uv[1] == shouldEdge[1]
+
+    for shouldNotEdge in shouldNotEdges:
+        fRes = rag.findEdge(shouldNotEdge)
+        assert fRes == -1
+
+
 
 def testInsert():
 
@@ -61,7 +89,7 @@ def testExplicitLabelsRag2d():
     assert isinstance(ragA, nifty.graph.rag.ExplicitLabelsGridRag2D)
     assert isinstance(ragB, nifty.graph.rag.ExplicitLabelsGridRag2D)
 
-    shoudlEdges = [
+    shouldEdges = [
         (0,1),
         (0,2),
         (0,3),
@@ -71,54 +99,19 @@ def testExplicitLabelsRag2d():
         (3,4)
     ]
 
-    shoudlNotEdges = [
+    shouldNotEdges = [
         (0,4),
         (1,3),
         (1,4)
     ]
 
+    genericRagTest(rag=ragA, numberOfNodes=5, 
+               shouldEdges=shouldEdges, shouldNotEdges=shouldNotEdges)
+    
+    genericRagTest(rag=ragB, numberOfNodes=5, 
+               shouldEdges=shouldEdges, shouldNotEdges=shouldNotEdges)
 
-    assert ragA.numberOfNodes == 5
-    assert ragB.numberOfNodes == 5
-
-    assert ragA.numberOfEdges == len(shoudlEdges)
-    assert ragB.numberOfEdges == len(shoudlEdges)
-
-
-    edgeListA = []
-    for edge in ragA.edges():
-        edgeListA.append(edge)
-
-    edgeListB = []
-    for edge in ragB.edges():
-        edgeListB.append(edge)
-
-    assert len(edgeListA) == len(shoudlEdges)
-    assert len(edgeListB) == len(shoudlEdges)  
-
-
-    for shouldEdge in shoudlEdges:
-
-        fResA = ragA.findEdge(shouldEdge)
-        fResB = ragB.findEdge(shouldEdge)
-        assert fResA >= 0
-        assert fResB >= 0
-        uvA = ragA.uv(fResA)
-        uvB = ragB.uv(fResB)
-        uvA = sorted(uvA)
-        uvB = sorted(uvB)
-        assert uvA[0] == shouldEdge[0]
-        assert uvA[1] == shouldEdge[1]
-        assert uvB[0] == shouldEdge[0]
-        assert uvB[1] == shouldEdge[1]
-
-    for shouldNotEdge in shoudlNotEdges:
-
-        fResA = ragA.findEdge(shouldNotEdge)
-        fResB = ragB.findEdge(shouldNotEdge)
-        assert fResA == -1
-        assert fResB == -1
-
+    
 def testExplicitLabelsRag2dSerializeDeserialize():
 
     labels = [
@@ -134,7 +127,7 @@ def testExplicitLabelsRag2dSerializeDeserialize():
     assert isinstance(ragA, nifty.graph.rag.ExplicitLabelsGridRag2D)
     assert isinstance(ragB, nifty.graph.rag.ExplicitLabelsGridRag2D)
 
-    shoudlEdges = [
+    shouldEdges = [
         (0,1),
         (0,2),
         (0,3),
@@ -144,53 +137,18 @@ def testExplicitLabelsRag2dSerializeDeserialize():
         (3,4)
     ]
 
-    shoudlNotEdges = [
+    shouldNotEdges = [
         (0,4),
         (1,3),
         (1,4)
     ]
 
 
-    assert ragA.numberOfNodes == 5
-    assert ragB.numberOfNodes == 5
-
-    assert ragA.numberOfEdges == len(shoudlEdges)
-    assert ragB.numberOfEdges == len(shoudlEdges)
-
-
-    edgeListA = []
-    for edge in ragA.edges():
-        edgeListA.append(edge)
-
-    edgeListB = []
-    for edge in ragB.edges():
-        edgeListB.append(edge)
-
-    assert len(edgeListA) == len(shoudlEdges)
-    assert len(edgeListB) == len(shoudlEdges)  
-
-
-    for shouldEdge in shoudlEdges:
-
-        fResA = ragA.findEdge(shouldEdge)
-        fResB = ragB.findEdge(shouldEdge)
-        assert fResA >= 0
-        assert fResB >= 0
-        uvA = ragA.uv(fResA)
-        uvB = ragB.uv(fResB)
-        uvA = sorted(uvA)
-        uvB = sorted(uvB)
-        assert uvA[0] == shouldEdge[0]
-        assert uvA[1] == shouldEdge[1]
-        assert uvB[0] == shouldEdge[0]
-        assert uvB[1] == shouldEdge[1]
-
-    for shouldNotEdge in shoudlNotEdges:
-
-        fResA = ragA.findEdge(shouldNotEdge)
-        fResB = ragB.findEdge(shouldNotEdge)
-        assert fResA == -1
-        assert fResB == -1
+    genericRagTest(rag=ragA, numberOfNodes=5, 
+               shouldEdges=shouldEdges, shouldNotEdges=shouldNotEdges)
+    
+    genericRagTest(rag=ragB, numberOfNodes=5, 
+               shouldEdges=shouldEdges, shouldNotEdges=shouldNotEdges)
 
 def testExplicitLabelsRag3d():
 
@@ -218,7 +176,7 @@ def testExplicitLabelsRag3d():
     assert isinstance(ragB, nifty.graph.rag.ExplicitLabelsGridRag3D)
 
 
-    shoudlEdges = [
+    shouldEdges = [
         (0,1),
         (0,2),
         (1,2),
@@ -227,51 +185,18 @@ def testExplicitLabelsRag3d():
         
     ]
 
-    shoudlNotEdges = [
+    shouldNotEdges = [
        (0,3)
     ]
 
-
-    assert ragA.numberOfNodes == 4
-    assert ragB.numberOfNodes == 4
-
-    assert ragA.numberOfEdges == len(shoudlEdges)
-    assert ragB.numberOfEdges == len(shoudlEdges)
-
-
-    edgeListA = []
-    for edge in ragA.edges():
-        edgeListA.append(edge)
-
-    edgeListB = []
-    for edge in ragB.edges():
-        edgeListB.append(edge)
-
-    assert len(edgeListA) == len(shoudlEdges)
-    assert len(edgeListB) == len(shoudlEdges)  
+    genericRagTest(rag=ragA, numberOfNodes=4, 
+               shouldEdges=shouldEdges, shouldNotEdges=shouldNotEdges)
+    
+    genericRagTest(rag=ragB, numberOfNodes=4, 
+               shouldEdges=shouldEdges, shouldNotEdges=shouldNotEdges)
 
 
-    for shouldEdge in shoudlEdges:
 
-        fResA = ragA.findEdge(shouldEdge)
-        fResB = ragB.findEdge(shouldEdge)
-        assert fResA >= 0
-        assert fResB >= 0
-        uvA = ragA.uv(fResA)
-        uvB = ragB.uv(fResB)
-        uvA = sorted(uvA)
-        uvB = sorted(uvB)
-        assert uvA[0] == shouldEdge[0]
-        assert uvA[1] == shouldEdge[1]
-        assert uvB[0] == shouldEdge[0]
-        assert uvB[1] == shouldEdge[1]
-
-    for shouldNotEdge in shoudlNotEdges:
-
-        fResA = ragA.findEdge(shouldNotEdge)
-        fResB = ragB.findEdge(shouldNotEdge)
-        assert fResA == -1
-        assert fResB == -1
 
 
 if nifty.Configuration.WITH_HDF5:
@@ -283,7 +208,6 @@ if nifty.Configuration.WITH_HDF5:
         ensureDir(tempFolder)
         fpath = os.path.join(tempFolder,'_nifty_test_array4_.h5')
         
-
         try:
             
             shape = [3,3]
@@ -305,74 +229,26 @@ if nifty.Configuration.WITH_HDF5:
             assert labels.shape[0] == shape[0]
             assert labels.shape[1] == shape[1]
 
-            print(labels.shape)
 
             array[0:shape[0], 0:shape[1]] = labels
-            resLabels = array[0:shape[0],0:shape[1]]
 
-            print (resLabels)
+            rag = nrag.gridRagHdf5(array, numberOfLabels=labels.max()+1, 
+                                   blockShape=blockShape, numberOfThreads=2)
 
-            assert resLabels.min() == labels.min()
-            assert resLabels.max() == labels.max()
-            assert numpy.array_equal(resLabels, labels) == True
-            
-            labelsProxy = nrag.gridRagHdf5LabelsProxy(array, int(labels.max()+1))
-            rarray = labelsProxy.hdf5Array()
-            resLabels2 = rarray[0:shape[0],0:shape[1]]
-            print (resLabels2)
-
-
-
-
-            print("compute rag")
-            rag = nrag.gridRagHdf5(labelsProxy,blockShape,1)
-
-
-            r3 = rag.labelsProxy().hdf5Array()
-            resLabels3 = r3[0:shape[0],0:shape[1]]
-            print (resLabels3)
-
-
-            # test the rag itself
-            print("test")
-            shoudlEdges = [
+            shouldEdges = [
                 (0,1),
                 (0,2),
                 (1,2),
                 (2,3)
             ]
 
-            shoudlNotEdges = [
+            shouldNotEdges = [
                 (0,3),
                 (1,3)
             ]
 
-            print("rag node num",rag.numberOfNodes)
-            print("rag edge num",rag.numberOfEdges) 
-            assert rag.numberOfNodes == labels.max()+1
-            assert rag.numberOfEdges == len(shoudlEdges)
-
-
-
-            edgeList = []
-            for edge in rag.edges():
-                edgeList.append(edge)
-
-            assert len(edgeList) == len(shoudlEdges)
-
-            for shouldEdge in shoudlEdges:
-
-                fRes = rag.findEdge(shouldEdge)
-                assert fRes >= 0
-                uv = rag.uv(fRes)
-                uv = sorted(uv)
-                assert uv[0] == shouldEdge[0]
-                assert uv[1] == shouldEdge[1]
-
-            for shouldNotEdge in shoudlNotEdges:
-                fRes = rag.findEdge(shouldNotEdge)
-                assert fRes == -1
-
+            genericRagTest(rag=rag, numberOfNodes=labels.max()+1, 
+                           shouldEdges=shouldEdges, shouldNotEdges=shouldNotEdges)
             
        
         finally:
@@ -383,69 +259,121 @@ if nifty.Configuration.WITH_HDF5:
             except:
                 pass
 
+    def testHdf5Rag2dLarge():
 
-
-
-
-
-
-
-
-
-
-
-if False:#nifty.Configuration.WITH_HDF5:
-    def testHdf5Rag2d():
         tempFolder = tempfile.mkdtemp()
         ensureDir(tempFolder)
-        fpath = os.path.join(tempFolder,'_nifty_test_array4_.h5')
+        fpath = os.path.join(tempFolder,'_nifty_testHdf5Rag2dLarge_.h5')
         
 
         try:
             
-            shape = [2,2]
-            hidT = nhdf5.createFile(fpath)
-            array = nhdf5.Hdf5ArrayUInt32(hidT, "data", shape, [1,1])
+            shape = [5,6]
+            chunkShape = [3,2]
+            blockShape =  [2,3]
 
-            assert array.shape[0] == 2
-            assert array.shape[1] == 2
+            hidT = nhdf5.createFile(fpath)
+            array = nhdf5.Hdf5ArrayUInt32(hidT, "data", shape, chunkShape)
+
+            assert array.shape[0] == shape[0]
+            assert array.shape[1] == shape[1]
 
             labels = numpy.array( [
-                [0,  1,],
-                [2,  3,]
+                [0, 0, 0, 0, 1, 1],
+                [0, 2, 2, 0, 1, 3],
+                [0, 3, 3, 3, 3, 3],
+                [0, 3, 4, 5, 5, 5],
+                [0, 0, 4, 6, 6, 6],
             ],dtype='uint32')
 
-            print(labels.shape)
+            assert labels.shape[0] == shape[0]
+            assert labels.shape[1] == shape[1]
+
 
             array[0:shape[0], 0:shape[1]] = labels
-            resLabels = array[0:shape[0],0:shape[1]]
+            rag = nrag.gridRagHdf5(array, numberOfLabels=labels.max()+1, 
+                                   blockShape=blockShape, numberOfThreads=1)
 
-            print (resLabels)
 
-            assert resLabels.min() == labels.min()
-            assert resLabels.max() == labels.max()
-            assert numpy.array_equal(resLabels, labels) == True
+            shouldEdges = [
+                (0,1),
+                (0,2),
+                (0,3),
+                (0,4),
+                (1,3),
+                (2,3),
+                (3,4),
+                (3,5),
+                (4,5),
+                (4,6),
+                (5,6)
+            ]
+
+            shouldNotEdges = [
+                (0,6),
+                (0,5),
+                (1,6),
+                (1,5)
+            ]
+
+            genericRagTest(rag=rag, numberOfNodes=labels.max()+1, 
+                           shouldEdges=shouldEdges, shouldNotEdges=shouldNotEdges)
             
-            labelsProxy = nrag.gridRagHdf5LabelsProxy(array, int(labels.max()+1))
-            rarray = labelsProxy.hdf5Array()
-            resLabels2 = rarray[0:shape[0],0:shape[1]]
-            print (resLabels2)
+       
+        finally:
+            try:
+                os.remove(fpath)
+                shutil.rmtree(tempFolder)
+
+            except:
+                pass
+
+    def testHdf5Rag3d():
+
+        tempFolder = tempfile.mkdtemp()
+        ensureDir(tempFolder)
+        fpath = os.path.join(tempFolder,'_nifty_testHdf5Rag3d_.h5')
+        
+
+        try:
+            
+            shape = [3,2,2]
+            chunkShape = [1,2,1]
+            blockShape =  [1,2,3]
+
+            hidT = nhdf5.createFile(fpath)
+            array = nhdf5.Hdf5ArrayUInt32(hidT, "data", shape, chunkShape)
+
+            assert array.shape[0] == shape[0]
+            assert array.shape[1] == shape[1]
+            assert array.shape[2] == shape[2]
+
+            labels = [
+                [
+                    [0,1],
+                    [0,0]
+                ],
+                [
+                    [1,1],
+                    [2,2]
+                ],
+                [
+                    [3,3],
+                    [3,3]
+                ]
+            ]
+            labels = numpy.array( labels,dtype='uint32')
+
+            assert labels.shape[0] == shape[0]
+            assert labels.shape[1] == shape[1]
+            assert labels.shape[2] == shape[2]
+
+            array[0:shape[0], 0:shape[1], 0:shape[2]] = labels
+            rag = nrag.gridRagHdf5(array, numberOfLabels=labels.max()+1, 
+                           blockShape=blockShape, numberOfThreads=-1)
 
 
-
-
-            print("compute rag")
-            rag = nrag.gridRagHdf5(labelsProxy,[2,2],1)
-
-
-            r3 = rag.labelsProxy().hdf5Array()
-            resLabels3 = r3[0:shape[0],0:shape[1]]
-            print (resLabels3)
-
-
-            # test the rag itself
-            print("test")
-            shoudlEdges = [
+            shouldEdges = [
                 (0,1),
                 (0,2),
                 (1,2),
@@ -453,36 +381,12 @@ if False:#nifty.Configuration.WITH_HDF5:
                 (2,3)
             ]
 
-            shoudlNotEdges = [
-                (0,3)
+            shouldNotEdges = [
+               (0,3)
             ]
 
-            print("rag node num",rag.numberOfNodes)
-            print("rag edge num",rag.numberOfEdges) 
-            assert rag.numberOfNodes == labels.max()+1
-            assert rag.numberOfEdges == len(shoudlEdges)
-
-
-
-            edgeList = []
-            for edge in rag.edges():
-                edgeList.append(edge)
-
-            assert len(edgeList) == len(shoudlEdges)
-
-            for shouldEdge in shoudlEdges:
-
-                fRes = rag.findEdge(shouldEdge)
-                assert fRes >= 0
-                uv = rag.uv(fRes)
-                uv = sorted(uv)
-                assert uv[0] == shouldEdge[0]
-                assert uv[1] == shouldEdge[1]
-
-            for shouldNotEdge in shoudlNotEdges:
-                fRes = rag.findEdge(shouldNotEdge)
-                assert fRes == -1
-
+            genericRagTest(rag=rag, numberOfNodes=labels.max()+1, 
+                           shouldEdges=shouldEdges, shouldNotEdges=shouldNotEdges)
             
        
         finally:
@@ -492,3 +396,175 @@ if False:#nifty.Configuration.WITH_HDF5:
 
             except:
                 pass
+
+    def testGridRag3DStacked2D():
+
+        tempFolder = tempfile.mkdtemp()
+        ensureDir(tempFolder)
+        fpath = os.path.join(tempFolder,'_nifty_testHdf5Rag3d_.h5')
+        
+
+        try:
+            
+            shape = [3,2,2]
+            chunkShape = [1,2,1]
+            blockShape =  [1,2,3]
+
+            hidT = nhdf5.createFile(fpath)
+            array = nhdf5.Hdf5ArrayUInt32(hidT, "data", shape, chunkShape)
+
+            assert array.shape[0] == shape[0]
+            assert array.shape[1] == shape[1]
+            assert array.shape[2] == shape[2]
+
+            labels = [
+                [
+                    [0,1],
+                    [0,1]
+                ],
+                [
+                    [2,2],
+                    [2,3]
+                ],
+                [
+                    [4,5],
+                    [6,6]
+                ]
+            ]
+            labels = numpy.array( labels,dtype='uint32')
+
+            assert labels.shape[0] == shape[0]
+            assert labels.shape[1] == shape[1]
+            assert labels.shape[2] == shape[2]
+
+
+            array[0:shape[0], 0:shape[1], 0:shape[2]] = labels
+            rag = nrag.gridRagStacked2DHdf5(array, numberOfLabels=labels.max()+1,
+                                            numberOfThreads=-1)
+
+
+            shouldEdges = [
+                (0,1),
+                (0,2),
+                (1,2),
+                (1,3),
+                (2,3),
+                (2,4),
+                (2,5),
+                (2,6),
+                (3,6),
+                (4,5),
+                (4,6),
+                (5,6)
+            ]
+
+            shouldNotEdges = [
+                (0,3),
+                (0,4),
+                (0,5),
+                (0,6),
+                (1,4),
+                (1,5),
+                (1,6)
+            ]
+
+
+            print("edges in rag",rag.numberOfEdges,len(shouldEdges))
+
+            genericRagTest(rag=rag, numberOfNodes=labels.max()+1, 
+                           shouldEdges=shouldEdges, shouldNotEdges=shouldNotEdges)
+            
+       
+        finally:
+            try:
+                os.remove(fpath)
+                shutil.rmtree(tempFolder)
+
+            except:
+                pass
+
+    def testGridRag3DStacked2DLarge():
+
+        tempFolder = tempfile.mkdtemp()
+        ensureDir(tempFolder)
+        fpath = os.path.join(tempFolder,'_nifty_testHdf5Rag3d_.h5')
+        
+
+        try:
+            
+            shape = [3,4,4]
+            chunkShape = [1,2,1]
+
+
+            hidT = nhdf5.createFile(fpath)
+            array = nhdf5.Hdf5ArrayUInt32(hidT, "data", shape, chunkShape)
+
+            assert array.shape[0] == shape[0]
+            assert array.shape[1] == shape[1]
+            assert array.shape[2] == shape[2]
+
+            labels = [
+                [
+                    [0,0,0,0],
+                    [1,1,1,1],
+                    [2,2,2,2],
+                    [2,2,2,2]
+                ],
+                [
+                    [3,3,3,3],
+                    [3,3,3,3],
+                    [3,3,3,3],
+                    [3,3,3,3]
+                ],
+                [
+                    [4,4,5,5],
+                    [4,4,5,5],
+                    [4,4,5,5],
+                    [4,4,5,5]
+                ]
+            ]
+            labels = numpy.array( labels,dtype='uint32')
+
+            assert labels.shape[0] == shape[0]
+            assert labels.shape[1] == shape[1]
+            assert labels.shape[2] == shape[2]
+
+
+            array[0:shape[0], 0:shape[1], 0:shape[2]] = labels
+            rag = nrag.gridRagStacked2DHdf5(array, numberOfLabels=labels.max()+1,
+                                            numberOfThreads=-1)
+
+
+            shouldEdges = [
+               (0,1),
+               (0,3),
+               (1,2),
+               (1,3),
+               (2,3),
+               (3,4),
+               (3,5),
+               (4,5)
+            ]
+
+            shouldNotEdges = [
+                (0,4),
+                (0,5),
+                (1,4),
+                (1,5),
+                (2,4),
+                (2,5)
+            ]
+
+
+            genericRagTest(rag=rag, numberOfNodes=labels.max()+1, 
+                           shouldEdges=shouldEdges, shouldNotEdges=shouldNotEdges)
+            
+       
+        finally:
+            try:
+                os.remove(fpath)
+                shutil.rmtree(tempFolder)
+
+            except:
+                pass
+

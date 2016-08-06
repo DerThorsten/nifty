@@ -77,6 +77,10 @@ private:
 };
 
 
+template<class LABELS_PROXY>
+class GridRag3DStacked2D;
+
+
 template<unsigned int DIM, class LABEL_TYPE>
 using ExplicitLabelsGridRag = GridRag<DIM, ExplicitLabels<DIM, LABEL_TYPE> > ; 
 

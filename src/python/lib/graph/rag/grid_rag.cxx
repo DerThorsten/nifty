@@ -149,6 +149,48 @@ namespace graph{
 
     }
 
+
+    template<class LABELS>
+    void exportHdf5GridRagStacked2D(
+        py::module & ragModule, 
+        const std::string & clsName,
+        const std::string & facName
+    ){
+        py::object baseGraphPyCls = ragModule.attr("GridRagHdf5Labels3D");
+        
+        typedef Hdf5Labels<3, LABELS> LabelsProxyType;
+        typedef GridRagStacked2D<LabelsProxyType >  GridRagType;
+
+
+
+
+        auto clsT = py::class_<GridRagType>(ragModule, clsName.c_str(), baseGraphPyCls);
+        clsT
+            .def("labelsProxy",&GridRagType::labelsProxy,py::return_value_policy::reference)
+        ;
+
+        removeFunctions<GridRagType>(clsT);
+
+        ragModule.def(facName.c_str(),
+            [](
+                const LabelsProxyType & labelsProxy,
+                const int numberOfThreads
+            ){
+                auto s = typename  GridRagType::Settings();
+                s.numberOfThreads = numberOfThreads;
+
+                auto ptr = new GridRagType(labelsProxy, s);
+                return ptr;
+            },
+            py::return_value_policy::take_ownership,
+            py::keep_alive<0, 1>(),
+            py::arg("labelsProxy"),
+            py::arg_t< int >("numberOfThreads", -1 )
+        );
+
+    }
+
+
     #endif
 
 
@@ -158,8 +200,10 @@ namespace graph{
         exportExpilictGridRagT<3, uint32_t>(ragModule, graphModule, "ExplicitLabelsGridRag3D", "explicitLabelsGridRag3D");
         
         #ifdef WITH_HDF5
-        exportHdf5GridRagT<2, uint32_t>(ragModule, graphModule, "GridRagHdf5Labels2D", "gridRagHdf5");
-        exportHdf5GridRagT<3, uint32_t>(ragModule, graphModule, "GridRagHdf5Labels3D", "gridRagHdf5");
+        exportHdf5GridRagT<2, uint32_t>(ragModule, graphModule, "GridRagHdf5Labels2D", "gridRag2DHdf5");
+        exportHdf5GridRagT<3, uint32_t>(ragModule, graphModule, "GridRagHdf5Labels3D", "gridRag3DHdf5");
+       
+        exportHdf5GridRagStacked2D<uint32_t>(ragModule, "GridRagStacked2DHdf5", "gridRagStacked2DHdf5Impl");
         #endif
 
 
