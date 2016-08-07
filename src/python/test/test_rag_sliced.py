@@ -1,11 +1,11 @@
 
 import nifty
-import vigra
 import numpy
 import os
 
 if nifty.Configuration.WITH_HDF52:
-
+    import vigra
+    
     chunked_rag = nifty.graph.rag.chunkedLabelsGridRagSliced
     normal_rag  = nifty.graph.rag.explicitLabelsGridRag3D
 

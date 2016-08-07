@@ -167,6 +167,57 @@ namespace graph{
         auto clsT = py::class_<GridRagType>(ragModule, clsName.c_str(), baseGraphPyCls);
         clsT
             .def("labelsProxy",&GridRagType::labelsProxy,py::return_value_policy::reference)
+            .def("minMaxLabelPerSlice",[](const GridRagType & self){
+                const auto & shape = self.shape();
+                nifty::marray::PyView<uint64_t, 2> out({size_t(shape[0]),size_t(2)});
+                for(auto sliceIndex = 0; sliceIndex<shape[0]; ++sliceIndex){
+                    auto mima = self.minMaxNode(sliceIndex);
+                    out(sliceIndex, 0) = mima.first;
+                    out(sliceIndex, 1) = mima.second;
+                }
+                return out;
+            })
+            .def("numberOfNodesPerSlice",[](const GridRagType & self){
+                const auto & shape = self.shape();
+                nifty::marray::PyView<uint64_t,  1> out({size_t(shape[0])});
+                for(auto sliceIndex = 0; sliceIndex<shape[0]; ++sliceIndex){
+                    out(sliceIndex) =  self.numberOfNodes(sliceIndex);
+                }
+                return out;
+            })
+            .def("numberOfInSliceEdges",[](const GridRagType & self){
+                const auto & shape = self.shape();
+                nifty::marray::PyView<uint64_t,  1> out({size_t(shape[0])});
+                for(auto sliceIndex = 0; sliceIndex<shape[0]; ++sliceIndex){
+                    out(sliceIndex) =  self.numberOfInSliceEdges(sliceIndex);
+                }
+                return out;
+            })
+            .def("numberOfInBetweenSliceEdges",[](const GridRagType & self){
+                const auto & shape = self.shape();
+                nifty::marray::PyView<uint64_t,  1> out({size_t(shape[0])});
+                for(auto sliceIndex = 0; sliceIndex<shape[0]; ++sliceIndex){
+                    out(sliceIndex) =  self.numberOfInBetweenSliceEdges(sliceIndex);
+                }
+                return out;
+            })
+            .def("inSliceEdgeOffset",[](const GridRagType & self){
+                const auto & shape = self.shape();
+                nifty::marray::PyView<uint64_t,  1> out({size_t(shape[0])});
+                for(auto sliceIndex = 0; sliceIndex<shape[0]; ++sliceIndex){
+                    out(sliceIndex) =  self.inSliceEdgeOffset(sliceIndex);
+                }
+                return out;
+            })
+            .def("betweenSliceEdgeOffset",[](const GridRagType & self){
+                const auto & shape = self.shape();
+                nifty::marray::PyView<uint64_t,  1> out({size_t(shape[0])});
+                for(auto sliceIndex = 0; sliceIndex<shape[0]; ++sliceIndex){
+                    out(sliceIndex) =  self.betweenSliceEdgeOffset(sliceIndex);
+                }
+                return out;
+            })
+
         ;
 
         removeFunctions<GridRagType>(clsT);

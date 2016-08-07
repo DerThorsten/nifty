@@ -11,55 +11,6 @@ namespace nifty{
 namespace graph{
 
 
-
-template<size_t DIM, class LABEL_TYPE>
-class GridRag<DIM, Hdf5Labels<DIM, LABEL_TYPE> > : public UndirectedGraph<>{
-
-protected:
-    struct DontComputeRag{};
-public:
-
-    typedef Hdf5Labels<DIM, LABEL_TYPE> LabelsProxy;
-    struct Settings{
-        Settings()
-        :   numberOfThreads(-1),
-            blockShape()
-        {
-            for(auto d=0; d<DIM; ++d)
-                blockShape[d] = 100;
-        }
-        int numberOfThreads;
-        array::StaticArray<int64_t, DIM> blockShape;
-    };
-
-    typedef GridRag<DIM, Hdf5Labels<DIM, LABEL_TYPE> > SelfType;
-    friend class detail_rag::ComputeRag< SelfType >;
-
-
-
-    GridRag(const LabelsProxy & labelsProxy, const Settings & settings = Settings())
-    :   settings_(settings),
-        labelsProxy_(labelsProxy)
-    {
-        detail_rag::ComputeRag< SelfType >::computeRag(*this, settings_);
-    }
-
-    const LabelsProxy & labelsProxy() const {
-        return labelsProxy_;
-    }
-protected:
-    GridRag(const LabelsProxy & labelsProxy, const Settings & settings, const DontComputeRag)
-    :   settings_(settings),
-        labelsProxy_(labelsProxy){
-
-    }
-
-protected:
-    Settings settings_;
-    const LabelsProxy & labelsProxy_;
-
-};
-
 template<class LABEL_TYPE>
 class GridRagStacked2D< Hdf5Labels<3, LABEL_TYPE> >
 : public GridRag<3, Hdf5Labels<3, LABEL_TYPE> >
@@ -105,9 +56,29 @@ public:
     }
 
     // additional api
-    std::pair<LabelType, LabelType> minMaxLabels(const uint64_t sliceIndex) const{
+    std::pair<uint64_t, uint64_t> minMaxNode(const uint64_t sliceIndex) const{
         const auto & sliceData = perSliceDataVec_[sliceIndex];
-        return std::pair<LabelType, LabelType>(sliceData.minInSliceNode, sliceData.maxInSliceNode);
+        return std::pair<uint64_t, uint64_t>(sliceData.minInSliceNode, sliceData.maxInSliceNode);
+    }
+    uint64_t numberOfNodes(const uint64_t sliceIndex) const{
+        const auto & sliceData = perSliceDataVec_[sliceIndex];
+        return (sliceData.maxInSliceNode-sliceData.minInSliceNode) + 1;
+    }
+    uint64_t numberOfInSliceEdges(const uint64_t sliceIndex) const{
+        const auto & sliceData = perSliceDataVec_[sliceIndex];
+        return sliceData.numberOfInSliceEdges;
+    }
+    uint64_t numberOfInBetweenSliceEdges(const uint64_t sliceIndex) const{
+        const auto & sliceData = perSliceDataVec_[sliceIndex];
+        return sliceData.numberOfToNextSliceEdges;
+    }
+    uint64_t inSliceEdgeOffset(const uint64_t sliceIndex) const{
+        const auto & sliceData = perSliceDataVec_[sliceIndex];
+        return sliceData.inSliceEdgeOffset;
+    }
+    uint64_t betweenSliceEdgeOffset(const uint64_t sliceIndex) const{
+        const auto & sliceData = perSliceDataVec_[sliceIndex];
+        return sliceData.toNextSliceEdgeOffset;
     }
 private:
 

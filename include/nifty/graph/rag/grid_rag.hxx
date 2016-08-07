@@ -38,10 +38,22 @@ namespace graph{
 template<size_t DIM, class LABEL_TYPE>
 class ExplicitLabels;
 
+template<class LABELS_PROXY>
+struct RefHelper{
+    typedef const LABELS_PROXY & type;
+};
+
+template<size_t DIM, class LABEL_TYPE>
+struct RefHelper<ExplicitLabels<DIM, LABEL_TYPE>>{
+    typedef ExplicitLabels<DIM, LABEL_TYPE> type;
+};
+
+
 
 template<size_t DIM, class LABELS_PROXY>
 class GridRag : public UndirectedGraph<>{
 public:
+    struct DontComputeRag{};
     typedef LABELS_PROXY LabelsProxy;
     struct Settings{
         Settings()
@@ -56,6 +68,7 @@ public:
     };
 
     typedef GridRag<DIM, LABELS_PROXY> SelfType;
+    typedef array::StaticArray<int64_t, DIM> ShapeType;
 
     friend class detail_rag::ComputeRag< SelfType >;
 
@@ -70,9 +83,20 @@ public:
     const LabelsProxy & labelsProxy() const {
         return labelsProxy_;
     }
-private:
+
+    const ShapeType & shape()const{
+        return labelsProxy_.shape();
+    }
+protected:
+    GridRag(const LabelsProxy & labelsProxy, const Settings & settings, const DontComputeRag)
+    :   settings_(settings),
+        labelsProxy_(labelsProxy){
+
+    }
+protected:
+    typedef typename RefHelper<LABELS_PROXY>::type StorageType;
     Settings settings_;
-    LabelsProxy labelsProxy_;
+    StorageType labelsProxy_;
 
 };
 
