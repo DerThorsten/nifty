@@ -8,6 +8,7 @@
 #include "nifty/array/arithmetic_array.hxx"
 #include "nifty/marray/marray.hxx"
 #include "nifty/tools/runtime_check.hxx"
+#include "nifty/tools/block_access.hxx"
 //#include "nifty/graph/detail/contiguous_indices.hxx"
 
 
@@ -17,6 +18,7 @@ namespace graph{
 template<size_t DIM, class LABEL_TYPE>
 class ExplicitLabels{
 public:
+    typedef tools::BlockView<DIM, LABEL_TYPE> BlockStorageType;
     typedef LABEL_TYPE LabelType;
     typedef marray::Marray<LABEL_TYPE> SubarrayViewType;
 
@@ -52,6 +54,22 @@ public:
                 nLabels = std::max(labels_(i), nLabels);
             return nLabels+1;
         }
+    }
+
+    template<
+        class ROI_BEGIN_COORD,
+        class ROI_END_COORD
+    >
+    void readSubarray(
+        const ROI_BEGIN_COORD & roiBeginCoord,
+        const ROI_END_COORD & roiEndCoord,
+        marray::View<LABEL_TYPE> & outArray
+    )const{
+        array::StaticArray<int64_t, DIM> subShape;
+        for(auto d = 0 ; d<DIM; ++d){
+            subShape[d] = roiEndCoord[d] - roiBeginCoord[d];
+        }
+        outArray = labels_.view(roiBeginCoord.begin(), subShape.begin());
     }
 
     // not part of the general API

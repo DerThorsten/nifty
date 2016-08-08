@@ -9,15 +9,6 @@
 #include <stack>
 #include <algorithm>
 
-// for strange reason travis does not find the boost flat set
-#ifdef WITHIN_TRAVIS
-#include <set>
-#define __setimpl std::set
-#else
-#include <boost/container/flat_set.hpp>
-#define __setimpl boost::container::flat_set
-#endif
-
 //#include <parallel/algorithm>
 #include <unordered_set>
 

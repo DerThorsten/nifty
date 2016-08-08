@@ -151,7 +151,6 @@ namespace graph{
 
     }
 
-
     template<class LABELS>
     void exportHdf5GridRagStacked2D(
         py::module & ragModule, 
@@ -243,8 +242,103 @@ namespace graph{
 
     }
 
-
     #endif
+
+
+    template<class LABELS>
+    void exportExplicitGridRagStacked2D(
+        py::module & ragModule, 
+        const std::string & clsName,
+        const std::string & facName
+    ){
+        py::object baseGraphPyCls = ragModule.attr("ExplicitLabelsGridRag3D");
+        
+        typedef ExplicitLabels<3, LABELS> LabelsProxyType;
+        typedef GridRagStacked2D<LabelsProxyType >  GridRagType;
+
+
+
+
+        auto clsT = py::class_<GridRagType>(ragModule, clsName.c_str(), baseGraphPyCls);
+        clsT
+            //.def("labelsProxy",&GridRagType::labelsProxy,py::return_value_policy::reference)
+            .def("minMaxLabelPerSlice",[](const GridRagType & self){
+                const auto & shape = self.shape();
+                nifty::marray::PyView<uint64_t, 2> out({size_t(shape[0]),size_t(2)});
+                for(auto sliceIndex = 0; sliceIndex<shape[0]; ++sliceIndex){
+                    auto mima = self.minMaxNode(sliceIndex);
+                    out(sliceIndex, 0) = mima.first;
+                    out(sliceIndex, 1) = mima.second;
+                }
+                return out;
+            })
+            .def("numberOfNodesPerSlice",[](const GridRagType & self){
+                const auto & shape = self.shape();
+                nifty::marray::PyView<uint64_t,  1> out({size_t(shape[0])});
+                for(auto sliceIndex = 0; sliceIndex<shape[0]; ++sliceIndex){
+                    out(sliceIndex) =  self.numberOfNodes(sliceIndex);
+                }
+                return out;
+            })
+            .def("numberOfInSliceEdges",[](const GridRagType & self){
+                const auto & shape = self.shape();
+                nifty::marray::PyView<uint64_t,  1> out({size_t(shape[0])});
+                for(auto sliceIndex = 0; sliceIndex<shape[0]; ++sliceIndex){
+                    out(sliceIndex) =  self.numberOfInSliceEdges(sliceIndex);
+                }
+                return out;
+            })
+            .def("numberOfInBetweenSliceEdges",[](const GridRagType & self){
+                const auto & shape = self.shape();
+                nifty::marray::PyView<uint64_t,  1> out({size_t(shape[0])});
+                for(auto sliceIndex = 0; sliceIndex<shape[0]; ++sliceIndex){
+                    out(sliceIndex) =  self.numberOfInBetweenSliceEdges(sliceIndex);
+                }
+                return out;
+            })
+            .def("inSliceEdgeOffset",[](const GridRagType & self){
+                const auto & shape = self.shape();
+                nifty::marray::PyView<uint64_t,  1> out({size_t(shape[0])});
+                for(auto sliceIndex = 0; sliceIndex<shape[0]; ++sliceIndex){
+                    out(sliceIndex) =  self.inSliceEdgeOffset(sliceIndex);
+                }
+                return out;
+            })
+            .def("betweenSliceEdgeOffset",[](const GridRagType & self){
+                const auto & shape = self.shape();
+                nifty::marray::PyView<uint64_t,  1> out({size_t(shape[0])});
+                for(auto sliceIndex = 0; sliceIndex<shape[0]; ++sliceIndex){
+                    out(sliceIndex) =  self.betweenSliceEdgeOffset(sliceIndex);
+                }
+                return out;
+            })
+
+        ;
+
+        removeFunctions<GridRagType>(clsT);
+
+
+
+        ragModule.def(facName.c_str(),
+            [](
+               nifty::marray::PyView<LABELS, 3> labels,
+               const int numberOfThreads
+            ){
+                auto s = typename  GridRagType::Settings();
+                s.numberOfThreads = numberOfThreads;
+                ExplicitLabels<3, LABELS> explicitLabels(labels);
+                auto ptr = new GridRagType(explicitLabels, s);
+                return ptr;
+            },
+            py::return_value_policy::take_ownership,
+            py::keep_alive<0, 1>(),
+            py::arg("labels"),
+            py::arg_t< int >("numberOfThreads", -1 )
+        );
+
+    }
+
+
 
 
     void exportGridRag(py::module & ragModule, py::module & graphModule) {
@@ -252,45 +346,13 @@ namespace graph{
         exportExpilictGridRagT<2, uint32_t>(ragModule, graphModule, "ExplicitLabelsGridRag2D", "explicitLabelsGridRag2D");
         exportExpilictGridRagT<3, uint32_t>(ragModule, graphModule, "ExplicitLabelsGridRag3D", "explicitLabelsGridRag3D");
         
+        exportExplicitGridRagStacked2D<uint32_t>(ragModule, "GridRagStacked2DExplicit", "gridRagStacked2DExplicitImpl");
+
         #ifdef WITH_HDF5
         exportHdf5GridRagT<2, uint32_t>(ragModule, graphModule, "GridRagHdf5Labels2D", "gridRag2DHdf5");
         exportHdf5GridRagT<3, uint32_t>(ragModule, graphModule, "GridRagHdf5Labels3D", "gridRag3DHdf5");
        
         exportHdf5GridRagStacked2D<uint32_t>(ragModule, "GridRagStacked2DHdf5", "gridRagStacked2DHdf5Impl");
-        #endif
-
-
-        // export ChunkedLabelsGridRagSliced
-        #ifdef WITH_HDF52
-        {
-            py::object undirectedGraph = graphModule.attr("UndirectedGraph");
-            typedef ChunkedLabelsGridRagSliced<uint32_t> ChunkedLabelsGridRagSliced;
-
-            auto clsT = py::class_<ChunkedLabelsGridRagSliced>(ragModule, "ChunkedLabelsGridRagSliced", undirectedGraph);
-            removeFunctions<ExplicitLabelsGridRagType>(clsT);
-
-            ragModule.def("chunkedLabelsGridRagSliced",
-                [](const std::string & label_file,
-                   const std::string & label_key,
-                   const int numberOfThreads,
-                   const bool lockFreeAlg 
-                ){
-                    auto s = typename  ChunkedLabelsGridRagSliced::Settings();
-                    s.numberOfThreads = numberOfThreads;
-                    s.lockFreeAlg = lockFreeAlg;
-
-                    ChunkedLabels<3,uint32_t> chunkedLabels(label_file, label_key);
-                    auto ptr = new ChunkedLabelsGridRagSliced(chunkedLabels, s);
-                    return ptr;
-                },
-                py::return_value_policy::take_ownership,
-                py::keep_alive<0, 1>(),
-                py::arg("label_file"),
-                py::arg("label_key"),
-                py::arg_t< int >("numberOfThreads", 1 ),
-                py::arg_t< bool >("lockFreeAlg", false )
-            );
-        }
         #endif
     }
         
