@@ -108,6 +108,11 @@ struct ComputeRag< GridRag<DIM,  ExplicitLabels<DIM, LABEL_TYPE> > > {
 
 
 
+
+
+
+
+
 } // end namespace detail_rag
 } // end namespace graph
 } // end namespace nifty

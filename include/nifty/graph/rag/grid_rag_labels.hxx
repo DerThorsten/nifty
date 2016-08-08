@@ -17,6 +17,7 @@ namespace graph{
 template<size_t DIM, class LABEL_TYPE>
 class ExplicitLabels{
 public:
+    typedef LABEL_TYPE LabelType;
     typedef marray::Marray<LABEL_TYPE> SubarrayViewType;
 
     // \deprecated
