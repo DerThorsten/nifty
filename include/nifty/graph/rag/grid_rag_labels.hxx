@@ -18,7 +18,7 @@ namespace graph{
 template<size_t DIM, class LABEL_TYPE>
 class ExplicitLabels{
 public:
-    typedef tools::BlockView<DIM, LABEL_TYPE> BlockStorageType;
+    typedef tools::BlockView< LABEL_TYPE> BlockStorageType;
     typedef LABEL_TYPE LabelType;
     typedef marray::Marray<LABEL_TYPE> SubarrayViewType;
 
@@ -86,8 +86,26 @@ private:
     array::StaticArray<int64_t, DIM> shape_;
 };
 
+} // namespace nifty::graph
 
-} // namespace graph
+
+namespace tools{
+
+    template<class LABEL_TYPE, size_t DIM, class COORD>
+    inline void readSubarray(
+        const graph::ExplicitLabels<DIM, LABEL_TYPE> & labels,
+        const COORD & beginCoord,
+        const COORD & endCoord,
+        marray::View<LABEL_TYPE> & subarray
+    ){
+        labels.readSubarray(beginCoord, endCoord, subarray);
+    }
+
+} // namespace nifty::tools
+
+
+
+
 } // namespace nifty
 
 

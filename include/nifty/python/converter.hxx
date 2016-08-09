@@ -13,6 +13,7 @@
 #include <pybind11/numpy.h>
 
 #include <nifty/marray/marray.hxx>
+#include <nifty/tools/block_access.hxx>
 
 namespace py = pybind11;
 
@@ -36,7 +37,7 @@ namespace pybind11
 {
     namespace detail
     {
-        template <typename Type, int DIM> 
+        template <typename Type, size_t DIM> 
         struct pymarray_caster;
     }
 }
@@ -46,7 +47,7 @@ namespace nifty
 namespace marray
 {
 
-    template <typename Type, int DIM = 0> 
+    template <typename Type, size_t DIM = 0> 
     class PyView : public View<Type, false>
     {
         friend struct pybind11::detail::pymarray_caster<Type,DIM>;
@@ -155,7 +156,25 @@ namespace marray
         }
 
     };
+
+
+
+
+
 }
+
+namespace tools{
+
+    template<class ARRAY>
+    struct BlockStorageSelector;
+
+    template<class T, size_t DIM>
+    struct BlockStorageSelector<marray::PyView<T, DIM> >
+    {
+       typedef BlockView<T> type;
+    };
+}
+
 }
 
 namespace pybind11
@@ -164,7 +183,7 @@ namespace pybind11
     namespace detail
     {
 
-        template <typename Type, int DIM> 
+        template <typename Type, size_t DIM> 
         struct pymarray_caster {
             typedef typename nifty::marray::PyView<Type, DIM> ViewType;
             typedef type_caster<typename intrinsic_type<Type>::type> value_conv;
@@ -203,12 +222,12 @@ namespace pybind11
             PYBIND11_TYPE_CASTER(ViewType, _("array<") + value_conv::name() + _(">"));
         };
 
-        template <typename Type, int DIM> 
+        template <typename Type, size_t DIM> 
         struct type_caster<nifty::marray::PyView<Type, DIM> > 
             : pymarray_caster<Type,DIM> {
         };
 
-        //template <typename Type, int DIM> 
+        //template <typename Type, size_t DIM> 
         //struct marray_caster {
         //    static_assert(std::is_same<Type, void>::value,
         //                  "Please use nifty::marray::PyView instead of nifty::marray::View for arguments and return values.");

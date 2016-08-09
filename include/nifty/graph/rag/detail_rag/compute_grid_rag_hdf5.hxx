@@ -14,6 +14,7 @@
 #include "nifty/parallel/threadpool.hxx"
 #include "nifty/tools/timer.hxx"
 #include "nifty/tools/for_each_coordinate.hxx"
+#include "nifty/tools/for_each_block.hxx"
 
 namespace nifty{
 namespace graph{
@@ -50,14 +51,9 @@ struct ComputeRag< GridRag<DIM,  Hdf5Labels<DIM, LABEL_TYPE> > > {
 
         const auto & labelsProxy = rag.labelsProxy();
         const auto & shape = labelsProxy.shape();
-        Coord blockShape,blockShapeWithBorder;
-        for(auto d=0; d<DIM; ++d){
-            blockShape[d] = std::min(settings.blockShape[d], shape[d]);
-            blockShapeWithBorder[d] = std::min(blockShape[d]+1, shape[d]);
-        }
-        const auto numberOfLabels = labelsProxy.numberOfLabels();
-        const auto blocksPerAxis = shape/blockShape;
         
+
+        const auto numberOfLabels = labelsProxy.numberOfLabels();
         rag.assign(numberOfLabels);
 
 
@@ -65,50 +61,39 @@ struct ComputeRag< GridRag<DIM,  Hdf5Labels<DIM, LABEL_TYPE> > > {
         nifty::parallel::ThreadPool threadpool(pOpts);
         const auto nThreads = pOpts.getActualNumThreads();
 
-        //std::cout<<"acutal n threads "<<nThreads<<"\n";
-        
-        auto getBlockRange = [&](const Coord & blockCoord,Coord & blockBegin,
-                                Coord & blockEnd, Coord & actualBlockShape){
-            for(auto d=0; d<DIM; ++d){
-                blockBegin[d] = blockCoord[d] * blockShape[d];
-                blockEnd[d] =   std::min(shape[d], ((blockCoord[d] + 1) * blockShape[d]) +1 );
-                actualBlockShape[d] = blockEnd[d] - blockBegin[d];
-            }
-        };
-
-
 
         // allocate / create data for each thread
+        Coord blockShapeWithBorder;
+        for(auto d=0; d<DIM; ++d){
+            blockShapeWithBorder[d] = std::min(settings.blockShape[d]+1, shape[d]);
+        }
         struct PerThreadData{
             marray::Marray<LABEL_TYPE> blockLabels;
             std::vector< container::BoostFlatSet<uint64_t> > adjacency;
         };
         std::vector<PerThreadData> perThreadDataVec(nThreads);
-
         parallel::parallel_foreach(threadpool, nThreads, [&](const int tid, const int i){
             perThreadDataVec[i].blockLabels.resize(blockShapeWithBorder.begin(), blockShapeWithBorder.end());
             perThreadDataVec[i].adjacency.resize(numberOfLabels);
         });
         
-        Coord zeroCoord(0);
+        
         auto makeCoord2 = [](const Coord & coord,const size_t axis){
             Coord coord2 = coord;
             coord2[axis] += 1;
             return coord2;
         };
 
-        //std::cout<<"settings.blockShape  "<<settings.blockShape<<"\n";
-        //std::cout<<"blockShapeWithBorder "<<blockShapeWithBorder<<"\n";
-        //std::cout<<"blocks per axis      "<<blocksPerAxis<<"\n";
 
-        nifty::tools::parallelForEachCoordinate(threadpool, blocksPerAxis,
-        [&](const int tid, const Coord & blockCoord){
-
-            //std::cout<<"TID "<<tid<<"\n";
-            // get begin end end of the block with an overlap of 1 
-            Coord blockBegin, blockEnd, actualBlockShape;
-            getBlockRange(blockCoord, blockBegin, blockEnd, actualBlockShape);
-
+        const Coord overlapBegin(0), overlapEnd(1);
+        const Coord zeroCoord(0);
+        tools::parallelForEachBlockWithOverlap(threadpool,shape, settings.blockShape, overlapBegin, overlapEnd,
+        [&](
+            const int tid,
+            const Coord & blockCoreBegin, const Coord & blockCoreEnd,
+            const Coord & blockBegin, const Coord & blockEnd
+        ){
+            const Coord actualBlockShape = blockEnd - blockBegin;
             auto blockLabels = perThreadDataVec[tid].blockLabels.view(zeroCoord.begin(), actualBlockShape.begin());
 
             Coord marrayShape;
@@ -119,23 +104,9 @@ struct ComputeRag< GridRag<DIM,  Hdf5Labels<DIM, LABEL_TYPE> > > {
                 viewShape[d] = blockLabels.shape(d);
             }
 
-            //std::cout<<"marrayShape      "<<marrayShape<<"\n";
-            //std::cout<<"viewShape        "<<viewShape<<"\n";
 
-            //std::cout<<"blockBegin       "<<blockBegin<<"\n";
-            //std::cout<<"blockEnd         "<<blockEnd<<"\n";
-            //std::cout<<"actualBlockShape "<<actualBlockShape<<"\n";
-
-            //marray::Marray<LABEL_TYPE> buffer(actualBlockShape.begin(), actualBlockShape.end());
-
-            // get the labels block from hdf5 
-            // 
-            ////std::cout<<"code readSubarray\n";
             labelsProxy.readSubarray(blockBegin, blockEnd, blockLabels);
-            ////std::cout<<"done code readSubarray\n";
-            ////std::cout<<"buffer "<<buffer.asString()<<"\n";
 
-            // get the adjacency for each thread on its own
             auto & adjacency = perThreadDataVec[tid].adjacency;
 
             nifty::tools::forEachCoordinate(actualBlockShape,[&](const Coord & coord){
@@ -154,12 +125,7 @@ struct ComputeRag< GridRag<DIM,  Hdf5Labels<DIM, LABEL_TYPE> > > {
                 }
             });
         });
-        
-        for(auto perThreadData : perThreadDataVec){
-            for(const auto adjacencySet : perThreadData.adjacency){
-                //std::cout<<"adj size "<<adjacencySet.size()<<"\n";
-            }
-        }
+
         rag.mergeAdjacencies(perThreadDataVec, threadpool);
 
     }

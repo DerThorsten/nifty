@@ -68,3 +68,14 @@ BOOST_AUTO_TEST_CASE(ArrayCoutOperator)
     ss<<aVec;
     std::cout<<ss.str();
 }
+
+
+BOOST_AUTO_TEST_CASE(StaticArrayConstructor)
+{
+    typedef nifty::array::StaticArray<int64_t, 3> Coord;
+    Coord c(-2);
+
+    NIFTY_TEST_OP(c[0],==,-2);
+    NIFTY_TEST_OP(c[1],==,-2);
+    NIFTY_TEST_OP(c[2],==,-2);
+}

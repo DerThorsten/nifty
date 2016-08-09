@@ -7,10 +7,6 @@
 #include "nifty/graph/rag/grid_rag.hxx"
 #include "nifty/graph/rag/grid_rag_stacked_2d.hxx"
 
-#ifdef WITH_HDF52
-#include "nifty/graph/rag/grid_rag_chunked.hxx"
-#endif
-
 #ifdef WITH_HDF5
 #include "nifty/graph/rag/grid_rag_hdf5.hxx"
 #include "nifty/graph/rag/grid_rag_stacked_2d_hdf5.hxx"

@@ -158,7 +158,7 @@ struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
                 auto & sliceData  = perSliceDataVec[sliceIndex];
 
                 // 
-                auto sliceLabelsFlat3DView = sliceLabelsStorage.resizeIfNecessary(sliceShape3, tid);
+                auto sliceLabelsFlat3DView = sliceLabelsStorage.getView(tid);
 
                 // fetch the data for the slice
                 const Coord blockBegin({sliceIndex,int64_t(0),int64_t(0)});
@@ -263,7 +263,7 @@ struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
                         const Coord blockABEnd({sliceAIndex+2, sliceShape2[0], sliceShape2[1]});
                         //auto & sliceAB  = perThreadDataVec[tid].sliceAB;
 
-                        auto sliceAB = sliceABStorage.resizeIfNecessary(sliceABShape, tid);
+                        auto sliceAB = sliceABStorage.getView(tid);
 
                         labelsProxy.readSubarray(blockABBegin, blockABEnd, sliceAB);
                         const Coord coordAOffset{0L,0L,0L};

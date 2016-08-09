@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 
+#include "nifty/tools/block_access.hxx"
 #include "nifty/tools/runtime_check.hxx"
 #include "nifty/marray/marray_hdf5.hxx"
 
@@ -354,7 +355,40 @@ namespace hdf5{
     };
 
 
-} // namespace nifty::graph
+    namespace tools{
+
+}
+
+
+} // namespace nifty::hdf5
+
+
+
+namespace tools{
+
+    template<class T, class COORD>
+    inline void readSubarray(
+        const hdf5::Hdf5Array<T> array,
+        const COORD & beginCoord,
+        const COORD & endCoord,
+        marray::View<T> & subarray
+    ){
+        array.readSubarray(beginCoord.begin(), subarray);
+    }
+
+
+
+    template<class ARRAY>
+    struct BlockStorageSelector;
+
+    template<class T>
+    struct BlockStorageSelector<hdf5::Hdf5Array<T> >
+    {
+       typedef BlockStorage<T> type;
+    };
+} // namespace nifty::tools
+
+
 } // namespace nifty
 
 #endif  // NIFTY_HDF5_HDF5_ARRAY

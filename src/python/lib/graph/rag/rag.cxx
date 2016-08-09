@@ -12,6 +12,7 @@ namespace graph{
     void exportGridRag(py::module &, py::module &);
     void exportGraphAccumulator(py::module &, py::module &);
     void exportProjectToPixels(py::module &);
+    void exportAccumulate(py::module &);
 
     void initSubmoduleRag(py::module &graphModule) {
 
@@ -19,6 +20,7 @@ namespace graph{
         exportGridRag(ragModule, graphModule);
         exportGraphAccumulator(ragModule, graphModule);
         exportProjectToPixels(ragModule);
+        exportAccumulate(ragModule);
     }
 
 }

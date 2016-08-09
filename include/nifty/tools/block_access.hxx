@@ -9,13 +9,11 @@ namespace nifty{
 namespace tools{
 
 
-template<size_t DIM, class T>
+template<class T>
 class BlockStorage{
 public:
     typedef marray::Marray<T> ArrayType;
     typedef marray::View<T> ViewType;
-    typedef array::StaticArray<int64_t, DIM> ShapeType;
-
     template<class SHAPE>
     BlockStorage(
         const SHAPE & maxShape,  
@@ -31,25 +29,29 @@ public:
         const SHAPE & maxShape,  
         const std::size_t numberOfBlocks
     )
-    :   arrayVec_(numberOfBlocks, ArrayType(maxShape.begin(), maxShape.end())){
-        std::fill(zeroCoord_.begin(), zeroCoord_.end(), 0);
+    :   zeroCoord_(maxShape.size(),0),
+        arrayVec_(numberOfBlocks, ArrayType(maxShape.begin(), maxShape.end())){
     }
 
     template<class SHAPE>
-    ViewType resizeIfNecessary(const SHAPE & shape, const std::size_t blockIndex) {
+    ViewType getView(const SHAPE & shape, const std::size_t blockIndex) {
         return arrayVec_[blockIndex].view(zeroCoord_.begin(), shape.begin());
     }
 
+    ViewType getView(const std::size_t blockIndex) {
+        return static_cast<ViewType & >(arrayVec_[blockIndex]);
+    }
+
 private:
-    ShapeType zeroCoord_;
+    std::vector<uint64_t> zeroCoord_;
     std::vector<ArrayType> arrayVec_;
 };
 
-template<size_t DIM, class T>
+template<class T>
 class BlockView{
 public:
     typedef marray::View<T> ViewType;
-    typedef array::StaticArray<int64_t, DIM> ShapeType;
+
 
     template<class SHAPE>
     BlockView(
@@ -69,13 +71,33 @@ public:
     }
 
 
+    ViewType getView(const std::size_t blockIndex) {
+       return ViewType();
+    }
+
     template<class SHAPE>
-    ViewType resizeIfNecessary(const SHAPE & shape, const std::size_t blockIndex) {
+    ViewType getView(const SHAPE & shape, const std::size_t blockIndex) {
         return ViewType();
     }
 
 private:
     //std::vector<ViewType> viewVec_;
+};
+
+template<class ARRAY>
+struct BlockStorageSelector;
+
+
+template<class T, bool C, class A>
+struct BlockStorageSelector<marray::View<T, C, A> >
+{
+   typedef BlockView<T> type;
+};
+
+template<class T, class A>
+struct BlockStorageSelector<marray::Marray<T, A> >
+{
+   typedef BlockView<T> type;
 };
 
 

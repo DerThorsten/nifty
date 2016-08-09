@@ -7,6 +7,7 @@
 
 #include "nifty/marray/marray.hxx"
 #include "nifty/tools/runtime_check.hxx"
+#include "nifty/tools/block_access.hxx"
 #include "nifty/hdf5/hdf5_array.hxx"
 
 namespace nifty{
@@ -15,7 +16,7 @@ namespace graph{
 template<size_t DIM, class LABEL_TYPE>
 class Hdf5Labels{
 public:
-    typedef tools::BlockStorage<DIM, LABEL_TYPE> BlockStorageType;
+    typedef tools::BlockStorage< LABEL_TYPE> BlockStorageType;
     typedef LABEL_TYPE LabelType;
     typedef const hdf5::Hdf5Array<LABEL_TYPE> Hdf5ArrayType;
 
@@ -65,6 +66,24 @@ private:
 
 
 } // namespace graph
+
+
+namespace tools{
+
+    template<class LABEL_TYPE, size_t DIM, class COORD>
+    inline void readSubarray(
+        const graph::Hdf5Labels<DIM, LABEL_TYPE> & labels,
+        const COORD & beginCoord,
+        const COORD & endCoord,
+        marray::View<LABEL_TYPE> & subarray
+    ){
+        labels.readSubarray(beginCoord, endCoord, subarray);
+    }
+
+}
+
+
+
 } // namespace nifty
 
 
