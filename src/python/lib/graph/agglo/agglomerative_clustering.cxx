@@ -105,9 +105,14 @@ namespace agglo{
                     const GraphType & graph,
                     PyViewDoube1 edgeIndicators,
                     PyViewDoube1 edgeSizes,
-                    PyViewDoube1 nodeSizes
+                    PyViewDoube1 nodeSizes,
+                    const uint64_t numberOfNodesStop,
+                    const float sizeRegularizer
                 ){
-                    auto ptr = new ClusterPolicyType(graph, edgeIndicators, edgeSizes, nodeSizes);
+                    EdgeWeightedClusterPolicySettings s;
+                    s.numberOfNodesStop = numberOfNodesStop;
+                    s.sizeRegularizer = sizeRegularizer;
+                    auto ptr = new ClusterPolicyType(graph, edgeIndicators, edgeSizes, nodeSizes, s);
                     return ptr;
                 },
                 py::return_value_policy::take_ownership,
@@ -118,7 +123,9 @@ namespace agglo{
                 py::arg("graph"),
                 py::arg("edgeIndicators"),
                 py::arg("edgeSizes"),
-                py::arg("nodeSizes")
+                py::arg("nodeSizes"),
+                py::arg("numberOfNodesStop") = 1,
+                py::arg("sizeRegularizer") = 0.5f
             );
 
 
