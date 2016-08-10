@@ -42,6 +42,36 @@ namespace graph{
     }
 
 
+    template<size_t DIM, class RAG, class DATA_T>
+    void exportAccumulateMeanAndLength(
+        py::module & ragModule
+    ){
+        ragModule.def("accumulateMeanAndLength",
+        [](
+            const RAG & rag,
+            nifty::marray::PyView<DATA_T, DIM> data,
+            array::StaticArray<int64_t, DIM> blocKShape,
+            const int numberOfThreads
+        ){
+            typedef nifty::marray::PyView<DATA_T> NumpyArrayType;
+            typedef std::pair<NumpyArrayType, NumpyArrayType>  OutType;
+
+            NumpyArrayType edgeOut({uint64_t(rag.edgeIdUpperBound()+1),uint64_t(2)});
+            NumpyArrayType nodeOut({uint64_t(rag.nodeIdUpperBound()+1),uint64_t(2)});
+            array::StaticArray<int64_t, DIM> blocKShape_;
+            accumulateMeanAndLength(rag, data, blocKShape, edgeOut, nodeOut, numberOfThreads);
+
+            return OutType(edgeOut, nodeOut);;
+        },
+        py::arg("rag"),
+        py::arg("data"),
+        py::arg("blockShape") = array::StaticArray<int64_t,DIM>(100),
+        py::arg("numberOfThreads")= -1
+        );
+    }
+
+
+
     void exportAccumulate(py::module & ragModule) {
 
         //explicit
@@ -51,6 +81,8 @@ namespace graph{
 
             exportAccumulateEdgeMeanAndLength<2, Rag2d, float>(ragModule);
             exportAccumulateEdgeMeanAndLength<3, Rag3d, float>(ragModule);
+            exportAccumulateMeanAndLength<2, Rag2d, float>(ragModule);
+            exportAccumulateMeanAndLength<3, Rag3d, float>(ragModule);
         }
     }
 

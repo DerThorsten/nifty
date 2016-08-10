@@ -85,7 +85,7 @@ namespace hdf5{
 
             // select dataspace hyperslab
             datatype_ = H5Dget_type(dataset_);
-            if(!H5Tequal(dataset_, hdf5Type<T>())) {
+            if(!H5Tequal(datatype_, hdf5Type<T>())) {
                 throw std::runtime_error("data type of stored hdf5 dataset and passed array do not match in loadHyperslab");
             }
     
@@ -331,17 +331,30 @@ namespace hdf5{
             const auto d = this->dimension();
             std::vector<hsize_t> chunkShapeTmp(d);
             auto plist = H5Dget_create_plist(dataset_);
-            herr_t status = H5Pget_chunk(plist, int(d), chunkShapeTmp.data()); 
 
-            if(status < 0) {
-                isChunked_ = false;
-                chunkShape_ = shape_;
-                //H5Pclose(plist);
-                //throw std::runtime_error("Nifty cannot get chunkShape of dataset");
+
+            bool couldBeChunked = false;
+            const auto layout =  H5Pget_layout(plist);
+            if(layout == H5D_CHUNKED){
+                couldBeChunked = true;
+            }
+            if(couldBeChunked){
+                herr_t status = H5Pget_chunk(plist, int(d), chunkShapeTmp.data()); 
+                if(status < 0) {
+                    isChunked_ = false;
+                    chunkShape_ = shape_;
+                    //H5Pclose(plist);
+                    //throw std::runtime_error("Nifty cannot get chunkShape of dataset");
+                }
+                else{
+                    isChunked_ = true;
+                    chunkShape_.resize(d);
+                    std::copy(chunkShapeTmp.begin(), chunkShapeTmp.end(), chunkShape_.begin());
+                }
             }
             else{
-                chunkShape_.resize(d);
-                std::copy(chunkShapeTmp.begin(), chunkShapeTmp.end(), chunkShape_.begin());
+                isChunked_ = false;
+                chunkShape_ = shape_;
             }
             H5Pclose(plist);
         }

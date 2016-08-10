@@ -29,10 +29,9 @@ if nifty.Configuration.WITH_HDF5:
         def testHdf5ArrayReadFromExistingH5pyChunked():
             tempFolder = tempfile.mkdtemp()
             ensureDir(tempFolder)
-            fpath = os.path.join(tempFolder,'_nifty_test_array_.h5')
+            fpath = os.path.join(tempFolder,'_nifty_test_array__.h5')
             try:
                 
-
                 # try catch since dataset can only be created once
                 shape = (101, 102, 103)
                 data = numpy.ones(shape=shape, dtype='uint64')
@@ -41,9 +40,12 @@ if nifty.Configuration.WITH_HDF5:
                 f.close()
 
 
-
+                print("OPEN FILE")
                 hidT = nhdf5.openFile(fpath)
+                print("CREATE FROM EXISTING")
                 array = nhdf5.Hdf5ArrayUInt64(hidT, "data")
+                print("CREATE FROM EXISTING DONE")
+
 
                 assert array.ndim == 3
                 shape = array.shape
