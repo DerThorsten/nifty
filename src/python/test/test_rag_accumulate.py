@@ -78,7 +78,7 @@ def testAccumulateMeanAndLengthRag2d():
 
     rag = nrag.gridRag(labels)
 
-    eFeatures, nFeatures = nrag.accumulateMeanAndLength(rag, data, [2,2], 1)
+    eFeatures, nFeatures = nrag.accumulateMeanAndLength(rag, data, [2,2], -1)
 
 
     edgesAndCountsAndMeans = [

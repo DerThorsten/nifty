@@ -149,16 +149,26 @@ namespace graph{
 
         const auto & shape = rag.shape();
 
-        // acc chain vector for each thread
-        std::vector< EdgeAccChainVectorType > perThreadEdgeAccChainVector(actualNumberOfThreads, 
-            EdgeAccChainVectorType(rag.edgeIdUpperBound()+1));
-        std::vector< NodeAccChainVectorType > perThreadNodeAccChainVector(actualNumberOfThreads, 
-            NodeAccChainVectorType(rag.nodeIdUpperBound()+1));
+
+        std::vector< EdgeAccChainVectorType * > perThreadEdgeAccChainVector(actualNumberOfThreads);
+        std::vector< NodeAccChainVectorType * > perThreadNodeAccChainVector(actualNumberOfThreads);
+
+        parallel::parallel_foreach(threadpool, actualNumberOfThreads, 
+        [&](const int tid, const int64_t i){
+            perThreadEdgeAccChainVector[i] = new EdgeAccChainVectorType(rag.edgeIdUpperBound()+1);
+            perThreadNodeAccChainVector[i] = new NodeAccChainVectorType(rag.nodeIdUpperBound()+1);
+        });
 
 
-        const auto numberOfEdgePasses = perThreadEdgeAccChainVector.front().front().passesRequired();
-        const auto numberOfNodePasses = perThreadNodeAccChainVector.front().front().passesRequired();
+
+
+
+
+        const auto numberOfEdgePasses = (*perThreadEdgeAccChainVector.front()).front().passesRequired();
+        const auto numberOfNodePasses = (*perThreadNodeAccChainVector.front()).front().passesRequired();
         const auto numberOfPasses = std::max(numberOfEdgePasses, numberOfNodePasses);
+
+
 
         // do N passes of accumulator
         for(auto pass=1; pass <= numberOfPasses; ++pass){
@@ -173,10 +183,9 @@ namespace graph{
                 const Coord & blockCoreBegin, const Coord & blockCoreEnd,
                 const Coord & blockBegin, const Coord & blockEnd
             ){
-
                 // get the accumulator vector for this thread
-                auto & edgeAccVec = perThreadEdgeAccChainVector[tid];
-                auto & nodeAccVec = perThreadNodeAccChainVector[tid];
+                auto & edgeAccVec = *(perThreadEdgeAccChainVector[tid]);
+                auto & nodeAccVec = *(perThreadNodeAccChainVector[tid]);
                 // actual shape of the block: might be smaller at the border as blockShape
 
                 const auto nonOlBlockShape  = blockCoreEnd - blockCoreBegin;
@@ -227,23 +236,35 @@ namespace graph{
             });
         }
 
-        auto & edgeResultAccVec = perThreadEdgeAccChainVector.front();
-        auto & nodeResultAccVec = perThreadNodeAccChainVector.front();
+        auto & edgeResultAccVec = *perThreadEdgeAccChainVector.front();
+        auto & nodeResultAccVec = *perThreadNodeAccChainVector.front();
 
         // merge the accumulators parallel
         parallel::parallel_foreach(threadpool, edgeResultAccVec.size(), 
         [&](const int tid, const int64_t edge){
-            for(auto t=1; t<actualNumberOfThreads; ++t)
-                edgeResultAccVec[edge].merge(perThreadEdgeAccChainVector[t][edge]);           
+            for(auto t=1; t<actualNumberOfThreads; ++t){
+                auto & accChainVec = *(perThreadEdgeAccChainVector[t]);
+                edgeResultAccVec[edge].merge(accChainVec[edge]);           
+            }
         });
         parallel::parallel_foreach(threadpool, nodeResultAccVec.size(), 
         [&](const int tid, const int64_t node){
-            for(auto t=1; t<actualNumberOfThreads; ++t)
-                nodeResultAccVec[node].merge(perThreadNodeAccChainVector[t][node]);           
+            for(auto t=1; t<actualNumberOfThreads; ++t){
+                auto & accChainVec = *(perThreadNodeAccChainVector[t]);
+                nodeResultAccVec[node].merge(accChainVec[node]);           
+            }
         });
         
         // call functor with finished acc chain
         f(edgeResultAccVec, nodeResultAccVec);
+
+
+        parallel::parallel_foreach(threadpool, actualNumberOfThreads, 
+        [&](const int tid, const int64_t i){
+            delete perThreadEdgeAccChainVector[i];
+            delete perThreadNodeAccChainVector[i];
+        });
+
     }
 
 
@@ -274,7 +295,7 @@ namespace graph{
         nifty::parallel::ThreadPool threadpool(pOpts);
         const size_t actualNumberOfThreads = pOpts.getActualNumThreads();
 
-
+        //std::cout<<"Using "<<actualNumberOfThreads<<"\n";
 
         accumulateEdgeAndNodeFeaturesWithAccChain<AccChainType,AccChainType>(rag, data, blockShape, pOpts, threadpool,
         [&](

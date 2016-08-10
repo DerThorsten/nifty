@@ -70,6 +70,11 @@ add_library(_nifty SHARED
     #############################
     # hdf5
     #############################
+    tools/tools.cxx
+    tools/make_dense.cxx
+    #############################
+    # hdf5
+    #############################
     hdf5/hdf5.cxx
     hdf5/hdf5_common.cxx
     hdf5/hdf5_array.cxx
