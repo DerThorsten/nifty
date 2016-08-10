@@ -254,7 +254,7 @@ struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
                     // there must be a better way to loop in parallel 
                     // over first the odd then the even coordinates
                     const auto oddIndex = bool(sliceAIndex%2);
-                    if(startIndex==0 && !oddIndex || startIndex==1 && oddIndex ){
+                    if((startIndex==0 && !oddIndex) || (startIndex==1 && oddIndex )){
 
                         const auto sliceBIndex = sliceAIndex + 1;
 

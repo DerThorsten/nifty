@@ -13,7 +13,8 @@ if(NOSETESTS_PATH)
         test/test_undirected_list_graph.py
         test/test_multicut_inference.py
         test/test_rag.py
-        test/test_rag_sliced.py
+        test/rag_accumulate.py
+        #test/test_rag_sliced.py
         test/test_agglo.py
         test/test_hdf5.py
     )

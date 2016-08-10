@@ -62,51 +62,6 @@ namespace graph{
         );
     }
 
-    // export only if we have HDF5 support
-    #ifdef WITH_HDF52
-    template<class RAG,class T, class EDGE_MAP, class NODE_MAP>
-    void exportGridRagSlicedAccumulateFeaturesT(py::module & ragModule){
-
-        ragModule.def("gridRagSlicedAccumulateFeatures",
-            [](
-                const RAG & rag,
-                nifty::marray::PyView<T, 3> data,
-                EDGE_MAP & edgeMap,
-                NODE_MAP & nodeMap,
-                size_t z0
-            ){  
-                {
-                    py::gil_scoped_release allowThreads;
-                    gridRagAccumulateFeatures(rag, data, edgeMap, nodeMap, z0);
-                }
-            },
-            py::arg("graph"),py::arg("data"),py::arg("edgeMap"),py::arg("nodeMap"),py::arg("z0")
-        );
-    }
-
-    template<class RAG,class T>
-    void exportGridRagSlicedAccumulateLabelsT(py::module & ragModule){
-
-        ragModule.def("gridRagSlicedAccumulateLabels",
-            [](
-                const RAG & rag,
-                const std::string & labels_file,
-                const std::string & labels_key
-            ){  
-                nifty::marray::PyView<T> nodeLabels({rag.numberOfNodes()});
-                {
-                    vigra::HDF5File h5_file(labels_file, vigra::HDF5File::ReadOnly);
-                    vigra::ChunkedArrayHDF5<3,T> labels(h5_file, labels_key);
-                    py::gil_scoped_release allowThreads;
-                    gridRagAccumulateLabels(rag, labels, nodeLabels);
-                }
-                return nodeLabels;
-
-            },
-            py::arg("graph"),py::arg("labels_file"),py::arg("labels_key")
-        );
-    }
-    #endif
 
 
 

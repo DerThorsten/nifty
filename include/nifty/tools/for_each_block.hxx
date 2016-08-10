@@ -74,7 +74,7 @@ namespace tools{
                 const int64_t bBegin = blockBegin[d]  - int64_t(overlapBegin[d]);
                 const int64_t bEnd =   blockEnd[d] + int64_t(overlapEnd[d]);
 
-                blockWithOlBegin[d] =  std::max(0L, bBegin);
+                blockWithOlBegin[d] =  std::max(int64_t(0), bBegin);
                 blockWithOlEnd[d] =  std::min(shape[d], bEnd);
             }
             f(tid, blockBegin, blockEnd, blockWithOlBegin, blockWithOlEnd);
