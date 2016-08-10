@@ -242,7 +242,7 @@ namespace pybind11
                 // convert py::array_t to nifty::marray::PyView
                 auto info = pyarray.request();
                 if(DIM != 0 && DIM != info.shape.size()){
-                    std::cout<<"not matching\n";
+                    //std::cout<<"not matching\n";
                     return false;
                 }
                 Type *ptr = (Type *)info.ptr;
