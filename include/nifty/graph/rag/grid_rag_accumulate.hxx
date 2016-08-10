@@ -192,7 +192,7 @@ namespace graph{
                 nifty::tools::forEachCoordinate(nonOlBlockShape,[&](const Coord & coordU){
 
                     const auto lU = labelsBlockView(coordU.asStdArray());
-                    const auto dataU = labelsBlockView(coordU.asStdArray());
+                    const auto dataU = dataBlockView(coordU.asStdArray());
                     
                     VigraCoord vigraCoordU;
                     for(size_t d=0; d<DIM; ++d)
@@ -210,7 +210,7 @@ namespace graph{
                                 if(lU != lV){
 
                                     const auto edge = rag.findEdge(lU,lV);
-                                    const auto dataV = labelsBlockView(coordV.asStdArray());
+                                    const auto dataV = dataBlockView(coordV.asStdArray());
 
                                     VigraCoord vigraCoordV;
                                     for(size_t d=0; d<DIM; ++d)
