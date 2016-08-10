@@ -12,8 +12,9 @@
 #include <pybind11/cast.h>
 #include <pybind11/numpy.h>
 
-#include <nifty/marray/marray.hxx>
-#include <nifty/tools/block_access.hxx>
+#include "nifty/array/arithmetic_array.hxx"
+#include "nifty/marray/marray.hxx"
+#include "nifty/tools/block_access.hxx"
 
 namespace py = pybind11;
 
@@ -37,6 +38,44 @@ namespace pybind11
 {
     namespace detail
     {
+
+        template <typename Type, size_t Size> struct type_caster<nifty::array::StaticArray<Type, Size>> {
+        typedef nifty::array::StaticArray<Type, Size> array_type;
+        typedef type_caster<typename intrinsic_type<Type>::type> value_conv;
+
+        bool load(handle src, bool convert) {
+            list l(src, true);
+            if (!l.check())
+                return false;
+            if (l.size() != Size)
+                return false;
+            value_conv conv;
+            size_t ctr = 0;
+            for (auto it : l) {
+                if (!conv.load(it, convert))
+                    return false;
+                value[ctr++] = (Type) conv;
+            }
+            return true;
+        }
+
+        static handle cast(const array_type &src, return_value_policy policy, handle parent) {
+            list l(Size);
+            size_t index = 0;
+            for (auto const &value: src) {
+                object value_ = object(value_conv::cast(value, policy, parent), false);
+                if (!value_)
+                    return handle();
+                PyList_SET_ITEM(l.ptr(), index++, value_.release().ptr()); // steals a reference
+            }
+            return l.release();
+        }
+        PYBIND11_TYPE_CASTER(array_type, _("list<") + value_conv::name() + _(">") + _("[") + _<Size>() + _("]"));
+    };
+
+
+
+
         template <typename Type, size_t DIM> 
         struct pymarray_caster;
     }

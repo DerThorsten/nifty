@@ -57,6 +57,9 @@ namespace tools{
         for(auto d=0; d<DIM; ++d){
             actualblocksShape[d] = std::min(int64_t(blockShape[d]), int64_t(shape[d]));
             blocksPerAxis[d] = shape[d] / actualblocksShape[d];
+            if(actualblocksShape[d]*blocksPerAxis[d] < shape[d]){
+                ++blocksPerAxis[d];
+            }
         }
 
         parallelForEachCoordinate(threadpool, blocksPerAxis,

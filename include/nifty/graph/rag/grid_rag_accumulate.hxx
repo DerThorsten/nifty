@@ -15,14 +15,15 @@ namespace graph{
 
 
 
-    template<class ACC_CHAIN, size_t DIM, class LABELS_PROXY, class DATA, class FEATURE_TYPE>
-    std::vector<ACC_CHAIN> accumulateWithAccChain(
+    template<class ACC_CHAIN, size_t DIM, class LABELS_PROXY, class DATA, class F>
+    void accumulateEdgeFeaturesWithAccChain(
 
         const GridRag<DIM, LABELS_PROXY> & rag,
         const DATA & data,
-        marray::View<FEATURE_TYPE> & out,
+        const array::StaticArray<int64_t, DIM> & blockShape,
         const parallel::ParallelOptions & pOpts,
-        parallel::ThreadPool & threadpool
+        parallel::ThreadPool & threadpool,
+        F && f
     ){
 
         typedef LABELS_PROXY LabelsProxyType;
@@ -42,15 +43,15 @@ namespace graph{
 
 
         std::vector< AccChainVectorType > perThreadAccChainVector(actualNumberOfThreads, 
-            AccChainVectorType(rag.edgeIdUpperBound()));
+            AccChainVectorType(rag.edgeIdUpperBound()+1));
+
 
 
         // do N passes of accumulator
-
-        for(auto pass=1; pass<= perThreadAccChainVector.front().front().passesRequired(); ++pass){
+        for(auto pass=1; pass <= perThreadAccChainVector.front().front().passesRequired(); ++pass){
 
             // LOOP IN PARALLEL OVER ALL BLOCKS WITH A CERTAIN OVERLAP
-            const Coord blockShape(100), overlapBegin(0), overlapEnd(1);
+            const Coord overlapBegin(0), overlapEnd(1);
             LabelBlockStorage labelsBlockStorage(threadpool, blockShape, actualNumberOfThreads);
             DataBlocKStorage dataBlocKStorage(threadpool, blockShape, actualNumberOfThreads);
             tools::parallelForEachBlockWithOverlap(threadpool,shape, blockShape, overlapBegin, overlapEnd,
@@ -59,11 +60,18 @@ namespace graph{
                 const Coord & blockCoreBegin, const Coord & blockCoreEnd,
                 const Coord & blockBegin, const Coord & blockEnd
             ){
+
                 // get the accumulator vector for this thread
                 auto & accVec = perThreadAccChainVector[tid];
 
                 // actual shape of the block: might be smaller at the border as blockShape
+
+                const auto nonOlBlockShape  = blockCoreEnd - blockCoreBegin;
                 const auto actualBlockShape = blockEnd - blockBegin;
+
+                std::cout<<"\nblockCore "<<blockCoreBegin<<" "<<blockCoreEnd<<"\n";
+                std::cout<<"blockEnd   "<<blockBegin<<" "<<blockEnd<<"\n";
+
                 // read the labels block and the data block
                 auto labelsBlockView = labelsBlockStorage.getView(actualBlockShape, tid);
                 auto dataBlockView = dataBlocKStorage.getView(actualBlockShape, tid);
@@ -71,7 +79,7 @@ namespace graph{
                 tools::readSubarray(data, blockBegin, blockEnd, dataBlockView);
 
                 // loop over all coordinates in block
-                 nifty::tools::forEachCoordinate(actualBlockShape,[&](const Coord & coordU){
+                nifty::tools::forEachCoordinate(nonOlBlockShape,[&](const Coord & coordU){
                     const auto lU = labelsBlockView(coordU.asStdArray());
                     for(size_t axis=0; axis<DIM; ++axis){
                         auto coordV = makeCoord2(coordU, axis);
@@ -93,7 +101,7 @@ namespace graph{
                                 }
 
                                 accVec[edge].updatePassN(dataU, vigraCoordU, pass);
-                                accVec[edge].updatePassN(dataU, vigraCoordV, pass);
+                                accVec[edge].updatePassN(dataV, vigraCoordV, pass);
                             }
                         }
                     }
@@ -103,6 +111,7 @@ namespace graph{
 
         auto & resultAccVec = perThreadAccChainVector.front();
 
+
         // merge the accumulators parallel
         parallel::parallel_foreach(threadpool, resultAccVec.size(), 
         [&](const int tid, const int64_t edge){
@@ -111,14 +120,33 @@ namespace graph{
                 resultAccVec[edge].merge(perThreadAccChainVector[t][edge]);
             }            
         });
-        return resultAccVec;
+        
+        // call functor with finished acc chain
+        f(resultAccVec);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     template<size_t DIM, class LABELS_PROXY, class DATA, class FEATURE_TYPE>
     void accumulateEdgeMeanAndLength(
         const GridRag<DIM, LABELS_PROXY> & rag,
         const DATA & data,
+        const array::StaticArray<int64_t, DIM> & blockShape,
         marray::View<FEATURE_TYPE> & out,
         const int numberOfThreads = -1
     ){
@@ -126,26 +154,28 @@ namespace graph{
 
         typedef FEATURE_TYPE DataType;
         typedef acc::Select< acc::DataArg<1>, acc::Mean, acc::Count> SelectType;
-        typedef acc::StandAloneAccumulatorChain<DIM, DataType, SelectType> AccChain;
+        typedef acc::StandAloneAccumulatorChain<DIM, DataType, SelectType> AccChainType;
 
 
         // threadpool
-
         nifty::parallel::ParallelOptions pOpts(numberOfThreads);
         nifty::parallel::ThreadPool threadpool(pOpts);
         const size_t actualNumberOfThreads = pOpts.getActualNumThreads();
 
 
         // allocate a ach chain vector for each thread
-        const auto accChainVec = accumulateWithAccChain<AccChain>(rag, data, out, pOpts, threadpool);
-
-
-        parallel::parallel_foreach(threadpool, accChainVec.size(),[&](
-            const int tid, const int64_t edge
+        accumulateEdgeFeaturesWithAccChain<AccChainType>(rag, data, blockShape, pOpts, threadpool,
+        [&](
+            const std::vector<AccChainType> & accChainVec
         ){
-            out(edge, 0) = acc::get<acc::Mean>(accChainVec[edge]);
-            out(edge, 1) = acc::get<acc::Mean>(accChainVec[edge]);
+            parallel::parallel_foreach(threadpool, accChainVec.size(),[&](
+                const int tid, const int64_t edge
+            ){
+                out(edge, 0) = acc::get<acc::Mean>(accChainVec[edge]);
+                out(edge, 1) = acc::get<acc::Count>(accChainVec[edge]);
+            });
         });
+
 
     }
 

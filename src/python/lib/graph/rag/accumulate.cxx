@@ -25,13 +25,20 @@ namespace graph{
         [](
             const RAG & rag,
             nifty::marray::PyView<DATA_T, DIM> data,
+            array::StaticArray<int64_t, DIM> blocKShape,
             const int numberOfThreads
         ){
 
-            nifty::marray::PyView<DATA_T> out({rag.edgeIdUpperBound()});
-            accumulateEdgeMeanAndLength(rag, data, out, numberOfThreads);
-
-        });
+            nifty::marray::PyView<DATA_T> out({uint64_t(rag.edgeIdUpperBound()+1),uint64_t(2)});
+            array::StaticArray<int64_t, DIM> blocKShape_;
+            accumulateEdgeMeanAndLength(rag, data, blocKShape, out, numberOfThreads);
+            return out;
+        },
+        py::arg("rag"),
+        py::arg("data"),
+        py::arg("blockShape") = array::StaticArray<int64_t,DIM>(100),
+        py::arg("numberOfThreads")= -1
+        );
     }
 
 
