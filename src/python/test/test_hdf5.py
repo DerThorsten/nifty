@@ -40,11 +40,9 @@ if nifty.Configuration.WITH_HDF5:
                 f.close()
 
 
-                print("OPEN FILE")
                 hidT = nhdf5.openFile(fpath)
-                print("CREATE FROM EXISTING")
                 array = nhdf5.Hdf5ArrayUInt64(hidT, "data")
-                print("CREATE FROM EXISTING DONE")
+
 
 
                 assert array.ndim == 3
