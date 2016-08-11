@@ -88,10 +88,10 @@ namespace detail_fastfilters {
             opt_.window_ratio = 0.;
         }
 
-        virtual void operator()(const fastfilters_array2d_t & ff, marray::View<float> & out, const  double sigma) const
+        virtual void operator()(const fastfilters_array2d_t &, marray::View<float> &, const double) const
         {}
 
-        virtual void operator()(const fastfilters_array3d_t & ff, marray::View<float> & out, const  double sigma) const 
+        virtual void operator()(const fastfilters_array3d_t &, marray::View<float> &, const  double) const 
         {}
 
         virtual bool isMultiChannel() const
@@ -235,16 +235,21 @@ namespace detail_fastfilters {
     };
     
 
-    // for now, we use inner scale = sigma, outer scale = 2 * sigma
+    // outer scale has to be set as member variable to keep consistency w/ the operator()
     struct StructureTensorEigenvalues : FilterBase {
+
+        StructureTensorEigenvalues() : FilterBase(), sigmaOuter_(0.) {
+        }
         
         void operator()(const fastfilters_array2d_t & ff, marray::View<float> & out, const  double sigma)  const {
+
+            NIFTY_CHECK_OP(sigma,<,sigmaOuter_,"inner scale has to be smaller than outer scale, set via setOuterScale")
             
             fastfilters_array2d_t * xx = fastfilters_array2d_alloc(ff.n_x, ff.n_y, 1);
             fastfilters_array2d_t * yy = fastfilters_array2d_alloc(ff.n_x, ff.n_y, 1);
             fastfilters_array2d_t * xy = fastfilters_array2d_alloc(ff.n_x, ff.n_y, 1);
 
-            if( !fastfilters_fir_structure_tensor2d(&ff, sigma, 2*sigma, xx, xy, yy, &opt_) ) 
+            if( !fastfilters_fir_structure_tensor2d(&ff, sigma, sigmaOuter_, xx, xy, yy, &opt_) ) 
                 throw std::logic_error("StructurTensor 2d failed.");
 
             const size_t numberOfPixels = ff.n_x * ff.n_y;
@@ -261,6 +266,9 @@ namespace detail_fastfilters {
         }
 
         void operator()(const fastfilters_array3d_t & ff, marray::View<float> & out, const  double sigma) const {
+            
+            NIFTY_CHECK_OP(sigma,<,sigmaOuter_,"inner scale has to be smaller than outer scale, set via setOuterScale")
+            
             fastfilters_array3d_t * xx = fastfilters_array3d_alloc(ff.n_x, ff.n_y, ff.n_z, 1);
             fastfilters_array3d_t * yy = fastfilters_array3d_alloc(ff.n_x, ff.n_y, ff.n_z, 1);
             fastfilters_array3d_t * zz = fastfilters_array3d_alloc(ff.n_x, ff.n_y, ff.n_z, 1);
@@ -291,6 +299,13 @@ namespace detail_fastfilters {
         bool isMultiChannel() const {
             return true;
         }
+
+        void setOuterScale(const double sigmaOuter) {
+            sigmaOuter_ = sigmaOuter;
+        }
+
+    private:
+        double sigmaOuter_;
 
     };
 
