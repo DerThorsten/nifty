@@ -13,6 +13,7 @@ SET(TEST_LIBS
 
 add_subdirectory(test_graph)
 add_subdirectory(test_array)
+add_subdirectory(test_features)
 
 
 

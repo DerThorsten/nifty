@@ -1,0 +1,6 @@
+if(WITH_FASTFILTERS)
+    add_executable(test_fastfilters_wrapper test_fastfilters_wrapper.cxx )
+    target_link_libraries(test_fastfilters_wrapper ${TEST_LIBS})
+    target_link_libraries(test_fastfilters_wrapper ${FASTFILTERS_LIBRARY})
+    add_test(test_fastfilters_wrapper test_fastfilters_wrapper)
+endif()
