@@ -72,7 +72,6 @@ namespace detail_fastfilters {
             throw std::logic_error("Invalid number of dimensions or too many channels or stride between channels.");
         }
     }
-
 } //namespace detail_fastfilters
 
     //
@@ -82,6 +81,10 @@ namespace detail_fastfilters {
     struct FilterBase {
         
         FilterBase() {
+            if(!initCalled_) {
+                fastfilters_init();
+                initCalled_ = true;
+            }
             opt_.window_ratio = 0.;
         }
 
@@ -98,10 +101,12 @@ namespace detail_fastfilters {
             opt_.window_ratio = ratio;
         }
 
+        static bool initCalled_;
     protected:
         fastfilters_options_t opt_;
     };
 
+    bool FilterBase::initCalled_ = false;
 
     struct GaussianSmoothing : FilterBase {
         
@@ -228,6 +233,66 @@ namespace detail_fastfilters {
         }
 
     };
+    
+
+    // for now, we use inner scale = sigma, outer scale = 2 * sigma
+    struct StructureTensorEigenvalues : FilterBase {
+        
+        void operator()(const fastfilters_array2d_t & ff, marray::View<float> & out, const  double sigma)  const {
+            
+            fastfilters_array2d_t * xx = fastfilters_array2d_alloc(ff.n_x, ff.n_y, 1);
+            fastfilters_array2d_t * yy = fastfilters_array2d_alloc(ff.n_x, ff.n_y, 1);
+            fastfilters_array2d_t * xy = fastfilters_array2d_alloc(ff.n_x, ff.n_y, 1);
+
+            if( !fastfilters_fir_structure_tensor2d(&ff, sigma, 2*sigma, xx, xy, yy, &opt_) ) 
+                throw std::logic_error("StructurTensor 2d failed.");
+
+            const size_t numberOfPixels = ff.n_x * ff.n_y;
+
+            float* ev0 = &out(0);
+            float* ev1 = &out(0) + numberOfPixels;
+
+            fastfilters_linalg_ev2d(xx->ptr, xy->ptr, yy->ptr, ev0, ev1, numberOfPixels);
+
+            fastfilters_array2d_free(xx);
+            fastfilters_array2d_free(yy);
+            fastfilters_array2d_free(xy);
+
+        }
+
+        void operator()(const fastfilters_array3d_t & ff, marray::View<float> & out, const  double sigma) const {
+            fastfilters_array3d_t * xx = fastfilters_array3d_alloc(ff.n_x, ff.n_y, ff.n_z, 1);
+            fastfilters_array3d_t * yy = fastfilters_array3d_alloc(ff.n_x, ff.n_y, ff.n_z, 1);
+            fastfilters_array3d_t * zz = fastfilters_array3d_alloc(ff.n_x, ff.n_y, ff.n_z, 1);
+            fastfilters_array3d_t * xy = fastfilters_array3d_alloc(ff.n_x, ff.n_y, ff.n_z, 1);
+            fastfilters_array3d_t * xz = fastfilters_array3d_alloc(ff.n_x, ff.n_y, ff.n_z, 1);
+            fastfilters_array3d_t * yz = fastfilters_array3d_alloc(ff.n_x, ff.n_y, ff.n_z, 1);
+
+            if( !fastfilters_fir_structure_tensor3d(&ff, sigma, 2*sigma, xx, yy, zz, xy, xz, yz, &opt_) ) 
+                throw std::logic_error("HessianOfGaussian 3d failed.");
+
+            const size_t numberOfPixels = ff.n_x * ff.n_y * ff.n_z;
+
+            float* ev0 = &out(0);
+            float* ev1 = &out(0) + numberOfPixels;
+            float* ev2 = &out(0) + 2*numberOfPixels;
+
+            fastfilters_linalg_ev3d(zz->ptr, yz->ptr, xz->ptr, yy->ptr, xy->ptr, xx->ptr, ev0, ev1, ev2, numberOfPixels);
+            
+            fastfilters_array3d_free(xx);
+            fastfilters_array3d_free(yy);
+            fastfilters_array3d_free(zz);
+            fastfilters_array3d_free(xy);
+            fastfilters_array3d_free(xz);
+            fastfilters_array3d_free(yz);
+
+        }
+        
+        bool isMultiChannel() const {
+            return true;
+        }
+
+    };
 
 
     // wrap fastfilters in a functor
@@ -238,7 +303,6 @@ namespace detail_fastfilters {
         typedef fastfilters_array2d_t FastfiltersArrayType;
         
         ApplyFilters(const std::vector<double> & sigmas, const std::vector<FilterBase*> & filters) : sigmas_(sigmas), filters_(filters) {
-            fastfilters_init(); // FIXME this might cause problems if we init more than one ApplyFilter Functor
         }
         
         void operator()(const marray::View<float> & in, marray::View<float> & out) const{
