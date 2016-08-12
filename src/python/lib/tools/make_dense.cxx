@@ -1,4 +1,3 @@
-#ifdef WITH_HDF5
 #include <pybind11/pybind11.h>
 #include <iostream>
 #include <sstream>
@@ -46,5 +45,3 @@ namespace tools{
 
 }
 }
-
-#endif
