@@ -1,0 +1,5 @@
+find_path(FASTFILTERS_INCLUDE_DIR fastfilters.h)
+find_library(FASTFILTERS_LIBRARY NAMES fastfilters)
+
+include(FindPackageHandleStandardArgs)
+find_package_handle_standard_args(FASTFILTERS DEFAULT_MSG FASTFILTERS_LIBRARY FASTFILTERS_INCLUDE_DIR)
