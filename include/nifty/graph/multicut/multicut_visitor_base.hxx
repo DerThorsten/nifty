@@ -46,8 +46,7 @@ namespace graph {
             iter_(1){
         }
 
-        virtual void begin(McBase * solver) {
-
+        virtual void begin(McBase * ) {
             std::cout<<"begin inference\n";
         }
         virtual bool visit(McBase * solver) {
@@ -63,7 +62,7 @@ namespace graph {
             ++iter_;
             return runOpt_;
         }
-        virtual void end(McBase * solver)   {
+        virtual void end(McBase * )   {
             std::cout<<"end inference\n";
         }
         virtual void addLogNames(std::initializer_list<std::string> logNames){

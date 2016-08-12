@@ -17,13 +17,13 @@ namespace graph{
 
     using namespace py;
 
-    template<class RAG,class T,size_t DATA_DIM>
+    template<class RAG,class T,size_t DATA_DIM, bool AUTO_CONVERT>
     void exportProjectScalarNodeDataToPixelsT(py::module & ragModule){
 
         ragModule.def("projectScalarNodeDataToPixels",
            [](
                const RAG & rag,
-                nifty::marray::PyView<T, 1> nodeData,
+                nifty::marray::PyView<T, 1, AUTO_CONVERT> nodeData,
                const int numberOfThreads
            ){  
                 const auto labelsProxy = rag.labelsProxy();
@@ -54,16 +54,17 @@ namespace graph{
 
 
 
-        exportProjectScalarNodeDataToPixelsT<ExplicitLabelsGridRag2D, uint32_t, 2>(ragModule);
-        exportProjectScalarNodeDataToPixelsT<ExplicitLabelsGridRag3D, uint32_t, 3>(ragModule);
+        exportProjectScalarNodeDataToPixelsT<ExplicitLabelsGridRag2D, uint32_t, 2, false>(ragModule);
+        exportProjectScalarNodeDataToPixelsT<ExplicitLabelsGridRag3D, uint32_t, 3, false>(ragModule);
 
-        //exportProjectScalarNodeDataToPixelsT<ExplicitLabelsGridRag2D, uint64_t, 2>(ragModule);
-        //exportProjectScalarNodeDataToPixelsT<ExplicitLabelsGridRag3D, uint64_t, 3>(ragModule);
+        exportProjectScalarNodeDataToPixelsT<ExplicitLabelsGridRag2D, uint64_t, 2, false>(ragModule);
+        exportProjectScalarNodeDataToPixelsT<ExplicitLabelsGridRag3D, uint64_t, 3, false>(ragModule);
 
-        //exportProjectScalarNodeDataToPixelsT<ExplicitLabelsGridRag2D, float, 2>(ragModule);
-        //exportProjectScalarNodeDataToPixelsT<ExplicitLabelsGridRag3D, float, 3>(ragModule);
+        exportProjectScalarNodeDataToPixelsT<ExplicitLabelsGridRag2D, float, 2, false>(ragModule);
+        exportProjectScalarNodeDataToPixelsT<ExplicitLabelsGridRag3D, float, 3, false>(ragModule);
 
-
+        exportProjectScalarNodeDataToPixelsT<ExplicitLabelsGridRag2D, double, 2, true>(ragModule);
+        exportProjectScalarNodeDataToPixelsT<ExplicitLabelsGridRag3D, double, 3, true>(ragModule);
 
     }
 

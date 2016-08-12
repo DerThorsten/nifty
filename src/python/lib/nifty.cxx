@@ -35,10 +35,6 @@ PYBIND11_PLUGIN(_nifty) {
 
     using namespace nifty;
 
-    // get ride of this nonsense
-    py::class_<MyNone>(niftyModule, "_MyNone")
-        .def(py::init<>())
-    ;
 
 
     graph::initSubmoduleGraph(niftyModule);
