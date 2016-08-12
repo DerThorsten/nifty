@@ -85,11 +85,11 @@ namespace graph{
             })
         ;
 
-        py::class_<InstanceType>(galaModule,"GalaInstanceUndirectedGraph");
-        
+        auto instanceCls = py::class_<InstanceType>(galaModule,"GalaInstanceUndirectedGraph");
+        instanceCls
+        ;
 
-        auto trainingInstance = py::class_<TrainingInstanceType>(galaModule, "GalaTrainingInstanceUndirectedGraph", instanceCls);
-        trainingInstance
+        py::class_<TrainingInstanceType>(galaModule, "GalaTrainingInstanceUndirectedGraph", instanceCls);
         ;
 
         galaModule.def("galaInstance",

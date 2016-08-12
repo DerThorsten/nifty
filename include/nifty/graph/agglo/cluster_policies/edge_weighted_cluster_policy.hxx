@@ -191,7 +191,7 @@ contractEdgeDone(
     const auto u = edgeContractionGraph_.nodeOfDeadEdge(edgeToContract);
     for(auto adj : edgeContractionGraph_.adjacency(u)){
         const auto edge = adj.edge();
-        //const auto p = this->recomputeFeaturesAndPredictImpl(edge);
+        pq_.push(edge, computeWeight(edge));
     }
 }
 
