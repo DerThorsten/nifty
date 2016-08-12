@@ -11,10 +11,10 @@ namespace features{
 namespace detail_fastfilters {
     
     // copied from fastfilters/python/core.hxx
-    template <typename fastfilters_array_t> struct ff_ndim_t {
+    template <typename fastfilters_array_t> struct FastfiltersDim {
     };
     
-    template <> struct ff_ndim_t<fastfilters_array2d_t> {
+    template <> struct FastfiltersDim<fastfilters_array2d_t> {
         static const unsigned int ndim = 2;
     
         static void set_z(size_t /*n_z*/, fastfilters_array2d_t /*&k*/)
@@ -25,7 +25,7 @@ namespace detail_fastfilters {
         }
     };
     
-    template <> struct ff_ndim_t<fastfilters_array3d_t> {
+    template <> struct FastfiltersDim<fastfilters_array3d_t> {
         static const unsigned int ndim = 3;
     
         static void set_z(size_t n_z, fastfilters_array3d_t &k)
@@ -41,9 +41,9 @@ namespace detail_fastfilters {
     
     // adapted from fastfilters/python/core.hxx, convert_py2ff
     template <typename fastfilters_array_t>
-    void convert_marray2ff(const marray::View<float> & array, fastfilters_array_t & ff) {
+    void convertMarray2ff(const marray::View<float> & array, fastfilters_array_t & ff) {
         
-        const unsigned int dim = ff_ndim_t<fastfilters_array_t>::ndim;
+        const unsigned int dim = FastfiltersDim<fastfilters_array_t>::ndim;
     
         if (array.dimension() >= (int) dim) {
             ff.ptr = (float *) &array(0);
@@ -55,8 +55,8 @@ namespace detail_fastfilters {
             ff.stride_y = array.strides(dim - 2);
     
             if (dim == 3) {
-                ff_ndim_t<fastfilters_array_t>::set_z(array.shape(dim - 3), ff);
-                ff_ndim_t<fastfilters_array_t>::set_stride_z(array.strides(dim - 3), ff);
+                FastfiltersDim<fastfilters_array_t>::set_z(array.shape(dim - 3), ff);
+                FastfiltersDim<fastfilters_array_t>::set_stride_z(array.strides(dim - 3), ff);
             }
         } else {
             throw std::logic_error("Too few dimensions.");
@@ -88,11 +88,11 @@ namespace detail_fastfilters {
             opt_.window_ratio = 0.;
         }
 
-        virtual void operator()(const fastfilters_array2d_t &, marray::View<float> &, const double) const = 0;
+        virtual void inline operator()(const fastfilters_array2d_t &, marray::View<float> &, const double) const = 0;
 
-        virtual void operator()(const fastfilters_array3d_t &, marray::View<float> &, const  double) const = 0; 
+        virtual void inline operator()(const fastfilters_array3d_t &, marray::View<float> &, const  double) const = 0; 
 
-        virtual bool isMultiChannel() const = 0;
+        virtual bool inline isMultiChannel() const = 0;
 
         void set_window_ratio(const double ratio) {
             opt_.window_ratio = ratio;
@@ -107,16 +107,16 @@ namespace detail_fastfilters {
 
     struct GaussianSmoothing : FilterBase {
         
-        void operator()(const fastfilters_array2d_t & ff, marray::View<float> & out, const  double sigma) const {
+        void inline operator()(const fastfilters_array2d_t & ff, marray::View<float> & out, const  double sigma) const {
             fastfilters_array2d_t ff_out;
-            detail_fastfilters::convert_marray2ff(out, ff_out);
+            detail_fastfilters::convertMarray2ff(out, ff_out);
             if( !fastfilters_fir_gaussian2d(&ff, 0, sigma, &ff_out, &opt_) )
                 throw std::logic_error("GaussianSmoothing 2d failed.");
         }
 
-        void operator()(const fastfilters_array3d_t & ff, marray::View<float> & out, const  double sigma) const {
+        void inline operator()(const fastfilters_array3d_t & ff, marray::View<float> & out, const  double sigma) const {
             fastfilters_array3d_t ff_out;
-            detail_fastfilters::convert_marray2ff(out, ff_out);
+            detail_fastfilters::convertMarray2ff(out, ff_out);
             if( !fastfilters_fir_gaussian3d(&ff, 0, sigma, &ff_out, &opt_) )
                 throw std::logic_error("GaussianSmoothing 3d failed.");
         }
@@ -129,21 +129,21 @@ namespace detail_fastfilters {
     
     struct LaplacianOfGaussian : FilterBase {
         
-        void operator()(const fastfilters_array2d_t & ff, marray::View<float> & out, const  double sigma) const {
+        void inline operator()(const fastfilters_array2d_t & ff, marray::View<float> & out, const  double sigma) const {
             fastfilters_array2d_t ff_out;
-            detail_fastfilters::convert_marray2ff(out, ff_out);
+            detail_fastfilters::convertMarray2ff(out, ff_out);
             if( !fastfilters_fir_laplacian2d(&ff, sigma, &ff_out, &opt_) )
                 throw std::logic_error("LaplacianOfGaussian 2d failed!");
         }
 
-        void operator()(const fastfilters_array3d_t & ff, marray::View<float> & out, const  double sigma)  const {
+        void inline operator()(const fastfilters_array3d_t & ff, marray::View<float> & out, const  double sigma)  const {
             fastfilters_array3d_t ff_out;
-            detail_fastfilters::convert_marray2ff(out, ff_out);
+            detail_fastfilters::convertMarray2ff(out, ff_out);
             if( !fastfilters_fir_laplacian3d(&ff, sigma, &ff_out, &opt_) )
                 throw std::logic_error("LaplacianOfGaussian 3d failed!");
         }
         
-        bool isMultiChannel() const {
+        bool inline isMultiChannel() const {
             return false;
         }
 
@@ -152,21 +152,21 @@ namespace detail_fastfilters {
 
     struct GaussianGradientMagnitude : FilterBase {
         
-        void operator()(const fastfilters_array2d_t & ff, marray::View<float> & out, const  double sigma)  const {
+        void inline operator()(const fastfilters_array2d_t & ff, marray::View<float> & out, const  double sigma)  const {
             fastfilters_array2d_t ff_out;
-            detail_fastfilters::convert_marray2ff(out, ff_out);
+            detail_fastfilters::convertMarray2ff(out, ff_out);
             if( !fastfilters_fir_gradmag2d(&ff, sigma, &ff_out, &opt_) )
                 throw std::logic_error("GaussianGradientMagnitude 2d failed!");
         }
 
-        void operator()(const fastfilters_array3d_t & ff, marray::View<float> & out, const  double sigma)  const {
+        void inline operator()(const fastfilters_array3d_t & ff, marray::View<float> & out, const  double sigma)  const {
             fastfilters_array3d_t ff_out;
-            detail_fastfilters::convert_marray2ff(out, ff_out);
+            detail_fastfilters::convertMarray2ff(out, ff_out);
             if( !fastfilters_fir_gradmag3d(&ff, sigma, &ff_out, &opt_) )
                 throw std::logic_error("GaussianGradientMagnitude 3d failed!");
         }
         
-        bool isMultiChannel() const {
+        bool inline isMultiChannel() const {
             return false;
         }
         
@@ -175,7 +175,7 @@ namespace detail_fastfilters {
     
     struct HessianOfGaussianEigenvalues : FilterBase {
         
-        void operator()(const fastfilters_array2d_t & ff, marray::View<float> & out, const  double sigma)  const {
+        void inline operator()(const fastfilters_array2d_t & ff, marray::View<float> & out, const  double sigma)  const {
             
             fastfilters_array2d_t * xx = fastfilters_array2d_alloc(ff.n_x, ff.n_y, 1);
             fastfilters_array2d_t * yy = fastfilters_array2d_alloc(ff.n_x, ff.n_y, 1);
@@ -197,7 +197,7 @@ namespace detail_fastfilters {
 
         }
 
-        void operator()(const fastfilters_array3d_t & ff, marray::View<float> & out, const  double sigma) const {
+        void inline operator()(const fastfilters_array3d_t & ff, marray::View<float> & out, const  double sigma) const {
             fastfilters_array3d_t * xx = fastfilters_array3d_alloc(ff.n_x, ff.n_y, ff.n_z, 1);
             fastfilters_array3d_t * yy = fastfilters_array3d_alloc(ff.n_x, ff.n_y, ff.n_z, 1);
             fastfilters_array3d_t * zz = fastfilters_array3d_alloc(ff.n_x, ff.n_y, ff.n_z, 1);
@@ -225,7 +225,7 @@ namespace detail_fastfilters {
 
         }
         
-        bool isMultiChannel() const {
+        bool inline isMultiChannel() const {
             return true;
         }
 
@@ -238,7 +238,7 @@ namespace detail_fastfilters {
         StructureTensorEigenvalues() : FilterBase(), sigmaOuter_(0.) {
         }
         
-        void operator()(const fastfilters_array2d_t & ff, marray::View<float> & out, const  double sigma)  const {
+        void inline operator()(const fastfilters_array2d_t & ff, marray::View<float> & out, const  double sigma)  const {
 
             NIFTY_CHECK_OP(sigma,<,sigmaOuter_,"inner scale has to be smaller than outer scale, set via setOuterScale")
             
@@ -262,7 +262,7 @@ namespace detail_fastfilters {
 
         }
 
-        void operator()(const fastfilters_array3d_t & ff, marray::View<float> & out, const  double sigma) const {
+        void inline operator()(const fastfilters_array3d_t & ff, marray::View<float> & out, const  double sigma) const {
             
             NIFTY_CHECK_OP(sigma,<,sigmaOuter_,"inner scale has to be smaller than outer scale, set via setOuterScale")
             
@@ -293,11 +293,11 @@ namespace detail_fastfilters {
 
         }
         
-        bool isMultiChannel() const {
+        bool inline isMultiChannel() const {
             return true;
         }
 
-        void setOuterScale(const double sigmaOuter) {
+        void inline setOuterScale(const double sigmaOuter) {
             sigmaOuter_ = sigmaOuter;
         }
 
@@ -328,7 +328,7 @@ namespace detail_fastfilters {
             const size_t shapeMultiChannel[]  = {2, out.shape(0), out.shape(1)};
             
             FastfiltersArrayType ff;
-            detail_fastfilters::convert_marray2ff(in, ff);
+            detail_fastfilters::convertMarray2ff(in, ff);
 
             size_t base[] = {0,0,0};
             
@@ -378,7 +378,7 @@ namespace detail_fastfilters {
             const size_t shapeMultiChannel[]  = {3, out.shape(0), out.shape(1), out.shape(3)};
             
             FastfiltersArrayType ff;
-            detail_fastfilters::convert_marray2ff(in, ff);
+            detail_fastfilters::convertMarray2ff(in, ff);
 
             size_t base[] = {0,0,0,0};
             
