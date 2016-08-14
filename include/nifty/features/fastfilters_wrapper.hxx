@@ -2,6 +2,8 @@
 #ifndef NIFTY_FEATURES_FASTFILTERS_WRAPPER_HXX
 #define NIFTY_FEATURES_FASTFILTERS_WRAPPER_HXX
 
+#include <mutex>
+
 #include "nifty/marray/marray.hxx"
 #include "fastfilters.h"
 
@@ -78,13 +80,16 @@ namespace detail_fastfilters {
     // Functors for the individual filters
     //
 
+    // flag for call_once (don't know if this would be thread safe as (static) member)    
+    std::once_flag onceFlag;
+
     struct FilterBase {
         
         FilterBase() {
-            if(!initCalled_) {
+            std::call_once(onceFlag, []() {
                 fastfilters_init();
-                initCalled_ = true;
-            }
+                std::cout << "Fastfilters initialized" << std::endl;
+            });
             opt_.window_ratio = 0.;
         }
 
@@ -98,12 +103,9 @@ namespace detail_fastfilters {
             opt_.window_ratio = ratio;
         }
 
-        static bool initCalled_;
     protected:
         fastfilters_options_t opt_;
     };
-
-    bool FilterBase::initCalled_ = false;
 
     struct GaussianSmoothing : FilterBase {
         
