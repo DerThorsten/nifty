@@ -83,8 +83,8 @@ namespace graph{
                             if(lU != lV){
                                 const auto edge = rag.findEdge(lU,lV);
 
-                                const auto dataU = labelsBlockView(coordU.asStdArray());
-                                const auto dataV = labelsBlockView(coordV.asStdArray());
+                                const auto dataU = dataBlockView(coordU.asStdArray());
+                                const auto dataV = dataBlockView(coordV.asStdArray());
 
                                 
                                 VigraCoord vigraCoordU;
