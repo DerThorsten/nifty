@@ -3,6 +3,7 @@
 #include <boost/test/unit_test.hpp>
 
 #include <iostream> 
+#include <random>
 
 #include "nifty/tools/runtime_check.hxx"
 #include "nifty/graph/undirected_list_graph.hxx"
