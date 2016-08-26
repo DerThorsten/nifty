@@ -6,19 +6,16 @@ include(PythonLibTest)
 
 if(NOSETESTS_PATH)
 
-    
+   
 
-    add_python_test_target(pythonTest   _nifty 
-        test/test_python.py
-        test/test_undirected_list_graph.py
-        test/test_multicut_inference.py
-        test/test_rag.py
-        test/test_rag_accumulate.py
-        #test/test_rag_sliced.py
-        test/test_agglo.py
-        test/test_hdf5.py
-    )
-
-
-
+   add_python_test_target(pythonTest   _nifty 
+       test/test_python.py
+       test/test_undirected_list_graph.py
+       test/test_multicut_inference.py
+       test/test_rag.py
+       test/test_rag_accumulate.py
+       #test/test_rag_sliced.py
+       test/test_agglo.py
+       test/test_hdf5.py
+   )
 endif()

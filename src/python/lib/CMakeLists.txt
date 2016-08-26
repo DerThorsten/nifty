@@ -50,7 +50,6 @@ pybind11_add_module(_nifty
 )
 
 
-
 if(WITH_HDF5)
     target_link_libraries(_nifty ${HDF5_LIBRARIES})
 endif()
@@ -72,7 +71,7 @@ endif()
 set_target_properties(_nifty PROPERTIES PREFIX "")
 
 # Link against the Python shared library
-target_link_libraries(_nifty ${PYTHON_LIBRARY})
+target_link_libraries(_nifty ${PYTHON_LIBRARIES})
 
 
 

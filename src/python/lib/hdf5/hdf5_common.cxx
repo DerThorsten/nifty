@@ -63,6 +63,20 @@ namespace hdf5{
         hdf5Module.def("closeGroup", &closeGroup,
             py::arg("hidT")
         );
+
+
+        hdf5Module.def("setCacheOnFile", [](const hid_t & fileHandle){
+            auto plist = H5Fget_access_plist(fileHandle);
+            const auto anyVal = 0;
+            const auto somePrime = 977;
+            const auto nBytes = 36000000;
+            const auto rddc = 1.0;
+            auto ret = H5Pset_cache(plist, anyVal, somePrime,  nBytes, rddc);
+            H5Pclose(plist);
+            std::cout<<"set H5Pset_cache groupHandle_ "<<ret<<"\n";
+        });
+
+
     }
 
 }

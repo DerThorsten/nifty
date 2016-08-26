@@ -78,10 +78,32 @@ namespace hdf5{
             datatype_(),
             isChunked_(true)
         {
+
+
+
             dataset_ = H5Dopen(groupHandle_, datasetName.c_str(), H5P_DEFAULT);
             if(dataset_ < 0) {
                 throw std::runtime_error("Marray cannot open dataset.");
             }
+
+
+
+            /*
+            auto plist = H5Dget_access_plist(dataset_);
+
+            //H5Pset_cache(hid_t plist_id, int mdc_nelmts, size_t rdcc_nslots, size_t rdcc_nbytes, double rdcc_w0)
+
+            const auto anyVal = 0;
+            const auto somePrime = 977;
+            const auto nBytes = 36000000;
+            const auto rddc = 1.0;
+            auto ret = H5Pset_cache(plist, anyVal, somePrime,  nBytes, rddc);
+
+            H5Pclose(plist);
+            std::cout<<"set H5Pset_cache groupHandle_ "<<ret<<"\n";
+
+            */
+
 
             // select dataspace hyperslab
             datatype_ = H5Dget_type(dataset_);
@@ -92,6 +114,10 @@ namespace hdf5{
 
             this->loadShape(shape_);
             this->loadChunkShape(chunkShape_);
+        }
+
+        int setCache(){
+            //herr_t H5Pset_cache(hid_t plist_id, int mdc_nelmts, size_t rdcc_nslots, size_t rdcc_nbytes, double rdcc_w0)
         }
 
         ~Hdf5Array(){
