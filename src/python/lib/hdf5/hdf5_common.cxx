@@ -38,7 +38,7 @@ namespace hdf5{
 
 
 
-        
+
         hdf5Module.def("createFile", &createFile2,
             py::arg("filename"),
             py::arg("hdf5version")=LATEST_HDF5_VERSION,
@@ -74,19 +74,6 @@ namespace hdf5{
             py::arg("hidT")
         );
 
-
-
-          hdf5Module.def("getCacheOnFileImpl", [](const hid_t & fileHandle){
-              auto plist = H5Fget_access_plist(fileHandle);
-              int anyVal;
-              size_t somePrime;
-              size_t nBytes;
-              double rdcc;
-              auto ret = H5Pget_cache(plist, &anyVal, &somePrime, &nBytes, &rdcc);
-              H5Pclose(plist);
-              std::cout<<"get H5Pget_cache groupHandle_ "<<ret<<"\n";
-              return std::tuple<int,int,float>(somePrime, nBytes, rdcc); 
-          });
     }
 
 }
