@@ -88,21 +88,13 @@ namespace hdf5{
 
 
 
-            /*
             auto plist = H5Dget_access_plist(dataset_);
-
-            //H5Pset_cache(hid_t plist_id, int mdc_nelmts, size_t rdcc_nslots, size_t rdcc_nbytes, double rdcc_w0)
-
-            const auto anyVal = 0;
             const auto somePrime = 977;
             const auto nBytes = 36000000;
             const auto rddc = 1.0;
-            auto ret = H5Pset_cache(plist, anyVal, somePrime,  nBytes, rddc);
-
+            auto ret = H5Pset_chunk_cache(plist, somePrime,  nBytes, rddc);
             H5Pclose(plist);
-            std::cout<<"set H5Pset_cache groupHandle_ "<<ret<<"\n";
-
-            */
+            std::cout<<"set H5Pset_chunk_cache groupHandle_ "<<ret<<"\n";
 
 
             // select dataspace hyperslab
