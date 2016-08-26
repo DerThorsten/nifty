@@ -5,8 +5,7 @@
 #include <pybind11/numpy.h>
 
 #include "nifty/python/converter.hxx"
-#include "nifty/marray/marray_hdf5.hxx"
-#include "nifty/hdf5/hdf5_array.hxx"
+#include "nifty/hdf5/hdf5.hxx"
 
 
 namespace py = pybind11;
@@ -37,24 +36,68 @@ namespace hdf5{
         ;
 
 
+        py::class_<CacheSettings>(hdf5Module, "CacheSettings")
+            .def(py::init<int,int,float>(),
+                py::arg("hashTabelSize") = 977,
+                py::arg("nBytes") = 36000000,
+                py::arg("rddc") = 1.0
+            )
+            .def_readwrite("hashTabelSize", &CacheSettings::hashTabelSize)
+            .def_readwrite("nBytes", &CacheSettings::nBytes)
+            .def_readwrite("rddc", &CacheSettings::rddc)
+        ;
 
 
-        hdf5Module.def("createFile", &createFile2,
+
+        hdf5Module.def("createFile", [](
+            const std::string & filename,
+            const CacheSettings & cacheSettings,
+            const HDF5Version & hdf5version
+        ){
+            return createFile(filename, cacheSettings, hdf5version);
+        },
             py::arg("filename"),
-            py::arg("hdf5version")=LATEST_HDF5_VERSION,
-            py::arg("hashTableSize") = 977,
-            py::arg("nBytes") = 36000000,
-            py::arg("rddc") = 1.0
+            py::arg("cacheSettings"),
+            py::arg("hdf5version") = DEFAULT_HDF5_VERSION
         );
 
-        hdf5Module.def("openFile", &openFile2,
+        hdf5Module.def("createFile", [](
+            const std::string & filename,
+            const HDF5Version & hdf5version
+        ){
+            return createFile(filename, hdf5version);
+        },
             py::arg("filename"),
-            py::arg_t<FileAccessMode>("hdf5version",READ_ONLY),
-            py::arg_t<HDF5Version>("hdf5version",LATEST_HDF5_VERSION),
-            py::arg("hashTableSize") = 977,
-            py::arg("nBytes") = 36000000,
-            py::arg("rddc") = 1.0
+            py::arg("hdf5version") = DEFAULT_HDF5_VERSION
         );
+
+        hdf5Module.def("openFile", [](
+            const std::string & filename,
+            const CacheSettings & cacheSettings,
+            const FileAccessMode & fileAccessMode,
+            const HDF5Version & hdf5version
+        ){
+            return openFile(filename, cacheSettings,fileAccessMode, hdf5version);
+        },
+            py::arg("filename"),
+            py::arg("cacheSettings"),
+            py::arg("fileAccessMode") = READ_ONLY,
+            py::arg("hdf5version") = DEFAULT_HDF5_VERSION
+        );
+
+
+        hdf5Module.def("openFile", [](
+            const std::string & filename,
+            const FileAccessMode & fileAccessMode,
+            const HDF5Version & hdf5version
+        ){
+            return openFile(filename,fileAccessMode, hdf5version);
+        },
+            py::arg("filename"),
+            py::arg("fileAccessMode") = READ_ONLY,
+            py::arg("hdf5version") = DEFAULT_HDF5_VERSION
+        );
+
 
         hdf5Module.def("closeFile", &closeFile,
             py::arg("hidT")
