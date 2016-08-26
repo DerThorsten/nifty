@@ -31,7 +31,7 @@ if nifty.Configuration.WITH_HDF5:
             ensureDir(tempFolder)
             fpath = os.path.join(tempFolder,'_nifty_test_array__.h5')
             try:
-                
+
                 # try catch since dataset can only be created once
                 shape = (101, 102, 103)
                 data = numpy.ones(shape=shape, dtype='uint64')
@@ -67,13 +67,13 @@ if nifty.Configuration.WITH_HDF5:
 
                 except:
                     pass
-        
+
         def testHdf5ArrayReadFromExistingH5pyNonChunked():
             tempFolder = tempfile.mkdtemp()
             ensureDir(tempFolder)
             fpath = os.path.join(tempFolder,'_nifty_test_array_.h5')
             try:
-                
+
 
                 # try catch since dataset can only be created once
                 shape = (101, 102, 103)
@@ -129,7 +129,7 @@ if nifty.Configuration.WITH_HDF5:
             assert chunkShape[0] == 11
             assert chunkShape[1] == 12
             assert chunkShape[2] == 13
-            
+
             ends = [10,11,12]
 
             toWrite = numpy.arange(ends[0]*ends[1]*ends[2]).reshape(ends)
@@ -144,6 +144,33 @@ if nifty.Configuration.WITH_HDF5:
                 shutil.rmtree(tempFolder)
             except:
                 pass
+
+    def testHdf5ArrayCache():
+            tempFolder = tempfile.mkdtemp()
+            ensureDir(tempFolder)
+            fpath = os.path.join(tempFolder,'_nifty_test_array_.h5')
+
+            try:
+                hidT = nhdf5.createFile(fpath)
+                nhdf5.setCacheOnFile(hidT)
+                # TODO this should be arguments to setCacheOnFile
+                somePrime = 977;
+                nBytes = 36000000;
+                rddc = 1.0;
+
+                somePrimeReturn, nBytesReturn, rddcReturn = nhdf5.getCacheOnFile(hidT)
+
+                assert somePrimeReturn == somePrime, "%i, %i" % (somePrimeReturn, somePrime)
+                assert nBytesReturn == nBytes, "%i, %i" % (nBytesReturn, nBytes)
+                assert rdccReturn == rdcc, "%i, %i" % (rdccReturn, rdcc)
+
+
+            finally:
+                try:
+                    os.remove(fpath)
+                    shutil.rmtree(tempFolder)
+                except:
+                    pass
 
 
 
