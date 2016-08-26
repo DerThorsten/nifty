@@ -155,17 +155,6 @@ namespace hdf5{
                 throw std::runtime_error("Marray cannot open dataset.");
             }
 
-
-
-            auto plist = H5Dget_access_plist(dataset_);
-            const auto somePrime = 977;
-            const auto nBytes = 36000000;
-            const auto rddc = 1.0;
-            auto ret = H5Pset_chunk_cache(plist, somePrime,  nBytes, rddc);
-            H5Pclose(plist);
-            std::cout<<"set H5Pset_chunk_cache groupHandle_ "<<ret<<"\n";
-
-
             // select dataspace hyperslab
             datatype_ = H5Dget_type(dataset_);
             if(!H5Tequal(datatype_, hdf5Type<T>())) {
