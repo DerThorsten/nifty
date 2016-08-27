@@ -29,7 +29,7 @@ struct NodeMap : public std::vector<T>{
             this->push_back(insertValue);
         }
         else if(nodeId > this->size()){
-            this->resize(nodeId += 1, insertValue);
+            this->resize(nodeId + 1, insertValue);
         }
     }
 };
@@ -54,7 +54,7 @@ struct EdgeMap : public std::vector<T>{
             this->push_back(insertValue);
         }
         else if(edgeId > this->size()){
-            this->resize(edgeId += 1,insertValue);
+            this->resize(edgeId + 1, insertValue);
         }
     }
 };

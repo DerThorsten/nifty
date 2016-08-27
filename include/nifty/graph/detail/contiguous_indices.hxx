@@ -45,18 +45,13 @@ namespace detail_graph{
     };
 
 
-
-
-
-
-
-
     template<class GRAPH>
     class EdgeIndicesToContiguousEdgeIndices 
     :   public  EdgeIndicesToContiguousEdgeIndicesImpl<GRAPH, typename GRAPH::EdgeIdTag>{
     public:
         using EdgeIndicesToContiguousEdgeIndicesImpl<GRAPH, typename GRAPH::EdgeIdTag>::EdgeIndicesToContiguousEdgeIndicesImpl;
     };
+
 
 
     template<class GRAPH, class NODE_ID_TAG>
@@ -99,9 +94,9 @@ namespace detail_graph{
 
     template<class GRAPH>
     class NodeIndicesToContiguousNodeIndices 
-    :   public  NodeIndicesToContiguousNodeIndicesImpl<GRAPH, typename GRAPH::EdgeIdTag>{
+    :   public  NodeIndicesToContiguousNodeIndicesImpl<GRAPH, typename GRAPH::NodeIdTag>{
     public:
-        using EdgeIndicesToContiguousEdgeIndicesImpl<GRAPH, typename GRAPH::EdgeIdTag>::EdgeIndicesToContiguousEdgeIndicesImpl;
+        using NodeIndicesToContiguousNodeIndicesImpl<GRAPH, typename GRAPH::NodeIdTag>::NodeIndicesToContiguousNodeIndicesImpl;
     };
     
 

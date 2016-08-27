@@ -24,23 +24,46 @@ namespace lifted_multicut{
 
         auto liftedMulticutObjectiveCls = py::class_<ObjectiveType>(liftedMulticutModule, clsName.c_str());
 
+        liftedMulticutObjectiveCls
+            .def("setCost", &ObjectiveType::setCost,
+                py::arg("u"),
+                py::arg("v"),
+                py::arg("weight"),
+                py::arg("overwrite") = false
+            )
+            .def("setCosts",[]
+            (
+                ObjectiveType & objective,  
+                nifty::marray::PyView<uint64_t> uvIds,
+                nifty::marray::PyView<double>   weights,
+                bool overwrite = false
+            ){
+                NIFTY_CHECK_OP(uvIds.dimension(),==,2,"wrong dimensions");
+                NIFTY_CHECK_OP(weights.dimension(),==,1,"wrong dimensions");
+                NIFTY_CHECK_OP(uvIds.shape(1),==,2,"wrong shape");
+                NIFTY_CHECK_OP(uvIds.shape(0),==,weights.shape(0),"wrong shape");
 
-        //    .def("evalNodeLabels",[](const ObjectiveType & objective,  nifty::marray::PyView<uint64_t> array){
-        //        const auto & g = objective.graph();
-        //        NIFTY_CHECK_OP(array.dimension(),==,1,"wrong dimensions");
-        //        NIFTY_CHECK_OP(array.shape(0),==,g.nodeIdUpperBound()+1,"wrong shape");
-        //        //
-        //        double sum = static_cast<double>(0.0);
-        //        const auto & w = objective.weights();
-        //        for(const auto edge: g.edges()){
-        //            const auto uv = g.uv(edge);
-        //            if(array(uv.first) != array(uv.second)){
-        //                sum += w[edge];
-        //            }
-        //        }
-        //        return sum;
-        //    })
-        //;
+                for(size_t i=0; i<uvIds.shape(0); ++i){
+                    objective.setCost(uvIds(i,0), uvIds(i,1), weights(i));
+                }
+                
+            })
+            .def("evalNodeLabels",[](const ObjectiveType & objective,  nifty::marray::PyView<uint64_t> array){
+               const auto & g = objective.graph();
+               NIFTY_CHECK_OP(array.dimension(),==,1,"wrong dimensions");
+               NIFTY_CHECK_OP(array.shape(0),==,g.nodeIdUpperBound()+1,"wrong shape");
+               
+               double sum = static_cast<double>(0.0);
+               const auto & w = objective.weights();
+               for(const auto edge: g.edges()){
+                   const auto uv = g.uv(edge);
+                   if(array(uv.first) != array(uv.second)){
+                       sum += w[edge];
+                   }
+               }
+               return sum;
+           })
+        ;
 
 
         // liftedMulticutModule.def("multicutObjective",
