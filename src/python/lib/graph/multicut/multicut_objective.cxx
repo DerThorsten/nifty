@@ -21,7 +21,9 @@ namespace graph{
         typedef GRAPH Graph;
         typedef MulticutObjective<Graph, double> ObjectiveType;
         const auto clsName = MulticutObjectiveName<ObjectiveType>::name();
-        auto multicutObjectiveCls = py::class_<ObjectiveType>(multicutModule, clsName.c_str())
+
+        auto multicutObjectiveCls = py::class_<ObjectiveType>(multicutModule, clsName.c_str());
+        multicutObjectiveCls
             .def("evalNodeLabels",[](const ObjectiveType & objective,  nifty::marray::PyView<uint64_t> array){
                 const auto & g = objective.graph();
                 NIFTY_CHECK_OP(array.dimension(),==,1,"wrong dimensions");

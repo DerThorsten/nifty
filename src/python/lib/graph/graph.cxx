@@ -14,6 +14,9 @@ namespace graph{
     void exportEdgeContractionGraphUndirectedGraph(py::module & );
 
     void initSubmoduleMulticut(py::module &);
+    namespace lifted_multicut{
+        void initSubmoduleLiftedMulticut(py::module &);
+    }
     void initSubmoduleRag(py::module &);
     namespace agglo{
         void initSubmoduleAgglo(py::module &);
@@ -28,6 +31,7 @@ namespace graph{
         exportEdgeContractionGraphUndirectedGraph(graphModule);
 
         initSubmoduleMulticut(graphModule);
+        lifted_multicut::initSubmoduleLiftedMulticut(graphModule);
         initSubmoduleRag(graphModule);
         agglo::initSubmoduleAgglo(graphModule);
         initSubmoduleGala(graphModule);

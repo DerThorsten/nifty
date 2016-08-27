@@ -22,6 +22,16 @@ struct NodeMap : public std::vector<T>{
     NodeMap( )
     :   std::vector<T>( ){
     }
+
+    // graph has been modified
+    void insertedNode(const uint64_t nodeId, const T & insertValue = T()){
+        if(nodeId == this->size()){
+            this->push_back(insertValue);
+        }
+        else if(nodeId > this->size()){
+            this->resize(nodeId += 1, insertValue);
+        }
+    }
 };
 
 template<class G, class T>
@@ -36,6 +46,16 @@ struct EdgeMap : public std::vector<T>{
     
     EdgeMap( )
     :   std::vector<T>( ){
+    }
+
+    // graph has been modified
+    void insertedEdge(const uint64_t edgeId, const T & insertValue = T()){
+        if(edgeId == this->size()){
+            this->push_back(insertValue);
+        }
+        else if(edgeId > this->size()){
+            this->resize(edgeId += 1,insertValue);
+        }
     }
 };
 
