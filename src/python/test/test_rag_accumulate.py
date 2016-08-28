@@ -55,7 +55,7 @@ def testAccumulateEdgeMeanAndLengthRag2d():
 
         edgeId = rag.findEdge(edge[0], edge[1])
 
-        print (edge, "myc",count[edgeId],"shouldc",c)
+        #print (edge, "myc",count[edgeId],"shouldc",c)
         assert count[edgeId] == c
 
 

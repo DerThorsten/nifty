@@ -24,7 +24,7 @@ struct NodeMap : public std::vector<T>{
     }
 
     // graph has been modified
-    void insertedNode(const uint64_t nodeId, const T & insertValue = T()){
+    void insertedNodes(const uint64_t nodeId, const T & insertValue = T()){
         if(nodeId == this->size()){
             this->push_back(insertValue);
         }
@@ -49,7 +49,7 @@ struct EdgeMap : public std::vector<T>{
     }
 
     // graph has been modified
-    void insertedEdge(const uint64_t edgeId, const T & insertValue = T()){
+    void insertedEdges(const uint64_t edgeId, const T & insertValue = T()){
         if(edgeId == this->size()){
             this->push_back(insertValue);
         }

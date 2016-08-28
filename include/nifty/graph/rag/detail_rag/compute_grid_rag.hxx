@@ -124,7 +124,7 @@ struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
         RagType & rag,
         const S & settings
     ){
-        std::cout<<"\nphase 0\n";
+        //std::cout<<"\nphase 0\n";
 
         typedef array::StaticArray<int64_t, 3> Coord;
         typedef array::StaticArray<int64_t, 2> Coord2;
@@ -148,7 +148,7 @@ struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
         /////////////////////////////////////////////////////
         // Phase 1 : In slice node adjacency and edge count
         /////////////////////////////////////////////////////
-        std::cout<<"phase 1\n";
+        //std::cout<<"phase 1\n";
         { 
 
 
@@ -189,7 +189,7 @@ struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
             });
         }
 
-        std::cout<<"phase 2\n";
+        //std::cout<<"phase 2\n";
         /////////////////////////////////////////////////////
         // Phase 2 : set up the in slice edge offsets
         /////////////////////////////////////////////////////
@@ -206,7 +206,7 @@ struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
             rag.numberOfInSliceEdges_ = lastSlice.inSliceEdgeOffset + lastSlice.numberOfInSliceEdges;
         }
 
-        std::cout<<"phase 3\n";
+        //std::cout<<"phase 3\n";
         /////////////////////////////////////////////////////
         // Phase 3 : set up in slice edge indices
         /////////////////////////////////////////////////////
@@ -238,7 +238,7 @@ struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
             });
         }
 
-        std::cout<<"phase 4\n";
+        //std::cout<<"phase 4\n";
         /////////////////////////////////////////////////////
         // Phase 4 : between slice edges
         /////////////////////////////////////////////////////
@@ -283,7 +283,7 @@ struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
             }
         }
 
-        std::cout<<"phase 5\n";
+        //std::cout<<"phase 5\n";
         /////////////////////////////////////////////////////
         // Phase 5 : set up the between slice edge offsets
         /////////////////////////////////////////////////////
@@ -300,7 +300,7 @@ struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
             const auto & lastSlice =  perSliceDataVec.back();
         }
 
-        std::cout<<"phase 6\n";
+        //std::cout<<"phase 6\n";
         /////////////////////////////////////////////////////
         // Phase 6 : set up between slice edge indices
         /////////////////////////////////////////////////////

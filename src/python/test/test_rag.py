@@ -469,7 +469,7 @@ if nifty.Configuration.WITH_HDF5:
             ]
 
 
-            print("edges in rag",rag.numberOfEdges,len(shouldEdges))
+            #("edges in rag",rag.numberOfEdges,len(shouldEdges))
 
             genericRagTest(rag=rag, numberOfNodes=labels.max()+1, 
                            shouldEdges=shouldEdges, shouldNotEdges=shouldNotEdges)

@@ -20,6 +20,7 @@ namespace lifted_multicut{
 
         typedef GRAPH Graph;
         typedef LiftedMulticutObjective<Graph, double> ObjectiveType;
+        typedef typename ObjectiveType::LiftedGraphType LiftedGraphType;
         const auto clsName = LiftedMulticutObjectiveName<ObjectiveType>::name();
 
         auto liftedMulticutObjectiveCls = py::class_<ObjectiveType>(liftedMulticutModule, clsName.c_str());
@@ -62,26 +63,48 @@ namespace lifted_multicut{
                    }
                }
                return sum;
-           })
+            })
+            .def_property_readonly("graph", &ObjectiveType::graph)
+            .def_property_readonly("liftedGraph", 
+                    [](const ObjectiveType & self) -> const LiftedGraphType & {
+                    return self.liftedGraph();
+                },
+                py::return_value_policy::reference_internal
+            )
+            .def("_insertLiftedEdgesBfs",
+                [](ObjectiveType & self, const uint32_t maxDistance){
+                    self.insertLiftedEdgesBfs(maxDistance);
+                },
+                py::arg("maxDistance")
+            )
+
+            .def("_insertLiftedEdgesBfsReturnDist",
+                [](ObjectiveType & self, const uint32_t maxDistance){
+
+                    std::vector<uint32_t> dist;
+                    self.insertLiftedEdgesBfs(maxDistance, dist);
+                    nifty::marray::PyView<uint64_t> array({dist.size()});
+
+                    for(size_t i=0; i<dist.size(); ++i){
+                        array(i) = dist[i];
+                    }
+                    return array;
+                },
+                py::arg("maxDistance")
+            )
         ;
 
 
-        // liftedMulticutModule.def("multicutObjective",
-        //     [](const Graph & graph,  nifty::marray::PyView<double> array){
-        //         NIFTY_CHECK_OP(array.dimension(),==,1,"wrong dimensions");
-        //         NIFTY_CHECK_OP(array.shape(0),==,graph.edgeIdUpperBound()+1,"wrong shape");
-                
-        //         auto obj = new ObjectiveType(graph);
-        //         auto & weights = obj->weights();
-        //         graph.forEachEdge([&](int64_t edge){
-        //             weights[edge] += array(edge);
-        //         });
-        //         return obj;
-        //     },
-        //     py::return_value_policy::take_ownership,
-        //     py::keep_alive<0, 1>(),
-        //     py::arg("graph"),py::arg("weights")  
-        // );
+        liftedMulticutModule.def("liftedMulticutObjective",
+            [](const Graph & graph){
+
+                auto obj = new ObjectiveType(graph);
+                return obj;
+            },
+            py::return_value_policy::take_ownership,
+            py::keep_alive<0, 1>(),
+            py::arg("graph")
+        );
     }
 
     void exportLiftedMulticutObjective(py::module & liftedMulticutModule) {

@@ -161,7 +161,7 @@ public:
     }
 
     template<class F, class TAG>
-    void forEachNode(F && f)const{
+    void forEachItem(F && f)const{
         for(auto item : _child(). template  items<TAG>()){
             f(item);
         }

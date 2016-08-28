@@ -8,7 +8,7 @@ import numpy
 
 
 
-def __extendObj(objectiveCls, objectiveName):
+def __extendMulticutObj(objectiveCls, objectiveName):
 
 
     mcMod = graph.multicut
@@ -173,26 +173,46 @@ def __extendObj(objectiveCls, objectiveName):
     O.perturbAndMap = staticmethod(perturbAndMap)
 
 
-__extendObj(graph.multicut.MulticutObjectiveUndirectedGraph, 
+__extendMulticutObj(graph.multicut.MulticutObjectiveUndirectedGraph, 
     "MulticutObjectiveUndirectedGraph")
-__extendObj(graph.multicut.MulticutObjectiveEdgeContractionGraphUndirectedGraph, 
+__extendMulticutObj(graph.multicut.MulticutObjectiveEdgeContractionGraphUndirectedGraph, 
     "MulticutObjectiveEdgeContractionGraphUndirectedGraph")
-del __extendObj
+del __extendMulticutObj
 
 
 
-
-
-
-
-
-
-
-
-
+# multicut objective
 graph.UndirectedGraph.MulticutObjective = graph.multicut.MulticutObjectiveUndirectedGraph
 graph.UndirectedGraph.EdgeContractionGraph = graph.EdgeContractionGraphUndirectedGraph
 graph.EdgeContractionGraphUndirectedGraph.MulticutObjective = graph.multicut.MulticutObjectiveEdgeContractionGraphUndirectedGraph
+
+
+
+
+
+# lifted multicut objective
+graph.UndirectedGraph.LiftedMulticutObjective = graph.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph
+
+def __extendLiftedMulticutObj(objectiveCls, objectiveName):
+    
+    def insertLiftedEdgesBfs(self, maxDistance, returnDistance = False):
+        if returnDistance :
+            return self._insertLiftedEdgesBfsReturnDist(maxDistance)
+        else:
+            self._insertLiftedEdgesBfs(maxDistance)
+
+    objectiveCls.insertLiftedEdgesBfs = insertLiftedEdgesBfs
+
+
+
+
+__extendLiftedMulticutObj(graph.UndirectedGraph.LiftedMulticutObjective, 
+    "LiftedMulticutObjectiveUndirectedGraph")
+del __extendLiftedMulticutObj
+
+
+
+
 
 
 

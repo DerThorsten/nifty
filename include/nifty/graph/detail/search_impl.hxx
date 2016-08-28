@@ -46,6 +46,41 @@ namespace detail_graph{
             distMap_(g){
         }
 
+
+        template< class F>
+        void graphNeighbourhood(            
+            const uint64_t source,
+            const size_t maxDistance,
+            F && f
+        ){
+
+            auto visitor = [&]
+            (   
+                int64_t toNode,
+                int64_t predecessorNode,
+                int64_t edge,
+                int64_t distance,
+                bool & continueSeach,
+                bool & addToNode
+            ){
+                if(distance > maxDistance){
+                    addToNode = false;
+                }
+                else{
+                    f(toNode, distance);
+                }
+            };
+
+
+            // subgraph mask
+            DefaultSubgraphMask<Graph> subgraphMask;
+
+            this->run(&source, &source + 1 , subgraphMask, visitor);
+        }
+
+
+
+
         // run single source single target
         // no  callback no mask exposed
         void runSingleSourceSingleTarget(

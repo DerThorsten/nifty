@@ -117,8 +117,14 @@ public:
 
     // optional (with default impl in base)
     std::pair<int64_t,int64_t> uv(const int64_t e)const;
+
+
     template<class F>
     void forEachEdge(F && f)const;
+
+    template<class F>
+    void forEachNode(F && f)const;
+
 
     // serialization de-serialization
 
@@ -309,6 +315,17 @@ UndirectedGraph<EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE>::
 forEachEdge(F && f)const{
     for(uint64_t edge=0; edge< numberOfEdges(); ++edge){
         f(edge);
+    }
+}
+
+
+template<class EDGE_INTERANL_TYPE, class NODE_INTERNAL_TYPE >
+template<class F>
+void 
+UndirectedGraph<EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE>::
+forEachNode(F && f)const{
+    for(uint64_t node=0; node< numberOfNodes(); ++node){
+        f(node);
     }
 }
 
