@@ -159,7 +159,7 @@ namespace lifted_multicut{
 
         template<class F>
         void forEachLiftedeEdge(F && f)const{
-            for(const uint64_t e = graph_.numberOfEdges(); e<liftedGraph_.numberOfEdges(); ++e){
+            for(uint64_t e = graph_.numberOfEdges(); e<liftedGraph_.numberOfEdges(); ++e){
                 f(e);
             }
         }
