@@ -26,7 +26,7 @@ namespace lifted_multicut{
         auto liftedMulticutObjectiveCls = py::class_<ObjectiveType>(liftedMulticutModule, clsName.c_str());
 
         liftedMulticutObjectiveCls
-            .def_readonly("numberOfLiftedEdges", &ObjectiveType::numberOfLiftedEdges)
+            .def_property_readonly("numberOfLiftedEdges", &ObjectiveType::numberOfLiftedEdges)
             .def("setCost", &ObjectiveType::setCost,
                 py::arg("u"),
                 py::arg("v"),
