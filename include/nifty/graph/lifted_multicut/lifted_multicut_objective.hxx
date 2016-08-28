@@ -47,7 +47,7 @@ namespace lifted_multicut{
         }
 
         uint64_t numberOfLiftedEdges()const{
-            return _child().liftedGraph().numberOfEdges() - _child.graph().numberOfEdges();
+            return _child().liftedGraph().numberOfEdges() - _child().graph().numberOfEdges();
         }
 
 
@@ -157,8 +157,12 @@ namespace lifted_multicut{
             });
         }
 
-
-        //void forEachLiftedeEdge
+        template<class F>
+        void forEachLiftedeEdge(F && f)const{
+            for(const uint64_t e = graph_.numberOfEdges(); e<liftedGraph_.numberOfEdges(); ++e){
+                f(e);
+            }
+        }
 
     private:
         const Graph & graph_;
