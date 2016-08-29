@@ -10,13 +10,19 @@ namespace graph{
 namespace lifted_multicut{
 
     void exportLiftedMulticutObjective(py::module &);
-
-
+    void exportLiftedMulticutFactory(py::module &);
+    void exportLiftedMulticutVisitorBase(py::module &);
+    void exportLiftedMulticutBase(py::module &);
+    void exportLiftedMulticutGreedyAdditive(py::module &);
 
     void initSubmoduleLiftedMulticut(py::module &graphModule) {
 
         auto liftedMulticutModule = graphModule.def_submodule("lifted_multicut","lifted multicut submodule");
         exportLiftedMulticutObjective(liftedMulticutModule);
+        exportLiftedMulticutVisitorBase(liftedMulticutModule);
+        exportLiftedMulticutBase(liftedMulticutModule);
+        exportLiftedMulticutFactory(liftedMulticutModule);
+        exportLiftedMulticutGreedyAdditive(liftedMulticutModule);
     }
 
 }

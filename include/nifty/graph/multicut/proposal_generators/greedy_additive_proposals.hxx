@@ -49,7 +49,6 @@ namespace graph{
 
         {
             SolverSettings solverSettings;
-            solverSettings.verbose = 0;
             solverSettings.addNoise = true;
             solverSettings.sigma = settings_.sigma;
             solverSettings.weightStopCond  = settings_.weightStopCond;

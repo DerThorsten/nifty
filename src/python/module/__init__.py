@@ -53,9 +53,10 @@ def __extendMulticutObj(objectiveCls, objectiveName):
         return s
     O.watershedProposals = staticmethod(watershedProposals)
 
-    def greedyAdditiveFactory(verbose=0):
+    def greedyAdditiveFactory( weightStopCond=0.0, nodeNumStopCond=-1.0):
         s,F = getSettingsAndFactoryCls("MulticutGreedyAdditive")
-        s.verbose = int(verbose)
+        s.weightStopCond = float(weightStopCond)
+        s.nodeNumStopCond = float(nodeNumStopCond)
         return F(s)
     O.greedyAdditiveFactory = staticmethod(greedyAdditiveFactory)
 
@@ -202,6 +203,50 @@ def __extendLiftedMulticutObj(objectiveCls, objectiveName):
             self._insertLiftedEdgesBfs(maxDistance)
 
     objectiveCls.insertLiftedEdgesBfs = insertLiftedEdgesBfs
+
+
+
+
+
+    lmcMod = graph.lifted_multicut
+
+    def getCls(module, prefix, postfix):
+        return module.__dict__[prefix+postfix]
+
+    def getSettingsCls(baseName):
+        S =  getCls(lmcMod, baseName + "Settings" ,objectiveName)
+        return S
+    def getLmcCls(baseName):
+        S =  getCls(lmcMod, baseName,objectiveName)
+        return S
+    def getSettings(baseName):
+        S =  getSettingsCls(baseName)
+        return S()
+    def getSettingsAndFactoryCls(baseName):
+        s =  getSettings(baseName)
+        F =  getCls(lmcMod, baseName + "Factory" ,objectiveName)
+        return s,F
+
+
+    O = objectiveCls
+
+    def multicutVerboseVisitor(visitNth=1):
+        V = getLmcCls("LiftedMulticutVerboseVisitor")
+        return V(visitNth)
+    O.multicutVerboseVisitor = staticmethod(multicutVerboseVisitor)
+
+
+
+
+    def greedyAdditiveFactory( weightStopCond=0.0, nodeNumStopCond=-1.0):
+        s,F = getSettingsAndFactoryCls("LiftedMulticutGreedyAdditive")
+        s.weightStopCond = float(weightStopCond)
+        s.nodeNumStopCond = float(nodeNumStopCond)
+        return F(s)
+    O.greedyAdditiveFactory = staticmethod(greedyAdditiveFactory)
+
+
+
 
 
 

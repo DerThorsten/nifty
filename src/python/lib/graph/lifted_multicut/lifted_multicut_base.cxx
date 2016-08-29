@@ -1,0 +1,116 @@
+#include <pybind11/pybind11.h>
+#include <pybind11/numpy.h>
+
+#include "nifty/python/graph/undirected_list_graph.hxx"
+//#include "nifty/python/graph/edge_contraction_graph.hxx"
+#include "nifty/python/graph/lifted_multicut/lifted_multicut_objective.hxx"
+
+#include "nifty/python/converter.hxx"
+
+
+#include "nifty/python/graph/lifted_multicut/py_lifted_multicut_base.hxx"
+
+
+
+namespace py = pybind11;
+
+
+namespace nifty{
+namespace graph{
+namespace lifted_multicut{
+
+    using namespace py;
+    //PYBIND11_DECLARE_HOLDER_TYPE(LmcBase, std::shared_ptr<LmcBase>);
+
+    template<class OBJECTIVE>
+    void exportLiftedMulticutBaseT(py::module & liftedMulticutModule) {
+
+
+        typedef OBJECTIVE ObjectiveType;
+        typedef PyLiftedMulticutBase<ObjectiveType> PyLmcBase;
+        typedef LiftedMulticutBase<ObjectiveType> LmcBase;
+        typedef LiftedMulticutEmptyVisitor<ObjectiveType> EmptyVisitor;
+        typedef LiftedMulticutVisitorBase<ObjectiveType> LmcVisitorBase;
+        //PYBIND11_DECLARE_HOLDER_TYPE(LmcBase, std::shared_ptr<LmcBase>);
+
+
+        const auto objName = LiftedMulticutObjectiveName<ObjectiveType>::name();
+        const auto clsName = std::string("LiftedMulticutBase") + objName;
+        // base factory
+        py::class_<
+            LmcBase, 
+            std::unique_ptr<LmcBase>, 
+            PyLmcBase 
+        > lmcBase(liftedMulticutModule, clsName.c_str());
+        
+        lmcBase
+            .def(py::init<>())
+            .def("optimize", 
+                [](
+                    LmcBase * self,
+                    LmcVisitorBase * visitor,
+                    nifty::marray::PyView<uint64_t> array
+                ){
+                    const auto graph = self->objective().graph();
+                    //std::cout<<"optimize that damn thing\n";
+            
+
+
+                    typename LmcBase::NodeLabels nodeLabels(graph,0);
+
+                    if(array.size() == 0 ){
+
+                        {
+                            py::gil_scoped_release allowThreads;
+                            self->optimize(nodeLabels, visitor);
+                        }
+                        std::vector<size_t> shape = {size_t(graph.nodeIdUpperBound()+1)};
+                        nifty::marray::PyView<uint64_t> rarray(shape.begin(),shape.end());
+                        for(auto node : graph.nodes()){
+                            rarray(node) = nodeLabels[node];
+                        }
+                        return rarray;
+
+                    }
+                    else if(array.size() == graph.nodeIdUpperBound()+1){
+                        for(auto node : graph.nodes()){
+                            nodeLabels[node] = array(node);
+                        }
+                        {
+                            py::gil_scoped_release allowThreads;
+                            self->optimize(nodeLabels, visitor);
+                        }
+                        for(auto node : graph.nodes()){
+                            array(node) = nodeLabels[node];
+                        }
+                        return array;
+                    }
+                    else{
+                        throw std::runtime_error("input node labels have wrong shape");
+                    }
+                },
+                py::arg_t< LmcVisitorBase * >("visitor", nullptr ),
+                py::arg_t< py::array_t<uint64_t> >("nodeLabels", py::list() )
+            )
+            ;
+        ;
+    }
+
+    void exportLiftedMulticutBase(py::module & liftedMulticutModule) {
+
+        {
+            typedef PyUndirectedGraph GraphType;
+            typedef LiftedMulticutObjective<GraphType, double> ObjectiveType;
+            exportLiftedMulticutBaseT<ObjectiveType>(liftedMulticutModule);
+        }
+        //{
+        //    typedef PyContractionGraph<PyUndirectedGraph> GraphType;
+        //    typedef LiftedMulticutObjective<GraphType, double> ObjectiveType;
+        //    exportLiftedMulticutBaseT<ObjectiveType>(liftedMulticutModule);
+        //}
+    }        
+
+}
+}
+}
+    

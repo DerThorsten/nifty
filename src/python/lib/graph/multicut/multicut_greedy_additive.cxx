@@ -29,7 +29,7 @@ namespace graph{
             .def(py::init<>())
             .def_readwrite("nodeNumStopCond", &Settings::nodeNumStopCond)
             .def_readwrite("weightStopCond", &Settings::weightStopCond)
-            .def_readwrite("verbose", &Settings::verbose)
+            //.def_readwrite("verbose", &Settings::verbose)
         ;
      
     }

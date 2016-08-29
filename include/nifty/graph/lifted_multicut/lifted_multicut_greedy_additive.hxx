@@ -1,6 +1,6 @@
 #pragma once
-#ifndef NIFTY_GRAPH_MULTICUT_MULTICUT_GREEDY_ADDITIVE_HXX
-#define NIFTY_GRAPH_MULTICUT_MULTICUT_GREEDY_ADDITIVE_HXX
+#ifndef NIFTY_GRAPH_LIFTED_MULTICUT_LIFTED_MULTICUT_GREEDY_ADDITIVE_HXX
+#define NIFTY_GRAPH_LIFTED_MULTICUT_LIFTED_MULTICUT_GREEDY_ADDITIVE_HXX
 
 
 #include <random>
@@ -11,28 +11,26 @@
 #include "nifty/tools/runtime_check.hxx"
 #include "nifty/ufd/ufd.hxx"
 #include "nifty/graph/detail/adjacency.hxx"
-#include "nifty/graph/multicut/multicut_base.hxx"
+#include "nifty/graph/lifted_multicut/lifted_multicut_base.hxx"
 #include "nifty/graph/edge_contraction_graph.hxx"
-
-//#include "nifty/graph/detail/contiguous_indices.hxx"
 
 
 namespace nifty{
 namespace graph{
+namespace lifted_multicut{
 
 
-
-    namespace detail_multicut_greedy_additive{
+    namespace detail_lifted_multicut_greedy_additive{
 
     template<class OBJECTIVE>
-    class MulticutGreedyAdditiveCallback{
+    class LiftedMulticutGreedyAdditiveCallback{
     public:
 
         struct Settings{
 
             double weightStopCond{0.0};
             double nodeNumStopCond{-1};
-    
+            //int verbose { 0 };
 
             int seed {42};
             bool addNoise {false};
@@ -41,18 +39,22 @@ namespace graph{
 
 
         typedef OBJECTIVE Objective;
-        typedef typename Objective::Graph Graph;
+        typedef typename Objective::LiftedGraph LiftedGraph;
+        typedef typename LiftedGraph:: template EdgeMap<double> CurrentWeightMap;
+        typedef typename LiftedGraph:: template EdgeMap<bool>   IsLiftedMap;
         typedef vigra::ChangeablePriorityQueue< double ,std::greater<double> > QueueType;
 
-        MulticutGreedyAdditiveCallback(
+        LiftedMulticutGreedyAdditiveCallback(
             const Objective & objective,
             const Settings & settings
         )
         :   objective_(objective),
-            graph_(objective.graph()),
-            pq_(objective.graph().edgeIdUpperBound()+1 ),
+            liftedGraph_(objective.liftedGraph()),
+            pq_(objective.liftedGraph().edgeIdUpperBound()+1),
+            isLifted_(objective.liftedGraph()),
+            currentWeight_(objective.liftedGraph()),
             settings_(settings),
-            currentNodeNum_(objective.graph().numberOfNodes()),
+            currentNodeNum_(objective.liftedGraph().numberOfNodes()),
             gen_(settings.seed),
             dist_(0.0, settings.sigma){
 
@@ -66,17 +68,44 @@ namespace graph{
                 pq_.pop();
 
             const auto & weights = objective_.weights();
-            for(const auto edge: graph_.edges()){
-                if(!settings_.addNoise)
+
+
+
+
+
+
+            objective_.forEachGraphEdge([&](const uint64_t edge){
+                isLifted_[edge] = false;
+                if(!settings_.addNoise){
                     pq_.push(edge, weights[edge]);
-                else{
-                    pq_.push(edge, weights[edge] + dist_(gen_));
+                    currentWeight_[edge] = weights[edge];
                 }
-            }    
+                else{
+                    const auto w = weights[edge] + dist_(gen_);
+                    pq_.push(edge, w);
+                    currentWeight_[edge] = w;
+                }
+            });
+
+            objective_.forEachLiftedeEdge([&](const uint64_t edge){
+
+                // lifted edge
+                isLifted_[edge] = true;
+                pq_.push(edge, -1.0*std::numeric_limits<double>::infinity());
+
+                if(!settings_.addNoise)
+                    currentWeight_[edge] = weights[edge];
+                else{
+                    currentWeight_[edge] = weights[edge] + dist_(gen_);
+                }
+
+            });
+
         }
 
         void contractEdge(const uint64_t edgeToContract){
             NIFTY_ASSERT(pq_.contains(edgeToContract));
+            NIFTY_CHECK(!isLifted_[edgeToContract],"bug!");
             pq_.deleteItem(edgeToContract);
         }
 
@@ -85,12 +114,41 @@ namespace graph{
         }
 
         void mergeEdges(const uint64_t aliveEdge, const uint64_t deadEdge){
+
+
             NIFTY_ASSERT(pq_.contains(aliveEdge));
             NIFTY_ASSERT(pq_.contains(deadEdge));
-            const auto wEdgeInAlive = pq_.priority(aliveEdge);
-            const auto wEdgeInDead = pq_.priority(deadEdge);
+
+            const auto wEdgeInAlive = currentWeight_[aliveEdge];
+            const auto wEdgeInDead =  currentWeight_[deadEdge];
+
+            const auto aIsLifted = isLifted_[aliveEdge];
+            const auto dIsLifted = isLifted_[deadEdge];
+
+            const auto wSum = wEdgeInAlive + wEdgeInDead;
+
+            // non is lifted, merge as always
+            if(!aIsLifted && ! dIsLifted){
+                pq_.changePriority(aliveEdge, wSum);
+                currentWeight_[aliveEdge] = wSum;
+            }
+            // both are lifted => merge but keep pq weight at -inf
+            else if(aIsLifted &&  dIsLifted){
+                currentWeight_[aliveEdge] = wSum;
+            }
+            // if only the dead edge is lifted
+            // we need can merge as always
+            else if(!aIsLifted && dIsLifted){
+                pq_.changePriority(aliveEdge, wSum);
+                currentWeight_[aliveEdge] = wSum;
+            }
+            else{
+                NIFTY_CHECK(false,"bug");
+            }
+
             pq_.deleteItem(deadEdge);
-            pq_.changePriority(aliveEdge, wEdgeInAlive + wEdgeInDead);
+            
+
         }
 
         void contractEdgeDone(const uint64_t edgeToContract){
@@ -99,6 +157,7 @@ namespace graph{
         bool done(){
             const auto highestWeight = pq_.topPriority();
             const auto nnsc = settings_.nodeNumStopCond;
+
             // exit if weight stop cond kicks in
             if(highestWeight <= settings_.weightStopCond){
                 return true;
@@ -109,7 +168,7 @@ namespace graph{
                     ns = static_cast<uint64_t>(nnsc);
                 }
                 else{
-                    ns = static_cast<uint64_t>(double(graph_.numberOfNodes())*nnsc +0.5);
+                    ns = static_cast<uint64_t>(double(liftedGraph_.numberOfNodes())*nnsc +0.5);
                 }
                 if(currentNodeNum_ <= ns){
                     return true;
@@ -139,8 +198,12 @@ namespace graph{
     private:
 
         const Objective & objective_;
-        const Graph & graph_;
+        const LiftedGraph & liftedGraph_;
         QueueType pq_;
+
+        IsLiftedMap   isLifted_;
+        CurrentWeightMap currentWeight_;
+
         Settings settings_;
         uint64_t currentNodeNum_;
 
@@ -148,20 +211,20 @@ namespace graph{
         std::normal_distribution<> dist_;
     };
 
-    } // end namespace detail_multicut_greedy_additive
+    } // end namespace detail_lifted_multicut_greedy_additive
 
 
 
 
     template<class OBJECTIVE>
-    class MulticutGreedyAdditive : public MulticutBase<OBJECTIVE>
+    class LiftedMulticutGreedyAdditive : public LiftedMulticutBase<OBJECTIVE>
     {
     public: 
 
         typedef OBJECTIVE Objective;
         typedef typename Objective::Graph Graph;
-        typedef detail_multicut_greedy_additive::MulticutGreedyAdditiveCallback<Objective> Callback;
-        typedef MulticutBase<OBJECTIVE> Base;
+        typedef detail_lifted_multicut_greedy_additive::LiftedMulticutGreedyAdditiveCallback<Objective> Callback;
+        typedef LiftedMulticutBase<OBJECTIVE> Base;
         typedef typename Base::VisitorBase VisitorBase;
         typedef typename Base::EdgeLabels EdgeLabels;
         typedef typename Base::NodeLabels NodeLabels;
@@ -170,8 +233,8 @@ namespace graph{
 
         typedef typename Callback::Settings Settings;
 
-        virtual ~MulticutGreedyAdditive(){}
-        MulticutGreedyAdditive(const Objective & objective, const Settings & settings = Settings());
+        virtual ~LiftedMulticutGreedyAdditive(){}
+        LiftedMulticutGreedyAdditive(const Objective & objective, const Settings & settings = Settings());
         virtual void optimize(NodeLabels & nodeLabels, VisitorBase * visitor);
         virtual const Objective & objective() const;
 
@@ -190,7 +253,7 @@ namespace graph{
         }
 
         virtual std::string name()const{
-            return std::string("MulticutGreedyAdditive");
+            return std::string("LiftedMulticutGreedyAdditive");
         }
 
 
@@ -207,8 +270,8 @@ namespace graph{
 
     
     template<class OBJECTIVE>
-    MulticutGreedyAdditive<OBJECTIVE>::
-    MulticutGreedyAdditive(
+    LiftedMulticutGreedyAdditive<OBJECTIVE>::
+    LiftedMulticutGreedyAdditive(
         const Objective & objective, 
         const Settings & settings
     )
@@ -223,10 +286,11 @@ namespace graph{
     }
 
     template<class OBJECTIVE>
-    void MulticutGreedyAdditive<OBJECTIVE>::
+    void LiftedMulticutGreedyAdditive<OBJECTIVE>::
     optimize(
         NodeLabels & nodeLabels,  VisitorBase * visitor
     ){
+        
         
 
         if(visitor!=nullptr){
@@ -259,18 +323,19 @@ namespace graph{
         }
         if(visitor!=nullptr)
             visitor->end(this);
+
     }
 
     template<class OBJECTIVE>
-    const typename MulticutGreedyAdditive<OBJECTIVE>::Objective &
-    MulticutGreedyAdditive<OBJECTIVE>::
+    const typename LiftedMulticutGreedyAdditive<OBJECTIVE>::Objective &
+    LiftedMulticutGreedyAdditive<OBJECTIVE>::
     objective()const{
         return objective_;
     }
 
  
     template<class OBJECTIVE>
-    void MulticutGreedyAdditive<OBJECTIVE>::
+    void LiftedMulticutGreedyAdditive<OBJECTIVE>::
     reset(
     ){
         callback_.reset();
@@ -279,7 +344,7 @@ namespace graph{
 
     template<class OBJECTIVE>
     inline void 
-    MulticutGreedyAdditive<OBJECTIVE>::
+    LiftedMulticutGreedyAdditive<OBJECTIVE>::
     changeSettings(
         const Settings & settings
     ){
@@ -287,8 +352,8 @@ namespace graph{
     }
 
     
-
+} // lifted_multicut
 } // namespace nifty::graph
 } // namespace nifty
 
-#endif  // NIFTY_GRAPH_MULTICUT_MULTICUT_GREEDY_ADDITIVE_HXX
+#endif  // NIFTY_GRAPH_LIFTED_MULTICUT_LIFTED_MULTICUT_GREEDY_ADDITIVE_HXX
