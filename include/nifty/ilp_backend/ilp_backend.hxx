@@ -5,7 +5,6 @@
 #include <limits>
 
 namespace nifty {
-namespace graph {
 namespace ilp_backend{
 
     struct IlpBackendSettings{
@@ -41,7 +40,6 @@ namespace ilp_backend{
     };  
 
 } // namespace ilp_backend
-} // namespace graph
 } // namespace nifty
 
 #endif

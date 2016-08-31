@@ -10,7 +10,7 @@
 #include "nifty/graph/three_cycles.hxx"
 #include "nifty/graph/breadth_first_search.hxx"
 #include "nifty/graph/bidirectional_breadth_first_search.hxx"
-#include "nifty/graph/multicut/ilp_backend/ilp_backend.hxx"
+#include "nifty/ilp_backend/ilp_backend.hxx"
 #include "nifty/graph/detail/contiguous_indices.hxx"
 #include "nifty/graph/detail/node_labels_to_edge_labels_iterator.hxx"
 

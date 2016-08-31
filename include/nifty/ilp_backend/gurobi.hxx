@@ -10,7 +10,6 @@
 #include "nifty/graph/multicut/ilp_backend/ilp_backend.hxx"
 
 namespace nifty {
-namespace graph {
 namespace ilp_backend{
 
 class Gurobi {
@@ -212,7 +211,6 @@ Gurobi::setStart(
 }
 
 } // namespace ilp_backend
-} // namespace graph
 } // namespace nifty
 
 

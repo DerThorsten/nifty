@@ -18,5 +18,6 @@ if(NOSETESTS_PATH)
        # graph
        ## lifted multicut
        test/graph/lifted_multicut/test_lifted_multicut_objective.py
+       test/graph/lifted_multicut/test_lifted_multicut_solvers.py
     )
 endif()

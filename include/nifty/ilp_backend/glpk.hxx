@@ -7,10 +7,10 @@
 
 #include <glpk.h>   
 
-#include "nifty/graph/multicut/ilp_backend/ilp_backend.hxx"
+#include "nifty/exceptions/exceptions.hxx"
+#include "nifty/ilp_backend/ilp_backend.hxx"
 
 namespace nifty {
-namespace graph {
 namespace ilp_backend{
 
 class Glpk {
@@ -40,7 +40,7 @@ public:
     void changeObjective(
         OBJECTIVE_ITERATOR objectiveIter
     ){
-        throw WeightsChangedNotSupported();
+        throw exceptions::WeightsChangedNotSupported();
     }
 
 private:
@@ -178,7 +178,6 @@ Glpk::setStart(
 }
 
 } // namespace ilp_backend
-} // namespace graph
 } // namespace nifty
 
 

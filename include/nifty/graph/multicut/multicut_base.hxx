@@ -5,8 +5,8 @@
 #include <string>
 #include <initializer_list>
 #include <sstream>
-#include <stdexcept>
-    
+
+#include "nifty/exceptions/exceptions.hxx"
 #include "nifty/graph/multicut/multicut_visitor_base.hxx"
 
 namespace nifty {
@@ -14,26 +14,7 @@ namespace graph {
 
 
 
-    class WeightsChangedNotSupported
-    : public std::runtime_error{
-    public:
-        WeightsChangedNotSupported(const std::string msg = std::string())
-        : std::runtime_error(msg){
-
-        }
-    };
-
-
-    class ResetNotSupported
-    : public std::runtime_error{
-    public:
-        ResetNotSupported(const std::string msg = std::string())
-        : std::runtime_error(msg){
-
-        }
-    };
-
-
+    
     template<class OBJECTIVE>
     class MulticutBase{
     
@@ -66,7 +47,7 @@ namespace graph {
         virtual void weightsChanged(){
             std::stringstream ss;
             ss<<this->name()<<" does not support changing weights";
-            throw WeightsChangedNotSupported(ss.str());
+            throw exceptions::WeightsChangedNotSupported(ss.str());
         }   
 
         

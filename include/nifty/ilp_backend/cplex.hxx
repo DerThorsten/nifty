@@ -9,10 +9,9 @@
 #define IL_STD 1
 #include <ilcplex/ilocplex.h>
 
-#include "nifty/graph/multicut/ilp_backend/ilp_backend.hxx"
+#include "nifty/ilp_backend/ilp_backend.hxx"
 
 namespace nifty {
-namespace graph {
 namespace ilp_backend{
     
 class Cplex {
@@ -290,7 +289,6 @@ Cplex::setStart(
 }
 
 } // namespace ilp_backend
-} // namespace graph
 } // namespace nifty
 
 #endif // #ifndef NIFTY_GRAPH_MULTICUT_ILP_BACKEND_CPLEX_HXX
