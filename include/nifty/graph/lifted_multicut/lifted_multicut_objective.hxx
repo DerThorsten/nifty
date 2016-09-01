@@ -161,7 +161,11 @@ namespace lifted_multicut{
         }
 
         int64_t graphEdgeInLiftedGraph(const uint64_t graphEdge)const{
-            if(std::is_same<Graph::EdgeIdTag, ContiguousTag>::value  &&  std::is_same<Graph::EdgeIdOrderTag, SortedTag>::value  ){
+
+            typedef std::is_same<typename Graph::EdgeIdTag,  ContiguousTag> CondA;
+            typedef std::is_same<typename Graph::EdgeIdOrderTag, SortedTag> CondB;
+
+            if(CondA::value && CondB::value  ){
                 return graphEdge;
             }
             else{
@@ -172,11 +176,15 @@ namespace lifted_multicut{
         }
 
         int64_t liftedGraphEdgeInGraph(const uint64_t liftedGraphEdge)const{
-           if(std::is_same<Graph::EdgeIdTag, ContiguousTag>::value  &&  std::is_same<Graph::EdgeIdOrderTag, SortedTag>::value  ){
+
+            typedef std::is_same<typename Graph::EdgeIdTag,  ContiguousTag> CondA;
+            typedef std::is_same<typename Graph::EdgeIdOrderTag, SortedTag> CondB;
+
+            if(CondA::value && CondB::value  ){
                 if(liftedGraphEdge < graph_.numberOfEdges())
                     return liftedGraphEdge;
                 else
-                    return -1
+                    return -1;
             }
             else{
                 // this is not efficient, we should refactor this

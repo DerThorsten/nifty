@@ -30,7 +30,11 @@ namespace lifted_multicut{
                 py::arg("u"),
                 py::arg("v"),
                 py::arg("weight"),
-                py::arg("overwrite") = false
+                py::arg_t<bool>("overwrite",false) // gcc 5.4.0 warning if py::arg("overwrite") = false is used
+                                                   // 
+                                                   // ISO C++ says that these are ambiguous, even though the worst 
+                                                   // conversion for the first is better than 
+                                                   // the worst conversion for the second:
             )
             .def("setCosts",[]
             (
@@ -48,7 +52,16 @@ namespace lifted_multicut{
                     objective.setCost(uvIds(i,0), uvIds(i,1), weights(i));
                 }
                 
-            })
+            },
+                py::arg("uv"),
+                py::arg("weight"),
+                py::arg_t<bool>("overwrite",false) // gcc 5.4.0 warning if py::arg("overwrite") = false is used
+                                                   // 
+                                                   // ISO C++ says that these are ambiguous, even though the worst 
+                                                   // conversion for the first is better than 
+                                                   // the worst conversion for the second:
+
+            )
             .def("evalNodeLabels",[](const ObjectiveType & objective,  nifty::marray::PyView<uint64_t> array){
                const auto & g = objective.graph();
                NIFTY_CHECK_OP(array.dimension(),==,1,"wrong dimensions");
