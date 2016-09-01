@@ -6,15 +6,15 @@
 #include "nifty/graph/multicut/multicut_ilp.hxx"
 
 #ifdef WITH_GUROBI
-#include "nifty/graph/multicut/ilp_backend/gurobi.hxx"
+#include "nifty/ilp_backend/gurobi.hxx"
 #endif
 
 #ifdef WITH_CPLEX
-#include "nifty/graph/multicut/ilp_backend/cplex.hxx"
+#include "nifty/ilp_backend/cplex.hxx"
 #endif
 
 #ifdef WITH_GLPK
-#include "nifty/graph/multicut/ilp_backend/glpk.hxx"
+#include "nifty/ilp_backend/glpk.hxx"
 #endif
 
 #include "nifty/python/graph/undirected_list_graph.hxx"

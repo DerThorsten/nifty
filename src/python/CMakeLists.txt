@@ -6,7 +6,7 @@ include(PythonLibTest)
 
 if(NOSETESTS_PATH)
     add_python_test_target(pythonTest   _nifty 
-
+        # unsorted
         test/test_python.py
         test/test_undirected_list_graph.py
         test/test_multicut_inference.py
@@ -14,10 +14,13 @@ if(NOSETESTS_PATH)
         test/test_rag_accumulate.py
         test/test_agglo.py
         test/test_hdf5.py
-
         # graph
         ## lifted multicut
         test/graph/lifted_multicut/test_lifted_multicut_objective.py
         test/graph/lifted_multicut/test_lifted_multicut_solver.py
+        # graph
+        ## lifted multicut
+        test/graph/lifted_multicut/test_lifted_multicut_objective.py
+        test/graph/lifted_multicut/test_lifted_multicut_solvers.py
     )
 endif()

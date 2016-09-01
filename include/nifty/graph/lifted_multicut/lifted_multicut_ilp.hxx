@@ -6,7 +6,7 @@
 #include "nifty/tools/runtime_check.hxx"
 #include "nifty/graph/components.hxx"
 #include "nifty/graph/paths.hxx"
-#include "nifty/graph/multicut/multicut_base.hxx"
+#include "nifty/graph/lifted_multicut/lifted_multicut_base.hxx"
 #include "nifty/graph/three_cycles.hxx"
 #include "nifty/graph/breadth_first_search.hxx"
 #include "nifty/graph/bidirectional_breadth_first_search.hxx"
@@ -19,12 +19,12 @@ namespace graph{
 
 
     template<class OBJECTIVE, class ILP_SOLVER>
-    class MulticutIlp : public MulticutBase<OBJECTIVE>
+    class LiftedMulticutIlp : public LiftedMulticutBase<OBJECTIVE>
     {
     public: 
 
         typedef OBJECTIVE Objective;
-        typedef MulticutBase<OBJECTIVE> Base;
+        typedef LiftedMulticutBase<OBJECTIVE> Base;
         typedef typename Base::VisitorBase VisitorBase;
         typedef typename Base::VisitorProxy VisitorProxy;
         typedef typename Base::EdgeLabels EdgeLabels;
@@ -32,10 +32,11 @@ namespace graph{
         typedef ILP_SOLVER IlpSovler;
         typedef typename IlpSovler::Settings IlpSettings;
         typedef typename Objective::Graph Graph;
-
+        typedef typename Objective::LiftedGraph LiftedGraph;
     private:
         typedef ComponentsUfd<Graph> Components;
         typedef detail_graph::EdgeIndicesToContiguousEdgeIndices<Graph> DenseIds;
+
 
         struct SubgraphWithCut {
             SubgraphWithCut(const IlpSovler& ilpSolver, const DenseIds & denseIds)
@@ -47,6 +48,32 @@ namespace graph{
             bool useEdge(const size_t e) const
                 { return ilpSolver_.label(denseIds_[e]) == 0; }
 
+            const IlpSovler & ilpSolver_;
+            const DenseIds & denseIds_;
+        };
+
+        template< bool TAKE_UNCUT = true>
+        struct GraphSubgraphWithCut {
+            GraphSubgraphWithCut(
+                const Objective & objective,
+                const IlpSovler& ilpSolver, 
+                const DenseIds & denseIds
+            )
+                :   objective_(objective),
+                    ilpSolver_(ilpSolver),
+                    denseIds_(denseIds)
+            {}
+            bool useNode(const uint64_t v) const
+                { return true; }
+            bool useEdge(const uint64_t graphEdge) const{ 
+                const auto lifdtedGraphEdge = objective_.liftedGraphEdgeInGraph(edge);
+                if(TAKE_UNCUT)
+                    return ilpSolver_.label(denseIds_[lifdtedGraphEdge]) <  0.5; 
+                else
+                    return ilpSolver_.label(denseIds_[lifdtedGraphEdge]) >= 0.5; 
+            }
+
+            const Objective & objective_;
             const IlpSovler & ilpSolver_;
             const DenseIds & denseIds_;
         };
@@ -63,11 +90,11 @@ namespace graph{
             IlpSettings ilpSettings;
         };
 
-        virtual ~MulticutIlp(){
+        virtual ~LiftedMulticutIlp(){
             if(ilpSolver_ != nullptr)
                 delete ilpSolver_;
         }
-        MulticutIlp(const Objective & objective, const Settings & settings = Settings());
+        LiftedMulticutIlp(const Objective & objective, const Settings & settings = Settings());
 
 
         virtual void optimize(NodeLabels & nodeLabels, VisitorBase * visitor);
@@ -79,7 +106,7 @@ namespace graph{
         }
 
         virtual std::string name()const{
-            return std::string("MulticutIlp") + ILP_SOLVER::name();
+            return std::string("LiftedMulticutIlp") + ILP_SOLVER::name();
         }
         virtual void weightsChanged(){
 
@@ -114,6 +141,7 @@ namespace graph{
 
         const Objective & objective_;
         const Graph & graph_;
+        const LiftedGraph & liftedGraph_;
 
         IlpSovler * ilpSolver_;
         Components components_;
@@ -132,13 +160,14 @@ namespace graph{
 
     
     template<class OBJECTIVE, class ILP_SOLVER>
-    MulticutIlp<OBJECTIVE, ILP_SOLVER>::
-    MulticutIlp(
+    LiftedMulticutIlp<OBJECTIVE, ILP_SOLVER>::
+    LiftedMulticutIlp(
         const Objective & objective, 
         const Settings & settings
     )
     :   objective_(objective),
         graph_(objective.graph()),
+        liftedGraph_(objective.liftedGraph_()),
         ilpSolver_(nullptr),//settings.ilpSettings),
         components_(graph_),
         denseIds_(graph_),
@@ -158,7 +187,7 @@ namespace graph{
     }
 
     template<class OBJECTIVE, class ILP_SOLVER>
-    void MulticutIlp<OBJECTIVE, ILP_SOLVER>::
+    void LiftedMulticutIlp<OBJECTIVE, ILP_SOLVER>::
     optimize(
         NodeLabels & nodeLabels,  VisitorBase * visitor
     ){  
@@ -204,18 +233,22 @@ namespace graph{
     }
 
     template<class OBJECTIVE, class ILP_SOLVER>
-    const typename MulticutIlp<OBJECTIVE, ILP_SOLVER>::Objective &
-    MulticutIlp<OBJECTIVE, ILP_SOLVER>::
+    const typename LiftedMulticutIlp<OBJECTIVE, ILP_SOLVER>::Objective &
+    LiftedMulticutIlp<OBJECTIVE, ILP_SOLVER>::
     objective()const{
         return objective_;
     }
 
     template<class OBJECTIVE, class ILP_SOLVER>
-    size_t MulticutIlp<OBJECTIVE, ILP_SOLVER>::
+    size_t LiftedMulticutIlp<OBJECTIVE, ILP_SOLVER>::
     addCycleInequalities(
     ){
 
-        components_.build(SubgraphWithCut(*ilpSolver_, denseIds_));
+        const auto graphSubgraphWithCutTakeUncut = GraphSubgraphWithCut<true >(objective_, *ilpSolver_, denseIds_);
+        const auto graphSubgraphWithCutTakeCut   = GraphSubgraphWithCut<false>(objective_, *ilpSolver_, denseIds_);
+
+        // build cc
+        components_.build(graphSubgraphWithCutTakeUncut);
 
         // search for violated non-chordal cycles and add corresp. inequalities
         size_t nCycle = 0;
@@ -225,28 +258,30 @@ namespace graph{
         // for a graph with dense contiguous edge ids the lpEdge 
         // is equivalent to the graph edge
         auto lpEdge = 0;
-        for (auto edge : graph_.edges()){
-            if (ilpSolver_->label(lpEdge) > 0.5){
+        for (auto edge : liftedGraph_.edges()){
 
-                auto v0 = graph_.u(edge);
-                auto v1 = graph_.v(edge);
+            const auto uv = liftedGraph_.uv(edge);
+            const auto v0 = uv.first;
+            const auto v1 = uv.second;
+            const auto areConnected = components_.areConnected(v0, v1);
+            const auto ilpLabel = ilpSolver_->label(lpEdge);
 
-                if (components_.areConnected(v0, v1)){   
+            if (ilpLabel > 0.5 && areConnected){
 
-                    auto hasPath = bibfs_.runSingleSourceSingleTarget(v0, v1, SubgraphWithCut(*ilpSolver_, denseIds_));
-                    NIFTY_CHECK(hasPath,"damn");
-                    const auto & path = bibfs_.path();
-                    NIFTY_CHECK_OP(path.size(),>,0,"");
-                    const auto sz = path.size(); //buildPathInLargeEnoughBuffer(v0, v1, bfs.predecessors(), path.begin());
+                auto hasPath = bibfs_.runSingleSourceSingleTarget(v0, v1, graphSubgraphWithCutTakeUncut);
+                NIFTY_CHECK(hasPath,"damn");
+                const auto & path = bibfs_.path();
+                NIFTY_CHECK_OP(path.size(),>,0,"");
+                const auto sz = path.size(); //buildPathInLargeEnoughBuffer(v0, v1, bfs.predecessors(), path.begin());
 
+                bool chordless = true;
+                if (findChord(graph_, path.begin(), path.end(),graphSubgraphWithCutTakeCut, true) != -1){
+                    chordless = false;
+                }
 
-                    if (findChord(graph_, path.begin(), path.end(), true) != -1){
-                        ++lpEdge;
-                        continue;
-                    }
-
+                if(chordless){
                     for (size_t j = 0; j < sz - 1; ++j){
-                        variables_[j] = denseIds_[graph_.findEdge(path[j], path[j + 1])];
+                        variables_[j] = denseIds_[liftedGraph_.findEdge(path[j], path[j + 1])];
                         coefficients_[j] = 1.0;
                     }
                     variables_[sz - 1] = lpEdge;
@@ -257,6 +292,10 @@ namespace graph{
                                              coefficients_.begin(), 0, std::numeric_limits<double>::infinity());
                     ++nCycle;
                 }
+            
+            }
+            else if(ilpLabel < 0.5 && !areConnected){
+                
             }
             ++lpEdge;
         }
@@ -264,7 +303,7 @@ namespace graph{
     }
 
     template<class OBJECTIVE, class ILP_SOLVER>
-    void MulticutIlp<OBJECTIVE, ILP_SOLVER>::
+    void LiftedMulticutIlp<OBJECTIVE, ILP_SOLVER>::
     repairSolution(
         NodeLabels & nodeLabels
     ){
@@ -278,24 +317,22 @@ namespace graph{
     }
 
     template<class OBJECTIVE, class ILP_SOLVER>
-    void MulticutIlp<OBJECTIVE, ILP_SOLVER>::
+    void LiftedMulticutIlp<OBJECTIVE, ILP_SOLVER>::
     initializeIlp(){
-        if(graph_.numberOfEdges()!= 0 ){
-            std::vector<double> costs(graph_.numberOfEdges(),0.0);
+        if(liftedGraph_.numberOfEdges()!= 0 ){
+
+            std::vector<double> costs(liftedGraph_.numberOfEdges(),0.0);
             const auto & weights = objective_.weights();
             auto lpEdge = 0;
-            for(auto e : graph_.edges()){
+            for(auto e : liftedGraph_.edges()){
                 if(std::abs(weights[e])<=0.00000001){
-                    if(weights[e]<0.0){
+                    if(weights[e]<0.0)
                         costs[lpEdge] = -0.00000001;
-                    }
-                    else{
+                    else
                         costs[lpEdge] =  0.00000001;
-                    }
                 }
-                else{
+                else
                     costs[lpEdge] = weights[e];
-                }
                 ++lpEdge;
             }
             ilpSolver_->initModel(graph_.numberOfEdges(), costs.data());
@@ -303,10 +340,10 @@ namespace graph{
     }
 
     template<class OBJECTIVE, class ILP_SOLVER>
-    void MulticutIlp<OBJECTIVE, ILP_SOLVER>::
+    void LiftedMulticutIlp<OBJECTIVE, ILP_SOLVER>::
     addThreeCyclesConstraintsExplicitly(
     ){
-        //std::cout<<"add three cyckes\n";
+        /*
         std::array<size_t, 3> variables;
         std::array<double, 3> coefficients;
         auto threeCycles = findThreeCyclesEdges(graph_);
@@ -357,6 +394,7 @@ namespace graph{
         }
         //std::cout<<"add three done\n";
         //std::cout<<"added "<<c<<" explicit constraints\n";
+        */
     }
 
 

@@ -7,7 +7,7 @@
 #include <sstream>
 #include <stdexcept>
     
-#include "nifty/graph/multicut/multicut_base.hxx"
+#include "nifty/exceptions/exceptions.hxx"
 #include "nifty/graph/lifted_multicut/lifted_multicut_visitor_base.hxx"
 
 namespace nifty {
@@ -47,7 +47,7 @@ namespace lifted_multicut{
         virtual void weightsChanged(){
             std::stringstream ss;
             ss<<this->name()<<" does not support changing weights";
-            throw WeightsChangedNotSupported(ss.str());
+            throw exceptions::WeightsChangedNotSupported(ss.str());
         }   
 
         

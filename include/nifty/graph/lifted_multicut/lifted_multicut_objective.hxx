@@ -62,6 +62,9 @@ namespace lifted_multicut{
     };
 
 
+
+
+
     template<class GRAPH, class WEIGHT_TYPE>   
     class LiftedMulticutObjective :  public
         LiftedMulticutObjectiveBase<
@@ -157,7 +160,38 @@ namespace lifted_multicut{
             });
         }
 
+        int64_t graphEdgeInLiftedGraph(const uint64_t graphEdge)const{
+            if(std::is_same<Graph::EdgeIdTag, ContiguousTag>::value  &&  std::is_same<Graph::EdgeIdOrderTag, SortedTag>::value  ){
+                return graphEdge;
+            }
+            else{
+                // this is not efficient, we should refactor this
+                const auto uv = graph_.uv(graphEdge);
+                return liftedGraph_.findEdge(uv.first, uv.second);
+            }
+        }
 
+        int64_t liftedGraphEdgeInGraph(const uint64_t liftedGraphEdge)const{
+           if(std::is_same<Graph::EdgeIdTag, ContiguousTag>::value  &&  std::is_same<Graph::EdgeIdOrderTag, SortedTag>::value  ){
+                if(liftedGraphEdge < graph_.numberOfEdges())
+                    return liftedGraphEdge;
+                else
+                    return -1
+            }
+            else{
+                // this is not efficient, we should refactor this
+                const auto uv = liftedGraph_.uv(liftedGraphEdge);
+                return graph_.findEdge(uv.first, uv.second);
+            }
+        }
+
+        /**
+         * @brief Iterate over all edges of the lifted graph which are in the original graph
+         * @details Iterate over all edges of the lifted graph which are in the original graph.
+         * The ids are w.r.t. the lifted graph
+         * 
+         * @param f functor/lambda which is called for each edge id 
+         */
         template<class F>
         void forEachGraphEdge(F && f)const{
             for(uint64_t e = 0 ; e<graph_.numberOfEdges(); ++e){
@@ -165,6 +199,13 @@ namespace lifted_multicut{
             }
         }
 
+        /**
+         * @brief Iterate over all edges of the lifted graph which are NOT in the original graph.
+         * @details Iterate over all edges of the lifted graph which are NOT the original graph.
+         * The ids are w.r.t. the lifted graph
+         * 
+         * @param f functor/lambda which is called for each edge id 
+         */
         template<class F>
         void forEachLiftedeEdge(F && f)const{
             for(uint64_t e = graph_.numberOfEdges(); e<liftedGraph_.numberOfEdges(); ++e){
