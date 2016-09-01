@@ -223,6 +223,7 @@ namespace lifted_multicut{
 
         typedef OBJECTIVE Objective;
         typedef typename Objective::Graph Graph;
+        typedef typename Objective::LiftedGraph LiftedGraph;
         typedef detail_lifted_multicut_greedy_additive::LiftedMulticutGreedyAdditiveCallback<Objective> Callback;
         typedef LiftedMulticutBase<OBJECTIVE> Base;
         typedef typename Base::VisitorBase VisitorBase;
@@ -265,7 +266,7 @@ namespace lifted_multicut{
         NodeLabels * currentBest_;
 
         Callback callback_;
-        EdgeContractionGraph<Graph, Callback> edgeContractionGraph_;
+        EdgeContractionGraph<LiftedGraph, Callback> edgeContractionGraph_;
     };
 
     

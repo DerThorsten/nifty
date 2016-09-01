@@ -230,10 +230,10 @@ def __extendLiftedMulticutObj(objectiveCls, objectiveName):
 
     O = objectiveCls
 
-    def multicutVerboseVisitor(visitNth=1):
+    def verboseVisitor(visitNth=1):
         V = getLmcCls("LiftedMulticutVerboseVisitor")
         return V(visitNth)
-    O.multicutVerboseVisitor = staticmethod(multicutVerboseVisitor)
+    O.verboseVisitor = staticmethod(verboseVisitor)
 
 
 
