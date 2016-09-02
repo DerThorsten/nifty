@@ -30,83 +30,38 @@ PYBIND11_DECLARE_HOLDER_TYPE(T, std::shared_ptr<T>);
 namespace nifty{
 namespace graph{
     
-
+    template<class OBJECTIVE, class BACKEND>
+    void exportMulticutIlpWithBackendT(py::module & multicutModule, const std::string & backendName){
+        typedef OBJECTIVE ObjectiveType;
+        typedef BACKEND IlpSolver;
+        typedef MulticutIlp<ObjectiveType, IlpSolver> Solver;
+        typedef typename Solver::Settings Settings;
+        typedef MulticutFactory<Solver> Factory;
+        const auto solverName = std::string("MulticutIlp") + backendName;
+        exportMulticutSolver<Solver>(multicutModule, solverName.c_str())
+            .def(py::init<>())
+            .def_readwrite("numberOfIterations", &Settings::numberOfIterations)
+            .def_readwrite("verbose", &Settings::verbose)
+            .def_readwrite("verboseIlp", &Settings::verboseIlp)
+            .def_readwrite("addThreeCyclesConstraints", &Settings::addThreeCyclesConstraints)
+            .def_readwrite("addOnlyViolatedThreeCyclesConstraints", &Settings::addOnlyViolatedThreeCyclesConstraints)
+            .def_readwrite("ilpSettings",&Settings::ilpSettings)
+        ; 
+    }
 
     template<class OBJECTIVE>
     void exportMulticutIlpT(py::module & multicutModule) {
-
-
         typedef OBJECTIVE ObjectiveType;
-
-
-
-
-        { // scope for name reusing
         #ifdef WITH_CPLEX
-
-
-            
-            typedef ilp_backend::Cplex IlpSolver;
-            typedef MulticutIlp<ObjectiveType, IlpSolver> Solver;
-            typedef typename Solver::Settings Settings;
-            typedef MulticutFactory<Solver> Factory;
-
-            exportMulticutSolver<Solver>(multicutModule,"MulticutIlpCplex")
-                .def(py::init<>())
-                .def_readwrite("numberOfIterations", &Settings::numberOfIterations)
-                .def_readwrite("verbose", &Settings::verbose)
-                .def_readwrite("verboseIlp", &Settings::verboseIlp)
-                .def_readwrite("addThreeCyclesConstraints", &Settings::addThreeCyclesConstraints)
-                .def_readwrite("addOnlyViolatedThreeCyclesConstraints", &Settings::addOnlyViolatedThreeCyclesConstraints)
-                .def_readwrite("ilpSettings",&Settings::ilpSettings)
-            ;
+            exportMulticutIlpWithBackendT<ObjectiveType, ilp_backend::Cplex>(multicutModule, "Cplex");
         #endif
-        }
-        
-        { // scope for name reusing
         #ifdef WITH_GUROBI
-
-
-            
-            typedef ilp_backend::Gurobi IlpSolver;
-            typedef MulticutIlp<ObjectiveType, IlpSolver> Solver;
-            typedef typename Solver::Settings Settings;
-            typedef MulticutFactory<Solver> Factory;
-
-            exportMulticutSolver<Solver>(multicutModule,"MulticutIlpGurobi")
-                .def(py::init<>())
-                .def_readwrite("numberOfIterations", &Settings::numberOfIterations)
-                .def_readwrite("verbose", &Settings::verbose)
-                .def_readwrite("verboseIlp", &Settings::verboseIlp)
-                .def_readwrite("addThreeCyclesConstraints", &Settings::addThreeCyclesConstraints)
-                .def_readwrite("addOnlyViolatedThreeCyclesConstraints", &Settings::addOnlyViolatedThreeCyclesConstraints)
-                .def_readwrite("ilpSettings",&Settings::ilpSettings)
-            ;
+            exportMulticutIlpWithBackendT<ObjectiveType, ilp_backend::Gurobi>(multicutModule, "Gurobi");
         #endif
-        }
-
-
-        { // scope for name reusing
         #ifdef WITH_GLPK
-
-
-            
-            typedef ilp_backend::Glpk IlpSolver;
-            typedef MulticutIlp<ObjectiveType, IlpSolver> Solver;
-            typedef typename Solver::Settings Settings;
-            typedef MulticutFactory<Solver> Factory;
-
-            exportMulticutSolver<Solver>(multicutModule,"MulticutIlpGlpk")
-                .def(py::init<>())
-                .def_readwrite("numberOfIterations", &Settings::numberOfIterations)
-                .def_readwrite("verbose", &Settings::verbose)
-                .def_readwrite("verboseIlp", &Settings::verboseIlp)
-                .def_readwrite("addThreeCyclesConstraints", &Settings::addThreeCyclesConstraints)
-                .def_readwrite("addOnlyViolatedThreeCyclesConstraints", &Settings::addOnlyViolatedThreeCyclesConstraints)
-                .def_readwrite("ilpSettings",&Settings::ilpSettings)
-            ;
-        #endif
-        }
+            exportMulticutIlpWithBackendT<ObjectiveType, ilp_backend::Glpk>(multicutModule, "Glpk");
+        #endif   
+        
     }
     
     void exportMulticutIlp(py::module & multicutModule){
@@ -118,7 +73,6 @@ namespace graph{
             .def_readwrite("absoluteGap", &ilp_backend::IlpBackendSettings::absoluteGap)
             .def_readwrite("memLimit",  &ilp_backend::IlpBackendSettings::memLimit)
         ;
-
         {
             typedef PyUndirectedGraph GraphType;
             typedef MulticutObjective<GraphType, double> ObjectiveType;

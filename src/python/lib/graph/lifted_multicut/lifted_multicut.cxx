@@ -14,6 +14,7 @@ namespace lifted_multicut{
     void exportLiftedMulticutVisitorBase(py::module &);
     void exportLiftedMulticutBase(py::module &);
     void exportLiftedMulticutGreedyAdditive(py::module &);
+    void exportLiftedMulticutIlp(py::module &);
 
     void initSubmoduleLiftedMulticut(py::module &graphModule) {
 
@@ -23,6 +24,7 @@ namespace lifted_multicut{
         exportLiftedMulticutBase(liftedMulticutModule);
         exportLiftedMulticutFactory(liftedMulticutModule);
         exportLiftedMulticutGreedyAdditive(liftedMulticutModule);
+        exportLiftedMulticutIlp(liftedMulticutModule);
     }
 
 }

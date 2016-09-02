@@ -2,7 +2,10 @@
 #ifndef NIFTY_GRAPH_LIFTED_MULTICUT_LIFTED_MULTICUT_OBJECTIVE_HXX
 #define NIFTY_GRAPH_LIFTED_MULTICUT_LIFTED_MULTICUT_OBJECTIVE_HXX
 
+
+
 #include "nifty/tools/runtime_check.hxx"
+#include "nifty/graph/undirected_list_graph.hxx"
 #include "nifty/graph/subgraph_mask.hxx"
 #include "nifty/graph/graph_maps.hxx"
 #include "nifty/graph/detail/contiguous_indices.hxx"

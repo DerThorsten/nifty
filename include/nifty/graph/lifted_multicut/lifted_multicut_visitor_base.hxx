@@ -126,7 +126,7 @@ namespace lifted_multicut{
         }
         void end(McBase * solver)   {
             if(visitor_ != nullptr){
-                visitor_->begin(solver);
+                visitor_->end(solver);
             }
         }
 

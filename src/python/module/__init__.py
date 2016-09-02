@@ -5,6 +5,14 @@ import numpy
 
 
 
+def ilpSettings(relativeGap=0.0, absoluteGap=0.0, memLimit=-1.0):
+    s = graph.multicut.IlpBackendSettings()
+    s.relativeGap = float(relativeGap)
+    s.absoluteGap = float(absoluteGap)
+    s.memLimit = float(memLimit)
+
+    return s
+    
 
 
 
@@ -61,14 +69,6 @@ def __extendMulticutObj(objectiveCls, objectiveName):
     O.greedyAdditiveFactory = staticmethod(greedyAdditiveFactory)
 
 
-    def ilpSettings(relativeGap=0.0, absoluteGap=0.0, memLimit=-1.0):
-        s = graph.multicut.IlpBackendSettings()
-        s.relativeGap = float(relativeGap)
-        s.absoluteGap = float(absoluteGap)
-        s.memLimit = float(memLimit)
-
-        return s
-    O.ilpSettings = staticmethod(ilpSettings)
 
 
     def multicutIlpFactory(verbose=0, addThreeCyclesConstraints=True,
@@ -245,6 +245,30 @@ def __extendLiftedMulticutObj(objectiveCls, objectiveName):
         return F(s)
     O.greedyAdditiveFactory = staticmethod(greedyAdditiveFactory)
 
+
+    def liftedMulticutIlpFactory(verbose=0, addThreeCyclesConstraints=True,
+                                addOnlyViolatedThreeCyclesConstraints=True,
+                                relativeGap=0.0, absoluteGap=0.0, memLimit=-1.0,
+                                ilpSolver = 'cplex'):
+
+        if ilpSolver == 'cplex':
+            s,F = getSettingsAndFactoryCls("LiftedMulticutIlpCplex")
+        elif ilpSolver == 'gurobi':
+            s,F = getSettingsAndFactoryCls("LiftedMulticutIlpGurobi")
+        elif ilpSolver == 'glpk':
+            s,F = getSettingsAndFactoryCls("LiftedMulticutIlpGlpk")
+        else:
+            raise RuntimeError("%s is an unknown ilp solver"%str(ilpSolver))
+        s.verbose = int(verbose)
+        s.addThreeCyclesConstraints = bool(addThreeCyclesConstraints)
+        s.addOnlyViolatedThreeCyclesConstraints = bool(addOnlyViolatedThreeCyclesConstraints)
+        s.ilpSettings = ilpSettings(relativeGap=relativeGap, absoluteGap=absoluteGap, memLimit=memLimit)
+        return F(s)
+
+    O.liftedMulticutIlpFactory = staticmethod(liftedMulticutIlpFactory)
+    O.liftedMulticutIlpCplexFactory = staticmethod(partial(liftedMulticutIlpFactory,ilpSolver='cplex'))
+    O.liftedMulticutIlpGurobiFactory = staticmethod(partial(liftedMulticutIlpFactory,ilpSolver='gurobi'))
+    O.liftedMulticutIlpGlpkFactory = staticmethod(partial(liftedMulticutIlpFactory,ilpSolver='glpk'))
 
 
 
