@@ -64,6 +64,20 @@ public:
         return ufd_.find(u);
     }
 
+    uint64_t operator[](const uint64_t u) const {
+        return this->componentLabel(u);
+    }
+    
+    uint64_t maxLabel()const{
+        uint64_t maxLabel = 0;
+        graph_.forEachNode([&](const uint64_t node){
+            maxLabel = std::max(this->componentLabel(node), maxLabel);
+        });
+        return maxLabel; 
+    }
+
+
+
 private:
     const Graph & graph_;
     nifty::ufd::Ufd< > ufd_;

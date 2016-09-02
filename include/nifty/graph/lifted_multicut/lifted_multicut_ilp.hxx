@@ -2,7 +2,7 @@
 #ifndef NIFTY_GRAPH_LIFTED_MULTICUT_LIFTED_MULTICUT_ILP_HXX
 #define NIFTY_GRAPH_LIFTED_MULTICUT_LIFTED_MULTICUT_ILP_HXX
 
-
+#include "nifty/logging/logging.hxx"
 #include "nifty/tools/runtime_check.hxx"
 #include "nifty/graph/components.hxx"
 #include "nifty/graph/paths.hxx"
@@ -178,14 +178,19 @@ namespace lifted_multicut{
             )
         )
     {
+        // std::cout << "LiftedMulticutIlp::LiftedMulticutIlp: new IlpSolver\n";
         ilpSolver_ = new ILP_SOLVER(settings_.ilpSettings);
         
+        // std::cout << "LiftedMulticutIlp::LiftedMulticutIlp: initializeIlp\n";
         this->initializeIlp();
 
         // add explicit constraints
+        // std::cout << "LiftedMulticutIlp::LiftedMulticutIlp: add3Cycles\n";
         if(settings_.addThreeCyclesConstraints){
             this->addThreeCyclesConstraintsExplicitly();
         }
+
+        // std::cout << "LiftedMulticutIlp::LiftedMulticutIlp: DONE\n";
     }
 
     template<class OBJECTIVE, class ILP_SOLVER>
@@ -194,7 +199,7 @@ namespace lifted_multicut{
         NodeLabels & nodeLabels,  VisitorBase * visitor
     ){  
 
-        //std::cout<<"nStartConstraints "<<addedConstraints_<<"\n";
+        // std::cout << "LiftedMulticutIlp::optimize: Start\n";
         VisitorProxy visitorProxy(visitor);
 
         visitorProxy.addLogNames({"violatedCycleConstraints","violatedCutConstraints"});
@@ -205,19 +210,27 @@ namespace lifted_multicut{
 
         if(graph_.numberOfEdges()>0){
 
+
+            // std::cout << "LiftedMulticutIlp::optimize: Set StartintPoint\n";
             // set the starting point 
-            auto edgeLabelIter = detail_graph::nodeLabelsToEdgeLabelsIterBegin(graph_, nodeLabels);
+            auto edgeLabelIter = detail_graph::nodeLabelsToEdgeLabelsIterBegin(liftedGraph_,  nodeLabels);
             ilpSolver_->setStart(edgeLabelIter);
+
 
             size_t i=0;
             for (  ; settings_.numberOfIterations == 0 || i < settings_.numberOfIterations; ++i){
 
+
                 // solve ilp
+                // std::cout << "LiftedMulticutIlp::optimize: Optimize Ilp\n";
                 ilpSolver_->optimize();
 
+                // std::cout << "LiftedMulticutIlp::optimize: addViolatedInequalities Ilp\n";
                 // find violated constraints
                 auto nViolated = addViolatedInequalities(false, visitorProxy);
 
+
+                // std::cout << "LiftedMulticutIlp::optimize: repair Ilp\n";
                 // repair the solution
                 repairSolution(nodeLabels);
 
@@ -231,16 +244,19 @@ namespace lifted_multicut{
                 if (nViolated == 0)
                     break;
             }
-
+            // std::cout << "LiftedMulticutIlp::optimize: PHASE 2\n";
             for ( ; settings_.numberOfIterations == 0 || i < settings_.numberOfIterations; ++i){
 
                 // solve ilp
+                // std::cout << "LiftedMulticutIlp::optimize: Optimize Ilp\n";
                 ilpSolver_->optimize();
 
                 // find violated constraints
+                // std::cout << "LiftedMulticutIlp::optimize: addViolatedInequalities Ilp\n";
                 auto nViolated = addViolatedInequalities(true, visitorProxy);
 
                 // repair the solution
+                // std::cout << "LiftedMulticutIlp::optimize: repair Ilp\n";
                 repairSolution(nodeLabels);
 
                 
@@ -256,6 +272,8 @@ namespace lifted_multicut{
             ++numberOfOptRuns_;
         }
         visitorProxy.end(this);
+
+        // std::cout << "LiftedMulticutIlp::optimize: End\n";
     }
 
     template<class OBJECTIVE, class ILP_SOLVER>
@@ -271,7 +289,7 @@ namespace lifted_multicut{
         const bool searchForCutConstraitns,
         VisitorProxy & visitorProxy
     ){
-
+        // std::cout << "LiftedMulticutIlp::addViolatedInequalities: Start\n";
         const auto graphSubgraphWithCutTakeUncut = GraphSubgraphWithCut<true >(objective_, *ilpSolver_, denseIds_);
         const auto graphSubgraphWithCutTakeCut   = GraphSubgraphWithCut<false>(objective_, *ilpSolver_, denseIds_);
 
@@ -310,7 +328,9 @@ namespace lifted_multicut{
 
                 if(chordless){
                     for (size_t j = 0; j < sz - 1; ++j){
-                        variables_[j] = denseIds_[liftedGraph_.findEdge(path[j], path[j + 1])];
+                        const auto v = denseIds_[liftedGraph_.findEdge(path[j], path[j + 1])];
+                        NIFTY_ASSERT_OP(v,<,liftedGraph_.numberOfEdges());
+                        variables_[j] = v;
                         coefficients_[j] = 1.0;
                     }
                     variables_[sz - 1] = lpEdge;
@@ -372,6 +392,7 @@ namespace lifted_multicut{
         // add additional logs
         visitorProxy.setLogValue(0, nCycleConstraints);
         visitorProxy.setLogValue(1, !searchForCutConstraitns ? -1.0 : double(nCutConstraints));
+        // std::cout << "LiftedMulticutIlp::addViolatedInequalities: RETURN\n";
         return nCycleConstraints + nCutConstraints;
     }
 
@@ -384,7 +405,7 @@ namespace lifted_multicut{
             for (auto node: graph_.nodes()){
                 nodeLabels[node] = components_.componentLabel(node);
             }
-            auto edgeLabelIter = detail_graph::nodeLabelsToEdgeLabelsIterBegin(graph_, nodeLabels);
+            auto edgeLabelIter = detail_graph::nodeLabelsToEdgeLabelsIterBegin(liftedGraph_, nodeLabels);
             ilpSolver_->setStart(edgeLabelIter);
         }
     }

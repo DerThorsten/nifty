@@ -46,6 +46,7 @@ pybind11_add_module(_nifty
     graph/lifted_multicut/lifted_multicut_base.cxx
     graph/lifted_multicut/lifted_multicut_factory.cxx
     graph/lifted_multicut/lifted_multicut_greedy_additive.cxx
+    graph/lifted_multicut/lifted_multicut_kernighan_lin.cxx
     graph/lifted_multicut/lifted_multicut_ilp.cxx
     #############################
     # hdf5

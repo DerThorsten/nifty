@@ -78,8 +78,24 @@ namespace lifted_multicut{
     private:
         typedef nifty::graph::detail_graph::NodeIndicesToContiguousNodeIndices<GRAPH > ToContiguousNodes;
 
+
+        typedef std::is_same<typename GRAPH::NodeIdTag,  ContiguousTag> GraphHasContiguousNodeIds;
+
+        static_assert( GraphHasContiguousNodeIds::value,
+                  "LiftedMulticut assumes that the node id-s between graph and lifted graph are exchangeable \
+                   The LiftedMulticutObjective can only guarantee this for for graphs which have Contiguous Node ids "
+        );
+
     public:
         typedef GRAPH GraphType;
+
+
+       
+
+
+
+       
+
         typedef UndirectedGraph<> LiftedGraphType;
 
         typedef GraphType Graph;

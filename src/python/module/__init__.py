@@ -238,12 +238,24 @@ def __extendLiftedMulticutObj(objectiveCls, objectiveName):
 
 
 
-    def greedyAdditiveFactory( weightStopCond=0.0, nodeNumStopCond=-1.0):
+    def liftedMulticutGreedyAdditiveFactory( weightStopCond=0.0, nodeNumStopCond=-1.0):
         s,F = getSettingsAndFactoryCls("LiftedMulticutGreedyAdditive")
         s.weightStopCond = float(weightStopCond)
         s.nodeNumStopCond = float(nodeNumStopCond)
         return F(s)
-    O.greedyAdditiveFactory = staticmethod(greedyAdditiveFactory)
+    O.liftedMulticutGreedyAdditiveFactory = staticmethod(liftedMulticutGreedyAdditiveFactory)
+
+
+    def liftedMulticutKernighanLinFactory( numberOfOuterIterations=1000000,
+                                            numberOfInnerIterations=100,
+                                            epsilon=1e-7):
+        s,F = getSettingsAndFactoryCls("LiftedMulticutKernighanLin")
+        s.numberOfOuterIterations = int(numberOfOuterIterations)
+        s.numberOfInnerIterations = int(numberOfInnerIterations)
+        s.epsilon = float(epsilon)
+        return F(s)
+    O.liftedMulticutKernighanLinFactory = staticmethod(liftedMulticutKernighanLinFactory)
+
 
 
     def liftedMulticutIlpFactory(verbose=0, addThreeCyclesConstraints=True,
