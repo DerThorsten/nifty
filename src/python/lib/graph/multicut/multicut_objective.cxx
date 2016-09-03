@@ -25,22 +25,7 @@ namespace graph{
         auto multicutObjectiveCls = py::class_<ObjectiveType>(multicutModule, clsName.c_str());
         multicutObjectiveCls
             .def("evalNodeLabels",[](const ObjectiveType & objective,  nifty::marray::PyView<uint64_t> array){
-                const auto & g = objective.graph();
-                NIFTY_CHECK_OP(array.dimension(),==,1,"wrong dimensions");
-                NIFTY_CHECK_OP(array.shape(0),==,g.nodeIdUpperBound()+1,"wrong shape");
-
-
-                double sum = static_cast<double>(0.0);
-                const auto & w = objective.weights();
-                for(const auto edge: g.edges()){
-                    const auto uv = g.uv(edge);
-                    if(array(uv.first) != array(uv.second)){
-                        sum += w[edge];
-                    }
-                }
-                return sum;
-
-
+                return objective.evalNodeLabels(array);
             })
         ;
 

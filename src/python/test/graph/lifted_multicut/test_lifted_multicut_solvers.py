@@ -53,28 +53,98 @@ class TestLiftedMulticutSolver(unittest.TestCase):
 
 
 
-    def testLiftedMulticutGreedyAdditive(self):
+    #def testLiftedMulticutGreedyAdditive(self):
+    #    obj,nid = self.gridLiftedModel(gridSize=[10,10] , bfsRadius=2, weightRange=[-1,1])
+    #    solverFactory = obj.liftedMulticutGreedyAdditiveFactory()
+    #    solver = solverFactory.create(obj)
+    #    visitor = obj.verboseVisitor()
+    #    arg = solver.optimize()
 
-        obj,nid = self.gridLiftedModel(gridSize=[10,10] , bfsRadius=2, weightRange=[-1,1])
-        solverFactory = obj.liftedMulticutGreedyAdditiveFactory()
-        solver = solverFactory.create(obj)
-        visitor = obj.verboseVisitor()
-        arg = solver.optimize()
 
+    def testLiftedMulticutKernighanLinSimple(self):
 
-    def testLiftedMulticutKernighanLin(self):
+        G = nifty.graph.UndirectedGraph
+        g = G(5);
+        g.insertEdge(0, 1) # 0
+        g.insertEdge(0, 3) # 1
+        g.insertEdge(1, 2) # 2
+        g.insertEdge(1, 4) # 3
+        g.insertEdge(3, 4) # 4
 
-        obj,nid = self.gridLiftedModel(gridSize=[10,10] , bfsRadius=2, weightRange=[-1,1])
+        obj = nifty.graph.lifted_multicut.liftedMulticutObjective(g)
+        lg = obj.liftedGraph
+        
+        obj.setCost(0, 1, 10.0)
+        obj.setCost(0, 2, -1.0)  
+        obj.setCost(0, 3, -1.0)  
+        obj.setCost(0, 4, -1.0)  
+        obj.setCost(1, 2, 10.0)  
+        obj.setCost(1, 3, -1.0)  
+        obj.setCost(1, 4,  4.0)  
+        obj.setCost(2, 3, -1.0)  
+        obj.setCost(2, 4, -1.0)  
+        obj.setCost(3, 4, 10.0)  
+
+        arg = numpy.array([1,2,3,4,5])
         solverFactory = obj.liftedMulticutKernighanLinFactory()
         solver = solverFactory.create(obj)
         visitor = obj.verboseVisitor()
-        arg = solver.optimize()
+        arg2 = solver.optimize(visitor,arg)
+
+        print(arg2)
+
+        self.assertEqual(arg2[0] != arg2[1],  bool(0)) 
+        self.assertEqual(arg2[0] != arg2[2],  bool(0))   
+        self.assertEqual(arg2[0] != arg2[3],  bool(1))   
+        self.assertEqual(arg2[0] != arg2[4],  bool(1))   
+        self.assertEqual(arg2[1] != arg2[2],  bool(0))   
+        self.assertEqual(arg2[1] != arg2[3],  bool(1))   
+        self.assertEqual(arg2[1] != arg2[4],  bool(1))   
+        self.assertEqual(arg2[2] != arg2[3],  bool(1))   
+        self.assertEqual(arg2[2] != arg2[4],  bool(1))   
+        self.assertEqual(arg2[3] != arg2[4],  bool(0))  
+
+    def testLiftedMulticutKernighanLin(self):
+
+
+        gridSize = [20, 20]
+        for x in range(10):
+            obj,nid = self.gridLiftedModel(gridSize=gridSize , bfsRadius=20, weightRange=[-3,1])
+        
+            solverFactory = obj.liftedMulticutGreedyAdditiveFactory()
+            solver = solverFactory.create(obj)
+            visitor = obj.verboseVisitor()
+            arg = solver.optimize()
+            argGC = arg.copy()
+            egc = obj.evalNodeLabels(argGC)
 
 
 
+            #arg = numpy.arange(gridSize[0]*gridSize[1])
+            solverFactory = obj.liftedMulticutKernighanLinFactory()
+            solver = solverFactory.create(obj)
+            visitor = obj.verboseVisitor()
+            arg2 = solver.optimize(visitor, argGC.copy())
+            ekl = obj.evalNodeLabels(arg2)
 
 
-    def implTestLiftedMulticutIlpBfsGrid(self, ilpSolver, gridSize=[4,4], bfsRadius=2, weightRange=[-2,1], verbose=0, relativeGap=0.00001):
+
+            solverFactory = obj.liftedMulticutAndresKernighanLinFactory()
+            solver = solverFactory.create(obj)
+            visitor = obj.verboseVisitor()
+            arg3 = solver.optimize(visitor, argGC.copy())
+            eakl = obj.evalNodeLabels(arg3)
+
+
+            print ("kl",ekl, "akl",eakl, "gc",egc)
+
+
+            # solver with andres
+            
+
+
+
+    def implTestLiftedMulticutIlpBfsGrid(self, ilpSolver, gridSize=[4,4], bfsRadius=4, weightRange=[-2,1], verbose=0, relativeGap=0.00001):
 
         obj,nid = self.gridLiftedModel(gridSize=gridSize , bfsRadius=bfsRadius, weightRange=weightRange)
         solverFactory = obj.liftedMulticutIlpFactory(ilpSolver=ilpSolver, relativeGap=relativeGap)

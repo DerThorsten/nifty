@@ -142,6 +142,13 @@ namespace lifted_multicut{
                 pq_.changePriority(aliveEdge, wSum);
                 currentWeight_[aliveEdge] = wSum;
             }
+            // alive edge was lifted, but merged with non lifted
+            // which makes the lifted edge a normal edge
+            else if(aIsLifted && !dIsLifted){
+                pq_.changePriority(aliveEdge, wSum);
+                currentWeight_[aliveEdge] = wSum;
+                isLifted_[aliveEdge] = false;
+            }
             else{
                 NIFTY_CHECK(false,"bug");
             }
@@ -280,7 +287,7 @@ namespace lifted_multicut{
         graph_(objective.graph()),
         currentBest_(nullptr),
         callback_(objective, settings),
-        edgeContractionGraph_(objective.graph(), callback_)
+        edgeContractionGraph_(objective.liftedGraph(), callback_)
     {
         // do the setup
         this->reset();

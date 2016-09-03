@@ -3,7 +3,10 @@
 #define NIFTY_GRAPH_COMPONENTS_HXX
 
 #include "nifty/graph/subgraph_mask.hxx"
+#include "nifty/graph/breadth_first_search.hxx"
 #include "nifty/ufd/ufd.hxx"
+
+#include <queue>
 
 namespace nifty{
 namespace graph{
@@ -84,6 +87,127 @@ private:
     uint64_t offset_;
     bool needsReset_;
 };
+
+
+
+
+
+
+
+
+template<class GRAPH>
+class ComponentsBfs {
+
+public:
+    typedef GRAPH Graph;
+    typedef typename Graph:: template EdgeMap<uint64_t> LabelsMapType;
+    typedef typename Graph:: template EdgeMap<bool>    VisitedMapType;
+
+    ComponentsBfs(const Graph & graph)
+    :   graph_(graph),
+        labels_(graph),
+        visited_(graph, false),
+        needsReset_(false),
+        numberOfLabels_(0)
+    {
+        
+    }
+
+    uint64_t build(){
+        return build(DefaultSubgraphMask<Graph>());
+    }
+
+    template<class SUBGRAPH_MASK>
+    uint64_t build(const SUBGRAPH_MASK & mask){
+        if(needsReset_)
+            this->reset();
+        
+        numberOfLabels_ = 0;
+
+
+
+        
+
+        graph_.forEachNode([&](const uint64_t node){
+            if(mask.useNode(node)){
+                if(!visited_[node]){
+                    labels_[node] = numberOfLabels_;
+                    queue_.push(node);
+                    visited_[node] = true;
+                    while(!queue_.empty()){
+                        
+                        const auto w = queue_.front();
+                        queue_.pop();
+
+                        for(const auto adj : graph_.adjacency(w)){
+                            const auto n = adj.node();
+                            const auto e = adj.edge();
+                            if(!visited_[n] && mask.useNode(n) && mask.useEdge(e)){
+                                labels_[n] = numberOfLabels_;
+                                queue_.push(n);
+                                visited_[n] = true;
+                            }
+                        }
+
+                    }
+                    ++numberOfLabels_;
+                }
+            }
+        });
+
+        needsReset_ = true;
+
+        return numberOfLabels_;
+
+    }
+
+    void reset(){
+        numberOfLabels_ = 0;
+        for(const auto node : graph_.nodes()){
+            visited_[node] = false;
+        }
+
+        while(!queue_.empty()){
+            queue_.pop();
+        }
+    }
+
+    bool areConnected(const int64_t u, const int64_t v) const{
+        return labels_[u] == labels_[v];
+    }
+
+    uint64_t componentLabel(const uint64_t u){
+        return labels_[u];
+    }
+
+    uint64_t operator[](const uint64_t u) const {
+        return labels_[u];
+    }
+    
+    uint64_t maxLabel()const{
+        return numberOfLabels_ - 1;
+    }
+
+
+
+private:
+    const Graph & graph_;
+    LabelsMapType labels_;
+    VisitedMapType visited_;
+    uint64_t numberOfLabels_;
+    bool needsReset_;
+    std::queue<uint64_t> queue_;
+};
+
+
+
+
+
+
+
+
+
+
 
 
 } // namespace nifty::graph

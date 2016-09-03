@@ -114,8 +114,8 @@ namespace lifted_multicut{
             for(const auto edge : graph_.edges()){
                 const auto uv = graph_.uv(edge);
                 liftedGraph_.insertEdge(
-                    toContiguousNodes_[uv.first],
-                    toContiguousNodes_[uv.second]
+                    uv.first,
+                    uv.second
                 );
             }
             NIFTY_CHECK_OP(liftedGraph_.numberOfEdges(), == , graph_.numberOfEdges(),"");
@@ -126,7 +126,7 @@ namespace lifted_multicut{
             const auto du = toContiguousNodes_[u];
             const auto dv = toContiguousNodes_[v];
             const auto preSize = liftedGraph_.numberOfEdges();
-            const auto edge = liftedGraph_.insertEdge(du,dv);
+            const auto edge = liftedGraph_.insertEdge(u,v);
             if( liftedGraph_.numberOfEdges() > preSize){
                 weights_.insertedEdges(edge, w);
                 return true;

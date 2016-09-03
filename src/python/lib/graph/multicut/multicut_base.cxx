@@ -44,11 +44,11 @@ namespace graph{
         
         mcBase
             .def(py::init<>())
+
             .def("optimize", 
                 [](
                     McBase * self,
-                    McVisitorBase * visitor,
-                    nifty::marray::PyView<uint64_t> array
+                    McVisitorBase * visitor
                 ){
                     const auto graph = self->objective().graph();
                     //std::cout<<"optimize that damn thing\n";
@@ -56,22 +56,31 @@ namespace graph{
 
 
                     typename McBase::NodeLabels nodeLabels(graph,0);
-
-                    if(array.size() == 0 ){
-
-                        {
-                            py::gil_scoped_release allowThreads;
-                            self->optimize(nodeLabels, visitor);
-                        }
-                        std::vector<size_t> shape = {size_t(graph.nodeIdUpperBound()+1)};
-                        nifty::marray::PyView<uint64_t> rarray(shape.begin(),shape.end());
-                        for(auto node : graph.nodes()){
-                            rarray(node) = nodeLabels[node];
-                        }
-                        return rarray;
-
+                    {
+                        py::gil_scoped_release allowThreads;
+                        self->optimize(nodeLabels, visitor);
                     }
-                    else if(array.size() == graph.nodeIdUpperBound()+1){
+                    std::vector<size_t> shape = {size_t(graph.nodeIdUpperBound()+1)};
+                    nifty::marray::PyView<uint64_t> array(shape.begin(),shape.end());
+                    for(auto node : graph.nodes()){
+                        array(node) = nodeLabels[node];
+                    }
+                    return array;
+
+                },
+                py::arg_t< McVisitorBase * >("visitor", nullptr )
+            )
+            .def("optimize", 
+                [](
+                    McBase * self,
+                    McVisitorBase * visitor,
+                    nifty::marray::PyView<uint64_t> array
+                ){
+                    const auto graph = self->objective().graph();
+                    typename McBase::NodeLabels nodeLabels(graph,0);
+
+
+                    if(array.size() == graph.nodeIdUpperBound()+1){
                         for(auto node : graph.nodes()){
                             nodeLabels[node] = array(node);
                         }
@@ -89,7 +98,7 @@ namespace graph{
                     }
                 },
                 py::arg_t< McVisitorBase * >("visitor", nullptr ),
-                py::arg_t< py::array_t<uint64_t> >("nodeLabels", py::list() )
+                py::arg("nodeLabels")
             )
             ;
         ;

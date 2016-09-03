@@ -1,6 +1,6 @@
 #pragma once
-#ifndef ANDRES_PARTITION_HXX
-#define ANDRES_PARTITION_HXX
+#ifndef NIFTY_NIFTY_UFD_UFD_HXX
+#define NIFTY_NIFTY_UFD_UFD_HXX
 
 #include <cstddef>
 #include <vector>
@@ -240,4 +240,4 @@ Ufd<T>::elementLabeling(
 } // namespace ufd
 } // namespace nifty
 
-#endif // #ifndef ANDRES_PARTITION_HXX
+#endif // #ifndef NIFTY_NIFTY_UFD_UFD_HXX
