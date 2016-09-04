@@ -572,7 +572,7 @@ namespace detail_kernighang_lin{
             auto ee = energyDecrease;
 
             // remove partitions that became empty after the previous step
-            auto partionF =  [](const std::vector<size_t>& s) { return !s.empty(); };
+            auto partionF =  [](const std::vector<uint64_t>& s) { return !s.empty(); };
             auto newEnd = std::partition(partitions_.begin(), partitions_.end(), partionF);
             partitions_.resize(newEnd - partitions_.begin());
 
