@@ -3,11 +3,11 @@
 
 #include "nifty/python/graph/undirected_list_graph.hxx"
 //#include "nifty/python/graph/edge_contraction_graph.hxx"
-#include "nifty/python/graph/lifted_multicut/lifted_multicut_objective.hxx"
+#include "nifty/python/graph/optimization/lifted_multicut/lifted_multicut_objective.hxx"
 
 
 #include "nifty/python/converter.hxx"
-#include "nifty/python/graph/lifted_multicut/py_lifted_multicut_factory.hxx"
+#include "nifty/python/graph/optimization/lifted_multicut/py_lifted_multicut_factory.hxx"
 
 
 

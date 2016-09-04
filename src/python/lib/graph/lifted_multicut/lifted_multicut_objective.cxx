@@ -4,7 +4,7 @@
 #include <pybind11/numpy.h>
 
 #include "nifty/python/graph/undirected_list_graph.hxx"
-#include "nifty/python/graph/lifted_multicut/lifted_multicut_objective.hxx"
+#include "nifty/python/graph/optimization/lifted_multicut/lifted_multicut_objective.hxx"
 #include "nifty/python/converter.hxx"
 
 namespace py = pybind11;

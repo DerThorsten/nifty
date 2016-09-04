@@ -20,14 +20,14 @@
 
 
 
-#include "nifty/graph/multicut/multicut_base.hxx"
-#include "nifty/graph/multicut/multicut_visitor_base.hxx"
-#include "nifty/graph/multicut/multicut_factory.hxx"
-#include "nifty/graph/multicut/fusion_move_based.hxx"
-#include "nifty/graph/multicut/multicut_greedy_additive.hxx"
-#include "nifty/graph/multicut/proposal_generators/watershed_proposals.hxx"
-#include "nifty/graph/multicut/multicut_objective.hxx"
-#include "nifty/graph/multicut/perturb_and_map.hxx"
+#include "nifty/graph/optimization/multicut/multicut_base.hxx"
+#include "nifty/graph/optimization/multicut/multicut_visitor_base.hxx"
+#include "nifty/graph/optimization/multicut/multicut_factory.hxx"
+#include "nifty/graph/optimization/multicut/fusion_move_based.hxx"
+#include "nifty/graph/optimization/multicut/multicut_greedy_additive.hxx"
+#include "nifty/graph/optimization/multicut/proposal_generators/watershed_proposals.hxx"
+#include "nifty/graph/optimization/multicut/multicut_objective.hxx"
+#include "nifty/graph/optimization/multicut/perturb_and_map.hxx"
 
 
 

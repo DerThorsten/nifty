@@ -3,12 +3,12 @@
 
 #include "nifty/python/graph/undirected_list_graph.hxx"
 //#include "nifty/python/graph/edge_contraction_graph.hxx"
-#include "nifty/python/graph/lifted_multicut/lifted_multicut_objective.hxx"
+#include "nifty/python/graph/optimization/lifted_multicut/lifted_multicut_objective.hxx"
 
 #include "nifty/python/converter.hxx"
 
 
-#include "nifty/python/graph/lifted_multicut/py_lifted_multicut_base.hxx"
+#include "nifty/python/graph/optimization/lifted_multicut/py_lifted_multicut_base.hxx"
 
 
 
@@ -47,10 +47,35 @@ namespace lifted_multicut{
             .def(py::init<>())
             .def("optimize", 
                 [](
+                    LmcBase * self
+                ){
+                    //std::cout<<"without arg\n";
+                    const auto & graph = self->objective().graph();
+                    //std::cout<<"optimize that damn thing\n";
+            
+
+
+                    typename LmcBase::NodeLabels nodeLabels(graph,0);
+                    {
+                        py::gil_scoped_release allowThreads;
+                        self->optimize(nodeLabels, nullptr);
+                    }
+                    std::vector<size_t> shape = {size_t(graph.nodeIdUpperBound()+1)};
+                    nifty::marray::PyView<uint64_t> array(shape.begin(),shape.end());
+                    for(auto node : graph.nodes()){
+                        array(node) = nodeLabels[node];
+                    }
+                    return array;
+
+                }
+            )
+            .def("optimize", 
+                [](
                     LmcBase * self,
                     LmcVisitorBase * visitor
                 ){
-                    const auto graph = self->objective().graph();
+                    //std::cout<<"with visitor\n";
+                    const auto & graph = self->objective().graph();
                     //std::cout<<"optimize that damn thing\n";
             
 
@@ -68,7 +93,36 @@ namespace lifted_multicut{
                     return array;
 
                 },
-                py::arg_t< LmcVisitorBase * >("visitor", nullptr )
+                py::arg("visitor")
+            )
+            .def("optimize", 
+                [](
+                    LmcBase * self,
+                    nifty::marray::PyView<uint64_t> array
+                ){
+                    //std::cout<<"opt array\n";
+                    const auto & graph = self->objective().graph();
+                    typename LmcBase::NodeLabels nodeLabels(graph,0);
+
+
+                    if(array.size() == graph.nodeIdUpperBound()+1){
+                        for(auto node : graph.nodes()){
+                            nodeLabels[node] = array(node);
+                        }
+                        {
+                            py::gil_scoped_release allowThreads;
+                            self->optimize(nodeLabels, nullptr);
+                        }
+                        for(auto node : graph.nodes()){
+                            array(node) = nodeLabels[node];
+                        }
+                        return array;
+                    }
+                    else{
+                        throw std::runtime_error("input node labels have wrong shape");
+                    }
+                },
+                py::arg("nodeLabels")
             )
             .def("optimize", 
                 [](
@@ -76,7 +130,8 @@ namespace lifted_multicut{
                     LmcVisitorBase * visitor,
                     nifty::marray::PyView<uint64_t> array
                 ){
-                    const auto graph = self->objective().graph();
+                    //std::cout<<"opt with both\n";
+                    const auto & graph = self->objective().graph();
                     typename LmcBase::NodeLabels nodeLabels(graph,0);
 
 
@@ -97,7 +152,7 @@ namespace lifted_multicut{
                         throw std::runtime_error("input node labels have wrong shape");
                     }
                 },
-                py::arg_t< LmcVisitorBase * >("visitor", nullptr ),
+                py::arg("visitor"),
                 py::arg("nodeLabels")
             )
             ;

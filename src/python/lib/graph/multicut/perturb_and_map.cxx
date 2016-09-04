@@ -4,12 +4,12 @@
 #include <pybind11/numpy.h>
 
 
-#include "nifty/graph/multicut/perturb_and_map.hxx"
+#include "nifty/graph/optimization/multicut/perturb_and_map.hxx"
 #include "nifty/python/converter.hxx"
 
 #include "nifty/python/graph/undirected_list_graph.hxx"
 #include "nifty/python/graph/edge_contraction_graph.hxx"
-#include "nifty/python/graph/multicut/multicut_objective.hxx"
+#include "nifty/python/graph/optimization/multicut/multicut_objective.hxx"
 
 namespace py = pybind11;
 

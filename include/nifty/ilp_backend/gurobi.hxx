@@ -7,7 +7,7 @@
 
 #include "gurobi_c++.h"
 
-#include "nifty/graph/multicut/ilp_backend/ilp_backend.hxx"
+#include "nifty/graph/optimization/multicut/ilp_backend/ilp_backend.hxx"
 
 namespace nifty {
 namespace ilp_backend{

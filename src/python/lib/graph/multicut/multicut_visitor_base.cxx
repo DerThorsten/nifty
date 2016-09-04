@@ -2,13 +2,13 @@
 #include <pybind11/numpy.h>
 
 
-#include "nifty/graph/multicut/multicut_base.hxx"
-#include "nifty/graph/multicut/multicut_visitor_base.hxx"
+#include "nifty/graph/optimization/multicut/multicut_base.hxx"
+#include "nifty/graph/optimization/multicut/multicut_visitor_base.hxx"
 
 #include "nifty/python/graph/undirected_list_graph.hxx"
 #include "nifty/python/graph/edge_contraction_graph.hxx"
-#include "nifty/python/graph/multicut/multicut_objective.hxx"
-#include "nifty/python/graph/multicut/py_multicut_visitor_base.hxx"
+#include "nifty/python/graph/optimization/multicut/multicut_objective.hxx"
+#include "nifty/python/graph/optimization/multicut/py_multicut_visitor_base.hxx"
 
 #include "nifty/python/converter.hxx"
 

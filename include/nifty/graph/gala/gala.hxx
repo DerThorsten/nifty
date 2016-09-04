@@ -16,8 +16,8 @@
 #include "nifty/graph/gala/gala_instance.hxx"
 
 
-#include "nifty/graph/multicut/multicut_base.hxx"
-#include "nifty/graph/multicut/multicut_factory.hxx"
+#include "nifty/graph/optimization/multicut/multicut_base.hxx"
+#include "nifty/graph/optimization/multicut/multicut_factory.hxx"
 #include "nifty/graph/undirected_list_graph.hxx"
 
 

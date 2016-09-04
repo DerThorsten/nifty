@@ -3,7 +3,7 @@
 
 
 // concrete solvers for concrete factories
-#include "nifty/graph/multicut/multicut_ilp.hxx"
+#include "nifty/graph/optimization/multicut/multicut_ilp.hxx"
 
 #ifdef WITH_GUROBI
 #include "nifty/ilp_backend/gurobi.hxx"
@@ -19,9 +19,9 @@
 
 #include "nifty/python/graph/undirected_list_graph.hxx"
 #include "nifty/python/graph/edge_contraction_graph.hxx"
-#include "nifty/python/graph/multicut/multicut_objective.hxx"
+#include "nifty/python/graph/optimization/multicut/multicut_objective.hxx"
 #include "nifty/python/converter.hxx"
-#include "nifty/python/graph/multicut/export_multicut_solver.hxx"
+#include "nifty/python/graph/optimization/multicut/export_multicut_solver.hxx"
 
 namespace py = pybind11;
 

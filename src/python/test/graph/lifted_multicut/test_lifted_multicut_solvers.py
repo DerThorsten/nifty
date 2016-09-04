@@ -53,13 +53,23 @@ class TestLiftedMulticutSolver(unittest.TestCase):
 
 
 
-    #def testLiftedMulticutGreedyAdditive(self):
-    #    obj,nid = self.gridLiftedModel(gridSize=[10,10] , bfsRadius=2, weightRange=[-1,1])
-    #    solverFactory = obj.liftedMulticutGreedyAdditiveFactory()
-    #    solver = solverFactory.create(obj)
-    #    visitor = obj.verboseVisitor()
-    #    arg = solver.optimize()
+    def testLiftedMulticutGreedyAdditive(self):
+        
+        for x in range(5):
+            print("\n")
+            obj,nid = self.gridLiftedModel(gridSize=[100,100] , bfsRadius=4, weightRange=[-1,1])
+            
 
+            solverFactory = obj.liftedMulticutGreedyAdditiveFactory()
+            solver = solverFactory.create(obj)
+            visitor = obj.verboseVisitor()
+            argN = solver.optimize()
+         
+            solverFactory = obj.liftedMulticutAndresGreedyAdditiveFactory()
+            solver = solverFactory.create(obj)
+            visitor = obj.verboseVisitor()
+            argA = solver.optimize()
+            
 
     def testLiftedMulticutKernighanLinSimple(self):
 
@@ -107,9 +117,9 @@ class TestLiftedMulticutSolver(unittest.TestCase):
     def testLiftedMulticutKernighanLin(self):
 
 
-        gridSize = [20, 20]
-        for x in range(10):
-            obj,nid = self.gridLiftedModel(gridSize=gridSize , bfsRadius=20, weightRange=[-3,1])
+        gridSize = [5, 5]
+        for x in range(4):
+            obj,nid = self.gridLiftedModel(gridSize=gridSize , bfsRadius=2, weightRange=[-3,1])
         
             solverFactory = obj.liftedMulticutGreedyAdditiveFactory()
             solver = solverFactory.create(obj)
@@ -124,7 +134,7 @@ class TestLiftedMulticutSolver(unittest.TestCase):
             solverFactory = obj.liftedMulticutKernighanLinFactory()
             solver = solverFactory.create(obj)
             visitor = obj.verboseVisitor()
-            arg2 = solver.optimize(visitor, argGC.copy())
+            arg2 = solver.optimize(argGC.copy())
             ekl = obj.evalNodeLabels(arg2)
 
 
@@ -132,11 +142,36 @@ class TestLiftedMulticutSolver(unittest.TestCase):
             solverFactory = obj.liftedMulticutAndresKernighanLinFactory()
             solver = solverFactory.create(obj)
             visitor = obj.verboseVisitor()
-            arg3 = solver.optimize(visitor, argGC.copy())
+            arg3 = solver.optimize(argGC.copy())
             eakl = obj.evalNodeLabels(arg3)
 
 
-            print ("kl",ekl, "akl",eakl, "gc",egc)
+            self.assertLessEqual(ekl, egc)
+            self.assertAlmostEqual(ekl, eakl)
+
+        for x in range(4):
+            obj,nid = self.gridLiftedModel(gridSize=gridSize , bfsRadius=2, weightRange=[-3,1])
+        
+
+
+            arg = numpy.arange(gridSize[0]*gridSize[1])
+
+            solverFactory = obj.liftedMulticutKernighanLinFactory()
+            solver = solverFactory.create(obj)
+            visitor = obj.verboseVisitor()
+            arg2 = solver.optimize(arg.copy())
+            ekl = obj.evalNodeLabels(arg2)
+
+
+
+            solverFactory = obj.liftedMulticutAndresKernighanLinFactory()
+            solver = solverFactory.create(obj)
+            visitor = obj.verboseVisitor()
+            arg3 = solver.optimize(arg.copy())
+            eakl = obj.evalNodeLabels(arg3)
+
+
+            self.assertAlmostEqual(ekl, eakl)
 
 
             # solver with andres

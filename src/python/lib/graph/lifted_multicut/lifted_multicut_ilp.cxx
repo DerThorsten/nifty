@@ -1,7 +1,7 @@
 #include <pybind11/pybind11.h>
 
 
-#include "nifty/python/graph/lifted_multicut/export_lifted_multicut_solver.hxx"
+#include "nifty/python/graph/optimization/lifted_multicut/export_lifted_multicut_solver.hxx"
 #include "nifty/python/converter.hxx"
 
 
@@ -19,8 +19,8 @@
 
 #include "nifty/python/graph/undirected_list_graph.hxx"
 #include "nifty/python/graph/edge_contraction_graph.hxx"
-#include "nifty/python/graph/lifted_multicut/lifted_multicut_objective.hxx"
-#include "nifty/graph/lifted_multicut/lifted_multicut_ilp.hxx"
+#include "nifty/python/graph/optimization/lifted_multicut/lifted_multicut_objective.hxx"
+#include "nifty/graph/optimization/lifted_multicut/lifted_multicut_ilp.hxx"
 
 namespace py = pybind11;
 

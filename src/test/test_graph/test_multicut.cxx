@@ -7,8 +7,8 @@
 
 #include "nifty/tools/runtime_check.hxx"
 #include "nifty/graph/undirected_list_graph.hxx"
-#include "nifty/graph/multicut/multicut_objective.hxx"
-#include "nifty/graph/multicut/multicut_ilp.hxx"
+#include "nifty/graph/optimization/multicut/multicut_objective.hxx"
+#include "nifty/graph/optimization/multicut/multicut_ilp.hxx"
 
 #ifdef WITH_GUROBI
 #include "nifty/ilp_backend/gurobi.hxx"

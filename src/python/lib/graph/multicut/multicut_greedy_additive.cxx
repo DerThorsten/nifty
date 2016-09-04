@@ -1,13 +1,13 @@
 #include <pybind11/pybind11.h>
 
-#include "nifty/graph/multicut/multicut_objective.hxx"
-#include "nifty/graph/multicut/multicut_greedy_additive.hxx"
+#include "nifty/graph/optimization/multicut/multicut_objective.hxx"
+#include "nifty/graph/optimization/multicut/multicut_greedy_additive.hxx"
 
 #include "nifty/python/graph/undirected_list_graph.hxx"
 #include "nifty/python/graph/edge_contraction_graph.hxx"
-#include "nifty/python/graph/multicut/multicut_objective.hxx"
+#include "nifty/python/graph/optimization/multicut/multicut_objective.hxx"
 #include "nifty/python/converter.hxx"
-#include "nifty/python/graph/multicut/export_multicut_solver.hxx"
+#include "nifty/python/graph/optimization/multicut/export_multicut_solver.hxx"
 
 namespace py = pybind11;
 

@@ -2,16 +2,16 @@
 
 
 
-#include "nifty/graph/multicut/fusion_move_based.hxx"
-#include "nifty/graph/multicut/fusion_move.hxx"
-#include "nifty/graph/multicut/proposal_generators/greedy_additive_proposals.hxx"
-#include "nifty/graph/multicut/proposal_generators/watershed_proposals.hxx"
+#include "nifty/graph/optimization/multicut/fusion_move_based.hxx"
+#include "nifty/graph/optimization/multicut/fusion_move.hxx"
+#include "nifty/graph/optimization/multicut/proposal_generators/greedy_additive_proposals.hxx"
+#include "nifty/graph/optimization/multicut/proposal_generators/watershed_proposals.hxx"
 
 #include "nifty/python/graph/undirected_list_graph.hxx"
 #include "nifty/python/graph/edge_contraction_graph.hxx"
-#include "nifty/python/graph/multicut/multicut_objective.hxx"
+#include "nifty/python/graph/optimization/multicut/multicut_objective.hxx"
 #include "nifty/python/converter.hxx"
-#include "nifty/python/graph/multicut/export_multicut_solver.hxx"
+#include "nifty/python/graph/optimization/multicut/export_multicut_solver.hxx"
 
 namespace py = pybind11;
 
