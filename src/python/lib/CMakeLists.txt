@@ -98,7 +98,7 @@ ADD_CUSTOM_COMMAND(
         TARGET _nifty
         POST_BUILD
         COMMAND ${CMAKE_COMMAND} ARGS -E copy_if_different $<TARGET_FILE:_nifty> ${CMAKE_BINARY_DIR}/python/nifty/
-        COMMENT "Copying target _graph to temporary module directory")
+        COMMENT "Copying target _nifty to temporary module directory")
 
 add_custom_target(copy_python__init__ ALL#POST_BUILD
     COMMAND cmake -E copy_if_different 
@@ -112,3 +112,8 @@ add_custom_target(copy_python_test ALL#POST_BUILD
     ${CMAKE_SOURCE_DIR}/src/python/test/test_python.py 
     ${CMAKE_BINARY_DIR}/test_python/test_python.py)
 
+
+
+
+# submodules
+add_subdirectory(ground_truth)
