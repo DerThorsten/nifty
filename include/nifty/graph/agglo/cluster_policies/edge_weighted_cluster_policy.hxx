@@ -59,13 +59,14 @@ private:
     void initializeWeights() ;
     double computeWeight(const uint64_t edge) const;
 
+public:
     // callbacks called by edge contraction graph
     void contractEdge(const uint64_t edgeToContract);
     void mergeNodes(const uint64_t aliveNode, const uint64_t deadNode);
     void mergeEdges(const uint64_t aliveEdge, const uint64_t deadEdge);
     void contractEdgeDone(const uint64_t edgeToContract);
 
-
+private:
     // INPUT
     const GraphType &   graph_;
     EdgeIndicatorsType  edgeIndicators_;

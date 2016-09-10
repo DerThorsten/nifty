@@ -10,6 +10,8 @@ namespace agglo{
 
 
 
+
+
 template<class CLUSTER_POLICY>
 class AgglomerativeClustering{
 public:

@@ -5,7 +5,7 @@
 #include "nifty/marray/marray.hxx"
 #include "nifty/tools/for_each_coordinate.hxx"
 #include "nifty/region_growing/seeded_region_growing.hxx"
-
+#include "nifty/tools/timer.hxx"
 
 
 namespace nifty{
@@ -145,7 +145,12 @@ namespace ground_truth{
 
         std::cout<<"region growing\n";
         // do region growing
+
+        tools::VerboseTimer t(true, "region growing");
+        t.startAndPrint();
         nifty::region_growing::seededRegionGrowing(integralGrowMap, processedGroundTruth,numberOfQueues);
+        //nifty::region_growing::seededRegionGrowing2<DIM>(integralGrowMap, processedGroundTruth,numberOfQueues);
+        t.stopAndPrint();
         std::cout<<"done\n";
 
 

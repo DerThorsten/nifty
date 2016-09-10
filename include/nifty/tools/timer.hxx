@@ -40,8 +40,9 @@ public:
         verbose_(verbose),
         name_(name){
     }
-    void startAndPrint(const std::string name){
-        name_ = name;
+    void startAndPrint(const std::string name = std::string()){
+        if(!name.empty())
+            name_ = name;
         if(verbose_){
             std::cout<<name_<<" started\n";
         }
