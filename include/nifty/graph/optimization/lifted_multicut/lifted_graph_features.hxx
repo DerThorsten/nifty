@@ -4,40 +4,18 @@
 
 #include <vector>
 
+// for lifted ucm features
 #include "nifty/graph/agglo/agglomerative_clustering.hxx"
 #include "nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx"
+
+// for shortest path features
+#include  "nifty/graph/shortest_path_dijkstra.hxx"
 
 
 namespace nifty{
 namespace graph{
 namespace lifted_multicut{
 
-    // \cond SUPPRESS_DOXYGEN
-    namespace detail_lifted_graph_features{
-
-        // hack to add [] brackets to marray
-        template<class ARRAY>
-        struct AddBrackets{
-
-            typedef typename  ARRAY::reference reference;
-            typedef typename  ARRAY::const_reference const_reference;
-
-            AddBrackets(ARRAY & array)
-            : array_(array){
-
-            }
-
-            reference operator[](const size_t i){
-                return array_(i);
-            } 
-            const_reference operator[](const size_t i)const{
-                return array_(i);
-            } 
-
-            ARRAY & array_;
-        };
-    };
-    // \endcond 
 
 
     template<
@@ -55,8 +33,6 @@ namespace lifted_multicut{
         std::vector<double> sizeRegularizers,
         OUT & out
     ){
-
-        typedef detail_lifted_graph_features::AddBrackets<marray::View<double> > AddBracketsHack;
 
         typedef typename LIFTED_MULTICUT_OBJECTIVE::LiftedGraphType LiftedGraphType;
         typedef typename LiftedGraphType:: template EdgeMap<double>  NodeMapDouble;
@@ -137,11 +113,90 @@ namespace lifted_multicut{
                 ++index;
             });
             ++fi;
-
-
         }
     }
 
+
+
+    template<
+        class LIFTED_MULTICUT_OBJECTIVE,
+        class EDGE_INDICATORS,
+        class EDGE_SIZES,
+        class NODE_SIZES,
+        class OUT
+    >
+    void liftedShortedPathFeatures(
+        const LIFTED_MULTICUT_OBJECTIVE & objective,
+        const EDGE_INDICATORS & edgeIndicators,
+        std::vector<double> offsets,
+        OUT & out,
+        const int nThreads = -1
+    ){
+        typedef typename LIFTED_MULTICUT_OBJECTIVE::GraphType GraphType;
+        typedef ShortestPathDijkstra<GraphType, double> ShortestPathType;
+
+        // shortcuts
+        const auto & graph = objective.graph();
+        const auto & liftedGraph = objective.liftedGraph();
+
+        // threadpool
+        parallel::ParallelOptions parallelOptions(nThreads);
+        const auto numberOfThreads = parallelOptions.getActualNumThreads();
+        parallel::ThreadPool threadpool(parallelOptions);
+
+        // data for each thread
+        struct ThreadData{
+            ThreadData(const GraphType & g)
+            :   shortestPath(g){
+            }
+            ShortestPathType shortestPath;
+        };
+        std::vector<ThreadData * > perThreadData(numberOfThreads);
+        parallel_foreach(threadpool, numberOfThreads,[&](const int tid, const int i){
+            perThreadData[i] = new ThreadData(graph);
+        });
+
+        // weight offset
+        struct WeightsPlusOffset{
+            WeightsPlusOffset(
+                const EDGE_INDICATORS & ei,
+                const double offset
+            )
+            :   edgeIndicators_(ei),
+                offset_(offset){
+            }
+            double operator[](const uint64_t edge){
+                return edgeIndicators_[edge] + offset_;
+            }
+            const EDGE_INDICATORS & edgeIndicators_;
+            const double offset_;
+        };
+
+        for(size_t i=0; i<offsets.size(); ++i){
+
+            // run the shortest path algorithm
+            objective.parallelForEachLiftedeEdge(threadpool,
+            [&](const int tid, const uint64_t liftedEdge){
+
+                auto & threadData = *(perThreadData[tid]);
+                auto & sp = threadData.shortestPath;
+                const auto uv = liftedGraph.uv();
+ 
+                // run the shortest path alg
+                const WeightsPlusOffset weights(edgeIndicators, offsets[i]);
+                sp.runSingleSourceSingleTarget(weights, uv.first, uv.second);
+
+                // extract the features form the shortest path
+
+            });
+        }
+
+        // delete data for each thread
+        parallel_foreach(threadpool, numberOfThreads,[&](const int tid, const int i){
+            delete perThreadData[i];
+        });
+
+    }
 
 
 

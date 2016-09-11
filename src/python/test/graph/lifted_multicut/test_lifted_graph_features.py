@@ -62,8 +62,8 @@ class TestLiftedGraphFeatures(unittest.TestCase):
         graph = obj.graph 
 
         edgeIndicators = numpy.random.rand(graph.edgeIdUpperBound + 1) + 2.0
-        edgeSizes      = numpy.random.rand(graph.edgeIdUpperBound + 1)
-        nodeSizes      = numpy.random.rand(graph.nodeIdUpperBound + 1)
+        edgeSizes      = numpy.random.rand(graph.edgeIdUpperBound + 1) + 0.5  
+        nodeSizes      = numpy.random.rand(graph.nodeIdUpperBound + 1) + 0.5
 
         features = nlmc.liftedUcmFeatures(
             objective=obj,

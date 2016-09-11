@@ -11,6 +11,7 @@
 #include "nifty/graph/detail/contiguous_indices.hxx"
 #include "nifty/graph/optimization/multicut/multicut_objective.hxx"
 #include "nifty/graph/breadth_first_search.hxx"
+#include "nifty/parallel/threadpool.hxx"
 
 namespace nifty{
 namespace graph{
@@ -226,6 +227,19 @@ namespace lifted_multicut{
             }
         }
 
+
+        template<class F>
+        void parallelForEachGraphEdge(
+            parallel::ThreadPool & threadpool,
+            F && f
+        )const{
+            parallel::parallel_foreach(threadpool,graph_.numberOfEdges(),
+            [&](const int tid, const uint64_t e){
+                f(tid, e);
+            });
+        }
+
+
         /**
          * @brief Iterate over all edges of the lifted graph which are NOT in the original graph.
          * @details Iterate over all edges of the lifted graph which are NOT the original graph.
@@ -239,6 +253,21 @@ namespace lifted_multicut{
                 f(e);
             }
         }
+
+        template<class F>
+        void parallelForEachLiftedeEdge(
+            parallel::ThreadPool & threadpool,
+            F && f
+        )const{
+
+            const auto gEdgeNum =  graph_.numberOfEdges();
+            parallel::parallel_foreach(threadpool,this->numberOfLiftedEdges(),
+            [&](const int tid, const uint64_t i){
+                const uint64_t e = i + gEdgeNum;
+                f(tid, e);
+            });
+        }
+
 
     private:
         const Graph & graph_;
