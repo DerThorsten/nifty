@@ -9,17 +9,20 @@ namespace nifty{
 namespace graph{
 namespace agglo{
 
+    void exportAgglomerativeClustering(py::module &);    
+}
+}
+}
 
-    void exportAgglomerativeClustering(py::module &);
+
+
+PYBIND11_PLUGIN(_agglo) {
+    py::module aggloModule("_agglo", "agglo submodule of nifty.graph");
     
-    void initSubmoduleAgglo(py::module &graphModule) {
+    using namespace nifty::graph::agglo;
 
-        auto aggloModule = graphModule.def_submodule("agglo","agglo submodule");
+    exportAgglomerativeClustering(aggloModule);
 
-        exportAgglomerativeClustering(aggloModule);
-
-    }
-
+    return aggloModule.ptr();
 }
-}
-}
+

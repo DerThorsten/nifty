@@ -148,7 +148,7 @@ namespace ground_truth{
 
         tools::VerboseTimer t(true, "region growing");
         t.startAndPrint();
-        nifty::region_growing::seededRegionGrowing(integralGrowMap, processedGroundTruth,numberOfQueues);
+        nifty::region_growing::seededRegionGrowing<DIM>(integralGrowMap, processedGroundTruth,numberOfQueues);
         //nifty::region_growing::seededRegionGrowing2<DIM>(integralGrowMap, processedGroundTruth,numberOfQueues);
         t.stopAndPrint();
         std::cout<<"done\n";

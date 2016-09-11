@@ -12,11 +12,13 @@ if(NOSETESTS_PATH)
         test/test_multicut_inference.py
         test/test_rag.py
         test/test_rag_accumulate.py
-        test/test_agglo.py
         test/test_hdf5.py
         # graph
+        ## agglo
+        test/graph/agglo/test_agglo.py
         ## lifted multicut
         test/graph/lifted_multicut/test_lifted_multicut_objective.py
         test/graph/lifted_multicut/test_lifted_multicut_solvers.py
+        test/graph/lifted_multicut/test_lifted_graph_features.py
     )
 endif()

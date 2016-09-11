@@ -1,5 +1,6 @@
 from __future__ import print_function
 import nifty
+import nifty.graph
 import numpy
 
 

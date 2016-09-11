@@ -9,7 +9,6 @@
 #include "vigra/priority_queue.hxx"
 
 #include "nifty/tools/runtime_check.hxx"
-#include "nifty/ufd/ufd.hxx"
 #include "nifty/graph/detail/adjacency.hxx"
 #include "nifty/graph/optimization/lifted_multicut/lifted_multicut_base.hxx"
 #include "nifty/graph/edge_contraction_graph.hxx"
@@ -253,9 +252,8 @@ namespace lifted_multicut{
             this->reset();
         }
         virtual const NodeLabels & currentBestNodeLabels( ){
-            auto & ufd  = edgeContractionGraph_.ufd();
             for(auto node : graph_.nodes()){
-                currentBest_->operator[](node) = ufd.find(node);
+                currentBest_->operator[](node) = edgeContractionGraph_.findRepresentativeNode(node);
             }
             return *currentBest_;
         }
@@ -324,9 +322,9 @@ namespace lifted_multicut{
                    }
                 }
             }
-            auto & ufd  = edgeContractionGraph_.ufd();
+            
             for(auto node : graph_.nodes()){
-                nodeLabels[node] = ufd.find(node);
+                nodeLabels[node] = edgeContractionGraph_.findRepresentativeNode(node);
             }
         }
         if(visitor!=nullptr)

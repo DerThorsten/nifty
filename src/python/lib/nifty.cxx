@@ -37,7 +37,7 @@ PYBIND11_PLUGIN(_nifty) {
 
 
 
-    graph::initSubmoduleGraph(niftyModule);
+    //graph::initSubmoduleGraph(niftyModule);
     tools::initSubmoduleTools(niftyModule);
 
     #ifdef WITH_HDF5

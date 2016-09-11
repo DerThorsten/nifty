@@ -3,9 +3,11 @@
 
 #include "nifty/python/converter.hxx"
 #include "nifty/python/graph/undirected_list_graph.hxx"
+#include "nifty/python/graph/agglo/export_agglomerative_clustering.hxx"
 
 #include "nifty/graph/agglo/agglomerative_clustering.hxx"
 #include "nifty/graph/agglo/cluster_policies/edge_weighted_cluster_policy.hxx"
+#include "nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx"
 
 namespace py = pybind11;
 
@@ -16,82 +18,21 @@ namespace graph{
 namespace agglo{
 
 
-    using namespace py;
-    
-
-
-    template<class CLUSTER_POLICY>
-    void exportAgglomerativeClusteringTClusterPolicy(
-        py::module & aggloModule,
-        const std::string & clusterPolicyBaseName
-    ){
-        typedef CLUSTER_POLICY ClusterPolicyType;
-        typedef typename ClusterPolicyType::GraphType GraphType;
-
-        typedef AgglomerativeClustering<ClusterPolicyType> AgglomerativeClusteringType;
-
-        const auto graphName = GraphName<GraphType>::name();
-        const auto clusterPolicyClsName = clusterPolicyBaseName + graphName;
-        const auto aggloClsName = std::string("AgglomerativeClustering") + clusterPolicyClsName;
-
-        // cls
-        py::class_<AgglomerativeClusteringType>(aggloModule, aggloClsName.c_str())
-            .def("run",&AgglomerativeClusteringType::run,"run clustering")
-
-            .def("result", [](
-                const AgglomerativeClusteringType * self
-            ){
-                const auto graph = self->graph();
-                nifty::marray::PyView<uint64_t> out({size_t(graph.nodeIdUpperBound()+1)});
-                self->result(out);
-                return out;
-            }
-            )
-
-            .def("result", [](
-                const AgglomerativeClusteringType * self,
-                nifty::marray::PyView<uint64_t> out 
-            ){
-                const auto graph = self->graph();
-                self->result(out);
-                return out;
-            },
-            py::arg("out")
-            )
-        ;
-
-
-        // factory
-        aggloModule.def("agglomerativeClustering",
-            [](
-                ClusterPolicyType & clusterPolicy
-            ){
-                auto ptr = new AgglomerativeClusteringType(clusterPolicy);
-                return ptr;
-            },
-            py::return_value_policy::take_ownership,
-            py::keep_alive<0,1>(),
-            py::arg("clusterPolicy") 
-        );
-
-
-    }
-
-
-
-
+  
     // export all agglo functionality for a certain graph type
-    template<class GRAPH>
+    template<class GRAPH, bool WITH_UCM>
     void exportAgglomerativeClusteringTGraph(py::module & aggloModule) {
+        
         typedef GRAPH GraphType;
         const auto graphName = GraphName<GraphType>::name();
+        typedef nifty::marray::PyView<double, 1, false> PyViewDoube1;
 
-        typedef nifty::marray::PyView<double, 1> PyViewDoube1;
+        const std::string withUcmStr =  WITH_UCM ? std::string() : std::string("WithUcm");
 
         {   
             // name and type of cluster operator
-            typedef EdgeWeightedClusterPolicy<GraphType,PyViewDoube1,PyViewDoube1,PyViewDoube1> ClusterPolicyType;
-            const auto clusterPolicyBaseName = std::string("EdgeWeightedClusterPolicy");
+            typedef EdgeWeightedClusterPolicy<GraphType,PyViewDoube1,PyViewDoube1,PyViewDoube1,WITH_UCM> ClusterPolicyType;
+            const auto clusterPolicyBaseName = std::string("EdgeWeightedClusterPolicy") +  withUcmStr;
             const auto clusterPolicyClsName = clusterPolicyBaseName + graphName;
             const auto clusterPolicyFacName = lowerFirst(clusterPolicyBaseName);
 
@@ -128,7 +69,6 @@ namespace agglo{
                 py::arg("sizeRegularizer") = 0.5f
             );
 
-
             // export the agglomerative clustering functionality for this cluster operator
             exportAgglomerativeClusteringTClusterPolicy<ClusterPolicyType>(aggloModule, clusterPolicyBaseName);
         }
@@ -138,7 +78,8 @@ namespace agglo{
     void exportAgglomerativeClustering(py::module & aggloModule) {
         {
             typedef PyUndirectedGraph GraphType;
-            exportAgglomerativeClusteringTGraph<GraphType>(aggloModule);
+            exportAgglomerativeClusteringTGraph<GraphType, false>(aggloModule);
+            exportAgglomerativeClusteringTGraph<GraphType, true>(aggloModule);
         }
     }
 

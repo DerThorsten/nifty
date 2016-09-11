@@ -6,52 +6,6 @@
 pybind11_add_module(_nifty 
     nifty.cxx
     #############################
-    # graph module
-    #############################
-    # ... extra files go here ...
-    graph/graph.cxx
-    graph/undirected_list_graph.cxx
-    graph/edge_contraction_graph_undirected_graph.cxx
-    # rag
-    graph/rag/rag.cxx
-    graph/rag/grid_rag.cxx
-    graph/rag/graph_accumulator.cxx
-    graph/rag/project_to_pixels.cxx
-    graph/rag/accumulate.cxx
-    # agglo
-    graph/agglo/agglo.cxx
-    graph/agglo/agglomerative_clustering.cxx
-    # gala
-    graph/gala/gala.cxx
-    graph/gala/gala_main_class.cxx
-    graph/gala/gala_feature_base.cxx
-    #############################
-    # multicut
-    #############################
-    graph/multicut/multicut.cxx
-    graph/multicut/multicut_objective.cxx
-    graph/multicut/multicut_visitor_base.cxx
-    graph/multicut/multicut_base.cxx
-    graph/multicut/multicut_factory.cxx
-    graph/multicut/multicut_ilp.cxx
-    graph/multicut/multicut_greedy_additive.cxx
-    graph/multicut/fusion_move_based.cxx
-    graph/multicut/perturb_and_map.cxx
-    #############################
-    # lifted -multicut
-    #############################
-    graph/lifted_multicut/lifted_multicut.cxx
-    graph/lifted_multicut/lifted_multicut_objective.cxx
-    graph/lifted_multicut/lifted_multicut_visitor_base.cxx
-    graph/lifted_multicut/lifted_multicut_base.cxx
-    graph/lifted_multicut/lifted_multicut_factory.cxx
-    graph/lifted_multicut/lifted_multicut_greedy_additive.cxx
-    graph/lifted_multicut/lifted_multicut_kernighan_lin.cxx
-    graph/lifted_multicut/lifted_multicut_ilp.cxx
-
-    graph/lifted_multicut/lifted_multicut_andres_kernighan_lin.cxx
-    graph/lifted_multicut/lifted_multicut_andres_greedy_additive.cxx
-    #############################
     # hdf5
     #############################
     tools/tools.cxx
@@ -116,4 +70,5 @@ add_custom_target(copy_python_test ALL#POST_BUILD
 
 
 # submodules
+add_subdirectory(graph)
 add_subdirectory(ground_truth)

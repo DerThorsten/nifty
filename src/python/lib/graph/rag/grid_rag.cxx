@@ -24,7 +24,7 @@ namespace graph{
     using namespace py;
    
     template<class CLS>
-    void removeFunctions(py::class_<CLS> & clsT){
+    void removeFunctions(py::class_<CLS > & clsT){
         clsT
             .def("insertEdge", [](CLS * self,const uint64_t u,const uint64_t ){
                 throw std::runtime_error("cannot insert edges into 'GridRag'");
@@ -40,14 +40,13 @@ namespace graph{
     template<size_t DIM, class LABELS>
     void exportExpilictGridRagT(
         py::module & ragModule, 
-        py::module & graphModule,
         const std::string & clsName,
         const std::string & facName
     ){
-        py::object undirectedGraph = graphModule.attr("UndirectedGraph");
+        typedef UndirectedGraph<> BaseGraph;
         typedef ExplicitLabelsGridRag<DIM, LABELS> GridRagType;
 
-        auto clsT = py::class_<GridRagType>(ragModule, clsName.c_str(), undirectedGraph);
+        auto clsT = py::class_<GridRagType>(ragModule, clsName.c_str(),py::base<BaseGraph>());
         removeFunctions<GridRagType>(clsT);
 
         ragModule.def(facName.c_str(),
@@ -73,12 +72,10 @@ namespace graph{
     template<size_t DIM, class LABELS>
     void exportHdf5GridRagT(
         py::module & ragModule, 
-        py::module & graphModule,
         const std::string & clsName,
         const std::string & facName
     ){
-        py::object undirectedGraph = graphModule.attr("UndirectedGraph");
-        
+        typedef UndirectedGraph<> BaseGraph;
         typedef Hdf5Labels<DIM, LABELS> LabelsProxyType;
         typedef GridRag<DIM, LabelsProxyType >  GridRagType;
 
@@ -105,7 +102,7 @@ namespace graph{
 
 
 
-        auto clsT = py::class_<GridRagType>(ragModule, clsName.c_str(), undirectedGraph);
+        auto clsT = py::class_<GridRagType>(ragModule, clsName.c_str(),py::base<BaseGraph>());
         clsT
             .def("labelsProxy",&GridRagType::labelsProxy,py::return_value_policy::reference)
         ;
@@ -154,14 +151,18 @@ namespace graph{
         const std::string & facName
     ){
         py::object baseGraphPyCls = ragModule.attr("GridRagHdf5Labels3D");
+
         
+
+
         typedef Hdf5Labels<3, LABELS> LabelsProxyType;
+        typedef GridRag<3, LabelsProxyType >  BaseGraph;
         typedef GridRagStacked2D<LabelsProxyType >  GridRagType;
 
 
 
 
-        auto clsT = py::class_<GridRagType>(ragModule, clsName.c_str(), baseGraphPyCls);
+        auto clsT = py::class_<GridRagType>(ragModule, clsName.c_str(), py::base<BaseGraph>());
         clsT
             .def("labelsProxy",&GridRagType::labelsProxy,py::return_value_policy::reference)
             .def("minMaxLabelPerSlice",[](const GridRagType & self){
@@ -250,12 +251,12 @@ namespace graph{
         py::object baseGraphPyCls = ragModule.attr("ExplicitLabelsGridRag3D");
         
         typedef ExplicitLabels<3, LABELS> LabelsProxyType;
+        typedef GridRag<3, LabelsProxyType >  BaseGraph;
         typedef GridRagStacked2D<LabelsProxyType >  GridRagType;
 
 
 
-
-        auto clsT = py::class_<GridRagType>(ragModule, clsName.c_str(), baseGraphPyCls);
+        auto clsT = py::class_<GridRagType>(ragModule, clsName.c_str(),py::base<BaseGraph>());
         clsT
             //.def("labelsProxy",&GridRagType::labelsProxy,py::return_value_policy::reference)
             .def("minMaxLabelPerSlice",[](const GridRagType & self){
@@ -337,16 +338,16 @@ namespace graph{
 
 
 
-    void exportGridRag(py::module & ragModule, py::module & graphModule) {
+    void exportGridRag(py::module & ragModule) {
 
-        exportExpilictGridRagT<2, uint32_t>(ragModule, graphModule, "ExplicitLabelsGridRag2D", "explicitLabelsGridRag2D");
-        exportExpilictGridRagT<3, uint32_t>(ragModule, graphModule, "ExplicitLabelsGridRag3D", "explicitLabelsGridRag3D");
+        exportExpilictGridRagT<2, uint32_t>(ragModule, "ExplicitLabelsGridRag2D", "explicitLabelsGridRag2D");
+        exportExpilictGridRagT<3, uint32_t>(ragModule, "ExplicitLabelsGridRag3D", "explicitLabelsGridRag3D");
         
         exportExplicitGridRagStacked2D<uint32_t>(ragModule, "GridRagStacked2DExplicit", "gridRagStacked2DExplicitImpl");
 
         #ifdef WITH_HDF5
-        exportHdf5GridRagT<2, uint32_t>(ragModule, graphModule, "GridRagHdf5Labels2D", "gridRag2DHdf5");
-        exportHdf5GridRagT<3, uint32_t>(ragModule, graphModule, "GridRagHdf5Labels3D", "gridRag3DHdf5");
+        exportHdf5GridRagT<2, uint32_t>(ragModule, "GridRagHdf5Labels2D", "gridRag2DHdf5");
+        exportHdf5GridRagT<3, uint32_t>(ragModule, "GridRagHdf5Labels3D", "gridRag3DHdf5");
        
         exportHdf5GridRagStacked2D<uint32_t>(ragModule, "GridRagStacked2DHdf5", "gridRagStacked2DHdf5Impl");
         #endif

@@ -2,6 +2,8 @@ from __future__ import print_function
 import nifty
 import numpy
 import nifty
+import nifty.graph
+import nifty.graph.rag
 import tempfile
 import shutil
 import os 

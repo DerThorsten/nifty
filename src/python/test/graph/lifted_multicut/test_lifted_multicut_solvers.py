@@ -2,6 +2,7 @@ from __future__ import print_function
 import unittest
 
 import nifty
+import nifty.graph
 import numpy
 import random
 
@@ -56,8 +57,7 @@ class TestLiftedMulticutSolver(unittest.TestCase):
     def testLiftedMulticutGreedyAdditive(self):
         
         for x in range(5):
-            print("\n")
-            obj,nid = self.gridLiftedModel(gridSize=[100,100] , bfsRadius=4, weightRange=[-1,1])
+            obj,nid = self.gridLiftedModel(gridSize=[40,40] , bfsRadius=4, weightRange=[-1,1])
             
 
             solverFactory = obj.liftedMulticutGreedyAdditiveFactory()
@@ -69,6 +69,8 @@ class TestLiftedMulticutSolver(unittest.TestCase):
             solver = solverFactory.create(obj)
             visitor = obj.verboseVisitor()
             argA = solver.optimize()
+
+            self.assertAlmostEqual(obj.evalNodeLabels(argA), obj.evalNodeLabels(argN))
             
 
     def testLiftedMulticutKernighanLinSimple(self):
@@ -177,8 +179,6 @@ class TestLiftedMulticutSolver(unittest.TestCase):
             # solver with andres
             
 
-
-
     def implTestLiftedMulticutIlpBfsGrid(self, ilpSolver, gridSize=[4,4], bfsRadius=4, weightRange=[-2,1], verbose=0, relativeGap=0.00001):
 
         obj,nid = self.gridLiftedModel(gridSize=gridSize , bfsRadius=bfsRadius, weightRange=weightRange)
@@ -194,17 +194,17 @@ class TestLiftedMulticutSolver(unittest.TestCase):
     def testLiftedMulticutIlpBfsGrid(self):
 
         if nifty.Configuration.WITH_GLPK:
-            for x in range(10):
+            for x in range(5):
                 self.implTestLiftedMulticutIlpBfsGrid(ilpSolver='glpk', gridSize=[3,3], 
                                                       relativeGap=0.3,
                                                       weightRange=(-2,1))    
         if nifty.Configuration.WITH_CPLEX:
-            for x in range(10):
+            for x in range(5):
                 self.implTestLiftedMulticutIlpBfsGrid(ilpSolver='cplex', gridSize=[3,3], 
                                                       relativeGap=0.3, 
                                                       verbose=0,  weightRange=(-2,1))
         if nifty.Configuration.WITH_GUROBI:
-            for x in range(10):
+            for x in range(5):
                 self.implTestLiftedMulticutIlpBfsGrid(ilpSolver='gurobi')   
 
 

@@ -295,7 +295,7 @@ namespace graph{
         }
 
         for(const auto node : graph.nodes()){
-            labels[node] = contractionGraph.ufd().find(node);
+            labels[node] = contractionGraph.findRepresentativeNode(node);
         }
     }  
 

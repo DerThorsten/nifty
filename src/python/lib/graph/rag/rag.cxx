@@ -9,19 +9,25 @@ namespace nifty{
 namespace graph{
 
 
-    void exportGridRag(py::module &, py::module &);
-    void exportGraphAccumulator(py::module &, py::module &);
+    void exportGridRag(py::module &);
+    void exportGraphAccumulator(py::module &);
     void exportProjectToPixels(py::module &);
     void exportAccumulate(py::module &);
 
-    void initSubmoduleRag(py::module &graphModule) {
-
-        auto ragModule = graphModule.def_submodule("rag","rag submodule");
-        exportGridRag(ragModule, graphModule);
-        exportGraphAccumulator(ragModule, graphModule);
-        exportProjectToPixels(ragModule);
-        exportAccumulate(ragModule);
-    }
-
 }
 }
+
+
+PYBIND11_PLUGIN(_rag) {
+    py::module ragModule("_rag", "rag submodule of nifty.graph");
+
+    using namespace nifty::graph;
+
+    exportGridRag(ragModule);
+    exportGraphAccumulator(ragModule);
+    exportProjectToPixels(ragModule);
+    exportAccumulate(ragModule);
+
+    return ragModule.ptr();
+}
+

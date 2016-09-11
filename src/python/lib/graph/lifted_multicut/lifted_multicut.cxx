@@ -20,6 +20,8 @@ namespace lifted_multicut{
     void exportLiftedMulticutAndresKernighanLin(py::module &);
     void exportLiftedMulticutAndresGreedyAdditive(py::module &);
 
+    void exportLiftedGraphFeatures(py::module &);
+
     void initSubmoduleLiftedMulticut(py::module &graphModule) {
 
         auto liftedMulticutModule = graphModule.def_submodule("lifted_multicut","lifted multicut submodule");
@@ -34,6 +36,7 @@ namespace lifted_multicut{
         exportLiftedMulticutAndresKernighanLin(liftedMulticutModule);
         exportLiftedMulticutAndresGreedyAdditive(liftedMulticutModule);
 
+        exportLiftedGraphFeatures(liftedMulticutModule);
     }
 
 }
