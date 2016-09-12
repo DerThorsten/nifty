@@ -23,9 +23,12 @@ namespace tools{
         [](
            nifty::marray::PyView<T,0,AUTO_CAST> dataIn
         ){
-            std::cout<<"typeinfo "<<typeid(T).name()<<"\n";
+
             nifty::marray::PyView<T> dataOut(dataIn.shapeBegin(), dataIn.shapeEnd());
-            tools::makeDense(dataIn, dataOut);
+            {
+                py::gil_scoped_release allowThreads;
+                tools::makeDense(dataIn, dataOut);
+            }
             return dataOut;
         });
     }

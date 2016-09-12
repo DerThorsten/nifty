@@ -49,6 +49,7 @@ namespace graph{
         auto clsT = py::class_<GridRagType>(ragModule, clsName.c_str(),py::base<BaseGraph>());
         removeFunctions<GridRagType>(clsT);
 
+        // from labels
         ragModule.def(facName.c_str(),
             [](
                nifty::marray::PyView<LABELS, DIM> labels,
@@ -65,6 +66,34 @@ namespace graph{
             py::arg("labels"),
             py::arg_t< int >("numberOfThreads", -1 )
         );
+
+        // from labels + serialization
+        // from labels
+        ragModule.def(facName.c_str(),
+            [](
+               nifty::marray::PyView<LABELS, DIM>           labels,
+               nifty::marray::PyView<uint64_t,   1, false>  serialization
+            ){
+
+                auto  startPtr = &serialization(0);
+                auto  lastElement = &serialization(serialization.size()-1);
+                auto d = lastElement - startPtr + 1;
+
+                NIFTY_CHECK_OP(d,==,serialization.size(), "serialization must be contiguous");
+
+
+                auto s = typename  GridRagType::Settings();
+                s.numberOfThreads = -1;
+                ExplicitLabels<DIM, LABELS> explicitLabels(labels);
+                auto ptr = new GridRagType(explicitLabels,startPtr, s);
+                return ptr;
+            },
+            py::return_value_policy::take_ownership,
+            py::keep_alive<0, 1>(),
+            py::arg("labels"),
+            py::arg("serialization")
+        );
+
     }
 
     #ifdef WITH_HDF5

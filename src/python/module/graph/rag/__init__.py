@@ -5,14 +5,28 @@ import numpy
 
 
 
-def gridRag(labels, numberOfThreads=-1):
+def gridRag(labels, numberOfThreads=-1, serialization = None):
     labels = numpy.require(labels)
+
+
     if numpy.squeeze(labels).ndim == 2:
-        return explicitLabelsGridRag2D(labels, numberOfThreads=int(numberOfThreads))
+        if serialization is None:
+            return explicitLabelsGridRag2D(labels, numberOfThreads=int(numberOfThreads))
+        else:
+            return explicitLabelsGridRag2D(labels, serialization)
+
     elif numpy.squeeze(labels).ndim == 3:
-        return explicitLabelsGridRag3D(labels, numberOfThreads=int(numberOfThreads))
+        if serialization is None:
+            return explicitLabelsGridRag3D(labels, numberOfThreads=int(numberOfThreads))
+        else:
+            return explicitLabelsGridRag3D(labels, serialization)
     else:
         raise RuntimeError("wrong dimension, currently only 2D and 3D is implemented")
+
+
+
+
+
 
 
 if Configuration.WITH_HDF5:

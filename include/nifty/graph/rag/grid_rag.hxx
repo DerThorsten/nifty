@@ -79,6 +79,18 @@ public:
         detail_rag::ComputeRag< SelfType >::computeRag(*this, settings_);
     }
 
+    template<class ITER>
+    GridRag(
+        const LabelsProxy & labelsProxy, 
+        ITER serializationBegin,
+        const Settings & settings = Settings()
+    )
+    :   settings_(settings),
+        labelsProxy_(labelsProxy)
+    {
+        this->deserialize(serializationBegin);
+    }
+
     const LabelsProxy & labelsProxy() const {
         return labelsProxy_;
     }

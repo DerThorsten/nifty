@@ -46,6 +46,7 @@ target_link_libraries(_nifty ${PYTHON_LIBRARIES})
 
 
 file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/python/nifty)
+file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/python/nifty/viewer)
 file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/test_python/)
 
 ADD_CUSTOM_COMMAND(
@@ -59,6 +60,11 @@ add_custom_target(copy_python__init__ ALL#POST_BUILD
     ${CMAKE_SOURCE_DIR}/src/python/module/__init__.py 
     ${CMAKE_BINARY_DIR}/python/nifty/__init__.py)
 
+
+add_custom_target(copy_python_viewer__init__ ALL#POST_BUILD
+    COMMAND cmake -E copy_if_different 
+    ${CMAKE_SOURCE_DIR}/src/python/module/viewer/__init__.py 
+    ${CMAKE_BINARY_DIR}/python/nifty/viewer/__init__.py)
 
 
 add_custom_target(copy_python_test ALL#POST_BUILD

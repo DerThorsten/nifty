@@ -58,8 +58,16 @@ namespace graph{
             )
             .def("deserialize",
                 [](Graph & g, nifty::marray::PyView<uint64_t,1> serialization) {
-                    auto ptr = &serialization(0);
-                    g.deserialize(ptr);
+
+                    auto  startPtr = &serialization(0);
+                    auto  lastElement = &serialization(serialization.size()-1);
+                    auto d = lastElement - startPtr + 1;
+
+                    NIFTY_CHECK_OP(d,==,serialization.size(), "serialization must be contiguous");
+
+
+                    
+                    g.deserialize(startPtr);
                 }
             )
         ;
