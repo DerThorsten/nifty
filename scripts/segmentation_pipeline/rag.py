@@ -50,6 +50,9 @@ def localRagFeatures(raw, pmap, overseg, rag, settings):
         
     print "bincoutn", numpy.bincount(overseg.reshape([-1])).size,"nNodes",rag.numberOfNodes
 
+    uv = rag.uvIds()
+
+
     edgeFeat, nodeFeat = nifty.graph.rag.accumulateStandartFeatures(
         rag=rag,data=raw.astype('float32'),
         minVal=0.0,
