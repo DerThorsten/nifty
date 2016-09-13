@@ -11,7 +11,7 @@ import vigra
 
 import nifty
 import nifty.ground_truth as ngt
-
+from nifty.viewer import *
 
 
 
@@ -48,7 +48,7 @@ else:
 
 
 
-if False:
+if True:
     cmVals =  numpy.random.rand ( 1000,4)
     cmVals[:,0] = 0.1
     cmVals[0,:] = 0
@@ -75,9 +75,9 @@ if True:
 
     print(fixedGt.min(), fixedGt.max())
 
-    #fixedGtFile = h5py.File(gtFixedF)
-    #fixedGtFile['data'] = fixedGt
-    #fixedGtFile.close()
+    fixedGtFile = h5py.File(gtFixedF)
+    fixedGtFile['data'] = fixedGt
+    fixedGtFile.close()
 else:
     fixedGt = h5py.File(gtFixedF)['data']
 
@@ -94,6 +94,6 @@ rawDataDict={
     'raw':raw,
 }
 
-nifty.addHocViewer(grayData=rawDataDict, segData=segDataDict)
+addHocViewer(grayData=rawDataDict, segData=segDataDict)
 
 

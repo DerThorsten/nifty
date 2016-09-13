@@ -26,6 +26,13 @@ settings = {
     'sizeRegularizer' : 0.5,    # sizeRegularizer term to overseg, ragFile, settings
                                 # make apporx. equal size supervoxels
 
+
+
+    ##########################################################
+    # edge gt threshold
+    ##########################################################
+    'fuztGtThreshold': (0.2, 0.8),
+
     ##########################################################
     #  debug settings
     ##########################################################

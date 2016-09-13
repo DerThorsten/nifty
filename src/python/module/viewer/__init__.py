@@ -1,4 +1,10 @@
 import numpy
+import types
+from functools import partial
+import numpy
+import time
+import sys
+
 
 try:
     hasVolumina=True

@@ -36,14 +36,14 @@ seededRegionGrowing(
     marray::View<T>& seeds,
     const size_t numberOfQueues = 256
 ) {
-
+    std::cout<<"A\n";
     typedef array::StaticArray<int64_t, DIM> CoordType;
     CoordType shape;
 
-    if(elevation.dimension() == DIM ) {
+    if(elevation.dimension() != DIM ) {
         throw std::runtime_error("dimension of elevation is wrong");
     }
-    if(seeds.dimension() == DIM ) {
+    if(seeds.dimension() != DIM ) {
         throw std::runtime_error("dimension of seeds is wrong");
     }
     for(size_t j = 0; j < elevation.dimension(); ++j) {
@@ -53,13 +53,22 @@ seededRegionGrowing(
         shape[j] = seeds.shape(j);
     }
 
-
+    std::cout<<"B\n";
     // define 256 queues, one for each gray level.
     std::vector<std::queue<CoordType> > queues(numberOfQueues);
 
+    std::cout<<"C\n";
+
+
+    auto getE = [&](const CoordType & coord){
+        const auto e = elevation(coord.asStdArray());
+        return std::min(INTEGRAL_PIXEL_TYPE(numberOfQueues-1),e);
+    };
 
     tools::forEachCoordinate(shape, [&](const CoordType & coordU){
         const auto lU = seeds(coordU.asStdArray());
+
+
         for(auto d=0; d<DIM; ++d){
             if(coordU[d] + 1 < shape[d]){
                 CoordType coordV = coordU;
@@ -68,11 +77,11 @@ seededRegionGrowing(
 
                 if(lU != lV){
                     if(lU == 0 && lV != 0){
-                        const auto eV = elevation(coordV.asStdArray());
+                        const auto eV = getE(coordV);
                         queues[eV].push(coordV);
                     }
                     else if(lU != 0 && lV == 0){
-                        const auto eU = elevation(coordU.asStdArray());
+                        const auto eU = getE(coordU);
                         queues[eU].push(coordU);
                     }
                 }
@@ -80,13 +89,16 @@ seededRegionGrowing(
         }
 
     });
-
+    std::cout<<"D\n";
 
 
     // grow
     INTEGRAL_PIXEL_TYPE grayLevel = 0;
     for(;;) {
         while(!queues[grayLevel].empty()) {
+
+            if( queues[grayLevel].size() % 100 == 0)
+                std::cout<<"gray level "<<grayLevel<<" qSize "<<queues[grayLevel].size()<<"\n";
             // label pixel and remove from queue
             const auto coordU = queues[grayLevel].front();
             const auto sU = seeds(coordU.asStdArray());
@@ -100,7 +112,7 @@ seededRegionGrowing(
                     ++coordV[d];
                     auto & sV = seeds(coordV.asStdArray());
                     if(sV == 0){
-                        const auto eV = elevation(coordV.asStdArray());
+                        const auto eV = getE(coordV);
                         const auto queueIndex = std::max(eV, grayLevel);
                         sV = sU;
                         queues[queueIndex].push(coordV);
@@ -111,7 +123,7 @@ seededRegionGrowing(
                     --coordV[d];
                     auto & sV = seeds(coordV.asStdArray());
                     if(sV == 0){
-                        const auto eV = elevation(coordV.asStdArray());
+                        const auto eV = getE(coordV);
                         const auto queueIndex = std::max(eV, grayLevel);
                         sV = sU;
                         queues[queueIndex].push(coordV);
