@@ -44,6 +44,31 @@ namespace graph{
         );
     }
 
+    template<size_t DIM, class RAG, class DATA_T>
+    void exportAccumulateGeometricEdgeFeatures(
+        py::module & ragModule
+    ){
+        ragModule.def("accumulateGeometricEdgeFeatures",
+        [](
+            const RAG & rag,
+            array::StaticArray<int64_t, DIM> blocKShape,
+            const int numberOfThreads
+        ){
+
+            nifty::marray::PyView<DATA_T> out({uint64_t(rag.edgeIdUpperBound()+1),uint64_t(17)});
+            {
+                py::gil_scoped_release allowThreads;
+                array::StaticArray<int64_t, DIM> blocKShape_;
+                accumulateGeometricEdgeFeatures(rag, blocKShape, out, numberOfThreads);
+            }
+            return out;
+        },
+        py::arg("rag"),
+        py::arg("blockShape") = array::StaticArray<int64_t,DIM>(100),
+        py::arg("numberOfThreads")= -1
+        );
+    }
+
 
     template<size_t DIM, class RAG, class DATA_T>
     void exportAccumulateMeanAndLength(
@@ -124,6 +149,9 @@ namespace graph{
 
             exportAccumulateStandartFeatures<2, Rag2d, float>(ragModule);
             exportAccumulateStandartFeatures<3, Rag3d, float>(ragModule);
+
+            exportAccumulateGeometricEdgeFeatures<2, Rag2d, float>(ragModule);
+            exportAccumulateGeometricEdgeFeatures<3, Rag3d, float>(ragModule);
         }
     }
 

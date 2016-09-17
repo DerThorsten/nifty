@@ -3,6 +3,7 @@
 #define NIFTY_GRAPH_RAG_GRID_RAG_ACCUMULATE_HXX
 
 #include <vector>
+#include <cmath>
 
 #include "nifty/graph/rag/grid_rag.hxx"
 #include "nifty/marray/marray.hxx"
@@ -13,9 +14,29 @@
 namespace nifty{
 namespace graph{
 
-    template<class T>
+    struct AccOptions{
+        AccOptions()
+        :
+            setMinMax(false),
+            minVal(std::numeric_limits<double>::infinity()),
+            maxVal(-1.0*std::numeric_limits<double>::infinity()){
+        }
+        AccOptions(const double minV,
+                   const double maxV)
+        :
+            setMinMax(true),
+            minVal(minV),
+            maxVal(maxV){
+        }
+
+        const bool   setMinMax;
+        const double minVal;
+        const double maxVal;
+    };
+
+    template<class T,class U>
     inline T 
-    replaceIfNotFinite(const T & val, const T & replaceVal){
+    replaceIfNotFinite(const T & val, const U & replaceVal){
         if(std::isfinite(val))
             return val;
         else
@@ -31,7 +52,8 @@ namespace graph{
         const array::StaticArray<int64_t, DIM> & blockShape,
         const parallel::ParallelOptions & pOpts,
         parallel::ThreadPool & threadpool,
-        F && f
+        F && f,
+        const AccOptions & accOptions = AccOptions()
     ){
 
         typedef LABELS_PROXY LabelsProxyType;
@@ -41,7 +63,7 @@ namespace graph{
 
         typedef array::StaticArray<int64_t, DIM> Coord;
         typedef EDGE_ACC_CHAIN EdgeAccChainType;
-        typedef std::vector<EdgeAccChainType> AccChainVectorType; 
+        typedef std::vector<EdgeAccChainType> EdgeAccChainVectorType; 
 
 
         const size_t actualNumberOfThreads = pOpts.getActualNumThreads();
@@ -50,12 +72,34 @@ namespace graph{
         const auto & shape = rag.shape();
 
 
-        std::vector< AccChainVectorType > perThreadAccChainVector(actualNumberOfThreads, 
-            AccChainVectorType(rag.edgeIdUpperBound()+1));
 
+        std::vector< EdgeAccChainVectorType * > perThreadEdgeAccChainVector(actualNumberOfThreads);
+
+
+        parallel::parallel_foreach(threadpool, actualNumberOfThreads, 
+        [&](const int tid, const int64_t i){
+            perThreadEdgeAccChainVector[i] = new EdgeAccChainVectorType(rag.edgeIdUpperBound()+1);
+        });
+
+
+        const auto passesRequired = (*perThreadEdgeAccChainVector.front()).front().passesRequired();
+
+        if(accOptions.setMinMax){
+            parallel::parallel_foreach(threadpool, actualNumberOfThreads,
+            [&](int tid, int i){
+
+                vigra::HistogramOptions histogram_opt;
+                histogram_opt = histogram_opt.setMinMax(accOptions.minVal, accOptions.maxVal); 
+
+                auto & edgeAccVec = *(perThreadEdgeAccChainVector[i]);
+                for(auto & edgeAcc : edgeAccVec){
+                    edgeAcc.setHistogramOptions(histogram_opt);
+                }
+            });
+        }
 
         // do N passes of accumulator
-        for(auto pass=1; pass <= perThreadAccChainVector.front().front().passesRequired(); ++pass){
+        for(auto pass=1; pass <= passesRequired; ++pass){
 
             // LOOP IN PARALLEL OVER ALL BLOCKS WITH A CERTAIN OVERLAP
             const Coord overlapBegin(0), overlapEnd(1);
@@ -69,7 +113,7 @@ namespace graph{
             ){
 
                 // get the accumulator vector for this thread
-                auto & accVec = perThreadAccChainVector[tid];
+                auto & accVec = *(perThreadEdgeAccChainVector[tid]);
 
                 // actual shape of the block: might be smaller at the border as blockShape
 
@@ -113,7 +157,7 @@ namespace graph{
             });
         }
 
-        auto & resultAccVec = perThreadAccChainVector.front();
+        auto & resultAccVec = *(perThreadEdgeAccChainVector.front());
 
 
         // merge the accumulators parallel
@@ -121,12 +165,18 @@ namespace graph{
         [&](const int tid, const int64_t edge){
 
             for(auto t=1; t<actualNumberOfThreads; ++t){
-                resultAccVec[edge].merge(perThreadAccChainVector[t][edge]);
+                resultAccVec[edge].merge((*(perThreadEdgeAccChainVector[t]))[edge]);
             }            
         });
         
         // call functor with finished acc chain
         f(resultAccVec);
+
+        // delete 
+        parallel::parallel_foreach(threadpool, actualNumberOfThreads, 
+        [&](const int tid, const int64_t i){
+            delete perThreadEdgeAccChainVector[i];
+        });
     }
 
 
@@ -139,9 +189,7 @@ namespace graph{
         const parallel::ParallelOptions & pOpts,
         parallel::ThreadPool & threadpool,
         F && f,
-        const bool setMinMax = false,
-        const double minVal = 0.0,
-        const double maxVal = 1.0
+        const AccOptions & accOptions = AccOptions()
     ){
 
         typedef LABELS_PROXY LabelsProxyType;
@@ -180,13 +228,12 @@ namespace graph{
         const auto numberOfNodePasses = (*perThreadNodeAccChainVector.front()).front().passesRequired();
         const auto numberOfPasses = std::max(numberOfEdgePasses, numberOfNodePasses);
 
-        if(setMinMax){
+        if(accOptions.setMinMax){
             parallel::parallel_foreach(threadpool, actualNumberOfThreads,
             [&](int tid, int i){
 
                     vigra::HistogramOptions histogram_opt;
-                    //histogram_opt = histogram_opt.setBinCount(50);
-                    histogram_opt = histogram_opt.setMinMax(minVal, maxVal); 
+                    histogram_opt = histogram_opt.setMinMax(accOptions.minVal, accOptions.maxVal); 
 
                     auto & edgeAccVec = *(perThreadEdgeAccChainVector[i]);
                     for(auto & edgeAcc : edgeAccVec){
@@ -295,6 +342,150 @@ namespace graph{
             delete perThreadNodeAccChainVector[i];
         });
 
+    }
+
+
+    template<class EDGE_ACC_CHAIN, class NODE_ACC_CHAIN, size_t DIM, class LABELS_PROXY, class F>
+    void accumulateEdgeAndNodeFeaturesWithAccChain(
+
+        const GridRag<DIM, LABELS_PROXY> & rag,
+        const array::StaticArray<int64_t, DIM> & blockShape,
+        const parallel::ParallelOptions & pOpts,
+        parallel::ThreadPool & threadpool,
+        F && f
+    ){
+      
+
+
+        typedef LABELS_PROXY LabelsProxyType;
+        typedef typename vigra::MultiArrayShape<DIM>::type   VigraCoord;
+        typedef typename LabelsProxyType::BlockStorageType LabelBlockStorage;
+
+        typedef array::StaticArray<int64_t, DIM> Coord;
+
+        typedef EDGE_ACC_CHAIN EdgeAccChainType;
+        typedef EDGE_ACC_CHAIN NodeAccChainType;
+        typedef std::vector<EdgeAccChainType> EdgeAccChainVectorType; 
+        typedef std::vector<NodeAccChainType> NodeAccChainVectorType; 
+
+        const size_t actualNumberOfThreads = pOpts.getActualNumThreads();
+
+
+        const auto & shape = rag.shape();
+
+
+        std::vector< EdgeAccChainVectorType * > perThreadEdgeAccChainVector(actualNumberOfThreads);
+        std::vector< NodeAccChainVectorType * > perThreadNodeAccChainVector(actualNumberOfThreads);
+
+        parallel::parallel_foreach(threadpool, actualNumberOfThreads, 
+        [&](const int tid, const int64_t i){
+            perThreadEdgeAccChainVector[i] = new EdgeAccChainVectorType(rag.edgeIdUpperBound()+1);
+            perThreadNodeAccChainVector[i] = new NodeAccChainVectorType(rag.nodeIdUpperBound()+1);
+        });
+
+
+
+
+
+
+        const auto numberOfEdgePasses = (*perThreadEdgeAccChainVector.front()).front().passesRequired();
+        const auto numberOfNodePasses = (*perThreadNodeAccChainVector.front()).front().passesRequired();
+        const auto numberOfPasses = std::max(numberOfEdgePasses, numberOfNodePasses);
+
+        // do N passes of accumulator
+        for(auto pass=1; pass <= numberOfPasses; ++pass){
+
+            // LOOP IN PARALLEL OVER ALL BLOCKS WITH A CERTAIN OVERLAP
+            const Coord overlapBegin(0), overlapEnd(1);
+            LabelBlockStorage labelsBlockStorage(threadpool, blockShape, actualNumberOfThreads);
+            tools::parallelForEachBlockWithOverlap(threadpool,shape, blockShape, overlapBegin, overlapEnd,
+            [&](
+                const int tid,
+                const Coord & blockCoreBegin, const Coord & blockCoreEnd,
+                const Coord & blockBegin, const Coord & blockEnd
+            ){
+                // get the accumulator vector for this thread
+                auto & edgeAccVec = *(perThreadEdgeAccChainVector[tid]);
+                auto & nodeAccVec = *(perThreadNodeAccChainVector[tid]);
+                // actual shape of the block: might be smaller at the border as blockShape
+
+                const auto nonOlBlockShape  = blockCoreEnd - blockCoreBegin;
+                const auto actualBlockShape = blockEnd - blockBegin;
+ 
+                // read the labels block and the data block
+                auto labelsBlockView = labelsBlockStorage.getView(actualBlockShape, tid);
+                tools::readSubarray(rag.labelsProxy(), blockBegin, blockEnd, labelsBlockView);
+
+                // loop over all coordinates in block
+                nifty::tools::forEachCoordinate(nonOlBlockShape,[&](const Coord & coordU){
+
+                    const auto lU = labelsBlockView(coordU.asStdArray());
+                    const auto dataU = 0.0;
+                    
+                    VigraCoord vigraCoordU;
+                    for(size_t d=0; d<DIM; ++d)
+                        vigraCoordU[d] = coordU[d] + blockBegin[d];
+
+                    if(pass <= numberOfNodePasses)
+                        nodeAccVec[lU].updatePassN(dataU, vigraCoordU, pass);
+                    
+                    // accumulate the edge features
+                    if(pass <= numberOfEdgePasses){
+                        for(size_t axis=0; axis<DIM; ++axis){
+                            auto coordV = makeCoord2(coordU, axis);
+                            if(coordV[axis] < actualBlockShape[axis]){
+                                const auto lV = labelsBlockView(coordV.asStdArray());
+                                if(lU != lV){
+
+                                    const auto edge = rag.findEdge(lU,lV);
+                                    const auto dataV = 0.0;
+
+                                    VigraCoord vigraCoordV;
+                                    for(size_t d=0; d<DIM; ++d)
+                                        vigraCoordV[d] = coordV[d] + blockBegin[d];
+
+                                    edgeAccVec[edge].updatePassN(dataU, vigraCoordU, pass);
+                                    edgeAccVec[edge].updatePassN(dataV, vigraCoordV, pass);
+                                }
+                            }
+                        }
+                    }
+
+                });
+            });
+        }
+
+
+        auto & edgeResultAccVec = *perThreadEdgeAccChainVector.front();
+        auto & nodeResultAccVec = *perThreadNodeAccChainVector.front();
+
+        // merge the accumulators parallel
+        parallel::parallel_foreach(threadpool, edgeResultAccVec.size(), 
+        [&](const int tid, const int64_t edge){
+            for(auto t=1; t<actualNumberOfThreads; ++t){
+                auto & accChainVec = *(perThreadEdgeAccChainVector[t]);
+                edgeResultAccVec[edge].merge(accChainVec[edge]);           
+            }
+        });
+        parallel::parallel_foreach(threadpool, nodeResultAccVec.size(), 
+        [&](const int tid, const int64_t node){
+            for(auto t=1; t<actualNumberOfThreads; ++t){
+                auto & accChainVec = *(perThreadNodeAccChainVector[t]);
+                nodeResultAccVec[node].merge(accChainVec[node]);           
+            }
+        });
+        
+        // call functor with finished acc chain
+        f(edgeResultAccVec, nodeResultAccVec);
+
+
+        parallel::parallel_foreach(threadpool, actualNumberOfThreads, 
+        [&](const int tid, const int64_t i){
+            delete perThreadEdgeAccChainVector[i];
+            delete perThreadNodeAccChainVector[i];
+        });
+
+        
     }
 
 
@@ -423,51 +614,207 @@ namespace graph{
         nifty::parallel::ThreadPool threadpool(pOpts);
         const size_t actualNumberOfThreads = pOpts.getActualNumThreads();
 
-        //std::cout<<"Using "<<actualNumberOfThreads<<"\n";
 
-        accumulateEdgeAndNodeFeaturesWithAccChain<AccChainType,AccChainType>(rag, data, blockShape, pOpts, threadpool,
-        [&](
-            const std::vector<AccChainType> & edgeAccChainVec,
-            const std::vector<AccChainType> & nodeAccChainVec
-        ){
-            using namespace vigra::acc;
-
-            parallel::parallel_foreach(threadpool, edgeAccChainVec.size(),[&](
-                const int tid, const int64_t edge
+        accumulateEdgeAndNodeFeaturesWithAccChain<AccChainType,AccChainType>(
+            rag, 
+            data, 
+            blockShape, 
+            pOpts, 
+            threadpool,
+            [&](
+                const std::vector<AccChainType> & edgeAccChainVec,
+                const std::vector<AccChainType> & nodeAccChainVec
             ){
-                const auto & chain = edgeAccChainVec[edge];
-                const auto mean = get<acc::Mean>(chain);
-                const auto quantiles = get<Quantiles>(chain);
-                edgeFeaturesOut(edge, 0) = replaceIfNotFinite(mean,     0.0);
-                edgeFeaturesOut(edge, 1) = replaceIfNotFinite(get<acc::Variance>(chain), 0.0);
-                edgeFeaturesOut(edge, 2) = replaceIfNotFinite(get<acc::Skewness>(chain), 0.0);
-                edgeFeaturesOut(edge, 3) = replaceIfNotFinite(get<acc::Kurtosis>(chain), 0.0);
-                for(auto qi=0; qi<7; ++qi)
-                    edgeFeaturesOut(edge, 4+qi) = replaceIfNotFinite(quantiles[qi], mean);
-            });
-          
-            parallel::parallel_foreach(threadpool, nodeAccChainVec.size(),[&](
-                const int tid, const int64_t node
-            ){
-                const auto & chain = nodeAccChainVec[node];
-                const auto mean = get<acc::Mean>(chain);
-                const auto quantiles = get<Quantiles>(chain);
-                nodeFeaturesOut(node, 0) = replaceIfNotFinite(mean,     0.0);
-                nodeFeaturesOut(node, 1) = replaceIfNotFinite(get<acc::Variance>(chain), 0.0);
-                nodeFeaturesOut(node, 2) = replaceIfNotFinite(get<acc::Skewness>(chain), 0.0);
-                nodeFeaturesOut(node, 3) = replaceIfNotFinite(get<acc::Kurtosis>(chain), 0.0);
-                for(auto qi=0; qi<7; ++qi){
-                    nodeFeaturesOut(node, 4+qi) = replaceIfNotFinite(quantiles[qi], mean);
-                }
-            });
+                using namespace vigra::acc;
 
-        },
-        true, minVal, maxVal
+                parallel::parallel_foreach(threadpool, edgeAccChainVec.size(),[&](
+                    const int tid, const int64_t edge
+                ){
+                    const auto & chain = edgeAccChainVec[edge];
+                    const auto mean = get<acc::Mean>(chain);
+                    const auto quantiles = get<Quantiles>(chain);
+                    edgeFeaturesOut(edge, 0) = replaceIfNotFinite(mean,     0.0);
+                    edgeFeaturesOut(edge, 1) = replaceIfNotFinite(get<acc::Variance>(chain), 0.0);
+                    edgeFeaturesOut(edge, 2) = replaceIfNotFinite(get<acc::Skewness>(chain), 0.0);
+                    edgeFeaturesOut(edge, 3) = replaceIfNotFinite(get<acc::Kurtosis>(chain), 0.0);
+                    for(auto qi=0; qi<7; ++qi)
+                        edgeFeaturesOut(edge, 4+qi) = replaceIfNotFinite(quantiles[qi], mean);
+                });
+              
+                parallel::parallel_foreach(threadpool, nodeAccChainVec.size(),[&](
+                    const int tid, const int64_t node
+                ){
+                    const auto & chain = nodeAccChainVec[node];
+                    const auto mean = get<acc::Mean>(chain);
+                    const auto quantiles = get<Quantiles>(chain);
+                    nodeFeaturesOut(node, 0) = replaceIfNotFinite(mean,     0.0);
+                    nodeFeaturesOut(node, 1) = replaceIfNotFinite(get<acc::Variance>(chain), 0.0);
+                    nodeFeaturesOut(node, 2) = replaceIfNotFinite(get<acc::Skewness>(chain), 0.0);
+                    nodeFeaturesOut(node, 3) = replaceIfNotFinite(get<acc::Kurtosis>(chain), 0.0);
+                    for(auto qi=0; qi<7; ++qi){
+                        nodeFeaturesOut(node, 4+qi) = replaceIfNotFinite(quantiles[qi], mean);
+                    }
+                });
+
+            },
+            AccOptions(minVal, maxVal)
         );
     }
 
 
+    /**
+     * @brief      accumulate geometric features
+     *
+     * @param[in]  rag              The rag
+     * @param[in]  blockShape       The block shape
+     * @param      edgeFeaturesOut  The edge features out
+     * @param[in]  numberOfThreads  The number of threads
+     *
+     * @tparam     DIM              Dimension of the rag
+     * @tparam     LABELS_PROXY     Label Proxy type of the rag
+     * @tparam     FEATURE_TYPE     OutType of the features
+     * 
+     * @detail 
+     *   
+     *   feature 0 : mean edge length
+     * 
+     * 
+     */
+    template<size_t DIM, class LABELS_PROXY, class FEATURE_TYPE>
+    void accumulateGeometricEdgeFeatures(
+        const GridRag<DIM, LABELS_PROXY> & rag,
+        const array::StaticArray<int64_t, DIM> & blockShape,
+        marray::View<FEATURE_TYPE> & edgeFeaturesOut,
+        const int numberOfThreads = -1
+    ){
 
+        namespace acc = vigra::acc;
+        typedef FEATURE_TYPE DataType;
+
+
+        //typedef Coord<RootDivideByCount<Principal<PowerSum<2> > > > RegionRadii;
+        typedef acc::Coord<acc::Principal<acc::CoordinateSystem> >                 RegionAxes;
+        typedef acc::Principal<acc::CoordinateSystem>   PrincipalAxes;
+
+        typedef acc::Select<  
+            acc::DataArg<1>,
+            acc::Count,
+            //,
+            //PrincipalAxes   
+            acc::RegionCenter,
+            //RegionRadii,
+            RegionAxes
+            //PrincipalAxes
+        > SelectType;
+
+
+        
+        
+        
+        
+        
+        
+        
+        typedef acc::StandAloneAccumulatorChain<DIM,float, SelectType> AccChainType;
+
+        
+        // threadpool
+        nifty::parallel::ParallelOptions pOpts(numberOfThreads);
+        nifty::parallel::ThreadPool threadpool(pOpts);
+        const size_t actualNumberOfThreads = pOpts.getActualNumThreads();
+
+
+        
+        accumulateEdgeAndNodeFeaturesWithAccChain<AccChainType,AccChainType>(
+            rag, 
+            blockShape, 
+            pOpts, 
+            threadpool,
+            [&](
+                const std::vector<AccChainType> & edgeAccChainVec,
+                const std::vector<AccChainType> & nodeAccChainVec
+            ){
+                
+                using namespace vigra::acc;
+
+                parallel::parallel_foreach(threadpool, edgeAccChainVec.size(),[&](
+                    const int tid, const int64_t edge
+                ){
+                    const auto uv = rag.uv(edge);
+                    const auto & chainE = edgeAccChainVec[edge];
+                    const auto & chainU = nodeAccChainVec[uv.first];
+                    const auto & chainV = nodeAccChainVec[uv.second];
+
+                    const float countE = get<acc::Count>(chainE);
+                    const float countU = get<acc::Count>(chainU);
+                    const float countV = get<acc::Count>(chainV);
+
+                    const auto pAxesE = get<RegionAxes>(chainE);
+                    const auto pAxesU = get<RegionAxes>(chainU);
+                    const auto pAxesV = get<RegionAxes>(chainV);
+
+                    
+                    const auto rCenterE = get<acc::RegionCenter>(chainE);
+                    const auto rCenterU = get<acc::RegionCenter>(chainU);
+                    const auto rCenterV = get<acc::RegionCenter>(chainV);
+
+
+                    // count based
+                    edgeFeaturesOut(edge, 0) = countE;
+                    edgeFeaturesOut(edge, 1) = std::abs(countU - countV);
+                    edgeFeaturesOut(edge, 2) = countU + countV;
+                    edgeFeaturesOut(edge, 3) = countU * countV;
+                    edgeFeaturesOut(edge, 4) = std::min(countU , countV);
+                    edgeFeaturesOut(edge, 5) = std::max(countU , countV);
+                    edgeFeaturesOut(edge, 6) = countE / std::min(countU , countV);
+                    edgeFeaturesOut(edge, 7) = countE / std::max(countU , countV);
+                    edgeFeaturesOut(edge, 8) = countE / (countU + countV);
+
+
+                    // region center based
+                    const auto dEU = rCenterE-rCenterU;
+                    const auto dEV = rCenterE-rCenterV;
+                    const auto ndEU = vigra::norm(dEU);
+                    const auto ndEV = vigra::norm(dEV);
+
+                    const auto cosOfAngle =  vigra::dot(dEU,dEV)/(ndEU*ndEV);
+                    const auto angle = std::acos(cosOfAngle);
+
+                    edgeFeaturesOut(edge, 9)  = std::abs(ndEU - ndEV);
+                    edgeFeaturesOut(edge, 10) = ndEU + ndEV;
+                    edgeFeaturesOut(edge, 11) = ndEU * ndEV;
+                    edgeFeaturesOut(edge, 12) = std::min(ndEU , ndEV);
+                    edgeFeaturesOut(edge, 13) = std::max(ndEU , ndEV);
+                    edgeFeaturesOut(edge, 14) =  replaceIfNotFinite(angle, 3.14159265358979323846);
+
+
+                    // region axis based
+                    vigra::TinyVector<float,DIM> r0U, r0V, r0E;
+
+                    for(size_t i=0; i<DIM; ++i){
+                        r0U = pAxesU[i];
+                        r0V = pAxesV[i];
+                        r0E = pAxesE[i];
+                    }
+
+                    // angle UV 
+                    const auto aUV=std::acos(vigra::dot(r0U,r0V)/(vigra::norm(r0U),vigra::norm(r0V)));
+                    // angle UE 
+                    const auto aUE=std::acos(vigra::dot(r0U,r0E)/(vigra::norm(r0U),vigra::norm(r0E)));
+                    // angle VE
+                    const auto aVE=std::acos(vigra::dot(r0V,r0E)/(vigra::norm(r0V),vigra::norm(r0E)));
+
+                    edgeFeaturesOut(edge, 15) = replaceIfNotFinite(aUV, 0.0);
+                    edgeFeaturesOut(edge, 16) = replaceIfNotFinite(std::abs(aUE-aVE), 0.0);
+
+
+        
+
+                });
+                
+            }
+        );
+    }
 
 
 

@@ -5,6 +5,7 @@ import nifty.graph.rag
 import nifty.graph.agglo
 import numpy
 import h5py
+import sys
 
 from reraise import *
 
@@ -55,6 +56,13 @@ def localRagFeatures(raw, pmap, overseg, rag, featuresFile, settings):
     v  = uv[:,1]
 
 
+    # geometric edge features
+    geometricFeaturs = nifty.graph.rag.accumulateGeometricEdgeFeatures(rag,
+                                                    blockShape=[75, 75],
+                                                    numberOfThreads=1)
+
+    allEdgeFeat = [geometricFeaturs]
+
     pixelFeats = [
         raw[:,:,None],
     ]
@@ -75,7 +83,7 @@ def localRagFeatures(raw, pmap, overseg, rag, featuresFile, settings):
 
     pixelFeats = numpy.concatenate(pixelFeats, axis=2)
 
-    allEdgeFeat = []
+    
 
     for i  in range(pixelFeats.shape[2]):
 

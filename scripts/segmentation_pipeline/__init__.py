@@ -261,11 +261,17 @@ def computeRagFeatures(dataDict, settings):
             if not hasH5File(ragFeatFile):
 
                 rag,sp = ragsAndSuperpixels[sliceIndex]
-                future = executor.submit(localRagFeatures,
+
+                localRagFeatures(
                     raw=rawData[sliceIndex,:,:], pmap=None,
                     overseg=sp, rag=rag, featuresFile=ragFeatFile,
                     settings=settings)
-                futures.append(future)
+
+                #future = executor.submit(localRagFeatures,
+                #    raw=rawData[sliceIndex,:,:], pmap=None,
+                #    overseg=sp, rag=rag, featuresFile=ragFeatFile,
+                #    settings=settings)
+                #futures.append(future)
             else:
                 pass
 
