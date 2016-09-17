@@ -315,15 +315,49 @@ def trainLocalRf(dataDict, settings, subset=None):
     Y = numpy.concatenate(Y,axis=0)
 
     print X.shape, Y.shape
-    #xgb_model = xgb.XGBClassifier().fit(X,Y)
+
+    if True:
+        from sklearn.cross_validation import KFold
 
 
-    clf = RandomForestClassifier(warm_start=True, max_features=None,
-                               oob_score=True, n_jobs=-1, n_estimators=100,
-                               verbose=3)
+        kf = KFold(Y.shape[0], n_folds=4)
 
-    clf.fit(X,Y)
+        iTrain = None
+        iTest = None
 
-    oob_error = 1.0 - clf.oob_score_
+        for train, test in kf:
+            
+            XTrain = X[train,:]
+            XTest  = X[test,:]
 
-    print oob_error
+            YTrain = Y[train]
+            YTest  = Y[test]
+
+            param = {'bst:max_depth':2, 'bst:eta':1, 'silent':1, 'num_class':2,'objective':'multi:softprob' }
+            param['nthread'] = 40
+            dtrain = xgb.DMatrix(XTrain, label=YTrain)
+            num_round = 40
+            bst = xgb.train(param, dtrain, num_round)
+            
+            dtest = xgb.DMatrix(XTest)#, label=YTest)
+            preds = bst.predict(dtest)
+
+            
+            YPred = numpy.argmax(preds,axis=1)
+
+            print "error",float(numpy.sum(YPred != YTest))/len(YPred)
+
+
+    else:
+
+        #
+
+        clf = RandomForestClassifier(warm_start=True, max_features=None,
+                                   oob_score=True, n_jobs=-1, n_estimators=100,
+                                   verbose=3)
+
+        clf.fit(X,Y)
+
+        oob_error = 1.0 - clf.oob_score_
+
+        print oob_error

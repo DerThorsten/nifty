@@ -11,7 +11,6 @@
 namespace nifty{
 namespace ground_truth{
 
-
     template<   
         size_t DIM, 
         class GROW_MAP_PIXEL_TYPE, 
