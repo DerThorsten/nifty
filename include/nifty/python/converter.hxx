@@ -90,7 +90,14 @@ namespace marray
         friend struct pybind11::detail::pymarray_caster<VALUE_TYPE,DIM, AUTO_CAST_TYPE>;
 
       private:
-        pybind11::array_t<VALUE_TYPE> py_array;
+        //pybind11::array_t<VALUE_TYPE> py_array;
+
+                //pybind11::array_t<VALUE_TYPE> py_array;
+
+        typename std::conditional<AUTO_CAST_TYPE,
+                pybind11::array_t<VALUE_TYPE, py::array::forcecast>,
+                pybind11::array_t<VALUE_TYPE, py::array::c_style > 
+        >::type py_array;
 
       public:
         template <class ShapeIterator>

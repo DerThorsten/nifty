@@ -21,25 +21,25 @@ namespace agglo{
 
 
 template<
-    class GRAPH,class EDGE_INDICATORS,
-    class EDGE_SIZES,class NODE_SIZES,
-    bool ENABLE_UCM
+    class GRAPH,bool ENABLE_UCM
 >
 class EdgeWeightedClusterPolicy{
 
     typedef EdgeWeightedClusterPolicy<
-        GRAPH, EDGE_INDICATORS, 
-        EDGE_SIZES, NODE_SIZES,
-        ENABLE_UCM
+        GRAPH, ENABLE_UCM
     > SelfType;
 
+private:
+
+    typedef typename GRAPH:: template EdgeMap<double> FloatEdgeMap;
+    typedef typename GRAPH:: template NodeMap<double> FloatNodeMap;
 
 public:
     // input types
     typedef GRAPH                                       GraphType;
-    typedef EDGE_INDICATORS                             EdgeIndicatorsType;
-    typedef EDGE_SIZES                                  EdgeSizesType;
-    typedef NODE_SIZES                                  NodeSizesType;
+    typedef FloatEdgeMap                                EdgeIndicatorsType;
+    typedef FloatEdgeMap                                EdgeSizesType;
+    typedef FloatNodeMap                                NodeSizesType;
     typedef EdgeWeightedClusterPolicySettings           Settings;
     typedef EdgeContractionGraph<GraphType, SelfType>   EdgeContractionGraphType;
 
@@ -47,13 +47,18 @@ public:
 private:
 
     // internal types
-    
+
+
     typedef vigra::ChangeablePriorityQueue< double ,std::less<double> > QueueType;
 
 public:
 
-    EdgeWeightedClusterPolicy(const GraphType &, EdgeIndicatorsType, EdgeSizesType, 
-                              NodeSizesType,const Settings & settings = Settings());
+    template<class EDGE_INDICATORS, class EDGE_SIZES, class NODE_SIZES>
+    EdgeWeightedClusterPolicy(const GraphType &, 
+                              const EDGE_INDICATORS & , 
+                              const EDGE_SIZES & , 
+                              const NODE_SIZES & ,
+                              const Settings & settings = Settings());
 
 
     std::pair<uint64_t, double> edgeToContractNext() const;
@@ -74,6 +79,17 @@ public:
     void mergeEdges(const uint64_t aliveEdge, const uint64_t deadEdge);
     void contractEdgeDone(const uint64_t edgeToContract);
 
+
+    const EdgeIndicatorsType & edgeIndicators() const {
+        return edgeIndicators_;
+    }
+    const EdgeSizesType & edgeSizes() const {
+        return edgeSizes_;
+    }
+    const NodeSizesType & nodeSizes() const {
+        return nodeSizes_;
+    }
+    
 private:
     // INPUT
     const GraphType &   graph_;
@@ -89,36 +105,44 @@ private:
 };
 
 
-template<class GRAPH,class EDGE_INDICATORS,class EDGE_SIZES,class NODE_SIZES, bool ENABLE_UCM>
-inline EdgeWeightedClusterPolicy<GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, ENABLE_UCM>::
+template<class GRAPH, bool ENABLE_UCM>
+template<class EDGE_INDICATORS, class EDGE_SIZES, class NODE_SIZES>
+inline EdgeWeightedClusterPolicy<GRAPH, ENABLE_UCM>::
 EdgeWeightedClusterPolicy(
     const GraphType & graph,
-    EdgeIndicatorsType  edgeIndicators,
-    EdgeSizesType       edgeSizes,
-    NodeSizesType       nodeSizes,
+    const EDGE_INDICATORS & edgeIndicators,
+    const EDGE_SIZES      & edgeSizes,
+    const NODE_SIZES      & nodeSizes,
     const Settings & settings
 )
 :   graph_(graph),
-    edgeIndicators_(edgeIndicators),
-    edgeSizes_(edgeSizes),
-    nodeSizes_(nodeSizes),
+    edgeIndicators_(graph),
+    edgeSizes_(graph),
+    nodeSizes_(graph),
     pq_(graph.edgeIdUpperBound()+1),
     settings_(settings),
     edgeContractionGraph_(graph, *this)
 {
+    graph_.forEachEdge([&](const uint64_t edge){
+        edgeIndicators_[edge] = edgeIndicators[edge];
+        edgeSizes_[edge] = edgeSizes[edge];
+    });
+    graph_.forEachNode([&](const uint64_t node){
+        nodeSizes_[node] = nodeSizes[node];
+    });
     this->initializeWeights();
 }
 
-template<class GRAPH,class EDGE_INDICATORS,class EDGE_SIZES,class NODE_SIZES, bool ENABLE_UCM>
+template<class GRAPH, bool ENABLE_UCM>
 inline std::pair<uint64_t, double> 
-EdgeWeightedClusterPolicy<GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, ENABLE_UCM>::
+EdgeWeightedClusterPolicy<GRAPH, ENABLE_UCM>::
 edgeToContractNext() const {
     return std::pair<uint64_t, double>(pq_.top(),pq_.topPriority()) ;
 }
 
-template<class GRAPH,class EDGE_INDICATORS,class EDGE_SIZES,class NODE_SIZES, bool ENABLE_UCM>
+template<class GRAPH, bool ENABLE_UCM>
 inline bool 
-EdgeWeightedClusterPolicy<GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, ENABLE_UCM>::
+EdgeWeightedClusterPolicy<GRAPH, ENABLE_UCM>::
 isDone() const {
     if(edgeContractionGraph_.numberOfNodes() <= settings_.numberOfNodesStop)
         return  true;
@@ -128,17 +152,17 @@ isDone() const {
 }
 
 
-template<class GRAPH,class EDGE_INDICATORS,class EDGE_SIZES,class NODE_SIZES, bool ENABLE_UCM>
+template<class GRAPH, bool ENABLE_UCM>
 inline void 
-EdgeWeightedClusterPolicy<GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, ENABLE_UCM>::
+EdgeWeightedClusterPolicy<GRAPH, ENABLE_UCM>::
 initializeWeights() {
     for(const auto edge : graph_.edges())
         pq_.push(edge, this->computeWeight(edge));
 }
 
-template<class GRAPH,class EDGE_INDICATORS,class EDGE_SIZES,class NODE_SIZES, bool ENABLE_UCM>
+template<class GRAPH, bool ENABLE_UCM>
 inline double 
-EdgeWeightedClusterPolicy<GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, ENABLE_UCM>::
+EdgeWeightedClusterPolicy<GRAPH, ENABLE_UCM>::
 computeWeight(
     const uint64_t edge
 ) const {
@@ -151,27 +175,27 @@ computeWeight(
 }
 
 
-template<class GRAPH,class EDGE_INDICATORS,class EDGE_SIZES,class NODE_SIZES, bool ENABLE_UCM>
+template<class GRAPH, bool ENABLE_UCM>
 inline void 
-EdgeWeightedClusterPolicy<GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, ENABLE_UCM>::
+EdgeWeightedClusterPolicy<GRAPH, ENABLE_UCM>::
 contractEdge(
     const uint64_t edgeToContract
 ){
     pq_.deleteItem(edgeToContract);
 }
 
-template<class GRAPH,class EDGE_INDICATORS,class EDGE_SIZES,class NODE_SIZES, bool ENABLE_UCM>
-inline typename EdgeWeightedClusterPolicy<GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, ENABLE_UCM>::EdgeContractionGraphType & 
-EdgeWeightedClusterPolicy<GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, ENABLE_UCM>::
+template<class GRAPH, bool ENABLE_UCM>
+inline typename EdgeWeightedClusterPolicy<GRAPH, ENABLE_UCM>::EdgeContractionGraphType & 
+EdgeWeightedClusterPolicy<GRAPH, ENABLE_UCM>::
 edgeContractionGraph(){
     return edgeContractionGraph_;
 }
 
 
 
-template<class GRAPH,class EDGE_INDICATORS,class EDGE_SIZES,class NODE_SIZES, bool ENABLE_UCM>
+template<class GRAPH, bool ENABLE_UCM>
 inline void 
-EdgeWeightedClusterPolicy<GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, ENABLE_UCM>::
+EdgeWeightedClusterPolicy<GRAPH, ENABLE_UCM>::
 mergeNodes(
     const uint64_t aliveNode, 
     const uint64_t deadNode
@@ -179,9 +203,9 @@ mergeNodes(
     nodeSizes_[aliveNode] +=nodeSizes_[deadNode];
 }
 
-template<class GRAPH,class EDGE_INDICATORS,class EDGE_SIZES,class NODE_SIZES, bool ENABLE_UCM>
+template<class GRAPH, bool ENABLE_UCM>
 inline void 
-EdgeWeightedClusterPolicy<GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, ENABLE_UCM>::
+EdgeWeightedClusterPolicy<GRAPH, ENABLE_UCM>::
 mergeEdges(
     const uint64_t aliveEdge, 
     const uint64_t deadEdge
@@ -194,9 +218,9 @@ mergeEdges(
     edgeSizes_[aliveEdge] = s;
 }
 
-template<class GRAPH,class EDGE_INDICATORS,class EDGE_SIZES,class NODE_SIZES, bool ENABLE_UCM>
+template<class GRAPH, bool ENABLE_UCM>
 inline void 
-EdgeWeightedClusterPolicy<GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, ENABLE_UCM>::
+EdgeWeightedClusterPolicy<GRAPH, ENABLE_UCM>::
 contractEdgeDone(
     const uint64_t edgeToContract
 ){

@@ -25,28 +25,31 @@ namespace agglo{
         
         typedef GRAPH GraphType;
         const auto graphName = GraphName<GraphType>::name();
-        typedef nifty::marray::PyView<double, 1, false> PyViewDoube1;
+        typedef nifty::marray::PyView<float, 1, false> PyViewDoube1;
 
-        const std::string withUcmStr =  WITH_UCM ? std::string() : std::string("WithUcm");
+        const std::string withUcmStr =  WITH_UCM ? std::string("WithUcm") :  std::string() ;
 
         {   
             // name and type of cluster operator
-            typedef EdgeWeightedClusterPolicy<GraphType,PyViewDoube1,PyViewDoube1,PyViewDoube1,WITH_UCM> ClusterPolicyType;
+            typedef EdgeWeightedClusterPolicy<GraphType,WITH_UCM> ClusterPolicyType;
             const auto clusterPolicyBaseName = std::string("EdgeWeightedClusterPolicy") +  withUcmStr;
             const auto clusterPolicyClsName = clusterPolicyBaseName + graphName;
             const auto clusterPolicyFacName = lowerFirst(clusterPolicyBaseName);
 
             // the cluster operator cls
-            auto clusterPolicyPyCls = py::class_<ClusterPolicyType>(aggloModule, clusterPolicyClsName.c_str());
+            py::class_<ClusterPolicyType>(aggloModule, clusterPolicyClsName.c_str())
+                .def_property_readonly("edgeIndicators", &ClusterPolicyType::edgeIndicators)
+                .def_property_readonly("edgeSizes", &ClusterPolicyType::edgeSizes)
+            ;
         
 
             // factory
             aggloModule.def(clusterPolicyFacName.c_str(),
                 [](
                     const GraphType & graph,
-                    PyViewDoube1 edgeIndicators,
-                    PyViewDoube1 edgeSizes,
-                    PyViewDoube1 nodeSizes,
+                    const PyViewDoube1 & edgeIndicators,
+                    const PyViewDoube1 & edgeSizes,
+                    const PyViewDoube1 & nodeSizes,
                     const uint64_t numberOfNodesStop,
                     const float sizeRegularizer
                 ){
@@ -58,9 +61,6 @@ namespace agglo{
                 },
                 py::return_value_policy::take_ownership,
                 py::keep_alive<0,1>(), // graph
-                py::keep_alive<0,2>(), // edgeIndicators
-                py::keep_alive<0,3>(), // edgeSizes
-                py::keep_alive<0,4>(), // nodeSizes
                 py::arg("graph"),
                 py::arg("edgeIndicators"),
                 py::arg("edgeSizes"),

@@ -2,13 +2,15 @@ import segmentation_pipeline as segp
 
 trainInput = {
     'rawData' : 'train-volume.tif',
-    'superpixels' : None,   # ('file.h5','data')
+    'superpixels' : ('wsdt_interceptor_train.h5','data'),
+    'pmap' : ('interceptor_train.h5','data'),
     'gt' : 'train-labels.tif',
 }
 
 testInput = {
     'rawData' : 'test-volume.tif',
-    'superpixels' : None
+    'superpixels' : ('wsdt_interceptor_test.h5','data'),
+    'pmap' : ('interceptor_test.h5','data'),
 }
 
 
@@ -18,9 +20,9 @@ settings = {
     ##########################################################
     # in case supervoxels are not providedragDir
     ##########################################################
-    'spSigmaHessian' : 2.0,     # sigma for hessian of gaussian eigenvalues
+    'spSigmaHessian' : 3.0,     # sigma for hessian of gaussian eigenvalues
 
-    'reduceBy': 10,             # reduce #superpixel by this factor 
+    'reduceBy': 15,             # reduce #superpixel by this factor 
                                 # via agglomerative clustering
 
     'sizeRegularizer' : 0.5,    # sizeRegularizer term to overseg, ragFile, settings
@@ -36,7 +38,14 @@ settings = {
     ##########################################################
     #  debug settings
     ##########################################################
-    'debug' : True
+    'debug' : True,
+
+    ##########################################################
+    #  lifted multicut solver / objective
+    ##########################################################
+    'betaLocal'  : 0.5,
+    'betaLifted' : 0.5,
+    'gamma' : 0.5, # higher gamma gives local weights more power
 }
 
 

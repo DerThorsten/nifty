@@ -48,6 +48,27 @@ namespace graph{
 
     };
 
+    template<class G, class MAP_TYPE>
+    void exportEdgeMap(
+        py::module & graphModule,
+        const std::string & clsName
+    ){
+
+        py::class_<MAP_TYPE>(graphModule, clsName.c_str())
+        ;
+
+    }
+
+    template<class G, class MAP_TYPE>
+    void exportNodeMap(
+        py::module & graphModule,
+        const std::string & clsName
+    ){
+
+        py::class_<MAP_TYPE>(graphModule, clsName.c_str())
+        ;
+
+    }
 
     template<class G, class CLS_T>
     void exportUndirectedGraphClassAPI(
@@ -73,6 +94,11 @@ namespace graph{
         ;
 
 
+        typedef typename G:: template EdgeMap<double> EdgeMapFloat64;
+        exportEdgeMap<G, EdgeMapFloat64>(graphModule, clsName + std::string("EdgeMapFloat64"));
+
+        typedef typename G:: template NodeMap<double> NodeMapFloat64;
+        exportEdgeMap<G, NodeMapFloat64>(graphModule, clsName + std::string("NodeMapFloat64"));
 
         cls
             .def_property_readonly("numberOfNodes",&G::numberOfNodes)

@@ -51,7 +51,7 @@ namespace lifted_multicut{
                 NIFTY_CHECK_OP(uvIds.shape(0),==,weights.shape(0),"wrong shape");
 
                 for(size_t i=0; i<uvIds.shape(0); ++i){
-                    objective.setCost(uvIds(i,0), uvIds(i,1), weights(i));
+                    objective.setCost(uvIds(i,0), uvIds(i,1), weights(i),overwrite);
                 }
                 
             },
@@ -64,6 +64,62 @@ namespace lifted_multicut{
                                                    // the worst conversion for the second:
 
             )
+
+            .def("setLiftedEdgesCosts",[]
+            (
+                ObjectiveType & objective,  
+                nifty::marray::PyView<double>   weights,
+                bool overwrite = false
+            ){
+  
+                NIFTY_CHECK_OP(weights.dimension(),==,1,"wrong dimensions");
+                NIFTY_CHECK_OP(weights.shape(0),==, objective.numberOfLiftedEdges(),"wrong shape");
+
+                auto c = 0;
+                objective.forEachLiftedeEdge([&](const uint64_t edge){
+                    const auto uv = objective.liftedGraph().uv(edge);
+                    objective.setCost(uv.first, uv.second, weights[c], overwrite);
+                    ++c;    
+                });
+                
+            },
+                py::arg("weights"),
+                py::arg_t<bool>("overwrite",false) // gcc 5.4.0 warning if py::arg("overwrite") = false is used
+                                                   // 
+                                                   // ISO C++ says that these are ambiguous, even though the worst 
+                                                   // conversion for the first is better than 
+                                                   // the worst conversion for the second:
+
+            )
+
+            .def("setGraphEdgesCosts",[]
+            (
+                ObjectiveType & objective,  
+                nifty::marray::PyView<double>   weights,
+                bool overwrite = false
+            ){
+  
+                NIFTY_CHECK_OP(weights.dimension(),==,1,"wrong dimensions");
+                NIFTY_CHECK_OP(weights.shape(0),==, objective.graph().numberOfEdges(),"wrong shape");
+
+                auto c = 0;
+                objective.forEachGraphEdge([&](const uint64_t edge){
+                    const auto uv = objective.liftedGraph().uv(edge);
+                    objective.setCost(uv.first, uv.second, weights[c], overwrite);
+                    ++c;    
+                });
+                
+            },
+                py::arg("weights"),
+                py::arg_t<bool>("overwrite",false) // gcc 5.4.0 warning if py::arg("overwrite") = false is used
+                                                   // 
+                                                   // ISO C++ says that these are ambiguous, even though the worst 
+                                                   // conversion for the first is better than 
+                                                   // the worst conversion for the second:
+
+            )
+
+
             .def("evalNodeLabels",[](const ObjectiveType & objective,  nifty::marray::PyView<uint64_t> array){
                 return objective.evalNodeLabels(array);
             })
@@ -95,6 +151,21 @@ namespace lifted_multicut{
                 },
                 py::arg("maxDistance")
             )
+            .def("liftedUvIds",
+                [](ObjectiveType & self) {
+                    nifty::marray::PyView<uint64_t> out({uint64_t(self.numberOfLiftedEdges()), uint64_t(2)});
+                    auto i = 0; 
+                    self.forEachLiftedeEdge([&](const uint64_t edge){
+                        const auto uv = self.liftedGraph().uv(edge);
+                        out(i,0) = uv.first;
+                        out(i,1) = uv.second;
+                        ++i;
+                    });
+                    
+                    return out;
+                }
+            )
+
         ;
 
 

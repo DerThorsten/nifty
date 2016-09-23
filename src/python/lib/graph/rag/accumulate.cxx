@@ -133,6 +133,62 @@ namespace graph{
         );
     }
 
+    template<size_t DIM, class RAG, class DATA_T>
+    void exportAccumulateNodeStandartFeatures(
+        py::module & ragModule
+    ){
+        ragModule.def("accumulateNodeStandartFeatures",
+        [](
+            const RAG & rag,
+            nifty::marray::PyView<DATA_T, DIM> data,
+            const double minVal,
+            const double maxVal,
+            array::StaticArray<int64_t, DIM> blocKShape,
+            const int numberOfThreads
+        ){
+            typedef nifty::marray::PyView<DATA_T> NumpyArrayType;
+            NumpyArrayType nodeOut({uint64_t(rag.nodeIdUpperBound()+1),uint64_t(11)});
+            {
+                py::gil_scoped_release allowThreads;
+                accumulateNodeStandartFeatures(rag, data, minVal, maxVal, blocKShape, nodeOut, numberOfThreads);
+            }
+            return nodeOut;
+        },
+        py::arg("rag"),
+        py::arg("data"),
+        py::arg("minVal"),
+        py::arg("maxVal"),
+        py::arg("blockShape") = array::StaticArray<int64_t,DIM>(100),
+        py::arg("numberOfThreads")= -1
+        );
+    }
+
+
+
+    template<size_t DIM, class RAG, class DATA_T>
+    void exportAccumulateGeometricNodeFeatures(
+        py::module & ragModule
+    ){
+        ragModule.def("accumulateGeometricNodeFeatures",
+        [](
+            const RAG & rag,
+            array::StaticArray<int64_t, DIM> blocKShape,
+            const int numberOfThreads
+        ){
+            typedef nifty::marray::PyView<DATA_T> NumpyArrayType;
+            NumpyArrayType nodeOut({uint64_t(rag.nodeIdUpperBound()+1),uint64_t(3*DIM+1)});
+            {
+                py::gil_scoped_release allowThreads;
+                accumulateGeometricNodeFeatures(rag, blocKShape, nodeOut, numberOfThreads);
+            }
+            return nodeOut;
+        },
+        py::arg("rag"),
+        py::arg("blockShape") = array::StaticArray<int64_t,DIM>(100),
+        py::arg("numberOfThreads")= -1
+        );
+    }
+
 
 
     void exportAccumulate(py::module & ragModule) {
@@ -149,6 +205,12 @@ namespace graph{
 
             exportAccumulateStandartFeatures<2, Rag2d, float>(ragModule);
             exportAccumulateStandartFeatures<3, Rag3d, float>(ragModule);
+
+            exportAccumulateNodeStandartFeatures<2, Rag2d, float>(ragModule);
+            exportAccumulateNodeStandartFeatures<3, Rag3d, float>(ragModule);
+
+            exportAccumulateGeometricNodeFeatures<2, Rag2d, float>(ragModule);
+            exportAccumulateGeometricNodeFeatures<3, Rag3d, float>(ragModule);
 
             exportAccumulateGeometricEdgeFeatures<2, Rag2d, float>(ragModule);
             exportAccumulateGeometricEdgeFeatures<3, Rag3d, float>(ragModule);

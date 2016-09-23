@@ -34,17 +34,34 @@ namespace agglo{
         template<class AGGLO_CLUSTER_TYPE>
         void static exportUcm(py::class_<AGGLO_CLUSTER_TYPE> & aggloCls){
             
+            typedef typename AGGLO_CLUSTER_TYPE::GraphType GraphType;
+            typedef typename GraphType:: template EdgeMap<double> EdgeMapFloat64;
+
             aggloCls
                 .def("runAndGetDendrogramHeight", [](
                     AGGLO_CLUSTER_TYPE * self
                 ){
                     const auto & graph = self->graph();
-                    nifty::marray::PyView<uint64_t> dheight( {std::size_t(graph.edgeIdUpperBound()+1)  });
+                    nifty::marray::PyView<double> dheight( {std::size_t(graph.edgeIdUpperBound()+1)  });
                     {
                         py::gil_scoped_release allowThreads;
                         self->runAndGetDendrogramHeight(dheight);
                     }
                     return dheight;
+                }
+                )
+
+                .def("ucmTransform", [](
+                    AGGLO_CLUSTER_TYPE * self,
+                    const EdgeMapFloat64 & edgeValues
+                ){
+                    const auto & graph = self->graph();
+                    nifty::marray::PyView<double> transformed( {std::size_t(graph.edgeIdUpperBound()+1)  });
+                    {
+                        py::gil_scoped_release allowThreads;
+                        self->ucmTransform(edgeValues, transformed);
+                    }
+                    return transformed;
                 }
                 )
             ;
