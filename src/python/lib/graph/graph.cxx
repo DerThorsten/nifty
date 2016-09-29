@@ -13,13 +13,7 @@ namespace graph{
     void exportUndirectedListGraph(py::module &);
     void exportEdgeContractionGraphUndirectedGraph(py::module & );
 
-    void initSubmoduleMulticut(py::module &);
-    namespace lifted_multicut{
-        void initSubmoduleLiftedMulticut(py::module &);
-    }
 
-
-    void initSubmoduleGala(py::module &);
 
 }
 }
@@ -35,9 +29,6 @@ PYBIND11_PLUGIN(_graph) {
     exportUndirectedListGraph(graphModule);
     exportEdgeContractionGraphUndirectedGraph(graphModule);
 
-    initSubmoduleMulticut(graphModule);
-    lifted_multicut::initSubmoduleLiftedMulticut(graphModule);
-    initSubmoduleGala(graphModule);
 
         
     return graphModule.ptr();

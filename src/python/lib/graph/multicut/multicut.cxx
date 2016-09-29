@@ -19,18 +19,25 @@ namespace graph{
     void exportPerturbAndMap(py::module &);
 
 
-    void initSubmoduleMulticut(py::module &graphModule) {
-
-        auto multicutModule = graphModule.def_submodule("multicut","multicut submodule");
-        exportMulticutObjective(multicutModule);
-        exportMulticutVisitorBase(multicutModule);
-        exportMulticutBase(multicutModule);
-        exportMulticutFactory(multicutModule);
-        exportMulticutIlp(multicutModule);
-        exportMulticutGreedyAdditive(multicutModule);
-        exportFusionMoveBased(multicutModule);
-        exportPerturbAndMap(multicutModule);
-    }
-
 }
 }
+
+
+
+PYBIND11_PLUGIN(_multicut) {
+    py::module multicutModule("_multicut", "multicut submodule of nifty.graph");
+    
+    using namespace nifty::graph;
+
+    exportMulticutObjective(multicutModule);
+    exportMulticutVisitorBase(multicutModule);
+    exportMulticutBase(multicutModule);
+    exportMulticutFactory(multicutModule);
+    exportMulticutIlp(multicutModule);
+    exportMulticutGreedyAdditive(multicutModule);
+    exportFusionMoveBased(multicutModule);
+    exportPerturbAndMap(multicutModule);
+
+    return multicutModule.ptr();
+}
+

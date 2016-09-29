@@ -3,6 +3,13 @@ set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules)
 
 project(nifty)
 
+set (NIFTY_VERSION_MAJOR 0)
+set (NIFTY_VERSION_MINOR 1)
+set (NIFTY_VERSION_PATCH 0)
+
+set (NIFTY_VERSION_SHORT_STR "${NIFTY_VERSION_MAJOR}.${NIFTY_VERSION_MINOR}")
+set (NIFTY_VERSION_STR "${NIFTY_VERSION_MAJOR}.${NIFTY_VERSION_MINOR}.${NIFTY_VERSION_PATCH}")
+
 
 include(CheckCXXCompilerFlag)
 
@@ -17,6 +24,10 @@ option(WITH_FASTFILTERS OFF)
 
 
 option(BUILD_NIFTY_PYTHON OFF)
+option(BUILD_DOCS ON)
+option(BUILD_CPP_EXAMPLES ON)
+option(BUILD_PYTHON_DOCS "Build the Python documentation with Sphinx" OFF)
+
 
 
 #-------------------------------------------------------------------------------------------------------------------
@@ -163,6 +174,12 @@ if(WITH_FASTFILTERS)
     add_definitions(-DWITH_FASTFILTERS)
 endif()
 
+
+
+
+
+
+
 #-------------------------------------------------------------------------------------------------------------------
 # enable_testing
 #-------------------------------------------------------------------------------------------------------------------
@@ -180,3 +197,9 @@ include_directories(include)
 # src folder
 #-------------------------------------------------------------------------------------------------------------------
 add_subdirectory(src)
+
+
+#-------------------------------------------------------------------------------------------------------------------
+# docsrc folder
+#-------------------------------------------------------------------------------------------------------------------
+add_subdirectory(docsrc)

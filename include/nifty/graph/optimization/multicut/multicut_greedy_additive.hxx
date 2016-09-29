@@ -114,10 +114,12 @@ namespace graph{
                     return true;
                 }
             }
-            if(currentNodeNum_<=1)
+            if(currentNodeNum_<=1){
                 return true;
-            if(pq_.empty())
+            }
+            if(pq_.empty()){
                 return true;
+            }
             return false;
         }
 
@@ -246,6 +248,7 @@ namespace graph{
                    visitor->setLogValue(0, edgeContractionGraph_.numberOfNodes());
                    visitor->setLogValue(1, callback_.queue().topPriority());
                    if(!visitor->visit(this)){
+                        std::cout<<"end by visitor\n";
                        break;
                    }
                 }

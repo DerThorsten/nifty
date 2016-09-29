@@ -25,7 +25,7 @@ namespace agglo{
         
         typedef GRAPH GraphType;
         const auto graphName = GraphName<GraphType>::name();
-        typedef nifty::marray::PyView<float, 1, false> PyViewDoube1;
+        typedef nifty::marray::PyView<float, 1> PyViewDoube1;
 
         const std::string withUcmStr =  WITH_UCM ? std::string("WithUcm") :  std::string() ;
 

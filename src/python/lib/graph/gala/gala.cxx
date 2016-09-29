@@ -12,12 +12,19 @@ namespace graph{
     void exportGalaMainClass(py::module &);
     void exportGalaFeatureBase(py::module &);
     
-    void initSubmoduleGala(py::module &graphModule) {
-
-        auto galaModule = graphModule.def_submodule("gala","gala submodule");
-        exportGalaMainClass(galaModule);
-        exportGalaFeatureBase(galaModule);
-    }
-
 }
 }
+
+
+
+PYBIND11_PLUGIN(_gala) {
+    py::module galaModule("_gala", "gala submodule of nifty.graph");
+    
+    using namespace nifty::graph;
+
+    exportGalaMainClass(galaModule);
+    exportGalaFeatureBase(galaModule);
+
+    return galaModule.ptr();
+}
+

@@ -7,36 +7,6 @@ pybind11_add_module(_graph
     graph.cxx
     undirected_list_graph.cxx
     edge_contraction_graph_undirected_graph.cxx
-    # gala
-    gala/gala.cxx
-    gala/gala_main_class.cxx
-    gala/gala_feature_base.cxx
-    #############################
-    # multicut
-    #############################
-    multicut/multicut.cxx
-    multicut/multicut_objective.cxx
-    multicut/multicut_visitor_base.cxx
-    multicut/multicut_base.cxx
-    multicut/multicut_factory.cxx
-    multicut/multicut_ilp.cxx
-    multicut/multicut_greedy_additive.cxx
-    multicut/fusion_move_based.cxx
-    multicut/perturb_and_map.cxx
-    #############################
-    # lifted -multicut
-    #############################
-    lifted_multicut/lifted_multicut.cxx
-    lifted_multicut/lifted_multicut_objective.cxx
-    lifted_multicut/lifted_multicut_visitor_base.cxx
-    lifted_multicut/lifted_multicut_base.cxx
-    lifted_multicut/lifted_multicut_factory.cxx
-    lifted_multicut/lifted_multicut_greedy_additive.cxx
-    lifted_multicut/lifted_multicut_kernighan_lin.cxx
-    lifted_multicut/lifted_multicut_ilp.cxx
-    lifted_multicut/lifted_multicut_andres_kernighan_lin.cxx
-    lifted_multicut/lifted_multicut_andres_greedy_additive.cxx
-    lifted_multicut/lifted_graph_features.cxx
 )
 
 
@@ -87,3 +57,6 @@ add_custom_target(copy_python_graph__init__ ALL#POST_BUILD
 # submodules
 add_subdirectory(agglo)
 add_subdirectory(rag)
+add_subdirectory(gala)
+add_subdirectory(multicut)
+add_subdirectory(lifted_multicut)

@@ -1,5 +1,3 @@
-// reimplementation of kerninhanlin in 
-// https://github.com/bjoern-andres/graph
 
 #pragma once
 #ifndef NIFTY_GRAPH_OPTIMIZATION_LIFTED_MULTICUT_LIFTED_MULTICUT_ANDRES_GREEDY_ADDITIVE_HXX

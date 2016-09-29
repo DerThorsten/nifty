@@ -4,6 +4,10 @@ from .. import Configuration
 import numpy
 
 
+__all__ = []
+for key in _rag.__dict__.keys():
+    __all__.append(key)
+
 
 def gridRag(labels, numberOfThreads=-1, serialization = None):
     labels = numpy.require(labels)

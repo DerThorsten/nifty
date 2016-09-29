@@ -1,54 +1,65 @@
 #pragma once
-#ifndef NIFTY_GRAPH_OPTIMIZATION_MULTICUT_FUSION_MOVE_HXX
-#define NIFTY_GRAPH_OPTIMIZATION_MULTICUT_FUSION_MOVE_HXX
+#ifndef NIFTY_GRAPH_OPTIMIZATION_LIFTED_MULTICUT_FUSION_MOVE_HXX
+#define NIFTY_GRAPH_OPTIMIZATION_LIFTED_MULTICUT_FUSION_MOVE_HXX
 
 #include <mutex>          // std::mutex
 #include <memory>
 #include <unordered_set>
 
-#include "nifty/graph/optimization/multicut/multicut_greedy_additive.hxx"
+#include "nifty/graph/optimization/lifted_multicut/lifted_multicut_greedy_additive.hxx"
 #include "nifty/tools/runtime_check.hxx"
 #include "nifty/ufd/ufd.hxx"
-#include "nifty/graph/optimization/multicut/multicut_base.hxx"
-#include "nifty/graph/optimization/multicut/multicut_factory.hxx"
-#include "nifty/graph/optimization/multicut/multicut_objective.hxx"
+#include "nifty/graph/optimization/lifted_multicut/lifted_multicut_base.hxx"
+#include "nifty/graph/optimization/lifted_multicut/lifted_multicut_factory.hxx"
+#include "nifty/graph/optimization/lifted_multicut/lifted_multicut_objective.hxx"
 #include "nifty/graph/undirected_list_graph.hxx"
 
 namespace nifty{
 namespace graph{
+namespace lifted_multicut{
 
 
-
+    /**
+     * @brief      Fuse multiple labels into single one w.r.t. a LiftedMulticut objective
+     *
+     * @tparam     OBJECTIVE  LiftedMulticutObjective
+     * 
+     * 
+     * \todo This implementation should only be used for sparse graphs
+     * (atm only sparse graphs are implemented so this is not an issue so far)
+     */
     template<class OBJECTIVE>
-    class FusionMove{
+    class MulticutFusionMove{
     public:
         typedef OBJECTIVE Objective;
-        typedef typename Objective::Graph Graph;
+        typedef typename Objective::GraphType GraphType;
+        typedef typename Objective::LiftedGraphType LiftedGraphType;
         typedef typename Graph:: template NodeMap<uint64_t> NodeLabels;
         
 
-        typedef UndirectedGraph<> FmGraph;
-        typedef MulticutObjective<FmGraph, double> FmObjective;
-        typedef MulticutFactoryBase<FmObjective> FmMcFactoryBase;
-        typedef MulticutBase<FmObjective> FmMcBase;
-        typedef MulticutEmptyVisitor<FmObjective> FmEmptyVisitor;
-        typedef typename  FmMcBase::NodeLabels FmNodeLabels;
+        typedef UndirectedGraph<> FmGraphType;
+        typedef UndirectedGraph<> FmLiftedGraphType;
+        typedef LiftedMulticutObjective<FmGraphType, double> FmObjective;
+        typedef LiftedMulticutFactoryBase<FmObjective> FmLmcFactoryBase;
+        typedef LiftedMulticutBase<FmObjective> FmLmcBase;
+        typedef LiftedMulticutEmptyVisitor<FmObjective> FmEmptyVisitor;
+        typedef typename  FmLmcBase::NodeLabels FmNodeLabels;
 
         struct Settings{
-            std::shared_ptr<FmMcFactoryBase> mcFactory;
+            std::shared_ptr<FmLmcFactoryBase> lmcFactory;
         };
 
-        FusionMove(const Objective & objective, const Settings & settings = Settings())
+        MulticutFusionMove(const Objective & objective, const Settings & settings = Settings())
         :   objective_(objective),
             graph_(objective.graph()),
             settings_(settings),
             ufd_(objective.graph().nodeIdUpperBound()+1),
             nodeToDense_(objective.graph())
         {
-            if(!bool(settings_.mcFactory)){
+            if(!bool(settings_.lmcFactory)){
                 typedef MulticutGreedyAdditive<FmObjective> FmSolver;
                 typedef MulticutFactory<FmSolver> FmFactory;
-                settings_.mcFactory = std::make_shared<FmFactory>();
+                settings_.lmcFactory = std::make_shared<FmFactory>();
             }
         }
 
@@ -134,20 +145,34 @@ namespace graph{
             
             //std::cout<<"fm graph\n";
             // build the graph
-            FmGraph fmGraph(numberOfNodes);
+            FmGraphType       fmGraph(numberOfNodes);
             
+
             for(auto edge : graph_.edges()){
                 const auto uv = graph_.uv(edge);
                 const auto u = uv.first;
                 const auto v = uv.second;
                 const auto lu = nodeToDense_[ufd_.find(u)];
                 const auto lv = nodeToDense_[ufd_.find(v)];
-                NIFTY_CHECK_OP(lu,<,numberOfNodes,"");
-                NIFTY_CHECK_OP(lv,<,numberOfNodes,"");
                 if(lu != lv){
                     fmGraph.insertEdge(lu, lv);
                 }
             }
+
+            FmObjective fmObjective(fmGraph);
+
+            for(auto edge : liftedGraph_.edges()){
+                const auto uv = liftedGraph_.uv(edge);
+                const auto u = uv.first;
+                const auto v = uv.second;
+                const auto lu = nodeToDense_[ufd_.find(u)];
+                const auto lv = nodeToDense_[ufd_.find(v)];
+                if(lu != lv){
+                    fmObjective.setCost(lu,lv,objective_.weights()[edge],false);
+                }
+            }
+
+
 
             const auto fmEdges = fmGraph.numberOfEdges();
 
@@ -160,35 +185,12 @@ namespace graph{
 
                 NIFTY_CHECK_OP(fmGraph.numberOfEdges(),>,0,"");
 
-
-                FmObjective fmObjective(fmGraph);
-                auto & fmWeights = fmObjective.weights();
-                for(auto edge : graph_.edges()){
-                    const auto uv = graph_.uv(edge);
-                    const auto u = uv.first;
-                    const auto v = uv.second;
-                    const auto lu = nodeToDense_[ufd_.find(u)];
-                    const auto lv = nodeToDense_[ufd_.find(v)];
-                    NIFTY_CHECK_OP(lu,<,fmGraph.numberOfNodes(),"");
-                    NIFTY_CHECK_OP(lv,<,fmGraph.numberOfNodes(),"");
-                    if(lu != lv){
-                        auto e = fmGraph.findEdge(lu, lv);
-                        NIFTY_CHECK_OP(e,!=,-1,"");
-                        fmWeights[e] += objective_.weights()[edge];
-                    }
-                }
-
-                //std::cout<<"fm solve\n";
-                // solve that thin
-                auto solverPtr = settings_.mcFactory->createRawPtr(fmObjective);
+                auto solverPtr = settings_.lmcFactory->createRawPtr(fmObjective);
                 FmNodeLabels fmLabels(fmGraph);
-                FmEmptyVisitor fmVisitor;
-                //std::cout<<"opt\n";
-                solverPtr->optimize(fmLabels, &fmVisitor);
-                //std::cout<<"del ptr\n";
+                solverPtr->optimize(fmLabels, nullptr);
                 delete solverPtr;
 
-                //std::cout<<"fm get res\n";
+
                 for(auto edge : graph_.edges()){
                     const auto uv = graph_.uv(edge);
                     const auto u = uv.first;
@@ -209,7 +211,8 @@ namespace graph{
 
 
         const Objective & objective_;
-        const Graph & graph_;
+        const GraphType & graph_;
+        const LiftedGraph & liftedGraph_;
         Settings settings_;
         nifty::ufd::Ufd< > ufd_;
         NodeLabels nodeToDense_;
@@ -219,9 +222,8 @@ namespace graph{
 
 
 
-
-
+} // namespace nifty::graph::lifted_multicut
 } // namespace nifty::graph
 } // namespace nifty
 
-#endif  // NIFTY_GRAPH_OPTIMIZATION_MULTICUT_FUSION_MOVE_HXX
+#endif  // NIFTY_GRAPH_OPTIMIZATION_LIFTED_MULTICUT_FUSION_MOVE_HXX

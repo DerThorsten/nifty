@@ -1,19 +1,26 @@
 from __future__ import print_function
+
 from _nifty import *
+# __all__ = []
+# for key in _nifty.__dict__.keys():
+    # __all__.append(key)
+
 import types
 from functools import partial
 import numpy
 import time
 import sys
 
+import graph
 
 
 
-
-
-
-class Timer:    
+    
+class Timer:
     def __init__(self, name=None, verbose=True):
+        """
+        @brief      Class for timer.
+        """ 
         self.name = name
         self.verbose = verbose
 
