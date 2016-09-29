@@ -25,20 +25,20 @@ public:
     typedef OBJECTIVE Objective;
     typedef ProposalGeneratorBase<Objective> ProposalGeneratorBaseType;
     /* Trampoline (need one for each virtual function) */
-    std::shared_ptr<ProposalGeneratorBaseType> createSharedPtr(const Objective & objective, const int threadId) {
+    std::shared_ptr<ProposalGeneratorBaseType> createSharedPtr(const Objective & objective, const size_t numberOfThreads) {
         PYBIND11_OVERLOAD_PURE(
             std::shared_ptr<ProposalGeneratorBaseType>,     /* Return type */
             ProposalGeneratorFactoryBase<Objective>,        /* Parent class */
             createSharedPtr,                                              /* Name of function */
-            objective, threadId                                           /* Argument(s) */
+            objective, numberOfThreads                                           /* Argument(s) */
         );
     }
-    ProposalGeneratorBaseType * createRawPtr(const Objective & objective, const int threadId) {
+    ProposalGeneratorBaseType * createRawPtr(const Objective & objective, const size_t numberOfThreads) {
         PYBIND11_OVERLOAD_PURE(
             ProposalGeneratorBaseType* ,                    /* Return type */
             ProposalGeneratorFactoryBase<Objective>,        /* Parent class */
             createRawPtr,                                                 /* Name of function */
-            objective, threadId                                           /* Argument(s) */
+            objective, numberOfThreads                                           /* Argument(s) */
         );
     }
 };

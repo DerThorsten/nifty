@@ -107,7 +107,7 @@ def h5Read(f, d='data'):
 
 
 class Classifier(object):
-    def __init__(self, nRounds=200, maxDepth=3, nThreads=10, silent=1):
+    def __init__(self, nRounds=200, maxDepth=3, nThreads=multiprocessing.cpu_count(), silent=1):
 
         self.param = {
             'bst:max_depth':maxDepth, 

@@ -21,10 +21,17 @@ namespace lifted_multicut{
         typedef typename ObjectiveType::GraphType GraphType;
         typedef typename ObjectiveType::LiftedGraphType LiftedGraphType;
         typedef typename LiftedMulticutBaseType::NodeLabels NodeLabels;
-    private:
+    
         virtual ~ProposalGeneratorBase(){}
-        virtual void generateProposal( const NodeLabels & currentBest,NodeLabels & labels) = 0;
-    };
+
+        virtual void generateProposal( const NodeLabels & currentBest,NodeLabels & labels, const size_t tid) = 0;
+
+    private:
+    }; 
+
+    
+    
+    
 
 }
 }

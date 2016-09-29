@@ -18,11 +18,11 @@ namespace lifted_multicut{
     class ProposalGeneratorFactoryBase{
     public:
         typedef OBJECTIVE ObjectiveType;
-       // typedef ProposalGeneratorBase<ObjectiveType> ProposalGeneratorBaseType;
+        typedef ProposalGeneratorBase<ObjectiveType> ProposalGeneratorBaseType;
 
         virtual ~ProposalGeneratorFactoryBase(){}
-        //virtual std::shared_ptr<ProposalGeneratorBaseType> createSharedPtr(const ObjectiveType & objective, const int ThreadId) = 0;
-        //virtual ProposalGeneratorBaseType *                createRawPtr(   const ObjectiveType & objective, const int ThreadId) = 0;
+        virtual std::shared_ptr<ProposalGeneratorBaseType> createSharedPtr(const ObjectiveType & objective, const size_t numberOfThreads) = 0;
+        virtual ProposalGeneratorBaseType *                createRawPtr(   const ObjectiveType & objective, const size_t numberOfThreads) = 0;
     };
 
 

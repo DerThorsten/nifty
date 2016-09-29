@@ -9,6 +9,8 @@
 #include "nifty/python/graph/optimization/lifted_multicut/lifted_multicut_objective.hxx"
 #include "nifty/python/graph/optimization/lifted_multicut/export_lifted_multicut_solver.hxx"
 #include "nifty/python/graph/optimization/lifted_multicut/py_proposal_generator_factory_base.hxx"
+#include "nifty/graph/optimization/lifted_multicut/proposal_generators/proposal_generator_factory.hxx"
+#include "nifty/graph/optimization/lifted_multicut/proposal_generators/watershed_proposal_generator.hxx"
 
 namespace py = pybind11;
 
@@ -17,6 +19,7 @@ PYBIND11_DECLARE_HOLDER_TYPE(T, std::shared_ptr<T>);
 namespace nifty{
 namespace graph{
 namespace lifted_multicut{
+
 
 
 
@@ -41,14 +44,66 @@ namespace lifted_multicut{
             .def(py::init<>())
         ;
     }
+
+
+
+
+    template<class PROPOSAL_GENERATOR>
+    py::class_<typename PROPOSAL_GENERATOR::Settings> 
+    exportProposalGenerator(
+        py::module & liftedMulticutModule,
+        const std::string & clsName
+    ){
+        typedef PROPOSAL_GENERATOR ProposalGeneratorType;
+        typedef typename ProposalGeneratorType::ObjectiveType ObjectiveType;
+        typedef typename ProposalGeneratorType::Settings Settings;
+        typedef ProposalGeneratorFactory<ProposalGeneratorType> Factory;
+
+        const auto objName = LiftedMulticutObjectiveName<ObjectiveType>::name();
+
+        const std::string settingsName = clsName + std::string("Settings") + objName;
+        const std::string factoryBaseName = std::string("ProposalGeneratorFactoryBase")+objName;
+        const std::string factoryName = clsName + std::string("Factory") + objName;
+
+
+         // settings
+        auto settingsCls = py::class_< Settings >(liftedMulticutModule, settingsName.c_str())
+        ;
+
+        // factory
+        py::object factoryBase = liftedMulticutModule.attr(factoryBaseName.c_str());
+        py::class_<Factory, std::shared_ptr<Factory> >(liftedMulticutModule, factoryName.c_str(),  factoryBase)
+            .def(py::init<const Settings &>(),
+                py::arg_t<Settings>("setttings",Settings())
+            )
+        ;
+
+
+        return settingsCls;
+
+    }   
+
+
+
+
+
+
     
     template<class OBJECTIVE>
     void exportFusionMoveBasedT(py::module & liftedMulticutModule) {
-
-        // the base factroy
-        exportProposalGeneratorFactoryBaseT<OBJECTIVE>(liftedMulticutModule);
-
         typedef OBJECTIVE ObjectiveType;
+
+        // the base factory
+        exportProposalGeneratorFactoryBaseT<ObjectiveType>(liftedMulticutModule);
+
+        // concrete factories
+        { // watershed factory
+            typedef WatershedProposalGenerator<ObjectiveType> ProposalGeneratorType;
+            exportProposalGenerator<ProposalGeneratorType>(liftedMulticutModule, "WatershedProposalGenerator")
+            ;
+        }
+
+        
         typedef FusionMoveBased<ObjectiveType> Solver;
         typedef typename Solver::Settings Settings;
         
@@ -63,9 +118,9 @@ namespace lifted_multicut{
 
     void exportFusionMoveBased(py::module & liftedMulticutModule) {
         {
-            //typedef PyUndirectedGraph GraphType;
-            //typedef LiftedMulticutObjective<GraphType, double> ObjectiveType;
-            //exportFusionMoveBasedT<ObjectiveType>(liftedMulticutModule);
+            typedef PyUndirectedGraph GraphType;
+            typedef LiftedMulticutObjective<GraphType, double> ObjectiveType;
+            exportFusionMoveBasedT<ObjectiveType>(liftedMulticutModule);
         }
         //{
         //    typedef PyContractionGraph<PyUndirectedGraph> GraphType;

@@ -117,9 +117,9 @@ def runPipeline(trainInput, testInput, settings):
     # generate subsets 
     # ensure that these random number are the same for each run
     numpy.random.seed(42)
-    splits = generateSplits(trainRaw.shape[0], nSplits=2,frac=0.33)
-    #splits.extend(generateSplits(trainRaw.shape[0], nSplits=3,frac=0.66))
-    #splits.extend(generateSplits(trainRaw.shape[0], nSplits=3,frac=0.50))
+    splits = generateSplits(trainRaw.shape[0], nSplits=3,frac=0.33)
+    splits.extend(generateSplits(trainRaw.shape[0], nSplits=3,frac=0.66))
+    splits.extend(generateSplits(trainRaw.shape[0], nSplits=3,frac=0.50))
 
 
 
@@ -203,9 +203,9 @@ def prepareGroundTruth(dataDict, settings):
             gt[sliceIndex,:,:] = futures[sliceIndex].result()
 
 
-        if settings['debug']:
-           vigra.segShow(rawData[5,:,:], gt[5,:,:])
-           vigra.show()
+        # if settings['debug']:
+        #    vigra.segShow(rawData[5,:,:], gt[5,:,:])
+        #    vigra.show()
 
         # store supervoxels in common place
         hfile = h5py.File(os.path.join(outDir,'groundTruth.h5'),'w')
@@ -403,9 +403,10 @@ def trainLocalRf(dataDict, settings,clfName, subset=None):
         Y = numpy.concatenate(Y,axis=0)
 
 
+        clfSettings = settings['clfLocal']
 
-        clf = Classifier(nRounds=200, maxDepth=3, nThreads=8)
-        clf.train(X=X, Y=Y,getApproxError=False)
+        clf = Classifier(nRounds=clfSettings['nRounds'], maxDepth=clfSettings['maxDepth'])
+        clf.train(X=X, Y=Y,getApproxError=clfSettings['getApproxError'])
         clf.save(fname=fname)
 
         
@@ -426,7 +427,7 @@ def predictLocalRf(dataDict, settings, clfName, subset):
     bst = xgb.Booster({'nthread':10}) #init model
     bst.load_model(fname)             # load data
     
-    clf = Classifier(nThreads=10)
+    clf = Classifier()
     clf.load(fname)
 
 
@@ -634,9 +635,9 @@ def trainLiftedClf(dataDict, settings, clfName, subset):
 
         print X.shape, Y.shape
 
-        
-        clf = Classifier(nRounds=20, maxDepth=3, nThreads=10)
-        trainError = clf.train(X=X, Y=Y,getApproxError=True)
+        clfSettings = settings['clfLifted']
+        clf = Classifier(nRounds=clfSettings['nRounds'], maxDepth=clfSettings['maxDepth'])
+        trainError = clf.train(X=X, Y=Y,getApproxError=clfSettings['getApproxError'])    
         print "trainError",trainError
         clf.save(fname=fname)
 
@@ -659,7 +660,7 @@ def predictLifted(dataDict, settings, clfNames, clfWeights):
 
     for clfName in clfNames:
         fname = os.path.join(settings['rootOutDir'], "lifted_clf_%s"%clfName)
-        clf = Classifier(nThreads=10)
+        clf = Classifier()
         clf.load(fname=fname)
         clfs.append(clf)
 
