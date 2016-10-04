@@ -98,10 +98,10 @@ namespace lifted_multicut{
         const WeightType constTerm, 
         const bool overwriteConstTerm
     ){
-        uint64_t edge;
-        bool addedNewEdge;
-        std::tie(edge, addedNewEdge) = this->setCost(u, v);
-
+        
+        const auto ret = this->setCost(u, v);
+        const uint64_t edge = ret.first;
+        const bool addedNewEdge = ret.second;
         if(addedNewEdge){
             // new WeightedEdge
             WeightedEdgeType weightedEdge;
