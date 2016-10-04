@@ -125,7 +125,7 @@ namespace lifted_multicut{
             weightedEdge.setConstTerm(constTerm,overwriteConstTerm);
 
         }
-        return addedNewEdge;
+        return ret;
     }
 
     template<class GRAPH, class WEIGHT_TYPE>
