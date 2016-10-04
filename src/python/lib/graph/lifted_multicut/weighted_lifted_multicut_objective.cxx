@@ -3,8 +3,7 @@
 #include <sstream> 
 #include <pybind11/numpy.h>
 
-#include "nifty/python/graph/optimization/lifted_multicut/lifted_multicut_objective.hxx"
-#include "nifty/python/graph/optimization/lifted_multicut/learnable_lifted_multicut_objective.hxx"
+#include "nifty/python/graph/optimization/lifted_multicut/weighted_lifted_multicut_objective.hxx"
 #include "nifty/python/graph/undirected_list_graph.hxx"
 
 #include "nifty/python/converter.hxx"
@@ -17,18 +16,16 @@ namespace graph{
 namespace lifted_multicut{
 
     template<class GRAPH>
-    void exportLearnableLiftedMulticutObjectiveT(py::module & liftedMulticutModule) {
+    void exportWeightedLiftedMulticutObjectiveT(py::module & liftedMulticutModule) {
 
         typedef GRAPH Graph;
-        typedef LiftedMulticutObjective<Graph, double> BaseObjectiveType;
-        typedef LearnableLiftedMulticutObjective<Graph, float> ObjectiveType;
+        typedef WeightedLiftedMulticutObjective<Graph, float> ObjectiveType;
         typedef typename ObjectiveType::LiftedGraphType LiftedGraphType;
         const auto clsName = LiftedMulticutObjectiveName<ObjectiveType>::name();
 
 
         auto liftedMulticutObjectiveCls = py::class_<ObjectiveType>(
-            liftedMulticutModule, clsName.c_str(),
-            py::base<BaseObjectiveType>()
+            liftedMulticutModule, clsName.c_str()
         );
 
 
@@ -47,13 +44,25 @@ namespace lifted_multicut{
                 }
             )
         ;
+
+        liftedMulticutModule.def("weightedLiftedMulticutObjective",
+            [](const Graph & graph){
+
+                auto obj = new ObjectiveType(graph);
+                return obj;
+            },
+            py::return_value_policy::take_ownership,
+            py::keep_alive<0, 1>(),
+            py::arg("graph")
+        );
+
     }
 
-    void exportLearnableLiftedMulticutObjective(py::module & liftedMulticutModule) {
+    void exportWeightedLiftedMulticutObjective(py::module & liftedMulticutModule) {
 
         {
             typedef PyUndirectedGraph GraphType;
-            exportLearnableLiftedMulticutObjectiveT<GraphType>(liftedMulticutModule);
+            exportWeightedLiftedMulticutObjectiveT<GraphType>(liftedMulticutModule);
         }
     }
 
