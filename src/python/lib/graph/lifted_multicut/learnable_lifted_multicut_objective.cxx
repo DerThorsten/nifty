@@ -31,6 +31,22 @@ namespace lifted_multicut{
             py::base<BaseObjectiveType>()
         );
 
+
+        liftedMulticutObjectiveCls
+            .def("addWeightedFeatures",
+                [](
+                    ObjectiveType & self,
+                    nifty::marray::PyView<float, 2> uvIds,
+                    nifty::marray::PyView<float, 2> features,
+                    nifty::marray::PyView<float, 1> weightIds
+                ){
+                    NIFTY_CHECK_OP(uvIds.shape(0), == , features.shape(0),"uvIds has wrong shape");
+                    NIFTY_CHECK_OP(uvIds.shape(1), == , 2,"uvIds has wrong shape");
+
+
+                }
+            )
+        ;
     }
 
     void exportLearnableLiftedMulticutObjective(py::module & liftedMulticutModule) {

@@ -63,6 +63,9 @@ namespace lifted_multicut{
         inline void accumulateGradient(const NODE_LABELS & ,GRADIENT_VECTOR & ,BINARY_OPERATOR && )const;
 
 
+        template<class F>
+        std::pair<bool,uint64_t>  ensureEdge(const uint64_t u, const uint64_t v, F && f);
+
         typedef structured_learning::instances::WeightedEdge<WEIGHT_TYPE> WeightedEdgeType;
         typedef typename GraphType:: template EdgeMap<WeightedEdgeType> WeightedEdgeCosts;
 
@@ -98,35 +101,53 @@ namespace lifted_multicut{
         const WeightType constTerm, 
         const bool overwriteConstTerm
     ){
-        uint64_t edge;
-        bool addedNewEdge;
-        std::tie(edge, addedNewEdge) = this->setCost(u, v);
-
-        if(addedNewEdge){
-            // new WeightedEdge
-            WeightedEdgeType weightedEdge;
-            
+        
+        return this->ensureEdge(u, v,
+        [&](WeightedEdgeType & weightedEdge){
             while(weightIndicesBegin != weightIndicesEnd){
                 weightedEdge.addWeightedFeature(*weightIndicesBegin, *featuresBegin);
                 ++weightIndicesBegin;
                 ++featuresBegin;
             }
             weightedEdge.setConstTerm(constTerm,overwriteConstTerm);
+        });
+    }
+
+
+
+
+
+
+    template<class GRAPH, class WEIGHT_TYPE>
+    template<class F>
+    std::pair<bool,uint64_t> 
+    LearnableLiftedMulticutObjective<GRAPH, WEIGHT_TYPE>::
+    ensureEdge(
+        const uint64_t u, 
+        const uint64_t v, 
+        F && f
+    ){
+        
+        const auto ret = this->setCost(u, v);
+        const uint64_t edge = ret.first;
+        const bool addedNewEdge = ret.second;
+        if(addedNewEdge){
+            // new WeightedEdge
+            WeightedEdgeType weightedEdge;
             weightedEdgeCosts_.insertedEdge(edge, weightedEdge);
+            f(weightedEdgeCosts_[edge]);
         }
         else{
             // existing edge
             auto & weightedEdge = weightedEdgeCosts_[edge];
-            while(weightIndicesBegin != weightIndicesEnd){
-                weightedEdge.addWeightedFeature(*weightIndicesBegin, *featuresBegin);
-                ++weightIndicesBegin;
-                ++featuresBegin;
-            }
-            weightedEdge.setConstTerm(constTerm,overwriteConstTerm);
+            f(weightedEdge);
 
         }
-        return addedNewEdge;
+        return ret;
     }
+
+
+
 
     template<class GRAPH, class WEIGHT_TYPE>
     template<class WEIGHT_VECTOR>
