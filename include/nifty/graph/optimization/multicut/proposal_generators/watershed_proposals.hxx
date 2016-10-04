@@ -3,6 +3,7 @@
 #define NIFTY_GRAPH_OPTIMIZATION_MULTICUT_WATERSHED_PROPOSALS_HXX
 
 #include <string>
+#include <random>
 
 #include "nifty/tools/runtime_check.hxx"
 #include "nifty/graph/optimization/multicut/multicut_base.hxx"

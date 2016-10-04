@@ -29,12 +29,12 @@ namespace lifted_multicut{
      * (atm only sparse graphs are implemented so this is not an issue so far)
      */
     template<class OBJECTIVE>
-    class MulticutFusionMove{
+    class FusionMove{
     public:
         typedef OBJECTIVE Objective;
         typedef typename Objective::GraphType GraphType;
         typedef typename Objective::LiftedGraphType LiftedGraphType;
-        typedef typename Graph:: template NodeMap<uint64_t> NodeLabels;
+        typedef typename GraphType:: template NodeMap<uint64_t> NodeLabels;
         
 
         typedef UndirectedGraph<> FmGraphType;
@@ -49,16 +49,17 @@ namespace lifted_multicut{
             std::shared_ptr<FmLmcFactoryBase> lmcFactory;
         };
 
-        MulticutFusionMove(const Objective & objective, const Settings & settings = Settings())
+        FusionMove(const Objective & objective, const Settings & settings = Settings())
         :   objective_(objective),
             graph_(objective.graph()),
+            liftedGraph_(objective_.liftedGraph()),
             settings_(settings),
             ufd_(objective.graph().nodeIdUpperBound()+1),
             nodeToDense_(objective.graph())
         {
             if(!bool(settings_.lmcFactory)){
-                typedef MulticutGreedyAdditive<FmObjective> FmSolver;
-                typedef MulticutFactory<FmSolver> FmFactory;
+                typedef LiftedMulticutGreedyAdditive<FmObjective> FmSolver;
+                typedef LiftedMulticutFactory<FmSolver> FmFactory;
                 settings_.lmcFactory = std::make_shared<FmFactory>();
             }
         }
@@ -78,9 +79,7 @@ namespace lifted_multicut{
             const std::vector< const NODE_MAP *> & proposals,
             NODE_MAP * result 
         ){
-            //std::cout<<"reset ufd\n";
             ufd_.reset();
-
 
             for(const auto edge : graph_.edges()){
                 // merge two nodes iff all proposals agree to merge
@@ -100,10 +99,8 @@ namespace lifted_multicut{
                     ufd_.merge(u, v);
             }
 
-            //std::cout<<"fuse impl\n";
             this->fuseImpl(result);
 
-            //std::cout<<"fuse impl done\n";
             // evaluate if the result
             // is indeed better than each proposal
             // Iff the result is not better we
@@ -131,7 +128,6 @@ namespace lifted_multicut{
         void fuseImpl(NODE_MAP * result){
 
             // dense relabeling
-            //std::cout<<"make dense\n";
             std::unordered_set<uint64_t> relabelingSet;
             for(const auto node: graph_.nodes()){
                 relabelingSet.insert(ufd_.find(node));
@@ -143,7 +139,6 @@ namespace lifted_multicut{
             }
             const auto numberOfNodes = relabelingSet.size();
             
-            //std::cout<<"fm graph\n";
             // build the graph
             FmGraphType       fmGraph(numberOfNodes);
             
@@ -212,7 +207,7 @@ namespace lifted_multicut{
 
         const Objective & objective_;
         const GraphType & graph_;
-        const LiftedGraph & liftedGraph_;
+        const LiftedGraphType & liftedGraph_;
         Settings settings_;
         nifty::ufd::Ufd< > ufd_;
         NodeLabels nodeToDense_;

@@ -18,7 +18,7 @@ namespace nifty{
 namespace graph{
 namespace lifted_multicut{
 
-
+    // \cond SUPPRESS_DOXYGEN
     namespace detail_lifted_multicut_greedy_additive{
 
     template<class OBJECTIVE>
@@ -218,7 +218,7 @@ namespace lifted_multicut{
     };
 
     } // end namespace detail_lifted_multicut_greedy_additive
-
+    // \endcond
 
 
 

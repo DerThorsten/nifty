@@ -15,7 +15,7 @@ namespace lifted_multicut{
 
 
     template<class PROPOSAL_GENERATOR>
-    class ProposalGeneratorFactory : ProposalGeneratorFactoryBase<typename PROPOSAL_GENERATOR::ObjectiveType>{
+    class ProposalGeneratorFactory : public ProposalGeneratorFactoryBase<typename PROPOSAL_GENERATOR::ObjectiveType>{
     public:
         typedef PROPOSAL_GENERATOR ProposalGeneratorType;       
         typedef typename ProposalGeneratorType::Settings Settings;

@@ -12,6 +12,8 @@
 namespace nifty{
 namespace graph{
 
+
+// \cond SUPPRESS_DOXYGEN
 namespace detail_undirected_graph_base{
 
 
@@ -50,8 +52,8 @@ struct GraphItemGeneralization<GRAPH, NodeTag>{
     }
 };
 
-}
-
+} // end namespace detail_undirected_graph_base
+// \endcond
 
 template<
     class CHILD_GRAPH,

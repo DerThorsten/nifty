@@ -59,7 +59,7 @@ namespace graph{
         std::function<void(uint64_t) >          contractEdgeDoneCallback;
     };  
 
-
+    // \cond SUPPRESS_DOXYGEN
     namespace detail_edge_contraction_graph{
 
         template<class GRAPH, class OUTER_CALLBACK, class SET>
@@ -121,7 +121,9 @@ namespace graph{
 
 
         };
-    }
+    } // end namespace detail_edge_contraction_graph
+    // \endcond
+
 
     template<class GRAPH, class OUTER_CALLBACK, class SET>
     struct EdgeContractionGraphWithSetsHelper{
@@ -292,7 +294,7 @@ namespace graph{
     };
 
 
-
+    // \cond SUPPRESS_DOXYGEN
     namespace detail_edge_contraction_graph{
 
 
@@ -346,8 +348,8 @@ namespace graph{
         private:
             EdgeUfdType edgeUfd_;
         };
-    }
-
+    } // end namespace detail_edge_contraction_graph
+    // \endcond
 
 
 

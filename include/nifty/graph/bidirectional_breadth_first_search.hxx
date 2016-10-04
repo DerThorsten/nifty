@@ -16,6 +16,7 @@
 namespace nifty{
 namespace graph{
 
+    // \cond SUPPRESS_DOXYGEN
     namespace detail_bfs{
 
         template<class T, class DEQUEUE_TYPE>
@@ -50,8 +51,9 @@ namespace graph{
             }
         }
     };  // end namespace detail bfs
+    // \cond SUPPRESS_DOXYGEN
 
-
+    // \cond SUPPRESS_DOXYGEN
     template<class T>
     class RestrictedDeque{
     public:
@@ -84,7 +86,7 @@ namespace graph{
         std::vector<T> frontVec_;
         std::vector<T> backVec_;
     };
-
+    // \endcond
 
 
 

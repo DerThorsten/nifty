@@ -99,7 +99,21 @@ namespace lifted_multicut{
         // concrete factories
         { // watershed factory
             typedef WatershedProposalGenerator<ObjectiveType> ProposalGeneratorType;
-            exportProposalGenerator<ProposalGeneratorType>(liftedMulticutModule, "WatershedProposalGenerator")
+            typedef typename ProposalGeneratorType::Settings PGenSettigns;
+            typedef typename PGenSettigns::SeedingStrategie SeedingStrategie;
+            auto pGenSettigns = exportProposalGenerator<ProposalGeneratorType>(liftedMulticutModule, "WatershedProposalGenerator");
+
+            py::enum_<SeedingStrategie>(pGenSettigns, "SeedingStrategie")
+                .value("SEED_FROM_LIFTED", SeedingStrategie::SEED_FROM_LIFTED)
+                .value("SEED_FROM_LOCAL", SeedingStrategie::SEED_FROM_LOCAL)
+                .value("SEED_FROM_BOTH", SeedingStrategie::SEED_FROM_BOTH)
+            ;
+
+            pGenSettigns
+                .def(py::init<>())
+                .def_readwrite("seedingStrategie", &PGenSettigns::seedingStrategie)
+                .def_readwrite("sigma", &PGenSettigns::sigma)
+                .def_readwrite("numberOfSeeds", &PGenSettigns::numberOfSeeds)
             ;
         }
 
@@ -107,10 +121,10 @@ namespace lifted_multicut{
         typedef FusionMoveBased<ObjectiveType> Solver;
         typedef typename Solver::Settings Settings;
         
-        exportLiftedMulticutSolver<Solver>(liftedMulticutModule,"LiftedMulticutFusionMoveBased")
+        exportLiftedMulticutSolver<Solver>(liftedMulticutModule,"FusionMoveBased")
            .def(py::init<>())
-           //.def_readwrite("nodeNumStopCond", &Settings::nodeNumStopCond)
-           //.def_readwrite("weightStopCond", &Settings::weightStopCond)
+           .def_readwrite("proposalGenerator", &Settings::proposalGeneratorFactory)
+           .def_readwrite("numberOfThreads", &Settings::numberOfThreads)
            //.def_readwrite("verbose", &Settings::verbose)
         ;
      

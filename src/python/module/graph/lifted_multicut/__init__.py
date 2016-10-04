@@ -51,6 +51,43 @@ def __extendLiftedMulticutObj(objectiveCls, objectiveName):
 
 
 
+    def watershedProposalGenerator(seedingStrategie='SEED_FROM_LIFTED'):
+
+       
+        pGenCls = getLmcCls("WatershedProposalGeneratorFactory")
+        pGenSettings = getSettings("WatershedProposalGenerator")
+
+        # map string to enum
+        stringToEnum = {
+            'SEED_FROM_LIFTED' : pGenSettings.SeedingStrategie.SEED_FROM_LIFTED,
+            'SEED_FROM_LOCAL' : pGenSettings.SeedingStrategie.SEED_FROM_LOCAL,
+            'SEED_FROM_BOTH' : pGenSettings.SeedingStrategie.SEED_FROM_BOTH,
+        }
+        try:
+            enumVal = stringToEnum[seedingStrategie]
+        except:
+            raise RuntimeError("unkown seedingStrategie '%s': must be either"\
+                               "'SEED_FROM_LIFTED','SEED_FROM_LOCAL' or "\
+                               " 'SEED_FROM_BOTH' "%str(seedingStrategie))
+        pGenSettings.seedingStrategie = enumVal
+
+        return pGenCls(pGenSettings)
+
+    O.watershedProposalGenerator = staticmethod(watershedProposalGenerator)
+
+
+    def fusionMoveBasedFactory( proposalGenerator=None):
+        if proposalGenerator is None:
+            proposalGenerator = watershedProposalGenerator()
+        s,F = getSettingsAndFactoryCls("FusionMoveBased")
+        s.proposalGenerator = proposalGenerator
+        return F(s)
+
+    O.fusionMoveBasedFactory = staticmethod(fusionMoveBasedFactory)
+
+
+
+
 
     def liftedMulticutGreedyAdditiveFactory( weightStopCond=0.0, nodeNumStopCond=-1.0):
         s,F = getSettingsAndFactoryCls("LiftedMulticutGreedyAdditive")

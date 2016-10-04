@@ -12,6 +12,8 @@ namespace ufd{
 
 namespace detail_ufd{
 
+// \cond SUPPRESS_DOXYGEN
+
 // representative element iterator
 // for IterableUfd
 // only useful for merge graphs internal usage
@@ -83,7 +85,7 @@ private:
 
 }
 
-
+// \endcond
 
 // ufd  data structure structure for merge graph
 // only useful for merge graphs internal usage
