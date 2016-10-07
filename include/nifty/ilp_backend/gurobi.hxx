@@ -7,7 +7,8 @@
 
 #include "gurobi_c++.h"
 
-#include "nifty/graph/optimization/multicut/ilp_backend/ilp_backend.hxx"
+#include "nifty/exceptions/exceptions.hxx"
+#include "nifty/ilp_backend/ilp_backend.hxx"
 
 namespace nifty {
 namespace ilp_backend{
@@ -40,7 +41,7 @@ public:
     void changeObjective(
         OBJECTIVE_ITERATOR objectiveIter
     ){
-        throw WeightsChangedNotSupported();
+        throw nifty::exceptions::WeightsChangedNotSupported();
 
     }
 
