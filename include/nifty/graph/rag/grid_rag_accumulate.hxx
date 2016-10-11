@@ -868,9 +868,73 @@ namespace graph{
                     }
                 });
 
+            },AccOptions(minVal, maxVal)
+        );
+    }
+
+
+    // 11 features
+    template<size_t DIM, class LABELS_PROXY, class DATA, class FEATURE_TYPE>
+    void accumulateEdgeStandartFeatures(
+        const GridRag<DIM, LABELS_PROXY> & rag,
+        const DATA & data,
+        const double minVal,
+        const double maxVal,
+        const array::StaticArray<int64_t, DIM> & blockShape,
+        marray::View<FEATURE_TYPE> & edgeFeaturesOut,
+        const int numberOfThreads = -1
+    ){
+        namespace acc = vigra::acc;
+        typedef FEATURE_TYPE DataType;
+
+
+        typedef acc::UserRangeHistogram<40>            SomeHistogram;   //binCount set at compile time
+        typedef acc::StandardQuantiles<SomeHistogram > Quantiles;
+
+
+        typedef acc::Select<
+            acc::DataArg<1>,
+            acc::Mean,        //1
+            acc::Variance,    //1
+            acc::Skewness,    //1
+            acc::Kurtosis,    //1
+            Quantiles         //7
+        > SelectType;
+        typedef acc::StandAloneAccumulatorChain<DIM, DataType, SelectType> AccChainType;
+
+        // threadpool
+        nifty::parallel::ParallelOptions pOpts(numberOfThreads);
+        nifty::parallel::ThreadPool threadpool(pOpts);
+        const size_t actualNumberOfThreads = pOpts.getActualNumThreads();
+
+        accumulateEdgeFeaturesWithAccChain<AccChainType>(
+            rag,
+            data,
+            blockShape,
+            pOpts,
+            threadpool,
+            [&](
+                const std::vector<AccChainType> & edgeAccChainVec
+            ){
+                using namespace vigra::acc;
+
+                parallel::parallel_foreach(threadpool, edgeAccChainVec.size(),[&](
+                    const int tid, const int64_t edge
+                ){
+                    const auto & chain = edgeAccChainVec[edge];
+                    const auto mean = get<acc::Mean>(chain);
+                    const auto quantiles = get<Quantiles>(chain);
+                    edgeFeaturesOut(edge, 0) = replaceIfNotFinite(mean,     0.0);
+                    edgeFeaturesOut(edge, 1) = replaceIfNotFinite(get<acc::Variance>(chain), 0.0);
+                    edgeFeaturesOut(edge, 2) = replaceIfNotFinite(get<acc::Skewness>(chain), 0.0);
+                    edgeFeaturesOut(edge, 3) = replaceIfNotFinite(get<acc::Kurtosis>(chain), 0.0);
+                    for(auto qi=0; qi<7; ++qi)
+                        edgeFeaturesOut(edge, 4+qi) = replaceIfNotFinite(quantiles[qi], mean);
+                }); 
             },
             AccOptions(minVal, maxVal)
         );
+
     }
 
 
