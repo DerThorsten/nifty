@@ -187,10 +187,8 @@ namespace graph{
 
 
         nifty::tools::forEachCoordinate(shape,[&](const Coord & coord){
-            const auto x = coord[0];
-            const auto y = coord[1];
-            const auto node = labels(x,y);            
-            const auto l  = data(x,y);
+            const auto node = labels(coord);
+            const auto l  = data(coord);
             overlaps[node][l] += 1;
         });
 
