@@ -1,12 +1,14 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/numpy.h>
-#include <iostream>
+#include <sstream>
 
 #include "nifty/python/converter.hxx"
 
 namespace py = pybind11;
 
-
+#ifdef WITH_GUROBI
+    #include <gurobi_c++.h>
+#endif
 
 namespace nifty{
 namespace graph{
@@ -42,6 +44,21 @@ PYBIND11_PLUGIN(_nifty) {
 
     #ifdef WITH_HDF5
     hdf5::initSubmoduleHdf5(niftyModule);
+    #endif
+
+    #ifdef WITH_GUROBI
+        // Translate Gurobi exceptions to Python exceptions
+        // (Must do this explicitly since GRBException doesn't inherit from std::exception)
+        static py::exception<GRBException> exc(niftyModule, "GRBException");
+        py::register_exception_translator([](std::exception_ptr p) {
+            try {
+                if (p) std::rethrow_exception(p);
+            } catch (const GRBException &e) {
+                std::ostringstream ss;
+                ss << e.getMessage() << " (Error code:" << e.getErrorCode() << ")";
+                exc(ss.str().c_str());
+            }
+        });
     #endif
 
     // \TODO move to another header

@@ -162,6 +162,36 @@ namespace graph{
         py::arg("numberOfThreads")= -1
         );
     }
+    
+    template<size_t DIM, class RAG, class DATA_T>
+    void exportAccumulateEdgeStandartFeatures(
+        py::module & ragModule
+    ){
+        ragModule.def("accumulateEdgeStandartFeatures",
+        [](
+            const RAG & rag,
+            nifty::marray::PyView<DATA_T, DIM> data,
+            const double minVal,
+            const double maxVal,
+            array::StaticArray<int64_t, DIM> blocKShape,
+            const int numberOfThreads
+        ){
+            typedef nifty::marray::PyView<DATA_T> NumpyArrayType;
+            NumpyArrayType edgeOut({uint64_t(rag.edgeIdUpperBound()+1),uint64_t(11)});
+            {
+                py::gil_scoped_release allowThreads;
+                accumulateEdgeStandartFeatures(rag, data, minVal, maxVal, blocKShape, edgeOut, numberOfThreads);
+            }
+            return edgeOut;
+        },
+        py::arg("rag"),
+        py::arg("data"),
+        py::arg("minVal"),
+        py::arg("maxVal"),
+        py::arg("blockShape") = array::StaticArray<int64_t,DIM>(100),
+        py::arg("numberOfThreads")= -1
+        );
+    }
 
 
 
@@ -208,6 +238,9 @@ namespace graph{
 
             exportAccumulateNodeStandartFeatures<2, Rag2d, float>(ragModule);
             exportAccumulateNodeStandartFeatures<3, Rag3d, float>(ragModule);
+            
+            exportAccumulateEdgeStandartFeatures<2, Rag2d, float>(ragModule);
+            exportAccumulateEdgeStandartFeatures<3, Rag3d, float>(ragModule);
 
             exportAccumulateGeometricNodeFeatures<2, Rag2d, float>(ragModule);
             exportAccumulateGeometricNodeFeatures<3, Rag3d, float>(ragModule);

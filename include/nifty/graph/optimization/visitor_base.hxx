@@ -5,6 +5,7 @@
 #include <string>
 #include <initializer_list>
 #include <sstream>
+#include <iostream>
 
 namespace nifty {
 namespace graph {

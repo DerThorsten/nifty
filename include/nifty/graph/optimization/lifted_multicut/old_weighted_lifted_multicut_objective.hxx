@@ -110,31 +110,7 @@ namespace lifted_multicut{
     }
 
 
-    template<class GRAPH, class WEIGHT_TYPE>
-    template<class WEIGHT_INDICES_ITER, class FEATURE_ITER>
-    std::pair<bool,uint64_t>  
-    WeightedLiftedMulticutObjective<GRAPH, WEIGHT_TYPE>::
-    addWeightedFeatures(
-        const uint64_t u, const uint64_t v,
-        WEIGHT_INDICES_ITER weightIndicesBegin,  
-        WEIGHT_INDICES_ITER weightIndicesEnd, 
-        FEATURE_ITER featuresBegin,
-        const WeightType constTerm, 
-        const bool overwriteConstTerm
-    ){
-        
-        return this->ensureEdge(u, v,[&](WeightedEdgeType & weightedEdge){
-            while(weightIndicesBegin != weightIndicesEnd){
-                weightedEdge.addWeightedFeature(*weightIndicesBegin, *featuresBegin);
-                ++weightIndicesBegin;
-                ++featuresBegin;
-            }
-            if(overwriteConstTerm)
-                weightedEdge.setConstTerm(constTerm);
-            else
-                weightedEdge.addConstTerm(constTerm);
-        });
-    }
+
 
     template<class GRAPH, class WEIGHT_TYPE>
     std::pair<bool,uint64_t> 
