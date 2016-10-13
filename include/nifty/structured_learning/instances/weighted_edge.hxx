@@ -84,12 +84,12 @@ namespace instances{
         }
 
 
-        void setConstTerm(const WeightType constTerm, bool overwrite = false){
-            if(overwrite)
-                constTerm_ = constTerm;
-            else{
-                constTerm_ += constTerm;
-            }
+        void setConstTerm(const WeightType constTerm){
+            constTerm_ = constTerm;
+        }
+
+        void addConstTerm(const WeightType constTerm){
+            constTerm_ += constTerm;
         }
 
     private:
