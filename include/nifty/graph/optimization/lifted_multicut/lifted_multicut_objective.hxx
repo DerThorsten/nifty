@@ -74,18 +74,19 @@ namespace lifted_multicut{
         }
 
         std::pair<bool,uint64_t> setCost(const uint64_t u, const uint64_t v, const WeightType & w = 0.0, const bool overwrite = false){
-            const auto preSize = liftedGraph_.numberOfEdges();
-            const auto edge = liftedGraph_.insertEdge(u,v);
-            if( liftedGraph_.numberOfEdges() > preSize){
+            const auto ret = liftedGraph_.insertEdge(u,v);
+            const auto edge = ret.first;
+            const auto insertedEdge = ret.second;
+            if( insertedEdge){
                 weights_.insertedEdges(edge, w);
-                return std::pair<bool,uint64_t>(edge,true);
+                return ret;
             }
             else{
                 if(overwrite)
                     weights_[edge] = w;
                 else
                     weights_[edge] += w;
-                return std::pair<bool,uint64_t>(edge,false);
+                return ret;
             }
         }
 

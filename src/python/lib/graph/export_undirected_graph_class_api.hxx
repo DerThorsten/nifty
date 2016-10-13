@@ -2,6 +2,7 @@
 #ifndef NIFTY_PYTHON_GRAPH_EXPORT_UNDIRECTED_GRAPH_CLASS_API_HXX
 #define NIFTY_PYTHON_GRAPH_EXPORT_UNDIRECTED_GRAPH_CLASS_API_HXX
 
+#include "nifty/graph/breadth_first_search.hxx"
 #include "nifty/python/converter.hxx"
 
 namespace py = pybind11;
@@ -144,6 +145,44 @@ namespace graph{
                     return ss.str();
                 }
             )
+
+            .def("bfsNodes",[](const G & g, const uint64_t maxDistance){
+
+                typedef std::tuple<uint64_t,uint64_t, uint64_t> TupleType;
+                std::vector<TupleType > data;
+
+
+                BreadthFirstSearch<G> bfs(g);
+                g.forEachNode([&](const uint64_t sourceNode){
+                    bfs.graphNeighbourhood(sourceNode, maxDistance, [&](const uint64_t targetNode, const uint64_t dist){
+                        
+                        if(sourceNode < targetNode){
+                            data.push_back(TupleType(sourceNode, targetNode, dist));
+                        }
+                    });
+                });
+
+                typedef nifty::marray::PyView<uint64_t> Array;
+                std::pair< Array, Array > res;
+
+                auto & pyBfsNodes = res.first;
+                auto & pyDists = res.second;
+
+                pyBfsNodes.reshapeIfEmpty({data.size(), size_t(2)});
+                pyDists.reshapeIfEmpty({data.size()});
+
+
+
+                auto c = 0;
+                for(const auto & d : data){
+                    pyBfsNodes(c,0) = std::get<0>(d);
+                    pyBfsNodes(c,1) = std::get<1>(d);
+                    pyDists(c) = std::get<2>(d);
+                    ++c;
+                }
+
+                return res;
+            })
 
         ;
     }

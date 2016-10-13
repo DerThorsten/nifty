@@ -91,7 +91,7 @@ public:
     // constructors
     UndirectedGraph(const uint64_t numberOfNodes = 0, const uint64_t reserveNumberOfEdges = 0);
     void assign(const uint64_t numberOfNodes = 0, const uint64_t reserveNumberOfEdges = 0);
-    int64_t insertEdge(const int64_t u, const int64_t v);
+    std::pair<uint64_t, bool> insertEdge(const int64_t u, const int64_t v);
 
 
 
@@ -171,13 +171,13 @@ assign(const uint64_t numberOfNodes , const uint64_t reserveNumberOfEdges ){
 }
 
 template<class EDGE_INTERANL_TYPE, class NODE_INTERNAL_TYPE >
-int64_t 
+std::pair<uint64_t, bool> 
 UndirectedGraph<EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE>::
 insertEdge(const int64_t u, const int64_t v){
 
     const auto fres =  nodes_[u].find(NodeAdjacency(v));
     if(fres != nodes_[u].end())
-        return fres->edge();
+        return std::pair<uint64_t, bool>(fres->edge(), false);
     else{
         const auto uu = std::min(u,v);
         const auto vv = std::max(u,v);
@@ -186,7 +186,7 @@ insertEdge(const int64_t u, const int64_t v){
         edges_.push_back(e);
         nodes_[u].insert(NodeAdjacency(v,ei));
         nodes_[v].insert(NodeAdjacency(u,ei));
-        return ei;
+        return std::pair<uint64_t, bool>(ei, true);
     }
 }
 

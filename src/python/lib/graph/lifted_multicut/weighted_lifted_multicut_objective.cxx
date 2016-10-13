@@ -4,6 +4,7 @@
 #include <pybind11/numpy.h>
 
 #include "nifty/python/graph/optimization/lifted_multicut/weighted_lifted_multicut_objective.hxx"
+#include "nifty/python/graph/optimization/lifted_multicut/export_lifted_multicut_objective_api.hxx"
 #include "nifty/python/graph/undirected_list_graph.hxx"
 
 #include "nifty/python/converter.hxx"
@@ -28,23 +29,10 @@ namespace lifted_multicut{
             liftedMulticutModule, clsName.c_str()
         );
 
-
-        liftedMulticutObjectiveCls
-            .def("addWeightedFeatures",
-                [](
-                    ObjectiveType & self,
-                    nifty::marray::PyView<float, 2> uvIds,
-                    nifty::marray::PyView<float, 2> features,
-                    nifty::marray::PyView<float, 1> weightIds
-                ){
-                    NIFTY_CHECK_OP(uvIds.shape(0), == , features.shape(0),"uvIds has wrong shape");
-                    NIFTY_CHECK_OP(uvIds.shape(1), == , 2,"uvIds has wrong shape");
-
-
-                }
-            )
-        ;
-
+        // standart api
+        exportLiftedMulticutObjectiveApi<ObjectiveType>(liftedMulticutObjectiveCls);
+        
+        // factory
         liftedMulticutModule.def("weightedLiftedMulticutObjective",
             [](const Graph & graph){
 
@@ -55,6 +43,114 @@ namespace lifted_multicut{
             py::keep_alive<0, 1>(),
             py::arg("graph")
         );
+
+
+
+        // not api, special to weightedObj.
+        liftedMulticutObjectiveCls
+            .def("addWeightedFeatures",
+                [](
+                    ObjectiveType & self,
+                    nifty::marray::PyView<float, 2> uvIds,
+                    nifty::marray::PyView<float, 2> features,
+                    nifty::marray::PyView<uint64_t, 1> weightIds
+                ){
+                    NIFTY_CHECK_OP(uvIds.shape(0), == , features.shape(0),"uvIds has wrong shape");
+                    NIFTY_CHECK_OP(uvIds.shape(1), == , 2,"uvIds has wrong shape");
+                    NIFTY_CHECK_OP(features.shape(1), == , weightIds.shape(0),"weightIds and feature shape mismatch");
+
+
+                    std::vector<uint64_t> wi(weightIds.begin(), weightIds.end());
+                    std::vector<float> fBuffer(features.shape(0));
+
+
+                    for(auto c=0; c<uvIds.shape(0); ++c){
+                        const auto u = uvIds(c,0);
+                        const auto v = uvIds(c,1);
+
+                        for(auto w=0; w<weightIds.size(); ++w){
+                            fBuffer[w] = features(c,  w);
+                        }
+                        self.addWeightedFeatures(u, v, weightIds.begin(), weightIds.end(), fBuffer.begin(), 0);
+                    }
+                }
+                ,
+                py::arg("uvIds"),
+                py::arg("features"),
+                py::arg("weightIds")
+            )
+
+        ;
+
+
+        liftedMulticutObjectiveCls
+
+            .def("changeWeights",
+                [](
+                    ObjectiveType & self,
+                    nifty::marray::PyView<float, 1> weights
+                ){
+                    self.changeWeights(weights);
+                }
+                , 
+                py::arg("weightVector")
+            )
+
+
+            .def("addWeightedFeatures",
+                [](
+                    ObjectiveType & self,
+                    nifty::marray::PyView<float, 2> uvIds,
+                    nifty::marray::PyView<float, 2> features,
+                    nifty::marray::PyView<float, 1> constTerm,
+                    nifty::marray::PyView<uint64_t, 1> weightIds,
+                    const bool overwriteConstTerms
+                ){
+                    NIFTY_CHECK_OP(uvIds.shape(0), == , features.shape(0),"uvIds has wrong shape");
+                    NIFTY_CHECK_OP(constTerm.shape(0), == , features.shape(0),"constTerm has wrong shape");
+                    NIFTY_CHECK_OP(uvIds.shape(1), == , 2,"uvIds has wrong shape");
+                    NIFTY_CHECK_OP(features.shape(1), == , weightIds.shape(0),"weightIds and feature shape mismatch");
+
+                    std::vector<uint64_t> wi(weightIds.begin(), weightIds.end());
+                    std::vector<float> fBuffer(features.shape(0));
+
+
+                    for(auto c=0; c<uvIds.shape(0); ++c){
+                        const auto u = uvIds(c,0);
+                        const auto v = uvIds(c,1);
+
+                        for(auto w=0; w<weightIds.size(); ++w){
+                            fBuffer[w] = features(c,  w);
+                        }
+                        self.addWeightedFeatures(u, v, weightIds.begin(), weightIds.end(), fBuffer.begin(),constTerm(c),overwriteConstTerms);
+                    }
+                }
+                , 
+                py::arg("uvIds"),
+                py::arg("features"),
+                py::arg("constTerms"),
+                py::arg("weightIds"),
+                py::arg_t<bool>("overwriteConstTerms",false)
+            )
+            .def("addWeightedFeature", &ObjectiveType::addWeightedFeature,
+                py::arg("u"),
+                py::arg("v"),
+                py::arg("weightIndex"),
+                py::arg("feature")
+            )
+            .def("addConstTerm", &ObjectiveType::addConstTerm,
+                py::arg("u"),
+                py::arg("v"),
+                py::arg("constTerm")
+            )
+            .def("setConstTerm", &ObjectiveType::setConstTerm,
+                py::arg("u"),
+                py::arg("v"),
+                py::arg("constTerm")
+            )
+        ;
+
+
 
     }
 

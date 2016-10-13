@@ -5,6 +5,7 @@
 
 #include "nifty/python/graph/undirected_list_graph.hxx"
 #include "nifty/python/graph/optimization/lifted_multicut/lifted_multicut_objective.hxx"
+#include "nifty/python/graph/optimization/lifted_multicut/export_lifted_multicut_objective_api.hxx"
 #include "nifty/python/converter.hxx"
 
 namespace py = pybind11;
@@ -24,10 +25,13 @@ namespace lifted_multicut{
 
         auto liftedMulticutObjectiveCls = py::class_<ObjectiveType>(liftedMulticutModule, clsName.c_str());
 
+
+        // standart api
+        exportLiftedMulticutObjectiveApi<ObjectiveType>(liftedMulticutObjectiveCls);
+
+
         liftedMulticutObjectiveCls
-            .def_property_readonly("numberOfLiftedEdges", [](const ObjectiveType & obj){
-                return obj.numberOfLiftedEdges();
-            })
+           
             .def("setCost", &ObjectiveType::setCost,
                 py::arg("u"),
                 py::arg("v"),
@@ -120,16 +124,7 @@ namespace lifted_multicut{
             )
 
 
-            .def("evalNodeLabels",[](const ObjectiveType & objective,  nifty::marray::PyView<uint64_t> array){
-                return objective.evalNodeLabels(array);
-            })
-            .def_property_readonly("graph", &ObjectiveType::graph)
-            .def_property_readonly("liftedGraph", 
-                    [](const ObjectiveType & self) -> const LiftedGraphType & {
-                    return self.liftedGraph();
-                },
-                py::return_value_policy::reference_internal
-            )
+        
             .def("_insertLiftedEdgesBfs",
                 [](ObjectiveType & self, const uint32_t maxDistance){
                     self.insertLiftedEdgesBfs(maxDistance);

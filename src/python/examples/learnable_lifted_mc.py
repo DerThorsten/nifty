@@ -63,7 +63,7 @@ def gererateToyDataset(n, shape=[30,30], noise=3):
 
 
 
-shape = [20,20]
+shape = [10,10]
 
 # classes
 
@@ -72,12 +72,33 @@ shape = [20,20]
 rawImages, gtImages = gererateToyDataset(10,shape=shape)
 
 
+sigmas = [0.5 ,1.0, 1.5]
+maxGraphDist = 3
+
+# since distances start at 1
+nDistances = maxGraphDist
+
+nWeights = nDistances * len(sigmas)
+
+def nodeToCoord(node):
+
+
+    x = int(node // shape[1])
+    y = int(node - x*shape[1])
+
+    return x,y
+
+
 learnabelModels = []
 for rawImage in rawImages:
 
     shape = rawImage.shape
     graph, nodeIndex = gridGraph(shape)
 
+    uvIds, distances = graph.bfsNodes(maxGraphDist)
+
+
+    print distances.max(),distances.min()
     GraphCls = graph.__class__
     LiftedObjective = graph.WeightedLiftedMulticutObjective
 
@@ -85,4 +106,37 @@ for rawImage in rawImages:
 
     obj = nifty_lmc.weightedLiftedMulticutObjective(graph)
     
-    
+        
+    imgs = [rawImage] 
+    for sigma in sigmas:
+        f = numpy.require(vigra.filters.gaussianSmoothing(rawImage, sigma),requirements=['C_CONTIGUOUS'])   
+        imgs.append(f)
+
+
+    for uv,dist in zip(uvIds,distances):
+
+        uv = int(uv[0]),int(uv[1])
+
+        coordU = nodeToCoord(uv[0])
+        coordV = nodeToCoord(uv[1])
+
+
+
+        for imgIndex, img in enumerate(imgs):
+            
+            feat = abs(img[coordU] - img[coordV])
+
+            distIndex = dist - 1
+
+            wIndex = int(imgIndex*(nDistances) + distIndex)
+
+
+
+            print uv
+            obj.addWeightedFeature(uv[0], uv[1], wIndex, feat)
+
+
+
+# initialize weights
+weights = numpy.zeros(nWeights)
+obj.changeWeights(weightsnWeights)

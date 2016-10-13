@@ -14,27 +14,27 @@ BOOST_AUTO_TEST_CASE(UndirectedGraphTest)
     NIFTY_TEST_OP(graph.numberOfNodes(),==,4);
     NIFTY_TEST_OP(graph.numberOfEdges(),==,0);
 
-    e = graph.insertEdge(0,1);
+    e = graph.insertEdge(0,1).first;
     NIFTY_TEST_OP(e,==,0);
     NIFTY_TEST_OP(graph.numberOfEdges(),==,1);
     NIFTY_TEST_OP(graph.u(e),==,0);
     NIFTY_TEST_OP(graph.v(e),==,1);
 
 
-    e = graph.insertEdge(0,2);
+    e = graph.insertEdge(0,2).first;
     NIFTY_TEST_OP(e,==,1);
     NIFTY_TEST_OP(graph.numberOfEdges(),==,2);
     NIFTY_TEST_OP(graph.u(e),==,0);
     NIFTY_TEST_OP(graph.v(e),==,2);
 
-    e = graph.insertEdge(0,3);
+    e = graph.insertEdge(0,3).first;
     NIFTY_TEST_OP(e,==,2);
     NIFTY_TEST_OP(graph.numberOfEdges(),==,3);
     NIFTY_TEST_OP(graph.u(e),==,0);
     NIFTY_TEST_OP(graph.v(e),==,3);
 
 
-    e = graph.insertEdge(2,3);
+    e = graph.insertEdge(2,3).first;
     NIFTY_TEST_OP(e,==,3);  
     NIFTY_TEST_OP(graph.numberOfEdges(),==,4);
     NIFTY_TEST_OP(graph.u(e),==,2);

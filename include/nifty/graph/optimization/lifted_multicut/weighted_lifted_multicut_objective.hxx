@@ -55,7 +55,7 @@ namespace lifted_multicut{
         typedef GraphType Graph;
         typedef LiftedGraphType LiftedGraph;
         typedef WEIGHT_TYPE WeightType;
-        typedef graph_maps::EdgeMap<LiftedGraph, WeightType> WeightsMapType;
+        typedef std::vector<WeightType> WeightsMapType;
         typedef WeightsMapType WeightsMap;
         
 
@@ -69,7 +69,7 @@ namespace lifted_multicut{
 
         WeightedLiftedMulticutObjective(const Graph & graph, const int64_t reserveAdditionalEdges = -1);
 
-        std::pair<bool,uint64_t> setCost(const uint64_t u, const uint64_t v, const WeightType & w = 0.0, const bool overwrite = false);
+
         WeightsMap & weights();
         const WeightsMap & weights() const;
         const Graph & graph() const;
@@ -150,7 +150,7 @@ namespace lifted_multicut{
         std::pair<bool,uint64_t>  ensureEdge(const uint64_t u, const uint64_t v, F && f);
 
         typedef structured_learning::instances::WeightedEdge<WEIGHT_TYPE> WeightedEdgeType;
-        typedef typename GraphType:: template EdgeMap<WeightedEdgeType> WeightedEdgeCosts;
+        typedef std::vector<WeightedEdgeType> WeightedEdgeCosts;
 
 
         const Graph & graph_;
@@ -185,8 +185,14 @@ namespace lifted_multicut{
     )
     :   graph_(graph),
         liftedGraph_(graph.numberOfNodes(), graph.numberOfEdges() + (reserveAdditionalEdges<0 ?  graph.numberOfEdges() : reserveAdditionalEdges) ), 
-        weights_(liftedGraph_),
-        weightedEdgeCosts_(liftedGraph_){
+        weights_(),
+        weightedEdgeCosts_(){
+
+        weights_.reserve(graph.numberOfEdges() + (reserveAdditionalEdges<0 ?  graph.numberOfEdges() : reserveAdditionalEdges));
+        weightedEdgeCosts_.reserve(graph.numberOfEdges() + (reserveAdditionalEdges<0 ?  graph.numberOfEdges() : reserveAdditionalEdges));
+
+        weights_.resize(graph.numberOfEdges());
+        weightedEdgeCosts_.resize(graph.numberOfEdges());
 
         for(const auto edge : graph_.edges()){
             const auto uv = graph_.uv(edge);
@@ -195,33 +201,9 @@ namespace lifted_multicut{
                 uv.second
             );
         }
-        NIFTY_CHECK_OP(liftedGraph_.numberOfEdges(), == , graph_.numberOfEdges(),"");
-        weights_.insertedEdges(liftedGraph_.edgeIdUpperBound(),0);
     }
 
-    template<class GRAPH, class WEIGHT_TYPE>   
-    std::pair<bool,uint64_t> 
-    WeightedLiftedMulticutObjective<GRAPH, WEIGHT_TYPE>::
-    setCost(
-        const uint64_t u, 
-        const uint64_t v, 
-        const WeightType & w , 
-        const bool overwrite
-    ){
-        const auto preSize = liftedGraph_.numberOfEdges();
-        const auto edge = liftedGraph_.insertEdge(u,v);
-        if( liftedGraph_.numberOfEdges() > preSize){
-            weights_.insertedEdges(edge, w);
-            return std::pair<bool,uint64_t>(edge,true);
-        }
-        else{
-            if(overwrite)
-                weights_[edge] = w;
-            else
-                weights_[edge] += w;
-            return std::pair<bool,uint64_t>(edge,false);
-        }
-    }
+
 
     template<class GRAPH, class WEIGHT_TYPE>   
     typename WeightedLiftedMulticutObjective<GRAPH, WEIGHT_TYPE>::WeightsMap & 
@@ -366,8 +348,11 @@ namespace lifted_multicut{
     ){
         return this->ensureEdge(u, v,
         [&](WeightedEdgeType & weightedEdge){
+
             weightedEdge.addWeightedFeature(weightIndex, feature);
+
         });
+
     }
 
 
@@ -375,7 +360,7 @@ namespace lifted_multicut{
     template<class WEIGHT_INDICES_ITER, class FEATURE_ITER>
     std::pair<bool,uint64_t>  
     WeightedLiftedMulticutObjective<GRAPH, WEIGHT_TYPE>::
-    addWeightedFeatures(
+        addWeightedFeatures(
         const uint64_t u, const uint64_t v,
         WEIGHT_INDICES_ITER weightIndicesBegin,  
         WEIGHT_INDICES_ITER weightIndicesEnd, 
@@ -435,21 +420,34 @@ namespace lifted_multicut{
         F && f
     ){
         
-        const auto ret = this->setCost(u, v);
+        const auto ret = liftedGraph_.insertEdge(u, v);
         const uint64_t edge = ret.first;
         const bool addedNewEdge = ret.second;
         if(addedNewEdge){
+            
+            NIFTY_CHECK_OP(edge, ==, weightedEdgeCosts_.size(),"");
+            NIFTY_CHECK_OP(edge, ==, weights_.size(),"");
+
             // new WeightedEdge
             WeightedEdgeType weightedEdge;
-            weightedEdgeCosts_.insertedEdge(edge, weightedEdge);
+            weightedEdgeCosts_.push_back(weightedEdge);
+            weights_.push_back(0.0);
+
+
+            NIFTY_CHECK_OP(edge+1, ==, weightedEdgeCosts_.size(),"");
+            NIFTY_CHECK_OP(edge+1, ==, weights_.size(),"");
+
             f(weightedEdgeCosts_[edge]);
         }
         else{
+ 
             // existing edge
             auto & weightedEdge = weightedEdgeCosts_[edge];
+        
             f(weightedEdge);
 
         }
+
         return ret;
     }
 
