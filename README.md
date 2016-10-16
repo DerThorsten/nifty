@@ -13,5 +13,13 @@ Features:
         * Multicut-Ilp-Glpk
     * Fusion Moves for Correlation clustering (Beier et al. 2015)
     * Greedy Additive Clustering /  Energy based Hierarchical Clustering (Beier et al. 2015)
+* Lifted Multicuts
+    * Lifted-Multicut-Ilp (Andres 2015)
+        * Lifted-Multicut-Ilp-Cplex
+        * Lifted-Multicut-Ilp-Gurobi
+        * Lifted-Multicut-Ilp-Glpk
+    * Kernighan Lin (Keuper et al. 2015)
+    * Greedy Additive (Keuper et al. 2015)
+    * Fusion Moves for Lifted Multicuts (Beier et al 2016)
 * More is coming soon!!
 
