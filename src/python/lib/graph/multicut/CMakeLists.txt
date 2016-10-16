@@ -30,6 +30,12 @@ if(WITH_GLPK)
 endif()
 
 
+
+#add_dependencies(_multicut external_libs)
+#target_link_libraries(_multicut ${CMAKE_BINARY_DIR}/lib/nifty_externals/libinferno-external-qpbo-shared)
+
+
+
 # Don't add a 'lib' prefix to the shared library
 set_target_properties(_multicut PROPERTIES PREFIX "")
 

@@ -59,7 +59,8 @@ namespace lifted_multicut{
         typedef WeightsMapType WeightsMap;
         
 
-
+        typedef structured_learning::instances::WeightedEdge<WEIGHT_TYPE> WeightedEdgeType;
+        typedef std::vector<WeightedEdgeType> WeightedEdgeCosts;
 
 
 
@@ -138,6 +139,10 @@ namespace lifted_multicut{
 
 
 
+        const WeightedEdgeCosts & weightedEdgeCosts()const{
+            return weightedEdgeCosts_;
+        }
+
     protected:
 
 
@@ -149,8 +154,6 @@ namespace lifted_multicut{
         template<class F>
         std::pair<bool,uint64_t>  ensureEdge(const uint64_t u, const uint64_t v, F && f);
 
-        typedef structured_learning::instances::WeightedEdge<WEIGHT_TYPE> WeightedEdgeType;
-        typedef std::vector<WeightedEdgeType> WeightedEdgeCosts;
 
 
         const Graph & graph_;
@@ -191,7 +194,7 @@ namespace lifted_multicut{
         weights_.reserve(graph.numberOfEdges() + (reserveAdditionalEdges<0 ?  graph.numberOfEdges() : reserveAdditionalEdges));
         weightedEdgeCosts_.reserve(graph.numberOfEdges() + (reserveAdditionalEdges<0 ?  graph.numberOfEdges() : reserveAdditionalEdges));
 
-        weights_.resize(graph.numberOfEdges());
+        weights_.resize(graph.numberOfEdges(),0.0);
         weightedEdgeCosts_.resize(graph.numberOfEdges());
 
         for(const auto edge : graph_.edges()){
@@ -463,6 +466,7 @@ namespace lifted_multicut{
     ){
         this->liftedGraph().forEachEdge([&](const uint64_t edge){
             this->weights_[edge] = weightedEdgeCosts_[edge].value(weightVector);
+            //std::cout<<"Edge "<<edge<<" w "<<this->weights_[edge]<<"\n";
         });
     }
 
@@ -501,7 +505,11 @@ namespace lifted_multicut{
     void 
     WeightedLiftedMulticutObjective<GRAPH, WEIGHT_TYPE>::
     substractGradient(const NODE_LABELS  & nodeLabels, GRADIENT_VECTOR & gradient) const {
-
+        this->accumulateGradient(nodeLabels, gradient, 
+            [](const float a, const float b){
+                return a-b;
+            }
+        );
     }
 
 

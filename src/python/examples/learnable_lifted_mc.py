@@ -63,22 +63,22 @@ def gererateToyDataset(n, shape=[30,30], noise=3):
 
 
 
-shape = [10,10]
+shape = [6,6]
 
 # classes
 
 
 # raw data and gt vectors
-rawImages, gtImages = gererateToyDataset(10,shape=shape)
+rawImages, gtImages = gererateToyDataset(1,shape=shape)
 
 
-sigmas = [0.5 ,1.0, 1.5]
+sigmas = []#[0.5 ,1.0, 1.5]
 maxGraphDist = 3
 
 # since distances start at 1
 nDistances = maxGraphDist
 
-nWeights = nDistances * len(sigmas)
+nWeights = nDistances * (len(sigmas)+1)
 
 def nodeToCoord(node):
 
@@ -90,7 +90,7 @@ def nodeToCoord(node):
 
 
 learnabelModels = []
-for rawImage in rawImages:
+for rawImage, gtImages in zip(rawImages, gtImages):
 
     shape = rawImage.shape
     graph, nodeIndex = gridGraph(shape)
@@ -98,15 +98,19 @@ for rawImage in rawImages:
     uvIds, distances = graph.bfsNodes(maxGraphDist)
 
 
-    print distances.max(),distances.min()
+    #print distances.max(),distances.min()
     GraphCls = graph.__class__
     LiftedObjective = graph.WeightedLiftedMulticutObjective
 
     
 
     obj = nifty_lmc.weightedLiftedMulticutObjective(graph)
-    
+    nodeGt = gtImages.reshape([-1])
+    nodeSizes = numpy.ones(obj.graph.numberOfNodes)
+    lossAugmentedObj = nifty_lmc.lossAugmentedViewLiftedMulticutObjective(obj, nodeGt, nodeSizes)
         
+
+
     imgs = [rawImage] 
     for sigma in sigmas:
         f = numpy.require(vigra.filters.gaussianSmoothing(rawImage, sigma),requirements=['C_CONTIGUOUS'])   
@@ -131,12 +135,21 @@ for rawImage in rawImages:
             wIndex = int(imgIndex*(nDistances) + distIndex)
 
 
-
-            print uv
+            #print "wIndex",wIndex
+            #print uv
             obj.addWeightedFeature(uv[0], uv[1], wIndex, feat)
 
 
 
+
+
 # initialize weights
-weights = numpy.zeros(nWeights)
-obj.changeWeights(weightsnWeights)
+weights = numpy.ones(nWeights+100)
+lossAugmentedObj.changeWeights(weights)
+
+
+
+allCut = numpy.arange(obj.liftedGraph.numberOfNodes)
+print obj.evalNodeLabels(allCut)
+print lossAugmentedObj.evalNodeLabels(allCut)
+

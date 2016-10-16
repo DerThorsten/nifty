@@ -8,6 +8,7 @@ pybind11_add_module(_lifted_multicut
     lifted_multicut.cxx
     lifted_multicut_objective.cxx
     weighted_lifted_multicut_objective.cxx
+    loss_augmented_view_lifted_multicut_objective.cxx
     lifted_multicut_visitor_base.cxx
     lifted_multicut_base.cxx
     lifted_multicut_factory.cxx

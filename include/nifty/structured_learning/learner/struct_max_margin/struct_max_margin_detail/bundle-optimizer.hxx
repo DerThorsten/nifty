@@ -2,8 +2,8 @@
 #ifndef OPENGM_LEARNING_BUNDLE_OPTIMIZER_HXX
 #define OPENGM_LEARNING_BUNDLE_OPTIMIZER_HXX
 
-#include "solver/BundleCollector.h"
-#include "solver/QuadraticSolverFactory.h"
+#include "bundle_detail/BundleCollector.h"
+#include "bundle_detail/QuadraticSolverFactory.h"
 
 namespace opengm {
 

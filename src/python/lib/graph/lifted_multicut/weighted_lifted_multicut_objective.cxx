@@ -148,6 +148,22 @@ namespace lifted_multicut{
                 py::arg("v"),
                 py::arg("constTerm")
             )
+
+            // .def("getWeightedEdge",[]
+            //     (
+            //         const ObjectiveType & self,
+            //         const uint64_t edge
+            //     ){
+                    
+
+            //         const auto & weightedEdge = self.weightedEdgeCosts()[edge];
+            //         for(const auto p : weightedEdge.indexFeatureMap()){
+            //             std::cout<<p.first<<" "<<p.second<<"\n";
+            //         }
+            //         std::cout<<weightedEdge.constTerm()<<"\n";
+    
+            //     }
+            // )
         ;
 
 

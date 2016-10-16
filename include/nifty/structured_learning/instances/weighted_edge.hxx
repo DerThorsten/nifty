@@ -31,6 +31,11 @@ namespace instances{
         typedef T WeightType;
         typedef uint16_t WeightIndexType;
 
+        WeightedEdge()
+        : indexFeatureMap_(),
+          constTerm_(0){
+
+        }
 
         void addWeightedFeature(const WeightIndexType index, const WeightType feature){
             indexFeatureMap_[index] = feature;
@@ -92,6 +97,13 @@ namespace instances{
             constTerm_ += constTerm;
         }
 
+        FeatureType constTerm()const{
+            return constTerm_;
+        }
+
+        const container::BoostFlatMap<WeightIndexType,FeatureType> &  indexFeatureMap()const{
+            return indexFeatureMap_;
+        }
     private:
         typedef std::pair<WeightIndexType, FeatureType> IndexFeature;
         //std::vector<IndexFeature> indexFeaturePairs_;

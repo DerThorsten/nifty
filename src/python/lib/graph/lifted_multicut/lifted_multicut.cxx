@@ -11,6 +11,7 @@ namespace lifted_multicut{
 
     void exportLiftedMulticutObjective(py::module &);
     void exportWeightedLiftedMulticutObjective(py::module &);
+    void exportLossAugmentedViewLiftedMulticutObjective(py::module &);
     void exportLiftedMulticutFactory(py::module &);
     void exportLiftedMulticutVisitorBase(py::module &);
     void exportLiftedMulticutBase(py::module &);
@@ -35,6 +36,7 @@ PYBIND11_PLUGIN(_lifted_multicut) {
 
     exportLiftedMulticutObjective(liftedMulticutModule);
     exportWeightedLiftedMulticutObjective(liftedMulticutModule);
+    exportLossAugmentedViewLiftedMulticutObjective(liftedMulticutModule);
     exportLiftedMulticutVisitorBase(liftedMulticutModule);
     exportLiftedMulticutBase(liftedMulticutModule);
     exportLiftedMulticutFactory(liftedMulticutModule);
