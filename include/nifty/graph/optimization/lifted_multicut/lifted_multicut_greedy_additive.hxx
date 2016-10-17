@@ -38,9 +38,9 @@ namespace lifted_multicut{
 
 
         typedef OBJECTIVE Objective;
-        typedef typename Objective::LiftedGraph LiftedGraph;
-        typedef typename LiftedGraph:: template EdgeMap<double> CurrentWeightMap;
-        typedef typename LiftedGraph:: template EdgeMap<bool>   IsLiftedMap;
+        typedef typename Objective::LiftedGraphType LiftedGraphType;
+        typedef typename LiftedGraphType:: template EdgeMap<double> CurrentWeightMap;
+        typedef typename LiftedGraphType:: template EdgeMap<bool>   IsLiftedMap;
         typedef vigra::ChangeablePriorityQueue< double ,std::greater<double> > QueueType;
 
         LiftedMulticutGreedyAdditiveCallback(
@@ -204,7 +204,7 @@ namespace lifted_multicut{
     private:
 
         const Objective & objective_;
-        const LiftedGraph & liftedGraph_;
+        const LiftedGraphType & liftedGraph_;
         QueueType pq_;
 
         IsLiftedMap   isLifted_;
@@ -228,8 +228,8 @@ namespace lifted_multicut{
     public: 
 
         typedef OBJECTIVE Objective;
-        typedef typename Objective::Graph Graph;
-        typedef typename Objective::LiftedGraph LiftedGraph;
+        typedef typename Objective::GraphType GraphType;
+        typedef typename Objective::LiftedGraphType LiftedGraphType;
         typedef detail_lifted_multicut_greedy_additive::LiftedMulticutGreedyAdditiveCallback<Objective> Callback;
         typedef LiftedMulticutBase<OBJECTIVE> Base;
         typedef typename Base::VisitorBase VisitorBase;
@@ -267,11 +267,11 @@ namespace lifted_multicut{
 
 
         const Objective & objective_;
-        const Graph & graph_;
+        const GraphType & graph_;
         NodeLabels * currentBest_;
 
         Callback callback_;
-        EdgeContractionGraph<LiftedGraph, Callback> edgeContractionGraph_;
+        EdgeContractionGraph<LiftedGraphType, Callback> edgeContractionGraph_;
     };
 
     

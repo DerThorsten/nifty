@@ -22,9 +22,9 @@ namespace lifted_multicut{
         typedef OBJECTIVE Objective;
         typedef LiftedMulticutVisitorBase<Objective> VisitorBase;
         typedef LiftedMulticutVisitorProxy<Objective> VisitorProxy;
-        typedef typename Objective::Graph Graph;
-        typedef typename Graph:: template EdgeMap<uint8_t>  EdgeLabels;
-        typedef typename Graph:: template NodeMap<uint64_t> NodeLabels;
+        typedef typename Objective::GraphType GraphType;
+        typedef typename GraphType:: template EdgeMap<uint8_t>  EdgeLabels;
+        typedef typename GraphType:: template NodeMap<uint64_t> NodeLabels;
 
         virtual ~LiftedMulticutBase(){};
         virtual void optimize(NodeLabels & nodeLabels, VisitorBase * visitor) = 0;

@@ -7,6 +7,9 @@
 #include "nifty/python/graph/undirected_list_graph.hxx"
 //#include "nifty/python/graph/edge_contraction_graph.hxx"
 #include "nifty/python/graph/optimization/lifted_multicut/lifted_multicut_objective.hxx"
+#include "nifty/python/graph/optimization/lifted_multicut/weighted_lifted_multicut_objective.hxx"
+#include "nifty/python/graph/optimization/lifted_multicut/loss_augmented_view_lifted_multicut_objective.hxx"
+
 #include "nifty/python/graph/optimization/lifted_multicut/export_lifted_multicut_solver.hxx"
 
 namespace py = pybind11;
@@ -43,11 +46,18 @@ namespace lifted_multicut{
             typedef LiftedMulticutObjective<GraphType, double> ObjectiveType;
             exportLiftedMulticutKernighanLinT<ObjectiveType>(liftedMulticutModule);
         }
-        //{
-        //    typedef PyContractionGraph<PyUndirectedGraph> GraphType;
-        //    typedef MulticutObjective<GraphType, double> ObjectiveType;
-        //    exportLiftedMulticutKernighanLinT<ObjectiveType>(liftedMulticutModule);
-        //}
+
+        {
+            typedef PyUndirectedGraph GraphType;
+            typedef WeightedLiftedMulticutObjective<GraphType, float> ObjectiveType;
+            exportLiftedMulticutKernighanLinT<ObjectiveType>(liftedMulticutModule);
+        }
+        {
+            typedef PyUndirectedGraph GraphType;
+            typedef WeightedLiftedMulticutObjective<GraphType, float> WeightedObjectiveType;
+            typedef LossAugmentedViewLiftedMulticutObjective<WeightedObjectiveType> ObjectiveType;
+            exportLiftedMulticutKernighanLinT<ObjectiveType>(liftedMulticutModule);
+        }
     }
 
 }

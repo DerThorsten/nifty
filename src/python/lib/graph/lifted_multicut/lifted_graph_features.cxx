@@ -59,6 +59,7 @@ namespace lifted_multicut{
             typedef LiftedMulticutObjective<GraphType, double> ObjectiveType;
             exportLiftedGraphFeaturesT<ObjectiveType>(liftedMulticutModule);
         }
+        
         //{
         //    typedef PyContractionGraph<PyUndirectedGraph> GraphType;
         //    typedef LiftedMulticutObjective<GraphType, double> ObjectiveType;

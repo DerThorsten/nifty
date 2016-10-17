@@ -23,9 +23,9 @@ public:
     typedef OBJECTIVE Objective;
     typedef LiftedMulticutVisitorBase<OBJECTIVE> VisitorBase;
     typedef LiftedMulticutBase<Objective> McBase;
-    typedef typename Objective::Graph Graph;
-    typedef typename Graph:: template EdgeMap<uint8_t>  EdgeLabels;
-    typedef typename Graph:: template NodeMap<uint64_t> NodeLabels;
+    typedef typename Objective::GraphType GraphType;
+    typedef typename GraphType:: template EdgeMap<uint8_t>  EdgeLabels;
+    typedef typename GraphType:: template NodeMap<uint64_t> NodeLabels;
 
 
     /* Trampoline (need one for each virtual function) */

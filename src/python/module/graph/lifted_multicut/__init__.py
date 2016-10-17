@@ -10,13 +10,15 @@ for key in _lifted_multicut.__dict__.keys():
 
 def __extendLiftedMulticutObj(objectiveCls, objectiveName):
     
-    def insertLiftedEdgesBfs(self, maxDistance, returnDistance = False):
-        if returnDistance :
-            return self._insertLiftedEdgesBfsReturnDist(maxDistance)
-        else:
-            self._insertLiftedEdgesBfs(maxDistance)
 
-    objectiveCls.insertLiftedEdgesBfs = insertLiftedEdgesBfs
+    if objectiveName == 'LiftedMulticutObjectiveUndirectedGraph':
+        def insertLiftedEdgesBfs(self, maxDistance, returnDistance = False):
+            if returnDistance :
+                return self._insertLiftedEdgesBfsReturnDist(maxDistance)
+            else:
+                self._insertLiftedEdgesBfs(maxDistance)
+
+        objectiveCls.insertLiftedEdgesBfs = insertLiftedEdgesBfs
 
 
 
@@ -155,4 +157,13 @@ def __extendLiftedMulticutObj(objectiveCls, objectiveName):
 
 __extendLiftedMulticutObj(LiftedMulticutObjectiveUndirectedGraph, 
     "LiftedMulticutObjectiveUndirectedGraph")
+
+
+__extendLiftedMulticutObj(WeightedLiftedMulticutObjectiveUndirectedGraph, 
+    "WeightedLiftedMulticutObjectiveUndirectedGraph")
+
+__extendLiftedMulticutObj(LossAugmentedViewLiftedMulticutObjectiveWeightedLiftedMulticutObjectiveUndirectedGraph, 
+    "LossAugmentedViewLiftedMulticutObjectiveWeightedLiftedMulticutObjectiveUndirectedGraph")
+
+
 del __extendLiftedMulticutObj

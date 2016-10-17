@@ -61,7 +61,11 @@ namespace lifted_multicut{
 
     public:
 
-        typedef andres::graph::multicut_lifted::KernighanLinSettings Settings;
+        struct Settings
+        : public andres::graph::multicut_lifted::KernighanLinSettings{
+
+        };
+        //typedef andres::graph::multicut_lifted::KernighanLinSettings Settings;
 
 
 
@@ -176,7 +180,7 @@ namespace lifted_multicut{
             edgeCosts_,
             ioLabels,
             ioLabels,
-            settings_
+            static_cast<const andres::graph::multicut_lifted::KernighanLinSettings & >(settings_)
         );
         
        

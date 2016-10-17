@@ -30,7 +30,7 @@ def gridGraph(shape):
     return g, nid
 
     
-
+numpy.random.seed(42)
 
 def gererateToyDataset(n, shape=[30,30], noise=3):
     rawImages = []
@@ -47,12 +47,12 @@ def gererateToyDataset(n, shape=[30,30], noise=3):
 
         gtImg = vigra.sampling.rotateImageDegree(gtImg.astype(numpy.float32),int(ra),splineOrder=0)
 
-        if False and i==0 :
+        if True and i==0 :
             vigra.imshow(gtImg)
             vigra.show()
 
         img = gtImg + numpy.random.random(shape)*float(noise)
-        if False and i==0 :
+        if True and i==0 :
             vigra.imshow(img)
             vigra.show()
 
@@ -63,23 +63,23 @@ def gererateToyDataset(n, shape=[30,30], noise=3):
 
 
 
-shape = [6,6]
+shape = [40,40]
 
 # classes
 
 
 # raw data and gt vectors
-rawImages, gtImages = gererateToyDataset(1,shape=shape)
+rawImages, gtImages = gererateToyDataset(2,shape=shape)
 
 
-sigmas = []#[0.5 ,1.0, 1.5]
-maxGraphDist = 3
+sigmas = [1.0, .5]
+maxGraphDist = 4
 
 # since distances start at 1
 nDistances = maxGraphDist
 
-nWeights = nDistances * (len(sigmas)+1)
-
+nWeights = 2 #nDistances * (len(sigmas)+1)  +1
+nWeights = len(sigmas)  + 1
 def nodeToCoord(node):
 
 
@@ -89,7 +89,8 @@ def nodeToCoord(node):
     return x,y
 
 
-learnabelModels = []
+dataset = []
+weights = numpy.zeros(nWeights)
 for rawImage, gtImages in zip(rawImages, gtImages):
 
     shape = rawImage.shape
@@ -104,14 +105,17 @@ for rawImage, gtImages in zip(rawImages, gtImages):
 
     
 
-    obj = nifty_lmc.weightedLiftedMulticutObjective(graph)
+    obj = nifty_lmc.weightedLiftedMulticutObjective(graph, nWeights)
     nodeGt = gtImages.reshape([-1])
     nodeSizes = numpy.ones(obj.graph.numberOfNodes)
     lossAugmentedObj = nifty_lmc.lossAugmentedViewLiftedMulticutObjective(obj, nodeGt, nodeSizes)
-        
+    
+
+    dataset.append((obj,lossAugmentedObj,nodeGt))
 
 
     imgs = [rawImage] 
+    imgs = []
     for sigma in sigmas:
         f = numpy.require(vigra.filters.gaussianSmoothing(rawImage, sigma),requirements=['C_CONTIGUOUS'])   
         imgs.append(f)
@@ -127,29 +131,131 @@ for rawImage, gtImages in zip(rawImages, gtImages):
 
 
         for imgIndex, img in enumerate(imgs):
-            
             feat = abs(img[coordU] - img[coordV])
-
             distIndex = dist - 1
-
             wIndex = int(imgIndex*(nDistances) + distIndex)
-
-
             #print "wIndex",wIndex
             #print uv
-            obj.addWeightedFeature(uv[0], uv[1], wIndex, feat)
+            obj.addWeightedFeature(uv[0], uv[1], imgIndex, feat)
+
+
+        # add gt feature
+        #isCut = nodeGt[uv[0]] != nodeGt[uv[1]]
+        #isCut2 = gtImages[nodeToCoord(uv[0])] != gtImages[nodeToCoord(uv[1])]
+        #assert isCut == isCut2
+        #obj.addWeightedFeature(uv[0], uv[1], 0, float(isCut))
+
+        # add const feature
+        obj.addWeightedFeature(uv[0], uv[1], nWeights-1, 1.0)
+
+        # add const term (this is not weighted)
+        #obj.setConstTerm(uv[0], uv[1],  10000.0)
+
+
+    # initialize weights
+    
+    lossAugmentedObj.changeWeights(weights)
+
+
+
+    allCut = numpy.arange(obj.liftedGraph.numberOfNodes)
 
 
 
 
 
-# initialize weights
-weights = numpy.ones(nWeights+100)
-lossAugmentedObj.changeWeights(weights)
+
+
+# tiny ssvm 
+C = 1
+lrate = 1
+
+def optimize(ob):
+    solverFactory = obj.liftedMulticutKernighanLinFactory()
+    solver = solverFactory.create(obj)
+    visitor = obj.verboseVisitor()
+    argN = solver.optimize()
+    
+    print "KL",obj.evalNodeLabels(argN)
 
 
 
-allCut = numpy.arange(obj.liftedGraph.numberOfNodes)
-print obj.evalNodeLabels(allCut)
-print lossAugmentedObj.evalNodeLabels(allCut)
+    pgen = obj.watershedProposalGenerator('SEED_FROM_LOCAL')
+    solverFactory = obj.fusionMoveBasedFactory(proposalGenerator=pgen)
+    solver = solverFactory.create(obj)
+    visitor = obj.verboseVisitor()
+    argN = solver.optimize(argN.copy())
+    print "FM",obj.evalNodeLabels(argN)
+    return argN
+    
+def modelLoss(obj, gt):
+    res = optimize(obj)
+    #print res
+    g = obj.liftedGraph
 
+    s = 0.0
+    c = 0
+    for edge in g.edges():
+        uv = g.uv(edge)
+
+        egt  = gt[uv[0]] != gt[uv[1]]
+        esol = res[uv[0]] != res[uv[1]]
+
+        if egt != esol:
+            s += 1.0
+        c +=1
+    return s/float(c)
+
+def datsetLoss(dataset):
+    s = 0.0
+    for obj,lossAugmentedObj, gt in dataset:
+        s += modelLoss(obj, gt)
+
+    return s/len(dataset)
+
+
+def allfinite(x):
+    return numpy.isfinite(x).sum() == len(x)
+
+
+for x in range(200):
+    t = float(x+1)
+    sols = []
+
+    # get sols
+    for obj,lossAugmentedObj, gt in dataset:
+        y = optimize(lossAugmentedObj)
+        sols.append(y)
+
+    # gradient
+    gradient = numpy.zeros(nWeights)
+    for (obj,lossAugmentedObj, gt),sol in zip(dataset,sols):
+
+        fSol = obj.getGradient(sol)
+        fGt  = obj.getGradient(gt)
+
+        assert allfinite(fSol)
+        assert allfinite(fGt)
+
+        g =  fGt-fSol
+        gradient += g 
+
+    g = weights + (C/float(len(dataset)) )*gradient
+
+    elrate = lrate/t
+    weights  = weights - elrate*g
+
+    #update weights
+    for (obj,lossAugmentedObj, gt),sol in zip(dataset,sols):
+        lossAugmentedObj.changeWeights(weights)
+
+    print "LOSS",datsetLoss(dataset)
+    print "W", weights
+
+    if (x+1) % 10 == 0:
+
+        for obj,lossAugmentedObj, gt in dataset:
+            y = optimize(obj)
+            y = y.reshape(shape)
+            vigra.imshow(y)
+            vigra.show()

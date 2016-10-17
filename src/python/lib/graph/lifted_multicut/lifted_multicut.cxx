@@ -37,9 +37,9 @@ PYBIND11_PLUGIN(_lifted_multicut) {
     exportLiftedMulticutObjective(liftedMulticutModule);
     exportWeightedLiftedMulticutObjective(liftedMulticutModule);
     exportLossAugmentedViewLiftedMulticutObjective(liftedMulticutModule);
+    exportLiftedMulticutFactory(liftedMulticutModule);
     exportLiftedMulticutVisitorBase(liftedMulticutModule);
     exportLiftedMulticutBase(liftedMulticutModule);
-    exportLiftedMulticutFactory(liftedMulticutModule);
     exportLiftedMulticutGreedyAdditive(liftedMulticutModule);
     exportLiftedMulticutKernighanLin(liftedMulticutModule);
     exportLiftedMulticutIlp(liftedMulticutModule);

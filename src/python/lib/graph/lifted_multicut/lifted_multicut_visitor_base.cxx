@@ -10,6 +10,11 @@
 #include "nifty/python/graph/optimization/lifted_multicut/lifted_multicut_objective.hxx"
 #include "nifty/python/graph/optimization/lifted_multicut/py_lifted_multicut_visitor_base.hxx"
 
+#include "nifty/python/graph/optimization/lifted_multicut/lifted_multicut_objective.hxx"
+#include "nifty/python/graph/optimization/lifted_multicut/weighted_lifted_multicut_objective.hxx"
+#include "nifty/python/graph/optimization/lifted_multicut/loss_augmented_view_lifted_multicut_objective.hxx"
+
+
 #include "nifty/python/converter.hxx"
 
 
@@ -70,6 +75,19 @@ namespace lifted_multicut{
             typedef LiftedMulticutObjective<GraphType, double> ObjectiveType;
             exportLiftedMulticutVisitorBaseT<ObjectiveType>(liftedMulticutModule);
         }
+
+        {
+            typedef PyUndirectedGraph GraphType;
+            typedef WeightedLiftedMulticutObjective<GraphType, float> ObjectiveType;
+            exportLiftedMulticutVisitorBaseT<ObjectiveType>(liftedMulticutModule);
+        }
+        {
+            typedef PyUndirectedGraph GraphType;
+            typedef WeightedLiftedMulticutObjective<GraphType, float> WeightedObjectiveType;
+            typedef LossAugmentedViewLiftedMulticutObjective<WeightedObjectiveType> ObjectiveType;
+            exportLiftedMulticutVisitorBaseT<ObjectiveType>(liftedMulticutModule);
+        }
+        
         //{
         //    typedef PyContractionGraph<PyUndirectedGraph> GraphType;
         //    typedef LiftedMulticutObjective<GraphType, double> ObjectiveType;

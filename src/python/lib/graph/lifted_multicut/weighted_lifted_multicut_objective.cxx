@@ -34,14 +34,15 @@ namespace lifted_multicut{
         
         // factory
         liftedMulticutModule.def("weightedLiftedMulticutObjective",
-            [](const Graph & graph){
+            [](const Graph & graph, const uint64_t numberOfWeights){
 
-                auto obj = new ObjectiveType(graph);
+                auto obj = new ObjectiveType(graph, numberOfWeights);
                 return obj;
             },
             py::return_value_policy::take_ownership,
             py::keep_alive<0, 1>(),
-            py::arg("graph")
+            py::arg("graph"),
+            py::arg("numberOfWeights")
         );
 
 
@@ -147,6 +148,19 @@ namespace lifted_multicut{
                 py::arg("u"),
                 py::arg("v"),
                 py::arg("constTerm")
+            )
+
+
+            .def("getGradient",
+                []
+                (
+                    const ObjectiveType & obj,
+                    nifty::marray::PyView<uint64_t, 1> nodeLabels
+                ){
+                    nifty::marray::PyView<float> g({size_t(obj.numberOfWeights())});
+                    obj.getGradient(nodeLabels, g);
+                    return g;
+                }
             )
 
             // .def("getWeightedEdge",[]

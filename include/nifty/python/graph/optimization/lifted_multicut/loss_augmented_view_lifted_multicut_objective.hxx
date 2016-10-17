@@ -23,7 +23,7 @@ namespace lifted_multicut{
 
             const auto innerModelName = LiftedMulticutObjectiveName<WEIGHTED_MODEL>::name();
 
-            return std::string("LossAugmentedViewLiftedMulticutObjective") + innerModelName;
+            return (std::string("LossAugmentedViewLiftedMulticutObjective") + innerModelName);
         }
     };
 

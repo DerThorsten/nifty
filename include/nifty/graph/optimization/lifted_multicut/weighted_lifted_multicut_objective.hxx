@@ -68,7 +68,7 @@ namespace lifted_multicut{
 
 
 
-        WeightedLiftedMulticutObjective(const Graph & graph, const int64_t reserveAdditionalEdges = -1);
+        WeightedLiftedMulticutObjective(const Graph & graph,const uint64_t numberOfWeights, const int64_t reserveAdditionalEdges = -1);
 
 
         WeightsMap & weights();
@@ -143,6 +143,9 @@ namespace lifted_multicut{
             return weightedEdgeCosts_;
         }
 
+        uint64_t numberOfWeights()const{
+            return numberOfWeights_;
+        }
     protected:
 
 
@@ -161,6 +164,7 @@ namespace lifted_multicut{
         WeightsMap weights_;
         WeightedEdgeCosts weightedEdgeCosts_;
 
+        uint64_t numberOfWeights_;
     };
 
 
@@ -184,12 +188,14 @@ namespace lifted_multicut{
     WeightedLiftedMulticutObjective<GRAPH, WEIGHT_TYPE>::
     WeightedLiftedMulticutObjective(
         const Graph & graph, 
+        const uint64_t numberOfWeights,
         const int64_t reserveAdditionalEdges
     )
     :   graph_(graph),
         liftedGraph_(graph.numberOfNodes(), graph.numberOfEdges() + (reserveAdditionalEdges<0 ?  graph.numberOfEdges() : reserveAdditionalEdges) ), 
         weights_(),
-        weightedEdgeCosts_(){
+        weightedEdgeCosts_(),
+        numberOfWeights_(numberOfWeights){
 
         weights_.reserve(graph.numberOfEdges() + (reserveAdditionalEdges<0 ?  graph.numberOfEdges() : reserveAdditionalEdges));
         weightedEdgeCosts_.reserve(graph.numberOfEdges() + (reserveAdditionalEdges<0 ?  graph.numberOfEdges() : reserveAdditionalEdges));
@@ -479,7 +485,7 @@ namespace lifted_multicut{
     WeightedLiftedMulticutObjective<GRAPH, WEIGHT_TYPE>::
     getGradient(const NODE_LABELS  & nodeLabels, GRADIENT_VECTOR & gradient) const {
         for(auto i=0; i<gradient.size(); ++i){
-            gradient[0] = 0.0;
+            gradient[i] = 0.0;
         }
         this->accumulateGradient(nodeLabels, gradient, 
             [](const float a, const float b){
@@ -523,7 +529,7 @@ namespace lifted_multicut{
         BINARY_OPERATOR && binaryOperator
     )const{
         this->liftedGraph().forEachEdge([&](const uint64_t edge){
-            const auto uv = this->uv(edge);
+            const auto uv = this->liftedGraph().uv(edge);
             if(nodeLabels[uv.first] != nodeLabels[uv.second]){
                 weightedEdgeCosts_[edge].accumulateGradient(gradient, binaryOperator);
             }
