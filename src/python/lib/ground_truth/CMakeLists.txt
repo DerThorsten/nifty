@@ -6,6 +6,7 @@
 pybind11_add_module(_ground_truth 
     ground_truth.cxx
     overlap.cxx
+    partition_comparison.cxx
     post_process_carving_ground_truth.cxx
 )
 

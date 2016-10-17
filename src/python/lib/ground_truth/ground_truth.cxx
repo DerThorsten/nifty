@@ -13,6 +13,7 @@ namespace ground_truth{
 
     void exportPostProcessCarvingNeuroGroundTruth(py::module & groundTruthModule);
     void exportOverlap(py::module & groundTruthModule);
+    void exportPartitionComparison(py::module & groundTruthModule);
 }
 }
 
@@ -31,7 +32,7 @@ PYBIND11_PLUGIN(_ground_truth) {
         
     exportPostProcessCarvingNeuroGroundTruth(groundTruthModule);
     exportOverlap(groundTruthModule);
-
+    exportPartitionComparison(groundTruthModule);
         
     return groundTruthModule.ptr();
 }
