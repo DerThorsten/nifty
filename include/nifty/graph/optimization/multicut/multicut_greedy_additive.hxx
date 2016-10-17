@@ -19,7 +19,7 @@
 namespace nifty{
 namespace graph{
 
-
+    // \cond SUPPRESS_DOXYGEN
 
     namespace detail_multicut_greedy_additive{
 
@@ -150,7 +150,7 @@ namespace graph{
     };
 
     } // end namespace detail_multicut_greedy_additive
-
+    // \endcond 
 
 
 

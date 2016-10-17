@@ -28,7 +28,7 @@ template<size_t DIM, class LABELS_PROXY>
 class GridRag;
 
 
-
+// \cond SUPPRESS_DOXYGEN
 namespace detail_rag{
 
 template< class GRID_RAG>
@@ -335,12 +335,9 @@ struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
 };
 
 
-
-
-
-
-
 } // end namespace detail_rag
+// \endcond
+
 } // end namespace graph
 } // end namespace nifty
 

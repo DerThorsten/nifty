@@ -30,6 +30,7 @@ template<class LABEL_TYPE>
 class GridRagStacked2D;
 
 
+// \cond SUPPRESS_DOXYGEN
 namespace detail_rag{
 
 template< class GRID_RAG>
@@ -134,6 +135,8 @@ struct ComputeRag< GridRag<DIM,  Hdf5Labels<DIM, LABEL_TYPE> > > {
 
 
 } // end namespace detail_rag
+// \endcond
+
 } // end namespace graph
 } // end namespace nifty
 

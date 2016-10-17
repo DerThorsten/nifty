@@ -24,6 +24,8 @@
 namespace nifty{
 namespace graph{
 namespace lifted_multicut{
+
+// \cond SUPPRESS_DOXYGEN
 namespace detail_kernighang_lin{
 
     
@@ -335,6 +337,8 @@ namespace detail_kernighang_lin{
 
 
 } // end namespace detail_kernighang_lin   
+// \endcond
+
 } // lifted_multicut
 } // namespace nifty::graph
 } // namespace nifty

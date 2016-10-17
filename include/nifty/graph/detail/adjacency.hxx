@@ -7,6 +7,8 @@ namespace nifty{
 namespace graph{
 namespace detail_graph{
 
+// \cond SUPPRESS_DOXYGEN
+
 // an element in the implementation
 // of adjacency list
 // End users will not notice this class
@@ -80,6 +82,7 @@ public:
     }
 };
 
+// \endcond SUPPRESS_DOXYGEN
 
 
 } // namespace nifty::graph::detail_graph

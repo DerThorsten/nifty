@@ -177,7 +177,25 @@ class TestLiftedMulticutSolver(unittest.TestCase):
 
 
             # solver with andres
+    
+    def testLiftedMulticutSolverFm(self):
+        random.seed(0)
+        for x in range(1):
+            obj,nid = self.gridLiftedModel(gridSize=[40,40] , bfsRadius=4, weightRange=[-1,1])
             
+
+
+            pgen = obj.watershedProposalGenerator('SEED_FROM_LOCAL')
+
+            print(x)
+
+
+            solverFactory = obj.fusionMoveBasedFactory()
+            solverFactory = obj.fusionMoveBasedFactory(proposalGenerator=pgen)
+            solver = solverFactory.create(obj)
+            visitor = obj.verboseVisitor()
+            argN = solver.optimize(visitor)
+
 
     def implTestLiftedMulticutIlpBfsGrid(self, ilpSolver, gridSize=[4,4], bfsRadius=4, weightRange=[-2,1], verbose=0, relativeGap=0.00001):
 

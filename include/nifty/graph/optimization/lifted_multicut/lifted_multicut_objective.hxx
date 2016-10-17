@@ -8,7 +8,6 @@
 #include "nifty/graph/undirected_list_graph.hxx"
 #include "nifty/graph/subgraph_mask.hxx"
 #include "nifty/graph/graph_maps.hxx"
-#include "nifty/graph/detail/contiguous_indices.hxx"
 #include "nifty/graph/optimization/multicut/multicut_objective.hxx"
 #include "nifty/graph/breadth_first_search.hxx"
 #include "nifty/parallel/threadpool.hxx"
@@ -77,7 +76,7 @@ namespace lifted_multicut{
         >
     {   
     private:
-        typedef nifty::graph::detail_graph::NodeIndicesToContiguousNodeIndices<GRAPH > ToContiguousNodes;
+        //typedef nifty::graph::detail_graph::NodeIndicesToContiguousNodeIndices<GRAPH > ToContiguousNodes;
 
 
         typedef std::is_same<typename GRAPH::NodeIdTag,  ContiguousTag> GraphHasContiguousNodeIds;
@@ -108,9 +107,8 @@ namespace lifted_multicut{
 
         LiftedMulticutObjective(const Graph & graph, const int64_t reserveAdditionalEdges = -1)
         :   graph_(graph),
-            liftedGraph_(graph.numberOfNodes()),// graph.numberOfEdges() + (reserveAdditionalEdges<0 ?  graph.numberOfEdges() : reserveAdditionalEdges)),
-            weights_(liftedGraph_),
-            toContiguousNodes_(graph_){
+            liftedGraph_(graph.numberOfNodes(), graph.numberOfEdges() + (reserveAdditionalEdges<0 ?  graph.numberOfEdges() : reserveAdditionalEdges) ), 
+            weights_(liftedGraph_){
 
             for(const auto edge : graph_.edges()){
                 const auto uv = graph_.uv(edge);
@@ -123,21 +121,19 @@ namespace lifted_multicut{
             weights_.insertedEdges(liftedGraph_.edgeIdUpperBound(),0);
         }
 
-        bool setCost(const uint64_t u, const uint64_t v, const WeightType & w = 0.0, const bool overwrite = false){
-            const auto du = toContiguousNodes_[u];
-            const auto dv = toContiguousNodes_[v];
+        std::pair<bool,uint64_t> setCost(const uint64_t u, const uint64_t v, const WeightType & w = 0.0, const bool overwrite = false){
             const auto preSize = liftedGraph_.numberOfEdges();
             const auto edge = liftedGraph_.insertEdge(u,v);
             if( liftedGraph_.numberOfEdges() > preSize){
                 weights_.insertedEdges(edge, w);
-                return true;
+                return std::pair<bool,uint64_t>(edge,true);
             }
             else{
                 if(overwrite)
                     weights_[edge] = w;
                 else
                     weights_[edge] += w;
-                return false;
+                return std::pair<bool,uint64_t>(edge,false);
             }
         }
 
@@ -173,7 +169,7 @@ namespace lifted_multicut{
             BreadthFirstSearch<GraphType> bfs(graph_);
             graph_.forEachNode([&](const uint64_t sourceNode){
                 bfs.graphNeighbourhood(sourceNode, maxDistance, [&](const uint64_t targetNode, const uint64_t dist){
-                    if(this->setCost(sourceNode, targetNode, 0.0)){
+                    if(this->setCost(sourceNode, targetNode, 0.0).second){
                         distVec.push_back(dist);
                     }
                 });
@@ -269,13 +265,10 @@ namespace lifted_multicut{
         }
 
 
-    private:
+    protected:
         const Graph & graph_;
         LiftedGraph liftedGraph_;
         WeightsMap weights_;
-        ToContiguousNodes toContiguousNodes_;
-
-
 
     };
 

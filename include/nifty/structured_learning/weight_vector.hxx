@@ -1,6 +1,6 @@
 #pragma once
-#ifndef NIFTY_STRUCTURED_LEARNING_INSTANCES_WEIGHTED_EDGE_HXX
-#define NIFTY_STRUCTURED_LEARNING_INSTANCES_WEIGHTED_EDGE_HXX
+#ifndef NIFTY_STRUCTURED_LEARNING_WEIGHT_VECTOR_HXX
+#define NIFTY_STRUCTURED_LEARNING_WEIGHT_VECTOR_HXX
 
 #include <vector>
 #include <string>
@@ -34,9 +34,9 @@ namespace structured_learning{
     private:
         std::vector<T>           weightValues_;
         std::vector<std::string> weightNames_;
-    }
+    };
 
 }
 }
 
-#endif // NIFTY_STRUCTURED_LEARNING_INSTANCES_WEIGHTED_EDGE_HXX
+#endif // NIFTY_STRUCTURED_LEARNING_WEIGHT_VECTOR_HXX

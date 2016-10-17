@@ -18,7 +18,13 @@ namespace graph{
 
 
 
-
+    /**
+     * @brief      Class for fusion move based inference for the multicut objective
+     *             An implementation of \cite beier_15_funsion.
+     *             
+     *          
+     * @tparam     OBJECTIVE  { description }
+     */
     template<class PROPPOSAL_GEN>
     class FusionMoveBased : public MulticutBase<typename PROPPOSAL_GEN::Objective >
     {

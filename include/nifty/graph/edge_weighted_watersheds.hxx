@@ -7,6 +7,7 @@
 namespace nifty{
 namespace graph{
 
+// \cond SUPPRESS_DOXYGEN
 namespace detail_watersheds_segmentation{
 
     struct RawPriorityFunctor{
@@ -124,6 +125,8 @@ namespace detail_watersheds_segmentation{
     }
 
 } // end namespace detail_watersheds_segmentation 
+
+// \endcond
 
     /// \brief edge weighted watersheds Segmentataion
     /// 
