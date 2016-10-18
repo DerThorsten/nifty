@@ -3,8 +3,8 @@
 
 #include "LinearConstraint.h"
 
-namespace opengm {
-namespace learning {
+namespace nifty {
+namespace structured_learning {
 namespace solver {
 
 class LinearConstraints {

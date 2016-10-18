@@ -5,8 +5,8 @@
 
 #include "Relation.h"
 
-namespace opengm {
-namespace learning {
+namespace nifty {
+namespace structured_learning {
 namespace solver {
 
 /**

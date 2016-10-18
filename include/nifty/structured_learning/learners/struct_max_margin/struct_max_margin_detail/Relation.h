@@ -1,8 +1,8 @@
 #ifndef INFERENCE_RELATION_H__
 #define INFERENCE_RELATION_H__
 
-namespace opengm {
-namespace learning {
+namespace nifty {
+namespace structured_learning {
 namespace solver {
 
 /** Used to indicate the relation of a linear constraint.

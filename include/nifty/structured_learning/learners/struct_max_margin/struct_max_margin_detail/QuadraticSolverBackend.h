@@ -4,8 +4,8 @@
 #include "QuadraticObjective.h"
 #include "LinearSolverBackend.h"
 
-namespace opengm {
-namespace learning {
+namespace nifty {
+namespace structured_learning {
 namespace solver {
 
 class QuadraticSolverBackend : public LinearSolverBackend {

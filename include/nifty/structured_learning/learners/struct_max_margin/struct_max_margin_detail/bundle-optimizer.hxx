@@ -2,12 +2,12 @@
 #ifndef OPENGM_LEARNING_BUNDLE_OPTIMIZER_HXX
 #define OPENGM_LEARNING_BUNDLE_OPTIMIZER_HXX
 
-#include "bundle_detail/BundleCollector.h"
-#include "bundle_detail/QuadraticSolverFactory.h"
+#include "BundleCollector.h"
+#include "QuadraticSolverFactory.h"
+#include "QuadraticSolverBackend.h"
 
-namespace opengm {
-
-namespace learning {
+namespace nifty {
+namespace structured_learning {
 
 //template <typename T>
 //std::ostream& operator<<(std::ostream& out, Weights<T>& w) {
@@ -98,7 +98,7 @@ public:
 	 * (passed by reference) at point 'current'.
 	 */
     template <typename Oracle, typename Weights>
-    OptimizerResult optimize(Oracle& oracle, Weights& w);
+    OptimizerResult optimize(Oracle * oracle, Weights& w);
 
 private:
 
@@ -133,7 +133,7 @@ BundleOptimizer<T>::~BundleOptimizer() {
 template <typename T>
 template <typename Oracle, typename Weights>
 OptimizerResult
-BundleOptimizer<T>::optimize(Oracle& oracle, Weights& w) {
+BundleOptimizer<T>::optimize(Oracle * oracle, Weights& w) {
 
 	setupQp(w);
 
@@ -158,7 +158,7 @@ BundleOptimizer<T>::optimize(Oracle& oracle, Weights& w) {
         if (_parameter.verbose_)
             std::cout << "creating " << w.size() << " non-negative constraints" << std::endl;
         for(size_t i=0; i<w.size(); ++i){
-            Weights vecLHS(w.numberOfWeights());
+            Weights vecLHS(w.size());
             vecLHS[i]=1.0;
             _bundleCollector.addNonNegative(vecLHS);
             if (_parameter.verbose_){
@@ -193,10 +193,10 @@ BundleOptimizer<T>::optimize(Oracle& oracle, Weights& w) {
 		T L_w_tm1 = 0.0;
 
 		// gradient of L at current w
-        Weights a_t(w.numberOfWeights());
+        Weights a_t(w.size());
 
 		// get current value and gradient
-		oracle(w_tm1, L_w_tm1, a_t);
+		oracle->getGradientAndValue(w_tm1, L_w_tm1, a_t);
 
         if(_parameter.verbose_){
             std::cout << "       L(w)              is: " << L_w_tm1 << std::endl;
@@ -280,17 +280,17 @@ BundleOptimizer<T>::setupQp(const Weights& w) {
 	if (!_solver)
 		_solver = solver::QuadraticSolverFactory::Create();
 
-	_solver->initialize(w.numberOfWeights() + 1, solver::Continuous);
+	_solver->initialize(w.size() + 1, solver::Continuous);
 
 	// one variable for each component of w and for ξ
-    solver::QuadraticObjective obj(w.numberOfWeights() + 1);
+    solver::QuadraticObjective obj(w.size() + 1);
 
 	// regularizer
-    for (unsigned int i = 0; i < w.numberOfWeights(); i++)
+    for (unsigned int i = 0; i < w.size(); i++)
 		obj.setQuadraticCoefficient(i, i, 0.5*_parameter.lambda);
 
 	// ξ
-    obj.setCoefficient(w.numberOfWeights(), 1.0);
+    obj.setCoefficient(w.size(), 1.0);
 
 	// we minimize
 	obj.setSense(solver::Minimize);
@@ -319,7 +319,7 @@ BundleOptimizer<T>::findMinLowerBound(ModelWeights& w, T& value) {
 		return;
 	}
 
-	for (size_t i = 0; i < w.numberOfWeights(); i++)
+	for (size_t i = 0; i < w.size(); i++)
 		w[i] = x[i];
 }
 
@@ -328,10 +328,10 @@ template <typename ModelWeights>
 T
 BundleOptimizer<T>::dot(const ModelWeights& a, const ModelWeights& b) {
 
-	OPENGM_ASSERT(a.numberOfWeights() == b.numberOfWeights());
+
 
 	T d = 0.0;
-	for (size_t i = 0; i < a.numberOfWeights(); i++)
+	for (size_t i = 0; i < a.size(); i++)
 		d += a[i]*b[i];
 
 	return d;

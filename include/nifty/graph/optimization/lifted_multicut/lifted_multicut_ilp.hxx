@@ -32,13 +32,13 @@ namespace lifted_multicut{
         typedef typename Base::NodeLabels NodeLabels;
         typedef ILP_SOLVER IlpSovler;
         typedef typename IlpSovler::Settings IlpSettings;
-        typedef typename Objective::Graph Graph;
-        typedef typename Objective::LiftedGraph LiftedGraph;
+        typedef typename Objective::GraphType GraphType;
+        typedef typename Objective::LiftedGraphType LiftedGraphType;
 
     private:
-        typedef ComponentsUfd<Graph> Components;
-        typedef detail_graph::EdgeIndicesToContiguousEdgeIndices<Graph> DenseIds;
-        typedef DepthFirstSearch<Graph> DfsType;
+        typedef ComponentsUfd<GraphType> Components;
+        typedef detail_graph::EdgeIndicesToContiguousEdgeIndices<GraphType> DenseIds;
+        typedef DepthFirstSearch<GraphType> DfsType;
 
 
 
@@ -98,24 +98,23 @@ namespace lifted_multicut{
         virtual std::string name()const{
             return std::string("LiftedMulticutIlp") + ILP_SOLVER::name();
         }
-        virtual void weightsChanged(){
-
-            if(graph_.numberOfEdges()>0){
-                if(numberOfOptRuns_<1){
-                    ilpSolver_->changeObjective(objective_.weights().begin());
-                }
-                else{
-                    delete ilpSolver_;
-                    numberOfOptRuns_ = 0;
-                    addedConstraints_ = 0;
-                    ilpSolver_ = new IlpSovler(settings_.ilpSettings);
-                    this->initializeIlp();
-                    if(settings_.addThreeCyclesConstraints){
-                        this->addThreeCyclesConstraintsExplicitly();
-                    }
-                }
-            }
-        }
+        //virtual void weightsChanged(){
+        //    if(graph_.numberOfEdges()>0){
+        //        if(numberOfOptRuns_<1){
+        //            ilpSolver_->changeObjective(objective_.weights().begin());
+        //        }
+        //        else{
+        //            delete ilpSolver_;
+        //            numberOfOptRuns_ = 0;
+        //            addedConstraints_ = 0;
+        //            ilpSolver_ = new IlpSovler(settings_.ilpSettings);
+        //            this->initializeIlp();
+        //            if(settings_.addThreeCyclesConstraints){
+        //                this->addThreeCyclesConstraintsExplicitly();
+        //            }
+        //        }
+        //    }
+        //}
         
     private:
 
@@ -130,8 +129,8 @@ namespace lifted_multicut{
         void addThreeCyclesConstraintsExplicitly();
 
         const Objective & objective_;
-        const Graph & graph_;
-        const LiftedGraph & liftedGraph_;
+        const GraphType & graph_;
+        const LiftedGraphType & liftedGraph_;
 
         IlpSovler * ilpSolver_;
         Components components_;
@@ -139,7 +138,7 @@ namespace lifted_multicut{
         // is a zero overhead function which just returns the edge itself
         // since all so far existing graphs have contiguous edge ids
         DenseIds denseIds_;
-        BidirectionalBreadthFirstSearch<Graph> bibfs_;
+        BidirectionalBreadthFirstSearch<GraphType> bibfs_;
         DfsType dfs_;
         Settings settings_;
         std::vector<size_t> variables_;
@@ -364,7 +363,7 @@ namespace lifted_multicut{
                             ++nCut;
                         }
                     };
-                    DefaultSubgraphMask<Graph> subgraphMask;
+                    DefaultSubgraphMask<GraphType> subgraphMask;
                     dfs_.run(&va, &va+1, subgraphMask, dfsVisitor);
 
                     coefficients_[nCut] = 1.0;

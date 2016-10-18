@@ -6,6 +6,7 @@
 #include <string>
 #include <vector>
 
+#define IL_STD 1
 #include <ilcplex/ilocplex.h>
 
 #include "LinearConstraints.h"
@@ -14,8 +15,8 @@
 #include "Sense.h"
 #include "Solution.h"
 
-namespace opengm {
-namespace learning {
+namespace nifty {
+namespace structured_learning {
 namespace solver {
 
 /**

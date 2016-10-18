@@ -13,6 +13,7 @@ namespace opengm {
 
 namespace learning {
 
+
 template <
 		typename DS,
 		typename O = BundleOptimizer<typename DS::ValueType> >

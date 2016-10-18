@@ -14,8 +14,8 @@
 #include "Sense.h"
 #include "Solution.h"
 
-namespace opengm {
-namespace learning {
+namespace nifty {
+namespace structured_learning {
 namespace solver {
 
 /**

@@ -3,8 +3,8 @@
 
 #include "LinearConstraints.h"
 
-namespace opengm {
-namespace learning {
+namespace nifty {
+namespace structured_learning {
 namespace solver {
 
 class BundleCollector {
@@ -33,7 +33,7 @@ BundleCollector::addHyperplane(const ModelWeights& a, double b) {
 	  <w,a> - ξ ≤ -b
 	*/
 
-	unsigned int dims = a.numberOfWeights();
+	unsigned int dims = a.size();
 
 	LinearConstraint constraint;
 
@@ -53,7 +53,7 @@ BundleCollector::addNonNegative(const ModelWeights& a) {
       <w,a> >= 0
     */
 
-    unsigned int dims = a.numberOfWeights();
+    unsigned int dims = a.size();
 
     LinearConstraint constraint;
 

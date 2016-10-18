@@ -78,3 +78,4 @@ add_custom_target(copy_python_test ALL#POST_BUILD
 # submodules
 add_subdirectory(graph)
 add_subdirectory(ground_truth)
+add_subdirectory(structured_learning)

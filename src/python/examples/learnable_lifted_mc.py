@@ -4,6 +4,7 @@ import vigra
 import numpy
 
 import nifty.graph.lifted_multicut as nifty_lmc
+import nifty.structured_learning as nifty_sl
 
 def gridGraph(shape):
 
@@ -32,7 +33,7 @@ def gridGraph(shape):
     
 numpy.random.seed(42)
 
-def gererateToyDataset(n, shape=[30,30], noise=3):
+def gererateToyData(n, shape=[30,30], noise=3):
     rawImages = []
     gtImages = []
     for i in range(n):
@@ -47,12 +48,12 @@ def gererateToyDataset(n, shape=[30,30], noise=3):
 
         gtImg = vigra.sampling.rotateImageDegree(gtImg.astype(numpy.float32),int(ra),splineOrder=0)
 
-        if True and i==0 :
+        if False and i==0 :
             vigra.imshow(gtImg)
             vigra.show()
 
         img = gtImg + numpy.random.random(shape)*float(noise)
-        if True and i==0 :
+        if False and i==0 :
             vigra.imshow(img)
             vigra.show()
 
@@ -69,7 +70,7 @@ shape = [40,40]
 
 
 # raw data and gt vectors
-rawImages, gtImages = gererateToyDataset(2,shape=shape)
+rawImages, gtImages = gererateToyData(2,shape=shape)
 
 
 sigmas = [1.0, .5]
@@ -78,8 +79,23 @@ maxGraphDist = 4
 # since distances start at 1
 nDistances = maxGraphDist
 
-nWeights = 2 #nDistances * (len(sigmas)+1)  +1
-nWeights = len(sigmas)  + 1
+numberOfWeights = 2 #nDistances * (len(sigmas)+1)  +1
+numberOfWeights = len(sigmas)  + 1
+
+
+
+
+oracle = nifty_sl.StructMaxMarginOracleLmc(numberOfWeights=numberOfWeights)
+structMaxMargin = nifty_sl.structMaxMargin(oracle)
+print oracle
+
+
+
+
+
+
+
+
 def nodeToCoord(node):
 
 
@@ -90,7 +106,7 @@ def nodeToCoord(node):
 
 
 dataset = []
-weights = numpy.zeros(nWeights)
+weights = numpy.zeros(numberOfWeights)
 for rawImage, gtImages in zip(rawImages, gtImages):
 
     shape = rawImage.shape
@@ -105,11 +121,17 @@ for rawImage, gtImages in zip(rawImages, gtImages):
 
     
 
-    obj = nifty_lmc.weightedLiftedMulticutObjective(graph, nWeights)
+    obj = nifty_lmc.weightedLiftedMulticutObjective(graph, numberOfWeights)
     nodeGt = gtImages.reshape([-1])
     nodeSizes = numpy.ones(obj.graph.numberOfNodes)
     lossAugmentedObj = nifty_lmc.lossAugmentedViewLiftedMulticutObjective(obj, nodeGt, nodeSizes)
     
+
+    print "Add models"
+    oracle.addModel(graph, nodeGt, nodeSizes)
+
+
+
 
     dataset.append((obj,lossAugmentedObj,nodeGt))
 
@@ -146,7 +168,7 @@ for rawImage, gtImages in zip(rawImages, gtImages):
         #obj.addWeightedFeature(uv[0], uv[1], 0, float(isCut))
 
         # add const feature
-        obj.addWeightedFeature(uv[0], uv[1], nWeights-1, 1.0)
+        obj.addWeightedFeature(uv[0], uv[1], numberOfWeights-1, 1.0)
 
         # add const term (this is not weighted)
         #obj.setConstTerm(uv[0], uv[1],  10000.0)
@@ -161,8 +183,9 @@ for rawImage, gtImages in zip(rawImages, gtImages):
     allCut = numpy.arange(obj.liftedGraph.numberOfNodes)
 
 
+structMaxMargin.learn()
 
-
+sys.exit(1)
 
 
 
@@ -228,7 +251,7 @@ for x in range(200):
         sols.append(y)
 
     # gradient
-    gradient = numpy.zeros(nWeights)
+    gradient = numpy.zeros(numberOfWeights)
     for (obj,lossAugmentedObj, gt),sol in zip(dataset,sols):
 
         fSol = obj.getGradient(sol)

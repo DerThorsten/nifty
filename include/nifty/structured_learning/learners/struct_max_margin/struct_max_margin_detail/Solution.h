@@ -1,8 +1,8 @@
 #ifndef INFERENCE_SOLUTION_H__
 #define INFERENCE_SOLUTION_H__
 
-namespace opengm {
-namespace learning {
+namespace nifty {
+namespace structured_learning {
 namespace solver {
 
 class Solution {

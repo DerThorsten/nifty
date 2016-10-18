@@ -3,8 +3,8 @@
 
 #include "QuadraticObjective.h"
 
-namespace opengm {
-namespace learning {
+namespace nifty {
+namespace structured_learning {
 namespace solver {
 
 class LinearObjective : public QuadraticObjective {

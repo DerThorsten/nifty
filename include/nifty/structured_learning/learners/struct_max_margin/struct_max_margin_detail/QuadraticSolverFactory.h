@@ -1,14 +1,17 @@
 #ifndef OPENGM_LEARNING_SOLVER_QUADRATIC_SOLVER_FACTORY_H__
 #define OPENGM_LEARNING_SOLVER_QUADRATIC_SOLVER_FACTORY_H__
 
+#include "QuadraticSolverBackend.h"
 #ifdef WITH_GUROBI
 #include "GurobiBackend.h"
 #elif defined(WITH_CPLEX)
 #include "CplexBackend.h"
 #endif
 
-namespace opengm {
-namespace learning {
+
+
+namespace nifty {
+namespace structured_learning {
 namespace solver {
 
 class QuadraticSolverFactory {
@@ -23,7 +26,7 @@ public:
         return new CplexBackend();
 #endif
 
-      throw opengm::RuntimeError("No quadratic solver available.");
+      throw std::runtime_error("No quadratic solver available.");
 	}
 };
 

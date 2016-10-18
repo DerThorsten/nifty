@@ -1,8 +1,8 @@
 #ifndef SENSE_H__
 #define SENSE_H__
 
-namespace opengm {
-namespace learning {
+namespace nifty {
+namespace structured_learning {
 namespace solver {
 
 /** Used to indicate whether an objective is supposed to be minimized or

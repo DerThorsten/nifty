@@ -1,8 +1,8 @@
 #ifndef OPENGM_LEARNING_GRADIENT_ACCUMULATOR_H__
 #define OPENGM_LEARNING_GRADIENT_ACCUMULATOR_H__
 
-namespace opengm {
-namespace learning {
+namespace nifty {
+namespace structured_learning {
 
 /**
  * Model function visitor to accumulate the gradient for each model weight, 

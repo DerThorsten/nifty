@@ -6,8 +6,8 @@
 #include "Solution.h"
 #include "VariableType.h"
 
-namespace opengm {
-namespace learning {
+namespace nifty {
+namespace structured_learning {
 namespace solver {
 
 class LinearSolverBackend {

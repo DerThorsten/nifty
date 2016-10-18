@@ -8,7 +8,7 @@
 namespace nifty{
 namespace structured_learning{
 
-    template<class T>
+    template<class T = double>
     class WeightVector{
 
 

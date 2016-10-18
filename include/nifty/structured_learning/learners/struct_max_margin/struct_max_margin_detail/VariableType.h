@@ -1,8 +1,8 @@
 #ifndef INFERENCE_VARIABLE_TYPE_H__
 #define INFERENCE_VARIABLE_TYPE_H__
 
-namespace opengm {
-namespace learning {
+namespace nifty {
+namespace structured_learning {
 namespace solver {
 
 enum VariableType {

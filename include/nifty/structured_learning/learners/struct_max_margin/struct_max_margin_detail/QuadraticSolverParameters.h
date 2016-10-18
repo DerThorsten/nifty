@@ -3,8 +3,8 @@
 
 #include "LinearSolverParameters.h"
 
-namespace opengm {
-namespace learning {
+namespace nifty {
+namespace structured_learning {
 namespace solver {
 
 class QuadraticSolverParameters : public LinearSolverParameters {};
