@@ -33,7 +33,7 @@ def gridGraph(shape):
     
 numpy.random.seed(42)
 
-def gererateToyData(n, shape=[30,30], noise=3):
+def gererateToyData(n, shape=[30,30], noise=2):
     rawImages = []
     gtImages = []
     for i in range(n):
@@ -48,12 +48,12 @@ def gererateToyData(n, shape=[30,30], noise=3):
 
         gtImg = vigra.sampling.rotateImageDegree(gtImg.astype(numpy.float32),int(ra),splineOrder=0)
 
-        if False and i==0 :
+        if True and i==0 :
             vigra.imshow(gtImg)
             vigra.show()
 
         img = gtImg + numpy.random.random(shape)*float(noise)
-        if False and i==0 :
+        if True and i==0 :
             vigra.imshow(img)
             vigra.show()
 
@@ -70,10 +70,10 @@ shape = [40,40]
 
 
 # raw data and gt vectors
-rawImages, gtImages = gererateToyData(2,shape=shape)
+rawImages, gtImages = gererateToyData(10,shape=shape)
 
 
-sigmas = [1.0, .5]
+sigmas = [1.0, .5, 2.0, 4.0]
 maxGraphDist = 4
 
 # since distances start at 1
@@ -83,9 +83,13 @@ numberOfWeights = 2 #nDistances * (len(sigmas)+1)  +1
 numberOfWeights = len(sigmas)  + 1
 
 
+# get the solver factory for the loss augmented model
+WeightedObj = nifty.graph.UndirectedGraph.WeightedLiftedMulticutObjective
+LossAugmentedObj = WeightedObj.LossAugmentedViewLiftedMulticutObjective
+pgen = LossAugmentedObj.watershedProposalGenerator('SEED_FROM_LOCAL')
+solverFactory = LossAugmentedObj.fusionMoveBasedFactory(proposalGenerator=pgen)
 
-
-oracle = nifty_sl.StructMaxMarginOracleLmc(numberOfWeights=numberOfWeights)
+oracle = nifty_sl.StructMaxMarginOracleLmc(solverFactory=solverFactory,numberOfWeights=numberOfWeights)
 structMaxMargin = nifty_sl.structMaxMargin(oracle)
 print oracle
 
@@ -107,7 +111,7 @@ def nodeToCoord(node):
 
 dataset = []
 weights = numpy.zeros(numberOfWeights)
-for rawImage, gtImages in zip(rawImages, gtImages):
+for i,(rawImage, gtImages) in enumerate(zip(rawImages, gtImages)):
 
     shape = rawImage.shape
     graph, nodeIndex = gridGraph(shape)
@@ -121,19 +125,25 @@ for rawImage, gtImages in zip(rawImages, gtImages):
 
     
 
-    obj = nifty_lmc.weightedLiftedMulticutObjective(graph, numberOfWeights)
-    nodeGt = gtImages.reshape([-1])
-    nodeSizes = numpy.ones(obj.graph.numberOfNodes)
-    lossAugmentedObj = nifty_lmc.lossAugmentedViewLiftedMulticutObjective(obj, nodeGt, nodeSizes)
+    
     
 
-    print "Add models"
+
+    nodeGt = gtImages.reshape([-1])
+    nodeSizes = numpy.ones([nodeGt.size])
+
+    assert nodeGt.size == graph.numberOfNodes
+    assert nodeSizes.size == graph.numberOfNodes
+
+
     oracle.addModel(graph, nodeGt, nodeSizes)
 
+    obj = oracle.getWeightedModel(i)
+    lossAugmentedObj = oracle.getLossAugmentedModel(i)
+    
 
 
 
-    dataset.append((obj,lossAugmentedObj,nodeGt))
 
 
     imgs = [rawImage] 
@@ -161,37 +171,25 @@ for rawImage, gtImages in zip(rawImages, gtImages):
             obj.addWeightedFeature(uv[0], uv[1], imgIndex, feat)
 
 
-        # add gt feature
-        #isCut = nodeGt[uv[0]] != nodeGt[uv[1]]
-        #isCut2 = gtImages[nodeToCoord(uv[0])] != gtImages[nodeToCoord(uv[1])]
-        #assert isCut == isCut2
-        #obj.addWeightedFeature(uv[0], uv[1], 0, float(isCut))
 
-        # add const feature
         obj.addWeightedFeature(uv[0], uv[1], numberOfWeights-1, 1.0)
 
         # add const term (this is not weighted)
-        #obj.setConstTerm(uv[0], uv[1],  10000.0)
+        obj.setConstTerm(uv[0], uv[1],  0.0)
 
 
     # initialize weights
     
-    lossAugmentedObj.changeWeights(weights)
+    #lossAugmentedObj.changeWeights(weights)
 
 
-
-    allCut = numpy.arange(obj.liftedGraph.numberOfNodes)
 
 
 structMaxMargin.learn()
 
-sys.exit(1)
 
 
 
-# tiny ssvm 
-C = 1
-lrate = 1
 
 def optimize(ob):
     solverFactory = obj.liftedMulticutKernighanLinFactory()
@@ -211,74 +209,16 @@ def optimize(ob):
     print "FM",obj.evalNodeLabels(argN)
     return argN
     
-def modelLoss(obj, gt):
-    res = optimize(obj)
-    #print res
-    g = obj.liftedGraph
-
-    s = 0.0
-    c = 0
-    for edge in g.edges():
-        uv = g.uv(edge)
-
-        egt  = gt[uv[0]] != gt[uv[1]]
-        esol = res[uv[0]] != res[uv[1]]
-
-        if egt != esol:
-            s += 1.0
-        c +=1
-    return s/float(c)
-
-def datsetLoss(dataset):
-    s = 0.0
-    for obj,lossAugmentedObj, gt in dataset:
-        s += modelLoss(obj, gt)
-
-    return s/len(dataset)
 
 
-def allfinite(x):
-    return numpy.isfinite(x).sum() == len(x)
 
 
-for x in range(200):
-    t = float(x+1)
-    sols = []
 
-    # get sols
-    for obj,lossAugmentedObj, gt in dataset:
-        y = optimize(lossAugmentedObj)
-        sols.append(y)
 
-    # gradient
-    gradient = numpy.zeros(numberOfWeights)
-    for (obj,lossAugmentedObj, gt),sol in zip(dataset,sols):
+y = optimize(oracle.getWeightedModel(0))
+y = y.reshape(shape)
+vigra.imshow(y)
+vigra.show()
 
-        fSol = obj.getGradient(sol)
-        fGt  = obj.getGradient(gt)
 
-        assert allfinite(fSol)
-        assert allfinite(fGt)
 
-        g =  fGt-fSol
-        gradient += g 
-
-    g = weights + (C/float(len(dataset)) )*gradient
-
-    elrate = lrate/t
-    weights  = weights - elrate*g
-
-    #update weights
-    for (obj,lossAugmentedObj, gt),sol in zip(dataset,sols):
-        lossAugmentedObj.changeWeights(weights)
-
-    print "LOSS",datsetLoss(dataset)
-    print "W", weights
-
-    if (x+1) % 10 == 0:
-
-        for obj,lossAugmentedObj, gt in dataset:
-            y = optimize(obj)
-            y = y.reshape(shape)
-            vigra.imshow(y)
-            vigra.show()

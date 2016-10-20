@@ -71,6 +71,10 @@ namespace lifted_multicut{
         WeightedLiftedMulticutObjective(const Graph & graph,const uint64_t numberOfWeights, const int64_t reserveAdditionalEdges = -1);
 
 
+        WeightedLiftedMulticutObjective(WeightedLiftedMulticutObjective const&) = delete; // Line 365
+        WeightedLiftedMulticutObjective& operator=(WeightedLiftedMulticutObjective const&) = delete; // Line 366
+                                         // 
+
         WeightsMap & weights();
         const WeightsMap & weights() const;
         const Graph & graph() const;
@@ -470,10 +474,13 @@ namespace lifted_multicut{
     changeWeights(
         const WEIGHT_VECTOR & weightVector
     ){
+        //std::cout<<"this adress "<<this<<"\n";
+        //std::cout<<"WeightedLiftedMulticutObjective::changeWeights\n";
         this->liftedGraph().forEachEdge([&](const uint64_t edge){
             this->weights_[edge] = weightedEdgeCosts_[edge].value(weightVector);
             //std::cout<<"Edge "<<edge<<" w "<<this->weights_[edge]<<"\n";
         });
+        //std::cout<<"..done.. WeightedLiftedMulticutObjective::changeWeights\n";
     }
 
 

@@ -71,14 +71,36 @@ namespace structured_learning{
         structuredLearningModule.def("structMaxMargin",
             []
             (
-                StructMaxMarginOracleBase * oracle
+                StructMaxMarginOracleBase * oracle,
+                const double lambda = 1.0,
+                const double minEps = 1e-5,
+                const uint64_t steps = 0,
+                const bool optOracle = false,
+                const bool verbose = true,
+                const bool nonNegativeWeights = false
             ){
-                auto obj = new StructMaxMargin(oracle);
+                typedef typename StructMaxMargin::OptimizerType Optimizer;
+                typename  StructMaxMargin::Parameter p;
+                p.optimizerParameter_.lambda = lambda;
+                p.optimizerParameter_.min_eps = minEps;
+                p.optimizerParameter_.steps = steps;
+                p.optimizerParameter_.epsStrategy = optOracle ?Optimizer::EpsFromGap : Optimizer::EpsFromChange;
+                p.optimizerParameter_.verbose_ = verbose;
+                p.optimizerParameter_.nonNegativeWeights = nonNegativeWeights;
+
+                auto obj = new StructMaxMargin(oracle, p);
                 return obj;
             },
             py::return_value_policy::take_ownership,
             py::keep_alive<0, 1>(),
-            py::arg("oracle")
+            py::arg("oracle"),
+            py::arg("lambda") = 1.0,
+            py::arg("minEps") = 1e-5,
+            py::arg_t<uint64_t>("steps", 0) ,
+            py::arg_t<bool>("optOracle", false) ,
+            py::arg_t<bool>("verbose", false),
+            py::arg_t<bool>("nonNegativeWeights", false)
+
         );
 
 

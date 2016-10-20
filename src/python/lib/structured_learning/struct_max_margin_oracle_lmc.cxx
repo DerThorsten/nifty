@@ -16,7 +16,7 @@
 namespace py = pybind11;
 
 
-//PYBIND11_DECLARE_HOLDER_TYPE(SSMOracleBase, std::shared_ptr<SSMOracleBase>);
+PYBIND11_DECLARE_HOLDER_TYPE(SSMOracleBase, std::shared_ptr<SSMOracleBase>);
 
 namespace nifty{
 namespace structured_learning{
@@ -36,11 +36,15 @@ namespace structured_learning{
 
         py::object oracleBase = structuredLearningModule.attr("StructMaxMarginOracleBase");
 
-        typedef StructMaxMarginOracleLmc<WeightedObjectiveType, LossAugemntedObjectiveType> Oracle;
-    
+        typedef StructMaxMarginOracleLmc<WeightedObjectiveType> Oracle;
+        typedef typename Oracle::SharedSolverFactory SharedSolverFactory;
 
         py::class_<Oracle >(structuredLearningModule, "StructMaxMarginOracleLmc",  oracleBase)
-            .def(py::init<const size_t >(),
+            .def(py::init<
+                    SharedSolverFactory,
+                    const size_t 
+                >(),
+                py::arg("solverFactory"),
                 py::arg("numberOfWeights")
             )
 
@@ -50,15 +54,10 @@ namespace structured_learning{
                 nifty::marray::PyView<uint64_t, 1> nodeGroundTruth,
                 nifty::marray::PyView<float, 1>    nodeSizes
             ){
-                oracle->addWeightedModel(graph, oracle->numberOfWeights());
-
-                // get the just added model
-                const auto index = oracle->numberOfWeightesModels() - 1;
-                auto & weightedModel = oracle->getWeightedModel(index);
-
-
-                oracle->addLossAugmentedModel(weightedModel, nodeGroundTruth, nodeSizes);
-            })
+                oracle->addModel(graph, nodeGroundTruth, nodeSizes);
+            },
+                py::keep_alive<1, 2>()
+            )
 
             .def("getWeightedModel",&Oracle::getWeightedModel, py::return_value_policy::reference_internal)
             .def("getLossAugmentedModel",&Oracle::getLossAugmentedModel, py::return_value_policy::reference_internal)

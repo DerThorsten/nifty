@@ -33,8 +33,6 @@ EdgeContractionGraphUndirectedGraph.MulticutObjective = multicut.MulticutObjecti
 
 # lifted multicut objective
 UndirectedGraph.LiftedMulticutObjective = lifted_multicut.LiftedMulticutObjectiveUndirectedGraph
-
-
 UndirectedGraph.WeightedLiftedMulticutObjective = lifted_multicut.WeightedLiftedMulticutObjectiveUndirectedGraph
 
 

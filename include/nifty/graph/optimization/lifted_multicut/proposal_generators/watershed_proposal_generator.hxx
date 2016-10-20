@@ -1,4 +1,4 @@
-
+\
 #pragma once
 #ifndef NIFTY_GRAPH_OPTIMIZATION_LIFTED_MULTICUT_LIFTED_PROPOSAL_GENERATORS_WATERSHED_PROPOSAL_GENERATOR_BASE_HXX
 #define NIFTY_GRAPH_OPTIMIZATION_LIFTED_MULTICUT_LIFTED_PROPOSAL_GENERATORS_WATERSHED_PROPOSAL_GENERATOR_BASE_HXX
@@ -169,7 +169,7 @@ namespace lifted_multicut{
 
         }
     private:
-        ObjectiveType objective_;
+        const ObjectiveType & objective_;
         size_t numberOfThreads_;
         Settings settings_;
         std::vector<uint64_t> negativeEdges_;

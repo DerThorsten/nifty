@@ -21,6 +21,7 @@ namespace lifted_multicut{
     void exportLiftedMulticutAndresKernighanLin(py::module &);
     void exportLiftedMulticutAndresGreedyAdditive(py::module &);
     void exportFusionMoveBased(py::module &);
+    void exportChainedSolver(py::module &);
     void exportLiftedGraphFeatures(py::module &);
 
 }
@@ -46,6 +47,7 @@ PYBIND11_PLUGIN(_lifted_multicut) {
     exportLiftedMulticutAndresKernighanLin(liftedMulticutModule);
     exportLiftedMulticutAndresGreedyAdditive(liftedMulticutModule);
     exportFusionMoveBased(liftedMulticutModule);
+    exportChainedSolver(liftedMulticutModule);
     exportLiftedGraphFeatures(liftedMulticutModule);
 
 

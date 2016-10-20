@@ -89,6 +89,17 @@ def __extendLiftedMulticutObj(objectiveCls, objectiveName):
 
 
 
+    def chainedSolverFactory(factoryA, factoryB):
+
+        s,F = getSettingsAndFactoryCls("ChainedSolver")
+        s.factoryA = factoryA
+        s.factoryB = factoryB
+        return F(s)
+
+    O.chainedSolverFactory = staticmethod(chainedSolverFactory)
+
+
+
 
 
     def liftedMulticutGreedyAdditiveFactory( weightStopCond=0.0, nodeNumStopCond=-1.0):
@@ -161,6 +172,9 @@ __extendLiftedMulticutObj(LiftedMulticutObjectiveUndirectedGraph,
 
 __extendLiftedMulticutObj(WeightedLiftedMulticutObjectiveUndirectedGraph, 
     "WeightedLiftedMulticutObjectiveUndirectedGraph")
+
+
+WeightedLiftedMulticutObjectiveUndirectedGraph.LossAugmentedViewLiftedMulticutObjective = LossAugmentedViewLiftedMulticutObjectiveWeightedLiftedMulticutObjectiveUndirectedGraph
 
 __extendLiftedMulticutObj(LossAugmentedViewLiftedMulticutObjectiveWeightedLiftedMulticutObjectiveUndirectedGraph, 
     "LossAugmentedViewLiftedMulticutObjectiveWeightedLiftedMulticutObjectiveUndirectedGraph")

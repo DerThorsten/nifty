@@ -207,7 +207,7 @@ StructMaxMargin::learn() {
 
 
 
-	_weights.resize(oracle_->numberOfWeights(),0.0);
+	_weights.resize(oracle_->numberOfWeights(),1.0);
 
 	// minimize structured loss
     OptimizerResult result = _optimizer.optimize(oracle_, _weights);

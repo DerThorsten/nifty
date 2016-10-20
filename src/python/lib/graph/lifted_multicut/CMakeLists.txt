@@ -18,6 +18,7 @@ pybind11_add_module(_lifted_multicut
     lifted_multicut_andres_kernighan_lin.cxx
     lifted_multicut_andres_greedy_additive.cxx
     fusion_move_based.cxx
+    chained_solver.cxx
     lifted_graph_features.cxx
 )
 

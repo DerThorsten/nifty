@@ -23,6 +23,9 @@ namespace optimization{
         virtual bool visit(SolverType * solver) = 0;
         virtual void end(SolverType * solver) = 0;
 
+
+
+        
         virtual void addLogNames(std::initializer_list<std::string> logNames){
 
         }
