@@ -87,7 +87,12 @@ numberOfWeights = len(sigmas)  + 1
 WeightedObj = nifty.graph.UndirectedGraph.WeightedLiftedMulticutObjective
 LossAugmentedObj = WeightedObj.LossAugmentedViewLiftedMulticutObjective
 pgen = LossAugmentedObj.watershedProposalGenerator('SEED_FROM_LOCAL')
-solverFactory = LossAugmentedObj.fusionMoveBasedFactory(proposalGenerator=pgen)
+
+
+factoryA = LossAugmentedObj.liftedMulticutGreedyAdditiveFactory()
+factoryB = LossAugmentedObj.fusionMoveBasedFactory(proposalGenerator=pgen)
+
+solverFactory = LossAugmentedObj.chainedSolverFactory(factoryA, factoryB)
 
 oracle = nifty_sl.StructMaxMarginOracleLmc(solverFactory=solverFactory,numberOfWeights=numberOfWeights)
 structMaxMargin = nifty_sl.structMaxMargin(oracle)

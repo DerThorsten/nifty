@@ -238,7 +238,14 @@ namespace lifted_multicut{
 
     public:
 
-        typedef typename Callback::Settings Settings;
+        //typedef typename Callback::Settings Settings;
+
+        struct Settings : public Callback::Settings {
+            /// if makeMonoton is true, the starting point and
+            /// the inference solution are compared and the best of
+            /// both is chosen.
+            bool makeMonoton{true};
+        };
 
         virtual ~LiftedMulticutGreedyAdditive(){}
         LiftedMulticutGreedyAdditive(const Objective & objective, const Settings & settings = Settings());
@@ -272,6 +279,7 @@ namespace lifted_multicut{
 
         Callback callback_;
         EdgeContractionGraph<LiftedGraphType, Callback> edgeContractionGraph_;
+        Settings settings_;
     };
 
     
@@ -285,7 +293,8 @@ namespace lifted_multicut{
         graph_(objective.graph()),
         currentBest_(nullptr),
         callback_(objective, settings),
-        edgeContractionGraph_(objective.liftedGraph(), callback_)
+        edgeContractionGraph_(objective.liftedGraph(), callback_),
+        settings_(settings)
     {
         // do the setup
         this->reset();
@@ -323,8 +332,32 @@ namespace lifted_multicut{
                 }
             }
             
-            for(auto node : graph_.nodes()){
-                nodeLabels[node] = edgeContractionGraph_.findRepresentativeNode(node);
+            if(settings_.makeMonoton){
+
+                NodeLabels buffer(graph_);
+                for(auto node : graph_.nodes())
+                    buffer[node] = nodeLabels[node];
+
+                // energy of starting point
+                const auto spVal = objective_.evalNodeLabels(buffer);
+
+                for(auto node : graph_.nodes())
+                    nodeLabels[node] = edgeContractionGraph_.findRepresentativeNode(node);
+                
+                // energy of greedy clustering
+                const auto val = objective_.evalNodeLabels(nodeLabels);
+
+                // revert if starting point has better energy
+                if(spVal < val){
+                    for(auto node : graph_.nodes())
+                        nodeLabels[node] = buffer[node];
+                }
+
+            }
+            else{
+                for(auto node : graph_.nodes()){
+                    nodeLabels[node] = edgeContractionGraph_.findRepresentativeNode(node);
+                }
             }
         }
         if(visitor!=nullptr)

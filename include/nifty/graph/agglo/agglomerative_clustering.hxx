@@ -27,6 +27,14 @@ public:
     void run(){
         while(!clusterPolicy_.isDone()){
 
+            const auto nNodesG = clusterPolicy_.edgeContractionGraph().graph().numberOfNodes();
+            const auto nNodes = clusterPolicy_.edgeContractionGraph().numberOfNodes();
+
+
+            if(nNodes % 100 == 0){
+                std::cout<<nNodes<<" "<<nNodesG<<"\n";
+            }
+
             if(clusterPolicy_.edgeContractionGraph().numberOfEdges() == 0)
                 break;
 
