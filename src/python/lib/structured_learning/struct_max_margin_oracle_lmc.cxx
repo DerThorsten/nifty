@@ -51,12 +51,17 @@ namespace structured_learning{
             .def("addModel",[](
                 Oracle * oracle,
                 const GraphType & graph,
+                nifty::marray::PyView<uint64_t, 2> edges,
                 nifty::marray::PyView<uint64_t, 1> nodeGroundTruth,
-                nifty::marray::PyView<float, 1>    nodeSizes
+                nifty::marray::PyView<float, 1>    loss
             ){
-                oracle->addModel(graph, nodeGroundTruth, nodeSizes);
+                oracle->addModel(graph, edges, nodeGroundTruth, loss);
             },
-                py::keep_alive<1, 2>()
+                py::keep_alive<1, 2>(),
+                py::arg("graph"),
+                py::arg("edges"),
+                py::arg("nodeGroundTruth"),
+                py::arg("loss")
             )
 
             .def("getWeightedModel",&Oracle::getWeightedModel, py::return_value_policy::reference_internal)

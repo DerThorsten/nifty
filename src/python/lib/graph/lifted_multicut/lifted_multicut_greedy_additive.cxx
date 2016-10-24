@@ -31,8 +31,9 @@ namespace lifted_multicut{
         
         exportLiftedMulticutSolver<Solver>(liftedMulticutModule,"LiftedMulticutGreedyAdditive")
             .def(py::init<>())
+            .def_readwrite("makeMonoton",     &Settings::makeMonoton)
             .def_readwrite("nodeNumStopCond", &Settings::nodeNumStopCond)
-            .def_readwrite("weightStopCond", &Settings::weightStopCond)
+            .def_readwrite("weightStopCond",  &Settings::weightStopCond)
             //.def_readwrite("verbose", &Settings::verbose)
         ;
      

@@ -56,7 +56,7 @@ public:
 
     void learn();
 
-    const Weights& getWeights() { return _weights; }
+    const Weights& getWeights()const{ return _weights; }
 
 private:
     #if 0

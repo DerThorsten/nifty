@@ -33,7 +33,7 @@ def gridGraph(shape):
     
 numpy.random.seed(42)
 
-def gererateToyData(n, shape=[30,30], noise=2):
+def gererateToyData(n, shape=[30,30], noise=3):
     rawImages = []
     gtImages = []
     for i in range(n):
@@ -47,7 +47,7 @@ def gererateToyData(n, shape=[30,30], noise=2):
         #print ra 
 
         gtImg = vigra.sampling.rotateImageDegree(gtImg.astype(numpy.float32),int(ra),splineOrder=0)
-
+        gtImg = vigra.analysis.labelImage(gtImg.astype('uint32'))
         if True and i==0 :
             vigra.imshow(gtImg)
             vigra.show()
@@ -69,15 +69,13 @@ shape = [40,40]
 # classes
 
 
-# raw data and gt vectors
-rawImages, gtImages = gererateToyData(10,shape=shape)
 
 
-sigmas = [1.0, .5, 2.0, 4.0]
-maxGraphDist = 4
 
-# since distances start at 1
-nDistances = maxGraphDist
+sigmas = [0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5]
+maxGraphDist = 3
+
+
 
 numberOfWeights = 2 #nDistances * (len(sigmas)+1)  +1
 numberOfWeights = len(sigmas)  + 1
@@ -91,16 +89,9 @@ pgen = LossAugmentedObj.watershedProposalGenerator('SEED_FROM_LOCAL')
 
 factoryA = LossAugmentedObj.liftedMulticutGreedyAdditiveFactory()
 factoryB = LossAugmentedObj.fusionMoveBasedFactory(proposalGenerator=pgen)
-
 solverFactory = LossAugmentedObj.chainedSolverFactory(factoryA, factoryB)
-
 oracle = nifty_sl.StructMaxMarginOracleLmc(solverFactory=solverFactory,numberOfWeights=numberOfWeights)
 structMaxMargin = nifty_sl.structMaxMargin(oracle)
-print oracle
-
-
-
-
 
 
 
@@ -114,40 +105,8 @@ def nodeToCoord(node):
     return x,y
 
 
-dataset = []
-weights = numpy.zeros(numberOfWeights)
-for i,(rawImage, gtImages) in enumerate(zip(rawImages, gtImages)):
 
-    shape = rawImage.shape
-    graph, nodeIndex = gridGraph(shape)
-
-    uvIds, distances = graph.bfsNodes(maxGraphDist)
-
-
-    #print distances.max(),distances.min()
-    GraphCls = graph.__class__
-    LiftedObjective = graph.WeightedLiftedMulticutObjective
-
-    
-
-    
-    
-
-
-    nodeGt = gtImages.reshape([-1])
-    nodeSizes = numpy.ones([nodeGt.size])
-
-    assert nodeGt.size == graph.numberOfNodes
-    assert nodeSizes.size == graph.numberOfNodes
-
-
-    oracle.addModel(graph, nodeGt, nodeSizes)
-
-    obj = oracle.getWeightedModel(i)
-    lossAugmentedObj = oracle.getLossAugmentedModel(i)
-    
-
-
+def fillObj(obj, rawImage, numberOfWeights):
 
 
 
@@ -170,7 +129,7 @@ for i,(rawImage, gtImages) in enumerate(zip(rawImages, gtImages)):
         for imgIndex, img in enumerate(imgs):
             feat = abs(img[coordU] - img[coordV])
             distIndex = dist - 1
-            wIndex = int(imgIndex*(nDistances) + distIndex)
+            #wIndex = int(imgIndex*(nDistances) + distIndex)
             #print "wIndex",wIndex
             #print uv
             obj.addWeightedFeature(uv[0], uv[1], imgIndex, feat)
@@ -183,17 +142,35 @@ for i,(rawImage, gtImages) in enumerate(zip(rawImages, gtImages)):
         obj.setConstTerm(uv[0], uv[1],  0.0)
 
 
-    # initialize weights
-    
-    #lossAugmentedObj.changeWeights(weights)
+
+# raw data and gt vectors
+rawImages, gtImages = gererateToyData(10,shape=shape)
+
+
+
+for i,(rawImage, gtImage) in enumerate(zip(rawImages, gtImages)):
+
+
+    graph, nodeIndex = gridGraph(shape)
+    uvIds, distances  = graph.bfsNodes(maxGraphDist)
+
+
+
+    nodeGt = gtImage.reshape([-1])
+    loss =distances**2
+    oracle.addModel(graph=graph, edges=uvIds, nodeGroundTruth=nodeGt, loss=loss)
+
+    obj = oracle.getWeightedModel(i)
+    fillObj(obj,rawImage,numberOfWeights)
+
 
 
 
 
 structMaxMargin.learn()
+weights = structMaxMargin.getWeights()
 
-
-
+print weights
 
 
 def optimize(ob):
@@ -217,13 +194,39 @@ def optimize(ob):
 
 
 
+# some test models
+rawImages, gtImages = gererateToyData(10,shape=shape)
+
+
+for i,(rawImage, gtImage) in enumerate(zip(rawImages, gtImages)):
+
+
+    graph, nodeIndex = gridGraph(shape)
+    uvIds, distances = graph.bfsNodes(maxGraphDist)
 
 
 
-y = optimize(oracle.getWeightedModel(0))
-y = y.reshape(shape)
-vigra.imshow(y)
-vigra.show()
+    nodeGt = gtImage.reshape([-1])
+
+    obj = nifty_lmc.weightedLiftedMulticutObjective(graph, numberOfWeights, uvIds)
+
+    fillObj(obj,rawImage,numberOfWeights)
+    obj.changeWeights(weights)
+
+
+
+
+
+
+    y = optimize(obj)
+    y = y.reshape(shape)
+
+    vigra.imshow(gtImage)
+    vigra.show()
+
+
+    vigra.imshow(y)
+    vigra.show()
 
 
 

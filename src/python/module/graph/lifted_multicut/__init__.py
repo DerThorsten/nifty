@@ -102,8 +102,9 @@ def __extendLiftedMulticutObj(objectiveCls, objectiveName):
 
 
 
-    def liftedMulticutGreedyAdditiveFactory( weightStopCond=0.0, nodeNumStopCond=-1.0):
+    def liftedMulticutGreedyAdditiveFactory( makeMonoton=True, weightStopCond=0.0, nodeNumStopCond=-1.0):
         s,F = getSettingsAndFactoryCls("LiftedMulticutGreedyAdditive")
+        s.makeMonoton = bool(makeMonoton)
         s.weightStopCond = float(weightStopCond)
         s.nodeNumStopCond = float(nodeNumStopCond)
         return F(s)

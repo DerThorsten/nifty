@@ -109,18 +109,19 @@ public:
     }
 
 
-    template<class NODE_GT, class NODE_SIZES>
+    template<class EDGES, class NODE_GT, class LOSS>
     void addModel(
         const GraphType & graph,
+        const EDGES & edges,
         const NODE_GT & nodeGt,
-        const NODE_SIZES & nodeSizes
+        const LOSS & lossEdgeMap
     ){
 
-        auto obj = new WeightedObjectiveType(graph, this->numberOfWeights_);
+        auto obj = new WeightedObjectiveType(graph, this->numberOfWeights_, edges);
         weightedObj_.push_back(obj);
 
 
-        auto laObj = new LossAugemntedObjectiveType(*obj, nodeGt, nodeSizes);
+        auto laObj = new LossAugemntedObjectiveType(*obj, nodeGt, lossEdgeMap);
         lossAugmentedObj_.push_back(laObj);
 
         nodeGt_.emplace_back(graph);

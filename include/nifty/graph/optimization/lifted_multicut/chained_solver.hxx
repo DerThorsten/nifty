@@ -105,7 +105,12 @@ namespace lifted_multicut{
         visitorProxy.begin(this);
         
         solverA_->optimize(nodeLabels, nullptr);
+        visitorProxy.visit(this);
+
+
         solverB_->optimize(nodeLabels, nullptr);
+        visitorProxy.visit(this);
+
 
         visitorProxy.end(this);
     }

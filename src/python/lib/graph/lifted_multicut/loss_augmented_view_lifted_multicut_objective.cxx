@@ -43,16 +43,16 @@ namespace lifted_multicut{
             (
                 WeightedObjectiveType & objective,
                 nifty::marray::PyView<uint64_t, 1> nodeGroundTruth,
-                nifty::marray::PyView<float, 1>    nodeSizes
+                nifty::marray::PyView<float, 1>    loss
             ){
-                auto obj = new ObjectiveType(objective,nodeGroundTruth,nodeSizes);
+                auto obj = new ObjectiveType(objective,nodeGroundTruth,loss);
                 return obj;
             },
             py::return_value_policy::take_ownership,
             py::keep_alive<0, 1>(),
             py::arg("objective"),
             py::arg("nodeGroundTruth"),
-            py::arg("nodeSizes")
+            py::arg("loss")
         );
 
 

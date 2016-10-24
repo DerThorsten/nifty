@@ -66,13 +66,28 @@ namespace lifted_multicut{
 
 
 
+        /**
+         * @brief      Constructor of weighted objective
+         * 
+         * After constructing the objective, the topology of the lifted
+         * graph is fixed, therefore no more edges can be added
+         *
+         * @param[in]  graph            The graph
+         * @param[in]  numberOfWeights  The number of weights
+         * @param[in]  edges            An array with the additional edges. 
+         *                              This list must include all additional edges, and can also include 
+         *                              edges of the local graph, but there is no need to include these local edges
+         *                              since they are added in any case.
+         *                              There is no guarantee that the order of edges is used within the lifted graph.
+         *
+         * @tparam     NODE__INDEX      should be an integral type.
+         */
+        template<class NODE_INDEX>
+        WeightedLiftedMulticutObjective(const Graph & graph,const uint64_t numberOfWeights, const nifty::marray::View<NODE_INDEX> & edges);
 
 
-        WeightedLiftedMulticutObjective(const Graph & graph,const uint64_t numberOfWeights, const int64_t reserveAdditionalEdges = -1);
-
-
-        WeightedLiftedMulticutObjective(WeightedLiftedMulticutObjective const&) = delete; // Line 365
-        WeightedLiftedMulticutObjective& operator=(WeightedLiftedMulticutObjective const&) = delete; // Line 366
+        WeightedLiftedMulticutObjective(WeightedLiftedMulticutObjective const&) = delete; 
+        WeightedLiftedMulticutObjective& operator=(WeightedLiftedMulticutObjective const&) = delete; 
                                          // 
 
         WeightsMap & weights();
@@ -189,24 +204,24 @@ namespace lifted_multicut{
 
 
     template<class GRAPH, class WEIGHT_TYPE> 
+    template<class NODE_INDEX>
     WeightedLiftedMulticutObjective<GRAPH, WEIGHT_TYPE>::
     WeightedLiftedMulticutObjective(
         const Graph & graph, 
         const uint64_t numberOfWeights,
-        const int64_t reserveAdditionalEdges
+        const nifty::marray::View<NODE_INDEX> & edges
     )
     :   graph_(graph),
-        liftedGraph_(graph.numberOfNodes(), graph.numberOfEdges() + (reserveAdditionalEdges<0 ?  graph.numberOfEdges() : reserveAdditionalEdges) ), 
+        liftedGraph_(graph.numberOfNodes() ), 
         weights_(),
         weightedEdgeCosts_(),
         numberOfWeights_(numberOfWeights){
 
-        weights_.reserve(graph.numberOfEdges() + (reserveAdditionalEdges<0 ?  graph.numberOfEdges() : reserveAdditionalEdges));
-        weightedEdgeCosts_.reserve(graph.numberOfEdges() + (reserveAdditionalEdges<0 ?  graph.numberOfEdges() : reserveAdditionalEdges));
 
-        weights_.resize(graph.numberOfEdges(),0.0);
-        weightedEdgeCosts_.resize(graph.numberOfEdges());
 
+
+
+        // first insert the original graph edges
         for(const auto edge : graph_.edges()){
             const auto uv = graph_.uv(edge);
             liftedGraph_.insertEdge(
@@ -214,6 +229,20 @@ namespace lifted_multicut{
                 uv.second
             );
         }
+
+        NIFTY_CHECK_OP(edges.shape(1),==,2,"edges have wrong shape")
+
+        // now the additional graph edges
+        for(auto i=0; i<edges.shape(0); ++i){
+            liftedGraph_.insertEdge(
+                edges(i,0),
+                edges(i,1)
+            );
+        }
+
+
+        weights_.resize(liftedGraph_.numberOfEdges(),0.0);
+        weightedEdgeCosts_.resize(liftedGraph_.numberOfEdges());
     }
 
 
@@ -432,34 +461,23 @@ namespace lifted_multicut{
         const uint64_t v, 
         F && f
     ){
-        
+            
+
+
         const auto ret = liftedGraph_.insertEdge(u, v);
         const uint64_t edge = ret.first;
         const bool addedNewEdge = ret.second;
-        if(addedNewEdge){
-            
-            NIFTY_CHECK_OP(edge, ==, weightedEdgeCosts_.size(),"");
-            NIFTY_CHECK_OP(edge, ==, weights_.size(),"");
-
-            // new WeightedEdge
-            WeightedEdgeType weightedEdge;
-            weightedEdgeCosts_.push_back(weightedEdge);
-            weights_.push_back(0.0);
 
 
-            NIFTY_CHECK_OP(edge+1, ==, weightedEdgeCosts_.size(),"");
-            NIFTY_CHECK_OP(edge+1, ==, weights_.size(),"");
+        NIFTY_CHECK(!addedNewEdge, "cannot add new edges to lifted objective. Topology of graph is fixed after the constructor call");
 
-            f(weightedEdgeCosts_[edge]);
-        }
-        else{
  
-            // existing edge
-            auto & weightedEdge = weightedEdgeCosts_[edge];
-        
-            f(weightedEdge);
+        // existing edge
+        auto & weightedEdge = weightedEdgeCosts_[edge];
+    
+        f(weightedEdge);
 
-        }
+        
 
         return ret;
     }

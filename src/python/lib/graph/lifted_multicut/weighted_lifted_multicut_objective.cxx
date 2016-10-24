@@ -34,15 +34,16 @@ namespace lifted_multicut{
         
         // factory
         liftedMulticutModule.def("weightedLiftedMulticutObjective",
-            [](const Graph & graph, const uint64_t numberOfWeights){
+            [](const Graph & graph, const uint64_t numberOfWeights, nifty::marray::PyView<uint64_t, 2> uvIds){
 
-                auto obj = new ObjectiveType(graph, numberOfWeights);
+                auto obj = new ObjectiveType(graph, numberOfWeights, uvIds);
                 return obj;
             },
             py::return_value_policy::take_ownership,
             py::keep_alive<0, 1>(),
             py::arg("graph"),
-            py::arg("numberOfWeights")
+            py::arg("numberOfWeights"),
+            py::arg("uvIds")
         );
 
 
@@ -52,7 +53,7 @@ namespace lifted_multicut{
             .def("addWeightedFeatures",
                 [](
                     ObjectiveType & self,
-                    nifty::marray::PyView<float, 2> uvIds,
+                    nifty::marray::PyView<uint64_t, 2> uvIds,
                     nifty::marray::PyView<float, 2> features,
                     nifty::marray::PyView<uint64_t, 1> weightIds
                 ){

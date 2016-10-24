@@ -43,11 +43,14 @@ namespace lifted_multicut{
         typedef typename GraphType:: template NodeMap<uint64_t> NodeLabels;
         typedef typename GraphType:: template NodeMap<float>    NodeSizes;
 
+        typedef typename LiftedGraphType:: template EdgeMap<float> LossEdgeMap;
+        typedef typename LiftedGraphType:: template EdgeMap<float> WeightsMap;
 
-        class WeightsMap{
+
+        class WeightsMap2{
 
         public:
-            WeightsMap(
+            WeightsMap2(
                 const LiftedGraphType * liftedGraph,
                 const NotAugmentedWeights * notAugmentedWeights,
                 const NodeLabels * nodeGt,
@@ -100,9 +103,21 @@ namespace lifted_multicut{
     public:
 
        
-
-        template<class NODE_GT, class NODE_SIZES>
-        LossAugmentedViewLiftedMulticutObjective(WeightedModelType & , const NODE_GT & , const NODE_SIZES & );
+        /**
+         * @brief      Constructor of loss augmented view model
+         * 
+         * Topology of weighted model must be fixed. No more edges must be added to the weightedModel
+         * after this constructor call.
+         *
+         * @param      weightedModel  The weighted model. Topology of weightedModel must be fixed, no more changes are allowed
+         * @param[in]  nodeGt         The node gt
+         * @param[in]  lossEdgeMap    The loss edge map, positive values indicate how much loss is payed if an edge is predicted wrong
+         *
+         * @tparam     NODE_GT        node map of graph
+         * @tparam     LOSS           edge map of lifted graph
+         */
+        template<class NODE_GT, class LOSS>
+        LossAugmentedViewLiftedMulticutObjective(WeightedModelType & weightedModel, const NODE_GT & nodeGt , const LOSS & lossEdgeMap);
 
 
         WeightsMap & weights();
@@ -157,8 +172,27 @@ namespace lifted_multicut{
         inline void substractGradient(const NODE_LABELS & ,GRADIENT_VECTOR &)const;
 
 
+
+
     protected:
 
+
+        float getWeight(const uint64_t edge)const{
+            const auto uv = liftedGraph_.uv(edge);
+
+            const auto naw = weightedModel_.weights()[edge];
+
+            // is cut in gt?
+            const auto isCut = nodeGt_[uv.first] != nodeGt_[uv.second]; 
+
+            // value of the loss
+            const auto l = lossEdgeMap_[edge];
+
+            // new weight encodes cost for edge beeing cut
+            const auto w = isCut ? naw + l : naw - l;
+
+            return w;  
+        }
 
 
         WeightedModelType & weightedModel_;
@@ -167,7 +201,7 @@ namespace lifted_multicut{
         const LiftedGraphType & liftedGraph_;
 
         NodeLabels nodeGt_;
-        NodeSizes nodeSizes_;
+        LossEdgeMap lossEdgeMap_;
 
         WeightsMap weightsMap_;
 
@@ -182,28 +216,28 @@ namespace lifted_multicut{
 
 
     template<class WEIGHTED_MODEL>  
-    template<class NODE_GT, class NODE_SIZES>
+    template<class NODE_GT, class LOSS>
     LossAugmentedViewLiftedMulticutObjective<WEIGHTED_MODEL>::
     LossAugmentedViewLiftedMulticutObjective(
         WeightedModelType & weightedModel, 
         const NODE_GT & nodeGt, 
-        const NODE_SIZES & nodeSizes
+        const LOSS & lossEdgeMap
     )
     :   weightedModel_(weightedModel),
         graph_(weightedModel.graph()),
         liftedGraph_(weightedModel_.liftedGraph()),
         nodeGt_(weightedModel.graph()),
-        nodeSizes_(weightedModel.graph()),
-        weightsMap_( 
-            &weightedModel.liftedGraph(),
-            &weightedModel.weights(),
-            &nodeGt_,
-            &nodeSizes_
-        )
+        lossEdgeMap_(weightedModel.liftedGraph()),
+        weightsMap_(weightedModel.liftedGraph())
     {
         graph_.forEachNode([&](const uint64_t node){
             nodeGt_[node] = nodeGt[node];
-            nodeSizes_[node] = nodeSizes[node];
+        });
+
+
+        liftedGraph_.forEachEdge([&](const uint64_t edge){
+            lossEdgeMap_[edge] = lossEdgeMap[edge];
+            weightsMap_[edge] = this->getWeight(edge);
         });
     }
 
@@ -311,6 +345,11 @@ namespace lifted_multicut{
         const WEIGHT_VECTOR & weightVector
     ){
         weightedModel_.changeWeights(weightVector);
+
+        liftedGraph_.forEachEdge([&](const uint64_t edge){
+            weightsMap_[edge] = this->getWeight(edge);
+        });
+
     }
 
 

@@ -3,6 +3,9 @@
 #include <sstream>
 #include <pybind11/numpy.h>
 
+
+#include "nifty/python/converter.hxx"
+
 #include "nifty/structured_learning/learners/struct_max_margin/struct_max_margin.hxx"
 
 namespace py = pybind11;
@@ -106,7 +109,20 @@ namespace structured_learning{
 
 
 
-        structMaxMargin.def("learn",&StructMaxMargin::learn)
+        structMaxMargin
+            .def("learn",&StructMaxMargin::learn)
+            .def("getWeights",[](const StructMaxMargin & self){
+                const auto & weights = self.getWeights();
+
+                nifty::marray::PyView<float> npW({weights.size()});
+
+                for(size_t i=0; i<weights.size(); ++i){
+                    npW[i] = weights[i];
+                }
+
+                return npW;
+            })
+
         ;
 
 

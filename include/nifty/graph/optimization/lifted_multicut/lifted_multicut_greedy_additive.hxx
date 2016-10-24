@@ -27,6 +27,20 @@ namespace lifted_multicut{
 
         struct Settings{
 
+            Settings(){
+            }
+
+            template<class S>
+            Settings(const S & s)
+            :   weightStopCond(s.weightStopCond),
+                nodeNumStopCond(s.nodeNumStopCond),
+                seed(s.seed),
+                addNoise(s.addNoise),
+                sigma(s.sigma){
+
+            }
+
+
             double weightStopCond{0.0};
             double nodeNumStopCond{-1};
             //int verbose { 0 };
@@ -43,9 +57,10 @@ namespace lifted_multicut{
         typedef typename LiftedGraphType:: template EdgeMap<bool>   IsLiftedMap;
         typedef vigra::ChangeablePriorityQueue< double ,std::greater<double> > QueueType;
 
+        template<class SETTINGS>
         LiftedMulticutGreedyAdditiveCallback(
             const Objective & objective,
-            const Settings & settings
+            const SETTINGS & settings
         )
         :   objective_(objective),
             liftedGraph_(objective.liftedGraph()),
@@ -191,11 +206,11 @@ namespace lifted_multicut{
             return pq_.top();
         }
 
-        void changeSettings(
-            const Settings & settings
-        ){
-            settings_ = settings;
-        }
+        //void changeSettings(
+        //    const Settings & settings
+        //){
+        //    settings_ = settings;
+        //}
 
         const QueueType & queue()const{
             return pq_;
@@ -240,11 +255,20 @@ namespace lifted_multicut{
 
         //typedef typename Callback::Settings Settings;
 
-        struct Settings : public Callback::Settings {
+        struct Settings {
             /// if makeMonoton is true, the starting point and
             /// the inference solution are compared and the best of
             /// both is chosen.
             bool makeMonoton{true};
+
+
+            double weightStopCond{0.0};
+            double nodeNumStopCond{-1};
+            //int verbose { 0 };
+
+            int seed {42};
+            bool addNoise {false};
+            double sigma{1.0};            
         };
 
         virtual ~LiftedMulticutGreedyAdditive(){}
