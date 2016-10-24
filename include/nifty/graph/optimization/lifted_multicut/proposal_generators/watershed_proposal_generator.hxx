@@ -169,7 +169,7 @@ namespace lifted_multicut{
 
         }
     private:
-        ObjectiveType objective_;
+        const ObjectiveType & objective_;
         size_t numberOfThreads_;
         Settings settings_;
         std::vector<uint64_t> negativeEdges_;
