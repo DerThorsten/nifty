@@ -46,10 +46,10 @@ namespace graph{
 
     void exportGraphAccumulator(py::module & ragModule) {
 
-        typedef UndirectedGraph<> Graph;
-        
         // exportGridRagAccumulateLabels
         {
+            typedef ExplicitLabelsGridRag<2, uint32_t> ExplicitLabelsGridRag2D;
+            typedef ExplicitLabelsGridRag<3, uint32_t> ExplicitLabelsGridRag3D;
             // accumulate labels
             exportGridRagAccumulateLabelsT<ExplicitLabelsGridRag2D, uint32_t, 2>(ragModule);
             exportGridRagAccumulateLabelsT<ExplicitLabelsGridRag3D, uint32_t, 3>(ragModule);
