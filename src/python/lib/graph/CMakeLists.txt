@@ -57,6 +57,6 @@ add_custom_target(copy_python_graph__init__ ALL#POST_BUILD
 # submodules
 add_subdirectory(agglo)
 add_subdirectory(rag)
-add_subdirectory(gala)
+
 add_subdirectory(multicut)
 add_subdirectory(lifted_multicut)

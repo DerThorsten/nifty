@@ -91,13 +91,6 @@ PYBIND11_PLUGIN(_nifty) {
             return false;
             #endif
         })
-        .def_property_readonly_static("WITH_HDF52", [](py::object /* self */) { 
-            #ifdef  WITH_HDF52
-            return true;
-            #else
-            return false;
-            #endif
-        })
         ;
     return niftyModule.ptr();
 }
