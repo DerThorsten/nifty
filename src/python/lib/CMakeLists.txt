@@ -16,6 +16,10 @@ pybind11_add_module(_nifty
     hdf5/hdf5.cxx
     hdf5/hdf5_common.cxx
     hdf5/hdf5_array.cxx
+    #############################
+    # ufd
+    #############################
+    ufd/ufd.cxx
 )
 
 

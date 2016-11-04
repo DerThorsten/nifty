@@ -17,6 +17,9 @@ namespace graph{
 namespace tools{
     void initSubmoduleTools(py::module &);
 }
+namespace ufd{
+    void initSubmoduleUfd(py::module &);
+}
 #ifdef WITH_HDF5
 namespace hdf5{
     void initSubmoduleHdf5(py::module & );
@@ -41,6 +44,7 @@ PYBIND11_PLUGIN(_nifty) {
 
     //graph::initSubmoduleGraph(niftyModule);
     tools::initSubmoduleTools(niftyModule);
+    ufd::initSubmoduleUfd(niftyModule);
 
     #ifdef WITH_HDF5
     hdf5::initSubmoduleHdf5(niftyModule);
