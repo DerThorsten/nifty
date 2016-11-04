@@ -24,8 +24,12 @@ namespace ufd{
             .def(py::init<const IndexType>(),
                py::arg_t<IndexType>("numberOfIndices",0)
             )
-            // FIXME need to resolve const overloading before find can be exposed
-            //.def("find",  &UfdType::find)
+            .def("find", [](UfdType & self, const T index) {
+                return self.find(index);
+            })
+            .def("find", [](const UfdType & self, const T index) {
+                return self.find(index);
+            })
             .def("merge", &UfdType::merge)
             .def("assign", &UfdType::assign)
             .def("reset", &UfdType::reset)
