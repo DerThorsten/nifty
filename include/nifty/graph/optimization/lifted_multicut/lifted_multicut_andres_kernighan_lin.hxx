@@ -61,7 +61,14 @@ namespace lifted_multicut{
 
     public:
 
-        typedef andres::graph::multicut_lifted::KernighanLinSettings Settings;
+
+        struct Settings {
+            std::size_t numberOfInnerIterations { std::numeric_limits<std::size_t>::max() };
+            std::size_t numberOfOuterIterations { 100 };
+            double epsilon { 1e-7 };
+        };
+
+        
 
 
 
@@ -167,7 +174,14 @@ namespace lifted_multicut{
             ioLabels[i] = nodeLabels[v0] != nodeLabels[v1] ? 1 : 0;
         }
 
-        settings_.verbose = false;
+
+
+
+        andres::graph::multicut_lifted::KernighanLinSettings klSettings_;
+        klSettings_.numberOfInnerIterations = settings_.numberOfInnerIterations;
+        klSettings_.numberOfOuterIterations = settings_.numberOfOuterIterations;
+        klSettings_.epsilon = settings_.epsilon;
+        klSettings_.verbose = false;
 
         
         andres::graph::multicut_lifted::kernighanLin(
@@ -176,7 +190,7 @@ namespace lifted_multicut{
             edgeCosts_,
             ioLabels,
             ioLabels,
-            settings_
+            klSettings_
         );
         
        
