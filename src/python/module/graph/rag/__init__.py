@@ -54,11 +54,14 @@ if Configuration.WITH_HDF5:
 
         return ragGraph
 
-    def gridRagStacked2DHdf5(labels, numberOfLabels, numberOfThreads=-1):
+    def gridRagStacked2DHdf5(labels, numberOfLabels, numberOfThreads=-1, serialization = None):
         dim = labels.ndim
         if dim == 3:
             labelsProxy = gridRag3DHdf5LabelsProxy(labels, int(numberOfLabels))
-            ragGraph = gridRagStacked2DHdf5Impl(labelsProxy,int(numberOfThreads))
+            if serialization is not None:
+                ragGraph = gridRagStacked2DHdf5Impl(labelsProxy,serialization)
+            else:
+                ragGraph = gridRagStacked2DHdf5Impl(labelsProxy,int(numberOfThreads))
         else:
             raise RuntimeError("gridRagStacked2DHdf5 is only implemented for 3D not for %dD"%dim)
 
