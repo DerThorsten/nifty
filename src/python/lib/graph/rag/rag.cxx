@@ -13,6 +13,7 @@ namespace graph{
     void exportGraphAccumulator(py::module &);
     void exportProjectToPixels(py::module &);
     void exportAccumulate(py::module &);
+    void exportAccumulateEdgeFeaturesFromFilters(py::module &);
 
 }
 }
@@ -27,6 +28,7 @@ PYBIND11_PLUGIN(_rag) {
     exportGraphAccumulator(ragModule);
     exportProjectToPixels(ragModule);
     exportAccumulate(ragModule);
+    exportAccumulateEdgeFeaturesFromFilters(ragModule);
 
     return ragModule.ptr();
 }
