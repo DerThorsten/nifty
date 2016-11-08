@@ -81,7 +81,6 @@ namespace graph{
             perThreadEdgeAccChainVector[i] = new EdgeAccChainVectorType(rag.edgeIdUpperBound()+1);
         });
 
-
         const auto passesRequired = (*perThreadEdgeAccChainVector.front()).front().passesRequired();
 
         if(accOptions.setMinMax){
