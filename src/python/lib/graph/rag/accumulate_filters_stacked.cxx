@@ -1,3 +1,5 @@
+#ifdef WITH_FASTFILTERS
+
 #include <pybind11/pybind11.h>
 #include <pybind11/numpy.h>
 
@@ -86,3 +88,4 @@ namespace graph{
 
 } // end namespace graph
 } // end namespace nifty
+#endif

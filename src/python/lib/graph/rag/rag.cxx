@@ -28,7 +28,9 @@ PYBIND11_PLUGIN(_rag) {
     exportGraphAccumulator(ragModule);
     exportProjectToPixels(ragModule);
     exportAccumulate(ragModule);
+    #ifdef WITH_FASTFILTERS
     exportAccumulateEdgeFeaturesFromFilters(ragModule);
+    #endif
 
     return ragModule.ptr();
 }
