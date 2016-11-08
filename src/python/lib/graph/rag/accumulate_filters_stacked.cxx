@@ -21,14 +21,14 @@ namespace graph{
 
     using namespace py;
 
-    template<class RAG, class DATA_T>
+    template<class RAG, class DATA>
     void exportAccumulateEdgeFeaturesFromFiltersT(
         py::module & ragModule
     ){
         ragModule.def("accumulateEdgeFeaturesFromFilters",
         [](
             const RAG & rag,
-            nifty::marray::PyView<DATA_T, 3> data,
+            DATA data,
             const int numberOfThreads
         ){
 
@@ -57,11 +57,13 @@ namespace graph{
             typedef GridRagStacked2D<LabelsUInt32> StackedRagUInt32;
             typedef ExplicitLabels<3,uint64_t> LabelsUInt64; 
             typedef GridRagStacked2D<LabelsUInt64> StackedRagUInt64;
+            typedef nifty::marray::PyView<float, 3> FloatArray;
+            typedef nifty::marray::PyView<uint8_t, 3> UInt8Array;
 
-            exportAccumulateEdgeFeaturesFromFiltersT<StackedRagUInt32, float>(ragModule);
-            exportAccumulateEdgeFeaturesFromFiltersT<StackedRagUInt32, uint8_t>(ragModule);
-            exportAccumulateEdgeFeaturesFromFiltersT<StackedRagUInt64, float>(ragModule);
-            exportAccumulateEdgeFeaturesFromFiltersT<StackedRagUInt64, uint8_t>(ragModule);
+            exportAccumulateEdgeFeaturesFromFiltersT<StackedRagUInt32, FloatArray>(ragModule);
+            exportAccumulateEdgeFeaturesFromFiltersT<StackedRagUInt64, FloatArray>(ragModule);
+            exportAccumulateEdgeFeaturesFromFiltersT<StackedRagUInt32, UInt8Array>(ragModule);
+            exportAccumulateEdgeFeaturesFromFiltersT<StackedRagUInt64, UInt8Array>(ragModule);
         }
         
         //hdf5
@@ -71,11 +73,13 @@ namespace graph{
             typedef GridRagStacked2D<LabelsUInt32> StackedRagUInt32;
             typedef Hdf5Labels<3,uint64_t> LabelsUInt64; 
             typedef GridRagStacked2D<LabelsUInt64> StackedRagUInt64;
+            typedef nifty::hdf5::Hdf5Array<float> FloatArray;
+            typedef nifty::hdf5::Hdf5Array<uint8_t> UInt8Array;
 
-            exportAccumulateEdgeFeaturesFromFiltersT<StackedRagUInt32, float>(ragModule);
-            exportAccumulateEdgeFeaturesFromFiltersT<StackedRagUInt32, uint8_t>(ragModule);
-            exportAccumulateEdgeFeaturesFromFiltersT<StackedRagUInt64, float>(ragModule);
-            exportAccumulateEdgeFeaturesFromFiltersT<StackedRagUInt64, uint8_t>(ragModule);
+            exportAccumulateEdgeFeaturesFromFiltersT<StackedRagUInt32, FloatArray>(ragModule);
+            exportAccumulateEdgeFeaturesFromFiltersT<StackedRagUInt64, FloatArray>(ragModule);
+            exportAccumulateEdgeFeaturesFromFiltersT<StackedRagUInt32, UInt8Array>(ragModule);
+            exportAccumulateEdgeFeaturesFromFiltersT<StackedRagUInt64, UInt8Array>(ragModule);
         }
         #endif
     }

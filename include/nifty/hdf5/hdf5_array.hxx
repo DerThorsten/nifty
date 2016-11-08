@@ -19,6 +19,9 @@ namespace hdf5{
     template<class T>
     class Hdf5Array{
     public:
+
+        typedef T DataType;
+
         template<class SHAPE_ITER, class CHUNK_SHAPE_ITER>
         Hdf5Array(
             const hid_t& groupHandle,
