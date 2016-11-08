@@ -68,7 +68,6 @@ namespace graph{
         );
 
         // from labels + serialization
-        // from labels
         ragModule.def(facName.c_str(),
             [](
                nifty::marray::PyView<LABELS, DIM>           labels,
@@ -249,6 +248,7 @@ namespace graph{
 
         removeFunctions<GridRagType>(clsT);
 
+        // init from labels
         ragModule.def(facName.c_str(),
             [](
                 const LabelsProxyType & labelsProxy,
@@ -264,6 +264,29 @@ namespace graph{
             py::keep_alive<0, 1>(),
             py::arg("labelsProxy"),
             py::arg_t< int >("numberOfThreads", -1 )
+        );
+        
+        // init from labels + serialization
+        ragModule.def(facName.c_str(),
+            [](
+                const LabelsProxyType & labelsProxy,
+                nifty::marray::PyView<uint64_t,   1, false>  serialization
+            ){
+                auto  startPtr = &serialization(0);
+                auto  lastElement = &serialization(serialization.size()-1);
+                auto d = lastElement - startPtr + 1;
+
+                NIFTY_CHECK_OP(d,==,serialization.size(), "serialization must be contiguous");
+
+                auto s = typename  GridRagType::Settings();
+                s.numberOfThreads = -1;
+                auto ptr = new GridRagType(labelsProxy, startPtr, s);
+                return ptr;
+            },
+            py::return_value_policy::take_ownership,
+            py::keep_alive<0, 1>(),
+            py::arg("labelsProxy"),
+            py::arg("serialization")
         );
 
     }
@@ -338,13 +361,24 @@ namespace graph{
                 }
                 return out;
             })
-
+            .def("serialize",[](const GridRagType & self){
+                nifty::marray::PyView<uint64_t> out({self.serializationSize()});
+                auto ptr = &out(0);
+                self.serialize(ptr);
+                return out;
+            })
+            .def("deserialize",[](GridRagType & self, nifty::marray::PyView<uint64_t,1> serialization) {
+                    auto  startPtr = &serialization(0);
+                    auto  lastElement = &serialization(serialization.size()-1);
+                    auto d = lastElement - startPtr + 1;
+                    NIFTY_CHECK_OP(d,==,serialization.size(), "serialization must be contiguous");
+                    self.deserialize(startPtr);
+            })
         ;
 
         removeFunctions<GridRagType>(clsT);
 
-
-
+        // from labels
         ragModule.def(facName.c_str(),
             [](
                nifty::marray::PyView<LABELS, 3> labels,
@@ -354,6 +388,29 @@ namespace graph{
                 s.numberOfThreads = numberOfThreads;
                 ExplicitLabels<3, LABELS> explicitLabels(labels);
                 auto ptr = new GridRagType(explicitLabels, s);
+                return ptr;
+            },
+            py::return_value_policy::take_ownership,
+            py::keep_alive<0, 1>(),
+            py::arg("labels"),
+            py::arg_t< int >("numberOfThreads", -1 )
+        );
+        
+        // from labels + initialization
+        ragModule.def(facName.c_str(),
+            [](
+                nifty::marray::PyView<LABELS, 3> labels,
+                nifty::marray::PyView<uint64_t,   1, false>  serialization
+            ){
+                auto  startPtr = &serialization(0);
+                auto  lastElement = &serialization(serialization.size()-1);
+                auto d = lastElement - startPtr + 1;
+                NIFTY_CHECK_OP(d,==,serialization.size(), "serialization must be contiguous");
+                
+                auto s = typename  GridRagType::Settings();
+                s.numberOfThreads = -1;
+                ExplicitLabels<3, LABELS> explicitLabels(labels);
+                auto ptr = new GridRagType(explicitLabels, startPtr, s);
                 return ptr;
             },
             py::return_value_policy::take_ownership,

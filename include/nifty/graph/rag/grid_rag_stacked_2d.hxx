@@ -43,7 +43,8 @@ public:
     typedef typename BaseType::LabelsProxy LabelsProxy;
     typedef typename BaseType::Settings Settings;
     
-    GridRagStacked2D(const LabelsProxy & labelsProxy, const Settings & settings = Settings())
+    GridRagStacked2D(const LabelsProxy & labelsProxy,
+            const Settings & settings = Settings())
     :   BaseType(labelsProxy, settings, typename BaseType::DontComputeRag()),
         perSliceDataVec_(
             labelsProxy.shape()[0], 
@@ -53,6 +54,21 @@ public:
         numberOfInBetweenSliceEdges_(0)
     {
         detail_rag::ComputeRag< SelfType >::computeRag(*this, this->settings_);
+    }
+    
+    template<class ITER>
+    GridRagStacked2D(const LabelsProxy & labelsProxy,
+            ITER serializationBegin,
+            const Settings & settings = Settings())
+    :   BaseType(labelsProxy, settings, typename BaseType::DontComputeRag()),
+        perSliceDataVec_(
+            labelsProxy.shape()[0], 
+            PerSliceData(labelsProxy.numberOfLabels()) 
+        ),
+        numberOfInSliceEdges_(0),
+        numberOfInBetweenSliceEdges_(0)
+    {
+        this->deserialize(serializationBegin);
     }
 
     using BaseType::numberOfNodes;
@@ -82,6 +98,14 @@ public:
         const auto & sliceData = perSliceDataVec_[sliceIndex];
         return sliceData.toNextSliceEdgeOffset;
     }
+    // additional serialisation
+    uint64_t serializationSize() const;
+    
+    template<class ITER>
+    void serialize(ITER iter) const;
+    
+    template<class ITER>
+    void deserialize(ITER iter);
 private:
 
     std::vector<PerSliceData> perSliceDataVec_;
@@ -89,9 +113,58 @@ private:
     uint64_t numberOfInBetweenSliceEdges_;
 };
 
+template<class LABEL_PROXY>
+uint64_t GridRagStacked2D<LABEL_PROXY>::serializationSize() const {
+    return BaseType::serializationSize() + perSliceDataVec_.size() * 6 + 2;
+}
 
+template<class LABEL_PROXY>
+template<class ITER>
+void GridRagStacked2D<LABEL_PROXY>::serialize(ITER iter) const {
+    BaseType::serialize(iter);
+    *iter = this->numberOfInSliceEdges_;
+    ++iter;
+    *iter = this->numberOfInBetweenSliceEdges_;
+    ++iter;
+    for( const auto & perSliceData : this->perSliceDataVec_ ) {
+        *iter = perSliceData.numberOfInSliceEdges;
+        ++iter;
+        *iter = perSliceData.numberOfToNextSliceEdges;
+        ++iter;
+        *iter = perSliceData.inSliceEdgeOffset;
+        ++iter;
+        *iter = perSliceData.toNextSliceEdgeOffset;
+        ++iter;
+        *iter = perSliceData.minInSliceNode;
+        ++iter;
+        *iter = perSliceData.maxInSliceNode;
+        ++iter;
+    }
+}
 
-
+template<class LABEL_PROXY>
+template<class ITER>
+void GridRagStacked2D<LABEL_PROXY>::deserialize(ITER iter) {
+    BaseType::deserialize(iter);
+    this->numberOfInSliceEdges_ = *iter;
+    ++iter;
+    this->numberOfInBetweenSliceEdges_ = *iter;
+    ++iter;
+    for( auto & perSliceData : this->perSliceDataVec_ ) {
+        perSliceData.numberOfInSliceEdges = *iter;
+        ++iter;
+        perSliceData.numberOfToNextSliceEdges = *iter;
+        ++iter;
+        perSliceData.inSliceEdgeOffset = *iter;
+        ++iter;
+        perSliceData.toNextSliceEdgeOffset = *iter;
+        ++iter;
+        perSliceData.minInSliceNode = *iter;
+        ++iter;
+        perSliceData.maxInSliceNode = *iter;
+        ++iter;
+    }
+}
 
 } // end namespace graph
 } // end namespace nifty
