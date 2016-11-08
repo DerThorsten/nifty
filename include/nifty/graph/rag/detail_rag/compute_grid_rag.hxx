@@ -119,6 +119,11 @@ struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
     typedef GridRagStacked2D< LABELS_PROXY > RagType;
     typedef typename LABELS_PROXY::LabelType LabelType;
     
+    // typedefs for sequential IO version 
+    typedef container::BoostFlatSet<uint64_t> AdjacencyType;
+    typedef std::vector<AdjacencyType> AdjacencyVector;
+    typedef typename RagType::NodeAdjacency NodeAdjacency;
+    
     template<class S>
     static void computeRag(
         RagType & rag,
@@ -134,6 +139,8 @@ struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
         const LabelType numberOfLabels = labelsProxy.numberOfLabels();
         
         rag.assign(numberOfLabels);
+        // only need this for the sequential IO version
+        AdjacencyVector globalAdjacency3D(numberOfLabels);
 
         nifty::parallel::ParallelOptions pOpts(settings.numberOfThreads);
         nifty::parallel::ThreadPool threadpool(pOpts);
@@ -145,13 +152,15 @@ struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
 
         auto & perSliceDataVec = rag.perSliceDataVec_;
 
+        /*
+         * Parallel IO version
+        */ 
+
         /////////////////////////////////////////////////////
         // Phase 1 : In slice node adjacency and edge count
         /////////////////////////////////////////////////////
         //std::cout<<"phase 1\n";
         { 
-
-
             BlockStorageType sliceLabelsStorage(threadpool, sliceShape3, nThreads);
 
             parallel::parallel_foreach(threadpool, numberOfSlices, [&](const int tid, const int64_t sliceIndex){
@@ -237,7 +246,7 @@ struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
                 NIFTY_CHECK_OP(edgeIndex, ==, sliceData.inSliceEdgeOffset + sliceData.numberOfInSliceEdges,"");
             });
         }
-
+        
         //std::cout<<"phase 4\n";
         /////////////////////////////////////////////////////
         // Phase 4 : between slice edges
@@ -282,8 +291,8 @@ struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
                 });
             }
         }
-
-        //std::cout<<"phase 5\n";
+        
+        //std::cout<<"phase 4\n";
         /////////////////////////////////////////////////////
         // Phase 5 : set up the between slice edge offsets
         /////////////////////////////////////////////////////
@@ -300,13 +309,14 @@ struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
             const auto & lastSlice =  perSliceDataVec.back();
         }
 
-        //std::cout<<"phase 6\n";
+        //std::cout<<"phase 5\n";
         /////////////////////////////////////////////////////
         // Phase 6 : set up between slice edge indices
         /////////////////////////////////////////////////////
         {
             // temp. resize the edge vec
             auto & edges = rag.edges_;
+            auto & nodes = rag.nodes_;
             edges.resize(rag.numberOfInSliceEdges_ + rag.numberOfInBetweenSliceEdges_);
 
             parallel::parallel_foreach(threadpool, numberOfSlices, [&](const int tid, const int64_t sliceIndex){
@@ -317,12 +327,13 @@ struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
                 const auto endNode = sliceData.maxInSliceNode+1;
                 
                 for(uint64_t u = startNode; u< endNode; ++u){
-                    for(auto & vAdj :  rag.nodes_[u]){
-                        const auto v = vAdj.node();
+                    for(auto & v :  globalAdjacency3D[u]){
                         if(u < v && v >= endNode){
-                            edges[edgeIndex] = typename RagType::EdgeStorage(u, v);
+                            auto vAdj = NodeAdjacency(v);
                             vAdj.changeEdgeIndex(edgeIndex);
-                            auto fres =  rag.nodes_[v].find(typename RagType::NodeAdjacency(u));
+                            nodes[u].insert(vAdj);
+                            edges[edgeIndex] = typename RagType::EdgeStorage(u, v);
+                            auto fres =  nodes[v].find(NodeAdjacency(u)); // I am not suer if this sis threadsafe
                             fres->changeEdgeIndex(edgeIndex);
                             ++edgeIndex;
                         }
@@ -331,6 +342,273 @@ struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
                 //NIFTY_CHECK_OP(edgeIndex, ==, sliceData.inSliceEdgeOffset + sliceData.numberOfInSliceEdges,"");
             });
         }
+
+        
+        /*
+         * Sequential IO version / not properly debugged yet and seems to be slower than the parallel IO version
+         * In theory, this should be faster, as we only need one pass over the data...
+         */
+
+        /*
+        
+
+        /////////////////////////////////////////////////////
+        // Phase 1 : In slice and to next slice adjacencies and node counts
+        /////////////////////////////////////////////////////
+        std::cout<<"phase 1\n";
+        { 
+            
+            // marrays that hold the data
+            marray::Marray<LabelType> labelsAData(sliceShape3.begin(),sliceShape3.end());
+            marray::Marray<LabelType> labelsBData(sliceShape3.begin(),sliceShape3.end());
+
+            Coord begin0({int64_t(0),int64_t(0),int64_t(0)});
+            Coord end0({int64_t(1),shape[1],shape[2]});
+            labelsProxy.readSubarray(begin0,end0,labelsAData);
+
+            // view to data of the current slice
+            auto labelsA = labelsAData.view(begin0.begin(),end0.begin());
+
+            for( size_t sliceIndex; sliceIndex < numberOfSlices; ++sliceIndex) {
+
+                std::cout << sliceIndex << " / " << numberOfSlices << std::endl;
+            
+                auto & perSliceData = perSliceDataVec[sliceIndex];
+
+                std::vector<LabelType> minNodeThread(nThreads,numberOfLabels);
+                std::vector<LabelType> maxNodeThread(nThreads,0);
+                std::vector<uint64_t> numberInSliceEdgesThread(nThreads,0);
+                
+                // get the number of labels in this slice
+                std::cout << "MaxNode in slice" << std::endl;
+                nifty::tools::parallelForEachCoordinate(threadpool, sliceShape2,[&](const int tid, const Coord2 & coord){
+                    auto & maxNode = maxNodeThread[tid];
+                    auto & minNode = minNodeThread[tid];
+
+                    Coord coordU({int64_t(0),coord[0],coord[1]});
+                    const auto lU = labelsA(coordU.asStdArray());
+                    minNode = std::min(lU,minNode);
+                    maxNode = std::max(lU,maxNode);
+                });
+                
+                // merge the number of labels
+                perSliceData.minInSliceNode = *std::min_element(minNodeThread.begin(),minNodeThread.end());
+                perSliceData.maxInSliceNode = *std::max_element(maxNodeThread.begin(),maxNodeThread.end());
+                auto nodeOffset = perSliceData.minInSliceNode;
+                
+                // per thread 2d adjacency
+                auto nodesInSlice = perSliceData.maxInSliceNode - perSliceData.minInSliceNode + 1;
+                std::vector<AdjacencyVector> adjacency2DThread(nThreads, AdjacencyVector(nodesInSlice) );
+
+                // get the adjacency in this slice
+                std::cout << "Adjacency in slice" << std::endl;
+                nifty::tools::parallelForEachCoordinate(threadpool, sliceShape2,[&](const int tid, const Coord2 & coord){
+
+                    auto & adjacency2D = adjacency2DThread[tid];
+
+                    Coord coordU({int64_t(0),coord[0],coord[1]});
+                    const auto lU = labelsA(coordU.asStdArray()) - nodeOffset;
+                    // look for label change in this slice
+                    for(size_t axis=1; axis<3; ++axis){
+                        Coord coordV = coordU;
+                        ++coordV[axis];
+                        if(coordV[axis] < sliceShape2[axis-1]){
+                            const auto lV = labelsA(coordV.asStdArray()) - nodeOffset;
+                            if(lU != lV){
+                                adjacency2D[lU].insert(lV);
+                                adjacency2D[lV].insert(lU);
+                            }
+                        }
+                    }
+                });
+                
+                // merge number of in slice edges and 2d adjacency
+                auto & ragNodes = rag.nodes_;
+                parallel::parallel_foreach(threadpool, nodesInSlice, [&](const int tid, const int64_t nodeId){
+                    auto & numberInSliceEdges = numberInSliceEdgesThread[tid];
+                    auto lU = nodeId + nodeOffset;
+                    auto & set0 = adjacency2DThread[0][nodeId];
+                    for(size_t i=1; i<adjacency2DThread.size(); ++i){
+                        const auto & setI = adjacency2DThread[i][nodeId];
+                        set0.insert(setI.begin(), setI.end());
+                    }
+                    for(auto adj : set0) {
+                        auto lV = adj + nodeOffset;
+                        ragNodes[lU].insert(NodeAdjacency(lV)); // values in set should be unique by design
+                        ++numberInSliceEdges;
+                    }
+                });
+                perSliceData.numberOfInSliceEdges = std::accumulate(numberInSliceEdgesThread.begin(),numberInSliceEdgesThread.end(),0);
+                
+                // get 3d adjacencies and perThread data for this slice
+                if( sliceIndex < numberOfSlices - 1) {
+                    
+                    Coord nextBegin({int64_t(sliceIndex+1),int64_t(0),int64_t(0)});
+                    Coord nextEnd(  {int64_t(sliceIndex+2),shape[1],shape[2]});
+                    labelsProxy.readSubarray(nextBegin,nextEnd,labelsBData);
+                    auto labelsB = labelsBData.view(begin0.begin(),end0.begin());
+                    
+                    std::vector<LabelType> minNodeNextSliceThread(nThreads,numberOfLabels);
+                    std::vector<LabelType> maxNodeNextSliceThread(nThreads,0);
+                    
+                    // get max number of nodes in next slice
+                    std::cout << "MaxNode in next slice" << std::endl;
+                    nifty::tools::parallelForEachCoordinate(threadpool, sliceShape2,[&](const int tid, const Coord2 & coord){
+                        auto & minNodeNextSlice = minNodeNextSliceThread[tid];
+                        auto & maxNodeNextSlice = maxNodeNextSliceThread[tid];
+                        Coord coordU({int64_t(0),coord[0],coord[1]});
+                        const auto lU = labelsB(coordU.asStdArray());
+                        minNodeNextSlice = std::min(lU,minNodeNextSlice);
+                        maxNodeNextSlice = std::max(lU,maxNodeNextSlice);
+                    });
+                    
+                    auto minNodeNextSlice = *std::min_element(minNodeNextSliceThread.begin(),minNodeNextSliceThread.end());
+                    auto maxNodeNextSlice = *std::max_element(maxNodeNextSliceThread.begin(),maxNodeNextSliceThread.end());
+                    
+                    NIFTY_CHECK_OP(perSliceData.maxInSliceNode + 1, == , minNodeNextSlice,
+                        "unusable supervoxels for GridRagStacked2D");
+
+                    auto nodesInBothSlices = nodesInSlice + maxNodeNextSlice - minNodeNextSlice + 1; 
+                    std::vector<AdjacencyVector> adjacency3DThread(nThreads, AdjacencyVector(nodesInBothSlices) );
+                    
+                    // get the 3d adjacencies
+                    std::cout << "Adjacency in next slice" << std::endl;
+                    nifty::tools::parallelForEachCoordinate(threadpool, sliceShape2,[&](const int tid, const Coord2 & coord){
+                        auto & adjacency3D = adjacency3DThread[tid];
+                        Coord coordU({int64_t(0),coord[0],coord[1]});
+                        const auto lU = labelsA(coordU.asStdArray()) - nodeOffset;
+                        const auto lV = labelsB(coordU.asStdArray()) - nodeOffset;
+                        if(lU != lV) {
+                            adjacency3D[lU].insert(lV);
+                            adjacency3D[lV].insert(lU);
+                        }
+                    });
+                        
+                    // merge number of to next edges and 3d adjacency
+                    std::vector<uint64_t> numberNextSliceEdgesThread(nThreads,0);
+                    parallel::parallel_foreach(threadpool, nodesInBothSlices, [&](const int tid, const int64_t nodeId){
+                        auto & numberNextSliceEdges = numberNextSliceEdgesThread[tid];
+                        auto lU = nodeId + nodeOffset;
+                        auto & set0 = adjacency3DThread[0][nodeId];
+                        for(size_t i=1; i<adjacency3DThread.size(); ++i){
+                            const auto & setI = adjacency3DThread[i][nodeId];
+                            set0.insert(setI.begin(), setI.end());
+                        }
+                        for(auto adj : set0) {
+                            auto lV = adj + nodeOffset;
+                            globalAdjacency3D[lU].insert(lV);
+                            ++numberNextSliceEdges;
+                        }
+                    });
+                    perSliceData.numberOfToNextSliceEdges = std::accumulate(numberNextSliceEdgesThread.begin(),numberNextSliceEdgesThread.end(),0);
+                
+                    // next slice becomes current slice
+                    labelsA = labelsBData.view(begin0.begin(),end0.begin());
+
+                }
+            }
+        }
+
+        //std::cout<<"phase 2\n";
+        /////////////////////////////////////////////////////
+        // Phase 2 : set up the in slice edge offsets
+        /////////////////////////////////////////////////////
+        {
+            for(auto sliceIndex=1; sliceIndex<numberOfSlices; ++sliceIndex){
+                const auto prevOffset = perSliceDataVec[sliceIndex-1].inSliceEdgeOffset;
+                const auto prevEdgeNum = perSliceDataVec[sliceIndex-1].numberOfInSliceEdges;
+                perSliceDataVec[sliceIndex].inSliceEdgeOffset =  prevOffset + prevEdgeNum;
+
+                NIFTY_CHECK_OP(perSliceDataVec[sliceIndex-1].maxInSliceNode + 1, == , perSliceDataVec[sliceIndex].minInSliceNode,
+                    "unusable supervoxels for GridRagStacked2D");
+            }
+            const auto & lastSlice =  perSliceDataVec.back();
+            rag.numberOfInSliceEdges_ = lastSlice.inSliceEdgeOffset + lastSlice.numberOfInSliceEdges;
+        }
+
+        //std::cout<<"phase 3\n";
+        /////////////////////////////////////////////////////
+        // Phase 3 : set up in slice edge indices
+        /////////////////////////////////////////////////////
+        {
+            // temp. resize the edge vec
+            auto & edges = rag.edges_;
+            edges.resize(rag.numberOfInSliceEdges_);
+
+            parallel::parallel_foreach(threadpool, numberOfSlices, [&](const int tid, const int64_t sliceIndex){
+                auto & sliceData  = perSliceDataVec[sliceIndex];
+
+                auto edgeIndex = sliceData.inSliceEdgeOffset;
+                const auto startNode = sliceData.minInSliceNode;
+                const auto endNode = sliceData.maxInSliceNode+1;
+                
+                for(uint64_t u = startNode; u< endNode; ++u){
+                    for(auto & vAdj :  rag.nodes_[u]){
+                        const auto v = vAdj.node();
+                        if(u < v){
+                            edges[edgeIndex] = typename RagType::EdgeStorage(u, v);
+                            vAdj.changeEdgeIndex(edgeIndex);
+                            auto fres =  rag.nodes_[v].find(typename RagType::NodeAdjacency(u));
+                            fres->changeEdgeIndex(edgeIndex);
+                            ++edgeIndex;
+                        }
+                    }
+                }
+                NIFTY_CHECK_OP(edgeIndex, ==, sliceData.inSliceEdgeOffset + sliceData.numberOfInSliceEdges,"");
+            });
+        }
+        
+        //std::cout<<"phase 4\n";
+        /////////////////////////////////////////////////////
+        // Phase 4 : set up the between slice edge offsets
+        /////////////////////////////////////////////////////
+        {
+            rag.numberOfInBetweenSliceEdges_ += perSliceDataVec[0].numberOfToNextSliceEdges;
+            perSliceDataVec[0].toNextSliceEdgeOffset = rag.numberOfInSliceEdges_;
+            for(auto sliceIndex=1; sliceIndex<numberOfSlices; ++sliceIndex){
+                const auto prevOffset = perSliceDataVec[sliceIndex-1].toNextSliceEdgeOffset;
+                const auto prevEdgeNum = perSliceDataVec[sliceIndex-1].numberOfToNextSliceEdges;
+                perSliceDataVec[sliceIndex].toNextSliceEdgeOffset =  prevOffset + prevEdgeNum;
+
+                rag.numberOfInBetweenSliceEdges_ +=  perSliceDataVec[sliceIndex].numberOfToNextSliceEdges;
+            }
+            const auto & lastSlice =  perSliceDataVec.back();
+        }
+
+        //std::cout<<"phase 5\n";
+        /////////////////////////////////////////////////////
+        // Phase 5 : set up between slice edge indices
+        /////////////////////////////////////////////////////
+        {
+            // temp. resize the edge vec
+            auto & edges = rag.edges_;
+            auto & nodes = rag.nodes_;
+            edges.resize(rag.numberOfInSliceEdges_ + rag.numberOfInBetweenSliceEdges_);
+
+            parallel::parallel_foreach(threadpool, numberOfSlices, [&](const int tid, const int64_t sliceIndex){
+                auto & sliceData  = perSliceDataVec[sliceIndex];
+
+                auto edgeIndex = sliceData.toNextSliceEdgeOffset;
+                const auto startNode = sliceData.minInSliceNode;
+                const auto endNode = sliceData.maxInSliceNode+1;
+                
+                for(uint64_t u = startNode; u< endNode; ++u){
+                    for(auto & v :  globalAdjacency3D[u]){
+                        if(u < v && v >= endNode){
+                            auto vAdj = NodeAdjacency(v);
+                            vAdj.changeEdgeIndex(edgeIndex);
+                            nodes[u].insert(vAdj);
+                            edges[edgeIndex] = typename RagType::EdgeStorage(u, v);
+                            auto fres =  nodes[v].find(NodeAdjacency(u)); // I am not suer if this sis threadsafe
+                            fres->changeEdgeIndex(edgeIndex);
+                            ++edgeIndex;
+                        }
+                    }
+                }
+                //NIFTY_CHECK_OP(edgeIndex, ==, sliceData.inSliceEdgeOffset + sliceData.numberOfInSliceEdges,"");
+            });
+        }
+    */
     } 
 };
 
