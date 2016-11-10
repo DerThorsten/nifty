@@ -397,8 +397,16 @@ namespace tools{
     ){
         array.readSubarray(beginCoord.begin(), subarray);
     }
-
-
+    
+    template<class T, class COORD>
+    inline void writeSubarray(
+        hdf5::Hdf5Array<T> & array,
+        const COORD & beginCoord,
+        const COORD & endCoord,
+        const marray::View<T> & subarray
+    ){
+        array.writeSubarray(beginCoord.begin(), subarray);
+    }
 
     template<class ARRAY>
     struct BlockStorageSelector;

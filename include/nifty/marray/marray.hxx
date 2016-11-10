@@ -6,6 +6,9 @@
 #define HAVE_CPP11_STD_ARRAY
 #include <andres/marray.hxx>
 
+#include <nifty/tools/for_each_coordinate.hxx>
+#include <nifty/array/arithmetic_array.hxx>
+
 namespace nifty{
 namespace marray{
     using namespace andres;
@@ -27,6 +30,40 @@ namespace tools{
             subShape[d] = beginCoord[d] - endCoord[d];
         }
         subarray = array.view(beginCoord.begin(), subShape.begin());
+    }
+    
+    
+    // FIXME this only works inf COORD = nifty::array::StaticArray
+    template<class T, class COORD>
+    inline void writeSubarray(
+        marray::View<T> array,
+        const COORD & beginCoord,
+        const COORD & endCoord,
+        const marray::View<T> & data
+    ){
+
+        const auto dim = array.dimension();
+        
+        COORD subShape;
+        for(auto d = 0 ; d<dim; ++d){
+            subShape[d] = beginCoord[d] - endCoord[d];
+        }
+        for(int d = 0; d < dim; ++d )
+            NIFTY_CHECK_OP(subShape[d],==,data.shape(d),"Shapes don't match!")
+        auto subarray = array.view(beginCoord.begin(), subShape.begin());
+        
+        // for dim < 4 we can use forEachCoordinate
+        if(dim <= 4) {
+            forEachCoordinate(subShape, [&](const COORD & coord){
+                subarray(coord.asStdArray()) = data(coord.asStdArray());
+            });
+        }
+        else { // otherwise use iterators
+            auto itArray = subarray.begin();
+            auto itData  = data.begin();
+            for(; itArray != subarray.end(); ++itArray, ++itData)
+                *itArray = *itData;
+        }
     }
 }
 

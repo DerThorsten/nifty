@@ -7,6 +7,8 @@
 #include <array>
 
 #include "nifty/array/arithmetic_array.hxx"
+#include "nifty/parallel/threadpool.hxx"
+
 namespace nifty{
 namespace tools{
 
