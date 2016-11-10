@@ -258,6 +258,7 @@ namespace graph{
                 const auto & edgeLens = self.edgeLengths();
                 for(int edge = 0; edge < self.numberOfEdges(); ++edge)
                     out(edge) = edgeLens[edge];
+                return out;
             })
         ;
 
@@ -396,6 +397,7 @@ namespace graph{
                 const auto & edgeLens = self.edgeLengths();
                 for(int edge = 0; edge < self.numberOfEdges(); ++edge)
                     out(edge) = edgeLens[edge];
+                return out;
             })
         ;
 
