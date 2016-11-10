@@ -62,10 +62,10 @@ namespace graph{
             typedef nifty::marray::PyView<float, 3> FloatArray;
             typedef nifty::marray::PyView<uint8_t, 3> UInt8Array;
 
-            exportAccumulateEdgeFeaturesFromFiltersT<StackedRagUInt32, FloatArray>(ragModule);
-            exportAccumulateEdgeFeaturesFromFiltersT<StackedRagUInt64, FloatArray>(ragModule);
-            exportAccumulateEdgeFeaturesFromFiltersT<StackedRagUInt32, UInt8Array>(ragModule);
-            exportAccumulateEdgeFeaturesFromFiltersT<StackedRagUInt64, UInt8Array>(ragModule);
+            //exportAccumulateEdgeFeaturesFromFiltersT<StackedRagUInt32, FloatArray>(ragModule);
+            //exportAccumulateEdgeFeaturesFromFiltersT<StackedRagUInt64, FloatArray>(ragModule);
+            //exportAccumulateEdgeFeaturesFromFiltersT<StackedRagUInt32, UInt8Array>(ragModule);
+            //exportAccumulateEdgeFeaturesFromFiltersT<StackedRagUInt64, UInt8Array>(ragModule);
         }
         
         //hdf5
@@ -78,10 +78,10 @@ namespace graph{
             typedef nifty::hdf5::Hdf5Array<float> FloatArray;
             typedef nifty::hdf5::Hdf5Array<uint8_t> UInt8Array;
 
-            exportAccumulateEdgeFeaturesFromFiltersT<StackedRagUInt32, FloatArray>(ragModule);
-            exportAccumulateEdgeFeaturesFromFiltersT<StackedRagUInt64, FloatArray>(ragModule);
+            //exportAccumulateEdgeFeaturesFromFiltersT<StackedRagUInt32, FloatArray>(ragModule);
+            //exportAccumulateEdgeFeaturesFromFiltersT<StackedRagUInt64, FloatArray>(ragModule);
             exportAccumulateEdgeFeaturesFromFiltersT<StackedRagUInt32, UInt8Array>(ragModule);
-            exportAccumulateEdgeFeaturesFromFiltersT<StackedRagUInt64, UInt8Array>(ragModule);
+            //exportAccumulateEdgeFeaturesFromFiltersT<StackedRagUInt64, UInt8Array>(ragModule);
         }
         #endif
     }

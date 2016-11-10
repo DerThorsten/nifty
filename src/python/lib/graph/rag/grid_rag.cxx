@@ -243,6 +243,16 @@ namespace graph{
                 }
                 return out;
             })
+            .def_property_readonly("totalNumberOfInSliceEdges",[](const GridRagType & self){return self.numberOfInSliceEdges();})
+            .def_property_readonly("totalNumberOfInBetweenSliceEdges",[](const GridRagType & self){return self.numberOfInBetweenSliceEdges();})
+            .def("serialize",
+                [](const GridRagType & self) {
+                    nifty::marray::PyView<uint64_t> out({self.serializationSize()});
+                    auto ptr = &out(0);
+                    self.serialize(ptr);
+                    return out;
+                }
+            )
 
         ;
 
@@ -361,6 +371,8 @@ namespace graph{
                 }
                 return out;
             })
+            .def_property_readonly("totalNumberOfInSliceEdges",[](const GridRagType & self){return self.numberOfInSliceEdges();})
+            .def_property_readonly("totalNumberOfInBetweenSliceEdges",[](const GridRagType & self){return self.numberOfInBetweenSliceEdges();})
             .def("serialize",[](const GridRagType & self){
                 nifty::marray::PyView<uint64_t> out({self.serializationSize()});
                 auto ptr = &out(0);

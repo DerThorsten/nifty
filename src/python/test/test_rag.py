@@ -6,7 +6,7 @@ import nifty.graph
 import nifty.graph.rag
 import tempfile
 import shutil
-import os 
+import os
 
 nrag = nifty.graph.rag
 
@@ -47,10 +47,10 @@ def testInsert():
 
     labels = numpy.zeros(shape=[2,2],dtype='uint32')
 
-    labels[0,0] = 0 
-    labels[1,0] = 1 
-    labels[0,1] = 0 
-    labels[1,1] = 2 
+    labels[0,0] = 0
+    labels[1,0] = 1
+    labels[0,1] = 0
+    labels[1,1] = 2
 
     g =  nifty.graph.rag.explicitLabelsGridRag2D(labels)
     weights = numpy.ones(g.numberOfEdges)*1
@@ -107,13 +107,14 @@ def testExplicitLabelsRag2d():
         (1,4)
     ]
 
-    genericRagTest(rag=ragA, numberOfNodes=5, 
-               shouldEdges=shouldEdges, shouldNotEdges=shouldNotEdges)
-    
-    genericRagTest(rag=ragB, numberOfNodes=5, 
+    genericRagTest(rag=ragA, numberOfNodes=5,
                shouldEdges=shouldEdges, shouldNotEdges=shouldNotEdges)
 
-    
+    genericRagTest(rag=ragB, numberOfNodes=5,
+               shouldEdges=shouldEdges, shouldNotEdges=shouldNotEdges)
+
+
+# FIXME I don't see how we test the serialization here!!
 def testExplicitLabelsRag2dSerializeDeserialize():
 
     labels = [
@@ -146,10 +147,10 @@ def testExplicitLabelsRag2dSerializeDeserialize():
     ]
 
 
-    genericRagTest(rag=ragA, numberOfNodes=5, 
+    genericRagTest(rag=ragA, numberOfNodes=5,
                shouldEdges=shouldEdges, shouldNotEdges=shouldNotEdges)
-    
-    genericRagTest(rag=ragB, numberOfNodes=5, 
+
+    genericRagTest(rag=ragB, numberOfNodes=5,
                shouldEdges=shouldEdges, shouldNotEdges=shouldNotEdges)
 
 def testExplicitLabelsRag3d():
@@ -184,17 +185,17 @@ def testExplicitLabelsRag3d():
         (1,2),
         (1,3),
         (2,3)
-        
+
     ]
 
     shouldNotEdges = [
        (0,3)
     ]
 
-    genericRagTest(rag=ragA, numberOfNodes=4, 
+    genericRagTest(rag=ragA, numberOfNodes=4,
                shouldEdges=shouldEdges, shouldNotEdges=shouldNotEdges)
-    
-    genericRagTest(rag=ragB, numberOfNodes=4, 
+
+    genericRagTest(rag=ragB, numberOfNodes=4,
                shouldEdges=shouldEdges, shouldNotEdges=shouldNotEdges)
 
 
@@ -209,9 +210,9 @@ if nifty.Configuration.WITH_HDF5:
         tempFolder = tempfile.mkdtemp()
         ensureDir(tempFolder)
         fpath = os.path.join(tempFolder,'_nifty_test_array4_.h5')
-        
+
         try:
-            
+
             shape = [3,3]
             chunkShape = [1,1]
             blockShape =  [2,2]
@@ -234,7 +235,7 @@ if nifty.Configuration.WITH_HDF5:
 
             array[0:shape[0], 0:shape[1]] = labels
 
-            rag = nrag.gridRagHdf5(array, numberOfLabels=labels.max()+1, 
+            rag = nrag.gridRagHdf5(array, numberOfLabels=labels.max()+1,
                                    blockShape=blockShape, numberOfThreads=2)
 
             shouldEdges = [
@@ -249,10 +250,10 @@ if nifty.Configuration.WITH_HDF5:
                 (1,3)
             ]
 
-            genericRagTest(rag=rag, numberOfNodes=labels.max()+1, 
+            genericRagTest(rag=rag, numberOfNodes=labels.max()+1,
                            shouldEdges=shouldEdges, shouldNotEdges=shouldNotEdges)
-            
-       
+
+
         finally:
             try:
                 os.remove(fpath)
@@ -266,10 +267,10 @@ if nifty.Configuration.WITH_HDF5:
         tempFolder = tempfile.mkdtemp()
         ensureDir(tempFolder)
         fpath = os.path.join(tempFolder,'_nifty_testHdf5Rag2dLarge_.h5')
-        
+
 
         try:
-            
+
             shape = [5,6]
             chunkShape = [3,2]
             blockShape =  [2,3]
@@ -293,7 +294,7 @@ if nifty.Configuration.WITH_HDF5:
 
 
             array[0:shape[0], 0:shape[1]] = labels
-            rag = nrag.gridRagHdf5(array, numberOfLabels=labels.max()+1, 
+            rag = nrag.gridRagHdf5(array, numberOfLabels=labels.max()+1,
                                    blockShape=blockShape, numberOfThreads=1)
 
 
@@ -318,10 +319,10 @@ if nifty.Configuration.WITH_HDF5:
                 (1,5)
             ]
 
-            genericRagTest(rag=rag, numberOfNodes=labels.max()+1, 
+            genericRagTest(rag=rag, numberOfNodes=labels.max()+1,
                            shouldEdges=shouldEdges, shouldNotEdges=shouldNotEdges)
-            
-       
+
+
         finally:
             try:
                 os.remove(fpath)
@@ -335,10 +336,10 @@ if nifty.Configuration.WITH_HDF5:
         tempFolder = tempfile.mkdtemp()
         ensureDir(tempFolder)
         fpath = os.path.join(tempFolder,'_nifty_testHdf5Rag3d_.h5')
-        
+
 
         try:
-            
+
             shape = [3,2,2]
             chunkShape = [1,2,1]
             blockShape =  [1,2,3]
@@ -371,7 +372,7 @@ if nifty.Configuration.WITH_HDF5:
             assert labels.shape[2] == shape[2]
 
             array[0:shape[0], 0:shape[1], 0:shape[2]] = labels
-            rag = nrag.gridRagHdf5(array, numberOfLabels=labels.max()+1, 
+            rag = nrag.gridRagHdf5(array, numberOfLabels=labels.max()+1,
                            blockShape=blockShape, numberOfThreads=-1)
 
 
@@ -387,10 +388,10 @@ if nifty.Configuration.WITH_HDF5:
                (0,3)
             ]
 
-            genericRagTest(rag=rag, numberOfNodes=labels.max()+1, 
+            genericRagTest(rag=rag, numberOfNodes=labels.max()+1,
                            shouldEdges=shouldEdges, shouldNotEdges=shouldNotEdges)
-            
-       
+
+
         finally:
             try:
                 os.remove(fpath)
@@ -404,10 +405,10 @@ if nifty.Configuration.WITH_HDF5:
         tempFolder = tempfile.mkdtemp()
         ensureDir(tempFolder)
         fpath = os.path.join(tempFolder,'_nifty_testHdf5Rag3d_.h5')
-        
+
 
         try:
-            
+
             shape = [3,2,2]
             chunkShape = [1,2,1]
             blockShape =  [1,2,3]
@@ -473,10 +474,10 @@ if nifty.Configuration.WITH_HDF5:
 
             #("edges in rag",rag.numberOfEdges,len(shouldEdges))
 
-            genericRagTest(rag=rag, numberOfNodes=labels.max()+1, 
+            genericRagTest(rag=rag, numberOfNodes=labels.max()+1,
                            shouldEdges=shouldEdges, shouldNotEdges=shouldNotEdges)
-            
-       
+
+
         finally:
             try:
                 os.remove(fpath)
@@ -490,10 +491,10 @@ if nifty.Configuration.WITH_HDF5:
         tempFolder = tempfile.mkdtemp()
         ensureDir(tempFolder)
         fpath = os.path.join(tempFolder,'_nifty_testHdf5Rag3d_.h5')
-        
+
 
         try:
-            
+
             shape = [3,4,4]
             chunkShape = [1,2,1]
 
@@ -558,10 +559,10 @@ if nifty.Configuration.WITH_HDF5:
             ]
 
 
-            genericRagTest(rag=rag, numberOfNodes=labels.max()+1, 
+            genericRagTest(rag=rag, numberOfNodes=labels.max()+1,
                            shouldEdges=shouldEdges, shouldNotEdges=shouldNotEdges)
-            
-       
+
+
         finally:
             try:
                 os.remove(fpath)
@@ -569,4 +570,105 @@ if nifty.Configuration.WITH_HDF5:
 
             except:
                 pass
+
+
+    def testStackedRagSerializeDeserialize():
+
+
+        tempFolder = tempfile.mkdtemp()
+        ensureDir(tempFolder)
+        fpath = os.path.join(tempFolder,'_nifty_testHdf5Rag3d_.h5')
+
+
+        try:
+
+            shape = [3,4,4]
+            chunkShape = [1,2,1]
+
+
+            hidT = nhdf5.createFile(fpath)
+            array = nhdf5.Hdf5ArrayUInt32(hidT, "data", shape, chunkShape)
+
+            assert array.shape[0] == shape[0]
+            assert array.shape[1] == shape[1]
+            assert array.shape[2] == shape[2]
+
+            labels = [
+                [
+                    [0,0,0,0],
+                    [1,1,1,1],
+                    [2,2,2,2],
+                    [2,2,2,2]
+                ],
+                [
+                    [3,3,3,3],
+                    [3,3,3,3],
+                    [3,3,3,3],
+                    [3,3,3,3]
+                ],
+                [
+                    [4,4,5,5],
+                    [4,4,5,5],
+                    [4,4,5,5],
+                    [4,4,5,5]
+                ]
+            ]
+            labels = numpy.array( labels,dtype='uint32')
+
+            assert labels.shape[0] == shape[0]
+            assert labels.shape[1] == shape[1]
+            assert labels.shape[2] == shape[2]
+
+
+            array[0:shape[0], 0:shape[1], 0:shape[2]] = labels
+            ragA = nrag.gridRagStacked2DHdf5(array, numberOfLabels=labels.max()+1,
+                                            numberOfThreads=-1)
+
+
+            shouldEdges = [
+               (0,1),
+               (0,3),
+               (1,2),
+               (1,3),
+               (2,3),
+               (3,4),
+               (3,5),
+               (4,5)
+            ]
+
+            shouldNotEdges = [
+                (0,4),
+                (0,5),
+                (1,4),
+                (1,5),
+                (2,4),
+                (2,5)
+            ]
+
+
+            genericRagTest(rag=ragA, numberOfNodes=labels.max()+1,
+                           shouldEdges=shouldEdges, shouldNotEdges=shouldNotEdges)
+
+            serialization = ragA.serialize()
+            ragB = nrag.gridRagStacked2DHdf5(array, numberOfLabels=labels.max()+1,
+                    serialization = serialization)
+            genericRagTest(rag=ragB, numberOfNodes=labels.max()+1,
+                           shouldEdges=shouldEdges, shouldNotEdges=shouldNotEdges)
+
+            assert (ragA.minMaxLabelPerSlice() == ragB.minMaxLabelPerSlice()).all()
+            assert (ragA.numberOfNodesPerSlice() == ragB.numberOfNodesPerSlice()).all()
+            assert (ragA.numberOfInSliceEdges() == ragB.numberOfInSliceEdges()).all()
+            assert (ragA.numberOfInBetweenSliceEdges() == ragB.numberOfInBetweenSliceEdges()).all()
+            assert (ragA.inSliceEdgeOffset() == ragB.inSliceEdgeOffset()).all()
+            assert (ragA.betweenSliceEdgeOffset() == ragB.betweenSliceEdgeOffset()).all()
+
+
+        finally:
+            try:
+                os.remove(fpath)
+                shutil.rmtree(tempFolder)
+
+            except:
+                pass
+
 

@@ -98,14 +98,20 @@ public:
         const auto & sliceData = perSliceDataVec_[sliceIndex];
         return sliceData.toNextSliceEdgeOffset;
     }
+    uint64_t numberOfInSliceEdges() const {
+        return numberOfInSliceEdges_;
+    }
+    uint64_t numberOfInBetweenSliceEdges() const {
+        return numberOfInBetweenSliceEdges_;
+    }
     // additional serialisation
     uint64_t serializationSize() const;
     
     template<class ITER>
-    void serialize(ITER iter) const;
+    void serialize(ITER & iter) const;
     
     template<class ITER>
-    void deserialize(ITER iter);
+    void deserialize(ITER & iter);
 private:
 
     std::vector<PerSliceData> perSliceDataVec_;
@@ -120,7 +126,8 @@ uint64_t GridRagStacked2D<LABEL_PROXY>::serializationSize() const {
 
 template<class LABEL_PROXY>
 template<class ITER>
-void GridRagStacked2D<LABEL_PROXY>::serialize(ITER iter) const {
+void GridRagStacked2D<LABEL_PROXY>::serialize(ITER & iter) const {
+
     BaseType::serialize(iter);
     *iter = this->numberOfInSliceEdges_;
     ++iter;
@@ -144,7 +151,8 @@ void GridRagStacked2D<LABEL_PROXY>::serialize(ITER iter) const {
 
 template<class LABEL_PROXY>
 template<class ITER>
-void GridRagStacked2D<LABEL_PROXY>::deserialize(ITER iter) {
+void GridRagStacked2D<LABEL_PROXY>::deserialize(ITER & iter) {
+    
     BaseType::deserialize(iter);
     this->numberOfInSliceEdges_ = *iter;
     ++iter;

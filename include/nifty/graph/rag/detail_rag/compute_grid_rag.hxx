@@ -118,11 +118,11 @@ struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
     typedef typename LabelsProxyType::BlockStorageType BlockStorageType;
     typedef GridRagStacked2D< LABELS_PROXY > RagType;
     typedef typename LABELS_PROXY::LabelType LabelType;
+    typedef typename RagType::NodeAdjacency NodeAdjacency;
     
     // typedefs for sequential IO version 
-    typedef container::BoostFlatSet<uint64_t> AdjacencyType;
-    typedef std::vector<AdjacencyType> AdjacencyVector;
-    typedef typename RagType::NodeAdjacency NodeAdjacency;
+    //typedef container::BoostFlatSet<uint64_t> AdjacencyType;
+    //typedef std::vector<AdjacencyType> AdjacencyVector;
     
     template<class S>
     static void computeRag(
@@ -140,7 +140,7 @@ struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
         
         rag.assign(numberOfLabels);
         // only need this for the sequential IO version
-        AdjacencyVector globalAdjacency3D(numberOfLabels);
+        //AdjacencyVector globalAdjacency3D(numberOfLabels);
 
         nifty::parallel::ParallelOptions pOpts(settings.numberOfThreads);
         nifty::parallel::ThreadPool threadpool(pOpts);
@@ -306,7 +306,6 @@ struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
 
                 rag.numberOfInBetweenSliceEdges_ +=  perSliceDataVec[sliceIndex].numberOfToNextSliceEdges;
             }
-            const auto & lastSlice =  perSliceDataVec.back();
         }
 
         //std::cout<<"phase 5\n";
@@ -327,13 +326,12 @@ struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
                 const auto endNode = sliceData.maxInSliceNode+1;
                 
                 for(uint64_t u = startNode; u< endNode; ++u){
-                    for(auto & v :  globalAdjacency3D[u]){
+                    for(auto & vAdj : rag.nodes_[u]){
+                        const auto v = vAdj.node();
                         if(u < v && v >= endNode){
-                            auto vAdj = NodeAdjacency(v);
-                            vAdj.changeEdgeIndex(edgeIndex);
-                            nodes[u].insert(vAdj);
                             edges[edgeIndex] = typename RagType::EdgeStorage(u, v);
-                            auto fres =  nodes[v].find(NodeAdjacency(u)); // I am not suer if this sis threadsafe
+                            vAdj.changeEdgeIndex(edgeIndex);
+                            auto fres =  nodes[v].find(NodeAdjacency(u));
                             fres->changeEdgeIndex(edgeIndex);
                             ++edgeIndex;
                         }

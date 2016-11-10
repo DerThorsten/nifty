@@ -3,19 +3,21 @@
 #include <boost/test/unit_test.hpp>
 
 #include <iostream> 
+#include <tuple> 
 
 #include "nifty/tools/runtime_check.hxx"
 #include "nifty/features/fastfilters_wrapper.hxx"
+#include "nifty/parallel/threadpool.hxx"
 
+// test data generated with ff pybindings
 
-BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest2D)
-{
-    // test data generated with ff pybindings
-    
-    //
-    // 2d filters
-    //
-    
+//
+// 2d filters
+//
+
+//std::tuple<std::vector<std::vector<float>>> get2DTestData() {
+auto get2DTestData() {
+
     std::vector<std::vector<float>> gaussian2D(5, std::vector<float>());
     gaussian2D[0] = std::vector<float>( {0.01166641,  0.02662143,  0.04310189,  0.02662143,  0.01166641} );
     gaussian2D[1] = std::vector<float>( {0.02662143,  0.0607471 ,  0.09835363,  0.0607471 ,  0.02662143} );
@@ -44,51 +46,13 @@ BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest2D)
     hessian12D[3] = std::vector<float>( { 0.00383376, -0.04355198, -0.09739543, -0.04355198,  0.00383376} );
     hessian12D[4] = std::vector<float>( { 0.03501446,  0.00383376, -0.04268197,  0.00383376,  0.03501446} );
 
-    std::vector<size_t> shapeIn({5,5});
-    nifty::marray::Marray<float> in(shapeIn.begin(), shapeIn.end());
-    std::fill(in.begin(), in.end(), 0.);
-    in(2,2) = 1.;
-
-    using namespace nifty::features;
-
-    // fastfilters segfault for larger sigmas for a 5x5 array
-    std::vector<double> sigmas({1.});
-    GaussianSmoothing gs;
-    LaplacianOfGaussian log;
-    HessianOfGaussianEigenvalues hog;
-
-    std::vector<FilterBase*> filters({&gs,&log,&hog});
-    ApplyFilters<2> functor(sigmas, filters);
-    
-    std::vector<size_t> shapeOut({functor.numberOfChannels(),shapeIn[0],shapeIn[1]});
-    nifty::marray::Marray<float> out(shapeOut.begin(), shapeOut.end());
-    
-    functor(in, out);
-    
-    // test shapes
-    NIFTY_TEST_OP(out.shape(1),==,shapeIn[0])
-    NIFTY_TEST_OP(out.shape(2),==,shapeIn[1])
-    NIFTY_TEST_OP(out.shape(0),==,functor.numberOfChannels())
-
-    // test filter responses for correctnes for first sigma val
-    // FIXME the laplacian does strange stuff...
-    for(size_t y = 0; y < in.shape(0); y++) { 
-        for(size_t x = 0; x < in.shape(1); x++) { 
-            //std::cout << out(1,y,x) << " " << laplacian2D[y][x] << std::endl;
-            NIFTY_CHECK_EQ_TOL(out(0,y,x),gaussian2D[y][x],1e-6)
-            //NIFTY_CHECK_EQ_TOL(out(1,y,x),laplacian2D[y][x],1e-6)
-            NIFTY_CHECK_EQ_TOL(out(2,y,x),hessian02D[y][x],1e-6)
-            NIFTY_CHECK_EQ_TOL(out(3,y,x),hessian12D[y][x],1e-6)
-        }
-    }
+    return std::make_tuple(gaussian2D, laplacian2D, hessian02D, hessian12D);
 
 }
 
-
-BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest3D)
-{
-
-    // test data generated with ff pybindings
+// 3d test data
+//std::tuple<std::vector<std::vector<std::vector<float>>>> get3DTestData() {
+auto get3DTestData() {
 
     std::vector<std::vector<std::vector<float>>> gaussian3D(5, std::vector<std::vector<float>>(5, std::vector<float>()));
     gaussian3D[0][0] = std::vector<float>( {0.0012601 ,  0.00287541,  0.00465549,  0.00287541,  0.0012601 } );
@@ -127,19 +91,19 @@ BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest3D)
     laplacian3D[0][2] = std::vector<float>( {0.02333493,  0.0228938 ,  0.0175574 ,  0.0228938 ,  0.02333493} );
     laplacian3D[0][3] = std::vector<float>( {0.01767407,  0.02158247,  0.0228938 ,  0.02158247,  0.01767407} );
     laplacian3D[0][4] = std::vector<float>( {0.01134586,  0.01767407,  0.02333493,  0.01767407,  0.01134586} );
-
+    
     laplacian3D[1][0] = std::vector<float>( {0.01767407,  0.02158247,  0.02289381,  0.02158247,  0.01767407} );
     laplacian3D[1][1] = std::vector<float>( {0.02158247,  0.00646849, -0.01702304,  0.00646849,  0.02158247} );
     laplacian3D[1][2] = std::vector<float>( {0.0228938 , -0.01702304, -0.07207924, -0.01702304,  0.0228938 } );
     laplacian3D[1][3] = std::vector<float>( {0.02158247,  0.00646849, -0.01702304,  0.00646849,  0.02158247} );
     laplacian3D[1][4] = std::vector<float>( {0.01767407,  0.02158247,  0.02289381,  0.02158247,  0.01767407} );
-
+    
     laplacian3D[2][0] = std::vector<float>( {0.02333493,  0.0228938 ,  0.0175574 ,  0.0228938 ,  0.02333493} );
     laplacian3D[2][1] = std::vector<float>( {0.0228938 , -0.01702304, -0.07207924, -0.01702304,  0.0228938 } );
     laplacian3D[2][2] = std::vector<float>( {0.0175574 , -0.07207924, -0.18877843, -0.07207924,  0.0175574 } );
     laplacian3D[2][3] = std::vector<float>( {0.0228938 , -0.01702304, -0.07207924, -0.01702304,  0.0228938 } );
     laplacian3D[2][4] = std::vector<float>( {0.02333493,  0.0228938 ,  0.0175574 ,  0.0228938 ,  0.02333493} );
-
+    
     laplacian3D[3][0] = std::vector<float>( {0.01767407,  0.02158247,  0.02289381,  0.02158247,  0.01767407} );
     laplacian3D[3][1] = std::vector<float>( {0.02158247,  0.00646849, -0.01702304,  0.00646849,  0.02158247} );
     laplacian3D[3][2] = std::vector<float>( {0.0228938 , -0.01702304, -0.07207924, -0.01702304,  0.0228938 } );
@@ -158,13 +122,13 @@ BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest3D)
     hessian3D0[0][2] = std::vector<float>( {0.01397253,  0.03188374,  0.05162191,  0.03188374,  0.01397253} );
     hessian3D0[0][3] = std::vector<float>( {0.00863124,  0.01969266,  0.03188374,  0.01969266,  0.00863124} );
     hessian3D0[0][4] = std::vector<float>( {0.00378195,  0.00863124,  0.01397253,  0.00863124,  0.00378195} );
-
+    
     hessian3D0[1][0] = std::vector<float>( {0.00863124,  0.01969266,  0.03188374,  0.01969266,  0.00863124} );
     hessian3D0[1][1] = std::vector<float>( {0.01969266,  0.02793694,  0.02436137,  0.02793694,  0.01969266} );
     hessian3D0[1][2] = std::vector<float>( {0.03188374,  0.02436137,  0.00565212,  0.02436137,  0.03188374} );
     hessian3D0[1][3] = std::vector<float>( {0.01969266,  0.02793694,  0.02436137,  0.02793694,  0.01969266} );
     hessian3D0[1][4] = std::vector<float>( {0.00863124,  0.01969266,  0.03188374,  0.01969266,  0.00863172} );
-
+    
     hessian3D0[2][0] = std::vector<float>( {0.01397468,  0.03188374,  0.05162191,  0.03188374,  0.01397468} );
     hessian3D0[2][1] = std::vector<float>( {0.03188374,  0.02436137,  0.00565212,  0.02436137,  0.03188374} );
     hessian3D0[2][2] = std::vector<float>( {0.05162191,  0.00565212, -0.06292614,  0.00565212,  0.05162191} );
@@ -183,6 +147,106 @@ BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest3D)
     hessian3D0[4][3] = std::vector<float>( {0.00863124,  0.01969266,  0.03188374,  0.01969266,  0.00863124} );
     hessian3D0[4][4] = std::vector<float>( {0.00378195,  0.00863124,  0.01397253,  0.00863124,  0.00378195} );
     
+    return std::make_tuple(gaussian3D, laplacian3D, hessian3D0);
+
+}
+
+
+
+
+BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest2D)
+{
+
+    std::vector<size_t> shapeIn({5,5});
+    nifty::marray::Marray<float> in(shapeIn.begin(), shapeIn.end());
+    std::fill(in.begin(), in.end(), 0.);
+    in(2,2) = 1.;
+
+    using namespace nifty::features;
+
+    // fastfilters segfault for larger sigmas for a 5x5 array
+    std::vector<double> sigmas({1.});
+    GaussianSmoothing gs;
+    LaplacianOfGaussian log;
+    HessianOfGaussianEigenvalues hog;
+
+    std::vector<FilterBase*> filters({&gs,&log,&hog});
+    ApplyFilters<2> functor(sigmas, filters);
+    
+    std::vector<size_t> shapeOut({functor.numberOfChannels(),shapeIn[0],shapeIn[1]});
+    nifty::marray::Marray<float> out(shapeOut.begin(), shapeOut.end());
+    
+    functor(in, out);
+    
+    // test shapes
+    NIFTY_TEST_OP(out.shape(1),==,shapeIn[0])
+    NIFTY_TEST_OP(out.shape(2),==,shapeIn[1])
+    NIFTY_TEST_OP(out.shape(0),==,functor.numberOfChannels())
+
+    auto testData = get2DTestData();
+
+    // test filter responses for correctnes for first sigma val
+    for(size_t y = 0; y < in.shape(0); y++) { 
+        for(size_t x = 0; x < in.shape(1); x++) { 
+            NIFTY_CHECK_EQ_TOL(out(0,y,x),std::get<0>(testData)[y][x],1e-6)
+            NIFTY_CHECK_EQ_TOL(out(1,y,x),std::get<1>(testData)[y][x],1e-6)
+            NIFTY_CHECK_EQ_TOL(out(2,y,x),std::get<2>(testData)[y][x],1e-6)
+            NIFTY_CHECK_EQ_TOL(out(3,y,x),std::get<3>(testData)[y][x],1e-6)
+        }
+    }
+
+}
+
+
+BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest2DParallel)
+{
+
+    std::vector<size_t> shapeIn({5,5});
+    nifty::marray::Marray<float> in(shapeIn.begin(), shapeIn.end());
+    std::fill(in.begin(), in.end(), 0.);
+    in(2,2) = 1.;
+
+    using namespace nifty::features;
+
+    // fastfilters segfault for larger sigmas for a 5x5 array
+    std::vector<double> sigmas({1.});
+    GaussianSmoothing gs;
+    LaplacianOfGaussian log;
+    HessianOfGaussianEigenvalues hog;
+
+    std::vector<FilterBase*> filters({&gs,&log,&hog});
+    ApplyFilters<2> functor(sigmas, filters);
+    
+    std::vector<size_t> shapeOut({functor.numberOfChannels(),shapeIn[0],shapeIn[1]});
+    nifty::marray::Marray<float> out(shapeOut.begin(), shapeOut.end());
+
+    nifty::parallel::ParallelOptions pOpts(-1);
+    nifty::parallel::ThreadPool threadpool(pOpts);
+
+    functor(in, out, threadpool);
+    
+    // test shapes
+    NIFTY_TEST_OP(out.shape(1),==,shapeIn[0])
+    NIFTY_TEST_OP(out.shape(2),==,shapeIn[1])
+    NIFTY_TEST_OP(out.shape(0),==,functor.numberOfChannels())
+    
+    auto testData = get2DTestData();
+
+    // test filter responses for correctnes for first sigma val
+    for(size_t y = 0; y < in.shape(0); y++) { 
+        for(size_t x = 0; x < in.shape(1); x++) { 
+            NIFTY_CHECK_EQ_TOL(out(0,y,x),std::get<0>(testData)[y][x],1e-6)
+            NIFTY_CHECK_EQ_TOL(out(1,y,x),std::get<1>(testData)[y][x],1e-6)
+            NIFTY_CHECK_EQ_TOL(out(2,y,x),std::get<2>(testData)[y][x],1e-6)
+            NIFTY_CHECK_EQ_TOL(out(3,y,x),std::get<3>(testData)[y][x],1e-6)
+        }
+    }
+
+}
+
+
+BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest3D)
+{
 
     std::vector<size_t> shapeIn({5,5,5});
     nifty::marray::Marray<float> in(shapeIn.begin(), shapeIn.end());
@@ -210,13 +274,64 @@ BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest3D)
     NIFTY_TEST_OP(out.shape(3),==,shapeIn[2])
     NIFTY_TEST_OP(out.shape(0),==,functor.numberOfChannels())
 
+    auto testData = get3DTestData();
+
     // test filter responses for correctnes for first sigma val
     for(size_t z = 0; z < in.shape(0); z++) {
         for(size_t y = 0; y < in.shape(1); y++) { 
             for(size_t x = 0; x < in.shape(2); x++) { 
-                NIFTY_CHECK_EQ_TOL(out(0,z,y,x),gaussian3D[z][y][x],1e-6)
-                NIFTY_CHECK_EQ_TOL(out(1,z,y,x),laplacian3D[z][y][x],1e-6)
-                NIFTY_CHECK_EQ_TOL(out(2,z,y,x),hessian3D0[z][y][x],1e-5)
+                NIFTY_CHECK_EQ_TOL(out(0,z,y,x),std::get<0>(testData)[z][y][x],1e-6)
+                NIFTY_CHECK_EQ_TOL(out(1,z,y,x),std::get<1>(testData)[z][y][x],1e-6)
+                NIFTY_CHECK_EQ_TOL(out(2,z,y,x),std::get<2>(testData)[z][y][x],1e-5)
+            }
+        }
+    }
+
+}
+
+
+BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest3DParallel)
+{
+
+    std::vector<size_t> shapeIn({5,5,5});
+    nifty::marray::Marray<float> in(shapeIn.begin(), shapeIn.end());
+    std::fill(in.begin(), in.end(), 0.);
+    in(2,2,2) = 1.;
+
+    using namespace nifty::features;
+
+    // fastfilters segfault for larger sigmas for a 5x5 array
+    std::vector<double> sigmas({1.});
+    GaussianSmoothing gs;
+    LaplacianOfGaussian log;
+    HessianOfGaussianEigenvalues hog;
+
+    std::vector<FilterBase*> filters({&gs,&log,&hog});
+    ApplyFilters<3> functor(sigmas, filters);
+    
+    std::vector<size_t> shapeOut({functor.numberOfChannels(),shapeIn[0],shapeIn[1],shapeIn[2]});
+    nifty::marray::Marray<float> out(shapeOut.begin(), shapeOut.end());
+    
+    nifty::parallel::ParallelOptions pOpts(-1);
+    nifty::parallel::ThreadPool threadpool(pOpts);
+
+    functor(in, out, threadpool);
+    
+    // test shapes
+    NIFTY_TEST_OP(out.shape(1),==,shapeIn[0])
+    NIFTY_TEST_OP(out.shape(2),==,shapeIn[1])
+    NIFTY_TEST_OP(out.shape(3),==,shapeIn[2])
+    NIFTY_TEST_OP(out.shape(0),==,functor.numberOfChannels())
+    
+    auto testData = get3DTestData();
+    
+    // test filter responses for correctnes for first sigma val
+    for(size_t z = 0; z < in.shape(0); z++) {
+        for(size_t y = 0; y < in.shape(1); y++) { 
+            for(size_t x = 0; x < in.shape(2); x++) { 
+                NIFTY_CHECK_EQ_TOL(out(0,z,y,x),std::get<0>(testData)[z][y][x],1e-6)
+                NIFTY_CHECK_EQ_TOL(out(1,z,y,x),std::get<1>(testData)[z][y][x],1e-6)
+                NIFTY_CHECK_EQ_TOL(out(2,z,y,x),std::get<2>(testData)[z][y][x],1e-5)
             }
         }
     }

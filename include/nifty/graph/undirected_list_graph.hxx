@@ -129,13 +129,13 @@ public:
 
     // serialization de-serialization
 
-    uint64_t serializationSize() const;
+    virtual uint64_t serializationSize() const;
 
     template<class ITER>
-    void serialize(ITER iter) const;
+    void serialize(ITER & iter) const;
 
     template<class ITER>
-    void deserialize(ITER iter);
+    void deserialize(ITER & iter);
 
     UndirectedGraph<EdgeInternalType,NodeInteralType> extractSubgraphFromNodes(
         const marray::View<NODE_INTERNAL_TYPE> & nodeList, 
@@ -352,13 +352,14 @@ template<class EDGE_INTERANL_TYPE, class NODE_INTERNAL_TYPE >
 template<class ITER>
 void 
 UndirectedGraph<EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE>::
-serialize(ITER iter) const{
-
+serialize(ITER & iter) const{
+    
     *iter = this->numberOfNodes(); 
     ++iter;
     *iter = this->numberOfEdges(); 
     ++iter;
 
+    int i = 0;
     for(const auto edge : this->edges()){
         *iter = this->u(edge);
         ++iter;
@@ -371,7 +372,8 @@ template<class EDGE_INTERANL_TYPE, class NODE_INTERNAL_TYPE >
 template<class ITER>
 void 
 UndirectedGraph<EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE>::
-deserialize(ITER iter){
+deserialize(ITER & iter){
+
     const auto nNodes = *iter;
     ++iter;
     const auto nEdges = *iter;
