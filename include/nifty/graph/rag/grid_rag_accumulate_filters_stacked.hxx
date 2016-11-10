@@ -20,6 +20,11 @@
 namespace nifty{
 namespace graph{
 
+
+// TODO implement calculations for affinity maps
+// xy-edges: accumulate over max(x-channel, y-channel)
+// z-edges:  accumulate over z-channel
+
 template<class EDGE_ACC_CHAIN, class LABELS_PROXY, class DATA, class F>
 void accumulateEdgeFeaturesFromFiltersWithAccChain(
     const GridRagStacked2D<LABELS_PROXY> & rag,
@@ -111,7 +116,6 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
 
         auto filterA = filterAStorage.getView(0);
 
-        // TODO this needs to be parallelized !
         applyFilters(dataAView, filterA, threadpool);
     
         Coord beginB;
@@ -311,7 +315,8 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
     // call functor with finished acc chain
     f(channelAccChainVector);
 }
-    
+
+
 // 9 features per channel
 template<class LABELS_PROXY, class DATA>
 void accumulateEdgeFeaturesFromFilters(

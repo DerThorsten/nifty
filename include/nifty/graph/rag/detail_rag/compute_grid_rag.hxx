@@ -4,6 +4,7 @@
 
 #include <functional>
 #include <algorithm>
+#include <map>
 
 #include "nifty/container/boost_flat_set.hxx"
 #include "nifty/array/arithmetic_array.hxx"
@@ -119,6 +120,7 @@ struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
     typedef GridRagStacked2D< LABELS_PROXY > RagType;
     typedef typename LABELS_PROXY::LabelType LabelType;
     typedef typename RagType::NodeAdjacency NodeAdjacency;
+    typedef typename RagType::EdgeStorage EdgeStorage;
     
     // typedefs for sequential IO version 
     //typedef container::BoostFlatSet<uint64_t> AdjacencyType;
@@ -141,6 +143,10 @@ struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
         rag.assign(numberOfLabels);
         // only need this for the sequential IO version
         //AdjacencyVector globalAdjacency3D(numberOfLabels);
+        
+        // map holding the edge lens (unordered may be faster, but need to implement hash function for EdgeStorage then)
+        std::map<EdgeStorage, size_t> edgeLengthsUnordered;
+        
 
         nifty::parallel::ParallelOptions pOpts(settings.numberOfThreads);
         nifty::parallel::ThreadPool threadpool(pOpts);
@@ -188,6 +194,15 @@ struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
                             if(lU != lV){
                                 sliceData.minInSliceNode = std::min(sliceData.minInSliceNode, lV);
                                 sliceData.maxInSliceNode = std::max(sliceData.maxInSliceNode, lV);
+                                
+                                // add up the len
+                                auto e = EdgeStorage(std::min(lU,lV),std::max(lU,lV));
+                                auto findEdge = edgeLengthsUnordered.find(e);
+                                if( findEdge == edgeLengthsUnordered.end() )
+                                    edgeLengthsUnordered.insert(std::make_pair(e,1));
+                                else
+                                    ++findEdge->second;
+
                                 if(rag.insertEdgeOnlyInNodeAdj(lU, lV)){
                                     ++perSliceDataVec[sliceIndex].numberOfInSliceEdges;
                                 }
@@ -223,6 +238,8 @@ struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
             // temp. resize the edge vec
             auto & edges = rag.edges_;
             edges.resize(rag.numberOfInSliceEdges_);
+            auto & edgeLengths = rag.edgeLengths_;
+            edgeLengths.resize(rag.numberOfInSliceEdges_);
 
             parallel::parallel_foreach(threadpool, numberOfSlices, [&](const int tid, const int64_t sliceIndex){
                 auto & sliceData  = perSliceDataVec[sliceIndex];
@@ -235,9 +252,11 @@ struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
                     for(auto & vAdj :  rag.nodes_[u]){
                         const auto v = vAdj.node();
                         if(u < v){
-                            edges[edgeIndex] = typename RagType::EdgeStorage(u, v);
+                            auto e = EdgeStorage(u, v);
+                            edges[edgeIndex] = e;
+                            edgeLengths[edgeIndex] = edgeLengthsUnordered[e];
                             vAdj.changeEdgeIndex(edgeIndex);
-                            auto fres =  rag.nodes_[v].find(typename RagType::NodeAdjacency(u));
+                            auto fres =  rag.nodes_[v].find(NodeAdjacency(u));
                             fres->changeEdgeIndex(edgeIndex);
                             ++edgeIndex;
                         }
@@ -246,6 +265,7 @@ struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
                 NIFTY_CHECK_OP(edgeIndex, ==, sliceData.inSliceEdgeOffset + sliceData.numberOfInSliceEdges,"");
             });
         }
+        edgeLengthsUnordered.clear();
         
         //std::cout<<"phase 4\n";
         /////////////////////////////////////////////////////
@@ -283,6 +303,15 @@ struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
                         nifty::tools::forEachCoordinate(sliceShape2,[&](const Coord2 & coord){
                             const auto lU = sliceALabels(coord.asStdArray());
                             const auto lV = sliceBLabels(coord.asStdArray());
+                                
+                            // add up the len
+                            auto e = EdgeStorage(std::min(lU,lV),std::max(lU,lV));
+                            auto findEdge = edgeLengthsUnordered.find(e);
+                            if( findEdge == edgeLengthsUnordered.end() )
+                                    edgeLengthsUnordered.insert(std::make_pair(e,1));
+                            else
+                                ++findEdge->second;
+                            
                             if(rag.insertEdgeOnlyInNodeAdj(lU, lV)){
                                 ++perSliceDataVec[sliceAIndex].numberOfToNextSliceEdges;
                             }                      
@@ -317,6 +346,8 @@ struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
             auto & edges = rag.edges_;
             auto & nodes = rag.nodes_;
             edges.resize(rag.numberOfInSliceEdges_ + rag.numberOfInBetweenSliceEdges_);
+            auto & edgeLengths = rag.edgeLengths_;
+            edgeLengths.resize(rag.numberOfInSliceEdges_ + rag.numberOfInBetweenSliceEdges_);
 
             parallel::parallel_foreach(threadpool, numberOfSlices, [&](const int tid, const int64_t sliceIndex){
                 auto & sliceData  = perSliceDataVec[sliceIndex];
@@ -329,7 +360,9 @@ struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
                     for(auto & vAdj : rag.nodes_[u]){
                         const auto v = vAdj.node();
                         if(u < v && v >= endNode){
-                            edges[edgeIndex] = typename RagType::EdgeStorage(u, v);
+                            auto e = EdgeStorage(u, v);
+                            edges[edgeIndex] = e;
+                            edgeLengths[edgeIndex] = edgeLengthsUnordered[e];
                             vAdj.changeEdgeIndex(edgeIndex);
                             auto fres =  nodes[v].find(NodeAdjacency(u));
                             fres->changeEdgeIndex(edgeIndex);

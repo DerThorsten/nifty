@@ -253,7 +253,12 @@ namespace graph{
                     return out;
                 }
             )
-
+            .def("edgeLengths",[](GridRagType & self) {
+                nifty::marray::PyView<uint64_t,1> out({self.numberOfEdges()});
+                const auto & edgeLens = self.edgeLengths();
+                for(int edge = 0; edge < self.numberOfEdges(); ++edge)
+                    out(edge) = edgeLens[edge];
+            })
         ;
 
         removeFunctions<GridRagType>(clsT);
@@ -385,6 +390,12 @@ namespace graph{
                     auto d = lastElement - startPtr + 1;
                     NIFTY_CHECK_OP(d,==,serialization.size(), "serialization must be contiguous");
                     self.deserialize(startPtr);
+            })
+            .def("edgeLengths",[](GridRagType & self) {
+                nifty::marray::PyView<uint64_t,1> out({self.numberOfEdges()});
+                const auto & edgeLens = self.edgeLengths();
+                for(int edge = 0; edge < self.numberOfEdges(); ++edge)
+                    out(edge) = edgeLens[edge];
             })
         ;
 

@@ -51,7 +51,8 @@ public:
             PerSliceData(labelsProxy.numberOfLabels()) 
         ),
         numberOfInSliceEdges_(0),
-        numberOfInBetweenSliceEdges_(0)
+        numberOfInBetweenSliceEdges_(0),
+        edgeLengths_()
     {
         detail_rag::ComputeRag< SelfType >::computeRag(*this, this->settings_);
     }
@@ -66,7 +67,8 @@ public:
             PerSliceData(labelsProxy.numberOfLabels()) 
         ),
         numberOfInSliceEdges_(0),
-        numberOfInBetweenSliceEdges_(0)
+        numberOfInBetweenSliceEdges_(0),
+        edgeLengths_()
     {
         this->deserialize(serializationBegin);
     }
@@ -104,6 +106,10 @@ public:
     uint64_t numberOfInBetweenSliceEdges() const {
         return numberOfInBetweenSliceEdges_;
     }
+    const std::vector<size_t> & edgeLengths() const {
+        return edgeLengths_;
+    }
+
     // additional serialisation
     uint64_t serializationSize() const;
     
@@ -117,11 +123,12 @@ private:
     std::vector<PerSliceData> perSliceDataVec_;
     uint64_t numberOfInSliceEdges_;
     uint64_t numberOfInBetweenSliceEdges_;
+    std::vector<size_t> edgeLengths_;
 };
 
 template<class LABEL_PROXY>
 uint64_t GridRagStacked2D<LABEL_PROXY>::serializationSize() const {
-    return BaseType::serializationSize() + perSliceDataVec_.size() * 6 + 2;
+    return BaseType::serializationSize() + perSliceDataVec_.size() * 6 + 2 + this->numberOfEdges();
 }
 
 template<class LABEL_PROXY>
@@ -147,6 +154,10 @@ void GridRagStacked2D<LABEL_PROXY>::serialize(ITER & iter) const {
         *iter = perSliceData.maxInSliceNode;
         ++iter;
     }
+    for(const auto len : edgeLengths_) {
+        *iter = len;
+        ++iter;
+    }
 }
 
 template<class LABEL_PROXY>
@@ -170,6 +181,11 @@ void GridRagStacked2D<LABEL_PROXY>::deserialize(ITER & iter) {
         perSliceData.minInSliceNode = *iter;
         ++iter;
         perSliceData.maxInSliceNode = *iter;
+        ++iter;
+    }
+    edgeLengths_.resize(this->numberOfEdges());
+    for(auto & len : edgeLengths_ ) {
+        len = *iter;
         ++iter;
     }
 }
