@@ -138,7 +138,6 @@ namespace graph{
                                 const auto dataU = dataBlockView(coordU.asStdArray());
                                 const auto dataV = dataBlockView(coordV.asStdArray());
 
-                                
                                 VigraCoord vigraCoordU;
                                 VigraCoord vigraCoordV;
 

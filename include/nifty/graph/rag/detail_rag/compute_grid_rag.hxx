@@ -153,8 +153,8 @@ struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
         const auto nThreads = pOpts.getActualNumThreads();
 
         uint64_t numberOfSlices = shape[0];
-        array::StaticArray<int64_t, 2> sliceShape2({shape[1], shape[2]});
-        Coord sliceShape3({int64_t(1),shape[1], shape[2]});
+        Coord2 sliceShape2({shape[1], shape[2]});
+        Coord sliceShape3({1L,shape[1], shape[2]});
 
         auto & perSliceDataVec = rag.perSliceDataVec_;
 
@@ -176,7 +176,7 @@ struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
                 auto sliceLabelsFlat3DView = sliceLabelsStorage.getView(tid);
 
                 // fetch the data for the slice
-                const Coord blockBegin({sliceIndex,int64_t(0),int64_t(0)});
+                const Coord blockBegin({sliceIndex,0L,0L});
                 const Coord blockEnd({sliceIndex+1, sliceShape2[0], sliceShape2[1]});
                 labelsProxy.readSubarray(blockBegin, blockEnd, sliceLabelsFlat3DView);
                 auto sliceLabels = sliceLabelsFlat3DView.squeezedView();
@@ -288,7 +288,7 @@ struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
                         const auto sliceBIndex = sliceAIndex + 1;
 
                         // fetch the data for the slice
-                        const Coord blockABBegin({sliceAIndex,int64_t(0),int64_t(0)});
+                        const Coord blockABBegin({sliceAIndex,0L,0L});
                         const Coord blockABEnd({sliceAIndex+2, sliceShape2[0], sliceShape2[1]});
                         //auto & sliceAB  = perThreadDataVec[tid].sliceAB;
 

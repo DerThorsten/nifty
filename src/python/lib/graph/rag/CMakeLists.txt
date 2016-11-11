@@ -10,6 +10,7 @@ pybind11_add_module(_rag
     graph_accumulator.cxx
     project_to_pixels.cxx
     accumulate.cxx
+    accumulate_stacked.cxx
     accumulate_filters_stacked.cxx
 )
 
