@@ -144,8 +144,8 @@ namespace graph{
                                 VigraCoord vigraCoordV;
 
                                 for(size_t d=0; d<DIM; ++d){
-                                    vigraCoordU[d] = coordU[d];
-                                    vigraCoordV[d] = coordV[d];
+                                    vigraCoordU[d] = coordU[d]+blockBegin[d];
+                                    vigraCoordV[d] = coordV[d]+blockBegin[d];
                                 }
 
                                 accVec[edge].updatePassN(dataU, vigraCoordU, pass);
