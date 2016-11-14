@@ -10,7 +10,7 @@ namespace nifty{
 namespace tools{
 
     void exportMakeDense(py::module &);
-
+    void exportBlocking(py::module &);
 
 }
 }
@@ -22,7 +22,7 @@ PYBIND11_PLUGIN(_tools) {
     using namespace nifty::tools;
 
     exportMakeDense(toolsModule);
-
+    exportBlocking(toolsModule);
         
     return toolsModule.ptr();
 }

@@ -1,6 +1,5 @@
 #pragma once
 
-#include "nifty/"
 #include "nifty/array/arithmetic_array.hxx"
 
 namespace nifty{
@@ -15,13 +14,22 @@ namespace tools{
         typedef ValueType value_type;
         typedef nifty::array::StaticArray<ValueType, DIM> VectorType;
 
-        const Block(
+        Block(
             const VectorType & begin = VectorType(0),
             const VectorType & end = VectorType(0)
         )
         :   begin_(begin),
             end_(end){
         }
+
+        const VectorType & begin() const {
+            return begin_;  
+        }
+
+        const VectorType & end() const {
+            return end_;  
+        }
+
     private:
         VectorType begin_;
         VectorType end_;
@@ -35,15 +43,25 @@ namespace tools{
         typedef Block<DIM, T> BlockType;
         typedef typename BlockType::ValueType ValueType;
         typedef typename BlockType::ValueType value_type;
-        typedef typename BlockType::ValueType VectorType;
+        typedef typename BlockType::VectorType VectorType;
 
-        const BlockWithHalo(
+
+        BlockWithHalo(
             const BlockType & outerBlock = BlockType(),
             const BlockType & innerBlock = BlockType()
         )
         :   outerBlock_(outerBlock),
             innerBlock_(innerBlock){
         }
+
+        const BlockType & outerBlock() const {
+            return outerBlock_;  
+        }
+
+        const BlockType & innerBlock() const {
+            return innerBlock_;  
+        }
+
     private:
         BlockType outerBlock_;
         BlockType innerBlock_;
@@ -56,10 +74,11 @@ namespace tools{
     class Blocking{
     public:
         typedef BlockWithHalo<DIM, T> BlockWithHaloType;
-        typedef typename BlockType::BlockType BlockType;
-        typedef typename BlockType::ValueType ValueType;
-        typedef typename BlockType::ValueType value_type;
-        typedef typename BlockType::ValueType VectorType;
+        typedef typename BlockWithHaloType::BlockType BlockType;
+
+        typedef typename BlockWithHaloType::ValueType ValueType;
+        typedef typename BlockWithHaloType::ValueType value_type;
+        typedef typename BlockWithHaloType::VectorType VectorType;
 
         Blocking(
             const VectorType & roiBegin ,
@@ -76,19 +95,17 @@ namespace tools{
             numberOfBlocks_(1){
         
             for(size_t d=0; d<DIM; ++d){
-                const auto dimSize = roiEnd_ - (roiBegin_[d] - blockShift_[d]);
+                const auto dimSize = roiEnd_[d] - (roiBegin_[d] - blockShift_[d]);
                 const auto bs = blockShape_[d];
-                const auto bpa =  dimSize / bs + int(dimSize % bs);
+                const auto bpa =  dimSize / bs + int((dimSize % bs) != 0);
                 blocksPerAxis_[d] = bpa;
                 numberOfBlocks_ *= bpa;
             }
             
             blocksPerAxisStrides_[DIM - 1] = 1;
-            for(size_t d = DIM-2; d>=0; --d){
-                blocksPerAxisStrides_[d] = blocksPerAxisStrides_[d+1] * shape[d+1]
+            for(int64_t d = DIM-2; d>=0; --d){
+                blocksPerAxisStrides_[d] = blocksPerAxisStrides_[d+1] * blocksPerAxis_[d+1];
             }
-
-
         }
 
         const VectorType & roiBegin() const {
@@ -115,6 +132,25 @@ namespace tools{
             return numberOfBlocks_;
         }
 
+
+        BlockType getBlock(const uint64_t blockIndex)const{
+
+            // convert blockindex to coordinate
+            uint64_t index = blockIndex;
+            VectorType beginCoord, endCoord;
+            for(auto d=0; d<DIM; ++d){
+
+
+                const int64_t blockCoordAtD = index / blocksPerAxisStrides_[d];
+                index -= blockCoordAtD*blocksPerAxisStrides_[d];
+
+                const int64_t beginCoordAtD = (roiBegin_[d] - blockShift_[d]) + blockCoordAtD*blockShape_[d];
+                endCoord[d]   =  std::min(beginCoordAtD + blockShape_[d], roiEnd_[d]);
+                beginCoord[d] =  std::max(beginCoordAtD, roiBegin_[d]);
+            }
+
+            return BlockType(beginCoord, endCoord);
+        }   
         
     private:
 
@@ -127,7 +163,7 @@ namespace tools{
         VectorType blocksPerAxis_;
         VectorType blocksPerAxisStrides_;
         size_t numberOfBlocks_;
-    }
+    };
 
 
 

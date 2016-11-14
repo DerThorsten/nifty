@@ -39,3 +39,7 @@ add_custom_target(copy_python_pipelines__init__ ALL#POST_BUILD
     ${CMAKE_BINARY_DIR}/python/nifty/pipelines/__init__.py)
 
 
+
+
+add_dependencies(python-module _pipelines)
+add_dependencies(python-module copy_python_pipelines__init__)

@@ -20,7 +20,10 @@ if(NOT NOSETESTS_PATH)
 endif()
 
 
-function(add_python_test_target TARGET_NAME TARGET_LIB)
+function(add_python_test_target TARGET_NAME)
+
+    file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/python_test)
+
     # Try again to find nosetests here. We may have switched virtualenvs or
     # something since first running cmake.
     find_program(NOSETESTS_PATH nosetests)
@@ -28,12 +31,41 @@ function(add_python_test_target TARGET_NAME TARGET_LIB)
         message(FATAL_ERROR "nosetests not found! Aborting...")
     endif()
 
-    set(COPY_DIR ${CMAKE_BINARY_DIR}/${TARGET_NAME}_files)
+    set(COPY_DIR ${CMAKE_BINARY_DIR}/python_test/${TARGET_NAME})
+
+
+    set(COPY_MOD_TARGET CopyModuleDir${TARGET_NAME})
+    add_custom_target(${COPY_MOD_TARGET} ALL)
+
+
+    add_custom_command(TARGET ${COPY_MOD_TARGET} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+        ${CMAKE_BINARY_DIR}/python/
+        ${COPY_DIR}
+    )
+
+
+    add_dependencies(${COPY_MOD_TARGET} python-module)
+
+
+
+
+
+
+
+
+
+
+
 
     add_custom_target(${TARGET_NAME}
         COMMAND ${NOSETESTS_PATH}
         WORKING_DIRECTORY ${COPY_DIR}
         COMMENT "Running Python tests.")
+
+
+    add_dependencies(${TARGET_NAME} ${COPY_MOD_TARGET})
+
 
     # Copy Python files to the local binary directory so they can find the
     # dynamic library.
@@ -57,14 +89,11 @@ function(add_python_test_target TARGET_NAME TARGET_LIB)
     #get_target_property(TARGET_LIB_NAME ${TARGET_LIB} LOCATION)
     #$<TARGET_FILE:${TARGET_LIB}>
 
-    # Add a command to copy the target library into the same folder as the
-    # python files.
-    add_custom_command(TARGET ${COPY_TARGET}
-        COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:${TARGET_LIB}> ${COPY_DIR}
-        )
+   
 
     # Make the copy target a dependency of the testing target to ensure it
     # gets done first.
     add_dependencies(${TARGET_NAME} ${COPY_TARGET})
-    add_dependencies(${COPY_TARGET} ${TARGET_LIB})
+
+
 endfunction()

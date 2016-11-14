@@ -6,6 +6,7 @@
 pybind11_add_module(_tools 
     tools.cxx
     make_dense.cxx
+    blocking.cxx
 )
 
 
@@ -37,3 +38,7 @@ add_custom_target(copy_python_tools__init__ ALL#POST_BUILD
 
 
 
+
+
+add_dependencies(python-module _tools)
+add_dependencies(python-module copy_python_tools__init__)
