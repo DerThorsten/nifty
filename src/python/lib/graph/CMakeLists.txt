@@ -53,6 +53,10 @@ add_custom_target(copy_python_graph__init__ ALL#POST_BUILD
     ${CMAKE_BINARY_DIR}/python/nifty/graph/__init__.py)
 
 
+add_dependencies(python-module _graph)
+add_dependencies(python-module copy_python_graph__init__)
+
+
 
 # submodules
 add_subdirectory(agglo)
