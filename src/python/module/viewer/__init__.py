@@ -1,3 +1,5 @@
+from __future__ import division
+
 import numpy
 import types
 from functools import partial
@@ -27,6 +29,37 @@ try:
     from PyQt4.QtGui import QApplication
 except:
     hasQt4=False
+
+
+
+
+
+def view3D(img, show=True, cmap='Greys',title=None, singlePlain=True):
+
+    import pylab
+    import matplotlib.cm as cm
+
+    shape = img.shape
+
+    f = pylab.figure()
+
+    if singlePlain:
+        pylab.imshow(img[shape[0]//2,:,:],cmap=cmap)
+    else:
+        f.add_subplot(2, 2, 1)  
+        pylab.imshow(img[shape[0]//2,:,:],cmap=cmap)
+        
+        f.add_subplot(2, 2, 2) 
+        pylab.imshow(img[:,shape[1]//2,:],cmap=cmap)
+        
+        f.add_subplot(2, 2, 3) 
+        pylab.imshow(img[:,:,shape[2]//2],cmap=cmap)
+    
+    if title is not None:
+        pylab.title(title)
+
+    if show:
+        pylab.show()
 
 
 
