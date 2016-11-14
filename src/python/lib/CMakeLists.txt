@@ -5,11 +5,7 @@
 # Create the binding library
 pybind11_add_module(_nifty 
     nifty.cxx
-    #############################
-    # hdf5
-    #############################
-    tools/tools.cxx
-    tools/make_dense.cxx
+
     #############################
     # hdf5
     #############################
@@ -78,3 +74,5 @@ add_custom_target(copy_python_test ALL#POST_BUILD
 # submodules
 add_subdirectory(graph)
 add_subdirectory(ground_truth)
+add_subdirectory(pipelines)
+add_subdirectory(tools)

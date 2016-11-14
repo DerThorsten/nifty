@@ -11,12 +11,7 @@ namespace py = pybind11;
 #endif
 
 namespace nifty{
-namespace graph{
-    void initSubmoduleGraph(py::module & );
-}
-namespace tools{
-    void initSubmoduleTools(py::module &);
-}
+
 #ifdef WITH_HDF5
 namespace hdf5{
     void initSubmoduleHdf5(py::module & );
@@ -39,8 +34,7 @@ PYBIND11_PLUGIN(_nifty) {
 
 
 
-    //graph::initSubmoduleGraph(niftyModule);
-    tools::initSubmoduleTools(niftyModule);
+
 
     #ifdef WITH_HDF5
     hdf5::initSubmoduleHdf5(niftyModule);
