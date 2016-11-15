@@ -89,7 +89,8 @@ else:
         def __init__(self, size):
 
             widgets = [
-                ' [', _progressbar.Timer(), '] ',
+
+                ' [', _progressbar.Timer(), ', ',_progressbar.Counter(),'/%s'%size,'] ',
                  _progressbar.Bar(),
                 ' (', _progressbar.ETA(), ') ',
             ]
