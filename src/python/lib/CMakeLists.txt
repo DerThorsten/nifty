@@ -1,15 +1,14 @@
 
 
+# create a custom target which bundles all python building and copying
+add_custom_target(python-module)
+
 
 
 # Create the binding library
 pybind11_add_module(_nifty 
     nifty.cxx
-    #############################
-    # hdf5
-    #############################
-    tools/tools.cxx
-    tools/make_dense.cxx
+
     #############################
     # hdf5
     #############################
@@ -21,6 +20,8 @@ pybind11_add_module(_nifty
     #############################
     ufd/ufd.cxx
 )
+
+
 
 
 if(WITH_HDF5)
@@ -51,7 +52,7 @@ target_link_libraries(_nifty ${PYTHON_LIBRARIES})
 
 file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/python/nifty)
 file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/python/nifty/viewer)
-file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/test_python/)
+ 
 
 ADD_CUSTOM_COMMAND(
         TARGET _nifty
@@ -71,14 +72,17 @@ add_custom_target(copy_python_viewer__init__ ALL#POST_BUILD
     ${CMAKE_BINARY_DIR}/python/nifty/viewer/__init__.py)
 
 
-add_custom_target(copy_python_test ALL#POST_BUILD
-    COMMAND cmake -E copy_if_different 
-    ${CMAKE_SOURCE_DIR}/src/python/test/test_python.py 
-    ${CMAKE_BINARY_DIR}/test_python/test_python.py)
 
 
+
+
+add_dependencies(python-module _nifty)
+add_dependencies(python-module copy_python__init__)
+add_dependencies(python-module copy_python_viewer__init__)
 
 
 # submodules
 add_subdirectory(graph)
 add_subdirectory(ground_truth)
+add_subdirectory(pipelines)
+add_subdirectory(tools)

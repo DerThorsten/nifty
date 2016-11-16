@@ -62,3 +62,8 @@ add_custom_target(copy_pythonlifted_multicut__init__ ALL#POST_BUILD
 
 
 
+
+add_dependencies(python-module _lifted_multicut)
+add_dependencies(python-module copy_pythonlifted_multicut__init__)
+
+

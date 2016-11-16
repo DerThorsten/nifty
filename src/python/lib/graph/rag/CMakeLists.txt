@@ -62,3 +62,5 @@ add_custom_target(copy_pythonrag__init__ ALL#POST_BUILD
 
 
 
+add_dependencies(python-module _rag)
+add_dependencies(python-module copy_pythonrag__init__)

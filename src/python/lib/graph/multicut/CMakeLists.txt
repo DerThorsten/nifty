@@ -57,3 +57,9 @@ add_custom_target(copy_pythonmulticut__init__ ALL#POST_BUILD
 
 
 
+
+
+
+
+add_dependencies(python-module _multicut)
+add_dependencies(python-module copy_pythonmulticut__init__)
