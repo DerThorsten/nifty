@@ -90,7 +90,6 @@ namespace graph{
                     py::gil_scoped_release allowThreads;
                     projectScalarNodeDataToPixels(rag, nodeData, pixelData, numberOfThreads);
                 }
-                return pixelData;
            },
            py::arg("graph"),py::arg("nodeData"),py::arg("pixelData"),py::arg("numberOfThreads")=-1
         );
