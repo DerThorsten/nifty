@@ -21,13 +21,34 @@ namespace ufd{
             .def(py::init<const IndexType>(),
                py::arg_t<IndexType>("numberOfIndices",0)
             )
+            // find for a single element
             .def("find", [](UfdType & self, const T index) {
                 return self.find(index);
             })
             .def("find", [](const UfdType & self, const T index) {
                 return self.find(index);
             })
-            .def("merge", &UfdType::merge)
+            // find vectorized
+            .def("find", [](UfdType & self, const marray::PyView<T,1> indices) {
+                marray::PyView<IndexType,1> out({indices.shape(0)});
+                for(int i = 0; i < indices.shape(0); ++i)
+                    out(i) = self.find(indices(i));
+                return out;
+            })
+            .def("find", [](const UfdType & self, const marray::PyView<T,1> indices) {
+                marray::PyView<IndexType,1> out({indices.shape(0)});
+                for(int i = 0; i < indices.shape(0); ++i)
+                    out(i) = self.find(indices(i));
+                return out;
+            })
+            // merge for a single element
+            .def("merge", &UfdType::merge) 
+            // merge vectorized
+            .def("merge", [](UfdType & self, marray::PyView<T,2> mergeIndices) {
+                NIFTY_CHECK_OP(mergeIndices.shape(1),==,2,"We need pairs of indices for merging!")
+                for(int i = 0; i < mergeIndices.shape(0); ++i)
+                    self.merge(mergeIndices(i,0), mergeIndices(i,1));
+            })
             .def("assign", &UfdType::assign)
             .def("reset", &UfdType::reset)
             .def("insert", &UfdType::insert)
