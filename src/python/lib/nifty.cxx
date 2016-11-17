@@ -33,13 +33,6 @@ PYBIND11_PLUGIN(_nifty) {
     using namespace nifty;
 
 
-
-
-
-    #ifdef WITH_HDF5
-    hdf5::initSubmoduleHdf5(niftyModule);
-    #endif
-
     #ifdef WITH_GUROBI
         // Translate Gurobi exceptions to Python exceptions
         // (Must do this explicitly since GRBException doesn't inherit from std::exception)
