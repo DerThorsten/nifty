@@ -10,16 +10,6 @@ namespace py = pybind11;
     #include <gurobi_c++.h>
 #endif
 
-namespace nifty{
-namespace ufd{
-    void initSubmoduleUfd(py::module &);
-}
-#ifdef WITH_HDF5
-namespace hdf5{
-    void initSubmoduleHdf5(py::module & );
-}
-#endif
-}
 
 PYBIND11_DECLARE_HOLDER_TYPE(T, std::shared_ptr<T>);
 
@@ -34,8 +24,6 @@ PYBIND11_PLUGIN(_nifty) {
 
     using namespace nifty;
 
-    ufd::initSubmoduleUfd(niftyModule);
-    
     #ifdef WITH_GUROBI
         // Translate Gurobi exceptions to Python exceptions
         // (Must do this explicitly since GRBException doesn't inherit from std::exception)

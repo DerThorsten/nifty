@@ -8,10 +8,6 @@ add_custom_target(python-module)
 # Create the binding library
 pybind11_add_module(_nifty 
     nifty.cxx
-    #############################
-    # ufd
-    #############################
-    ufd/ufd.cxx
 )
 
 
@@ -55,3 +51,4 @@ add_subdirectory(hdf5)
 add_subdirectory(ground_truth)
 add_subdirectory(pipelines)
 add_subdirectory(tools)
+add_subdirectory(ufd)
