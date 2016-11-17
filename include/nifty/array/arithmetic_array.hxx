@@ -3,6 +3,8 @@
 #define NIFTY_ARRAY_ARITHMETIC_ARRAY_HXX
 
 #include <array>
+#include <vector>
+
 #include "nifty/tools/runtime_check.hxx"
 
 namespace nifty{
