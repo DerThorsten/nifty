@@ -11,6 +11,9 @@
 #include "nifty/parallel/threadpool.hxx"
 #include "vigra/accumulator.hxx"
 
+
+#include <unordered_map>
+
 namespace nifty{
 namespace graph{
 
@@ -42,6 +45,8 @@ namespace graph{
         else
             return replaceVal;
     }
+
+
 
     // accumulator with data
     template<class EDGE_ACC_CHAIN, size_t DIM, class LABELS_PROXY, class DATA, class F>
@@ -176,6 +181,181 @@ namespace graph{
             delete perThreadEdgeAccChainVector[i];
         });
     }
+
+    // accumulator with data
+    template<class EDGE_ACC_CHAIN, class NODE_ACC_CHAIN, size_t DIM, class LABELS_PROXY, class DATA, class F>
+    void accumulateEdgeAndNodeFeaturesWithAccChainSaveMemory(
+
+        const GridRag<DIM, LABELS_PROXY> & rag,
+        const DATA & data,
+        const array::StaticArray<int64_t, DIM> & blockShape,
+        const parallel::ParallelOptions & pOpts,
+        parallel::ThreadPool & threadpool,
+        F && f,
+        const AccOptions & accOptions = AccOptions()
+    ){
+
+        typedef LABELS_PROXY LabelsProxyType;
+        typedef typename vigra::MultiArrayShape<DIM>::type   VigraCoord;
+        typedef typename LabelsProxyType::BlockStorageType LabelBlockStorage;
+        typedef typename tools::BlockStorageSelector<DATA>::type DataBlocKStorage;
+
+        typedef array::StaticArray<int64_t, DIM> Coord;
+
+        typedef EDGE_ACC_CHAIN EdgeAccChainType;
+        typedef NODE_ACC_CHAIN NodeAccChainType;
+        typedef std::unordered_map<uint64_t, EdgeAccChainType> EdgeAccChainMapType; 
+        typedef std::unordered_map<uint64_t, NodeAccChainType> NodeAccChainMapType; 
+
+        const size_t actualNumberOfThreads = pOpts.getActualNumThreads();
+
+
+        const auto & shape = rag.shape();
+
+
+        std::vector< EdgeAccChainMapType * > perThreadEdgeAccChainMap(actualNumberOfThreads);
+        std::vector< NodeAccChainMapType * > perThreadNodeAccChainMap(actualNumberOfThreads);
+
+        parallel::parallel_foreach(threadpool, actualNumberOfThreads, 
+        [&](const int tid, const int64_t i){
+            perThreadEdgeAccChainMap[i] = new EdgeAccChainMapType();
+            perThreadNodeAccChainMap[i] = new NodeAccChainMapType();
+        });
+
+
+
+        EdgeAccChainType dummyEdgeChain;
+        NodeAccChainType dummyNodeChain;
+
+
+        const auto numberOfEdgePasses = dummyEdgeChain.passesRequired();
+        const auto numberOfNodePasses = dummyNodeChain.passesRequired();
+        const auto numberOfPasses = std::max(numberOfEdgePasses, numberOfNodePasses);
+
+        if(accOptions.setMinMax){
+            parallel::parallel_foreach(threadpool, actualNumberOfThreads,
+            [&](int tid, int i){
+
+                    vigra::HistogramOptions histogram_opt;
+                    histogram_opt = histogram_opt.setMinMax(accOptions.minVal, accOptions.maxVal); 
+
+                    auto & edgeAccVec = *(perThreadEdgeAccChainMap[i]);
+                    for(auto & edgeAcc : edgeAccVec){
+                        edgeAcc.second.setHistogramOptions(histogram_opt);
+                    }
+
+                    auto & nodeAccVec = *(perThreadNodeAccChainMap[i]);
+                    for(auto & nodeAcc : nodeAccVec){
+                        nodeAcc.second.setHistogramOptions(histogram_opt);
+                    }
+            });
+        }
+
+        // do N passes of accumulator
+        for(auto pass=1; pass <= numberOfPasses; ++pass){
+
+            // LOOP IN PARALLEL OVER ALL BLOCKS WITH A CERTAIN OVERLAP
+            const Coord overlapBegin(0), overlapEnd(1);
+            LabelBlockStorage labelsBlockStorage(threadpool, blockShape, actualNumberOfThreads);
+            DataBlocKStorage dataBlocKStorage(threadpool, blockShape, actualNumberOfThreads);
+            tools::parallelForEachBlockWithOverlap(threadpool,shape, blockShape, overlapBegin, overlapEnd,
+            [&](
+                const int tid,
+                const Coord & blockCoreBegin, const Coord & blockCoreEnd,
+                const Coord & blockBegin, const Coord & blockEnd
+            ){
+                // get the accumulator vector for this thread
+                auto & edgeAccMap = *(perThreadEdgeAccChainMap[tid]);
+                auto & nodeAccMap = *(perThreadNodeAccChainMap[tid]);
+                // actual shape of the block: might be smaller at the border as blockShape
+
+                const auto nonOlBlockShape  = blockCoreEnd - blockCoreBegin;
+                const auto actualBlockShape = blockEnd - blockBegin;
+ 
+                // read the labels block and the data block
+                auto labelsBlockView = labelsBlockStorage.getView(actualBlockShape, tid);
+                auto dataBlockView = dataBlocKStorage.getView(actualBlockShape, tid);
+                tools::readSubarray(rag.labelsProxy(), blockBegin, blockEnd, labelsBlockView);
+                tools::readSubarray(data, blockBegin, blockEnd, dataBlockView);
+
+                // loop over all coordinates in block
+                nifty::tools::forEachCoordinate(nonOlBlockShape,[&](const Coord & coordU){
+
+                    const auto lU = labelsBlockView(coordU.asStdArray());
+                    const auto dataU = dataBlockView(coordU.asStdArray());
+                    
+                    VigraCoord vigraCoordU;
+                    for(size_t d=0; d<DIM; ++d)
+                        vigraCoordU[d] = coordU[d] + blockBegin[d];
+
+                    if(pass <= numberOfNodePasses)
+                        nodeAccMap[lU].updatePassN(dataU, vigraCoordU, pass);
+                    
+                    // accumulate the edge features
+                    if(pass <= numberOfEdgePasses){
+                        for(size_t axis=0; axis<DIM; ++axis){
+                            auto coordV = makeCoord2(coordU, axis);
+                            if(coordV[axis] < actualBlockShape[axis]){
+                                const auto lV = labelsBlockView(coordV.asStdArray());
+                                if(lU != lV){
+
+                                    const auto edge = rag.findEdge(lU,lV);
+                                    const auto dataV = dataBlockView(coordV.asStdArray());
+
+                                    VigraCoord vigraCoordV;
+                                    for(size_t d=0; d<DIM; ++d)
+                                        vigraCoordV[d] = coordV[d] + blockBegin[d];
+
+                                    edgeAccMap[edge].updatePassN(dataU, vigraCoordU, pass);
+                                    edgeAccMap[edge].updatePassN(dataV, vigraCoordV, pass);
+                                }
+                            }
+                        }
+                    }
+
+                });
+            });
+        }
+
+
+
+        std::vector< EdgeAccChainType> edgeResultAccVec(rag.edgeIdUpperBound()+1);
+        std::vector< NodeAccChainType> nodeResultAccVec(rag.nodeIdUpperBound()+1);
+
+
+
+        // merge the accumulators parallel
+        parallel::parallel_foreach(threadpool, edgeResultAccVec.size(), 
+        [&](const int tid, const int64_t edge){
+            for(auto t=0; t<actualNumberOfThreads; ++t){
+                auto & accChainMap = *(perThreadEdgeAccChainMap[t]);
+                auto findResIter = accChainMap.find(edge);
+                if(findResIter != accChainMap.end())
+                    edgeResultAccVec[edge].merge(findResIter->second);           
+            }
+        });
+        parallel::parallel_foreach(threadpool, nodeResultAccVec.size(), 
+        [&](const int tid, const int64_t node){
+            for(auto t=0; t<actualNumberOfThreads; ++t){
+                auto & accChainMap = *(perThreadNodeAccChainMap[t]);
+                auto findResIter = accChainMap.find(node);
+                if(findResIter != accChainMap.end())
+                    nodeResultAccVec[node].merge(findResIter->second);           
+            }
+        });
+        
+        // call functor with finished acc chain
+        f(edgeResultAccVec, nodeResultAccVec);
+
+
+        parallel::parallel_foreach(threadpool, actualNumberOfThreads, 
+        [&](const int tid, const int64_t i){
+            delete perThreadEdgeAccChainMap[i];
+            delete perThreadNodeAccChainMap[i];
+        });
+
+    }
+
 
     // accumulator with data
     template<class EDGE_ACC_CHAIN, class NODE_ACC_CHAIN, size_t DIM, class LABELS_PROXY, class DATA, class F>
@@ -712,7 +892,8 @@ namespace graph{
         const array::StaticArray<int64_t, DIM> & blockShape,
         marray::View<FEATURE_TYPE> & edgeFeaturesOut,
         marray::View<FEATURE_TYPE> & nodeFeaturesOut,
-        const int numberOfThreads = -1
+        const int numberOfThreads = -1,
+        const bool saveMemory = false
     ){
         namespace acc = vigra::acc;
 
@@ -727,26 +908,27 @@ namespace graph{
         const size_t actualNumberOfThreads = pOpts.getActualNumThreads();
 
         //std::cout<<"Using "<<actualNumberOfThreads<<"\n";
-
-        accumulateEdgeAndNodeFeaturesWithAccChain<AccChainType,AccChainType>(rag, data, blockShape, pOpts, threadpool,
-        [&](
-            const std::vector<AccChainType> & edgeAccChainVec,
-            const std::vector<AccChainType> & nodeAccChainVec
-        ){
-            parallel::parallel_foreach(threadpool, edgeAccChainVec.size(),[&](
-                const int tid, const int64_t edge
+        if(!saveMemory){
+            accumulateEdgeAndNodeFeaturesWithAccChain<AccChainType,AccChainType>(rag, data, blockShape, pOpts, threadpool,
+            [&](
+                const std::vector<AccChainType> & edgeAccChainVec,
+                const std::vector<AccChainType> & nodeAccChainVec
             ){
-                edgeFeaturesOut(edge, 0) = acc::get<acc::Mean>(edgeAccChainVec[edge]);
-                edgeFeaturesOut(edge, 1) = acc::get<acc::Count>(edgeAccChainVec[edge]);
-            });
+                parallel::parallel_foreach(threadpool, edgeAccChainVec.size(),[&](
+                    const int tid, const int64_t edge
+                ){
+                    edgeFeaturesOut(edge, 0) = acc::get<acc::Mean>(edgeAccChainVec[edge]);
+                    edgeFeaturesOut(edge, 1) = acc::get<acc::Count>(edgeAccChainVec[edge]);
+                });
 
-            parallel::parallel_foreach(threadpool, nodeAccChainVec.size(),[&](
-                const int tid, const int64_t node
-            ){
-                nodeFeaturesOut(node, 0) = acc::get<acc::Mean>(nodeAccChainVec[node]);
-                nodeFeaturesOut(node, 1) = acc::get<acc::Count>(nodeAccChainVec[node]);
+                parallel::parallel_foreach(threadpool, nodeAccChainVec.size(),[&](
+                    const int tid, const int64_t node
+                ){
+                    nodeFeaturesOut(node, 0) = acc::get<acc::Mean>(nodeAccChainVec[node]);
+                    nodeFeaturesOut(node, 1) = acc::get<acc::Count>(nodeAccChainVec[node]);
+                });
             });
-        });
+        }
     }
 
 
