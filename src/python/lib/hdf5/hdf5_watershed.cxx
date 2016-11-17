@@ -49,9 +49,15 @@ namespace hdf5{
                     vigra::HDF5File::OpenReadOnly);
 
                 std::cout<<"labels array\n";
-                vigra::HDF5File h5FileLabels(fLabels,  vigra::HDF5File::OpenReadOnly );
+
+                vigra::ChunkedArrayOptions cOpts;
+                cOpts.compression(vigra::ZLIB_FAST);
+
+
+                vigra::HDF5File h5FileLabels(fLabels,  vigra::HDF5File::Open );
                 LabelsArray labelsArray(h5FileLabels,dLabels,
-                    vigra::HDF5File::Open, dataArray.shape());
+                    vigra::HDF5File::Open, dataArray.shape(),
+                    VigraShapeType(128), cOpts);
 
                 vigra::unionFindWatershedsBlockwise(dataArray, labelsArray);
                

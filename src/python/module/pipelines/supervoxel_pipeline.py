@@ -262,7 +262,8 @@ if True:
 
     import nifty.hdf5
 
-    nifty.hdf5.unionFindWatershed(heightMapFile,'data', oversegFile,'data',[100,100,100])
+    with vigra.Timer("ws"):
+        nifty.hdf5.unionFindWatershed(heightMapFile,'data', oversegFile,'data',[100,100,100])
     
 
 
