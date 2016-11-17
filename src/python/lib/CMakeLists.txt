@@ -8,40 +8,8 @@ add_custom_target(python-module)
 # Create the binding library
 pybind11_add_module(_nifty 
     nifty.cxx
-
-    #############################
-    # hdf5
-    #############################
-    hdf5/hdf5.cxx
-    hdf5/hdf5_common.cxx
-    hdf5/hdf5_array.cxx
 )
 
-
-
-
-if(WITH_HDF5)
-    target_link_libraries(_nifty ${HDF5_LIBRARIES})
-endif()
-
-if(WITH_GUROBI)
-    target_link_libraries(_nifty ${GUROBI_LIBRARIES})
-endif()
-
-if(WITH_CPLEX)
-    target_link_libraries(_nifty ${CPLEX_LIBRARIES})
-endif()
-
-if(WITH_GLPK)
-    target_link_libraries(_nifty ${GLPK_LIBRARY})
-endif()
-
-
-# Don't add a 'lib' prefix to the shared library
-set_target_properties(_nifty PROPERTIES PREFIX "")
-
-# Link against the Python shared library
-target_link_libraries(_nifty ${PYTHON_LIBRARIES})
 
 
 
@@ -79,6 +47,7 @@ add_dependencies(python-module copy_python_viewer__init__)
 
 # submodules
 add_subdirectory(graph)
+add_subdirectory(hdf5)
 add_subdirectory(ground_truth)
 add_subdirectory(pipelines)
 add_subdirectory(tools)

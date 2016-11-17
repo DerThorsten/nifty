@@ -30,6 +30,10 @@ namespace tools{
             return end_;  
         }
 
+        VectorType shape() const {
+            return end_ - begin_;  
+        }
+
     private:
         VectorType begin_;
         VectorType end_;
@@ -51,7 +55,13 @@ namespace tools{
             const BlockType & innerBlock = BlockType()
         )
         :   outerBlock_(outerBlock),
-            innerBlock_(innerBlock){
+            innerBlock_(innerBlock),
+            innerBlockLocal_(){
+    
+            
+            const auto lBegin = innerBlock.begin()  - outerBlock.begin();
+            const auto lEnd = lBegin  + innerBlock_.shape();
+            innerBlockLocal_ = BlockType(lBegin, lEnd);
         }
 
         const BlockType & outerBlock() const {
@@ -62,9 +72,15 @@ namespace tools{
             return innerBlock_;  
         }
 
+        const BlockType & innerBlockLocal() const {
+            return innerBlockLocal_;  
+        }
+
+
     private:
         BlockType outerBlock_;
         BlockType innerBlock_;
+        BlockType innerBlockLocal_;
     };
 
 
@@ -150,6 +166,18 @@ namespace tools{
             }
 
             return BlockType(beginCoord, endCoord);
+        }   
+
+
+        BlockWithHaloType getBlockWithHalo(const uint64_t blockIndex, const VectorType & halo)const{
+            const BlockType innerBlock = getBlock(blockIndex);
+            VectorType outerBegin,outerEnd;
+
+            for(auto d=0; d<DIM; ++d){
+                outerBegin[d] = std::max(innerBlock.begin()[d] - halo[d], roiBegin_[d]);
+                outerEnd[d]   = std::min(innerBlock.end()[d]   + halo[d], roiEnd_[d]);
+            }
+            return BlockWithHaloType(BlockType(outerBegin, outerEnd), innerBlock);
         }   
         
     private:

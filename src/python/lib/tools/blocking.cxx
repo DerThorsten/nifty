@@ -33,13 +33,15 @@ namespace tools{
 
             .def_property_readonly("begin",&BlockType::begin)
             .def_property_readonly("end",&BlockType::end)
+            .def_property_readonly("shape",&BlockType::shape)
         ;
 
         const auto blockWithHaloClsStr = std::string("BlockWithHalo") + dimStr;
         py::class_<BlockWithHaloType>(toolsModule, blockWithHaloClsStr.c_str())
 
-            .def_property_readonly("outerBlock",&BlockWithHaloType::outerBlock)
-            .def_property_readonly("innerBlock",&BlockWithHaloType::innerBlock)
+            .def_property_readonly("outerBlock",&BlockWithHaloType::outerBlock ,py::return_value_policy::reference_internal)
+            .def_property_readonly("innerBlock",&BlockWithHaloType::innerBlock ,py::return_value_policy::reference_internal)
+            .def_property_readonly("innerBlockLocal",&BlockWithHaloType::innerBlockLocal ,py::return_value_policy::reference_internal)
         ;
 
         const auto blockingClsStr = std::string("Blocking") + dimStr;
@@ -66,7 +68,7 @@ namespace tools{
 
 
             .def("getBlock", &BlockingType::getBlock)
-
+            .def("getBlockWithHalo", &BlockingType::getBlockWithHalo)
         ;
 
 
