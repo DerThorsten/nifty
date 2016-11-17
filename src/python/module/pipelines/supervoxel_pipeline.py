@@ -260,6 +260,15 @@ if False:
 
 if True:
 
+    import nifty.hdf5
+
+    nifty.hdf5.unionFindWatershed(heightMapFile,'data', oversegFile,'data',[100,100,100])
+    
+
+
+
+if False:
+
 
     heightMapH5 = h5py.File(heightMapFile,'r')
     heightMapDset = heightMapH5['data']

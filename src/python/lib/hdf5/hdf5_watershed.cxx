@@ -39,12 +39,16 @@ namespace hdf5{
 
 
 
-                VigraShapeType vigraChunkedArrayChunkShape(100);
+                //VigraShapeType chunkShape;
+                //  std::fill(vigraChunkedArrayChunkShape.begin())
+        
+
+                std::cout<<"data array\n";
                 vigra::HDF5File h5FileData(fData,  vigra::HDF5File::OpenReadOnly );
                 DataArray dataArray(h5FileData,dData,
                     vigra::HDF5File::OpenReadOnly);
 
-
+                std::cout<<"labels array\n";
                 vigra::HDF5File h5FileLabels(fLabels,  vigra::HDF5File::OpenReadOnly );
                 LabelsArray labelsArray(h5FileLabels,dLabels,
                     vigra::HDF5File::Open, dataArray.shape());

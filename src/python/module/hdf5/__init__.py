@@ -9,13 +9,40 @@ if Configuration.WITH_HDF5:
 else:
     pass
 
-
+import math
 
 
 
 if Configuration.WITH_HDF5:
 
-    def __extendHdf5():
+
+    def unionFindWatershed(heightMapFilename,
+                           heightMapDataset,
+                           labelsFilename,
+                           labelsDataset,
+                           blockShape,
+                           numberOfThreads=-1):
+
+        nDim  =  len(blockShape)
+        # pow2 blockshape
+        # 
+        #pow2Blockshape = [2**(math.ceil(math.log(v)/math.log(2))) for v in blockShape]
+        blockShapeArray = [128] * nDim
+
+        fname = "blockwiseWatershed_float32_uint32_%dd"%nDim
+
+        f = _hdf5.__dict__[fname]
+
+        f(heightMapFilename, heightMapDataset, 
+          labelsFilename, labelsDataset, 
+          list(blockShape), list(blockShapeArray),int(numberOfThreads))
+
+
+
+
+
+
+    def __extendHdf5Array():
         hdf5Arrays = [
             Hdf5ArrayUInt8,
             Hdf5ArrayUInt16,
@@ -68,9 +95,5 @@ if Configuration.WITH_HDF5:
             array.__setitem__ = setItem
 
 
-
-
-
-
-    __extendHdf5()
-    del __extendHdf5
+    __extendHdf5Array()
+    del __extendHdf5Array
