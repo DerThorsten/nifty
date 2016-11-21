@@ -54,12 +54,16 @@ namespace hdf5{
                 cOpts.compression(vigra::ZLIB_FAST);
 
 
-                vigra::HDF5File h5FileLabels(fLabels,  vigra::HDF5File::Open );
+                std::cout<<"dataArray.shape() "<<dataArray.shape()<<"\n";
+
+                vigra::HDF5File h5FileLabels(fLabels,  vigra::HDF5File::New );
                 LabelsArray labelsArray(h5FileLabels,dLabels,
-                    vigra::HDF5File::Open, dataArray.shape(),
-                    VigraShapeType(128), cOpts);
+                    vigra::HDF5File::New, dataArray.shape(),
+                    VigraShapeType(128));
 
                 vigra::unionFindWatershedsBlockwise(dataArray, labelsArray);
+                //labelsArray.flushToDisk();
+                labelsArray.close();
                
             }
         )

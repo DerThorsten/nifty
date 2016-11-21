@@ -9,6 +9,12 @@ if Configuration.WITH_HDF5:
 else:
     pass
 
+try:
+    import h5py
+    hasH5Py = True
+except ImportError:
+    hasH5py = False
+
 import math
 
 
@@ -36,10 +42,6 @@ if Configuration.WITH_HDF5:
         f(heightMapFilename, heightMapDataset, 
           labelsFilename, labelsDataset, 
           list(blockShape), list(blockShapeArray),int(numberOfThreads))
-
-
-
-
 
 
     def __extendHdf5Array():
@@ -97,3 +99,5 @@ if Configuration.WITH_HDF5:
 
     __extendHdf5Array()
     del __extendHdf5Array
+
+

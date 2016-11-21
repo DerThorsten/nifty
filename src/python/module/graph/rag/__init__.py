@@ -35,7 +35,7 @@ def gridRag(labels, numberOfThreads=-1, serialization = None):
 
 if Configuration.WITH_HDF5:
 
-    def gridRagHdf5(labels, numberOfLabels, blockShape = None, numberOfThreads=-1):
+    def gridRagHdf5(labels, numberOfLabels, blockShape = None, numberOfThreads=-1, serialization = None):
 
         dim = labels.ndim
         if blockShape is None:
@@ -45,10 +45,17 @@ if Configuration.WITH_HDF5:
 
         if dim == 2:
             labelsProxy = gridRag2DHdf5LabelsProxy(labels, int(numberOfLabels))
-            ragGraph = gridRag2DHdf5(labelsProxy,bs,int(numberOfThreads))
+            if serialization is None:
+                ragGraph = gridRag2DHdf5(labelsProxy,bs,int(numberOfThreads))
+            else:
+                ragGraph = gridRag2DHdf5(labelsProxy,serialization)
         elif dim == 3:
+
             labelsProxy = gridRag3DHdf5LabelsProxy(labels, int(numberOfLabels))
-            ragGraph = gridRag3DHdf5(labelsProxy,bs,int(numberOfThreads))
+            if serialization is None:
+                ragGraph = gridRag3DHdf5(labelsProxy,bs,int(numberOfThreads))
+            else:
+                ragGraph = gridRag3DHdf5(labelsProxy,serialization)
         else:
             raise RuntimeError("gridRagHdf5 is only implemented for 2D and 3D not for %dD"%dim)
 
