@@ -137,7 +137,11 @@ if(WITHIN_TRAVIS)
 endif()
 
 
+#-------------------------------------------------------------------------------------------------------------------
+# find LP SOLVERS
+#-------------------------------------------------------------------------------------------------------------------
 
+SET(NIFTY_LP_SOLVER_LIBS "")
 #-------------------------------------------------------------------------------------------------------------------
 # find cplex
 #-------------------------------------------------------------------------------------------------------------------
@@ -145,6 +149,7 @@ if(WITH_CPLEX)
     find_package(CPLEX REQUIRED)
     include_directories(${CPLEX_INCLUDE_DIRS})
     add_definitions(-DWITH_CPLEX)
+    SET(NIFTY_LP_SOLVER_LIBS "${NIFTY_LP_SOLVER_LIBS};${CPLEX_LIBRARIES}")
 endif()
 
 #-------------------------------------------------------------------------------------------------------------------
@@ -154,6 +159,7 @@ if(WITH_GUROBI)
     find_package(GUROBI REQUIRED)
     include_directories(${GUROBI_INCLUDE_DIR})
     add_definitions(-DWITH_GUROBI)
+    SET(NIFTY_LP_SOLVER_LIBS "${NIFTY_LP_SOLVER_LIBS};${GUROBI_LIBRARIES}")
 endif()
 
 #-------------------------------------------------------------------------------------------------------------------
@@ -163,7 +169,13 @@ if(WITH_GLPK)
     find_package(GLPK REQUIRED)
     include_directories(${GLPK_INCLUDE_DIR})
     add_definitions(-DWITH_GLPK)
+    SET(NIFTY_LP_SOLVER_LIBS "${NIFTY_LP_SOLVER_LIBS};${GLPK_LIBRARY}")
 endif()
+
+
+
+
+
 
 #-------------------------------------------------------------------------------------------------------------------
 # find fastfilters

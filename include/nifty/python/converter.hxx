@@ -152,8 +152,6 @@ namespace marray
         }
 
 
-
-    #ifdef HAVE_CPP11_INITIALIZER_LISTS
         template<class T_INIT>
         PyView(std::initializer_list<T_INIT> shape) : PyView(shape.begin(), shape.end())
         {
@@ -163,23 +161,21 @@ namespace marray
         void reshapeIfEmpty(std::initializer_list<T_INIT> shape) {
             this->reshapeIfEmpty(shape.begin(), shape.end());
         }
-    #endif
+
     private:
 
         template <class ShapeIterator>
         void assignFromShape(ShapeIterator begin, ShapeIterator end)
         {
-            std::vector<size_t> shape, strides;
+            std::vector<size_t> shape(begin,end);
+            std::vector<size_t> strides(shape.size());
 
-            for (auto i = begin; i != end; ++i)
-                shape.push_back(*i);
-
-            for (size_t i = 0; i < shape.size(); ++i) {
-                size_t stride = sizeof(VALUE_TYPE);
-                for (size_t j = i + 1; j < shape.size(); ++j)
-                    stride *= shape[j];
-                strides.push_back(stride);
+            strides.resize(shape.size());
+            strides.back() = sizeof(VALUE_TYPE);
+            for(int64_t i = strides.size()-2; i>=0; --i){
+                strides[i] = strides[i+1] * shape[i+1];
             }
+
 
             py_array = pybind11::array(pybind11::buffer_info(
                 nullptr, sizeof(VALUE_TYPE), pybind11::format_descriptor<VALUE_TYPE>::value, shape.size(), shape, strides));
