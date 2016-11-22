@@ -29,4 +29,4 @@ def getIlpLabels(blockLabelsIlpFile):
 
     l  = numpy.array(allLabels.values())
     uv = numpy.array(allLabels.keys())
-    return l-1, uv
+    return uv,l-1

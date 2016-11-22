@@ -27,22 +27,30 @@ namespace neuro_seg{
                 [](
                     BlockData & instance,
                     typename BlockData::BlockingType & blocking,
-                    const size_t blockIndex
+                    const size_t blockIndex,
+                    const uint8_t numberOfChannels, 
+                    const uint8_t numberOfBins
+
                 ){
                     {
                         py::gil_scoped_release allowThreads;
-                        new (&instance) BlockData(blocking, blockIndex);
+                        new (&instance) BlockData(blocking, blockIndex, numberOfChannels, numberOfBins);
                     }
-                }
+                },
+                py::arg("blocking"),
+                py::arg("blockIndex"),
+                py::arg("numberOfChannels"),
+                py::arg("numberOfBins")
             )
             .def("accumulate",[]
                 (
                     BlockData & instance,
-                    marray::PyView<uint32_t, 3> labels
+                    marray::PyView<uint32_t, 3> labels,
+                    marray::PyView<float,    4> data
                 ){
                     {
                         py::gil_scoped_release allowThreads;
-                        instance.accumulate(labels);
+                        instance.accumulate(labels, data);
                     }
                 }
             )
@@ -57,6 +65,77 @@ namespace neuro_seg{
                     }
                 }
             )
+            .def("uvIds",[](
+                const BlockData & instance
+            ){  
+                // make it just large enough atm //FIXME
+                marray::PyView<uint32_t> uv({instance.numberOfEdges(), size_t(2)});
+                {
+                    py::gil_scoped_release allowThreads;
+                    instance.uvIds(uv);
+                }
+
+                return uv;
+            })
+
+             // features for single edge
+            .def("extractFeatures",[](
+                BlockData & instance,
+                const uint32_t u,
+                const uint32_t v
+            ){  
+                // make it just large enough atm //FIXME
+                marray::PyView<float> f({instance.numberOfFeatures()});
+                {
+                    py::gil_scoped_release allowThreads;
+                    instance.extractFeatures(Edge(u,v), f);
+                }
+                return f;
+
+            })
+
+             // features for some edges
+            .def("extractFeatures",[](
+                BlockData & instance,
+                marray::PyView<uint32_t, 2> uvIds
+            ){  
+                NIFTY_CHECK_OP(uvIds.shape(1),==,2,"uvIds has wrong shape");
+                const size_t n = uvIds.shape(0);
+
+
+                marray::PyView<float> f({n, instance.numberOfFeatures()});
+                {
+                    py::gil_scoped_release allowThreads;
+
+                    for(auto i=0; i<n; ++i){
+
+                        const auto edge = Edge(uvIds(i,0), uvIds(i,1));
+                        auto fSub  = f.boundView(0, i);
+                        instance.extractFeatures(edge, fSub);
+                    }
+
+                    
+                }
+                return f;
+
+            })
+
+            // features for all edges
+            .def("extractFeatures",[](
+                BlockData & instance
+            ){  
+
+                marray::PyView<float> f({instance.numberOfEdges(), instance.numberOfFeatures()});
+                {
+                    py::gil_scoped_release allowThreads;
+
+                    instance.extractFeatures(f);
+                    
+                }
+                return f;
+
+            })
+
             ;
         ;
     }  
