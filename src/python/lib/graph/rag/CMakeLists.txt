@@ -9,5 +9,5 @@ addPythonModule(
         project_to_pixels.cxx
         accumulate.cxx
     LIBRRARIES
-        ${NIFTY_LP_SOLVER_LIBS}
+        ${NIFTY_LP_SOLVER_LIBS} ${HDF5_LIBRARIES}
 )

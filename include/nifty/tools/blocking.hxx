@@ -168,16 +168,27 @@ namespace tools{
             return BlockType(beginCoord, endCoord);
         }   
 
-
-        BlockWithHaloType getBlockWithHalo(const uint64_t blockIndex, const VectorType & halo)const{
+        BlockWithHaloType getBlockWithHalo(
+            const uint64_t blockIndex, 
+            const VectorType & haloBegin,
+            const VectorType & haloEnd
+        )const{
             const BlockType innerBlock = getBlock(blockIndex);
             VectorType outerBegin,outerEnd;
 
             for(auto d=0; d<DIM; ++d){
-                outerBegin[d] = std::max(innerBlock.begin()[d] - halo[d], roiBegin_[d]);
-                outerEnd[d]   = std::min(innerBlock.end()[d]   + halo[d], roiEnd_[d]);
+                outerBegin[d] = std::max(innerBlock.begin()[d] - haloBegin[d], roiBegin_[d]);
+                outerEnd[d]   = std::min(innerBlock.end()[d]   + haloEnd[d], roiEnd_[d]);
             }
-            return BlockWithHaloType(BlockType(outerBegin, outerEnd), innerBlock);
+            return  (BlockType(outerBegin, outerEnd), innerBlock);
+        }
+
+
+        BlockWithHaloType getBlockWithHalo(
+            const uint64_t blockIndex, 
+            const VectorType & halo
+        )const{
+            return this->getBlockWithHalo(blockIndex, halo, halo);
         }   
         
     private:

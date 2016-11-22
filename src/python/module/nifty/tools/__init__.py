@@ -6,6 +6,7 @@ from concurrent.futures import ThreadPoolExecutor
 from multiprocessing import cpu_count
 import time
 import sys
+import threading
 
 try:
     import progressbar as _progressbar
@@ -55,20 +56,48 @@ def blocking(roiBegin, roiEnd, blockShape, blockShift=None):
 
 
 
-def parallelForEach(iterable, f, nWorkers=cpu_count()):
-    if nWorkers == 1:
-        for i in iterable:
-            f(i)
-    else:
-        with ThreadPoolExecutor(max_workers=nWorkers) as e:
+def parallelForEach(iterable, f, nWorkers=cpu_count() ,
+                    showBar=False, size=None, name=None):
+    if nWorkers == -1 or nWorkers is None:
+        nWorkers = cpu_count()
+    if not showBar:
+        if nWorkers == 1:
             for i in iterable:
-                e.submit(f,i)
+                f(i)
+        else:
+            with ThreadPoolExecutor(max_workers=nWorkers) as e:
+                for i in iterable:
+                    e.submit(f,i)
+
+    else:
+        if size is None:
+            raise RuntimeError("if showBar==True, size must be specified")
+
+        lock = threading.Lock()
+        done = [0]
+
+        with progressBar(size=size, name=name) as bar:
+            def fTilde(val):
+
+                f(val)
+
+                with lock:
+                    done[0] += 1
+                    bar.update(done[0])
+            parallelForEach(iterable=iterable, 
+                            f=fTilde, 
+                            nWorkers=nWorkers,
+                            showBar=False,
+                            size=None)
+
+
+
 
 
 if not hasProgressbar:
 
     class Progressbar:
-        def __init__(self, maxValue):
+        def __init__(self, maxValue, name=""):
             self.maxValue = maxValue
 
         def __enter__(self):
@@ -86,11 +115,12 @@ if not hasProgressbar:
             sys.stdout.flush()
 else:
     class Progressbar:
-        def __init__(self, size):
-
+        def __init__(self, size, name=None):
+            if name is None:
+                name = ""
             widgets = [
 
-                ' [', _progressbar.Timer(), ', ',_progressbar.Counter(),'/%s'%size,'] ',
+                ' [',str(name), _progressbar.Timer(), ', ',_progressbar.Counter(),'/%s'%size,'] ',
                  _progressbar.Bar(),
                 ' (', _progressbar.ETA(), ') ',
             ]
@@ -110,5 +140,5 @@ else:
             self.bar.update(val)
 
 
-def progressBar(size):
-    return Progressbar(size)
+def progressBar(size, name=None):
+    return Progressbar(size,name)
