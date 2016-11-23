@@ -13,6 +13,7 @@
 
 #include <unordered_map>
 #include <map>
+#include <cmath>
 
 #include "vigra/accumulator.hxx"
 
@@ -87,7 +88,10 @@ namespace neuro_seg{
             typedef vigra::acc::AccumulatorChain<
                 VigraCoordType, 
                 vigra::acc::Select<
+
+                    vigra::acc::Count,
                     vigra::acc::Mean
+
                 > 
             > CoordAccChain;
 
@@ -216,20 +220,20 @@ namespace neuro_seg{
                     }
                 }
 
-                //for(auto & kv : other.nodes_){
-                //    const auto p = nodes_.insert(kv);
-                //    const auto iter = p.first;
-                //    const auto added = p.second;
-                //    if(!added){
-                //        iter->second.merge(kv.second);
-                //    }
-                //}
+                for(auto & kv : other.nodes_){
+                    const auto p = nodes_.insert(kv);
+                    const auto iter = p.first;
+                    const auto added = p.second;
+                    if(!added){
+                        iter->second.merge(kv.second);
+                    }
+                }
             }
 
         public:
 
             size_t numberOfFeatures()const{
-                return numberOfChannels_*11;
+                return numberOfChannels_*(11*9) + 22;
             }
 
 
@@ -238,29 +242,125 @@ namespace neuro_seg{
                 marray::View<float> & out
             ){
 
+                using namespace vigra::acc;
                 auto fRes = edges_.find(edge);
+
                 NIFTY_CHECK(fRes!=edges_.end(),"");
 
-                auto & acc = fRes->second;
+                auto & accEdge = fRes->second;
+                const auto & accU = nodes_.find(edge.u)->second;
+                const auto & accV = nodes_.find(edge.v)->second;
+
+                
 
                 auto fIndex = 0;
 
 
-                for(auto c=0; c<int(numberOfChannels_); ++c){
+                auto wardness = [](const double cU, const double cV, const double beta){
 
-                    const auto & chain = acc.accChain_[c];
-                    const auto mean = vigra::acc::get<vigra::acc::Mean>(chain);
-                    const auto quantiles = vigra::acc::get<Quantiles>(chain);
+                    const auto rU = std::pow(1.0/cU, beta); 
+                    const auto rV = std::pow(1.0/cV, beta); 
 
-                    out(fIndex+0) = replaceVals(mean,     0.0);
-                    out(fIndex+1) = replaceVals(vigra::acc::get<vigra::acc::Variance>(chain), 0.0);
-                    out(fIndex+2) = replaceVals(vigra::acc::get<vigra::acc::Skewness>(chain), 0.0);
-                    out(fIndex+3) = replaceVals(vigra::acc::get<vigra::acc::Kurtosis>(chain), 0.0);
-                    for(auto qi=0; qi<7; ++qi){
-                        out(fIndex+4+qi) = replaceVals(quantiles[qi], mean);
+                    return 1.0/(rU + rV);
+
+                };
+
+                // geometric data
+                {
+                    const auto & chainE = accEdge.coordAccChain_;
+                    const auto & chainU = accU.coordAccChain_;
+                    const auto & chainV = accV.coordAccChain_;
+
+                    const double countE = get<Count>(chainE);
+                    const double countU = get<Count>(chainU);
+                    const double countV = get<Count>(chainV);
+
+                    const auto centerE = get<Mean>(chainE);
+                    const auto centerU = get<Mean>(chainU);
+                    const auto centerV = get<Mean>(chainV);
+
+                    // standart
+                    out(fIndex + 0) = countE;
+                    out(fIndex + 1) = std::abs(countU - countV);
+                    out(fIndex + 2) = std::min(countU,  countV);
+                    out(fIndex + 3) = std::max(countU,  countV);
+                    out(fIndex + 4) =         (countU + countV);
+
+                    // distance
+                    const auto dUV = vigra::norm(centerU - centerV);
+                    const auto dEU = vigra::norm(centerE - centerU);
+                    const auto dEV = vigra::norm(centerE - centerV);
+
+
+                    out(fIndex + 5) = dUV;
+                    out(fIndex + 6) = std::min(dEU, dEV);
+                    out(fIndex + 7) = std::max(dEU, dEV);
+                    out(fIndex + 8) =         (dEU + dEV);
+
+                    out(fIndex + 9)  = dUV - std::min(dEU, dEV);
+                    out(fIndex + 10) = dUV - std::max(dEU, dEV);
+                    out(fIndex + 11) = dUV -         (dEU + dEV);
+
+                    out(fIndex + 12)  = dUV / (std::min(dEU, dEV)  + 0.01);
+                    out(fIndex + 13) = dUV / (std::max(dEU, dEV)  + 0.01);
+                    out(fIndex + 14) = dUV / (        (dEU + dEV) + 0.01);
+
+
+
+                    // 'wardness'
+                    out(fIndex + 15) = wardness(countU, countV, 0.1);
+                    out(fIndex + 16) = wardness(countU, countV, 0.2);
+                    out(fIndex + 17) = wardness(countU, countV, 0.4);
+                    out(fIndex + 18) = wardness(countU, countV, 0.8);
+
+                    // 'edge' / 'node' relation
+                    const double nCountE = std::sqrt(countE);
+                    const double nCountU = std::cbrt(countU);
+                    const double nCountV = std::cbrt(countV);
+
+                    out(fIndex + 19) = nCountE / std::min(nCountU,  nCountV);
+                    out(fIndex + 20) = nCountE / std::max(nCountU,  nCountV);
+                    out(fIndex + 21) = nCountE /         (nCountU + nCountV);
+                }
+
+
+
+                // channel data
+                {
+                    array::StaticArray<float, 11> fE,fU,fV;
+                    for(auto c=0; c<int(numberOfChannels_); ++c){
+
+                        const auto & chainE = accEdge.accChain_[c];
+                        const auto & chainU = accU.accChain_[c];
+                        const auto & chainV = accV.accChain_[c];
+
+
+                        // get values
+                        this->extract(chainE, fE);
+                        this->extract(chainE, fU);
+                        this->extract(chainE, fV);
+
+
+                        for(auto i=0; i<11; ++i){
+
+                            const auto dEU = std::abs(fE[i] - fU[i]);
+                            const auto dEV = std::abs(fE[i] - fV[i]);
+
+
+                            out(fIndex + 0) =         (fE[i]);          
+                            out(fIndex + 1) = std::abs(fU[i] - fV[i]);  
+                            out(fIndex + 2) = std::min(fU[i] , fV[i]);  
+                            out(fIndex + 3) = std::max(fU[i] , fV[i]);
+                            out(fIndex + 4) =         (fU[i] + fV[i]);
+                            out(fIndex + 5) = std::abs(dEU - dEV);  
+                            out(fIndex + 6) = std::min(dEU , dEV);  
+                            out(fIndex + 7) = std::max(dEU , dEV);
+                            out(fIndex + 8) =         (dEU + dEV);
+
+                            fIndex += 9;
+
+                        }
                     }
-
-                    fIndex += 11;
                 }
             }
 
@@ -296,6 +396,27 @@ namespace neuro_seg{
 
 
         private:
+
+
+            // helper for channel acc
+            template<class CHAIN, class ARRAY>
+            void extract(const CHAIN & chain, ARRAY & out){
+
+                using namespace vigra::acc;
+
+                const auto mean = get<Mean>(chain);
+                const auto quantiles = get<Quantiles>(chain);
+
+                out[0] = replaceVals(mean,     0.0);
+                out[1] = replaceVals(get<Variance>(chain), 0.0);
+                out[2] = replaceVals(get<Skewness>(chain), 0.0);
+                out[3] = replaceVals(get<Kurtosis>(chain), 0.0);
+                for(auto qi=0; qi<7; ++qi){
+                    out[4+qi] = replaceVals(quantiles[qi], mean);
+                }
+            }
+
+
             BlockingType blocking_;
             size_t blockIndex_;
             uint8_t numberOfChannels_;
