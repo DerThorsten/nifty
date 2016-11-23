@@ -254,7 +254,7 @@ Ufd<T>::representativesToSets(std::vector<std::vector<typename Ufd<T>::Index>> &
     representativeLabeling(rl);
     
     for(Index j = 0; j < numberOfElements(); j++) {
-        Index repr = rl[parents_[j]];
+        Index repr = rl[find(j)];
         out[repr].push_back(j);
     }
 }
