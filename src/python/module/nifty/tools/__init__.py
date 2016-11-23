@@ -55,7 +55,6 @@ def blocking(roiBegin, roiEnd, blockShape, blockShift=None):
 
 
 
-
 def parallelForEach(iterable, f, nWorkers=cpu_count() ,
                     showBar=False, size=None, name=None):
     if nWorkers == -1 or nWorkers is None:

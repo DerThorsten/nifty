@@ -183,8 +183,8 @@ namespace neuro_seg{
                         const auto pU = &data(coord[0],coord[1],coord[2],0);
 
                         {
-                            //auto iter = nodes_.emplace(lU, Accumulator(numberOfChannels_)).first;
-                            //iter->second.accumulatePass(coord + blockBegin, pU, p);
+                            auto iter = nodes_.emplace(lU, Accumulator(numberOfChannels_)).first;
+                            iter->second.accumulatePass(coord + blockBegin, pU, p);
                         }
 
                         for(size_t axis=0; axis<3; ++axis){

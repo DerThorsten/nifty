@@ -17,14 +17,13 @@ import fastfilters
 
 pmapPath = "/home/tbeier/prediction_semantic_binary_full.h5"
 
-heightMapFile = "/media/tbeier/4cf81285-be72-45f5-8c63-fb8e9ff4476c/supervoxels/2nm/heightMap.h5"
-oversegFile = "/media/tbeier/4cf81285-be72-45f5-8c63-fb8e9ff4476c/supervoxels/2nm/ufd_overseg2.h5"
+heightMapFile = "/media/tbeier/4cf81285-be72-45f5-8c63-fb8e9ff4476c/supervoxels/2nm/heightMap2.h5"
+oversegFile = "/media/tbeier/4cf81285-be72-45f5-8c63-fb8e9ff4476c/supervoxels/2nm/ufd_overseg3.h5"
+oversegFile = "/home/tbeier/ufd_overseg3.h5"
 #oversegFile = "/media/tbeier/4cf81285-be72-45f5-8c63-fb8e9ff4476c/supervoxels/2nm/aggloseg_0.3_50.h5"
 agglosegBaseFile = "/media/tbeier/4cf81285-be72-45f5-8c63-fb8e9ff4476c/supervoxels/2nm/aggloseg_"
 
 
-pmapH5 = h5py.File(pmapPath,'r')
-pmapDset = pmapH5['data']
 
 
 class DummyWithStatement:
@@ -115,10 +114,25 @@ def membraneOverseg3D(pmapDset, heightMapDset, **kwargs):
     noLock = DummyWithStatement()
     done = [0]
 
+
+    for blockIndex in range(numberOfBlocks):
+        blockWithHalo = blocking.getBlockWithHalo(blockIndex, margin)
+        block = blocking.getBlock(blockIndex)
+        outerBlock = blockWithHalo.outerBlock
+        innerBlock = blockWithHalo.innerBlock
+        innerBlockLocal = blockWithHalo.innerBlockLocal
+
+        #print("B ",block.begin, block.end)
+        #print("O ",outerBlock.begin, outerBlock.end)
+        #print("I ",innerBlock.begin, innerBlock.end)
+        #print("IL",innerBlockLocal.begin, innerBlockLocal.end)
+
+
+
     with nifty.tools.progressBar(size=numberOfBlocks) as bar:
 
         def f(blockIndex):
-            blockWithHalo = blocking.getBlockWithHalo(blockIndex, margin)
+            blockWithHalo = blocking.getBlockWithHalo(blockIndex, margin, margin)
             #print "fo"
             outerBlock = blockWithHalo.outerBlock
             outerSlicing = nifty.tools.getSlicing(outerBlock.begin, outerBlock.end)
@@ -145,6 +159,7 @@ def membraneOverseg3D(pmapDset, heightMapDset, **kwargs):
             b,e =  blockWithHalo.innerBlock.begin,  blockWithHalo.innerBlock.end
 
             if isinstance(heightMapDset,numpy.ndarray):
+                print("NOT LOCKED")
                 heightMapDset[b[0]:e[0], b[1]:e[1], b[2]:e[2]] = innerHeightMap
                 with lock:
                     done[0] += 1
@@ -152,6 +167,8 @@ def membraneOverseg3D(pmapDset, heightMapDset, **kwargs):
 
             else:
                 with lock:
+                    print("locked",b,e)
+
                     heightMapDset[b[0]:e[0], b[1]:e[1], b[2]:e[2]] = innerHeightMap
                     done[0] += 1
                     bar.update(done[0])
@@ -233,60 +250,71 @@ def makeSmallerSegNifty(oseg,  volume_feat, reduceBySetttings, wardnessSettings,
 
 
 if True:
-    #pmapH5 = h5py.File(pmapPath,'r')
-    #pmapDset = pmapH5['data']
+    pmapH5 = h5py.File(pmapPath,'r')
+    pmapDset = pmapH5['data']
+    shape = list(pmapDset.shape[0:3])
+
+    subset = None
+    sshape = (subset,)*3
+    heightMapH5 = h5py.File(heightMapFile,'w')
+    heightMapDset = heightMapH5.create_dataset('data',shape=shape,dtype='float32')
+
+
 
     print("load pmap in ram (since we have enough")
-    pmapArray= pmapDset[:,:,:,:]
+    if subset is None:
+        pmapArray= pmapDset[:,:,:,:]
+    else:
+        pmapArray= pmapDset[0:subset,0:subset,0:subset,:]
     pmapArray = pmapArray[:,:,:,0]
+    pmapH5.close()
 
-    heightMapH5 = h5py.File(heightMapFile,'w')
-    heightMapDset = heightMapH5.create_dataset('data',shape=pmapDset.shape[0:3], chunks=(100,100,100),dtype='float32')
+
 
     with vigra.Timer("st"):
         params = {
             "axisResolution" :  [2.0, 2.0, 2.0],
-            "featureBlockShape" : [400,400,400],
+            "featureBlockShape" : [350,350,350],
             "invertPmap": False,
             #"roiBegin": [0,0,0],
-            #"roiEnd":   [1000,1000,1000],
+            #"roiEnd":   sshape
             #"nWorkers":1,
         }
-        print(pmapDset.shape)
         membraneOverseg3D(pmapArray,heightMapDset, **params)
 
 
-
     heightMapH5.close()
-    pmapH5.close()
+
 
 if True:
 
-
+    print("read hmap")
     heightMapH5 = h5py.File(heightMapFile,'r')
     heightMapDset = heightMapH5['data']
-
-    oversegH5 = h5py.File(oversegFile,'w')
-    oversegDset = oversegH5.create_dataset('data',shape=pmapDset.shape[0:3], chunks=(100,100,100),dtype='uint32')
-
-    print("read hmap")
     heightMap = heightMapDset[:,:,:]
+    shape = list(heightMap.shape)
+    heightMapH5.close()
 
     print("do overseg")
     overseg, nseg = vigra.analysis.unionFindWatershed3D(heightMap.T, blockShape=(100,100,100))
-
-
-    print("transpose")
     overseg = overseg.T
+    oversegH5 = h5py.File(oversegFile)
+
+    overseg = numpy.array(overseg)
 
     print("write")
-    oversegDset[:,:,:] = overseg
-
+    oversegDset = oversegH5.create_dataset('data',data=overseg, chunks=(100,100,100))#,compression='gzip')
     oversegDset.attrs['nseg'] = nseg
-
     oversegH5.close()
-    pmapH5.close()
+   
 
+    
+
+
+
+
+
+ 
 
 if False:
 
@@ -299,7 +327,7 @@ if False:
 
 if True:
 
-    oversegH5 = h5py.File(oversegFile,'w')
+    oversegH5 = h5py.File(oversegFile,'r')
     oversegDset = oversegH5['data']
 
     blocking = nifty.tools.blocking(roiBegin=(0,0,0), roiEnd=oversegDset.shape[0:3], blockShape=[128,128,128])

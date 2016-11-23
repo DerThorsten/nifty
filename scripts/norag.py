@@ -18,7 +18,7 @@ out = "/home/tbeier/Desktop/play"
 
 rawFile = "/media/tbeier/4cf81285-be72-45f5-8c63-fb8e9ff4476c/datasets/hhess_2nm/raw_2k_2nm.h5"
 pmapFile = "/home/tbeier/prediction_semantic_binary_full.h5"
-oversegFile = "/media/tbeier/4cf81285-be72-45f5-8c63-fb8e9ff4476c/supervoxels/2nm/aggloseg_0.3_50.h5"
+oversegFile = "/media/tbeier/4cf81285-be72-45f5-8c63-fb8e9ff4476c/supervoxels/2nm/aggloseg_0.3_40.h5"
 
 out = "/media/tbeier/4cf81285-be72-45f5-8c63-fb8e9ff4476c/opt2k/"
 
@@ -54,7 +54,7 @@ nBlocks = blocking.numberOfBlocks
 lock = threading.Lock()
 blockRes = [None]*nBlocks
 
-if True:
+if False:
 
 
     def f(blockIndex):
@@ -150,6 +150,8 @@ if True:
     allFeat = f5['data'][:]
     f5.close()
 
+    print("allFeat",allFeat.shape)
+
 
     # mapping
     uvToIndex = dict()
@@ -163,7 +165,7 @@ if True:
     for i,(uv,l) in enumerate(zip(uvIdsTrain,labelsTrain)):   
         uv = long(uv[0]),long(uv[1])
         if uv not in uvToIndex:
-            print("WHY?!?")
+            assert False
         else:
             i = uvToIndex[uv]
             featTrain.append(allFeat[i,:][None,:])
@@ -175,7 +177,7 @@ if True:
     print(featTrain.shape,labelsTrain.shape)
 
     # train the rf
-    rf = vigra.learning.RandomForest(treeCount = 255)
+    rf = vigra.learning.RandomForest(treeCount = 10000)
     oob = rf.learnRF(featTrain, labelsTrain)
 
     print("oob",oob)
@@ -243,7 +245,7 @@ if True:
 
     nifty.tools.parallelForEach(iterable=range(nBlocks), f=f, 
                                 nWorkers=-1, showBar=True,
-                                size=nBlocks, name="ComputeFeatures")
+                                size=nBlocks, name="Braaa")
 
 
 

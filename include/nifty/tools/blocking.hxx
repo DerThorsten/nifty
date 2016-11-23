@@ -1,6 +1,7 @@
 #pragma once
 
 #include "nifty/array/arithmetic_array.hxx"
+#include "iostream"
 
 namespace nifty{
 namespace tools{
@@ -174,13 +175,14 @@ namespace tools{
             const VectorType & haloEnd
         )const{
             const BlockType innerBlock = getBlock(blockIndex);
+
             VectorType outerBegin,outerEnd;
 
             for(auto d=0; d<DIM; ++d){
                 outerBegin[d] = std::max(innerBlock.begin()[d] - haloBegin[d], roiBegin_[d]);
                 outerEnd[d]   = std::min(innerBlock.end()[d]   + haloEnd[d], roiEnd_[d]);
             }
-            return  (BlockType(outerBegin, outerEnd), innerBlock);
+            return  BlockWithHaloType(BlockType(outerBegin, outerEnd), innerBlock);
         }
 
 
