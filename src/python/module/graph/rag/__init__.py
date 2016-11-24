@@ -28,6 +28,10 @@ def gridRag(labels, numberOfThreads=-1, serialization = None):
         raise RuntimeError("wrong dimension, currently only 2D and 3D is implemented")
 
 
+def gridRagStacked2D(labels, numberOfThreads = -1):
+    labels = numpy.require(labels)
+
+    return gridRagStacked2DExplicitImpl(labels, numberOfThreads)
 
 
 

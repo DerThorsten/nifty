@@ -456,7 +456,7 @@ extractSubgraphFromNodes(
         std::vector<EDGE_INTERANL_TYPE> & outerEdgesOut) const {
     
     std::map<NodeInteralType,NodeInteralType> globalToLocalNodes;
-    for(size_t i = 0; i < nodeList.size(); i++)
+    for(size_t i = 0; i < nodeList.size(); ++i)
         globalToLocalNodes.insert( std::make_pair(nodeList(i), NodeInteralType(i)) );
 
     for(auto nodeIt = nodeList.begin(); nodeIt != nodeList.end(); ++nodeIt) {

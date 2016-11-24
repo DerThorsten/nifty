@@ -179,6 +179,36 @@ namespace tools{
             }
             return BlockWithHaloType(BlockType(outerBegin, outerEnd), innerBlock);
         }   
+
+        // TODO this is implemented pretty brute force, but for now this should not be critical performance wise in any way
+        void getBlockIdsInBoundingBox(
+                const VectorType & roiBegin,
+                const VectorType & roiEnd,
+                const VectorType & blockHalo,
+                std::vector<uint64_t> & idsOut) const {
+
+            // TODO assert that the roi is in global roi
+            //
+            idsOut.clear();
+
+            for(size_t blockId = 0; blockId < numberOfBlocks(); ++blockId) {
+
+                bool inRoi = true;
+
+                const auto & block = getBlockWithHalo(blockId, blockHalo).outerBlock();
+                const auto & begin = block.begin();
+                const auto & end = block.end();
+
+                for( auto d = 0; d < DIM; ++d) {
+                    if( ! (begin[d] >= roiBegin[d] && end[d] <= roiEnd[d]) )
+                        inRoi = false;
+                }
+                
+                if(inRoi)
+                    idsOut.push_back(blockId);
+
+            }
+        }
         
     private:
 

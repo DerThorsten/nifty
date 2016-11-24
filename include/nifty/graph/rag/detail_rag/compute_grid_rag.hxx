@@ -321,7 +321,7 @@ struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
             }
         }
         
-        //std::cout<<"phase 4\n";
+        //std::cout<<"phase 5\n";
         /////////////////////////////////////////////////////
         // Phase 5 : set up the between slice edge offsets
         /////////////////////////////////////////////////////
@@ -337,7 +337,7 @@ struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
             }
         }
 
-        //std::cout<<"phase 5\n";
+        //std::cout<<"phase 6\n";
         /////////////////////////////////////////////////////
         // Phase 6 : set up between slice edge indices
         /////////////////////////////////////////////////////

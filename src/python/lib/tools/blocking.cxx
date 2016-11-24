@@ -69,6 +69,21 @@ namespace tools{
 
             .def("getBlock", &BlockingType::getBlock)
             .def("getBlockWithHalo", &BlockingType::getBlockWithHalo)
+            .def("getBlockIdsInBoundingBox", [](const BlockingType & self,
+                const VectorType roiBegin,
+                const VectorType roiEnd,
+                const VectorType blockHalo) {
+
+                std::vector<uint64_t> tmp;
+                {
+                    py::gil_scoped_release allowThreads;
+                    self.getBlockIdsInBoundingBox(roiBegin, roiEnd, blockHalo, tmp);
+                }
+                marray::PyView<uint64_t,1> out({tmp.size()});
+                for(int i = 0; i < tmp.size(); ++i)
+                    out(i) = tmp[i];
+                return out;
+            })
         ;
 
 
