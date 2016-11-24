@@ -13,14 +13,15 @@ import sys
 
 import graph
 import tools
+import ufd
 
 
-    
+
 class Timer:
     def __init__(self, name=None, verbose=True):
         """
         @brief      Class for timer.
-        """ 
+        """
         self.name = name
         self.verbose = verbose
 
@@ -33,7 +34,7 @@ class Timer:
         self.dt = self.end - self.start
         if self.verbose:
             if self.name is not None:
-                print(self.name,"took",self.dt,"sec") 
+                print(self.name,"took",self.dt,"sec")
             else:
                 print("took",self.dt,"sec")
 
