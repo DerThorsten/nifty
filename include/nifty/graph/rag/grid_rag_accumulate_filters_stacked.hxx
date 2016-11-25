@@ -29,6 +29,8 @@ template<class EDGE_ACC_CHAIN, class LABELS_PROXY, class DATA, class F>
 void accumulateEdgeFeaturesFromFiltersWithAccChain(
     const GridRagStacked2D<LABELS_PROXY> & rag,
     const DATA & data,
+    const bool keepXYOnly,
+    const bool keepZOnly,
     const parallel::ParallelOptions & pOpts,
     parallel::ThreadPool & threadpool,
     F && f
@@ -65,13 +67,13 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
     features::ApplyFilters<2> applyFilters(sigmas, filters);
     size_t numberOfChannels = applyFilters.numberOfChannels();
     
-    ChannelAccChainVectorType channelAccChainVector( rag.edgeIdUpperBound()+1, 
-        AccChainVectorType(numberOfChannels) );
+    //ChannelAccChainVectorType channelAccChainVector( rag.edgeIdUpperBound()+1, 
+    //    AccChainVectorType(numberOfChannels) );
 
     uint64_t numberOfSlices = shape[0];
     
     Coord2 sliceShape2({shape[1], shape[2]});
-    Coord sliceShape3({int64_t(1),shape[1], shape[2]});
+    Coord sliceShape3({1L,shape[1], shape[2]});
     Coord filterShape({int64_t(numberOfChannels), shape[1], shape[2]});
     
     // filter computation and accumulation
@@ -123,7 +125,7 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
 
         std::vector<vigra::HistogramOptions> histoOptionsVec(numberOfChannels);
 
-        for(uint64_t sliceId; sliceId < numberOfSlices; ++sliceId) {
+        for(uint64_t sliceId = 0; sliceId < numberOfSlices; ++sliceId) {
 
             std::cout << sliceId << " / " << numberOfSlices << std::endl;
             
@@ -140,82 +142,116 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
                     auto max = *(minMax.second); // filterA[:,:,:,c].max()
                     histoOpts.setMinMax(min,max);
                 });
-                parallel::parallel_foreach(threadpool, rag.edgeIdUpperBound() + 1, [&](const int tid, const int64_t edge){
-                    auto & edgeAccChainVec = channelAccChainVector[edge];
-                    for(int c = 0; c < numberOfChannels; ++c)
-                        edgeAccChainVec[c].setHistogramOptions(histoOptionsVec[c]);
-                });
+                //parallel::parallel_foreach(threadpool, rag.edgeIdUpperBound() + 1, [&](const int tid, const int64_t edge){
+                //    auto & edgeAccChainVec = channelAccChainVector[edge];
+                //    for(int c = 0; c < numberOfChannels; ++c)
+                //        edgeAccChainVec[c].setHistogramOptions(histoOptionsVec[c]);
+                //});
             }
 
-            // resize the channel acc chain thread vector
-            // FIXME why do we use pointers / allocate dynamically here ?
-            // I don't know if this makes sense in the setting we have here, discuss with him!
-            parallel::parallel_foreach(threadpool, actualNumberOfThreads, 
-            [&](const int tid, const int64_t i){
-                perThreadChannelAccChainVector[i] = new ChannelAccChainVectorType( rag.numberOfInSliceEdges(sliceId),
-                    AccChainVectorType(numberOfChannels) );
-                // set minmax
-                auto & perThreadEdgeAccChainVector = *(perThreadChannelAccChainVector[i]);
-                for(int64_t edge = 0; edge < rag.numberOfInSliceEdges(sliceId); ++edge){
-                    for(int c = 0; c < numberOfChannels; ++c)
-                        perThreadEdgeAccChainVector[edge][c].setHistogramOptions(histoOptionsVec[c]);
-                }
-            });
-            auto inEdgeOffset = rag.inSliceEdgeOffset(sliceId);
 
-            // accumulate filter for the inner slice edges
-            nifty::tools::parallelForEachCoordinate(threadpool, sliceShape2, [&](const int tid, const Coord2 coord){
+            if( !keepZOnly ) {
+                // resize the channel acc chain thread vector
+                // FIXME why do we use pointers / allocate dynamically here ?
+                // I don't know if this makes sense in the setting we have here, discuss with him!
+                parallel::parallel_foreach(threadpool, actualNumberOfThreads, 
+                [&](const int tid, const int64_t i){
+                    perThreadChannelAccChainVector[i] = new ChannelAccChainVectorType( rag.numberOfInSliceEdges(sliceId),
+                        AccChainVectorType(numberOfChannels) );
+                    // set minmax
+                    auto & perThreadEdgeAccChainVector = *(perThreadChannelAccChainVector[i]);
+                    for(int64_t edge = 0; edge < rag.numberOfInSliceEdges(sliceId); ++edge){
+                        for(int c = 0; c < numberOfChannels; ++c)
+                            perThreadEdgeAccChainVector[edge][c].setHistogramOptions(histoOptionsVec[c]);
+                    }
+                });
+                auto inEdgeOffset = rag.inSliceEdgeOffset(sliceId);
 
-                auto & channelAccChainVec = *(perThreadChannelAccChainVector[tid]);
-                const auto lU = labelsASqueezed(coord.asStdArray());
-                for(int axis = 0; axis < 2; ++axis){
-                    Coord2 coord2 = coord;
-                    ++coord2[axis];
-                    if( coord2[axis] < sliceShape2[axis]) {
-                        const auto lV = labelsASqueezed(coord2.asStdArray());
-                        if(lU != lV) {
-                            // FIXME I really don't get this vigra coord buisness -> ask thorsten...
-                            // do we need 0 or the slice coordinate as 0 entry ???
-                            VigraCoord vigraCoordU;    
-                            VigraCoord vigraCoordV;    
-                            vigraCoordU[0] = sliceId;
-                            vigraCoordV[0] = sliceId;
-                            for(int d = 1; d < 3; ++d){
-                                vigraCoordU[d] = coord[d-1];
-                                vigraCoordV[d] = coord2[d-1];
-                            }
+                // accumulate filter for the inner slice edges
+                nifty::tools::parallelForEachCoordinate(threadpool, sliceShape2, [&](const int tid, const Coord2 coord){
 
-                            const auto edge = rag.findEdge(lU,lV) - inEdgeOffset;
-                            
-                            for(int c = 0; c < numberOfChannels; ++c) {
-                                const auto fU = filterA(c, coord[0], coord[1]);
-                                const auto fV = filterA(c, coord2[0], coord2[1]);
-                                channelAccChainVec[edge][c].updatePassN(fU, vigraCoordU, pass);
-                                channelAccChainVec[edge][c].updatePassN(fV, vigraCoordV, pass);
+                    auto & channelAccChainVec = *(perThreadChannelAccChainVector[tid]);
+                    const auto lU = labelsASqueezed(coord.asStdArray());
+                    for(int axis = 0; axis < 2; ++axis){
+                        Coord2 coord2 = coord;
+                        ++coord2[axis];
+                        if( coord2[axis] < sliceShape2[axis]) {
+                            const auto lV = labelsASqueezed(coord2.asStdArray());
+                            if(lU != lV) {
+                                // FIXME I really don't get this vigra coord buisness -> ask thorsten...
+                                // do we need 0 or the slice coordinate as 0 entry ???
+                                VigraCoord vigraCoordU;    
+                                VigraCoord vigraCoordV;    
+                                vigraCoordU[0] = sliceId;
+                                vigraCoordV[0] = sliceId;
+                                for(int d = 1; d < 3; ++d){
+                                    vigraCoordU[d] = coord[d-1];
+                                    vigraCoordV[d] = coord2[d-1];
+                                }
+
+                                const auto edge = rag.findEdge(lU,lV) - inEdgeOffset;
+                                
+                                for(int c = 0; c < numberOfChannels; ++c) {
+                                    const auto fU = filterA(c, coord[0], coord[1]);
+                                    const auto fV = filterA(c, coord2[0], coord2[1]);
+                                    channelAccChainVec[edge][c].updatePassN(fU, vigraCoordU, pass);
+                                    channelAccChainVec[edge][c].updatePassN(fV, vigraCoordV, pass);
+                                }
                             }
                         }
                     }
+                });
+                
+                // merge
+                parallel::parallel_foreach(threadpool, rag.numberOfInSliceEdges(sliceId), 
+                [&](const int tid, const int64_t edge){
+                    auto & accChainVector = *perThreadChannelAccChainVector[0];
+                    for(auto t=1; t<actualNumberOfThreads; ++t){
+                        auto & perThreadAccChainVec = *(perThreadChannelAccChainVector[t]);
+                        for(int c = 0; c < numberOfChannels; ++c)
+                            accChainVector[edge][c].merge(perThreadAccChainVec[edge][c]);
+                    }            
+                });
+
+                f(*perThreadChannelAccChainVector[0], inEdgeOffset);
+                
+                // delete
+                parallel::parallel_foreach(threadpool, actualNumberOfThreads, 
+                [&](const int tid, const int64_t i){
+                    delete perThreadChannelAccChainVector[i];
+                });
+            }
+            
+            if(sliceId < numberOfSlices - 1 && keepXYOnly) {
+                
+                beginA = Coord({int64_t(sliceId+1),int64_t(0),int64_t(0)});
+                endA = Coord({int64_t(sliceId+2),shape[1],shape[2]});
+                
+                auto labelsA = labelsAStorage.getView(0);  
+                labelsProxy.readSubarray(beginA, endA, labelsA);
+                auto labelsASqueezed = labelsA.squeezedView();
+        
+                auto dataA = dataAStorage.getView(0);
+                tools::readSubarray(data, beginA, endA, dataA);
+                auto dataASqueezed = dataA.squeezedView();
+
+                marray::View<float> dataAView;
+                if( typeid(DataType) == typeid(float) ) {
+                    dataAView = dataASqueezed;
                 }
-            });
-            
-            // merge
-            parallel::parallel_foreach(threadpool, rag.numberOfInSliceEdges(sliceId), 
-            [&](const int tid, const int64_t edge){
-                for(auto t=0; t<actualNumberOfThreads; ++t){
-                    auto & perThreadAccChainVec = *(perThreadChannelAccChainVector[t]);
-                    for(int c = 0; c < numberOfChannels; ++c)
-                        channelAccChainVector[edge+inEdgeOffset][c].merge(perThreadAccChainVec[edge][c]);
-                }            
-            });
-            
-            // delete
-            parallel::parallel_foreach(threadpool, actualNumberOfThreads, 
-            [&](const int tid, const int64_t i){
-                delete perThreadChannelAccChainVector[i];
-            });
+                else {
+                    std::copy(dataASqueezed.begin(),dataASqueezed.end(),dataCopy.begin());
+                    dataAView.assign(sliceShape2.begin(), sliceShape2.end(), &dataCopy(0));
+                }
+
+                auto filterA = filterAStorage.getView(0);
+                // TODO this needs to be parallelized !
+                applyFilters(dataAView, filterA, threadpool);
+
+            }
 
             // accumulate filter for the in between edges
-            if(sliceId < numberOfSlices - 1) {
+            if(sliceId < numberOfSlices - 1 && !keepXYOnly) {
 
                 beginB = Coord({int64_t(sliceId+1),int64_t(0),int64_t(0)});
                 endB = Coord({int64_t(sliceId+2),shape[1],shape[2]});
@@ -255,17 +291,17 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
                             perThreadAccChainVector[edge][c].setHistogramOptions(histoOptionsVec[c]);
                     }
                 });
-                auto betweenEdgeOffset = rag.betweenSliceEdgeOffset(sliceId);
+                auto betweenEdgeOffset =rag.betweenSliceEdgeOffset(sliceId);
+                auto accOffset = keepZOnly ? rag.betweenSliceEdgeOffset(sliceId) - rag.numberOfInSliceEdges() : betweenEdgeOffset;
 
                 // accumulate filter for the between slice edges
                 nifty::tools::parallelForEachCoordinate(threadpool, sliceShape2, [&](const int tid, const Coord2 coord){
 
                     auto & channelAccChainVec = *(perThreadChannelAccChainVector[tid]);
+                    // labels are different for different slices by default!
                     const auto lU = labelsASqueezed(coord.asStdArray());
                     const auto lV = labelsBSqueezed(coord.asStdArray());
-                    // labels are different for different slices by default!
-                    //if(lU != lV) {
-                        
+                    
                     // FIXME I really don't get this vigra coord buisness -> ask thorsten...
                     // do we need 0 or the slice coordinate as 0 entry ???
                     VigraCoord vigraCoordU;    
@@ -290,12 +326,15 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
                 // merge
                 parallel::parallel_foreach(threadpool, rag.numberOfInBetweenSliceEdges(sliceId), 
                 [&](const int tid, const int64_t edge){
-                    for(auto t=0; t<actualNumberOfThreads; ++t){
+                    auto & accChainVec = *(perThreadChannelAccChainVector[0]);
+                    for(auto t=1; t<actualNumberOfThreads; ++t){
                         auto & perThreadAccChainVec = *(perThreadChannelAccChainVector[t]);
                         for(int c = 0; c < numberOfChannels; ++c)
-                            channelAccChainVector[edge+betweenEdgeOffset][c].merge(perThreadAccChainVec[edge][c]);
+                            accChainVec[edge][c].merge(perThreadAccChainVec[edge][c]);
                     }
                 });
+
+                f(*perThreadChannelAccChainVector[0], accOffset);
             
                 // delete
                 parallel::parallel_foreach(threadpool, actualNumberOfThreads, 
@@ -312,17 +351,18 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
 
     }
     std::cout << "Slices done" << std::endl;
-    // call functor with finished acc chain
-    f(channelAccChainVector);
 }
 
 
+// TODO write to hdf5 directly!
 // 9 features per channel
-template<class LABELS_PROXY, class DATA>
+template<class LABELS_PROXY, class DATA, class OUTPUT>
 void accumulateEdgeFeaturesFromFilters(
     const GridRagStacked2D<LABELS_PROXY> & rag,
     const DATA & data,
-    marray::View<float> & edgeFeaturesOut,
+    OUTPUT & edgeFeaturesOut,
+    const bool keepXYOnly,
+    const bool keepZOnly,
     const int numberOfThreads = -1
 ){
     namespace acc = vigra::acc;
@@ -348,16 +388,21 @@ void accumulateEdgeFeaturesFromFilters(
     accumulateEdgeFeaturesFromFiltersWithAccChain<AccChainType>(
         rag,
         data,
+        keepXYOnly,
+        keepZOnly,
         pOpts,
         threadpool,
         [&](
-            const std::vector<std::vector<AccChainType>> & channelAccChainVec
+            const std::vector<std::vector<AccChainType>> & channelAccChainVec,
+            const uint64_t edgeOffset
         ){
             using namespace vigra::acc;
+            typedef array::StaticArray<int64_t, 2> FeatCoord;
 
-            NIFTY_CHECK_OP(channelAccChainVec.size(),==,rag.edgeIdUpperBound()+1,
-                "Number of edges and accumulator vector size don't match");
+            const auto nEdges    = channelAccChainVec.size();
             const auto nChannels = channelAccChainVec.front().size();
+
+            marray::Marray<DataType> featuresTemp({nEdges,nChannels*nStats});
             
             parallel::parallel_foreach(threadpool, channelAccChainVec.size(),
                 [&](const int tid, const int64_t edge){
@@ -368,14 +413,24 @@ void accumulateEdgeFeaturesFromFilters(
                 for(int c = 0; c < nChannels; ++c) {
                     const auto & chain = edgeAccChainVec[c];
                     const auto mean = get<acc::Mean>(chain);
-                    edgeFeaturesOut(edge, cOffset) = replaceIfNotFinite(mean,0.0);
-                    edgeFeaturesOut(edge, cOffset+1) = replaceIfNotFinite(get<acc::Variance>(chain), 0.0);
+                    featuresTemp(edge, cOffset) = replaceIfNotFinite(mean,0.0);
+                    featuresTemp(edge, cOffset+1) = replaceIfNotFinite(get<acc::Variance>(chain), 0.0);
                     quantiles = get<Quantiles>(chain);
                     for(auto qi=0; qi<7; ++qi)
-                        edgeFeaturesOut(edge, cOffset+2+qi) = replaceIfNotFinite(quantiles[qi], mean);
+                        featuresTemp(edge, cOffset+2+qi) = replaceIfNotFinite(quantiles[qi], mean);
                     cOffset += nStats;
                 }
             }); 
+
+
+            FeatCoord begin({int64_t(edgeOffset),0L});
+            FeatCoord end({edgeOffset+nEdges,nChannels*nStats});
+
+            //std::cout << "off " << begin << std::endl;
+            //std::cout << "tempShape " << featuresTemp.shape(0) << " " << featuresTemp.shape(1) << std::endl;
+            //std::cout << "outShape " << edgeFeaturesOut.shape(0) << " " << edgeFeaturesOut.shape(1) << std::endl;
+
+            tools::writeSubarray(edgeFeaturesOut, begin, end, featuresTemp);
         }
     );
 
