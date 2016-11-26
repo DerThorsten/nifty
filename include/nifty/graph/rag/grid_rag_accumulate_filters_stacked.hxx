@@ -21,10 +21,6 @@ namespace nifty{
 namespace graph{
 
 
-// TODO implement calculations for affinity maps
-// xy-edges: accumulate over max(x-channel, y-channel)
-// z-edges:  accumulate over z-channel
-
 template<class EDGE_ACC_CHAIN, class LABELS_PROXY, class DATA, class F>
 void accumulateEdgeFeaturesFromFiltersWithAccChain(
     const GridRagStacked2D<LABELS_PROXY> & rag,
@@ -150,7 +146,7 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
             }
 
 
-            if( !keepZOnly ) {
+            if( !keepZOnly && rag.numberOfInSliceEdges(sliceId) > 0 ) {
                 // resize the channel acc chain thread vector
                 // FIXME why do we use pointers / allocate dynamically here ?
                 // I don't know if this makes sense in the setting we have here, discuss with him!
