@@ -79,8 +79,7 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
     {
 
         // edge acc vectors for multiple threads
-        // FIXME why do we use pointers here
-        std::vector< ChannelAccChainVectorType * > perThreadChannelAccChainVector(actualNumberOfThreads);
+        std::vector< ChannelAccChainVectorType> perThreadChannelAccChainVector(actualNumberOfThreads);
 
         LabelBlockStorage labelsAStorage(threadpool, sliceShape3, 1);
         LabelBlockStorage labelsBStorage(threadpool, sliceShape3, 1);
@@ -138,24 +137,18 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
                     auto max = *(minMax.second); // filterA[:,:,:,c].max()
                     histoOpts.setMinMax(min,max);
                 });
-                //parallel::parallel_foreach(threadpool, rag.edgeIdUpperBound() + 1, [&](const int tid, const int64_t edge){
-                //    auto & edgeAccChainVec = channelAccChainVector[edge];
-                //    for(int c = 0; c < numberOfChannels; ++c)
-                //        edgeAccChainVec[c].setHistogramOptions(histoOptionsVec[c]);
-                //});
             }
 
 
             if( !keepZOnly && rag.numberOfInSliceEdges(sliceId) > 0 ) {
+                
                 // resize the channel acc chain thread vector
-                // FIXME why do we use pointers / allocate dynamically here ?
-                // I don't know if this makes sense in the setting we have here, discuss with him!
                 parallel::parallel_foreach(threadpool, actualNumberOfThreads, 
                 [&](const int tid, const int64_t i){
-                    perThreadChannelAccChainVector[i] = new ChannelAccChainVectorType( rag.numberOfInSliceEdges(sliceId),
+                    perThreadChannelAccChainVector[i] = ChannelAccChainVectorType( rag.numberOfInSliceEdges(sliceId),
                         AccChainVectorType(numberOfChannels) );
                     // set minmax
-                    auto & perThreadEdgeAccChainVector = *(perThreadChannelAccChainVector[i]);
+                    auto & perThreadEdgeAccChainVector = perThreadChannelAccChainVector[i];
                     for(int64_t edge = 0; edge < rag.numberOfInSliceEdges(sliceId); ++edge){
                         for(int c = 0; c < numberOfChannels; ++c)
                             perThreadEdgeAccChainVector[edge][c].setHistogramOptions(histoOptionsVec[c]);
@@ -166,7 +159,7 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
                 // accumulate filter for the inner slice edges
                 nifty::tools::parallelForEachCoordinate(threadpool, sliceShape2, [&](const int tid, const Coord2 coord){
 
-                    auto & channelAccChainVec = *(perThreadChannelAccChainVector[tid]);
+                    auto & channelAccChainVec = perThreadChannelAccChainVector[tid];
                     const auto lU = labelsASqueezed(coord.asStdArray());
                     for(int axis = 0; axis < 2; ++axis){
                         Coord2 coord2 = coord;
@@ -201,21 +194,16 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
                 // merge
                 parallel::parallel_foreach(threadpool, rag.numberOfInSliceEdges(sliceId), 
                 [&](const int tid, const int64_t edge){
-                    auto & accChainVector = *perThreadChannelAccChainVector[0];
+                    auto & accChainVector = perThreadChannelAccChainVector[0];
                     for(auto t=1; t<actualNumberOfThreads; ++t){
-                        auto & perThreadAccChainVec = *(perThreadChannelAccChainVector[t]);
+                        auto & perThreadAccChainVec = perThreadChannelAccChainVector[t];
                         for(int c = 0; c < numberOfChannels; ++c)
                             accChainVector[edge][c].merge(perThreadAccChainVec[edge][c]);
                     }            
                 });
 
-                f(*perThreadChannelAccChainVector[0], inEdgeOffset);
+                f(perThreadChannelAccChainVector[0], inEdgeOffset);
                 
-                // delete
-                parallel::parallel_foreach(threadpool, actualNumberOfThreads, 
-                [&](const int tid, const int64_t i){
-                    delete perThreadChannelAccChainVector[i];
-                });
             }
             
             if(sliceId < numberOfSlices - 1 && keepXYOnly) {
@@ -278,10 +266,10 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
                 // I don't know if this makes sense in the setting we have here, discuss with him!
                 parallel::parallel_foreach(threadpool, actualNumberOfThreads, 
                 [&](const int tid, const int64_t i){
-                    perThreadChannelAccChainVector[i] = new ChannelAccChainVectorType( rag.numberOfInBetweenSliceEdges(sliceId),
+                    perThreadChannelAccChainVector[i] = ChannelAccChainVectorType( rag.numberOfInBetweenSliceEdges(sliceId),
                         AccChainVectorType( numberOfChannels) );
                     // set minmax
-                    auto & perThreadAccChainVector = *(perThreadChannelAccChainVector[i]);
+                    auto & perThreadAccChainVector = perThreadChannelAccChainVector[i];
                     for(int64_t edge = 0; edge < rag.numberOfInBetweenSliceEdges(sliceId); ++edge){
                         for(int c = 0; c < numberOfChannels; ++c)
                             perThreadAccChainVector[edge][c].setHistogramOptions(histoOptionsVec[c]);
@@ -293,7 +281,7 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
                 // accumulate filter for the between slice edges
                 nifty::tools::parallelForEachCoordinate(threadpool, sliceShape2, [&](const int tid, const Coord2 coord){
 
-                    auto & channelAccChainVec = *(perThreadChannelAccChainVector[tid]);
+                    auto & channelAccChainVec = perThreadChannelAccChainVector[tid];
                     // labels are different for different slices by default!
                     const auto lU = labelsASqueezed(coord.asStdArray());
                     const auto lV = labelsBSqueezed(coord.asStdArray());
@@ -322,22 +310,16 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
                 // merge
                 parallel::parallel_foreach(threadpool, rag.numberOfInBetweenSliceEdges(sliceId), 
                 [&](const int tid, const int64_t edge){
-                    auto & accChainVec = *(perThreadChannelAccChainVector[0]);
+                    auto & accChainVec = perThreadChannelAccChainVector[0];
                     for(auto t=1; t<actualNumberOfThreads; ++t){
-                        auto & perThreadAccChainVec = *(perThreadChannelAccChainVector[t]);
+                        auto & perThreadAccChainVec = perThreadChannelAccChainVector[t];
                         for(int c = 0; c < numberOfChannels; ++c)
                             accChainVec[edge][c].merge(perThreadAccChainVec[edge][c]);
                     }
                 });
 
-                f(*perThreadChannelAccChainVector[0], accOffset);
+                f(perThreadChannelAccChainVector[0], accOffset);
             
-                // delete
-                parallel::parallel_foreach(threadpool, actualNumberOfThreads, 
-                [&](const int tid, const int64_t i){
-                    delete perThreadChannelAccChainVector[i];
-                });
-
                 // swap A and B
                 labelsASqueezed = labelsBSqueezed;
                 dataASqueezed = dataBSqueezed;
