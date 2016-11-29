@@ -1,7 +1,4 @@
 #pragma once
-#ifndef NIFTY_GRAPH_AGGLO_CLUSTER_POLICIES_CLUSTER_POLICIES_COMMON_HXX
-#define NIFTY_GRAPH_AGGLO_CLUSTER_POLICIES_CLUSTER_POLICIES_COMMON_HXX
-
 
 namespace nifty{
 namespace graph{
@@ -21,4 +18,3 @@ struct EdgeWeightedClusterPolicySettings{
 } // namespace nifty::graph
 } // namespace nifty
 
-#endif /*NIFTY_GRAPH_AGGLO_CLUSTER_POLICIES_CLUSTER_POLICIES_COMMON_HXX*/
