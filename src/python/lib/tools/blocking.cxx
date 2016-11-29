@@ -68,6 +68,7 @@ namespace tools{
 
 
             .def("getBlock", &BlockingType::getBlock)
+
             .def("getBlockWithHalo", [](
                     const BlockingType & self,
                     const size_t blockIndex,
@@ -86,6 +87,26 @@ namespace tools{
                     return self.getBlockWithHalo(blockIndex, haloBegin, haloEnd);
                 },
                 py::arg("blockIndex"),py::arg("haloBegin"),py::arg("haloEnd")
+            )
+
+            .def("addHalo", [](
+                    const BlockingType & self,
+                    const BlockType & block,
+                    const VectorType halo
+                ){
+                    return self.addHalo(block, halo);
+                },
+                py::arg("block"),py::arg("halo")
+            )
+            .def("addHalo", [](
+                    const BlockingType & self,
+                    const BlockType & block,
+                    const VectorType haloBegin,
+                    const VectorType haloEnd
+                ){
+                    return self.addHalo(block, haloBegin, haloEnd);
+                },
+                py::arg("block"),py::arg("haloBegin"),py::arg("haloEnd")
             )
         ;
     }

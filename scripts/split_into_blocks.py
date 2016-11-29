@@ -12,9 +12,9 @@ import threading
 
 
 # needed files: raw, pmap, supervoxel
-rawFile = "/media/tbeier/4cf81285-be72-45f5-8c63-fb8e9ff4476c/datasets/hhess_2nm/raw_2k_2nm.h5"
-pmapFile = "/home/tbeier/prediction_semantic_binary_full.h5"
-oversegFile = "/media/tbeier/4cf81285-be72-45f5-8c63-fb8e9ff4476c/supervoxels/2nm/aggloseg_0.3_40.h5"
+#rawFile = "/media/tbeier/4cf81285-be72-45f5-8c63-fb8e9ff4476c/datasets/hhess_2nm/raw_2k_2nm.h5"
+#pmapFile = "/home/tbeier/prediction_semantic_binary_full.h5"
+oversegFile = "/media/tbeier/4cf81285-be72-45f5-8c63-fb8e9ff4476c/supervoxels/2nm/aggloseg_0.3_5.h5"
 
 
 blockFile = "/media/tbeier/4cf81285-be72-45f5-8c63-fb8e9ff4476c/blocks"
@@ -26,12 +26,12 @@ totalShape = (2000,2000,2000)
 blocking = nifty.tools.blocking(roiBegin=(0,0,0), roiEnd=totalShape, blockShape=blockCoreShape)
 
 
-rawFileH5     = h5py.File(rawFile,'r')
-pmapFileH5    = h5py.File(pmapFile,'r')
+#rawFileH5     = h5py.File(rawFile,'r')
+#pmapFileH5    = h5py.File(pmapFile,'r')
 oversegFileH5 = h5py.File(oversegFile,'r')
 
-rawFileData = rawFileH5['data']
-pmapFileData = pmapFileH5['data']
+#rawFileData = rawFileH5['data']
+#pmapFileData = pmapFileH5['data']
 oversegFileData = oversegFileH5['data']
 
 

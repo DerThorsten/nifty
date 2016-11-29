@@ -181,6 +181,9 @@ namespace neuro_seg{
 
                         const auto lU = labels(coord.asStdArray());
                         const auto pU = &data(coord[0],coord[1],coord[2],0);
+                        const auto pU1 = &data(coord[0],coord[1],coord[2],1);
+
+                        NIFTY_CHECK_OP(pU1-pU,==,1,"");
 
                         {
                             auto iter = nodes_.emplace(lU, Accumulator(numberOfChannels_)).first;
@@ -322,7 +325,7 @@ namespace neuro_seg{
                     out(fIndex + 20) = nCountE / std::max(nCountU,  nCountV);
                     out(fIndex + 21) = nCountE /         (nCountU + nCountV);
                 }
-
+                fIndex += 22;
 
 
                 // channel data
@@ -337,8 +340,8 @@ namespace neuro_seg{
 
                         // get values
                         this->extract(chainE, fE);
-                        this->extract(chainE, fU);
-                        this->extract(chainE, fV);
+                        this->extract(chainU, fU);
+                        this->extract(chainV, fV);
 
 
                         for(auto i=0; i<11; ++i){

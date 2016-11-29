@@ -21,6 +21,9 @@ def getIlpLabels(blockLabelsIlpFile):
             if l == 1 or l == 2:
                 uv = long(spId[0]),long(spId[1])
                 if uv in allLabels:
+                    oldLabel = allLabels[uv]
+                    if oldLabel !=  l :
+                        print("WRRROOONG")
                     allLabels[uv] = max(l, allLabels[uv])
                 else:
                     allLabels[uv] = l

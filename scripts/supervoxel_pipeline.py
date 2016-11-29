@@ -15,11 +15,11 @@ import math
 import threading
 import fastfilters
 
-pmapPath = "/home/tbeier/prediction_semantic_binary_full.h5"
+pmapPath = "/home/tbeier/prediction_binary_full.h5"
 
-heightMapFile = "/media/tbeier/4cf81285-be72-45f5-8c63-fb8e9ff4476c/supervoxels/2nm/heightMap2.h5"
-oversegFile = "/media/tbeier/4cf81285-be72-45f5-8c63-fb8e9ff4476c/supervoxels/2nm/ufd_overseg3.h5"
-oversegFile = "/home/tbeier/ufd_overseg3.h5"
+heightMapFile = "/media/tbeier/4cf81285-be72-45f5-8c63-fb8e9ff4476c/supervoxels/2nm/heightMap.h5"
+oversegFile = "/media/tbeier/4cf81285-be72-45f5-8c63-fb8e9ff4476c/supervoxels/2nm/ufd_overseg6.h5"
+
 #oversegFile = "/media/tbeier/4cf81285-be72-45f5-8c63-fb8e9ff4476c/supervoxels/2nm/aggloseg_0.3_50.h5"
 agglosegBaseFile = "/media/tbeier/4cf81285-be72-45f5-8c63-fb8e9ff4476c/supervoxels/2nm/aggloseg_"
 
@@ -71,12 +71,12 @@ def membraneOverseg3D(pmapDset, heightMapDset, **kwargs):
         
         footprint, origin = makeBall(r=3)
 
-        medianImg = scipy.ndimage.percentile_filter(input=pmap, 
-                                                    #size=(20,20,20),
-                                                    footprint=footprint, 
-                                                    #origin=origin, 
-                                                    mode='reflect',
-                                                    percentile=50.0)
+        #medianImg = scipy.ndimage.percentile_filter(input=pmap, 
+        #                                            #size=(20,20,20),
+        #                                            footprint=footprint, 
+        #                                            #origin=origin, 
+        #                                            mode='reflect',
+        #                                            percentile=50.0)
         if False:
             blurredSmall = vigra.gaussianSmoothing(pmap.T, 1.0,).T
             blurredLarge = vigra.gaussianSmoothing(pmap.T, 6.0,).T
@@ -87,9 +87,9 @@ def membraneOverseg3D(pmapDset, heightMapDset, **kwargs):
             blurredLarge = fastfilters.gaussianSmoothing(pmap, 6.0,)
             blurredSuperLarge = fastfilters.gaussianSmoothing(pmap, 10.0,)
 
-        combined = medianImg + blurredSuperLarge*0.3 + 0.15*blurredLarge + 0.1*blurredSmall
+        combined = pmap + blurredSuperLarge*0.3 + 0.15*blurredLarge + 0.1*blurredSmall
 
-        footprint, origin = makeBall(r=3)
+        footprint, origin = makeBall(r=5)
         combined = scipy.ndimage.percentile_filter(input=combined, 
                                                     #size=(20,20,20),
                                                     footprint=footprint, 
@@ -97,7 +97,7 @@ def membraneOverseg3D(pmapDset, heightMapDset, **kwargs):
                                                     mode='reflect',
                                                     percentile=50.0)
 
-        combined = fastfilters.gaussianSmoothing(combined, 1.3)
+        #combined = fastfilters.gaussianSmoothing(combined, 1.3)
 
 
         if False:
@@ -159,7 +159,7 @@ def membraneOverseg3D(pmapDset, heightMapDset, **kwargs):
             b,e =  blockWithHalo.innerBlock.begin,  blockWithHalo.innerBlock.end
 
             if isinstance(heightMapDset,numpy.ndarray):
-                print("NOT LOCKED")
+                #print("NOT LOCKED")
                 heightMapDset[b[0]:e[0], b[1]:e[1], b[2]:e[2]] = innerHeightMap
                 with lock:
                     done[0] += 1
@@ -167,7 +167,7 @@ def membraneOverseg3D(pmapDset, heightMapDset, **kwargs):
 
             else:
                 with lock:
-                    print("locked",b,e)
+                    #print("locked",b,e)
 
                     heightMapDset[b[0]:e[0], b[1]:e[1], b[2]:e[2]] = innerHeightMap
                     done[0] += 1
@@ -243,13 +243,15 @@ def makeSmallerSegNifty(oseg,  volume_feat, reduceBySetttings, wardnessSettings,
             outFilename = baseFilename + str(wardness) + "_" + str(reduceBy) + ".h5"
 
             agglosegH5 = h5py.File(outFilename,'w')
-            agglosegDset = agglosegH5.create_dataset('data',shape=pmapDset.shape[0:3], chunks=(100,100,100),dtype='uint32',compression="gzip")
+            agglosegDset = agglosegH5.create_dataset('data',shape=oseg.shape[0:3], chunks=(100,100,100),dtype='uint32',compression="gzip")
             agglosegDset[:,:,:] = pixelData
             agglosegH5.close()
 
 
 
-if True:
+if False:
+    # let's not this by accident
+    assert False
     pmapH5 = h5py.File(pmapPath,'r')
     pmapDset = pmapH5['data']
     shape = list(pmapDset.shape[0:3])
@@ -257,7 +259,7 @@ if True:
     subset = None
     sshape = (subset,)*3
     heightMapH5 = h5py.File(heightMapFile,'w')
-    heightMapDset = heightMapH5.create_dataset('data',shape=shape,dtype='float32')
+    heightMapDset = heightMapH5.create_dataset('data',shape=shape,dtype='float32',chunks=(100,100,100))
 
 
 
@@ -286,27 +288,25 @@ if True:
     heightMapH5.close()
 
 
-if True:
+if False:
 
-    print("read hmap")
-    heightMapH5 = h5py.File(heightMapFile,'r')
-    heightMapDset = heightMapH5['data']
-    heightMap = heightMapDset[:,:,:]
-    shape = list(heightMap.shape)
-    heightMapH5.close()
+    with vigra.Timer("read hmap"):
+        heightMapH5 = h5py.File(heightMapFile,'r')
+        heightMapDset = heightMapH5['data']
+        heightMap = heightMapDset[:,:,:]
+        shape = list(heightMap.shape)
+        heightMapH5.close()
 
-    print("do overseg")
-    overseg, nseg = vigra.analysis.unionFindWatershed3D(heightMap.T, blockShape=(100,100,100))
-    overseg = overseg.T
-    oversegH5 = h5py.File(oversegFile)
+    with vigra.Timer("do overseg"):
+        overseg, nseg = vigra.analysis.unionFindWatershed3D(heightMap.T, blockShape=(100,100,100))
+        overseg = overseg.T
+        oversegH5 = h5py.File(oversegFile,'w')
 
-    overseg = numpy.array(overseg)
-
-    print("write")
-    oversegDset = oversegH5.create_dataset('data',data=overseg, chunks=(100,100,100))#,compression='gzip')
-    oversegDset.attrs['nseg'] = nseg
-    oversegH5.close()
-   
+    with vigra.Timer("write res"):
+        oversegDset = oversegH5.create_dataset('data',shape=shape, data=overseg, chunks=(100,100,100),compression='gzip')
+        oversegDset.attrs['nseg'] = nseg
+        oversegH5.close()
+       
 
     
 
@@ -325,7 +325,7 @@ if False:
     
 
 
-if True:
+if False:
 
     oversegH5 = h5py.File(oversegFile,'r')
     oversegDset = oversegH5['data']
@@ -351,7 +351,7 @@ if True:
                 heightMapDset[b[0]:e[0], b[1]:e[1], b[2]:e[2]] = innerHeightMap
                 done[0] += 1
                 bar.update(done[0])
-        nifty.tools.parallelForEach(range(blocking.numberOfBlocks), f=f, nWorkers=nWorkers)
+        nifty.tools.parallelForEach(range(blocking.numberOfBlocks), f=f)
 
 
 
@@ -373,6 +373,9 @@ if True:
 
     print("read oseg")
     overseg = oversegDset[:,:,:]
+
+    heightMapH5.close()
+    oversegH5.close()
 
     print("make smaller")
     makeSmallerSegNifty(overseg,heightMap, [5,10,20], [0.3], agglosegBaseFile)
