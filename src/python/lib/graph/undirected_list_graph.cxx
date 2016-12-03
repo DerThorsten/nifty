@@ -2,6 +2,7 @@
 #include <iostream>
 #include <sstream>
 #include <pybind11/numpy.h>
+#include <pybind11/stl.h>
 
 #include "nifty/graph/undirected_list_graph.hxx"
 
@@ -68,6 +69,19 @@ namespace graph{
 
                     
                     g.deserialize(startPtr);
+                }
+            )
+            .def("extractSubgraphFromNodes",
+                []( Graph & g, const marray::PyView<int64_t,1> nodeList) {
+                    
+                    std::vector<int64_t> innerEdgesVec;  
+                    std::vector<int64_t> outerEdgesVec;  
+                    Graph subgraph;
+                    {
+                        py::gil_scoped_release allowThreads;
+                        subgraph = g.extractSubgraphFromNodes(nodeList, innerEdgesVec, outerEdgesVec);
+                    }
+                    return std::make_tuple(innerEdgesVec, outerEdgesVec, subgraph);
                 }
             )
         ;
