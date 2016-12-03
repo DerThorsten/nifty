@@ -6,6 +6,7 @@
 #include <initializer_list>
 #include <sstream>
 #include <iostream>
+#include <chrono>
 
 namespace nifty {
 namespace graph {
@@ -37,16 +38,21 @@ namespace optimization{
     class VerboseVisitor : public VisitorBase<SOLVER>{
     public:
         typedef SOLVER SolverType;
+        typedef std::chrono::seconds TimeType;
+        typedef std::chrono::time_point<std::chrono::steady_clock> TimePointType;
 
-        VerboseVisitor(const int printNth = 1)
+        VerboseVisitor(const int printNth = 1, const size_t timeLimit = 0)
         :   printNth_(printNth),
             runOpt_(true),
-            iter_(1){
+            iter_(1),
+            timeLimit_(timeLimit){
         }
 
         virtual void begin(SolverType * ) {
             std::cout<<"begin inference\n";
+            startTime_ = std::chrono::steady_clock::now();
         }
+        
         virtual bool visit(SolverType * solver) {
             if(iter_%printNth_ == 0){
                 std::stringstream ss;
@@ -57,28 +63,47 @@ namespace optimization{
                 ss<<"\n";
                 std::cout<<ss.str();
             }
+            if(timeLimit_ > 0)
+                checkRuntime();
             ++iter_;
             return runOpt_;
         }
+        
         virtual void end(SolverType * )   {
             std::cout<<"end inference\n";
         }
+        
         virtual void addLogNames(std::initializer_list<std::string> logNames){
             logNames_.assign(logNames.begin(), logNames.end());
             logValues_.resize(logNames.size());
         }
+        
         virtual void setLogValue(const size_t logIndex, double logValue){
             logValues_[logIndex] = logValue;
         }
+        
         void stopOptimize(){
             runOpt_ = false;
         }
+    
     private:
         bool runOpt_;
         int printNth_;
         int iter_;
+        size_t timeLimit_;
+        TimePointType startTime_;
+
         std::vector<std::string> logNames_;
         std::vector<double> logValues_;
+
+        inline void checkRuntime() {
+            auto runtime = std::chrono::duration_cast<TimeType>(
+                    std::chrono::steady_clock::now() - startTime_);
+            if(runtime.count() < timeLimit_) {
+                std::cout << "Inference has exceeded time limit and is stopped \n";
+                stopOptimize();
+            }
+        }
     };
 
 
