@@ -50,6 +50,10 @@ namespace optimization{
 
         virtual void begin(SolverType * ) {
             std::cout<<"begin inference\n";
+            if(timeLimit_ > 0) {
+                std::cout << "With Time Limit: \n";
+                std::cout << timeLimit_ << std::endl;
+            }
             startTime_ = std::chrono::steady_clock::now();
         }
         
@@ -99,7 +103,7 @@ namespace optimization{
         inline void checkRuntime() {
             auto runtime = std::chrono::duration_cast<TimeType>(
                     std::chrono::steady_clock::now() - startTime_);
-            if(runtime.count() < timeLimit_) {
+            if(runtime.count() > timeLimit_) {
                 std::cout << "Inference has exceeded time limit and is stopped \n";
                 stopOptimize();
             }
