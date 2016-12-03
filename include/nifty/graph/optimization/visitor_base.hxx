@@ -99,7 +99,7 @@ namespace optimization{
         inline void checkRuntime() {
             auto runtime = std::chrono::duration_cast<TimeType>(
                     std::chrono::steady_clock::now() - startTime_);
-            if(runtime.count() < timeLimit_) {
+            if(runtime.count() > timeLimit_) {
                 std::cout << "Inference has exceeded time limit and is stopped \n";
                 stopOptimize();
             }
