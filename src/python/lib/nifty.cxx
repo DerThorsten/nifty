@@ -10,19 +10,6 @@ namespace py = pybind11;
     #include <gurobi_c++.h>
 #endif
 
-namespace nifty{
-namespace graph{
-    void initSubmoduleGraph(py::module & );
-}
-namespace tools{
-    void initSubmoduleTools(py::module &);
-}
-#ifdef WITH_HDF5
-namespace hdf5{
-    void initSubmoduleHdf5(py::module & );
-}
-#endif
-}
 
 PYBIND11_DECLARE_HOLDER_TYPE(T, std::shared_ptr<T>);
 
@@ -37,14 +24,6 @@ PYBIND11_PLUGIN(_nifty) {
 
     using namespace nifty;
 
-
-
-    //graph::initSubmoduleGraph(niftyModule);
-    tools::initSubmoduleTools(niftyModule);
-
-    #ifdef WITH_HDF5
-    hdf5::initSubmoduleHdf5(niftyModule);
-    #endif
 
     #ifdef WITH_GUROBI
         // Translate Gurobi exceptions to Python exceptions

@@ -55,3 +55,5 @@ add_custom_target(copy_python_ground_truth__init__ ALL#POST_BUILD
 
 
 
+add_dependencies(python-module _ground_truth)
+add_dependencies(python-module copy_python_ground_truth__init__)

@@ -53,12 +53,13 @@ ADD_CUSTOM_COMMAND(
         COMMENT "Copying target lifted_multicut to temporary module directory")
 
 
-
-
 add_custom_target(copy_pythonlifted_multicut__init__ ALL#POST_BUILD
     COMMAND cmake -E copy_if_different 
     ${CMAKE_SOURCE_DIR}/src/python/module/graph/lifted_multicut/__init__.py 
     ${CMAKE_BINARY_DIR}/python/nifty/graph/lifted_multicut/__init__.py)
 
+
+add_dependencies(python-module _lifted_multicut)
+add_dependencies(python-module copy_pythonlifted_multicut__init__)
 
 

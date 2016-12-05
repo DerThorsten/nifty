@@ -77,7 +77,7 @@ namespace tools{
         const COORD & endCoord,
         marray::View<LABEL_TYPE> & subarray
     ){
-        labels.readSubarray(beginCoord, endCoord, subarray);
+        return labels.readSubarray(beginCoord, endCoord, subarray);
     }
 
 }

@@ -53,4 +53,8 @@ add_custom_target(copy_pythonagglo__init__ ALL#POST_BUILD
     ${CMAKE_BINARY_DIR}/python/nifty/graph/agglo/__init__.py)
 
 
+add_dependencies(python-module _agglo)
+add_dependencies(python-module copy_pythonagglo__init__)
+
+
 

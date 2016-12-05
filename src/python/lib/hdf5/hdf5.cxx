@@ -14,14 +14,24 @@ namespace hdf5{
 
     void exportHdf5Common(py::module &);
     void exportHdf5Array(py::module &);
-
-    void initSubmoduleHdf5(py::module &niftyModule) {
-        auto hdf5Module = niftyModule.def_submodule("hdf5","hdf5 submodule");
-        exportHdf5Common(hdf5Module);
-        exportHdf5Array(hdf5Module);
-    }
+    void exportHdf5BlockwiseWatershed(py::module &);
 
 }
+}
+
+
+
+
+PYBIND11_PLUGIN(_hdf5) {
+    py::module hdf5Module("_hdf5", "hdf5 submodule of nifty");
+
+    using namespace nifty::hdf5;
+
+    exportHdf5Common(hdf5Module);
+    exportHdf5Array(hdf5Module);
+    exportHdf5BlockwiseWatershed(hdf5Module);
+
+    return hdf5Module.ptr();
 }
 
 #endif

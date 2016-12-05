@@ -387,7 +387,7 @@ namespace tools{
 
     template<class T, class COORD>
     inline void readSubarray(
-        const hdf5::Hdf5Array<T> array,
+        const hdf5::Hdf5Array<T> & array,
         const COORD & beginCoord,
         const COORD & endCoord,
         marray::View<T> & subarray
