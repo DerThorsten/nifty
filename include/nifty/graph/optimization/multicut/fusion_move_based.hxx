@@ -360,6 +360,11 @@ namespace graph{
                     ++iterWithoutImprovement;
                 }
             }
+
+            if(iterWithoutImprovement > settings_.stopIfNoImprovement){
+                break;
+            }
+
             visitorProxy.setLogValue(0,iterWithoutImprovement);
             if(!visitorProxy.visit(this))
                 break;
