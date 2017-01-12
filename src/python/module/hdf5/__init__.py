@@ -10,7 +10,7 @@ else:
     pass
 
 import math
-
+import numpy
 
 
 if Configuration.WITH_HDF5:

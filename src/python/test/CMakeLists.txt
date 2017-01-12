@@ -18,7 +18,7 @@ if(NOSETESTS_PATH)
         #test_multicut_inference.py
         #test_rag.py
         #test_rag_accumulate.py
-        #test_hdf5.py
+        test_hdf5.py
         ## graph
         ### agglo
         #graph/agglo/test_agglo.py

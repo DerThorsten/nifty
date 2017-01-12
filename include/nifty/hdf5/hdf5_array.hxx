@@ -28,7 +28,8 @@ namespace hdf5{
             const std::string & datasetName,
             SHAPE_ITER shapeBegin,
             SHAPE_ITER shapeEnd,
-            CHUNK_SHAPE_ITER chunkShapeBegin
+            CHUNK_SHAPE_ITER chunkShapeBegin,
+            const int compression = -1 // -1 means no compression
         )
         :   groupHandle_(groupHandle),
             dataset_(),
@@ -58,6 +59,19 @@ namespace hdf5{
             // chunk properties
             hid_t dcplId = H5Pcreate(H5P_DATASET_CREATE);
             H5Pset_chunk(dcplId, hsize_t(dim), chunkShape.data());
+
+            if(compression > 0){
+                if(!H5Zfilter_avail(H5Z_FILTER_DEFLATE)){
+                    throw std::runtime_error("gzip filter not available");
+                }
+                else{
+                    const auto status = H5Pset_deflate(dcplId, compression);
+                    if(status!=0){
+                        throw std::runtime_error("error in  H5Pset_deflate");
+                    }
+                }
+            }
+
 
             // dataset shape
             auto dataspace = H5Screate_simple(hsize_t(dim), shape.data(), NULL);

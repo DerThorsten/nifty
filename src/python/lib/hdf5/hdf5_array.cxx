@@ -28,7 +28,8 @@ namespace hdf5{
                 const hid_t & groupHandle,
                 const std::string & datasetName,
                 std::vector<size_t> shape,
-                std::vector<size_t> chunkShape
+                std::vector<size_t> chunkShape,
+                const int compression
             ){
                 NIFTY_CHECK_OP(shape.size(), == ,chunkShape.size(), 
                     "shape and chunk shape do not match");
@@ -36,8 +37,13 @@ namespace hdf5{
                 new (&instance) Hdf5ArrayType(groupHandle, datasetName,
                                               shape.begin(), shape.end(),
                                               chunkShape.begin());
-            })
-
+            },
+                py::arg("groupHandle"),
+                py::arg("datasetName"),
+                py::arg("shape"),
+                py::arg("chunkShape"),
+                py::arg("compression") = -1
+            )
             .def_property_readonly("isChunked", &Hdf5ArrayType::isChunked)
             .def_property_readonly("ndim", &Hdf5ArrayType::dimension)
             .def_property_readonly("shape", [](const Hdf5ArrayType & array){
