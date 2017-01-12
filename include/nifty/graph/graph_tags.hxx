@@ -15,6 +15,9 @@ namespace graph{
     struct ArcTag{
     };
 
+    struct AdjacencyTag{
+    };
+
 
 
     struct ContiguousTag{
