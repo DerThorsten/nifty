@@ -36,7 +36,7 @@ namespace hdf5{
 
                 new (&instance) Hdf5ArrayType(groupHandle, datasetName,
                                               shape.begin(), shape.end(),
-                                              chunkShape.begin());
+                                              chunkShape.begin(),compression);
             },
                 py::arg("groupHandle"),
                 py::arg("datasetName"),
