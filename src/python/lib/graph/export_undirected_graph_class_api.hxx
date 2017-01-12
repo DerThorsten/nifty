@@ -3,6 +3,7 @@
 #define NIFTY_PYTHON_GRAPH_EXPORT_UNDIRECTED_GRAPH_CLASS_API_HXX
 
 #include "nifty/python/converter.hxx"
+#include "nifty/python/graph/adjacency_converter.hxx"
 
 namespace py = pybind11;
 
