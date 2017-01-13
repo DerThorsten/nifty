@@ -32,8 +32,6 @@ namespace tools{
         subarray = array.view(beginCoord.begin(), subShape.begin());
     }
     
-    
-    // FIXME this only works inf COORD = nifty::array::StaticArray
     template<class T, class COORD>
     inline void writeSubarray(
         marray::View<T> array,
@@ -41,7 +39,6 @@ namespace tools{
         const COORD & endCoord,
         const marray::View<T> & data
     ){
-
         const auto dim = array.dimension();
         
         COORD subShape;
@@ -52,7 +49,7 @@ namespace tools{
             NIFTY_CHECK_OP(subShape[d],==,data.shape(d),"Shapes don't match!")
         auto subarray = array.view(beginCoord.begin(), subShape.begin());
         
-        // for dim < 4 we can use forEachCoordinate
+        // for dim < 4 we can use forEachCoordinate (this only works if COORD is nifty::array::StaticArray)
         if(dim <= 4) {
             forEachCoordinate(subShape, [&](const COORD & coord){
                 subarray(coord.asStdArray()) = data(coord.asStdArray());
@@ -64,6 +61,27 @@ namespace tools{
             for(; itArray != subarray.end(); ++itArray, ++itData)
                 *itArray = *itData;
         }
+    }
+    
+    // dummy function, because we don't lock for marrays
+    template<class T, class COORD>
+    inline void readSubarrayLocked(
+        const marray::View<T> array,
+        const COORD & beginCoord,
+        const COORD & endCoord,
+        marray::View<T> & subarray
+    ){
+        readSubarray(array,beginCoord,endCoord,subarray);
+    }
+    
+    template<class T, class COORD>
+    inline void writeSubarrayLocked(
+        marray::View<T> array,
+        const COORD & beginCoord,
+        const COORD & endCoord,
+        const marray::View<T> & data
+    ){
+        writeSubarray(array,beginCoord,endCoord,data);
     }
 }
 
