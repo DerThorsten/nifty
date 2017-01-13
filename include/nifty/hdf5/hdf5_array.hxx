@@ -4,6 +4,7 @@
 
 #include <string>
 #include <vector>
+#include <mutex>
 
 #include "nifty/tools/block_access.hxx"
 #include "nifty/tools/runtime_check.hxx"
@@ -408,8 +409,42 @@ namespace tools{
     ){
         array.readSubarray(beginCoord.begin(), subarray);
     }
-
-
+    
+    template<class T, class COORD>
+    inline void writeSubarray(
+        hdf5::Hdf5Array<T> & array,
+        const COORD & beginCoord,
+        const COORD & endCoord,
+        const marray::View<T> & subarray
+    ){
+        array.writeSubarray(beginCoord.begin(), subarray);
+    }
+    
+    template<class T, class COORD>
+    inline void readSubarrayLocked(
+        const hdf5::Hdf5Array<T> & array,
+        const COORD & beginCoord,
+        const COORD & endCoord,
+        marray::View<T> & subarray
+    ){
+        std::mutex mtx;
+        mtx.lock();
+        array.readSubarray(beginCoord.begin(), subarray);
+        mtx.unlock();
+    }
+    
+    template<class T, class COORD>
+    inline void writeSubarrayLocked(
+        hdf5::Hdf5Array<T> & array,
+        const COORD & beginCoord,
+        const COORD & endCoord,
+        const marray::View<T> & subarray
+    ){
+        std::mutex mtx;
+        mtx.lock();
+        array.writeSubarray(beginCoord.begin(), subarray);
+        mtx.unlock();
+    }
 
     template<class ARRAY>
     struct BlockStorageSelector;
