@@ -9,7 +9,7 @@ namespace nifty {
 namespace tools {
 
     template<class T>
-    std::vector<T> uniques(const marray::View<T> & array, std::vector<T> & out) {
+    void uniques(const marray::View<T> & array, std::vector<T> & out){
         
         out.resize(array.size());
         std::copy(array.begin(), array.end(), out.begin());

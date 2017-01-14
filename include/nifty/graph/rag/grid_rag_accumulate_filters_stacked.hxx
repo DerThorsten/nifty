@@ -483,7 +483,9 @@ void accumulateSkipEdgeFeaturesFromFiltersWithAccChain(
         std::map<size_t,std::vector<size_t>> skipSlices;
         std::map<size_t,size_t> numberOfSkipEdgesPerSlice;
         // initialize the maps
+        std::cout << "Lower slices with skip edges:" << std::endl;
         for(auto sliceId : lowerSlices) {
+            std::cout << sliceId << std::endl;
             skipSlices[sliceId] = std::vector<size_t>();
             numberOfSkipEdgesPerSlice[sliceId] = 0;
         }
@@ -504,11 +506,12 @@ void accumulateSkipEdgeFeaturesFromFiltersWithAccChain(
         
         std::vector<vigra::HistogramOptions> histoOptionsVec(numberOfChannels);
         
-        size_t accOffset = 0;
+        size_t skipEdgeOffset = 0;
         int countSlice = 0;
         for(auto sliceId : lowerSlices) {
 
             std::cout << countSlice++ << " / " << lowerSlices.size() << std::endl;
+            std::cout << "Finding features for skip edges from slice " << sliceId << std::endl; 
                 
             Coord beginA({int64_t(sliceId),0L,0L}); 
             Coord endA(  {int64_t(sliceId+1),shape[1],shape[2]}); 
@@ -565,6 +568,8 @@ void accumulateSkipEdgeFeaturesFromFiltersWithAccChain(
             Coord endB;
             // iterate over all upper slices that have skip edges with this slice
             for(auto nextId : skipSlices[sliceId] ) {
+                std::cout << "to slice " << nextId << std::endl;
+
                 beginB = Coord({int64_t(nextId),0L,0L});
                 endB   = Coord({int64_t(nextId+1),shape[1],shape[2]});
                 
@@ -609,7 +614,7 @@ void accumulateSkipEdgeFeaturesFromFiltersWithAccChain(
                             vigraCoordV[d] = coord[d-1];
                         }
                         
-                        const auto skipId = std::distance(skipEdges.begin(), skipIterator) - numberOfSkipEdgesInSlice;
+                        const auto skipId = std::distance(skipEdges.begin(), skipIterator) - skipEdgeOffset;
                         
                         for(int c = 0; c < numberOfChannels; ++c) {
                             const auto fU = filterA(c, coord[0], coord[1]);
@@ -620,6 +625,7 @@ void accumulateSkipEdgeFeaturesFromFiltersWithAccChain(
                     }
                 });
             }
+            std::cout << "After Loop" << std::endl;
             
             // merge
             parallel::parallel_foreach(threadpool, numberOfSkipEdgesInSlice, 
@@ -631,8 +637,10 @@ void accumulateSkipEdgeFeaturesFromFiltersWithAccChain(
                         accChainVec[edge][c].merge(perThreadAccChainVec[edge][c]);
                 }
             });
-            f(perThreadChannelAccChainVector[0], accOffset);
-            accOffset += numberOfSkipEdgesInSlice;
+            std::cout << "After Merge" << std::endl;
+
+            f(perThreadChannelAccChainVector[0], skipEdgeOffset);
+            skipEdgeOffset += numberOfSkipEdgesInSlice;
         }
     }
 }
@@ -711,6 +719,10 @@ void accumulateSkipEdgeFeaturesFromFilters(
             FeatCoord begin({int64_t(edgeOffset),0L});
             FeatCoord end({edgeOffset+nEdges,nChannels*nStats});
 
+            std::cout << "Here" << std::endl;
+            std::cout << "Begin: " << begin << std::cout;
+            std::cout << "End: " << end << std::cout;
+            std::cout << "Dim: " << featuresTemp.dimension() << std::cout;
             tools::writeSubarray(edgeFeaturesOut, begin, end, featuresTemp);
         }
     );
