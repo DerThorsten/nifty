@@ -625,7 +625,6 @@ void accumulateSkipEdgeFeaturesFromFiltersWithAccChain(
                     }
                 });
             }
-            std::cout << "After Loop" << std::endl;
             
             // merge
             parallel::parallel_foreach(threadpool, numberOfSkipEdgesInSlice, 
@@ -637,7 +636,6 @@ void accumulateSkipEdgeFeaturesFromFiltersWithAccChain(
                         accChainVec[edge][c].merge(perThreadAccChainVec[edge][c]);
                 }
             });
-            std::cout << "After Merge" << std::endl;
 
             f(perThreadChannelAccChainVector[0], skipEdgeOffset);
             skipEdgeOffset += numberOfSkipEdgesInSlice;
@@ -719,10 +717,6 @@ void accumulateSkipEdgeFeaturesFromFilters(
             FeatCoord begin({int64_t(edgeOffset),0L});
             FeatCoord end({edgeOffset+nEdges,nChannels*nStats});
 
-            std::cout << "Here" << std::endl;
-            std::cout << "Begin: " << begin << std::cout;
-            std::cout << "End: " << end << std::cout;
-            std::cout << "Dim: " << featuresTemp.dimension() << std::cout;
             tools::writeSubarray(edgeFeaturesOut, begin, end, featuresTemp);
         }
     );

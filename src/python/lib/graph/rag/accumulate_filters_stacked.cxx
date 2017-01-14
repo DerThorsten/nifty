@@ -120,14 +120,13 @@ namespace graph{
             const int numberOfThreads
         ){
             uint64_t nSkipEdges = skipEdges.size();
-            std::cout << "Here, " << nSkipEdges << std::endl;
+            
             // TODO don't hard code this
             uint64_t nChannels = 12;
             uint64_t nStats = 9;
             uint64_t nFeatures = nChannels * nStats;
             nifty::marray::PyView<float> out({nSkipEdges,nFeatures});
             {
-                std::cout << "Doing stuff" << std::endl;
                 py::gil_scoped_release allowThreads;
                 accumulateSkipEdgeFeaturesFromFilters(rag,
                     data,
@@ -177,16 +176,16 @@ namespace graph{
             typedef nifty::hdf5::Hdf5Array<uint8_t> UInt8Array;
 
             // in core
-            //exportAccumulateEdgeFeaturesFromFiltersInCoreT<StackedRagUInt32, FloatArray>(ragModule);
-            //exportAccumulateEdgeFeaturesFromFiltersInCoreT<StackedRagUInt64, FloatArray>(ragModule);
-            //exportAccumulateEdgeFeaturesFromFiltersInCoreT<StackedRagUInt32, UInt8Array>(ragModule);
-            //exportAccumulateEdgeFeaturesFromFiltersInCoreT<StackedRagUInt64, UInt8Array>(ragModule);
-            //
-            //// out of core
-            //exportAccumulateEdgeFeaturesFromFiltersOutOfCoreT<StackedRagUInt32, FloatArray>(ragModule);
-            //exportAccumulateEdgeFeaturesFromFiltersOutOfCoreT<StackedRagUInt64, FloatArray>(ragModule);
-            //exportAccumulateEdgeFeaturesFromFiltersOutOfCoreT<StackedRagUInt32, UInt8Array>(ragModule);
-            //exportAccumulateEdgeFeaturesFromFiltersOutOfCoreT<StackedRagUInt64, UInt8Array>(ragModule);
+            exportAccumulateEdgeFeaturesFromFiltersInCoreT<StackedRagUInt32, FloatArray>(ragModule);
+            exportAccumulateEdgeFeaturesFromFiltersInCoreT<StackedRagUInt64, FloatArray>(ragModule);
+            exportAccumulateEdgeFeaturesFromFiltersInCoreT<StackedRagUInt32, UInt8Array>(ragModule);
+            exportAccumulateEdgeFeaturesFromFiltersInCoreT<StackedRagUInt64, UInt8Array>(ragModule);
+            
+            // out of core
+            exportAccumulateEdgeFeaturesFromFiltersOutOfCoreT<StackedRagUInt32, FloatArray>(ragModule);
+            exportAccumulateEdgeFeaturesFromFiltersOutOfCoreT<StackedRagUInt64, FloatArray>(ragModule);
+            exportAccumulateEdgeFeaturesFromFiltersOutOfCoreT<StackedRagUInt32, UInt8Array>(ragModule);
+            exportAccumulateEdgeFeaturesFromFiltersOutOfCoreT<StackedRagUInt64, UInt8Array>(ragModule);
             
             // export skipEdgeFeatures
             exportAccumulateSkipEdgeFeaturesFromFiltersT<StackedRagUInt32, FloatArray>(ragModule);
