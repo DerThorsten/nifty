@@ -43,7 +43,7 @@ namespace tools{
         
         COORD subShape;
         for(auto d = 0 ; d<dim; ++d){
-            subShape[d] = beginCoord[d] - endCoord[d];
+            subShape[d] = endCoord[d] - beginCoord[d];
         }
         for(int d = 0; d < dim; ++d )
             NIFTY_CHECK_OP(subShape[d],==,data.shape(d),"Shapes don't match!")
