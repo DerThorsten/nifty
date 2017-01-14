@@ -104,6 +104,40 @@ namespace graph{
         py::arg("numberOfThreads")= -1
         );
     }
+    
+    template<class RAG, class DATA>
+    void exportAccumulateSkipEdgeFeaturesFromFiltersT(
+        py::module & ragModule
+    ){
+        ragModule.def("accumulateSkipEdgeFeaturesFromFilters",
+        [](
+            const RAG & rag,
+            DATA data,
+            const std::vector<std::pair<size_t,size_t>> & skipEdges,
+            nifty::marray::PyView<size_t> skipRanges, // TODO should these be const?
+            nifty::marray::PyView<size_t> skipStarts, // TODO should these be const?
+            const int numberOfThreads
+        ){
+            uint64_t nSkipEdges = skipEdges.size();
+            // TODO don't hard code this
+            uint64_t nChannels = 12;
+            uint64_t nStats = 9;
+            uint64_t nFeatures = nChannels * nStats;
+            nifty::marray::PyView<float> out({nSkipEdges,nFeatures});
+            {
+                py::gil_scoped_release allowThreads;
+                accumulateSkipEdgeFeaturesFromFilters(rag, data, out, skipEdges, skipRanges, skipStarts, numberOfThreads);
+            }
+            return out;
+        },
+        py::arg("rag"),
+        py::arg("data"),
+        py::arg("skipEdges"),
+        py::arg("skipRanges"),
+        py::arg("skipStarts"),
+        py::arg("numberOfThreads")= -1
+        );
+    }
 
 
     void exportAccumulateEdgeFeaturesFromFilters(py::module & ragModule) {
@@ -144,6 +178,12 @@ namespace graph{
             exportAccumulateEdgeFeaturesFromFiltersOutOfCoreT<StackedRagUInt64, FloatArray>(ragModule);
             exportAccumulateEdgeFeaturesFromFiltersOutOfCoreT<StackedRagUInt32, UInt8Array>(ragModule);
             exportAccumulateEdgeFeaturesFromFiltersOutOfCoreT<StackedRagUInt64, UInt8Array>(ragModule);
+            
+            // export skipEdgeFeatures
+            exportAccumulateSkipEdgeFeaturesFromFiltersT<StackedRagUInt32, FloatArray>(ragModule);
+            exportAccumulateSkipEdgeFeaturesFromFiltersT<StackedRagUInt64, FloatArray>(ragModule);
+            exportAccumulateSkipEdgeFeaturesFromFiltersT<StackedRagUInt32, UInt8Array>(ragModule);
+            exportAccumulateSkipEdgeFeaturesFromFiltersT<StackedRagUInt64, UInt8Array>(ragModule);
         }
         #endif
     }
