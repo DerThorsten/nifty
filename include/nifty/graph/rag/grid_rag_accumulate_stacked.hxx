@@ -5,6 +5,7 @@
 #include <vector>
 #include <cmath>
 
+#include "nifty/tools/array_tools.hxx"
 #include "nifty/graph/rag/grid_rag_accumulate.hxx"
 
 #include "nifty/graph/rag/grid_rag_stacked_2d.hxx"
@@ -233,6 +234,117 @@ namespace graph{
             },
             AccOptions(minVal, maxVal)
         );
+    }
+    
+    template<class LABELS_PROXY, class OUT>
+    void getSkipEdgeLengths(
+        const GridRagStacked2D<LABELS_PROXY> & rag,
+        OUT & out, // TODO call by ref or call by val ?
+        const std::vector<std::pair<uint64_t,uint64_t>> & skipEdges,
+        const marray::View<size_t> & skipRanges,
+        const marray::View<size_t> & skipStarts,
+        const int numberOfThreads = -1
+    ){
+        // threadpool
+        nifty::parallel::ParallelOptions pOpts(numberOfThreads);
+        nifty::parallel::ThreadPool threadpool(pOpts);
+        const size_t actualNumberOfThreads = pOpts.getActualNumThreads();
+        getSkipEdgeLengthsImpl(rag, out, skipEdges, skipRanges, skipStarts, pOpts, threadpool);
+    }
+
+    template<class LABELS_PROXY, class OUT>
+    void getSkipEdgeLengthsImpl(
+        const GridRagStacked2D<LABELS_PROXY> & rag,
+        OUT & out,
+        const std::vector<std::pair<uint64_t,uint64_t>> & skipEdges,
+        const marray::View<size_t> & skipRanges,
+        const marray::View<size_t> & skipStarts,
+        const parallel::ParallelOptions & pOpts,
+        parallel::ThreadPool & threadpool
+    ){
+        typedef LABELS_PROXY LabelsProxyType;
+        
+        typedef typename LabelsProxyType::BlockStorageType LabelBlockStorage;
+    
+        typedef array::StaticArray<int64_t, 3> Coord;
+        typedef array::StaticArray<int64_t, 2> Coord2;
+    
+        const size_t actualNumberOfThreads = pOpts.getActualNumThreads();
+    
+        const auto & shape = rag.shape();
+        const auto & labelsProxy = rag.labelsProxy();
+        
+        Coord2 sliceShape2({shape[1], shape[2]});
+        Coord sliceShape3({1L,shape[1], shape[2]});
+        
+        LabelBlockStorage labelsAStorage(threadpool, sliceShape3, 1);
+        LabelBlockStorage labelsBStorage(threadpool, sliceShape3, 1);
+    
+        // get unique lower slices with skip edges
+        std::vector<size_t> lowerSlices;
+        tools::uniques(skipStarts, lowerSlices);
+        auto lowest = int64_t(lowerSlices[0]);
+    
+        // get upper slices with skip edges for each lower slice and number of skip edges for each lower slice
+        std::map<size_t,std::vector<size_t>> skipSlices;
+        std::map<size_t,size_t> numberOfSkipEdgesPerSlice;
+        // initialize the maps
+        for(auto sliceId : lowerSlices) {
+            skipSlices[sliceId] = std::vector<size_t>();
+            numberOfSkipEdgesPerSlice[sliceId] = 0;
+        }
+        // 
+        for(size_t skipId = 0; skipId < skipEdges.size(); ++skipId) {
+            auto sliceId = skipStarts(skipId);
+            ++numberOfSkipEdgesPerSlice[sliceId];
+            auto targetSlice = sliceId + skipRanges(skipId);
+            auto & thisSkipSlices = skipSlices[sliceId];
+            if(std::find(thisSkipSlices.begin(), thisSkipSlices.end(), targetSlice) == thisSkipSlices.end() )
+                thisSkipSlices.push_back(targetSlice);
+        }
+        
+        int countSlice = 0;
+        for(auto sliceId : lowerSlices) {
+    
+            std::cout << countSlice++ << " / " << lowerSlices.size() << std::endl;
+            std::cout << "Computing lengths for skip edges from slice " << sliceId << std::endl; 
+                
+            Coord beginA({int64_t(sliceId),0L,0L}); 
+            Coord endA(  {int64_t(sliceId+1),shape[1],shape[2]}); 
+            auto labelsA = labelsAStorage.getView(0);  
+            labelsProxy.readSubarray(beginA, endA, labelsA);
+            auto labelsASqueezed = labelsA.squeezedView();
+                
+            Coord beginB;
+            Coord endB;
+            // iterate over all upper slices that have skip edges with this slice
+            for(auto nextId : skipSlices[sliceId] ) {
+                std::cout << "to slice " << nextId << std::endl;
+    
+                beginB = Coord({int64_t(nextId),0L,0L});
+                endB   = Coord({int64_t(nextId+1),shape[1],shape[2]});
+                
+                auto labelsB = labelsBStorage.getView(0);  
+                labelsProxy.readSubarray(beginB, endB, labelsB);
+                auto labelsBSqueezed = labelsB.squeezedView();
+        
+                // accumulate filter for the between slice edges
+                nifty::tools::parallelForEachCoordinate(threadpool, sliceShape2, [&](const int tid, const Coord2 coord){
+    
+                    // labels are different for different slices by default!
+                    const auto lU = labelsASqueezed(coord.asStdArray());
+                    const auto lV = labelsBSqueezed(coord.asStdArray());
+    
+                    // check if lU and lV have a skip edge
+                    auto skipPair = std::make_pair(static_cast<uint64_t>(lU), static_cast<uint64_t>(lV));
+                    auto skipIterator = std::find(skipEdges.begin(), skipEdges.end(), skipPair);
+                    if(skipIterator != skipEdges.end()) {
+                        const auto skipId = std::distance(skipEdges.begin(), skipIterator);
+                        ++out[skipId];
+                    }
+                });
+            }
+        }
     }
 
 

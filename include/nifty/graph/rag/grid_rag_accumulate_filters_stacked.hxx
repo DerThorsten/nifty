@@ -415,7 +415,6 @@ template<class EDGE_ACC_CHAIN, class LABELS_PROXY, class DATA, class F>
 void accumulateSkipEdgeFeaturesFromFiltersWithAccChain(
     const GridRagStacked2D<LABELS_PROXY> & rag,
     const DATA & data,
-    //const marray::View<size_t> & skipEdges, // TODO not sure about dtype
     const std::vector<std::pair<uint64_t,uint64_t>> & skipEdges,
     const marray::View<size_t> & skipRanges,
     const marray::View<size_t> & skipStarts,
@@ -650,7 +649,6 @@ void accumulateSkipEdgeFeaturesFromFilters(
     const GridRagStacked2D<LABELS_PROXY> & rag,
     const DATA & data,
     OUTPUT & edgeFeaturesOut,
-    //const marray::View<size_t> & skipEdges, // TODO not sure about dtype
     const std::vector<std::pair<uint64_t,uint64_t>> & skipEdges,
     const marray::View<size_t> & skipRanges,
     const marray::View<size_t> & skipStarts,

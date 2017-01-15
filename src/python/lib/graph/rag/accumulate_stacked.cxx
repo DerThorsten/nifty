@@ -1,5 +1,6 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/numpy.h>
+#include <pybind11/stl.h>
 
 #include "nifty/python/converter.hxx"
 
@@ -40,6 +41,41 @@ namespace graph{
         py::arg("numberOfThreads")= -1
         );
     }
+    
+    
+    template<class RAG>
+    void exportGetSkipEdgeLengthsT(
+        py::module & ragModule
+    ){
+        ragModule.def("getSkipEdgeLengths",
+        [](
+            const RAG & rag,
+            const std::vector<std::pair<size_t,size_t>> & skipEdges,
+            nifty::marray::PyView<size_t> skipRanges, // TODO should these be const?
+            nifty::marray::PyView<size_t> skipStarts, // TODO should these be const?
+            const int numberOfThreads
+        ){
+            uint64_t nSkipEdges = skipEdges.size();
+            nifty::marray::PyView<size_t> out({nSkipEdges});
+            {
+                py::gil_scoped_release allowThreads;
+                getSkipEdgeLengths(rag,
+                    out,
+                    skipEdges,
+                    skipRanges,
+                    skipStarts,
+                    numberOfThreads);
+            }
+            return out;
+        },
+        py::arg("rag"),
+        py::arg("skipEdges"),
+        py::arg("skipRanges"),
+        py::arg("skipStarts"),
+        py::arg("numberOfThreads")= -1
+        );
+    }
+
 
     void exportAccumulateStacked(py::module & ragModule) {
 
@@ -64,6 +100,9 @@ namespace graph{
             typedef GridRagStacked2D<LabelsUInt64> StackedRagUInt64;
             typedef nifty::hdf5::Hdf5Array<float> FloatArray;
             typedef nifty::hdf5::Hdf5Array<uint8_t> UInt8Array;
+
+            exportGetSkipEdgeLengthsT<StackedRagUInt32>(ragModule);
+            exportGetSkipEdgeLengthsT<StackedRagUInt64>(ragModule);
         }
         #endif
     }
