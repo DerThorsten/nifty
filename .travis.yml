@@ -41,7 +41,7 @@ matrix:
         - CTEST_OUTPUT_ON_FAILURE=TRUE make test
         
         - source venv/bin/activate
-        - pip install numpy
+        #- pip install numpy
         - make python-test
         #- CTEST_OUTPUT_ON_FAILURE=TRUE make test
     - os: osx
