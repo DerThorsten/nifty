@@ -38,10 +38,10 @@ namespace detail{
     : array_caster< nifty::array::StaticArray<Type, Size>, Type, false, Size> {
     };
 
-    namespace detail{
+
     template <typename Type, size_t DIM, bool AUTO_CAST_TYPE> 
     struct pymarray_caster;
-    }
+    
 
 }
 }
