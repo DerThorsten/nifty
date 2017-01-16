@@ -4,7 +4,7 @@ include(PythonLibTest)
 if(NOSETESTS_PATH)
 
     file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/python_test)
-
+    
 
     add_custom_target(python-test)
 
