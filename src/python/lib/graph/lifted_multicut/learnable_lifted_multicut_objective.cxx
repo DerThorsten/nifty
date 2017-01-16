@@ -20,7 +20,7 @@ namespace lifted_multicut{
     void exportLearnableLiftedMulticutObjectiveT(py::module & liftedMulticutModule) {
 
         typedef GRAPH Graph;
-        typedef LiftedMulticutObjective<Graph, double> BaseObjectiveType;
+        typedef LiftedMulticutObjective<Graph, float> BaseObjectiveType;
         typedef LearnableLiftedMulticutObjective<Graph, float> ObjectiveType;
         typedef typename ObjectiveType::LiftedGraphType LiftedGraphType;
         const auto clsName = LiftedMulticutObjectiveName<ObjectiveType>::name();
