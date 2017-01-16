@@ -67,8 +67,9 @@ if Configuration.WITH_HDF5:
                 step = sliceObj.step
                 if step is not None and  step != 1:
                     raise RuntimeError("currently step must be 1 in slicing but step is %d"%sliceObj.step)
-
+            
             return self.readSubarray(roiBegin, roiEnd)
+
 
         def setItem(self, slicing, value):
             asArray = numpy.require(value)

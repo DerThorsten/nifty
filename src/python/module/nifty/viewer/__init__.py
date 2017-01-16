@@ -6,12 +6,15 @@ from functools import partial
 import numpy
 import time
 import sys
+import warnings
 
 
 try:
     hasVolumina=True
-    import volumina
-    from volumina.api import Viewer
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        import volumina
+        from volumina.api import Viewer
 except:
     hasVolumina=False
 

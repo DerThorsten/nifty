@@ -148,7 +148,6 @@ namespace hdf5{
             NIFTY_CHECK(out.coordinateOrder() == marray::FirstMajorOrder, 
                 "currently only views with last major order are supported"
             );
-            ////std::cout<<"load hyperslab\n";
             this->loadHyperslab(roiBeginIter, roiBeginIter+out.dimension(), out.shapeBegin(), out);
         }
 
@@ -342,7 +341,7 @@ namespace hdf5{
             if(status < 0) {
                 H5Sclose(filespace);
                 delete[] shape;
-                throw std::runtime_error("MarrayNifty cannot get extension of dataset.");
+                throw std::runtime_error("nifty cannot get extension of dataset.");
             }
             // write shape to shape_
             shapeVec.resize(dimension);

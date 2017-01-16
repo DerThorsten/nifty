@@ -21,7 +21,7 @@ def ensureDir(f):
 
 
 if nifty.Configuration.WITH_HDF5:
-
+    import nifty.hdf5
     nhdf5 = nifty.hdf5
 
     if hasH5py:
@@ -32,18 +32,20 @@ if nifty.Configuration.WITH_HDF5:
             fpath = os.path.join(tempFolder,'_nifty_test_array__.h5')
             try:
                 
+
                 # try catch since dataset can only be created once
                 shape = (101, 102, 103)
                 data = numpy.ones(shape=shape, dtype='uint64')
                 f = h5py.File(fpath)
                 f.create_dataset("data", shape, dtype='uint64', data=data,chunks=(10,20,30))
                 f.close()
+                
 
 
                 hidT = nhdf5.openFile(fpath)
+
+
                 array = nhdf5.Hdf5ArrayUInt64(hidT, "data")
-
-
 
                 assert array.ndim == 3
                 shape = array.shape
@@ -60,6 +62,7 @@ if nifty.Configuration.WITH_HDF5:
                 assert chunkShape[2] == 30
 
                 subarray  = array[0:10,0:10 ,0:10]
+
             finally:
                 try:
                     os.remove(fpath)

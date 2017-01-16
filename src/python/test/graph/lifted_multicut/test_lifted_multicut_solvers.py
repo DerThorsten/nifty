@@ -62,12 +62,12 @@ class TestLiftedMulticutSolver(unittest.TestCase):
 
             solverFactory = obj.liftedMulticutGreedyAdditiveFactory()
             solver = solverFactory.create(obj)
-            visitor = obj.verboseVisitor()
+            visitor = obj.verboseVisitor(100)
             argN = solver.optimize()
          
             solverFactory = obj.liftedMulticutAndresGreedyAdditiveFactory()
             solver = solverFactory.create(obj)
-            visitor = obj.verboseVisitor()
+            visitor = obj.verboseVisitor(100)
             argA = solver.optimize()
 
             self.assertAlmostEqual(obj.evalNodeLabels(argA), obj.evalNodeLabels(argN))
@@ -100,10 +100,10 @@ class TestLiftedMulticutSolver(unittest.TestCase):
         arg = numpy.array([1,2,3,4,5])
         solverFactory = obj.liftedMulticutKernighanLinFactory()
         solver = solverFactory.create(obj)
-        visitor = obj.verboseVisitor()
-        arg2 = solver.optimize(visitor,arg)
+        visitor = obj.verboseVisitor(100)
 
-        print(arg2)
+        
+        arg2 = solver.optimize(visitor,arg)
 
         self.assertEqual(arg2[0] != arg2[1],  bool(0)) 
         self.assertEqual(arg2[0] != arg2[2],  bool(0))   
@@ -125,7 +125,7 @@ class TestLiftedMulticutSolver(unittest.TestCase):
         
             solverFactory = obj.liftedMulticutGreedyAdditiveFactory()
             solver = solverFactory.create(obj)
-            visitor = obj.verboseVisitor()
+            visitor = obj.verboseVisitor(100)
             arg = solver.optimize()
             argGC = arg.copy()
             egc = obj.evalNodeLabels(argGC)
@@ -135,7 +135,7 @@ class TestLiftedMulticutSolver(unittest.TestCase):
             #arg = numpy.arange(gridSize[0]*gridSize[1])
             solverFactory = obj.liftedMulticutKernighanLinFactory()
             solver = solverFactory.create(obj)
-            visitor = obj.verboseVisitor()
+            visitor = obj.verboseVisitor(100)
             arg2 = solver.optimize(argGC.copy())
             ekl = obj.evalNodeLabels(arg2)
 
@@ -143,7 +143,7 @@ class TestLiftedMulticutSolver(unittest.TestCase):
 
             solverFactory = obj.liftedMulticutAndresKernighanLinFactory()
             solver = solverFactory.create(obj)
-            visitor = obj.verboseVisitor()
+            visitor = obj.verboseVisitor(100)
             arg3 = solver.optimize(argGC.copy())
             eakl = obj.evalNodeLabels(arg3)
 
@@ -160,7 +160,7 @@ class TestLiftedMulticutSolver(unittest.TestCase):
 
             solverFactory = obj.liftedMulticutKernighanLinFactory()
             solver = solverFactory.create(obj)
-            visitor = obj.verboseVisitor()
+            visitor = obj.verboseVisitor(100)
             arg2 = solver.optimize(arg.copy())
             ekl = obj.evalNodeLabels(arg2)
 
@@ -168,7 +168,7 @@ class TestLiftedMulticutSolver(unittest.TestCase):
 
             solverFactory = obj.liftedMulticutAndresKernighanLinFactory()
             solver = solverFactory.create(obj)
-            visitor = obj.verboseVisitor()
+            visitor = obj.verboseVisitor(100)
             arg3 = solver.optimize(arg.copy())
             eakl = obj.evalNodeLabels(arg3)
 
@@ -193,17 +193,18 @@ class TestLiftedMulticutSolver(unittest.TestCase):
             solverFactory = obj.fusionMoveBasedFactory()
             solverFactory = obj.fusionMoveBasedFactory(proposalGenerator=pgen)
             solver = solverFactory.create(obj)
-            visitor = obj.verboseVisitor()
+            visitor = obj.verboseVisitor(100)
             argN = solver.optimize(visitor)
 
+            
 
     def implTestLiftedMulticutIlpBfsGrid(self, ilpSolver, gridSize=[4,4], bfsRadius=4, weightRange=[-2,1], verbose=0, relativeGap=0.00001):
 
         obj,nid = self.gridLiftedModel(gridSize=gridSize , bfsRadius=bfsRadius, weightRange=weightRange)
         solverFactory = obj.liftedMulticutIlpFactory(ilpSolver=ilpSolver, relativeGap=relativeGap)
         solver = solverFactory.create(obj)
-        if verbose > -0:
-            visitor = obj.verboseVisitor()
+        if verbose > 0:
+            visitor = obj.verboseVisitor(100)
             arg = solver.optimize(visitor=visitor)
         else:
             arg = solver.optimize()
@@ -257,7 +258,7 @@ class TestLiftedMulticutSolver(unittest.TestCase):
 
             solverFactory = obj.liftedMulticutIlpFactory(ilpSolver=ilpSolver)
             solver = solverFactory.create(obj)
-            visitor = obj.verboseVisitor()
+            visitor = obj.verboseVisitor(100)
             arg = solver.optimize()
 
             self.assertNotEqual(arg[0],arg[size-1])

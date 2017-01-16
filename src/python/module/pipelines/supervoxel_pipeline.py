@@ -2,7 +2,7 @@ from __future__ import print_function
 from __future__ import division
 
 import nifty
-import nifty.viewer
+#import nifty.viewer
 import numpy
 import vigra
 import h5py 
@@ -101,11 +101,11 @@ def membraneOverseg3D(pmapDset, heightMapDset, **kwargs):
         combined = fastfilters.gaussianSmoothing(combined, 1.3)
 
 
-        if False:
-            nifty.viewer.view3D(pmap, show=False, title='pm',cmap='gray')
-            nifty.viewer.view3D(medianImg, show=False, title='medianImg',cmap='gray')
-            nifty.viewer.view3D(combined, show=False, title='combined',cmap='gray')
-            pylab.show()
+        #if False:
+        #    nifty.viewer.view3D(pmap, show=False, title='pm',cmap='gray')
+        #    nifty.viewer.view3D(medianImg, show=False, title='medianImg',cmap='gray')
+        #    nifty.viewer.view3D(combined, show=False, title='combined',cmap='gray')
+        #    pylab.show()
 
         return combined
 
