@@ -6,15 +6,8 @@ Nifty
 A nifty library for Multicuts and general image and graph segmentation.
 This library is used for my personal research. I decided to make it open source
 such that other researchers can benefit from my code.
-Since I use this code for research,the code is not super stable and  there might be a lot of API changes,
+Since I use this code for research, the code is not super stable and  there might be a lot of API changes,
 bugs, and other issues (I try to avoid this but it is not my priority to have a bullet proof library)
-
-C++ vs Python:
-==============
-The Python API is at present the easiest to use. The C++ API is mostly for power users.
-We recommend to use library from Python.
-Almost any class / function in the Python API is calling into C++ via pybind11.
-
 
 
 Features:
@@ -34,3 +27,11 @@ Features:
         * Lifted-Multicut-Ilp-Cplex
         * Lifted-Multicut-Ilp-Gurobi
         * Lifted-Multicut-Ilp-Glpk
+
+
+C++ vs Python:
+==============
+The Python API is at present the easiest to use. The C++ API is mostly for power users.
+We recommend to use library from Python.
+Almost any class / function in the Python API is calling into C++ via pybind11.
+
