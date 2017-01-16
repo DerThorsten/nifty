@@ -75,7 +75,7 @@ macro(addPythonModule)
         ${CMAKE_BINARY_DIR}/python/${ADD_PY_MOD_NESTED_NAME}/
         COMMENT "Copying target ${MODULE_NAME} to temporary module directory")
 
-    add_dependencies(python-module _nifty)
+    add_dependencies(python-module _${MODULE_NAME})
 endmacro()
 
 

@@ -11,8 +11,7 @@ if(NOSETESTS_PATH)
 
     add_python_test_target(python-test-core
 
-        test_hdf5.py
-        
+        hdf5/test_hdf5.py
         tools/test_blocking.py
         graph/agglo/test_agglo.py
         graph/lifted_multicut/test_lifted_multicut_objective.py
@@ -20,7 +19,7 @@ if(NOSETESTS_PATH)
         graph/lifted_multicut/test_lifted_graph_features.py
         cgp/test_cgp.py
     )
-
+    add_dependencies(python-test-core python-module)
     add_dependencies(python-test python-test-core)
 
 endif()
