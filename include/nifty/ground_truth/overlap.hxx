@@ -93,6 +93,23 @@ namespace ground_truth{
             return isDiff;  
         }
 
+        double bleeding(const LabelType u)const{
+            const COUNT_TYPE size = counts_[u];
+            const auto & ol = overlap_[u];
+
+            std::vector<COUNT_TYPE> olCount;
+            olCount.reserve(ol.size());
+
+            COUNT_TYPE maxOlCount = 0;
+
+            for(const auto & kv : ol){
+                maxOlCount = std::max(maxOlCount, kv.second);
+            }
+            
+            return 1.0 - (double(size) - double(maxOlCount))/size;
+
+        }
+
     private:
 
         template<class SET_A_ITER, class SET_B_ITER>

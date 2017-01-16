@@ -148,7 +148,6 @@ namespace hdf5{
             NIFTY_CHECK(out.coordinateOrder() == marray::FirstMajorOrder, 
                 "currently only views with last major order are supported"
             );
-            //std::cout<<"load hyperslab\n";
             this->loadHyperslab(roiBeginIter, roiBeginIter+out.dimension(), out.shapeBegin(), out);
         }
 
@@ -172,8 +171,13 @@ namespace hdf5{
             ShapeIterator shapeBegin,
             marray::View<T> & out
         ) const {
+
+            //std::cout<<"_1\n";
+
             HandleCheck<marray::MARRAY_NO_DEBUG> handleCheck;
 
+
+            //std::cout<<"_2\n";
             // determine shape of hyperslab and array
             std::size_t size = std::distance(baseBegin, baseEnd);
             std::vector<hsize_t> offset(size);
@@ -195,7 +199,7 @@ namespace hdf5{
                     ++shapeBegin;
                 }
             }
-            
+            //std::cout<<"_3\n";
             hid_t dataspace = H5Dget_space(dataset_);
             herr_t status = H5Sselect_hyperslab(dataspace, H5S_SELECT_SET, 
                 &offset[0], NULL, &slabShape[0], NULL);
@@ -204,6 +208,7 @@ namespace hdf5{
                 throw std::runtime_error("Marray cannot select hyperslab. Check offset and shape !");
             }
 
+            //std::cout<<"_4\n";
             // select memspace hyperslab
             hid_t memspace = H5Screate_simple(int(size), &marrayShape[0], NULL);
             std::vector<hsize_t> offsetOut(size, 0); // no offset
@@ -218,7 +223,7 @@ namespace hdf5{
             // read from dataspace into memspace
             //out = Marray<T>(SkipInitialization, &marrayShape[0], 
             //    (&marrayShape[0])+size, coordinateOrder);
-            
+            //std::cout<<"_1\n";
             if(out.isSimple()){
                 //std::cout<<"is simple\n";
                 status = H5Dread(dataset_, datatype_, memspace, dataspace,
@@ -236,9 +241,16 @@ namespace hdf5{
 
                 //std::cout<<"read status "<<status<<"\n";
 
-                out = tmpOut;
-            }
+                for(auto i=0; i<size; ++i){
+                    //std::cout<<out.shape(i)<<" "<<tmpOut.shape(i)<<"\n";
+                }
 
+
+                out = tmpOut;
+
+                //std::cout<<"bra\n";
+            }
+            //std::cout<<"_6\n";
             // clean up
             H5Sclose(memspace); 
             H5Sclose(dataspace);
@@ -329,7 +341,7 @@ namespace hdf5{
             if(status < 0) {
                 H5Sclose(filespace);
                 delete[] shape;
-                throw std::runtime_error("MarrayNifty cannot get extension of dataset.");
+                throw std::runtime_error("nifty cannot get extension of dataset.");
             }
             // write shape to shape_
             shapeVec.resize(dimension);
