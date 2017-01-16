@@ -5,5 +5,6 @@ addPythonModule(
         tools.cxx
         make_dense.cxx
         blocking.cxx
+        take.cxx
 )
 

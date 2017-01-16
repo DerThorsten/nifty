@@ -143,6 +143,14 @@ inline bool
 MinimumNodeSizeClusterPolicy<GRAPH>::
 isDone() const {
 
+    const auto topEdge = pq_.top();
+    const auto uv = edgeContractionGraph_.uv(topEdge);
+    const auto sizeU = nodeSizes_[uv.first];
+    const auto sizeV = nodeSizes_[uv.second];
+
+
+    //std::cout<<"top "<<pq_.topPriority()<<" "<<sizeU<<" "<<sizeV<<"\n";
+
     if(edgeContractionGraph_.numberOfNodes() <= 1 || edgeContractionGraph_.numberOfEdges() <= 0){
         return  true;
     }

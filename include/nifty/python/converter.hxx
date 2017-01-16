@@ -34,6 +34,52 @@ namespace nifty{
 
 namespace pybind11
 {
+
+    #if defined(WITH_THREAD)
+
+
+    class gil_release {
+    public:
+
+        void releaseGil(bool disassoc_ = false) {
+            disassoc = disassoc_;
+            tstate = PyEval_SaveThread();
+            if (disassoc) {
+                auto key = detail::get_internals().tstate;
+                #if PY_MAJOR_VERSION < 3
+                    PyThread_delete_key_value(key);
+                #else
+                    PyThread_set_key_value(key, nullptr);
+                #endif
+            }
+        }
+        void unreleaseGil() {
+            if (!tstate)
+                return;
+            PyEval_RestoreThread(tstate);
+            if (disassoc) {
+                auto key = detail::get_internals().tstate;
+                #if PY_MAJOR_VERSION < 3
+                    PyThread_delete_key_value(key);
+                #endif
+                PyThread_set_key_value(key, tstate);
+            }
+        }
+    private:
+        PyThreadState *tstate;
+        bool disassoc;
+    };
+    #else
+    class gil_release { 
+        void releaseGil(bool disassoc = false){}
+        void unreleaseGil(){}
+    };
+    #endif
+
+
+
+
+
     namespace detail
     {
 
@@ -176,11 +222,14 @@ namespace marray
                 strides[i] = strides[i+1] * shape[i+1];
             }
 
-
-            py_array = pybind11::array(pybind11::buffer_info(
-                nullptr, sizeof(VALUE_TYPE), pybind11::format_descriptor<VALUE_TYPE>::value, shape.size(), shape, strides));
-            pybind11::buffer_info info = py_array.request();
-            VALUE_TYPE *ptr = (VALUE_TYPE *)info.ptr;
+            VALUE_TYPE * ptr = nullptr;
+            {
+                py::gil_scoped_acquire disallowThreads;
+                py_array = pybind11::array(pybind11::buffer_info(
+                    nullptr, sizeof(VALUE_TYPE), pybind11::format_descriptor<VALUE_TYPE>::value, shape.size(), shape, strides));
+                pybind11::buffer_info info = py_array.request();
+                ptr = (VALUE_TYPE *)info.ptr;
+            }
 
             for (size_t i = 0; i < shape.size(); ++i) {
                 strides[i] /= sizeof(VALUE_TYPE);

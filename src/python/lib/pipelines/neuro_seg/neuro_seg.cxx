@@ -65,10 +65,58 @@ namespace neuro_seg{
                     }
                 }
             )
+            .def("maxNodeId", &BlockData::maxNodeId)
+
+
+            .def("edgeCounts",[](
+                const BlockData & instance
+            ){  
+                marray::PyView<float> out({instance.numberOfEdges()});
+                {
+                    py::gil_scoped_release allowThreads;
+                    instance.edgeCounts(out);
+                }
+                return out;
+            })
+            .def("edgeMeans",[](
+                const BlockData & instance,
+                const size_t channel
+            ){  
+                marray::PyView<float> out({instance.numberOfEdges()});
+                {
+                    py::gil_scoped_release allowThreads;
+                    instance.edgeMeans(channel, out);
+                }
+                return out;
+            })
+
+            .def("nodeCounts",[](
+                const BlockData & instance
+            ){  
+                marray::PyView<float> out({instance.maxNodeId() + 1});
+                {
+                    py::gil_scoped_release allowThreads;
+                    instance.nodeCounts(out);
+                }
+                return out;
+            })
+            .def("nodeMeans",[](
+                const BlockData & instance,
+                const size_t channel
+            ){  
+                marray::PyView<float> out({instance.maxNodeId() + 1});
+                {
+                    py::gil_scoped_release allowThreads;
+                    instance.nodeMeans(channel, out);
+                }
+                return out;
+            })
+
+
+
             .def("uvIds",[](
                 const BlockData & instance
             ){  
-                // make it just large enough atm //FIXME
                 marray::PyView<uint32_t> uv({instance.numberOfEdges(), size_t(2)});
                 {
                     py::gil_scoped_release allowThreads;

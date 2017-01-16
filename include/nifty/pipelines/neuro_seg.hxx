@@ -10,6 +10,7 @@
 #include "nifty/marray/marray.hxx"
 #include "nifty/tools/for_each_coordinate.hxx"
 #include "nifty/tools/blocking.hxx"
+#include "nifty/tools/make_finite.hxx"
 
 #include <unordered_map>
 #include <map>
@@ -54,14 +55,6 @@ namespace neuro_seg{
         };
 
 
-        template<class T,class U>
-        inline T 
-        replaceVals(const T & val, const U & replaceVal){
-            if(std::isfinite(val))
-                return val;
-            else
-                return replaceVal;
-        }
 
 
 
@@ -143,7 +136,7 @@ namespace neuro_seg{
 
         class BlockData{
         public:
-            typedef tools::Blocking<3> BlockingType;    
+            typedef nifty::tools::Blocking<3> BlockingType;    
             typedef array::StaticArray<int64_t,3> CoordType;
 
             typedef vigra::acc::UserRangeHistogram<40>            SomeHistogram;   //binCount set at compile time
@@ -158,7 +151,8 @@ namespace neuro_seg{
             :   blocking_(blocking),
                 blockIndex_(blockIndex),
                 numberOfChannels_(numberOfChannels),
-                numberOfBins_(numberOfBins)
+                numberOfBins_(numberOfBins),
+                maxNodeId_(0)
             {
                 
 
@@ -180,6 +174,7 @@ namespace neuro_seg{
                     nifty::tools::forEachCoordinate(shape,[&](const CoordType & coord){
 
                         const auto lU = labels(coord.asStdArray());
+                        maxNodeId_ = std::max(maxNodeId_, uint64_t(lU));
                         const auto pU = &data(coord[0],coord[1],coord[2],0);
                         const auto pU1 = &data(coord[0],coord[1],coord[2],1);
 
@@ -231,6 +226,8 @@ namespace neuro_seg{
                         iter->second.merge(kv.second);
                     }
                 }
+
+                maxNodeId_ = std::max(other.maxNodeId_, maxNodeId_);
             }
 
         public:
@@ -371,7 +368,7 @@ namespace neuro_seg{
 
 
             void extractFeatures(
-                marray::View<float> & out
+                nifty::marray::View<float> & out
             ){
                 auto c = 0;
                 for(const auto kv: edges_){
@@ -382,6 +379,56 @@ namespace neuro_seg{
                 }
             }
 
+            void nodeCounts(
+                marray::View<float> & out
+            )const{
+                for(const auto kv: nodes_){
+                    const auto nodeId = kv.first;
+                    const auto count = vigra::acc::get<vigra::acc::Count>(kv.second.coordAccChain_);
+                    out(nodeId) = count;
+                }
+            }
+
+            void edgeCounts(
+                nifty::marray::View<float> & out
+            )const{
+                auto c = 0;
+                for(const auto kv: edges_){
+                    const auto count = vigra::acc::get<vigra::acc::Count>(kv.second.coordAccChain_);
+                    out(c) = count;
+                    ++c;
+                }
+            }
+
+
+            void edgeMeans(
+                const size_t channel,
+                nifty::marray::View<float> & out
+            )const{
+                auto c = 0;
+                for(const auto kv: edges_){
+                    const auto mean = vigra::acc::get<vigra::acc::Mean>(kv.second.accChain_[channel]);
+                    out(c) = mean;
+                    ++c;
+                }
+            }
+
+            void nodeMeans(
+                const size_t channel,
+                 nifty::marray::View<float> & out
+            )const{
+                for(const auto kv: nodes_){
+                    const auto nodeId = kv.first;
+                    const auto mean = vigra::acc::get<vigra::acc::Mean>(kv.second.accChain_[channel]);
+                    out(nodeId) = mean;
+                }
+            }
+
+
+
+            uint64_t maxNodeId()const{
+                return maxNodeId_;
+            }
 
             size_t numberOfEdges()const{
                 return edges_.size();
@@ -410,12 +457,12 @@ namespace neuro_seg{
                 const auto mean = get<Mean>(chain);
                 const auto quantiles = get<Quantiles>(chain);
 
-                out[0] = replaceVals(mean,     0.0);
-                out[1] = replaceVals(get<Variance>(chain), 0.0);
-                out[2] = replaceVals(get<Skewness>(chain), 0.0);
-                out[3] = replaceVals(get<Kurtosis>(chain), 0.0);
+                out[0] = nifty::tools::makeFinite(mean,     0.0);
+                out[1] = nifty::tools::makeFinite(get<Variance>(chain), 0.0);
+                out[2] = nifty::tools::makeFinite(get<Skewness>(chain), 0.0);
+                out[3] = nifty::tools::makeFinite(get<Kurtosis>(chain), 0.0);
                 for(auto qi=0; qi<7; ++qi){
-                    out[4+qi] = replaceVals(quantiles[qi], mean);
+                    out[4+qi] = nifty::tools::makeFinite(quantiles[qi], mean);
                 }
             }
 
@@ -426,6 +473,7 @@ namespace neuro_seg{
             uint8_t numberOfBins_;
             std::map<Edge,     Accumulator> edges_;
             std::map<uint32_t, Accumulator> nodes_;
+            uint64_t maxNodeId_;
             //std::unordered_map<Edge, PerEdgeData, EdgeHash> edges_;
 
 

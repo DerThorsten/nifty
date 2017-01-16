@@ -109,6 +109,18 @@ namespace graph{
             .def("findEdge",[](const G & self, std::pair<uint64_t, uint64_t> uv){
                 return self.findEdge(uv.first, uv.second);
             })
+            .def("findEdges",[](
+                const G & self,
+                nifty::marray::PyView<uint64_t, 2> uv
+            ){
+                nifty::marray::PyView<int64_t> edgeIds({uv.shape(0)});
+                NIFTY_CHECK_OP(uv.shape(1),==,2,"uv.shape(1) must be 2");
+
+                for(auto i=0; i<uv.shape(0); ++i){
+                   edgeIds(i) = self.findEdge(uv(i,0), uv(i,1)); 
+                }
+                return edgeIds;
+            })
             .def("findEdge",&G::findEdge)
             .def("u",&G::u)
             .def("v",&G::v)

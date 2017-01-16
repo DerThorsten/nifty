@@ -5,7 +5,6 @@
 
 
 namespace nifty{
-namespace pipelines{
 namespace tools{
 
 
@@ -18,6 +17,5 @@ namespace tools{
             return static_cast<T>(replaceVal);
     }
 
-}
 }
 }

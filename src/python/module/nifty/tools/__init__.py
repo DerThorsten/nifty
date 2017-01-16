@@ -24,6 +24,19 @@ for key in _tools.__dict__.keys():
 
 
 
+def take(relabeling, toRelabel):
+    shape = toRelabel.shape
+    toRelabelFlat = toRelabel.ravel()
+
+    resFlat = _tools._take(relabeling, toRelabelFlat)
+    return resFlat.reshape(shape)
+
+
+
+
+
+
+
 def getSlicing(begin, end):
     return [slice(b,e) for b,e in zip(begin,end)]
 
@@ -60,7 +73,7 @@ def parallelForEach(iterable, f, nWorkers=cpu_count() ,
     if nWorkers == -1 or nWorkers is None:
         nWorkers = cpu_count()
     if not showBar:
-        if nWorkers == 1:
+        if nWorkers == 1 or nWorkers == 0:
             for i in iterable:
                 f(i)
         else:
