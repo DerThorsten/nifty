@@ -14,7 +14,7 @@ def ilpSettings(relativeGap=0.0, absoluteGap=0.0, memLimit=-1.0):
     s.memLimit = float(memLimit)
 
     return s
-    
+
 
 
 def __extendMulticutObj(objectiveCls, objectiveName):
@@ -41,9 +41,9 @@ def __extendMulticutObj(objectiveCls, objectiveName):
 
     O = objectiveCls
 
-    def multicutVerboseVisitor(visitNth=1):
+    def multicutVerboseVisitor(visitNth=1,timeLimit=0):
         V = getMcCls("MulticutVerboseVisitor")
-        return V(visitNth)
+        return V(visitNth,timeLimit)
     O.multicutVerboseVisitor = staticmethod(multicutVerboseVisitor)
 
     def greedyAdditiveProposals(sigma=1.0, weightStopCond=0.0, nodeNumStopCond=-1.0):
@@ -174,8 +174,8 @@ def __extendMulticutObj(objectiveCls, objectiveName):
     O.perturbAndMap = staticmethod(perturbAndMap)
 
 
-__extendMulticutObj(MulticutObjectiveUndirectedGraph, 
+__extendMulticutObj(MulticutObjectiveUndirectedGraph,
     "MulticutObjectiveUndirectedGraph")
-__extendMulticutObj(MulticutObjectiveEdgeContractionGraphUndirectedGraph, 
+__extendMulticutObj(MulticutObjectiveEdgeContractionGraphUndirectedGraph,
     "MulticutObjectiveEdgeContractionGraphUndirectedGraph")
 del __extendMulticutObj

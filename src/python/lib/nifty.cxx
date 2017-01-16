@@ -10,14 +10,6 @@ namespace py = pybind11;
     #include <gurobi_c++.h>
 #endif
 
-namespace nifty{
-
-#ifdef WITH_HDF5
-namespace hdf5{
-    void initSubmoduleHdf5(py::module & );
-}
-#endif
-}
 
 PYBIND11_DECLARE_HOLDER_TYPE(T, std::shared_ptr<T>);
 

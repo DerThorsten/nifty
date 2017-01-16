@@ -3,6 +3,7 @@
 #define NIFTY_PYTHON_GRAPH_EXPORT_UNDIRECTED_GRAPH_CLASS_API_HXX
 
 #include "nifty/python/converter.hxx"
+#include "nifty/python/graph/adjacency_converter.hxx"
 
 namespace py = pybind11;
 
@@ -92,7 +93,14 @@ namespace graph{
             .def("__iter__", [](PyNodeIter &it) -> PyNodeIter& { return it; })
             .def("__next__", &PyNodeIter::next);
         ;
-
+        
+        typedef typename G::AdjacencyIter AdjacencyIter;
+        typedef PyGraphIter<G,AdjacencyIter,AdjacencyTag> PyAdjacencyIter;
+        auto adjacencyIterClsName = clsName + std::string("AdjacencyIter");
+        py::class_<PyAdjacencyIter>(graphModule, adjacencyIterClsName.c_str())
+            .def("__iter__", [](PyAdjacencyIter &it) -> PyAdjacencyIter& { return it; })
+            .def("__next__", &PyAdjacencyIter::next);
+        ;
 
         typedef typename G:: template EdgeMap<double> EdgeMapFloat64;
         exportEdgeMap<G, EdgeMapFloat64>(graphModule, clsName + std::string("EdgeMapFloat64"));
@@ -132,6 +140,10 @@ namespace graph{
             .def("nodes", [](py::object g) { 
                 const auto & gg = g.cast<const G &>();
                 return PyNodeIter(gg,g,gg.nodesBegin(),gg.nodesEnd()); 
+            })
+            .def("nodeAdjacency", [](py::object g, const uint64_t nodeId) { 
+                const auto & gg = g.cast<const G &>();
+                return PyAdjacencyIter(gg,g,gg.adjacencyBegin(nodeId),gg.adjacencyEnd(nodeId)); 
             })
 
             .def("__str__",
