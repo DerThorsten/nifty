@@ -23,8 +23,8 @@ namespace graph{
 
     using namespace py;
    
-    template<class CLS>
-    void removeFunctions(py::class_<CLS > & clsT){
+    template<class CLS, class BASE>
+    void removeFunctions(py::class_<CLS, BASE > & clsT){
         clsT
             .def("insertEdge", [](CLS * self,const uint64_t u,const uint64_t ){
                 throw std::runtime_error("cannot insert edges into 'GridRag'");
@@ -46,8 +46,8 @@ namespace graph{
         typedef UndirectedGraph<> BaseGraph;
         typedef ExplicitLabelsGridRag<DIM, LABELS> GridRagType;
 
-        auto clsT = py::class_<GridRagType>(ragModule, clsName.c_str(),py::base<BaseGraph>());
-        removeFunctions<GridRagType>(clsT);
+        auto clsT = py::class_<GridRagType,BaseGraph>(ragModule, clsName.c_str());
+        removeFunctions<GridRagType, BaseGraph>(clsT);
 
         // from labels
         ragModule.def(facName.c_str(),
@@ -131,12 +131,12 @@ namespace graph{
 
 
 
-        auto clsT = py::class_<GridRagType>(ragModule, clsName.c_str(),py::base<BaseGraph>());
+        auto clsT = py::class_<GridRagType, BaseGraph>(ragModule, clsName.c_str());
         clsT
             .def("labelsProxy",&GridRagType::labelsProxy,py::return_value_policy::reference)
         ;
 
-        removeFunctions<GridRagType>(clsT);
+        removeFunctions<GridRagType, BaseGraph>(clsT);
 
 
 
@@ -216,7 +216,7 @@ namespace graph{
 
 
 
-        auto clsT = py::class_<GridRagType>(ragModule, clsName.c_str(), py::base<BaseGraph>());
+        auto clsT = py::class_<GridRagType, BaseGraph>(ragModule, clsName.c_str());
         clsT
             .def("labelsProxy",&GridRagType::labelsProxy,py::return_value_policy::reference)
             .def("minMaxLabelPerSlice",[](const GridRagType & self){
@@ -272,7 +272,7 @@ namespace graph{
 
         ;
 
-        removeFunctions<GridRagType>(clsT);
+        removeFunctions<GridRagType, BaseGraph>(clsT);
 
         ragModule.def(facName.c_str(),
             [](
@@ -310,7 +310,7 @@ namespace graph{
 
 
 
-        auto clsT = py::class_<GridRagType>(ragModule, clsName.c_str(),py::base<BaseGraph>());
+        auto clsT = py::class_<GridRagType, BaseGraph>(ragModule, clsName.c_str());
         clsT
             //.def("labelsProxy",&GridRagType::labelsProxy,py::return_value_policy::reference)
             .def("minMaxLabelPerSlice",[](const GridRagType & self){
@@ -366,7 +366,7 @@ namespace graph{
 
         ;
 
-        removeFunctions<GridRagType>(clsT);
+        removeFunctions<GridRagType, BaseGraph>(clsT);
 
 
 

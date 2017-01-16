@@ -1,8 +1,4 @@
 #pragma once
-#ifndef NIFTY_CONTAINER_BOOST_FLAT_MAP_hXX
-#define NIFTY_CONTAINER_BOOST_FLAT_MAP_hXX
-
-
 
 #ifdef WITHIN_TRAVIS
 #include <unordered_map>
@@ -20,5 +16,4 @@ namespace container{
 
 } // container
 } // namespace nifty
-  
-#endif /* NIFTY_CONTAINER_BOOST_FLAT_MAP_hXX */
+
