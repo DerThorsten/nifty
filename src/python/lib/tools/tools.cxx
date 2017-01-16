@@ -11,7 +11,7 @@ namespace tools{
 
     void exportMakeDense(py::module &);
     void exportBlocking(py::module &);
-
+    void exportTake(py::module &);
 }
 }
 
@@ -23,6 +23,7 @@ PYBIND11_PLUGIN(_tools) {
 
     exportMakeDense(toolsModule);
     exportBlocking(toolsModule);
-        
+    exportTake(toolsModule);
+
     return toolsModule.ptr();
 }

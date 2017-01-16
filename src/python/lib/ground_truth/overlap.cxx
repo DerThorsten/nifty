@@ -44,6 +44,18 @@ namespace ground_truth{
 
                 return out;
             })
+
+            .def("bleeding",[](
+                const OverlapType & self,
+                nifty::marray::PyView<uint32_t> ids
+            ){
+                nifty::marray::PyView<float> out({ids.shape(0)});
+
+                for(auto i=0; i<ids.shape(0); ++i){
+                    out(i) = self.bleeding(ids(i));
+                }
+                return out;
+            })
         ;
         
     }

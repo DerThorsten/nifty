@@ -185,6 +185,45 @@ namespace graph{
         );
     }
 
+    #ifdef WITH_HDF5
+    template<size_t DIM, class RAG, class DATA_T>
+    void exportAccumulateStandartFeaturesHdf5(
+        py::module & ragModule
+    ){
+        ragModule.def("accumulateStandartFeatures",
+        [](
+            const RAG & rag,
+            const nifty::hdf5::Hdf5Array<DATA_T> & data,
+            const double minVal,
+            const double maxVal,
+            array::StaticArray<int64_t, DIM> blocKShape,
+            const int numberOfThreads
+        ){
+            typedef nifty::marray::PyView<DATA_T> NumpyArrayType;
+            typedef std::pair<NumpyArrayType, NumpyArrayType>  OutType;
+            NumpyArrayType edgeOut({uint64_t(rag.edgeIdUpperBound()+1),uint64_t(11)});
+            NumpyArrayType nodeOut({uint64_t(rag.nodeIdUpperBound()+1),uint64_t(11)});
+            {
+                py::gil_scoped_release allowThreads;
+                array::StaticArray<int64_t, DIM> blocKShape_;
+                accumulateStandartFeatures(rag, data, minVal, maxVal, blocKShape, edgeOut, nodeOut, numberOfThreads);
+            }
+            return OutType(edgeOut, nodeOut);
+        },
+        py::arg("rag"),
+        py::arg("data"),
+        py::arg("minVal"),
+        py::arg("maxVal"),
+        py::arg("blockShape") = array::StaticArray<int64_t,DIM>(100),
+        py::arg("numberOfThreads")= -1
+        );
+    }
+
+    #endif 
+
+
+
+
     template<size_t DIM, class RAG, class DATA_T>
     void exportAccumulateNodeStandartFeatures(
         py::module & ragModule
@@ -291,11 +330,6 @@ namespace graph{
             exportAccumulateMeanAndLength<3, Rag3d, float>(ragModule);
 
 
-            #ifdef WITH_HDF5
-            typedef GridRag<3, Hdf5Labels<3, uint32_t>  >  RagH53d;
-            exportAccumulateMeanAndLength<3,RagH53d, float>(ragModule);
-            #endif
-
             exportAccumulateStandartFeatures<2, Rag2d, float>(ragModule);
             exportAccumulateStandartFeatures<3, Rag3d, float>(ragModule);
 
@@ -310,6 +344,14 @@ namespace graph{
 
             exportAccumulateGeometricEdgeFeatures<2, Rag2d, float>(ragModule);
             exportAccumulateGeometricEdgeFeatures<3, Rag3d, float>(ragModule);
+
+
+            #ifdef WITH_HDF5
+            typedef GridRag<3, Hdf5Labels<3, uint32_t>  >  RagH53d;
+            //exportAccumulateMeanAndLengthHdf5<3,RagH53d, float>(ragModule);
+            exportAccumulateStandartFeaturesHdf5<3, RagH53d, uint8_t >(ragModule);
+            #endif
+
         }
     }
 

@@ -36,10 +36,15 @@ if(NOSETESTS_PATH)
         graph/lifted_multicut/test_lifted_multicut_objective.py
         graph/lifted_multicut/test_lifted_multicut_solvers.py
         graph/lifted_multicut/test_lifted_graph_features.py
+        cgp/test_cgp.py
+    )
+
+    add_python_test_target(python-test-cgp
+        cgp/test_cgp.py
     )
 
     add_dependencies(python-test python-test-tools)
     add_dependencies(python-test python-test-graph)
-
+    add_dependencies(python-test python-test-cgp)
 
 endif()
