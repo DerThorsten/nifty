@@ -26,9 +26,8 @@ namespace lifted_multicut{
         const auto clsName = LiftedMulticutObjectiveName<ObjectiveType>::name();
 
 
-        auto liftedMulticutObjectiveCls = py::class_<ObjectiveType>(
-            liftedMulticutModule, clsName.c_str(),
-            py::base<BaseObjectiveType>()
+        auto liftedMulticutObjectiveCls = py::class_<ObjectiveType,BaseObjectiveType>(
+            liftedMulticutModule, clsName.c_str()
         );
 
     }
