@@ -109,7 +109,12 @@ namespace ground_truth{
             return 1.0 - (double(size) - double(maxOlCount))/size;
 
         }
-
+        const std::vector<CountType> & counts()const{
+            return counts_;
+        };
+        const std::vector<MapType> & overlap()const{
+            return overlap_;
+        };
     private:
 
         template<class SET_A_ITER, class SET_B_ITER>
@@ -150,7 +155,7 @@ namespace ground_truth{
             });
         }
         std::vector<CountType> counts_;
-        std::vector<MapType> overlap_;
+        std::vector<MapType>   overlap_;
     };
 
 

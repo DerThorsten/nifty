@@ -2,6 +2,7 @@
 #include <iostream>
 #include <sstream>
 #include <pybind11/numpy.h>
+#include <pybind11/stl.h>
 
 #include "nifty/python/converter.hxx"
 
@@ -54,6 +55,17 @@ namespace ground_truth{
                 for(auto i=0; i<ids.shape(0); ++i){
                     out(i) = self.bleeding(ids(i));
                 }
+                return out;
+            })
+            .def("counts",[](const OverlapType & self){
+
+                const auto & counts = self.counts();
+                nifty::marray::PyView<uint32_t> out({counts.size()});
+
+                for(auto i=0; i<counts.size(); ++i){
+                    out(i) = counts[i];
+                }
+
                 return out;
             })
         ;
