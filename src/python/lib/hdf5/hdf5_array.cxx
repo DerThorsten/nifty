@@ -57,16 +57,33 @@ namespace hdf5{
                 std::vector<size_t> roiBegin,
                 std::vector<size_t> roiEnd
             ){
+
+                
+                py::gil_release gilRease;
+
+                //std::cout<<"relase gil\n";
+                //gilRease.releaseGil();
+                //std::cout<<"array.dimension\n";
                 const auto dim = array.dimension();
                 NIFTY_CHECK_OP(roiBegin.size(),==,dim,"`roiBegin`has wrong size");
                 NIFTY_CHECK_OP(roiEnd.size(),==,dim,  "`roiEnd`has wrong size");
 
+                //std::cout<<"make shape\n";
                 std::vector<size_t> shape(dim);
                 for(size_t d=0; d<dim; ++d)
                     shape[d] = roiEnd[d] - roiBegin[d];
                 
+                //std::cout<<"make pyview\n";
                 nifty::marray::PyView<T> out(shape.begin(), shape.end());
+
+                //std::cout<<"read array\n";
+                gilRease.releaseGil();
                 array.readSubarray(roiBegin.begin(), out);
+                gilRease.unreleaseGil();
+                
+                //std::cout<<"unreleaseGil\n";
+                //gilRease.unreleaseGil();\
+                std::cout<<"return\n";
                 return out;
             })
 

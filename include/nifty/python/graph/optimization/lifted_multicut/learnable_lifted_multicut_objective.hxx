@@ -17,8 +17,8 @@ namespace lifted_multicut{
 
 
 
-    template<class GRAPH>
-    struct LiftedMulticutObjectiveName<LearnableLiftedMulticutObjective<GRAPH, float> >{
+    template<class GRAPH, class T>
+    struct LiftedMulticutObjectiveName<LearnableLiftedMulticutObjective<GRAPH, T> >{
         static std::string name(){
             return std::string("LearnableLiftedMulticutObjective") + GraphName<GRAPH>::name();
         }

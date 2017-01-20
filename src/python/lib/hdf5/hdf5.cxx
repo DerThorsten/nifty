@@ -15,7 +15,7 @@ namespace hdf5{
     void exportHdf5Common(py::module &);
     void exportHdf5Array(py::module &);
     void exportHdf5BlockwiseWatershed(py::module &);
-
+    void exportBenchmark(py::module &);
 }
 }
 
@@ -30,7 +30,7 @@ PYBIND11_PLUGIN(_hdf5) {
     exportHdf5Common(hdf5Module);
     exportHdf5Array(hdf5Module);
     exportHdf5BlockwiseWatershed(hdf5Module);
-
+    exportBenchmark(hdf5Module);
     return hdf5Module.ptr();
 }
 

@@ -6,8 +6,8 @@
 #include <chrono>
 #include <array>
 
-#include "nifty/array/arithmetic_array.hxx"
 #include "nifty/parallel/threadpool.hxx"
+#include "nifty/array/arithmetic_array.hxx"
 
 namespace nifty{
 namespace tools{

@@ -49,7 +49,9 @@ public:
     )const{
         for(auto d = 0 ; d<DIM; ++d){
             NIFTY_CHECK_OP(roiEndCoord[d] - roiBeginCoord[d],==,outArray.shape(d),"wrong shape");
+            NIFTY_CHECK_OP(roiEndCoord[d] ,<=,labels_.shape()[d],"hubs");
         }
+        //std::cout<<"read subarray "<<roiBeginCoord<<" "<<roiEndCoord<<"\n";
         labels_.readSubarray(roiBeginCoord.begin(), outArray);
     }
 
@@ -77,7 +79,7 @@ namespace tools{
         const COORD & endCoord,
         marray::View<LABEL_TYPE> & subarray
     ){
-        return labels.readSubarray(beginCoord, endCoord, subarray);
+        labels.readSubarray(beginCoord, endCoord, subarray);
     }
 
 }

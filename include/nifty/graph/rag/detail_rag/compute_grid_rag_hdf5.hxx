@@ -88,6 +88,26 @@ struct ComputeRag< GridRag<DIM,  Hdf5Labels<DIM, LABEL_TYPE> > > {
 
         const Coord overlapBegin(0), overlapEnd(1);
         const Coord zeroCoord(0);
+
+        std::mutex mtx;
+        auto doneBlocks = 0;
+        auto nBlocks = 0;
+
+
+        
+        nifty::parallel::ThreadPool stSp(nifty::parallel::ParallelOptions(1));
+        tools::parallelForEachBlockWithOverlap(stSp,shape, settings.blockShape, overlapBegin, overlapEnd,
+        [&](
+            const int tid,
+            const Coord & blockCoreBegin, const Coord & blockCoreEnd,
+            const Coord & blockBegin, const Coord & blockEnd
+        ){
+            nBlocks += 1;
+        });
+
+
+        std::cout<<"nBlocks "<<nBlocks<<"\n";
+
         tools::parallelForEachBlockWithOverlap(threadpool,shape, settings.blockShape, overlapBegin, overlapEnd,
         [&](
             const int tid,
@@ -105,11 +125,11 @@ struct ComputeRag< GridRag<DIM,  Hdf5Labels<DIM, LABEL_TYPE> > > {
                 viewShape[d] = blockLabels.shape(d);
             }
 
-
-            labelsProxy.readSubarray(blockBegin, blockEnd, blockLabels);
+            mtx.lock();
+                labelsProxy.readSubarray(blockBegin, blockEnd, blockLabels);
+            mtx.unlock();
 
             auto & adjacency = perThreadDataVec[tid].adjacency;
-
             nifty::tools::forEachCoordinate(actualBlockShape,[&](const Coord & coord){
                 const auto lU = blockLabels(coord.asStdArray());
                 for(size_t axis=0; axis<DIM; ++axis){
@@ -125,6 +145,12 @@ struct ComputeRag< GridRag<DIM,  Hdf5Labels<DIM, LABEL_TYPE> > > {
                     }
                 }
             });
+            mtx.lock();
+                doneBlocks += 1;
+                std::cout<<doneBlocks<<" / "<<nBlocks<<" "<<100.0*float(doneBlocks+1)/float(nBlocks)<<"\n";
+            mtx.unlock();
+
+
         });
 
         rag.mergeAdjacencies(perThreadDataVec, threadpool);

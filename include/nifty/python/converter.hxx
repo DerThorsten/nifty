@@ -4,13 +4,13 @@
 
 #include <type_traits>
 #include <initializer_list>
-//#include <pybind11/stl.h>
 
 
 
 #include <pybind11/pybind11.h>
 #include <pybind11/cast.h>
 #include <pybind11/numpy.h>
+
 
 #include "nifty/array/arithmetic_array.hxx"
 #include "nifty/marray/marray.hxx"
@@ -29,55 +29,135 @@ namespace nifty{
     }
 }
 
+namespace pybind11{
+namespace detail{
 
 
 
-namespace pybind11
-{
-    namespace detail
-    {
+    // to avoid the include of pybind/stl.h 
+    // we re-implement the array_caster 
+    template <typename ArrayType, typename Value, bool Resizable, size_t Size = 0> struct array_caster_ {
+        using value_conv = make_caster<Value>;
 
-        template <typename Type, size_t Size> struct type_caster<nifty::array::StaticArray<Type, Size>> {
-        typedef nifty::array::StaticArray<Type, Size> array_type;
-        typedef type_caster<typename intrinsic_type<Type>::type> value_conv;
+    private:
+        template <bool R = Resizable>
+        bool require_size(enable_if_t<R, size_t> size) {
+            if (value.size() != size)
+                value.resize(size);
+            return true;
+        }
+        template <bool R = Resizable>
+        bool require_size(enable_if_t<!R, size_t> size) {
+            return size == Size;
+        }
 
+    public:
         bool load(handle src, bool convert) {
-            list l(src, true);
-            if (!l.check())
+            if (!isinstance<list>(src))
                 return false;
-            if (l.size() != Size)
+            auto l = reinterpret_borrow<list>(src);
+            if (!require_size(l.size()))
                 return false;
             value_conv conv;
             size_t ctr = 0;
             for (auto it : l) {
                 if (!conv.load(it, convert))
                     return false;
-                value[ctr++] = (Type) conv;
+                value[ctr++] = cast_op<Value>(conv);
             }
             return true;
         }
 
-        static handle cast(const array_type &src, return_value_policy policy, handle parent) {
-            list l(Size);
+        static handle cast(const ArrayType &src, return_value_policy policy, handle parent) {
+            list l(src.size());
             size_t index = 0;
             for (auto const &value: src) {
-                object value_ = object(value_conv::cast(value, policy, parent), false);
+                auto value_ = reinterpret_steal<object>(value_conv::cast(value, policy, parent));
                 if (!value_)
                     return handle();
-                PyList_SET_ITEM(l.ptr(), index++, value_.release().ptr()); // steals a reference
+                PyList_SET_ITEM(l.ptr(), (ssize_t) index++, value_.release().ptr()); // steals a reference
             }
             return l.release();
         }
-        PYBIND11_TYPE_CASTER(array_type, _("list<") + value_conv::name() + _(">") + _("[") + _<Size>() + _("]"));
+
+        PYBIND11_TYPE_CASTER(ArrayType, _("List[") + value_conv::name() + _<Resizable>(_(""), _("[") + _<Size>() + _("]")) + _("]"));
     };
 
 
 
 
-        template <typename Type, size_t DIM, bool AUTO_CAST_TYPE> 
-        struct pymarray_caster;
-    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    template <typename Type, size_t Size> 
+    struct type_caster< nifty::array::StaticArray<Type, Size> >
+    : array_caster_< nifty::array::StaticArray<Type, Size>, Type, false, Size> {
+    };
+
+
+    template <typename Type, size_t DIM, bool AUTO_CAST_TYPE> 
+    struct pymarray_caster;
+    
+
 }
+}
+
+namespace pybind11
+{
+
+    #if defined(WITH_THREAD)
+    class gil_release {
+    public:
+
+        void releaseGil(bool disassoc_ = false) {
+            disassoc = disassoc_;
+            tstate = PyEval_SaveThread();
+            if (disassoc) {
+                auto key = detail::get_internals().tstate;
+                #if PY_MAJOR_VERSION < 3
+                    PyThread_delete_key_value(key);
+                #else
+                    PyThread_set_key_value(key, nullptr);
+                #endif
+            }
+        }
+        void unreleaseGil() {
+            if (!tstate)
+                return;
+            PyEval_RestoreThread(tstate);
+            if (disassoc) {
+                auto key = detail::get_internals().tstate;
+                #if PY_MAJOR_VERSION < 3
+                    PyThread_delete_key_value(key);
+                #endif
+                PyThread_set_key_value(key, tstate);
+            }
+        }
+    private:
+        PyThreadState *tstate;
+        bool disassoc;
+    };
+    #else
+    class gil_release { 
+        void releaseGil(bool disassoc = false){}
+        void unreleaseGil(){}
+    };
+    #endif
+
+
+}
+
+
 
 namespace nifty
 {
@@ -155,8 +235,6 @@ namespace marray
         }
 
 
-
-    #ifdef HAVE_CPP11_INITIALIZER_LISTS
         template<class T_INIT>
         PyView(std::initializer_list<T_INIT> shape) : PyView(shape.begin(), shape.end())
         {
@@ -166,28 +244,29 @@ namespace marray
         void reshapeIfEmpty(std::initializer_list<T_INIT> shape) {
             this->reshapeIfEmpty(shape.begin(), shape.end());
         }
-    #endif
+
     private:
 
         template <class ShapeIterator>
         void assignFromShape(ShapeIterator begin, ShapeIterator end)
         {
-            std::vector<size_t> shape, strides;
+            std::vector<size_t> shape(begin,end);
+            std::vector<size_t> strides(shape.size());
 
-            for (auto i = begin; i != end; ++i)
-                shape.push_back(*i);
-
-            for (size_t i = 0; i < shape.size(); ++i) {
-                size_t stride = sizeof(VALUE_TYPE);
-                for (size_t j = i + 1; j < shape.size(); ++j)
-                    stride *= shape[j];
-                strides.push_back(stride);
+            strides.resize(shape.size());
+            strides.back() = sizeof(VALUE_TYPE);
+            for(int64_t i = strides.size()-2; i>=0; --i){
+                strides[i] = strides[i+1] * shape[i+1];
             }
 
-            py_array = pybind11::array(pybind11::buffer_info(
-                nullptr, sizeof(VALUE_TYPE), pybind11::format_descriptor<VALUE_TYPE>::value, shape.size(), shape, strides));
-            pybind11::buffer_info info = py_array.request();
-            VALUE_TYPE *ptr = (VALUE_TYPE *)info.ptr;
+            VALUE_TYPE * ptr = nullptr;
+            {
+                py::gil_scoped_acquire disallowThreads;
+                py_array = pybind11::array(pybind11::buffer_info(
+                    nullptr, sizeof(VALUE_TYPE), pybind11::format_descriptor<VALUE_TYPE>::value, shape.size(), shape, strides));
+                pybind11::buffer_info info = py_array.request();
+                ptr = (VALUE_TYPE *)info.ptr;
+            }
 
             for (size_t i = 0; i < shape.size(); ++i) {
                 strides[i] /= sizeof(VALUE_TYPE);
@@ -195,6 +274,29 @@ namespace marray
             this->assign(begin, end, strides.begin(), ptr, FirstMajorOrder);
         }
 
+    public:
+        void createViewFrom(const nifty::marray::View<VALUE_TYPE> & view)
+        {
+            std::vector<size_t> shape(view.shapeBegin(), view.shapeEnd());
+            std::vector<size_t> strides(shape.size());
+
+            strides.resize(shape.size());
+            strides.back() = sizeof(VALUE_TYPE);
+            for(int64_t i = 0; i<shape.size(); ++i){
+                strides[i] = view.strides(i)*sizeof(VALUE_TYPE);
+            }
+
+
+            py_array = pybind11::array(pybind11::buffer_info(
+                &view(0), sizeof(VALUE_TYPE), pybind11::format_descriptor<VALUE_TYPE>::value, shape.size(), shape, strides));
+            pybind11::buffer_info info = py_array.request();
+            VALUE_TYPE *ptr = (VALUE_TYPE *)info.ptr;
+
+            for (size_t i = 0; i < shape.size(); ++i) {
+                strides[i] /= sizeof(VALUE_TYPE);
+            }
+            this->assign(shape.begin(), shape.end(), view.stridesBegin(), ptr, FirstMajorOrder);
+        }
     };
 
 
