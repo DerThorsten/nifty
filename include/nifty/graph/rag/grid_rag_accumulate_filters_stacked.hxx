@@ -614,6 +614,12 @@ void accumulateSkipEdgeFeaturesFromFiltersWithAccChain(
                         }
                         
                         const auto skipId = std::distance(skipEdges.begin(), skipIterator) - skipEdgeOffset;
+                        //std::cout << "Found skip edge lU: " << lU << " to lV: " << lV << " with id: " << skipId << std::endl;
+                        //std::cout << "Max id " << numberOfSkipEdgesInSlice << std::endl;
+                        if(skipId > numberOfSkipEdgesInSlice) {
+                            std::cout << "skipId: " << skipId << "numberOfSkipEdgesInSlice: " << numberOfSkipEdgesInSlice << std::endl;
+                            throw std::runtime_error("skipId exceeds numberOfSkipEdgesInSlice");
+                        }
                         
                         for(int c = 0; c < numberOfChannels; ++c) {
                             const auto fU = filterA(c, coord[0], coord[1]);

@@ -159,10 +159,10 @@ namespace graph{
             typedef nifty::marray::PyView<float, 3> FloatArray;
             typedef nifty::marray::PyView<uint8_t, 3> UInt8Array;
 
-            //exportAccumulateEdgeFeaturesFromFiltersInCoreT<StackedRagUInt32, FloatArray>(ragModule);
-            //exportAccumulateEdgeFeaturesFromFiltersInCoreT<StackedRagUInt64, FloatArray>(ragModule);
-            //exportAccumulateEdgeFeaturesFromFiltersInCoreT<StackedRagUInt32, UInt8Array>(ragModule);
-            //exportAccumulateEdgeFeaturesFromFiltersInCoreT<StackedRagUInt64, UInt8Array>(ragModule);
+            exportAccumulateEdgeFeaturesFromFiltersInCoreT<StackedRagUInt32, FloatArray>(ragModule);
+            exportAccumulateEdgeFeaturesFromFiltersInCoreT<StackedRagUInt64, FloatArray>(ragModule);
+            exportAccumulateEdgeFeaturesFromFiltersInCoreT<StackedRagUInt32, UInt8Array>(ragModule);
+            exportAccumulateEdgeFeaturesFromFiltersInCoreT<StackedRagUInt64, UInt8Array>(ragModule);
         }
         
         //hdf5
