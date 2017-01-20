@@ -25,13 +25,13 @@
 namespace nifty{
 namespace graph{
 
+
 template<class COORD>
 COORD makeCoord2(const COORD & coord,const size_t axis){
     COORD coord2 = coord;
     coord2[axis] += 1;
     return coord2;
 };
-
 
 
 template<size_t DIM, class LABEL_TYPE>

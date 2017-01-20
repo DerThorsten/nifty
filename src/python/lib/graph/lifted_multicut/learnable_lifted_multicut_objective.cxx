@@ -21,14 +21,13 @@ namespace lifted_multicut{
 
         typedef GRAPH Graph;
         typedef LiftedMulticutObjective<Graph, double> BaseObjectiveType;
-        typedef LearnableLiftedMulticutObjective<Graph, float> ObjectiveType;
+        typedef LearnableLiftedMulticutObjective<Graph, double> ObjectiveType;
         typedef typename ObjectiveType::LiftedGraphType LiftedGraphType;
         const auto clsName = LiftedMulticutObjectiveName<ObjectiveType>::name();
 
 
-        auto liftedMulticutObjectiveCls = py::class_<ObjectiveType>(
-            liftedMulticutModule, clsName.c_str(),
-            py::base<BaseObjectiveType>()
+        auto liftedMulticutObjectiveCls = py::class_<ObjectiveType,std::unique_ptr<ObjectiveType>, BaseObjectiveType>(
+            liftedMulticutModule, clsName.c_str()
         );
 
     }
