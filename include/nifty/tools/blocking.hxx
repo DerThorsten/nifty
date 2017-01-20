@@ -248,8 +248,6 @@ namespace tools{
         )const{
             return this->addHalo(innerBlock, halo, halo);
         } 
-          
->>>>>>> master
         
     private:
 
