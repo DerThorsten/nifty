@@ -71,12 +71,10 @@ BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest2D)
     NIFTY_TEST_OP(out.shape(0),==,functor.numberOfChannels())
 
     // test filter responses for correctnes for first sigma val
-    // FIXME the laplacian does strange stuff...
     for(size_t y = 0; y < in.shape(0); y++) { 
         for(size_t x = 0; x < in.shape(1); x++) { 
-            //std::cout << out(1,y,x) << " " << laplacian2D[y][x] << std::endl;
             NIFTY_CHECK_EQ_TOL(out(0,y,x),gaussian2D[y][x],1e-6)
-            //NIFTY_CHECK_EQ_TOL(out(1,y,x),laplacian2D[y][x],1e-6)
+            NIFTY_CHECK_EQ_TOL(out(1,y,x),laplacian2D[y][x],1e-6)
             NIFTY_CHECK_EQ_TOL(out(2,y,x),hessian02D[y][x],1e-6)
             NIFTY_CHECK_EQ_TOL(out(3,y,x),hessian12D[y][x],1e-6)
         }
