@@ -180,6 +180,45 @@ namespace tools {
         return std::make_pair(bbBegin, bbEnd);
     }
 
+    template<unsigned DIM, class T>
+    inline void valuesToCoordinates(const marray::View<T> & array,
+            std::map<T, std::vector<nifty::array::StaticArray<int64_t,DIM>>> & coordMapOut) {
+        
+        NIFTY_CHECK_OP(DIM,==,array.dimension(),"Dimensions do not match!");
+        typedef array::StaticArray<int64_t,DIM> Coord;
+        
+        Coord shape;
+        for(int d = 0; d < DIM; ++d)
+            shape[d] = array.shape(d);
+        
+        forEachCoordinate(shape, [&](const Coord & coord){
+            T val = array(coord.asStdArray());
+            auto valIt = coordMapOut.find(val);
+            if(valIt == coordMapOut.end())
+                coordMapOut.emplace(val, std::vector<Coord>({coord}) );
+            else
+                valIt->second.push_back(coord);
+        });
+    }
+    
+    template<unsigned DIM, class T>
+    inline void valuesToCoordinatesWithCoordinates(const marray::View<T> & array,
+            const std::vector<array::StaticArray<int64_t,DIM>> & coordinates,
+            std::map<T, std::vector<nifty::array::StaticArray<int64_t,DIM>>> & coordMapOut) {
+        
+        NIFTY_CHECK_OP(DIM,==,array.dimension(),"Dimensions do not match!");
+        typedef array::StaticArray<int64_t,DIM> Coord;
+        
+        for(const auto & coord : coordinates) {
+            T val = array(coord.asStdArray());
+            auto valIt = coordMapOut.find(val);
+            if(valIt == coordMapOut.end())
+                coordMapOut.emplace(val, std::vector<Coord>({coord}) );
+            else
+                valIt->second.push_back(coord);
+        }
+    }
+
 
 } // namespace tools
 } // namespace nifty

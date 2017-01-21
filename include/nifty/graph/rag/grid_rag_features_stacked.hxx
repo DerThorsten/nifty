@@ -2,22 +2,21 @@
 #ifndef NIFTY_GRAPH_RAG_GRID_RAG_FEATURES_STACKED_HXX
 #define NIFTY_GRAPH_RAG_GRID_RAG_FEATURES_STACKED_HXX
 
-//#include <iostream>
-//#include <fstream>
-//#include <chrono>
+#include <fstream>
 
 #include "nifty/graph/rag/grid_rag_stacked_2d.hxx"
+
 #ifdef WITH_HDF5
 #include "nifty/graph/rag/grid_rag_stacked_2d_hdf5.hxx"
 #endif
+
 #include "nifty/marray/marray.hxx"
 
 #include "nifty/tools/for_each_coordinate.hxx"
 #include "nifty/tools/array_tools.hxx"
+#include "nifty/tools/memory.hxx"
+#include "nifty/tools/runtime_check.hxx"
 
-#ifdef WITH_HDF5
-
-#endif
 
 namespace nifty{
 namespace graph{
@@ -105,8 +104,10 @@ namespace graph{
         std::map<size_t,std::vector<NODE_TYPE>> & defectNodes, 
         const marray::View<NODE_TYPE> & segDn,
         const std::vector<NODE_TYPE> & nodesDn,
-        const std::pair<array::StaticArray<int64_t, 2>,array::StaticArray<int64_t, 2>> & bb,
+        std::map<NODE_TYPE,std::vector<array::StaticArray<int64_t,2>>> & coordsToNodesDn,
         const marray::View<bool> & mask,
+        std::map<int64_t,
+            std::unique_ptr<marray::Marray<NODE_TYPE>>> & upperSegMap,
         std::vector<std::pair<NODE_TYPE,NODE_TYPE>> & skipEdges,
         std::vector<size_t> & skipRanges
     ){
@@ -118,32 +119,35 @@ namespace graph{
         skipRanges.clear();
         
         size_t skipRange = zUp - zDn;
-        Coord2 bbBegin = bb.first;
-        Coord2 bbEnd   = bb.second;
             
         // read the upper segmentation
-        Coord beginUp({zUp, bbBegin[0],bbBegin[1]});
-        Coord endUp({zUp+1, bbEnd[0],  bbEnd[1]});
-        
-        Coord segShape({1L, bbEnd[0] - bbBegin[0], bbEnd[1] - bbBegin[1]});
-        marray::Marray<NodeType> segUpArray(segShape.begin(), segShape.end());
-        labels.readSubarrayLocked(beginUp, endUp, segUpArray);
-        marray::View<NodeType> segUp = segUpArray.squeezedView();
-        
+        auto upperSegIt = upperSegMap.find(zUp);
+        if(upperSegIt == upperSegMap.end()) { // this is the first time we reach this upper slice, so we need to read the labels from hdf5
+            
+            auto & shape = labels.shape();
+            Coord sliceShape({1L, shape[1], shape[2]});
+            upperSegMap[zUp] = tools::make_unique<marray::Marray<NodeType>>(sliceShape.begin(), sliceShape.end()); // C++ 14 ?!
+            Coord sliceUpStart({zUp, 0L, 0L});
+            Coord sliceUpStop({zUp+1, shape[1], shape[2]});
+            
+            std::cout << "Read Upper slice: " << zUp << std::endl;
+            labels.readSubarrayLocked(sliceUpStart, sliceUpStop, *upperSegMap[zUp]);
+            upperSegIt = upperSegMap.find(zUp);
+        }
+        marray::View<NodeType> segUp = upperSegIt->second->squeezedView();
+
         for(auto uDn : nodesDn) {
 
-            auto t0 = std::chrono::steady_clock::now();
+            const auto & coordsDn = coordsToNodesDn[uDn];
             
-            std::vector<Coord2> coordsDn;
-            tools::where<2>(segDn, uDn, coordsDn);
-            
-            // find intersecting nodes in upper slice and 
+            // find intersecting nodes in upper slice 
             std::vector<NodeType> connectedNodes;
             tools::uniquesWithMaskAndCoordinates<2>(segUp, mask, coordsDn, connectedNodes);
 
             // if any of the nodes is defected got to the next slice
             bool upperDefect = false;
             const auto & defectNodesUp = defectNodes[zUp];
+            
             for(auto vUp : connectedNodes) {
                 if(std::find(defectNodesUp.begin(), defectNodesUp.end(), vUp) != defectNodesUp.end()) {
                     upperDefect = true;
@@ -159,8 +163,9 @@ namespace graph{
                     defectNodes,
                     segDn,
                     nodesDn,
-                    bb,
+                    coordsToNodesDn,
                     mask,
+                    upperSegMap,
                     skipEdges,
                     skipRanges);
                 break;
@@ -186,6 +191,7 @@ namespace graph{
         std::vector<size_t> & skipRanges, // skip ranges,ref to outvec
         const bool lowerIsCompletelyDefected = false
     ){
+
         typedef EDGE_TYPE EdgeType;
         typedef NODE_TYPE NodeType;
         
@@ -197,20 +203,60 @@ namespace graph{
         
         auto edgeOffset = rag.numberOfInSliceEdges();
         
-        // read the segmentation
         Coord sliceShape({1L, shape[1], shape[2]});
+        Coord2 sliceShape2({shape[1], shape[2]});
+        
+        // read the segmentation in the defected slice
         marray::Marray<NodeType> segZArray(sliceShape.begin(), sliceShape.end());
         Coord sliceStart({z, 0L, 0L});
         Coord sliceStop({z+1, shape[1], shape[2]});
+        
+        std::cout << "Read defected slice: " << z << std::endl;
         labelsProxy.readSubarrayLocked(sliceStart, sliceStop, segZArray);
         marray::View<NodeType> segZ = segZArray.squeezedView();
+            
+        // read the segmentation in the lower slice
+        marray::Marray<NodeType> segDnArray(sliceShape.begin(), sliceShape.end());
+        Coord sliceDnStart({z-1, 0L, 0L});
+        Coord sliceDnStop({z, shape[1], shape[2]});
+         
+        // don't need lower segmentation for first and last slice or if the lower slice is completely defected
+        if(z > 0 && z < shape[0] - 1 && !lowerIsCompletelyDefected) {
+            std::cout << "Read Lower slice: " << z-1 << std::endl;
+            labelsProxy.readSubarrayLocked(sliceDnStart, sliceDnStop, segDnArray);
+        }
+        marray::View<NodeType> segDn = segDnArray.squeezedView();
+        
+        //FIXME call by refereve is broke for some reason
+        // find coordinates to nodes for defect slice and lower
+        std::map<NodeType,std::vector<Coord2>> coordsToNodes;
+        tools::valuesToCoordinates<2,NodeType>(segZ, coordsToNodes);
+        
+        // read segmentation for the upper slice and store pointer to it in a map
+        // TODO do we need a pointer here?
+        std::map<int64_t, std::unique_ptr<marray::Marray<NodeType>>> upperSegMap;
+        upperSegMap[z+1] = tools::make_unique<marray::Marray<NodeType>>(sliceShape.begin(), sliceShape.end()); // C++ 14 ?!
+        Coord sliceUpStart({z+1, 0L, 0L});
+        Coord sliceUpStop({z+2, shape[1], shape[2]});
+        
+        // don't need upper segmentation for first and last slice or if the lower slice is completely defected
+        if(z > 0 && z < shape[0] - 1 && !lowerIsCompletelyDefected) {
+            std::cout << "Read Upper slice: " << z+1 << std::endl;
+            labelsProxy.readSubarrayLocked(sliceUpStart, sliceUpStop, *upperSegMap[z+1]);
+        }
+            
+        // defect mask
+        marray::Marray<bool> mask(sliceShape2.begin(), sliceShape2.end(), false);
 
         const auto & defectNodesZ  = defectNodes[z];
 
+        std::vector<Coord2> coordsUPrev;
+
         for(size_t i = 0; i < defectNodesZ.size(); ++i) {
+
             auto u = defectNodesZ[i];
 
-            //std::cout << "Processing Node " << u << ": " << i << "/" << defectNodesZ.shape(0) << std::endl;
+            //std::cout << "Processing Node " << u << ": " << i << "/" << defectNodesZ.size() << std::endl;
             
             // remove edges and find edges connecting defected to non defected nodes
             for(auto vIt = rag.adjacencyBegin(u); vIt != rag.adjacencyEnd(u); ++vIt) {
@@ -230,58 +276,42 @@ namespace graph{
             // continue if the lower slice is completely defected
             if(lowerIsCompletelyDefected)
                 continue;
+            
+            // reset the mask
+            if(!coordsUPrev.empty()) {
+                for(const auto & coord : coordsUPrev)
+                    mask(coord.asStdArray()) = false;
+            }
+            //tools::forEachCoordinate(sliceShape2, [&](const Coord2 & coord){
+            //    NIFTY_CHECK_OP(mask(coord.asStdArray()),==,false,"Not properly resetted!");
+            //});
 
-            auto t0 = std::chrono::steady_clock::now();
+            const auto & coordsU = coordsToNodes[u];
+            coordsUPrev = coordsU;
             
-            // find the coordinate of u and the corresponding bounding box
-            std::vector<Coord2> coordsU;
-            auto bbU = tools::whereAndBoundingBox<2>(segZ, u, coordsU);
-            Coord2 beginU = bbU.first;
-            Coord2 endU   = bbU.second;
-
-            Coord beginUDn({z-1, beginU[0], beginU[1]});
-            Coord endUDn({z, endU[0], endU[1]});
-            Coord bbShape({1L, endU[0] - beginU[0], endU[1] - beginU[1]});
-            
-            Coord2 maskShape({bbShape[1],bbShape[2]});
-            // mask for this node in bounding box (2D!)
-            marray::Marray<bool> mask(maskShape.begin(), maskShape.end(), false);
-            
-            // FIXME! THIS SHOULD NOT WORK!
-            //std::cout << mask.dimension() << " " << mask.shape(1) << " " << mask.shape(2) << std::endl;
-            std::vector<Coord2> coordsUMask;
-            for(auto & coord : coordsU)
-                coordsUMask.emplace_back( Coord2({coord[0] - beginU[0], coord[1] - beginU[1]}) );
-            
-            for(auto & coord : coordsUMask)
+            for(const auto & coord : coordsU)
                 mask(coord.asStdArray()) = true;
 
-            // find the lower nodes for skip edges
-            marray::Marray<NodeType> segDnArray(bbShape.begin(), bbShape.end());
-            labelsProxy.readSubarrayLocked(beginUDn, endUDn, segDnArray);
-            marray::View<NodeType> segDn = segDnArray.squeezedView();
-            
+            // find the lower nodes overlapping with this defect for skip edges
             std::vector<NodeType> nodesDn;
-            tools::uniquesWithCoordinates<2>(segDn, coordsUMask, nodesDn);
+            tools::uniquesWithCoordinates<2>(segDn, coordsU, nodesDn);
             
             // we discard defected nodes in the lower slice (if present), because they
             // were already taken care of in a previous iteration
             // erase - remove idiom 
-            // FIXME seems this does not work properly yet
             const auto & defectNodesDn = defectNodes[z-1];
             auto isDefected = [&](NodeType nodeId)
             {
                 return (std::find(defectNodesDn.begin(), defectNodesDn.end(), nodeId) != defectNodesDn.end());
             };
-            //std::cout << "Nodes before erasing: " << nodesDn.size() << std::endl;
             nodesDn.erase( std::remove_if(nodesDn.begin(), nodesDn.end(), isDefected), nodesDn.end() );
-            //std::cout << "Erased nodes, new nodes: " << nodesDn.size() << std::endl;
             
-            //for(auto nodeDn : nodesDn)
-            //    debug_out << std::to_string(nodeDn) << std::endl;
-
             // we only continue doing stuff, if there are nodesDn left
             if(!nodesDn.empty()){
+
+                std::map<NodeType,std::vector<Coord2>> coordsToNodesDn;
+                tools::valuesToCoordinatesWithCoordinates<2,NodeType>(segDn, coordsU, coordsToNodesDn);
+
                 std::vector<std::pair<NodeType,NodeType>> skipEdgesU;
                 std::vector<size_t> skipRangesU;
                 
@@ -292,8 +322,9 @@ namespace graph{
                     defectNodes,
                     segDn,
                     nodesDn,
-                    bbU,
+                    coordsToNodesDn,
                     mask,
+                    upperSegMap,
                     skipEdgesU,
                     skipRangesU); 
                 

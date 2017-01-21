@@ -153,7 +153,7 @@ namespace graph{
 
                 // getSkipEdgesForSlice
                 exportGetSkipEdgesForSliceT<StackedRagUInt32,uint32_t>(ragModule);
-                exportGetSkipEdgesForSliceT<StackedRagUInt64,uint64_t>(ragModule);
+                //exportGetSkipEdgesForSliceT<StackedRagUInt64,uint64_t>(ragModule);
             }
             #endif
 

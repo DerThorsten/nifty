@@ -1,7 +1,7 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.1)
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules)
 
-project(nifty)
+project(nifty CXX)
 
 set (NIFTY_VERSION_MAJOR 0)
 set (NIFTY_VERSION_MINOR 2)
@@ -33,18 +33,23 @@ option(BUILD_PYTHON_DOCS "Build the Python documentation with Sphinx" OFF)
 #-------------------------------------------------------------------------------------------------------------------
 # check for c++ 11 support
 #-------------------------------------------------------------------------------------------------------------------
+# FIXME c++14 is broken!
 if (CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR CMAKE_CXX_COMPILER_ID MATCHES "GNU")
     CHECK_CXX_COMPILER_FLAG("-std=c++14" HAS_CPP14_FLAG)
     CHECK_CXX_COMPILER_FLAG("-std=c++11" HAS_CPP11_FLAG)
     if (HAS_CPP14_FLAG)
+        message("C++ 14!!!!!!!!!")
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
     elseif (HAS_CPP11_FLAG)
+        message("C++ 11!!!!!!!!!")
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
     else()
         message(FATAL_ERROR "Unsupported compiler -- nifty  requires C++11 support!")
     endif()
 endif()
 
+#set(CMAKE_CXX_STANDARD 14)
+#set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(OpenMP)
 if (OPENMP_FOUND)
@@ -181,6 +186,7 @@ endif()
 # find fastfilters
 #-------------------------------------------------------------------------------------------------------------------
 if(WITH_FASTFILTERS)
+    message(WITH FF!!)
     find_package(FASTFILTERS REQUIRED)
     include_directories(${FASTFILTERS_INCLUDE_DIR})
     add_definitions(-DWITH_FASTFILTERS)

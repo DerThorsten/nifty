@@ -180,7 +180,7 @@ namespace graph{
             exportAccumulateEdgeFeaturesFromFiltersInCoreT<StackedRagUInt64, FloatArray>(ragModule);
             exportAccumulateEdgeFeaturesFromFiltersInCoreT<StackedRagUInt32, UInt8Array>(ragModule);
             exportAccumulateEdgeFeaturesFromFiltersInCoreT<StackedRagUInt64, UInt8Array>(ragModule);
-            
+
             // out of core
             exportAccumulateEdgeFeaturesFromFiltersOutOfCoreT<StackedRagUInt32, FloatArray>(ragModule);
             exportAccumulateEdgeFeaturesFromFiltersOutOfCoreT<StackedRagUInt64, FloatArray>(ragModule);
