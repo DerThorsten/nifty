@@ -52,6 +52,21 @@ public:
         }
         labels_.readSubarray(roiBeginCoord.begin(), outArray);
     }
+    
+    template<
+        class ROI_BEGIN_COORD,
+        class ROI_END_COORD
+    >
+    void readSubarrayLocked(
+        const ROI_BEGIN_COORD & roiBeginCoord,
+        const ROI_END_COORD & roiEndCoord,
+        marray::View<LABEL_TYPE> & outArray
+    )const{
+        for(auto d = 0 ; d<DIM; ++d){
+            NIFTY_CHECK_OP(roiEndCoord[d] - roiBeginCoord[d],==,outArray.shape(d),"wrong shape");
+        }
+        labels_.readSubarrayLocked(roiBeginCoord.begin(), outArray);
+    }
 
 
     const hdf5::Hdf5Array<LABEL_TYPE> & hdf5Array()const{

@@ -127,7 +127,7 @@ namespace graph{
         
         Coord segShape({1L, bbEnd[0] - bbBegin[0], bbEnd[1] - bbBegin[1]});
         marray::Marray<NodeType> segUpArray(segShape.begin(), segShape.end());
-        labels.readSubarray(beginUp, endUp, segUpArray);
+        labels.readSubarrayLocked(beginUp, endUp, segUpArray);
         marray::View<NodeType> segUp = segUpArray.squeezedView();
         
         for(auto uDn : nodesDn) {
@@ -202,7 +202,7 @@ namespace graph{
         marray::Marray<NodeType> segZArray(sliceShape.begin(), sliceShape.end());
         Coord sliceStart({z, 0L, 0L});
         Coord sliceStop({z+1, shape[1], shape[2]});
-        labelsProxy.readSubarray(sliceStart, sliceStop, segZArray);
+        labelsProxy.readSubarrayLocked(sliceStart, sliceStop, segZArray);
         marray::View<NodeType> segZ = segZArray.squeezedView();
 
         const auto & defectNodesZ  = defectNodes[z];
@@ -258,7 +258,7 @@ namespace graph{
 
             // find the lower nodes for skip edges
             marray::Marray<NodeType> segDnArray(bbShape.begin(), bbShape.end());
-            labelsProxy.readSubarray(beginUDn, endUDn, segDnArray);
+            labelsProxy.readSubarrayLocked(beginUDn, endUDn, segDnArray);
             marray::View<NodeType> segDn = segDnArray.squeezedView();
             
             std::vector<NodeType> nodesDn;
