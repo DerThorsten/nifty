@@ -45,8 +45,12 @@ namespace hdf5{
 
                 std::cout<<"data array\n";
                 vigra::HDF5File h5FileData(fData,  vigra::HDF5File::OpenReadOnly );
-                DataArray dataArray(h5FileData,dData,
-                    vigra::HDF5File::OpenReadOnly);
+
+                const auto shape_ = h5FileData.getDatasetShape(dData);
+                VigraShapeType shape;
+                std::copy(shape_.begin(), shape_.end(), shape.begin());
+                
+                DataArray dataArray(h5FileData,dData,vigra::HDF5File::OpenReadOnly, shape, VigraShapeType(128));
 
                 std::cout<<"labels array\n";
 
@@ -54,12 +58,16 @@ namespace hdf5{
                 cOpts.compression(vigra::ZLIB_FAST);
 
 
-                vigra::HDF5File h5FileLabels(fLabels,  vigra::HDF5File::Open );
+                std::cout<<"dataArray.shape() "<<dataArray.shape()<<"\n";
+
+                vigra::HDF5File h5FileLabels(fLabels,  vigra::HDF5File::New );
                 LabelsArray labelsArray(h5FileLabels,dLabels,
-                    vigra::HDF5File::Open, dataArray.shape(),
+                    vigra::HDF5File::New, dataArray.shape(),
                     VigraShapeType(128), cOpts);
 
                 vigra::unionFindWatershedsBlockwise(dataArray, labelsArray);
+                labelsArray.flushToDisk();
+                //labelsArray.close();
                
             }
         )

@@ -2,10 +2,72 @@
 #ifndef NIFTY_PYTHON_GRAPH_EXPORT_UNDIRECTED_GRAPH_CLASS_API_HXX
 #define NIFTY_PYTHON_GRAPH_EXPORT_UNDIRECTED_GRAPH_CLASS_API_HXX
 
+#include <pybind11/pybind11.h>
+#include <pybind11/cast.h>
+
 #include "nifty/python/converter.hxx"
-#include "nifty/python/graph/adjacency_converter.hxx"
 
 namespace py = pybind11;
+
+
+
+
+
+
+
+namespace pybind11 {
+namespace detail {
+
+template <typename T1, typename T2> class type_caster<nifty::graph::detail_graph::UndirectedAdjacency<T1, T2>> {
+    typedef nifty::graph::detail_graph::UndirectedAdjacency<T1, T2> type;
+public:
+    bool load(handle src, bool convert) {
+        if (!isinstance<sequence>(src))
+            return false;
+        const auto seq = reinterpret_borrow<sequence>(src);
+        if (seq.size() != 2)
+            return false;
+        return first.load(seq[0], convert) && 
+               second.load(seq[1], convert);
+    }
+
+    static handle cast(const type &src, return_value_policy policy, handle parent) {
+        auto o1 = reinterpret_steal<object>(make_caster<T1>::cast(src.node(), policy, parent));
+        auto o2 = reinterpret_steal<object>(make_caster<T2>::cast(src.edge(), policy, parent));
+        if (!o1 || !o2)
+            return handle();
+        tuple result(2);
+        PyTuple_SET_ITEM(result.ptr(), 0, o1.release().ptr());
+        PyTuple_SET_ITEM(result.ptr(), 1, o2.release().ptr());
+        return result.release();
+    }
+
+    static PYBIND11_DESCR name() {
+        return type_descr(
+            _("Adjacency[") + make_caster<T1>::name() + _(", ") + make_caster<T2>::name() + _("]")
+        );
+    }
+
+    template <typename T> using cast_op_type = type;
+
+    operator type() {
+        return type(cast_op<T1>(first), cast_op<T2>(second));
+    }
+protected:
+    make_caster<T1> first;
+    make_caster<T2> second;
+};
+
+}
+}
+
+
+
+
+
+
+
+
 
 
 namespace nifty{
@@ -116,6 +178,18 @@ namespace graph{
 
             .def("findEdge",[](const G & self, std::pair<uint64_t, uint64_t> uv){
                 return self.findEdge(uv.first, uv.second);
+            })
+            .def("findEdges",[](
+                const G & self,
+                nifty::marray::PyView<uint64_t, 2> uv
+            ){
+                nifty::marray::PyView<int64_t> edgeIds({uv.shape(0)});
+                NIFTY_CHECK_OP(uv.shape(1),==,2,"uv.shape(1) must be 2");
+
+                for(auto i=0; i<uv.shape(0); ++i){
+                   edgeIds(i) = self.findEdge(uv(i,0), uv(i,1)); 
+                }
+                return edgeIds;
             })
             .def("findEdge",&G::findEdge)
             .def("u",&G::u)

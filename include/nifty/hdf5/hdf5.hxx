@@ -23,9 +23,9 @@ namespace hdf5{
             const float rddc_ = 1.0
         )
         : 
-        hashTabelSize( hashTabelSize),
-        nBytes( nBytes),
-        rddc( rddc){
+        hashTabelSize( hashTabelSize_),
+        nBytes( nBytes_),
+        rddc( rddc_){
         }
 
         int hashTabelSize;

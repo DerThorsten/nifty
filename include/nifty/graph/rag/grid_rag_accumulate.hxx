@@ -107,8 +107,9 @@ namespace graph{
 
             // LOOP IN PARALLEL OVER ALL BLOCKS WITH A CERTAIN OVERLAP
             const Coord overlapBegin(0), overlapEnd(1);
-            LabelBlockStorage labelsBlockStorage(threadpool, blockShape, actualNumberOfThreads);
-            DataBlocKStorage dataBlocKStorage(threadpool, blockShape, actualNumberOfThreads);
+            const Coord storageShape = blockShape + overlapEnd;
+            LabelBlockStorage labelsBlockStorage(threadpool, storageShape, actualNumberOfThreads);
+            DataBlocKStorage dataBlocKStorage(threadpool, storageShape, actualNumberOfThreads);
             tools::parallelForEachBlockWithOverlap(threadpool,shape, blockShape, overlapBegin, overlapEnd,
             [&](
                 const int tid,
@@ -256,8 +257,9 @@ namespace graph{
 
             // LOOP IN PARALLEL OVER ALL BLOCKS WITH A CERTAIN OVERLAP
             const Coord overlapBegin(0), overlapEnd(1);
-            LabelBlockStorage labelsBlockStorage(threadpool, blockShape, actualNumberOfThreads);
-            DataBlocKStorage dataBlocKStorage(threadpool, blockShape, actualNumberOfThreads);
+            const Coord storageShape = blockShape + overlapEnd;
+            LabelBlockStorage labelsBlockStorage(threadpool, storageShape, actualNumberOfThreads);
+            DataBlocKStorage dataBlocKStorage(threadpool, storageShape, actualNumberOfThreads);
             tools::parallelForEachBlockWithOverlap(threadpool,shape, blockShape, overlapBegin, overlapEnd,
             [&](
                 const int tid,
@@ -369,6 +371,7 @@ namespace graph{
         F && f,
         const AccOptions & accOptions = AccOptions()
     ){
+        //std::cout<<"A\n";
 
         typedef LABELS_PROXY LabelsProxyType;
         typedef typename vigra::MultiArrayShape<DIM>::type   VigraCoord;
@@ -391,6 +394,10 @@ namespace graph{
         std::vector< EdgeAccChainVectorType * > perThreadEdgeAccChainVector(actualNumberOfThreads);
         std::vector< NodeAccChainVectorType * > perThreadNodeAccChainVector(actualNumberOfThreads);
 
+
+        //std::cout<<"B\n";
+
+
         parallel::parallel_foreach(threadpool, actualNumberOfThreads, 
         [&](const int tid, const int64_t i){
             perThreadEdgeAccChainVector[i] = new EdgeAccChainVectorType(rag.edgeIdUpperBound()+1);
@@ -399,12 +406,15 @@ namespace graph{
 
 
 
+        //std::cout<<"C\n";
 
 
 
         const auto numberOfEdgePasses = (*perThreadEdgeAccChainVector.front()).front().passesRequired();
         const auto numberOfNodePasses = (*perThreadNodeAccChainVector.front()).front().passesRequired();
         const auto numberOfPasses = std::max(numberOfEdgePasses, numberOfNodePasses);
+
+        //std::cout<<"D\n";
 
         if(accOptions.setMinMax){
             parallel::parallel_foreach(threadpool, actualNumberOfThreads,
@@ -425,33 +435,45 @@ namespace graph{
             });
         }
 
+        //std::cout<<"E\n";
+
         // do N passes of accumulator
         for(auto pass=1; pass <= numberOfPasses; ++pass){
 
+
             // LOOP IN PARALLEL OVER ALL BLOCKS WITH A CERTAIN OVERLAP
             const Coord overlapBegin(0), overlapEnd(1);
-            LabelBlockStorage labelsBlockStorage(threadpool, blockShape, actualNumberOfThreads);
-            DataBlocKStorage dataBlocKStorage(threadpool, blockShape, actualNumberOfThreads);
+            const Coord storageShape = blockShape + overlapEnd;
+            LabelBlockStorage labelsBlockStorage(threadpool, storageShape, actualNumberOfThreads);
+            DataBlocKStorage dataBlocKStorage(threadpool, storageShape, actualNumberOfThreads);
             tools::parallelForEachBlockWithOverlap(threadpool,shape, blockShape, overlapBegin, overlapEnd,
             [&](
                 const int tid,
                 const Coord & blockCoreBegin, const Coord & blockCoreEnd,
                 const Coord & blockBegin, const Coord & blockEnd
             ){
+                //std::cout<<"E1\n";
                 // get the accumulator vector for this thread
                 auto & edgeAccVec = *(perThreadEdgeAccChainVector[tid]);
                 auto & nodeAccVec = *(perThreadNodeAccChainVector[tid]);
                 // actual shape of the block: might be smaller at the border as blockShape
 
+                //std::cout<<"E2\n";
                 const auto nonOlBlockShape  = blockCoreEnd - blockCoreBegin;
                 const auto actualBlockShape = blockEnd - blockBegin;
- 
+    
+                //std::cout<<"E3\n";
                 // read the labels block and the data block
                 auto labelsBlockView = labelsBlockStorage.getView(actualBlockShape, tid);
                 auto dataBlockView = dataBlocKStorage.getView(actualBlockShape, tid);
+
+                //std::cout<<"E4 1\n";
                 tools::readSubarray(rag.labelsProxy(), blockBegin, blockEnd, labelsBlockView);
+
+                //std::cout<<"E4 2\n";
                 tools::readSubarray(data, blockBegin, blockEnd, dataBlockView);
 
+                //std::cout<<"E5\n";
                 // loop over all coordinates in block
                 nifty::tools::forEachCoordinate(nonOlBlockShape,[&](const Coord & coordU){
 
@@ -459,8 +481,10 @@ namespace graph{
                     const auto dataU = dataBlockView(coordU.asStdArray());
                     
                     VigraCoord vigraCoordU;
-                    for(size_t d=0; d<DIM; ++d)
+                    for(size_t d=0; d<DIM; ++d){
                         vigraCoordU[d] = coordU[d] + blockBegin[d];
+                        NIFTY_CHECK_OP(vigraCoordU[d], < ,shape[d],"");
+                    }
 
                     if(pass <= numberOfNodePasses)
                         nodeAccVec[lU].updatePassN(dataU, vigraCoordU, pass);
@@ -477,8 +501,10 @@ namespace graph{
                                     const auto dataV = dataBlockView(coordV.asStdArray());
 
                                     VigraCoord vigraCoordV;
-                                    for(size_t d=0; d<DIM; ++d)
+                                    for(size_t d=0; d<DIM; ++d){
                                         vigraCoordV[d] = coordV[d] + blockBegin[d];
+                                        NIFTY_CHECK_OP(vigraCoordV[d], < ,shape[d],"");
+                                    }
 
                                     edgeAccVec[edge].updatePassN(dataU, vigraCoordU, pass);
                                     edgeAccVec[edge].updatePassN(dataV, vigraCoordV, pass);
@@ -575,7 +601,8 @@ namespace graph{
 
             // LOOP IN PARALLEL OVER ALL BLOCKS WITH A CERTAIN OVERLAP
             const Coord overlapBegin(0), overlapEnd(1);
-            LabelBlockStorage labelsBlockStorage(threadpool, blockShape, actualNumberOfThreads);
+            const Coord storageShape = blockShape + overlapEnd;
+            LabelBlockStorage labelsBlockStorage(threadpool, storageShape, actualNumberOfThreads);
             tools::parallelForEachBlockWithOverlap(threadpool,shape, blockShape, overlapBegin, overlapEnd,
             [&](
                 const int tid,
@@ -725,8 +752,9 @@ namespace graph{
 
             // LOOP IN PARALLEL OVER ALL BLOCKS WITH A CERTAIN OVERLAP
             const Coord overlapBegin(0), overlapEnd(1);
-            LabelBlockStorage labelsBlockStorage(threadpool, blockShape, actualNumberOfThreads);
-            DataBlocKStorage dataBlocKStorage(threadpool, blockShape, actualNumberOfThreads);
+            const Coord storageShape = blockShape + overlapEnd;
+            LabelBlockStorage labelsBlockStorage(threadpool, storageShape, actualNumberOfThreads);
+            DataBlocKStorage dataBlocKStorage(threadpool, storageShape, actualNumberOfThreads);
             tools::parallelForEachBlockWithOverlap(threadpool,shape, blockShape, overlapBegin, overlapEnd,
             [&](
                 const int tid,
@@ -828,7 +856,8 @@ namespace graph{
 
             // LOOP IN PARALLEL OVER ALL BLOCKS WITH A CERTAIN OVERLAP
             const Coord overlapBegin(0), overlapEnd(1);
-            LabelBlockStorage labelsBlockStorage(threadpool, blockShape, actualNumberOfThreads);
+            const Coord storageShape = blockShape + overlapEnd;
+            LabelBlockStorage labelsBlockStorage(threadpool, storageShape, actualNumberOfThreads);
             tools::parallelForEachBlockWithOverlap(threadpool,shape, blockShape, overlapBegin, overlapEnd,
             [&](
                 const int tid,
@@ -907,7 +936,7 @@ namespace graph{
         nifty::parallel::ThreadPool threadpool(pOpts);
         const size_t actualNumberOfThreads = pOpts.getActualNumThreads();
 
-        //std::cout<<"Using "<<actualNumberOfThreads<<"\n";
+        ////std::cout<<"Using "<<actualNumberOfThreads<<"\n";
         if(!saveMemory){
             accumulateEdgeAndNodeFeaturesWithAccChain<AccChainType,AccChainType>(rag, data, blockShape, pOpts, threadpool,
             [&](

@@ -12,14 +12,14 @@ namespace ufd{
 
 
     template<class T>
-    void exportUfdT(py::module & ufdModule) {
+    void exportUfdT(py::module & ufdModule, const std::string & clsName) {
     
         typedef Ufd<T> UfdType;
         typedef typename UfdType::Index IndexType;
 
-        py::class_<UfdType>(ufdModule, "Ufd")
+        py::class_<UfdType>(ufdModule, clsName.c_str())
             .def(py::init<const IndexType>(),
-               py::arg_t<IndexType>("numberOfIndices",0)
+               py::arg("numberOfIndices")
             )
             // find for a single element
             .def("find", [](UfdType & self, const T index) {
@@ -68,8 +68,8 @@ namespace ufd{
     }
 
     void exportUfd(py::module & ufdModule) {
-        exportUfdT<uint32_t>(ufdModule);
-        exportUfdT<uint64_t>(ufdModule);
+        exportUfdT<uint32_t>(ufdModule, "Ufd_UInt32");
+        exportUfdT<uint64_t>(ufdModule, "Ufd_UInt64");
     }
 
 }

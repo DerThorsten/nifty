@@ -46,8 +46,8 @@ namespace graph{
             PyMcVisitorBase 
         > mcVisitorBase(multicutModule, mcVisitorBaseClsName.c_str());
         
-        mcVisitorBase
-        ;
+        //mcVisitorBase
+        //;
 
 
         // concrete visitors

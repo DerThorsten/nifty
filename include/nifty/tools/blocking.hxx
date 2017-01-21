@@ -2,6 +2,7 @@
 
 #include "nifty/array/arithmetic_array.hxx"
 
+
 namespace nifty{
 namespace tools{
 
@@ -168,14 +169,18 @@ namespace tools{
             return BlockType(beginCoord, endCoord);
         }   
 
-
-        BlockWithHaloType getBlockWithHalo(const uint64_t blockIndex, const VectorType & halo)const{
+        BlockWithHaloType getBlockWithHalo(
+            const uint64_t blockIndex, 
+            const VectorType & haloBegin,
+            const VectorType & haloEnd
+        )const{
             const BlockType innerBlock = getBlock(blockIndex);
+
             VectorType outerBegin,outerEnd;
 
             for(auto d=0; d<DIM; ++d){
-                outerBegin[d] = std::max(innerBlock.begin()[d] - halo[d], roiBegin_[d]);
-                outerEnd[d]   = std::min(innerBlock.end()[d]   + halo[d], roiEnd_[d]);
+                outerBegin[d] = std::max(innerBlock.begin()[d] - haloBegin[d], roiBegin_[d]);
+                outerEnd[d]   = std::min(innerBlock.end()[d]   + haloEnd[d], roiEnd_[d]);
             }
             return BlockWithHaloType(BlockType(outerBegin, outerEnd), innerBlock);
         }   
@@ -209,6 +214,40 @@ namespace tools{
 
             }
         }
+
+        BlockWithHaloType getBlockWithHalo(
+            const uint64_t blockIndex, 
+            const VectorType & halo
+        )const{
+            return this->getBlockWithHalo(blockIndex, halo, halo);
+        } 
+
+
+
+
+        BlockWithHaloType addHalo(
+            const BlockType innerBlock, 
+            const VectorType & haloBegin,
+            const VectorType & haloEnd
+        )const{
+
+            VectorType outerBegin,outerEnd;
+
+            for(auto d=0; d<DIM; ++d){
+                outerBegin[d] = std::max(innerBlock.begin()[d] - haloBegin[d], roiBegin_[d]);
+                outerEnd[d]   = std::min(innerBlock.end()[d]   + haloEnd[d], roiEnd_[d]);
+            }
+            return  BlockWithHaloType(BlockType(outerBegin, outerEnd), innerBlock);
+        }
+
+
+        
+        BlockWithHaloType addHalo(
+            const BlockType innerBlock,  
+            const VectorType & halo
+        )const{
+            return this->addHalo(innerBlock, halo, halo);
+        } 
         
     private:
 
