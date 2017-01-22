@@ -2,8 +2,6 @@
 #ifndef NIFTY_GRAPH_RAG_GRID_RAG_FEATURES_STACKED_HXX
 #define NIFTY_GRAPH_RAG_GRID_RAG_FEATURES_STACKED_HXX
 
-#include <fstream>
-
 #include "nifty/graph/rag/grid_rag_stacked_2d.hxx"
 
 #ifdef WITH_HDF5
@@ -114,7 +112,7 @@ namespace graph{
         typedef NODE_TYPE NodeType;
         typedef array::StaticArray<int64_t, 3> Coord;
         typedef array::StaticArray<int64_t, 2> Coord2;
-        
+
         skipEdges.clear();
         skipRanges.clear();
         
@@ -135,7 +133,7 @@ namespace graph{
             upperSegIt = upperSegMap.find(zUp);
         }
         marray::View<NodeType> segUp = upperSegIt->second->squeezedView();
-
+        
         for(auto uDn : nodesDn) {
 
             const auto & coordsDn = coordsToNodesDn[uDn];
@@ -143,7 +141,7 @@ namespace graph{
             // find intersecting nodes in upper slice 
             std::vector<NodeType> connectedNodes;
             tools::uniquesWithMaskAndCoordinates<2>(segUp, mask, coordsDn, connectedNodes);
-
+        
             // if any of the nodes is defected got to the next slice
             bool upperDefect = false;
             const auto & defectNodesUp = defectNodes[zUp];
@@ -268,7 +266,7 @@ namespace graph{
                 else if(std::find(defectNodesZ.begin(), defectNodesZ.end(), v) == defectNodesZ.end())
                     ignoreEdges.emplace_back(edgeId);
             }
-
+            
             // don't need skip edges for first and last slice
             if(z == 0 || z == shape[0] - 1)
                 continue;
@@ -291,7 +289,7 @@ namespace graph{
             
             for(const auto & coord : coordsU)
                 mask(coord.asStdArray()) = true;
-
+            
             // find the lower nodes overlapping with this defect for skip edges
             std::vector<NodeType> nodesDn;
             tools::uniquesWithCoordinates<2>(segDn, coordsU, nodesDn);

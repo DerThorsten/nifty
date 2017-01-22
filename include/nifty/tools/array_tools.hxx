@@ -35,7 +35,7 @@ namespace tools {
             shape[d] = array.shape(d);
             
         // copy if, but w.r.t. mask
-        out.resize(array.size());
+        out.reserve(array.size());
         auto itOut   = out.begin();
         
         forEachCoordinate(shape, [&](const Coord & coord){
@@ -61,13 +61,14 @@ namespace tools {
             std::vector<T> & out){
         
         typedef array::StaticArray<int64_t,DIM> Coord;
+        
         Coord shape;
         for(int d = 0; d < DIM; ++d)
             shape[d] = array.shape(d);
             
-        out.resize(array.size());
+        out.reserve(coordinates.size());
         auto itOut   = out.begin();
-        
+            
         for(auto & coord : coordinates ) {
             *itOut = array(coord.asStdArray()); 
             ++itOut;
@@ -87,16 +88,17 @@ namespace tools {
     inline void uniquesWithMaskAndCoordinates(const marray::View<T> & array,
             const marray::View<bool> & mask, 
             const std::vector<array::StaticArray<int64_t,DIM>> & coordinates,
-            std::vector<T> & out){
+            std::vector<T> & out) {
         //TODO check that array and mask have the same size
         
         typedef array::StaticArray<int64_t,DIM> Coord;
+        
         Coord shape;
         for(int d = 0; d < DIM; ++d)
             shape[d] = array.shape(d);
             
         // copy if, but w.r.t. mask
-        out.resize(array.size());
+        out.reserve(coordinates.size());
         auto itOut   = out.begin();
         
         for(auto & coord : coordinates ) {
