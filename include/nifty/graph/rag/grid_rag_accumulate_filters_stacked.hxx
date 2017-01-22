@@ -422,6 +422,8 @@ void accumulateSkipEdgeFeaturesFromFiltersWithAccChain(
     parallel::ThreadPool & threadpool,
     F && f
 ){
+    typedef std::pair<uint64_t,uint64_t> SkipEdgeStorage; 
+    
     typedef LABELS_PROXY LabelsProxyType;
     typedef typename DATA::DataType DataType;
     typedef typename vigra::MultiArrayShape<3>::type VigraCoord;
@@ -435,6 +437,7 @@ void accumulateSkipEdgeFeaturesFromFiltersWithAccChain(
     
     typedef EDGE_ACC_CHAIN EdgeAccChainType;
     typedef std::vector<EdgeAccChainType>   AccChainVectorType; 
+    typedef std::map<SkipEdgeStorage,AccChainVectorType> ChannelAccChainMapType; 
     typedef std::vector<AccChainVectorType> ChannelAccChainVectorType; 
 
     const size_t actualNumberOfThreads = pOpts.getActualNumThreads();
@@ -463,9 +466,6 @@ void accumulateSkipEdgeFeaturesFromFiltersWithAccChain(
     //for(auto pass = 1; pass <= channelAccChainVector.front().front().passesRequired(); ++pass) {
     int pass = 1;
     {
-        // edge acc vectors for multiple threads
-        std::vector< ChannelAccChainVectorType> perThreadChannelAccChainVector(actualNumberOfThreads);
-
         LabelBlockStorage labelsAStorage(threadpool, sliceShape3, 1);
         LabelBlockStorage labelsBStorage(threadpool, sliceShape3, 1);
         DataBlockStorage dataAStorage(threadpool, sliceShape3, 1);
@@ -511,6 +511,9 @@ void accumulateSkipEdgeFeaturesFromFiltersWithAccChain(
 
             std::cout << countSlice++ << " / " << lowerSlices.size() << std::endl;
             std::cout << "Finding features for skip edges from slice " << sliceId << std::endl; 
+        
+            // edge acc vectors for multiple threads
+            std::vector< ChannelAccChainMapType> perThreadAccChainVector(actualNumberOfThreads);
                 
             Coord beginA({int64_t(sliceId),0L,0L}); 
             Coord endA(  {int64_t(sliceId+1),shape[1],shape[2]}); 
@@ -550,18 +553,6 @@ void accumulateSkipEdgeFeaturesFromFiltersWithAccChain(
             }
                 
             auto numberOfSkipEdgesInSlice = numberOfSkipEdgesPerSlice[sliceId];
-            // resize the channel acc chain thread vector
-            parallel::parallel_foreach(threadpool, actualNumberOfThreads, 
-            [&](const int tid, const int64_t i){
-                perThreadChannelAccChainVector[i] = ChannelAccChainVectorType( numberOfSkipEdgesInSlice,
-                    AccChainVectorType( numberOfChannels) );
-                // set minmax
-                auto & perThreadAccChainVector = perThreadChannelAccChainVector[i];
-                for(int64_t edge = 0; edge < numberOfSkipEdgesInSlice; ++edge){
-                    for(int c = 0; c < numberOfChannels; ++c)
-                        perThreadAccChainVector[edge][c].setHistogramOptions(histoOptionsVec[c]);
-                }
-            });
             
             Coord beginB;
             Coord endB;
@@ -594,56 +585,84 @@ void accumulateSkipEdgeFeaturesFromFiltersWithAccChain(
                 // accumulate filter for the between slice edges
                 nifty::tools::parallelForEachCoordinate(threadpool, sliceShape2, [&](const int tid, const Coord2 coord){
 
+                    auto & threadData = perThreadAccChainVector[tid];
+                    
                     // labels are different for different slices by default!
                     const auto lU = labelsASqueezed(coord.asStdArray());
                     const auto lV = labelsBSqueezed(coord.asStdArray());
 
-                    // check if lU and lV have a skip edge
                     auto skipPair = std::make_pair(static_cast<uint64_t>(lU), static_cast<uint64_t>(lV));
-                    // we restrict the search to the relevant skip edges in this slice to speed it up significantly
-                    auto skipIterator = std::find(skipEdges.begin()+skipEdgeOffset, skipEdges.end()+skipEdgeOffset+numberOfSkipEdgesInSlice, skipPair);
-                    if(skipIterator != skipEdges.end()) {
-                        auto & channelAccChainVec = perThreadChannelAccChainVector[tid];
+                    auto skipIt   = threadData.find(skipPair);
 
-                        VigraCoord vigraCoordU;    
-                        VigraCoord vigraCoordV;    
-                        vigraCoordU[0] = sliceId;
-                        vigraCoordV[0] = nextId;
-                        for(int d = 1; d < 3; ++d){
-                            vigraCoordU[d] = coord[d-1];
-                            vigraCoordV[d] = coord[d-1];
+                    if(skipIt == threadData.end()) {
+                    
+                        // first time we hit that edge -> initialize the vector with AccChaains for the different channels
+                        threadData[skipPair] = AccChainVectorType();
+                        auto & accChainVec = threadData[skipPair];
+
+                        for(int c = 0; c < numberOfChannels; ++c){
+                            accChainVec.emplace_back( EdgeAccChainType() );
+                            accChainVec[c].setHistogramOptions(histoOptionsVec[c]);
                         }
+                    }
+                    
+                    auto & accChainVec = threadData[skipPair];
                         
-                        const auto skipId = std::distance(skipEdges.begin(), skipIterator) - skipEdgeOffset;
-                        //std::cout << "Found skip edge lU: " << lU << " to lV: " << lV << " with id: " << skipId << std::endl;
-                        //std::cout << "Max id " << numberOfSkipEdgesInSlice << std::endl;
-                        if(skipId > numberOfSkipEdgesInSlice) {
-                            std::cout << "skipId: " << skipId << "numberOfSkipEdgesInSlice: " << numberOfSkipEdgesInSlice << std::endl;
-                            throw std::runtime_error("skipId exceeds numberOfSkipEdgesInSlice");
-                        }
-                        
-                        for(int c = 0; c < numberOfChannels; ++c) {
-                            const auto fU = filterA(c, coord[0], coord[1]);
-                            const auto fV = filterB(c, coord[0], coord[1]);
-                            channelAccChainVec[skipId][c].updatePassN(fU, vigraCoordU, pass);
-                            channelAccChainVec[skipId][c].updatePassN(fV, vigraCoordV, pass);
-                        }
+                    VigraCoord vigraCoordU;    
+                    VigraCoord vigraCoordV;    
+                    vigraCoordU[0] = sliceId;
+                    vigraCoordV[0] = nextId;
+                    for(int d = 1; d < 3; ++d){
+                        vigraCoordU[d] = coord[d-1];
+                        vigraCoordV[d] = coord[d-1];
+                    }
+                    
+                    for(int c = 0; c < numberOfChannels; ++c) {
+                        const auto fU = filterA(c, coord[0], coord[1]);
+                        const auto fV = filterB(c, coord[0], coord[1]);
+                        accChainVec[c].updatePassN(fU, vigraCoordU, pass);
+                        accChainVec[c].updatePassN(fV, vigraCoordV, pass);
                     }
                 });
             }
             
             // merge
+            // init the edge chain vector we merge stuff to
+            ChannelAccChainVectorType accChainVector(numberOfSkipEdgesInSlice);
+            // TODO init for all in slice skip edges
             parallel::parallel_foreach(threadpool, numberOfSkipEdgesInSlice, 
-            [&](const int tid, const int64_t edge){
-                auto & accChainVec = perThreadChannelAccChainVector[0];
-                for(auto t=1; t<actualNumberOfThreads; ++t){
-                    auto & perThreadAccChainVec = perThreadChannelAccChainVector[t];
-                    for(int c = 0; c < numberOfChannels; ++c)
-                        accChainVec[edge][c].merge(perThreadAccChainVec[edge][c]);
-                }
+                [&](const int tid, const int64_t skipEdge){
+                    auto & accChainVec = accChainVector[skipEdge];
+                    for(int c = 0; c < numberOfChannels; ++c){
+                        accChainVec.emplace_back( EdgeAccChainType() );
+                        accChainVec[c].setHistogramOptions(histoOptionsVec[c]);
+                    }
             });
+            
+            // merge the maps for actual skip edges
+            for(size_t t = 0; t < actualNumberOfThreads; ++t) {
+                    
+                auto & threadData = perThreadAccChainVector[t];
+                // get the keys from the map holding all potential skip edges
+                std::vector<SkipEdgeStorage> keys;
+                tools::extractKeys(threadData, keys);
+                parallel::parallel_foreach(threadpool, keys.size(), 
+                [&](const int tid, const int64_t keyId){
+                    
+                    auto & key = keys[keyId];
+                    auto skipIterator = std::find(skipEdges.begin()+skipEdgeOffset, skipEdges.end()+skipEdgeOffset+numberOfSkipEdgesInSlice, key);
+                    if(skipIterator != skipEdges.end()) {
+                        const auto skipId = std::distance(skipEdges.begin()+skipEdgeOffset, skipIterator);
+                        auto & accVecSrc  = threadData[key];
+                        auto & accVecDest = accChainVector[skipId];
+                        for(int c = 0; c < numberOfChannels; ++c)
+                            accVecDest[c].merge(accVecSrc[c]);
+                    }
+                });
 
-            f(perThreadChannelAccChainVector[0], skipEdgeOffset);
+            }
+
+            f(accChainVector, skipEdgeOffset);
             skipEdgeOffset += numberOfSkipEdgesInSlice;
         }
     }

@@ -209,6 +209,17 @@ namespace tools {
         }
     }
 
+    template<class KEY, class VALUE>
+    inline void extractKeys(const std::map<KEY,VALUE> & inMap, std::vector<KEY> & keysOut) {
+        
+        keysOut.clear();
+        keysOut.reserve(inMap.size());
+
+        std::transform(inMap.begin(), inMap.end(), std::back_inserter(keysOut),
+            [&](std::pair<KEY,VALUE> keyVal){return keyVal.first;});
+            
+    }
+
 
 } // namespace tools
 } // namespace nifty

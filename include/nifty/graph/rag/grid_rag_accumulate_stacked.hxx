@@ -268,6 +268,8 @@ namespace graph{
     
         typedef array::StaticArray<int64_t, 3> Coord;
         typedef array::StaticArray<int64_t, 2> Coord2;
+
+        typedef std::pair<uint64_t,uint64_t> SkipEdgeStorage; 
     
         const size_t actualNumberOfThreads = pOpts.getActualNumThreads();
     
@@ -317,7 +319,7 @@ namespace graph{
             auto labelsASqueezed = labelsA.squeezedView();
 
             auto skipEdgesInSlice = numberOfSkipEdgesPerSlice[sliceId];
-            std::vector<std::vector<size_t>> perThreadData(actualNumberOfThreads, std::vector<size_t>(skipEdgesInSlice) );
+            std::vector<std::map<SkipEdgeStorage,size_t>> perThreadData(actualNumberOfThreads, std::map<SkipEdgeStorage,size_t>() );
                 
             Coord beginB;
             Coord endB;
@@ -343,25 +345,34 @@ namespace graph{
     
                     // check if lU and lV have a skip edge
                     auto skipPair = std::make_pair(static_cast<uint64_t>(lU), static_cast<uint64_t>(lV));
-                    // we restrict the search to the relevant skip edges in this slice to speed it up significantly
-                    auto skipIterator = std::find(skipEdges.begin()+skipEdgeOffset, skipEdges.end()+skipEdgeOffset+skipEdgesInSlice, skipPair);
-                    if(skipIterator != skipEdges.end()) {
-                        const auto skipId = std::distance(skipEdges.begin(), skipIterator) - skipEdgeOffset;
-                        ++threadData[skipId];
-                    }
+                    auto skipIt = threadData.find(skipPair);
+                    if( skipIt == threadData.end() )
+                        threadData[skipPair] = 1;
+                    else
+                        ++(skipIt->second);
                 });
             }
             
             // merge thread data
-            parallel::parallel_foreach(threadpool, skipEdgesInSlice, 
-            [&](const int tid, const int64_t skipInSliceId){
-                for(size_t t = 0; t < actualNumberOfThreads; ++t) {
-                    const auto & threadData = perThreadData[t];
-                    auto skipId = skipInSliceId + skipEdgeOffset;
-                    out[skipId] += threadData[skipInSliceId]; 
-                }
-            });
-
+            for(size_t t = 0; t < actualNumberOfThreads; ++t) {
+                
+                auto & threadData = perThreadData[t];
+                // get the keys from the map holding all potential skip edges
+                std::vector<SkipEdgeStorage> keys;
+                tools::extractKeys(threadData, keys);
+                
+                parallel::parallel_foreach(threadpool, keys.size(), 
+                [&](const int tid, const int64_t keyId){
+                    
+                    auto & key = keys[keyId];
+                    auto skipIterator = std::find(skipEdges.begin()+skipEdgeOffset, skipEdges.end()+skipEdgeOffset+skipEdgesInSlice, key);
+                    if(skipIterator != skipEdges.end()) {
+                        const auto skipId = std::distance(skipEdges.begin(), skipIterator);
+                        out[skipId] += threadData[key];
+                    }
+                    
+                });
+            }
             skipEdgeOffset += skipEdgesInSlice;
         }
     }
