@@ -141,7 +141,7 @@ namespace graph{
             // find intersecting nodes in upper slice 
             std::vector<NodeType> connectedNodes;
             tools::uniquesWithMaskAndCoordinates<2>(segUp, mask, coordsDn, connectedNodes);
-        
+            
             // if any of the nodes is defected got to the next slice
             bool upperDefect = false;
             const auto & defectNodesUp = defectNodes[zUp];
@@ -293,7 +293,7 @@ namespace graph{
             // find the lower nodes overlapping with this defect for skip edges
             std::vector<NodeType> nodesDn;
             tools::uniquesWithCoordinates<2>(segDn, coordsU, nodesDn);
-            
+
             // we discard defected nodes in the lower slice (if present), because they
             // were already taken care of in a previous iteration
             // erase - remove idiom 

@@ -33,20 +33,15 @@ namespace tools {
         Coord shape;
         for(int d = 0; d < DIM; ++d)
             shape[d] = array.shape(d);
+
+        out.clear();
             
         // copy if, but w.r.t. mask
-        out.reserve(array.size());
-        auto itOut   = out.begin();
-        
         forEachCoordinate(shape, [&](const Coord & coord){
             if(mask(coord.asStdArray())) {
-                *itOut = array(coord.asStdArray()); 
-                ++itOut;
+                out.emplace_back( array(coord.asStdArray()) ); 
             }
         });
-        
-        // resize the out vector
-        out.resize(std::distance(out.begin(), itOut));
         
         std::sort(out.begin(),out.end());
         auto last = std::unique(out.begin(), out.end());
@@ -61,21 +56,12 @@ namespace tools {
             std::vector<T> & out){
         
         typedef array::StaticArray<int64_t,DIM> Coord;
+
+        out.clear();
         
-        Coord shape;
-        for(int d = 0; d < DIM; ++d)
-            shape[d] = array.shape(d);
-            
-        out.reserve(coordinates.size());
-        auto itOut   = out.begin();
-            
         for(auto & coord : coordinates ) {
-            *itOut = array(coord.asStdArray()); 
-            ++itOut;
+            out.emplace_back( array(coord.asStdArray()) ); 
         }
-        
-        // resize the out vector
-        out.resize(std::distance(out.begin(), itOut));
         
         std::sort(out.begin(),out.end());
         auto last = std::unique(out.begin(), out.end());
@@ -92,24 +78,14 @@ namespace tools {
         //TODO check that array and mask have the same size
         
         typedef array::StaticArray<int64_t,DIM> Coord;
-        
-        Coord shape;
-        for(int d = 0; d < DIM; ++d)
-            shape[d] = array.shape(d);
-            
-        // copy if, but w.r.t. mask
-        out.reserve(coordinates.size());
-        auto itOut   = out.begin();
-        
+       
+        out.clear();
+
         for(auto & coord : coordinates ) {
             if(mask(coord.asStdArray())) {
-                *itOut = array(coord.asStdArray()); 
-                ++itOut;
+                out.emplace_back( array(coord.asStdArray()) );
             }
         }
-        
-        // resize the out vector
-        out.resize(std::distance(out.begin(), itOut));
         
         std::sort(out.begin(),out.end());
         auto last = std::unique(out.begin(), out.end());
