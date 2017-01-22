@@ -51,12 +51,12 @@ namespace graph{
         [](
             const RAG & rag,
             const std::vector<std::pair<size_t,size_t>> & skipEdges,
-            nifty::marray::PyView<size_t> skipRanges, // TODO should these be const?
-            nifty::marray::PyView<size_t> skipStarts, // TODO should these be const?
+            const std::vector<size_t> & skipRanges,
+            const std::vector<size_t> & skipStarts,
             const int numberOfThreads
         ){
-            uint64_t nSkipEdges = skipEdges.size();
-            nifty::marray::PyView<size_t> out({nSkipEdges});
+            size_t nSkipEdges = skipEdges.size();
+            std::vector<size_t> out(nSkipEdges);
             {
                 py::gil_scoped_release allowThreads;
                 getSkipEdgeLengths(rag,

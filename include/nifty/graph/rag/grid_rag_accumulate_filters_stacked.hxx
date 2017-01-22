@@ -416,8 +416,8 @@ void accumulateSkipEdgeFeaturesFromFiltersWithAccChain(
     const GridRagStacked2D<LABELS_PROXY> & rag,
     const DATA & data,
     const std::vector<std::pair<uint64_t,uint64_t>> & skipEdges,
-    const marray::View<size_t> & skipRanges,
-    const marray::View<size_t> & skipStarts,
+    const std::vector<size_t> & skipRanges,
+    const std::vector<size_t> & skipStarts,
     const parallel::ParallelOptions & pOpts,
     parallel::ThreadPool & threadpool,
     F && f
@@ -490,9 +490,9 @@ void accumulateSkipEdgeFeaturesFromFiltersWithAccChain(
         }
         // 
         for(size_t skipId = 0; skipId < skipEdges.size(); ++skipId) {
-            auto sliceId = skipStarts(skipId);
+            auto sliceId = skipStarts[skipId];
             ++numberOfSkipEdgesPerSlice[sliceId];
-            auto targetSlice = sliceId + skipRanges(skipId);
+            auto targetSlice = sliceId + skipRanges[skipId];
             auto & thisSkipSlices = skipSlices[sliceId];
             if(std::find(thisSkipSlices.begin(), thisSkipSlices.end(), targetSlice) == thisSkipSlices.end() )
                 thisSkipSlices.push_back(targetSlice);
@@ -600,7 +600,8 @@ void accumulateSkipEdgeFeaturesFromFiltersWithAccChain(
 
                     // check if lU and lV have a skip edge
                     auto skipPair = std::make_pair(static_cast<uint64_t>(lU), static_cast<uint64_t>(lV));
-                    auto skipIterator = std::find(skipEdges.begin(), skipEdges.end(), skipPair);
+                    // we restrict the search to the relevant skip edges in this slice to speed it up significantly
+                    auto skipIterator = std::find(skipEdges.begin()+skipEdgeOffset, skipEdges.end()+skipEdgeOffset+numberOfSkipEdgesInSlice, skipPair);
                     if(skipIterator != skipEdges.end()) {
                         auto & channelAccChainVec = perThreadChannelAccChainVector[tid];
 
@@ -656,8 +657,8 @@ void accumulateSkipEdgeFeaturesFromFilters(
     const DATA & data,
     OUTPUT & edgeFeaturesOut,
     const std::vector<std::pair<uint64_t,uint64_t>> & skipEdges,
-    const marray::View<size_t> & skipRanges,
-    const marray::View<size_t> & skipStarts,
+    const std::vector<size_t> & skipRanges,
+    const std::vector<size_t> & skipStarts,
     const int numberOfThreads = -1
 ){
     namespace acc = vigra::acc;

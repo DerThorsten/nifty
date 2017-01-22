@@ -115,8 +115,8 @@ namespace graph{
             const RAG & rag,
             DATA data,
             const std::vector<std::pair<size_t,size_t>> & skipEdges,
-            nifty::marray::PyView<size_t> skipRanges, // TODO should these be const?
-            nifty::marray::PyView<size_t> skipStarts, // TODO should these be const?
+            const std::vector<size_t> & skipRanges,
+            const std::vector<size_t> & skipStarts,
             const int numberOfThreads
         ){
             uint64_t nSkipEdges = skipEdges.size();

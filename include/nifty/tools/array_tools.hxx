@@ -24,6 +24,18 @@ namespace tools {
         out.erase( last, out.end() );
     }
     
+    // unique values in vector
+    template<class T>
+    inline void uniques(const std::vector<T> & array, std::vector<T> & out){
+        
+        out.resize(array.size());
+        std::copy(array.begin(), array.end(), out.begin());
+        
+        std::sort(out.begin(),out.end());
+        auto last = std::unique(out.begin(), out.end());
+        out.erase( last, out.end() );
+    }
+    
     // unique values in masked array
     template<unsigned DIM, class T>
     inline void uniquesWithMask(const marray::View<T> & array, const marray::View<bool> & mask, std::vector<T> & out){

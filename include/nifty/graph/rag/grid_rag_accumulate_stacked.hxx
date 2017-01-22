@@ -236,13 +236,13 @@ namespace graph{
         );
     }
     
-    template<class LABELS_PROXY, class OUT>
+    template<class LABELS_PROXY>
     void getSkipEdgeLengths(
         const GridRagStacked2D<LABELS_PROXY> & rag,
-        OUT & out, // TODO call by ref or call by val ?
+        std::vector<size_t> & out, // TODO call by ref or call by val ?
         const std::vector<std::pair<uint64_t,uint64_t>> & skipEdges,
-        const marray::View<size_t> & skipRanges,
-        const marray::View<size_t> & skipStarts,
+        const std::vector<size_t> & skipRanges,
+        const std::vector<size_t> & skipStarts,
         const int numberOfThreads = -1
     ){
         // threadpool
@@ -252,13 +252,13 @@ namespace graph{
         getSkipEdgeLengthsImpl(rag, out, skipEdges, skipRanges, skipStarts, pOpts, threadpool);
     }
 
-    template<class LABELS_PROXY, class OUT>
+    template<class LABELS_PROXY>
     void getSkipEdgeLengthsImpl(
         const GridRagStacked2D<LABELS_PROXY> & rag,
-        OUT & out,
+        std::vector<size_t> & out,
         const std::vector<std::pair<uint64_t,uint64_t>> & skipEdges,
-        const marray::View<size_t> & skipRanges,
-        const marray::View<size_t> & skipStarts,
+        const std::vector<size_t> & skipRanges,
+        const std::vector<size_t> & skipStarts,
         const parallel::ParallelOptions & pOpts,
         parallel::ThreadPool & threadpool
     ){
@@ -295,15 +295,16 @@ namespace graph{
         }
         // 
         for(size_t skipId = 0; skipId < skipEdges.size(); ++skipId) {
-            auto sliceId = skipStarts(skipId);
+            auto sliceId = skipStarts[skipId];
             ++numberOfSkipEdgesPerSlice[sliceId];
-            auto targetSlice = sliceId + skipRanges(skipId);
+            auto targetSlice = sliceId + skipRanges[skipId];
             auto & thisSkipSlices = skipSlices[sliceId];
             if(std::find(thisSkipSlices.begin(), thisSkipSlices.end(), targetSlice) == thisSkipSlices.end() )
                 thisSkipSlices.push_back(targetSlice);
         }
         
         int countSlice = 0;
+        size_t skipEdgeOffset = 0;
         for(auto sliceId : lowerSlices) {
     
             std::cout << countSlice++ << " / " << lowerSlices.size() << std::endl;
@@ -314,6 +315,9 @@ namespace graph{
             auto labelsA = labelsAStorage.getView(0);  
             labelsProxy.readSubarray(beginA, endA, labelsA);
             auto labelsASqueezed = labelsA.squeezedView();
+
+            auto skipEdgesInSlice = numberOfSkipEdgesPerSlice[sliceId];
+            std::vector<std::vector<size_t>> perThreadData(actualNumberOfThreads, std::vector<size_t>(skipEdgesInSlice) );
                 
             Coord beginB;
             Coord endB;
@@ -330,6 +334,8 @@ namespace graph{
         
                 // accumulate filter for the between slice edges
                 nifty::tools::parallelForEachCoordinate(threadpool, sliceShape2, [&](const int tid, const Coord2 coord){
+
+                    auto & threadData = perThreadData[tid];
     
                     // labels are different for different slices by default!
                     const auto lU = labelsASqueezed(coord.asStdArray());
@@ -337,13 +343,26 @@ namespace graph{
     
                     // check if lU and lV have a skip edge
                     auto skipPair = std::make_pair(static_cast<uint64_t>(lU), static_cast<uint64_t>(lV));
-                    auto skipIterator = std::find(skipEdges.begin(), skipEdges.end(), skipPair);
+                    // we restrict the search to the relevant skip edges in this slice to speed it up significantly
+                    auto skipIterator = std::find(skipEdges.begin()+skipEdgeOffset, skipEdges.end()+skipEdgeOffset+skipEdgesInSlice, skipPair);
                     if(skipIterator != skipEdges.end()) {
-                        const auto skipId = std::distance(skipEdges.begin(), skipIterator);
-                        ++out[skipId];
+                        const auto skipId = std::distance(skipEdges.begin(), skipIterator) - skipEdgeOffset;
+                        ++threadData[skipId];
                     }
                 });
             }
+            
+            // merge thread data
+            parallel::parallel_foreach(threadpool, skipEdgesInSlice, 
+            [&](const int tid, const int64_t skipInSliceId){
+                for(size_t t = 0; t < actualNumberOfThreads; ++t) {
+                    const auto & threadData = perThreadData[t];
+                    auto skipId = skipInSliceId + skipEdgeOffset;
+                    out[skipId] += threadData[skipInSliceId]; 
+                }
+            });
+
+            skipEdgeOffset += skipEdgesInSlice;
         }
     }
 
