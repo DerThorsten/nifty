@@ -9,3 +9,4 @@ addPythonModule(
 )
 
 add_subdirectory(neuro_seg)
+add_subdirectory(ilastik_backend)
