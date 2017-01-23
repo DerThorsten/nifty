@@ -7,5 +7,7 @@ addPythonModule(
         interactive_pixel_classification.cxx
     LIBRRARIES
         ${TBB_LIBRARIES} ${FASTFILTER_LIBRARY}
+        ${HDF5_LIBRARIES}
+
 )
 

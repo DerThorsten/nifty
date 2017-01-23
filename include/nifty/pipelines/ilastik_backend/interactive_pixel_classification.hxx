@@ -65,6 +65,10 @@ namespace ilastik_backend{
         size_t addTrainingInstance(const InputDataBaseType * instance){
             trainingData_.push_back(instance);
         }
+
+        void addTrainingData(){
+            
+        }
     private:
         // atm we make it single channnel
         std::vector<const InputDataBaseType * > trainingData_;
