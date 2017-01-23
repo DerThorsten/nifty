@@ -25,6 +25,7 @@ FOREACH(PYTHON_FILENAME   ${${MODULE_NAME}_PYTHON_FILES})
     get_filename_component(FILE_DIR  ${CMAKE_BINARY_DIR}/${RELATIVE_FILENAME} DIRECTORY)
     file(MAKE_DIRECTORY ${FILE_DIR})
 
+    MESSAGE(STATUS ${PYTHON_FILENAME})
     add_custom_target(copy_${RELATIVE_FILENAME_TARGET_NAME} ALL
         COMMAND cmake -E copy_if_different 
         ${PYTHON_FILENAME}

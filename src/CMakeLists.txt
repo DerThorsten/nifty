@@ -12,4 +12,3 @@ if(BUILD_CPP_EXAMPLES)
 endif()
 
 
-add_subdirectory(redeemer)

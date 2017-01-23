@@ -42,8 +42,9 @@ namespace tools{
         for(auto d = 0 ; d<dim; ++d){
             subShape[d] = endCoord[d] - beginCoord[d];
         }
-        for(int d = 0; d < dim; ++d )
-            NIFTY_CHECK_OP(subShape[d],==,data.shape(d),"Shapes don't match!")
+        for(int d = 0; d < dim; ++d ){
+            NIFTY_CHECK_OP(subShape[d],==,data.shape(d),"Shapes don't match!");
+        }
         auto subarray = array.view(beginCoord.begin(), subShape.begin());
         
         // for dim < 4 we can use forEachCoordinate (this only works if COORD is nifty::array::StaticArray)
