@@ -15,42 +15,59 @@ namespace ilastik_backend{
     public:
         typedef array::StaticArray<int64_t, DIM> Coord;
         virtual ~InputDataBase(){}
+
+        virtual void readData(const Coord & begin, const Coord & end, nifty::marray::View<T> & out) = 0;
     };  
 
 
 
-    template<class T, size_t DIM, bool MULTICHANNEL>
-    class Hdf5InputBase : InputDataBase<T, DIM, MULTICHANNEL>
+    template<class T, size_t DIM, bool MULTICHANNEL, class INTERNAL_TYPE>
+    class Hdf5Input : public InputDataBase<T, DIM, MULTICHANNEL>
     {
     public:
         typedef InputDataBase<T, DIM, MULTICHANNEL> BaseType;
         typedef array::StaticArray<int64_t, DIM> Coord;
 
-        virtual ~Hdf5InputBase(){};
+        virtual ~Hdf5Input(){};
 
-        Hdf5InputBase(
-            const nifty::hdf5::Hdf5Array<T> & data
+        Hdf5Input(
+            const nifty::hdf5::Hdf5Array<INTERNAL_TYPE> & data
         )
         :   BaseType(),
-            data_(data)
-        {
+            data_(data){
+        }
 
+        virtual void readData(const Coord & begin, const Coord & end, nifty::marray::View<T> & out){
+            nifty::marray::Marray<INTERNAL_TYPE> buffer(out.shapeBegin(), out.shapeEnd());
+            mutex_.lock();
+            data_.readSubarray(begin.begin(), buffer);
+            mutex_.unlock();
+            out = buffer;
         }
     private:
-        const nifty::hdf5::Hdf5Array<T> & data_;
+        std::mutex mutex_;
+        const nifty::hdf5::Hdf5Array<INTERNAL_TYPE> & data_;
     };  
 
     
 
 
     template<
-        class INPUT_TYPE_TAG
+        class INPUT_TYPE_TAG,
+        bool MULTICHANNEL
     >
     class InteractivePixelClassification{
     public:
-        
-    private:
+        typedef INPUT_TYPE_TAG InputTypeTagType;
+        typedef typename InputTypeTagType::DimensionType DimensionType;
+        typedef InputDataBase<float, DimensionType::value, MULTICHANNEL> InputDataBaseType;
 
+        size_t addTrainingInstance(const InputDataBaseType * instance){
+            trainingData_.push_back(instance);
+        }
+    private:
+        // atm we make it single channnel
+        std::vector<const InputDataBaseType * > trainingData_;
     };  
 }
 }

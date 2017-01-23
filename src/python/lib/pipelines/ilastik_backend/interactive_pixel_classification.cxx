@@ -1,6 +1,7 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/numpy.h>
 
+#include <nifty/marray/marray.hxx>
 #include <nifty/pipelines/ilastik_backend/interactive_pixel_classification.hxx>
 #include <nifty/pipelines/ilastik_backend/input_type_tags.hxx>
 
@@ -15,7 +16,19 @@ namespace ilastik_backend{
     class PyInputDataBase
     : public InputDataBase<T, DIM, MULTICHANNEL>{
     public:
-        //using PyInputDataBase::PyInputDataBase;
+        typedef InputDataBase<T, DIM, MULTICHANNEL> BaseType;
+        typedef typename BaseType::Coord Coord;
+        /* Trampoline (need one for each virtual function) */
+        void readData(
+            const Coord & begin, const Coord & end, nifty::marray::View<T> & out
+        ) override {
+            PYBIND11_OVERLOAD_PURE(
+                void, /* Return type */
+                BaseType,      /* Parent class */
+                readData,          /* Name of function in C++ (must match Python name) */
+                begin,end,out
+            );
+        }
 
     private:
     };
@@ -29,25 +42,57 @@ namespace ilastik_backend{
         typedef PyInputDataBase<T, DIM, MULTICHANNEL> PyBaseType;
 
 
-        // export the hdf5 class
-        const auto hdf5ClsName = std::string("Hdf5Input") + namePrefix;
-        py::class_<BaseType, PyBaseType> hdf5Input(module, hdf5ClsName.c_str());
+        const auto inputBaseClsName = std::string("InputDataBase") + namePrefix;
+        py::class_<BaseType, PyBaseType> inputBase(module, inputBaseClsName.c_str());
+        
+        inputBase
+           .def(py::init<>())
+        ;
 
-        //hdf5Input
-        //    .def("__init__",[])
 
+        
+        // export the hdf5 class WITH UINT8 as internal type
+        typedef Hdf5Input<T, DIM, MULTICHANNEL, uint8_t> Hdf5InputType;
+        const auto hdf5ClsName = std::string("Hdf5InputUInt32") + namePrefix;
+        const auto hdf5FacName = std::string("hdf5InputUInt32") + namePrefix;
+        py::class_<Hdf5InputType > hdf5Input(module, hdf5ClsName.c_str(),inputBase);
+
+        hdf5Input
+            .def("__init__",[](
+                    Hdf5InputType &instance,
+                    const nifty::hdf5::Hdf5Array<uint8_t> & data
+            ) {
+                new (&instance) Hdf5InputType(data);
+            },
+                py::keep_alive<0, 1>()
+            )
+        ;
+
+        module.def(hdf5FacName.c_str(), [](
+            const nifty::hdf5::Hdf5Array<uint8_t> & data
+        ) {
+            BaseType * ptr =  new Hdf5InputType(data);
+            return ptr;
+        },
+            py::return_value_policy::take_ownership,
+            py::keep_alive<0, 1>()
+        );
+
+        
     }
 
 
 
-    template<class INPUT_TYPE_TAG>
+    template<class INPUT_TYPE_TAG, bool MULTICHANNEL>
     void exportInteractivePixelClassificationT(py::module & module, const std::string & clsName) {
     
-        typedef InteractivePixelClassification<INPUT_TYPE_TAG> IpcType;
+        typedef InteractivePixelClassification<INPUT_TYPE_TAG, MULTICHANNEL> IpcType;
         py::class_<IpcType>(module, clsName.c_str())
             .def("__init__",[](IpcType &instance) {
                 new (&instance) IpcType();
             })
+
+            .def("addTrainingInstance",&IpcType::addTrainingInstance)
         ;
     }
 
@@ -58,8 +103,8 @@ namespace ilastik_backend{
         exportInputT<float,3,false>(module, "Float3D");
 
         // export the class itself
-        exportInteractivePixelClassificationT<SpatialTag<2> >(module, "InteractivePixelClassificationSpatial2D");
-        exportInteractivePixelClassificationT<SpatialTag<3> >(module, "InteractivePixelClassificationSpatial3D");
+        exportInteractivePixelClassificationT<SpatialTag<2>,false>(module, "InteractivePixelClassificationSpatial2D");
+        exportInteractivePixelClassificationT<SpatialTag<3>,false>(module, "InteractivePixelClassificationSpatial3D");
     }
 
 }
