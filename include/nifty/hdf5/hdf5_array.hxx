@@ -32,7 +32,8 @@ namespace hdf5{
         :   groupHandle_(groupHandle),
             dataset_(),
             datatype_(),
-            isChunked_(true)
+            isChunked_(true),
+            mtx_()
         {
             datatype_ = H5Tcopy(hdf5Type<T>());
             const auto dim = std::distance(shapeBegin, shapeEnd);
@@ -90,7 +91,8 @@ namespace hdf5{
         :   groupHandle_(groupHandle),
             dataset_(),
             datatype_(),
-            isChunked_(true)
+            isChunked_(true),
+            mtx_()
         {
 
 
@@ -157,10 +159,9 @@ namespace hdf5{
             ITER roiBeginIter,
             marray::View<T> & out
         )const{
-            std::mutex mtx;
-            mtx.lock();
+            mtx_.lock();
             this->readSubarray(roiBeginIter,out);
-            mtx.unlock();
+            mtx_.unlock();
         }
 
         template<class ITER>
@@ -180,10 +181,9 @@ namespace hdf5{
             ITER roiBeginIter,
             const marray::View<T> & in
         )const{
-            std::mutex mtx;
-            mtx.lock();
+            mtx_.lock();
             this->writeSubarray(roiBeginIter,in);
-            mtx.unlock();
+            mtx_.unlock();
         }
 
     private:
@@ -420,6 +420,7 @@ namespace hdf5{
         std::vector<uint64_t> shape_;
         std::vector<uint64_t> chunkShape_;
         bool isChunked_;
+        mutable std::mutex mtx_;
     };
 
 
