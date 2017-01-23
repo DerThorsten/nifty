@@ -1,7 +1,8 @@
+import numpy
+
 import nifty
 import nifty.pipelines
 print nifty.__file__
-
 import nifty.hdf5
 import nifty.pipelines.ilastik_backend as ilastik_backend
 
@@ -23,9 +24,17 @@ Ipc = ilastik_backend.InteractivePixelClassificationSpatial3D
 ipc = Ipc()
 
 
+# add a training instance
 filename = "/home/tbeier/Desktop/data_normalized_SUBSAMPLED.h5"
 inputFile = makeH5InputFile(filename, 'data')
+instanceIndex = ipc.addTrainingInstance(inputFile)
 
 
-ipc.addTrainingInstance(inputFile)
 
+# add a slice of labels
+labels = numpy.zeros([10,10,1])
+labels[5,:,0] = 1
+labels[8,:,0] = 1
+begin = (10,10, 10)
+end =  (10,10, 1)
+ipc.addTrainingData(instanceIndex=instanceIndex, labels=labels, begin=begin,  end=end)

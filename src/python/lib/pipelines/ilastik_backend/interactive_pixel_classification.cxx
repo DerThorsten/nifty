@@ -1,3 +1,6 @@
+#ifdef WITH_HDF5
+
+
 #include <pybind11/pybind11.h>
 #include <pybind11/numpy.h>
 
@@ -110,3 +113,5 @@ namespace ilastik_backend{
 }
 }
 }
+
+#endif
