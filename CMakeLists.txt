@@ -20,7 +20,7 @@ option(WITH_CPLEX OFF)
 option(WITH_GLPK OFF)
 option(WITH_HDF5 OFF)
 option(WITH_FASTFILTERS OFF)
-
+option(WITH_TBB OFF)
 
 
 option(BUILD_NIFTY_PYTHON OFF)
@@ -187,8 +187,16 @@ if(WITH_FASTFILTERS)
 endif()
 
 
-
-
+#-------------------------------------------------------------------------------------------------------------------
+# find tbb
+#-------------------------------------------------------------------------------------------------------------------
+if(WITH_TBB)
+    find_package(TBB)
+    find_path(ILASTIK_BACKEND_INCLUDE_DIR PATHS ilastik-backend/include)
+    include_directories(${TBB_INCLUDE_DIRS})
+    include_directories(${ILASTIK_INCLUDE_DIR})
+    add_definitions(-DWITH_TBB)
+endif()
 
 
 
