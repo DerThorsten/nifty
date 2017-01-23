@@ -1,6 +1,8 @@
 #ifndef _OPERATORS_FILTEROPERATOR_H_
 #define _OPERATORS_FILTEROPERATOR_H_
 
+#include <tuple>
+
 #include <tbb/flow_graph.h>
 
 #include <ilastik-backend/operatos/baseoperator.h>
@@ -34,7 +36,7 @@ namespace ilastikbackend
                     const std::vector<std::string> & feature_names,
                     const std::vector<double> & sigma_values,
                     const double outer_scale = 0. ): // TODO need to rethink if we want to apply different outer scales for the structure tensor eigenvalues
-                base_operator<tuple<float_type>, tuple<float_type> >(setOfCancelledJobIds) // TODO init the feature type
+                base_operator<std::tuple<float_type>, std::tuple<float_type> >(setOfCancelledJobIds) // TODO init the feature type
             {
                 // init the vector with filter_type pointers
                 for(const auto & feat_name : feature_names) {
@@ -59,7 +61,7 @@ namespace ilastikbackend
                 apply_.setSigmas(sigmas_);
             }
 
-            virtual tuple<float_type> executeImpl(const tuple<float_type> & in) const
+            virtual std::tuple<float_type> executeImpl(const std::tuple<float_type> & in) const
             {
                 auto & in_data = std::get<0>(in);
                 // allocate the out data
