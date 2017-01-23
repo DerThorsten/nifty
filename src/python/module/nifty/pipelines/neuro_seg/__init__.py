@@ -1,4 +1,5 @@
-from _neuro_seg import *
+from __future__ import absolute_import
+from ._neuro_seg import *
 
 
 __all__ = []
