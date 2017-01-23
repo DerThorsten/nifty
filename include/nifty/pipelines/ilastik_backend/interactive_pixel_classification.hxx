@@ -28,10 +28,16 @@ namespace ilastik_backend{
 
         virtual ~Hdf5InputBase(){};
 
-        Hdf5InputBase()
-        :   BaseType(){
+        Hdf5InputBase(
+            const nifty::hdf5::Hdf5Array<T> & data
+        )
+        :   BaseType(),
+            data_(data)
+        {
 
         }
+    private:
+        const nifty::hdf5::Hdf5Array<T> & data_;
     };  
 
     
