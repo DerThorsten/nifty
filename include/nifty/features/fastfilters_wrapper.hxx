@@ -93,7 +93,7 @@ namespace detail_fastfilters {
                 fastfilters_init();
                 std::cout << "Fastfilters initialized" << std::endl;
             });
-            opt_.window_ratio = 0.;
+            opt_.window_ratio = 0.; // TODO zero seems not to be a sensible default, as this means no border treatment. According to sven, there are some defaults in vigra, check that!
         }
 
         virtual void inline operator()(const fastfilters_array2d_t &, marray::View<float> &, const double) const = 0;
@@ -103,7 +103,7 @@ namespace detail_fastfilters {
         virtual bool inline isMultiChannel() const = 0;
 
         void set_window_ratio(const double ratio) {
-            opt_.window_ratio = ratio;
+            opt_.window_ratio = ratio; // maybe setting it here for the use case on hand makes more sense (modulu overloading for the actual filter)
         }
 
     protected:
@@ -320,8 +320,22 @@ namespace detail_fastfilters {
 
         typedef array::StaticArray<int64_t, DIM+1> Coord;
         
-        ApplyFilters(const std::vector<double> & sigmas, const std::vector<FilterBase*> filters) : sigmas_(sigmas), filters_(filters) {
+        // empty constructor
+        ApplyFilters() {
             fastfilters_init(); // FIXME this might cause problems if we init more than one ApplyFilters
+        }
+        
+        // construct from given sigmas and filters
+        ApplyFilters(const std::vector<double> & sigmas, const std::vector<FilterBase*> & filters) : sigmas_(sigmas), filters_(filters) {
+            fastfilters_init(); // FIXME this might cause problems if we init more than one ApplyFilters
+        }
+
+        void setFilters(const std::vector<FilterBase*> & filters) {
+            filters_ = filters;
+        }
+
+        void setSigmas(const std::vector<double> & sigmas) {
+            sigmas_ = sigmas;
         }
         
         // apply filters sequential
