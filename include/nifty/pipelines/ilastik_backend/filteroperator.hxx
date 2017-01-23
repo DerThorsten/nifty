@@ -1,9 +1,10 @@
 #ifndef _OPERATORS_FILTEROPERATOR_H_
 #define _OPERATORS_FILTEROPERATOR_H_
 
-#include "types.h"
 #include <tbb/flow_graph.h>
-#include <operatos/baseoperator.h>
+
+#include <ilastik-backend/operatos/baseoperator.h>
+#include <ilastik-backend/types.h>
 
 // TODO somehow include nifty
 #include "nifty/marray/marray.hxx"
