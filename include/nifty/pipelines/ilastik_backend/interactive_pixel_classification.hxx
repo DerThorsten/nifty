@@ -38,7 +38,11 @@ namespace ilastik_backend{
         }
 
         virtual void readData(const Coord & begin, const Coord & end, nifty::marray::View<T> & out){
-            data_.readSubarray(begin.begin(), out);
+            nifty::marray::Marray<INTERNAL_TYPE> buffer(out.shapeBegin(), out.shapeEnd());
+            mutex_.lock();
+            data_.readSubarray(begin.begin(), buffer);
+            mutex_.unlock();
+            out = buffer;
         }
     private:
         std::mutex mutex_;
