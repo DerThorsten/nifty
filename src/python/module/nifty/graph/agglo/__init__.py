@@ -1,4 +1,5 @@
-from _agglo import *
+from __future__ import absolute_import
+from ._agglo import *
 
 import numpy
 

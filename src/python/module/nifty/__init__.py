@@ -1,6 +1,7 @@
+from __future__ import absolute_import
 from __future__ import print_function
 
-from _nifty import *
+from ._nifty import *
 # __all__ = []
 # for key in _nifty.__dict__.keys():
     # __all__.append(key)
@@ -11,9 +12,9 @@ import numpy
 import time
 import sys
 
-import graph
-import tools
-import ufd
+from . import graph
+from . import tools
+from . import ufd
 
 
 

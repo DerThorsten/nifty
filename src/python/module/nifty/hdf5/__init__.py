@@ -1,9 +1,10 @@
+from __future__ import absolute_import
 from .. import Configuration
 
 __all__ = []
 
 if Configuration.WITH_HDF5:
-    from _hdf5 import *
+    from ._hdf5 import *
     for key in _hdf5.__dict__.keys():
         __all__.append(key)
 else:
