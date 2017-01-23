@@ -182,7 +182,7 @@ namespace hdf5{
         )const{
             std::mutex mtx;
             mtx.lock();
-            this->writeSubarrayLocked(roiBeginIter,in);
+            this->writeSubarray(roiBeginIter,in);
             mtx.unlock();
         }
 

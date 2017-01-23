@@ -4,7 +4,9 @@
 
 #define HAVE_CPP11_INITIALIZER_LISTS
 #define HAVE_CPP11_STD_ARRAY
+
 #include <andres/marray.hxx>
+#include <nifty/tools/runtime_check.hxx>
 
 namespace nifty{
 namespace marray{
@@ -15,7 +17,7 @@ namespace tools{
 
     template<class T, class COORD>
     inline void readSubarray(
-        const marray::View<T> array,
+        const marray::View<T> & array,
         const COORD & beginCoord,
         const COORD & endCoord,
         marray::View<T> & subarray
@@ -31,7 +33,7 @@ namespace tools{
     
     template<class T, class COORD>
     inline void writeSubarray(
-        marray::View<T> array,
+        marray::View<T> & array,
         const COORD & beginCoord,
         const COORD & endCoord,
         const marray::View<T> & data
@@ -43,10 +45,13 @@ namespace tools{
             subShape[d] = endCoord[d] - beginCoord[d];
         }
         for(int d = 0; d < dim; ++d ){
-            NIFTY_CHECK_OP(subShape[d],==,data.shape(d),"Shapes don't match!");
+            //NIFTY_CHECK_OP(true,==,true,"");
+            NIFTY_CHECK_OP(subShape[d],==,data.shape(d),"Shapes don't match!")
         }
-        auto subarray = array.view(beginCoord.begin(), subShape.begin());
         
+        auto subarray = array.view(beginCoord.begin(), subShape.begin());
+        //subarray = data;
+        // TODO => do it
         // for dim < 4 we can use forEachCoordinate (this only works if COORD is nifty::array::StaticArray)
         if(dim <= 4) {
             forEachCoordinate(subShape, [&](const COORD & coord){
@@ -59,12 +64,14 @@ namespace tools{
             for(; itArray != subarray.end(); ++itArray, ++itData)
                 *itArray = *itData;
         }
+        
+        
     }
     
     // dummy function, because we don't lock for marrays
     template<class T, class COORD>
     inline void readSubarrayLocked(
-        const marray::View<T> array,
+        const marray::View<T> & array,
         const COORD & beginCoord,
         const COORD & endCoord,
         marray::View<T> & subarray
@@ -74,12 +81,12 @@ namespace tools{
     
     template<class T, class COORD>
     inline void writeSubarrayLocked(
-        marray::View<T> array,
+        marray::View<T> & array,
         const COORD & beginCoord,
         const COORD & endCoord,
         const marray::View<T> & data
     ){
-        writeSubarray(array,beginCoord,endCoord,data);
+        writeSubarray<T,COORD>(array,beginCoord,endCoord,data);
     }
 }
 
