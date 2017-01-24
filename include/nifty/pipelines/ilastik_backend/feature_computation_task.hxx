@@ -1,7 +1,8 @@
 #ifndef _OPERATORS_FILTEROPERATOR_H_
 #define _OPERATORS_FILTEROPERATOR_H_
 
-#define TBB_PREVIEW_CONCURRENT_LRU_CACHE
+//#ifndef TBB_PREVIEW_CONCURRENT_LRU_CACHE
+//#define TBB_PREVIEW_CONCURRENT_LRU_CACHE
 #include <tbb/concurrent_lru_cache.h>
 
 #include <tuple>
@@ -15,11 +16,9 @@
 #include "nifty/tools/blocking.hxx"
 
 namespace nifty {
-    namespace ilastikbackend
-    {
-        namespace operators
-        {
-    
+    namespace pipelines {
+        namespace ilastik_backend {
+            
             template<unsigned DIM>
             class feature_computation_task : public tbb::task
             {
@@ -27,7 +26,7 @@ namespace nifty {
                 using apply_type = nifty::features::ApplyFilters<DIM>;
                 using in_data_type = uint8_t;
                 using out_data_type = float;
-                using raw_cache = Hdf5Input<in_data_type, DIM, false>;
+                using raw_cache = Hdf5Input<in_data_type, DIM, false, in_data_type>;
                 using out_array_view = nifty::marray::View<out_data_type>;
                 using in_array_view = nifty::marray::View<in_data_type>;
                 using selected_feature_type = std::pair<std::vector<std::string>, std::vector<double>>;
@@ -35,7 +34,7 @@ namespace nifty {
                 using blocking_type = nifty::tools::Blocking<DIM, int64_t>;
     
             public:
-                feature_computation_task(,
+                feature_computation_task(
                         size_t block_id,
                         raw_cache & rc,
                         out_array_view & out,
@@ -53,29 +52,39 @@ namespace nifty {
                 {
                     // ask for the raw data
                     // TODO get the proper halo and pass it to the cache !!
-                    // TODO compute coordinates from blockIds!
-                    coordinate blockStart, blockEnd;
-                    coordinate blockShape = blockEnd - blockStart;
-                    nifty::marray::Marray<in_data_type> in_data();
-                    raw_cache.readData();
-                    compute(data);
-                    return data;
+                    coordinate haloBegin;
+                    coordinate haloEnd;
+                    for(int d = 0; d < DIM; ++d) {
+                        haloBegin[d] = 0L;
+                        haloEnd[d] = 1L;
+                    }
+                    // compute coordinates from blockIds!
+                    auto blockWithHalo = blocking_.getBlockWithHalo(blockId_, haloBegin, haloEnd);
+                    auto outerBlock = blockWithHalo.outerBlock();
+                    auto outerBlockBegin = outerBlock.begin();
+                    auto outerBlockEnd = outerBlock.end();
+                    auto outerBlockShape = outerBlock.shape();
+                    nifty::marray::Marray<in_data_type> in(outerBlockShape.begin(), outerBlockShape.end());
+                    rawCache_.readData(outerBlockBegin, outerBlockEnd, in);
+                    compute(in, outerBlock);
+                    return NULL;
                 }
     
-                void compute(const in_data_type & in)
+                void compute(const in_array_view & in, const tools::BlockWithHalo<DIM> & outerBlock)
                 {
                     // TODO set the correct window ratios
                     //copy input data from uint8 to float
                     coordinate in_shape;
                     for(int d = 0; d < DIM; ++d)
-                        in_shape[d] = in_data.shape(d);
+                        in_shape[d] = in.shape(d);
                     marray::Marray<in_data_type> in_float(in_shape.begin(), in_shape.end());
                     tools::forEachCoordinate(in_shape, [&](const coordinate & coord){
                         in_float(coord.asStdArray()) = in(coord.asStdArray());    
                     });
                     // apply the filter via the functor
                     // TODO consider passing the tbb threadpool here
-                    _apply(in_float, outArray_);
+                    apply_(in_float, outArray_);
+                    // TODO cut the halo
                 }
     
             private:
@@ -84,9 +93,10 @@ namespace nifty {
                 out_array_view & outArray_;
                 apply_type apply_; // the functor for applying the filters
                 const blocking_type blocking_;
-            }
-        } // namespace operator
-    } // namespace ilastik_backend
+            };
+        
+        } // namespace ilastik_backend
+    } // namespace pipelines
 } // namespace nifty
 
 

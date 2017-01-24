@@ -98,7 +98,7 @@ namespace tools{
         typedef typename BlockWithHaloType::VectorType VectorType;
 
         Blocking(
-            const VectorType & roiBegin ,
+            const VectorType & roiBegin,
             const VectorType & roiEnd,
             const VectorType & blockShape,
             const VectorType & blockShift = VectorType(0)

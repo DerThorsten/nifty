@@ -1,13 +1,17 @@
 #ifndef _RANDOM_FOREST_PREDICTION_TASK_H_
 #define _RANDOM_FOREST_PREDICTION_TASK_H_
 
+//#ifndef TBB_PREVIEW_CONCURRENT_LRU_CACHE
+//#define TBB_PREVIEW_CONCURRENT_LRU_CACHE
+//#include <tbb/concurrent_lru_cache.h>
+
 #include <tbb/tbb.h>
 #include "nifty/pipelines/ilastik_backend/random_forest_loader.hxx"
 #include <nifty/marray/marray.hxx>
 // TODO include appropriate vigra stuff
 #include <vigra/random_forest_hdf5_impex.hxx>
-// TODO include cache stuff 
-//#include <>
+
+class tbb::concurrent_lru_cache;
 
 namespace nifty
 {
