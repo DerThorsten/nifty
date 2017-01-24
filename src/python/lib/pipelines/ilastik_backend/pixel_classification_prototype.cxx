@@ -2,7 +2,7 @@
 #include <tbb/concurrent_lru_cache.h>
 
 #include "nifty/pipelines/ilastik_backend/feature_computation_task.hxx"
-//#include "nifty/pipelines/ilastik_backend/random_forest_prediction_task.hxx"
+#include "nifty/pipelines/ilastik_backend/random_forest_prediction_task.hxx"
 #include "nifty/pipelines/ilastik_backend/random_forest_loader.hxx"
 #include "nifty/pipelines/ilastik_backend/interactive_pixel_classification.hxx"
 
@@ -44,24 +44,27 @@ int main()
     auto selected_features = std::make_pair(std::vector<std::string>({"GaussianSmoothing"}),
             std::vector<double>({2.,3.}));
 
-    feature_cache fc([&rc, &selected_features, &blockShape, &blocking](size_t blockId) -> float_array_view {
-        float_array out_array(blockShape.begin(), blockShape.end());
-        // FIXME allocate_child must be called with obj
-        // feature_computation_task& feat_task = *new(tbb::task::allocate_child()) feature_computation_task(blockId, rc, out_array, selected_features, blocking);
-        feature_computation_task<dim> & feat_task = *new(tbb::task::allocate_root()) feature_computation_task<dim>(blockId, rc, out_array, selected_features, blocking);
-        feat_task.set_ref_count(2);
-        // FIXME this can't be invoked w/o object
-        //tbb::task::spawn_and_wait_for_all(feat_task);
-        tbb::task::spawn_root_and_wait(feat_task);
-        return out_array;
-    }, max_num_entries);
+    // FIXME the lru cache does not like this... (no matching call to constructor)
+    //feature_cache fc([&rc, &selected_features, &blockShape, &blocking](size_t blockId) -> float_array_view {
+    //    float_array out_array(blockShape.begin(), blockShape.end());
+    //    // FIXME allocate_child must be called with obj
+    //    // feature_computation_task& feat_task = *new(tbb::task::allocate_child()) feature_computation_task(blockId, rc, out_array, selected_features, blocking);
+    //    feature_computation_task<dim> & feat_task = *new(tbb::task::allocate_root()) feature_computation_task<dim>(blockId, rc, out_array, selected_features, blocking);
+    //    feat_task.set_ref_count(2);
+    //    // FIXME this can't be invoked w/o object
+    //    //tbb::task::spawn_and_wait_for_all(feat_task);
+    //    tbb::task::spawn_root_and_wait(feat_task);
+    //    return out_array;
+    //}, max_num_entries);
 
-    //prediction_cache pc([&fc, &rf_vector](size_t blockId) -> float_array_view {
-    //    float_array out_array(blockSize.begin(), blockSize.end());
-    //    random_forest_prediction_task& rf_task = *tbb::new(tbb::allocate_child()) random_forest_prediction_task(blockId, fc, out_array, rf_vector);
-    //    set_ref_count(2);
+    //prediction_cache pc([&fc, &blockShape, &rf_vector](size_t blockId) -> float_array_view {
+    //    float_array out_array(blockShape.begin(), blockShape.end());
+    //    random_forest_prediction_task<dim> & rf_task = *new(tbb::task::allocate_root()) random_forest_prediction_task<dim>(blockId, fc, out_array, rf_vector);
+    //    //random_forest_prediction_task& rf_task = *tbb::new(tbb::allocate_child()) random_forest_prediction_task(blockId, fc, out_array, rf_vector);
+    //    rf_task.set_ref_count(2);
     //    // Start a running and wait for all children (a and b).
-    //    spawn_and_wait_for_all(rf_task);
+    //    //spawn_and_wait_for_all(rf_task);
+    //    tbb::task::spawn_root_and_wait(rf_task);
     //    return out_array;
     //}, max_num_entries);
 
