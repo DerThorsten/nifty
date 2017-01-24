@@ -24,6 +24,15 @@ namespace ilastikbackend
         template<unsigned DIM>
         class filter_operator : public base_operator<tuple<float_type>,tuple<float_type>> // TODO how should we inherit? I guess private ?!
         {
+        public:
+            // definition of enums to use for the slots
+            enum class input_slots {
+                RAW = 0
+            };
+
+            enum class output_slots {
+                FEATURES = 0
+            };
         private:
             using apply_type = nifty::features::ApplyFilters<DIM>;
             using filter_type = nifty::features::FilterBase;
@@ -61,7 +70,7 @@ namespace ilastikbackend
 
             virtual tuple<float_type> executeImpl(const tuple<float_type> & in) const
             {
-                auto & in_data = std::get<0>(in);
+                auto & in_data = std::get<input_slots.RAW>(in);
                 // allocate the out data
                 size_t out_shape[DIM+1];
                 out_shape[0] = _apply.numberOfChannels();
@@ -70,6 +79,8 @@ namespace ilastikbackend
                 nifty::marray::Marray<float> out_data(out_shape, out_shape+DIM+1);
                 // apply the filter via the functor
                 _apply(in_data, out_data);
+
+                return std::make_tuple(float_type(in_data.job_id, out_data));
             }
 
             // we need to make sure to delete the filter pointers TODO recheck this
