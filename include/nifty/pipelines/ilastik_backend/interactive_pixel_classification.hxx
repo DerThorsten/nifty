@@ -121,8 +121,9 @@ namespace ilastik_backend{
         typedef array::StaticArray<int64_t, DimensionType::value> CoordType;
 
 
-        struct WhereLabels{
-            std::vector<std::pair<CoordType, uint8_t> >  data_;
+        struct BlockXY{
+            std::vector<float> features_;
+            std::vector<uint8_t> labels_;
         };
     
 
@@ -151,7 +152,7 @@ namespace ilastik_backend{
             auto blockEnd   = coordEnd   / blocking_.blockShape() + CoordType(1);
 
 
-            std::vector<size_t> featNeeded;
+            
 
             nifty::tools::forEachCoordinate(blockBegin,blockEnd,
                 [&](const CoordType & blockCoord){
@@ -165,10 +166,31 @@ namespace ilastik_backend{
                     }
                     if(use){
                         const auto blockIndex = this->blockCoordToBlockIndex(blockCoord);
+                        //  we need the features for this very block
+                        // .... spawn in parallel
+                        // X,Y
+                        
+                        // here we somehow get the feature Array for the complete block
+                        // and extract X and Y at the very places where 
+                        // we need it
+                        
                     }
                 }
             );
+
+            // here we retrain 
+            this->retrain();
+            this->redoLastPrediction();
         }
+
+        void retrain(){
+            // make X and Y
+        }
+
+        void redoLastPrediction(){
+
+        }
+
     private:
 
         size_t blockCoordToBlockIndex(const CoordType & blockCoord)const{
@@ -186,7 +208,7 @@ namespace ilastik_backend{
 
 
 
-        tbb::concurrent_hash_map<size_t, WhereLabels > blocksWithLabels_;
+        tbb::concurrent_hash_map<size_t, BlockXY > blocksWithLabels_;
 
     };  
 }
