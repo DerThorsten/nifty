@@ -10,6 +10,7 @@ namespace nifty
     {
         namespace ilastik_backend
         {
+            typedef size_t LabelType;
             typedef vigra::RandomForest<LabelType> RandomForestType;
             typedef std::vector<RandomForestType> RandomForestVectorType;
 
