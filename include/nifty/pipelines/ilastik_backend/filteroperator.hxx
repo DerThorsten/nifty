@@ -42,32 +42,11 @@ namespace ilastikbackend
 
         public:
             filter_operator(const types::set_of_cancelled_job_ids& setOfCancelledJobIds,
-                    const std::vector<std::string> & feature_names,
+                    const std::vector<std::string> & filter_names,
                     const std::vector<double> & sigma_values,
-                    const double outer_scale = 0. ): // TODO need to rethink if we want to apply different outer scales for the structure tensor eigenvalues
+                    const double outer_scale = 0. ): apply_(sigmas, filter_names)// TODO need to rethink if we want to apply different outer scales for the structure tensor eigenvalues
                 base_operator<std::tuple<float_type>, std::tuple<float_type> >(setOfCancelledJobIds)
             {
-                // init the vector with filter_type pointers
-                for(const auto & feat_name : feature_names) {
-                    
-                    if(feat_name == "GaussianSmoothing")
-                        filters_.emplace_back(new nifty::features::GaussianSmoothing());
-                    else if(feat_name == "LaplacianOfGaussian")
-                        filters_.emplace_back(new nifty::features::LaplacianOfGaussian());
-                    else if(feat_name == "GaussianGradientMagnitude")
-                        filters_.emplace_back(new nifty::features::GaussianGradientMagnitude());
-                    else if(feat_name == "HessianOfGaussianEigenvalues")
-                        filters_.emplace_back(new nifty::features::HessianOfGaussianEigenvalues());
-                    else if(feat_name == "StructureTensorEigenvalues") {
-                        filters_.emplace_back(new nifty::features::StructureTensorEigenvalues()); // TODO we don't use structure tensor for now, but we leave it in as an option
-                        filters_.back()->setOuterScale(outer_scale); // TODO check that this is non-zero, but maybe rethink for different outer scales
-                    }
-                    else
-                        throw std::runtime_error("Unknown filter type!");
-                }
-                // construct the apply filter struct
-                apply_.setFilters(filters_);
-                apply_.setSigmas(sigmas_);
             }
 
             virtual std::tuple<float_type> executeImpl(const std::tuple<float_type> & in) const
@@ -88,17 +67,8 @@ namespace ilastikbackend
                 return std::make_tuple(float_type(in_data.job_id, out_data));
             }
 
-            // we need to make sure to delete the filter pointers TODO recheck this
-            virtual ~filter_operator() {
-                ~apply_();
-                //std::for_each(filters_.begin(), filters_.end(), []);
-                for(auto & filter : filters_ )
-                    delete filter
-            }
-
         private:
             apply_type apply_; // the functor for applying the filters
-            std::vector<filter_type*> filters_; // vector storing the individual filter functors
         }
     } // namespace operator
 } // namespace ilastik_backend
