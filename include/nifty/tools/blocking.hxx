@@ -143,11 +143,17 @@ namespace tools{
 
         const VectorType & blocksPerAxis() const {
             return blocksPerAxis_;  
+        }   
+
+        const VectorType & blocksPerAxisStrides() const {
+            return blocksPerAxisStrides_;  
         }
         
         const size_t numberOfBlocks()const{
             return numberOfBlocks_;
         }
+
+
 
 
         BlockType getBlock(const uint64_t blockIndex)const{

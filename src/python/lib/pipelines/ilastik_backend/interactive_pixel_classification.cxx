@@ -4,9 +4,10 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/numpy.h>
 
-#include <nifty/marray/marray.hxx>
-#include <nifty/pipelines/ilastik_backend/interactive_pixel_classification.hxx>
-#include <nifty/pipelines/ilastik_backend/input_type_tags.hxx>
+#include "nifty/python/converter.hxx"
+#include "nifty/marray/marray.hxx"
+#include "nifty/pipelines/ilastik_backend/interactive_pixel_classification.hxx"
+#include "nifty/pipelines/ilastik_backend/input_type_tags.hxx"
 
 namespace py = pybind11;
 
@@ -30,6 +31,16 @@ namespace ilastik_backend{
                 BaseType,      /* Parent class */
                 readData,          /* Name of function in C++ (must match Python name) */
                 begin,end,out
+            );
+        }
+
+        Coord spaceTimeShape(
+            
+        ) const override {
+            PYBIND11_OVERLOAD_PURE(
+                Coord,         /* Return type */
+                BaseType,      /* Parent class */
+                spaceTimeShape /* Name of function in C++ (must match Python name) */
             );
         }
 
@@ -90,20 +101,37 @@ namespace ilastik_backend{
     void exportInteractivePixelClassificationT(py::module & module, const std::string & clsName) {
     
         typedef InteractivePixelClassification<INPUT_TYPE_TAG, MULTICHANNEL> IpcType;
-        py::class_<IpcType>(module, clsName.c_str())
-            .def("__init__",[](IpcType &instance) {
-                new (&instance) IpcType();
-            })
+        typedef typename INPUT_TYPE_TAG::SpaceTimeDimensions DimsType;
+        typedef typename IpcType::InputDataBaseType InputDataBaseType;
 
-            .def("addTrainingInstance",&IpcType::addTrainingInstance)
+        py::class_<IpcType>(module, clsName.c_str())
+            .def("__init__",[](
+                IpcType & instance,
+                const InputDataBaseType * trainingInstance,
+                const size_t nLabels,
+                const array::StaticArray<int64_t, DimsType::value> & blockSize
+            ) {
+                new (&instance) IpcType(trainingInstance, nLabels, blockSize);
+            },
+                py::keep_alive<0, 1>()
+            )
+
+            .def("addTrainingData",[](
+                IpcType &instance,
+                nifty::marray::PyView<uint8_t, DimsType::value> & labels,
+                array::StaticArray<int64_t, DimsType::value>      coordBegin,
+                array::StaticArray<int64_t, DimsType::value>      coordEnd
+            ){
+                instance.addTrainingData(labels, coordBegin, coordEnd);
+            })
         ;
     }
 
     void exportInteractivePixelClassification(py::module & module) {
 
         // export the input datasets
-        exportInputT<float,2,false>(module, "Float2D");
-        exportInputT<float,3,false>(module, "Float3D");
+        exportInputT<uint8_t,2,false>(module, "UInt8_2D");
+        exportInputT<uint8_t,3,false>(module, "UInt8_3D");
 
         // export the class itself
         exportInteractivePixelClassificationT<SpatialTag<2>,false>(module, "InteractivePixelClassificationSpatial2D");

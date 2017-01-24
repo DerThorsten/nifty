@@ -1,5 +1,4 @@
 import numpy
-
 import nifty
 import nifty.pipelines
 print nifty.__file__
@@ -18,16 +17,16 @@ def makeH5InputFile(filename, dataset, hashTabelSize=977,
     return inputFile
 
 
-
-# the class
-Ipc = ilastik_backend.InteractivePixelClassificationSpatial3D
-ipc = Ipc()
-
-
-# add a training instance
+# training instance
 filename = "/home/tbeier/Desktop/data_normalized_SUBSAMPLED.h5"
 inputFile = makeH5InputFile(filename, 'data')
 instanceIndex = ipc.addTrainingInstance(inputFile)
+
+
+# the class
+Ipc = ilastik_backend.InteractivePixelClassificationSpatial3D
+ipc = Ipc(instanceIndex, 2, [64, 64, 64])
+
 
 
 
