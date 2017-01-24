@@ -2,7 +2,12 @@
 #define _RANDOM_FOREST_PREDICTION_TASK_H_
 
 #include <tbb/tbb.h>
-#include "nifty/pipelines/ilastik_backend/random_forest_prediction_operator.hxx"
+
+#include <nifty/marray/marray.hxx>
+// TODO include appropriate vigra stuff
+#include <vigra/random_forest_hdf5_impex.hxx>
+// TODO include cache stuff 
+//#include <>
 
 namespace nifty
 {
@@ -15,7 +20,6 @@ namespace nifty
             {
             public:
                 // typedefs
-                using random_forest_prediction_operator = operatorilastikbackend::operators::random_forest_prediction_operator<DIM>;
                 using feature_cache = ???;
                 using data_type = float;
                 using float_array_view = nifty::marray::View<data_type>;
@@ -38,9 +42,10 @@ namespace nifty
                 tbb::task* execute()
                 {
                     // ask for features. This blocks if it's not present
-                    feature_cache::handle_object ho = fc[blockId];
+                    feature_cache::handle_object ho = feature_cache_[blockId];
                     float_array_view& features = ho.value();
                     compute(features);
+                    // TODO FIXME we need to return ourself here ?!
                 }
 
                 void compute(const float_array_view & in)
