@@ -2,11 +2,26 @@
 
 #include "nifty/hdf5/hdf5_array.hxx"
 #include "nifty/array/arithmetic_array.hxx"
-#include "nifty/tools/block_access.hxx"
+#include "nifty/tools/blocking.hxx"
+#include "nifty/tools/for_each_coordinate.hxx"
+
+#define TBB_PREVIEW_CONCURRENT_LRU_CACHE 1
+#include "tbb/concurrent_lru_cache.h"
+#include "tbb/concurrent_hash_map.h"
 
 namespace nifty{
 namespace pipelines{
 namespace ilastik_backend{
+
+
+
+
+
+
+
+
+
+
 
 
     
@@ -17,6 +32,8 @@ namespace ilastik_backend{
         virtual ~InputDataBase(){}
 
         virtual void readData(const Coord & begin, const Coord & end, nifty::marray::View<T> & out) = 0;
+
+        virtual Coord spaceTimeShape() const = 0;
     };  
 
 
@@ -36,7 +53,6 @@ namespace ilastik_backend{
         :   BaseType(),
             data_(data){
         }
-
         virtual void readData(const Coord & begin, const Coord & end, nifty::marray::View<T> & out){
             nifty::marray::Marray<INTERNAL_TYPE> buffer(out.shapeBegin(), out.shapeEnd());
             mutex_.lock();
@@ -44,12 +60,53 @@ namespace ilastik_backend{
             mutex_.unlock();
             out = buffer;
         }
+        virtual Coord spaceTimeShape() const {
+            const auto shape = data_.shape();
+            NIFTY_CHECK_OP(shape.size(), ==, DIM," ");
+            Coord c;
+            std::copy(shape.begin(), shape.end(), c.begin());
+            return c;
+        }
     private:
         std::mutex mutex_;
         const nifty::hdf5::Hdf5Array<INTERNAL_TYPE> & data_;
     };  
 
-    
+        
+    template<class INTERNAL_TYPE, size_t DIM, bool MULTICHANNEL>
+    class Hdf5Input<INTERNAL_TYPE,DIM, MULTICHANNEL,INTERNAL_TYPE> : public InputDataBase<INTERNAL_TYPE, DIM, MULTICHANNEL>
+    {
+    public:
+        typedef InputDataBase<INTERNAL_TYPE, DIM, MULTICHANNEL> BaseType;
+        typedef array::StaticArray<int64_t, DIM> Coord;
+
+        virtual ~Hdf5Input(){};
+
+        Hdf5Input(
+            const nifty::hdf5::Hdf5Array<INTERNAL_TYPE> & data
+        )
+        :   BaseType(),
+            data_(data){
+        }
+        virtual void readData(const Coord & begin, const Coord & end, nifty::marray::View<INTERNAL_TYPE> & out){
+            mutex_.lock();
+            data_.readSubarray(begin.begin(), out);
+            mutex_.unlock();
+            }
+        virtual Coord spaceTimeShape() const {
+            const auto shape = data_.shape();
+            NIFTY_CHECK_OP(shape.size(), ==, DIM," ");
+            Coord c;
+            std::copy(shape.begin(), shape.end(), c.begin());
+            return c;
+        }
+    private:
+        std::mutex mutex_;
+        const nifty::hdf5::Hdf5Array<INTERNAL_TYPE> & data_;
+    }; 
+
+
+
 
 
     template<
@@ -60,18 +117,77 @@ namespace ilastik_backend{
     public:
         typedef INPUT_TYPE_TAG InputTypeTagType;
         typedef typename InputTypeTagType::DimensionType DimensionType;
-        typedef InputDataBase<float, DimensionType::value, MULTICHANNEL> InputDataBaseType;
+        typedef InputDataBase<uint8_t, DimensionType::value, MULTICHANNEL> InputDataBaseType;
+        typedef array::StaticArray<int64_t, DimensionType::value> CoordType;
 
-        size_t addTrainingInstance(const InputDataBaseType * instance){
-            trainingData_.push_back(instance);
+
+        struct WhereLabels{
+            std::vector<std::pair<CoordType, uint8_t> >  data_;
+        };
+    
+
+
+
+        InteractivePixelClassification(
+            const InputDataBaseType *  trainingInstance,
+            const size_t numberOfLabels,
+            const array::StaticArray<int64_t, DimensionType::value> & blockSize
+        )
+        :   
+            trainingInstance_(trainingInstance),
+            numberOfLabels_(numberOfLabels),
+            blockSize_(blockSize),    
+            blocking_(CoordType(0), trainingInstance->spaceTimeShape(),blockSize)
+        {
         }
 
-        void addTrainingData(){
-            
+
+        void addTrainingData(
+            const nifty::marray::View<uint8_t> & labels,
+            array::StaticArray<int64_t, DimensionType::value> coordBegin,
+            array::StaticArray<int64_t, DimensionType::value> coordEnd
+        ){  
+            auto blockBegin = coordBegin / blocking_.blockShape();
+            auto blockEnd   = coordEnd   / blocking_.blockShape() + CoordType(1);
+
+
+            std::vector<size_t> featNeeded;
+
+            nifty::tools::forEachCoordinate(blockBegin,blockEnd,
+                [&](const CoordType & blockCoord){
+                    // shitty code.. to lazy to think about it
+                    bool use = true;
+                    for(auto d=0; d<DimensionType::value; ++d){
+                        if(blockCoord[d] >= blocking_.blockShape()[d]){
+                            use = false;
+                            break;
+                        }   
+                    }
+                    if(use){
+                        const auto blockIndex = this->blockCoordToBlockIndex(blockCoord);
+                    }
+                }
+            );
         }
     private:
-        // atm we make it single channnel
-        std::vector<const InputDataBaseType * > trainingData_;
+
+        size_t blockCoordToBlockIndex(const CoordType & blockCoord)const{
+            auto i=0;
+            for(auto d=0; d<DimensionType::value; ++d){
+                i += blockCoord[d]*blocking_.blocksPerAxisStrides()[d];
+            }
+            return i;
+        }
+
+        const InputDataBaseType * trainingInstance_;
+        uint8_t numberOfLabels_;
+        array::StaticArray<int64_t, DimensionType::value> blockSize_;
+        nifty::tools::Blocking<DimensionType::value, int64_t> blocking_; 
+
+
+
+        tbb::concurrent_hash_map<size_t, WhereLabels > blocksWithLabels_;
+
     };  
 }
 }
