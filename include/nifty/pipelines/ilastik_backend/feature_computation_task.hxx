@@ -1,6 +1,9 @@
 #ifndef _OPERATORS_FILTEROPERATOR_H_
 #define _OPERATORS_FILTEROPERATOR_H_
 
+#define TBB_PREVIEW_CONCURRENT_LRU_CACHE
+#include <tbb/concurrent_lru_cache.h>
+
 #include <tuple>
 
 #include <tbb/flow_graph.h>
@@ -52,7 +55,7 @@ namespace nifty {
                     raw_cache::handle_object ho = rc[blockId];
                     in_array_view& data = ho.value();
                     compute(data);
-                    // TODO FIXME need to return self here ?!
+                    return data;
                 }
     
                 void compute(const in_data_type & in)

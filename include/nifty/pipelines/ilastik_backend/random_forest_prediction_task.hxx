@@ -20,7 +20,7 @@ namespace nifty
             {
             public:
                 // typedefs
-                using feature_cache = ???;
+                using feature_cache = tbb::concurrent_lru_cache<size_t, float_array_view>;
                 using data_type = float;
                 using float_array_view = nifty::marray::View<data_type>;
                 using random_forest_vector = nifty::pipelines::ilastik_backend::RandomForestVectorType;
@@ -45,7 +45,7 @@ namespace nifty
                     feature_cache::handle_object ho = feature_cache_[blockId];
                     float_array_view& features = ho.value();
                     compute(features);
-                    // TODO FIXME we need to return ourself here ?!
+                    return NULL;
                 }
 
                 void compute(const float_array_view & in)
