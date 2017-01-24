@@ -1,12 +1,13 @@
 #ifndef _OPERATORS_FILTEROPERATOR_H_
 #define _OPERATORS_FILTEROPERATOR_H_
 
+#include <tuple>
+
 #include <tbb/flow_graph.h>
 
 #include <ilastik-backend/operatos/baseoperator.h>
 #include <ilastik-backend/types.h>
 
-// TODO somehow include nifty
 #include "nifty/marray/marray.hxx"
 #include "nifty/features/fastfilters_wrapper.hxx"
 
@@ -14,6 +15,8 @@
 // probably overload the filter operator for uint8
 using float_type = flowgraph::job_data<nifty::marray::View<float>>;
 // TODO dtype handle at the level of marrays / hdf5 loading from data!
+// TODO or maybe move the data copy to the feature task, because we can ship around
+// more data with smaller uint8 around -> make all this tomorrow
 //using uint8_type = flowgraph::job_data<uint8_t>;
 
 namespace ilastikbackend
@@ -22,7 +25,7 @@ namespace ilastikbackend
     {
 
         template<unsigned DIM>
-        class filter_operator : public base_operator<tuple<float_type>,tuple<float_type>> // TODO how should we inherit? I guess private ?!
+        class filter_operator : public base_operator<tuple<float_type>,tuple<float_type>>
         {
         public:
             // definition of enums to use for the slots
@@ -38,12 +41,11 @@ namespace ilastikbackend
             using filter_type = nifty::features::FilterBase;
 
         public:
-            // TODO do we need destructor ?!
             filter_operator(const types::set_of_cancelled_job_ids& setOfCancelledJobIds,
                     const std::vector<std::string> & feature_names,
                     const std::vector<double> & sigma_values,
                     const double outer_scale = 0. ): // TODO need to rethink if we want to apply different outer scales for the structure tensor eigenvalues
-                base_operator<tuple<float_type>, tuple<float_type> >(setOfCancelledJobIds) // TODO init the feature type
+                base_operator<std::tuple<float_type>, std::tuple<float_type> >(setOfCancelledJobIds)
             {
                 // init the vector with filter_type pointers
                 for(const auto & feat_name : feature_names) {
@@ -58,7 +60,7 @@ namespace ilastikbackend
                         filters_.emplace_back(new nifty::features::HessianOfGaussianEigenvalues());
                     else if(feat_name == "StructureTensorEigenvalues") {
                         filters_.emplace_back(new nifty::features::StructureTensorEigenvalues()); // TODO we don't use structure tensor for now, but we leave it in as an option
-                        filters_.back().setOuterScale(outer_scale); // TODO check that this is non-zero, but maybe rethink for different outer scales
+                        filters_.back()->setOuterScale(outer_scale); // TODO check that this is non-zero, but maybe rethink for different outer scales
                     }
                     else
                         throw std::runtime_error("Unknown filter type!");
@@ -68,8 +70,11 @@ namespace ilastikbackend
                 apply_.setSigmas(sigmas_);
             }
 
-            virtual tuple<float_type> executeImpl(const tuple<float_type> & in) const
+            virtual std::tuple<float_type> executeImpl(const std::tuple<float_type> & in) const
             {
+                // TODO copy input data from uint8 to float here ?!
+                // TODO set the window ration thing according to the feature type and halo here or in the constructir
+                // TODO is the axis order (channel, space) optimal here ?
                 auto & in_data = std::get<input_slots.RAW>(in);
                 // allocate the out data
                 size_t out_shape[DIM+1];
