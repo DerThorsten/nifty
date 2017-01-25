@@ -24,7 +24,9 @@ namespace nifty
                 using data_type = float;
                 using float_array_view = nifty::marray::View<data_type>;
                 using random_forest_vector = nifty::pipelines::ilastik_backend::RandomForestVectorType;
-                using feature_cache = tbb::concurrent_lru_cache<size_t, float_array_view>;
+                using feature_cache = tbb::concurrent_lru_cache<size_t, float_array_view, std::function<float_array_view(size_t)>>;
+                using out_shape_type = array::StaticArray<int64_t,DIM+1>;
+
             public:
                 // API
                 random_forest_prediction_task(
@@ -43,7 +45,7 @@ namespace nifty
                 tbb::task* execute()
                 {
                     // ask for features. This blocks if it's not present
-                    feature_cache::handle_object ho = feature_cache_[blockId_];
+                    feature_cache::handle ho = feature_cache_[blockId_];
                     float_array_view& features = ho.value();
                     compute(features);
                     return NULL;
