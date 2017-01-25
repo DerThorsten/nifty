@@ -96,6 +96,8 @@ namespace detail_fastfilters {
             opt_.window_ratio = 0.; // TODO zero seems not to be a sensible default, as this means no border treatment. According to sven, there are some defaults in vigra, check that!
         }
 
+        virtual ~FilterBase(){};
+
         virtual void inline operator()(const fastfilters_array2d_t &, marray::View<float> &, const double) const = 0;
 
         virtual void inline operator()(const fastfilters_array3d_t &, marray::View<float> &, const  double) const = 0; 
