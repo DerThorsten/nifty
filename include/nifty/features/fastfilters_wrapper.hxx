@@ -96,11 +96,15 @@ namespace detail_fastfilters {
             opt_.window_ratio = 0.; // TODO zero seems not to be a sensible default, as this means no border treatment. According to sven, there are some defaults in vigra, check that!
         }
 
+        virtual ~FilterBase(){};
+
         virtual void inline operator()(const fastfilters_array2d_t &, marray::View<float> &, const double) const = 0;
 
         virtual void inline operator()(const fastfilters_array3d_t &, marray::View<float> &, const  double) const = 0; 
 
         virtual bool inline isMultiChannel() const = 0;
+        
+        virtual void setOuterScale(const double sigmaOuter) = 0;
 
         void set_window_ratio(const double ratio) {
             opt_.window_ratio = ratio; // maybe setting it here for the use case on hand makes more sense (modulu overloading for the actual filter)
@@ -129,6 +133,9 @@ namespace detail_fastfilters {
         bool isMultiChannel() const {
             return false;
         }
+        
+        void setOuterScale(const double sigmaOuter)
+        {throw std::runtime_error("setOuterScale is not defined for GaussianSmoothing");}
 
     };
     
@@ -151,6 +158,9 @@ namespace detail_fastfilters {
         bool inline isMultiChannel() const {
             return false;
         }
+        
+        void setOuterScale(const double sigmaOuter)
+        {throw std::runtime_error("setOuterScale is not defined for LaplacianOfGaussian");}
 
     };
     
@@ -175,6 +185,8 @@ namespace detail_fastfilters {
             return false;
         }
         
+        void setOuterScale(const double sigmaOuter)
+        {throw std::runtime_error("setOuterScale is not defined for GaussianGradientMagnitude");}
 
     };
     
@@ -233,6 +245,9 @@ namespace detail_fastfilters {
         bool inline isMultiChannel() const {
             return true;
         }
+        
+        void setOuterScale(const double sigmaOuter)
+        {throw std::runtime_error("setOuterScale is not defined for HessianOfGaussianEigenvalues");}
 
     };
     
@@ -320,24 +335,39 @@ namespace detail_fastfilters {
 
         typedef array::StaticArray<int64_t, DIM+1> Coord;
         
-        // empty constructor
-        ApplyFilters() {
+        // construct from given sigmas and filter names
+        ApplyFilters(const std::vector<double> & sigmas,
+                const std::vector<std::string> & filterNames,
+                const double outerScale = 0.) : sigmas_(sigmas), filters_() {
+            
             fastfilters_init(); // FIXME this might cause problems if we init more than one ApplyFilters
+                
+            // init the vector with filter_type pointers
+            for(const auto & filtName : filterNames) {
+                if(filtName == "GaussianSmoothing")
+                    filters_.emplace_back(new GaussianSmoothing());
+                else if(filtName == "LaplacianOfGaussian")
+                    filters_.emplace_back(new LaplacianOfGaussian());
+                else if(filtName == "GaussianGradientMagnitude")
+                    filters_.emplace_back(new GaussianGradientMagnitude());
+                else if(filtName == "HessianOfGaussianEigenvalues")
+                    filters_.emplace_back(new HessianOfGaussianEigenvalues());
+                else if(filtName == "StructureTensorEigenvalues") {
+                    filters_.emplace_back(new StructureTensorEigenvalues()); // TODO we don't use structure tensor for now, but we leave it in as an option
+                    filters_.back()->setOuterScale(outerScale); // TODO check that this is non-zero, but maybe rethink for different outer scales
+                }
+                else
+                    throw std::runtime_error("Unknown filter type!");
+            }
         }
-        
-        // construct from given sigmas and filters
-        ApplyFilters(const std::vector<double> & sigmas, const std::vector<FilterBase*> & filters) : sigmas_(sigmas), filters_(filters) {
-            fastfilters_init(); // FIXME this might cause problems if we init more than one ApplyFilters
+            
+        // we need to make sure to delete the filter pointers TODO recheck this
+        ~ApplyFilters() {
+            //std::for_each(filters_.begin(), filters_.end(), []);
+            for(auto & filter : filters_ )
+                delete filter;
         }
 
-        void setFilters(const std::vector<FilterBase*> & filters) {
-            filters_ = filters;
-        }
-
-        void setSigmas(const std::vector<double> & sigmas) {
-            sigmas_ = sigmas;
-        }
-        
         // apply filters sequential
         void operator()(const marray::View<float> & in, marray::View<float> & out) const{
     
@@ -375,6 +405,7 @@ namespace detail_fastfilters {
         }
         
         // apply filters in parallel
+        // TODO use tbb threadpool!
         void operator()(const marray::View<float> & in, marray::View<float> & out, parallel::ThreadPool & threadpool) const{
     
             NIFTY_CHECK_OP(in.dimension(),==,DIM,"Input needs to be of correct dimension.")

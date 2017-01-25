@@ -53,11 +53,7 @@ BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest2D)
 
     // fastfilters segfault for larger sigmas for a 5x5 array
     std::vector<double> sigmas({1.});
-    GaussianSmoothing gs;
-    LaplacianOfGaussian log;
-    HessianOfGaussianEigenvalues hog;
-
-    std::vector<FilterBase*> filters({&gs,&log,&hog});
+    std::vector<std::string> filters({"GaussianSmoothing","LaplacianOfGaussian","HessianOfGaussianEigenvalues"});
     ApplyFilters<2> functor(sigmas, filters);
     
     std::vector<size_t> shapeOut({functor.numberOfChannels(),shapeIn[0],shapeIn[1]});
@@ -191,10 +187,7 @@ BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest3D)
 
     // fastfilters segfault for larger sigmas for a 5x5 array
     std::vector<double> sigmas({1.});
-    GaussianSmoothing gs;
-    LaplacianOfGaussian log;
-    HessianOfGaussianEigenvalues hog;
-    std::vector<FilterBase*> filters({&gs,&log,&hog});
+    std::vector<std::string> filters({"GaussianSmoothing","LaplacianOfGaussian","HessianOfGaussianEigenvalues"});
     ApplyFilters<3> functor(sigmas, filters);
     
     std::vector<size_t> shapeOut({functor.numberOfChannels(),shapeIn[0],shapeIn[1],shapeIn[2]});
