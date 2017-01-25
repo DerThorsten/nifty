@@ -1,13 +1,14 @@
 #ifndef _RANDOM_FOREST_PREDICTION_TASK_H_
 #define _RANDOM_FOREST_PREDICTION_TASK_H_
 
+#define TBB_PREVIEW_CONCURRENT_LRU_CACHE 1
+#include <tbb/concurrent_lru_cache.h>
+
 #include <tbb/tbb.h>
 #include "nifty/pipelines/ilastik_backend/random_forest_loader.hxx"
 #include <nifty/marray/marray.hxx>
 // TODO include appropriate vigra stuff
 #include <vigra/random_forest_hdf5_impex.hxx>
-// TODO include cache stuff 
-//#include <>
 
 namespace nifty
 {
@@ -68,7 +69,7 @@ namespace nifty
 
                     // loop over all random forests for prediction probabilities
                     std::cout << "\tPredict RFs" << std::endl;
-                    for(size_t rf = 0; rf < random_forest_vector_.size(); rf++)
+                    for(size_t rf = 0; rf < random_forest_vector_.size(); ++rf)
                     {
                         vigra::MultiArray<2, data_type> prediction_temp(pixel_count, num_pixel_classification_labels);
                         random_forest_vector_[rf].predictProbabilities(vigra_in, prediction_temp);
@@ -88,8 +89,10 @@ namespace nifty
                 feature_cache& feature_cache_;
                 float_array_view& out_array_;
                 random_forest_vector& random_forest_vector_;
-        };
-    }
-}
+            };
+        
+        } // namespace ilastik_backend
+    } // namespace pipelines
+} // namespace nifty
 
 #endif // _RANDOM_FOREST_PREDICTION_TASK_H_
