@@ -14,7 +14,7 @@ SET(TEST_LIBS
 add_subdirectory(test_graph)
 add_subdirectory(test_array)
 add_subdirectory(test_features)
-
+add_subdirectory(test_pipelines)
 
 
 add_executable(test_marray test_marray.cxx )
