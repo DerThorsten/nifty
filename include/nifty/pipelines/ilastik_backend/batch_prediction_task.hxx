@@ -53,7 +53,8 @@ namespace ilastik_backend{
             selectedFeatures_(selected_features),
             blockShape_(block_shape),
             maxNumCacheEntries_(max_num_cache_entries),
-            rfVectors_() 
+            rfVectors_(),
+            out_( hdf5::createFile("out.h5"), "data" ) // output hardcoded for now
         {
             init();
         }
@@ -97,10 +98,16 @@ namespace ilastik_backend{
 
             predictionCache_ = std::make_unique<prediction_cache>(retrieve_prediction_for_caching, maxNumCacheEntries_);
         }
-    
-    
+ 
         tbb::task* execute() {
             // TODO spawn the tasks to batch process the complete volume
+            for(size_t blockId = 0; blockId < blocking_->numberOfBlocks(); ++blockId) {
+                auto handle = (*predictionCache_)[blockId];
+                auto outView = handle.value();
+                auto block = blocking_->getBlock(blockId);
+                coordinate blockBegin = block.begin();
+                out_.writeSubarray(blockBegin.begin(), outView);
+            }
             return NULL;
         }
 
@@ -117,6 +124,7 @@ namespace ilastik_backend{
         coordinate blockShape_;
         size_t maxNumCacheEntries_;
         random_forest_vector rfVectors_;
+        hdf5::Hdf5Array<data_type> out_;
     };
 
 } // namespace ilastik_backend
