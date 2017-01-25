@@ -24,7 +24,9 @@ namespace nifty
                 using data_type = float;
                 using float_array_view = nifty::marray::View<data_type>;
                 using random_forest_vector = nifty::pipelines::ilastik_backend::RandomForestVectorType;
-                using feature_cache = tbb::concurrent_lru_cache<size_t, float_array_view>;
+                using feature_cache = tbb::concurrent_lru_cache<size_t, float_array_view, std::function<float_array_view(size_t)>>;
+                using out_shape_type = array::StaticArray<int64_t,DIM+1>;
+
             public:
                 // API
                 random_forest_prediction_task(
@@ -43,7 +45,7 @@ namespace nifty
                 tbb::task* execute()
                 {
                     // ask for features. This blocks if it's not present
-                    feature_cache::handle_object ho = feature_cache_[blockId_];
+                    feature_cache::handle ho = feature_cache_[blockId_];
                     float_array_view& features = ho.value();
                     compute(features);
                     return NULL;
@@ -63,7 +65,7 @@ namespace nifty
                     assert(num_required_features == in.shape(0));
 
                     // copy data from marray to vigra. TODO: is the axes order correct??
-                    vigra::MultiArrayView<DIM, data_type> vigra_in(pixel_count * num_required_features, &in(0));
+                    vigra::MultiArrayView<2, data_type> vigra_in(vigra::Shape2(pixel_count, num_required_features), &in(0));
 
                     vigra::MultiArray<2, data_type> prediction_map_view(vigra::Shape2(pixel_count, num_pixel_classification_labels));
 
@@ -79,8 +81,23 @@ namespace nifty
                     // divide probs by num random forests
                     prediction_map_view /= random_forest_vector_.size();
 
-                    // transform back to marray 
-                    &out_array_(0) = prediction_map_view.data();
+                    // transform back to marray
+                    out_shape_type output_shape;
+                    for(size_t d = 0; d < DIM; ++d) {
+                        output_shape[d] = out_array_.shape(0);
+                    }
+                    output_shape[DIM] = num_required_features;
+                    float_array_view& tmp_out_array = out_array_;
+                    tools::forEachCoordinate(output_shape, [&tmp_out_array, &prediction_map_view, output_shape](const out_shape_type& coord)
+                    {
+                        size_t pixelRow = coord[0] * (output_shape[1] + output_shape[2]) + coord[1] * (output_shape[2]);
+                        if(DIM == 3)
+                        {
+                            pixelRow = coord[0] * (output_shape[1] + output_shape[2] + output_shape[3]) + coord[1] * (output_shape[2] + output_shape[3]) + coord[2] * output_shape[3];
+                        }
+                        tmp_out_array(coord.asStdArray()) = prediction_map_view(pixelRow, coord[DIM]);
+                    });
+                    
                 }
 
             private:

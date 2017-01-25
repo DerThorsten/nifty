@@ -76,7 +76,7 @@ namespace nifty {
                     coordinate in_shape;
                     for(int d = 0; d < DIM; ++d)
                         in_shape[d] = in.shape(d);
-                    marray::Marray<in_data_type> in_float(in_shape.begin(), in_shape.end());
+                    marray::Marray<out_data_type> in_float(in_shape.begin(), in_shape.end());
                     tools::forEachCoordinate(in_shape, [&](const coordinate & coord){
                         in_float(coord.asStdArray()) = in(coord.asStdArray());    
                     });
