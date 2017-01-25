@@ -25,7 +25,7 @@ namespace nifty {
                 using apply_type = nifty::features::ApplyFilters<DIM>;
                 using in_data_type = uint8_t;
                 using out_data_type = float;
-                using raw_cache = Hdf5Input<in_data_type, DIM, false, in_data_type>;
+                using raw_cache = hdf5::Hdf5Array<in_data_type>;
                 using out_array_view = nifty::marray::View<out_data_type>;
                 using in_array_view = nifty::marray::View<in_data_type>;
                 using selected_feature_type = std::pair<std::vector<std::string>, std::vector<double>>;
@@ -64,7 +64,7 @@ namespace nifty {
                     auto outerBlockEnd = outerBlock.end();
                     auto outerBlockShape = outerBlock.shape();
                     nifty::marray::Marray<in_data_type> in(outerBlockShape.begin(), outerBlockShape.end());
-                    rawCache_.readData(outerBlockBegin, outerBlockEnd, in);
+                    rawCache_.readSubarray(outerBlockBegin.begin(), in);
                     compute(in, outerBlock);
                     return NULL;
                 }
