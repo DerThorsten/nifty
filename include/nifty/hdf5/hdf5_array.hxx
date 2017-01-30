@@ -4,6 +4,7 @@
 
 #include <string>
 #include <vector>
+#include <mutex>
 
 #include "nifty/tools/block_access.hxx"
 #include "nifty/tools/runtime_check.hxx"
@@ -150,6 +151,17 @@ namespace hdf5{
             );
             this->loadHyperslab(roiBeginIter, roiBeginIter+out.dimension(), out.shapeBegin(), out);
         }
+        
+        template<class ITER>
+        void readSubarrayLocked(
+            ITER roiBeginIter,
+            marray::View<T> & out
+        )const{
+            std::mutex mtx;
+            mtx.lock();
+            this->readSubarray(roiBeginIter,out);
+            mtx.unlock();
+        }
 
         template<class ITER>
         void writeSubarray(
@@ -161,6 +173,17 @@ namespace hdf5{
                 "currently only views with last major order are supported"
             );
             this->saveHyperslab(roiBeginIter, roiBeginIter+in.dimension(), in.shapeBegin(), in);
+        }
+        
+        template<class ITER>
+        void writeSubarrayLocked(
+            ITER roiBeginIter,
+            const marray::View<T> & in
+        )const{
+            std::mutex mtx;
+            mtx.lock();
+            this->writeSubarrayLocked(roiBeginIter,in);
+            mtx.unlock();
         }
 
     private:
@@ -420,8 +443,36 @@ namespace tools{
     ){
         array.readSubarray(beginCoord.begin(), subarray);
     }
-
-
+    
+    template<class T, class COORD>
+    inline void writeSubarray(
+        hdf5::Hdf5Array<T> & array,
+        const COORD & beginCoord,
+        const COORD & endCoord,
+        const marray::View<T> & subarray
+    ){
+        array.writeSubarray(beginCoord.begin(), subarray);
+    }
+    
+    template<class T, class COORD>
+    inline void readSubarrayLocked(
+        const hdf5::Hdf5Array<T> & array,
+        const COORD & beginCoord,
+        const COORD & endCoord,
+        marray::View<T> & subarray
+    ){
+        array.readSubarrayLocked(beginCoord.begin(), subarray);
+    }
+    
+    template<class T, class COORD>
+    inline void writeSubarrayLocked(
+        hdf5::Hdf5Array<T> & array,
+        const COORD & beginCoord,
+        const COORD & endCoord,
+        const marray::View<T> & subarray
+    ){
+        array.writeSubarrayLocked(beginCoord.begin(), subarray);
+    }
 
     template<class ARRAY>
     struct BlockStorageSelector;

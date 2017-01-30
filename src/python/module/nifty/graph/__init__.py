@@ -1,9 +1,10 @@
-from _graph import *
+from __future__ import absolute_import
+from ._graph import *
 from .. import Configuration
 
-import multicut
-import lifted_multicut
-import rag
+from . import multicut
+from . import lifted_multicut
+# from . import rag
 
 import numpy
 from functools import partial

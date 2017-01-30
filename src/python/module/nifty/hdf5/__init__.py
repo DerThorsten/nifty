@@ -1,9 +1,10 @@
+from __future__ import absolute_import
 from .. import Configuration
 
 __all__ = []
 
 if Configuration.WITH_HDF5:
-    from _hdf5 import *
+    from ._hdf5 import *
     for key in _hdf5.__dict__.keys():
         __all__.append(key)
 else:
@@ -11,7 +12,7 @@ else:
 
 import math
 import numpy
-
+import numbers
 
 if Configuration.WITH_HDF5:
 
@@ -56,18 +57,23 @@ if Configuration.WITH_HDF5:
             Hdf5ArrayFloat64
         ]
 
-        def getItem(self, slicing):
+        def getItem(self, indexing):
             dim = self.ndim
             roiBegin = [None]*dim
             roiEnd = [None]*dim
             for d in range(dim):
-                sliceObj = slicing[d]
-                roiBegin[d] = int(sliceObj.start)
-                roiEnd[d] = int(sliceObj.stop)
-                step = sliceObj.step
-                if step is not None and  step != 1:
-                    raise RuntimeError("currently step must be 1 in slicing but step is %d"%sliceObj.step)
-            
+                indexingObj = indexing[d]
+                if isinstance(indexingObj, numbers.Integral):
+                    roiBegin[d] = int(indexingObj)
+                    roiEnd[d] = int(indexingObj+1)
+                else:
+                    roiBegin[d] = int(indexingObj.start)
+                    roiEnd[d] = int(indexingObj.stop)
+                    step = indexingObj.step
+                    if step is not None and  step != 1:
+                        raise RuntimeError("currently step must be 1 in slicing but step is %d"%sliceObj.step)
+                
+
             return self.readSubarray(roiBegin, roiEnd)
 
 

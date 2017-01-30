@@ -1,4 +1,5 @@
-from _lifted_multicut import *
+from __future__ import absolute_import
+from ._lifted_multicut import *
 from functools import partial
 from ..multicut import ilpSettings
 __all__ = []
