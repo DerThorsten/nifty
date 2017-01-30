@@ -1,5 +1,5 @@
-
-from _ufd import *
+from __future__ import absolute_import
+from ._ufd import *
 
 
 __all__ = []
