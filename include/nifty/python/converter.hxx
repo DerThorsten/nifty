@@ -261,7 +261,7 @@ namespace marray
 
             VALUE_TYPE * ptr = nullptr;
             {
-                py::gil_scoped_acquire disallowThreads;
+                //py::gil_scoped_acquire disallowThreads;
                 py_array = pybind11::array(pybind11::buffer_info(
                     nullptr, sizeof(VALUE_TYPE), pybind11::format_descriptor<VALUE_TYPE>::value, shape.size(), shape, strides));
                 pybind11::buffer_info info = py_array.request();

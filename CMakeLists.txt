@@ -42,7 +42,7 @@ if (CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR CMAKE_CXX_COMPILER_ID MATCHES "GNU"
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
     elseif (HAS_CPP11_FLAG)
         message("C++ 11!!!!!!!!!")
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
     else()
         message(FATAL_ERROR "Unsupported compiler -- nifty  requires C++11 support!")
     endif()
@@ -186,7 +186,6 @@ endif()
 # find fastfilters
 #-------------------------------------------------------------------------------------------------------------------
 if(WITH_FASTFILTERS)
-    message(WITH FF!!)
     find_package(FASTFILTERS REQUIRED)
     include_directories(${FASTFILTERS_INCLUDE_DIR})
     add_definitions(-DWITH_FASTFILTERS)

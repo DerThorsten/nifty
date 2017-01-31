@@ -96,11 +96,11 @@ namespace detail_fastfilters {
             opt_.window_ratio = 0.;
         }
 
-        virtual void inline operator()(const fastfilters_array2d_t &, marray::View<float> &, const double) const = 0;
+        virtual void operator()(const fastfilters_array2d_t &, marray::View<float> &, const double) const = 0;
 
-        virtual void inline operator()(const fastfilters_array3d_t &, marray::View<float> &, const  double) const = 0; 
+        virtual void operator()(const fastfilters_array3d_t &, marray::View<float> &, const  double) const = 0; 
 
-        virtual bool inline isMultiChannel() const = 0;
+        virtual bool isMultiChannel() const = 0;
 
         void set_window_ratio(const double ratio) {
             opt_.window_ratio = ratio;
