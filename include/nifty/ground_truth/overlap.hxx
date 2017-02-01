@@ -26,7 +26,7 @@ namespace ground_truth{
             SET_A_ITER aEnd,
             SET_B_ITER bBegin
         )
-        :   overlap_(maxLabelSetA+1),
+        :   overlaps_(maxLabelSetA+1),
             counts_(maxLabelSetA+1){
 
             fill(aBegin, aEnd, bBegin);
@@ -38,7 +38,7 @@ namespace ground_truth{
             const marray::View<LABEL_A> arrayA,
             const marray::View<LABEL_B> arrayB
         )
-        :   overlap_(maxLabelSetA+1),
+        :   overlaps_(maxLabelSetA+1),
             counts_(maxLabelSetA+1){
 
             const auto dimA = arrayA.dimension();
@@ -73,8 +73,8 @@ namespace ground_truth{
 
         double differentOverlap(const LabelType u, const LabelType v)const{
 
-            const auto & olU = overlap_[u];
-            const auto & olV = overlap_[v];
+            const auto & olU = overlaps_[u];
+            const auto & olV = overlaps_[v];
             const auto sU = float(counts_[u]);
             const auto sV = float(counts_[v]);
             auto isDiff = 0.0;
@@ -95,7 +95,7 @@ namespace ground_truth{
 
         double bleeding(const LabelType u)const{
             const COUNT_TYPE size = counts_[u];
-            const auto & ol = overlap_[u];
+            const auto & ol = overlaps_[u];
 
             std::vector<COUNT_TYPE> olCount;
             olCount.reserve(ol.size());
@@ -112,9 +112,12 @@ namespace ground_truth{
         const std::vector<CountType> & counts()const{
             return counts_;
         };
-        const std::vector<MapType> & overlap()const{
-            return overlap_;
+        const std::vector<MapType> & overlaps()const{
+            return overlaps_;
         };
+
+
+
     private:
 
         template<class SET_A_ITER, class SET_B_ITER>
@@ -129,7 +132,7 @@ namespace ground_truth{
                 const auto labelA = *aBegin;
                 const auto labelB = *bBegin;
 
-                ++overlap_[labelA][labelB];
+                ++overlaps_[labelA][labelB];
                 ++counts_[labelA];
                 ++aBegin;
                 ++bBegin;
@@ -150,12 +153,12 @@ namespace ground_truth{
             }
             tools::forEachCoordinate(shape,[&](const Coord coord){
                 const auto la = arrayA(coord.asStdArray());
-                ++overlap_[la][arrayB(coord.asStdArray())];
+                ++overlaps_[la][arrayB(coord.asStdArray())];
                 ++counts_[la];
             });
         }
         std::vector<CountType> counts_;
-        std::vector<MapType>   overlap_;
+        std::vector<MapType>   overlaps_;
     };
 
 
