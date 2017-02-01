@@ -40,14 +40,14 @@ matrix:
         - make -j2
         - CTEST_OUTPUT_ON_FAILURE=TRUE make test
         
-        - source venv/bin/activate
-        - pip install numpy
-        - make python-test
-        - CTEST_OUTPUT_ON_FAILURE=TRUE make test
+        #- source venv/bin/activate
+        #- pip install numpy
+        #- make python-test
+        #- CTEST_OUTPUT_ON_FAILURE=TRUE make test
     - os: osx
       compiler: clang
       script:
         - cmake -DWITHIN_TRAVIS=ON -DWITH_GLPK=OFF -DBUILD_NIFTY_PYTHON=ON -DPYBIND_ELEVEN_INCLUDE_DIR=pybind11-master/include -DPYBIND11_PYTHON_VERSION=2.7
         - make -j 2
         - CTEST_OUTPUT_ON_FAILURE=TRUE make test
-        - make python-test
+        #- make python-test
