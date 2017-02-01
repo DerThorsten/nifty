@@ -264,7 +264,7 @@ namespace marray
                 //py::gil_scoped_acquire disallowThreads;
                 //std::cout<<"pybind11 arrqy\n";
                 py_array = pybind11::array(pybind11::buffer_info(
-                    nullptr, sizeof(VALUE_TYPE), pybind11::format_descriptor<VALUE_TYPE>::value, shape.size(), shape, strides));
+                    nullptr, sizeof(VALUE_TYPE), pybind11::format_descriptor<VALUE_TYPE>::format(), shape.size(), shape, strides));
                 //std::cout<<"buffer_info\n";
                 pybind11::buffer_info info = py_array.request();
                 //std::cout<<"cast\n";
