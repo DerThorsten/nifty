@@ -153,8 +153,6 @@ namespace pybind11
         void unreleaseGil(){}
     };
     #endif
-
-
 }
 
 
@@ -200,6 +198,7 @@ namespace marray
 
         PyView()
         {
+            //std::cout<<"EEE---\n";
         }
         const VALUE_TYPE & operator[](const uint64_t index)const{
             return this->operator()(index);
@@ -214,6 +213,8 @@ namespace marray
         template <class ShapeIterator>
         PyView(ShapeIterator begin, ShapeIterator end)
         {
+            
+            //std::cout<<"-----\n";
             this->assignFromShape(begin, end);
         }
 
@@ -250,6 +251,7 @@ namespace marray
         template <class ShapeIterator>
         void assignFromShape(ShapeIterator begin, ShapeIterator end)
         {
+            //std::cout<<"compute stride\n";
             std::vector<size_t> shape(begin,end);
             std::vector<size_t> strides(shape.size());
 
@@ -261,13 +263,18 @@ namespace marray
 
             VALUE_TYPE * ptr = nullptr;
             {
+                //std::cout<<"scoped gil_scoped_acquire\n";
                 //py::gil_scoped_acquire disallowThreads;
+                //std::cout<<"pybind11 arrqy\n";
                 py_array = pybind11::array(pybind11::buffer_info(
-                    nullptr, sizeof(VALUE_TYPE), pybind11::format_descriptor<VALUE_TYPE>::value, shape.size(), shape, strides));
+                    nullptr, sizeof(VALUE_TYPE), pybind11::format_descriptor<VALUE_TYPE>::format(), shape.size(), shape, strides));
+                //std::cout<<"buffer_info\n";
                 pybind11::buffer_info info = py_array.request();
+                //std::cout<<"cast\n";
                 ptr = (VALUE_TYPE *)info.ptr;
-            }
-
+                //std::cout<<"dpme\n";
+            }   
+            //std::cout<<"scoped gil_scoped_acquire_DONE\n";
             for (size_t i = 0; i < shape.size(); ++i) {
                 strides[i] /= sizeof(VALUE_TYPE);
             }
@@ -357,8 +364,8 @@ namespace pybind11
                 //    auto pyFormat = info.format;
                 //    auto itemsize = info.itemsize; 
                 //    auto cppFormat =  py::detail::npy_format_descriptor<Type>::value;
-                //    std::cout<<"pyFormat  "<<pyFormat<<" size "<<itemsize<<"\n";
-                //    std::cout<<"cppFormat "<<cppFormat<<"\n";
+                //    //std::cout<<"pyFormat  "<<pyFormat<<" size "<<itemsize<<"\n";
+                //    //std::cout<<"cppFormat "<<cppFormat<<"\n";
                 //    return false;
                 //    //if(pyFormat != cppFormat){
                 //    //    return false;
@@ -367,7 +374,7 @@ namespace pybind11
 
 
                 if(DIM != 0 && DIM != info.shape.size()){
-                    //std::cout<<"not matching\n";
+                    ////std::cout<<"not matching\n";
                     return false;
                 }
                 Type *ptr = (Type *)info.ptr;

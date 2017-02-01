@@ -1,6 +1,7 @@
+from __future__ import absolute_import
 from __future__ import print_function
 
-from _tools import *
+from ._tools import *
 
 from concurrent.futures import ThreadPoolExecutor
 from multiprocessing import cpu_count

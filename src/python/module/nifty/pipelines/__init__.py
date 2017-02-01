@@ -1,4 +1,5 @@
-from _pipelines import *
+from __future__ import absolute_import
+from ._pipelines import *
 
 
 __all__ = []

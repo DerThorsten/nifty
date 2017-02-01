@@ -47,7 +47,6 @@ auto get2DTestData() {
     hessian12D[4] = std::vector<float>( { 0.03501446,  0.00383376, -0.04268197,  0.00383376,  0.03501446} );
 
     return std::make_tuple(gaussian2D, laplacian2D, hessian02D, hessian12D);
-
 }
 
 // 3d test data

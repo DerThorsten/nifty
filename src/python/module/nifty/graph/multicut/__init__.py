@@ -1,4 +1,5 @@
-from _multicut import *
+from __future__ import absolute_import
+from ._multicut import *
 from functools import partial
 
 __all__ = []

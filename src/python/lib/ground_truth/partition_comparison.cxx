@@ -17,53 +17,105 @@ namespace ground_truth{
 
 
 
-    void exportPartitionComparison(py::module & groundTruthModule){
+    void exportPartitionComparison(py::module & module){
 
-        typedef Overlap<> OverlapType;
-
-
-        groundTruthModule.def("variationOfInformation",
-            [](
-
-                nifty::marray::PyView<uint32_t> labelA,
-                nifty::marray::PyView<uint32_t> labelB,
-                const bool ignoreDefaultLabel = false
-            ){
-
-                {
-                    auto  startPtr = &labelA(0);
-                    auto  lastElement = &labelA(labelA.size()-1);
-                    auto d = lastElement - startPtr + 1;
-
-                    NIFTY_CHECK_OP(d,==,labelA.size(),"labelA must be contiguous")
-                }
-
-                {
-                    auto  startPtr = &labelB(0);
-                    auto  lastElement = &labelB(labelB.size()-1);
-                    auto d = lastElement - startPtr + 1;
-
-                    NIFTY_CHECK_OP(d,==,labelB.size(),"labelB must be contiguous")
-                }
-
-
-                VariationOfInformation<> vInfo(
-                    &labelA(0),
-                    &labelA(0)+labelA.size(),
-                    &labelB(0)
-                );
-
-                return std::tuple<double,double,double>(
-                    vInfo.value(),
-                    vInfo.valueFalseCut(),
-                    vInfo.valueFalseJoin()
-                );
-
-            }
-        )
-       
-        ;
         
+        typedef VariationOfInformation<> ViType;
+        py::class_<ViType>(module, "VariationOfInformation")
+        .def("__init__",
+            [](
+                ViType &instance,
+                nifty::marray::PyView<uint32_t> labelsTruth,
+                nifty::marray::PyView<uint32_t> labelsPrediction,
+                const bool ignoreDefaultLabel = false
+            ) {
+
+                NIFTY_CHECK(labelsTruth.coordinateOrder()==labelsPrediction.coordinateOrder(),"coordinate orders do not match");
+                {
+                    auto  startPtr = &labelsTruth(0);
+                    auto  lastElement = &labelsTruth(labelsTruth.size()-1);
+                    auto d = lastElement - startPtr + 1;
+                    NIFTY_CHECK_OP(d,==,labelsTruth.size(),"labelsTruth must be contiguous")
+                }
+                {
+                    auto  startPtr = &labelsPrediction(0);
+                    auto  lastElement = &labelsPrediction(labelsPrediction.size()-1);
+                    auto d = lastElement - startPtr + 1;
+                    NIFTY_CHECK_OP(d,==,labelsPrediction.size(),"labelsPrediction must be contiguous")
+                }
+
+                new (&instance) ViType(
+                    &labelsTruth(0),
+                    &labelsTruth(0)+labelsTruth.size(),
+                    &labelsPrediction(0),
+                    ignoreDefaultLabel
+                );
+            },
+            py::arg("labelsTruth"),
+            py::arg("labelsPrediction"),
+            py::arg("ignoreDefaultLabel")=false
+        )
+        .def_property_readonly("value",&ViType::value)
+        .def_property_readonly("valueFalseCut",&ViType::valueFalseCut)
+        .def_property_readonly("valueFalseJoin",&ViType::valueFalseJoin)
+        ;
+
+
+        typedef RandError<> RandErrorType;
+        py::class_<RandErrorType>(module, "RandError")
+        .def("__init__",
+            [](
+                RandErrorType &instance,
+                nifty::marray::PyView<uint32_t> labelsTruth,
+                nifty::marray::PyView<uint32_t> labelsPrediction,
+                const bool ignoreDefaultLabel = false
+            ) {
+
+                NIFTY_CHECK(labelsTruth.coordinateOrder()==labelsPrediction.coordinateOrder(),"coordinate orders do not match");
+                {
+                    auto  startPtr = &labelsTruth(0);
+                    auto  lastElement = &labelsTruth(labelsTruth.size()-1);
+                    auto d = lastElement - startPtr + 1;
+                    NIFTY_CHECK_OP(d,==,labelsTruth.size(),"labelsTruth must be contiguous")
+                }
+                {
+                    auto  startPtr = &labelsPrediction(0);
+                    auto  lastElement = &labelsPrediction(labelsPrediction.size()-1);
+                    auto d = lastElement - startPtr + 1;
+                    NIFTY_CHECK_OP(d,==,labelsPrediction.size(),"labelsPrediction must be contiguous")
+                }
+
+                new (&instance) RandErrorType(
+                    &labelsTruth(0),
+                    &labelsTruth(0)+labelsTruth.size(),
+                    &labelsPrediction(0),
+                    ignoreDefaultLabel
+                );
+            },
+            py::arg("labelsTruth"),
+            py::arg("labelsPrediction"),
+            py::arg("ignoreDefaultLabel")=false
+        )
+        .def_property_readonly("trueJoins",&RandErrorType::trueJoins)
+        .def_property_readonly("trueCuts",&RandErrorType::trueCuts)
+        .def_property_readonly("falseJoins",&RandErrorType::falseJoins)
+        .def_property_readonly("falseCuts",&RandErrorType::falseCuts)
+        .def_property_readonly("joinsInPrediction",&RandErrorType::joinsInPrediction)
+        .def_property_readonly("cutsInPrediction",&RandErrorType::cutsInPrediction)
+        .def_property_readonly("joinsInTruth",&RandErrorType::joinsInTruth)
+        .def_property_readonly("cutsInTruth",&RandErrorType::cutsInTruth)
+
+        .def_property_readonly("recallOfCuts",&RandErrorType::recallOfCuts)
+        .def_property_readonly("precisionOfCuts",&RandErrorType::precisionOfCuts)
+        .def_property_readonly("recallOfJoins",&RandErrorType::recallOfJoins)
+        .def_property_readonly("precisionOfJoins",&RandErrorType::precisionOfJoins)
+        .def_property_readonly("error",&RandErrorType::error)
+        .def_property_readonly("index",&RandErrorType::index)
+
+        ;
+
+
+
     }
 }
 }
