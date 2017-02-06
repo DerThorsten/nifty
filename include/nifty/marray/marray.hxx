@@ -5,6 +5,7 @@
 #define HAVE_CPP11_INITIALIZER_LISTS
 #define HAVE_CPP11_STD_ARRAY
 #include <andres/marray.hxx>
+#include "nifty/tools/runtime_check.hxx"
 
 namespace nifty{
 namespace marray{
