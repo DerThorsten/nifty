@@ -17,9 +17,9 @@ public:
     Timer();
 
     double elapsedSeconds() const;
-    void reset();
+    Timer &  reset();
     void start();
-    void stop();
+    Timer &  stop();
     
     std::string toString() const;
     
@@ -48,11 +48,12 @@ public:
         }
         this->start();
     }
-    void stopAndPrint(){
+    VerboseTimer & stopAndPrint(){
         this->stop();
         if(verbose_){
             std::cout<<name_<<" took "<<this->toString()<<"\n";
         }
+        return *this;
     }
 
 private:
@@ -69,17 +70,19 @@ inline double Timer::elapsedSeconds() const{
     return seconds_;
 }
 
-inline void Timer::reset(){
+inline Timer & Timer::reset(){
     seconds_ = .0;
+    return *this;
 }
 
 inline void Timer::start(){
     timeObject_ = std::chrono::high_resolution_clock::now();
 }
 
-inline void Timer::stop(){
+inline Timer &  Timer::stop(){
     typedef std::chrono::duration<double> DDouble;
     seconds_ += std::chrono::duration_cast<DDouble>(std::chrono::high_resolution_clock::now() - timeObject_).count();
+    return *this;
 }
 
 inline std::string Timer::toString() const{
