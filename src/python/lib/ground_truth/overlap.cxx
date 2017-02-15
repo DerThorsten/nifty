@@ -35,6 +35,12 @@ namespace ground_truth{
             )
             .def("differentOverlaps",[](
                 const OverlapType & self,
+                const uint64_t u, const uint64_t v
+            ){
+                return self.differentOverlap(u, v);
+            })
+            .def("differentOverlaps",[](
+                const OverlapType & self,
                 nifty::marray::PyView<uint32_t> uv
             ){
                 nifty::marray::PyView<float> out({uv.shape(0)});
