@@ -138,7 +138,7 @@ public:
     void deserialize(ITER & iter);
 
     UndirectedGraph<EdgeInternalType,NodeInteralType> extractSubgraphFromNodes(
-        const marray::View<NODE_INTERNAL_TYPE> & nodeList, 
+        const std::vector<NODE_INTERNAL_TYPE> & nodeList, 
         std::vector<EDGE_INTERANL_TYPE> & innerEdgesOut,
         std::vector<EDGE_INTERANL_TYPE> & outerEdgesOut) const;
 
@@ -451,16 +451,15 @@ template<class EDGE_INTERANL_TYPE, class NODE_INTERNAL_TYPE>
 UndirectedGraph<EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE>
 UndirectedGraph<EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE>::
 extractSubgraphFromNodes(
-        const marray::View<NODE_INTERNAL_TYPE> & nodeList, 
+        const std::vector<NODE_INTERNAL_TYPE> & nodeList, 
         std::vector<EDGE_INTERANL_TYPE> & innerEdgesOut,
         std::vector<EDGE_INTERANL_TYPE> & outerEdgesOut) const {
     
     std::map<NodeInteralType,NodeInteralType> globalToLocalNodes;
     for(size_t i = 0; i < nodeList.size(); ++i)
-        globalToLocalNodes.insert( std::make_pair(nodeList(i), NodeInteralType(i)) );
+        globalToLocalNodes.insert( std::make_pair(nodeList[i], NodeInteralType(i)) );
 
-    for(auto nodeIt = nodeList.begin(); nodeIt != nodeList.end(); ++nodeIt) {
-        auto u = *nodeIt;
+    for(auto u : nodeList) {
         for(auto adjacencyIt = this->adjacencyBegin(u); adjacencyIt != this->adjacencyEnd(u); ++adjacencyIt) {
             auto v = adjacencyIt->node();
             auto e = this->findEdge(u, v);
