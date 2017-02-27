@@ -30,8 +30,12 @@ public:
         const SHAPE & maxShape,  
         const std::size_t numberOfBlocks
     )
-    :   zeroCoord_(maxShape.size(),0),
-        arrayVec_(numberOfBlocks, ArrayType(maxShape.begin(), maxShape.end())){
+    :   arrayVec_(numberOfBlocks),
+        zeroCoord_(maxShape.size(),0)
+    {
+        nifty::parallel::parallel_foreach(threadpool, numberOfBlocks, [&](const int tid, const int i){
+            arrayVec_[i] = ArrayType(maxShape.begin(), maxShape.end());
+        });
     }
 
     template<class SHAPE>
