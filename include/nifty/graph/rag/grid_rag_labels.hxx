@@ -55,6 +55,19 @@ public:
             return nLabels+1;
         }
     }
+    
+    // for compatability with hdf5 label api
+    template<
+        class ROI_BEGIN_COORD,
+        class ROI_END_COORD
+    >
+    void readSubarrayLocked(
+        const ROI_BEGIN_COORD & roiBeginCoord,
+        const ROI_END_COORD & roiEndCoord,
+        marray::View<LABEL_TYPE> & outArray
+    )const{
+        readSubarray(roiBeginCoord, roiEndCoord, outArray);
+    }
 
     template<
         class ROI_BEGIN_COORD,

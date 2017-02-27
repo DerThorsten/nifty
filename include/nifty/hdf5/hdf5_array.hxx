@@ -16,7 +16,6 @@ namespace hdf5{
     using namespace marray::hdf5;
 
 
-
     template<class T>
     class Hdf5Array{
     public:
@@ -96,8 +95,6 @@ namespace hdf5{
             isChunked_(true)
         {
 
-
-
             dataset_ = H5Dopen(groupHandle_, datasetName.c_str(), H5P_DEFAULT);
             if(dataset_ < 0) {
                 throw std::runtime_error("Marray cannot open dataset.");
@@ -160,10 +157,9 @@ namespace hdf5{
             ITER roiBeginIter,
             marray::View<T> & out
         )const{
-            std::mutex mtx;
-            mtx.lock();
+            mtx_.lock();
             this->readSubarray(roiBeginIter,out);
-            mtx.unlock();
+            mtx_.unlock();
         }
 
         template<class ITER>
@@ -183,10 +179,9 @@ namespace hdf5{
             ITER roiBeginIter,
             const marray::View<T> & in
         )const{
-            std::mutex mtx;
-            mtx.lock();
+            mtx_.lock();
             this->writeSubarrayLocked(roiBeginIter,in);
-            mtx.unlock();
+            mtx_.unlock();
         }
 
     private:
@@ -423,7 +418,14 @@ namespace hdf5{
         std::vector<uint64_t> shape_;
         std::vector<uint64_t> chunkShape_;
         bool isChunked_;
+    public: // Hacy for now, better to declare functions that are allowed to change this friend...
+        // FIXME having a mutex member makes class non-copyable -> global mtx for now...
+        static std::mutex mtx_; // For now we have one mtx per array, but it might be better to have a global (static) mtx
     };
+
+    // initialize the mutex
+    template<class T>
+    std::mutex Hdf5Array<T>::mtx_;
 
 
     namespace tools{
