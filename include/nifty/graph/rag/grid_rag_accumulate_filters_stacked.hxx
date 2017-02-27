@@ -21,6 +21,160 @@
 namespace nifty{
 namespace graph{
 
+//
+// helper functions for accumulate Edge Features
+//
+
+// calculate filters for given input with threadpool
+template<class DATA_TYPE, class F, class COORD>
+inline void calculateFilters(const marray::View<DATA_TYPE> & dataSqueezed,
+        marray::View<float> & dataCopy,
+        const COORD & sliceShape2,
+        marray::View<float> & filter,
+        parallel::ThreadPool & threadpool,
+        const F & f) {
+    
+    typedef DATA_TYPE DataType;
+    typedef COORD Coord;
+    if( typeid(DataType) == typeid(float) ) {
+        dataCopy = dataSqueezed;
+    }
+    else {
+        // copy the data (we don't use std::copy here, because iterators are terribly
+        // slow for marrays)
+        tools::forEachCoordinate(
+            sliceShape2, [&dataCopy,&dataSqueezed](Coord coord){
+                dataCopy(coord.asStdArray()) = (float) dataSqueezed(coord.asStdArray());        
+        });
+    }
+    f(dataCopy, filter, threadpool);
+}
+
+// calculate filters for given input single threaded
+// TODO use pre-smoothing once implemented
+template<class DATA_TYPE, class F, class COORD>
+inline void calculateFilters(const marray::View<DATA_TYPE> & dataSqueezed,
+        marray::View<float> & dataCopy,
+        const COORD & sliceShape2,
+        marray::View<float> & filter,
+        const F & f) {
+    
+    typedef DATA_TYPE DataType;
+    typedef COORD Coord;
+    if( typeid(DataType) == typeid(float) ) {
+        dataCopy = dataSqueezed;
+    }
+    else {
+        // copy the data (we don't use std::copy here, because iterators are terribly
+        // slow for marrays)
+        tools::forEachCoordinate(
+            sliceShape2, [&dataCopy,&dataSqueezed](Coord coord){
+                dataCopy(coord.asStdArray()) = (float) dataSqueezed(coord.asStdArray());        
+        });
+    }
+    f(dataCopy, filter);
+}
+
+template<class ACC_CHAIN_VECTOR, class HISTO_OPTS_VEC, class COORD, class LABEL_TYPE, class RAG>
+inline void accumulateInnerSliceFeatures(ACC_CHAIN_VECTOR & channelAccChainVec,
+        const HISTO_OPTS_VEC & histoOptionsVec,
+        const COORD & sliceShape2,
+        const marray::View<LABEL_TYPE> & labelsSqueezed,
+        const int64_t sliceId,
+        const int64_t inEdgeOffset,
+        const RAG & rag,
+        const marray::View<float> & filter
+        ) {
+    
+    typedef COORD Coord2;
+    typedef typename vigra::MultiArrayShape<3>::type VigraCoord;
+    size_t pass = 1;
+    size_t numberOfChannels = channelAccChainVec[0].size();
+    
+    // set minmax for accumulator chains
+    for(int64_t edge = 0; edge < channelAccChainVec.size(); ++edge){
+        for(int c = 0; c < numberOfChannels; ++c)
+            channelAccChainVec[edge][c].setHistogramOptions(histoOptionsVec[c]);
+    }
+    
+    // accumulate filter for the inner slice edges
+    nifty::tools::forEachCoordinate(sliceShape2, [&](const Coord2 coord){
+        const auto lU = labelsSqueezed(coord.asStdArray());
+        for(int axis = 0; axis < 2; ++axis){
+            Coord2 coord2 = coord;
+            ++coord2[axis];
+            if( coord2[axis] < sliceShape2[axis]) {
+                const auto lV = labelsSqueezed(coord2.asStdArray());
+                if(lU != lV) {
+                    VigraCoord vigraCoordU;    
+                    VigraCoord vigraCoordV;    
+                    vigraCoordU[0] = sliceId;
+                    vigraCoordV[0] = sliceId;
+                    for(int d = 1; d < 3; ++d){
+                        vigraCoordU[d] = coord[d-1];
+                        vigraCoordV[d] = coord2[d-1];
+                    }
+                    const auto edge = rag.findEdge(lU,lV) - inEdgeOffset;
+                    for(int c = 0; c < numberOfChannels; ++c) {
+                        const auto fU = filter(c, coord[0], coord[1]);
+                        const auto fV = filter(c, coord2[0], coord2[1]);
+                        channelAccChainVec[edge][c].updatePassN(fU, vigraCoordU, pass);
+                        channelAccChainVec[edge][c].updatePassN(fV, vigraCoordV, pass);
+                    }
+                }
+            }
+        }
+    });
+}
+
+// accumulate filter for the between slice edges
+template<class ACC_CHAIN_VECTOR, class HISTO_OPTS_VEC, class COORD, class LABEL_TYPE, class RAG>
+inline void accumulateBetweenSliceFeatures(ACC_CHAIN_VECTOR & channelAccChainVec,
+        const HISTO_OPTS_VEC & histoOptionsVec,
+        const COORD & sliceShape2,
+        const marray::View<LABEL_TYPE> & labelsASqueezed,
+        const marray::View<LABEL_TYPE> & labelsBSqueezed,
+        const int64_t sliceIdA,
+        const int64_t sliceIdB,
+        const int64_t betweenEdgeOffset,
+        const RAG & rag,
+        const marray::View<float> & filterA,
+        const marray::View<float> & filterB
+    ){
+    
+    typedef COORD Coord2;
+    typedef typename vigra::MultiArrayShape<3>::type VigraCoord;
+    size_t pass = 1;
+    size_t numberOfChannels = channelAccChainVec[0].size();
+    
+    // set minmax for accumulator chains
+    for(int64_t edge = 0; edge < channelAccChainVec.size(); ++edge){
+        for(int c = 0; c < numberOfChannels; ++c)
+            channelAccChainVec[edge][c].setHistogramOptions(histoOptionsVec[c]);
+    }
+            
+    nifty::tools::forEachCoordinate(sliceShape2, [&](const Coord2 coord){
+        // labels are different for different slices by default!
+        const auto lU = labelsASqueezed(coord.asStdArray());
+        const auto lV = labelsBSqueezed(coord.asStdArray());
+        VigraCoord vigraCoordU;    
+        VigraCoord vigraCoordV;    
+        vigraCoordU[0] = sliceIdA;
+        vigraCoordV[0] = sliceIdB;
+        for(int d = 1; d < 3; ++d){
+            vigraCoordU[d] = coord[d-1];
+            vigraCoordV[d] = coord[d-1];
+        }
+        const auto edge = rag.findEdge(lU,lV) - betweenEdgeOffset;
+        for(int c = 0; c < numberOfChannels; ++c) {
+            const auto fU = filterA(c, coord[0], coord[1]);
+            const auto fV = filterB(c, coord[0], coord[1]);
+            channelAccChainVec[edge][c].updatePassN(fU, vigraCoordU, pass);
+            channelAccChainVec[edge][c].updatePassN(fV, vigraCoordV, pass);
+        }
+    });
+}
+
 
 template<class EDGE_ACC_CHAIN, class LABELS_PROXY, class DATA, class F>
 void accumulateEdgeFeaturesFromFiltersWithAccChain(
@@ -33,8 +187,8 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
     F && f
 ){
     typedef LABELS_PROXY LabelsProxyType;
+    typedef typename LabelsProxyType::LabelType LabelType;
     typedef typename DATA::DataType DataType;
-    typedef typename vigra::MultiArrayShape<3>::type VigraCoord;
     
     typedef typename LabelsProxyType::BlockStorageType LabelBlockStorage;
     typedef tools::BlockStorage<DataType> DataBlockStorage;
@@ -64,267 +218,187 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
     features::ApplyFilters<2> applyFilters(sigmas, filters);
     size_t numberOfChannels = applyFilters.numberOfChannels();
     
-    //ChannelAccChainVectorType channelAccChainVector( rag.edgeIdUpperBound()+1, 
-    //    AccChainVectorType(numberOfChannels) );
-
     uint64_t numberOfSlices = shape[0];
     
     Coord2 sliceShape2({shape[1], shape[2]});
-    Coord sliceShape3({1L,shape[1], shape[2]});
+    Coord sliceShape3({1L, shape[1], shape[2]});
     Coord filterShape({int64_t(numberOfChannels), shape[1], shape[2]});
     
     // filter computation and accumulation
     // FIXME we only support 1 pass for now
     //for(auto pass = 1; pass <= channelAccChainVector.front().front().passesRequired(); ++pass) {
-    int pass = 1;
+    //int pass = 1;
     {
+        // accumulate inner slice feature
 
         // edge acc vectors for multiple threads
         std::vector< ChannelAccChainVectorType> perThreadChannelAccChainVector(actualNumberOfThreads);
 
-        LabelBlockStorage labelsAStorage(threadpool, sliceShape3, 1);
-        LabelBlockStorage labelsBStorage(threadpool, sliceShape3, 1);
-        DataBlockStorage dataAStorage(threadpool, sliceShape3, 1);
-        DataBlockStorage dataBStorage(threadpool, sliceShape3, 1);
-        FilterBlockStorage filterAStorage(threadpool, filterShape, 1);
-        FilterBlockStorage filterBStorage(threadpool, filterShape, 1);
+        LabelBlockStorage  labelsAStorage(threadpool, sliceShape3, actualNumberOfThreads);
+        LabelBlockStorage  labelsBStorage(threadpool, sliceShape3, actualNumberOfThreads);
+        FilterBlockStorage filterAStorage(threadpool, filterShape, actualNumberOfThreads);
+        FilterBlockStorage filterBStorage(threadpool, filterShape, actualNumberOfThreads);
+        // we only need one data storage
+        DataBlockStorage   dataStorage(threadpool, sliceShape3, actualNumberOfThreads);
+        // storage for the data we have to copy if type of data is not float
+        FilterBlockStorage dataCopyStorage(threadpool, sliceShape2, actualNumberOfThreads);
 
-        // process slice 0
-        Coord beginA({int64_t(0),int64_t(0),int64_t(0)}); 
-        Coord endA({int64_t(1),shape[1],shape[2]}); 
-        auto labelsA = labelsAStorage.getView(0);  
-        labelsProxy.readSubarray(beginA, endA, labelsA);
-        auto labelsASqueezed = labelsA.squeezedView();
+        // process slice 0 to find min and max for histogram opts
+        Coord begin0({0L, 0L, 0L}); 
+        Coord end0(  {1L, shape[1], shape[2]}); 
+        
+        auto labels0 = labelsAStorage.getView(0);  
+        labelsProxy.readSubarray(begin0, end0, labels0);
+        auto labels0Squeezed = labels0.squeezedView();
             
-        auto dataA = dataAStorage.getView(0);
-        tools::readSubarray(data, beginA, endA, dataA);
-        auto dataASqueezed = dataA.squeezedView();
+        auto data0 = dataStorage.getView(0);
+        tools::readSubarray(data, begin0, end0, data0);
+        auto data0Squeezed = data0.squeezedView();
 
-        marray::Marray<float> dataCopy; // in case we need to copy data for non-float type
-        marray::View<float> dataAView;
-
-        if( typeid(DataType) == typeid(float) ) {
-            dataAView = dataASqueezed;
-        }
-        else {
-            dataCopy.resize(sliceShape2.begin(),sliceShape2.end());
-            std::copy(dataASqueezed.begin(), dataASqueezed.end(), dataCopy.begin());
-            dataAView.assign(sliceShape2.begin(), sliceShape2.end(), &dataCopy(0) );
-        }
-
-        auto filterA = filterAStorage.getView(0);
-
-        applyFilters(dataAView, filterA, threadpool);
-    
-        Coord beginB;
-        Coord endB;
+        auto dataCopy = dataCopyStorage.getView(0); // in case we need to copy data for non-float type
+        auto filter0 = filterAStorage.getView(0);
+        calculateFilters(data0Squeezed,
+                dataCopy,
+                sliceShape2,
+                filter0,
+                threadpool,
+                applyFilters);
 
         std::vector<vigra::HistogramOptions> histoOptionsVec(numberOfChannels);
+        Coord cShape({1L,sliceShape2[0],sliceShape2[1]});
+        parallel::parallel_foreach(threadpool, numberOfChannels, [&](const int tid, const int64_t c){
+            auto & histoOpts = histoOptionsVec[c];
+            Coord cBegin({c,0L,0L});
+            auto channelView = filter0.view(cBegin.begin(), cShape.begin());
+            auto minMax = std::minmax_element(channelView.begin(), channelView.end());
+            auto min = *(minMax.first); 
+            auto max = *(minMax.second);
+            histoOpts.setMinMax(min,max);
+        });
 
-        for(uint64_t sliceId = 0; sliceId < numberOfSlices; ++sliceId) {
-
-            std::cout << sliceId << " / " << numberOfSlices << std::endl;
-            
-            // set the correct histogram for each filter from 0th slice
-            if(sliceId == 0){
-                Coord cShape({1L,sliceShape2[0],sliceShape2[1]});
-                parallel::parallel_foreach(threadpool, numberOfChannels, [&](const int tid, const int64_t c){
-                    auto & histoOpts = histoOptionsVec[c];
-                    
-                    Coord cBegin({c,0L,0L});
-                    auto channelView = filterA.view(cBegin.begin(), cShape.begin());
-                    auto minMax = std::minmax_element(channelView.begin(), channelView.end());
-                    auto min = *(minMax.first); // filterA[:,:,:,c].min()
-                    auto max = *(minMax.second); // filterA[:,:,:,c].max()
-                    histoOpts.setMinMax(min,max);
-                });
-            }
-
-            if( !keepZOnly && rag.numberOfInSliceEdges(sliceId) > 0 ) {
-                
-                // resize the channel acc chain thread vector
-                parallel::parallel_foreach(threadpool, actualNumberOfThreads, 
-                [&](const int tid, const int64_t i){
-                    perThreadChannelAccChainVector[i] = ChannelAccChainVectorType( rag.numberOfInSliceEdges(sliceId),
-                        AccChainVectorType(numberOfChannels) );
-                    // set minmax
-                    auto & perThreadEdgeAccChainVector = perThreadChannelAccChainVector[i];
-                    for(int64_t edge = 0; edge < rag.numberOfInSliceEdges(sliceId); ++edge){
-                        for(int c = 0; c < numberOfChannels; ++c)
-                            perThreadEdgeAccChainVector[edge][c].setHistogramOptions(histoOptionsVec[c]);
-                    }
-                });
-                auto inEdgeOffset = rag.inSliceEdgeOffset(sliceId);
-
-                // accumulate filter for the inner slice edges
-                nifty::tools::parallelForEachCoordinate(threadpool, sliceShape2, [&](const int tid, const Coord2 coord){
-
-                    auto & channelAccChainVec = perThreadChannelAccChainVector[tid];
-                    const auto lU = labelsASqueezed(coord.asStdArray());
-                    for(int axis = 0; axis < 2; ++axis){
-                        Coord2 coord2 = coord;
-                        ++coord2[axis];
-                        if( coord2[axis] < sliceShape2[axis]) {
-                            const auto lV = labelsASqueezed(coord2.asStdArray());
-                            if(lU != lV) {
-                                // FIXME I really don't get this vigra coord buisness -> ask thorsten...
-                                // do we need 0 or the slice coordinate as 0 entry ???
-                                VigraCoord vigraCoordU;    
-                                VigraCoord vigraCoordV;    
-                                vigraCoordU[0] = sliceId;
-                                vigraCoordV[0] = sliceId;
-                                for(int d = 1; d < 3; ++d){
-                                    vigraCoordU[d] = coord[d-1];
-                                    vigraCoordV[d] = coord2[d-1];
-                                }
-
-                                const auto edge = rag.findEdge(lU,lV) - inEdgeOffset;
-                                
-                                for(int c = 0; c < numberOfChannels; ++c) {
-                                    const auto fU = filterA(c, coord[0], coord[1]);
-                                    const auto fV = filterA(c, coord2[0], coord2[1]);
-                                    channelAccChainVec[edge][c].updatePassN(fU, vigraCoordU, pass);
-                                    channelAccChainVec[edge][c].updatePassN(fV, vigraCoordV, pass);
-                                }
-                            }
-                        }
-                    }
-                });
-                
-                // merge
-                parallel::parallel_foreach(threadpool, rag.numberOfInSliceEdges(sliceId), 
-                [&](const int tid, const int64_t edge){
-                    auto & accChainVector = perThreadChannelAccChainVector[0];
-                    for(auto t=1; t<actualNumberOfThreads; ++t){
-                        auto & perThreadAccChainVec = perThreadChannelAccChainVector[t];
-                        for(int c = 0; c < numberOfChannels; ++c)
-                            accChainVector[edge][c].merge(perThreadAccChainVec[edge][c]);
-                    }            
-                });
-
-                f(perThreadChannelAccChainVector[0], inEdgeOffset);
-                
-            }
-            
-            if(sliceId < numberOfSlices - 1 && keepXYOnly) {
-                
-                beginA = Coord({int64_t(sliceId+1),int64_t(0),int64_t(0)});
-                endA = Coord({int64_t(sliceId+2),shape[1],shape[2]});
-                
-                auto labelsA = labelsAStorage.getView(0);  
-                labelsProxy.readSubarray(beginA, endA, labelsA);
-                auto labelsASqueezed = labelsA.squeezedView();
-        
-                auto dataA = dataAStorage.getView(0);
-                tools::readSubarray(data, beginA, endA, dataA);
-                auto dataASqueezed = dataA.squeezedView();
-
-                marray::View<float> dataAView;
-                if( typeid(DataType) == typeid(float) ) {
-                    dataAView = dataASqueezed;
-                }
-                else {
-                    std::copy(dataASqueezed.begin(),dataASqueezed.end(),dataCopy.begin());
-                    dataAView.assign(sliceShape2.begin(), sliceShape2.end(), &dataCopy(0));
-                }
-
-                auto filterA = filterAStorage.getView(0);
-                applyFilters(dataAView, filterA, threadpool);
-
-            }
-
-            // accumulate filter for the in between edges
-            if(sliceId < numberOfSlices - 1 && !keepXYOnly) {
-
-                beginB = Coord({int64_t(sliceId+1),int64_t(0),int64_t(0)});
-                endB = Coord({int64_t(sliceId+2),shape[1],shape[2]});
-                
-                auto labelsB = labelsBStorage.getView(0);  
-                labelsProxy.readSubarray(beginB, endB, labelsB);
-                auto labelsBSqueezed = labelsB.squeezedView();
-        
-                auto dataB = dataBStorage.getView(0);
-                tools::readSubarray(data, beginB, endB, dataB);
-                auto dataBSqueezed = dataB.squeezedView();
-
-                marray::View<float> dataBView;
-                if( typeid(DataType) == typeid(float) ) {
-                    dataBView = dataBSqueezed;
-                }
-                else {
-                    std::copy(dataBSqueezed.begin(),dataBSqueezed.end(),dataCopy.begin());
-                    dataBView.assign(sliceShape2.begin(), sliceShape2.end(), &dataCopy(0));
-                }
-
-                auto filterB = filterBStorage.getView(0);
-                applyFilters(dataBView, filterB, threadpool);
-            
-                // resize the channel acc chain thread vector
-                // FIXME why do we use pointers / allocate dynamically here ?
-                // I don't know if this makes sense in the setting we have here, discuss with him!
-                parallel::parallel_foreach(threadpool, actualNumberOfThreads, 
-                [&](const int tid, const int64_t i){
-                    perThreadChannelAccChainVector[i] = ChannelAccChainVectorType( rag.numberOfInBetweenSliceEdges(sliceId),
-                        AccChainVectorType( numberOfChannels) );
-                    // set minmax
-                    auto & perThreadAccChainVector = perThreadChannelAccChainVector[i];
-                    for(int64_t edge = 0; edge < rag.numberOfInBetweenSliceEdges(sliceId); ++edge){
-                        for(int c = 0; c < numberOfChannels; ++c)
-                            perThreadAccChainVector[edge][c].setHistogramOptions(histoOptionsVec[c]);
-                    }
-                });
-                auto betweenEdgeOffset =rag.betweenSliceEdgeOffset(sliceId);
-                auto accOffset = keepZOnly ? rag.betweenSliceEdgeOffset(sliceId) - rag.numberOfInSliceEdges() : betweenEdgeOffset;
-
-                // accumulate filter for the between slice edges
-                nifty::tools::parallelForEachCoordinate(threadpool, sliceShape2, [&](const int tid, const Coord2 coord){
-
-                    auto & channelAccChainVec = perThreadChannelAccChainVector[tid];
-                    // labels are different for different slices by default!
-                    const auto lU = labelsASqueezed(coord.asStdArray());
-                    const auto lV = labelsBSqueezed(coord.asStdArray());
-                    
-                    // FIXME I really don't get this vigra coord buisness -> ask thorsten...
-                    // do we need 0 or the slice coordinate as 0 entry ???
-                    VigraCoord vigraCoordU;    
-                    VigraCoord vigraCoordV;    
-                    vigraCoordU[0] = sliceId;
-                    vigraCoordV[0] = sliceId+1;
-                    for(int d = 1; d < 3; ++d){
-                        vigraCoordU[d] = coord[d-1];
-                        vigraCoordV[d] = coord[d-1];
-                    }
-                    
-                    const auto edge = rag.findEdge(lU,lV) - betweenEdgeOffset;
-                    
-                    for(int c = 0; c < numberOfChannels; ++c) {
-                        const auto fU = filterA(c, coord[0], coord[1]);
-                        const auto fV = filterB(c, coord[0], coord[1]);
-                        channelAccChainVec[edge][c].updatePassN(fU, vigraCoordU, pass);
-                        channelAccChainVec[edge][c].updatePassN(fV, vigraCoordV, pass);
-                    }
-                });
-
-                // merge
-                parallel::parallel_foreach(threadpool, rag.numberOfInBetweenSliceEdges(sliceId), 
-                [&](const int tid, const int64_t edge){
-                    auto & accChainVec = perThreadChannelAccChainVector[0];
-                    for(auto t=1; t<actualNumberOfThreads; ++t){
-                        auto & perThreadAccChainVec = perThreadChannelAccChainVector[t];
-                        for(int c = 0; c < numberOfChannels; ++c)
-                            accChainVec[edge][c].merge(perThreadAccChainVec[edge][c]);
-                    }
-                });
-
-                f(perThreadChannelAccChainVector[0], accOffset);
-            
-                // swap A and B
-                labelsASqueezed = labelsBSqueezed;
-                dataASqueezed = dataBSqueezed;
-                filterA = filterB;
-            }
+        // construct slice pairs for processing in parallel
+        std::vector<std::pair<int64_t,int64_t>> slicePairs;
+        int64_t lowerSliceId = 0;
+        int64_t upperSliceId = 1;
+        while(upperSliceId < numberOfSlices) {
+            slicePairs.emplace_back(std::make_pair(lowerSliceId,upperSliceId));
+            ++lowerSliceId;
+            ++upperSliceId;
         }
+    
+        parallel::parallel_foreach(threadpool, slicePairs.size(), [&](const int tid, const int64_t pairId){
 
+            std::cout << "Processing slice pair: " << pairId << " / " << slicePairs.size() << std::endl;
+            int64_t sliceIdA = slicePairs[pairId].first; // lower slice
+            int64_t sliceIdB = slicePairs[pairId].second;// upper slice
+            //std::cout << "Upper: " << sliceIdA << " Lower: " << sliceIdB << std::endl;
+            auto & channelAccChainVec = perThreadChannelAccChainVector[tid];
+
+            // compute the filters for slice A
+            Coord beginA ({sliceIdA, 0L, 0L});
+            Coord endA({sliceIdA+1, shape[1], shape[2]});
+            
+            auto labelsA = labelsAStorage.getView(tid);  
+            labelsProxy.readSubarray(beginA, endA, labelsA); // TODO consider / benchmark locking
+            auto labelsASqueezed = labelsA.squeezedView();
+        
+            auto dataA = dataStorage.getView(tid);
+            tools::readSubarray(data, beginA, endA, dataA); // TODO consider / benchmark locking
+            auto dataASqueezed = dataA.squeezedView();
+            auto dataCopy = dataCopyStorage.getView(tid);
+            auto filterA = filterAStorage.getView(tid);
+            calculateFilters(dataASqueezed,
+                    dataCopy,
+                    sliceShape2,
+                    filterA,
+                    applyFilters);
+
+            // acccumulate the inner slice features
+            // only if not keepZOnly and if we have at least one edge in this slice
+            // (no edge can happend for defected slices)
+            if( rag.numberOfInSliceEdges(sliceIdA) > 0 && !keepZOnly) {
+                auto inEdgeOffset = rag.inSliceEdgeOffset(sliceIdA);
+                // resize the current channel acc chain vector
+                channelAccChainVec = ChannelAccChainVectorType( rag.numberOfInSliceEdges(sliceIdA),
+                        AccChainVectorType(numberOfChannels) );
+                accumulateInnerSliceFeatures(channelAccChainVec,
+                        histoOptionsVec,
+                        sliceShape2,
+                        labelsASqueezed,
+                        sliceIdA,
+                        inEdgeOffset,
+                        rag,
+                        filterA);
+                f(channelAccChainVec, inEdgeOffset);
+            }
+
+            // process upper slice
+            Coord beginB = Coord({sliceIdB,   0L,       0L});
+            Coord endB   = Coord({sliceIdB+1, shape[1], shape[2]});
+            auto filterB = filterBStorage.getView(tid);
+            marray::View<LabelType> labelsBSqueezed;
+        
+            // read labels, data and calculate the filters for upper slice
+            // do if we are not keeping only xy edges or
+            // if we are at the last slice (which is never a lower slice and 
+            // must hence be accumulated extra)
+            if(!keepXYOnly || sliceIdB == numberOfSlices - 1) {
+                // read labels
+                auto labelsB = labelsBStorage.getView(tid);  
+                labelsProxy.readSubarray(beginB, endB, labelsB); // TODO consider / benchmark locking
+                labelsBSqueezed = labelsB.squeezedView();
+                // read data
+                auto dataB = dataStorage.getView(tid);
+                tools::readSubarray(data, beginB, endB, dataB); // TODO consider / benchmark locking
+                auto dataBSqueezed = dataB.squeezedView();
+                // calc filter
+                calculateFilters(dataBSqueezed,
+                        dataCopy,
+                        sliceShape2,
+                        filterB,
+                        applyFilters);
+            }
+            
+            // acccumulate the between slice features
+            if(!keepXYOnly) {
+                auto betweenEdgeOffset = rag.betweenSliceEdgeOffset(sliceIdA);
+                auto accOffset = keepZOnly ? rag.betweenSliceEdgeOffset(sliceIdA) - rag.numberOfInSliceEdges() : betweenEdgeOffset;
+                // resize the current channel acc chain vector
+                channelAccChainVec = ChannelAccChainVectorType( rag.numberOfInBetweenSliceEdges(sliceIdA),
+                        AccChainVectorType(numberOfChannels) );
+                // accumulate features for the in between slice edges
+                accumulateBetweenSliceFeatures(channelAccChainVec,
+                        histoOptionsVec,
+                        sliceShape2,
+                        labelsASqueezed,
+                        labelsBSqueezed,
+                        sliceIdA,
+                        sliceIdB,
+                        betweenEdgeOffset,
+                        rag,
+                        filterA,
+                        filterB);
+                f(channelAccChainVec, accOffset);
+            }
+               
+            // accumulate the inner slice features for the last slice
+            if(!keepZOnly && sliceIdB == numberOfSlices - 1) {
+                auto inEdgeOffset = rag.inSliceEdgeOffset(sliceIdB);
+                // resize the current channel acc chain vector
+                channelAccChainVec = ChannelAccChainVectorType( rag.numberOfInSliceEdges(sliceIdB),
+                        AccChainVectorType(numberOfChannels) );
+                accumulateInnerSliceFeatures(channelAccChainVec,
+                        histoOptionsVec,
+                        sliceShape2,
+                        labelsBSqueezed,
+                        sliceIdB,
+                        inEdgeOffset,
+                        rag,
+                        filterB);
+                f(channelAccChainVec, inEdgeOffset);
+            }
+
+        });
     }
     std::cout << "Slices done" << std::endl;
 }
@@ -378,10 +452,7 @@ void accumulateEdgeFeaturesFromFilters(
             const auto nChannels = channelAccChainVec.front().size();
 
             marray::Marray<DataType> featuresTemp({nEdges,nChannels*nStats});
-            
-            parallel::parallel_foreach(threadpool, channelAccChainVec.size(),
-                [&](const int tid, const int64_t edge){
-
+            for(int64_t edge = 0; edge < channelAccChainVec.size(); ++edge) {
                 const auto & edgeAccChainVec = channelAccChainVec[edge];
                 auto cOffset = 0;
                 vigra::TinyVector<float,7> quantiles;
@@ -395,8 +466,7 @@ void accumulateEdgeFeaturesFromFilters(
                         featuresTemp(edge, cOffset+2+qi) = replaceIfNotFinite(quantiles[qi], mean);
                     cOffset += nStats;
                 }
-            }); 
-
+            } 
 
             FeatCoord begin({int64_t(edgeOffset),0L});
             FeatCoord end({edgeOffset+nEdges,nChannels*nStats});
@@ -411,6 +481,7 @@ void accumulateEdgeFeaturesFromFilters(
 }
 
 
+// TODO use the proper helper functions here !
 template<class EDGE_ACC_CHAIN, class LABELS_PROXY, class DATA, class F>
 void accumulateSkipEdgeFeaturesFromFiltersWithAccChain(
     const GridRagStacked2D<LABELS_PROXY> & rag,
