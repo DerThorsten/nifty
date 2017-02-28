@@ -23,7 +23,6 @@ public:
         std::fill(zeroCoord_.begin(), zeroCoord_.end(), 0);
     }
 
-    // TODO allocate memory in parallel here ?!
     template<class SHAPE>
     BlockStorage(
         nifty::parallel::ThreadPool & threadpool,

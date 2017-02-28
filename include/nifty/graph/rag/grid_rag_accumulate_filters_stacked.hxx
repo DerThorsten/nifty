@@ -200,22 +200,21 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
     typedef EDGE_ACC_CHAIN EdgeAccChainType;
     typedef std::vector<EdgeAccChainType>   AccChainVectorType; 
     typedef std::vector<AccChainVectorType> ChannelAccChainVectorType; 
+    typedef typename features::ApplyFilters<2>::FiltersToSigmasType FiltersToSigmasType;
 
     const size_t actualNumberOfThreads = pOpts.getActualNumThreads();
 
     const auto & shape = rag.shape();
     const auto & labelsProxy = rag.labelsProxy();
     
-    // filters: TODO make accessible
-    features::GaussianSmoothing gs;
-    features::LaplacianOfGaussian log;
-    features::HessianOfGaussianEigenvalues hog;
-
-    std::vector<features::FilterBase*> filters({&gs, &log, &hog});
-    // sigmas: TODO make accessible
+    // sigmas and filters to sigmas: TODO make accessible
     std::vector<double> sigmas({1.6,4.2,8.2});
-
-    features::ApplyFilters<2> applyFilters(sigmas, filters);
+    FiltersToSigmasType filtersToSigmas({ { true, true, true},      // GaussianSmoothing
+                                          { true, true, true},      // LaplacianOfGaussian
+                                          { false, false, false},   // GaussianGradientMagnitude
+                                          { true, true, true } });  // HessianOfGaussianEigenvalues
+    
+    features::ApplyFilters<2> applyFilters(sigmas, filtersToSigmas);
     size_t numberOfChannels = applyFilters.numberOfChannels();
     
     uint64_t numberOfSlices = shape[0];
@@ -510,22 +509,21 @@ void accumulateSkipEdgeFeaturesFromFiltersWithAccChain(
     typedef std::vector<EdgeAccChainType>   AccChainVectorType; 
     typedef std::map<SkipEdgeStorage,AccChainVectorType> ChannelAccChainMapType; 
     typedef std::vector<AccChainVectorType> ChannelAccChainVectorType; 
+    typedef typename features::ApplyFilters<2>::FiltersToSigmasType FiltersToSigmasType;
 
     const size_t actualNumberOfThreads = pOpts.getActualNumThreads();
 
     const auto & shape = rag.shape();
     const auto & labelsProxy = rag.labelsProxy();
     
-    // filters: TODO make accessible
-    features::GaussianSmoothing gs;
-    features::LaplacianOfGaussian log;
-    features::HessianOfGaussianEigenvalues hog;
-
-    std::vector<features::FilterBase*> filters({&gs, &log, &hog});
-    // sigmas: TODO make accessible
+    // sigmas and filters to sigmas: TODO make accessible
     std::vector<double> sigmas({1.6,4.2,8.2});
-
-    features::ApplyFilters<2> applyFilters(sigmas, filters);
+    FiltersToSigmasType filtersToSigmas({ { true, true, true},      // GaussianSmoothing
+                                          { true, true, true},      // LaplacianOfGaussian
+                                          { false, false, false},   // GaussianGradientMagnitude
+                                          { true, true, true } });  // HessianOfGaussianEigenvalues
+    
+    features::ApplyFilters<2> applyFilters(sigmas, filtersToSigmas);
     size_t numberOfChannels = applyFilters.numberOfChannels();
     
     Coord2 sliceShape2({shape[1], shape[2]});

@@ -162,16 +162,17 @@ BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest2D)
     in(2,2) = 1.;
 
     using namespace nifty::features;
+    typedef typename ApplyFilters<2>::FiltersToSigmasType FiltersToSigmasType;
 
     // fastfilters segfault for larger sigmas for a 5x5 array
     std::vector<double> sigmas({1.});
-    GaussianSmoothing gs;
-    LaplacianOfGaussian log;
-    HessianOfGaussianEigenvalues hog;
-
-    std::vector<FilterBase*> filters({&gs,&log,&hog});
-    ApplyFilters<2> functor(sigmas, filters);
+    FiltersToSigmasType filtersToSigmas({ { true },      // GaussianSmoothing
+                                          { true },      // LaplacianOfGaussian
+                                          { false},   // GaussianGradientMagnitude
+                                          { true } });  // HessianOfGaussianEigenvalues
     
+    ApplyFilters<2> functor(sigmas, filtersToSigmas);
+
     std::vector<size_t> shapeOut({functor.numberOfChannels(),shapeIn[0],shapeIn[1]});
     nifty::marray::Marray<float> out(shapeOut.begin(), shapeOut.end());
     
@@ -206,15 +207,16 @@ BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest2DParallel)
     in(2,2) = 1.;
 
     using namespace nifty::features;
+    typedef typename ApplyFilters<2>::FiltersToSigmasType FiltersToSigmasType;
 
     // fastfilters segfault for larger sigmas for a 5x5 array
     std::vector<double> sigmas({1.});
-    GaussianSmoothing gs;
-    LaplacianOfGaussian log;
-    HessianOfGaussianEigenvalues hog;
-
-    std::vector<FilterBase*> filters({&gs,&log,&hog});
-    ApplyFilters<2> functor(sigmas, filters);
+    FiltersToSigmasType filtersToSigmas({ { true },      // GaussianSmoothing
+                                          { true },      // LaplacianOfGaussian
+                                          { false},   // GaussianGradientMagnitude
+                                          { true } });  // HessianOfGaussianEigenvalues
+    
+    ApplyFilters<2> functor(sigmas, filtersToSigmas);
     
     std::vector<size_t> shapeOut({functor.numberOfChannels(),shapeIn[0],shapeIn[1]});
     nifty::marray::Marray<float> out(shapeOut.begin(), shapeOut.end());
@@ -253,14 +255,16 @@ BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest3D)
     in(2,2,2) = 1.;
 
     using namespace nifty::features;
+    typedef typename ApplyFilters<3>::FiltersToSigmasType FiltersToSigmasType;
 
     // fastfilters segfault for larger sigmas for a 5x5 array
     std::vector<double> sigmas({1.});
-    GaussianSmoothing gs;
-    LaplacianOfGaussian log;
-    HessianOfGaussianEigenvalues hog;
-    std::vector<FilterBase*> filters({&gs,&log,&hog});
-    ApplyFilters<3> functor(sigmas, filters);
+    FiltersToSigmasType filtersToSigmas({ { true },      // GaussianSmoothing
+                                          { true },      // LaplacianOfGaussian
+                                          { false},   // GaussianGradientMagnitude
+                                          { true } });  // HessianOfGaussianEigenvalues
+    
+    ApplyFilters<3> functor(sigmas, filtersToSigmas);
     
     std::vector<size_t> shapeOut({functor.numberOfChannels(),shapeIn[0],shapeIn[1],shapeIn[2]});
     nifty::marray::Marray<float> out(shapeOut.begin(), shapeOut.end());
@@ -298,15 +302,16 @@ BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest3DParallel)
     in(2,2,2) = 1.;
 
     using namespace nifty::features;
+    typedef typename ApplyFilters<3>::FiltersToSigmasType FiltersToSigmasType;
 
     // fastfilters segfault for larger sigmas for a 5x5 array
     std::vector<double> sigmas({1.});
-    GaussianSmoothing gs;
-    LaplacianOfGaussian log;
-    HessianOfGaussianEigenvalues hog;
-
-    std::vector<FilterBase*> filters({&gs,&log,&hog});
-    ApplyFilters<3> functor(sigmas, filters);
+    FiltersToSigmasType filtersToSigmas { { true },      // GaussianSmoothing
+                                          { true },      // LaplacianOfGaussian
+                                          { false},    // GaussianGradientMagnitude
+                                          { true } };  // HessianOfGaussianEigenvalues
+    
+    ApplyFilters<3> functor(sigmas, filtersToSigmas);
     
     std::vector<size_t> shapeOut({functor.numberOfChannels(),shapeIn[0],shapeIn[1],shapeIn[2]});
     nifty::marray::Marray<float> out(shapeOut.begin(), shapeOut.end());
