@@ -57,7 +57,8 @@ inline void calculateFilters(const marray::View<DATA_TYPE> & dataSqueezed,
         marray::View<float> & dataCopy,
         const COORD & sliceShape2,
         marray::View<float> & filter,
-        const F & f) {
+        const F & f,
+        const bool preSmooth = false) {
     
     typedef DATA_TYPE DataType;
     typedef COORD Coord;
@@ -72,7 +73,7 @@ inline void calculateFilters(const marray::View<DATA_TYPE> & dataSqueezed,
                 dataCopy(coord.asStdArray()) = (float) dataSqueezed(coord.asStdArray());        
         });
     }
-    f(dataCopy, filter);
+    f(dataCopy, filter, preSmooth);
 }
 
 template<class ACC_CHAIN_VECTOR, class HISTO_OPTS_VEC, class COORD, class LABEL_TYPE, class RAG>
@@ -256,12 +257,21 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
 
         auto dataCopy = dataCopyStorage.getView(0); // in case we need to copy data for non-float type
         auto filter0 = filterAStorage.getView(0);
+        // apply filters in parallel
         calculateFilters(data0Squeezed,
                 dataCopy,
                 sliceShape2,
                 filter0,
                 threadpool,
                 applyFilters);
+        // apply filters with pre smoothing
+        // TODO benchmark this!
+        //calculateFilters(data0Squeezed,
+        //        dataCopy,
+        //        sliceShape2,
+        //        filter0,
+        //        applyFilters,
+        //        true);
 
         std::vector<vigra::HistogramOptions> histoOptionsVec(numberOfChannels);
         Coord cShape({1L,sliceShape2[0],sliceShape2[1]});
@@ -298,11 +308,11 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
             Coord endA({sliceIdA+1, shape[1], shape[2]});
             
             auto labelsA = labelsAStorage.getView(tid);  
-            labelsProxy.readSubarray(beginA, endA, labelsA); // TODO consider / benchmark locking
+            labelsProxy.readSubarray(beginA, endA, labelsA);
             auto labelsASqueezed = labelsA.squeezedView();
         
             auto dataA = dataStorage.getView(tid);
-            tools::readSubarray(data, beginA, endA, dataA); // TODO consider / benchmark locking
+            tools::readSubarray(data, beginA, endA, dataA);
             auto dataASqueezed = dataA.squeezedView();
             auto dataCopy = dataCopyStorage.getView(tid);
             auto filterA = filterAStorage.getView(tid);
@@ -310,7 +320,8 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
                     dataCopy,
                     sliceShape2,
                     filterA,
-                    applyFilters);
+                    applyFilters,
+                    true);
 
             // acccumulate the inner slice features
             // only if not keepZOnly and if we have at least one edge in this slice
@@ -344,18 +355,19 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
             if(!keepXYOnly || sliceIdB == numberOfSlices - 1) {
                 // read labels
                 auto labelsB = labelsBStorage.getView(tid);  
-                labelsProxy.readSubarray(beginB, endB, labelsB); // TODO consider / benchmark locking
+                labelsProxy.readSubarray(beginB, endB, labelsB);
                 labelsBSqueezed = labelsB.squeezedView();
                 // read data
                 auto dataB = dataStorage.getView(tid);
-                tools::readSubarray(data, beginB, endB, dataB); // TODO consider / benchmark locking
+                tools::readSubarray(data, beginB, endB, dataB);
                 auto dataBSqueezed = dataB.squeezedView();
                 // calc filter
                 calculateFilters(dataBSqueezed,
                         dataCopy,
                         sliceShape2,
                         filterB,
-                        applyFilters);
+                        applyFilters,
+                        true); // activate pre-smoothing
             }
             
             // acccumulate the between slice features

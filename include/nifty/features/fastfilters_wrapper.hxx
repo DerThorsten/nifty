@@ -4,6 +4,7 @@
 
 #include <mutex>
 #include <map>
+#include <cmath>
 
 #include "fastfilters.h"
 
@@ -65,7 +66,7 @@ namespace detail_fastfilters {
                 FastfiltersDim<fastfilters_array_t>::set_stride_z(array.strides(dim - 3), ff);
             }
         } else {
-            throw std::logic_error("Too few dimensions.");
+            throw std::runtime_error("Too few dimensions.");
         }
     
         if (array.dimension() == dim) {
@@ -75,7 +76,7 @@ namespace detail_fastfilters {
         else if ((array.dimension() == dim + 1) && array.shape(dim) < 8 && array.strides(dim) == 1) {
             ff.n_channels = array.shape(dim);
         } else {
-            throw std::logic_error("Invalid number of dimensions or too many channels or stride between channels.");
+            throw std::runtime_error("Invalid number of dimensions or too many channels or stride between channels.");
         }
     }
 } //namespace detail_fastfilters
@@ -92,7 +93,6 @@ namespace detail_fastfilters {
         FilterBase() {
             std::call_once(onceFlag, []() {
                 fastfilters_init();
-                std::cout << "Fastfilters initialized" << std::endl;
             });
             opt_.window_ratio = 0.;
         }
@@ -117,14 +117,14 @@ namespace detail_fastfilters {
             fastfilters_array2d_t ff_out;
             detail_fastfilters::convertMarray2ff(out, ff_out);
             if( !fastfilters_fir_gaussian2d(&ff, 0, sigma, &ff_out, &opt_) )
-                throw std::logic_error("GaussianSmoothing 2d failed.");
+                throw std::runtime_error("GaussianSmoothing 2d failed.");
         }
 
         void inline operator()(const fastfilters_array3d_t & ff, marray::View<float> & out, const  double sigma) const {
             fastfilters_array3d_t ff_out;
             detail_fastfilters::convertMarray2ff(out, ff_out);
             if( !fastfilters_fir_gaussian3d(&ff, 0, sigma, &ff_out, &opt_) )
-                throw std::logic_error("GaussianSmoothing 3d failed.");
+                throw std::runtime_error("GaussianSmoothing 3d failed.");
         }
 
         bool isMultiChannel() const {
@@ -139,14 +139,14 @@ namespace detail_fastfilters {
             fastfilters_array2d_t ff_out;
             detail_fastfilters::convertMarray2ff(out, ff_out);
             if( !fastfilters_fir_laplacian2d(&ff, sigma, &ff_out, &opt_) )
-                throw std::logic_error("LaplacianOfGaussian 2d failed!");
+                throw std::runtime_error("LaplacianOfGaussian 2d failed!");
         }
 
         void inline operator()(const fastfilters_array3d_t & ff, marray::View<float> & out, const  double sigma)  const {
             fastfilters_array3d_t ff_out;
             detail_fastfilters::convertMarray2ff(out, ff_out);
             if( !fastfilters_fir_laplacian3d(&ff, sigma, &ff_out, &opt_) )
-                throw std::logic_error("LaplacianOfGaussian 3d failed!");
+                throw std::runtime_error("LaplacianOfGaussian 3d failed!");
         }
         
         bool inline isMultiChannel() const {
@@ -162,14 +162,14 @@ namespace detail_fastfilters {
             fastfilters_array2d_t ff_out;
             detail_fastfilters::convertMarray2ff(out, ff_out);
             if( !fastfilters_fir_gradmag2d(&ff, sigma, &ff_out, &opt_) )
-                throw std::logic_error("GaussianGradientMagnitude 2d failed!");
+                throw std::runtime_error("GaussianGradientMagnitude 2d failed!");
         }
 
         void inline operator()(const fastfilters_array3d_t & ff, marray::View<float> & out, const  double sigma)  const {
             fastfilters_array3d_t ff_out;
             detail_fastfilters::convertMarray2ff(out, ff_out);
             if( !fastfilters_fir_gradmag3d(&ff, sigma, &ff_out, &opt_) )
-                throw std::logic_error("GaussianGradientMagnitude 3d failed!");
+                throw std::runtime_error("GaussianGradientMagnitude 3d failed!");
         }
         
         bool inline isMultiChannel() const {
@@ -188,7 +188,7 @@ namespace detail_fastfilters {
             fastfilters_array2d_t * xy = fastfilters_array2d_alloc(ff.n_x, ff.n_y, 1);
 
             if( !fastfilters_fir_hog2d(&ff, sigma, xx, xy, yy, &opt_) ) 
-                throw std::logic_error("HessianOfGaussian 2d failed.");
+                throw std::runtime_error("HessianOfGaussian 2d failed.");
 
             const size_t numberOfPixels = ff.n_x * ff.n_y;
 
@@ -212,7 +212,7 @@ namespace detail_fastfilters {
             fastfilters_array3d_t * yz = fastfilters_array3d_alloc(ff.n_x, ff.n_y, ff.n_z, 1);
 
             if( !fastfilters_fir_hog3d(&ff, sigma, xx, yy, zz, xy, xz, yz, &opt_) ) 
-                throw std::logic_error("HessianOfGaussian 3d failed.");
+                throw std::runtime_error("HessianOfGaussian 3d failed.");
 
             const size_t numberOfPixels = ff.n_x * ff.n_y * ff.n_z;
 
@@ -253,7 +253,7 @@ namespace detail_fastfilters {
             fastfilters_array2d_t * xy = fastfilters_array2d_alloc(ff.n_x, ff.n_y, 1);
 
             if( !fastfilters_fir_structure_tensor2d(&ff, sigma, sigmaOuter_, xx, xy, yy, &opt_) ) 
-                throw std::logic_error("StructurTensor 2d failed.");
+                throw std::runtime_error("StructurTensor 2d failed.");
 
             const size_t numberOfPixels = ff.n_x * ff.n_y;
 
@@ -280,7 +280,7 @@ namespace detail_fastfilters {
             fastfilters_array3d_t * yz = fastfilters_array3d_alloc(ff.n_x, ff.n_y, ff.n_z, 1);
 
             if( !fastfilters_fir_structure_tensor3d(&ff, sigma, 2*sigma, xx, yy, zz, xy, xz, yz, &opt_) ) 
-                throw std::logic_error("StructureTensor 3d failed.");
+                throw std::runtime_error("StructureTensor 3d failed.");
 
             const size_t numberOfPixels = ff.n_x * ff.n_y * ff.n_z;
 
@@ -362,20 +362,18 @@ namespace detail_fastfilters {
         // apply filters sequential
         void operator()(const marray::View<float> & in, marray::View<float> & out, const bool presmooth = false) const{
             Coord shapeSingleChannel, shapeMultiChannel, base;
-            FastfiltersArrayType ff;
-            applyCommon(in, out, shapeSingleChannel, shapeMultiChannel, base, ff);
+            applyCommon(in, out, shapeSingleChannel, shapeMultiChannel, base);
             if(presmooth)
-                applyFiltersSequentialWithPresmoothing(ff, out, shapeSingleChannel, shapeMultiChannel, base);
+                applyFiltersSequentialWithPresmoothing(in, out, shapeSingleChannel, shapeMultiChannel, base);
             else
-                applyFiltersSequential(ff, out, shapeSingleChannel, shapeMultiChannel, base);
+                applyFiltersSequential(in, out, shapeSingleChannel, shapeMultiChannel, base);
         }
         
         // apply filters in parallel
         void operator()(const marray::View<float> & in, marray::View<float> & out, parallel::ThreadPool & threadpool) const{
             Coord shapeSingleChannel, shapeMultiChannel, base;
-            FastfiltersArrayType ff;
-            applyCommon(in, out, shapeSingleChannel, shapeMultiChannel, base, ff);
-            applyFiltersParallel(ff, out, shapeSingleChannel, shapeMultiChannel, base, threadpool);
+            applyCommon(in, out, shapeSingleChannel, shapeMultiChannel, base);
+            applyFiltersParallel(in, out, shapeSingleChannel, shapeMultiChannel, base, threadpool);
         }
 
         size_t numberOfChannels() const {
@@ -400,8 +398,7 @@ namespace detail_fastfilters {
                 marray::View<float> & out,
                 Coord & shapeSingleChannel,
                 Coord & shapeMultiChannel,
-                Coord & base,
-                FastfiltersArrayType & ff) const{
+                Coord & base) const{
             // checks
             NIFTY_CHECK_OP(in.dimension(),==,DIM,"Input needs to be of correct dimension.")
             NIFTY_CHECK_OP(out.shape(0),==,numberOfChannels(),"Number of channels of out array do not match!")
@@ -416,15 +413,19 @@ namespace detail_fastfilters {
                shapeMultiChannel[d+1] = in.shape(d); 
                base[d+1] = 0L;
             }
-            // copy in-marray to fastfilters array
-            detail_fastfilters::convertMarray2ff(in, ff);
         }
             
-        inline void applyFiltersSequential(FastfiltersArrayType & ff,
+        inline void applyFiltersSequential(const marray::View<float> & in,
                 marray::View<float> & out,
                 const Coord & shapeSingleChannel,
                 const Coord & shapeMultiChannel,
                 Coord & base ) const {
+            
+            // copy in-marray to fastfilters array
+            FastfiltersArrayType ff;
+            detail_fastfilters::convertMarray2ff(in, ff);
+
+            // apply filters sequentially
             for( size_t ii = 0; ii < activeFilters_.size(); ++ii ) {
                 if( !activeFilters_[ii] )
                     continue;
@@ -442,20 +443,85 @@ namespace detail_fastfilters {
             }
         }
         
-        inline void applyFiltersSequentialWithPresmoothing(FastfiltersArrayType & ff,
+        inline void applyFiltersSequentialWithPresmoothing(const marray::View<float> & in,
                 marray::View<float> & out,
                 const Coord & shapeSingleChannel,
                 const Coord & shapeMultiChannel,
                 Coord & base ) const {
+            
+            // initialize for presmoothing 
+            double sigmaPre = 0.;
+            FastfiltersArrayType ff;
+            detail_fastfilters::convertMarray2ff(in, ff);
+            Coord preBase;
+            for(int d = 0; d < DIM; ++d)
+                preBase[d] = 0;
+            marray::Marray<float> preSmoothed(shapeSingleChannel.begin(), shapeSingleChannel.end());
+            
+            // determine start coordinates to run with presmoothing
+            std::vector<std::vector<Coord>> bases(sigmas_.size());
+            for(size_t ii = 0; ii < bases.size(); ++ii)
+                bases[ii] = std::vector<Coord>(filtersToSigmas_.size());
+            int64_t channelStart = 0;
+            for( size_t jj = 0; jj < filtersToSigmas_.size(); ++jj ) {
+                for( size_t ii = 0; ii < sigmas_.size(); ++ii ) {
+                    if( !filtersToSigmas_[jj][ii] )
+                        continue;
+                    Coord channelBase = base;
+                    channelBase[0] = channelStart;
+                    bases[ii][jj] = channelBase;
+                    channelStart += filters_.at(jj)->isMultiChannel() ? int64_t(DIM) : 1L;
+                }
+            }
+
+            // iterate over sigmas and apply filters with pre smoothing
+            for(size_t ii = 0; ii < sigmas_.size(); ++ii) {
+                // determine the correct sigma for pre smoothing
+                double sigma = sigmas_[ii];
+                //std::cout << "Sigma: " << ii << " = " << sigma << std::endl; 
+                NIFTY_CHECK_OP(sigma,>,sigmaPre,"Presmoothing only works for ascending sigmas!");
+                double sigmaNeed = std::sqrt(sigma*sigma - sigmaPre*sigmaPre); 
+                if( sigmaNeed > 1. ) {
+                    // determine the sigma we use for presmoothing
+                    double sigmaPreDesired = std::sqrt(sigma*sigma - 1.);
+                    double sigmaNeedForPre = std::sqrt(sigmaPreDesired*sigmaPreDesired - sigmaPre*sigmaPre);
+                    // presmooth with gaussian (assume that we have gaussianSmoothing as filter, 
+                    // otherwise this does not make sense...)
+                    auto preView = preSmoothed.view( preBase.begin(), shapeSingleChannel.begin() ).squeezedView();
+                    //std::cout << "Presmoothing with " << sigmaNeedForPre << std::endl;
+                    (*(filters_.at(0)))(ff, preView, sigmaNeedForPre);
+                    detail_fastfilters::convertMarray2ff(preView, ff); // write presmoothed into the ff array
+                    sigmaPre = sigmaPreDesired;
+                    sigmaNeed = std::sqrt(sigma*sigma - sigmaPre*sigmaPre);
+                }
+
+                // apply all filters for this sigma
+                for(size_t jj = 0; jj < filtersToSigmas_.size(); ++jj) {
+                    if( !filtersToSigmas_[jj][ii] )
+                        continue;
+                    //std::cout << "Filter " << jj << std::endl;
+                    auto & filter = filters_.at(jj);
+                    const auto & viewBase = bases[ii][jj]; 
+                    const auto & viewShape = filter->isMultiChannel() ? shapeMultiChannel : shapeSingleChannel;
+                    auto view = out.view( viewBase.begin(), viewShape.begin() ).squeezedView();
+                    //std::cout << "Applying with " << sigmaNeed << std::endl;
+                    (*filter)(ff, view, sigmaNeed);
+                }
+            }
         }
           
-        inline void applyFiltersParallel(FastfiltersArrayType & ff,
+        inline void applyFiltersParallel(const marray::View<float> & in,
                 marray::View<float> & out,
                 const Coord & shapeSingleChannel,
                 const Coord & shapeMultiChannel,
                 Coord & base,
                 parallel::ThreadPool & threadpool ) const {
-            // pre-processing to run everything in parallel
+            
+            // copy in-marray to fastfilters array
+            FastfiltersArrayType ff;
+            detail_fastfilters::convertMarray2ff(in, ff);
+            
+            // determine start coordinates to run in parallel
             std::vector<std::pair<size_t,double>> filterIdAndSigmas;
             std::vector<Coord> bases;
             int64_t channelStart = 0;
@@ -473,6 +539,7 @@ namespace detail_fastfilters {
                     channelStart += filters_.at(ii)->isMultiChannel() ? int64_t(DIM) : 1L;
                 }
             }
+            
             // apply filters in parallel
             parallel::parallel_foreach(threadpool, filterIdAndSigmas.size(), [&](const int tid, const int64_t fid){
                 auto & filter = filters_.at(filterIdAndSigmas[fid].first);

@@ -150,9 +150,6 @@ auto get3DTestData() {
 
 }
 
-
-
-
 BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest2D)
 {
 
@@ -177,6 +174,51 @@ BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest2D)
     nifty::marray::Marray<float> out(shapeOut.begin(), shapeOut.end());
     
     functor(in, out);
+    
+    // test shapes
+    NIFTY_TEST_OP(out.shape(1),==,shapeIn[0])
+    NIFTY_TEST_OP(out.shape(2),==,shapeIn[1])
+    NIFTY_TEST_OP(out.shape(0),==,functor.numberOfChannels())
+
+    auto testData = get2DTestData();
+
+    // test filter responses for correctnes for first sigma val
+    for(size_t y = 0; y < in.shape(0); y++) { 
+        for(size_t x = 0; x < in.shape(1); x++) { 
+            NIFTY_CHECK_EQ_TOL(out(0,y,x),std::get<0>(testData)[y][x],1e-6)
+            NIFTY_CHECK_EQ_TOL(out(1,y,x),std::get<1>(testData)[y][x],1e-6)
+            NIFTY_CHECK_EQ_TOL(out(2,y,x),std::get<2>(testData)[y][x],1e-6)
+            NIFTY_CHECK_EQ_TOL(out(3,y,x),std::get<3>(testData)[y][x],1e-6)
+        }
+    }
+
+}
+
+
+BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest2DPresmooth)
+{
+
+    std::vector<size_t> shapeIn({5,5});
+    nifty::marray::Marray<float> in(shapeIn.begin(), shapeIn.end());
+    std::fill(in.begin(), in.end(), 0.);
+    in(2,2) = 1.;
+
+    using namespace nifty::features;
+    typedef typename ApplyFilters<2>::FiltersToSigmasType FiltersToSigmasType;
+
+    // fastfilters segfault for larger sigmas for a 5x5 array
+    std::vector<double> sigmas({1.});
+    FiltersToSigmasType filtersToSigmas({ { true },      // GaussianSmoothing
+                                          { true },      // LaplacianOfGaussian
+                                          { false},   // GaussianGradientMagnitude
+                                          { true } });  // HessianOfGaussianEigenvalues
+    
+    ApplyFilters<2> functor(sigmas, filtersToSigmas);
+
+    std::vector<size_t> shapeOut({functor.numberOfChannels(),shapeIn[0],shapeIn[1]});
+    nifty::marray::Marray<float> out(shapeOut.begin(), shapeOut.end());
+    
+    functor(in, out, true);
     
     // test shapes
     NIFTY_TEST_OP(out.shape(1),==,shapeIn[0])
@@ -293,6 +335,53 @@ BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest3D)
 }
 
 
+BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest3DPresmooth)
+{
+
+    std::vector<size_t> shapeIn({5,5,5});
+    nifty::marray::Marray<float> in(shapeIn.begin(), shapeIn.end());
+    std::fill(in.begin(), in.end(), 0.);
+    in(2,2,2) = 1.;
+
+    using namespace nifty::features;
+    typedef typename ApplyFilters<3>::FiltersToSigmasType FiltersToSigmasType;
+
+    // fastfilters segfault for larger sigmas for a 5x5 array
+    std::vector<double> sigmas({1.});
+    FiltersToSigmasType filtersToSigmas({ { true },      // GaussianSmoothing
+                                          { true },      // LaplacianOfGaussian
+                                          { false},   // GaussianGradientMagnitude
+                                          { true } });  // HessianOfGaussianEigenvalues
+    
+    ApplyFilters<3> functor(sigmas, filtersToSigmas);
+    
+    std::vector<size_t> shapeOut({functor.numberOfChannels(),shapeIn[0],shapeIn[1],shapeIn[2]});
+    nifty::marray::Marray<float> out(shapeOut.begin(), shapeOut.end());
+    
+    functor(in, out, true);
+    
+    // test shapes
+    NIFTY_TEST_OP(out.shape(1),==,shapeIn[0])
+    NIFTY_TEST_OP(out.shape(2),==,shapeIn[1])
+    NIFTY_TEST_OP(out.shape(3),==,shapeIn[2])
+    NIFTY_TEST_OP(out.shape(0),==,functor.numberOfChannels())
+
+    auto testData = get3DTestData();
+
+    // test filter responses for correctnes for first sigma val
+    for(size_t z = 0; z < in.shape(0); z++) {
+        for(size_t y = 0; y < in.shape(1); y++) { 
+            for(size_t x = 0; x < in.shape(2); x++) { 
+                NIFTY_CHECK_EQ_TOL(out(0,z,y,x),std::get<0>(testData)[z][y][x],1e-6)
+                NIFTY_CHECK_EQ_TOL(out(1,z,y,x),std::get<1>(testData)[z][y][x],1e-6)
+                NIFTY_CHECK_EQ_TOL(out(2,z,y,x),std::get<2>(testData)[z][y][x],1e-5)
+            }
+        }
+    }
+
+}
+
+
 BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest3DParallel)
 {
 
@@ -339,5 +428,4 @@ BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest3DParallel)
             }
         }
     }
-
 }
