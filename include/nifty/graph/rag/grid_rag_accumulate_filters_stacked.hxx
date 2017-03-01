@@ -321,7 +321,7 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
                     sliceShape2,
                     filterA,
                     applyFilters,
-                    true);
+                    false); // presmoothing
 
             // acccumulate the inner slice features
             // only if not keepZOnly and if we have at least one edge in this slice
@@ -367,7 +367,7 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
                         sliceShape2,
                         filterB,
                         applyFilters,
-                        true); // activate pre-smoothing
+                        false); // activate pre-smoothing
             }
             
             // acccumulate the between slice features
@@ -549,10 +549,12 @@ void accumulateSkipEdgeFeaturesFromFiltersWithAccChain(
     {
         LabelBlockStorage labelsAStorage(threadpool, sliceShape3, 1);
         LabelBlockStorage labelsBStorage(threadpool, sliceShape3, 1);
-        DataBlockStorage dataAStorage(threadpool, sliceShape3, 1);
-        DataBlockStorage dataBStorage(threadpool, sliceShape3, 1);
         FilterBlockStorage filterAStorage(threadpool, filterShape, 1);
         FilterBlockStorage filterBStorage(threadpool, filterShape, 1);
+        // only need one data storage
+        DataBlockStorage dataStorage(threadpool, sliceShape3, 1);
+        // storage for the data we need to copy for uint8 input
+        FilterBlockStorage dataCopyStorage(threadpool, sliceShape2, 1);
 
         // get unique lower slices with skip edges
         std::vector<size_t> lowerSlices;
@@ -579,11 +581,6 @@ void accumulateSkipEdgeFeaturesFromFiltersWithAccChain(
                 thisSkipSlices.push_back(targetSlice);
         }
         
-        // declare arrays ad views we nneed for copyig the data, if we have non-float type
-        marray::Marray<float> dataCopy;
-        marray::View<float> dataAView;
-        marray::View<float> dataBView;
-        
         std::vector<vigra::HistogramOptions> histoOptionsVec(numberOfChannels);
         
         size_t skipEdgeOffset = 0;
@@ -601,22 +598,20 @@ void accumulateSkipEdgeFeaturesFromFiltersWithAccChain(
             auto labelsA = labelsAStorage.getView(0);  
             labelsProxy.readSubarray(beginA, endA, labelsA);
             auto labelsASqueezed = labelsA.squeezedView();
-                
-            auto dataA = dataAStorage.getView(0);
+        
+            auto dataA = dataStorage.getView(0);
             tools::readSubarray(data, beginA, endA, dataA);
             auto dataASqueezed = dataA.squeezedView();
 
-            if( typeid(DataType) == typeid(float) ) {
-                dataAView = dataASqueezed;
-            }
-            else {
-                dataCopy.resize(sliceShape2.begin(),sliceShape2.end());
-                std::copy(dataASqueezed.begin(), dataASqueezed.end(), dataCopy.begin());
-                dataAView.assign(sliceShape2.begin(), sliceShape2.end(), &dataCopy(0) );
-            }
-
+            auto dataCopy = dataCopyStorage.getView(0); // in case we need to copy data for non-float type
             auto filterA = filterAStorage.getView(0);
-            applyFilters(dataAView, filterA, threadpool);
+            // apply filters in parallel
+            calculateFilters(dataASqueezed,
+                    dataCopy,
+                    sliceShape2,
+                    filterA,
+                    threadpool,
+                    applyFilters);
             
             // set the correct histogram for each filter from lowest slice
             if(sliceId == lowest){
@@ -648,20 +643,19 @@ void accumulateSkipEdgeFeaturesFromFiltersWithAccChain(
                 labelsProxy.readSubarray(beginB, endB, labelsB);
                 auto labelsBSqueezed = labelsB.squeezedView();
         
-                auto dataB = dataBStorage.getView(0);
+                auto dataB = dataStorage.getView(0);
                 tools::readSubarray(data, beginB, endB, dataB);
                 auto dataBSqueezed = dataB.squeezedView();
-
-                if( typeid(DataType) == typeid(float) ) {
-                    dataBView = dataBSqueezed;
-                }
-                else {
-                    std::copy(dataBSqueezed.begin(),dataBSqueezed.end(),dataCopy.begin());
-                    dataBView.assign(sliceShape2.begin(), sliceShape2.end(), &dataCopy(0));
-                }
-
+            
+                auto dataCopy = dataCopyStorage.getView(0); // in case we need to copy data for non-float type
                 auto filterB = filterBStorage.getView(0);
-                applyFilters(dataBView, filterB, threadpool);
+                // apply filters in parallel
+                calculateFilters(dataBSqueezed,
+                        dataCopy,
+                        sliceShape2,
+                        filterB,
+                        threadpool,
+                        applyFilters);
             
                 // accumulate filter for the between slice edges
                 nifty::tools::parallelForEachCoordinate(threadpool, sliceShape2, [&](const int tid, const Coord2 coord){
