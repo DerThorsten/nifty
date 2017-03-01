@@ -321,7 +321,7 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
                     sliceShape2,
                     filterA,
                     applyFilters,
-                    false); // presmoothing
+                    true); // presmoothing
 
             // acccumulate the inner slice features
             // only if not keepZOnly and if we have at least one edge in this slice
@@ -352,7 +352,7 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
             // do if we are not keeping only xy edges or
             // if we are at the last slice (which is never a lower slice and 
             // must hence be accumulated extra)
-            if(!keepXYOnly || sliceIdB == numberOfSlices - 1) {
+            if(!keepXYOnly || sliceIdB == numberOfSlices - 1 ) {
                 // read labels
                 auto labelsB = labelsBStorage.getView(tid);  
                 labelsProxy.readSubarray(beginB, endB, labelsB);
@@ -367,7 +367,7 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
                         sliceShape2,
                         filterB,
                         applyFilters,
-                        false); // activate pre-smoothing
+                        true); // activate pre-smoothing
             }
             
             // acccumulate the between slice features
@@ -393,7 +393,7 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
             }
                
             // accumulate the inner slice features for the last slice
-            if(!keepZOnly && sliceIdB == numberOfSlices - 1) {
+            if(!keepZOnly && (sliceIdB == numberOfSlices - 1 && rag.numberOfInSliceEdges(sliceIdB) > 0)) {
                 auto inEdgeOffset = rag.inSliceEdgeOffset(sliceIdB);
                 // resize the current channel acc chain vector
                 channelAccChainVec = ChannelAccChainVectorType( rag.numberOfInSliceEdges(sliceIdB),

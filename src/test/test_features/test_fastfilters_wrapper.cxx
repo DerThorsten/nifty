@@ -364,12 +364,11 @@ BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest3DPresmooth)
     using namespace nifty::features;
     typedef typename ApplyFilters<3>::FiltersToSigmasType FiltersToSigmasType;
 
-    // fastfilters segfault for larger sigmas for a 5x5 array
     std::vector<double> sigmas({1.,2.,5.,8.});
     FiltersToSigmasType filtersToSigmas({ { true, true, true, true },      // GaussianSmoothing
                                           { true, true, true, true },      // LaplacianOfGaussian
-                                          { true, true, true, true },   // GaussianGradientMagnitude
-                                          { true, true, true, true } });  // HessianOfGaussianEigenvalues
+                                          { true, true, true, true },      // GaussianGradientMagnitude
+                                          { true, true, true, true } });   // HessianOfGaussianEigenvalues
     
     ApplyFilters<3> functor(sigmas, filtersToSigmas);
 
