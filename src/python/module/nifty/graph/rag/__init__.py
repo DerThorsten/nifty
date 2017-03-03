@@ -93,23 +93,22 @@ if Configuration.WITH_HDF5:
         # load the serialization from h5
 
         # serialization of the undirected graph
-        serialization = numpy.zeros([], dtype='uint64')
-        serialization = serialization.append( np.array(vigra.readHDF5(savePath, 'numberOfNodes')) )
-        serialization = serialization.append( np.array(vigra.readHDF5(savePath, 'numberOfEdges')) )
-        serialization = serialization.append( vigra.readHDF5(savePath, 'uvIds').ravel() )
+        serialization = numpy.array(vigra.readHDF5(savePath, 'numberOfNodes'))
+        serialization = numpy.append(serialization, numpy.array(vigra.readHDF5(savePath, 'numberOfEdges')) )
+        serialization = numpy.append(serialization, vigra.readHDF5(savePath, 'uvIds').ravel() )
 
         # serialization of the stacked rag
-        serialization = serialization.append( np.array(vigra.readHDF5(savePath, 'totalNumberOfInSliceEdges')) )
-        serialization = serialization.append( np.array(vigra.readHDF5(savePath, 'totalNumberOfInBetweenSliceEdges')) )
+        serialization = numpy.append(serialization, numpy.array(vigra.readHDF5(savePath, 'totalNumberOfInSliceEdges')) )
+        serialization = numpy.append(serialization, numpy.array(vigra.readHDF5(savePath, 'totalNumberOfInBetweenSliceEdges')) )
         # load all the per slice data to squeeze it in the format we need for serializing
         # cf. nifty/include/nifty/graph/rag/grid_rag_stacked_2d.hxx serialize
         inSliceDataKeys = ['numberOfInSliceEdges', 'numberOfInBetweenSliceEdges', 'inSliceEdgeOffset', 'betweenSliceEdgeOffset']
-        perSliceData = np.concatenate( [vigra.readHDF5(savePath, key)[:,None] for key in inSliceDataKeys], axis = 1 )
-        perSliceData = np.concatenate( [perSliceData, vigra.readHDF5(savePath, 'minMaxLabelPerSlice') ])
-        serialization = serialization.append( perSliceData.ravel() )
-        serialization = serialization.append( vigra.readHDF5(savePath, 'edgeLengths') )
+        perSliceData = numpy.concatenate( [vigra.readHDF5(savePath, key)[:,None] for key in inSliceDataKeys], axis = 1 )
+        perSliceData = numpy.concatenate( [perSliceData, vigra.readHDF5(savePath, 'minMaxLabelPerSlice') ], axis = 1)
+        serialization = numpy.append(serialization, perSliceData.ravel() )
+        serialization = numpy.append(serialization, vigra.readHDF5(savePath, 'edgeLengths') )
 
         # get the rag from serialization + labels
         labelsProxy = gridRag3DHdf5LabelsProxy(labels, int(numberOfLabels))
-        return gridRagStacked2DHdf5Impl(labelsProxy, serialization)
+        return gridRagStacked2DHdf5Impl(labelsProxy, serialization.astype('uint64'))
 
