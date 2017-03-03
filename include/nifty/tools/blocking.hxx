@@ -197,21 +197,39 @@ namespace tools{
             idsOut.clear();
 
             for(size_t blockId = 0; blockId < numberOfBlocks(); ++blockId) {
-
                 bool inRoi = true;
-
                 const auto & block = getBlockWithHalo(blockId, blockHalo).outerBlock();
                 const auto & begin = block.begin();
                 const auto & end = block.end();
-
                 for( auto d = 0; d < DIM; ++d) {
+                    // check if roi encluses block
                     if( ! (begin[d] >= roiBegin[d] && end[d] <= roiEnd[d]) )
                         inRoi = false;
                 }
-                
                 if(inRoi)
                     idsOut.push_back(blockId);
+            }
+        }
+        
+        // get all block ids in slice z
+        void getBlockIdsInSlice(
+                const T z,
+                const VectorType & blockHalo,
+                std::vector<uint64_t> & idsOut) const {
 
+            // TODO assert that the roi is in global roi
+            //
+            idsOut.clear();
+
+            for(size_t blockId = 0; blockId < numberOfBlocks(); ++blockId) {
+                const auto & block = getBlockWithHalo(blockId, blockHalo).outerBlock();
+                const auto & begin = block.begin();
+                const auto & end   = block.end();
+                // check if this slice is in z
+                auto z_start = begin[0];
+                auto z_end   = end[0];
+                if(z >= z_start && z < z_end )
+                    idsOut.push_back(blockId);
             }
         }
 

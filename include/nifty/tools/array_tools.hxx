@@ -15,7 +15,6 @@ namespace tools {
     // unique values in array
     template<class T>
     inline void uniques(const marray::View<T> & array, std::vector<T> & out){
-        
         out.resize(array.size());
         std::copy(array.begin(), array.end(), out.begin());
         
@@ -27,7 +26,6 @@ namespace tools {
     // unique values in vector
     template<class T>
     inline void uniques(const std::vector<T> & array, std::vector<T> & out){
-        
         out.resize(array.size());
         std::copy(array.begin(), array.end(), out.begin());
         
