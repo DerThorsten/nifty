@@ -10,6 +10,7 @@ namespace graph{
 
 
     void exportGridRag(py::module &);
+    void exportGridRagStacked(py::module &);
     void exportGraphAccumulator(py::module &);
     void exportProjectToPixels(py::module &);
     void exportAccumulate(py::module &);
@@ -26,6 +27,7 @@ PYBIND11_PLUGIN(_rag) {
     using namespace nifty::graph;
 
     exportGridRag(ragModule);
+    exportGridRagStacked(ragModule);
     exportGraphAccumulator(ragModule);
     exportProjectToPixels(ragModule);
     exportAccumulate(ragModule);

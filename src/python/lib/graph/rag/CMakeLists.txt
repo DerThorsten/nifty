@@ -6,6 +6,7 @@ addPythonModule(
     SOURCES
         rag.cxx
         grid_rag.cxx
+        grid_rag_stacked.cxx
         graph_accumulator.cxx
         project_to_pixels.cxx
         accumulate.cxx
