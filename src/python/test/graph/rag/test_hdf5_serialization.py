@@ -47,7 +47,14 @@ def test_hdf5_serialization():
         assert (rag.uvIds() == rag_read.uvIds()).all(), "Test uvs failed"
         assert (rag.numberOfEdges == rag_read.numberOfEdges), "Test nedges failed"
         assert (rag.numberOfNodes == rag_read.numberOfNodes), "Test nnodes failed"
-        #assert (rag.numberOfEdges == rag_read.numberOfEdges).all(), "Test nedges failed"
+        assert (rag.minMaxLabelPerSlice() == rag_read.minMaxLabelPerSlice()).all(), "Test minmax label failed"
+        assert (rag.numberOfNodesPerSlice() == rag_read.numberOfNodesPerSlice()).all(), "Test nnodes slice failed"
+        assert (rag.numberOfInSliceEdges() == rag_read.numberOfInSliceEdges()).all(), "Test inslice edges slice failed"
+        assert (rag.numberOfInBetweenSliceEdges() == rag_read.numberOfInBetweenSliceEdges()).all(), "Test betweenslice edges slice failed"
+        assert (rag.inSliceEdgeOffset() == rag_read.inSliceEdgeOffset()).all(), "Test inslice offset failed"
+        assert (rag.betweenSliceEdgeOffset() == rag_read.betweenSliceEdgeOffset()).all(), "Test betweenslice offset failed"
+        assert (rag.totalNumberOfInSliceEdges == rag_read.totalNumberOfInSliceEdges), "Test total inslice failed"
+        assert (rag.totalNumberOfInBetweenSliceEdges == rag_read.totalNumberOfInBetweenSliceEdges), "Test total between slice failed"
 
         print "Passed"
     except AssertionError as e:
