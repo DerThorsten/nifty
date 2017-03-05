@@ -87,6 +87,7 @@ if Configuration.WITH_HDF5:
         vigra.writeHDF5(rag.totalNumberOfInBetweenSliceEdges, savePath, 'totalNumberOfInBetweenSliceEdges')
         vigra.writeHDF5(rag.edgeLengths(), savePath, 'edgeLengths')
 
+
     def readStackedRagFromHdf5(labels, numberOfLabels, savePath):
         assert labels.ndim == 3
         import vigra

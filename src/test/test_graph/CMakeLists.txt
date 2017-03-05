@@ -1,3 +1,5 @@
+add_subdirectory(test_rag)
+
 add_executable(test_undirected_graph test_undirected_graph.cxx )
 target_link_libraries(test_undirected_graph ${TEST_LIBS})
 add_test(test_undirected_graph test_undirected_graph)
