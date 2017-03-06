@@ -8,4 +8,5 @@ addPythonModule(
         overlap.cxx
         partition_comparison.cxx
         post_process_carving_ground_truth.cxx
+        seg2d_to_lifted_edges.cxx
 )
