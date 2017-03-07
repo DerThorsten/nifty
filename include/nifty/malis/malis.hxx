@@ -58,15 +58,13 @@ void compute_malis_gradient(const marray::View<DATA_TYPE> & affinities,
     AffinityCoord affinityShape;
     for(int d = 0; d < DIM+1; ++d)
         affinityShape[d] = affinities.shape(d);
-    size_t flatBegin[] = {0};
-    size_t flatEnd[]   = {affinities.size()};
-    auto flatView = affinities.reshapedView(flatBegin, flatEnd);
-    std::vector<DataType> weights(numberOfEdges);
+    // get a flattened view to the marray
+    size_t flatShape[] = {affinities.size()};
+    auto flatView = affinities.reshapedView(flatShape, flatShape+1);
+    // initialize the pqueu as [0,1,2,3,...,numberOfEdges]
     std::vector<size_t> pqueue(numberOfEdges);
-    for(size_t i = 0; i < numberOfEdges; ++i) {
-        weights[i] = flatView(i);
-        pqueue[i] = i;
-    }
+    std::iota(pqueue.begin(), pqueue.end(), 0);
+    // sort pqueue in increasing order
     std::sort(pqueue.begin(), pqueue.end(),
             [&flatView](const size_t ind1, const size_t ind2){
         return (flatView(ind1)>flatView(ind2));         
@@ -80,7 +78,6 @@ void compute_malis_gradient(const marray::View<DATA_TYPE> & affinities,
     AffinityCoord affCoord;
     typename std::map<LabelType,size_t>::iterator itU, itV;
 
-    std::cout << "Loooooop" << std::endl;
     // iterate over the pqueue
     for(size_t i = 0; i < pqueue.size(); ++i) {
         //std::cout << i << " / " << pqueue.size() << std::endl;
@@ -149,7 +146,6 @@ void compute_malis_gradient(const marray::View<DATA_TYPE> & affinities,
             }
         }
     }
-    std::cout << "Done, packing up" << std::endl;
 }
 
 }
