@@ -5,7 +5,7 @@ namespace py = pybind11;
 
 namespace nifty{
 namespace malis{
-    void exportMalisLoss(py::module &);
+    void exportMalisGradient(py::module &);
 }
 }
 
@@ -15,7 +15,7 @@ PYBIND11_PLUGIN(_malis) {
 
     using namespace nifty::malis;
 
-    exportMalisLoss(malisModule);
+    exportMalisGradient(malisModule);
         
     return malisModule.ptr();
 }

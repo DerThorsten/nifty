@@ -4,5 +4,5 @@ addPythonModule(
         nifty/malis  
     SOURCES
         malis.cxx
-        malis_loss.cxx
+        malis_gradient.cxx
 )

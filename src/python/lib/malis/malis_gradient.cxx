@@ -13,7 +13,7 @@ namespace nifty {
 namespace malis {
 
     template<unsigned DIM, typename DATA_TYPE, typename LABEL_TYPE>
-    void exportMalisLossT(py::module & malisModule){
+    void exportMalisGradientT(py::module & malisModule){
 
         malisModule.def("malis_gradient",
            [](
@@ -37,9 +37,9 @@ namespace malis {
         );
     }
 
-    void exportMalisLoss(py::module & malisModule){
-        exportMalisLossT<2,float,uint32_t>(malisModule);
-        exportMalisLossT<3,float,uint32_t>(malisModule);
+    void exportMalisGradient(py::module & malisModule){
+        exportMalisGradientT<2,float,uint32_t>(malisModule);
+        exportMalisGradientT<3,float,uint32_t>(malisModule);
     }
 }
 }

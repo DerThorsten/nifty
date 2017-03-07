@@ -11,6 +11,7 @@
 namespace nifty{
 namespace malis{
 
+// TODO implement different nhoods
 template<unsigned DIM, typename DATA_TYPE, typename LABEL_TYPE>
 void compute_malis_gradient(const marray::View<DATA_TYPE> & affinities,
         const marray::View<LABEL_TYPE> & groundtruth,
