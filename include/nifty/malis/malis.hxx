@@ -80,21 +80,22 @@ void compute_malis_gradient(const marray::View<DATA_TYPE> & affinities,
 
     // iterate over the pqueue
     for(size_t i = 0; i < pqueue.size(); ++i) {
-        //std::cout << i << " / " << pqueue.size() << std::endl;
+        
         edgeIndex  = pqueue[i];
-        // translate edge index to coordinate -- TODO recheck this
+        
+        // translate edge index to coordinate
         affCoord[0] = edgeIndex / affinities.strides(0) ;
         for(int d = 1; d < DIM+1; ++d) {
             affCoord[d] = (edgeIndex % affinities.strides(d-1) ) / affinities.strides(d);
         }
-        //std::cout << edgeIndex << std::endl;
-        //std::cout << affCoord << std::endl;
+        
         // first, we copy the spatial coordinates of the affinity pixel for both gt coords
         for(int d = 0; d < DIM; ++d) {
             gtCoordU[d] = affCoord[d];
             gtCoordV[d] = affCoord[d];
         }
-        // we increase the V coordinate for the given channel
+        
+        // we increase the V coordinate for the given channel (=correspondign coordinate)
         // only if this results in a valid coordinate
         channel = affCoord[DIM];
         if(gtCoordV[channel] < pixelShape[channel] - 1) {
@@ -114,14 +115,16 @@ void compute_malis_gradient(const marray::View<DATA_TYPE> & affinities,
             for (itU = overlaps[setU].begin(); itU != overlaps[setU].end(); ++itU) {
                 for (itV = overlaps[setV].begin(); itV != overlaps[setV].end(); ++itV) {
 
+                    // the number of pairs that are joind by this edge are given by the 
+                    // number of pix associated with U times pix associated with V
                     nPair = itU->second * itV->second;
                     
-                    // if we compute positive gradient 
+                    // for positive gradient 
                     // we add nPairs if we join two nodes in the same gt segment
                     if (itU->first == itV->first) {
                         positiveGradients(affCoord.asStdArray()) += nPair;
                     }
-                    // if we compute negative gradient,
+                    // for negative gradient,
                     // we add nPairs if we join two nodes in different gt segments
                     else if (itU->first != itV->first) {
                         negativeGradients(affCoord.asStdArray()) += nPair;
@@ -129,8 +132,8 @@ void compute_malis_gradient(const marray::View<DATA_TYPE> & affinities,
                 }
             }
             
-            /* move the pixel bags of the non-representative to the representative */
-            if (sets.find(setU) == setV) // make set1 the rep to keep and set2 the rep to empty
+            // move the pixel bags of the non-representative to the representative
+            if (sets.find(setU) == setV) // make setU the rep to keep and setV the rep to empty
                 std::swap(setU,setV);
 
             itV = overlaps[setV].begin();
