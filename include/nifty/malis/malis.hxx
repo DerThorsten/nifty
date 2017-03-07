@@ -74,7 +74,7 @@ void compute_malis_gradient(const marray::View<DATA_TYPE> & affinities,
     });
 
     // run kruskals
-    size_t edgeIndex;
+    size_t edgeIndex, channel;
     LabelType setU, setV;
     size_t nPair = 0;
     Coord gtCoordU, gtCoordV;
@@ -95,7 +95,14 @@ void compute_malis_gradient(const marray::View<DATA_TYPE> & affinities,
             gtCoordV[d] = affCoord[d];
         }
         // we increase the V coordinate for the given channel
-        ++gtCoordV[affCoord[DIM]];
+        // only if this results in a valid coordinate
+        channel = affCoord[DIM];
+        if(gtCoordV[channel] < pixelShape[channel] - 1) {
+            ++gtCoordV[affCoord[DIM]];
+        }
+        else {
+            continue;
+        }
         setU = sets.find( groundtruth(gtCoordU.asStdArray()) ) ;
         setV = sets.find( groundtruth(gtCoordV.asStdArray()) ) ;
 
