@@ -16,7 +16,6 @@ from . import graph
 from . import tools
 from . import ufd
 from . import hdf5
-from . import marray
 from . import malis
 
 
