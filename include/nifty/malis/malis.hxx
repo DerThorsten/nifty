@@ -1,6 +1,5 @@
 #pragma once
 
-#include <functional>
 #include <algorithm>
 #include <map>
 
@@ -81,14 +80,18 @@ void compute_malis_gradient(const marray::View<DATA_TYPE> & affinities,
     AffinityCoord affCoord;
     typename std::map<LabelType,size_t>::iterator itU, itV;
 
+    std::cout << "Loooooop" << std::endl;
     // iterate over the pqueue
     for(size_t i = 0; i < pqueue.size(); ++i) {
+        //std::cout << i << " / " << pqueue.size() << std::endl;
         edgeIndex  = pqueue[i];
         // translate edge index to coordinate -- TODO recheck this
-        affCoord[DIM] = edgeIndex / affinities.strides(DIM) ;
-        for(int d = 0; d < DIM; ++d) {
-            affCoord[d] = (edgeIndex % affinities.strides(d+1) ) / affinities.strides(d) ;
+        affCoord[0] = edgeIndex / affinities.strides(0) ;
+        for(int d = 1; d < DIM+1; ++d) {
+            affCoord[d] = (edgeIndex % affinities.strides(d-1) ) / affinities.strides(d);
         }
+        //std::cout << edgeIndex << std::endl;
+        //std::cout << affCoord << std::endl;
         // first, we copy the spatial coordinates of the affinity pixel for both gt coords
         for(int d = 0; d < DIM; ++d) {
             gtCoordU[d] = affCoord[d];
@@ -146,6 +149,7 @@ void compute_malis_gradient(const marray::View<DATA_TYPE> & affinities,
             }
         }
     }
+    std::cout << "Done, packing up" << std::endl;
 }
 
 }

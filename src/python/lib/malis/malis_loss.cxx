@@ -17,7 +17,7 @@ namespace malis {
 
         malisModule.def("malis_gradient",
            [](
-                nifty::marray::PyView<DATA_TYPE, DIM> affinities,
+                nifty::marray::PyView<DATA_TYPE, DIM+1> affinities,
                 nifty::marray::PyView<LABEL_TYPE, DIM> groundtruth
            ){  
                 typedef nifty::array::StaticArray<int64_t,DIM+1> Coord;
