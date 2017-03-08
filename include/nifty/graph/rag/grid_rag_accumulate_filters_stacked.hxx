@@ -177,7 +177,7 @@ inline void accumulateBetweenSliceFeatures(ACC_CHAIN_VECTOR & channelAccChainVec
 }
 
 
-template<class EDGE_ACC_CHAIN, class LABELS_PROXY, class DATA, class F>
+template<class EDGE_ACC_CHAIN, class LABELS_PROXY, class DATA, class F_XY, class F_Z>
 void accumulateEdgeFeaturesFromFiltersWithAccChain(
     const GridRagStacked2D<LABELS_PROXY> & rag,
     const DATA & data,
@@ -185,7 +185,8 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
     const bool keepZOnly,
     const parallel::ParallelOptions & pOpts,
     parallel::ThreadPool & threadpool,
-    F && f
+    F_XY && fXY,
+    F_Z && fZ
 ){
     typedef LABELS_PROXY LabelsProxyType;
     typedef typename LabelsProxyType::LabelType LabelType;
@@ -339,7 +340,7 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
                         inEdgeOffset,
                         rag,
                         filterA);
-                f(channelAccChainVec, inEdgeOffset);
+                fXY(channelAccChainVec, inEdgeOffset);
             }
 
             // process upper slice
@@ -373,7 +374,7 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
             // acccumulate the between slice features
             if(!keepXYOnly) {
                 auto betweenEdgeOffset = rag.betweenSliceEdgeOffset(sliceIdA);
-                auto accOffset = keepZOnly ? rag.betweenSliceEdgeOffset(sliceIdA) - rag.numberOfInSliceEdges() : betweenEdgeOffset;
+                auto accOffset = rag.betweenSliceEdgeOffset(sliceIdA) - rag.numberOfInSliceEdges();
                 // resize the current channel acc chain vector
                 channelAccChainVec = ChannelAccChainVectorType( rag.numberOfInBetweenSliceEdges(sliceIdA),
                         AccChainVectorType(numberOfChannels) );
@@ -389,7 +390,7 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
                         rag,
                         filterA,
                         filterB);
-                f(channelAccChainVec, accOffset);
+                fZ(channelAccChainVec, accOffset);
             }
                
             // accumulate the inner slice features for the last slice
@@ -406,7 +407,7 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
                         inEdgeOffset,
                         rag,
                         filterB);
-                f(channelAccChainVec, inEdgeOffset);
+                fXY(channelAccChainVec, inEdgeOffset);
             }
 
         });
@@ -420,7 +421,8 @@ template<class LABELS_PROXY, class DATA, class OUTPUT>
 void accumulateEdgeFeaturesFromFilters(
     const GridRagStacked2D<LABELS_PROXY> & rag,
     const DATA & data,
-    OUTPUT & edgeFeaturesOut,
+    OUTPUT & edgeFeaturesOutXY,
+    OUTPUT & edgeFeaturesOutZ,
     const bool keepXYOnly,
     const bool keepZOnly,
     const int numberOfThreads = -1
@@ -444,6 +446,56 @@ void accumulateEdgeFeaturesFromFilters(
     nifty::parallel::ThreadPool threadpool(pOpts);
 
     const auto nStats = 9;
+    
+    // general accumulator function
+    auto accFunction = [&](
+        const std::vector<std::vector<AccChainType>> & channelAccChainVec,
+        const uint64_t edgeOffset,
+        OUTPUT & edgeFeaturesOut
+    ){
+        using namespace vigra::acc;
+        typedef array::StaticArray<int64_t, 2> FeatCoord;
+
+        const auto nEdges    = channelAccChainVec.size();
+        const auto nChannels = channelAccChainVec.front().size();
+
+        marray::Marray<DataType> featuresTemp({nEdges,nChannels*nStats});
+        for(int64_t edge = 0; edge < channelAccChainVec.size(); ++edge) {
+            const auto & edgeAccChainVec = channelAccChainVec[edge];
+            auto cOffset = 0;
+            vigra::TinyVector<float,7> quantiles;
+            for(int c = 0; c < nChannels; ++c) {
+                const auto & chain = edgeAccChainVec[c];
+                const auto mean = get<acc::Mean>(chain);
+                featuresTemp(edge, cOffset) = replaceIfNotFinite(mean,0.0);
+                featuresTemp(edge, cOffset+1) = replaceIfNotFinite(get<acc::Variance>(chain), 0.0);
+                quantiles = get<Quantiles>(chain);
+                for(auto qi=0; qi<7; ++qi)
+                    featuresTemp(edge, cOffset+2+qi) = replaceIfNotFinite(quantiles[qi], mean);
+                cOffset += nStats;
+            }
+        } 
+
+        FeatCoord begin({int64_t(edgeOffset),0L});
+        FeatCoord end({edgeOffset+nEdges,nChannels*nStats});
+
+        tools::writeSubarray(edgeFeaturesOut, begin, end, featuresTemp);
+    };
+
+    // instantiation of accumulators for xy / z edges
+    auto accFunctionXY = [&](
+        const std::vector<std::vector<AccChainType>> & channelAccChainVec,
+        const uint64_t edgeOffset
+    ){
+        accFunction(channelAccChainVec, edgeOffset, edgeFeaturesOutXY);
+    };
+    auto accFunctionZ = [&](
+        const std::vector<std::vector<AccChainType>> & channelAccChainVec,
+        const uint64_t edgeOffset
+    ){
+        accFunction(channelAccChainVec, edgeOffset, edgeFeaturesOutZ);
+    };
+    
 
     accumulateEdgeFeaturesFromFiltersWithAccChain<AccChainType>(
         rag,
@@ -452,43 +504,9 @@ void accumulateEdgeFeaturesFromFilters(
         keepZOnly,
         pOpts,
         threadpool,
-        [&](
-            const std::vector<std::vector<AccChainType>> & channelAccChainVec,
-            const uint64_t edgeOffset
-        ){
-            using namespace vigra::acc;
-            typedef array::StaticArray<int64_t, 2> FeatCoord;
-
-            const auto nEdges    = channelAccChainVec.size();
-            const auto nChannels = channelAccChainVec.front().size();
-
-            marray::Marray<DataType> featuresTemp({nEdges,nChannels*nStats});
-            for(int64_t edge = 0; edge < channelAccChainVec.size(); ++edge) {
-                const auto & edgeAccChainVec = channelAccChainVec[edge];
-                auto cOffset = 0;
-                vigra::TinyVector<float,7> quantiles;
-                for(int c = 0; c < nChannels; ++c) {
-                    const auto & chain = edgeAccChainVec[c];
-                    const auto mean = get<acc::Mean>(chain);
-                    featuresTemp(edge, cOffset) = replaceIfNotFinite(mean,0.0);
-                    featuresTemp(edge, cOffset+1) = replaceIfNotFinite(get<acc::Variance>(chain), 0.0);
-                    quantiles = get<Quantiles>(chain);
-                    for(auto qi=0; qi<7; ++qi)
-                        featuresTemp(edge, cOffset+2+qi) = replaceIfNotFinite(quantiles[qi], mean);
-                    cOffset += nStats;
-                }
-            } 
-
-            FeatCoord begin({int64_t(edgeOffset),0L});
-            FeatCoord end({edgeOffset+nEdges,nChannels*nStats});
-
-            //std::cout << "off " << begin << std::endl;
-            //std::cout << "tempShape " << featuresTemp.shape(0) << " " << featuresTemp.shape(1) << std::endl;
-            //std::cout << "outShape " << edgeFeaturesOut.shape(0) << " " << edgeFeaturesOut.shape(1) << std::endl;
-
-            tools::writeSubarray(edgeFeaturesOut, begin, end, featuresTemp);
-        }
-    );
+        accFunctionXY,
+        accFunctionZ
+        );
 }
 
 
