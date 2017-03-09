@@ -31,7 +31,7 @@ namespace graph{
         ragModule.def("accumulateEdgeFeaturesFromFilters",
         [](
             const RAG & rag,
-            DATA data,
+            DATA & data,
             const bool keepXYOnly,
             const bool keepZOnly,
             const int numberOfThreads
@@ -68,9 +68,9 @@ namespace graph{
         ragModule.def("accumulateEdgeFeaturesFromFilters",
         [](
             const RAG & rag,
-            DATA data,
-            nifty::hdf5::Hdf5Array<float> outXY,
-            nifty::hdf5::Hdf5Array<float> outZ,
+            DATA & data,
+            nifty::hdf5::Hdf5Array<float> & outXY,
+            nifty::hdf5::Hdf5Array<float> & outZ,
             const bool keepXYOnly,
             const bool keepZOnly,
             const int numberOfThreads
@@ -112,7 +112,7 @@ namespace graph{
         ragModule.def("accumulateSkipEdgeFeaturesFromFilters",
         [](
             const RAG & rag,
-            DATA data,
+            DATA & data,
             const std::vector<std::pair<size_t,size_t>> & skipEdges,
             const std::vector<size_t> & skipRanges,
             const std::vector<size_t> & skipStarts,

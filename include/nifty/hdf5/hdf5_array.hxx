@@ -109,6 +109,11 @@ namespace hdf5{
 
             this->loadShape(shape_);
             this->loadChunkShape(chunkShape_);
+            //std::cout << "Loaded with shapes and chunks:" << std::endl;
+            //for(int d = 0; d < dimension(); ++d) {
+            //    std::cout << shape(d) << std::endl;
+            //    std::cout << chunkShape(d) << std::endl;
+            //}
         }
 
         int setCache(){
@@ -222,6 +227,9 @@ namespace hdf5{
             }
             //std::cout<<"_3\n";
             hid_t dataspace = H5Dget_space(dataset_);
+            if(dataspace < 0) {
+                throw std::runtime_error("Can't open dataspace!");
+            }
             herr_t status = H5Sselect_hyperslab(dataspace, H5S_SELECT_SET, 
                 &offset[0], NULL, &slabShape[0], NULL);
             if(status < 0) {
@@ -244,7 +252,7 @@ namespace hdf5{
             // read from dataspace into memspace
             //out = Marray<T>(SkipInitialization, &marrayShape[0], 
             //    (&marrayShape[0])+size, coordinateOrder);
-            //std::cout<<"_1\n";
+            //std::cout<<"_5\n";
             if(out.isSimple()){
                 //std::cout<<"is simple\n";
                 status = H5Dread(dataset_, datatype_, memspace, dataspace,

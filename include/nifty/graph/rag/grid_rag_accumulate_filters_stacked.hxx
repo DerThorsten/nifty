@@ -3,6 +3,7 @@
 #define NIFTY_GRAPH_RAG_GRID_RAG_ACCUMULATE_FILTERS_STACKED_HXX
 
 #include <vector>
+#include <functional>
 
 #include "nifty/graph/rag/grid_rag.hxx"
 #include "nifty/graph/rag/grid_rag_stacked_2d.hxx"
@@ -445,10 +446,8 @@ void accumulateEdgeFeaturesFromFilters(
     nifty::parallel::ParallelOptions pOpts(numberOfThreads);
     nifty::parallel::ThreadPool threadpool(pOpts);
 
-    const auto nStats = 9;
-    
     // general accumulator function
-    auto accFunction = [&](
+    auto accFunction = [&threadpool](
         const std::vector<std::vector<AccChainType>> & channelAccChainVec,
         const uint64_t edgeOffset,
         OUTPUT & edgeFeaturesOut
@@ -456,6 +455,7 @@ void accumulateEdgeFeaturesFromFilters(
         using namespace vigra::acc;
         typedef array::StaticArray<int64_t, 2> FeatCoord;
 
+        const auto nStats = 9;
         const auto nEdges    = channelAccChainVec.size();
         const auto nChannels = channelAccChainVec.front().size();
 
@@ -483,20 +483,15 @@ void accumulateEdgeFeaturesFromFilters(
     };
 
     // instantiation of accumulators for xy / z edges
-    auto accFunctionXY = [&](
-        const std::vector<std::vector<AccChainType>> & channelAccChainVec,
-        const uint64_t edgeOffset
-    ){
-        accFunction(channelAccChainVec, edgeOffset, edgeFeaturesOutXY);
-    };
-    auto accFunctionZ = [&](
-        const std::vector<std::vector<AccChainType>> & channelAccChainVec,
-        const uint64_t edgeOffset
-    ){
-        accFunction(channelAccChainVec, edgeOffset, edgeFeaturesOutZ);
-    };
+    auto accFunctionXY = std::bind(accFunction, 
+            std::placeholders::_1,
+            std::placeholders::_2,
+            std::ref(edgeFeaturesOutXY));
+    auto accFunctionZ = std::bind(accFunction, 
+            std::placeholders::_1,
+            std::placeholders::_2,
+            std::ref(edgeFeaturesOutZ));
     
-
     accumulateEdgeFeaturesFromFiltersWithAccChain<AccChainType>(
         rag,
         data,
