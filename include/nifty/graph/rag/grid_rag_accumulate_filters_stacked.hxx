@@ -37,8 +37,9 @@ inline void calculateFilters(const marray::View<DATA_TYPE> & dataSqueezed,
     
     typedef DATA_TYPE DataType;
     typedef COORD Coord;
+    marray::View<float> dataView;
     if( typeid(DataType) == typeid(float) ) {
-        dataCopy = dataSqueezed;
+        dataView = dataSqueezed;
     }
     else {
         // copy the data (we don't use std::copy here, because iterators are terribly
@@ -47,8 +48,15 @@ inline void calculateFilters(const marray::View<DATA_TYPE> & dataSqueezed,
             sliceShape2, [&dataCopy,&dataSqueezed](Coord coord){
                 dataCopy(coord.asStdArray()) = (float) dataSqueezed(coord.asStdArray());        
         });
+        Coord base;
+        Coord shape;
+        for(int d = 0; d < dataCopy.dimension(); ++d) {
+            base[d] = 0;
+            shape[d] = dataCopy.shape(d);
+        }
+        dataView = dataCopy.view(base.begin(), shape.begin());
     }
-    f(dataCopy, filter, threadpool);
+    f(dataView, filter, threadpool);
 }
 
 // calculate filters for given input single threaded
@@ -63,8 +71,9 @@ inline void calculateFilters(const marray::View<DATA_TYPE> & dataSqueezed,
     
     typedef DATA_TYPE DataType;
     typedef COORD Coord;
+    marray::View<float> dataView;
     if( typeid(DataType) == typeid(float) ) {
-        dataCopy = dataSqueezed;
+        dataView = dataSqueezed;
     }
     else {
         // copy the data (we don't use std::copy here, because iterators are terribly
@@ -73,8 +82,15 @@ inline void calculateFilters(const marray::View<DATA_TYPE> & dataSqueezed,
             sliceShape2, [&dataCopy,&dataSqueezed](Coord coord){
                 dataCopy(coord.asStdArray()) = (float) dataSqueezed(coord.asStdArray());        
         });
+        Coord base;
+        Coord shape;
+        for(int d = 0; d < dataCopy.dimension(); ++d) {
+            base[d] = 0;
+            shape[d] = dataCopy.shape(d);
+        }
+        dataView = dataCopy.view(base.begin(), shape.begin());
     }
-    f(dataCopy, filter, preSmooth);
+    f(dataView, filter, preSmooth);
 }
 
 template<class ACC_CHAIN_VECTOR, class HISTO_OPTS_VEC, class COORD, class LABEL_TYPE, class RAG>
@@ -236,6 +252,8 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
         // edge acc vectors for multiple threads
         std::vector< ChannelAccChainVectorType> perThreadChannelAccChainVector(actualNumberOfThreads);
 
+        // TODO we could do this less memory consuming, if we allocate less data here and 
+        // allocate some in every thread
         LabelBlockStorage  labelsAStorage(threadpool, sliceShape3, actualNumberOfThreads);
         LabelBlockStorage  labelsBStorage(threadpool, sliceShape3, actualNumberOfThreads);
         FilterBlockStorage filterAStorage(threadpool, filterShape, actualNumberOfThreads);
@@ -243,7 +261,7 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
         // we only need one data storage
         DataBlockStorage   dataStorage(threadpool, sliceShape3, actualNumberOfThreads);
         // storage for the data we have to copy if type of data is not float
-        FilterBlockStorage dataCopyStorage(threadpool, sliceShape2, actualNumberOfThreads);
+        //FilterBlockStorage dataCopyStorage(threadpool, sliceShape2, actualNumberOfThreads);
 
         // process slice 0 to find min and max for histogram opts
         Coord begin0({0L, 0L, 0L}); 
@@ -257,7 +275,10 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
         tools::readSubarray(data, begin0, end0, data0);
         auto data0Squeezed = data0.squeezedView();
 
-        auto dataCopy = dataCopyStorage.getView(0); // in case we need to copy data for non-float type
+        //auto dataCopy = dataCopyStorage.getView(0); // in case we need to copy data for non-float type
+        marray::Marray<float> dataCopy;
+        if( typeid(DataType) != typeid(float) )
+            dataCopy.resize(sliceShape2.begin(), sliceShape2.end());
         auto filter0 = filterAStorage.getView(0);
         // apply filters in parallel
         calculateFilters(data0Squeezed,
@@ -316,7 +337,12 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
             auto dataA = dataStorage.getView(tid);
             tools::readSubarray(data, beginA, endA, dataA);
             auto dataASqueezed = dataA.squeezedView();
-            auto dataCopy = dataCopyStorage.getView(tid);
+            
+            //auto dataCopy = dataCopyStorage.getView(tid);
+            marray::Marray<float> dataCopy;
+            if( typeid(DataType) != typeid(float) )
+                dataCopy.resize(sliceShape2.begin(), sliceShape2.end());
+            
             auto filterA = filterAStorage.getView(tid);
             calculateFilters(dataASqueezed,
                     dataCopy,
