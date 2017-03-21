@@ -15,7 +15,8 @@ package:
     name: nifty
   {% endif %}
 
-  {% set tagged_version = GIT_DESCRIBE_TAG %}
+  {% set tagged_version = GIT_DESCRIBE_TAG|replace("-", ".") %}
+
 
   # If we're using a non-tagged revision, append '.postN' to the version
   {% if GIT_DESCRIBE_NUMBER|int != 0 %}
