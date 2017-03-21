@@ -25,14 +25,14 @@ package:
     version: {{tagged_version}}
 
 source:
-  path: ../ # TODO git instead?
+  path: ../
   patches:
     # See https://github.com/ukoethe/vigra/issues/386
     - patches/vigra-std-threading-detection.patch
 
 build:
   number: 0
-  string: py{{py}}_{{PKG_BUILDNUM}}_g{{GIT_FULL_HASH[:7]}}
+  string: py{{py}}_{{PKG_BUILDNUM}}_g{{GIT_FULL_HASH[:7]}}_stacked_rag
 
   script_env:
      - WITH_CPLEX
@@ -46,7 +46,7 @@ requirements:
     - boost 1.55.0
     - python 2.7*
     - hdf5 1.8.16
-    # TODO need fastfilters here
+    - fastfilters 0.2*
     
     {% if WITH_CPLEX is defined and WITH_CPLEX %}
     - cplex-shared # Need to make sure that cplex dylibs exist
@@ -63,7 +63,7 @@ requirements:
     - python {{PY_VER}}*
     - hdf5 1.8.16
     - numpy # Numpy version is not constrained, thanks to pybind11 magic
-    # TODO also fastfilters
+    - fastfilters 0.2*
 
     {% if WITH_CPLEX is defined and WITH_CPLEX %}
     - cplex-shared # Need to make sure that cplex dylibs exist
