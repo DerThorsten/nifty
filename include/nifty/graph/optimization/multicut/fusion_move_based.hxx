@@ -151,7 +151,7 @@ namespace graph{
             }
         }
         else{
-            if(parallelOptions_.getNumThreads() > 0){
+            if(parallelOptions_.getNumThreads() > 0){ // TODO FIXME isn't > 1 more appropriate here ?!
                 this->optimizeParallel(nodeLabels, visitor);
             }
             else{
@@ -210,7 +210,6 @@ namespace graph{
                         auto eBestCopy = objective_.evalNodeLabels(bestCopy);
                         mtx.unlock(); 
 
-
                         NodeLabels res(graph_);
                         auto & fm = *(fusionMoves_[threadId]);
                         fm.fuse( {&proposal, &currentBest}, &res);
@@ -220,7 +219,7 @@ namespace graph{
                         if(eFuse < eBestCopy){
                             currentBest = res;
                             bestEnergy = eFuse;
-                            proposals.push_back(res);
+                            //proposals.push_back(res);
                         }
                         
                         mtx.unlock();
@@ -240,18 +239,18 @@ namespace graph{
                 }
             );
           
-            //std::cout<<"proposals size "<<proposals.size()<<"\n\n";
+            std::cout<<"Generated "<<proposals.size() << " in parallel." << "\n";
             // recursive thing
+            
+            /*
             std::vector<NodeLabels> proposals2;
             size_t nFuse = settings_.fuseN;
-
+            
             if(!proposals.empty()){
                 while(proposals.size()!= 1){
                     //std::cout<<" aaa \n";
                     NIFTY_CHECK_OP(proposals.size(),>=,2,"");
                     nFuse = std::min(nFuse, proposals.size());
-
-
 
                     auto pSize = proposals.size() / nFuse;
                     if( proposals.size() % nFuse != 0){
@@ -290,6 +289,8 @@ namespace graph{
             }
             //std::cout<<"doish\n";
             bestEnergy = objective_.evalNodeLabels(currentBest);
+            */
+
             // call the visitor and see if we need to continue
             if(visitor!= nullptr){
                 visitor->setLogValue(0,iterWithoutImprovement);
@@ -333,7 +334,7 @@ namespace graph{
 
 
         std::vector<NodeLabels> proposals;
-        auto iterWithoutImprovement = 0;
+        size_t iterWithoutImprovement = 0;
         for(auto iter=0; iter<settings_.numberOfIterations; ++iter){
             const auto oldBestEnergy = bestEnergy;
         

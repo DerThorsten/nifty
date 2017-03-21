@@ -59,8 +59,12 @@ namespace optimization{
         
         virtual bool visit(SolverType * solver) {
             if(iter_%printNth_ == 0){
+                auto runtime = std::chrono::duration_cast<TimeType>(
+                        std::chrono::steady_clock::now() - startTime_);
                 std::stringstream ss;
-                ss<<solver->currentBestEnergy()<<" ";
+                ss.precision(12);
+                ss<<"Energy: " << std::scientific << solver->currentBestEnergy()<<" ";
+                ss<<"Runtime: " << runtime.count() << " ";
                 for(size_t i=0; i<logNames_.size(); ++i){
                     ss<<logNames_[i]<<" "<<logValues_[i]<<" ";
                 }

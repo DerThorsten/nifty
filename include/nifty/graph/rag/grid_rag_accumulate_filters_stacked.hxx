@@ -3,6 +3,7 @@
 #define NIFTY_GRAPH_RAG_GRID_RAG_ACCUMULATE_FILTERS_STACKED_HXX
 
 #include <vector>
+#include <functional>
 
 #include "nifty/graph/rag/grid_rag.hxx"
 #include "nifty/graph/rag/grid_rag_stacked_2d.hxx"
@@ -36,8 +37,9 @@ inline void calculateFilters(const marray::View<DATA_TYPE> & dataSqueezed,
     
     typedef DATA_TYPE DataType;
     typedef COORD Coord;
+    marray::View<float> dataView;
     if( typeid(DataType) == typeid(float) ) {
-        dataCopy = dataSqueezed;
+        dataView = dataSqueezed;
     }
     else {
         // copy the data (we don't use std::copy here, because iterators are terribly
@@ -46,8 +48,15 @@ inline void calculateFilters(const marray::View<DATA_TYPE> & dataSqueezed,
             sliceShape2, [&dataCopy,&dataSqueezed](Coord coord){
                 dataCopy(coord.asStdArray()) = (float) dataSqueezed(coord.asStdArray());        
         });
+        Coord base;
+        Coord shape;
+        for(int d = 0; d < dataCopy.dimension(); ++d) {
+            base[d] = 0;
+            shape[d] = dataCopy.shape(d);
+        }
+        dataView = dataCopy.view(base.begin(), shape.begin());
     }
-    f(dataCopy, filter, threadpool);
+    f(dataView, filter, threadpool);
 }
 
 // calculate filters for given input single threaded
@@ -62,8 +71,9 @@ inline void calculateFilters(const marray::View<DATA_TYPE> & dataSqueezed,
     
     typedef DATA_TYPE DataType;
     typedef COORD Coord;
+    marray::View<float> dataView;
     if( typeid(DataType) == typeid(float) ) {
-        dataCopy = dataSqueezed;
+        dataView = dataSqueezed;
     }
     else {
         // copy the data (we don't use std::copy here, because iterators are terribly
@@ -72,8 +82,15 @@ inline void calculateFilters(const marray::View<DATA_TYPE> & dataSqueezed,
             sliceShape2, [&dataCopy,&dataSqueezed](Coord coord){
                 dataCopy(coord.asStdArray()) = (float) dataSqueezed(coord.asStdArray());        
         });
+        Coord base;
+        Coord shape;
+        for(int d = 0; d < dataCopy.dimension(); ++d) {
+            base[d] = 0;
+            shape[d] = dataCopy.shape(d);
+        }
+        dataView = dataCopy.view(base.begin(), shape.begin());
     }
-    f(dataCopy, filter, preSmooth);
+    f(dataView, filter, preSmooth);
 }
 
 template<class ACC_CHAIN_VECTOR, class HISTO_OPTS_VEC, class COORD, class LABEL_TYPE, class RAG>
@@ -177,7 +194,7 @@ inline void accumulateBetweenSliceFeatures(ACC_CHAIN_VECTOR & channelAccChainVec
 }
 
 
-template<class EDGE_ACC_CHAIN, class LABELS_PROXY, class DATA, class F>
+template<class EDGE_ACC_CHAIN, class LABELS_PROXY, class DATA, class F_XY, class F_Z>
 void accumulateEdgeFeaturesFromFiltersWithAccChain(
     const GridRagStacked2D<LABELS_PROXY> & rag,
     const DATA & data,
@@ -185,7 +202,8 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
     const bool keepZOnly,
     const parallel::ParallelOptions & pOpts,
     parallel::ThreadPool & threadpool,
-    F && f
+    F_XY && fXY,
+    F_Z && fZ
 ){
     typedef LABELS_PROXY LabelsProxyType;
     typedef typename LabelsProxyType::LabelType LabelType;
@@ -234,6 +252,8 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
         // edge acc vectors for multiple threads
         std::vector< ChannelAccChainVectorType> perThreadChannelAccChainVector(actualNumberOfThreads);
 
+        // TODO we could do this less memory consuming, if we allocate less data here and 
+        // allocate some in every thread
         LabelBlockStorage  labelsAStorage(threadpool, sliceShape3, actualNumberOfThreads);
         LabelBlockStorage  labelsBStorage(threadpool, sliceShape3, actualNumberOfThreads);
         FilterBlockStorage filterAStorage(threadpool, filterShape, actualNumberOfThreads);
@@ -241,7 +261,7 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
         // we only need one data storage
         DataBlockStorage   dataStorage(threadpool, sliceShape3, actualNumberOfThreads);
         // storage for the data we have to copy if type of data is not float
-        FilterBlockStorage dataCopyStorage(threadpool, sliceShape2, actualNumberOfThreads);
+        //FilterBlockStorage dataCopyStorage(threadpool, sliceShape2, actualNumberOfThreads);
 
         // process slice 0 to find min and max for histogram opts
         Coord begin0({0L, 0L, 0L}); 
@@ -255,7 +275,10 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
         tools::readSubarray(data, begin0, end0, data0);
         auto data0Squeezed = data0.squeezedView();
 
-        auto dataCopy = dataCopyStorage.getView(0); // in case we need to copy data for non-float type
+        //auto dataCopy = dataCopyStorage.getView(0); // in case we need to copy data for non-float type
+        marray::Marray<float> dataCopy;
+        if( typeid(DataType) != typeid(float) )
+            dataCopy.resize(sliceShape2.begin(), sliceShape2.end());
         auto filter0 = filterAStorage.getView(0);
         // apply filters in parallel
         calculateFilters(data0Squeezed,
@@ -314,7 +337,12 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
             auto dataA = dataStorage.getView(tid);
             tools::readSubarray(data, beginA, endA, dataA);
             auto dataASqueezed = dataA.squeezedView();
-            auto dataCopy = dataCopyStorage.getView(tid);
+            
+            //auto dataCopy = dataCopyStorage.getView(tid);
+            marray::Marray<float> dataCopy;
+            if( typeid(DataType) != typeid(float) )
+                dataCopy.resize(sliceShape2.begin(), sliceShape2.end());
+            
             auto filterA = filterAStorage.getView(tid);
             calculateFilters(dataASqueezed,
                     dataCopy,
@@ -339,7 +367,7 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
                         inEdgeOffset,
                         rag,
                         filterA);
-                f(channelAccChainVec, inEdgeOffset);
+                fXY(channelAccChainVec, inEdgeOffset);
             }
 
             // process upper slice
@@ -373,7 +401,7 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
             // acccumulate the between slice features
             if(!keepXYOnly) {
                 auto betweenEdgeOffset = rag.betweenSliceEdgeOffset(sliceIdA);
-                auto accOffset = keepZOnly ? rag.betweenSliceEdgeOffset(sliceIdA) - rag.numberOfInSliceEdges() : betweenEdgeOffset;
+                auto accOffset = rag.betweenSliceEdgeOffset(sliceIdA) - rag.numberOfInSliceEdges();
                 // resize the current channel acc chain vector
                 channelAccChainVec = ChannelAccChainVectorType( rag.numberOfInBetweenSliceEdges(sliceIdA),
                         AccChainVectorType(numberOfChannels) );
@@ -389,7 +417,7 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
                         rag,
                         filterA,
                         filterB);
-                f(channelAccChainVec, accOffset);
+                fZ(channelAccChainVec, accOffset);
             }
                
             // accumulate the inner slice features for the last slice
@@ -406,7 +434,7 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
                         inEdgeOffset,
                         rag,
                         filterB);
-                f(channelAccChainVec, inEdgeOffset);
+                fXY(channelAccChainVec, inEdgeOffset);
             }
 
         });
@@ -420,7 +448,8 @@ template<class LABELS_PROXY, class DATA, class OUTPUT>
 void accumulateEdgeFeaturesFromFilters(
     const GridRagStacked2D<LABELS_PROXY> & rag,
     const DATA & data,
-    OUTPUT & edgeFeaturesOut,
+    OUTPUT & edgeFeaturesOutXY,
+    OUTPUT & edgeFeaturesOutZ,
     const bool keepXYOnly,
     const bool keepZOnly,
     const int numberOfThreads = -1
@@ -443,8 +472,52 @@ void accumulateEdgeFeaturesFromFilters(
     nifty::parallel::ParallelOptions pOpts(numberOfThreads);
     nifty::parallel::ThreadPool threadpool(pOpts);
 
-    const auto nStats = 9;
+    // general accumulator function
+    auto accFunction = [&threadpool](
+        const std::vector<std::vector<AccChainType>> & channelAccChainVec,
+        const uint64_t edgeOffset,
+        OUTPUT & edgeFeaturesOut
+    ){
+        using namespace vigra::acc;
+        typedef array::StaticArray<int64_t, 2> FeatCoord;
 
+        const auto nStats = 9;
+        const auto nEdges    = channelAccChainVec.size();
+        const auto nChannels = channelAccChainVec.front().size();
+
+        marray::Marray<DataType> featuresTemp({nEdges,nChannels*nStats});
+        for(int64_t edge = 0; edge < channelAccChainVec.size(); ++edge) {
+            const auto & edgeAccChainVec = channelAccChainVec[edge];
+            auto cOffset = 0;
+            vigra::TinyVector<float,7> quantiles;
+            for(int c = 0; c < nChannels; ++c) {
+                const auto & chain = edgeAccChainVec[c];
+                const auto mean = get<acc::Mean>(chain);
+                featuresTemp(edge, cOffset) = replaceIfNotFinite(mean,0.0);
+                featuresTemp(edge, cOffset+1) = replaceIfNotFinite(get<acc::Variance>(chain), 0.0);
+                quantiles = get<Quantiles>(chain);
+                for(auto qi=0; qi<7; ++qi)
+                    featuresTemp(edge, cOffset+2+qi) = replaceIfNotFinite(quantiles[qi], mean);
+                cOffset += nStats;
+            }
+        } 
+
+        FeatCoord begin({int64_t(edgeOffset),0L});
+        FeatCoord end({edgeOffset+nEdges,nChannels*nStats});
+
+        tools::writeSubarray(edgeFeaturesOut, begin, end, featuresTemp);
+    };
+
+    // instantiation of accumulators for xy / z edges
+    auto accFunctionXY = std::bind(accFunction, 
+            std::placeholders::_1,
+            std::placeholders::_2,
+            std::ref(edgeFeaturesOutXY));
+    auto accFunctionZ = std::bind(accFunction, 
+            std::placeholders::_1,
+            std::placeholders::_2,
+            std::ref(edgeFeaturesOutZ));
+    
     accumulateEdgeFeaturesFromFiltersWithAccChain<AccChainType>(
         rag,
         data,
@@ -452,43 +525,9 @@ void accumulateEdgeFeaturesFromFilters(
         keepZOnly,
         pOpts,
         threadpool,
-        [&](
-            const std::vector<std::vector<AccChainType>> & channelAccChainVec,
-            const uint64_t edgeOffset
-        ){
-            using namespace vigra::acc;
-            typedef array::StaticArray<int64_t, 2> FeatCoord;
-
-            const auto nEdges    = channelAccChainVec.size();
-            const auto nChannels = channelAccChainVec.front().size();
-
-            marray::Marray<DataType> featuresTemp({nEdges,nChannels*nStats});
-            for(int64_t edge = 0; edge < channelAccChainVec.size(); ++edge) {
-                const auto & edgeAccChainVec = channelAccChainVec[edge];
-                auto cOffset = 0;
-                vigra::TinyVector<float,7> quantiles;
-                for(int c = 0; c < nChannels; ++c) {
-                    const auto & chain = edgeAccChainVec[c];
-                    const auto mean = get<acc::Mean>(chain);
-                    featuresTemp(edge, cOffset) = replaceIfNotFinite(mean,0.0);
-                    featuresTemp(edge, cOffset+1) = replaceIfNotFinite(get<acc::Variance>(chain), 0.0);
-                    quantiles = get<Quantiles>(chain);
-                    for(auto qi=0; qi<7; ++qi)
-                        featuresTemp(edge, cOffset+2+qi) = replaceIfNotFinite(quantiles[qi], mean);
-                    cOffset += nStats;
-                }
-            } 
-
-            FeatCoord begin({int64_t(edgeOffset),0L});
-            FeatCoord end({edgeOffset+nEdges,nChannels*nStats});
-
-            //std::cout << "off " << begin << std::endl;
-            //std::cout << "tempShape " << featuresTemp.shape(0) << " " << featuresTemp.shape(1) << std::endl;
-            //std::cout << "outShape " << edgeFeaturesOut.shape(0) << " " << edgeFeaturesOut.shape(1) << std::endl;
-
-            tools::writeSubarray(edgeFeaturesOut, begin, end, featuresTemp);
-        }
-    );
+        accFunctionXY,
+        accFunctionZ
+        );
 }
 
 

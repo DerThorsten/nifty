@@ -31,29 +31,27 @@ namespace graph{
         ragModule.def("accumulateEdgeFeaturesFromFilters",
         [](
             const RAG & rag,
-            DATA data,
+            DATA & data,
             const bool keepXYOnly,
             const bool keepZOnly,
             const int numberOfThreads
         ){
-
-            uint64_t nEdges = rag.edgeIdUpperBound()+1;
-            if(keepXYOnly)
-                nEdges = rag.numberOfInSliceEdges();
-            else if(keepZOnly)
-                nEdges = rag.numberOfInBetweenSliceEdges();
-            else if(keepXYOnly && keepZOnly)
+            if(keepXYOnly && keepZOnly)
                 throw std::runtime_error("keepXYOnly and keepZOnly are not allowed to be both activated!");
+            uint64_t nEdgesXY = !keepZOnly ? rag.numberOfInSliceEdges() : 0L;
+            uint64_t nEdgesZ  = !keepXYOnly ? rag.numberOfInSliceEdges() : 0L;
+
             // TODO don't hard code this
             uint64_t nChannels = 12;
             uint64_t nStats = 9;
             uint64_t nFeatures = nChannels * nStats;
-            nifty::marray::PyView<float> out({nEdges,nFeatures});
+            nifty::marray::PyView<float> outXY({nEdgesXY,nFeatures});
+            nifty::marray::PyView<float> outZ({nEdgesZ,nFeatures});
             {
                 py::gil_scoped_release allowThreads;
-                accumulateEdgeFeaturesFromFilters(rag, data, out, keepXYOnly, keepZOnly, numberOfThreads);
+                accumulateEdgeFeaturesFromFilters(rag, data, outXY, outZ, keepXYOnly, keepZOnly, numberOfThreads);
             }
-            return out;
+            return std::make_tuple(outXY, outZ);
         },
         py::arg("rag"),
         py::arg("data"),
@@ -70,36 +68,37 @@ namespace graph{
         ragModule.def("accumulateEdgeFeaturesFromFilters",
         [](
             const RAG & rag,
-            DATA data,
-            nifty::hdf5::Hdf5Array<float> out,
+            DATA & data,
+            nifty::hdf5::Hdf5Array<float> & outXY,
+            nifty::hdf5::Hdf5Array<float> & outZ,
             const bool keepXYOnly,
             const bool keepZOnly,
             const int numberOfThreads
         ){
 
-            uint64_t nEdges = rag.edgeIdUpperBound()+1;
-            if(keepXYOnly)
-                nEdges = rag.numberOfInSliceEdges();
-            else if(keepZOnly)
-                nEdges = rag.numberOfInBetweenSliceEdges();
-            else if(keepXYOnly && keepZOnly)
+            if(keepXYOnly && keepZOnly)
                 throw std::runtime_error("keepXYOnly and keepZOnly are not allowed to be both activated!");
+            uint64_t nEdgesXY = !keepZOnly ? rag.numberOfInSliceEdges() : 0L;
+            uint64_t nEdgesZ  = !keepXYOnly ? rag.numberOfInBetweenSliceEdges() : 0L;
+            
             // TODO don't hard code this
             uint64_t nChannels = 12;
             uint64_t nStats = 9;
             uint64_t nFeatures = nChannels * nStats;
             // need to check that this is set correct
-            NIFTY_CHECK_OP(out.shape(0),==,nEdges,"Number of edges is incorrect!");
-            NIFTY_CHECK_OP(out.shape(1),==,nFeatures,"Number of features is incorrect!");
+            NIFTY_CHECK_OP(outXY.shape(0),==,nEdgesXY,"Number of edges is incorrect!");
+            NIFTY_CHECK_OP(outZ.shape(0),==,nEdgesZ,"Number of edges is incorrect!");
+            NIFTY_CHECK_OP(outXY.shape(1),==,nFeatures,"Number of features is incorrect!");
+            NIFTY_CHECK_OP(outZ.shape(1),==,nFeatures,"Number of features is incorrect!");
             {
                 py::gil_scoped_release allowThreads;
-                accumulateEdgeFeaturesFromFilters(rag, data, out, keepXYOnly, keepZOnly, numberOfThreads);
+                accumulateEdgeFeaturesFromFilters(rag, data, outXY, outZ, keepXYOnly, keepZOnly, numberOfThreads);
             }
-            return out;
         },
         py::arg("rag"),
         py::arg("data"),
-        py::arg("out"),
+        py::arg("outXY"),
+        py::arg("outZ"),
         py::arg("keepXYOnly") = false,
         py::arg("keepZOnly") = false,
         py::arg("numberOfThreads")= -1
@@ -113,7 +112,7 @@ namespace graph{
         ragModule.def("accumulateSkipEdgeFeaturesFromFilters",
         [](
             const RAG & rag,
-            DATA data,
+            DATA & data,
             const std::vector<std::pair<size_t,size_t>> & skipEdges,
             const std::vector<size_t> & skipRanges,
             const std::vector<size_t> & skipStarts,
@@ -176,10 +175,10 @@ namespace graph{
             typedef nifty::hdf5::Hdf5Array<uint8_t> UInt8Array;
 
             // in core
-            exportAccumulateEdgeFeaturesFromFiltersInCoreT<StackedRagUInt32, FloatArray>(ragModule);
-            exportAccumulateEdgeFeaturesFromFiltersInCoreT<StackedRagUInt64, FloatArray>(ragModule);
-            exportAccumulateEdgeFeaturesFromFiltersInCoreT<StackedRagUInt32, UInt8Array>(ragModule);
-            exportAccumulateEdgeFeaturesFromFiltersInCoreT<StackedRagUInt64, UInt8Array>(ragModule);
+            //exportAccumulateEdgeFeaturesFromFiltersInCoreT<StackedRagUInt32, FloatArray>(ragModule);
+            //exportAccumulateEdgeFeaturesFromFiltersInCoreT<StackedRagUInt64, FloatArray>(ragModule);
+            //exportAccumulateEdgeFeaturesFromFiltersInCoreT<StackedRagUInt32, UInt8Array>(ragModule);
+            //exportAccumulateEdgeFeaturesFromFiltersInCoreT<StackedRagUInt64, UInt8Array>(ragModule);
 
             // out of core
             exportAccumulateEdgeFeaturesFromFiltersOutOfCoreT<StackedRagUInt32, FloatArray>(ragModule);

@@ -63,8 +63,9 @@ namespace hdf5{
 
                 //std::cout<<"relase gil\n";
                 gilRease1.releaseGil();
-                ////std::cout<<"array.dimension\n";
                 const auto dim = array.dimension();
+                //std::cout<<"array.dimension\n";
+                //std::cout << dim << std::endl;
                 NIFTY_CHECK_OP(roiBegin.size(),==,dim,"`roiBegin`has wrong size");
                 NIFTY_CHECK_OP(roiEnd.size(),==,dim,  "`roiEnd`has wrong size");
 
@@ -81,12 +82,15 @@ namespace hdf5{
 
                
                 nifty::marray::PyView<T> out(shape.begin(), shape.end());
+                //std::cout << "have pyview" << std::endl;
             
 
                 py::gil_release gilRease2;
                 gilRease2.releaseGil();
+                //std::cout << "reading subarray" << std::endl;
                 array.readSubarray(roiBegin.begin(), out);
                 gilRease2.unreleaseGil();
+                //std::cout << "read subarray" << std::endl;
                 
                 ////std::cout<<"unreleaseGil\n";
                 //gilRease.unreleaseGil();\
