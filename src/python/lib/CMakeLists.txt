@@ -43,6 +43,7 @@ macro(addPythonModule)
     set(multiValueArgs SOURCES LIBRRARIES)
     cmake_parse_arguments(ADD_PY_MOD "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN} )
 
+    message(STATUS ${LIBRRARIES})
     #message(STATUS "BRAAA"  ${ADD_PY_MOD_NESTED_NAME})
 
     # get name of the module
@@ -57,6 +58,9 @@ macro(addPythonModule)
     )
 
     set_target_properties(_${MODULE_NAME}  PROPERTIES PREFIX "")
+
+    message(STATUS ********Module: ${MODULE_NAME})
+    message(STATUS ********Libs: ${ADD_PY_MOD_LIBRRARIES})
 
     # link additional libraries
     target_link_libraries(_${MODULE_NAME} 
