@@ -65,6 +65,7 @@ requirements:
     - hdf5 1.8.16
     - numpy # Numpy version is not constrained, thanks to pybind11 magic
     - fastfilters >=0.2.4.post3
+    - futures
 
     {% if WITH_CPLEX is defined and WITH_CPLEX %}
     - cplex-shared # Need to make sure that cplex dylibs exist

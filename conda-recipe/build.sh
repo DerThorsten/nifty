@@ -94,7 +94,7 @@ else
 fi
 
 if [[ "$WITH_GUROBI" == "" ]]; then
-    CPLEX_ARGS=""
+    GUROBI_ARGS=""
     LINKER_FLAGS=""
 else
     GUROBI_ARGS=""
@@ -133,6 +133,7 @@ LDFLAGS="${LDFLAGS} -Wl,-rpath,${PREFIX}/lib -L${PREFIX}/lib"
 cmake .. \
         -DCMAKE_C_COMPILER=${PREFIX}/bin/gcc \
         -DCMAKE_CXX_COMPILER=${PREFIX}/bin/g++ \
+        -DCMAKE_BUILD_TYPE=RELEASE \
         -DCMAKE_OSX_DEPLOYMENT_TARGET=10.7\
         -DCMAKE_INSTALL_PREFIX=${PREFIX} \
         -DCMAKE_PREFIX_PATH=${PREFIX} \
@@ -161,7 +162,7 @@ cmake .. \
 ## Compile
 ##
 make -j${CPU_COUNT}
-make test
+#make test
 
 ##
 ## Install to prefix
