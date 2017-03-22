@@ -85,7 +85,13 @@ endmacro()
 
 
 
-addPythonModule( NESTED_NAME nifty  SOURCES nifty.cxx )
+addPythonModule(
+    NESTED_NAME
+        nifty 
+    SOURCES
+        nifty.cxx
+    LIBRRARIES
+        ${NIFTY_LP_SOLVER_LIBS})
 
 
 # submodules
