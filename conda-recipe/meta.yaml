@@ -46,7 +46,7 @@ requirements:
     - gcc 4.8.5 # [unix]
     - boost 1.55.0
     - python 2.7*
-    - hdf5 1.8.16
+    - hdf5 1.8.17
     - fastfilters >=0.2.4.post3
     
     {% if WITH_CPLEX is defined and WITH_CPLEX %}
@@ -62,7 +62,7 @@ requirements:
     - libgcc   4.8*
     - boost 1.55.0
     - python {{PY_VER}}*
-    - hdf5 1.8.16
+    - hdf5 1.8.17
     - numpy # Numpy version is not constrained, thanks to pybind11 magic
     - fastfilters >=0.2.4.post3
     - futures
