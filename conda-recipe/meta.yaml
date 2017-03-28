@@ -33,7 +33,7 @@ source:
 
 build:
   number: 0
-  string: py{{py}}_{{PKG_BUILDNUM}}_g{{GIT_FULL_HASH[:7]}}_stacked_rag
+  string: py{{py}}_{{PKG_BUILDNUM}}_g{{GIT_FULL_HASH[:7]}}
 
   script_env:
      - WITH_CPLEX
