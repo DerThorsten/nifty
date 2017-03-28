@@ -102,5 +102,4 @@ add_subdirectory(pipelines)
 add_subdirectory(tools)
 add_subdirectory(ufd)
 add_subdirectory(cgp)
-add_subdirectory(malis)
 
