@@ -7,7 +7,6 @@ for key in _ufd.__dict__.keys():
     __all__.append(key)
 
 
-
 def ufd(size, dtype='uint64'):
     if dtype not in ['uint32','uint64']:
         raise RuntimeError("dtype must be 'uint32' or 'uint64'")

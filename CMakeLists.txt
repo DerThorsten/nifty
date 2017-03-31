@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.1)
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules)
 
 project(nifty)
@@ -33,6 +33,7 @@ option(BUILD_PYTHON_DOCS "Build the Python documentation with Sphinx" OFF)
 #-------------------------------------------------------------------------------------------------------------------
 # check for c++ 11 support
 #-------------------------------------------------------------------------------------------------------------------
+# FIXME c++14 checks are broken!
 if (CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR CMAKE_CXX_COMPILER_ID MATCHES "GNU")
     CHECK_CXX_COMPILER_FLAG("-std=c++14" HAS_CPP14_FLAG)
     CHECK_CXX_COMPILER_FLAG("-std=c++11" HAS_CPP11_FLAG)
@@ -45,6 +46,8 @@ if (CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR CMAKE_CXX_COMPILER_ID MATCHES "GNU"
     endif()
 endif()
 
+#set(CMAKE_CXX_STANDARD 14)
+#set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(OpenMP)
 if (OPENMP_FOUND)

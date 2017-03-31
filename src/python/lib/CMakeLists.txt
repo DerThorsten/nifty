@@ -58,8 +58,12 @@ macro(addPythonModule)
 
     set_target_properties(_${MODULE_NAME}  PROPERTIES PREFIX "")
 
+    #message(STATUS ********Module: ${MODULE_NAME})
+    #message(STATUS ********Libs: ${ADD_PY_MOD_LIBRRARIES})
+
     # link additional libraries
     target_link_libraries(_${MODULE_NAME} 
+        PUBLIC
         ${PYTHON_LIBRARIES} 
         ${ADD_PY_MOD_LIBRRARIES}
     )
@@ -81,7 +85,13 @@ endmacro()
 
 
 
-addPythonModule( NESTED_NAME nifty  SOURCES nifty.cxx )
+addPythonModule(
+    NESTED_NAME
+        nifty 
+    SOURCES
+        nifty.cxx
+    LIBRRARIES
+        ${NIFTY_LP_SOLVER_LIBS})
 
 
 # submodules
