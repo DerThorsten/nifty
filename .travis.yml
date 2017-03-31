@@ -9,7 +9,8 @@ addons:
       - ubuntu-toolchain-r-test
       - deadsnakes
       - boost-latest/ppa
-      - kubuntu-backports # cmake 2.8.12
+      - george-edison55/precise-backports #cmake-3.x
+      #- kubuntu-backports # cmake 2.8.12
     packages:
       - g++-4.8
       - g++-4.8-multilib
