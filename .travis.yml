@@ -68,7 +68,7 @@ matrix:
     - os: linux
       compiler: gcc
       script:
-        - cmake -DWITHIN_TRAVIS=ON -DWITH_GLPK=ON -DWITH_HDF5=ON -DBUILD_NIFTY_PYTHON=ON -DPYTHON_EXECUTABLE:FILEPATH/usr/bin/python2.7 
+        - cmake -DWITHIN_TRAVIS=ON -DWITH_GLPK=ON -DWITH_HDF5=ON -DBUILD_NIFTY_PYTHON=ON -DPYTHON_EXECUTABLE:/usr/bin/python2.7 
         - make -j2
         - CTEST_OUTPUT_ON_FAILURE=TRUE make test
         
