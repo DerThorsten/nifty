@@ -42,7 +42,7 @@ public:
 
     bool visit(LmcBase * mcBase) {
         PYBIND11_OVERLOAD_PURE(
-            void,                       /* Return type */
+            bool,                       /* Return type */
             VisitorBase,                /* Parent class */
             visit,                      /* Name of function */
             mcBase                      /* Argument(s) */
