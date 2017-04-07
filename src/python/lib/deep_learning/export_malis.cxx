@@ -14,25 +14,26 @@ namespace deep_learning{
     template<unsigned DIM, typename DATA_TYPE, typename LABEL_TYPE>
     void exportMalisGradientT(py::module & module){
 
-        module.def("malis_gradient",
+        module.def("malisLossAndGradient",
            [](
                 nifty::marray::PyView<DATA_TYPE, DIM+1> affinities,
-                nifty::marray::PyView<LABEL_TYPE, DIM> groundtruth
+                nifty::marray::PyView<LABEL_TYPE, DIM> groundtruth,
+                const float beta
            ){  
                 typedef nifty::array::StaticArray<int64_t,DIM+1> Coord;
                 Coord shape;
                 for(int d = 0; d < DIM+1; ++d)
                     shape[d] = affinities.shape(d);
-                nifty::marray::PyView<size_t, DIM+1> positiveGradients(shape.begin(), shape.end());
-                nifty::marray::PyView<size_t, DIM+1> negativeGradients(shape.begin(), shape.end());
+                nifty::marray::PyView<float, DIM+1> gradients(shape.begin(), shape.end());
                 {
                     py::gil_scoped_release allowThreads;
-                    compute_malis_gradient<DIM>(affinities, groundtruth, positiveGradients, negativeGradients);
+                    malisLossAndGradient<DIM>(affinities, groundtruth, gradients, beta);
                 }
-                return std::make_tuple(positiveGradients, negativeGradients);
+                return gradients;
            },
            py::arg("affinities"),
-           py::arg("groundtruth")
+           py::arg("groundtruth"),
+           py::arg("arg")
         );
     }
 
