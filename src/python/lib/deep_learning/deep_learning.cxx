@@ -4,7 +4,7 @@ namespace py = pybind11;
 
 namespace nifty{
 namespace deep_learning{
-    //void exportUfd(py::module &);
+    void exportMalis(py::module &);
 }
 }
 
@@ -14,7 +14,7 @@ PYBIND11_PLUGIN(_deep_learning) {
     
     using namespace nifty::deep_learning;
 
-    //exportUfd(deep_learningModule);
+    exportMalis(deep_learningModule);
 
     return deep_learningModule.ptr();
 }

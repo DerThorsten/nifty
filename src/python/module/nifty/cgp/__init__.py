@@ -6,9 +6,9 @@ from ._cgp import *
 try:
     import pylab
     import matplotlib.cm as cm
-    __hasPyLabAandMatplotlib = True
+    __hasPyLabAndMatplotlib = True
 except ImportError:
-    __hasPyLabAandMatplotlib = False
+    __hasPyLabAndMatplotlib = False
 
 __all__ = []
 
@@ -95,7 +95,7 @@ del __extend__
 
 
 def makeCellImage(image, mask_image, lut):
-    if(not __hasPyLabAandMatplotlib):
+    if(not __hasPyLabAndMatplotlib):
         raise RuntimeError("showCellValues")
     else:
         if lut.ndim ==1:

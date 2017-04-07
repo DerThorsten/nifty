@@ -3,5 +3,6 @@ addPythonModule(
         nifty/deep_learning
     SOURCES
         deep_learning.cxx
+        export_malis.cxx
 )
 
