@@ -159,7 +159,12 @@ cmake .. \
 ##
 ## Compile
 ##
-make -j${CPU_COUNT}
+if [[ $(uname) == 'Darwin' ]]; then
+    make -j${CPU_COUNT} 2> >(python "${RECIPE_DIR}"/filter-macos-linker-warnings.py)
+else
+    make -j${CPU_COUNT}
+fi
+
 #make test
 
 ##
