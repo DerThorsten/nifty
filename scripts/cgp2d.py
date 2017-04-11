@@ -29,6 +29,6 @@ print(nseg)
 
 cgp = ncgp.TopologicalGrid2D(seg)
 
-print(cgp.numberOfCells(0))
-print(cgp.numberOfCells(1))
-print(cgp.numberOfCells(2))
+print(cgp.numberOfCells[0])
+print(cgp.numberOfCells[1])
+print(cgp.numberOfCells[2])

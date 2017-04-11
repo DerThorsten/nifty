@@ -8,6 +8,9 @@ from multiprocessing import cpu_count
 import time
 import sys
 import threading
+import random
+import numpy
+
 
 try:
     import progressbar as _progressbar
@@ -27,6 +30,24 @@ for key in _tools.__dict__.keys():
 
 
 
+
+def rand_from_range_list(range_list, bad_slice_set):
+    while(True):
+        i = random.randint(0, len(range_list)-1)
+        r = range_list[i]
+        res =  random.randint(r[0],r[1])
+        if res not in bad_slice_set:
+            return res
+
+
+# stupid impl....
+# TODO make better
+def rand_choice(probs, choose_from=None):
+    probs = numpy.require(probs, dtype='float32')
+    probs /= probs.sum()
+    if choose_from is None:
+       choose_from = range(len(probs))
+    return numpy.random.choice(choose_from, 1, p=probs)[0]
 
 
 

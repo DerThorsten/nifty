@@ -22,7 +22,7 @@ option(WITH_HDF5 OFF)
 option(WITH_FASTFILTERS OFF)
 
 
-
+option(BUILD_CPP_TEST ON)
 option(BUILD_NIFTY_PYTHON OFF)
 option(BUILD_DOCS ON)
 option(BUILD_CPP_EXAMPLES ON)
@@ -33,7 +33,7 @@ option(BUILD_PYTHON_DOCS "Build the Python documentation with Sphinx" OFF)
 #-------------------------------------------------------------------------------------------------------------------
 # check for c++ 11 support
 #-------------------------------------------------------------------------------------------------------------------
-# FIXME c++14 is broken!
+# FIXME c++14 checks are broken!
 if (CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR CMAKE_CXX_COMPILER_ID MATCHES "GNU")
     CHECK_CXX_COMPILER_FLAG("-std=c++14" HAS_CPP14_FLAG)
     CHECK_CXX_COMPILER_FLAG("-std=c++11" HAS_CPP11_FLAG)
