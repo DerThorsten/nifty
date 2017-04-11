@@ -222,6 +222,7 @@ mergeEdges(
     // merging the histogram is just adding
     auto & ha = histograms_[aliveEdge];
     auto & hd = histograms_[deadEdge];
+    edgeSizes_[aliveEdge] += edgeSizes_[deadEdge];
     for(auto bin=0; bin<NumberOfBins; ++bin){
         ha[bin] += hd[bin];
     }
