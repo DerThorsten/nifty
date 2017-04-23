@@ -4,6 +4,7 @@
 #include "nifty/python/converter.hxx"
 #include "nifty/graph/shortest_path_dijkstra.hxx"
 #include "nifty/graph/undirected_list_graph.hxx"
+#include "nifty/parallel/threadpool.hxx"
 
 namespace py = pybind11;
 
@@ -76,16 +77,68 @@ namespace graph{
                     return pathsFromPredecessors(self, source, targets);
                 }
             )
-            //.def("runSingleSource", // single source -> all targets, don't really see why we would want to expose this
-            //    [](ShortestPathType & self, const EdgeWeightsType & weights, const int64_t source) {
-            //        self.runSingleSource(weights, source);
-            //    }
-            //)
         ;
     }
-    
+
+
+    template<typename WEIGHT_TYPE>
+    void exportParallelShortestPathT(py::module & graphModule) {
+        
+        typedef UndirectedGraph<> GraphType;
+        typedef WEIGHT_TYPE WeightType;
+        typedef ShortestPathDijkstra<GraphType, WeightType> ShortestPathType;
+        typedef std::vector<WeightType> EdgeWeightsType;
+        typedef std::vector<int64_t> NodeVector;
+        
+        graphModule.def("shortestPathSingleTargetParallel",
+            [](const GraphType & graph, const EdgeWeightsType & edgeWeights, const NodeVector & sources, const NodeVector & targets, const int nThreads) {
+                
+                std::vector<NodePath> nodePaths(sources.size());
+                parallel::ThreadPool threadpool(nThreads);
+                
+                // initialize a shortest path class for each thread
+                std::vector<ShortestPathType> shortestPathThreads( threadpool.nThreads(), ShortestPathType(graph) );
+                
+                {
+                    py::gil_scoped_release allowThreads;
+                    parallel::parallel_foreach(threadpool, sources.size(), [&](const int tid, const int ii) {
+                        auto & sp = shortestPathThreads[tid];
+                        sp.runSingleSourceSingleTarget(edgeWeights, sources[ii], targets[ii]);
+                        nodePaths[ii] = pathsFromPredecessors(sp, sources[ii], targets[ii]);
+                    });
+                }
+                return nodePaths;
+            },
+            py::arg("graph"),py::arg("edgeWeights"),py::arg("sources"),py::arg("targets"),py::arg("nThreads")=-1
+        ); 
+        
+        graphModule.def("shortestPathMultiTargetParallel",
+            [](const GraphType & graph, const EdgeWeightsType & edgeWeights, const NodeVector & sources, const std::vector<NodeVector> & targetVectors, const int nThreads) {
+                
+                std::vector<std::vector<NodePath>> nodePaths(sources.size());
+                parallel::ThreadPool threadpool(nThreads);
+                
+                // initialize a shortest path class for each thread
+                std::vector<ShortestPathType> shortestPathThreads( threadpool.nThreads(), ShortestPathType(graph) );
+                
+                {
+                    py::gil_scoped_release allowThreads;
+                    parallel::parallel_foreach(threadpool, sources.size(), [&](const int tid, const int ii) {
+                        auto & sp = shortestPathThreads[tid];
+                        sp.runSingleSourceMultiTarget(edgeWeights, sources[ii], targetVectors[ii]);
+                        nodePaths[ii] = pathsFromPredecessors(sp, sources[ii], targetVectors[ii]);
+                    });
+                }
+                return nodePaths;
+            },
+            py::arg("graph"),py::arg("edgeWeights"),py::arg("sources"),py::arg("targetVectors"),py::arg("nThreads")=-1
+        ); 
+    }
+
+
     void exportShortestPathDijkstra(py::module & graphModule) {
         exportShortestPathDijkstraT<float>(graphModule);
+        exportParallelShortestPathT<float>(graphModule);
         // TODO this does not work
         //exportShortestPathDijkstraT<double>(graphModule);
     }

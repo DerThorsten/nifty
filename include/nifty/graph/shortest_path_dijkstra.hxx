@@ -31,7 +31,7 @@ namespace graph{
         // no  callback no mask exposed
         template<class EDGE_WEGIHTS>
         void runSingleSourceSingleTarget(
-            EDGE_WEGIHTS edgeWeights,
+            const EDGE_WEGIHTS & edgeWeights, // why wasn't this a call by ref ?
             const int64_t source,
             const int64_t target = -1
         ){
@@ -55,7 +55,7 @@ namespace graph{
         // no  callback no mask exposed
         template<class EDGE_WEGIHTS>
         void runSingleSourceMultiTarget(
-            EDGE_WEGIHTS edgeWeights,
+            const EDGE_WEGIHTS & edgeWeights, // why wasn't this a call by ref ?
             const int64_t source,
             const std::vector<int64_t> & targets
         ){
@@ -69,10 +69,14 @@ namespace graph{
                 const DistanceMap     & distances,
                 const PredecessorsMap & predecessors
             ){
-                static size_t trgtsFound = 0;
+                thread_local size_t trgtsFound = 0; // this is declared to be thread local to be thread safe
                 if( std::find(targets.begin(), targets.end(), topNode) != targets.end() ) 
                     ++trgtsFound;
-                return trgtsFound < targets.size();
+                if( trgtsFound >= targets.size() ) {
+                    trgtsFound = 0;
+                    return false;
+                }
+                return true;
             };
 
             this->initializeMaps(&source, &source +1);
@@ -126,8 +130,8 @@ namespace graph{
             class VISITOR 
         >
         void runImpl(
-            EDGE_WEGIHTS edgeWeights,
-            const SUBGRAPH_MASK &  subgraphMask,
+            const EDGE_WEGIHTS & edgeWeights, // why wasn't this a call by ref ?
+            const SUBGRAPH_MASK & subgraphMask,
             VISITOR && visitor
         ){
 
