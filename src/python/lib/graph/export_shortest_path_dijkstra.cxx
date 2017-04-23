@@ -13,35 +13,37 @@ namespace py = pybind11;
 namespace nifty{
 namespace graph{
 
-    typedef std::vector<int64_t> nodePath;
+    typedef std::vector<int64_t> NodePath;
 
-    // TODO handle cases when no path exists
     template <typename SP_TYPE>
-    nodePath pathsFromPredecessors(
+    NodePath pathsFromPredecessors(
             const SP_TYPE & sp,
             const int64_t source,
             const int64_t target) {
         const auto & predecessors = sp.predecessors();
-        nodePath path;
+        const int64_t invalidNode = -1;
+        NodePath path;
         int64_t next = target;
-        // TODO what's the invalid key? -> if we hit it we need to break out of the loop and return invalid key
         while(next != source) {
             path.push_back(next);
             next = predecessors[next];
-            // invalid node
-            //if(next==invalid)
-            //  return nodePath(invalid);
+            // invalid node -> there is no path between target and source
+            // we return an empty path
+            if(next == invalidNode) {
+                NodePath emptyPath;
+                return emptyPath;
+            }
         }
         path.push_back(source);
         return path;
     }
     
     template <typename SP_TYPE>
-    std::vector<nodePath> pathsFromPredecessors(
+    std::vector<NodePath> pathsFromPredecessors(
             const SP_TYPE & sp,
             const int64_t source,
             const std::vector<int64_t> & targets) {
-        std::vector<nodePath> paths;
+        std::vector<NodePath> paths;
         for(auto trgt : targets)
             paths.push_back(pathsFromPredecessors(sp, source, trgt));
         return paths;

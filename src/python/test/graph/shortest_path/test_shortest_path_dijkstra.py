@@ -63,7 +63,22 @@ def testShortestPathDijkstraMultiTarget():
     print("Test Multi Target successfull")
 
 
+def testShortestPathInvalid():
+    edges = numpy.array([
+        [0,1],
+        [2,3]
+    ], dtype = 'uint64')
+    g = nifty.graph.UndirectedGraph(4)
+    g.insertEdges(edges)
+    sp = nifty.graph.ShortestPathDijkstra(g)
+    weights = [1.,1.]
+    path = sp.runSingleSourceSingleTarget(weights, 0, 3)
+    assert not path # make sure that the path is invalid
+    print("Test Invalid successfull")
+
+
 # TODO check that invalid paths are handled correctly
 if __name__ == '__main__':
     testShortestPathDijkstraSingleTarget()
     testShortestPathDijkstraMultiTarget()
+    testShortestPathInvalid()
