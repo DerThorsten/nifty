@@ -50,6 +50,34 @@ namespace graph{
             this->initializeMaps(&source, &source +1);
             runImpl(edgeWeights, subgraphMask, visitor);
         }
+        
+        // run single source multiple targets
+        // no  callback no mask exposed
+        template<class EDGE_WEGIHTS>
+        void runSingleSourceMultiTarget(
+            EDGE_WEGIHTS edgeWeights,
+            const int64_t source,
+            const std::vector<int64_t> & targets
+        ){
+            // subgraph mask
+            DefaultSubgraphMask<Graph> subgraphMask;
+            // visitor
+            // TODO does this work ???
+            auto visitor = [&targets]
+            (   
+                int64_t topNode,
+                const DistanceMap     & distances,
+                const PredecessorsMap & predecessors
+            ){
+                static size_t trgtsFound = 0;
+                if( std::find(targets.begin(), targets.end(), topNode) != targets.end() ) 
+                    ++trgtsFound;
+                return trgtsFound < targets.size();
+            };
+
+            this->initializeMaps(&source, &source +1);
+            runImpl(edgeWeights, subgraphMask, visitor);
+        }
 
         // run single source  ALL targets
         // no  callback no mask exposed
@@ -87,7 +115,7 @@ namespace graph{
         const DistanceMap & distances()const{
             return distMap_;
         }
-        const PredecessorsMap predecessors()const{
+        const PredecessorsMap & predecessors()const{ // is there a reason that this was not returned by ref before ?
             return predMap_;
         }
     private:
