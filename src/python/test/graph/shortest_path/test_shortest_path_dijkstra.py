@@ -27,34 +27,40 @@ def graphAndWeights():
 def testShortestPathDijkstraSingleTarget():
     g, weights = graphAndWeights()
     sp = nifty.graph.ShortestPathDijkstra(g)
-    path = sp.runSingleSourceSingleTarget(g, weights, 0, 4)
+    path = sp.runSingleSourceSingleTarget(weights, 0, 4)
 
     # shortest path 0 -> 4:
     # 0 - 1, 1 - 2, 3 - 4
     assert len(path) == 5, str(len(path))
+    path.reverse()
     for ii in range(5):
         assert path[ii] == ii, "%i, %i" % (path[ii], ii)
+    print("Test Single Target successfull")
 
 
 def testShortestPathDijkstraMultiTarget():
     g, weights = graphAndWeights()
     sp = nifty.graph.ShortestPathDijkstra(g)
-    paths = sp.runSingleSourceSingleTarget(g, weights, 0, [4,5])
+    paths = sp.runSingleSourceMultiTarget(weights, 0, [4,5])
 
     assert len(paths) == 2
 
     # shortest path 0 -> 4:
     # 0 - 1, 1 - 2, 3 - 4
     path = paths[0]
+    path.reverse()
     assert len(path) == 5, str(len(path))
     for ii in range(5):
         assert path[ii] == ii, "%i, %i" % (path[ii], ii)
 
     # shortest path 0 -> 5:
     # 0 - 5
+    path = paths[1]
+    path.reverse()
     assert len(path) == 2, str(len(path))
     assert path[0] == 0, str(path[0])
     assert path[1] == 5, str(path[1])
+    print("Test Multi Target successfull")
 
 
 # TODO check that invalid paths are handled correctly

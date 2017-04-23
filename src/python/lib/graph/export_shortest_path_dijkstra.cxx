@@ -32,6 +32,7 @@ namespace graph{
             //if(next==invalid)
             //  return nodePath(invalid);
         }
+        path.push_back(source);
         return path;
     }
     
@@ -83,6 +84,7 @@ namespace graph{
     
     void exportShortestPathDijkstra(py::module & graphModule) {
         exportShortestPathDijkstraT<float>(graphModule);
+        // TODO this does not work
         //exportShortestPathDijkstraT<double>(graphModule);
     }
 
