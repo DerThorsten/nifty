@@ -44,7 +44,7 @@ build:
 requirements:
   build:
     - gcc 4.8.5 # [unix]
-    - boost 1.55.0
+    - boost 1.60.0
     - python 2.7*
     - hdf5 1.8.17
     - fastfilters >=0.2.4.post3
@@ -60,7 +60,7 @@ requirements:
 
   run:
     - libgcc   4.8*
-    - boost 1.55.0
+    - boost 1.60.0
     - python {{PY_VER}}*
     - hdf5 1.8.17
     - numpy # Numpy version is not constrained, thanks to pybind11 magic
