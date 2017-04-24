@@ -1,5 +1,7 @@
-from gaussian_smoothing import *
-from slice_layer import *
-import block_factory
+from __future__ import absolute_import
 
-from keras import backend as K
+from . gaussian_smoothing import *
+from . slice_layer import *
+from . block_factory import *
+
+

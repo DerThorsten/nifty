@@ -1,12 +1,20 @@
-import tensorflow as tf
-tf.logging.set_verbosity(tf.logging.ERROR)
-import keras
-from keras import backend as K
-from keras.engine.topology import Layer
-import numpy as np
+_has_requirements = True
+
+try:
+    import tensorflow as tf
+    tf.logging.set_verbosity(tf.logging.ERROR)
+    import keras
+    from keras import backend as K
+    from keras.engine.topology import Layer
+    import numpy as np
+except ImportError:
+    _has_requirements = False
+    pass
 
 
-
+if _has_requirements == False:
+    class Layer:
+        pass
 
 
 
@@ -14,6 +22,11 @@ class Erosion2D(Layer):
 
     def __init__(self, filters, kernel_size, padding='same', strides=None, name=None, dilation_rate=None, **kwargs):
         super(Erosion2D, self).__init__(**kwargs)
+
+
+        
+        if not _has_requirements:
+            raise RuntimeError("requirements not fulfilled: needs keras and tensorflow")
 
         assert padding == 'same'
         self.filters = filters

@@ -1,9 +1,13 @@
-import keras
-import keras.layers.convolutional as k_conv
-from keras import backend as K
-from slice_layer import  slice_features_2d
-from .. keras_extensions import *
 
+try:
+    import keras
+    import keras.layers.convolutional as k_conv
+    from keras import backend as K
+    from slice_layer import  slice_features_2d
+    from .. keras_extensions import *
+except ImportError:
+    pass
+    
 class BlockFactory(object):
 
     def __init__(self, **kwargs):

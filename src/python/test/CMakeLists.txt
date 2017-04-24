@@ -1,15 +1,24 @@
 if(BUILD_PYTHON_TEST)
 
-find_program(NOSETESTS_PATH NAMES
-        "nosetests${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}"
-        "nosetests-${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}"
-        "nosetests${PYTHON_VERSION_MAJOR}"
-        "nosetests-${PYTHON_VERSION_MAJOR}"
-        "nosetests")
-
-    if(NOT NOSETESTS_PATH)
-        message( SEND_ERROR "PYTHON UNIT TESTS NEED NOSE" )
+    if(PYTHON_VERSION_MAJOR STREQUAL "2")
+        #message(STATUS "222222")
+        find_program(NOSETESTS_PATH NAMES
+                #"nosetests${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}"
+                #"nosetests-${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}"
+                #"nosetests${PYTHON_VERSION_MAJOR}"
+                #"nosetests-${PYTHON_VERSION_MAJOR}"
+                "nosetests")
+    else()
+        message(STATUS "333333")
+        find_program(NOSETESTS_PATH NAMES
+            #"nosetests${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}"
+            #"nosetests-${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}"
+            #"nosetests${PYTHON_VERSION_MAJOR}"
+            #"nosetests-${PYTHON_VERSION_MAJOR}"
+            "nosetests3")
     endif()
+
+    
 endif()
 
 
@@ -37,3 +46,7 @@ if(NOSETESTS_PATH)
     add_dependencies(python-test python-test-core)
 
 endif()
+
+
+
+

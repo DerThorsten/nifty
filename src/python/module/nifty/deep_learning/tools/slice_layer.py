@@ -1,8 +1,11 @@
-import keras
-from keras import backend as K
-from keras.layers import *
-from keras.layers.core import *
 
+try:
+    import keras
+    from keras import backend as K
+    from keras.layers import *
+    from keras.layers.core import *
+except ImportError:
+    pass
 
 def slice_features_2d(x, f_begin, f_end , shape_2d=None):
     

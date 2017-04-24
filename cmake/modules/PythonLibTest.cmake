@@ -13,12 +13,34 @@
 #
 # Released into the public domain. No warranty implied.
 
-find_program(NOSETESTS_PATH NAMES
-        "nosetests${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}"
-        "nosetests-${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}"
-        "nosetests${PYTHON_VERSION_MAJOR}"
-        "nosetests-${PYTHON_VERSION_MAJOR}"
-        "nosetests")
+if(NOT PYBIND11_PYTHON_VERSION)
+  set(PYBIND11_PYTHON_VERSION "" CACHE STRING "Python version to use for compiling modules")
+endif()
+
+set(Python_ADDITIONAL_VERSIONS 3.7 3.6 3.5 3.4)
+find_package(PythonLibsNew ${PYBIND11_PYTHON_VERSION} REQUIRED)
+
+
+
+
+#message(PYTHON_VERSION_MAJOR ${PYTHON_VERSION_MAJOR})
+if(PYTHON_VERSION_MAJOR STREQUAL "2")
+    #message(STATUS "222222")
+    find_program(NOSETESTS_PATH NAMES
+            #"nosetests${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}"
+            #"nosetests-${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}"
+            #"nosetests${PYTHON_VERSION_MAJOR}"
+            #"nosetests-${PYTHON_VERSION_MAJOR}"
+            "nosetests")
+else()
+    message(STATUS "333333")
+    find_program(NOSETESTS_PATH NAMES
+        #"nosetests${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}"
+        #"nosetests-${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}"
+        #"nosetests${PYTHON_VERSION_MAJOR}"
+        #"nosetests-${PYTHON_VERSION_MAJOR}"
+        "nosetests3")
+endif()
 
 if(NOT NOSETESTS_PATH)
     message(WARNING 
@@ -68,6 +90,8 @@ function(add_python_test_target TARGET_NAME)
         COMMAND ${NOSETESTS_PATH}  --nologcapture
         WORKING_DIRECTORY ${COPY_DIR}
         COMMENT "Running Python tests.")
+
+
 
 
     add_dependencies(${TARGET_NAME} ${COPY_MOD_TARGET})

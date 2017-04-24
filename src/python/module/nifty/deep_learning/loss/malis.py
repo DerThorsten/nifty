@@ -1,18 +1,24 @@
-import pymalis
-import tensorflow 
+
+_has_requirements = True
+try:
+    import tensorflow
+    import pymalis
+    import tensorflow 
+    import tensorflow as tf
+    from tensorflow.python.framework import ops
+
+except ImportError:
+    _has_requirements = False
+    pass 
+    
 
 
-
-
-
-
-import tensorflow as tf
-from tensorflow.python.framework import ops
 import numpy as np
 
 # Define custom py_func which takes also a grad op as argument:
 def py_func(func, inp, Tout, stateful=True, name=None, grad=None):
-    
+
+
     # Need to generate a unique name to avoid duplicates:
     rnd_name = 'PyFuncGrad' + str(np.random.randint(0, 1E+8))
     
@@ -23,7 +29,9 @@ def py_func(func, inp, Tout, stateful=True, name=None, grad=None):
 
 # Def custom square function using np.square instead of tf.square:
 def malis_loss(affinities, groundtruth, name=None):
-    
+
+    if not _has_requirements:
+        raise RuntimeError("requirements not fulfilled: needs tensorflow and pymalis")
     def impl(a,gt):
         #grad_p, grad_n = pymalis.malis(gt, a)
 
