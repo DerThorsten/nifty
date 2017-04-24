@@ -1,5 +1,12 @@
 if(BUILD_PYTHON_TEST)
-    find_program(NOSETESTS_PATH nosetests)
+
+find_program(NOSETESTS_PATH NAMES
+        "nosetests${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}"
+        "nosetests-${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}"
+        "nosetests${PYTHON_VERSION_MAJOR}"
+        "nosetests-${PYTHON_VERSION_MAJOR}"
+        "nosetests")
+
     if(NOT NOSETESTS_PATH)
         message( SEND_ERROR "PYTHON UNIT TESTS NEED NOSE" )
     endif()
