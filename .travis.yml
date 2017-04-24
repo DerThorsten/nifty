@@ -65,17 +65,17 @@ matrix:
         - CTEST_OUTPUT_ON_FAILURE=TRUE make test
         # 
   
-    - os: linux
-      compiler: gcc
-      script:
-        - cmake -DWITHIN_TRAVIS=ON -DBUILD_CPP_TEST=ON -DWITH_GLPK=ON -DWITH_HDF5=ON -DBUILD_NIFTY_PYTHON=ON -DPYTHON_EXECUTABLE:/usr/bin/python2.7 
-        - make -j2
-        - CTEST_OUTPUT_ON_FAILURE=TRUE make test
+    # - os: linux
+    #   compiler: gcc
+    #   script:
+    #     - cmake -DWITHIN_TRAVIS=ON -DBUILD_CPP_TEST=ON -DWITH_GLPK=ON -DWITH_HDF5=ON -DBUILD_NIFTY_PYTHON=ON -DPYTHON_EXECUTABLE:/usr/bin/python2.7 
+    #     - make -j2
+    #     - CTEST_OUTPUT_ON_FAILURE=TRUE make test
         
-        - pip install numpy
-        - make install
-        - make python-test
-        - CTEST_OUTPUT_ON_FAILURE=TRUE make test
+    #     - pip install numpy
+    #     - make install
+    #     - make python-test
+    #     - CTEST_OUTPUT_ON_FAILURE=TRUE make test
 
 
 

@@ -1,3 +1,9 @@
+if(BUILD_PYTHON_TEST)
+    if(NOT NOSETESTS_PATH)
+        message( SEND_ERROR "PYTHON UNIT TESTS NEED NOSE" )
+    else()
+else()
+
 
 include(PythonLibTest)
 
