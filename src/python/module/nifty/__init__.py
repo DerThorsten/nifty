@@ -12,7 +12,7 @@ for dirname, dirnames, filenames in os.walk('.'):
         print(os.path.join(dirname, subdirname))
     # print path to all filenames.
     for filename in filenames:
-
+        print('f',filename)
 
 # __all__ = []
 # for key in _nifty.__dict__.keys():
