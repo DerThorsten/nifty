@@ -1,16 +1,8 @@
-from __future__ import absolute_import
-from ._deep_learning import *
-
-__all__ = []
-for key in _deep_learning.__dict__.keys():
-    __all__.append(key)
+import pymalis
+import tensorflow 
 
 
-from . import data_loader
-from . import targets
-from . import loss
-from . import models
-from . import keras_extensions
+
 
 
 
@@ -33,6 +25,8 @@ def py_func(func, inp, Tout, stateful=True, name=None, grad=None):
 def malis_loss(affinities, groundtruth, name=None):
     
     def impl(a,gt):
+        #grad_p, grad_n = pymalis.malis(gt, a)
+
         return 1.0#, #_deep_learning.malisLossAndGradient(a,gt,0.5)
 
 
@@ -49,7 +43,9 @@ def malis_loss(affinities, groundtruth, name=None):
 def malis_loss_gradient(affinities, groundtruth, name=None):
     
     def impl(a,gt):
-        return _deep_learning.malisLossAndGradient(a,gt,0.5)
+        grad_p, grad_n = pymalis.malis(a, gt)
+        return grad_p + grad_n
+
 
 
     with ops.name_scope(name, "malis_loss", [affinities,groundtruth]) as name:
@@ -78,3 +74,6 @@ def _MalisLossGradient(op, grad_l):
 #     tf.global_variables_initializer().run()
 
 #     print(x.eval(), y.eval(), tf.gradients(y, x)[0].eval())
+
+
+
