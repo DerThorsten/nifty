@@ -57,11 +57,11 @@ matrix:
         #- cmake -DWITHIN_TRAVIS=ON -DBUILD_CPP_TEST=ON -DWITH_GLPK=ON -DWITH_HDF5=ON -DBUILD_NIFTY_PYTHON=ON -DPYBIND_ELEVEN_INCLUDE_DIR=pybind11-master/include -DCMAKE_CXX_COMPILER=g++-4.8 -DPYBIND11_PYTHON_VERSION=3.5 -DPYTHON_INCLUDE_DIR:PATH=/usr/include/python3.5m -DPYTHON_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libpython3.5m.so -DPYTHON_EXECUTABLE:FILEPATH=`pwd`/venv/bin/python3.5 
         - make -j2
         - CTEST_OUTPUT_ON_FAILURE=TRUE make test
-        
+        - make install
         - source venv/bin/activate
         - pip install numpy
         - pip install nose
-        #- make python-test
+        - make python-test
         - CTEST_OUTPUT_ON_FAILURE=TRUE make test
         # 
   
@@ -73,7 +73,8 @@ matrix:
         - CTEST_OUTPUT_ON_FAILURE=TRUE make test
         
         - pip install numpy
-        #- make python-test
+        - make install
+        - make python-test
         - CTEST_OUTPUT_ON_FAILURE=TRUE make test
 
 
@@ -91,7 +92,8 @@ matrix:
         
         - source venv/bin/activate
         - pip install numpy
-        #- make python-test
+        - make install
+        - make python-test
         - CTEST_OUTPUT_ON_FAILURE=TRUE make test
 
 
@@ -101,5 +103,6 @@ matrix:
 
         - cmake -DWITHIN_TRAVIS=ON -DBUILD_CPP_TEST=ON -DWITH_GLPK=OFF -DBUILD_NIFTY_PYTHON=ON -DPYBIND_ELEVEN_INCLUDE_DIR=pybind11-master/include -DPYBIND11_PYTHON_VERSION=2.7
         - make -j 2
+        - make install
         - CTEST_OUTPUT_ON_FAILURE=TRUE make test
         - make python-test
