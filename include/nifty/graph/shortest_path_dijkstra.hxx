@@ -29,9 +29,9 @@ namespace graph{
 
         // run single source single target
         // no  callback no mask exposed
-        template<class EDGE_WEGIHTS>
+        template<class EDGE_WEIGHTS>
         void runSingleSourceSingleTarget(
-            EDGE_WEGIHTS edgeWeights,
+            const EDGE_WEIGHTS & edgeWeights,
             const int64_t source,
             const int64_t target = -1
         ){
@@ -50,12 +50,43 @@ namespace graph{
             this->initializeMaps(&source, &source +1);
             runImpl(edgeWeights, subgraphMask, visitor);
         }
+        
+        // run single source multiple targets
+        // no  callback no mask exposed
+        template<class EDGE_WEIGHTS>
+        void runSingleSourceMultiTarget(
+            const EDGE_WEIGHTS & edgeWeights,
+            const int64_t source,
+            const std::vector<int64_t> & targets
+        ){
+            // subgraph mask
+            DefaultSubgraphMask<Graph> subgraphMask;
+            // visitor
+            size_t trgtsFound = 0;
+            auto visitor = [&targets, &trgtsFound]
+            (   
+                int64_t topNode,
+                const DistanceMap     & distances,
+                const PredecessorsMap & predecessors
+            ){
+                if( std::find(targets.begin(), targets.end(), topNode) != targets.end() ) 
+                    ++trgtsFound;
+                if( trgtsFound >= targets.size() ) {
+                    trgtsFound = 0;
+                    return false;
+                }
+                return true;
+            };
+
+            this->initializeMaps(&source, &source +1);
+            runImpl(edgeWeights, subgraphMask, visitor);
+        }
 
         // run single source  ALL targets
         // no  callback no mask exposed
-        template<class EDGE_WEGIHTS>
+        template<class EDGE_WEIGHTS>
         void runSingleSource(
-            EDGE_WEGIHTS edgeWeights,
+            const EDGE_WEIGHTS & edgeWeights,
             const int64_t source
         ){
 
@@ -72,9 +103,9 @@ namespace graph{
             runImpl(edgeWeights, subgraphMask, visitor);
         }
 
-        template<class EDGE_WEGIHTS, class SOURCE_ITER, class SUBGRAPH_MASK, class VISITOR>
+        template<class EDGE_WEIGHTS, class SOURCE_ITER, class SUBGRAPH_MASK, class VISITOR>
         void run(
-            EDGE_WEGIHTS edgeWeights,
+            const EDGE_WEIGHTS & edgeWeights,
             SOURCE_ITER sourceBegin, 
             SOURCE_ITER sourceEnd,
             const SUBGRAPH_MASK &  subgraphMask,
@@ -87,19 +118,19 @@ namespace graph{
         const DistanceMap & distances()const{
             return distMap_;
         }
-        const PredecessorsMap predecessors()const{
+        const PredecessorsMap & predecessors()const{ // is there a reason that this was not returned by ref before ?
             return predMap_;
         }
     private:
 
         template<
-            class EDGE_WEGIHTS, 
+            class EDGE_WEIGHTS, 
             class SUBGRAPH_MASK,
             class VISITOR 
         >
         void runImpl(
-            EDGE_WEGIHTS edgeWeights,
-            const SUBGRAPH_MASK &  subgraphMask,
+            const EDGE_WEIGHTS & edgeWeights,
+            const SUBGRAPH_MASK & subgraphMask,
             VISITOR && visitor
         ){
 

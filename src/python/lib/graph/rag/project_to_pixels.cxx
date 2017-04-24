@@ -22,9 +22,9 @@ namespace graph{
 
         ragModule.def("projectScalarNodeDataToPixels",
            [](
-               const RAG & rag,
+                const RAG & rag,
                 nifty::marray::PyView<T, 1, AUTO_CONVERT> nodeData,
-               const int numberOfThreads
+                const int numberOfThreads
            ){  
                 const auto labelsProxy = rag.labelsProxy();
                 const auto & shape = labelsProxy.shape();
