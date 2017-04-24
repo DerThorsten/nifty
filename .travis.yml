@@ -59,7 +59,7 @@ matrix:
         - source venv/bin/activate
         - pip install numpy
         - pip install nose
-        - make python-test
+        #- make python-test
         - CTEST_OUTPUT_ON_FAILURE=TRUE make test
         # 
   
@@ -71,7 +71,7 @@ matrix:
         - CTEST_OUTPUT_ON_FAILURE=TRUE make test
         
         - pip install numpy
-        - make python-test
+        #- make python-test
         - CTEST_OUTPUT_ON_FAILURE=TRUE make test
 
 
@@ -88,7 +88,7 @@ matrix:
         
         - source venv/bin/activate
         - pip install numpy
-        - make python-test
+        #- make python-test
         - CTEST_OUTPUT_ON_FAILURE=TRUE make test
 
 

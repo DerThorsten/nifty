@@ -59,7 +59,7 @@ function(add_python_test_target TARGET_NAME)
 
 
     add_custom_target(${TARGET_NAME}
-        COMMAND ${NOSETESTS_PATH}
+        COMMAND ${NOSETESTS_PATH}  --nologcapture
         WORKING_DIRECTORY ${COPY_DIR}
         COMMENT "Running Python tests.")
 

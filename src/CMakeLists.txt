@@ -13,4 +13,4 @@ if(BUILD_CPP_EXAMPLES)
 endif()
 
 #add_subdirectory(sandbox)
-#add_subdirectory(benchmark)
+add_subdirectory(benchmark)

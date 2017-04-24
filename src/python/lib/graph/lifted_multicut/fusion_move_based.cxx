@@ -125,6 +125,9 @@ namespace lifted_multicut{
            .def(py::init<>())
            .def_readwrite("proposalGenerator", &Settings::proposalGeneratorFactory)
            .def_readwrite("numberOfThreads", &Settings::numberOfThreads)
+           .def_readwrite("numberOfIterations",&Settings::numberOfIterations)
+           .def_readwrite("stopIfNoImprovement",&Settings::stopIfNoImprovement)
+           
            //.def_readwrite("verbose", &Settings::verbose)
         ;
      
