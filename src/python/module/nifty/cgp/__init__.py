@@ -31,8 +31,8 @@ def _extenTGrid():
     def extractCellsBounds(self):
         return Bounds2D(self)
 
-    def extractCellsGeometry(self, fill=False):
-        return Geometry2D(self, fill=fill)
+    def extractCellsGeometry(self, fill=True, sort1Cells=True):
+        return Geometry2D(self, fill=fill,sort1Cells=sort1Cells)
 
     TopologicalGrid2D.extractCellsBounds = extractCellsBounds
     TopologicalGrid2D.extractCellsGeometry = extractCellsGeometry
@@ -87,8 +87,29 @@ def __extend__():
 
     Bounds2D.__getitem__ = getBoundsItem
 
+
+    # cell 1 bounded by (in 2D junctions of boundaries)
+    def get_inverse1(self):
+        return Cell1BoundedByVector2D(self)
+    Cell0BoundsVector2D.reverseMapping = get_inverse1
+
+    # cell 1 bounded by (in 2D junctions of boundaries)
+    def get_inverse2(self):
+        return Cell2BoundedByVector2D(self)
+    Cell1BoundsVector2D.reverseMapping = get_inverse2
+
+
 __extend__()
 del __extend__
+
+
+
+
+
+
+
+
+
 
 
 
@@ -102,13 +123,13 @@ def makeCellImage(image, mask_image, lut):
             nLutChannels = 1
             zeroValue = 0
         elif lut.ndim ==2:
-            nLutChannels
+            nLutChannels = lut.shape[1]
             zeroValue = [0]*nLutChannels
         else:
-            raise ValueError("lut ndim must be in [0,1]")
+            raise ValueError("lut ndim must be in [1,2]")
         _lut = numpy.hstack((zeroValue,lut))
         lutImg = numpy.take(_lut, mask_image)
-        print("lut image",lutImg.shape)
+       #print("lut image",lutImg.shape)
         resImage = image.copy()
         whereImage = mask_image!=0
         resImage[whereImage] = lutImg[whereImage]

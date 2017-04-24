@@ -23,11 +23,19 @@ def watersheds(raw, sigma):
 
 
 
+
+
 seg, nseg = watersheds(raw, 3.0)
+
+
 
 print(nseg)
 
 cgp = ncgp.TopologicalGrid2D(seg)
+geometry = cgp.extractCellsGeometry(fill=False)
+geometryCell1  = geometry[1]
+
+print("le geo", numpy.array(geometryCell1[0]))
 
 print(cgp.numberOfCells[0])
 print(cgp.numberOfCells[1])

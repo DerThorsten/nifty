@@ -71,6 +71,9 @@ namespace ground_truth{
         }
 
 
+
+
+
         double differentOverlap(const LabelType u, const LabelType v)const{
 
             const auto & olU = overlaps_[u];
@@ -115,6 +118,64 @@ namespace ground_truth{
         const std::vector<MapType> & overlaps()const{
             return overlaps_;
         };
+
+
+        LabelType maxOverlappingLabel(const LabelType u )const{
+            const auto & ol = overlaps_[u];
+            CountType maxOl = 0;
+            LabelType maxL = 0 ;
+            for(const auto & kv : ol){
+                if(kv.second > maxOl){
+                    maxOl = kv.second;
+                    maxL = kv.first;
+                }
+            }
+            return maxL;
+        }
+        /**
+         * @brief      find the maximum overlapping label and ignore zeros,
+         *             except if zero is the only overlap.
+         *
+         * @param[in]  u     query label
+         *
+         * @return     maximum overlapping label
+         */
+        LabelType maxOverlappingLabelDownvoteZeros(const LabelType u )const{
+            const auto & ol = overlaps_[u];
+            CountType maxOl = 0;
+            LabelType maxL = 0;
+            const auto size = ol.size();
+
+            for(const auto & kv : ol){
+                if(size==0){
+                    return kv.first;
+                }
+                if(kv.first!=LabelType(0) && kv.second > maxOl){
+                    maxOl = kv.second;
+                    maxL = kv.first;
+                }
+            }
+            return maxL;
+        }
+        std::pair<LabelType,bool> maxOverlappingNonZeroLabel(const LabelType u )const{
+            const auto & ol = overlaps_[u];
+            bool found = false;
+            CountType maxOl = 0;
+            LabelType maxL = 0;
+            for(const auto & kv : ol){
+                if(kv.first!=LabelType(0) && kv.second > maxOl){
+                    maxOl = kv.second;
+                    maxL = kv.first;
+                    found = true;
+                }
+            }
+            return std::pair<LabelType,bool>(maxL, found);
+        }
+
+        bool isOverlappingWithZero(const LabelType u )const{
+            const auto & ol = overlaps_[u];
+            return ol.find(LabelType(0)) != ol.end();
+        }
 
 
 

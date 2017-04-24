@@ -2,6 +2,18 @@ from __future__ import absolute_import
 from __future__ import print_function
 
 from ._nifty import *
+
+
+import os
+
+for dirname, dirnames, filenames in os.walk('.'):
+    # print path to all subdirectories first.
+    for subdirname in dirnames:
+        print(os.path.join(dirname, subdirname))
+    # print path to all filenames.
+    for filename in filenames:
+
+
 # __all__ = []
 # for key in _nifty.__dict__.keys():
     # __all__.append(key)

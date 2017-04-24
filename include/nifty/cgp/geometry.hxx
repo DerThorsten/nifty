@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <deque>
 
 #include "nifty/marray/marray.hxx"
 #include "nifty/cgp/topological_grid.hxx"
@@ -11,12 +12,15 @@ namespace nifty{
 namespace cgp{
 
 
+    template<size_t DIM>
+    class Geometry;
 
     
     template<size_t DIM, size_t CELL_TYPE>
     class CellGeometry;
 
-
+    // zero cell should be the same for all dimensions,
+    // a single dot
     template<size_t DIM>
     class CellGeometry<DIM, 0> : public std::array<
         array::StaticArray<uint32_t, 2>, 
@@ -38,6 +42,42 @@ namespace cgp{
         }
     };
 
+
+    // Edges in 2D
+    template<>
+    class CellGeometry<2, 1> : public std::vector< array::StaticArray<uint32_t, 2> > {
+    public:
+        friend class Geometry<2>;
+        const static size_t DIM = 2;
+        typedef std::integral_constant<size_t, DIM> DimensionType;
+        typedef nifty::array::StaticArray<uint32_t, DIM> CoordinateType;
+        typedef nifty::array::StaticArray<float, DIM> FloatCoordinateType;
+        typedef std::vector<CoordinateType> BaseType;
+        using BaseType::BaseType;
+
+        CellGeometry()
+        :   BaseType(),
+            isSorted_(false){
+        }
+
+        FloatCoordinateType centerOfMass()const{
+            CoordinateType s(uint32_t(0));
+            for(const auto & c : *this){
+                s += c;
+            }
+            FloatCoordinateType center;
+            std::copy(s.begin(), s.end(), center.begin());
+            center /= float(this->size());
+            return center;
+        }
+
+
+    private:
+        bool isSorted_;
+    };
+
+
+    // default cell
     template<size_t DIM, size_t CELL_TYPE>
     class CellGeometry : public std::vector< array::StaticArray<uint32_t, DIM> > {
     public:
@@ -60,8 +100,17 @@ namespace cgp{
     };
 
 
+    template<size_t DIM, size_t CELL_TYPE>
+    class CellGeometryVector  :
+        public std::vector<CellGeometry<DIM, CELL_TYPE> > 
+    {
+
+    };
+
     template<size_t DIM>
     class Geometry;
+
+
 
 
     template<>
@@ -73,10 +122,10 @@ namespace cgp{
 
         typedef TopologicalGrid<2> TopologicalGridType;
 
-        Geometry(const TopologicalGridType & tGrid, const bool=false);
+        Geometry(const TopologicalGridType & tGrid, const bool fill=false, const bool sort1Cells=true);
 
         template<size_t CELL_TYPE>
-        const std::vector< CellGeometry<2, CELL_TYPE> > &
+        const CellGeometryVector<2,CELL_TYPE> &
         geometry()const{
             return std::get<CELL_TYPE>(geometry_);
         }
@@ -84,15 +133,17 @@ namespace cgp{
     private:
         
         std::tuple<
-            std::vector< CellGeometry<2, 0> >,
-            std::vector< CellGeometry<2, 1> >,
-            std::vector< CellGeometry<2, 2> >
+            CellGeometryVector<2, 0> ,
+            CellGeometryVector<2, 1> ,
+            CellGeometryVector<2, 2> 
         > geometry_;
+
+        
     };
 
 
 
-    inline Geometry<2>::Geometry(const TopologicalGridType & tGrid, const bool fill){
+    inline Geometry<2>::Geometry(const TopologicalGridType & tGrid, const bool fill, const bool sort1Cells){
 
 
         std::get<0>(geometry_).resize(tGrid.numberOfCells()[0]);
@@ -127,7 +178,6 @@ namespace cgp{
             });
         }
         else{
-
             // pass 1 
             nifty::tools::forEachCoordinate(tGrid.topologicalGridShape(), [&](
                 const SignedCoordinateType & tCoord
@@ -201,8 +251,119 @@ namespace cgp{
 
                 //std::cout<<"\n";
             });
+        }
+
+        // the complexity of the current implementation is o(n*2) which is
+        // a waste! 
+        // but i guess in practice for 2D this might not be harmful
+        if(sort1Cells){
+            std::cout<<"Fill "<<fill<<" sort1Cells "<<sort1Cells<<"\n"; 
+            std::cout<<"sort "<<tGrid.numberOfCells()[1]<<"  1 cells\n";
+            auto & cells = std::get<1>(geometry_);
+
+            for(uint32_t cell1Index=0; cell1Index<tGrid.numberOfCells()[1]; ++cell1Index){
+                std::cout<<"    cell1Index"<<cell1Index<<"\n";
+                auto & geo     = cells[cell1Index];
+                geo.isSorted_ = true;
+                auto nUsed = 0;
+                std::vector<bool> used(geo.size(), false);
+                std::deque<CoordinateType>  sorted;
+                sorted.push_back(geo.front());
+                used[0] = true;
+                ++nUsed;
 
 
+                auto isMatch = [fill](const CoordinateType & a, const CoordinateType b){
+                    if(fill){
+                        // if we used filled coordinates,
+                        // only one coordinate should differ by one
+                        // => if so, we know it's a match
+                        
+                        const auto dx = std::abs(int(a[0]) -int(b[0]));
+                        const auto dy = std::abs(int(a[1]) -int(b[1]));
+                        return dx + dy == 1;
+                    }
+                    else{
+                        // more complicated
+                        //    horizontal   
+                        //      |   |
+                        //    - * - * - 
+                        //      |   |
+                        //      
+                        if(a[0]%2 == 0){
+                            const int offsets[6][2] = {
+                                {-2, 0},
+                                { 2, 0},
+                                {-1,-1},
+                                { 1,-1},
+                                {-1, 1},
+                                { 1, 1}                           
+                            };
+                            for(auto oi=0; oi<6; ++oi){
+                                if(b[0]+offsets[oi][0] == a[0] && b[1]+offsets[oi][1]){
+                                    return true;
+                                }
+                            }
+                        }   
+                        //     vertical   
+                        //         | 
+                        //       - * -
+                        //         |
+                        //       - * -
+                        //         |
+                        //         
+                        if(a[0]%2 == 1){
+                            const int offsets[6][2] = {
+                                { 0,-2},
+                                { 0, 2},
+                                {-1,-1},
+                                {-1, 1},
+                                { 1,-1},
+                                { 1, 1}                         
+                            };
+                            for(auto oi=0; oi<6; ++oi){
+                                if(b[0]+offsets[oi][0] == a[0] && b[1]+offsets[oi][1]){
+                                    return true;
+                                }
+                            }
+                        }
+                        return false;
+                    }
+                };
+                std::cout<<"        size: "<<geo.size()<<"\n";
+                while(nUsed != geo.size()){
+                    auto added = false;
+                    std::cout<<" loop\n";
+                    for(auto c=0; c<geo.size(); ++c){
+
+                        if(!used[c]){
+                            auto & coord = geo[c];
+                            // check if coord matches begin or end
+                            if(isMatch(sorted.front(), coord)){
+                                sorted.push_front(coord);
+                                used[c] = true;
+                                ++nUsed;
+                                added = true;
+                                continue;
+                            }
+                            else if(isMatch(sorted.back(), coord)){
+                                sorted.push_back(coord);
+                                used[c] = true;
+                                ++nUsed;
+                                added = true;
+                                continue;
+                            }
+                        }
+                       
+                    }
+                    NIFTY_CHECK(added,"internal error, please contacts developers");
+
+                }
+
+                // here it is sorted
+                geo.clear();
+                std::copy(geo.begin(), geo.end(), sorted.begin());
+            }
         }
     }
 
