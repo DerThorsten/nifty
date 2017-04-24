@@ -185,13 +185,15 @@ class TestLiftedMulticutSolver(unittest.TestCase):
             
 
 
-            pgen = obj.watershedProposalGenerator('SEED_FROM_LOCAL')
+            pgen = obj.watershedProposalGenerator(sigma=1.0,seedingStrategie='SEED_FROM_LOCAL',
+                numberOfSeeds=0.1)
 
             print(x)
 
 
             solverFactory = obj.fusionMoveBasedFactory()
-            solverFactory = obj.fusionMoveBasedFactory(proposalGenerator=pgen)
+            solverFactory = obj.fusionMoveBasedFactory(proposalGenerator=pgen, numberOfIterations=100,
+                stopIfNoImprovement=10)
             solver = solverFactory.create(obj)
             visitor = obj.verboseVisitor(100)
             argN = solver.optimize(visitor)
