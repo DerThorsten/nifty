@@ -63,7 +63,7 @@ def __extendLiftedMulticutObj(objectiveCls, objectiveName):
             numberOfSeeds (float, optional): Number of seed to generate.
                 A number smaller as one will be interpreted as a fraction of
                 the number of nodes (default 0.1)
-            seedingStrategie (str, optional): Can be:
+            seedingStrategy (str, optional): Can be:
                 - 'SEED_FROM_LIFTED' : All negative weighted lifted edges
                     can be used to generate seeds.
                 - 'SEED_FROM_LOCAL' : All negative weighted local edges
@@ -85,11 +85,11 @@ def __extendLiftedMulticutObj(objectiveCls, objectiveName):
             'SEED_FROM_BOTH' : pGenSettings.SeedingStrategie.SEED_FROM_BOTH,
         }
         try:
-            enumVal = stringToEnum[seedingStrategie]
+            enumVal = stringToEnum[seedingStrategy]
         except:
             raise RuntimeError("unkown seedingStrategie '%s': must be either"\
                                "'SEED_FROM_LIFTED','SEED_FROM_LOCAL' or "\
-                               " 'SEED_FROM_BOTH' "%str(seedingStrategie))
+                               " 'SEED_FROM_BOTH' "%str(seedingStrategy))
 
         pGenSettings.sigma = float(sigma)
         pGenSettings.numberOfSeeds = float(numberOfSeeds)
