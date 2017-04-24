@@ -42,7 +42,6 @@ namespace tools{
             if(std::find(skipSlices.begin(), skipSlices.end(), sliceId) != skipSlices.end())
                 return;
             
-            std::cout << sliceId << " / " << shape[0] << std::endl;
             auto & threadUniques = threadData[tid];
 
             // get subblocks in this slice

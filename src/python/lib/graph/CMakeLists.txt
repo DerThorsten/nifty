@@ -7,7 +7,7 @@ addPythonModule(
         undirected_list_graph.cxx
         edge_contraction_graph_undirected_graph.cxx
     LIBRRARIES
-        ${HDF5_LIBRARIES} ${NIFTY_LP_SOLVER_LIBS}
+        ${HDF5_LIBRARIES}# ${NIFTY_LP_SOLVER_LIBS}
 )
 
 

@@ -35,3 +35,11 @@ The Python API is at present the easiest to use. The C++ API is mostly for power
 We recommend to use library from Python.
 Almost any class / function in the Python API is calling into C++ via pybind11.
 
+Install:
+=======
+
+The easiest way to install this version is via conda (right now only available with gurobi, cplex version coming soon):
+
+```
+$ GUROBI_ROOT_DIR=/path/to/gurobi conda install -c cpape nifty-with-gurobi
+```

@@ -147,6 +147,8 @@ cmake .. \
         -DBOOST_ROOT=${PREFIX} \
         -DWITH_HDF5=ON \
         -DHDF5_INCLUDE_DIR=${PREFIX}/include \
+        -DWITH_FASTFILTERS=ON \
+        -DFASTFILTERS_INCLUDE_DIR=${PREFIX}/include\
         ${CPLEX_ARGS} \
         ${GUROBI_ARGS} \
 \

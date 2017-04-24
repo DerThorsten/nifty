@@ -239,14 +239,13 @@ namespace graph{
                 }
             );
           
-            std::cout<<"Generated "<<proposals.size() << " in parallel." << "\n";
+            //std::cout<<"Generated "<<proposals.size() << " in parallel." << "\n";
             // recursive thing
             
-            /*
             std::vector<NodeLabels> proposals2;
             size_t nFuse = settings_.fuseN;
             
-            if(!proposals.empty()){
+            if(!proposals.empty() && nFuse > 0){
                 while(proposals.size()!= 1){
                     //std::cout<<" aaa \n";
                     NIFTY_CHECK_OP(proposals.size(),>=,2,"");
@@ -289,7 +288,6 @@ namespace graph{
             }
             //std::cout<<"doish\n";
             bestEnergy = objective_.evalNodeLabels(currentBest);
-            */
 
             // call the visitor and see if we need to continue
             if(visitor!= nullptr){
