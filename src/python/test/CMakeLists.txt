@@ -1,4 +1,5 @@
 if(BUILD_PYTHON_TEST)
+    find_program(NOSETESTS_PATH nosetests)
     if(NOT NOSETESTS_PATH)
         message( SEND_ERROR "PYTHON UNIT TESTS NEED NOSE" )
     endif()
