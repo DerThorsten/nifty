@@ -182,14 +182,19 @@ void accumulateEdgeFeaturesFlatWithAccChain(
 
             Coord beginA ({sliceIdA, 0L, 0L});
             Coord endA({sliceIdA+1, shape[1], shape[2]});
+            std::cout << "Coords A" << std::endl;
+            std::cout << beginA << std::endl;
+            std::cout << endA << std::endl;
             
             auto labelsA = labelsAStorage.getView(tid);  
             labelsProxy.readSubarray(beginA, endA, labelsA);
             auto labelsASqueezed = labelsA.squeezedView();
+            std::cout << "Have labels A" << std::endl;
         
             auto dataA = dataAStorage.getView(tid);
             tools::readSubarray(data, beginA, endA, dataA);
             auto dataASqueezed = dataA.squeezedView();
+            std::cout << "Have everything for A" << std::endl;
             
             accumulateInnerSliceFeatures(
                     threadAccChainVec,
@@ -212,6 +217,7 @@ void accumulateEdgeFeaturesFlatWithAccChain(
             auto dataB = dataBStorage.getView(tid);
             tools::readSubarray(data, beginB, endB, dataB);
             auto dataBSqueezed = dataB.squeezedView();
+            std::cout << "Have everything for B" << std::endl;
             
             // accumulate features for the in between slice edges
             accumulateBetweenSliceFeatures(
@@ -239,6 +245,7 @@ void accumulateEdgeFeaturesFlatWithAccChain(
                         pass,
                         sliceIdB);
             }
+            //std::cout << "Pair done" << std::endl;
         });
     }
     
