@@ -12,6 +12,7 @@ addPythonModule(
         accumulate.cxx
         accumulate_stacked.cxx
         accumulate_filters_stacked.cxx
+        accumulate_flat.cxx
     LIBRRARIES
     ${HDF5_LIBRARIES} ${FASTFILTERS_LIBRARY}# ${NIFTY_LP_SOLVER_LIBS}
 )

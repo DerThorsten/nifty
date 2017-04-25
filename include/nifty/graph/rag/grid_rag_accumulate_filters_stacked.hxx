@@ -8,7 +8,6 @@
 #include "nifty/graph/rag/grid_rag.hxx"
 #include "nifty/graph/rag/grid_rag_stacked_2d.hxx"
 #include "nifty/marray/marray.hxx"
-#include "nifty/tools/for_each_block.hxx"
 #include "nifty/parallel/threadpool.hxx"
 #include "nifty/features/fastfilters_wrapper.hxx"
 #include "vigra/accumulator.hxx"
@@ -60,7 +59,6 @@ inline void calculateFilters(const marray::View<DATA_TYPE> & dataSqueezed,
 }
 
 // calculate filters for given input single threaded
-// TODO use pre-smoothing once implemented
 template<class DATA_TYPE, class F, class COORD>
 inline void calculateFilters(const marray::View<DATA_TYPE> & dataSqueezed,
         marray::View<float> & dataCopy,
@@ -193,7 +191,9 @@ inline void accumulateBetweenSliceFeatures(ACC_CHAIN_VECTOR & channelAccChainVec
     });
 }
 
-
+// TODO
+// TODO for z edges, introduce option for only looking up / down, once we have established this on cremi
+// TODO
 template<class EDGE_ACC_CHAIN, class LABELS_PROXY, class DATA, class F_XY, class F_Z>
 void accumulateEdgeFeaturesFromFiltersWithAccChain(
     const GridRagStacked2D<LABELS_PROXY> & rag,
@@ -420,7 +420,7 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
                 fZ(channelAccChainVec, accOffset);
             }
                
-            // accumulate the inner slice features for the last slice
+            // accumulate the inner slice features for the last slice, which is never a lower slice
             if(!keepZOnly && (sliceIdB == numberOfSlices - 1 && rag.numberOfInSliceEdges(sliceIdB) > 0)) {
                 auto inEdgeOffset = rag.inSliceEdgeOffset(sliceIdB);
                 // resize the current channel acc chain vector

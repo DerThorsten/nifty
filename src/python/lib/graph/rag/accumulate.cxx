@@ -4,8 +4,6 @@
 #include "nifty/python/converter.hxx"
 
 
-
-
 #ifdef WITH_HDF5
 
 #include "nifty/hdf5/hdf5_array.hxx"

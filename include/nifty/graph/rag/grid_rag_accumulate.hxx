@@ -22,19 +22,32 @@ namespace graph{
         :
             setMinMax(false),
             minVal(std::numeric_limits<double>::infinity()),
-            maxVal(-1.0*std::numeric_limits<double>::infinity()){
+            maxVal(-1.0*std::numeric_limits<double>::infinity()),
+            zDirection(0){
         }
         AccOptions(const double minV,
                    const double maxV)
         :
             setMinMax(true),
             minVal(minV),
-            maxVal(maxV){
+            maxVal(maxV),
+            zDirection(0){
+        }
+        AccOptions(const double minV,
+                   const double maxV,
+                   const int zDirection)
+        :
+            setMinMax(true),
+            minVal(minV),
+            maxVal(maxV),
+            zDirection(zDirection){
         }
 
         const bool   setMinMax;
         const double minVal;
         const double maxVal;
+        // flag that determines how z edges will be accumulated 
+        const int zDirection; // TODO this would be most clean as an enum
     };
 
     template<class T,class U>
@@ -86,21 +99,19 @@ namespace graph{
             perThreadEdgeAccChainVector[i] = new EdgeAccChainVectorType(rag.edgeIdUpperBound()+1);
         });
 
-        const auto passesRequired = (*perThreadEdgeAccChainVector.front()).front().passesRequired();
-
         if(accOptions.setMinMax){
+            vigra::HistogramOptions histogram_opt;
+            histogram_opt = histogram_opt.setMinMax(accOptions.minVal, accOptions.maxVal); 
             parallel::parallel_foreach(threadpool, actualNumberOfThreads,
             [&](int tid, int i){
-
-                vigra::HistogramOptions histogram_opt;
-                histogram_opt = histogram_opt.setMinMax(accOptions.minVal, accOptions.maxVal); 
-
                 auto & edgeAccVec = *(perThreadEdgeAccChainVector[i]);
                 for(auto & edgeAcc : edgeAccVec){
                     edgeAcc.setHistogramOptions(histogram_opt);
                 }
             });
         }
+        
+        const auto passesRequired = (*perThreadEdgeAccChainVector.front()).front().passesRequired();
 
         // do N passes of accumulator
         for(auto pass=1; pass <= passesRequired; ++pass){
