@@ -182,19 +182,14 @@ void accumulateEdgeFeaturesFlatWithAccChain(
 
             Coord beginA ({sliceIdA, 0L, 0L});
             Coord endA({sliceIdA+1, shape[1], shape[2]});
-            std::cout << "Coords A" << std::endl;
-            std::cout << beginA << std::endl;
-            std::cout << endA << std::endl;
             
             auto labelsA = labelsAStorage.getView(tid);  
             labelsProxy.readSubarray(beginA, endA, labelsA);
             auto labelsASqueezed = labelsA.squeezedView();
-            std::cout << "Have labels A" << std::endl;
         
             auto dataA = dataAStorage.getView(tid);
             tools::readSubarray(data, beginA, endA, dataA);
             auto dataASqueezed = dataA.squeezedView();
-            std::cout << "Have everything for A" << std::endl;
             
             accumulateInnerSliceFeatures(
                     threadAccChainVec,
@@ -217,7 +212,6 @@ void accumulateEdgeFeaturesFlatWithAccChain(
             auto dataB = dataBStorage.getView(tid);
             tools::readSubarray(data, beginB, endB, dataB);
             auto dataBSqueezed = dataB.squeezedView();
-            std::cout << "Have everything for B" << std::endl;
             
             // accumulate features for the in between slice edges
             accumulateBetweenSliceFeatures(
@@ -245,7 +239,6 @@ void accumulateEdgeFeaturesFlatWithAccChain(
                         pass,
                         sliceIdB);
             }
-            //std::cout << "Pair done" << std::endl;
         });
     }
     
@@ -262,6 +255,7 @@ void accumulateEdgeFeaturesFlatWithAccChain(
 }
     
 
+// 9 features
 // 11 features
 template<size_t DIM, class LABELS_PROXY, class DATA, class FEATURE_TYPE>
 void accumulateEdgeFeaturesFlat(
@@ -279,12 +273,13 @@ void accumulateEdgeFeaturesFlat(
     typedef acc::UserRangeHistogram<40>            SomeHistogram;   //binCount set at compile time
     typedef acc::StandardQuantiles<SomeHistogram > Quantiles;
 
+    // FIXME skewness and kurtosis are broken
     typedef acc::Select<
         acc::DataArg<1>,
         acc::Mean,        //1
         acc::Variance,    //1
-        acc::Skewness,    //1
-        acc::Kurtosis,    //1
+        //acc::Skewness,    //1
+        //acc::Kurtosis,    //1
         Quantiles         //7
     > SelectType;
     typedef acc::StandAloneAccumulatorChain<DIM, DataType, SelectType> AccChainType;
@@ -312,10 +307,10 @@ void accumulateEdgeFeaturesFlat(
                 const auto quantiles = get<Quantiles>(chain);
                 edgeFeaturesOut(edge, 0) = replaceIfNotFinite(mean,     0.0);
                 edgeFeaturesOut(edge, 1) = replaceIfNotFinite(get<acc::Variance>(chain), 0.0);
-                edgeFeaturesOut(edge, 2) = replaceIfNotFinite(get<acc::Skewness>(chain), 0.0);
-                edgeFeaturesOut(edge, 3) = replaceIfNotFinite(get<acc::Kurtosis>(chain), 0.0);
+                //edgeFeaturesOut(edge, 2) = replaceIfNotFinite(get<acc::Skewness>(chain), 0.0);
+                //edgeFeaturesOut(edge, 3) = replaceIfNotFinite(get<acc::Kurtosis>(chain), 0.0);
                 for(auto qi=0; qi<7; ++qi)
-                    edgeFeaturesOut(edge, 4+qi) = replaceIfNotFinite(quantiles[qi], mean);
+                    edgeFeaturesOut(edge, 2+qi) = replaceIfNotFinite(quantiles[qi], mean);
             }); 
         },
         AccOptions(minVal, maxVal, zDirection)

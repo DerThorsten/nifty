@@ -37,7 +37,7 @@ namespace graph{
             const int numberOfThreads
         ){
             typedef nifty::marray::PyView<DATA_T> NumpyArrayType;
-            NumpyArrayType edgeOut({uint64_t(rag.edgeIdUpperBound()+1),uint64_t(11)});
+            NumpyArrayType edgeOut({uint64_t(rag.edgeIdUpperBound()+1),uint64_t(9)});
             {
                 py::gil_scoped_release allowThreads;
                 accumulateEdgeFeaturesFlat(rag, data, minVal, maxVal, edgeOut, zDirection, numberOfThreads);
