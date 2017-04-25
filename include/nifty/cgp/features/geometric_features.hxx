@@ -1,20 +1,28 @@
 #pragma once
 
+#include <vector>
+
+#include "nifty/histogram/histogram.hxx"
 #include "nifty/cgp/geometry.hxx"
 #include "nifty/marray/marray.hxx"
+
 
 
 namespace nifty{
 namespace cgp{
 
-    class CurvatureFeatrues{
+    class Cell1CurvatureFeatures2D{
 
     public:
-        CurvatureFeatrues(){
+        Cell1CurvatureFeatures2D(
+            const std::vector<float> & sigmas
+        )
+        :   sigmas_(sigmas)
+        {
 
         }
 
-        size_t numberOfFeatrues()const{
+        size_t numberOfFeatures()const{
             return 3;    
         }
             
@@ -23,7 +31,7 @@ namespace cgp{
         void operator()(
             const CellGeometryVector<2,1> & cellsGeometry,
             nifty::marray::View<T> & features
-        ){  
+        )const{  
             for(auto cellIndex=0; cellIndex<cellsGeometry.size(); ++cellIndex){
 
                 const auto & cellGeometry = cellsGeometry[cellIndex];
@@ -44,7 +52,7 @@ namespace cgp{
         }   
 
     private:
-        templatec<class COORDS>
+        template<class COORDS>
         void calcDerivatives(
             const COORDS & coords,
             const int pos,
@@ -100,6 +108,91 @@ namespace cgp{
             }
             
         }
+
+
+        std::vector<float> sigmas_;
     };
+
+
+
+
+    class Cell1GeoHistFeatures{
+
+    public:
+        Cell1GeoHistFeatures(
+            const std::vector<float> & quantiles,
+            const size_t bincount = 40,
+            const float gamma = -0.07
+        )
+        :   quantiles_(quantiles),
+            bincount_(bincount),
+            gamma_(gamma)
+        {
+
+        }
+
+        size_t numberOfFeatures()const{
+            return quantiles_.size();    
+        }
+            
+
+        template<class T>
+        void operator()(
+            const CellGeometryVector<2,1> & cellsGeometry,
+            nifty::marray::View<T> & features
+        )const{  
+            for(auto cellIndex=0; cellIndex<cellsGeometry.size(); ++cellIndex){
+
+
+
+                const auto & cellGeometry = cellsGeometry[cellIndex];
+                const auto centerOfMass = cellGeometry.centerOfMass();
+
+                const float minVal = 0.0;
+                const float maxVal = std::exp(gamma_*1.0);
+
+                histogram::Histogram<float> histogram(minVal, maxVal, bincount_);
+                std::vector<float> out(quantiles_.size());
+
+                // compute the derivatives
+                for(auto i=0; i<cellGeometry.size(); ++i){
+
+                    const auto & coord = cellGeometry[i];
+                    
+                    // distance ...(TODO..we need code for that...)
+                    auto d = 0.0;
+                    for(auto d=0; d<2;++d){
+                        auto diff = centerOfMass[d] - coord[d];
+                        d += diff * diff;
+                    }
+                    d = std::sqrt(d);
+
+                    // push to histogram
+                    histogram.insert(std::exp(gamma_*d));
+                }
+                // extract the quantiles 
+                quantiles(histogram, quantiles_.begin(), quantiles_.end(), out.begin());
+
+                // write results
+                for(auto i=0; i<out.size(); ++i){
+                    features(cellIndex, i) = out[i];
+                }
+
+            }
+        }
+
+
+
+    private:
+
+    
+
+
+        std::vector<float> quantiles_;
+        size_t bincount_;
+        float gamma_;
+    };
+
+
 }
 }

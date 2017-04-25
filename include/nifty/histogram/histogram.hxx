@@ -1,3 +1,7 @@
+#pragma once
+
+#include <vector>
+#include <array>
 
 namespace nifty{
 namespace histogram{
@@ -44,8 +48,8 @@ namespace histogram{
             }
             // low and high are different
             else{
-                wLow  = high - b;
-                wHigh = double(b) - low;
+                const auto wLow  = high - b;
+                const auto wHigh = double(b) - low;
 
                 counts_[size_t(low)]  += w*wLow;
                 counts_[size_t(high)] += w*wHigh;
@@ -65,45 +69,13 @@ namespace histogram{
             sum_ = 0.0;
         }
 
-        template<class U, size_t N>
-        std::array<double, N>  quantiles(
-            std::array<U, N> q
-        )const{
-
-            std::array<double, N> ret;
-            std::array<double, N> qn;
-
-            for(auto i=0; i<N; ++i){
-                qn[i] = q[i] * this->sum_; 
-            }
-
-            double csum = 0.0;
-            auto qi = 0;
-            for(auto bin=0; bin<counts_.size(); ++bin){
-
-                const double newcsum = csum  + counts_[i];
-                while(qi < N && csum <= qn[qi] && newcsum >= qn[qi] ){
-                    if(bin == 0 ){
-                        ret[qi] = fbinToValue(0.0);
-                    }
-                    // linear interpolate the bin index    
-                    else{
-                        const auto lbin  = double(bin - 1);
-                        const auto hbin =  double(bin);
-                        const auto m = counts_[i];
-                        const auto c = newcsum - hbin*m;
-                        ret[qi] = fbinToValue((qn[qi] - c)/m);
-                    }
-                    ++qi;
-                }
-                csum = newcsum;
-            }
+        double binToValue(const double fbin)const{
+            return this->fbinToValue(fbin);
         }
-
     private:
 
         double fbinToValue(const double fbin){
-
+            // todo
         }
 
         /**
@@ -120,18 +92,65 @@ namespace histogram{
 
             // normalize
             val -= minVal_;
-            val =/ (maxVal_ - minVal_);
+            val /= (maxVal_ - minVal_);
 
             return val*(this->numberOfBins()-1);
         }
 
 
-        std::vector<F_COUNT> counts_:
+        std::vector<BincountType> counts_;
         T minVal_;
         T maxVal_;
-        F_COUNT sum_;
+        BincountType sum_;
     };
 
+
+
+    template<class HISTOGRAM, size_t N>
+    void quantiles(
+        const HISTOGRAM & histogram,
+        std::array<float, N>
+    ){
+    }
+
+
+    template<class HISTOGRAM, class RANK_ITER, class OUT_ITER>
+    void quantiles(
+        const HISTOGRAM & histogram,
+        RANK_ITER ranksBegin,
+        RANK_ITER ranksEnd,
+        OUT_ITER outIter
+    ){
+
+        const auto nQuantiels = std::distance(ranksBegin, ranksEnd);
+        const auto s = histogram.sum();
+
+
+        double csum = 0.0;
+        auto qi = 0;
+        for(auto bin=0; bin<histogram.numberOfBins(); ++bin){
+            const double newcsum = csum  + histogram[bin];
+            const auto  quant = ranksBegin[qi] * s;
+            while(qi < nQuantiels && csum <= quant && newcsum >= quant ){
+                if(bin == 0 ){
+                    outIter[qi] = histogram.binToValue(0.0);
+                }
+                // linear interpolate the bin index    
+                else{
+                    const auto lbin  = double(bin - 1);
+                    const auto hbin =  double(bin);
+                    const auto m = histogram[bin];
+                    const auto c = newcsum - hbin*m;
+                    outIter[qi] = histogram.binToValue((quant - c)/m);
+                }
+                ++qi;
+            }
+            csum = newcsum;
+        }
+    }
+
+
+    
 
 
 
