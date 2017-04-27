@@ -57,6 +57,7 @@ cg = nifty.graph.edgeContractionGraph(g,callback)
 # - check if the edge is still alive
 
 
+# w
 def doFunStuffWithContractedGraph(cg):
     print("do some fun stuff")
 
@@ -64,6 +65,7 @@ def doFunStuffWithContractedGraph(cg):
     for node in cg.nodes():
         print(node)
         
+        # iterate over all neigbours
         for otherNode,connectingEdge in cg.nodeAdjacency(node):
             print("  ",otherNode, connectingEdge)
 
