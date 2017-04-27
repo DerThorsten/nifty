@@ -256,7 +256,6 @@ void accumulateEdgeFeaturesFlatWithAccChain(
     
 
 // 9 features
-// 11 features
 template<size_t DIM, class LABELS_PROXY, class DATA, class FEATURE_TYPE>
 void accumulateEdgeFeaturesFlat(
     const GridRag<DIM, LABELS_PROXY> & rag,
