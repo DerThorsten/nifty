@@ -4,7 +4,7 @@
 
 #include "nifty/python/converter.hxx"
 
-// now hdf5 support for now
+// no hdf5 support for now
 //#ifdef WITH_HDF5
 //#include "nifty/hdf5/hdf5_array.hxx"
 //#include "nifty/graph/rag/grid_rag_hdf5.hxx"

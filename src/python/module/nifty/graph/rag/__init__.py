@@ -35,8 +35,30 @@ def gridRagStacked2D(labels, numberOfThreads = -1):
     return gridRagStacked2DExplicitImpl(labels, numberOfThreads)
 
 
+# returns the edge coordinates as
+# topological coordinates (returnTopologicalCoordinates == True)
+# or pixel coordinates (returnTopologicalCoordinates == False)
+def edgeCoordinates(rag,
+        returnTopologicalCoordinates = False,
+        numberOfThreads = -1):
 
+    # this returns the coordinates as flat lists and
+    # topological (-> sum of pixel coordinates)
+    coordinates = edgeCoordinatesImpl(rag, numberOfThreads)
 
+    # go from flat list to correct numpy arrays
+    dim = len(rag.shape)
+    coordinates = [
+            numpy.array(coord, dtype = 'int64').reshape( (len(coord)/dim, dim) ) for coord in coordinates ]
+
+    if returnTopologicalCoordinates:
+        return coordinates
+    else:
+        coordinates = [ numpy.divide(coord.astype('float64'), 2)  for coord in coordinates ]
+        coordinates = [ numpy.concatenate(
+            [func(coord).astype('int64') for func in (numpy.floor, numpy.ceil)],
+            axis = 0) for coord in coordinates ]
+        return coordinates
 
 if Configuration.WITH_HDF5:
 
