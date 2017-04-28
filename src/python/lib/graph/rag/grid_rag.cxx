@@ -45,6 +45,10 @@ namespace graph{
         typedef ExplicitLabelsGridRag<DIM, LABELS> GridRagType;
 
         auto clsT = py::class_<GridRagType,BaseGraph>(ragModule, clsName.c_str());
+        // export the rag shape
+        clsT
+            .def_property_readonly("shape",[](const GridRagType & self){return self.shape();})
+        ;
         removeFunctions<GridRagType, BaseGraph>(clsT);
 
         // from labels
@@ -130,6 +134,7 @@ namespace graph{
         auto clsT = py::class_<GridRagType, BaseGraph>(ragModule, clsName.c_str());
         clsT
             .def("labelsProxy",&GridRagType::labelsProxy,py::return_value_policy::reference)
+            .def_property_readonly("shape",[](const GridRagType & self){return self.shape();})
         ;
 
         removeFunctions<GridRagType, BaseGraph>(clsT);

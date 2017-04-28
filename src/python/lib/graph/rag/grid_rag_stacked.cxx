@@ -47,7 +47,8 @@ namespace graph{
 
         auto clsT = py::class_<GridRagType, BaseGraph>(ragModule, clsName.c_str());
         clsT
-            //.def("labelsProxy",&GridRagType::labelsProxy,py::return_value_policy::reference)
+            .def("labelsProxy",&GridRagType::labelsProxy,py::return_value_policy::reference)
+            .def_property_readonly("shape",[](const GridRagType & self){return self.shape();})
             .def("minMaxLabelPerSlice",[](const GridRagType & self){
                 const auto & shape = self.shape();
                 nifty::marray::PyView<uint64_t, 2> out({size_t(shape[0]),size_t(2)});
@@ -182,6 +183,7 @@ namespace graph{
 
         auto clsT = py::class_<GridRagType, BaseGraph>(ragModule, clsName.c_str());
         clsT
+            .def_property_readonly("shape",[](const GridRagType & self){return self.shape();})
             .def("labelsProxy",&GridRagType::labelsProxy,py::return_value_policy::reference)
             .def("minMaxLabelPerSlice",[](const GridRagType & self){
                 const auto & shape = self.shape();
