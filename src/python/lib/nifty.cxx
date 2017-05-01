@@ -41,7 +41,7 @@ PYBIND11_PLUGIN(_nifty) {
     #endif
 
     // \TODO move to another header
-    py::class_<Configuration>(niftyModule, "Configuration",pybind11::metaclass())
+    py::class_<Configuration>(niftyModule, "Configuration")
         .def_property_readonly_static("WITH_CPLEX", [](py::object /* self */) { 
             #ifdef  WITH_CPLEX
             return true;

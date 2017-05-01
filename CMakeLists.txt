@@ -213,7 +213,9 @@ if(WITH_LP_MP)
     if(CMAKE_BUILD_TYPE STREQUAL "Release")
         # adding only -ffast-math will result in infinity and nan not being checked (but e.g. graph matching and discrete tomography have infinite costs)
         #add_definitions(-ffast-math -fno-finite-math-only)
-        add_definitions(-march=native)
+        add_definitions()
+        SET(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -march=native") 
+        SET(CMAKE_EXE_LINKER_FLAGS_RELEASE  "${CMAKE_EXE_LINKER_FLAGS_RELEASE} ${CMAKE_CXX_FLAGS_RELEASE}" )
     endif()
     # TODO set linker flags !
 
