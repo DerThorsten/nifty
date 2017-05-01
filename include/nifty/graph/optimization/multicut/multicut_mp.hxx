@@ -35,7 +35,8 @@ namespace graph{
         typedef typename Base::EdgeLabels EdgeLabels;
         typedef typename Base::NodeLabels NodeLabels;
         typedef typename Objective::Graph Graph;
-        typedef LP_MP::FMC_ODD_WHEEL_MULTICUT<LP_MP::MessageSendingType::SRMP> FMC;
+        // don't use odd wheel here, it is much slower !
+        typedef LP_MP::FMC_MULTICUT<LP_MP::MessageSendingType::SRMP> FMC;
         typedef LP_MP::ProblemConstructorRoundingSolver<LP_MP::Solver<FMC,LP_MP::LP,LP_MP::StandardTighteningVisitor>> SolverType;
 
     public:
@@ -50,8 +51,8 @@ namespace graph{
             std::string tightenReparametrization{"damped_uniform"};
             bool tighten{true};
             size_t tightenInterval{100};
-            size_t tightenIteration{2};
-            double tightenSlope{0.05};
+            size_t tightenIteration{10};
+            double tightenSlope{0.02};
             double tightenConstraintsPercentage{0.1};
             double minDualImprovement{0.};
             size_t minDualImprovementInterval{0};

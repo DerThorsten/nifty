@@ -14,5 +14,5 @@ addPythonModule(
         fusion_move_based.cxx
         perturb_and_map.cxx
     LIBRRARIES
-        ${NIFTY_LP_SOLVER_LIBS}
+        ${NIFTY_LP_SOLVER_LIBS} lgl
 )

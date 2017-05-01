@@ -209,7 +209,7 @@ if(WITH_LP_MP)
     add_definitions(-DWITH_LP_MP)
     add_definitions(-DWITH_SAT)
 
-    # FIXME make sure that this works!
+    # set additional flags for the release build
     if(CMAKE_BUILD_TYPE STREQUAL "Release")
         # adding only -ffast-math will result in infinity and nan not being checked (but e.g. graph matching and discrete tomography have infinite costs)
         #add_definitions(-ffast-math -fno-finite-math-only)
@@ -217,8 +217,6 @@ if(WITH_LP_MP)
         SET(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -march=native") 
         SET(CMAKE_EXE_LINKER_FLAGS_RELEASE  "${CMAKE_EXE_LINKER_FLAGS_RELEASE} ${CMAKE_CXX_FLAGS_RELEASE}" )
     endif()
-    # TODO set linker flags !
-
     
     # include LP_MP dependencies
     include_directories("${CMAKE_CURRENT_SOURCE_DIR}/externals/LP_MP/external/meta/include")
@@ -228,9 +226,8 @@ if(WITH_LP_MP)
     include_directories("${CMAKE_CURRENT_SOURCE_DIR}/externals/LP_MP/external/PEGTL")
     include_directories("${CMAKE_CURRENT_SOURCE_DIR}/externals/LP_MP/external/cereal/include")
     include_directories("${CMAKE_CURRENT_SOURCE_DIR}/externals/LP_MP/external/tclap/include")
-    # TODO this seems to be a pretty old version, if the license permits it make a new upload ?! however, this seems to be compatible with the one that was downloaded before
     
-    # download and build lingeling
+    # TODO this seems to be a pretty old version, would the newer version help?!
     include(ExternalProject)
     ExternalProject_ADD(
        lingeling
@@ -244,6 +241,7 @@ if(WITH_LP_MP)
        )
     include_directories("${CMAKE_CURRENT_BINARY_DIR}/lingeling-prefix/src/lingeling") 
     link_directories("${CMAKE_CURRENT_BINARY_DIR}/lingeling-prefix/src/lingeling")
+    
 endif()
 
 
