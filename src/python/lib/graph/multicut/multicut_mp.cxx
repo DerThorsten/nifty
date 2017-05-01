@@ -23,18 +23,6 @@ namespace graph{
         
         py::class_<MpSettings>(multicutModule, "MpSettings")
             .def(py::init<>())
-            .def_readwrite("primalComputationInterval",&MpSettings::primalComputationInterval)
-            .def_readwrite("standardReparametrization",&MpSettings::standardReparametrization)
-            .def_readwrite("roundingReparametrization",&MpSettings::roundingReparametrization)
-            .def_readwrite("tightenReparametrization",&MpSettings::tightenReparametrization)
-            .def_readwrite("tighten",&MpSettings::tighten)
-            .def_readwrite("tightenInterval",&MpSettings::tightenInterval)
-            .def_readwrite("tightenIteration",&MpSettings::tightenIteration)
-            .def_readwrite("tightenSlope",&MpSettings::tightenSlope)
-            .def_readwrite("tightenConstraintsPercentage",&MpSettings::tightenConstraintsPercentage)
-            .def_readwrite("maxIter",&MpSettings::maxIter)
-            .def_readwrite("minDualImprovement",&MpSettings::minDualImprovement)
-            .def_readwrite("timeout",&MpSettings::timeout)
         ;
 
     }
@@ -51,9 +39,21 @@ namespace graph{
         const auto solverName = std::string("MulticutMp");
         exportMulticutSolver<Solver>(multicutModule, solverName.c_str())
             .def(py::init<>())
-            .def_readwrite("numberOfIterations", &Settings::numberOfIterations)
-            .def_readwrite("verbose",   &Settings::verbose)
-            .def_readwrite("mpSettings",&Settings::mpSettings)
+            .def_readwrite("verbose",&Settings::verbose)
+            .def_readwrite("numberOfIterations",&Settings::numberOfIterations)
+            .def_readwrite("primalComputationInterval",&Settings::primalComputationInterval)
+            .def_readwrite("standardReparametrization",&Settings::standardReparametrization)
+            .def_readwrite("roundingReparametrization",&Settings::roundingReparametrization)
+            .def_readwrite("tightenReparametrization",&Settings::tightenReparametrization)
+            .def_readwrite("tighten",&Settings::tighten)
+            .def_readwrite("tightenInterval",&Settings::tightenInterval)
+            .def_readwrite("tightenIteration",&Settings::tightenIteration)
+            .def_readwrite("tightenSlope",&Settings::tightenSlope)
+            .def_readwrite("tightenConstraintsPercentage",&Settings::tightenConstraintsPercentage)
+            .def_readwrite("numberOfIterations",&Settings::numberOfIterations)
+            .def_readwrite("minDualImprovement",&Settings::minDualImprovement)
+            .def_readwrite("minDualImprovementInterval",&Settings::minDualImprovementInterval)
+            .def_readwrite("timeout",&Settings::timeout)
         ; 
 
     }

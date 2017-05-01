@@ -1,5 +1,7 @@
 #pragma once
 
+#include<vector>
+
 #include "nifty/tools/runtime_check.hxx"
 #include "nifty/graph/optimization/multicut/multicut_base.hxx"
 #include "nifty/ufd/ufd.hxx"
@@ -14,54 +16,6 @@ namespace graph{
 
     // Settings for the LP_MP message passing solver
     struct MpSettings {
-        size_t primalComputationInterval{100};
-        std::string standardReparametrization{"anisotropic"};
-        std::string roundingReparametrization{"damped_uniform"};
-        std::string tightenReparametrization{"damped_uniform"};
-        bool tighten{true};
-        size_t tightenInterval{100};
-        size_t tightenIteration{2};
-        double tightenSlope{0.05};
-        double tightenConstraintsPercentage{0.1};
-        size_t maxIter{1000};
-        double minDualImprovement{0.};
-        size_t minDualImprovementInterval{0};
-        size_t timeout{0};
-    
-        // returns options in correct format for the LP_MP solver
-        // TODO would be bettter to have a decent interface for LP_MP and then
-        // get rid of this
-        std::vector<std::string> toOptionsVector() const {
-            std::vector<std::string> options = {
-              "export_multicut", // TODO name of pyfile
-              "-i", " ", // empty input file
-              "--primalComputationInterval", std::to_string(primalComputationInterval),
-              "--standardReparametrization", standardReparametrization,
-              "--roundingReparametrization", roundingReparametrization,
-              "--tightenReparametrization",  tightenReparametrization,
-              "--tightenInterval",           std::to_string(tightenInterval),
-              "--tightenIteration",          std::to_string(tightenIteration),
-              "--tightenSlope",              std::to_string(tightenSlope),
-              "--tightenConstraintsPercentage", std::to_string(tightenConstraintsPercentage),
-              "--maxIter", std::to_string(maxIter),
-            };
-            if(tighten)
-                options.push_back("--tighten");
-            if(minDualImprovement > 0) {
-                options.push_back("--minDualImprovement");
-                options.push_back(std::to_string(minDualImprovement));
-            }
-            if(minDualImprovementInterval > 0) {
-                options.push_back("--minDualImprovementInterval");
-                options.push_back(std::to_string(minDualImprovementInterval));
-            }
-            if(timeout > 0) {
-                options.push_back("--timeout");
-                options.push_back(std::to_string(timeout));
-            }
-            return options;
-        }
-    
     };
 
     // TODO expose the primal solver for the mp multicut, maybe by template, depending 
@@ -86,11 +40,23 @@ namespace graph{
 
     public:
 
-        // FIXME nIterations and verbose don't have any effect right now
+        // FIXME verbose deosn't have any effect right now
         struct Settings{
-            size_t numberOfIterations{0};
+            size_t numberOfIterations{1000};
             int verbose{0};
-            MpSettings mpSettings;
+            size_t primalComputationInterval{100};
+            std::string standardReparametrization{"anisotropic"};
+            std::string roundingReparametrization{"damped_uniform"};
+            std::string tightenReparametrization{"damped_uniform"};
+            bool tighten{true};
+            size_t tightenInterval{100};
+            size_t tightenIteration{2};
+            double tightenSlope{0.05};
+            double tightenConstraintsPercentage{0.1};
+            double minDualImprovement{0.};
+            size_t minDualImprovementInterval{0};
+            size_t timeout{0};
+    
         };
 
         virtual ~MulticutMp(){
@@ -104,7 +70,7 @@ namespace graph{
         virtual const Objective & objective() const {return objective_;}
         virtual const NodeLabels & currentBestNodeLabels() {return *currentBest_;}
 
-        virtual std::string name()const{
+        virtual std::string name() const {
             return std::string("MulticutMp"); // TODO primal_solver name
         }
         
@@ -117,6 +83,7 @@ namespace graph{
 
         void initializeMp();
         void nodeLabeling();
+        std::vector<std::string> toOptionsVector() const;
 
         const Objective & objective_;
         const Graph & graph_;
@@ -127,7 +94,7 @@ namespace graph{
         SolverType * mpSolver_;
         ufd::Ufd<uint64_t> ufd_;
     };
-
+   
     
     template<class OBJECTIVE>
     MulticutMp<OBJECTIVE>::
@@ -141,7 +108,7 @@ namespace graph{
         mpSolver_(nullptr),
         ufd_(graph_.numberOfNodes())
     {
-        mpSolver_ = new SolverType(settings_.mpSettings.toOptionsVector());
+        mpSolver_ = new SolverType( toOptionsVector() );
         this->initializeMp();
     }
 
@@ -160,6 +127,44 @@ namespace graph{
             }
         }
     }
+
+    // returns options in correct format for the LP_MP solver
+    // TODO would be bettter to have a decent interface for LP_MP and then
+    // get rid of this
+    template<class OBJECTIVE>
+    std::vector<std::string> MulticutMp<OBJECTIVE>::
+    toOptionsVector() const {
+
+        std::vector<std::string> options = {
+          "export_multicut", // TODO name of pyfile
+          "-i", " ", // empty input file
+          "--primalComputationInterval", std::to_string(settings_.primalComputationInterval),
+          "--standardReparametrization", settings_.standardReparametrization,
+          "--roundingReparametrization", settings_.roundingReparametrization,
+          "--tightenReparametrization",  settings_.tightenReparametrization,
+          "--tightenInterval",           std::to_string(settings_.tightenInterval),
+          "--tightenIteration",          std::to_string(settings_.tightenIteration),
+          "--tightenSlope",              std::to_string(settings_.tightenSlope),
+          "--tightenConstraintsPercentage", std::to_string(settings_.tightenConstraintsPercentage),
+          "--maxIter", std::to_string(settings_.numberOfIterations),
+        };
+        if(settings_.tighten)
+            options.push_back("--tighten");
+        if(settings_.minDualImprovement > 0) {
+            options.push_back("--minDualImprovement");
+            options.push_back(std::to_string(settings_.minDualImprovement));
+        }
+        if(settings_.minDualImprovementInterval > 0) {
+            options.push_back("--minDualImprovementInterval");
+            options.push_back(std::to_string(settings_.minDualImprovementInterval));
+        }
+        if(settings_.timeout > 0) {
+            options.push_back("--timeout");
+            options.push_back(std::to_string(settings_.timeout));
+        }
+        return options;
+    }
+
 
     // TODO maybe this can be done more efficient
     // (if we only call it once, this should be fine, but if we need

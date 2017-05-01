@@ -70,6 +70,13 @@ PYBIND11_PLUGIN(_nifty) {
             return false;
             #endif
         })
+        .def_property_readonly_static("WITH_LP_MP", [](py::object /* self */) { 
+            #ifdef  WITH_LP_MP
+            return true;
+            #else
+            return false;
+            #endif
+        })
         ;
     return niftyModule.ptr();
 }

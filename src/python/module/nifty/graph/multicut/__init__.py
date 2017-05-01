@@ -1,5 +1,6 @@
 from __future__ import absolute_import
 from ._multicut import *
+from .. import Configuration
 from functools import partial
 
 __all__ = []
@@ -17,44 +18,7 @@ def ilpSettings(relativeGap=0.0, absoluteGap=0.0, memLimit=-1.0):
     return s
 
 
-def mpSettings(
-    primalComputationInterval = 100,
-    standardReparametrization = "anisotropic",
-    roundingReparametrization = "damped_uniform",
-    tightenReparametrization  = "damped_uniform",
-    tighten = True,
-    tightenInterval = 100,
-    tightenIteration = 2,
-    tightenSlope = 0.05,
-    tightenConstraintsPercentage = 0.1,
-    maxIter = 1000,
-    minDualImprovement = 0.,
-    minDualImprovementInterval = 0,
-    timeout = 0
-    ):
-
-    s = MpSettings()
-
-    s.primalComputationInterval = primalComputationInterval
-    s.standardReparametrization = standardReparametrization
-    s.roundingReparametrization = roundingReparametrization
-    s.tightenReparametrization  = tightenReparametrization
-    s.tighten = tighten
-    s.tightenInterval = tightenInterval
-    s.tightenIteration = tightenIteration
-    s.tightenSlope = tightenSlope
-    s.tightenConstraintsPercentage = tightenConstraintsPercentage
-    s.maxIter = maxIter
-    s.minDualImprovement = minDualImprovement
-    s.minDualImprovementInterval = minDualImprovementInterval
-    s.timeout = timeout
-
-    return s
-
-
-
 def __extendMulticutObj(objectiveCls, objectiveName):
-
 
 
     def getCls(prefix, postfix):
@@ -132,11 +96,43 @@ def __extendMulticutObj(objectiveCls, objectiveName):
     O.multicutIlpGlpkFactory = staticmethod(partial(multicutIlpFactory,ilpSolver='glpk'))
 
 
-    def multicutMpFactory( mpSettings=mpSettings() ):
-        solver = MulticutMp()
-        solver.mpSettings = mpSettings
-        return solver
-    O.multicutMpFactory = staticmethod(multicutMpFactory)
+    if Configuration.WITH_LP_MP:
+        def multicutMpFactory(
+                numberOfIterations = 1000,
+                verbose = 0,
+                primalComputationInterval = 100,
+                standardReparametrization = "anisotropic",
+                roundingReparametrization = "damped_uniform",
+                tightenReparametrization  = "damped_uniform",
+                tighten = True,
+                tightenInterval = 100,
+                tightenIteration = 2,
+                tightenSlope = 0.05,
+                tightenConstraintsPercentage = 0.1,
+                minDualImprovement = 0.,
+                minDualImprovementInterval = 0,
+                timeout = 0
+                ):
+            settings, factoryCls = getSettingsAndFactoryCls("MulticutMp")
+
+            settings.numberOfIterations = numberOfIterations
+            settings.verbose = verbose
+            settings.primalComputationInterval = primalComputationInterval
+            settings.standardReparametrization = standardReparametrization
+            settings.roundingReparametrization = roundingReparametrization
+            settings.tightenReparametrization  = tightenReparametrization
+            settings.tighten = tighten
+            settings.tightenInterval = tightenInterval
+            settings.tightenIteration = tightenIteration
+            settings.tightenSlope = tightenSlope
+            settings.tightenConstraintsPercentage = tightenConstraintsPercentage
+            settings.minDualImprovement = minDualImprovement
+            settings.minDualImprovementInterval = minDualImprovementInterval
+            settings.timeout = timeout
+
+            return factoryCls(settings)
+
+        O.multicutMpFactory = staticmethod(multicutMpFactory)
 
 
     def fusionMoveSettings(mcFactory=None):
