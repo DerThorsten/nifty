@@ -2,14 +2,72 @@
 
 #include "nifty/tools/runtime_check.hxx"
 #include "nifty/graph/optimization/multicut/multicut_base.hxx"
+#include "nifty/ufd/ufd.hxx"
 
-// TODO LP_MP includes
+// LP_MP includes
+#include "visitors/standard_visitor.hxx" // TODO make LP_MP/...
+#include "solvers/multicut/multicut.h"
+
 
 namespace nifty{
 namespace graph{
 
+    // Settings for the LP_MP message passing solver
+    struct MpSettings {
+        size_t primalComputationInterval{100};
+        std::string standardReparametrization{"anisotropic"};
+        std::string roundingReparametrization{"damped_uniform"};
+        std::string tightenReparametrization{"damped_uniform"};
+        bool tighten{true};
+        size_t tightenInterval{100};
+        size_t tightenIteration{2};
+        double tightenSlope{0.05};
+        double tightenConstraintsPercentage{0.1};
+        size_t maxIter{1000};
+        double minDualImprovement{0.};
+        size_t minDualImprovementInterval{0};
+        size_t timeout{0};
+    
+        // returns options in correct format for the LP_MP solver
+        // TODO would be bettter to have a decent interface for LP_MP and then
+        // get rid of this
+        std::vector<std::string> toOptionsVector() const {
+            std::vector<std::string> options = {
+              "export_multicut", // TODO name of pyfile
+              "-i", " ", // empty input file
+              "--primalComputationInterval", std::to_string(primalComputationInterval),
+              "--standardReparametrization", standardReparametrization,
+              "--roundingReparametrization", roundingReparametrization,
+              "--tightenReparametrization",  tightenReparametrization,
+              "--tightenInterval",           std::to_string(tightenInterval),
+              "--tightenIteration",          std::to_string(tightenIteration),
+              "--tightenSlope",              std::to_string(tightenSlope),
+              "--tightenConstraintsPercentage", std::to_string(tightenConstraintsPercentage),
+              "--maxIter", std::to_string(maxIter),
+            };
+            if(tighten)
+                options.push_back("--tighten");
+            if(minDualImprovement > 0) {
+                options.push_back("--minDualImprovement");
+                options.push_back(std::to_string(minDualImprovement));
+            }
+            if(minDualImprovementInterval > 0) {
+                options.push_back("--minDualImprovementInterval");
+                options.push_back(std::to_string(minDualImprovementInterval));
+            }
+            if(timeout > 0) {
+                options.push_back("--timeout");
+                options.push_back(std::to_string(timeout));
+            }
+            return options;
+        }
+    
+    };
+
     // TODO expose the primal solver for the mp multicut, maybe by template, depending 
     // on how we implement this in LP_MP
+    // fusion_move_based has this in settings object (mcFactory)
+    
     //template<class OBJECTIVE, class PRIMAL_SOLVER>
     template<class OBJECTIVE>
     class MulticutMp : public MulticutBase<OBJECTIVE>
@@ -23,67 +81,51 @@ namespace graph{
         typedef typename Base::EdgeLabels EdgeLabels;
         typedef typename Base::NodeLabels NodeLabels;
         typedef typename Objective::Graph Graph;
-
-    // TODO I think we can get rid of all this
-    //private:
-    //    typedef ComponentsUfd<Graph> Components;
-    //    typedef detail_graph::EdgeIndicesToContiguousEdgeIndices<Graph> DenseIds;
-
-    //    struct SubgraphWithCut {
-    //        SubgraphWithCut(const IlpSovler& ilpSolver, const DenseIds & denseIds)
-    //            :   ilpSolver_(ilpSolver),
-    //                denseIds_(denseIds)
-    //        {}
-    //        bool useNode(const size_t v) const
-    //            { return true; }
-    //        bool useEdge(const size_t e) const
-    //            { return ilpSolver_.label(denseIds_[e]) == 0; }
-
-    //        const IlpSovler & ilpSolver_;
-    //        const DenseIds & denseIds_;
-    //    };
+        typedef LP_MP::FMC_ODD_WHEEL_MULTICUT<LP_MP::MessageSendingType::SRMP> FMC;
+        typedef LP_MP::ProblemConstructorRoundingSolver<LP_MP::Solver<FMC,LP_MP::LP,LP_MP::StandardTighteningVisitor>> SolverType;
 
     public:
 
-        // TODO LP_MP settings
+        // FIXME nIterations and verbose don't have any effect right now
         struct Settings{
-
             size_t numberOfIterations{0};
-            int verbose {0};
+            int verbose{0};
+            MpSettings mpSettings;
         };
 
         virtual ~MulticutMp(){
+            delete mpSolver_;
         }
-        MulticutIlp(const Objective & objective, const Settings & settings = Settings());
-
+        
+        MulticutMp(const Objective & objective, const Settings & settings = Settings());
 
         virtual void optimize(NodeLabels & nodeLabels, VisitorBase * visitor);
         
-        virtual const Objective & objective() const{return objective_};
-        virtual const NodeLabels & currentBestNodeLabels( ){return *currentBest_;}
+        virtual const Objective & objective() const {return objective_;}
+        virtual const NodeLabels & currentBestNodeLabels() {return *currentBest_;}
 
         virtual std::string name()const{
             return std::string("MulticutMp"); // TODO primal_solver name
         }
         
-        // TODO do we need this ?
+        // TODO do we need this, what does it do?
+        // reset ?!
         //virtual void weightsChanged(){
         //}
         
     private:
 
-        void initializeLpMp();
+        void initializeMp();
+        void nodeLabeling();
 
         const Objective & objective_;
         const Graph & graph_;
 
         Settings settings_;
-        // TODO do we need this ?
-        std::vector<size_t> variables_;
-        std::vector<double> coefficients_;
         NodeLabels * currentBest_;
-        // TODO need num
-        //numberOfOptRuns_; again
+        size_t numberOfOptRuns_;
+        SolverType * mpSolver_;
+        ufd::Ufd<uint64_t> ufd_;
     };
 
     
@@ -96,14 +138,51 @@ namespace graph{
     :   objective_(objective),
         graph_(objective.graph()),
         settings_(settings),
-        variables_(   std::max(uint64_t(3),uint64_t(graph_.numberOfEdges()))),
-        coefficients_(std::max(uint64_t(3),uint64_t(graph_.numberOfEdges())))
+        mpSolver_(nullptr),
+        ufd_(graph_.numberOfNodes())
     {
-        // TODO initialize LP_MP multicut
+        mpSolver_ = new SolverType(settings_.mpSettings.toOptionsVector());
+        this->initializeMp();
     }
 
-    template<class OBJECTIVE, class ILP_SOLVER>
-    void MulticutIlp<OBJECTIVE, ILP_SOLVER>::
+    template<class OBJECTIVE>
+    void MulticutMp<OBJECTIVE>::
+    initializeMp() {
+        
+        if(graph_.numberOfEdges()!= 0 ){
+            
+            auto & constructor = (*mpSolver_).template GetProblemConstructor<0>();
+            const auto & weights = objective_.weights();
+
+            for(auto e : graph_.edges()){
+                const auto uv = graph_.uv(e);
+                constructor.AddUnaryFactor(uv.first, uv.second, weights[e]);
+            }
+        }
+    }
+
+    // TODO maybe this can be done more efficient
+    // (if we only call it once, this should be fine, but if we need
+    // to call this more often for some reason, this might get expensive)
+    template<class OBJECTIVE>
+    void MulticutMp<OBJECTIVE>::
+    nodeLabeling() {
+
+        ufd_.reset();
+        auto & constructor = (*mpSolver_).template GetProblemConstructor<0>();
+        for(auto e : graph_.edges()){
+            const auto uv = graph_.uv(e);
+            const bool cut = constructor.get_edge_label(uv.first, uv.second);
+            if(!cut){
+                ufd_.merge(uv.first, uv.second);
+            }
+        }
+        ufd_.elementLabeling(currentBest_->begin());
+    }
+
+
+    template<class OBJECTIVE>
+    void MulticutMp<OBJECTIVE>::
     optimize(
         NodeLabels & nodeLabels,  VisitorBase * visitor
     ){  
@@ -117,6 +196,8 @@ namespace graph{
         //visitorProxy.begin(this);
         
         if(graph_.numberOfEdges()>0){
+            mpSolver_->Solve();
+            nodeLabeling();
 
             // TODO for now only run lp_mp once,
             // then integrate the solver properly

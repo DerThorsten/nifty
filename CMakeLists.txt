@@ -20,6 +20,7 @@ option(WITH_CPLEX OFF)
 option(WITH_GLPK OFF)
 option(WITH_HDF5 OFF)
 option(WITH_FASTFILTERS OFF)
+option(WITH_LP_MP OFF)
 
 
 option(BUILD_CPP_TEST ON)
@@ -33,21 +34,26 @@ option(BUILD_PYTHON_DOCS "Build the Python documentation with Sphinx" OFF)
 #-------------------------------------------------------------------------------------------------------------------
 # check for c++ 11 support
 #-------------------------------------------------------------------------------------------------------------------
-# FIXME c++14 checks are broken!
-if (CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR CMAKE_CXX_COMPILER_ID MATCHES "GNU")
-    CHECK_CXX_COMPILER_FLAG("-std=c++14" HAS_CPP14_FLAG)
-    CHECK_CXX_COMPILER_FLAG("-std=c++11" HAS_CPP11_FLAG)
-    if (HAS_CPP14_FLAG)
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
-    elseif (HAS_CPP11_FLAG)
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
-    else()
-        message(FATAL_ERROR "Unsupported compiler -- nifty  requires C++11 support!")
-    endif()
-endif()
 
-#set(CMAKE_CXX_STANDARD 14)
-#set(CMAKE_CXX_STANDARD_REQUIRED ON)
+# FIXME
+# FIXME need to fix c++14 checks to make LP_MP work
+# FIXME
+
+#if (CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR CMAKE_CXX_COMPILER_ID MATCHES "GNU")
+#    CHECK_CXX_COMPILER_FLAG("-std=c++14" HAS_CPP14_FLAG)
+#    CHECK_CXX_COMPILER_FLAG("-std=c++11" HAS_CPP11_FLAG)
+#    if (HAS_CPP14_FLAG)
+#        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
+#    elseif (HAS_CPP11_FLAG)
+#        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14") # FIXME LP_MP hack
+#    else()
+#        message(FATAL_ERROR "Unsupported compiler -- nifty  requires C++11 support!")
+#    endif()
+#endif()
+
+# FIXME pybind cmake flags are not set correctly
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(OpenMP)
 if (OPENMP_FOUND)
@@ -94,7 +100,6 @@ include_directories( "${CMAKE_CURRENT_SOURCE_DIR}/externals/marray/include")
 include_directories( "${CMAKE_CURRENT_SOURCE_DIR}/externals/pybind11/include")
 include_directories( "${CMAKE_CURRENT_SOURCE_DIR}/externals/vigra/include")
 include_directories( "${CMAKE_CURRENT_SOURCE_DIR}/externals/graph/include")
-
 
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/externals/pybind11")
 
@@ -190,8 +195,54 @@ if(WITH_FASTFILTERS)
 endif()
 
 
+#-------------------------------------------------------------------------------------------------------------------
+# additional dependencies for LP_MP
+#-------------------------------------------------------------------------------------------------------------------
+if(WITH_LP_MP)
+    
+    # TODO make sure that we build with c++ 14
 
+    include_directories("${CMAKE_CURRENT_SOURCE_DIR}/externals/LP_MP/include")
+    include_directories("${CMAKE_CURRENT_SOURCE_DIR}/externals/LP_MP/lib")
+    add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/externals/LP_MP/lib")
+    
+    add_definitions(-DWITH_LP_MP)
+    add_definitions(-DWITH_SAT)
 
+    # FIXME make sure that this works!
+    if(CMAKE_BUILD_TYPE STREQUAL "Release")
+        # adding only -ffast-math will result in infinity and nan not being checked (but e.g. graph matching and discrete tomography have infinite costs)
+        #add_definitions(-ffast-math -fno-finite-math-only)
+        add_definitions(-march=native)
+    endif()
+    # TODO set linker flags !
+
+    
+    # include LP_MP dependencies
+    include_directories("${CMAKE_CURRENT_SOURCE_DIR}/externals/LP_MP/external/meta/include")
+    include_directories("${CMAKE_CURRENT_SOURCE_DIR}/externals/LP_MP/external/Catch/include")
+    include_directories("${CMAKE_CURRENT_SOURCE_DIR}/externals/LP_MP/external/cpp_sort/include")
+    include_directories("${CMAKE_CURRENT_SOURCE_DIR}/externals/LP_MP/external/opengm/include")
+    include_directories("${CMAKE_CURRENT_SOURCE_DIR}/externals/LP_MP/external/PEGTL")
+    include_directories("${CMAKE_CURRENT_SOURCE_DIR}/externals/LP_MP/external/cereal/include")
+    include_directories("${CMAKE_CURRENT_SOURCE_DIR}/externals/LP_MP/external/tclap/include")
+    # TODO this seems to be a pretty old version, if the license permits it make a new upload ?! however, this seems to be compatible with the one that was downloaded before
+    
+    # download and build lingeling
+    include(ExternalProject)
+    ExternalProject_ADD(
+       lingeling
+       #SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/external/lingeling-ala"
+       URL "http://fmv.jku.at/lingeling/lingeling-bal-2293bef-151109.tar.gz"
+       BUILD_IN_SOURCE 1
+       #BINARY_DIR "${CMAKE_CURRENT_BINARY_DIR}/lingeling-ala"
+       CONFIGURE_COMMAND "./configure.sh"
+       BUILD_COMMAND "make"
+       INSTALL_COMMAND ""
+       )
+    include_directories("${CMAKE_CURRENT_BINARY_DIR}/lingeling-prefix/src/lingeling") 
+    link_directories("${CMAKE_CURRENT_BINARY_DIR}/lingeling-prefix/src/lingeling")
+endif()
 
 
 
