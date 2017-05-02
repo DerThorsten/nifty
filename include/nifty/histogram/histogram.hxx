@@ -100,7 +100,8 @@ namespace histogram{
     private:
 
         double fbinToValue(double fbin)const{
-            fbin /= double(counts_.size());
+            fbin += 0.5;
+            fbin /= double(counts_.size()-1);
             return (1.0-fbin)*minVal_  + fbin*maxVal_; 
         }
 
@@ -148,29 +149,38 @@ namespace histogram{
         OUT_ITER outIter
     ){
 
-        const auto nQuantiels = std::distance(ranksBegin, ranksEnd);
+        const auto nQuantiles = std::distance(ranksBegin, ranksEnd);
         const auto s = histogram.sum();
 
-
+        std::cout<<"nQuantiles "<<nQuantiles<<"\n";
         double csum = 0.0;
         auto qi = 0;
         for(auto bin=0; bin<histogram.numberOfBins(); ++bin){
             const double newcsum = csum  + histogram[bin];
             const auto  quant = ranksBegin[qi] * s;
-            while(qi < nQuantiels && csum <= quant && newcsum >= quant ){
+            //std::cout<<"BIN "<<bin<<"\n";
+            //std::cout<<"    qi "<<qi<<" quant "<<quant<<"\n";
+            //std::cout<<"    csum "<<csum<<" newcsum "<<newcsum<<"\n";
+            while(qi < nQuantiles && csum <= quant && newcsum >= quant ){
                 if(bin == 0 ){
                     outIter[qi] = histogram.binToValue(0.0);
                 }
                 // linear interpolate the bin index    
                 else{
-                    const auto lbin  = double(bin - 1);
+                    //std::cout<<"        foundBIN\n";
+                    const auto lbin  = double(bin-1);
                     const auto hbin =  double(bin);
                     const auto m = histogram[bin];
-                    const auto c = newcsum - hbin*m;
+                    const auto c = csum - lbin*m;
+
+                    //std::cout<<"        computed bin "<<(quant - c)/m<<"\n";
+
                     outIter[qi] = histogram.binToValue((quant - c)/m);
                 }
                 ++qi;
             }
+            if(qi>=nQuantiles)
+                break;
             csum = newcsum;
         }
     }

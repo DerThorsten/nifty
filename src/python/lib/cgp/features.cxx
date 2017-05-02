@@ -123,7 +123,14 @@ namespace cgp{
 
                     return  out;
                 },
-                py::arg("cell1GeometryVector")
+                py::arg("cell0GeometryVector"),
+                py::arg("cell1GeometryVector"),
+                py::arg("cell2GeometryVector"),
+                py::arg("cell0BoundsVector"),
+                py::arg("cell1BoundsVector"),
+                py::arg("cell1BoundedByVector"),
+                py::arg("cell2BoundedByVector")
+
             )
             ;
         }
