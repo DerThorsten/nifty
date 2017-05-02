@@ -85,6 +85,48 @@ namespace cgp{
             )
             ;
         }
+        {
+            typedef Cell1BasicGeometricFeatures2D Op;
+            const auto clsName = std::string("Cell1BasicGeometricFeatures2D");
+            auto pyCls = py::class_<Op>(module, clsName.c_str());
+
+            pyCls
+            .def(
+                py::init< const std::vector<size_t> &>(),
+                py::arg("dists")  =  std::vector<size_t>({size_t(3),size_t(5),size_t(7)})
+            )
+            .def("__call__",
+                [](
+                    const Op & op,
+                    const CellGeometryVector<2,0>   & cell0GeometryVector,
+                    const CellGeometryVector<2,1>   & cell1GeometryVector,
+                    const CellGeometryVector<2,2>   & cell2GeometryVector,
+                    const CellBoundsVector<2,0>     & cell0BoundsVector,
+                    const CellBoundsVector<2,1>     & cell1BoundsVector,
+                    const CellBoundedByVector<2,1>  & cell1BoundedByVector,
+                    const CellBoundedByVector<2,2>  & cell2BoundedByVector
+                ){
+                    const auto nFeatures = size_t(op.numberOfFeatures());
+                    const auto nCells1   = size_t(cell1GeometryVector.size());
+
+                    nifty::marray::PyView<float> out({nCells1, nFeatures});
+
+                    op( cell0GeometryVector,
+                        cell1GeometryVector,
+                        cell2GeometryVector,
+                        cell0BoundsVector,
+                        cell1BoundsVector,
+                        cell1BoundedByVector,
+                        cell2BoundedByVector,
+                        out
+                    );
+
+                    return  out;
+                },
+                py::arg("cell1GeometryVector")
+            )
+            ;
+        }
 
     }
 
