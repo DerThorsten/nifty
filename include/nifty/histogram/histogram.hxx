@@ -19,6 +19,7 @@ namespace histogram{
         :   counts_(bincount),
             minVal_(minVal),
             maxVal_(maxVal),
+            binWidth_((maxVal-minVal)/T(bincount)),
             sum_(0)
         {
         }
@@ -97,10 +98,16 @@ namespace histogram{
         double binToValue(const double fbin)const{
             return this->fbinToValue(fbin);
         }
+
+
+        float binWidth()const{
+            return binWidth_;
+        }
+
     private:
 
         double fbinToValue(double fbin)const{
-            fbin += 0.5;
+            //fbin += binWidth_/2.0;
             fbin /= double(counts_.size()-1);
             return (1.0-fbin)*minVal_  + fbin*maxVal_; 
         }
@@ -125,20 +132,13 @@ namespace histogram{
         }
 
 
+
         std::vector<BincountType> counts_;
         T minVal_;
         T maxVal_;
+        T binWidth_;
         BincountType sum_;
     };
-
-
-
-    template<class HISTOGRAM, size_t N>
-    void quantiles(
-        const HISTOGRAM & histogram,
-        std::array<float, N>
-    ){
-    }
 
 
     template<class HISTOGRAM, class RANK_ITER, class OUT_ITER>
@@ -152,7 +152,7 @@ namespace histogram{
         const auto nQuantiles = std::distance(ranksBegin, ranksEnd);
         const auto s = histogram.sum();
 
-        std::cout<<"nQuantiles "<<nQuantiles<<"\n";
+        //std::cout<<"nQuantiles "<<nQuantiles<<"\n";
         double csum = 0.0;
         auto qi = 0;
         for(auto bin=0; bin<histogram.numberOfBins(); ++bin){
@@ -168,8 +168,8 @@ namespace histogram{
                 // linear interpolate the bin index    
                 else{
                     //std::cout<<"        foundBIN\n";
-                    const auto lbin  = double(bin-1);
-                    const auto hbin =  double(bin);
+                    const auto lbin  = double(bin-1) + histogram.binWidth()/2.0;
+                    const auto hbin =  double(bin) + histogram.binWidth()/2.0;
                     const auto m = histogram[bin];
                     const auto c = csum - lbin*m;
 
