@@ -104,17 +104,6 @@ del __extend__
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 def makeCellImage(image, mask_image, lut):
     if(not __hasPyLabAndMatplotlib):
         raise RuntimeError("showCellValues")
@@ -122,23 +111,39 @@ def makeCellImage(image, mask_image, lut):
         if lut.ndim ==1:
             nLutChannels = 1
             zeroValue = 0
+            _lut = numpy.hstack((zeroValue,lut))
+            lutImg = numpy.take(_lut, mask_image)
+            resImage = image.copy()
+            whereImage = mask_image!=0
+            resImage[whereImage] = lutImg[whereImage]
+            return resImage
+
+
         elif lut.ndim ==2:
             nLutChannels = lut.shape[1]
             zeroValue = [0]*nLutChannels
+            zeroValue = numpy.array(zeroValue)[None,:]
+            _lut = numpy.concatenate((zeroValue,lut))
+
+            lutImg = _lut[mask_image.ravel(),:].reshape(mask_image.shape+(3,))
+            resImage = image.copy()
+            whereImage = mask_image!=0
+            resImage[whereImage] = lutImg[whereImage]
+            return resImage
+
         else:
             raise ValueError("lut ndim must be in [1,2]")
-        _lut = numpy.hstack((zeroValue,lut))
+       
+        print("theklut",_lut.shape,mask_image.shape)
         lutImg = numpy.take(_lut, mask_image)
-       #print("lut image",lutImg.shape)
+        lutImg = _lut[mask_image.ravel(),:].reshape(mask_image.shape+(3,))
+        print("lut image",lutImg.shape)
         resImage = image.copy()
         whereImage = mask_image!=0
         resImage[whereImage] = lutImg[whereImage]
         return resImage
 
-# class Cgp(object):
-#     def __init__(self, labels):
-#         self.labels = labels.squeeze()
-#         if self.labels.ndim == 2:
-#             pass
-#         else:
-#             raise RuntimeError("not yet implemented")
+
+
+
+

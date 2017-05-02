@@ -1,7 +1,7 @@
 from __future__ import print_function
 import nifty
 
-
+print(nifty.__file__)
 
 def generateGrid(gridSize):
     def nid(x, y):

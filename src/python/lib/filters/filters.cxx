@@ -5,6 +5,7 @@ namespace py = pybind11;
 namespace nifty{
 namespace filters{
     void exportAffinities(py::module &);
+    void exportGaussianCurvature(py::module &);
 }
 }
 
@@ -15,6 +16,7 @@ PYBIND11_PLUGIN(_filters) {
     using namespace nifty::filters;
 
     exportAffinities(filtersModule);
+    exportGaussianCurvature(filtersModule);
 
     return filtersModule.ptr();
 }

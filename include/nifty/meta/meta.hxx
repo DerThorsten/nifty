@@ -2,7 +2,7 @@
 #ifndef NIFTY_META_TYPE_ORDERS_HXX
 #define NIFTY_META_TYPE_ORDERS_HXX
 
-#include "vigra/numerictraits.hxx"
+
 
 namespace nifty{
 namespace meta{

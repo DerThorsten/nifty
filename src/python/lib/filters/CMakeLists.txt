@@ -5,4 +5,5 @@ addPythonModule(
     SOURCES
         filters.cxx
         affinities.cxx
+        gaussian_curvature.cxx
 )

@@ -22,6 +22,31 @@ namespace histogram{
             sum_(0)
         {
         }
+        template<class ITER>
+        void clearSetMinMaxAndFillFrom(
+            ITER begin,
+            ITER end
+        ){
+            float minVal = std::numeric_limits<T>::infinity();
+            float maxVal = static_cast<T>(-1.0) *  std::numeric_limits<T>::infinity();
+            const auto size = std::distance(begin, end);
+            for(auto i=0; i<size; ++i){
+                minVal = std::min(minVal, begin[i]);
+                maxVal = std::max(maxVal, begin[i]);
+            }
+            this->clear();
+            this->setMinMax(minVal, maxVal);
+            for(auto i=0; i<size; ++i){
+               this->insert(begin[i]); 
+            }
+        }
+        void setMinMax(
+            const T minVal, 
+            const T maxVal
+        ){
+            minVal_ = minVal;
+            maxVal_ = maxVal;
+        }
 
 
         const BincountType & operator[](const size_t i)const{
@@ -74,8 +99,9 @@ namespace histogram{
         }
     private:
 
-        double fbinToValue(const double fbin){
-            // todo
+        double fbinToValue(double fbin)const{
+            fbin /= double(counts_.size());
+            return (1.0-fbin)*minVal_  + fbin*maxVal_; 
         }
 
         /**
@@ -94,7 +120,7 @@ namespace histogram{
             val -= minVal_;
             val /= (maxVal_ - minVal_);
 
-            return val*(this->numberOfBins()-1);
+            return val*float(this->numberOfBins()-1);
         }
 
 
