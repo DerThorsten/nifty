@@ -16,3 +16,4 @@ addPythonModule(
     LIBRRARIES
         ${NIFTY_LP_SOLVER_LIBS} lgl
 )
+# FIXME we should only link lgl if we are building WITH_LP_MP

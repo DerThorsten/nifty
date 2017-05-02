@@ -35,8 +35,9 @@ namespace graph{
         typedef typename Base::EdgeLabels EdgeLabels;
         typedef typename Base::NodeLabels NodeLabels;
         typedef typename Objective::Graph Graph;
-        // don't use odd wheel here, it is much slower !
-        typedef LP_MP::FMC_MULTICUT<LP_MP::MessageSendingType::SRMP> FMC;
+        // TODO with or without odd wheel ?
+        //typedef LP_MP::FMC_MULTICUT<LP_MP::MessageSendingType::SRMP> FMC;
+        typedef LP_MP::FMC_ODD_WHEEL_MULTICUT<LP_MP::MessageSendingType::SRMP> FMC;
         typedef LP_MP::ProblemConstructorRoundingSolver<LP_MP::Solver<FMC,LP_MP::LP,LP_MP::StandardTighteningVisitor>> SolverType;
 
     public:
@@ -136,33 +137,47 @@ namespace graph{
     std::vector<std::string> MulticutMp<OBJECTIVE>::
     toOptionsVector() const {
 
+        //std::vector<std::string> options = {
+        //  "export_multicut", // TODO name of pyfile
+        //  "-i", " ", // empty input file
+        //  "--primalComputationInterval", std::to_string(settings_.primalComputationInterval),
+        //  "--standardReparametrization", settings_.standardReparametrization,
+        //  "--roundingReparametrization", settings_.roundingReparametrization,
+        //  "--tightenReparametrization",  settings_.tightenReparametrization,
+        //  "--tightenInterval",           std::to_string(settings_.tightenInterval),
+        //  "--tightenIteration",          std::to_string(settings_.tightenIteration),
+        //  "--tightenSlope",              std::to_string(settings_.tightenSlope),
+        //  "--tightenConstraintsPercentage", std::to_string(settings_.tightenConstraintsPercentage),
+        //  "--maxIter", std::to_string(settings_.numberOfIterations),
+        //};
+        //if(settings_.tighten)
+        //    options.push_back("--tighten");
+        //if(settings_.minDualImprovement > 0) {
+        //    options.push_back("--minDualImprovement");
+        //    options.push_back(std::to_string(settings_.minDualImprovement));
+        //}
+        //if(settings_.minDualImprovementInterval > 0) {
+        //    options.push_back("--minDualImprovementInterval");
+        //    options.push_back(std::to_string(settings_.minDualImprovementInterval));
+        //}
+        //if(settings_.timeout > 0) {
+        //    options.push_back("--timeout");
+        //    options.push_back(std::to_string(settings_.timeout));
+        //}
+        
         std::vector<std::string> options = {
-          "export_multicut", // TODO name of pyfile
-          "-i", " ", // empty input file
-          "--primalComputationInterval", std::to_string(settings_.primalComputationInterval),
-          "--standardReparametrization", settings_.standardReparametrization,
-          "--roundingReparametrization", settings_.roundingReparametrization,
-          "--tightenReparametrization",  settings_.tightenReparametrization,
-          "--tightenInterval",           std::to_string(settings_.tightenInterval),
-          "--tightenIteration",          std::to_string(settings_.tightenIteration),
-          "--tightenSlope",              std::to_string(settings_.tightenSlope),
-          "--tightenConstraintsPercentage", std::to_string(settings_.tightenConstraintsPercentage),
-          "--maxIter", std::to_string(settings_.numberOfIterations),
+            "export_multicut",
+            "-i", "",
+            "--tighten",
+            "--tightenReparametrization", "damped_uniform",
+            "--roundingReparametrization", "damped_uniform",
+            "--tightenIteration", "10",
+            "--tightenInterval", "100",
+            "--tightenSlope", "0.02",
+            "--tightenConstraintsPercentage", "0.1",
+            "--primalComputationInterval", "100",
+            "--maxIter", "1000"
         };
-        if(settings_.tighten)
-            options.push_back("--tighten");
-        if(settings_.minDualImprovement > 0) {
-            options.push_back("--minDualImprovement");
-            options.push_back(std::to_string(settings_.minDualImprovement));
-        }
-        if(settings_.minDualImprovementInterval > 0) {
-            options.push_back("--minDualImprovementInterval");
-            options.push_back(std::to_string(settings_.minDualImprovementInterval));
-        }
-        if(settings_.timeout > 0) {
-            options.push_back("--timeout");
-            options.push_back(std::to_string(settings_.timeout));
-        }
         return options;
     }
 
