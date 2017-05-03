@@ -66,7 +66,7 @@ matrix:
         - cd nifty
         - ls
         - cd ../..
-        - make python-test
+        #- make python-test
         - CTEST_OUTPUT_ON_FAILURE=TRUE make test
         # 
   
@@ -79,7 +79,7 @@ matrix:
         
     #     - pip install numpy
     #     - sudo make install
-    #     - make python-test
+    #     #- make python-test
     #     - CTEST_OUTPUT_ON_FAILURE=TRUE make test
 
 
@@ -101,7 +101,7 @@ matrix:
 
         - pip install numpy
         - sudo make install
-        - make python-test
+        #- make python-test
         - CTEST_OUTPUT_ON_FAILURE=TRUE make test
 
 
@@ -114,4 +114,4 @@ matrix:
         - make -j 2
         - sudo make install
         - CTEST_OUTPUT_ON_FAILURE=TRUE make test
-        - make python-test
+        #- make python-test
