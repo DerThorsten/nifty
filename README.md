@@ -12,6 +12,8 @@ bugs, and other issues (I try to avoid this but it is not my priority to have a 
 
 Features:
 =========
+
+
 * Multicuts
     * Multicut-Ilp (Kappes et al. 2011)
         * Multicut-Ilp-Cplex
@@ -27,6 +29,9 @@ Features:
         * Lifted-Multicut-Ilp-Cplex
         * Lifted-Multicut-Ilp-Gurobi
         * Lifted-Multicut-Ilp-Glpk
+
+* Agglomerative Clustering
+    * Easy to extend / Custom cluster policies
 
 
 C++ vs Python:
