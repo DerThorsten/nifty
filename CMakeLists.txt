@@ -21,8 +21,9 @@ option(WITH_GLPK OFF)
 option(WITH_HDF5 OFF)
 option(WITH_FASTFILTERS OFF)
 
-
+option(BUILD_PYTHON_TEST OFF)
 option(BUILD_CPP_TEST ON)
+
 option(BUILD_NIFTY_PYTHON OFF)
 option(BUILD_DOCS ON)
 option(BUILD_CPP_EXAMPLES ON)
@@ -218,3 +219,31 @@ add_subdirectory(src)
 # docsrc folder
 #-------------------------------------------------------------------------------------------------------------------
 add_subdirectory(docsrc)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#-------------------------------------------------------------------------------------------------------------------
+#  install headers
+#-------------------------------------------------------------------------------------------------------------------
+install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/include/nifty"
+  DESTINATION include
+  FILES_MATCHING
+  PATTERN "*.hxx"
+  PATTERN "*.hpp"
+  PATTERN "*.h"
+)

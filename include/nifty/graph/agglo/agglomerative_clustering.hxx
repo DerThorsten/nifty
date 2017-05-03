@@ -2,6 +2,7 @@
 #ifndef NIFTY_GRAPH_AGGLO_AGGLOMERATIVE_CLUSTERING_HXX
 #define NIFTY_GRAPH_AGGLO_AGGLOMERATIVE_CLUSTERING_HXX
 
+#include <iostream>
 #include "nifty/graph/subgraph_mask.hxx"
 
 namespace nifty{
@@ -24,7 +25,7 @@ public:
 
     }
 
-    void run(){
+    void run(const bool verbose=false){
         while(!clusterPolicy_.isDone()){
 
             if(clusterPolicy_.edgeContractionGraph().numberOfEdges() == 0)
@@ -33,13 +34,17 @@ public:
             const auto edgeToContractNextAndPriority = clusterPolicy_.edgeToContractNext();
             const auto edgeToContractNext = edgeToContractNextAndPriority.first;
             const auto priority = edgeToContractNextAndPriority.second;
+            if(verbose){
+                const auto & cgraph = clusterPolicy_.edgeContractionGraph();
+                std::cout<<"Nodes "<<cgraph.numberOfNodes()<<" p="<<priority<<"\n";
+            }
             clusterPolicy_.edgeContractionGraph().contractEdge(edgeToContractNext);
         }
     }
     
 
     template<class EDGE_DENDROGRAM_HEIGHT>
-    void runAndGetDendrogramHeight(EDGE_DENDROGRAM_HEIGHT & dendrogramHeight){
+    void runAndGetDendrogramHeight(EDGE_DENDROGRAM_HEIGHT & dendrogramHeight,const bool verbose=false){
 
 
         while(!clusterPolicy_.isDone()){
@@ -47,6 +52,10 @@ public:
             const auto edgeToContractNext = edgeToContractNextAndPriority.first;
             const auto priority = edgeToContractNextAndPriority.second;
             dendrogramHeight[edgeToContractNext] = priority;
+            if(verbose){
+                const auto & cgraph = clusterPolicy_.edgeContractionGraph();
+                std::cout<<"Nodes "<<cgraph.numberOfNodes()<<" p="<<priority<<"\n";
+            }
             clusterPolicy_.edgeContractionGraph().contractEdge(edgeToContractNext);
         }
 

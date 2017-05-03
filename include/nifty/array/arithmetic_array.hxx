@@ -144,8 +144,8 @@ namespace array{
     template<class T,size_t SIZE>
     using StaticArray = ArrayExtender< StaticArrayBase<T,SIZE> >; 
 
-    template<class T, class ALLOCATOR = std::allocator<T> >
-    using Vector = ArrayExtender< std::vector<T,ALLOCATOR> >; 
+    // template<class T, class ALLOCATOR = std::allocator<T> >
+    // using Vector = ArrayExtender< std::vector<T,ALLOCATOR> >; 
 
 
 } // namespace nifty::graph

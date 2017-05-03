@@ -52,9 +52,29 @@ def __extendLiftedMulticutObj(objectiveCls, objectiveName):
 
 
 
-    def watershedProposalGenerator(seedingStrategie='SEED_FROM_LIFTED'):
+    def watershedProposalGenerator(sigma=1.0, numberOfSeeds=0.1,seedingStrategie='SEED_FROM_LIFTED'):
+        """factory function for a watershed based proposal generator for fusion move based
+        lifted multicuts.       
+        
+        Args:
+            sigma (float, optional): The weights are perturbed by a additive 
+                Gaussian noise n(0,sigma) (default  0.0)
 
-       
+            numberOfSeeds (float, optional): Number of seed to generate. 
+                A number smaller as one will be interpreted as a fraction of 
+                the number of nodes (default 0.1)
+            seedingStrategie (str, optional): Can be:
+                - 'SEED_FROM_LIFTED' : All negative weighted lifted edges
+                    can be used to generate seeds. 
+                - 'SEED_FROM_LOCAL' : All negative weighted local edges
+                    can be used to generate seeds. 
+                - 'SEED_FROM_BOTH' : Both, lifted and local edges
+                can be used for seeding
+        
+        Returns:
+            TYPE: parameter object used construct a WatershedProposalGenerator
+        
+        """
         pGenCls = getLmcCls("WatershedProposalGeneratorFactory")
         pGenSettings = getSettings("WatershedProposalGenerator")
 
@@ -70,6 +90,9 @@ def __extendLiftedMulticutObj(objectiveCls, objectiveName):
             raise RuntimeError("unkown seedingStrategie '%s': must be either"\
                                "'SEED_FROM_LIFTED','SEED_FROM_LOCAL' or "\
                                " 'SEED_FROM_BOTH' "%str(seedingStrategie))
+
+        pGenSettings.sigma = float(sigma)
+        pGenSettings.numberOfSeeds = float(numberOfSeeds)
         pGenSettings.seedingStrategie = enumVal
 
         return pGenCls(pGenSettings)
@@ -77,11 +100,27 @@ def __extendLiftedMulticutObj(objectiveCls, objectiveName):
     O.watershedProposalGenerator = staticmethod(watershedProposalGenerator)
 
 
-    def fusionMoveBasedFactory( proposalGenerator=None):
+    def fusionMoveBasedFactory(proposalGenerator=None, numberOfThreads=1,
+        numberOfIterations=1000, stopIfNoImprovement=100):
+        """factory function for a fusion move based lifted
+            multicut solver
+        
+        Args:
+            proposalGenerator (None, optional): Proposal generator (default watershedProposalGenerator)
+            numberOfThreads (int, optional):                (default 1)
+            numberOfIterations (int, optional): Maximum number of iterations(default 1000)
+            stopIfNoImprovement (int, optional): Stop after n iterations without improvement (default 100)
+        
+        Returns:
+            TYPE: Description
+        """
         if proposalGenerator is None:
             proposalGenerator = watershedProposalGenerator()
         s,F = getSettingsAndFactoryCls("FusionMoveBased")
         s.proposalGenerator = proposalGenerator
+        s.numberOfThreads = int(numberOfThreads)
+        s.numberOfIterations = int(numberOfIterations)
+        s.stopIfNoImprovement = int(stopIfNoImprovement)
         return F(s)
 
     O.fusionMoveBasedFactory = staticmethod(fusionMoveBasedFactory)

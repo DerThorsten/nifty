@@ -2,9 +2,9 @@ from __future__ import absolute_import
 from __future__ import print_function
 
 from ._nifty import *
-# __all__ = []
-# for key in _nifty.__dict__.keys():
-    # __all__.append(key)
+
+
+
 
 import types
 from functools import partial
@@ -15,6 +15,7 @@ import sys
 from . import graph
 from . import tools
 from . import ufd
+#from . import deep_learning
 
 
 

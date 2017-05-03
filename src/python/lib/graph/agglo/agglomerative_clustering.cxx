@@ -7,6 +7,7 @@
 
 #include "nifty/graph/agglo/agglomerative_clustering.hxx"
 
+#include "nifty/graph/agglo/cluster_policies/mala_cluster_policy.hxx"
 #include "nifty/graph/agglo/cluster_policies/edge_weighted_cluster_policy.hxx"
 #include "nifty/graph/agglo/cluster_policies/minimum_node_size_cluster_policy.hxx"
 #include "nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx"
@@ -20,7 +21,66 @@ namespace graph{
 namespace agglo{
 
 
-  
+    template<class GRAPH, bool WITH_UCM>
+    void exportMalaClusterPolicy(py::module & aggloModule) {
+        
+        typedef GRAPH GraphType;
+        const auto graphName = GraphName<GraphType>::name();
+        typedef nifty::marray::PyView<float, 1> PyViewFloat1;
+
+        const std::string withUcmStr =  WITH_UCM ? std::string("WithUcm") :  std::string() ;
+
+        {   
+            // name and type of cluster operator
+            typedef MalaClusterPolicy<GraphType,WITH_UCM> ClusterPolicyType;
+            const auto clusterPolicyBaseName = std::string("MalaClusterPolicy") +  withUcmStr;
+            const auto clusterPolicyClsName = clusterPolicyBaseName + graphName;
+            const auto clusterPolicyFacName = lowerFirst(clusterPolicyBaseName);
+
+            // the cluster operator cls
+            py::class_<ClusterPolicyType>(aggloModule, clusterPolicyClsName.c_str())
+                //.def_property_readonly("edgeIndicators", &ClusterPolicyType::edgeIndicators)
+                //.def_property_readonly("edgeSizes", &ClusterPolicyType::edgeSizes)
+            ;
+        
+
+            // factory
+            aggloModule.def(clusterPolicyFacName.c_str(),
+                [](
+                    const GraphType & graph,
+                    const PyViewFloat1 & edgeIndicators,
+                    const PyViewFloat1 & edgeSizes,
+                    const PyViewFloat1 & nodeSizes,
+                    const float threshold,
+                    const uint64_t numberOfNodesStop,
+                    const float sizeRegularizer,
+                    const bool verbose
+                ){
+                    typename ClusterPolicyType::Settings s;
+                    s.numberOfNodesStop = numberOfNodesStop;
+                    s.sizeRegularizer = sizeRegularizer;
+                    s.threshold = threshold;
+                    s.verbose = verbose;
+                    auto ptr = new ClusterPolicyType(graph, edgeIndicators, edgeSizes, nodeSizes, s);
+                    return ptr;
+                },
+                py::return_value_policy::take_ownership,
+                py::keep_alive<0,1>(), // graph
+                py::arg("graph"),
+                py::arg("edgeIndicators"),
+                py::arg("edgeSizes"),
+                py::arg("nodeSizes"),
+                py::arg("threshold") = 0.5,
+                py::arg("numberOfNodesStop") = 1,
+                py::arg("sizeRegularizer") = 0.5f,
+                py::arg("verbose") = false
+            );
+
+            // export the agglomerative clustering functionality for this cluster operator
+            exportAgglomerativeClusteringTClusterPolicy<ClusterPolicyType>(aggloModule, clusterPolicyBaseName);
+        }
+    }
+
     template<class GRAPH, bool WITH_UCM>
     void exportEdgeWeightedClusterPolicy(py::module & aggloModule) {
         
@@ -74,7 +134,6 @@ namespace agglo{
             exportAgglomerativeClusteringTClusterPolicy<ClusterPolicyType>(aggloModule, clusterPolicyBaseName);
         }
     }
-
 
     template<class GRAPH>
     void exportMinimumNodeSizeClusterPolicy(py::module & aggloModule) {
@@ -139,8 +198,13 @@ namespace agglo{
         {
             typedef PyUndirectedGraph GraphType;
 
+            exportMalaClusterPolicy<GraphType, false>(aggloModule);
+            exportMalaClusterPolicy<GraphType, true>(aggloModule);
+
             exportEdgeWeightedClusterPolicy<GraphType, false>(aggloModule);
             exportEdgeWeightedClusterPolicy<GraphType, true>(aggloModule);
+
+
             exportMinimumNodeSizeClusterPolicy<GraphType>(aggloModule);
         }
     }

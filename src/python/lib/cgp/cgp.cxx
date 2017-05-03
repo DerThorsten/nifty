@@ -14,6 +14,7 @@ namespace cgp{
     void exportTopologicalGrid(py::module &);
     void exportBounds(py::module &);
     void exportGeometry(py::module &);
+    void exportFeatures(py::module &);
 }
 }
 
@@ -26,6 +27,7 @@ PYBIND11_PLUGIN(_cgp) {
     exportTopologicalGrid(cgpModule);
     exportBounds(cgpModule);
     exportGeometry(cgpModule);
+    exportFeatures(cgpModule);
 
     return cgpModule.ptr();
 }
