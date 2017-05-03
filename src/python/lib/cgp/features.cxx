@@ -7,7 +7,9 @@
 #include "nifty/python/converter.hxx"
 #include "nifty/cgp/geometry.hxx"
 #include "nifty/cgp/bounds.hxx"
+
 #include "nifty/cgp/features/geometric_features.hxx"
+#include "nifty/cgp/features/topological_features.hxx"
 
 namespace py = pybind11;
 
@@ -33,9 +35,8 @@ namespace cgp{
 
             pyCls
             .def(
-                py::init< const std::vector<float> &,const std::vector<float> & >(),
-                py::arg("sigmas")    = std::vector<float>({1.0f, 2.0f, 4.0f}),
-                py::arg("quantiles") = std::vector<float>({0.1f, 0.25f, 0.50f, 0.75f, 0.9f})
+                py::init< const std::vector<float> & >(),
+                py::arg("sigmas")    = std::vector<float>({1.0f, 2.0f, 4.0f})
             )
             .def("__call__",
                 [](
@@ -91,30 +92,54 @@ namespace cgp{
             auto pyCls = py::class_<Op>(module, clsName.c_str());
 
             pyCls
-            .def(
-                py::init< const std::vector<size_t> &>(),
-                py::arg("dists")  =  std::vector<size_t>({size_t(3),size_t(5),size_t(7)})
-            )
+            .def( py::init< >())
             .def("__call__",
                 [](
                     const Op & op,
-                    const CellGeometryVector<2,0>   & cell0GeometryVector,
                     const CellGeometryVector<2,1>   & cell1GeometryVector,
                     const CellGeometryVector<2,2>   & cell2GeometryVector,
-                    const CellBoundsVector<2,0>     & cell0BoundsVector,
-                    const CellBoundsVector<2,1>     & cell1BoundsVector,
-                    const CellBoundedByVector<2,1>  & cell1BoundedByVector,
-                    const CellBoundedByVector<2,2>  & cell2BoundedByVector
+                    const CellBoundsVector<2,1>     & cell1BoundsVector
                 ){
                     const auto nFeatures = size_t(op.numberOfFeatures());
                     const auto nCells1   = size_t(cell1GeometryVector.size());
 
                     nifty::marray::PyView<float> out({nCells1, nFeatures});
 
-                    op( cell0GeometryVector,
-                        cell1GeometryVector,
+                    op( cell1GeometryVector,
                         cell2GeometryVector,
-                        cell0BoundsVector,
+                        cell1BoundsVector,
+                        out
+                    );
+
+                    return  out;
+                },
+                py::arg("cell1GeometryVector"),
+                py::arg("cell2GeometryVector"),
+                py::arg("cell1BoundsVector")
+            )
+            ;
+        }
+        {
+            typedef Cell1BasicTopologicalFeatures Op;
+            const auto clsName = std::string("Cell1BasicTopologicalFeatures");
+            auto pyCls = py::class_<Op>(module, clsName.c_str());
+
+            pyCls
+            .def( py::init< >())
+            .def("__call__",
+                [](
+                    const Op & op,
+                    const CellBoundsVector<2,0>     & cell0BoundsVector,
+                    const CellBoundsVector<2,1>     & cell1BoundsVector,
+                    const CellBoundedByVector<2,1>  & cell1BoundedByVector,
+                    const CellBoundedByVector<2,2>  & cell2BoundedByVector
+                ){
+                    const auto nFeatures = size_t(op.numberOfFeatures());
+                    const auto nCells1   = size_t(cell1BoundsVector.size());
+
+                    nifty::marray::PyView<float> out({nCells1, nFeatures});
+
+                    op( cell0BoundsVector,
                         cell1BoundsVector,
                         cell1BoundedByVector,
                         cell2BoundedByVector,
@@ -123,18 +148,13 @@ namespace cgp{
 
                     return  out;
                 },
-                py::arg("cell0GeometryVector"),
-                py::arg("cell1GeometryVector"),
-                py::arg("cell2GeometryVector"),
                 py::arg("cell0BoundsVector"),
                 py::arg("cell1BoundsVector"),
                 py::arg("cell1BoundedByVector"),
                 py::arg("cell2BoundedByVector")
-
             )
             ;
         }
-
     }
 
 }

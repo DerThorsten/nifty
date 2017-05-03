@@ -34,13 +34,14 @@ namespace features{
             > 
         > AccType;
 
-        typedef std::integral_constant<int, 2> NFeatures;
+        typedef std::integral_constant<int, 1>  NPasses;
+        typedef std::integral_constant<int, 11> NFeatures;
 
         DefaultAccumulatedStatistics(const size_t rightTailCacheSize = 1000)
         :   acc_(bacc::right_tail_cache_size = rightTailCacheSize){
 
         }
-        DefaultAccumulatedStatistics & acc(const T & val){
+        DefaultAccumulatedStatistics & acc(const T & val, const size_t pass=0){
             acc_(val);
             return *this;
         }
@@ -59,14 +60,20 @@ namespace features{
             rBegin[3]  = extract_result< tag::max >(acc_);                                 
             rBegin[4]  = replaceRotten(extract_result< tag::moment<2> >(acc_),0.0);        
             rBegin[5]  = replaceRotten(extract_result< tag::moment<3> >(acc_),0.0);        
-            rBegin[6]  = replaceRotten(quantile(acc_, quantile_probability = 0.1 ),mean);  
+            rBegin[6]  = replaceRotten(quantile(acc_, quantile_probability = 0.1 ), mean);  
             rBegin[7]  = replaceRotten(quantile(acc_, quantile_probability = 0.25 ),mean); 
-            rBegin[8]  = replaceRotten(quantile(acc_, quantile_probability = 0.5 ),mean);  
+            rBegin[8]  = replaceRotten(quantile(acc_, quantile_probability = 0.5 ), mean);  
             rBegin[9]  = replaceRotten(quantile(acc_, quantile_probability = 0.75 ),mean); 
             rBegin[10] = replaceRotten(quantile(acc_, quantile_probability = 0.90 ),mean); 
 
         }
 
+        size_t requiredPasses()const{
+            return 1;
+        }
+        size_t nFeatures()const{
+            return NFeatures::value;
+        }
     private:
 
         T replaceRotten(const T & val, const T & replaceVal){

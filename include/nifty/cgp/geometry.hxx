@@ -364,8 +364,8 @@ namespace cgp{
                 //geo.clear();
 
                 std::copy(sorted.begin(), sorted.end(), geo.begin());
-                std::cout<<"sorted.size() "<<sorted.size()<<"\n";
-                std::cout<<"geo.size() "<<geo.size()<<"\n\n";
+                //std::cout<<"sorted.size() "<<sorted.size()<<"\n";
+                //std::cout<<"geo.size() "<<geo.size()<<"\n\n";
             }
         }
     }

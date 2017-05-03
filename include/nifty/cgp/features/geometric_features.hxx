@@ -8,7 +8,7 @@
 #include "nifty/cgp/bounds.hxx"
 #include "nifty/marray/marray.hxx"
 #include "nifty/filters/gaussian_curvature.hxx"
-
+#include "nifty/features/accumulated_features.hxx"
 
 #include <boost/geometry.hpp>
 #include <boost/geometry/geometries/linestring.hpp>
@@ -22,21 +22,49 @@ namespace nifty{
 namespace cgp{
 
     class Cell1CurvatureFeatures2D{
+    private:
+        typedef nifty::features::DefaultAccumulatedStatistics<float> AccType;
     public:
         Cell1CurvatureFeatures2D(
-            const std::vector<float> & sigmas  = std::vector<float>({1.0f, 2.0f, 4.0f}),
-            const std::vector<float> & quantiles = std::vector<float>({0.1f, 0.25f, 0.50f, 0.75f, 0.9f})
+            const std::vector<float> & sigmas  = std::vector<float>({1.0f, 2.0f, 4.0f})
         )
-        :   sigmas_(sigmas),
-            quantiles_(quantiles)
+        :   sigmas_(sigmas)
         {
 
         }
 
         size_t numberOfFeatures()const{
-            return sigmas_.size() * quantiles_.size();    
+            return sigmas_.size() * AccType::NFeatures::value;   
         }
-            
+        
+
+        std::vector<std::string> names()const{
+
+
+            std::string accNames [] = {
+                std::string("Mean"),
+                std::string("Sum"),
+                std::string("Min"),
+                std::string("Max"),
+                std::string("Moment2"),
+                std::string("Moment3"),
+                std::string("Q0.10"),
+                std::string("Q0.25"),
+                std::string("Q0.50"),
+                std::string("Q0.75"),
+                std::string("Q0.90")
+            };
+            std::vector<std::string> res;
+            auto baseName = std::string("GaussianCurvatureSigma");
+            for(auto sigmaIndex=0; sigmaIndex<sigmas_.size(); ++sigmaIndex){
+                auto name  = baseName + std::to_string(sigmas_[sigmaIndex]);
+                for(const auto & accName : accNames){
+                    name += accName;
+                }
+                res.push_back(name);
+            }
+
+        }
 
         template<class T>
         void operator()(
@@ -46,8 +74,8 @@ namespace cgp{
         )const{  
 
             std::vector<float> curvature;
-            std::vector<float> quantilesOut(quantiles_.size());
-            nifty::histogram::Histogram<float> histogram(0,1.0, 10);
+            std::vector<float> buffer(AccType::NFeatures::value);
+            
 
             
             for(auto sigmaIndex=0; sigmaIndex<sigmas_.size(); ++sigmaIndex){
@@ -58,7 +86,11 @@ namespace cgp{
                 for(auto cell1Index=0; cell1Index<cell1GeometryVector.size(); ++cell1Index){
                     const auto & geo = cell1GeometryVector[cell1Index];
 
-                    if(geo.size()>=3){
+                    
+
+                    if(geo.size()>=4){
+
+               
                         // we use a larger size?
                         if(curvature.capacity() < geo.size()){
                             curvature.resize(geo.size()*2);
@@ -73,53 +105,47 @@ namespace cgp{
                         //std::cout<<"    calculate curvature "<<"\n";
                         op(geo.begin(), geo.end(), curvature.begin(), closedLine);
 
-                        if(false){
-                            //std::cout<<"    fill histogram"<<"\n";
-                            // clear histogram -> set min max from data and fill from data
-                            histogram.clearSetMinMaxAndFillFrom(curvature.begin(), curvature.begin()+geo.size());
-
-                            //std::cout<<"    get quantiles"<<"\n";
-                            // fetch the quantiles
-                            nifty::histogram::quantiles(histogram, quantiles_.begin(), quantiles_.end(),
-                                quantilesOut.begin());
-
-                            //std::cout<<"    write to features"<<"\n";
-                            // yay we are done for this cell1
-                            // => just write results to features
-                            const auto fIndex = sigmaIndex;//*quantiles_.size();
-                            for(auto qIndex=0; qIndex<quantiles_.size(); ++qIndex){
-                                features(cell1Index, fIndex + qIndex) = quantilesOut[qIndex];
+                        // accumulate the values
+                        AccType acc;
+                        for(auto pass=0; pass < acc.requiredPasses(); ++pass){
+                            for(const auto & c : curvature){
+                                acc.acc(c, pass);
                             }
                         }
-                        else{
-                            features(cell1Index, sigmaIndex) = std::accumulate(
-                                curvature.begin(), curvature.begin()+geo.size(),0.0
-                            )/geo.size();
+                        // write to buffer
+                        acc.result(buffer.begin(), buffer.end());   
+                        
+                        // write to features out
+                        const auto fIndex = sigmaIndex*AccType::NFeatures::value;
+                        for(auto afi=0; afi<AccType::NFeatures::value; ++afi){
+                            features(cell1Index, fIndex + afi) = buffer[afi];
                         }
+
+                        
                     }
                     else{
-                        if(false){
-                            const auto fIndex = sigmaIndex*quantiles_.size();
-                            for(auto qIndex=0; qIndex<quantiles_.size(); ++qIndex){
-                                features(cell1Index, fIndex + qIndex) = 0.0;
-                            }
+                        // write to features out
+                        // a zero value seems legit since we
+                        // assume a constant zero curvature
+                        const auto fIndex = sigmaIndex*AccType::NFeatures::value;
+                        for(auto afi=0; afi<AccType::NFeatures::value; ++afi){
+                            features(cell1Index, fIndex + afi) = 0.0;
                         }
-                        else{
-                            features(cell1Index, sigmaIndex) = 0.0;
-                        }   
+
                     }
                 }
             }
         }   
     private:
         std::vector<float> sigmas_;
-        std::vector<float> quantiles_;
     };
 
 
 
 
     class Cell1LineSegmentDist2D{
+    private:
+        typedef nifty::features::DefaultAccumulatedStatistics<float> AccType;
     public:
         Cell1LineSegmentDist2D(
             const std::vector<size_t> & dists  = std::vector<size_t>({size_t(3),size_t(5),size_t(7)})
@@ -129,7 +155,7 @@ namespace cgp{
         }
 
         size_t numberOfFeatures()const{
-            return  dists_.size();
+            return  dists_.size()*AccType::NFeatures::value;
         }
             
 
@@ -139,38 +165,57 @@ namespace cgp{
             nifty::marray::View<T> & features
         )const{  
 
-            
+            std::vector<float> buffer(AccType::NFeatures::value);
 
             typedef boost::geometry::model::d2::point_xy<double> point_type;
-            //typedef boost::geometry::model::polygon<point_type> polygon_type;
             typedef boost::geometry::model::linestring<point_type> linestring_type;
-            //typedef boost::geometry::model::multi_point<point_type> multi_point_type;
+
 
             for(auto di=0; di<dists_.size(); ++di){
                 const auto ld = dists_[di];
                 for(auto cell1Index=0; cell1Index<cell1GeometryVector.size(); ++cell1Index){
                     const auto & geo = cell1GeometryVector[cell1Index];
                     if(geo.size()>=4){
-                        auto d = 0.0;
-                        for(auto i=0; i<geo.size()-1; ++i){
-                            const auto j = std::min(int(i + ld), int(geo.size()-1));
-                            const auto & pS = geo[i];
-                            const auto & pE = geo[j];   
 
-                            linestring_type line;
-                            line.push_back(point_type(pS[0], pS[1]));
-                            line.push_back(point_type(pE[0], pE[1]));
-                            
-                            for(auto ii=i+1; ii<j-1; ++ii){
-                                const point_type p(geo[ii][0], geo[ii][1]);
-                                d += boost::geometry::distance(p, line);
-                                //std::cout<<"d "<<d<<"\n";
+                        AccType acc;
+
+                        for(auto pass=0; pass < acc.requiredPasses(); ++pass){
+
+                            for(auto i=0; i<geo.size()-1; ++i){
+                                const auto j = std::min(int(i + ld), int(geo.size()-1));
+                                const auto & pS = geo[i];
+                                const auto & pE = geo[j];   
+
+                                linestring_type line;
+                                line.push_back(point_type(pS[0], pS[1]));
+                                line.push_back(point_type(pE[0], pE[1]));
+                                
+                                for(auto ii=i+1; ii<j-1; ++ii){
+                                    const point_type p(geo[ii][0], geo[ii][1]);
+                                    const auto d = boost::geometry::distance(p, line);
+                                    acc.acc(d, pass);
+                                }
                             }
                         }
-                        features(cell1Index,di) = d/float(geo.size());
+                        // write to buffer
+                        acc.result(buffer.begin(), buffer.end());
+
+                        // write to features out
+                        const auto fIndex = di*AccType::NFeatures::value;
+                        for(auto afi=0; afi<AccType::NFeatures::value; ++afi){
+                            features(cell1Index, fIndex + afi) = buffer[afi];
+                        }
+
+                        
                     }
                     else{
-                        features(cell1Index,di) = 0.0;
+                        // write to features out
+                        // a zero value seems legit since we
+                        // assume a constant zero curvature
+                        const auto fIndex = di*AccType::NFeatures::value;
+                        for(auto afi=0; afi<AccType::NFeatures::value; ++afi){
+                            features(cell1Index, fIndex + afi) = 0.0;
+                        }
                     }
                 }
             }
@@ -182,11 +227,7 @@ namespace cgp{
 
     class Cell1BasicGeometricFeatures2D{
     public:
-        Cell1BasicGeometricFeatures2D(
-            const std::vector<size_t> & dists  = std::vector<size_t>({size_t(3),size_t(5),size_t(7)})
-        )
-        :   dists_(dists)
-        {
+        Cell1BasicGeometricFeatures2D(){
         }
 
         size_t numberOfFeatures()const{
@@ -196,13 +237,9 @@ namespace cgp{
 
         template<class T>
         void operator()(
-            const CellGeometryVector<2,0>   & cell0GeometryVector,
             const CellGeometryVector<2,1>   & cell1GeometryVector,
             const CellGeometryVector<2,2>   & cell2GeometryVector,
-            const CellBoundsVector<2,0>     & cell0BoundsVector,
             const CellBoundsVector<2,1>     & cell1BoundsVector,
-            const CellBoundedByVector<2,1>  & cell1BoundedByVector,
-            const CellBoundedByVector<2,2>  & cell2BoundedByVector,
             nifty::marray::View<T> & features
         )const{  
             using namespace nifty::math;
@@ -293,21 +330,6 @@ namespace cgp{
 
 
 
-    /*    
-     *********************************************
-     *    
-     *    WHAT ABOUT ORIENTATION AND ANGLES???:  
-     *   
-     *********************************************    
-     *
-     * 
-     */
-
-
-
-
-
-
 
 
 
@@ -323,22 +345,13 @@ namespace cgp{
 
 
     class Cell1GeoHistFeatures{
-
+        typedef nifty::features::DefaultAccumulatedStatistics<float> AccType;
     public:
-        Cell1GeoHistFeatures(
-            const std::vector<float> & quantiles,
-            const size_t bincount = 40,
-            const float gamma = -0.07
-        )
-        :   quantiles_(quantiles),
-            bincount_(bincount),
-            gamma_(gamma)
-        {
-
+        Cell1GeoHistFeatures(){
         }
 
         size_t numberOfFeatures()const{
-            return quantiles_.size();    
+            return AccType::NFeatures::value;
         }
             
 
@@ -347,6 +360,8 @@ namespace cgp{
             const CellGeometryVector<2,1> & cellsGeometry,
             nifty::marray::View<T> & features
         )const{  
+
+            std::vector<float> buffer(AccType::NFeatures::value);
             for(auto cellIndex=0; cellIndex<cellsGeometry.size(); ++cellIndex){
 
 
@@ -360,43 +375,27 @@ namespace cgp{
                 histogram::Histogram<float> histogram(minVal, maxVal, bincount_);
                 std::vector<float> out(quantiles_.size());
 
-                // compute the derivatives
+                AccType acc;
+
                 for(auto i=0; i<cellGeometry.size(); ++i){
-
                     const auto & coord = cellGeometry[i];
-                    
-                    // distance ...(TODO..we need code for that...)
-                    auto d = 0.0;
-                    for(auto d=0; d<2;++d){
-                        auto diff = centerOfMass[d] - coord[d];
-                        d += diff * diff;
-                    }
-                    d = std::sqrt(d);
-
-                    // push to histogram
-                    histogram.insert(std::exp(gamma_*d));
+                    const auto d  = nifty::math::euclideanDistance(coord, centerOfMass);
+                    acc.acc(d);
                 }
-                // extract the quantiles 
-                quantiles(histogram, quantiles_.begin(), quantiles_.end(), out.begin());
+                
+                // write to buffer
+                acc.result(buffer.begin(), buffer.end()); 
 
                 // write results
-                for(auto i=0; i<out.size(); ++i){
-                    features(cellIndex, i) = out[i];
+                for(auto i=0; i<buffer.size(); ++i){
+                    features(cellIndex, i) = buffer[i];
                 }
 
             }
         }
 
-
-
     private:
 
-    
-
-
-        std::vector<float> quantiles_;
-        size_t bincount_;
-        float gamma_;
     };
 
 
