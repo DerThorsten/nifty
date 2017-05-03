@@ -46,7 +46,7 @@ namespace cgp{
         uint32_t size()const{
             return data_[3] == 0 ? 3:4;
         }
-        const uint32_t & operator[](const uint i)const{
+        const uint32_t & operator[](const unsigned int i)const{
             return data_[i];
         }
     private:
@@ -63,7 +63,7 @@ namespace cgp{
         uint32_t size()const{
             return 2;
         }
-        const uint32_t &  operator[](const uint i)const{
+        const uint32_t &  operator[](const unsigned int i)const{
             return data_[i];
         }
     private:
