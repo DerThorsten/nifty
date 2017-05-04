@@ -14,16 +14,7 @@
 namespace nifty{
 namespace graph{
 
-    // Settings for the LP_MP message passing solver
-    struct MpSettings {
-    };
-
-    // TODO expose the primal solver for the mp multicut, maybe by template, depending 
-    // on how we implement this in LP_MP
-    // fusion_move_based has this in settings object (mcFactory)
-    
-    //template<class OBJECTIVE, class PRIMAL_SOLVER>
-    template<class OBJECTIVE>
+    template<class OBJECTIVE, class ROUNDER>
     class MulticutMp : public MulticutBase<OBJECTIVE>
     {
     public: 
@@ -35,9 +26,10 @@ namespace graph{
         typedef typename Base::EdgeLabels EdgeLabels;
         typedef typename Base::NodeLabels NodeLabels;
         typedef typename Objective::Graph Graph;
+        
         // TODO with or without odd wheel ?
         //typedef LP_MP::FMC_MULTICUT<LP_MP::MessageSendingType::SRMP> FMC;
-        typedef LP_MP::FMC_ODD_WHEEL_MULTICUT<LP_MP::MessageSendingType::SRMP> FMC;
+        typedef LP_MP::FMC_ODD_WHEEL_MULTICUT<LP_MP::MessageSendingType::SRMP, ROUNDER> FMC;
         typedef LP_MP::ProblemConstructorRoundingSolver<LP_MP::Solver<FMC,LP_MP::LP,LP_MP::StandardTighteningVisitor>> SolverType;
 
     public:
@@ -98,8 +90,8 @@ namespace graph{
     };
    
     
-    template<class OBJECTIVE>
-    MulticutMp<OBJECTIVE>::
+    template<class OBJECTIVE, class ROUNDER>
+    MulticutMp<OBJECTIVE, ROUNDER>::
     MulticutMp(
         const Objective & objective, 
         const Settings & settings
@@ -114,8 +106,8 @@ namespace graph{
         this->initializeMp();
     }
 
-    template<class OBJECTIVE>
-    void MulticutMp<OBJECTIVE>::
+    template<class OBJECTIVE, class ROUNDER>
+    void MulticutMp<OBJECTIVE, ROUNDER>::
     initializeMp() {
         
         if(graph_.numberOfEdges()!= 0 ){
@@ -133,8 +125,8 @@ namespace graph{
     // returns options in correct format for the LP_MP solver
     // TODO would be bettter to have a decent interface for LP_MP and then
     // get rid of this
-    template<class OBJECTIVE>
-    std::vector<std::string> MulticutMp<OBJECTIVE>::
+    template<class OBJECTIVE, class ROUNDER>
+    std::vector<std::string> MulticutMp<OBJECTIVE, ROUNDER>::
     toOptionsVector() const {
 
         //std::vector<std::string> options = {
@@ -185,8 +177,8 @@ namespace graph{
     // TODO maybe this can be done more efficient
     // (if we only call it once, this should be fine, but if we need
     // to call this more often for some reason, this might get expensive)
-    template<class OBJECTIVE>
-    void MulticutMp<OBJECTIVE>::
+    template<class OBJECTIVE, class ROUNDER>
+    void MulticutMp<OBJECTIVE, ROUNDER>::
     nodeLabeling() {
 
         ufd_.reset();
@@ -202,8 +194,8 @@ namespace graph{
     }
 
 
-    template<class OBJECTIVE>
-    void MulticutMp<OBJECTIVE>::
+    template<class OBJECTIVE, class ROUNDER>
+    void MulticutMp<OBJECTIVE, ROUNDER>::
     optimize(
         NodeLabels & nodeLabels,  VisitorBase * visitor
     ){  
