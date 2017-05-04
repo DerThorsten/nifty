@@ -10,13 +10,6 @@
 #include "nifty/filters/gaussian_curvature.hxx"
 #include "nifty/features/accumulated_features.hxx"
 
-#include <boost/geometry.hpp>
-#include <boost/geometry/geometries/linestring.hpp>
-#include <boost/geometry/geometries/point_xy.hpp>
-#include <boost/geometry/geometries/polygon.hpp>
-#include <boost/geometry/geometries/multi_point.hpp>
-#include <boost/geometry/geometries/multi_polygon.hpp>
-
 
 namespace nifty{
 namespace cgp{
