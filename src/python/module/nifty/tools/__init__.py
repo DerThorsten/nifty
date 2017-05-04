@@ -14,9 +14,9 @@ import numpy
 
 try:
     import progressbar as _progressbar
-    hasProgressbar = True
+    _hasProgressbar = True
 except ImportError:
-    hasProgressbar = False
+    _hasProgressbar = False
 
 
 
@@ -135,7 +135,7 @@ def parallelForEach(iterable, f, nWorkers=cpu_count() ,
 
 
 
-if not hasProgressbar:
+if not _hasProgressbar:
 
     class Progressbar:
         def __init__(self, maxValue, name=""):

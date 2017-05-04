@@ -3,11 +3,20 @@ Nifty
 
 [![Build Status](https://travis-ci.org/DerThorsten/nifty.svg?branch=master)](https://travis-ci.org/DerThorsten/nifty)
 
-A nifty library for Multicuts and general image and graph segmentation.
+A nifty library for multicuts and general image and graph segmentation.
+
+Almost all features of nifty exist to implement algorithms
+for 2D and 3D image segmentation.
+To be more precise, nifty was developed to implement
+and prototype algorithms for segmentation of neuro data.
+
+
+
 This library is used for my personal research. I decided to make it open source
 such that other researchers can benefit from my code.
 Since I use this code for research, the code is not super stable and  there might be a lot of API changes,
 bugs, and other issues (I try to avoid this but it is not my priority to have a bullet proof library)
+
 
 Important:
 =========
@@ -17,7 +26,7 @@ To use nifty one needs to checkout some submodules via:
     git submodule update
 
 
-Features:
+Features (Highlights):
 =========
 
 
@@ -40,6 +49,14 @@ Features:
 * Agglomerative Clustering
     * Easy to extend / Custom cluster policies
     * UCM Transform
+
+
+
+* CGP 2D (Cartesian Grid Partitioning)
+* Many Data Structures:
+    * Union Find Data Structure
+    * Histogram
+
 
 
 C++ vs Python:
