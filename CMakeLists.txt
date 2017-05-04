@@ -33,28 +33,13 @@ option(BUILD_PYTHON_DOCS "Build the Python documentation with Sphinx" OFF)
 
 
 #-------------------------------------------------------------------------------------------------------------------
-# check for c++ 11 support
+# check for c++ 14 support
 #-------------------------------------------------------------------------------------------------------------------
 
-# FIXME
-# FIXME need to fix c++14 checks to make LP_MP work
-# FIXME
-
-#if (CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR CMAKE_CXX_COMPILER_ID MATCHES "GNU")
-#    CHECK_CXX_COMPILER_FLAG("-std=c++14" HAS_CPP14_FLAG)
-#    CHECK_CXX_COMPILER_FLAG("-std=c++11" HAS_CPP11_FLAG)
-#    if (HAS_CPP14_FLAG)
-#        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
-#    elseif (HAS_CPP11_FLAG)
-#        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14") # FIXME LP_MP hack
-#    else()
-#        message(FATAL_ERROR "Unsupported compiler -- nifty  requires C++11 support!")
-#    endif()
-#endif()
-
-# FIXME pybind cmake flags are not set correctly
-set(CMAKE_CXX_STANDARD 14)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+# TODO make sure compiler supports c++ 14 
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
+#set(CMAKE_CXX_STANDARD 14)
+#set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(OpenMP)
 if (OPENMP_FOUND)
