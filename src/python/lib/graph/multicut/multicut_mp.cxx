@@ -17,17 +17,6 @@ PYBIND11_DECLARE_HOLDER_TYPE(T, std::shared_ptr<T>);
 namespace nifty{
 namespace graph{
 
-    // TODO exports with different primal solvers once implemented
-    
-    void exportMpSettings(py::module & multicutModule){
-        
-        py::class_<MpSettings>(multicutModule, "MpSettings")
-            .def(py::init<>())
-        ;
-
-    }
-
-    
     template<class OBJECTIVE>
     void exportMulticutMpT(py::module & multicutModule){
         
@@ -61,7 +50,6 @@ namespace graph{
     
     void exportMulticutMp(py::module & multicutModule){
         
-        exportMpSettings(multicutModule);
         {
             typedef PyUndirectedGraph GraphType;
             typedef MulticutObjective<GraphType, double> ObjectiveType;

@@ -14,6 +14,5 @@ addPythonModule(
         fusion_move_based.cxx
         perturb_and_map.cxx
     LIBRRARIES
-        ${NIFTY_LP_SOLVER_LIBS} lgl
+        ${NIFTY_LP_SOLVER_LIBS}
 )
-# FIXME we should only link lgl if we are building WITH_LP_MP

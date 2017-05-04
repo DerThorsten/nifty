@@ -214,6 +214,7 @@ if(WITH_LP_MP)
     include_directories("${CMAKE_CURRENT_SOURCE_DIR}/externals/LP_MP/external/tclap/include")
     
     # TODO this seems to be a pretty old version, would the newer version help?!
+    # FIXME we actually don't need to link this for building the LP_MP multicut
     include(ExternalProject)
     ExternalProject_ADD(
        lingeling
@@ -226,7 +227,7 @@ if(WITH_LP_MP)
        INSTALL_COMMAND ""
        )
     include_directories("${CMAKE_CURRENT_BINARY_DIR}/lingeling-prefix/src/lingeling") 
-    link_directories("${CMAKE_CURRENT_BINARY_DIR}/lingeling-prefix/src/lingeling")
+    #link_directories("${CMAKE_CURRENT_BINARY_DIR}/lingeling-prefix/src/lingeling")
     
 endif()
 
