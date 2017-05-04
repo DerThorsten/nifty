@@ -36,7 +36,8 @@ namespace math{
         auto d = Numerics<T0T1>::zero();
 
         for(size_t i=0; i<N; ++i){
-            d += std::abs(T0T1(a[i])-T0T1(b[i]));
+            const auto dist = T0T1(a[i])-T0T1(b[i]);
+            d += dist*dist;
         }
         return std::sqrt(d);
     }
