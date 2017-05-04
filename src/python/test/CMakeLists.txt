@@ -9,7 +9,6 @@ if(BUILD_PYTHON_TEST)
                 #"nosetests-${PYTHON_VERSION_MAJOR}"
                 "nosetests")
     else()
-        message(STATUS "333333")
         find_program(NOSETESTS_PATH NAMES
             #"nosetests${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}"
             #"nosetests-${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}"

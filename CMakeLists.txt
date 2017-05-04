@@ -21,9 +21,10 @@ option(WITH_GLPK OFF)
 option(WITH_HDF5 OFF)
 option(WITH_FASTFILTERS OFF)
 
+option(BUILD_CPP_TEST_WITH_GLIBCXX_CXX11_ABI OFF)
+
 option(BUILD_PYTHON_TEST OFF)
 option(BUILD_CPP_TEST ON)
-
 option(BUILD_NIFTY_PYTHON OFF)
 option(BUILD_DOCS ON)
 option(BUILD_CPP_EXAMPLES ON)
@@ -46,6 +47,8 @@ if (CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR CMAKE_CXX_COMPILER_ID MATCHES "GNU"
         message(FATAL_ERROR "Unsupported compiler -- nifty  requires C++11 support!")
     endif()
 endif()
+
+
 
 #set(CMAKE_CXX_STANDARD 14)
 #set(CMAKE_CXX_STANDARD_REQUIRED ON)
