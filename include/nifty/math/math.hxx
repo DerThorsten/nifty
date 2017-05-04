@@ -36,6 +36,7 @@ namespace math{
         auto d = Numerics<T0T1>::zero();
 
         for(size_t i=0; i<N; ++i){
+            
             const auto dist = T0T1(a[i])-T0T1(b[i]);
             d += dist*dist;
         }
