@@ -82,8 +82,8 @@ namespace ground_truth{
 
         groundTruthModule.def("seg3dToCremiZ5Edges",
         [](
-            marray::PyView<uint32_t, 2 , false>   seg,
-            marray::PyView<int32_t, 2 ,  false>   edges
+            marray::PyView<uint32_t, 3>   seg,
+            marray::PyView<int32_t, 2 >   edges
         ){
             NIFTY_CHECK_OP(edges.shape(1), == , 4, "edges must be |N| x 4");
 
@@ -92,7 +92,7 @@ namespace ground_truth{
                 size_t(seg.shape(1)),
                 size_t(edges.shape(0))
             }); 
-            
+
             std::vector<std::array<int32_t, 4> > e(edges.shape(0));
             for(size_t i=0; i<e.size(); ++i){
                 e[i][0] = edges(i, 0);
@@ -108,7 +108,132 @@ namespace ground_truth{
             py::arg("segmentation"),
             py::arg("edges")
         );
+
+        #if 0
+        groundTruthModule.def("seg3dToCremiZ5Edges",
+        [](
+            marray::PyView<uint32_t, 3>   seg,
+            marray::PyView<uint32_t, 3>   dt2d,
+            marray::PyView<int32_t, 2 >   edges,
+            marray::PyView<float, 1 >    edge_priors,
+        ){
+            NIFTY_CHECK_OP(edges.shape(1), == , 4, "edges must be |N| x 4");
+
+            marray::PyView<uint8_t> out({
+                size_t(seg.shape(0)),
+                size_t(seg.shape(1)),
+                size_t(edges.shape(0))
+            }); 
+
+            marray::PyView<float> w({
+                size_t(seg.shape(0)),
+                size_t(seg.shape(1)),
+                size_t(edges.shape(0))
+            }); 
+            
+            std::vector<std::array<int32_t, 4> > e(edges.shape(0));
+            std::vector<float>                   p(edges.shape(0));
+            for(size_t i=0; i<e.size(); ++i){
+                p[i] = edge_priors()
+                e[i][0] = edges(i, 0);
+                e[i][1] = edges(i, 1);
+                e[i][2] = edges(i, 2);
+                e[i][2] = edges(i, 3);
+            }
+
+            seg3dToCremiZ5Edges(seg, dt2d, e, out, w);
+
+            std::make_pair(out,w);
+        },
+            py::arg("segmentation"),
+            py::arg("distance_transform_2d"),
+            py::arg("edges"),
+            py::arg("edge_priors")
+        );
+
+        #endif
+
     }
+
+    void exportThinSegFilter(py::module & groundTruthModule){
+
+        groundTruthModule.def("_thinSegFilter",
+        [](
+            marray::PyView<uint32_t, 2>   seg,
+            marray::PyView<uint32_t, 2 >   dt,
+            const float sigma,
+            const int r
+        ){
+            
+
+            marray::PyView<float> out({
+                size_t(seg.shape(0)),
+                size_t(seg.shape(1))
+            }); 
+
+
+
+            thinSegFilter(seg, dt, out, sigma, r);
+            std::cout<<"DOOOONE\n";
+            return out;
+        },
+            py::arg("seg"),
+            py::arg("dt"),
+            py::arg("sigma"),
+            py::arg("radius") = 0
+        );
+
+        #if 0
+        groundTruthModule.def("seg3dToCremiZ5Edges",
+        [](
+            marray::PyView<uint32_t, 3>   seg,
+            marray::PyView<uint32_t, 3>   dt2d,
+            marray::PyView<int32_t, 2 >   edges,
+            marray::PyView<float, 1 >    edge_priors,
+        ){
+            NIFTY_CHECK_OP(edges.shape(1), == , 4, "edges must be |N| x 4");
+
+            marray::PyView<uint8_t> out({
+                size_t(seg.shape(0)),
+                size_t(seg.shape(1)),
+                size_t(edges.shape(0))
+            }); 
+
+            marray::PyView<float> w({
+                size_t(seg.shape(0)),
+                size_t(seg.shape(1)),
+                size_t(edges.shape(0))
+            }); 
+            
+            std::vector<std::array<int32_t, 4> > e(edges.shape(0));
+            std::vector<float>                   p(edges.shape(0));
+            for(size_t i=0; i<e.size(); ++i){
+                p[i] = edge_priors()
+                e[i][0] = edges(i, 0);
+                e[i][1] = edges(i, 1);
+                e[i][2] = edges(i, 2);
+                e[i][2] = edges(i, 3);
+            }
+
+            seg3dToCremiZ5Edges(seg, dt2d, e, out, w);
+
+            std::make_pair(out,w);
+        },
+            py::arg("segmentation"),
+            py::arg("distance_transform_2d"),
+            py::arg("edges"),
+            py::arg("edge_priors")
+        );
+
+        #endif
+
+    }
+
+
+
+
+
+
 
     //<class T_SEG>
     //void cremiZ5Edges
@@ -117,6 +242,7 @@ namespace ground_truth{
         exportSeg2dToLiftedEdges(groundTruthModule);
         exportSeg3dToLiftedEdges(groundTruthModule);
         exportSeg3dToCremiZ5Edges(groundTruthModule);
+        exportThinSegFilter(groundTruthModule);
     }
 }
 }

@@ -10,17 +10,6 @@
 
 namespace py = pybind11;
 
-
-
-
-typedef std::vector<nifty::cgp::CellGeometry<2,0>> VectorCellGeoemetry2_0;
-typedef std::vector<nifty::cgp::CellGeometry<2,1>> VectorCellGeoemetry2_1;
-typedef std::vector<nifty::cgp::CellGeometry<2,2>> VectorCellGeoemetry2_2;
-
-PYBIND11_MAKE_OPAQUE(VectorCellGeoemetry2_0);
-PYBIND11_MAKE_OPAQUE(VectorCellGeoemetry2_1);
-PYBIND11_MAKE_OPAQUE(VectorCellGeoemetry2_2);
-
 namespace nifty{
 namespace cgp{
 
@@ -84,7 +73,7 @@ namespace cgp{
         // cell 0 geometry
         {   
             typedef CellGeometry<2,0> Cell0Geometry2D;
-            typedef std::vector<Cell0Geometry2D> Cells0GeometryVector2D;
+            typedef CellGeometryVector<2,0> Cells0GeometryVector2D;
 
             const std::string clsName = std::string("Cells0Geometry2D");
             auto cls = py::class_<Cell0Geometry2D>(m, clsName.c_str());
@@ -98,7 +87,7 @@ namespace cgp{
         // cell 1 geometry
         {
             typedef CellGeometry<2,1> Cell1Geometry2D;
-            typedef std::vector<Cell1Geometry2D> Cell1GeometryVector2D;
+            typedef CellGeometryVector<2,1> Cell1GeometryVector2D;
 
             const std::string clsName = std::string("Cell1Geometry2D");
             auto cls = py::class_<Cell1Geometry2D>(m, clsName.c_str());
@@ -111,7 +100,7 @@ namespace cgp{
         // cell 2 geometry
         {
             typedef CellGeometry<2,2> Cell1Geometry2D;
-            typedef std::vector<Cell1Geometry2D> Cell1GeometryVector2D;
+            typedef CellGeometryVector<2,2> Cell1GeometryVector2D;
 
             const std::string clsName = std::string("Cell2Geometry2D");
             auto cls = py::class_<Cell1Geometry2D>(m, clsName.c_str());
@@ -129,9 +118,10 @@ namespace cgp{
             const std::string clsName = std::string("Geometry2D");
             py::class_<GeometryType>(m, clsName.c_str())
 
-                .def(py::init<const TopologicalGridType &, const bool>(),
+                .def(py::init<const TopologicalGridType &, const bool, const bool>(),
                     py::arg("topologicalGrid"),
-                    py::arg("fill")
+                    py::arg("fill"),
+                    py::arg("sort1Cells")
 
                 )
 

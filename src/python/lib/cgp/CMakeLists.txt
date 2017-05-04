@@ -6,5 +6,6 @@ addPythonModule(
         topological_grid.cxx
         bounds.cxx
         geometry.cxx
+        features.cxx
 )
 

@@ -53,7 +53,26 @@ namespace graph{
                 py::keep_alive<1,2>(),
                 py::keep_alive<1,3>()
             )
+
+            // modifications
             .def("contractEdge", &GraphType::contractEdge)
+            .def("reset",&GraphType::reset)
+
+
+            // queries
+            .def("findRepresentativeNode", [](GraphType & g, const uint64_t node){
+                return g.findRepresentativeNode(node);
+            })
+            .def("findRepresentativeEdge", [](GraphType & g, const uint64_t edge){
+                return g.findRepresentativeEdge(edge);
+            })
+            .def("nodeOfDeadEdge", [](const GraphType & g, const uint64_t deadEdge){
+                return g.nodeOfDeadEdge(deadEdge);
+            })
+            .def_property_readonly("baseGraph", &GraphType::baseGraph)
+
+
+
         ;
 
         // export the base graph API (others might derive)

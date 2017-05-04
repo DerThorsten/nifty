@@ -39,16 +39,18 @@ namespace agglo{
 
             aggloCls
                 .def("runAndGetDendrogramHeight", [](
-                    AGGLO_CLUSTER_TYPE * self
+                    AGGLO_CLUSTER_TYPE * self, const bool verbose
                 ){
                     const auto & graph = self->graph();
                     nifty::marray::PyView<double> dheight( {std::size_t(graph.edgeIdUpperBound()+1)  });
                     {
                         py::gil_scoped_release allowThreads;
-                        self->runAndGetDendrogramHeight(dheight);
+                        self->runAndGetDendrogramHeight(dheight,verbose);
                     }
                     return dheight;
                 }
+                ,
+                    py::arg("verbose") = false
                 )
 
                 .def("ucmTransform", [](
@@ -89,13 +91,16 @@ namespace agglo{
            
         aggloCls
             .def("run", [](
-                AgglomerativeClusteringType * self
+                AgglomerativeClusteringType * self,
+                const bool verbose
             ){
                 {
                     py::gil_scoped_release allowThreds;
-                    self->run();
+                    self->run(verbose);
                 }
             }
+            ,
+                py::arg("verbose") = false
             )
 
             .def("result", [](
