@@ -366,11 +366,6 @@ namespace cgp{
                 const auto & cellGeometry = cellsGeometry[cellIndex];
                 const auto centerOfMass = cellGeometry.centerOfMass();
 
-                const float minVal = 0.0;
-                const float maxVal = std::exp(gamma_*1.0);
-
-                histogram::Histogram<float> histogram(minVal, maxVal, bincount_);
-                std::vector<float> out(quantiles_.size());
 
                 AccType acc;
 
