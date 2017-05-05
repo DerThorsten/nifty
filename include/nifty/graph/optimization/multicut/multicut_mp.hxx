@@ -4,17 +4,19 @@
 
 #include "nifty/tools/runtime_check.hxx"
 #include "nifty/graph/optimization/multicut/multicut_base.hxx"
+#include "nifty/graph/optimization/multicut/multicut_factory.hxx"
+#include "nifty/graph/optimization/multicut/multicut_greedy_additive.hxx"
 #include "nifty/ufd/ufd.hxx"
 
 // LP_MP includes
-#include "visitors/standard_visitor.hxx" // TODO make LP_MP/...
+#include "visitors/standard_visitor.hxx"
 #include "solvers/multicut/multicut.h"
 
 
 namespace nifty{
 namespace graph{
-
-    template<class OBJECTIVE, class ROUNDER>
+    
+    template<class OBJECTIVE>
     class MulticutMp : public MulticutBase<OBJECTIVE>
     {
     public: 
@@ -27,15 +29,69 @@ namespace graph{
         typedef typename Base::NodeLabels NodeLabels;
         typedef typename Objective::Graph Graph;
         
-        // TODO with or without odd wheel ?
-        //typedef LP_MP::FMC_MULTICUT<LP_MP::MessageSendingType::SRMP> FMC;
-        typedef LP_MP::FMC_ODD_WHEEL_MULTICUT<LP_MP::MessageSendingType::SRMP, ROUNDER> FMC;
-        typedef LP_MP::ProblemConstructorRoundingSolver<LP_MP::Solver<FMC,LP_MP::LP,LP_MP::StandardTighteningVisitor>> SolverType;
+        // factory for the lp_mp primal rounder
+        typedef MulticutFactoryBase<Objective> McFactoryBase;
 
     public:
+        // TODO this should just accept a mulituct factory
+        // then we can choose any nifty solver at runtime
+        // for now hard-code to greedy additive (doesn't need complicated params...)
+        // TODO api for changing the objective / initialize objective at construction time
+        struct NiftyRounder {
+            
+            typedef Graph GraphType;
+
+            NiftyRounder()
+            {}
+
+            // TODO do we have to call by value here due to using async or could we also use a call by refernce?
+            // TODO need to change between between edge and node labelings -> could be done more efficient ?!
+            std::vector<char> operator()(GraphType g, std::vector<double> edgeValues) {
+
+                std::vector<char> labeling(g.numberOfEdges(), 0);
+                if(g.numberOfEdges() > 0) {
+                    
+                    Objective obj(g);
+                    auto & objWeights = obj.weights();
+                    for(auto eId = 0; eId < edgeValues.size(); ++eId) {
+                        objWeights[eId] = edgeValues[eId];
+                    }
+                   
+                    auto solverPtr = settings_.mcFactory_->createRawPtr(obj);
+                    NodeLabels nodeLabeling(g.numberOfNodes());
+                    solverPtr->optimize(nodeLabeling, nullptr);
+                    delete solverPtr;
+                    
+                    // node labeling to edge labeling
+                    for(auto eId = 0; eId < g.numberOfEdges(); ++eId) {
+                        auto uv = g.uv(eId);
+                        labeling[eId] = uv.first != uv.second;
+                    }
+
+                }
+                return labeling;
+
+            }
+
+            // TODO add factory name here
+            static std::string name() {
+                return "NiftyRounder";
+            }
+
+        //private:
+        //    std::shared_ptr<McFactoryBase> factory_;
+        };
+        
+        // TODO with or without odd wheel ?
+        //typedef LP_MP::FMC_MULTICUT<LP_MP::MessageSendingType::SRMP> FMC;
+        typedef LP_MP::FMC_ODD_WHEEL_MULTICUT<LP_MP::MessageSendingType::SRMP,NiftyRounder> FMC;
+        typedef LP_MP::ProblemConstructorRoundingSolver<LP_MP::Solver<FMC,LP_MP::LP,LP_MP::StandardTighteningVisitor>> SolverType;
 
         // FIXME verbose deosn't have any effect right now
         struct Settings{
+            // multicut factory for the primal rounder used in lp_mp
+            std::shared_ptr<McFactoryBase> mcFactory;
+            // settings for the lp_mp solver
             size_t numberOfIterations{1000};
             int verbose{0};
             size_t primalComputationInterval{100};
@@ -50,7 +106,6 @@ namespace graph{
             double minDualImprovement{0.};
             size_t minDualImprovementInterval{0};
             size_t timeout{0};
-    
         };
 
         virtual ~MulticutMp(){
@@ -90,8 +145,8 @@ namespace graph{
     };
    
     
-    template<class OBJECTIVE, class ROUNDER>
-    MulticutMp<OBJECTIVE, ROUNDER>::
+    template<class OBJECTIVE>
+    MulticutMp<OBJECTIVE>::
     MulticutMp(
         const Objective & objective, 
         const Settings & settings
@@ -102,12 +157,18 @@ namespace graph{
         mpSolver_(nullptr),
         ufd_(graph_.numberOfNodes())
     {
+        if(!bool(settings_.mcFactory)) {
+            // TODO make kerninghan-lin or cgc the default solver
+            typedef MulticutGreedyAdditive<Objective> DefaultSolver;
+            typedef MulticutFactory<DefaultSolver> DefaultFactory;
+            settings_.mcFactory = std::make_shared<DefaultFactory>();
+        }
         mpSolver_ = new SolverType( toOptionsVector() );
         this->initializeMp();
     }
 
-    template<class OBJECTIVE, class ROUNDER>
-    void MulticutMp<OBJECTIVE, ROUNDER>::
+    template<class OBJECTIVE>
+    void MulticutMp<OBJECTIVE>::
     initializeMp() {
         
         if(graph_.numberOfEdges()!= 0 ){
@@ -125,8 +186,8 @@ namespace graph{
     // returns options in correct format for the LP_MP solver
     // TODO would be bettter to have a decent interface for LP_MP and then
     // get rid of this
-    template<class OBJECTIVE, class ROUNDER>
-    std::vector<std::string> MulticutMp<OBJECTIVE, ROUNDER>::
+    template<class OBJECTIVE>
+    std::vector<std::string> MulticutMp<OBJECTIVE>::
     toOptionsVector() const {
 
         //std::vector<std::string> options = {
@@ -177,8 +238,8 @@ namespace graph{
     // TODO maybe this can be done more efficient
     // (if we only call it once, this should be fine, but if we need
     // to call this more often for some reason, this might get expensive)
-    template<class OBJECTIVE, class ROUNDER>
-    void MulticutMp<OBJECTIVE, ROUNDER>::
+    template<class OBJECTIVE>
+    void MulticutMp<OBJECTIVE>::
     nodeLabeling() {
 
         ufd_.reset();
@@ -194,8 +255,8 @@ namespace graph{
     }
 
 
-    template<class OBJECTIVE, class ROUNDER>
-    void MulticutMp<OBJECTIVE, ROUNDER>::
+    template<class OBJECTIVE>
+    void MulticutMp<OBJECTIVE>::
     optimize(
         NodeLabels & nodeLabels,  VisitorBase * visitor
     ){  
