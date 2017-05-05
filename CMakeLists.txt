@@ -22,9 +22,10 @@ option(WITH_HDF5 OFF)
 option(WITH_FASTFILTERS OFF)
 option(WITH_LP_MP OFF)
 
+option(BUILD_CPP_TEST_WITH_GLIBCXX_CXX11_ABI OFF)
+
 option(BUILD_PYTHON_TEST OFF)
 option(BUILD_CPP_TEST ON)
-
 option(BUILD_NIFTY_PYTHON OFF)
 option(BUILD_DOCS ON)
 option(BUILD_CPP_EXAMPLES ON)
@@ -36,10 +37,9 @@ option(BUILD_PYTHON_DOCS "Build the Python documentation with Sphinx" OFF)
 # check for c++ 14 support
 #-------------------------------------------------------------------------------------------------------------------
 
-# TODO make sure compiler supports c++ 14 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
-#set(CMAKE_CXX_STANDARD 14)
-#set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(OpenMP)
 if (OPENMP_FOUND)

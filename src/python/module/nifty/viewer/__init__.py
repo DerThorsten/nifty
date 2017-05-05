@@ -11,28 +11,28 @@ import warnings
 
 
 try:
-    hasVolumina=True
+    _hasVolumina=True
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
         import volumina
         from volumina.api import Viewer
 except:
-    hasVolumina=False
+    _hasVolumina=False
 
 
 
 try:
-    hasVigra=True
+    _hasVigra=True
     import vigra
 except:
-    hasVigra=False
+    _hasVigra=False
     
 
 try:
-    hasQt4=True
+    _hasQt4=True
     from PyQt4.QtGui import QApplication
 except:
-    hasQt4=False
+    _hasQt4=False
 
 
 
@@ -102,7 +102,7 @@ class Singleton:
         return isinstance(inst, self._decorated)
 
 
-if hasQt4:
+if _hasQt4:
     @Singleton
     class QApp:
         def __init__(self):
@@ -117,7 +117,7 @@ if hasQt4:
 
 
 
-if hasQt4 and hasVolumina:
+if _hasQt4 and _hasVolumina:
     def addHocViewer(grayData=None, segData=None, title="viewer",visu=True):
         if visu :
             app = QApp.Instance().app
@@ -127,7 +127,7 @@ if hasQt4 and hasVolumina:
             if grayData is not None:
                 for name in grayData.keys():
                     data = grayData[name]
-                    if hasVigra:
+                    if _hasVigra:
                         if isinstance(data, vigra.arraytypes.VigraArray):
                             v.addGrayscaleLayer(data.view(numpy.ndarray), name=name)
                         else:
@@ -138,7 +138,7 @@ if hasQt4 and hasVolumina:
             if segData is not None:
                 for name in segData.keys():
                     data = segData[name]
-                    if hasVigra:
+                    if _hasVigra:
                         if isinstance(data, vigra.arraytypes.VigraArray):
                             v.addColorTableLayer(data.view(numpy.ndarray), name=name)
                         else:
