@@ -40,7 +40,7 @@ namespace graph{
             typedef Graph GraphType;
 
             NiftyRounder(std::shared_ptr<McFactoryBase> factory,
-                    const bool greedyWarmstart = false) 
+                    const bool greedyWarmstart) 
                 : factory_(factory), greedyWarmstart_(greedyWarmstart)
             {}
 
@@ -99,6 +99,7 @@ namespace graph{
         struct Settings{
             // multicut factory for the primal rounder used in lp_mp
             std::shared_ptr<McFactoryBase> mcFactory;
+            bool greedyWarmstart{false};
             // settings for the lp_mp solver
             size_t numberOfIterations{1000};
             int verbose{0};
@@ -171,7 +172,8 @@ namespace graph{
             typedef MulticutFactory<DefaultSolver> DefaultFactory;
             settings_.mcFactory = std::make_shared<DefaultFactory>();
         }
-        mpSolver_ = new SolverType( toOptionsVector(), NiftyRounder(settings_.mcFactory) );
+        mpSolver_ = new SolverType( toOptionsVector(),
+                NiftyRounder(settings_.mcFactory, settings_.greedyWarmstart) );
         this->initializeMp();
     }
 
