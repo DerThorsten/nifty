@@ -103,7 +103,7 @@ def __extendMulticutObj(objectiveCls, objectiveName):
             epsilon = 1e-7
             ):
 
-        settings, factoryCls = getSettingsAndFactoryCls("MulticutKerighanLin")
+        settings, factoryCls = getSettingsAndFactoryCls("MulticutKernighanLin")
         settings.verbose = verbose
         settings.numberOfInnerIterations = numberOfInnerIterations
         settings.numberOfOuterIterations = numberOfOuterIterations
@@ -115,8 +115,8 @@ def __extendMulticutObj(objectiveCls, objectiveName):
 
     if Configuration.WITH_LP_MP:
         def multicutMpFactory(
-                multicutFactory = None
-                greedyWarmstart = False
+                multicutFactory = None,
+                greedyWarmstart = False,
                 numberOfIterations = 1000,
                 verbose = 0,
                 primalComputationInterval = 100,

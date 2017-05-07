@@ -23,7 +23,7 @@ namespace graph{
         typedef andres::graph::Graph<> Graph;
         
         struct Settings{
-            bool verbose{0};
+            int verbose{0};
             size_t numberOfInnerIterations{std::numeric_limits<size_t>::max()};
             size_t numberOfOuterIterations{100};
             double epsilon{1e-7};

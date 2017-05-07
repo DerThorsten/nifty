@@ -22,7 +22,7 @@ namespace graph{
         typedef MulticutKernighanLin<ObjectiveType> Solver;
         typedef typename Solver::Settings Settings;
 
-        const auto solverName = std::string("MulticutMp");
+        const auto solverName = std::string("MulticutKernighanLin");
         exportMulticutSolver<Solver>(multicutModule, solverName.c_str())
             .def(py::init<>())
             .def_readwrite("verbose",&Settings::verbose)
