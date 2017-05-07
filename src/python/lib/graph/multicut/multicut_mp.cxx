@@ -27,12 +27,14 @@ namespace graph{
         typedef OBJECTIVE ObjectiveType;
         typedef MulticutMp<ObjectiveType> Solver;
         typedef typename Solver::Settings Settings;
-        
-        // TODO proper solver name
+
+        const auto objName = MulticutObjectiveName<ObjectiveType>::name();
+
         const auto solverName = std::string("MulticutMp");
         // FIXME verbose has no effect yet
         exportMulticutSolver<Solver>(multicutModule, solverName.c_str())
             .def(py::init<>())
+            .def_readwrite("multicutFactory",&Settings::mcFactory)
             .def_readwrite("verbose",&Settings::verbose)
             .def_readwrite("numberOfIterations",&Settings::numberOfIterations)
             .def_readwrite("primalComputationInterval",&Settings::primalComputationInterval)

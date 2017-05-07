@@ -98,6 +98,7 @@ def __extendMulticutObj(objectiveCls, objectiveName):
 
     if Configuration.WITH_LP_MP:
         def multicutMpFactory(
+                multicutFactory = None
                 numberOfIterations = 1000,
                 verbose = 0,
                 primalComputationInterval = 100,
@@ -113,8 +114,12 @@ def __extendMulticutObj(objectiveCls, objectiveName):
                 minDualImprovementInterval = 0,
                 timeout = 0
                 ):
-            settings, factoryCls = getSettingsAndFactoryCls("MulticutMp")
 
+            settings, factoryCls = getSettingsAndFactoryCls("MulticutMp")
+            if multicutFactory is None:
+                multicutFactory = MulticutObjectiveUndirectedGraph.greedyAdditiveFactory()
+
+            settings.multicutFactory = multicutFactory
             settings.numberOfIterations = numberOfIterations
             settings.verbose = verbose
             settings.primalComputationInterval = primalComputationInterval
