@@ -129,7 +129,7 @@ namespace graph{
         virtual const NodeLabels & currentBestNodeLabels() {return *currentBest_;}
 
         virtual std::string name() const {
-            return std::string("MulticutMp"); // TODO primal_solver name
+            return std::string("MulticutMp");
         }
         
         // TODO do we need this, what does it do?
@@ -242,7 +242,7 @@ namespace graph{
         ufd_.reset();
         auto & constructor = (*mpSolver_).template GetProblemConstructor<0>();
         for(auto e : graph_.edges()){
-            const auto uv = graph_.uv(e);
+            const auto & uv = graph_.uv(e);
             const bool cut = constructor.get_edge_label(uv.first, uv.second);
             if(!cut){
                 ufd_.merge(uv.first, uv.second);
@@ -258,7 +258,6 @@ namespace graph{
         NodeLabels & nodeLabels,  VisitorBase * visitor
     ){  
 
-        //std::cout<<"nStartConstraints "<<addedConstraints_<<"\n";
         VisitorProxy visitorProxy(visitor);
         currentBest_ = &nodeLabels;
         

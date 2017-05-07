@@ -10,9 +10,6 @@
 #include "nifty/python/graph/undirected_list_graph.hxx"
 #include "nifty/python/graph/edge_contraction_graph.hxx"
 
-// FIXME only for hacky rounder, remove once this is done properly
-#include "nifty/graph/optimization/multicut/multicut_greedy_additive.hxx"
-
 namespace py = pybind11;
 
 PYBIND11_DECLARE_HOLDER_TYPE(T, std::shared_ptr<T>);

@@ -10,6 +10,7 @@ addPythonModule(
         multicut_factory.cxx
         multicut_ilp.cxx
         multicut_mp.cxx
+        multicut_kernighan_lin.cxx
         multicut_greedy_additive.cxx
         fusion_move_based.cxx
         perturb_and_map.cxx
