@@ -34,15 +34,14 @@ namespace graph{
 
     public:
         
-        // TODO this should just accept a mulituct factory
-        // then we can choose any nifty solver at runtime
-        // for now hard-code to greedy additive (doesn't need complicated params...)
-        // TODO api for changing the objective / initialize objective at construction time
+        // TODO expose greedy warmstart option to python
         struct NiftyRounder {
             
             typedef Graph GraphType;
 
-            NiftyRounder(std::shared_ptr<McFactoryBase> factory) : factory_(factory)
+            NiftyRounder(std::shared_ptr<McFactoryBase> factory,
+                    const bool greedyWarmstart = false) 
+                : factory_(factory), greedyWarmstart_(greedyWarmstart)
             {}
 
             // TODO do we have to call by value here due to using async or could we also use a call by refernce?
@@ -58,8 +57,13 @@ namespace graph{
                         objWeights[eId] = edgeValues[eId];
                     }
                    
-                    auto solverPtr = factory_->createRawPtr(obj);
                     NodeLabels nodeLabeling(g.numberOfNodes());
+                    if(greedyWarmstart_) {
+                        MulticutGreedyAdditive<Objective> greedy(obj);
+                        greedy.optimize(nodeLabeling, nullptr);
+                    }
+                    
+                    auto solverPtr = factory_->createRawPtr(obj);
                     solverPtr->optimize(nodeLabeling, nullptr);
                     delete solverPtr;
                     
@@ -81,6 +85,7 @@ namespace graph{
 
         private:
             std::shared_ptr<McFactoryBase> factory_;
+            bool greedyWarmstart_;
         };
         
         // TODO with or without odd wheel ?
