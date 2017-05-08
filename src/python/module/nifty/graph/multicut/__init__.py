@@ -86,6 +86,27 @@ def __extendMulticutObj(objectiveCls, objectiveName):
 
 
 
+    def multicutDecomposer(submodelFactory=None, fallthroughFactory=None):
+
+        if submodelFactory is None:
+            pass
+
+        if fallthroughFactory is None:
+            pass
+
+
+        
+        s,F = getSettingsAndFactoryCls("MulticutDecomposer")
+        s.submodelFactory = submodelFactory
+        s.fallthroughFactory = fallthroughFactory
+        return F(s)
+        
+
+    O.multicutDecomposer = staticmethod(multicutDecomposer)
+
+
+
+
     def multicutIlpFactory(verbose=0, addThreeCyclesConstraints=True,
                                 addOnlyViolatedThreeCyclesConstraints=True,
                                 relativeGap=0.0, absoluteGap=0.0, memLimit=-1.0,

@@ -44,8 +44,9 @@ namespace graph{
     public:
 
         struct Settings{
-            std::shared_ptr<FactoryBase>         fallthroughFactory;
             std::shared_ptr<SubmodelFactoryBase> submodelFactory;
+            std::shared_ptr<FactoryBase>         fallthroughFactory;
+            
         };
 
         virtual ~MulticutDecomposer(){

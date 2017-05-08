@@ -411,27 +411,40 @@ namespace graph{
         // the node labeling as reference
         auto & nodeLabels = *currentBest_;
 
+        visitorProxy.printLog(nifty::logging::LogLevel::INFO, "Build CC");
+
         // number of components
         const auto nComponents = components_.buildFromLabels(*currentBest_);
 
-        // get anchor for each component
+        std::cout<<"nComponents\n";
+        // get anchor for each component        
         std::vector<uint64_t> componentsAnchors(nComponents);
 
+        visitorProxy.printLog(nifty::logging::LogLevel::INFO, "Set Anchors");
         // anchors
         graph_.forEachNode([&](const uint64_t node){
             componentsAnchors[components_[node]] = node;
         });
 
-        // push anchors to the queue
-        std::queue<uint64_t> anchorQueue;
-        for(const auto & anchor : componentsAnchors)
-            anchorQueue.push(anchor);
+        visitorProxy.printLog(nifty::logging::LogLevel::INFO, "Push Anchors");
 
+        // push anchors to the queue
+        std::cout<<"alloc queue\n";
+        std::queue<uint64_t> anchorQueue;
+        std::cout<<"start..\n";
+        for(const auto & anchor : componentsAnchors){
+            std::cout<<"fubar "<<anchor<<"\n";
+            anchorQueue.push(anchor);
+        }
+
+
+        visitorProxy.printLog(nifty::logging::LogLevel::INFO, "Loggin");
         // while nothing is on the queue
         visitorProxy.clearLogNames();
         visitorProxy.addLogNames({std::string("QueueSize")});
 
 
+        visitorProxy.printLog(nifty::logging::LogLevel::INFO, "Start");
         while(!anchorQueue.empty()){
 
             
@@ -440,7 +453,7 @@ namespace graph{
             anchorQueue.pop();
             const auto anchorLabel = nodeLabels[anchorNode];
 
-   
+            visitorProxy.printLog(nifty::logging::LogLevel::INFO, "Optimzie1");
             // optimize the submodel 
             const auto ret = submodel_.optimize1(nodeLabels, anchorNode, anchorQueue);
             if(ret.improvment){
