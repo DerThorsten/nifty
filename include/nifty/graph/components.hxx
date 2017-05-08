@@ -2,11 +2,13 @@
 #ifndef NIFTY_GRAPH_COMPONENTS_HXX
 #define NIFTY_GRAPH_COMPONENTS_HXX
 
+
+#include <unordered_map>
+
 #include "nifty/graph/subgraph_mask.hxx"
 #include "nifty/graph/breadth_first_search.hxx"
 #include "nifty/ufd/ufd.hxx"
 
-#include <queue>
 
 namespace nifty{
 namespace graph{
@@ -28,6 +30,21 @@ public:
 
     uint64_t build(){
         return build(DefaultSubgraphMask<Graph>());
+    }
+
+    template<class NODE_LABELS>
+    uint64_t buildFromLabels(const NODE_LABELS & nodeLabels){
+        if(needsReset_)
+            this->reset();
+        for(auto edge : graph_.edges()){
+            const auto u = graph_.u(edge);
+            const auto v = graph_.v(edge);
+            if(nodeLabels[u] == nodeLabels[v]){
+                ufd_.merge(u,v);
+            }
+        }
+        needsReset_ = true;
+        return ufd_.numberOfSets() - offset_;
     }
 
     template<class SUBGRAPH_MASK>
@@ -78,6 +95,37 @@ public:
         });
         return maxLabel; 
     }
+
+    template<class NODE_MAP>
+    void denseRelabeling(
+        NODE_MAP & nodeMap
+    )const{
+
+        std::unordered_map<uint64_t,uint64_t> map;
+        ufd_.representativeLabeling(map);
+
+        for(const auto node : graph_.nodes()){
+            nodeMap[node] = map[this->componentLabel(node)] - offset_;
+        }
+    
+    }
+
+
+    template<class NODE_MAP,class COMP_SIZE>
+    void denseRelabeling(
+        NODE_MAP & nodeMap,
+        COMP_SIZE & compSize
+    )const{
+
+        std::unordered_map<uint64_t,uint64_t> map;
+        ufd_.representativeLabeling(map);
+
+        for(const auto node : graph_.nodes()){
+            nodeMap[node] = map[this->componentLabel(node)] - offset_;
+        }
+    
+    }
+
 
 
 

@@ -20,6 +20,7 @@ option(WITH_CPLEX OFF)
 option(WITH_GLPK OFF)
 option(WITH_HDF5 OFF)
 option(WITH_FASTFILTERS OFF)
+option(WITH_QPBO ON)
 
 option(BUILD_CPP_TEST_WITH_GLIBCXX_CXX11_ABI OFF)
 
@@ -31,6 +32,11 @@ option(BUILD_CPP_EXAMPLES ON)
 option(BUILD_PYTHON_DOCS "Build the Python documentation with Sphinx" OFF)
 
 
+
+
+add_definitions(-Wno-attributes)
+# vigra uses old stuff....
+add_definitions(-Wno-deprecated-declarations)
 
 #-------------------------------------------------------------------------------------------------------------------
 # check for c++ 11 support
@@ -94,6 +100,9 @@ endif()
 #-------------------------------------------------------------------------------------------------------------------
 # externals
 #-------------------------------------------------------------------------------------------------------------------
+include_directories( "${CMAKE_CURRENT_SOURCE_DIR}/externals/qpbo")
+
+
 include_directories( "${CMAKE_CURRENT_SOURCE_DIR}/externals/marray/include")
 include_directories( "${CMAKE_CURRENT_SOURCE_DIR}/externals/pybind11/include")
 include_directories( "${CMAKE_CURRENT_SOURCE_DIR}/externals/vigra/include")
@@ -195,7 +204,9 @@ endif()
 
 
 
-
+if(WITH_QPBO)
+    add_definitions(-DWITH_QPBO)
+endif(WITH_QPBO)
 
 
 

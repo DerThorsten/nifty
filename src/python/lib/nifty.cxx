@@ -70,6 +70,13 @@ PYBIND11_PLUGIN(_nifty) {
             return false;
             #endif
         })
+        .def_property_readonly_static("WITH_QPBO", [](py::object /* self */) { 
+            #ifdef  WITH_QPBO
+            return true;
+            #else
+            return false;
+            #endif
+        })
         ;
     return niftyModule.ptr();
 }
