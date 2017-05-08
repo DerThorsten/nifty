@@ -6,6 +6,7 @@
 #include "nifty/graph/optimization/multicut/multicut_base.hxx"
 #include "nifty/graph/optimization/multicut/multicut_factory.hxx"
 #include "nifty/graph/optimization/multicut/multicut_greedy_additive.hxx"
+#include "nifty/graph/optimization/multicut/multicut_kernighan_lin.hxx"
 #include "nifty/ufd/ufd.hxx"
 
 // LP_MP includes
@@ -69,7 +70,7 @@ namespace graph{
                     
                     // node labeling to edge labeling
                     for(auto eId = 0; eId < g.numberOfEdges(); ++eId) {
-                        auto uv = g.uv(eId);
+                        const auto & uv = g.uv(eId);
                         labeling[eId] = uv.first != uv.second;
                     }
 
@@ -163,12 +164,12 @@ namespace graph{
     :   objective_(objective),
         graph_(objective.graph()),
         settings_(settings),
+        currentBest_(nullptr),
         mpSolver_(nullptr),
         ufd_(graph_.numberOfNodes())
     {
         if(!bool(settings_.mcFactory)) {
-            // TODO make kerninghan-lin or cgc the default solver
-            typedef MulticutGreedyAdditive<Objective> DefaultSolver;
+            typedef MulticutKernighanLin<Objective> DefaultSolver;
             typedef MulticutFactory<DefaultSolver> DefaultFactory;
             settings_.mcFactory = std::make_shared<DefaultFactory>();
         }
@@ -187,7 +188,7 @@ namespace graph{
             const auto & weights = objective_.weights();
 
             for(auto e : graph_.edges()){
-                const auto uv = graph_.uv(e);
+                const auto & uv = graph_.uv(e);
                 constructor.AddUnaryFactor(uv.first, uv.second, weights[e]);
             }
         }

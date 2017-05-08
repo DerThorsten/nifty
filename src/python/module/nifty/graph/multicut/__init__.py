@@ -115,7 +115,7 @@ def __extendMulticutObj(objectiveCls, objectiveName):
 
     if Configuration.WITH_LP_MP:
         def multicutMpFactory(
-                multicutFactory = None,
+                mcFactory = None,
                 greedyWarmstart = False,
                 numberOfIterations = 1000,
                 verbose = 0,
@@ -135,10 +135,10 @@ def __extendMulticutObj(objectiveCls, objectiveName):
 
             settings, factoryCls = getSettingsAndFactoryCls("MulticutMp")
 
-            if multicutFactory is None:
-                multicutFactory = MulticutObjectiveUndirectedGraph.greedyAdditiveFactory()
+            if mcFactory is None:
+                mcFactory = MulticutObjectiveUndirectedGraph.multicutKernighanLinFactory()
 
-            settings.multicutFactory = multicutFactory
+            settings.mcFactory = mcFactory
             settings.greedyWarmstart = greedyWarmstart
             settings.numberOfIterations = numberOfIterations
             settings.verbose = verbose

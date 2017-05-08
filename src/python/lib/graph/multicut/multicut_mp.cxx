@@ -31,7 +31,7 @@ namespace graph{
         // FIXME verbose has no effect yet
         exportMulticutSolver<Solver>(multicutModule, solverName.c_str())
             .def(py::init<>())
-            .def_readwrite("multicutFactory",&Settings::mcFactory)
+            .def_readwrite("mcFactory",&Settings::mcFactory)
             .def_readwrite("greedyWarmstart",&Settings::greedyWarmstart)
             .def_readwrite("verbose",&Settings::verbose)
             .def_readwrite("numberOfIterations",&Settings::numberOfIterations)

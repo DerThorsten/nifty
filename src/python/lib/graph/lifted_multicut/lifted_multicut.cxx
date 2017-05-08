@@ -17,6 +17,7 @@ namespace lifted_multicut{
     void exportLiftedMulticutGreedyAdditive(py::module &);
     void exportLiftedMulticutKernighanLin(py::module &);
     void exportLiftedMulticutIlp(py::module &);
+    void exportLiftedMulticutMp(py::module &);
     //void exportLiftedMulticutAndresKernighanLin(py::module &);
     void exportLiftedMulticutAndresGreedyAdditive(py::module &);
     void exportFusionMoveBased(py::module &);
@@ -45,7 +46,10 @@ PYBIND11_PLUGIN(_lifted_multicut) {
     exportLiftedMulticutAndresGreedyAdditive(liftedMulticutModule);
     exportFusionMoveBased(liftedMulticutModule);
     exportLiftedGraphFeatures(liftedMulticutModule);
-
+    
+    #ifdef WITH_LP_MP
+    exportLiftedMulticutIlp(liftedMulticutModule);
+    #endif
 
     return liftedMulticutModule.ptr();
 }
