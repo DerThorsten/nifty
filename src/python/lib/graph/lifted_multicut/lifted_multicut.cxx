@@ -48,7 +48,7 @@ PYBIND11_PLUGIN(_lifted_multicut) {
     exportLiftedGraphFeatures(liftedMulticutModule);
     
     #ifdef WITH_LP_MP
-    exportLiftedMulticutIlp(liftedMulticutModule);
+    exportLiftedMulticutMp(liftedMulticutModule);
     #endif
 
     return liftedMulticutModule.ptr();
