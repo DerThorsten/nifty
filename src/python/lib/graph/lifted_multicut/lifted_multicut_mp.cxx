@@ -27,8 +27,26 @@ namespace lifted_multicut{
         const auto solverName = std::string("LiftedMulticutMp");
         exportLiftedMulticutSolver<Solver>(liftedMulticutModule, solverName.c_str())
             .def(py::init<>())
-            .def_readwrite("lmcFactory",&Settings::lmcFactory)
-            .def_readwrite("greedyWarmstart",&Settings::greedyWarmstart)
+            .def_readwrite("lmcFactory", &Settings::lmcFactory)
+            .def_readwrite("greedyWarmstart", &Settings::greedyWarmstart)
+            .def_readwrite("tightenSlope", &Settings::tightenSlope)
+            .def_readwrite("tightenMinDualImprovementInterval", &Settings::tightenMinDualImprovementInterval)
+            .def_readwrite("tightenMinDualImprovement", &Settings::tightenMinDualImprovement)
+            .def_readwrite("tightenConstraintsPercentage", &Settings::tightenConstraintsPercentage)
+            .def_readwrite("tightenConstraintsMax", &Settings::tightenConstraintsMax)
+            .def_readwrite("tightenInterval", &Settings::tightenInterval)
+            .def_readwrite("tightenIteration", &Settings::tightenIteration)
+            .def_readwrite("tightenReparametrization", &Settings::tightenReparametrization)
+            .def_readwrite("roundingReparametrization", &Settings::roundingReparametrization)
+            .def_readwrite("standardReparametrization", &Settings::standardReparametrization)
+            .def_readwrite("tighten", &Settings::tighten)
+            .def_readwrite("minDualImprovementInterval", &Settings::minDualImprovementInterval)
+            .def_readwrite("minDualImprovement", &Settings::minDualImprovement)
+            .def_readwrite("lowerBoundComputationInterval", &Settings::lowerBoundComputationInterval)
+            .def_readwrite("primalComputationInterval", &Settings::primalComputationInterval)
+            .def_readwrite("timeout", &Settings::timeout)
+            .def_readwrite("maxIter", &Settings::maxIter)
+            .def_readwrite("numThreads", &Settings::numLpThreads)
         ;
     }
    

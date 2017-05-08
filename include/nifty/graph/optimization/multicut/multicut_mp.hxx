@@ -259,7 +259,7 @@ namespace graph{
         NodeLabels & nodeLabels,  VisitorBase * visitor
     ){  
 
-        VisitorProxy visitorProxy(visitor);
+        //VisitorProxy visitorProxy(visitor);
         currentBest_ = &nodeLabels;
         
         // TODO for now the visitor is doing nothing, but we should implement one, that is
@@ -291,7 +291,7 @@ namespace graph{
             //}
             //++numberOfOptRuns_;
         }
-        visitorProxy.end(this);
+        //visitorProxy.end(this);
     }
 
 } // namespace nifty::graph

@@ -69,14 +69,14 @@ namespace lifted_multicut{
                         obj.setCost(uv.first, uv.second, edgeValues[edgeId]);
                     }
                    
-                    NodeLabels nodeLabeling(originalGraph.numberOfNodes());
+                    NodeLabels nodeLabels(originalGraph.numberOfNodes());
                     if(greedyWarmstart_) {
                         LiftedMulticutGreedyAdditive<ObjectiveType> greedy(obj);
-                        greedy.optimize(nodeLabeling, nullptr);
+                        greedy.optimize(nodeLabels, nullptr);
                     }
                     
                     auto solverPtr = factory_->createRawPtr(obj);
-                    solverPtr->optimize(nodeLabeling, nullptr);
+                    solverPtr->optimize(nodeLabels, nullptr);
                     delete solverPtr;
                     
                     // node labeling to edge labeling
@@ -116,7 +116,25 @@ namespace lifted_multicut{
             // lifted multicut factory for the primal rounder used in lp_mp
             std::shared_ptr<LmcFactoryBase> lmcFactory;
             bool greedyWarmstart{true};
-        
+            // parameters for lp_mp solver TODO need better (non-completely-guessed...) default values
+            double tightenSlope{0.05};
+            size_t tightenMinDualImprovementInterval{0};
+            double tightenMinDualImprovement{0.};
+            double tightenConstraintsPercentage{0.1};
+            size_t tightenConstraintsMax{0};
+            size_t tightenInterval{10};
+            size_t tightenIteration{100};
+            std::string tightenReparametrization{"anisotropic"};
+            std::string roundingReparametrization{"anisotropic"};
+            std::string standardReparametrization{"anisotropic"};
+            bool tighten{true};
+            size_t minDualImprovementInterval{0};
+            double minDualImprovement{0.};
+            size_t lowerBoundComputationInterval{1};
+            size_t primalComputationInterval{5};
+            size_t timeout{0};
+            size_t maxIter{1000};
+            size_t numLpThreads{1};
         };
             
         LiftedMulticutMp(const ObjectiveType & objective, const Settings & settings = Settings());
@@ -165,7 +183,8 @@ namespace lifted_multicut{
         graph_(objective.graph()),
         liftedGraph_(objective.liftedGraph()),
         currentBest_(nullptr),
-        mpSolver_(nullptr)
+        mpSolver_(nullptr),
+        ufd_(graph_.numberOfNodes())
     {
         if(!bool(settings_.lmcFactory)) {
             typedef LiftedMulticutKernighanLin<ObjectiveType> DefaultSolver;
@@ -206,36 +225,93 @@ namespace lifted_multicut{
     std::vector<std::string> LiftedMulticutMp<OBJECTIVE>::
     toOptionsVector() const {
 
-        //std::vector<std::string> options = {
-        //  "export_multicut", // TODO name of pyfile
-        //  "-i", " ", // empty input file
-        //  "--primalComputationInterval", std::to_string(settings_.primalComputationInterval),
-        //  "--standardReparametrization", settings_.standardReparametrization,
-        //  "--roundingReparametrization", settings_.roundingReparametrization,
-        //  "--tightenReparametrization",  settings_.tightenReparametrization,
-        //  "--tightenInterval",           std::to_string(settings_.tightenInterval),
-        //  "--tightenIteration",          std::to_string(settings_.tightenIteration),
-        //  "--tightenSlope",              std::to_string(settings_.tightenSlope),
-        //  "--tightenConstraintsPercentage", std::to_string(settings_.tightenConstraintsPercentage),
-        //  "--maxIter", std::to_string(settings_.numberOfIterations),
-        //};
-        //if(settings_.tighten)
-        //    options.push_back("--tighten");
-        //if(settings_.minDualImprovement > 0) {
-        //    options.push_back("--minDualImprovement");
-        //    options.push_back(std::to_string(settings_.minDualImprovement));
-        //}
-        //if(settings_.minDualImprovementInterval > 0) {
-        //    options.push_back("--minDualImprovementInterval");
-        //    options.push_back(std::to_string(settings_.minDualImprovementInterval));
-        //}
-        //if(settings_.timeout > 0) {
-        //    options.push_back("--timeout");
-        //    options.push_back(std::to_string(settings_.timeout));
-        //}
-        
-        std::vector<std::string> options;
+        std::vector<std::string> options = {
+          "export_multicut", // TODO name of pyfile
+          "-i", " ", // empty input file
+          "--primalComputationInterval", std::to_string(settings_.primalComputationInterval),
+          "--standardReparametrization", settings_.standardReparametrization,
+          "--roundingReparametrization", settings_.roundingReparametrization,
+          "--tightenReparametrization",  settings_.tightenReparametrization,
+          "--tightenInterval",           std::to_string(settings_.tightenInterval),
+          "--tightenIteration",          std::to_string(settings_.tightenIteration),
+          "--tightenSlope",              std::to_string(settings_.tightenSlope),
+          "--tightenConstraintsPercentage", std::to_string(settings_.tightenConstraintsPercentage),
+          "--maxIter", std::to_string(settings_.maxIter),
+          "--lowerBoundComputationInterval", std::to_string(settings_.lowerBoundComputationInterval)
+          #ifdef WITH_OPENMP
+          ,"--numLpThreads", std::to_string(numLpThreads)
+          #endif
+        };
+        if(settings_.tighten)
+            options.push_back("--tighten");
+        if(settings_.minDualImprovement > 0) {
+            options.push_back("--minDualImprovement");
+            options.push_back(std::to_string(settings_.minDualImprovement));
+        }
+        if(settings_.minDualImprovementInterval > 0) {
+            options.push_back("--minDualImprovementInterval");
+            options.push_back(std::to_string(settings_.minDualImprovementInterval));
+        }
+        if(settings_.timeout > 0) {
+            options.push_back("--timeout");
+            options.push_back(std::to_string(settings_.timeout));
+        }
+        if(settings_.tightenConstraintsMax > 0) {
+            options.push_back("--tightenConstraintsMax");
+            options.push_back(std::to_string(settings_.tightenConstraintsMax));
+        }
+        if(settings_.tightenMinDualImprovement > 0) {
+            options.push_back("--tightenMinDualImprovement");
+            options.push_back(std::to_string(settings_.tightenMinDualImprovement));
+        }
+        if(settings_.tightenMinDualImprovementInterval > 0) {
+            options.push_back("--tightenMinDualImprovementInterval");
+            options.push_back(std::to_string(settings_.tightenMinDualImprovementInterval));
+        }
+
         return options;
+    }
+    
+    
+    // TODO maybe this can be done more efficient
+    // (if we only call it once, this should be fine, but if we need
+    // to call this more often for some reason, this might get expensive)
+    template<class OBJECTIVE>
+    void LiftedMulticutMp<OBJECTIVE>::
+    nodeLabeling() {
+
+        ufd_.reset();
+        auto & constructor = (*mpSolver_).template GetProblemConstructor<0>();
+        for(auto e : graph_.edges()){
+            const auto & uv = graph_.uv(e);
+            const bool cut = constructor.get_edge_label(uv.first, uv.second);
+            if(!cut){
+                ufd_.merge(uv.first, uv.second);
+            }
+        }
+        ufd_.elementLabeling(currentBest_->begin());
+    }
+    
+    
+    // TODO proper visitor
+    template<class OBJECTIVE>
+    void LiftedMulticutMp<OBJECTIVE>::
+    optimize(
+        NodeLabels & nodeLabels,  VisitorBase * visitor
+    ){
+        //VisitorProxy visitorProxy(visitor);
+        // set starting point as current best
+        currentBest_ = &nodeLabels;
+        
+        // TODO for now the visitor is doing nothing, but we should implement one, that is
+        // compatible with lp_mp visitor
+        //visitorProxy.begin(this);
+        
+        if(graph_.numberOfEdges()>0){
+            mpSolver_->Solve();
+            nodeLabeling();
+        }
+        //visitorProxy.end(this);
     }
 
 

@@ -167,7 +167,25 @@ def __extendLiftedMulticutObj(objectiveCls, objectiveName):
     if Configuration.WITH_LP_MP:
         def liftedMulticutMpFactory(
             lmcFactory = None,
-            greedyWarmstart = False
+            greedyWarmstart = False,
+            tightenSlope = 0.05,
+            tightenMinDualImprovementInterval = 0,
+            tightenMinDualImprovement = 0.,
+            tightenConstraintsPercentage = 0.1,
+            tightenConstraintsMax = 0,
+            tightenInterval = 10,
+            tightenIteration = 100,
+            tightenReparametrization = "anisotropic",
+            roundingReparametrization = "anisotropic",
+            standardReparametrization = "anisotropic",
+            tighten = True,
+            minDualImprovementInterval = 0,
+            minDualImprovement = 0.,
+            lowerBoundComputationInterval = 1,
+            primalComputationInterval = 5,
+            timeout = 0,
+            maxIter = 1000,
+            numThreads = 1
             ):
 
             s, F = getSettingsAndFactoryCls("LiftedMulticutMp")
