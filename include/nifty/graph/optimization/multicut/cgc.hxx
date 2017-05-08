@@ -408,6 +408,9 @@ namespace graph{
     cutPhase(
         VisitorProxy & visitorProxy
     ){
+
+        std::queue<uint64_t> anchorQueue;
+        
         // the node labeling as reference
         auto & nodeLabels = *currentBest_;
 
@@ -416,7 +419,8 @@ namespace graph{
         // number of components
         const auto nComponents = components_.buildFromLabels(*currentBest_);
 
-        std::cout<<"nComponents\n";
+        std::cout<<"graph_ "<<graph_.numberOfNodes() <<" \n";
+        std::cout<<"nComponents "<<nComponents <<" \n";
         // get anchor for each component        
         std::vector<uint64_t> componentsAnchors(nComponents);
 
@@ -430,7 +434,7 @@ namespace graph{
 
         // push anchors to the queue
         std::cout<<"alloc queue\n";
-        std::queue<uint64_t> anchorQueue;
+        
         std::cout<<"start..\n";
         for(const auto & anchor : componentsAnchors){
             std::cout<<"fubar "<<anchor<<"\n";
