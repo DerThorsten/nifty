@@ -21,7 +21,7 @@ endif(WITH_QPBO)
 
 addPythonModule(
     NESTED_NAME 
-        nifty/graph/multicut  
+        nifty/graph/optimization/multicut  
     SOURCES
         ${MOD_SOURCES}
     LIBRRARIES

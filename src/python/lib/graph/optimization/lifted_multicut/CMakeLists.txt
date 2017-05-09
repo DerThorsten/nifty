@@ -1,7 +1,7 @@
 
 addPythonModule(
     NESTED_NAME 
-        nifty/graph/lifted_multicut  
+        nifty/graph/optimization/lifted_multicut  
     SOURCES
         lifted_multicut.cxx
         lifted_multicut_objective.cxx

@@ -1,6 +1,6 @@
 from __future__ import absolute_import
 from ._multicut import *
-from ... import Configuration
+from .... import Configuration
 
 from functools import partial
 
