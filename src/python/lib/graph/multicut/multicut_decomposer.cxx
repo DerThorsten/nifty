@@ -29,6 +29,8 @@ namespace graph{
         const auto solverName = std::string("MulticutDecomposer");
         exportMulticutSolver<Solver>(multicutModule, solverName.c_str())
             .def(py::init<>())
+            .def_readwrite("submodelFactory",   &Settings::submodelFactory)
+            .def_readwrite("fallthroughFactory",&Settings::fallthroughFactory)
         ; 
     }
 

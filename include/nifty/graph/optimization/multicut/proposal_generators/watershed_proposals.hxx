@@ -92,7 +92,7 @@ namespace graph{
                 // randomize the weights
                 const auto & weights = objective_.weights();
                 for(auto edge: graph_.edges()){
-                    weights_[edge] = -1.0*weights_[edge] + dist_(gen_);
+                    weights_[edge] = -1.0*weights[edge] + dist_(gen_);
                 }
                 edgeWeightedWatershedsSegmentation(graph_, weights_, seeds_, proposal);
                 ++proposalNumber_;

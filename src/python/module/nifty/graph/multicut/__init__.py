@@ -86,22 +86,29 @@ def __extendMulticutObj(objectiveCls, objectiveName):
 
 
 
+    def defaultMulticutFactory():
+        if Configuration.WITH_QPBO:
+            return O.cgcFactory()
+        else:
+            return O.greedyAdditiveFactory()
+
+    O.defaultMulticutFactory = staticmethod(defaultMulticutFactory)
+
+
     def multicutDecomposer(submodelFactory=None, fallthroughFactory=None):
 
         if submodelFactory is None:
-            pass
+           submodelFactory = MulticutObjectiveUndirectedGraph.defaultMulticutFactory()
 
         if fallthroughFactory is None:
-            pass
+            fallthroughFactory = O.defaultMulticutFactory()
 
 
-        
         s,F = getSettingsAndFactoryCls("MulticutDecomposer")
         s.submodelFactory = submodelFactory
         s.fallthroughFactory = fallthroughFactory
         return F(s)
         
-
     O.multicutDecomposer = staticmethod(multicutDecomposer)
 
 

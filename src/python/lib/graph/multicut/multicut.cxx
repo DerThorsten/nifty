@@ -17,6 +17,7 @@ namespace graph{
     void exportMulticutGreedyAdditive(py::module &);
     void exportFusionMoveBased(py::module &);
     void exportPerturbAndMap(py::module &);
+    void exportMulticutDecomposer(py::module &);
     void exportCgc(py::module &);
 
 
@@ -38,6 +39,7 @@ PYBIND11_PLUGIN(_multicut) {
     exportMulticutGreedyAdditive(multicutModule);
     exportFusionMoveBased(multicutModule);
     exportPerturbAndMap(multicutModule);
+    exportMulticutDecomposer(multicutModule);
     exportCgc(multicutModule);
 
     return multicutModule.ptr();

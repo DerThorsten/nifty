@@ -121,7 +121,10 @@ public:
         ufd_.representativeLabeling(map);
 
         for(const auto node : graph_.nodes()){
+            const auto denseLabel = map[this->componentLabel(node)] - offset_;
+            compSize[denseLabel] += 1;
             nodeMap[node] = map[this->componentLabel(node)] - offset_;
+
         }
     
     }
