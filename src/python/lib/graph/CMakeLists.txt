@@ -15,5 +15,6 @@ addPythonModule(
 add_subdirectory(agglo)
 add_subdirectory(rag)
 
+add_subdirectory(mincut)
 add_subdirectory(multicut)
 add_subdirectory(lifted_multicut)

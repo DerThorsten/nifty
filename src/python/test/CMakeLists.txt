@@ -36,6 +36,8 @@ if(NOSETESTS_PATH)
         hdf5/test_hdf5.py
         tools/test_blocking.py
         graph/agglo/test_agglo.py
+        graph/mincut/test_mincut_objective.py
+        graph/mincut/test_mincut_solvers.py
         graph/multicut/test_multicut_solvers.py
         graph/lifted_multicut/test_lifted_multicut_objective.py
         graph/lifted_multicut/test_lifted_multicut_solvers.py

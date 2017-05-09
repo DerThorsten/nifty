@@ -194,6 +194,9 @@ namespace optimization{
                 visitor_->printLog(logLevel, logString);
             }
         }
+        operator bool() const{
+            return visitor_ != nullptr;
+        }
 
     private:
         VisitorBaseTpe * visitor_;

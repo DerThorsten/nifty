@@ -1,17 +1,14 @@
-
 #pragma once
-#ifndef NIFTY_GRAPH_OPTIMIZATION_LIFTED_MULTICUT_LIFTED_PROPOSAL_GENERATORS_PROPOSAL_GENERATOR_FACTORY_BASE_HXX
-#define NIFTY_GRAPH_OPTIMIZATION_LIFTED_MULTICUT_LIFTED_PROPOSAL_GENERATORS_PROPOSAL_GENERATOR_FACTORY_BASE_HXX
-
 
 #include <memory>
-
-
-#include "nifty/graph/optimization/lifted_multicut/proposal_generators/proposal_generator_base.hxx"
+#include "nifty/graph/optimization/common/proposal_generators/proposal_generator_base.hxx"
 
 namespace nifty{
 namespace graph{
-namespace lifted_multicut{
+namespace optimization{
+namespace common{
+
+
 
 
     template<class OBJECTIVE>
@@ -27,8 +24,8 @@ namespace lifted_multicut{
 
 
 
-}
-}
-}
+} // namespace nifty::graph::optimization::common
+} // namespacen ifty::graph::optimization
+} // namespace nifty::graph
+} // namespace nifty
 
-#endif //NIFTY_GRAPH_OPTIMIZATION_LIFTED_MULTICUT_LIFTED_PROPOSAL_GENERATORS_PROPOSAL_GENERATOR_FACTORY_BASE_HXX

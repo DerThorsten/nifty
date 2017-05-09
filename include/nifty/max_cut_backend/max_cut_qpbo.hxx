@@ -68,7 +68,7 @@ namespace max_cut_backend{
             qpbo_.Solve();
             qpbo_.Improve();
 
-            auto val = qpbo_.ComputeTwiceEnergy(0)/2.0;
+            auto val = qpbo_.ComputeTwiceEnergy()/2.0;
             //if(this->label(0) == 0){
             //    val += 1000.0;
             //}
