@@ -48,6 +48,7 @@ namespace graph{
             .def_readwrite("minDualImprovement",&Settings::minDualImprovement)
             .def_readwrite("minDualImprovementInterval",&Settings::minDualImprovementInterval)
             .def_readwrite("timeout",&Settings::timeout)
+            .def_readwrite("numberOfThreads",&Settings::numberOfThreads)
         ; 
 
     }

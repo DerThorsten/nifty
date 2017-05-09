@@ -39,12 +39,11 @@ namespace graph{
             typedef MulticutObjective<GraphType, double> ObjectiveType;
             exportMulticutKernighanLinT<ObjectiveType>(multicutModule);
         }
-        {
-            typedef PyContractionGraph<PyUndirectedGraph> GraphType;
-            typedef MulticutObjective<GraphType, double> ObjectiveType;
-            exportMulticutKernighanLinT<ObjectiveType>(multicutModule);
-        }     
-
+        //{
+        //    typedef PyContractionGraph<PyUndirectedGraph> GraphType;
+        //    typedef MulticutObjective<GraphType, double> ObjectiveType;
+        //    exportMulticutKernighanLinT<ObjectiveType>(multicutModule);
+        //}     
     }
 }
 }

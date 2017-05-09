@@ -53,25 +53,26 @@ namespace graph{
                 if(g.numberOfEdges() > 0) {
                     
                     Objective obj(g);
+
                     auto & objWeights = obj.weights();
                     for(auto eId = 0; eId < edgeValues.size(); ++eId) {
                         objWeights[eId] = edgeValues[eId];
                     }
                    
-                    NodeLabels nodeLabeling(g.numberOfNodes());
+                    NodeLabels nodeLabels(g.numberOfNodes());
                     if(greedyWarmstart_) {
                         MulticutGreedyAdditive<Objective> greedy(obj);
-                        greedy.optimize(nodeLabeling, nullptr);
+                        greedy.optimize(nodeLabels, nullptr);
                     }
                     
                     auto solverPtr = factory_->createRawPtr(obj);
-                    solverPtr->optimize(nodeLabeling, nullptr);
+                    solverPtr->optimize(nodeLabels, nullptr);
                     delete solverPtr;
                     
                     // node labeling to edge labeling
                     for(auto eId = 0; eId < g.numberOfEdges(); ++eId) {
                         const auto & uv = g.uv(eId);
-                        labeling[eId] = uv.first != uv.second;
+                        labeling[eId] = nodeLabels[uv.first] != nodeLabels[uv.second];
                     }
 
                 }
@@ -116,6 +117,7 @@ namespace graph{
             double minDualImprovement{0.};
             size_t minDualImprovementInterval{0};
             size_t timeout{0};
+            size_t numberOfThreads{1};
         };
 
         virtual ~MulticutMp(){
@@ -213,6 +215,9 @@ namespace graph{
           "--tightenSlope",              std::to_string(settings_.tightenSlope),
           "--tightenConstraintsPercentage", std::to_string(settings_.tightenConstraintsPercentage),
           "--maxIter", std::to_string(settings_.numberOfIterations),
+          #ifdef WITH_OPENM
+          "--numLpThreads", std::to_string(settings_.numberOfThreads)
+          #endif
         };
         if(settings_.tighten)
             options.push_back("--tighten");
@@ -269,27 +274,6 @@ namespace graph{
         if(graph_.numberOfEdges()>0){
             mpSolver_->Solve();
             nodeLabeling();
-
-            // TODO for now only run lp_mp once,
-            // then integrate the solver properly
-            
-            // set the starting point 
-            //auto edgeLabelIter = detail_graph::nodeLabelsToEdgeLabelsIterBegin(graph_, nodeLabels);
-            //ilpSolver_->setStart(edgeLabelIter);
-
-            //for (size_t i = 0; settings_.numberOfIterations == 0 || i < settings_.numberOfIterations; ++i){
-
-            //    // solve ilp
-            //    ilpSolver_->optimize();
-
-            //    // add additional logs
-            //    visitorProxy.setLogValue(0,nViolated);
-            //    // visit visitor
-            //    if(!visitorProxy.visit(this))
-            //        break;
-            //    
-            //}
-            //++numberOfOptRuns_;
         }
         //visitorProxy.end(this);
     }

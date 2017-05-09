@@ -1,7 +1,10 @@
 from __future__ import absolute_import
+
+import sys
+from functools import partial
+
 from ._multicut import *
 from .. import Configuration
-from functools import partial
 
 __all__ = []
 for key in _multicut.__dict__.keys():
@@ -97,10 +100,10 @@ def __extendMulticutObj(objectiveCls, objectiveName):
 
 
     def multicutKernighanLinFactory(
-            verbose = 0,
-            numberOfInnerIterations = 1000000, # use numeric limit ?! std::numeric_limits<size_t>::max()
+            verbose = False,
+            numberOfInnerIterations = sys.maxsize, # in c++: std::numeric_limits<size_t>::max()
             numberOfOuterIterations = 100,
-            epsilon = 1e-7
+            epsilon = 1e-6
             ):
 
         settings, factoryCls = getSettingsAndFactoryCls("MulticutKernighanLin")
@@ -130,7 +133,8 @@ def __extendMulticutObj(objectiveCls, objectiveName):
                 tightenConstraintsPercentage = 0.1,
                 minDualImprovement = 0.,
                 minDualImprovementInterval = 0,
-                timeout = 0
+                timeout = 0,
+                numberOfThreads = 1
                 ):
 
             settings, factoryCls = getSettingsAndFactoryCls("MulticutMp")
@@ -154,6 +158,7 @@ def __extendMulticutObj(objectiveCls, objectiveName):
             settings.minDualImprovement = minDualImprovement
             settings.minDualImprovementInterval = minDualImprovementInterval
             settings.timeout = timeout
+            settings.numberOfThreads = numberOfThreads
 
             return factoryCls(settings)
 

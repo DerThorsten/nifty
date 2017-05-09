@@ -1,6 +1,7 @@
 #pragma once
 
 // wrapper around the andres kernighan lin multicut solver
+#include <algorithm>
 
 #include "nifty/graph/optimization/multicut/multicut_base.hxx"
 #include "andres/graph/multicut/kernighan-lin.hxx"
@@ -21,13 +22,14 @@ namespace graph{
         typedef typename Base::EdgeLabels EdgeLabels;
         typedef typename Base::NodeLabels NodeLabels;
         typedef andres::graph::Graph<> Graph;
+        typedef andres::graph::multicut::KernighanLinSettings Settings;
         
-        struct Settings{
-            int verbose{0};
-            size_t numberOfInnerIterations{std::numeric_limits<size_t>::max()};
-            size_t numberOfOuterIterations{100};
-            double epsilon{1e-7};
-        };
+        //struct Settings{
+        //    int verbose{0};
+        //    size_t numberOfInnerIterations{std::numeric_limits<size_t>::max()};
+        //    size_t numberOfOuterIterations{100};
+        //    double epsilon{1e-7};
+        //};
 
         MulticutKernighanLin(const Objective & objective, const Settings & settings = Settings());
 
@@ -92,7 +94,7 @@ namespace graph{
                 edgeLabels[edgeId] = nodeLabels[u] != nodeLabels[v];
             }
             
-            andres::graph::multicut::kernighanLin(graph_, objective_.weights(), edgeLabels, edgeLabels);
+            andres::graph::multicut::kernighanLin(graph_, objective_.weights(), edgeLabels, edgeLabels, settings_);
             
             // resulting edge labels to node labels via ufd
             for(auto edgeId = 0; edgeId <  graph_.numberOfEdges(); ++edgeId) {

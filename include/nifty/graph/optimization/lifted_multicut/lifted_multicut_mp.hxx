@@ -82,7 +82,7 @@ namespace lifted_multicut{
                     // node labeling to edge labeling
                     for(auto eId = 0; eId < edgeValues.size(); ++eId) {
                         const auto & uv = (eId < nLocalEdges) ? originalGraph.uv(eId) : liftedGraph.uv( eId - nLocalEdges );
-                        labeling[eId] = uv.first != uv.second;
+                        labeling[eId] = nodeLabels[uv.first] != nodeLabels[uv.second];
                     }
 
                 }
@@ -90,11 +90,11 @@ namespace lifted_multicut{
 
             }
             
-            // Dummy implementation to work with multicut constructor
-            // TODO FIXME Is this actually used? -> then we would need to impl something
+            // Dummy implementation to work with LP_MP::MulticutConstructor
             std::vector<char> operator()(
-                    GraphType originalGraph,
-                    std::vector<double> edgeValues) {
+                    GraphType,
+                    std::vector<double>) {
+                return std::vector<char>();
             }
 
             static std::string name() {

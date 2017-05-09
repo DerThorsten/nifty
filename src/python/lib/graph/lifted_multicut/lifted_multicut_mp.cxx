@@ -1,5 +1,6 @@
-#include <pybind11/pybind11.h>
+#ifdef WITH_LP_MP
 
+#include <pybind11/pybind11.h>
 
 #include "nifty/python/graph/optimization/lifted_multicut/export_lifted_multicut_solver.hxx"
 #include "nifty/python/converter.hxx"
@@ -70,3 +71,4 @@ namespace lifted_multicut{
 }
 }
 }
+#endif
