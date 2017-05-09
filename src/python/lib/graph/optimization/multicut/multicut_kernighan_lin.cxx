@@ -25,7 +25,6 @@ namespace graph{
         const auto solverName = std::string("MulticutKernighanLin");
         exportMulticutSolver<Solver>(multicutModule, solverName.c_str())
             .def(py::init<>())
-            .def_readwrite("verbose",&Settings::verbose)
             .def_readwrite("numberOfInnerIterations",&Settings::numberOfInnerIterations)
             .def_readwrite("numberOfOuterIterations",&Settings::numberOfOuterIterations)
             .def_readwrite("epsilon",&Settings::epsilon)

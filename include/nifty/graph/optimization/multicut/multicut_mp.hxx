@@ -90,8 +90,8 @@ namespace graph{
             bool greedyWarmstart_;
         };
         
-        typedef LP_MP::KlRounder Rounder;
-        //typedef NiftyRounder Rounder;
+        //typedef LP_MP::KlRounder Rounder;
+        typedef NiftyRounder Rounder;
 
         // TODO with or without odd wheel ?
         //typedef LP_MP::FMC_MULTICUT<LP_MP::MessageSendingType::SRMP,NiftyRounder> FMC;
@@ -181,7 +181,7 @@ namespace graph{
         }
         mpSolver_ = new SolverType(
                 toOptionsVector()
-                //,NiftyRounder(settings_.mcFactory, settings_.greedyWarmstart)
+                ,NiftyRounder(settings_.mcFactory, settings_.greedyWarmstart)
             );
         this->initializeMp();
     }

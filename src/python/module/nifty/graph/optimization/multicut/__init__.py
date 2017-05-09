@@ -141,14 +141,12 @@ def __extendMulticutObj(objectiveCls, objectiveName):
 
 
     def multicutKernighanLinFactory(
-            verbose = False,
             numberOfInnerIterations = sys.maxsize, # in c++: std::numeric_limits<size_t>::max()
             numberOfOuterIterations = 100,
             epsilon = 1e-6
             ):
 
         settings, factoryCls = getSettingsAndFactoryCls("MulticutKernighanLin")
-        settings.verbose = verbose
         settings.numberOfInnerIterations = numberOfInnerIterations
         settings.numberOfOuterIterations = numberOfOuterIterations
         settings.epsilon = epsilon
