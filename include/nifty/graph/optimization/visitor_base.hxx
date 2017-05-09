@@ -8,9 +8,13 @@
 #include <iostream>
 #include <chrono>
 
+#include "nifty/tools/logging.hxx"
+
 namespace nifty {
 namespace graph {
 namespace optimization{
+
+
 
 
     template<class SOLVER> 
@@ -24,12 +28,22 @@ namespace optimization{
         virtual bool visit(SolverType * solver) = 0;
         virtual void end(SolverType * solver) = 0;
 
+
+        virtual void clearLogNames(){
+
+        }
         virtual void addLogNames(std::initializer_list<std::string> logNames){
 
         }
         virtual void setLogValue(const size_t logIndex, double logValue){
 
         }
+
+        virtual void printLog(const nifty::logging::LogLevel logLevel, const std::string & logString){
+
+        }
+
+
     };
 
 
@@ -41,7 +55,10 @@ namespace optimization{
         typedef std::chrono::seconds TimeType;
         typedef std::chrono::time_point<std::chrono::steady_clock> TimePointType;
 
-        VerboseVisitor(const int printNth = 1, const size_t timeLimit = 0)
+        VerboseVisitor(
+            const int printNth = 1, 
+            const size_t timeLimit = 0
+        )
         :   printNth_(printNth),
             runOpt_(true),
             iter_(1),
@@ -73,6 +90,10 @@ namespace optimization{
             std::cout<<"end inference\n";
         }
         
+        virtual void clearLogNames(){
+            logNames_.clear();
+            logValues_.clear();
+        }
         virtual void addLogNames(std::initializer_list<std::string> logNames){
             logNames_.assign(logNames.begin(), logNames.end());
             logValues_.resize(logNames.size());
@@ -81,7 +102,11 @@ namespace optimization{
         virtual void setLogValue(const size_t logIndex, double logValue){
             logValues_[logIndex] = logValue;
         }
-        
+
+        virtual void printLog(const nifty::logging::LogLevel logLevel, const std::string & logString){
+            std::cout<<"LOG["<<int(logLevel)<<"]: "<<logString<<"\n";
+        }
+
         void stopOptimize(){
             runOpt_ = false;
         }
@@ -149,7 +174,12 @@ namespace optimization{
         }
         void end(SolverType * solver)   {
             if(visitor_ != nullptr){
-                visitor_->begin(solver);
+                visitor_->end(solver);
+            }
+        }
+        void clearLogNames()   {
+            if(visitor_ != nullptr){
+                visitor_->clearLogNames();
             }
         }
 
@@ -157,6 +187,15 @@ namespace optimization{
             if(visitor_ != nullptr){
                 visitor_->setLogValue(logIndex, logValue);
             }
+        }
+
+        void printLog(const nifty::logging::LogLevel logLevel, const std::string & logString){
+            if(visitor_ != nullptr){
+                visitor_->printLog(logLevel, logString);
+            }
+        }
+        operator bool() const{
+            return visitor_ != nullptr;
         }
 
     private:

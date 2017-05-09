@@ -1,5 +1,3 @@
-#ifdef WITH_LP_MP
-
 #include <pybind11/pybind11.h>
 
 #include "nifty/graph/optimization/multicut/multicut_mp.hxx"
@@ -72,4 +70,3 @@ namespace graph{
 
 } // namespace graph
 } // namespace nifty
-#endif

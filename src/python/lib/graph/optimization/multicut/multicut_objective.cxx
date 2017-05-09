@@ -24,6 +24,7 @@ namespace graph{
 
         auto multicutObjectiveCls = py::class_<ObjectiveType>(multicutModule, clsName.c_str());
         multicutObjectiveCls
+            .def_property_readonly("graph", &ObjectiveType::graph)
             .def("evalNodeLabels",[](const ObjectiveType & objective,  nifty::marray::PyView<uint64_t> array){
                 return objective.evalNodeLabels(array);
             })

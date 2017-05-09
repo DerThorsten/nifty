@@ -1,6 +1,9 @@
 #-------------------------------------------------------------------------------------------------------------------
 # src folder
 #-------------------------------------------------------------------------------------------------------------------
+#add_subdirectory(sandbox)
+add_subdirectory(external_libs)
+
 if(BUILD_CPP_TEST)
     add_subdirectory(test)
 endif()
@@ -14,4 +17,5 @@ endif()
 
 #add_subdirectory(sandbox)
 add_subdirectory(benchmark)
+
 
