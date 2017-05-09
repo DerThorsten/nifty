@@ -1,9 +1,17 @@
 from __future__ import absolute_import
 from ._graph import *
-from .. import Configuration
 
-from . import multicut
-from . import lifted_multicut
+from .. import Configuration
+from . import optimization
+
+from . optimization import multicut
+from . optimization import lifted_multicut
+from . optimization import mincut
+
+
+# import optimization.multicut as multicut
+# import optimization.lifted_multicut as lifted_multicut
+# import optimization.mincut as mincut
 # from . import rag
 
 import numpy
