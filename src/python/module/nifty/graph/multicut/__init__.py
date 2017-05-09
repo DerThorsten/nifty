@@ -139,9 +139,6 @@ def __extendMulticutObj(objectiveCls, objectiveName):
 
             settings, factoryCls = getSettingsAndFactoryCls("MulticutMp")
 
-            if mcFactory is None:
-                mcFactory = MulticutObjectiveUndirectedGraph.multicutKernighanLinFactory()
-
             settings.mcFactory = mcFactory
             settings.greedyWarmstart = greedyWarmstart
             settings.numberOfIterations = numberOfIterations

@@ -35,7 +35,6 @@ namespace graph{
 
     public:
         
-        // TODO expose greedy warmstart option to python
         struct NiftyRounder {
             
             typedef Graph GraphType;
@@ -66,6 +65,7 @@ namespace graph{
                     }
                     
                     auto solverPtr = factory_->createRawPtr(obj);
+                    std::cout << "compute multicut primal with " << (greedyWarmstart_ ? "GAEC + " : "") << solverPtr->name()  << std::endl;
                     solverPtr->optimize(nodeLabels, nullptr);
                     delete solverPtr;
                     
@@ -90,11 +90,14 @@ namespace graph{
             bool greedyWarmstart_;
         };
         
+        typedef LP_MP::KlRounder Rounder;
+        //typedef NiftyRounder Rounder;
+
         // TODO with or without odd wheel ?
-        typedef LP_MP::FMC_MULTICUT<LP_MP::MessageSendingType::SRMP,NiftyRounder> FMC;
-        //typedef LP_MP::FMC_ODD_WHEEL_MULTICUT<LP_MP::MessageSendingType::SRMP,NiftyRounder> FMC;
+        //typedef LP_MP::FMC_MULTICUT<LP_MP::MessageSendingType::SRMP,NiftyRounder> FMC;
+        typedef LP_MP::FMC_ODD_WHEEL_MULTICUT<LP_MP::MessageSendingType::SRMP,Rounder> FMC;
         
-        typedef LP_MP::Solver<FMC,LP_MP::LP,LP_MP::StandardTighteningVisitor,NiftyRounder> SolverBase;
+        typedef LP_MP::Solver<FMC,LP_MP::LP,LP_MP::StandardTighteningVisitor,Rounder> SolverBase;
         typedef LP_MP::ProblemConstructorRoundingSolver<SolverBase> SolverType;
 
         // FIXME verbose deosn't have any effect right now
@@ -170,13 +173,16 @@ namespace graph{
         mpSolver_(nullptr),
         ufd_(graph_.numberOfNodes())
     {
+        // if we don't have a mc-factory, we use the LP_MP default rounder
         if(!bool(settings_.mcFactory)) {
             typedef MulticutKernighanLin<Objective> DefaultSolver;
             typedef MulticutFactory<DefaultSolver> DefaultFactory;
             settings_.mcFactory = std::make_shared<DefaultFactory>();
         }
-        mpSolver_ = new SolverType( toOptionsVector(),
-                NiftyRounder(settings_.mcFactory, settings_.greedyWarmstart) );
+        mpSolver_ = new SolverType(
+                toOptionsVector()
+                //,NiftyRounder(settings_.mcFactory, settings_.greedyWarmstart)
+            );
         this->initializeMp();
     }
 
@@ -204,7 +210,7 @@ namespace graph{
     toOptionsVector() const {
 
         std::vector<std::string> options = {
-          "export_multicut", // TODO name of pyfile
+          "multicut_mp",
           "-i", " ", // empty input file
           "--primalComputationInterval", std::to_string(settings_.primalComputationInterval),
           "--standardReparametrization", settings_.standardReparametrization,
@@ -215,7 +221,7 @@ namespace graph{
           "--tightenSlope",              std::to_string(settings_.tightenSlope),
           "--tightenConstraintsPercentage", std::to_string(settings_.tightenConstraintsPercentage),
           "--maxIter", std::to_string(settings_.numberOfIterations),
-          #ifdef WITH_OPENM
+          #ifdef WITH_OPENMP
           "--numLpThreads", std::to_string(settings_.numberOfThreads)
           #endif
         };
