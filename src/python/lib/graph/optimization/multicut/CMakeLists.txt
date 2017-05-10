@@ -10,6 +10,7 @@ SET(MOD_SOURCES
         multicut_kernighan_lin.cxx
         multicut_decomposer.cxx
         multicut_greedy_additive.cxx
+        multicut_andres.cxx
         fusion_move_based.cxx
         perturb_and_map.cxx
 )

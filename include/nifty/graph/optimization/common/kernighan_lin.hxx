@@ -17,6 +17,7 @@
 #include "nifty/graph/edge_contraction_graph.hxx"
 #include "nifty/graph/components.hxx"
 #include "nifty/graph/subgraph_masks/subgraph_with_cut.hxx"
+#include "nifty/graph/optimization/common/detail/twocut_kernighan_lin.hxx"
 
 
 namespace nifty{
@@ -25,34 +26,10 @@ namespace optimization{
 namespace common {
     
     
-    template<class GRAPH>
-    struct TwoCutBuffers{
-
-        typedef GRAPH GraphType;
-        
-        TwoCutBuffers(const GraphType & graph)
-        :   differences(graph),
-            isMoved(graph),
-            referencedBy(graph),
-            vertexLabels(graph)
-        {
-
-        }
-
-        typename GraphType:: template NodeMap<double>         differences;
-        typename GraphType:: template NodeMap<char>           isMoved;
-        typename GraphType:: template NodeMap<std::size_t>    referencedBy;
-        typename GraphType:: template NodeMap<uint64_t>       vertexLabels;
-
-        std::size_t maxNotUsedLabel;
-    };
-
-    
     // KernighanLin basis class for multicut and lifted multicut
     template<
         class OBJECTIVE, 
-        class SOLVER_BASE, 
-        class TWO_CUT_TYPE
+        class SOLVER_BASE
     >
     class KernighanLin : public SOLVER_BASE
     {
@@ -69,7 +46,7 @@ namespace common {
 
     protected:
 
-        typedef TWO_CUT_TYPE TwoCutType;
+        typedef TwoCut<ObjectiveType> TwoCutType;
         typedef ComponentsUfd<GraphType> ComponentsType;
         typedef TwoCutBuffers<GraphType> TwoCutBuffersType;
 
@@ -85,7 +62,7 @@ namespace common {
         };
 
 
-        KernighanLin(const ObjectiveType & objective, const Settings & settings = Settings());
+        KernighanLin(const ObjectiveType & objective, const TwoCutType & twoCut, const Settings & settings = Settings());
         virtual void optimize(NodeLabels & nodeLabels, VisitorBase * visitor);
         virtual const ObjectiveType & objective() const;
         virtual const NodeLabels & currentBestNodeLabels() {return *currentBest_;}
@@ -134,12 +111,12 @@ namespace common {
     
     template<
         class OBJECTIVE, 
-        class SOLVER_BASE, 
-        class TWO_CUT_TYPE
+        class SOLVER_BASE
     >
-    KernighanLin<OBJECTIVE,SOLVER_BASE,TWO_CUT_TYPE>::
+    KernighanLin<OBJECTIVE,SOLVER_BASE>::
     KernighanLin(
         const ObjectiveType & objective, 
+        const TwoCutType & twoCut,
         const Settings & settings
     )
     :   objective_(objective),
@@ -147,8 +124,7 @@ namespace common {
         graph_(objective.graph()),
         currentBest_(nullptr),
         currentBestEnergy_(0.0),
-        //
-        twoCut_(objective),
+        twoCut_(twoCut),
         components_(objective.graph()),
         partitions_(),
         twoCutBuffers_(objective.graph()),
@@ -163,11 +139,10 @@ namespace common {
 
     template<
         class OBJECTIVE, 
-        class SOLVER_BASE, 
-        class TWO_CUT_TYPE
+        class SOLVER_BASE
     >
     inline void 
-    KernighanLin<OBJECTIVE,SOLVER_BASE,TWO_CUT_TYPE>::
+    KernighanLin<OBJECTIVE,SOLVER_BASE>::
     optimize(
         NodeLabels & nodeLabels,  VisitorBase * visitor
     ){
@@ -244,11 +219,10 @@ namespace common {
     
     template<
         class OBJECTIVE, 
-        class SOLVER_BASE, 
-        class TWO_CUT_TYPE
+        class SOLVER_BASE
     >
     inline void 
-    KernighanLin<OBJECTIVE,SOLVER_BASE,TWO_CUT_TYPE>::
+    KernighanLin<OBJECTIVE,SOLVER_BASE>::
     initializePartiton(
     ){
 
@@ -285,11 +259,10 @@ namespace common {
 
     template<
         class OBJECTIVE, 
-        class SOLVER_BASE, 
-        class TWO_CUT_TYPE
+        class SOLVER_BASE
     >
     inline void 
-    KernighanLin<OBJECTIVE,SOLVER_BASE,TWO_CUT_TYPE>::
+    KernighanLin<OBJECTIVE,SOLVER_BASE>::
     buildRegionAdjacencyGraph(
     ){
         edges_.clear();
@@ -310,11 +283,10 @@ namespace common {
 
     template<
         class OBJECTIVE, 
-        class SOLVER_BASE, 
-        class TWO_CUT_TYPE
+        class SOLVER_BASE
     >
     inline void 
-    KernighanLin<OBJECTIVE,SOLVER_BASE,TWO_CUT_TYPE>::
+    KernighanLin<OBJECTIVE,SOLVER_BASE>::
     optimizePairs(
         double & energyDecrease
     ){
@@ -353,11 +325,10 @@ namespace common {
 
     template<
         class OBJECTIVE, 
-        class SOLVER_BASE, 
-        class TWO_CUT_TYPE
+        class SOLVER_BASE
     >
     inline void 
-    KernighanLin<OBJECTIVE,SOLVER_BASE,TWO_CUT_TYPE>::
+    KernighanLin<OBJECTIVE,SOLVER_BASE>::
     introduceNewPartitions(
         double & energyDecrease
     ){
@@ -385,11 +356,10 @@ namespace common {
     
     template<
         class OBJECTIVE, 
-        class SOLVER_BASE, 
-        class TWO_CUT_TYPE
+        class SOLVER_BASE
     >
     inline void 
-    KernighanLin<OBJECTIVE,SOLVER_BASE,TWO_CUT_TYPE>::
+    KernighanLin<OBJECTIVE,SOLVER_BASE>::
     connectedComponentLabeling(){
 
         std::stack<std::size_t> S;
@@ -433,11 +403,10 @@ namespace common {
 
     template<
         class OBJECTIVE, 
-        class SOLVER_BASE, 
-        class TWO_CUT_TYPE
+        class SOLVER_BASE
     >
     inline bool
-    KernighanLin<OBJECTIVE,SOLVER_BASE,TWO_CUT_TYPE>::
+    KernighanLin<OBJECTIVE,SOLVER_BASE>::
     hasChanges(){
 
         bool didntChange = true;
@@ -456,11 +425,10 @@ namespace common {
     
     template<
         class OBJECTIVE, 
-        class SOLVER_BASE, 
-        class TWO_CUT_TYPE
+        class SOLVER_BASE
     >
     inline void 
-    KernighanLin<OBJECTIVE,SOLVER_BASE,TWO_CUT_TYPE>::
+    KernighanLin<OBJECTIVE,SOLVER_BASE>::
     formNewPartition(){
         partitions_.clear();
         partitions_.resize(numberOfComponents_);
@@ -475,11 +443,10 @@ namespace common {
 
     template<
         class OBJECTIVE, 
-        class SOLVER_BASE, 
-        class TWO_CUT_TYPE
+        class SOLVER_BASE
     >
     inline void 
-    KernighanLin<OBJECTIVE,SOLVER_BASE,TWO_CUT_TYPE>::
+    KernighanLin<OBJECTIVE,SOLVER_BASE>::
     checkIfPartitonChanged(){
 
         changed_.clear();
@@ -532,11 +499,10 @@ namespace common {
     
     template<
         class OBJECTIVE, 
-        class SOLVER_BASE, 
-        class TWO_CUT_TYPE
+        class SOLVER_BASE
     >
-    const typename KernighanLin<OBJECTIVE,SOLVER_BASE,TWO_CUT_TYPE>::ObjectiveType &
-    KernighanLin<OBJECTIVE,SOLVER_BASE,TWO_CUT_TYPE>::
+    const typename KernighanLin<OBJECTIVE,SOLVER_BASE>::ObjectiveType &
+    KernighanLin<OBJECTIVE,SOLVER_BASE>::
     objective()const{
         return objective_;
     }

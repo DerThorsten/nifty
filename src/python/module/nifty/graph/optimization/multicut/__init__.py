@@ -96,6 +96,29 @@ def __extendMulticutObj(objectiveCls, objectiveName):
     O.defaultMulticutFactory = staticmethod(defaultMulticutFactory)
 
 
+    def multicutAndresGreedyAdditiveFactory():
+        s, F = getSettingsAndFactoryCls("MulticutAndresGreedyAdditive")
+        return F(s)
+    O.multicutAndresGreedyAdditiveFactory = staticmethod(multicutAndresGreedyAdditiveFactory)
+
+
+    def multicutAndresKernighanLinFactory(
+            numberOfInnerIterations = sys.maxsize,
+            numberOfOuterIterations = 100,
+            epsilon = 1e-6,
+            verbose = False,
+            greedyWarmstart = True
+            ):
+        s, F = getSettingsAndFactoryCls("MulticutAndresKernighanLin")
+        s.numberOfInnerIterations = numberOfInnerIterations
+        s.numberOfOuterIterations = numberOfOuterIterations
+        s.epsilon = epsilon
+        s.verbose = verbose
+        s.greedyWarmstart = greedyWarmstart
+        return F(s)
+    O.multicutAndresKernighanLinFactory = staticmethod(multicutAndresKernighanLinFactory)
+
+
     def multicutDecomposer(submodelFactory=None, fallthroughFactory=None):
 
         if submodelFactory is None:

@@ -59,6 +59,7 @@ namespace graph{
                     }
                    
                     NodeLabels nodeLabels(g.numberOfNodes());
+                    // TODO is there a bug in here ?!?
                     if(greedyWarmstart_) {
                         MulticutGreedyAdditive<Objective> greedy(obj);
                         greedy.optimize(nodeLabels, nullptr);
