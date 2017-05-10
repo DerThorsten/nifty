@@ -5,8 +5,9 @@
 #include "nifty/tools/runtime_check.hxx"
 #include "nifty/graph/optimization/multicut/multicut_base.hxx"
 #include "nifty/graph/optimization/multicut/multicut_factory.hxx"
-#include "nifty/graph/optimization/multicut/multicut_greedy_additive.hxx"
-#include "nifty/graph/optimization/multicut/multicut_kernighan_lin.hxx"
+//#include "nifty/graph/optimization/multicut/multicut_greedy_additive.hxx"
+//#include "nifty/graph/optimization/multicut/multicut_kernighan_lin.hxx"
+#include "nifty/graph/optimization/multicut/multicut_andres.hxx"
 #include "nifty/ufd/ufd.hxx"
 
 // LP_MP includes
@@ -176,7 +177,7 @@ namespace graph{
     {
         // if we don't have a mc-factory, we use the LP_MP default rounder
         if(!bool(settings_.mcFactory)) {
-            typedef MulticutKernighanLin<Objective> DefaultSolver;
+            typedef MulticutAndresKernighanLin<Objective> DefaultSolver;
             typedef MulticutFactory<DefaultSolver> DefaultFactory;
             settings_.mcFactory = std::make_shared<DefaultFactory>();
         }
