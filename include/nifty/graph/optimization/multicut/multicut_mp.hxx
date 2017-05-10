@@ -5,7 +5,7 @@
 #include "nifty/tools/runtime_check.hxx"
 #include "nifty/graph/optimization/multicut/multicut_base.hxx"
 #include "nifty/graph/optimization/multicut/multicut_factory.hxx"
-//#include "nifty/graph/optimization/multicut/multicut_greedy_additive.hxx"
+#include "nifty/graph/optimization/multicut/multicut_greedy_additive.hxx"
 //#include "nifty/graph/optimization/multicut/multicut_kernighan_lin.hxx"
 #include "nifty/graph/optimization/multicut/multicut_andres.hxx"
 #include "nifty/ufd/ufd.hxx"
