@@ -222,22 +222,23 @@ if(WITH_LP_MP)
     include_directories("${CMAKE_CURRENT_SOURCE_DIR}/externals/LP_MP/external/PEGTL")
     include_directories("${CMAKE_CURRENT_SOURCE_DIR}/externals/LP_MP/external/cereal/include")
     include_directories("${CMAKE_CURRENT_SOURCE_DIR}/externals/LP_MP/external/tclap/include")
+    include_directories("${CMAKE_CURRENT_SOURCE_DIR}/externals/LP_MP/external/lingeling-ala")
     
-    # TODO this seems to be a pretty old version, would the newer version help?!
-    # FIXME we actually don't need to link this for building the LP_MP multicut
-    include(ExternalProject)
-    ExternalProject_ADD(
-       lingeling
-       #SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/external/lingeling-ala"
-       URL "http://fmv.jku.at/lingeling/lingeling-bal-2293bef-151109.tar.gz"
-       BUILD_IN_SOURCE 1
-       #BINARY_DIR "${CMAKE_CURRENT_BINARY_DIR}/lingeling-ala"
-       CONFIGURE_COMMAND "./configure.sh"
-       BUILD_COMMAND "make"
-       INSTALL_COMMAND ""
-       )
-    include_directories("${CMAKE_CURRENT_BINARY_DIR}/lingeling-prefix/src/lingeling") 
-    #link_directories("${CMAKE_CURRENT_BINARY_DIR}/lingeling-prefix/src/lingeling")
+    ## TODO this seems to be a pretty old version, would the newer version help?!
+    ## FIXME we actually don't need to link this for building the LP_MP multicut
+    #include(ExternalProject)
+    #ExternalProject_ADD(
+    #   lingeling
+    #   #SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/external/lingeling-ala"
+    #   URL "http://fmv.jku.at/lingeling/lingeling-bal-2293bef-151109.tar.gz"
+    #   BUILD_IN_SOURCE 1
+    #   #BINARY_DIR "${CMAKE_CURRENT_BINARY_DIR}/lingeling-ala"
+    #   CONFIGURE_COMMAND "./configure.sh"
+    #   BUILD_COMMAND "make"
+    #   INSTALL_COMMAND ""
+    #   )
+    #include_directories("${CMAKE_CURRENT_BINARY_DIR}/lingeling-prefix/src/lingeling") 
+    ##link_directories("${CMAKE_CURRENT_BINARY_DIR}/lingeling-prefix/src/lingeling")
     
 endif()
 
