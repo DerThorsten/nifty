@@ -47,11 +47,11 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-#find_package(OpenMP)
-#if (OPENMP_FOUND)
-#    set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
-#    set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
-#endif()
+find_package(OpenMP)
+if (OPENMP_FOUND)
+    set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
+    set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
+endif()
 
 #-------------------------------------------------------------------------------------------------------------------
 # Set a default build configuraton if none is specified. 'MinSizeRel' produces the smallest binaries
@@ -200,6 +200,10 @@ if(WITH_LP_MP)
     
     add_definitions(-DWITH_LP_MP)
     add_definitions(-DWITH_SAT)
+
+    if(OPENMP_FOUND)
+        add_definitions(-DLP_MP_PARALLEL)
+    endif(OPENMP_FOUND)
 
     # set additional flags for the release build
     if(CMAKE_BUILD_TYPE STREQUAL "Release")

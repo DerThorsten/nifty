@@ -222,7 +222,7 @@ namespace graph{
           "--tightenSlope",              std::to_string(settings_.tightenSlope),
           "--tightenConstraintsPercentage", std::to_string(settings_.tightenConstraintsPercentage),
           "--maxIter", std::to_string(settings_.numberOfIterations),
-          #ifdef WITH_OPENMP
+          #ifdef LP_MP_PARALLEL
           "--numLpThreads", std::to_string(settings_.numberOfThreads)
           #endif
         };
