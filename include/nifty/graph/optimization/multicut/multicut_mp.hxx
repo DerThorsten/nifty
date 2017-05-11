@@ -5,8 +5,6 @@
 #include "nifty/tools/runtime_check.hxx"
 #include "nifty/graph/optimization/multicut/multicut_base.hxx"
 #include "nifty/graph/optimization/multicut/multicut_factory.hxx"
-#include "nifty/graph/optimization/multicut/multicut_greedy_additive.hxx"
-//#include "nifty/graph/optimization/multicut/multicut_kernighan_lin.hxx"
 #include "nifty/graph/optimization/multicut/multicut_andres.hxx"
 #include "nifty/ufd/ufd.hxx"
 
@@ -40,9 +38,8 @@ namespace graph{
             
             typedef Graph GraphType;
 
-            NiftyRounder(std::shared_ptr<McFactoryBase> factory,
-                    const bool greedyWarmstart) 
-                : factory_(factory), greedyWarmstart_(greedyWarmstart)
+            NiftyRounder(std::shared_ptr<McFactoryBase> factory) 
+                : factory_(factory)
             {}
 
             // TODO do we have to call by value here due to using async or could we also use a call by refernce?
@@ -60,14 +57,9 @@ namespace graph{
                     }
                    
                     NodeLabels nodeLabels(g.numberOfNodes());
-                    // TODO is there a bug in here ?!?
-                    if(greedyWarmstart_) {
-                        MulticutGreedyAdditive<Objective> greedy(obj);
-                        greedy.optimize(nodeLabels, nullptr);
-                    }
                     
                     auto solverPtr = factory_->createRawPtr(obj);
-                    std::cout << "compute multicut primal with " << (greedyWarmstart_ ? "GAEC + " : "") << solverPtr->name()  << std::endl;
+                    std::cout << "compute multicut primal with " << solverPtr->name()  << std::endl;
                     solverPtr->optimize(nodeLabels, nullptr);
                     delete solverPtr;
                     
@@ -89,7 +81,6 @@ namespace graph{
 
         private:
             std::shared_ptr<McFactoryBase> factory_;
-            bool greedyWarmstart_;
         };
         
         //typedef LP_MP::KlRounder Rounder;
@@ -106,7 +97,6 @@ namespace graph{
         struct Settings{
             // multicut factory for the primal rounder used in lp_mp
             std::shared_ptr<McFactoryBase> mcFactory;
-            bool greedyWarmstart{false};
             // settings for the lp_mp solver
             size_t numberOfIterations{1000};
             int verbose{0};
@@ -181,10 +171,7 @@ namespace graph{
             typedef MulticutFactory<DefaultSolver> DefaultFactory;
             settings_.mcFactory = std::make_shared<DefaultFactory>();
         }
-        mpSolver_ = new SolverType(
-                toOptionsVector()
-                ,NiftyRounder(settings_.mcFactory, settings_.greedyWarmstart)
-            );
+        mpSolver_ = new SolverType(toOptionsVector(), NiftyRounder(settings_.mcFactory));
         this->initializeMp();
     }
 

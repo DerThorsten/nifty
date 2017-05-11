@@ -1,16 +1,10 @@
 from __future__ import absolute_import
-<<<<<<< HEAD
-
 import sys
-=======
-from ._multicut import *
-from .... import Configuration
-from ... import (UndirectedGraph,EdgeContractionGraphUndirectedGraph)
->>>>>>> 935fba7f61ff7020b5515bda2bc1cf2c1c986a36
 from functools import partial
 
 from ._multicut import *
 from .... import Configuration
+from ... import (UndirectedGraph,EdgeContractionGraphUndirectedGraph)
 
 __all__ = []
 for key in _multicut.__dict__.keys():
@@ -27,12 +21,7 @@ def ilpSettings(relativeGap=0.0, absoluteGap=0.0, memLimit=-1.0):
     return s
 
 
-<<<<<<< HEAD
-def __extendMulticutObj(objectiveCls, objectiveName):
-=======
-
 def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
->>>>>>> 935fba7f61ff7020b5515bda2bc1cf2c1c986a36
 
 
     def getCls(prefix, postfix):
@@ -55,9 +44,12 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
 
     O = objectiveCls
 
-    def multicutVerboseVisitor(visitNth=1,timeLimit=0):
+    def multicutVerboseVisitor(visitNth=1,timeLimit=None):
         V = getMcCls("MulticutVerboseVisitor")
-        return V(visitNth,timeLimit)
+        if timeLimit is not None:
+            return V(visitNth,timeLimit)
+        else:
+            return V(visitNth)
     O.multicutVerboseVisitor = staticmethod(multicutVerboseVisitor)
     O.verboseVisitor = staticmethod(multicutVerboseVisitor)
 
@@ -102,7 +94,7 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
     def cgcFactory(doCutPhase=True, doGlueAndCutPhase=True, mincutFactory=None):
         if mincutFactory is None:
             if Configuration.WITH_QPBO:
-                mincutFactory = graphCls.MincutObjective.greedyAdditiveFactory(improve=False)
+                mincutFactory = graphCls.MincutObjective.mincutQpboFactory(improve=False)
             else:
                 raise RuntimeError("default mincutFactory needs to be compiled WITH_QPBO")
 
@@ -197,7 +189,6 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
     if Configuration.WITH_LP_MP:
         def multicutMpFactory(
                 mcFactory = None,
-                greedyWarmstart = False,
                 numberOfIterations = 1000,
                 verbose = 0,
                 primalComputationInterval = 100,
@@ -218,7 +209,6 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
             settings, factoryCls = getSettingsAndFactoryCls("MulticutMp")
 
             settings.mcFactory = mcFactory
-            settings.greedyWarmstart = greedyWarmstart
             settings.numberOfIterations = numberOfIterations
             settings.verbose = verbose
             settings.primalComputationInterval = primalComputationInterval

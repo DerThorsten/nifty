@@ -13,10 +13,14 @@ namespace graph{
     void exportMincutFactory(py::module &);
     void exportMincutVisitorBase(py::module &);
     void exportMincutBase(py::module &);
+    #if WITH_QPBO
     void exportMincutQpbo(py::module &);
+    #endif 
     namespace mincut{
         void exportMincutCcFusionMoveBased(py::module &);
+        #if WITH_QPBO
         void exportMincutGreedyAdditive(py::module &);
+        #endif 
     }
 }
 }
@@ -32,13 +36,11 @@ PYBIND11_PLUGIN(_mincut) {
     exportMincutVisitorBase(mincutModule);
     exportMincutBase(mincutModule);
     exportMincutFactory(mincutModule);
-
     #ifdef WITH_QPBO
     exportMincutQpbo(mincutModule);
+    mincut::exportMincutGreedyAdditive(mincutModule);
     #endif
     mincut::exportMincutCcFusionMoveBased(mincutModule);
-    mincut::exportMincutGreedyAdditive(mincutModule);
-
     return mincutModule.ptr();
 }
 

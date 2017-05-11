@@ -16,14 +16,19 @@ namespace graph{
     void exportMulticutIlp(py::module &);
     void exportMulticutGreedyAdditive(py::module &);
     void exportFusionMoveBased(py::module &);
-    void exportMulticutMp(py::module &);
     void exportPerturbAndMap(py::module &);
     void exportMulticutDecomposer(py::module &);
-    void exportCgc(py::module &);
-    
     void exportMulticutAndres(py::module &);
     void exportChainedSolvers(py::module &);
+    
+    #if WITH_QPBO
+    void exportCgc(py::module &);
+    #endif
     void exportBlockMulticut(py::module &);
+    
+    #if WITH_LP_MP
+    void exportMulticutMp(py::module &);
+    #endif
 }
 }
 
