@@ -48,6 +48,7 @@ namespace graph{
     {   
     public:
         typedef GRAPH Graph;
+        typedef GRAPH GraphType;
         typedef WEIGHT_TYPE WeightType;
         typedef graph_maps::EdgeMap<Graph, WeightType> WeightsMap;
         MincutObjective(const Graph & g )

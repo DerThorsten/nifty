@@ -34,12 +34,12 @@ numpy.random.seed(7)
 
 def optimize(objective):
 
-
-    # we start with the multicut decomposer
-    solver = objective.multicutDecomposer().create(objective)
-    visitor = objective.verboseVisitor(1)
-    start  = None
-    arg = solver.optimize(visitor)
+    if False:
+        # we start with the multicut decomposer
+        solver = objective.multicutDecomposer().create(objective)
+        visitor = objective.verboseVisitor(1)
+        start  = None
+        arg = solver.optimize(visitor)
 
 
 
@@ -48,12 +48,56 @@ def optimize(objective):
     # #start  = None
     # arg = solver.optimize()
 
-    
+   
 
-    # solver = objective.cgcFactory(False,True).create(objective)
-    # visitor = objective.verboseVisitor(1)
-    # start  = None
-    # arg = solver.optimize(visitor, arg)
+    if True:
+
+
+        MincutObjective   = nifty.graph.UndirectedGraph.MincutObjective
+        MulticutObjective = nifty.graph.UndirectedGraph.MulticutObjective
+
+
+
+
+
+
+        
+        # greedy
+        greedyFactory = MulticutObjective.greedyAdditiveFactory()
+        mincutQpboFactory    = MincutObjective.mincutQpboFactory(improve=False)
+
+        # cgc
+        #mincutFactory = MincutObjective.greedyAdditiveFactory(improve=False,nodeNumStopCond=0.1)
+        cgcFactory    = MulticutObjective.cgcFactory(doCutPhase=False, mincutFactory=mincutQpboFactory)
+
+
+        
+
+
+        # greedy+cgc
+        chainedSolverFactory = MulticutObjective.chainedSolversFactory(
+            multicutFactories=[greedyFactory, cgcFactory]
+        )
+
+        solver = chainedSolverFactory.create(objective)
+
+        #solver = MulticutObjective.multicutDecomposer(
+        #    submodelFactory=mcFactory,
+        #    fallthroughFactory=mcFactory,
+        #).create(objective)
+
+        visitor = objective.verboseVisitor(500)
+        #start  = None
+        arg = solver.optimize(visitor)
+
+
+
+
+
+
+      
+   
+
 
 
 

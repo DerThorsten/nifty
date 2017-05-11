@@ -21,9 +21,10 @@ namespace graph{
     void exportPerturbAndMap(py::module &);
     void exportMulticutDecomposer(py::module &);
     void exportCgc(py::module &);
+    
     void exportMulticutAndres(py::module &);
-
-
+    void exportChainedSolvers(py::module &);
+    void exportBlockMulticut(py::module &);
 }
 }
 
@@ -44,14 +45,18 @@ PYBIND11_PLUGIN(_multicut) {
     exportPerturbAndMap(multicutModule);
     exportMulticutKernighanLin(multicutModule);
     exportMulticutDecomposer(multicutModule);
+    exportMulticutAndres(multicutModule);
+    exportChainedSolvers(multicutModule);
+    exportBlockMulticut(multicutModule);
+    
     #ifdef WITH_LP_MP
     exportMulticutMp(multicutModule);
     #endif
+    
     #ifdef WITH_QPBO
     exportCgc(multicutModule);
     #endif
-    exportMulticutAndres(multicutModule);
-
+    
     return multicutModule.ptr();
 }
 

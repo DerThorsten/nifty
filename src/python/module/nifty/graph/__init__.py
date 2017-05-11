@@ -31,12 +31,14 @@ ilpSettings = multicut.ilpSettings
 
 
 # multicut objective
-UndirectedGraph.MulticutObjective = multicut.MulticutObjectiveUndirectedGraph
-UndirectedGraph.EdgeContractionGraph = EdgeContractionGraphUndirectedGraph
+UndirectedGraph.MulticutObjective                     = multicut.MulticutObjectiveUndirectedGraph
+UndirectedGraph.EdgeContractionGraph                  = EdgeContractionGraphUndirectedGraph
 EdgeContractionGraphUndirectedGraph.MulticutObjective = multicut.MulticutObjectiveEdgeContractionGraphUndirectedGraph
 
 
-
+UndirectedGraph.MincutObjective                     = mincut.MincutObjectiveUndirectedGraph
+UndirectedGraph.EdgeContractionGraph                  = EdgeContractionGraphUndirectedGraph
+EdgeContractionGraphUndirectedGraph.MincutObjective = mincut.MincutObjectiveEdgeContractionGraphUndirectedGraph
 
 
 # lifted multicut objective

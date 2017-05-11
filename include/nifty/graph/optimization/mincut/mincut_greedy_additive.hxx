@@ -1,7 +1,4 @@
 #pragma once
-#ifndef NIFTY_GRAPH_OPTIMIZATION_MULTICUT_MULTICUT_GREEDY_ADDITIVE_HXX
-#define NIFTY_GRAPH_OPTIMIZATION_MULTICUT_MULTICUT_GREEDY_ADDITIVE_HXX
-
 
 #include <random>
 #include <functional>
@@ -10,32 +7,37 @@
 
 #include "nifty/tools/runtime_check.hxx"
 #include "nifty/graph/detail/adjacency.hxx"
-#include "nifty/graph/optimization/multicut/multicut_base.hxx"
+#include "nifty/graph/optimization/mincut/mincut_base.hxx"
 #include "nifty/graph/edge_contraction_graph.hxx"
+#include "nifty/graph/detail/contiguous_indices.hxx"
 
-//#include "nifty/graph/detail/contiguous_indices.hxx"
+
+#include "QPBO.h"
+
 
 
 namespace nifty{
 namespace graph{
+namespace mincut{
 
     // \cond SUPPRESS_DOXYGEN
 
-    namespace detail_multicut_greedy_additive{
+    namespace detail_mincut_greedy_additive{
 
     template<class OBJECTIVE>
-    class MulticutGreedyAdditiveCallback{
+    class MincutGreedyAdditiveCallback{
     public:
 
         struct Settings{
 
             double weightStopCond{0.0};
             double nodeNumStopCond{-1};
-    
+        
 
             int seed {42};
             bool addNoise {false};
             double sigma{1.0};
+            bool improve{true};
         };
 
 
@@ -43,7 +45,7 @@ namespace graph{
         typedef typename Objective::Graph Graph;
         typedef vigra::ChangeablePriorityQueue< double ,std::greater<double> > QueueType;
 
-        MulticutGreedyAdditiveCallback(
+        MincutGreedyAdditiveCallback(
             const Objective & objective,
             const Settings & settings
         )
@@ -136,7 +138,9 @@ namespace graph{
         const QueueType & queue()const{
             return pq_;
         }
-
+        const Settings & settings()const{
+            return settings_;
+        }
     private:
 
         const Objective & objective_;
@@ -149,30 +153,33 @@ namespace graph{
         std::normal_distribution<> dist_;
     };
 
-    } // end namespace detail_multicut_greedy_additive
+    } // end namespace detail_mincut_greedy_additive
     // \endcond 
 
 
 
     template<class OBJECTIVE>
-    class MulticutGreedyAdditive : public MulticutBase<OBJECTIVE>
+    class MincutGreedyAdditive : public MincutBase<OBJECTIVE>
     {
     public: 
-
+        typedef float QpboValueType;
         typedef OBJECTIVE Objective;
+        typedef OBJECTIVE ObjectiveType;
         typedef typename Objective::Graph Graph;
-        typedef detail_multicut_greedy_additive::MulticutGreedyAdditiveCallback<Objective> Callback;
-        typedef MulticutBase<OBJECTIVE> Base;
+        typedef typename ObjectiveType::GraphType GraphType;
+        typedef detail_mincut_greedy_additive::MincutGreedyAdditiveCallback<Objective> CallbackType;
+        typedef nifty::graph::EdgeContractionGraph<GraphType, CallbackType> ContractionGraphType;
+        typedef MincutBase<OBJECTIVE> Base;
         typedef typename Base::VisitorBase VisitorBase;
         typedef typename Base::EdgeLabels EdgeLabels;
         typedef typename Base::NodeLabels NodeLabels;
 
     public:
 
-        typedef typename Callback::Settings Settings;
+        typedef typename CallbackType::Settings Settings;
 
-        virtual ~MulticutGreedyAdditive(){}
-        MulticutGreedyAdditive(const Objective & objective, const Settings & settings = Settings());
+        virtual ~MincutGreedyAdditive(){}
+        MincutGreedyAdditive(const Objective & objective, const Settings & settings = Settings());
         virtual void optimize(NodeLabels & nodeLabels, VisitorBase * visitor);
         virtual const Objective & objective() const;
 
@@ -183,14 +190,16 @@ namespace graph{
             this->reset();
         }
         virtual const NodeLabels & currentBestNodeLabels( ){
-            for(auto node : graph_.nodes()){
-                currentBest_->operator[](node) = edgeContractionGraph_.findRepresentativeNode(node);
-            }
+            //for(auto node : graph_.nodes()){
+            //    currentBest_->operator[](node) = edgeContractionGraph_.findRepresentativeNode(node);
+            //}
             return *currentBest_;
         }
-        
+        virtual double currentBestEnergy() {
+           return currentBestEnergy_;
+        }
         virtual std::string name()const{
-            return std::string("MulticutGreedyAdditive");
+            return std::string("MincutGreedyAdditive");
         }
 
 
@@ -200,15 +209,16 @@ namespace graph{
         const Objective & objective_;
         const Graph & graph_;
         NodeLabels * currentBest_;
-
-        Callback callback_;
-        EdgeContractionGraph<Graph, Callback> edgeContractionGraph_;
+        double currentBestEnergy_;
+        CallbackType callback_;
+        ContractionGraphType edgeContractionGraph_;
+        QPBO<QpboValueType> qpbo_;
     };
 
     
     template<class OBJECTIVE>
-    MulticutGreedyAdditive<OBJECTIVE>::
-    MulticutGreedyAdditive(
+    MincutGreedyAdditive<OBJECTIVE>::
+    MincutGreedyAdditive(
         const Objective & objective, 
         const Settings & settings
     )
@@ -216,14 +226,16 @@ namespace graph{
         graph_(objective.graph()),
         currentBest_(nullptr),
         callback_(objective, settings),
-        edgeContractionGraph_(objective.graph(), callback_)
+        edgeContractionGraph_(objective.graph(), callback_),
+        qpbo_(0,0),
+        currentBestEnergy_(std::numeric_limits<double>::infinity())
     {
         // do the setup
         this->reset();
     }
 
     template<class OBJECTIVE>
-    void MulticutGreedyAdditive<OBJECTIVE>::
+    void MincutGreedyAdditive<OBJECTIVE>::
     optimize(
         NodeLabels & nodeLabels,  VisitorBase * visitor
     ){
@@ -235,6 +247,8 @@ namespace graph{
         }
         if(graph_.numberOfEdges()>0){
             currentBest_ = & nodeLabels;
+
+            // do clustering 
             while(!callback_.done() ){
                     
                 // get the edge
@@ -245,14 +259,80 @@ namespace graph{
 
             
                 if(visitor!=nullptr){
-                   visitor->setLogValue(0, edgeContractionGraph_.numberOfNodes());
-                   visitor->setLogValue(1, callback_.queue().topPriority());
-                   if(!visitor->visit(this)){
-                        std::cout<<"end by visitor\n";
-                       break;
-                   }
+                    visitor->setLogValue(0, edgeContractionGraph_.numberOfNodes());
+                    visitor->setLogValue(1, callback_.queue().topPriority());
+                    if(!visitor->visit(this)){
+                        break;
+                    }
                 }
             }
+
+            // do qpbo on rest
+           
+            const auto & queue = callback_.queue();
+            const auto & nodeUfd = edgeContractionGraph_.nodeUfd();
+            const auto & nSubNodes = edgeContractionGraph_.numberOfNodes();
+            const auto & nSubEdges = edgeContractionGraph_.numberOfEdges();
+
+            qpbo_.Reset();
+            qpbo_.AddNode(nSubNodes);
+            qpbo_.SetMaxEdgeNum(nSubEdges);
+
+            // map non dense local ids to dense ids
+            uint64_t denseNode = 0;
+            typedef typename  GraphType::template  NodeMap<uint64_t> ToDense;
+            ToDense toDense(graph_);
+
+            for(const auto node : graph_.nodes()){
+                if(nodeUfd.find(node) == node){
+                    toDense[node] = denseNode;
+                    ++denseNode;
+                }
+            }
+
+            if(nSubNodes>0){
+                qpbo_.AddUnaryTerm(0, 0.0, 100000.0);
+            }
+
+            // iterate over all left over edges
+            for(const auto edge : graph_.edges()){
+                if(queue.contains(edge)){
+                    const auto w = queue.priority(edge);
+                    const auto subU =toDense[edgeContractionGraph_.u(edge)];
+                    const auto subV =toDense[edgeContractionGraph_.v(edge)];
+                    qpbo_.AddPairwiseTerm(subU, subV, 0.0, w,w, 0.0);
+                }
+            }
+
+            // Solve 
+            //std::cout<<"Solve\n";
+            qpbo_.Solve();
+
+
+
+            if(this->callback_.settings().improve){
+                //std::cout<<"Improve\n";
+                qpbo_.Improve();
+            }
+
+            auto e = qpbo_.ComputeTwiceEnergy()/2.0;
+            if(nSubNodes>0 && qpbo_.GetLabel(0) == 1){
+                e -= 100000;
+            }
+            currentBestEnergy_ = e;
+            
+            // Map back
+            for(const auto node : graph_.nodes()){
+                const auto subNode = toDense[edgeContractionGraph_.findRepresentativeNode(node)];
+
+                const auto triLabel = qpbo_.GetLabel(subNode);
+                const auto nodeLabel = (triLabel == 0 ? 0 : (triLabel == 1 ? 1 : 0));
+                nodeLabels[node] = nodeLabel;
+            }
+
+
+
+
             
             for(auto node : graph_.nodes()){
                 nodeLabels[node] = edgeContractionGraph_.findRepresentativeNode(node);
@@ -263,15 +343,15 @@ namespace graph{
     }
 
     template<class OBJECTIVE>
-    const typename MulticutGreedyAdditive<OBJECTIVE>::Objective &
-    MulticutGreedyAdditive<OBJECTIVE>::
+    const typename MincutGreedyAdditive<OBJECTIVE>::Objective &
+    MincutGreedyAdditive<OBJECTIVE>::
     objective()const{
         return objective_;
     }
 
  
     template<class OBJECTIVE>
-    void MulticutGreedyAdditive<OBJECTIVE>::
+    void MincutGreedyAdditive<OBJECTIVE>::
     reset(
     ){
         callback_.reset();
@@ -280,7 +360,7 @@ namespace graph{
 
     template<class OBJECTIVE>
     inline void 
-    MulticutGreedyAdditive<OBJECTIVE>::
+    MincutGreedyAdditive<OBJECTIVE>::
     changeSettings(
         const Settings & settings
     ){
@@ -288,8 +368,6 @@ namespace graph{
     }
 
     
-
+} // namespace nifty::graph::mincut
 } // namespace nifty::graph
 } // namespace nifty
-
-#endif  // NIFTY_GRAPH_OPTIMIZATION_MULTICUT_MULTICUT_GREEDY_ADDITIVE_HXX
