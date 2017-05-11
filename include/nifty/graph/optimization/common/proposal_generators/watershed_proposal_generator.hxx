@@ -1,6 +1,8 @@
 
 #pragma once
 
+#include <string>
+#include <random>
 #include <vector>
 
 #include "nifty/graph/optimization/common/proposal_generators/proposal_generator_base.hxx"
