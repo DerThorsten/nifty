@@ -15,52 +15,50 @@
 #include "nifty/graph/edge_contraction_graph.hxx"
 #include "nifty/graph/components.hxx"
 #include "nifty/parallel/threadpool.hxx"
-#include "nifty/graph/optimization/mincut/fusion_move.hxx"
 
-#include "nifty/graph/optimization/mincut/proposal_generators/proposal_generator_base.hxx"
-#include "nifty/graph/optimization/mincut/proposal_generators/proposal_generator_factory_base.hxx"
+#include "nifty/graph/optimization/common/proposal_generators/proposal_generator_base.hxx"
+#include "nifty/graph/optimization/common/proposal_generators/proposal_generator_factory_base.hxx"
 
 
 namespace nifty{
 namespace graph{
-namespace mincut{
+namespace optimization{
+namespace common{
+namespace detail_cc_fusion{
 
 
 
 
 
 
-
-
-    /**
-     * @brief      Class for fusion move based inference for the lifted multicut objective
-     *             An implementation of \cite beier_efficient_2016.
-     *             
-     *          
-     * @tparam     OBJECTIVE  { description }
-     */
-    template<class OBJECTIVE>
-    class FusionMoveBased : public LiftedMulticutBase<OBJECTIVE>
+    // mincut and multicut and lifted multicut use the same basic fusion move solver
+    template<
+        class OBJECTIVE, 
+        class SOLVER_BASE, 
+        class FUSION_MOVE
+    >
+    class CcFusionMoveBasedImpl : public SOLVER_BASE
     {
     public: 
 
         typedef OBJECTIVE ObjectiveType;
-        typedef LiftedMulticutBase<ObjectiveType> BaseType;
+        typedef SOLVER_BASE BaseType;
         typedef typename ObjectiveType::GraphType GraphType;
-        typedef typename ObjectiveType::LiftedGraphType LiftedGraphType;
+     
         
         typedef typename BaseType::VisitorBase VisitorBase;
         typedef typename BaseType::VisitorProxy VisitorProxy;
         typedef typename BaseType::NodeLabels NodeLabels;
 
-        typedef ProposalGeneratorBase<ObjectiveType> ProposalGeneratorBaseType;
-        typedef ProposalGeneratorFactoryBase<ObjectiveType> ProposalGeneratorFactoryBaseType;
 
-        typedef WatershedProposalGenerator<ObjectiveType> DefaultProposalGeneratorType;
-        typedef ProposalGeneratorFactory<DefaultProposalGeneratorType> DefaultProposalGeneratorFactoryType;
+
+        typedef nifty::graph::optimization::common::ProposalGeneratorBase<ObjectiveType>        ProposalGeneratorBaseType;
+        typedef nifty::graph::optimization::common::ProposalGeneratorFactoryBase<ObjectiveType> ProposalGeneratorFactoryBaseType;
+
 
     private:
-        typedef FusionMove<ObjectiveType> FusionMoveType;
+        typedef FUSION_MOVE FusionMoveType;
+        typedef typename  FusionMoveType::Settings FusionMoveSettingsType;
 
     
 
@@ -71,20 +69,16 @@ namespace mincut{
             size_t numberOfIterations{1000};
             size_t stopIfNoImprovement{10};
             int numberOfThreads{1};
+
+            FusionMoveSettingsType fusionMoveSettings;
         };
 
 
 
-        virtual ~FusionMoveBased();
-        FusionMoveBased(const ObjectiveType & objective, const Settings & settings = Settings());
+        virtual ~CcFusionMoveBasedImpl();
+        CcFusionMoveBasedImpl(const ObjectiveType & objective, const Settings & settings = Settings());
         virtual void optimize(NodeLabels & nodeLabels, VisitorBase * visitor);
         virtual const ObjectiveType & objective() const;
-
-
-
-
-
- 
 
 
         virtual const NodeLabels & currentBestNodeLabels( ){
@@ -92,7 +86,7 @@ namespace mincut{
         }
 
         virtual std::string name()const{
-            return std::string("FusionMoveBased");
+            return std::string("CcFusionMoveBasedImpl");
         }
 
 
@@ -104,7 +98,6 @@ namespace mincut{
         const ObjectiveType & objective_;
         Settings settings_;
         const GraphType & graph_;
-        const LiftedGraphType & liftedGraph_;
         NodeLabels * currentBest_;
         double currentBestEnergy_;
 
@@ -116,16 +109,15 @@ namespace mincut{
     };
 
     
-    template<class OBJECTIVE>
-    FusionMoveBased<OBJECTIVE>::
-    FusionMoveBased(
+    template<class OBJECTIVE, class SOLVER_BASE, class FUSION_MOVE>
+    CcFusionMoveBasedImpl<OBJECTIVE, SOLVER_BASE, FUSION_MOVE>::
+    CcFusionMoveBasedImpl(
         const ObjectiveType & objective, 
         const Settings & settings
     )
     :   objective_(objective),
         settings_(settings),
         graph_(objective.graph()),
-        liftedGraph_(objective.liftedGraph()),
         currentBest_(nullptr),
         currentBestEnergy_(0),
         parallelOptions_(settings.numberOfThreads),
@@ -133,8 +125,9 @@ namespace mincut{
         fusionMoves_()
     {
         if(!bool(settings_.proposalGeneratorFactory)){
-            auto pgenSettings  = typename DefaultProposalGeneratorType::Settings();
-            settings_.proposalGeneratorFactory =  std::make_shared<DefaultProposalGeneratorFactoryType>(pgenSettings);
+            throw std::runtime_error("proposalGeneratorFactory shall not be empty!");
+            // auto pgenSettings  = typename DefaultProposalGeneratorType::Settings();
+            // settings_.proposalGeneratorFactory =  std::make_shared<DefaultProposalGeneratorFactoryType>(pgenSettings);
         }
 
         const auto numberOfThreads = parallelOptions_.getActualNumThreads();
@@ -148,16 +141,16 @@ namespace mincut{
 
 
         parallel::parallel_foreach(threadPool_, numberOfThreads, [&](const int tid, const int i){
-            fusionMoves_[i] = new FusionMoveType(objective_);
+            fusionMoves_[i] = new FusionMoveType(objective_, settings_.fusionMoveSettings);
         });
 
 
     }
 
 
-    template<class OBJECTIVE>
-    FusionMoveBased<OBJECTIVE>::
-    ~FusionMoveBased(){
+    template<class OBJECTIVE, class SOLVER_BASE, class FUSION_MOVE>
+    CcFusionMoveBasedImpl<OBJECTIVE, SOLVER_BASE, FUSION_MOVE>::
+    ~CcFusionMoveBasedImpl(){
 
         // delete proposal generator
         delete proposalGenerator_;
@@ -169,8 +162,8 @@ namespace mincut{
         });
     }
 
-    template<class OBJECTIVE>
-    void FusionMoveBased<OBJECTIVE>::
+    template<class OBJECTIVE, class SOLVER_BASE, class FUSION_MOVE>
+    void CcFusionMoveBasedImpl<OBJECTIVE, SOLVER_BASE, FUSION_MOVE>::
     optimize(
         NodeLabels & nodeLabels,  VisitorBase * visitor
     ){
@@ -196,8 +189,8 @@ namespace mincut{
         visitorProxy.end(this);     
     }
 
-    template<class OBJECTIVE>
-    void FusionMoveBased<OBJECTIVE>::
+    template<class OBJECTIVE, class SOLVER_BASE, class FUSION_MOVE>
+    void CcFusionMoveBasedImpl<OBJECTIVE, SOLVER_BASE, FUSION_MOVE>::
     optimizeSingleThread(
         VisitorProxy & visitorProxy
     ){
@@ -209,11 +202,6 @@ namespace mincut{
             // generate a proposal
             proposalGenerator_->generateProposal(*currentBest_, proposal, 0);
 
-            // eval energy of proposal
-            //std::cout<<"E "<<objective_.evalNodeLabels(proposal)<<"\n";
-
-            // accept the first proposal as current best
-            // if starting point was trivial (one connected comp.)
             if(currentBestEnergy_ >=-0.000000001 && iteration==0){
                 graph_.forEachNode([&](const uint64_t node){
                     (*currentBest_)[node] = proposal[node];    
@@ -244,26 +232,26 @@ namespace mincut{
         }
     }
 
-    template<class OBJECTIVE>
-    void FusionMoveBased<OBJECTIVE>::
+    template<class OBJECTIVE, class SOLVER_BASE, class FUSION_MOVE>
+    void CcFusionMoveBasedImpl<OBJECTIVE, SOLVER_BASE, FUSION_MOVE>::
     optimizeMultiThread(
         VisitorProxy & visitorProxy
     ){
         NIFTY_CHECK(false, "currently only single thread is implemented");
     }
 
-    template<class OBJECTIVE>
-    const typename FusionMoveBased<OBJECTIVE>::ObjectiveType &
-    FusionMoveBased<OBJECTIVE>::
+    template<class OBJECTIVE, class SOLVER_BASE, class FUSION_MOVE>
+    const typename CcFusionMoveBasedImpl<OBJECTIVE, SOLVER_BASE, FUSION_MOVE>::ObjectiveType &
+    CcFusionMoveBasedImpl<OBJECTIVE, SOLVER_BASE, FUSION_MOVE>::
     objective()const{
         return objective_;
     }
 
  
 
-
-    
-} // mincut
+} // namespace nifty::graph::optimization::common::detail_cc_fusion
+} // namespace nifty::graph::optimization::common
+} // namespacen ifty::graph::optimization
 } // namespace nifty::graph
 } // namespace nifty
 

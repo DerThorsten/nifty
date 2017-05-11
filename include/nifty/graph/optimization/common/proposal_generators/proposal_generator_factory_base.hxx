@@ -15,6 +15,7 @@ namespace common{
     class ProposalGeneratorFactoryBase{
     public:
         typedef OBJECTIVE ObjectiveType;
+        typedef typename ObjectiveType::GraphType GraphType;
         typedef ProposalGeneratorBase<ObjectiveType> ProposalGeneratorBaseType;
 
         virtual ~ProposalGeneratorFactoryBase(){}

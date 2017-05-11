@@ -15,13 +15,14 @@ namespace common{
 
 
 
-    template<class PROPOSAL_GENERATOR, class NODE_LABELS>
-    class ProposalGeneratorFactory : public ProposalGeneratorFactoryBase<NODE_LABELS>{
+    template<class PROPOSAL_GENERATOR>
+    class ProposalGeneratorFactory : 
+        public ProposalGeneratorFactoryBase<typename PROPOSAL_GENERATOR::ObjectiveType>{
     public:
         typedef PROPOSAL_GENERATOR                              ProposalGeneratorType;       
         typedef typename ProposalGeneratorType::Settings        Settings;
         typedef typename ProposalGeneratorType::ObjectiveType   ObjectiveType;
-        typedef ProposalGeneratorBase<NODE_LABELS>              ProposalGeneratorBaseType;
+        typedef ProposalGeneratorBase<ObjectiveType>            ProposalGeneratorBaseType;
 
         ProposalGeneratorFactory(const Settings & settings = Settings())
         :   settings_(settings){
@@ -45,5 +46,3 @@ namespace common{
 }
 }
 }
-
-#endif //NIFTY_GRAPH_OPTIMIZATION_LIFTED_MULTICUT_LIFTED_PROPOSAL_GENERATORS_PROPOSAL_GENERATOR_FACTORY_HXX

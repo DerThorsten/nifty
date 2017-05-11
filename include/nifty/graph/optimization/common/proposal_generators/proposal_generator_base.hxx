@@ -8,12 +8,13 @@ namespace common{
 
 
 
-    template<class NODE_LABELS>
+    template<class OBJECTIVE>
     class ProposalGeneratorBase{
     public:
-        typedef NODE_LABELS NodeLabels;
+        typedef OBJECTIVE ObjectiveType;
+        typedef typename ObjectiveType::GraphType:: template NodeMap<uint64_t> ProposalType;
         virtual ~ProposalGeneratorBase(){}
-        virtual void generateProposal( const NodeLabels & currentBest,NodeLabels & labels, const size_t tid) = 0;
+        virtual void generateProposal( const ProposalType & currentBest,ProposalType & labels, const size_t tid) = 0;
     }; 
 
     

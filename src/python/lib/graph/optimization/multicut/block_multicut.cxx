@@ -1,9 +1,10 @@
-#include <pybind11/pybind11.h>
+#include "pybind11/pybind11.h"
+#include "pybind11/stl.h"
 
 
 
 // concrete solvers for concrete factories
-#include "nifty/graph/optimization/multicut/cgc.hxx"
+#include "nifty/graph/optimization/multicut/block_multicut.hxx"
 
 
 #include "nifty/python/graph/undirected_list_graph.hxx"
@@ -20,35 +21,31 @@ namespace nifty{
 namespace graph{
     
     template<class OBJECTIVE>
-    void exportCgcT(py::module & multicutModule){
+    void exportBlockMulticutT(py::module & multicutModule){
         typedef OBJECTIVE ObjectiveType;
-        typedef Cgc<ObjectiveType> Solver;
+        typedef BlockMulticut<ObjectiveType> Solver;
         typedef typename Solver::Settings Settings;
         typedef MulticutFactory<Solver> Factory;
-        const auto solverName = std::string("Cgc");
+        const auto solverName = std::string("BlockMulticut");
         exportMulticutSolver<Solver>(multicutModule, solverName.c_str())
             .def(py::init<>())
-
-            .def_readwrite("doCutPhase", &Settings::doCutPhase)
-            .def_readwrite("doGlueAndCutPhase", &Settings::doGlueAndCutPhase)
-            .def_readwrite("mincutFactory", &Settings::mincutFactory)
-
+            .def_readwrite("multicutFactory", &Settings::multicutFactory)
 
         ; 
     }
 
     
-    void exportCgc(py::module & multicutModule){
+    void exportBlockMulticut(py::module & multicutModule){
 
         {
             typedef PyUndirectedGraph GraphType;
             typedef MulticutObjective<GraphType, double> ObjectiveType;
-            exportCgcT<ObjectiveType>(multicutModule);
+            exportBlockMulticutT<ObjectiveType>(multicutModule);
         }
         {
             typedef PyContractionGraph<PyUndirectedGraph> GraphType;
             typedef MulticutObjective<GraphType, double> ObjectiveType;
-            exportCgcT<ObjectiveType>(multicutModule);
+            exportBlockMulticutT<ObjectiveType>(multicutModule);
         }    
          
     }

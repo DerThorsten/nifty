@@ -1,7 +1,7 @@
 from __future__ import absolute_import
 from ._multicut import *
 from .... import Configuration
-
+from ... import (UndirectedGraph,EdgeContractionGraphUndirectedGraph)
 from functools import partial
 
 __all__ = []
@@ -20,7 +20,7 @@ def ilpSettings(relativeGap=0.0, absoluteGap=0.0, memLimit=-1.0):
 
 
 
-def __extendMulticutObj(objectiveCls, objectiveName):
+def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
 
 
 
@@ -73,12 +73,35 @@ def __extendMulticutObj(objectiveCls, objectiveName):
     O.greedyAdditiveFactory = staticmethod(greedyAdditiveFactory)
 
 
+    def blockMulticut(multicutFactory):
+        s,F = getSettingsAndFactoryCls("BlockMulticut")
+        s.multicutFactory = multicutFactory
+        return F(s)
 
-    def cgcFactory(doCutPhase=True, doGlueAndCutPhase=True):
+    O.blockMulticut = staticmethod(blockMulticut)
+
+    def chainedSolversFactory(multicutFactories):
+        s,F = getSettingsAndFactoryCls("ChainedSolvers")
+        s.multicutFactories = multicutFactories
+        return F(s)
+    O.chainedSolversFactory = staticmethod(chainedSolversFactory)
+
+
+
+    def cgcFactory(doCutPhase=True, doGlueAndCutPhase=True, mincutFactory=None):
+        if mincutFactory is None:
+            if Configuration.WITH_QPBO:
+                mincutFactory = graphCls.MincutObjective.greedyAdditiveFactory(improve=False)
+            else:
+                raise RuntimeError("default mincutFactory needs to be compiled WITH_QPBO")
+
+
+
         if Configuration.WITH_QPBO:
             s,F = getSettingsAndFactoryCls("Cgc")
             s.doCutPhase = bool(doCutPhase)
             s.doGlueAndCutPhase = bool(doGlueAndCutPhase)
+            s.mincutFactory = mincutFactory
             return F(s)
         else:
             raise RuntimeError("cgc need nifty to be compiled WITH_QPBO")
@@ -218,7 +241,7 @@ def __extendMulticutObj(objectiveCls, objectiveName):
 
 
 __extendMulticutObj(MulticutObjectiveUndirectedGraph,
-    "MulticutObjectiveUndirectedGraph")
+    "MulticutObjectiveUndirectedGraph",UndirectedGraph)
 __extendMulticutObj(MulticutObjectiveEdgeContractionGraphUndirectedGraph,
-    "MulticutObjectiveEdgeContractionGraphUndirectedGraph")
+    "MulticutObjectiveEdgeContractionGraphUndirectedGraph",EdgeContractionGraphUndirectedGraph)
 del __extendMulticutObj

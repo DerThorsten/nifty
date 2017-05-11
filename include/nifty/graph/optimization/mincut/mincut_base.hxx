@@ -22,7 +22,7 @@ namespace graph {
         typedef MincutVisitorProxy<Objective> VisitorProxy;
         typedef typename Objective::Graph Graph;
         typedef typename Graph:: template EdgeMap<uint8_t> EdgeLabels;
-        typedef typename Graph:: template NodeMap<uint8_t> NodeLabels;
+        typedef typename Graph:: template NodeMap<uint64_t> NodeLabels;
 
         virtual ~MincutBase(){};
         virtual void optimize(NodeLabels & nodeLabels, VisitorBase * visitor) = 0;

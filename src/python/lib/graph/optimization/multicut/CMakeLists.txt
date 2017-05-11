@@ -12,6 +12,8 @@ SET(MOD_SOURCES
         multicut_greedy_additive.cxx
         fusion_move_based.cxx
         perturb_and_map.cxx
+        chained_solvers.cxx
+        block_multicut.cxx
 )
 
 if(WITH_QPBO)

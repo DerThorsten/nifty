@@ -1,16 +1,16 @@
 
 #pragma once
-#ifndef NIFTY_GRAPH_OPTIMIZATION_LIFTED_MULTICUT_LIFTED_PROPOSAL_GENERATORS_WATERSHED_PROPOSAL_GENERATOR_BASE_HXX
-#define NIFTY_GRAPH_OPTIMIZATION_LIFTED_MULTICUT_LIFTED_PROPOSAL_GENERATORS_WATERSHED_PROPOSAL_GENERATOR_BASE_HXX
 
 #include <vector>
 
-#include "nifty/graph/optimization/lifted_multicut/lifted_multicut_base.hxx"
+#include "nifty/graph/optimization/common/proposal_generators/proposal_generator_base.hxx"
 #include "nifty/graph/edge_weighted_watersheds.hxx"
+
 
 namespace nifty{
 namespace graph{
-namespace lifted_multicut{
+namespace optimization{
+namespace common{
 
 
     /**
@@ -19,26 +19,23 @@ namespace lifted_multicut{
      * @tparam     OBJECTIVE  { description }
      */
     template<class OBJECTIVE>
-    class WatershedProposalGenerator : public ProposalGeneratorBase<OBJECTIVE>{
+    class WatershedProposalGenerator : 
+        public ProposalGeneratorBase<OBJECTIVE>{
     public:
         typedef OBJECTIVE ObjectiveType;
-        typedef LiftedMulticutBase<ObjectiveType> LiftedMulticutBaseType;
         typedef typename ObjectiveType::GraphType GraphType;
-        typedef typename ObjectiveType::LiftedGraphType LiftedGraphType;
-        typedef typename LiftedMulticutBaseType::NodeLabels NodeLabels;
-    
-        typedef typename GraphType:: template EdgeMap<float>  EdgeWeights;
+        typedef typename GraphType:: template NodeMap<uint64_t>  ProposalType;
+        typedef typename GraphType:: template EdgeMap<float>       EdgeWeights;
 
         struct Settings{
 
 
             enum SeedingStrategie{
-                SEED_FROM_LIFTED,
-                SEED_FROM_LOCAL,
-                SEED_FROM_BOTH
+                SEED_FROM_NEGATIVE,
+                SEED_FROM_ALL
             };
 
-            SeedingStrategie seedingStrategie{SEED_FROM_LIFTED};
+            SeedingStrategie seedingStrategie{SEED_FROM_NEGATIVE};
             double sigma{1.0};
             double numberOfSeeds{0.1};
         };
@@ -52,7 +49,8 @@ namespace lifted_multicut{
             numberOfThreads_(numberOfThreads),
             settings_(settings),
             negativeEdges_(),
-            graphEdgeWeights_(objective.graph()),
+            seeds_(objective.graph()),
+            noisyEdgeWeights_(objective.graph()),
             gens_(numberOfThreads_),
             dist_(0.0, settings.sigma),
             intDist_()
@@ -67,52 +65,15 @@ namespace lifted_multicut{
         void reset(){
             const auto & weights = objective_.weights();
 
-            objective_.forEachGraphEdge([&](const uint64_t edge){
-                const auto graphEdge = objective_.liftedGraphEdgeInGraph(edge);
-                graphEdgeWeights_[graphEdge] = weights[edge];
-            });
-
-            if(settings_.seedingStrategie == Settings::SEED_FROM_LIFTED){
-                objective_.forEachLiftedeEdge([&](const uint64_t edge){
-                    if(weights[edge] < 0.0){
-                        negativeEdges_.push_back(edge);
-                    }
-                });
-                // if no negative lifted edges
-                // use negative local edges
-                if(negativeEdges_.size() == 0){
-                    objective_.forEachGraphEdge([&](const uint64_t edge){
-                        if(weights[edge] < 0.0){
-                            negativeEdges_.push_back(edge);
-                        }
-                    });
-                }
-            }
-            else if(settings_.seedingStrategie == Settings::SEED_FROM_LOCAL){
-                objective_.forEachGraphEdge([&](const uint64_t edge){
-                    if(weights[edge] < 0.0){
-                        negativeEdges_.push_back(edge);
-                    }
-                });
-                // if no negative local edges
-                // use negative lifted edges
-                if(negativeEdges_.size() == 0){
-                    objective_.forEachLiftedeEdge([&](const uint64_t edge){
-                        if(weights[edge] < 0.0){
-                            negativeEdges_.push_back(edge);
-                        }
-                    });
-                }
-            }
-            else if(settings_.seedingStrategie == Settings::SEED_FROM_BOTH){
-                objective_.liftedGraph().forEachEdge([&](const uint64_t edge){
+            
+            if(settings_.seedingStrategie == Settings::SEED_FROM_NEGATIVE){
+                objective_.graph().forEachEdge([&](const uint64_t edge){
                     if(weights[edge] < 0.0){
                         negativeEdges_.push_back(edge);
                     }
                 });
             }
-
-
+            
             if(!negativeEdges_.empty())
                 intDist_ = std::uniform_int_distribution<> (0, negativeEdges_.size()-1);
             else{
@@ -124,7 +85,8 @@ namespace lifted_multicut{
         virtual ~WatershedProposalGenerator(){}
 
         virtual void generateProposal(
-            const NodeLabels & currentBest,NodeLabels & proposal, 
+            const ProposalType & currentBest, 
+            ProposalType & proposal, 
             const size_t tid
         ){
             
@@ -134,11 +96,12 @@ namespace lifted_multicut{
             else{
 
                 const auto & graph = objective_.graph();
-                const auto & liftedGraph = objective_.liftedGraph();
+
                 auto & gen = gens_[tid];
 
-                EdgeWeights noisyEdgeWeights(graph);
-                NodeLabels  seeds(graph, 0);
+                for(const auto node: graph.nodes()){
+                    seeds_[node] = 0;
+                }
 
                 auto nSeeds = settings_.numberOfSeeds <=1.0 ? 
                     size_t(float(graph.numberOfNodes())*settings_.numberOfSeeds+0.5f) :
@@ -148,21 +111,22 @@ namespace lifted_multicut{
                 nSeeds = std::min(size_t(negativeEdges_.size()-1), nSeeds);
 
 
+                const auto & weights = objective_.weights();
                 graph.forEachEdge([&](const uint64_t edge){
-                    noisyEdgeWeights[edge] = graphEdgeWeights_[edge] + dist_(gen);
+                    noisyEdgeWeights_[edge] = weights[edge] + dist_(gen);
                 });
 
 
                 for(size_t i=0; i <  (nSeeds == 1 ? 1 : nSeeds/2); ++i){
                     const auto randIndex = intDist_(gen);
                     const auto edge  = negativeEdges_[randIndex];
-                    const auto uv = liftedGraph.uv(edge);
+                    const auto uv = graph.uv(edge);
           
-                    seeds[uv.first] = (2*i)+1;
-                    seeds[uv.second] = (2*i+1)+1;
+                    seeds_[uv.first] = (2*i)+1;
+                    seeds_[uv.second] = (2*i+1)+1;
                 }
 
-                edgeWeightedWatershedsSegmentation(graph, noisyEdgeWeights, seeds, proposal);
+                edgeWeightedWatershedsSegmentation(graph, noisyEdgeWeights_, seeds_, proposal);
 
             }
 
@@ -173,8 +137,8 @@ namespace lifted_multicut{
         size_t numberOfThreads_;
         Settings settings_;
         std::vector<uint64_t> negativeEdges_;
-        EdgeWeights graphEdgeWeights_;
-
+        EdgeWeights noisyEdgeWeights_;
+        ProposalType  seeds_;
 
         std::vector<std::mt19937> gens_;
         std::normal_distribution<> dist_;
@@ -186,9 +150,8 @@ namespace lifted_multicut{
 
 
 
+}
+}
+}
+}
 
-}
-}
-}
-
-#endif //NIFTY_GRAPH_OPTIMIZATION_LIFTED_MULTICUT_LIFTED_PROPOSAL_GENERATORS_WATERSHED_PROPOSAL_GENERATOR_BASE_HXX

@@ -418,6 +418,9 @@ namespace graph{
         uint64_t findRepresentativeNode(const uint64_t node);
         uint64_t nodeOfDeadEdge(const uint64_t deadEdge)const;
             
+        const NodeUfdType & nodeUfd()const{
+            return nodeUfd_;
+        }
 
     private:
 
