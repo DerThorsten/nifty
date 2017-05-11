@@ -7,7 +7,6 @@ SET(MOD_SOURCES
         multicut_base.cxx
         multicut_factory.cxx
         multicut_ilp.cxx
-        multicut_kernighan_lin.cxx
         multicut_decomposer.cxx
         multicut_greedy_additive.cxx
         multicut_andres.cxx

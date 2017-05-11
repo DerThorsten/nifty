@@ -194,21 +194,6 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
     O.multicutIlpGlpkFactory = staticmethod(partial(multicutIlpFactory,ilpSolver='glpk'))
 
 
-    def multicutKernighanLinFactory(
-            numberOfInnerIterations = sys.maxsize, # in c++: std::numeric_limits<size_t>::max()
-            numberOfOuterIterations = 100,
-            epsilon = 1e-6
-            ):
-
-        settings, factoryCls = getSettingsAndFactoryCls("MulticutKernighanLin")
-        settings.numberOfInnerIterations = numberOfInnerIterations
-        settings.numberOfOuterIterations = numberOfOuterIterations
-        settings.epsilon = epsilon
-        return factoryCls(settings)
-
-    O.multicutKernighanLinFactory = staticmethod(multicutKernighanLinFactory)
-
-
     if Configuration.WITH_LP_MP:
         def multicutMpFactory(
                 mcFactory = None,
