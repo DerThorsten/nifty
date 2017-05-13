@@ -23,6 +23,7 @@ namespace graph {
         typedef MulticutVisitorBase<Objective> VisitorBase;
         typedef MulticutVisitorProxy<Objective> VisitorProxy;
         typedef typename Objective::Graph Graph;
+        typedef Graph GraphType;
         typedef typename Graph:: template EdgeMap<uint8_t>  EdgeLabels;
         typedef typename Graph:: template NodeMap<uint64_t> NodeLabels;
 

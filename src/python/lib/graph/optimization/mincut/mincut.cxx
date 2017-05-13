@@ -36,13 +36,11 @@ PYBIND11_PLUGIN(_mincut) {
     exportMincutVisitorBase(mincutModule);
     exportMincutBase(mincutModule);
     exportMincutFactory(mincutModule);
-    #if WITH_QPBO
+    #ifdef WITH_QPBO
     exportMincutQpbo(mincutModule);
-    #endif 
-    mincut::exportMincutCcFusionMoveBased(mincutModule);
-    #if WITH_QPBO
     mincut::exportMincutGreedyAdditive(mincutModule);
     #endif
+    mincut::exportMincutCcFusionMoveBased(mincutModule);
     return mincutModule.ptr();
 }
 

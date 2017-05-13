@@ -1,5 +1,4 @@
 
-
 SET(MOD_LIBS ${NIFTY_LP_SOLVER_LIBS})
 SET(MOD_SOURCES
         multicut.cxx
@@ -10,6 +9,7 @@ SET(MOD_SOURCES
         multicut_ilp.cxx
         multicut_decomposer.cxx
         multicut_greedy_additive.cxx
+        multicut_andres.cxx
         fusion_move_based.cxx
         perturb_and_map.cxx
         chained_solvers.cxx
@@ -20,6 +20,11 @@ if(WITH_QPBO)
     SET(MOD_LIBS    ${MOD_LIBS} external_qpbo)
     SET(MOD_SOURCES ${MOD_SOURCES} cgc.cxx)
 endif(WITH_QPBO)
+
+if(WITH_LP_MP)
+    #SET(MOD_LIBS    ${MOD_LIBS} llgl)
+    SET(MOD_SOURCES ${MOD_SOURCES} multicut_mp.cxx)
+endif(WITH_LP_MP)
 
 addPythonModule(
     NESTED_NAME 

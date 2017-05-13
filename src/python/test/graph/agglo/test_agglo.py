@@ -8,7 +8,6 @@ import numpy
 
 
 
-G = nifty.graph.UndirectedGraph
 nagglo = nifty.graph.agglo
 
 
@@ -18,7 +17,7 @@ def testUndirectedGraph():
     edges =  numpy.array([[0,1],[0,2],[0,3]],dtype='uint64')
     g.insertEdges(edges)
 
-    
+
     edgeIndicators = numpy.ones(shape=[g.numberOfEdges])
     edgeSizes = numpy.ones(shape=[g.numberOfEdges])
     nodeSizes = numpy.ones(shape=[g.numberOfNodes])
@@ -28,7 +27,7 @@ def testUndirectedGraph():
         edgeSizes=edgeSizes, nodeSizes=nodeSizes)
 
 
-    agglomerativeClustering = nagglo.agglomerativeClustering(clusterPolicy) 
+    agglomerativeClustering = nagglo.agglomerativeClustering(clusterPolicy)
     agglomerativeClustering.run()
 
     seg = agglomerativeClustering.result()#out=[1,2,3,4])

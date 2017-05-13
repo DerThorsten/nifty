@@ -57,13 +57,14 @@ namespace optimization{
 
         VerboseVisitor(
             const int printNth = 1, 
-            const size_t timeLimit = 0
+            const double timeLimit = std::numeric_limits<double>::infinity()
         )
         :   printNth_(printNth),
             runOpt_(true),
             iter_(1),
-            timeLimit_(timeLimit){
-        }
+            timeLimit_(timeLimit),
+            runtime_(0)
+        {}
 
         virtual void begin(SolverType * ) {
             std::cout<<"begin inference\n";
@@ -71,17 +72,18 @@ namespace optimization{
         }
         
         virtual bool visit(SolverType * solver) {
+            runtime_ = std::chrono::duration_cast<TimeType>(std::chrono::steady_clock::now() - startTime_).count();
             if(iter_%printNth_ == 0){
                 std::stringstream ss;
-                ss<<solver->currentBestEnergy()<<" ";
+                ss << "Energy: " << solver->currentBestEnergy() << " ";
+                ss << "Runtime: " << runtime_ << " ";
                 for(size_t i=0; i<logNames_.size(); ++i){
                     ss<<logNames_[i]<<" "<<logValues_[i]<<" ";
                 }
                 ss<<"\n";
                 std::cout<<ss.str();
             }
-            if(timeLimit_ > 0)
-                checkRuntime();
+            checkRuntime();
             ++iter_;
             return runOpt_;
         }
@@ -115,16 +117,17 @@ namespace optimization{
         bool runOpt_;
         int printNth_;
         int iter_;
-        size_t timeLimit_;
+        
+        double timeLimit_;
         TimePointType startTime_;
+        size_t runtime_;
 
         std::vector<std::string> logNames_;
         std::vector<double> logValues_;
 
         inline void checkRuntime() {
-            auto runtime = std::chrono::duration_cast<TimeType>(
-                    std::chrono::steady_clock::now() - startTime_);
-            if(runtime.count() > timeLimit_) {
+            if(runtime_ > timeLimit_) {
+                std::cout << runtime_ << " " << timeLimit_ << std::endl;
                 std::cout << "Inference has exceeded time limit and is stopped \n";
                 stopOptimize();
             }

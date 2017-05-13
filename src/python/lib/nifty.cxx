@@ -41,7 +41,7 @@ PYBIND11_PLUGIN(_nifty) {
     #endif
 
     // \TODO move to another header
-    py::class_<Configuration>(niftyModule, "Configuration",pybind11::metaclass())
+    py::class_<Configuration>(niftyModule, "Configuration")
         .def_property_readonly_static("WITH_CPLEX", [](py::object /* self */) { 
             #ifdef  WITH_CPLEX
             return true;
@@ -65,6 +65,13 @@ PYBIND11_PLUGIN(_nifty) {
         })
         .def_property_readonly_static("WITH_HDF5", [](py::object /* self */) { 
             #ifdef  WITH_HDF5
+            return true;
+            #else
+            return false;
+            #endif
+        })
+        .def_property_readonly_static("WITH_LP_MP", [](py::object /* self */) { 
+            #ifdef  WITH_LP_MP
             return true;
             #else
             return false;

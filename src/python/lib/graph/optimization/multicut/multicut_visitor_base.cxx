@@ -56,9 +56,9 @@ namespace graph{
         typedef MulticutVerboseVisitor<ObjectiveType> McVerboseVisitor; 
         
         py::class_<McVerboseVisitor, std::unique_ptr<McVerboseVisitor> >(multicutModule, mcVerboseVisitorClsName.c_str(),  mcVisitorBase)
-            .def(py::init<const int, const size_t>(),
+            .def(py::init<const int, const double>(),
                 py::arg_t<int>("printNth",1),
-                py::arg_t<size_t>("timeLimit",0)
+                py::arg_t<double>("timeLimit",std::numeric_limits<double>::infinity())
             )
             .def("stopOptimize",&McVerboseVisitor::stopOptimize)
         ;

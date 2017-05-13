@@ -31,7 +31,7 @@ namespace graph{
         // no  callback no mask exposed
         template<class EDGE_WEGIHTS>
         void runSingleSourceSingleTarget(
-            EDGE_WEGIHTS edgeWeights,
+            const EDGE_WEGIHTS & edgeWeights, // why wasn't this a call by ref ?
             const int64_t source,
             const int64_t target = -1
         ){
@@ -45,6 +45,38 @@ namespace graph{
                 const PredecessorsMap & predecessors
             ){
                 return topNode != target;
+            };
+
+            this->initializeMaps(&source, &source +1);
+            runImpl(edgeWeights, subgraphMask, visitor);
+        }
+        
+        // run single source multiple targets
+        // no  callback no mask exposed
+        template<class EDGE_WEGIHTS>
+        void runSingleSourceMultiTarget(
+            const EDGE_WEGIHTS & edgeWeights, // why wasn't this a call by ref ?
+            const int64_t source,
+            const std::vector<int64_t> & targets
+        ){
+            // subgraph mask
+            DefaultSubgraphMask<Graph> subgraphMask;
+            // visitor
+            // TODO does this work ???
+            auto visitor = [&targets]
+            (   
+                int64_t topNode,
+                const DistanceMap     & distances,
+                const PredecessorsMap & predecessors
+            ){
+                thread_local size_t trgtsFound = 0; // this is declared to be thread local to be thread safe
+                if( std::find(targets.begin(), targets.end(), topNode) != targets.end() ) 
+                    ++trgtsFound;
+                if( trgtsFound >= targets.size() ) {
+                    trgtsFound = 0;
+                    return false;
+                }
+                return true;
             };
 
             this->initializeMaps(&source, &source +1);
@@ -87,7 +119,7 @@ namespace graph{
         const DistanceMap & distances()const{
             return distMap_;
         }
-        const PredecessorsMap predecessors()const{
+        const PredecessorsMap & predecessors()const{ // is there a reason that this was not returned by ref before ?
             return predMap_;
         }
     private:
@@ -98,8 +130,8 @@ namespace graph{
             class VISITOR 
         >
         void runImpl(
-            EDGE_WEGIHTS edgeWeights,
-            const SUBGRAPH_MASK &  subgraphMask,
+            const EDGE_WEGIHTS & edgeWeights, // why wasn't this a call by ref ?
+            const SUBGRAPH_MASK & subgraphMask,
             VISITOR && visitor
         ){
 
