@@ -88,13 +88,16 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
 
 
 
-    def cgcFactory(doCutPhase=True, doGlueAndCutPhase=True, mincutFactory=None):
+    def cgcFactory(doCutPhase=True, doGlueAndCutPhase=True, mincutFactory=None,
+            multicutFactory=None,
+            doBetterCutPhase=True, nodeNumStopCond=0.1, sizeRegularizer=1.0):
         if mincutFactory is None:
             if Configuration.WITH_QPBO:
                 mincutFactory = graphCls.MincutObjective.greedyAdditiveFactory(improve=False)
             else:
                 raise RuntimeError("default mincutFactory needs to be compiled WITH_QPBO")
 
+        print("nodeNumStopCond",nodeNumStopCond)
 
 
         if Configuration.WITH_QPBO:
@@ -102,6 +105,11 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
             s.doCutPhase = bool(doCutPhase)
             s.doGlueAndCutPhase = bool(doGlueAndCutPhase)
             s.mincutFactory = mincutFactory
+            if multicutFactory is not None:
+                s.multicutFactory = multicutFactory
+            s.doBetterCutPhase = bool(doBetterCutPhase)
+            s.nodeNumStopCond = float(nodeNumStopCond)
+            s.sizeRegularizer = float(sizeRegularizer)
             return F(s)
         else:
             raise RuntimeError("cgc need nifty to be compiled WITH_QPBO")

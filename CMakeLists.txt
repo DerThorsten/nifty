@@ -37,6 +37,8 @@ option(BUILD_PYTHON_DOCS "Build the Python documentation with Sphinx" OFF)
 add_definitions(-Wno-attributes)
 # vigra uses old stuff....
 add_definitions(-Wno-deprecated-declarations)
+# cplex
+add_definitions(-Wno-ignored-attributes)
 
 #-------------------------------------------------------------------------------------------------------------------
 # check for c++ 11 support
@@ -48,7 +50,7 @@ if (CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR CMAKE_CXX_COMPILER_ID MATCHES "GNU"
     if (HAS_CPP14_FLAG)
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
     elseif (HAS_CPP11_FLAG)
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
     else()
         message(FATAL_ERROR "Unsupported compiler -- nifty  requires C++11 support!")
     endif()

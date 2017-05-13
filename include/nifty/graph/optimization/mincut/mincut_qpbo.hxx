@@ -148,7 +148,7 @@ namespace graph{
         // solve
         //visitorProxy.printLog(nifty::logging::LogLevel::DEBUG, "Solve Qpbo");
         qpbo_.Solve();
-        qpbo_.Improve();
+        //qpbo_.Improve();
         
 
         // improve
@@ -157,6 +157,7 @@ namespace graph{
                 currentBestEnergy_ = readQpboSol();
                 visitorProxy.visit(this);
             }
+            srand(42);
             //visitorProxy.printLog(nifty::logging::LogLevel::DEBUG, "Improve Qpbo");
             qpbo_.Improve();
         }

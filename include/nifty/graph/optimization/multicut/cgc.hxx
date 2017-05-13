@@ -4,6 +4,9 @@
 
 #include "boost/format.hpp"
 
+#include "vigra/priority_queue.hxx"
+
+
 #include "nifty/tools/runtime_check.hxx"
 #include "nifty/graph/components.hxx"
 
@@ -12,6 +15,7 @@
 #include "nifty/graph/optimization/multicut/multicut_objective.hxx"
 #include "nifty/graph/undirected_list_graph.hxx"
 #include "nifty/ufd/ufd.hxx"
+#include "nifty/graph/edge_contraction_graph.hxx"
 
 
 #include "nifty/graph/optimization/mincut/mincut_visitor_base.hxx"
@@ -44,13 +48,13 @@ namespace graph{
             typedef typename GraphType:: template EdgeMap<uint8_t> IsDirtyEdge;
 
 
-            typedef UndirectedGraph<>                   SubGraph;
-            typedef MincutObjective<SubGraph, double>   SubObjective;
-            typedef MincutFactoryBase<SubObjective>     SubMcFactoryBase;
-            typedef MincutBase<SubObjective>            SubMcBase;
-            typedef MincutVerboseVisitor<SubObjective>  SubMcVerboseVisitor;
-            typedef MincutEmptyVisitor<SubObjective>    SubEmptyVisitor;
-            typedef typename  SubMcBase::NodeLabels     SubNodeLabels;
+            typedef UndirectedGraph<>                         SubGraph;
+            typedef MincutObjective<SubGraph, double>         MincutSubObjective;
+            typedef MincutFactoryBase<MincutSubObjective>     MincutSubMcFactoryBase;
+            typedef MincutBase<MincutSubObjective>            MincutSubBase;
+            typedef MincutVerboseVisitor<MincutSubObjective>  SubMcVerboseVisitor;
+     
+            typedef typename  MincutSubBase::NodeLabels     MincutSubNodeLabels;
 
             struct Optimzie1ReturnType{
                 Optimzie1ReturnType(const bool imp, const double val)
@@ -73,7 +77,7 @@ namespace graph{
             SubmodelOptimizer(
                 const ObjectiveType  & objective, 
                 IsDirtyEdge & isDirtyEdge,
-                std::shared_ptr<SubMcFactoryBase> & mincutFactory
+                std::shared_ptr<MincutSubMcFactoryBase> & mincutFactory
             )
             :   objective_(objective),
                 graph_(objective.graph()),
@@ -82,7 +86,6 @@ namespace graph{
                 localNodeToGlobal_(objective.graph().numberOfNodes()),
                 nLocalNodes_(0),
                 nLocalEdges_(0),
-                maxCut_(graph_.numberOfNodes(), graph_.numberOfNodes()*2),
                 ufd_(),
                 isDirtyEdge_(isDirtyEdge),
                 mincutFactory_(mincutFactory),
@@ -106,7 +109,11 @@ namespace graph{
                 // also counts nLocalEdges
                 const auto maxNodeLabel = this->varMapping(nodeLabels, anchorNode);
 
-                maxCut_.assign(nLocalNodes_, nLocalEdges_);
+                //std::cout<<"nLocalNodes "<<nLocalNodes_<<"\n";
+                //for(auto localNode=0; localNode<nLocalNodes_; ++localNode){
+                //    std::cout<<"uLocal "<<localNode<<" "<<localNodeToGlobal_[localNode]<<"\n";
+                //}
+            
                 ufd_.assign(nLocalNodes_);
 
                 if(nLocalNodes_ >= 2){
@@ -116,16 +123,22 @@ namespace graph{
 
                     // setup the submodel
                     SubGraph        subGraph(nLocalNodes_);
-                    SubObjective    subObjective(subGraph);
+                    MincutSubObjective    subObjective(subGraph);
                     auto &          subWeights = subObjective.weights();
+                    //NIFTY_CHECK_OP(0,==,subWeights.size(),"");
+
 
                     this->forEachInternalEdge(nodeLabels, anchorLabel,[&](const uint64_t uLocal, const uint64_t vLocal, const uint64_t edge){
+
                         const auto w = weights_[edge];
-                        subGraph.insertEdge(uLocal, vLocal);
-                        subWeights.push_back(w);
+                        //NIFTY_CHECK_OP(subGraph.findEdge(uLocal, vLocal),==,-1,"");
+                        const auto edgeId = subGraph.insertEdge(uLocal, vLocal);
+                        // NIFTY_CHECK_OP(edgeId,==,subWeights.size(),"");
+                        subWeights.insertedEdges(edgeId);
+                        subWeights[edgeId] = w;
                     });
                     // solve it
-                    SubNodeLabels subgraphRes(subGraph);
+                    MincutSubNodeLabels subgraphRes(subGraph);
                     auto solverPtr = mincutFactory_->createRawPtr(subObjective);
 
                     //SubMcVerboseVisitor visitor;
@@ -140,11 +153,11 @@ namespace graph{
                         //std::cout<<"minCutValue "<<minCutValue<<"\n";
 
                         this->forEachInternalEdge(nodeLabels, anchorLabel,[&](const uint64_t uLocal, const uint64_t vLocal, const uint64_t edge){
-                            if(maxCut_.label(uLocal) == subgraphRes[vLocal]){
+                            if(subgraphRes[uLocal] == subgraphRes[vLocal]){
                                 ufd_.merge(uLocal, vLocal);
                             }
                         });
-                   
+                        NIFTY_CHECK_OP(ufd_.numberOfSets(),>=,2,"");
                         res.improvment = true;
                         res.minCutValue = minCutValue;
                         std::unordered_map<uint64_t,uint64_t> mapping;
@@ -159,11 +172,13 @@ namespace graph{
                             anchorsSize[denseLocalLabel] +=1;
                             anchors[denseLocalLabel] = node;
                             nodeLabels[node] = denseLocalLabel + maxNodeLabel + 1;
+                            //std::cout<<" res localNode "<<localNode<<" "<<nodeLabels[node]<<"\n";
                         }
-
+                        //std::cout<<"---\n";
                         for(auto i=0; i<anchors.size(); ++i){
                             if(anchorsSize[i] > 1){
                                 res.improvment = true;
+                                //std::cout<<"push "<<anchors[i]<<"\n";
                                 anchorQueue.push(anchors[i]);
                             }
                         }
@@ -190,8 +205,8 @@ namespace graph{
 
                 // setup the submodel
                 SubGraph        subGraph(nLocalNodes_);
-                SubObjective    subObjective(subGraph);
-                auto &          subWeights = subObjective.weights();
+                MincutSubObjective    subObjective(subGraph);
+                auto &  subWeights = subObjective.weights();
 
                 ufd_.assign(nLocalNodes_);
 
@@ -203,15 +218,16 @@ namespace graph{
 
                 this->forEachInternalEdge(nodeLabels, anchorLabel0, anchorLabel1,[&](const uint64_t uLocal, const uint64_t vLocal, const uint64_t edge){
                     const auto w = weights_[edge];
-                    subGraph.insertEdge(uLocal, vLocal);
-                    subWeights.push_back(w);
+                    const auto edgeId = subGraph.insertEdge(uLocal, vLocal);
+                    subWeights.insertedEdges(edgeId);
+                    subWeights[edgeId] = w;
                     if(nodeLabels[localNodeToGlobal_[uLocal]] != nodeLabels[localNodeToGlobal_[vLocal]]){
                         currentCutValue += w;
                     }
                 });
 
                 // optimize
-                SubNodeLabels subgraphRes(subGraph);
+                MincutSubNodeLabels subgraphRes(subGraph);
                 auto solverPtr = mincutFactory_->createRawPtr(subObjective);
                 solverPtr->optimize(subgraphRes,nullptr);
                 const auto minCutValue  = subObjective.evalNodeLabels(subgraphRes);
@@ -226,7 +242,7 @@ namespace graph{
                     
 
                     this->forEachInternalEdge(nodeLabels, anchorLabel0, anchorLabel1,[&](const uint64_t uLocal, const uint64_t vLocal, const uint64_t edge){
-                        if(maxCut_.label(uLocal) == subgraphRes[vLocal]){
+                        if(subgraphRes[uLocal] == subgraphRes[vLocal]){
                             ufd_.merge(uLocal, vLocal);
                         }
                     });
@@ -329,6 +345,7 @@ namespace graph{
                 for(auto localNode=0; localNode<nLocalNodes_; ++localNode){
                     const auto u = localNodeToGlobal_[localNode];
                     const auto uLocal = globalNodeToLocal_[u];
+                    NIFTY_CHECK_OP(localNode,==,uLocal,"");
                     for(const auto adj : graph_.adjacency(u)){
                         const auto v = adj.node();
                         const auto edge = adj.edge();
@@ -350,6 +367,7 @@ namespace graph{
                 for(auto localNode=0; localNode<nLocalNodes_; ++localNode){
                     const auto u = localNodeToGlobal_[localNode];
                     const auto uLocal = globalNodeToLocal_[u];
+                    NIFTY_CHECK_OP(localNode,==,uLocal,"");
                     for(const auto adj : graph_.adjacency(u)){
                         const auto v = adj.node();
                         const auto edge = adj.edge();
@@ -374,13 +392,157 @@ namespace graph{
             uint64_t nLocalNodes_;
             uint64_t nLocalEdges_;
 
-            nifty::max_cut_backend::MaxCutQpbo<float, float> maxCut_;
+            //nifty::max_cut_backend::MaxCutQpbo<float, float> maxCut_;
             nifty::ufd::Ufd<uint64_t> ufd_;
             IsDirtyEdge & isDirtyEdge_;
-            std::shared_ptr<SubMcFactoryBase> &  mincutFactory_;
+            std::shared_ptr<MincutSubMcFactoryBase> &  mincutFactory_;
 
             std::vector<uint64_t> insideEdges_;
             std::vector<uint64_t> borderEdges_;
+        };
+
+        template<class OBJECTIVE>
+        class Cgc ;
+
+        template<class OBJECTIVE, class SETTINGS>
+        class PartitionCallback{
+        public:
+
+            typedef SETTINGS SettingsType;
+
+            typedef PartitionCallback<OBJECTIVE, SETTINGS> SelfType;
+            typedef OBJECTIVE ObjectiveType;
+            typedef typename ObjectiveType::Graph Graph;
+            typedef typename ObjectiveType::GraphType GraphType;
+            typedef typename GraphType:: template NodeMap<uint64_t> CcNodeSize;
+            typedef typename GraphType:: template EdgeMap<float>    McWeights;
+            typedef vigra::ChangeablePriorityQueue< double ,std::less<double> > QueueType;
+
+
+            PartitionCallback(
+                const ObjectiveType & objective,
+                const SettingsType & settings
+            )
+            :   objective_(objective),
+                graph_(objective.graph()),
+                pq_(objective.graph().edgeIdUpperBound()+1 ),
+                ccNodeSize_(objective.graph()),
+                mcWeights_(objective_.graph()),
+                settings_(settings),
+                currentNodeNum_(objective.graph().numberOfNodes()),
+                edgeContractionGraph_(objective.graph(), *this)
+            {
+                //
+                //std::cout<<"nodeNumStopCond "<<settings_.nodeNumStopCond<<"\n";
+                //std::cout<<"sizeRegularizer "<<settings_.sizeRegularizer<<"\n";
+                this->reset();
+            }
+
+            void reset(){
+
+                // reset queue in case something is left
+                while(!pq_.empty())
+                    pq_.pop();
+                for(const auto node: graph_.nodes()){
+                    ccNodeSize_[node] = 1;
+                }
+                const auto & weights = objective_.weights();
+                for(const auto edge: graph_.edges()){
+                    mcWeights_[edge] =  weights[edge];
+                    
+                    pq_.push(edge, this->computeWeight(edge));
+     
+                }
+                this->edgeContractionGraph_.reset();    
+            }
+
+            void contractEdge(const uint64_t edgeToContract){
+                NIFTY_ASSERT(pq_.contains(edgeToContract));
+                pq_.deleteItem(edgeToContract);
+            }
+
+            void mergeNodes(const uint64_t aliveNode, const uint64_t deadNode){
+                ccNodeSize_[aliveNode] += ccNodeSize_[deadNode];
+                --currentNodeNum_;
+            }
+
+            void mergeEdges(const uint64_t aliveEdge, const uint64_t deadEdge){
+                NIFTY_ASSERT(pq_.contains(aliveEdge));
+                NIFTY_ASSERT(pq_.contains(deadEdge));
+                mcWeights_[aliveEdge] += mcWeights_[deadEdge];
+                ///const auto wEdgeInAlive = pq_.priority(aliveEdge);
+                //const auto wEdgeInDead = pq_.priority(deadEdge);
+                pq_.deleteItem(deadEdge);
+                //pq_.changePriority(aliveEdge, wEdgeInAlive + wEdgeInDead);
+            }
+            double computeWeight(const uint64_t edge)const{
+                const auto su = double(ccNodeSize_[edgeContractionGraph_.u(edge)]);
+                const auto sv = double(ccNodeSize_[edgeContractionGraph_.v(edge)]);
+                const auto sr = settings_.sizeRegularizer;
+                const auto sFac =2.0 / ( 1.0/std::pow(su, sr) + 1.0/std::pow(sv, sr) );
+                const auto p1 =  1.0/(std::exp(mcWeights_[edge])+1.0);
+                //std::cout<<"w "<<mcWeights_[edge]<<" p "<<p1<<" sFac "<<sFac<<"\n";
+                return p1 * sFac;
+            }
+            void contractEdgeDone(const uint64_t edgeToContract){
+                // HERE WE UPDATE 
+                const auto u = edgeContractionGraph_.nodeOfDeadEdge(edgeToContract);
+                for(auto adj : edgeContractionGraph_.adjacency(u)){
+                    const auto edge = adj.edge();
+                    pq_.push(edge, computeWeight(edge));
+                }
+            }
+            bool done(){
+
+                const auto nnsc = settings_.nodeNumStopCond;
+                uint64_t ns;
+                if(nnsc >= 1.0){
+                    ns = static_cast<uint64_t>(nnsc);
+                }
+                else{
+                    ns = static_cast<uint64_t>(double(graph_.numberOfNodes())*nnsc +0.5);
+                }
+                if(currentNodeNum_ <= ns){
+                    return true;
+                }
+                if(currentNodeNum_<=1){
+                    return true;
+                }
+                if(pq_.empty()){
+                    return true;
+                }
+                return false;
+            }
+
+            uint64_t edgeToContract(){
+                //
+                return pq_.top();
+            }
+
+            void changeSettings(const SettingsType & settings){
+                settings_ = settings;
+            }
+            const QueueType & queue()const{
+                //
+                return pq_;
+            }
+            EdgeContractionGraph<Graph, SelfType> & edgeContractionGraph(){
+                return edgeContractionGraph_;
+            }
+            const EdgeContractionGraph<Graph, SelfType> & edgeContractionGraph()const{
+                return edgeContractionGraph_;
+            }
+        private:
+
+            const ObjectiveType & objective_;
+            const GraphType & graph_;
+            QueueType pq_;
+            CcNodeSize ccNodeSize_;
+            McWeights mcWeights_;
+            SettingsType settings_;
+            uint64_t currentNodeNum_;
+
+            EdgeContractionGraph<GraphType, SelfType> edgeContractionGraph_;
         };
 
     }
@@ -392,9 +554,10 @@ namespace graph{
     template<class OBJECTIVE>
     class Cgc : public MulticutBase<OBJECTIVE>
     {
+    
     public: 
 
-        typedef OBJECTIVE Objective;
+        typedef OBJECTIVE Objective;    
         typedef OBJECTIVE ObjectiveType;
         typedef typename ObjectiveType::WeightType WeightType;
         typedef MulticutBase<ObjectiveType> Base;
@@ -407,12 +570,16 @@ namespace graph{
         typedef typename ObjectiveType::WeightsMap WeightsMap;
         typedef typename GraphType:: template EdgeMap<uint8_t> IsDirtyEdge;
 
-        typedef UndirectedGraph<>                 SubGraph;
-        typedef MincutObjective<SubGraph, double> SubObjective;
-        typedef MincutFactoryBase<SubObjective>   SubMcFactoryBase;
-        typedef MincutBase<SubObjective>          SubMcBase;
-        typedef MincutEmptyVisitor<SubObjective>  SubEmptyVisitor;
-        typedef typename  SubMcBase::NodeLabels   SubNodeLabels;
+        typedef UndirectedGraph<>                           SubGraph;
+        typedef MincutObjective<SubGraph, double>           MincutSubObjective;
+        typedef MincutFactoryBase<MincutSubObjective>       MincutSubMcFactoryBase;
+        typedef MincutBase<MincutSubObjective>              MincutSubBase;
+        typedef typename  MincutSubBase::NodeLabels         MincutSubNodeLabels;
+
+        typedef MulticutObjective<SubGraph, double>         MulticutSubObjective;
+        typedef MulticutFactoryBase<MulticutSubObjective>   MulticutSubMcFactoryBase;
+        typedef MulticutBase<MulticutSubObjective>          MulticutSubBase;
+        typedef typename  MulticutSubBase::NodeLabels       MulticutSubNodeLabels;
 
 
         typedef MulticutFactoryBase<Objective>         FactoryBase;
@@ -422,12 +589,20 @@ namespace graph{
     
     public:
 
-        struct Settings{
+        struct Settings {
+            double nodeNumStopCond{0.1};
+            double sizeRegularizer{1.0};
             bool doCutPhase{true};
+            bool doBetterCutPhase{true};
             bool doGlueAndCutPhase{true};
-            std::shared_ptr<SubMcFactoryBase> mincutFactory;
-        };
 
+            std::shared_ptr<MincutSubMcFactoryBase>   mincutFactory;
+            std::shared_ptr<MulticutSubMcFactoryBase> multicutFactory;
+        };
+    private:
+        typedef detail_cgc::PartitionCallback<OBJECTIVE, Settings> CallbackType;
+        //typedef typename CallbackType::SettingsType      CallbackSettingsType;
+    public:
         virtual ~Cgc(){
             
         }
@@ -454,6 +629,8 @@ namespace graph{
 
 
         void cutPhase(VisitorProxy & visitorProxy);
+        void betterCutPhase(VisitorProxy & visitorProxy);
+
         void glueAndCutPhase(VisitorProxy & visitorProxy);
 
         const Objective & objective_;
@@ -481,7 +658,7 @@ namespace graph{
     )
     :   objective_(objective),
         graph_(objective.graph()),
-        weights_(objective_.graph()),
+        weights_(objective_.weights()),
         components_(graph_),
         settings_(settings),
         isDirtyEdge_(graph_,true),
@@ -512,10 +689,8 @@ namespace graph{
         // get anchor for each component        
         std::vector<uint64_t> componentsAnchors(nComponents);
 
-
         // anchors
         graph_.forEachNode([&](const uint64_t node){
-            NIFTY_CHECK_OP(nodeLabels[node],<,nComponents,"");
             componentsAnchors[nodeLabels[node]] = node;
         });
 
@@ -527,22 +702,27 @@ namespace graph{
 
         // while nothing is on the queue
         visitorProxy.clearLogNames();
-        visitorProxy.addLogNames({std::string("QueueSize")});
+        visitorProxy.addLogNames({std::string("QueueSize"),std::string("E"),std::string("EE")});
 
         while(!anchorQueue.empty()){
 
+            //std::cout<<"a) "<<anchorQueue.size()<<"\n";
             const auto anchorNode = anchorQueue.front();
             anchorQueue.pop();
             const auto anchorLabel = nodeLabels[anchorNode];
-
+            //std::cout<<"b) "<<anchorQueue.size()<<"\n";
             //visitorProxy.printLog(nifty::logging::LogLevel::INFO, "Optimzie1");
             // optimize the submodel 
             const auto ret = submodel_.optimize1(nodeLabels, anchorNode, anchorQueue);
             if(ret.improvment){
+                //std::cout<<"old current best "<<currentBestEnergy_<<"\n";
                 currentBestEnergy_ += ret.minCutValue;
+                //std::cout<<"new current best "<<currentBestEnergy_<<"\n";
             }
-
-            visitorProxy.setLogValue(0, anchorQueue.size());           
+            //std::cout<<"c) "<<anchorQueue.size()<<"\n";
+            visitorProxy.setLogValue(0, anchorQueue.size());        
+            visitorProxy.setLogValue(1, currentBestEnergy_);    
+            visitorProxy.setLogValue(2, objective_.evalNodeLabels(*currentBest_));   
             visitorProxy.visit(this);
         }
 
@@ -555,13 +735,170 @@ namespace graph{
 
     template<class OBJECTIVE>
     void Cgc<OBJECTIVE>::
-    glueAndCutPhase(
+    betterCutPhase(
         VisitorProxy & visitorProxy
     ){
+        visitorProxy.clearLogNames();
+        visitorProxy.addLogNames({std::string("#Node"),std::string("priority")});
+
+        if(! bool(settings_.multicutFactory)){
+            throw std::runtime_error("if betterCutPhase is used multicutFactory shall not be empty");
+        }
+
+        // the node labeling as reference
+        auto & nodeLabels = *currentBest_;
+
+        // run the cluster algorithm
+        CallbackType callback(objective_, settings_);
+        auto & edgeContractionGraph = callback.edgeContractionGraph(); 
+        while(!callback.done() ){
+            edgeContractionGraph.contractEdge(callback.edgeToContract());
+            visitorProxy.setLogValue(0, edgeContractionGraph.numberOfNodes());
+            visitorProxy.setLogValue(1, callback.queue().topPriority());
+            if(!visitorProxy.visit(this))
+                break;
+        }
+        
+
+
+        // build a dense remapping
+        const auto & nodeUfd = callback.edgeContractionGraph().nodeUfd();
+        std::unordered_map<uint64_t,uint64_t> representativeLabeling;
+        nodeUfd.representativeLabeling(representativeLabeling);
+
+        auto ccIndex = [&](const uint64_t node){
+            return representativeLabeling[nodeUfd.find(node)];
+        };
+
+        // submodels
+        const auto nSubModels = nodeUfd.numberOfSets();
+
+
+        std::vector<SubGraph *>              subGraphs(nSubModels, nullptr);
+        std::vector<MulticutSubObjective *>  subObjectives(nSubModels, nullptr);
+        std::vector<MulticutSubNodeLabels *> subLabels(nSubModels, nullptr);
+        std::vector<uint64_t>                subModelSize(nSubModels, 0);
+
+
+
+        visitorProxy.printLog(nifty::logging::LogLevel::INFO, std::string("nSubModels")
+            + std::to_string(nSubModels));
+
+        //std::cout<<"a\n";
+        std::vector< std::unordered_map<uint64_t, uint64_t>  > nodeToSubNodeVec(nSubModels);
+        for(const auto node : graph_.nodes()){
+            const auto subgraphId = ccIndex(node);
+            auto & nodeToSubNode = nodeToSubNodeVec[subgraphId];
+            const auto subVarId = nodeToSubNode.size();
+            nodeToSubNode[node] = subVarId;
+        }
+
+        //std::cout<<"b\n";
+        // submodel size
+        for(const auto node : graph_.nodes()){
+            ++subModelSize[ccIndex(node)];
+        }
+
+        //std::cout<<"c\n";
+        // allocs model and graphs
+        for(auto i=0; i<nSubModels; ++i){
+            subGraphs[i] = new SubGraph(subModelSize[i]);
+            subObjectives[i] = new MulticutSubObjective(*subGraphs[i]);
+            subLabels[i] = new MulticutSubNodeLabels(*subGraphs[i]);
+        }
+
+        //std::cout<<"d\n";
+        // edges
+        for(const auto edge : graph_.edges()){
+
+            const auto u = graph_.u(edge);
+            const auto v = graph_.v(edge);
+
+            const auto ccU = ccIndex(u);
+            const auto ccV = ccIndex(v);
+
+            if(ccU == ccV){
+
+                const auto & nodeToSubNode = nodeToSubNodeVec[ccU];
+
+                const auto dU = nodeToSubNode.find(u)->second;
+                const auto dV = nodeToSubNode.find(v)->second;
+        
+                //std::cout<<weights_.size()<<" ws\n";
+                const auto w = weights_[edge];
+                const auto edgeId = subGraphs[ccU]->insertEdge(dU, dV);
+                subObjectives[ccU]->weights().insertedEdges(edgeId);
+                subObjectives[ccU]->weights()[edgeId] = w;
+                isDirtyEdge_[edge] = false;
+            }
+            else{
+                isDirtyEdge_[edge] = true;
+            }
+        }   
+        nifty::ufd::Ufd<uint64_t> ufd(graph_.nodeIdUpperBound()+1);
 
 
         visitorProxy.clearLogNames();
-        visitorProxy.addLogNames({std::string("Sweep")});
+        visitorProxy.addLogNames({std::string("#subSize")});
+
+
+        // allocs optimizers and optimize
+        for(auto i=0; i<nSubModels; ++i){
+
+            visitorProxy.setLogValue(0, subGraphs[i]->numberOfNodes());
+            visitorProxy.visit(this);
+
+            auto solver = settings_.multicutFactory->createRawPtr(*subObjectives[i]);
+            solver->optimize(*subLabels[i],nullptr);
+            delete solver;  
+        }
+        //std::cout<<"merge\n";
+        // merge
+        for(const auto edge : graph_.edges()){
+
+            const auto u = graph_.u(edge);
+            const auto v = graph_.v(edge);
+
+            const auto ccU = ccIndex(u);
+            const auto ccV = ccIndex(v);
+
+            if(ccU == ccV){
+
+                const auto & nodeToSubNode = nodeToSubNodeVec[ccU];
+
+                const auto dU = nodeToSubNode.find(u)->second;
+                const auto dV = nodeToSubNode.find(v)->second;
+        
+                if((*subLabels[ccU])[dU] == (*subLabels[ccU])[dU]){
+                    ufd.merge(u, v);
+                }
+            }
+        }
+        std::cout<<"eval\n";
+        for(const auto node : graph_.nodes()){
+            nodeLabels[node] = ufd.find(node);
+        }
+        currentBestEnergy_ = objective_.evalNodeLabels(nodeLabels);
+
+        // de-allocs
+        for(auto i=0; i<nSubModels; ++i){
+            //delete subSolvers[i];
+            delete subLabels[i];
+            delete subObjectives[i];
+            delete subGraphs[i];
+        }
+
+    }
+
+    template<class OBJECTIVE>
+    void Cgc<OBJECTIVE>::
+    glueAndCutPhase(
+        VisitorProxy & visitorProxy
+    ){
+        currentBestEnergy_ = objective_.evalNodeLabels(*currentBest_);
+
+        visitorProxy.clearLogNames();
+        visitorProxy.addLogNames({std::string("Sweep"),std::string("be")});
 
         // one anchor for all ``cc-edges``
         typedef std::pair<uint64_t, uint64_t> LabelPair;
@@ -616,7 +953,8 @@ namespace graph{
                             continueSeach = true;
                             currentBestEnergy_ -= ret.improvedBy;
 
-                            visitorProxy.setLogValue(0, sweep);           
+                            visitorProxy.setLogValue(0, sweep);
+                            visitorProxy.setLogValue(1, currentBestEnergy_);                   
                             visitorProxy.visit(this);
                         }
                     }
@@ -647,8 +985,10 @@ namespace graph{
         if(settings_.doCutPhase){
 
             visitorProxy.printLog(nifty::logging::LogLevel::INFO, "Start Cut Phase:");
-
-            this->cutPhase(visitorProxy);
+            if(settings_.doBetterCutPhase)
+                this->betterCutPhase(visitorProxy);
+            else
+                this->cutPhase(visitorProxy);        
         }
         // glue phase
         if(settings_.doGlueAndCutPhase){

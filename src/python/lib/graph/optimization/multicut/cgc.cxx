@@ -30,9 +30,12 @@ namespace graph{
             .def(py::init<>())
 
             .def_readwrite("doCutPhase", &Settings::doCutPhase)
+            .def_readwrite("doBetterCutPhase", &Settings::doBetterCutPhase)
+            .def_readwrite("sizeRegularizer", &Settings::sizeRegularizer)
+            .def_readwrite("nodeNumStopCond", &Settings::nodeNumStopCond)
             .def_readwrite("doGlueAndCutPhase", &Settings::doGlueAndCutPhase)
             .def_readwrite("mincutFactory", &Settings::mincutFactory)
-
+            .def_readwrite("multicutFactory", &Settings::multicutFactory)
 
         ; 
     }

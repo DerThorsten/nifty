@@ -5,21 +5,22 @@ import nifty
 import h5py
 
 
-file = "/home/tbeier/datasets/large_mc_problems/sampleD_subsample_reduced_model.h5"
-h5File = h5py.File(file,'r')
+if True:
+    file = "/home/tbeier/datasets/large_mc_problems/sampleD_subsample_reduced_model.h5"
+    h5File = h5py.File(file,'r')
 
-with nifty.Timer("load serialization"):
-    serialization = h5File['graph'][:]
+    with nifty.Timer("load serialization"):
+        serialization = h5File['graph'][:]
 
-with nifty.Timer("deserialize"):
-    g = nifty.graph.UndirectedGraph()
-    g.deserialize(serialization)
+    with nifty.Timer("deserialize"):
+        g = nifty.graph.UndirectedGraph()
+        g.deserialize(serialization)
 
-with nifty.Timer("load costs"):
-    w = h5File['costs'][:]
+    with nifty.Timer("load costs"):
+        w = h5File['costs'][:]
 
-with nifty.Timer("setup objective"):
-    objective = nifty.graph.multicut.multicutObjective(g, w)
+    with nifty.Timer("setup objective"):
+        objective = nifty.graph.multicut.multicutObjective(g, w)
 
 
 import nifty.graph
@@ -34,19 +35,7 @@ numpy.random.seed(7)
 
 def optimize(objective):
 
-    if False:
-        # we start with the multicut decomposer
-        solver = objective.multicutDecomposer().create(objective)
-        visitor = objective.verboseVisitor(1)
-        start  = None
-        arg = solver.optimize(visitor)
-
-
-
-    # solver = objective.greedyAdditiveFactory().create(objective)
-    # #visitor = objective.empty(600)
-    # #start  = None
-    # arg = solver.optimize()
+  
 
    
 
@@ -64,11 +53,14 @@ def optimize(objective):
         
         # greedy
         greedyFactory = MulticutObjective.greedyAdditiveFactory()
-        mincutQpboFactory    = MincutObjective.mincutQpboFactory(improve=False)
-
-        # cgc
-        #mincutFactory = MincutObjective.greedyAdditiveFactory(improve=False,nodeNumStopCond=0.1)
-        cgcFactory    = MulticutObjective.cgcFactory(doCutPhase=False, mincutFactory=mincutQpboFactory)
+        mincutFactory = MincutObjective.mincutQpboFactory(improve=True)
+        #mincutFactory = MincutObjective.greedyAdditiveFactory(improve=True, nodeNumStopCond=0.5)
+        multicutFactory = MulticutObjective.multicutIlpFactory(ilpSolver='cplex')
+        cgcFactory    = MulticutObjective.cgcFactory(
+            doCutPhase=True,doBetterCutPhase=True,
+            multicutFactory=multicutFactory,
+            doGlueAndCutPhase=True, mincutFactory=mincutFactory,
+            nodeNumStopCond=10, sizeRegularizer=1.9)
 
 
         
@@ -79,17 +71,17 @@ def optimize(objective):
             multicutFactories=[greedyFactory, cgcFactory]
         )
 
-        solver = chainedSolverFactory.create(objective)
+        solver = cgcFactory.create(objective)
 
         #solver = MulticutObjective.multicutDecomposer(
         #    submodelFactory=mcFactory,
         #    fallthroughFactory=mcFactory,
         #).create(objective)
 
-        visitor = objective.verboseVisitor(500)
-        #start  = None
-        arg = solver.optimize(visitor)
-
+        visitor = objective.verboseVisitor(10000)
+        with nifty.Timer("fo"):
+            arg = solver.optimize(visitor)
+            print("cgc res",objective.evalNodeLabels(arg))
 
 
 

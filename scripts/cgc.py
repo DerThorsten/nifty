@@ -50,45 +50,31 @@ class TestLiftedMulticutSolver():
 
     def testCgc(self):
 
+        MincutObjective   = nifty.graph.UndirectedGraph.MincutObjective
+        MulticutObjective = nifty.graph.UndirectedGraph.MulticutObjective
+
+
         SubObj =  nifty.graph.multicut.MulticutObjectiveUndirectedGraph
 
 
-        objective = self.gridModel(gridSize=[15,15])
-        submodelFactory = SubObj.greedyAdditiveFactory()
-        submodelFactory = SubObj.cgcFactory()
+        objective = self.gridModel(gridSize=[20,20])
+        # greedy
+        greedyFactory = MulticutObjective.greedyAdditiveFactory()
+        mincutFactory = MincutObjective.mincutQpboFactory(improve=False)
+        #mincutFactory = MincutObjective.greedyAdditiveFactory(improve=True)
 
-        # we start with the multicut decomposer
-        #solver = objective.multicutDecomposer(submodelFactory=submodelFactory).create(objective)
-        #visitor = objective.verboseVisitor(1)
-        #start  = None
-        #arg = solver.optimize(visitor)
+        multicutFactory = MulticutObjective.multicutIlpFactory(ilpSolver='cplex')
 
-
-
-        # solver = objective.greedyAdditiveFactory().create(objective)
-        # #visitor = objective.empty(600)
-        # #start  = None
-        # arg = solver.optimize()
-        
-        MincutObjective = nifty.graph.UndirectedGraph.MincutObjective
-
-        #mincutFactory= MincutObjective.mincutQpboFactory()
+        solver    = objective.cgcFactory(
+        doCutPhase=True,doBetterCutPhase=True,
+        doGlueAndCutPhase=True, 
+        mincutFactory=mincutFactory,
+        multicutFactory=multicutFactory,
+        nodeNumStopCond=100, sizeRegularizer=0.9).create(objective)
 
 
-
-
-  
-        mincutFactory= MincutObjective.greedyAdditiveFactory(nodeNumStopCond=0.9, improve=True)
-
-        solver = objective.cgcFactory(mincutFactory=mincutFactory).create(objective)
-        visitor = objective.verboseVisitor(1)
-        start  = None
-        arg = solver.optimize(visitor)
-
-
-
-
-
+        arg = solver.optimize(objective.verboseVisitor(1))#,numpy.zeros(10*10))
+        objective.evalNodeLabels(arg)
 
 t = TestLiftedMulticutSolver()
 t.testCgc()

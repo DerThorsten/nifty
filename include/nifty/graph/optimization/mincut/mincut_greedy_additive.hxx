@@ -102,9 +102,11 @@ namespace mincut{
             const auto nnsc = settings_.nodeNumStopCond;
             // exit if weight stop cond kicks in
             if(highestWeight <= settings_.weightStopCond){
+                //std::cout<<"done by weight stop cond\n";
                 return true;
             }
             if(nnsc > 0.0){
+
                 uint64_t ns;
                 if(nnsc >= 1.0){
                     ns = static_cast<uint64_t>(nnsc);
@@ -113,13 +115,16 @@ namespace mincut{
                     ns = static_cast<uint64_t>(double(graph_.numberOfNodes())*nnsc +0.5);
                 }
                 if(currentNodeNum_ <= ns){
+                    //std::cout<<"done by node num stop cond\n";
                     return true;
                 }
             }
             if(currentNodeNum_<=1){
+                //std::cout<<"done by total node stop cond\n";
                 return true;
             }
             if(pq_.empty()){
+                //std::cout<<"done by empty node stop cond\n";
                 return true;
             }
             return false;
@@ -171,6 +176,7 @@ namespace mincut{
         typedef nifty::graph::EdgeContractionGraph<GraphType, CallbackType> ContractionGraphType;
         typedef MincutBase<OBJECTIVE> Base;
         typedef typename Base::VisitorBase VisitorBase;
+        typedef typename Base::VisitorProxy VisitorProxy;
         typedef typename Base::EdgeLabels EdgeLabels;
         typedef typename Base::NodeLabels NodeLabels;
 
@@ -239,18 +245,19 @@ namespace mincut{
     optimize(
         NodeLabels & nodeLabels,  VisitorBase * visitor
     ){
-        
 
-        if(visitor!=nullptr){
-            visitor->addLogNames({"#nodes","topWeight"});
-            visitor->begin(this);
-        }
+        VisitorProxy visitorProxy(visitor);
+        visitorProxy.addLogNames({"#nodes","topWeight"});
+        visitorProxy.begin(this);
+
+
         if(graph_.numberOfEdges()>0){
-            currentBest_ = & nodeLabels;
 
+            currentBest_ = & nodeLabels;
+            //std::cout<<"a\n";
             // do clustering 
             while(!callback_.done() ){
-                    
+                //std::cout<<"braa\n";
                 // get the edge
                 auto edgeToContract = callback_.edgeToContract();
 
@@ -258,21 +265,24 @@ namespace mincut{
                 edgeContractionGraph_.contractEdge(edgeToContract);
 
             
-                if(visitor!=nullptr){
-                    visitor->setLogValue(0, edgeContractionGraph_.numberOfNodes());
-                    visitor->setLogValue(1, callback_.queue().topPriority());
-                    if(!visitor->visit(this)){
-                        break;
-                    }
+                
+                visitorProxy.setLogValue(0, edgeContractionGraph_.numberOfNodes());
+                visitorProxy.setLogValue(1, callback_.queue().topPriority());
+                if(!visitorProxy.visit(this)){
+                    break;
                 }
+                
             }
 
             // do qpbo on rest
-           
+            //std::cout<<"b\n";
             const auto & queue = callback_.queue();
             const auto & nodeUfd = edgeContractionGraph_.nodeUfd();
             const auto & nSubNodes = edgeContractionGraph_.numberOfNodes();
             const auto & nSubEdges = edgeContractionGraph_.numberOfEdges();
+
+
+            //std::cout<<"nSubNodes "<<nSubNodes<<" nSubEdges "<<nSubEdges<<"\n";
 
             qpbo_.Reset();
             qpbo_.AddNode(nSubNodes);
@@ -298,8 +308,12 @@ namespace mincut{
             for(const auto edge : graph_.edges()){
                 if(queue.contains(edge)){
                     const auto w = queue.priority(edge);
-                    const auto subU =toDense[edgeContractionGraph_.u(edge)];
-                    const auto subV =toDense[edgeContractionGraph_.v(edge)];
+                    const auto u = edgeContractionGraph_.u(edge);
+                    const auto v = edgeContractionGraph_.v(edge);
+                    const auto subU =toDense[u];
+                    const auto subV =toDense[v];
+                    //std::cout<<"E "<<u   <<"-"<<v   <<"   "<<w<<"\n";
+                    //std::cout<<"  "<<subU<<"-"<<subV<<"   "<<w<<"\n";
                     qpbo_.AddPairwiseTerm(subU, subV, 0.0, w,w, 0.0);
                 }
             }
@@ -317,10 +331,10 @@ namespace mincut{
 
             auto e = qpbo_.ComputeTwiceEnergy()/2.0;
             if(nSubNodes>0 && qpbo_.GetLabel(0) == 1){
-                e -= 100000;
+                e -= 100000.0;
             }
             currentBestEnergy_ = e;
-            
+            //std::cout<<"qpbo val "<<currentBestEnergy_<<"\n";
             // Map back
             for(const auto node : graph_.nodes()){
                 const auto subNode = toDense[edgeContractionGraph_.findRepresentativeNode(node)];
@@ -329,17 +343,8 @@ namespace mincut{
                 const auto nodeLabel = (triLabel == 0 ? 0 : (triLabel == 1 ? 1 : 0));
                 nodeLabels[node] = nodeLabel;
             }
-
-
-
-
-            
-            for(auto node : graph_.nodes()){
-                nodeLabels[node] = edgeContractionGraph_.findRepresentativeNode(node);
-            }
         }
-        if(visitor!=nullptr)
-            visitor->end(this);
+        visitorProxy.end(this);
     }
 
     template<class OBJECTIVE>

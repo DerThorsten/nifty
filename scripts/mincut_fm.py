@@ -48,70 +48,40 @@ class TestLiftedMulticutSolver():
         print(w.min(),w.max())
         obj = nifty.graph.mincut.mincutObjective(g,w)
         
-        return obj
+        return obj,w
 
 
     def testCgc(self):
 
-        if True:
-            file = "/home/tbeier/datasets/large_mc_problems/sampleD_subsample_reduced_model.h5"
-            h5File = h5py.File(file,'r')
+     
 
-            with nifty.Timer("load serialization"):
-                serialization = h5File['graph'][:]
-
-            with nifty.Timer("deserialize"):
-                g = nifty.graph.UndirectedGraph()
-                g.deserialize(serialization)
-
-            with nifty.Timer("load costs"):
-                w = h5File['costs'][:]
-
-            with nifty.Timer("setup objective"):
-                obj = nifty.graph.mincut.mincutObjective(g, w)
-
-        else:
-
-            obj = self.gridModel(gridSize=[100,100])
+        obj,weights = self.gridModel(gridSize=[4,3])
       
 
+        for edge in obj.graph.edges():
+            u = obj.graph.u(edge)
+            v = obj.graph.v(edge)
 
-        if False:
-
-            pgen = obj.watershedProposalGenerator(sigma=1.0, numberOfSeeds=0.01)
-            solver = obj.mincutCcFusionMoveBasedFactory(
-                proposalGenerator=pgen
-            ).create(obj)
-            visitor = obj.verboseVisitor(1)
-            start  = None
-            arg = solver.optimize(visitor)
-
-            print("a",obj.evalNodeLabels(arg))
-
-
-
-
-        if True:
+            print(u,"--",v,"  ",weights[edge])
 
         
 
-            solver = obj.greedyAdditiveFactory(improve=False).create(obj)
-            visitor = obj.verboseVisitor(100)
-            start  = None
-            arg = solver.optimize(visitor)
-            print("b",obj.evalNodeLabels(arg))
+        solver = obj.greedyAdditiveFactory(nodeNumStopCond=0.999,improve=False).create(obj)
+        visitor = obj.verboseVisitor()
+        arg = solver.optimize(visitor)
+        print("b",obj.evalNodeLabels(arg))
 
 
 
-        if False:
+    
 
         
 
-            solver = obj.mincutQpboFactory(True).create(obj)
-            visitor = obj.verboseVisitor(100)
-            start  = None
-            arg = solver.optimize(visitor)
-            print("b",obj.evalNodeLabels(arg))
+        solver = obj.mincutQpboFactory(False).create(obj)
+        visitor = obj.verboseVisitor(100)
+        start  = None
+        arg = solver.optimize(visitor)
+        print("b",obj.evalNodeLabels(arg))
 
 
 
