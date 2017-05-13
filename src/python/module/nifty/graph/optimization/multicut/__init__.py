@@ -1,8 +1,10 @@
 from __future__ import absolute_import
+import sys
+from functools import partial
+
 from ._multicut import *
 from .... import Configuration
 from ... import (UndirectedGraph,EdgeContractionGraphUndirectedGraph)
-from functools import partial
 
 __all__ = []
 for key in _multicut.__dict__.keys():
@@ -19,9 +21,7 @@ def ilpSettings(relativeGap=0.0, absoluteGap=0.0, memLimit=-1.0):
     return s
 
 
-
 def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
-
 
 
     def getCls(prefix, postfix):
@@ -44,9 +44,12 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
 
     O = objectiveCls
 
-    def multicutVerboseVisitor(visitNth=1,timeLimit=0):
+    def multicutVerboseVisitor(visitNth=1,timeLimit=None):
         V = getMcCls("MulticutVerboseVisitor")
-        return V(visitNth,timeLimit)
+        if timeLimit is not None:
+            return V(visitNth,timeLimit)
+        else:
+            return V(visitNth)
     O.multicutVerboseVisitor = staticmethod(multicutVerboseVisitor)
     O.verboseVisitor = staticmethod(multicutVerboseVisitor)
 
@@ -91,11 +94,9 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
     def cgcFactory(doCutPhase=True, doGlueAndCutPhase=True, mincutFactory=None):
         if mincutFactory is None:
             if Configuration.WITH_QPBO:
-                mincutFactory = graphCls.MincutObjective.greedyAdditiveFactory(improve=False)
+                mincutFactory = graphCls.MincutObjective.mincutQpboFactory(improve=False)
             else:
                 raise RuntimeError("default mincutFactory needs to be compiled WITH_QPBO")
-
-
 
         if Configuration.WITH_QPBO:
             s,F = getSettingsAndFactoryCls("Cgc")
@@ -118,6 +119,29 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
     O.defaultMulticutFactory = staticmethod(defaultMulticutFactory)
 
 
+    def multicutAndresGreedyAdditiveFactory():
+        s, F = getSettingsAndFactoryCls("MulticutAndresGreedyAdditive")
+        return F(s)
+    O.multicutAndresGreedyAdditiveFactory = staticmethod(multicutAndresGreedyAdditiveFactory)
+
+
+    def multicutAndresKernighanLinFactory(
+            numberOfInnerIterations = sys.maxsize,
+            numberOfOuterIterations = 100,
+            epsilon = 1e-6,
+            verbose = False,
+            greedyWarmstart = True
+            ):
+        s, F = getSettingsAndFactoryCls("MulticutAndresKernighanLin")
+        s.numberOfInnerIterations = numberOfInnerIterations
+        s.numberOfOuterIterations = numberOfOuterIterations
+        s.epsilon = epsilon
+        s.verbose = verbose
+        s.greedyWarmstart = greedyWarmstart
+        return F(s)
+    O.multicutAndresKernighanLinFactory = staticmethod(multicutAndresKernighanLinFactory)
+
+
     def multicutDecomposer(submodelFactory=None, fallthroughFactory=None):
 
         if submodelFactory is None:
@@ -131,7 +155,7 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
         s.submodelFactory = submodelFactory
         s.fallthroughFactory = fallthroughFactory
         return F(s)
-        
+
     O.multicutDecomposer = staticmethod(multicutDecomposer)
 
 
@@ -162,6 +186,48 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
     O.multicutIlpGlpkFactory = staticmethod(partial(multicutIlpFactory,ilpSolver='glpk'))
 
 
+    if Configuration.WITH_LP_MP:
+        def multicutMpFactory(
+                mcFactory = None,
+                numberOfIterations = 1000,
+                verbose = 0,
+                primalComputationInterval = 100,
+                standardReparametrization = "anisotropic",
+                roundingReparametrization = "damped_uniform",
+                tightenReparametrization  = "damped_uniform",
+                tighten = True,
+                tightenInterval = 100,
+                tightenIteration = 10,
+                tightenSlope = 0.02,
+                tightenConstraintsPercentage = 0.1,
+                minDualImprovement = 0.,
+                minDualImprovementInterval = 0,
+                timeout = 0,
+                numberOfThreads = 1
+                ):
+
+            settings, factoryCls = getSettingsAndFactoryCls("MulticutMp")
+
+            settings.mcFactory = mcFactory
+            settings.numberOfIterations = numberOfIterations
+            settings.verbose = verbose
+            settings.primalComputationInterval = primalComputationInterval
+            settings.standardReparametrization = standardReparametrization
+            settings.roundingReparametrization = roundingReparametrization
+            settings.tightenReparametrization  = tightenReparametrization
+            settings.tighten = tighten
+            settings.tightenInterval = tightenInterval
+            settings.tightenIteration = tightenIteration
+            settings.tightenSlope = tightenSlope
+            settings.tightenConstraintsPercentage = tightenConstraintsPercentage
+            settings.minDualImprovement = minDualImprovement
+            settings.minDualImprovementInterval = minDualImprovementInterval
+            settings.timeout = timeout
+            settings.numberOfThreads = numberOfThreads
+
+            return factoryCls(settings)
+
+        O.multicutMpFactory = staticmethod(multicutMpFactory)
 
 
     def fusionMoveSettings(mcFactory=None):

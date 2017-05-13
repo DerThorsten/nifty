@@ -20,6 +20,7 @@ option(WITH_CPLEX OFF)
 option(WITH_GLPK OFF)
 option(WITH_HDF5 OFF)
 option(WITH_FASTFILTERS OFF)
+option(WITH_LP_MP OFF)
 option(WITH_QPBO ON)
 
 option(BUILD_CPP_TEST_WITH_GLIBCXX_CXX11_ABI OFF)
@@ -39,25 +40,12 @@ add_definitions(-Wno-attributes)
 add_definitions(-Wno-deprecated-declarations)
 
 #-------------------------------------------------------------------------------------------------------------------
-# check for c++ 11 support
+# check for c++ 14 support
 #-------------------------------------------------------------------------------------------------------------------
-# FIXME c++14 checks are broken!
-if (CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR CMAKE_CXX_COMPILER_ID MATCHES "GNU")
-    CHECK_CXX_COMPILER_FLAG("-std=c++14" HAS_CPP14_FLAG)
-    CHECK_CXX_COMPILER_FLAG("-std=c++11" HAS_CPP11_FLAG)
-    if (HAS_CPP14_FLAG)
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
-    elseif (HAS_CPP11_FLAG)
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
-    else()
-        message(FATAL_ERROR "Unsupported compiler -- nifty  requires C++11 support!")
-    endif()
-endif()
 
-
-
-#set(CMAKE_CXX_STANDARD 14)
-#set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(OpenMP)
 if (OPENMP_FOUND)
@@ -100,14 +88,12 @@ endif()
 #-------------------------------------------------------------------------------------------------------------------
 # externals
 #-------------------------------------------------------------------------------------------------------------------
+
 include_directories( "${CMAKE_CURRENT_SOURCE_DIR}/externals/qpbo")
-
-
 include_directories( "${CMAKE_CURRENT_SOURCE_DIR}/externals/marray/include")
 include_directories( "${CMAKE_CURRENT_SOURCE_DIR}/externals/pybind11/include")
 include_directories( "${CMAKE_CURRENT_SOURCE_DIR}/externals/vigra/include")
 include_directories( "${CMAKE_CURRENT_SOURCE_DIR}/externals/graph/include")
-
 
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/externals/pybind11")
 
@@ -203,11 +189,63 @@ if(WITH_FASTFILTERS)
 endif()
 
 
+#-------------------------------------------------------------------------------------------------------------------
+# additional dependencies for LP_MP
+#-------------------------------------------------------------------------------------------------------------------
+if(WITH_LP_MP)
+    
+    include_directories("${CMAKE_CURRENT_SOURCE_DIR}/externals/LP_MP/include")
+    include_directories("${CMAKE_CURRENT_SOURCE_DIR}/externals/LP_MP/lib")
+    add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/externals/LP_MP/lib")
+    
+    add_definitions(-DWITH_LP_MP)
+    add_definitions(-DWITH_SAT)
+
+    if(OPENMP_FOUND)
+        add_definitions(-DLP_MP_PARALLEL)
+    endif(OPENMP_FOUND)
+
+    # set additional flags for the release build
+    if(CMAKE_BUILD_TYPE STREQUAL "Release")
+        # adding only -ffast-math will result in infinity and nan not being checked (but e.g. graph matching and discrete tomography have infinite costs)
+        #add_definitions(-ffast-math -fno-finite-math-only)
+        add_definitions()
+        SET(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -march=native") 
+        SET(CMAKE_EXE_LINKER_FLAGS_RELEASE  "${CMAKE_EXE_LINKER_FLAGS_RELEASE} ${CMAKE_CXX_FLAGS_RELEASE}" )
+    endif()
+    
+    # include LP_MP dependencies
+    include_directories("${CMAKE_CURRENT_SOURCE_DIR}/externals/LP_MP/external/meta/include")
+    include_directories("${CMAKE_CURRENT_SOURCE_DIR}/externals/LP_MP/external/Catch/include")
+    include_directories("${CMAKE_CURRENT_SOURCE_DIR}/externals/LP_MP/external/cpp_sort/include")
+    include_directories("${CMAKE_CURRENT_SOURCE_DIR}/externals/LP_MP/external/opengm/include")
+    include_directories("${CMAKE_CURRENT_SOURCE_DIR}/externals/LP_MP/external/PEGTL")
+    include_directories("${CMAKE_CURRENT_SOURCE_DIR}/externals/LP_MP/external/cereal/include")
+    include_directories("${CMAKE_CURRENT_SOURCE_DIR}/externals/LP_MP/external/tclap/include")
+    include_directories("${CMAKE_CURRENT_SOURCE_DIR}/externals/LP_MP/external/lingeling-ala")
+    
+    ## TODO this seems to be a pretty old version, would the newer version help?!
+    ## FIXME we actually don't need to link this for building the LP_MP multicut
+    #include(ExternalProject)
+    #ExternalProject_ADD(
+    #   lingeling
+    #   #SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/external/lingeling-ala"
+    #   URL "http://fmv.jku.at/lingeling/lingeling-bal-2293bef-151109.tar.gz"
+    #   BUILD_IN_SOURCE 1
+    #   #BINARY_DIR "${CMAKE_CURRENT_BINARY_DIR}/lingeling-ala"
+    #   CONFIGURE_COMMAND "./configure.sh"
+    #   BUILD_COMMAND "make"
+    #   INSTALL_COMMAND ""
+    #   )
+    #include_directories("${CMAKE_CURRENT_BINARY_DIR}/lingeling-prefix/src/lingeling") 
+    ##link_directories("${CMAKE_CURRENT_BINARY_DIR}/lingeling-prefix/src/lingeling")
+    
+endif()
+
 
 if(WITH_QPBO)
     add_definitions(-DWITH_QPBO)
 endif(WITH_QPBO)
-
 
 
 #-------------------------------------------------------------------------------------------------------------------

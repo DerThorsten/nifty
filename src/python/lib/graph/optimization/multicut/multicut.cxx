@@ -18,11 +18,17 @@ namespace graph{
     void exportFusionMoveBased(py::module &);
     void exportPerturbAndMap(py::module &);
     void exportMulticutDecomposer(py::module &);
+    void exportMulticutAndres(py::module &);
+    void exportChainedSolvers(py::module &);
+    
     #if WITH_QPBO
     void exportCgc(py::module &);
     #endif
-    void exportChainedSolvers(py::module &);
     void exportBlockMulticut(py::module &);
+    
+    #if WITH_LP_MP
+    void exportMulticutMp(py::module &);
+    #endif
 }
 }
 
@@ -42,11 +48,18 @@ PYBIND11_PLUGIN(_multicut) {
     exportFusionMoveBased(multicutModule);
     exportPerturbAndMap(multicutModule);
     exportMulticutDecomposer(multicutModule);
-    #if WITH_QPBO
-    exportCgc(multicutModule);
-    #endif
+    exportMulticutAndres(multicutModule);
     exportChainedSolvers(multicutModule);
     exportBlockMulticut(multicutModule);
+    
+    #ifdef WITH_LP_MP
+    exportMulticutMp(multicutModule);
+    #endif
+    
+    #ifdef WITH_QPBO
+    exportCgc(multicutModule);
+    #endif
+    
     return multicutModule.ptr();
 }
 

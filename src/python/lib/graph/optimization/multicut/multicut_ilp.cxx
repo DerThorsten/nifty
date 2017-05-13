@@ -32,11 +32,15 @@ namespace graph{
     
     template<class OBJECTIVE, class BACKEND>
     void exportMulticutIlpWithBackendT(py::module & multicutModule, const std::string & backendName){
+        
         typedef OBJECTIVE ObjectiveType;
         typedef BACKEND IlpSolver;
         typedef MulticutIlp<ObjectiveType, IlpSolver> Solver;
+        
         typedef typename Solver::Settings Settings;
+        // FIXME Where is this typedefs used ?
         typedef MulticutFactory<Solver> Factory;
+        
         const auto solverName = std::string("MulticutIlp") + backendName;
         exportMulticutSolver<Solver>(multicutModule, solverName.c_str())
             .def(py::init<>())
@@ -73,6 +77,7 @@ namespace graph{
             .def_readwrite("absoluteGap", &ilp_backend::IlpBackendSettings::absoluteGap)
             .def_readwrite("memLimit",  &ilp_backend::IlpBackendSettings::memLimit)
         ;
+
         {
             typedef PyUndirectedGraph GraphType;
             typedef MulticutObjective<GraphType, double> ObjectiveType;

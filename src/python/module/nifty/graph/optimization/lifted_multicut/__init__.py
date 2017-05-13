@@ -2,6 +2,8 @@ from __future__ import absolute_import
 from ._lifted_multicut import *
 from functools import partial
 from ..multicut import ilpSettings
+from .. import Configuration
+
 __all__ = []
 for key in _lifted_multicut.__dict__.keys():
     __all__.append(key)
@@ -10,7 +12,7 @@ for key in _lifted_multicut.__dict__.keys():
 
 
 def __extendLiftedMulticutObj(objectiveCls, objectiveName):
-    
+
     def insertLiftedEdgesBfs(self, maxDistance, returnDistance = False):
         if returnDistance :
             return self._insertLiftedEdgesBfsReturnDist(maxDistance)
@@ -23,7 +25,7 @@ def __extendLiftedMulticutObj(objectiveCls, objectiveName):
 
 
 
-    
+
 
     def getCls(prefix, postfix):
         return _lifted_multicut.__dict__[prefix+postfix]
@@ -54,26 +56,26 @@ def __extendLiftedMulticutObj(objectiveCls, objectiveName):
 
     def watershedProposalGenerator(sigma=1.0, numberOfSeeds=0.1,seedingStrategie='SEED_FROM_LIFTED'):
         """factory function for a watershed based proposal generator for fusion move based
-        lifted multicuts.       
-        
+        lifted multicuts.
+
         Args:
-            sigma (float, optional): The weights are perturbed by a additive 
+            sigma (float, optional): The weights are perturbed by a additive
                 Gaussian noise n(0,sigma) (default  0.0)
 
-            numberOfSeeds (float, optional): Number of seed to generate. 
-                A number smaller as one will be interpreted as a fraction of 
+            numberOfSeeds (float, optional): Number of seed to generate.
+                A number smaller as one will be interpreted as a fraction of
                 the number of nodes (default 0.1)
             seedingStrategie (str, optional): Can be:
                 - 'SEED_FROM_LIFTED' : All negative weighted lifted edges
-                    can be used to generate seeds. 
+                    can be used to generate seeds.
                 - 'SEED_FROM_LOCAL' : All negative weighted local edges
-                    can be used to generate seeds. 
+                    can be used to generate seeds.
                 - 'SEED_FROM_BOTH' : Both, lifted and local edges
                 can be used for seeding
-        
+
         Returns:
             TYPE: parameter object used construct a WatershedProposalGenerator
-        
+
         """
         pGenCls = getLmcCls("WatershedProposalGeneratorFactory")
         pGenSettings = getSettings("WatershedProposalGenerator")
@@ -104,13 +106,13 @@ def __extendLiftedMulticutObj(objectiveCls, objectiveName):
         numberOfIterations=1000, stopIfNoImprovement=100):
         """factory function for a fusion move based lifted
             multicut solver
-        
+
         Args:
             proposalGenerator (None, optional): Proposal generator (default watershedProposalGenerator)
             numberOfThreads (int, optional):                (default 1)
             numberOfIterations (int, optional): Maximum number of iterations(default 1000)
             stopIfNoImprovement (int, optional): Stop after n iterations without improvement (default 100)
-        
+
         Returns:
             TYPE: Description
         """
@@ -124,9 +126,6 @@ def __extendLiftedMulticutObj(objectiveCls, objectiveName):
         return F(s)
 
     O.fusionMoveBasedFactory = staticmethod(fusionMoveBasedFactory)
-
-
-
 
 
     def liftedMulticutGreedyAdditiveFactory( weightStopCond=0.0, nodeNumStopCond=-1.0):
@@ -165,7 +164,38 @@ def __extendLiftedMulticutObj(objectiveCls, objectiveName):
     O.liftedMulticutAndresGreedyAdditiveFactory = staticmethod(liftedMulticutAndresGreedyAdditiveFactory)
 
 
+    if Configuration.WITH_LP_MP:
+        def liftedMulticutMpFactory(
+            lmcFactory = None,
+            greedyWarmstart = False,
+            tightenSlope = 0.05,
+            tightenMinDualImprovementInterval = 0,
+            tightenMinDualImprovement = 0.,
+            tightenConstraintsPercentage = 0.1,
+            tightenConstraintsMax = 0,
+            tightenInterval = 10,
+            tightenIteration = 100,
+            tightenReparametrization = "anisotropic",
+            roundingReparametrization = "anisotropic",
+            standardReparametrization = "anisotropic",
+            tighten = True,
+            minDualImprovementInterval = 0,
+            minDualImprovement = 0.,
+            lowerBoundComputationInterval = 1,
+            primalComputationInterval = 5,
+            timeout = 0,
+            maxIter = 1000,
+            numThreads = 1
+            ):
 
+            s, F = getSettingsAndFactoryCls("LiftedMulticutMp")
+            if lmcFactory is None:
+                lmcFactory = LiftedMulticutObjectiveUndirectedGraph.liftedMulticutKernighanLinFactory()
+
+            s.lmcFactory      = lmcFactory
+            s.greedyWarmstart = greedyWarmstart
+            return F(s)
+        O.liftedMulticutMpFactory = staticmethod(liftedMulticutMpFactory)
 
 
     def liftedMulticutIlpFactory(verbose=0, addThreeCyclesConstraints=True,
@@ -193,6 +223,6 @@ def __extendLiftedMulticutObj(objectiveCls, objectiveName):
     O.liftedMulticutIlpGlpkFactory = staticmethod(partial(liftedMulticutIlpFactory,ilpSolver='glpk'))
 
 
-__extendLiftedMulticutObj(LiftedMulticutObjectiveUndirectedGraph, 
+__extendLiftedMulticutObj(LiftedMulticutObjectiveUndirectedGraph,
     "LiftedMulticutObjectiveUndirectedGraph")
 del __extendLiftedMulticutObj
