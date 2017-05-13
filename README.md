@@ -18,6 +18,11 @@ To use nifty one needs to checkout some submodules via:
     git submodule init
     git submodule update
 
+If WITH_MP_LP is active, one needs:
+
+    git submodule update --init --recursive
+
+
 
 Features (Highlights):
 ==================

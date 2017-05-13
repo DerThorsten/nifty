@@ -44,7 +44,7 @@ add_definitions(-Wno-ignored-attributes)
 #-------------------------------------------------------------------------------------------------------------------
 # check for c++ 14 support
 #-------------------------------------------------------------------------------------------------------------------
-<<<<<<< HEAD
+
 # FIXME c++14 checks are broken!
 if (CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR CMAKE_CXX_COMPILER_ID MATCHES "GNU")
     CHECK_CXX_COMPILER_FLAG("-std=c++14" HAS_CPP14_FLAG)
@@ -59,8 +59,6 @@ if (CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR CMAKE_CXX_COMPILER_ID MATCHES "GNU"
 endif()
 
 
-=======
->>>>>>> 2713964b8fa545ab1bd4e9dc9f4dd12c6be9ca36
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 set(CMAKE_CXX_STANDARD 14)
