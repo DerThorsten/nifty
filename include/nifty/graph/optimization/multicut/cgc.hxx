@@ -25,11 +25,12 @@
 #include "nifty/graph/undirected_list_graph.hxx"
 
 
-#include "nifty/max_cut_backend/max_cut_qpbo.hxx"
-
 
 namespace nifty{
 namespace graph{
+namespace optimization{
+namespace multicut{
+    
 
     /// \cond HIDDEN_SYMBOLS
     namespace detail_cgc{
@@ -48,7 +49,7 @@ namespace graph{
             typedef typename GraphType:: template EdgeMap<uint8_t> IsDirtyEdge;
 
 
-            typedef UndirectedGraph<>                         SubGraph;
+            typedef nifty::graph::UndirectedGraph<>           SubGraph;
             typedef MincutObjective<SubGraph, double>         MincutSubObjective;
             typedef MincutFactoryBase<MincutSubObjective>     MincutSubMcFactoryBase;
             typedef MincutBase<MincutSubObjective>            MincutSubBase;
@@ -392,7 +393,7 @@ namespace graph{
             uint64_t nLocalNodes_;
             uint64_t nLocalEdges_;
 
-            //nifty::max_cut_backend::MaxCutQpbo<float, float> maxCut_;
+
             nifty::ufd::Ufd<uint64_t> ufd_;
             IsDirtyEdge & isDirtyEdge_;
             std::shared_ptr<MincutSubMcFactoryBase> &  mincutFactory_;
@@ -1009,7 +1010,7 @@ namespace graph{
 
 
 
-
+} // namespace nifty::graph::optimization::multicut
+} // namespace nifty::graph::optimization
 } // namespace nifty::graph
 } // namespace nifty
-

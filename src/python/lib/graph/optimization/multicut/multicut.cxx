@@ -20,6 +20,7 @@ namespace graph{
     namespace optimization{
     namespace multicut{
         void exportMulticutIlp(py::module &);
+        void exportCgc(py::module &);
     }
     }
     void exportMulticutGreedyAdditive(py::module &);
@@ -29,9 +30,9 @@ namespace graph{
     //void exportMulticutAndres(py::module &);
     void exportChainedSolvers(py::module &);
     
-    #if WITH_QPBO
-    void exportCgc(py::module &);
-    #endif
+
+    
+   
     void exportBlockMulticut(py::module &);
     
     #if WITH_LP_MP
@@ -52,6 +53,7 @@ PYBIND11_PLUGIN(_multicut) {
     exportMulticutBase(multicutModule);
     exportMulticutFactory(multicutModule);
     nifty::graph::optimization::multicut::exportMulticutIlp(multicutModule);
+    nifty::graph::optimization::multicut::exportCgc(multicutModule);
     exportMulticutGreedyAdditive(multicutModule);
     exportFusionMoveBased(multicutModule);
     exportPerturbAndMap(multicutModule);
@@ -64,9 +66,6 @@ PYBIND11_PLUGIN(_multicut) {
     exportMulticutMp(multicutModule);
     #endif
     
-    #ifdef WITH_QPBO
-    exportCgc(multicutModule);
-    #endif
     
     return multicutModule.ptr();
 }

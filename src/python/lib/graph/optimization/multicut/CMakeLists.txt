@@ -14,16 +14,12 @@ SET(MOD_SOURCES
         perturb_and_map.cxx
         chained_solvers.cxx
         block_multicut.cxx
+        cgc.cxx
 )
 
-if(WITH_QPBO)
-    SET(MOD_LIBS    ${MOD_LIBS} external_qpbo)
-    SET(MOD_SOURCES ${MOD_SOURCES} cgc.cxx)
-endif(WITH_QPBO)
-
 if(WITH_LP_MP)
-    #SET(MOD_LIBS    ${MOD_LIBS} llgl)
-    #SET(MOD_SOURCES ${MOD_SOURCES} multicut_mp.cxx)
+    SET(MOD_LIBS    ${MOD_LIBS} llgl)
+    SET(MOD_SOURCES ${MOD_SOURCES} multicut_mp.cxx)
 endif(WITH_LP_MP)
 
 addPythonModule(

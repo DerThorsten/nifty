@@ -16,8 +16,11 @@ namespace py = pybind11;
 
 PYBIND11_DECLARE_HOLDER_TYPE(T, std::shared_ptr<T>);
 
+
 namespace nifty{
 namespace graph{
+namespace optimization{
+namespace multicut{
     
     template<class OBJECTIVE>
     void exportCgcT(py::module & multicutModule){
@@ -26,7 +29,7 @@ namespace graph{
         typedef typename Solver::Settings Settings;
         typedef MulticutFactory<Solver> Factory;
         const auto solverName = std::string("Cgc");
-        exportMulticutSolver<Solver>(multicutModule, solverName.c_str())
+        nifty::graph::exportMulticutSolver<Solver>(multicutModule, solverName.c_str())
             .def(py::init<>())
 
             .def_readwrite("doCutPhase", &Settings::doCutPhase)
@@ -55,5 +58,8 @@ namespace graph{
         }    
          
     }
-}
-}
+
+} // namespace nifty::graph::optimization::multicut
+} // namespace nifty::graph::optimization
+} // namespace nifty::graph
+} // namespace nifty
