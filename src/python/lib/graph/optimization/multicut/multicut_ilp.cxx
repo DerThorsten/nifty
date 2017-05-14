@@ -29,6 +29,8 @@ PYBIND11_DECLARE_HOLDER_TYPE(T, std::shared_ptr<T>);
 
 namespace nifty{
 namespace graph{
+namespace optimization{
+namespace multicut{
     
     template<class OBJECTIVE, class BACKEND>
     void exportMulticutIlpWithBackendT(py::module & multicutModule, const std::string & backendName){
@@ -42,7 +44,8 @@ namespace graph{
         typedef MulticutFactory<Solver> Factory;
         
         const auto solverName = std::string("MulticutIlp") + backendName;
-        exportMulticutSolver<Solver>(multicutModule, solverName.c_str())
+        // todo exportMulticutSolver should be in the correct namespace
+        nifty::graph::exportMulticutSolver<Solver>(multicutModule, solverName.c_str())
             .def(py::init<>())
             .def_readwrite("numberOfIterations", &Settings::numberOfIterations)
             .def_readwrite("verbose", &Settings::verbose)
@@ -89,5 +92,7 @@ namespace graph{
             exportMulticutIlpT<ObjectiveType>(multicutModule);
         }     
     }
-}
-}
+} // namespace nifty::graph::optimization::multicut
+} // namespace nifty::graph::optimization
+} // namespace nifty::graph
+} // namespace nifty
