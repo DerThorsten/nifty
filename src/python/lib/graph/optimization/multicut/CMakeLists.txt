@@ -9,7 +9,7 @@ SET(MOD_SOURCES
         multicut_ilp.cxx
         multicut_decomposer.cxx
         multicut_greedy_additive.cxx
-        #multicut_andres.cxx
+        multicut_andres.cxx
         fusion_move_based.cxx
         perturb_and_map.cxx
         chained_solvers.cxx
@@ -18,7 +18,7 @@ SET(MOD_SOURCES
 )
 
 if(WITH_LP_MP)
-    SET(MOD_LIBS    ${MOD_LIBS} llgl)
+    #SET(MOD_LIBS    ${MOD_LIBS} llgl)
     SET(MOD_SOURCES ${MOD_SOURCES} multicut_mp.cxx)
 endif(WITH_LP_MP)
 
