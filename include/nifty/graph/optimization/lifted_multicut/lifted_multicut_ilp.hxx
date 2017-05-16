@@ -1,8 +1,5 @@
 #pragma once
-#ifndef NIFTY_GRAPH_OPTIMIZATION_LIFTED_MULTICUT_LIFTED_MULTICUT_ILP_HXX
-#define NIFTY_GRAPH_OPTIMIZATION_LIFTED_MULTICUT_LIFTED_MULTICUT_ILP_HXX
 
-#include "nifty/logging/logging.hxx"
 #include "nifty/tools/runtime_check.hxx"
 #include "nifty/graph/components.hxx"
 #include "nifty/graph/paths.hxx"
@@ -495,4 +492,3 @@ namespace lifted_multicut{
 } // namespace nifty::graph
 } // namespace nifty
 
-#endif  // NIFTY_GRAPH_OPTIMIZATION_MULTICUT_MULTICUT_ILP_HXX

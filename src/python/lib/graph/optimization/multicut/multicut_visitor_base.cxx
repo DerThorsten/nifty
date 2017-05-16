@@ -5,10 +5,14 @@
 #include "nifty/graph/optimization/multicut/multicut_base.hxx"
 #include "nifty/graph/optimization/multicut/multicut_visitor_base.hxx"
 
+#include "nifty/graph/optimization/multicut/multicut_visitor_base.hxx"
+
+
 #include "nifty/python/graph/undirected_list_graph.hxx"
 #include "nifty/python/graph/edge_contraction_graph.hxx"
 #include "nifty/python/graph/optimization/multicut/multicut_objective.hxx"
 #include "nifty/python/graph/optimization/multicut/py_multicut_visitor_base.hxx"
+#include "nifty/graph/optimization/common/logging_visitor.hxx"
 
 #include "nifty/python/converter.hxx"
 
@@ -28,53 +32,73 @@ namespace graph{
     //PYBIND11_DECLARE_HOLDER_TYPE(McBase, std::shared_ptr<McBase>);
 
     template<class OBJECTIVE>
-    void exportMulticutVisitorBaseT(py::module & multicutModule) {
+    void exportMulticutVisitorBaseT(py::module & module) {
 
-        typedef OBJECTIVE ObjectiveType;
-        typedef PyMulticutVisitorBase<ObjectiveType> PyMcVisitorBase;
-        typedef MulticutVisitorBase<ObjectiveType> McVisitorBase;
+        typedef OBJECTIVE                               ObjectiveType;
+        typedef MulticutBase<ObjectiveType>             SolverBaseType;
+        typedef PyMulticutVisitorBase<ObjectiveType>    PyVisitorBaseType;
+        typedef MulticutVisitorBase<ObjectiveType>      VisitorBaseType;
 
         
         const auto objName = MulticutObjectiveName<ObjectiveType>::name();
-        const auto mcVisitorBaseClsName = std::string("MulticutVisitorBase") + objName;
-        const auto mcVerboseVisitorClsName = std::string("MulticutVerboseVisitor") + objName;
+        const auto visitorBaseClsName = std::string("VisitorBase") + objName;
+        
 
         // base factory
         py::class_<
-            McVisitorBase, 
-            std::unique_ptr<McVisitorBase>, 
-            PyMcVisitorBase 
-        > mcVisitorBase(multicutModule, mcVisitorBaseClsName.c_str());
+            VisitorBaseType,
+            std::unique_ptr<VisitorBaseType>, 
+            PyVisitorBaseType 
+        > visitorBase(module, visitorBaseClsName.c_str());
         
-        //mcVisitorBase
-        //;
-
+   
 
         // concrete visitors
         
+        {
+            const auto visitorClsName = std::string("VerboseVisitor") + objName;
+            typedef MulticutVerboseVisitor<ObjectiveType> VisitorType; 
+            py::class_<VisitorType, std::unique_ptr<VisitorType> >(module, visitorClsName.c_str(),  visitorBase)
+                .def(py::init<const int, const double , const double>(),
+                    py::arg_t<int>("visitNth",1),
+                    py::arg_t<double>("timeLimitSolver",std::numeric_limits<double>::infinity()),
+                    py::arg_t<double>("timeLimitTotal",std::numeric_limits<double>::infinity())
+                )
+                .def("stopOptimize",&VisitorType::stopOptimize)
+            ;
+        }
 
-        typedef MulticutVerboseVisitor<ObjectiveType> McVerboseVisitor; 
-        
-        py::class_<McVerboseVisitor, std::unique_ptr<McVerboseVisitor> >(multicutModule, mcVerboseVisitorClsName.c_str(),  mcVisitorBase)
-            .def(py::init<const int, const double>(),
-                py::arg_t<int>("printNth",1),
-                py::arg_t<double>("timeLimit",std::numeric_limits<double>::infinity())
-            )
-            .def("stopOptimize",&McVerboseVisitor::stopOptimize)
-        ;
+
+        {
+            const auto visitorName = std::string("LogginVisitor") + objName;
+            typedef nifty::graph::optimization::common::LogginVisitor<SolverBaseType> VisitorType;
+
+            py::class_<VisitorType, std::unique_ptr<VisitorType> >(module, visitorName.c_str(),  visitorBase)
+                .def(py::init<const int, const bool, const double, const double>(),
+                    py::arg_t<int>("visitNth",1),
+                    py::arg_t<bool>("verbose",true),
+                    py::arg_t<double>("timeLimitSolver",std::numeric_limits<double>::infinity()),
+                    py::arg_t<double>("timeLimitTotal",std::numeric_limits<double>::infinity())
+                )
+                .def("stopOptimize",&VisitorType::stopOptimize)
+            ;
+
+        }
+
+
     }
 
-    void exportMulticutVisitorBase(py::module & multicutModule) {
+    void exportMulticutVisitorBase(py::module & module) {
 
         {
             typedef PyUndirectedGraph GraphType;
             typedef MulticutObjective<GraphType, double> ObjectiveType;
-            exportMulticutVisitorBaseT<ObjectiveType>(multicutModule);
+            exportMulticutVisitorBaseT<ObjectiveType>(module);
         }
         {
             typedef PyContractionGraph<PyUndirectedGraph> GraphType;
             typedef MulticutObjective<GraphType, double> ObjectiveType;
-            exportMulticutVisitorBaseT<ObjectiveType>(multicutModule);
+            exportMulticutVisitorBaseT<ObjectiveType>(module);
         }
     }      
 

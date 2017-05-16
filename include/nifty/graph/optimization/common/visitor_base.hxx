@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_GRAPH_OPTIMIZATION_VISITOR_BASE_HXX
-#define NIFTY_GRAPH_OPTIMIZATION_VISITOR_BASE_HXX
 
 #include <string>
 #include <initializer_list>
@@ -312,9 +310,7 @@ namespace common{
 
 
 
-}
-}
-}
-}
-
-#endif // NIFTY_GRAPH_OPTIMIZATION_VISITOR_BASE_HXX
+} // namespace nifty::graph::optimization::common
+} // namespacen ifty::graph::optimization
+} // namespace nifty::graph
+} // namespace nifty

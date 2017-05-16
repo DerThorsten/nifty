@@ -300,19 +300,19 @@ namespace lifted_multicut{
     optimize(
         NodeLabels & nodeLabels,  VisitorBase * visitor
     ){
-        //VisitorProxy visitorProxy(visitor);
+        VisitorProxy visitorProxy(visitor);
         // set starting point as current best
         currentBest_ = &nodeLabels;
         
         // TODO for now the visitor is doing nothing, but we should implement one, that is
         // compatible with lp_mp visitor
-        //visitorProxy.begin(this);
+        visitorProxy.begin(this);
         
         if(graph_.numberOfEdges()>0){
             mpSolver_->Solve();
             nodeLabeling();
         }
-        //visitorProxy.end(this);
+        visitorProxy.end(this);
     }
 
 

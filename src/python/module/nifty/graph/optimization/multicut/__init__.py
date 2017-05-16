@@ -44,14 +44,23 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
 
     O = objectiveCls
 
-    def multicutVerboseVisitor(visitNth=1,timeLimit=None):
-        V = getMcCls("MulticutVerboseVisitor")
-        if timeLimit is not None:
-            return V(visitNth,timeLimit)
-        else:
-            return V(visitNth)
-    O.multicutVerboseVisitor = staticmethod(multicutVerboseVisitor)
-    O.verboseVisitor = staticmethod(multicutVerboseVisitor)
+    def verboseVisitor(visitNth=1,timeLimitSolver=float('inf'), 
+                       timeLimitTotal=('inf')):
+        V = getMcCls("VerboseVisitor")
+        return V(visitNth,timeLimitSolver,timeLimitTotal)
+    O.verboseVisitor = staticmethod(verboseVisitor)
+
+
+    def logginVisitor(visitNth=1,verbose=True,timeLimitSolver=float('inf'),
+                      timeLimitTotal=('inf')):
+        V = getMcCls("VerboseVisitor")
+        return V(visitNth=int(visitNth),
+                verbose=bool(verose)
+                timeLimitSolver=float(timeLimitSolver),
+                timeLimitTotal=float(timeLimitTotal))
+    O.logginVisitor = staticmethod(logginVisitor)
+
+
 
     def greedyAdditiveProposals(sigma=1.0, weightStopCond=0.0, nodeNumStopCond=-1.0):
         s = getSettings('FusionMoveBasedGreedyAdditiveProposalGen')

@@ -10,7 +10,6 @@ namespace graph{
 namespace lifted_multicut{
 
     void exportLiftedMulticutObjective(py::module &);
-    void exportLearnableLiftedMulticutObjective(py::module &);
     void exportLiftedMulticutFactory(py::module &);
     void exportLiftedMulticutVisitorBase(py::module &);
     void exportLiftedMulticutBase(py::module &);
@@ -35,7 +34,6 @@ PYBIND11_PLUGIN(_lifted_multicut) {
     using namespace nifty::graph::lifted_multicut;
 
     exportLiftedMulticutObjective(liftedMulticutModule);
-    exportLearnableLiftedMulticutObjective(liftedMulticutModule);
     exportLiftedMulticutVisitorBase(liftedMulticutModule);
     exportLiftedMulticutBase(liftedMulticutModule);
     exportLiftedMulticutFactory(liftedMulticutModule);
