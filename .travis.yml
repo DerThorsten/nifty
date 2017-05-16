@@ -46,6 +46,8 @@ install:
 
 script:
   # Your test script goes here
+  - export PATH="$HOME/miniconda/bin:$PATH"
+  - source activate dev
   - export ENV_ROOT="$HOME/miniconda/envs/dev"
   - export ENV_INCLUDE="$ENV_ROOT/include"
   - export ENV_BIN="$ENV_ROOT/bin"
