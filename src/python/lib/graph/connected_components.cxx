@@ -48,7 +48,9 @@ namespace graph{
             py::return_value_policy::take_ownership,
             py::keep_alive<0, 1>(),
             py::arg("graph")
-        )
+        );
+        
+        componentsPyCls
         .def("build",[](ComponentsType & self){
             self.build();
         })
