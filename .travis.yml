@@ -40,7 +40,7 @@ install:
   # Replace dep1 dep2 ... with your dependencies
   - conda create -q -n dev python=$TRAVIS_PYTHON_VERSION numpy nose boost
   - source activate dev
-  - conda install -c rdonnelly gcc-6=6.1.0
+  - conda install -c rdonnelly gcc-6=6.1.0 -v
 
   #- python setup.py install
 
