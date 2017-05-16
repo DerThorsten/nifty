@@ -14,7 +14,7 @@ set (NIFTY_VERSION_STR "${NIFTY_VERSION_MAJOR}.${NIFTY_VERSION_MINOR}.${NIFTY_VE
 include(CheckCXXCompilerFlag)
 
 
-option(WITH_BOOST_COMPUTE OFF)
+
 option(WITH_GUROBI OFF)
 option(WITH_CPLEX OFF)
 option(WITH_GLPK OFF)
@@ -32,15 +32,23 @@ option(BUILD_DOCS ON)
 option(BUILD_CPP_EXAMPLES ON)
 option(BUILD_PYTHON_DOCS "Build the Python documentation with Sphinx" OFF)
 
+option(REMOVE_SOME_WARNINGS "Remove some annoying warnings" ON)
 
-
-
-add_definitions(-Wno-attributes)
-# vigra uses old stuff....
-add_definitions(-Wno-deprecated-declarations)
-# cplex
-add_definitions(-Wno-ignored-attributes)
-
+# from externals..
+if(REMOVE_SOME_WARNINGS)
+    add_definitions(-Wno-attributes)
+    # vigra uses old stuff....
+    add_definitions(-Wno-deprecated-declarations)
+    if(WITH_CPLEX)
+        # cplex
+        add_definitions(-Wno-ignored-attributes)
+    endif()
+    if(WITH_LP_MP)
+        add_definitions(-Wno-non-template-friend)
+        add_definitions(-Wno-terminate)
+        add_definitions(-Wno-write-strings)
+    endif()
+endif()
 #-------------------------------------------------------------------------------------------------------------------
 # check for c++ 14 support
 #-------------------------------------------------------------------------------------------------------------------
@@ -52,23 +60,27 @@ if (CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR CMAKE_CXX_COMPILER_ID MATCHES "GNU"
     if (HAS_CPP14_FLAG)
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
     elseif (HAS_CPP11_FLAG)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
     else()
         message(FATAL_ERROR "Unsupported compiler -- nifty  requires C++11 support!")
     endif()
 endif()
 
+# WITH_LP_MP needs special treatment since
+# it requires C++ 14 and used OpenMP
+if(WITH_LP_MP)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
+    set(CMAKE_CXX_STANDARD 14)
+    set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+    find_package(OpenMP)
+    if (OPENMP_FOUND)
+        set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
+        set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
+    endif()
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
-set(CMAKE_CXX_STANDARD 14)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-find_package(OpenMP)
-if (OPENMP_FOUND)
-    set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
-    set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
 endif()
+
 
 #-------------------------------------------------------------------------------------------------------------------
 # Set a default build configuraton if none is specified. 'MinSizeRel' produces the smallest binaries
@@ -126,19 +138,6 @@ if(WITH_HDF5)
     add_definitions(-DWITH_HDF5)
 endif()
 
-if(WITH_BOOST_COMPUTE)
-    #----------------------------------------------------------------------------------------------------------------
-    # find OpenGL
-    #----------------------------------------------------------------------------------------------------------------
-    find_package(OpenCL REQUIRED)
-    include_directories(${OpenCL_INCLUDE_DIRS})
-
-    #----------------------------------------------------------------------------------------------------------------
-    # find BOOST_COMPUTE
-    #----------------------------------------------------------------------------------------------------------------
-    find_package(BOOST_COMPUTE REQUIRED)
-    include_directories(${BOOST_COMPUTE_INCLUDE_DIR})
-endif()
 
 
 #-------------------------------------------------------------------------------------------------------------------

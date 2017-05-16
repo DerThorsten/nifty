@@ -13,7 +13,7 @@ SET(MOD_SOURCES
         fusion_move_based.cxx
         perturb_and_map.cxx
         chained_solvers.cxx
-        block_multicut.cxx
+        #block_multicut.cxx
         cgc.cxx
 )
 

@@ -79,6 +79,7 @@ inline void Timer::start(){
     timeObject_ = std::chrono::high_resolution_clock::now();
 }
 
+// todo rename me
 inline Timer &  Timer::stop(){
     typedef std::chrono::duration<double> DDouble;
     seconds_ += std::chrono::duration_cast<DDouble>(std::chrono::high_resolution_clock::now() - timeObject_).count();
