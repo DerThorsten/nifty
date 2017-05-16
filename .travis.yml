@@ -1,6 +1,20 @@
 language: python
 dist: trusty
 sudo: required
+
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+      - deadsnakes
+      #- boost-latest/ppa
+      #- george-edison55/precise-backports #cmake-3.x
+      #- kubuntu-backports # cmake 2.8.12
+    packages:
+      - cmake
+      ## 
+
+
 python:
   # We don't actually use the Travis Python, but this keeps it organized.
   - "2.7"
