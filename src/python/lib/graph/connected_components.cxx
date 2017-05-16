@@ -32,6 +32,25 @@ namespace graph{
             }
             return ccLabels;
         });
+
+        typedef GRAPH GraphType;
+        typedef ComponentsUfd<GraphType> ComponentsType;
+        const auto clsName = std::string("Components") + GraphName<GraphType>::name();
+        auto componentsPyCls = py::class_<ComponentsType>(module, clsName.c_str());
+
+        
+        module.def("components",
+            [](
+                const GraphType & graph
+            ){
+                return new ComponentsType(graph);
+            },
+            py::return_value_policy::take_ownership,
+            py::keep_alive<0, 1>(),
+            py::arg("graph")
+        );
+
+
     }
 
     void exportConnectedComponents(py::module & module) {
