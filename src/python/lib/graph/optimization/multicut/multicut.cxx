@@ -17,6 +17,8 @@ namespace graph{
     void exportMulticutVisitorBase(py::module &);
     void exportMulticutBase(py::module &);
 
+    // we are currently  refactoring in little 
+    // pieces: optimization::multicut is the new cool namespace
     namespace optimization{
     namespace multicut{
         void exportMulticutIlp(py::module &);
@@ -30,10 +32,6 @@ namespace graph{
     void exportMulticutAndres(py::module &);
     void exportChainedSolvers(py::module &);
     
-
-    
-   
-    void exportBlockMulticut(py::module &);
     
     #if WITH_LP_MP
     void exportMulticutMp(py::module &);
@@ -60,7 +58,7 @@ PYBIND11_PLUGIN(_multicut) {
     exportMulticutDecomposer(multicutModule);
     exportMulticutAndres(multicutModule);
     exportChainedSolvers(multicutModule);
-    exportBlockMulticut(multicutModule);
+
     
     #ifdef WITH_LP_MP
     exportMulticutMp(multicutModule);

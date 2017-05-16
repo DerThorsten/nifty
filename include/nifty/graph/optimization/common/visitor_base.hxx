@@ -8,12 +8,13 @@
 #include <iostream>
 #include <chrono>
 
+#include "nifty/tools/timer.hxx"
 #include "nifty/tools/logging.hxx"
 
 namespace nifty {
 namespace graph {
 namespace optimization{
-
+namespace common{
 
 
 
@@ -47,7 +48,7 @@ namespace optimization{
     };
 
 
-
+    /*
     template<class SOLVER> 
     class VerboseVisitor : public VisitorBase<SOLVER>{
     public:
@@ -141,7 +142,110 @@ namespace optimization{
             }
         }
     };
+    */
 
+    template<class SOLVER> 
+    class VerboseVisitor : public VisitorBase<SOLVER>{
+    public:
+        typedef SOLVER SolverType;
+        typedef nifty::tools::Timer TimerType;
+
+        VerboseVisitor(
+            const int printNth = 1, 
+            const double timeLimitSolver = std::numeric_limits<double>::infinity(),
+            const double timeLimitTotal = std::numeric_limits<double>::infinity()
+        )
+        :   printNth_(printNth),
+            runOpt_(true),
+            iter_(1),
+            timeLimitSolver_(timeLimitSolver),
+            timeLimitTotal_(timeLimitTotal),
+            runtimeSolver_(0.0),
+            runtimeTotal_(0.0)
+        {}
+
+        virtual void begin(SolverType * ) {
+            std::cout<<"begin inference\n";
+            timerSolver_.start();
+            timerTotal_.start();
+        }
+        
+        virtual bool visit(SolverType * solver) {
+            timerSolver_.stop();
+            timerTotal_.stop();
+            runtimeTotal_  += timerTotal_.elapsedSeconds();
+            timerTotal_.reset().start();
+            runtimeSolver_ += timerSolver_.elapsedSeconds();           
+            if(iter_%printNth_ == 0){
+                std::stringstream ss;
+                ss << "E: " << solver->currentBestEnergy() << " ";
+                ss << "t[s]: " << runtimeSolver_ << " ";
+                ss << "/ " << runtimeTotal_ << " ";
+                for(size_t i=0; i<logNames_.size(); ++i){
+                    ss<<logNames_[i]<<" "<<logValues_[i]<<" ";
+                }
+                ss<<"\n";
+                std::cout<<ss.str();
+            }
+            checkRuntime();
+            ++iter_;
+            timerSolver_.reset().start();
+            return runOpt_;
+        }
+        
+        virtual void end(SolverType * )   {
+            std::cout<<"end inference\n";
+            timerSolver_.stop();
+        }
+        
+        virtual void clearLogNames(){
+            logNames_.clear();
+            logValues_.clear();
+        }
+        virtual void addLogNames(std::initializer_list<std::string> logNames){
+            logNames_.assign(logNames.begin(), logNames.end());
+            logValues_.resize(logNames.size());
+        }
+        
+        virtual void setLogValue(const size_t logIndex, double logValue){
+            logValues_[logIndex] = logValue;
+        }
+
+        virtual void printLog(const nifty::logging::LogLevel logLevel, const std::string & logString){
+            std::cout<<"LOG["<<int(logLevel)<<"]: "<<logString<<"\n";
+        }
+
+        void stopOptimize(){
+            runOpt_ = false;
+        }
+    
+    private:
+        bool runOpt_;
+        int printNth_;
+        int iter_;
+        
+        double timeLimitTotal_;
+        double timeLimitSolver_;
+        double runtimeSolver_;
+        double runtimeTotal_;
+        TimerType timerSolver_;
+        TimerType timerTotal_;
+        std::vector<std::string> logNames_;
+        std::vector<double> logValues_;
+
+        inline void checkRuntime() {
+            if(runtimeSolver_ > timeLimitSolver_) {
+                std::cout << runtimeSolver_ << " " << timeLimitSolver_ << std::endl;
+                std::cout << "Inference has exceeded solver time limit and is stopped \n";
+                runOpt_ = false;
+            }
+            if(runtimeTotal_ > timeLimitTotal_) {
+                std::cout << runtimeTotal_ << " " << timeLimitTotal_ << std::endl;
+                std::cout << "Inference has exceeded total time limit and is stopped \n";
+                runOpt_ = false;
+            }
+        }
+    };
 
 
     template<class SOLVER> 
@@ -216,7 +320,7 @@ namespace optimization{
 
 
 
-
+}
 }
 }
 }

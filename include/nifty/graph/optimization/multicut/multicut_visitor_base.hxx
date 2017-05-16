@@ -1,12 +1,11 @@
 #pragma once
-#ifndef NIFTY_GRAPH_OPTIMIZATION_MULTICUT_MULTICUT_VISITOR_BASE_HXX
-#define NIFTY_GRAPH_OPTIMIZATION_MULTICUT_MULTICUT_VISITOR_BASE_HXX
 
 #include <string>
 #include <initializer_list>
 #include <sstream>
 
-#include "nifty/graph/optimization/visitor_base.hxx"
+#include "nifty/graph/optimization/common/visitor_base.hxx"
+
 
 namespace nifty {
 namespace graph {
@@ -16,19 +15,18 @@ namespace graph {
     class MulticutBase;
 
     template<class OBJECTIVE>
-    using MulticutVisitorBase = optimization::VisitorBase< MulticutBase<OBJECTIVE> >;
+    using MulticutVisitorBase = nifty::graph::optimization::common::VisitorBase< MulticutBase<OBJECTIVE> >;
 
     template<class OBJECTIVE>
-    using MulticutVerboseVisitor = optimization::VerboseVisitor< MulticutBase<OBJECTIVE> >;
+    using MulticutVerboseVisitor = nifty::graph::optimization::common::VerboseVisitor< MulticutBase<OBJECTIVE> >;
 
     template<class OBJECTIVE>
-    using MulticutEmptyVisitor = optimization::EmptyVisitor< MulticutBase<OBJECTIVE> >;
+    using MulticutEmptyVisitor = nifty::graph::optimization::common::EmptyVisitor< MulticutBase<OBJECTIVE> >;
 
     template<class OBJECTIVE>
-    using MulticutVisitorProxy = optimization::VisitorProxy< MulticutBase<OBJECTIVE> >;
+    using MulticutVisitorProxy = nifty::graph::optimization::common::VisitorProxy< MulticutBase<OBJECTIVE> >;
 
 
 } // namespace graph
 } // namespace nifty
 
-#endif // #ifndef NIFTY_GRAPH_OPTIMIZATION_MULTICUT_MULTICUT_VISITOR_BASE_HXX

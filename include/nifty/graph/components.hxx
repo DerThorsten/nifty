@@ -129,6 +129,9 @@ public:
     
     }
 
+    const Graph & graph()const{
+        return graph_;
+    }
 
 
 
