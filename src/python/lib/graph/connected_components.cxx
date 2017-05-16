@@ -48,7 +48,28 @@ namespace graph{
             py::return_value_policy::take_ownership,
             py::keep_alive<0, 1>(),
             py::arg("graph")
-        );
+        )
+        .def("build",[](ComponentsType & self){
+            self.build();
+        })
+        .def("buildFromNodeLabels",[](
+            ComponentsType & self,
+            nifty::marray::PyView<uint64_t,1> labels
+        ){
+            self.buildFromLabels(labels);
+        })
+        .def("componentLabels",[](
+            ComponentsType & self
+        ){
+            const auto & g = self.graph();
+            const size_t size = g.nodeIdUpperBound()+1;
+            nifty::marray::PyView<uint64_t> ccLabels({size});
+            for(const auto node : g.nodes()){
+                ccLabels[node] = self.componentLabel(node);
+            }
+            return ccLabels;
+        })
+        ;
 
 
     }
