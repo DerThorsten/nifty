@@ -80,7 +80,7 @@ class TestLiftedMulticutSolver(unittest.TestCase):
         g.insertEdge(0, 1) # 0
         g.insertEdge(0, 3) # 1
         g.insertEdge(1, 2) # 2
-        g.insertEdge(1, 4) # 3
+        g.insertEdge(1, 4) # 
         g.insertEdge(3, 4) # 4
 
         obj = nifty.graph.lifted_multicut.liftedMulticutObjective(g)

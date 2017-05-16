@@ -1,9 +1,13 @@
 from __future__ import absolute_import
 from ._graph import *
-from .. import Configuration
 
-from . import multicut
-from . import lifted_multicut
+from .. import Configuration
+from . import optimization
+
+from . optimization import multicut
+from . optimization import lifted_multicut
+from . optimization import mincut
+
 from . import rag
 
 import numpy
@@ -23,12 +27,14 @@ ilpSettings = multicut.ilpSettings
 
 
 # multicut objective
-UndirectedGraph.MulticutObjective = multicut.MulticutObjectiveUndirectedGraph
-UndirectedGraph.EdgeContractionGraph = EdgeContractionGraphUndirectedGraph
+UndirectedGraph.MulticutObjective                     = multicut.MulticutObjectiveUndirectedGraph
+UndirectedGraph.EdgeContractionGraph                  = EdgeContractionGraphUndirectedGraph
 EdgeContractionGraphUndirectedGraph.MulticutObjective = multicut.MulticutObjectiveEdgeContractionGraphUndirectedGraph
 
 
-
+UndirectedGraph.MincutObjective                     = mincut.MincutObjectiveUndirectedGraph
+UndirectedGraph.EdgeContractionGraph                  = EdgeContractionGraphUndirectedGraph
+EdgeContractionGraphUndirectedGraph.MincutObjective = mincut.MincutObjectiveEdgeContractionGraphUndirectedGraph
 
 
 # lifted multicut objective

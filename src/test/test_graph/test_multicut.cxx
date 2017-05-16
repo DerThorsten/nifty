@@ -68,7 +68,7 @@ BOOST_AUTO_TEST_CASE(RandomizedMulticutTest)
     {
         std::cout<<"opt gurobi \n";
         typedef nifty::ilp_backend::Gurobi IlpSolver;
-        typedef nifty::graph::MulticutIlp<Objective, IlpSolver> Solver;
+        typedef nifty::graph::optimization::multicut::MulticutIlp<Objective, IlpSolver> Solver;
         typedef typename Solver::NodeLabels NodeLabels;
         // optimize 
         Solver solver(objective);
@@ -85,7 +85,7 @@ BOOST_AUTO_TEST_CASE(RandomizedMulticutTest)
     {
         std::cout<<"opt cplex \n";
         typedef nifty::ilp_backend::Cplex IlpSolver;
-        typedef nifty::graph::MulticutIlp<Objective, IlpSolver> Solver;
+        typedef nifty::graph::optimization::multicut::MulticutIlp<Objective, IlpSolver> Solver;
         typedef typename Solver::NodeLabels NodeLabels;
         // optimize 
         Solver solver(objective);
@@ -102,7 +102,7 @@ BOOST_AUTO_TEST_CASE(RandomizedMulticutTest)
     {
         std::cout<<"opt glpk \n";
         typedef nifty::ilp_backend::Glpk IlpSolver;
-        typedef nifty::graph::MulticutIlp<Objective, IlpSolver> Solver;
+        typedef nifty::graph::optimization::multicut::MulticutIlp<Objective, IlpSolver> Solver;
         typedef typename Solver::NodeLabels NodeLabels;
         // optimize 
         Solver solver(objective);
@@ -183,7 +183,7 @@ BOOST_AUTO_TEST_CASE(SimpleMulticutTest)
     {
         std::cout<<"opt gurobi \n";
         typedef nifty::ilp_backend::Gurobi IlpSolver;
-        typedef nifty::graph::MulticutIlp<Objective, IlpSolver> Solver;
+        typedef nifty::graph::optimization::multicut::MulticutIlp<Objective, IlpSolver> Solver;
         
         typedef typename Solver::NodeLabels NodeLabels;
         Solver solver(objective);
@@ -207,7 +207,7 @@ BOOST_AUTO_TEST_CASE(SimpleMulticutTest)
     {
         std::cout<<"opt cplex \n";
         typedef nifty::ilp_backend::Cplex IlpSolver;
-        typedef nifty::graph::MulticutIlp<Objective, IlpSolver> Solver;
+        typedef nifty::graph::optimization::multicut::MulticutIlp<Objective, IlpSolver> Solver;
         typedef typename Solver::NodeLabels NodeLabels;
 
 
@@ -232,7 +232,7 @@ BOOST_AUTO_TEST_CASE(SimpleMulticutTest)
     {
         std::cout<<"opt glpk \n";
         typedef nifty::ilp_backend::Glpk IlpSolver;
-        typedef nifty::graph::MulticutIlp<Objective, IlpSolver> Solver;
+        typedef nifty::graph::optimization::multicut::MulticutIlp<Objective, IlpSolver> Solver;
         typedef typename Solver::NodeLabels NodeLabels;
 
 

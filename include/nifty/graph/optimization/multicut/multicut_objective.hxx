@@ -50,6 +50,7 @@ namespace graph{
     {   
     public:
         typedef GRAPH Graph;
+        typedef Graph GraphType;
         typedef WEIGHT_TYPE WeightType;
         typedef graph_maps::EdgeMap<Graph, WeightType> WeightsMap;
         MulticutObjective(const Graph & g )

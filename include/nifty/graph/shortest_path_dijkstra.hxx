@@ -53,14 +53,15 @@ namespace graph{
         
         // run single source multiple targets
         // no  callback no mask exposed
-        template<class EDGE_WEIGHTS>
+        template<class EDGE_WEGIHTS>
         void runSingleSourceMultiTarget(
-            const EDGE_WEIGHTS & edgeWeights,
+            const EDGE_WEGIHTS & edgeWeights,
             const int64_t source,
             const std::vector<int64_t> & targets
         ){
             // subgraph mask
             DefaultSubgraphMask<Graph> subgraphMask;
+            
             // visitor
             size_t trgtsFound = 0;
             auto visitor = [&targets, &trgtsFound]

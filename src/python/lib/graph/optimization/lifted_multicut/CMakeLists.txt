@@ -1,0 +1,22 @@
+
+addPythonModule(
+    NESTED_NAME 
+        nifty/graph/optimization/lifted_multicut  
+    SOURCES
+        lifted_multicut.cxx
+        lifted_multicut_objective.cxx
+        learnable_lifted_multicut_objective.cxx
+        lifted_multicut_visitor_base.cxx
+        lifted_multicut_base.cxx
+        lifted_multicut_factory.cxx
+        lifted_multicut_greedy_additive.cxx
+        lifted_multicut_kernighan_lin.cxx
+        lifted_multicut_ilp.cxx
+        lifted_multicut_mp.cxx
+        #lifted_multicut_andres_kernighan_lin.cxx
+        lifted_multicut_andres_greedy_additive.cxx
+        fusion_move_based.cxx
+        lifted_graph_features.cxx
+    LIBRRARIES
+        ${NIFTY_LP_SOLVER_LIBS}
+)

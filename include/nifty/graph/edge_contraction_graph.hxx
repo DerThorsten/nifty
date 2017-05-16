@@ -283,6 +283,12 @@ namespace graph{
         uint64_t findRepresentativeNode(const uint64_t node){
             return cgraph_.findRepresentativeNode(node);
         }
+        uint64_t findRepresentativeEdge(const uint64_t edge)const{
+            return cgraph_.findRepresentativeEdge(edge);
+        }
+        uint64_t findRepresentativeEdge(const uint64_t edge){
+            return cgraph_.findRepresentativeEdge(edge);
+        }
         uint64_t nodeOfDeadEdge(const uint64_t deadEdge)const{
             NIFTY_ASSERT(innerCallback_.edgesSet_.find(deadEdge)==innerCallback_.edgesSet_.end());
             return cgraph_.nodeOfDeadEdge(deadEdge);
@@ -412,6 +418,9 @@ namespace graph{
         uint64_t findRepresentativeNode(const uint64_t node);
         uint64_t nodeOfDeadEdge(const uint64_t deadEdge)const;
             
+        const NodeUfdType & nodeUfd()const{
+            return nodeUfd_;
+        }
 
     private:
 

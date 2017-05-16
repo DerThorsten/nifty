@@ -14,7 +14,7 @@ def testMala():
 
 
 
-    s = 10
+    s = 1000
     g =  nifty.graph.UndirectedGraph(s*s)
 
     def node(x,y):

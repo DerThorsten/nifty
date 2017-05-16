@@ -67,7 +67,7 @@ def testBlocking2d():
     assert_equals(blocks[0].end,  [3,3])
 
 
-    print blocksWithHalo[0].outerBlock
+
 
     assert_equals(blocksWithHalo[0].innerBlock.begin,[0,0])
     assert_equals(blocksWithHalo[0].innerBlock.end,  [3,3])
