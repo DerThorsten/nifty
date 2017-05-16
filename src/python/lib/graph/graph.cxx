@@ -13,8 +13,7 @@ namespace graph{
     void exportUndirectedListGraph(py::module &);
     void exportEdgeContractionGraphUndirectedGraph(py::module & );
     void exportShortestPathDijkstra(py::module &);
-
-
+    void exportConnectedComponents(py::module &);
 
 }
 }
