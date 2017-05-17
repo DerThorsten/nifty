@@ -63,7 +63,7 @@ script:
           -DBoost_INCLUDE_DIR=$ENV_INCLUDE 
           -DCMAKE_CXX_COMPILER=$ENV_BIN/g++ 
           -PYTHON_MODULE_INSTALL_DIR=/home/travis/miniconda/envs/dev/lib/python$TRAVIS_PYTHON_VERSION/site-packages/
-          
+
   - make -j 2
   - sudo make install
   - cd src/python/test
@@ -74,3 +74,5 @@ script:
   - nosetests  graph/multicut/*.py
   - nosetests  graph/mincut/*.py
   - nosetests  graph/agglo/*.py
+  - nosetests  hdf5/*.py
+  - nosetests  tools/*.py
