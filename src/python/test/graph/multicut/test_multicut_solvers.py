@@ -45,14 +45,37 @@ class TestLiftedMulticutSolver(unittest.TestCase):
         
         return obj
 
-    if nifty.Configuration.WITH_QPBO:
-        
-        def testCgc(self):
 
+    def _testGridModelImpl(self, factory, gridSize=[6,6]):
+
+        objective = self.gridModel(gridSize=gridSize)
+
+        # with verbose visitor
+        solver = factory.create(objective)
+        visitor = objective.verboseVisitor(1000)
+        arg = solver.optimize(visitor)
+
+        # without any visitor
+        solver = factory.create(objective)
+        arg = solver.optimize()
+
+
+
+    if nifty.Configuration.WITH_QPBO:
+        def testCgc(self):
             objective = self.gridModel(gridSize=[6,6])
             solver = objective.cgcFactory(True,True).create(objective)
             visitor = objective.verboseVisitor(3)
             arg = solver.optimize(visitor)
+
+
+    def testGreedyAdditive(self):
+
+        Obj = nifty.graph.UndirectedGraph.MulticutObjective
+        self._testGridModelImpl(Obj.greedyAdditiveFactory(), gridSize=[6,6])
+
+
+
 
 
 

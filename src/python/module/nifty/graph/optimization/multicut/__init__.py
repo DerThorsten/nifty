@@ -45,9 +45,9 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
     O = objectiveCls
 
     def verboseVisitor(visitNth=1,timeLimitSolver=float('inf'), 
-                       timeLimitTotal=('inf')):
+                       timeLimitTotal=float('inf')):
         V = getMcCls("VerboseVisitor")
-        return V(visitNth,timeLimitSolver,timeLimitTotal)
+        return V(int(visitNth),float(timeLimitSolver),float(timeLimitTotal))
     O.verboseVisitor = staticmethod(verboseVisitor)
 
 
