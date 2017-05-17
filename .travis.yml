@@ -37,8 +37,7 @@ install:
   # Useful for debugging any issues with conda
   - conda info -a
 
-  # Replace dep1 dep2 ... with your dependencies
-  - conda create -q -n dev python=$TRAVIS_PYTHON_VERSION numpy nose boost
+  - conda create -q -n dev python=$TRAVIS_PYTHON_VERSION numpy nose boost glpk hdf5
   - source activate dev
   - conda install -c rdonnelly gcc-6=6.1.0 -v
   # for a python 2.7 we need concurrent futures
@@ -57,8 +56,9 @@ script:
   - export ENV_INCLUDE="$ENV_ROOT/include"
   - export ENV_BIN="$ENV_ROOT/bin"
   - cmake -DWITHIN_TRAVIS=ON 
+          -DWITH_QPBO=ON
           -DBUILD_CPP_TEST=OFF 
-          -DBUILD_PYTHON_TEST=OFF 
+          -DBUILD_PYTHON_TEST=ON 
           -DWITH_GLPK=OFF 
           -DWITH_HDF5=OFF 
           -DBUILD_NIFTY_PYTHON=ON 
@@ -69,6 +69,7 @@ script:
           -DPYTHON_MODULE_INSTALL_DIR=/home/travis/miniconda/envs/dev/lib/python$TRAVIS_PYTHON_VERSION/site-packages/
 
   - make -j 2
+  - make python-test
   - sudo make install
   - cd src/python/test
   # this is a fucked up way of running python test
