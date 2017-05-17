@@ -62,7 +62,7 @@ script:
           -DNOSETESTS_PATH=$ENV_BIN 
           -DBoost_INCLUDE_DIR=$ENV_INCLUDE 
           -DCMAKE_CXX_COMPILER=$ENV_BIN/g++ 
-          -PYTHON_MODULE_INSTALL_DIR=/home/travis/miniconda/envs/dev/lib/python$TRAVIS_PYTHON_VERSION/site-packages/
+          -DPYTHON_MODULE_INSTALL_DIR=/home/travis/miniconda/envs/dev/lib/python$TRAVIS_PYTHON_VERSION/site-packages/
 
   - make -j 2
   - sudo make install
