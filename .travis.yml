@@ -37,9 +37,10 @@ install:
   # Useful for debugging any issues with conda
   - conda info -a
 
-  - conda create -q -n dev python=$TRAVIS_PYTHON_VERSION numpy nose boost glpk hdf5
+  - conda create -q -n dev python=$TRAVIS_PYTHON_VERSION numpy nose boost hdf5
   - source activate dev
   - conda install -c rdonnelly gcc-6=6.1.0 -v
+  - conda install -c conda-forge glpk
   # for a python 2.7 we need concurrent futures
   - if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
       conda install futures;
