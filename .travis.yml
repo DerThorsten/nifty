@@ -80,8 +80,7 @@ script:
   #
   # build everything
   - make -j 2
-  # call the tests
-  - make python-test
+
   # install the probject
   - sudo make install
   - cd src/python/test
