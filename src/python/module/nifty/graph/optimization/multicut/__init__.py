@@ -85,13 +85,6 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
     O.greedyAdditiveFactory = staticmethod(greedyAdditiveFactory)
 
 
-    def blockMulticut(multicutFactory):
-        s,F = getSettingsAndFactoryCls("BlockMulticut")
-        s.multicutFactory = multicutFactory
-        return F(s)
-
-    O.blockMulticut = staticmethod(blockMulticut)
-
     def chainedSolversFactory(multicutFactories):
         s,F = getSettingsAndFactoryCls("ChainedSolvers")
         s.multicutFactories = multicutFactories
