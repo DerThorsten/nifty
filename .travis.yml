@@ -2,17 +2,16 @@ language: python
 dist: trusty
 sudo: required
 
+# we try to avoid to use
+# the travis addon mechanism
+# and use conda instead
 addons:
   apt:
     sources:
       - ubuntu-toolchain-r-test
       - deadsnakes
-      #- boost-latest/ppa
-      #- george-edison55/precise-backports #cmake-3.x
-      #- kubuntu-backports # cmake 2.8.12
     packages:
       - cmake
-      ## 
 
 
 python:
@@ -37,6 +36,9 @@ install:
   # Useful for debugging any issues with conda
   - conda info -a
 
+  # create an environment and install dependencies
+  # In this build we try to add all optional dependencies we can
+  # to get a 'complete' build (TODO, also try a minimal build)
   - conda create -q -n dev python=$TRAVIS_PYTHON_VERSION numpy nose boost hdf5
   - source activate dev
   - conda install -c rdonnelly gcc-6=6.1.0 -v
@@ -69,6 +71,7 @@ script:
           -DBUILD_PYTHON_TEST=ON 
           -DBUILD_NIFTY_PYTHON=ON 
           -DNOSETESTS_PATH=$ENV_BIN 
+          -DGLPK_INCLUDE_DIR=$ENV_INCLUDE 
           -DBoost_INCLUDE_DIR=$ENV_INCLUDE 
           -DCMAKE_CXX_COMPILER=$ENV_BIN/g++ 
           -DPYTHON_EXECUTABLE=$ENV_BIN/python$TRAVIS_PYTHON_VERSION
