@@ -60,8 +60,8 @@ script:
   - cd src/python/test
   # this is a fucked up way of running python test
   # pls, if someone could fix this =)
-  - .$ENV_BIN/nosetests  cgp/*.py
-  - .$ENV_BIN/nosetests  graph/lifted_multicut/*.py
-  - .$ENV_BIN/nosetests  graph/multicut/*.py
-  - .$ENV_BIN/nosetests  graph/mincut/*.py
-  - .$ENV_BIN/nosetests  graph/agglo/*.py
+  - nosetests  cgp/*.py
+  - nosetests  graph/lifted_multicut/*.py
+  - nosetests  graph/multicut/*.py
+  - nosetests  graph/mincut/*.py
+  - nosetests  graph/agglo/*.py
