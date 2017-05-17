@@ -41,7 +41,10 @@ install:
   - conda create -q -n dev python=$TRAVIS_PYTHON_VERSION numpy nose boost
   - source activate dev
   - conda install -c rdonnelly gcc-6=6.1.0 -v
-
+  # for a python 2.7 we need concurrent futures
+  - if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
+      conda install futures
+    fi
   #- python setup.py install
 
 script:
