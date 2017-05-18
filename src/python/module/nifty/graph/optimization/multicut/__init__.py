@@ -95,7 +95,7 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
 
     def cgcFactory(doCutPhase=True, doGlueAndCutPhase=True, mincutFactory=None,
             multicutFactory=None,
-            doBetterCutPhase=True, nodeNumStopCond=0.1, sizeRegularizer=1.0):
+            doBetterCutPhase=False, nodeNumStopCond=0.1, sizeRegularizer=1.0):
         if mincutFactory is None:
             if Configuration.WITH_QPBO:
                 mincutFactory = graphCls.MincutObjective.mincutQpboFactory(improve=False)
