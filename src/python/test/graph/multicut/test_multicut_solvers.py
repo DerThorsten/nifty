@@ -52,7 +52,7 @@ class TestLiftedMulticutSolver(unittest.TestCase):
 
         # with verbose visitor
         solver = factory.create(objective)
-        visitor = objective.verboseVisitor(1000)
+        visitor = objective.verboseVisitor(1)
         arg = solver.optimize(visitor)
 
         # without any visitor
@@ -65,7 +65,7 @@ class TestLiftedMulticutSolver(unittest.TestCase):
         def testCgc(self):
             objective = self.gridModel(gridSize=[6,6])
             solver = objective.cgcFactory(True,True).create(objective)
-            visitor = objective.verboseVisitor(3)
+            visitor = objective.verboseVisitor(1)
             arg = solver.optimize(visitor)
 
 
