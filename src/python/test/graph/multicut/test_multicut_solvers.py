@@ -53,7 +53,14 @@ class TestLiftedMulticutSolver(unittest.TestCase):
         # with verbose visitor
         solver = factory.create(objective)
         visitor = objective.verboseVisitor(1)
+
+        self.assertEqual(visitor.timeLimitTotal, float('inf'))
+        self.assertEqual(visitor.timeLimitSolver, float('inf'))
+
         arg = solver.optimize(visitor)
+
+        self.assertEqual(visitor.timeLimitTotal, float('inf'))
+        self.assertEqual(visitor.timeLimitSolver, float('inf'))
 
         # without any visitor
         solver = factory.create(objective)

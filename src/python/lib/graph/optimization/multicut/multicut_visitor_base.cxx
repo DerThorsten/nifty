@@ -65,6 +65,10 @@ namespace graph{
                     py::arg_t<double>("timeLimitTotal",std::numeric_limits<double>::infinity())
                 )
                 .def("stopOptimize",&VisitorType::stopOptimize)
+                .def_property_readonly("timeLimitSolver", &VisitorType::timeLimitSolver)
+                .def_property_readonly("timeLimitTotal", &VisitorType::timeLimitTotal)
+                .def_property_readonly("runtimeSolver", &VisitorType::runtimeSolver)
+                .def_property_readonly("runtimeTotal", &VisitorType::runtimeTotal)
             ;
         }
 

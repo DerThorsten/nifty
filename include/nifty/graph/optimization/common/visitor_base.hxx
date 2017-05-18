@@ -208,7 +208,21 @@ namespace common{
         void stopOptimize(){
             runOpt_ = false;
         }
-    
+        
+        double runtimeSolver() const{
+            return runtimeSolver_;
+        }
+        double runtimeTotal() const{
+            return runtimeTotal_;
+        }
+
+        double timeLimitTotal() const{
+            return timeLimitTotal_;
+        }
+        double timeLimitSolver() const{
+            return timeLimitSolver_;
+        }
+
     private:
         bool runOpt_;
         int printNth_;
