@@ -1,4 +1,4 @@
-Nifty
+Nifty !
 ========
 
 [![Build Status master](https://travis-ci.org/DerThorsten/nifty.svg?branch=master)](https://travis-ci.org/DerThorsten/nifty)
