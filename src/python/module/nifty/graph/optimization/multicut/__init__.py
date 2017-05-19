@@ -126,7 +126,7 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
             return O.greedyAdditiveFactory()
 
     O.defaultMulticutFactory = staticmethod(defaultMulticutFactory)
-
+    O.defaultFactory = staticmethod(defaultMulticutFactory)
 
     def multicutAndresGreedyAdditiveFactory():
         s, F = getSettingsAndFactoryCls("MulticutAndresGreedyAdditive")
@@ -151,7 +151,7 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
     O.multicutAndresKernighanLinFactory = staticmethod(multicutAndresKernighanLinFactory)
 
 
-    def multicutDecomposer(submodelFactory=None, fallthroughFactory=None):
+    def multicutDecomposerFactory(submodelFactory=None, fallthroughFactory=None):
 
         if submodelFactory is None:
            submodelFactory = MulticutObjectiveUndirectedGraph.defaultMulticutFactory()
@@ -165,7 +165,7 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
         s.fallthroughFactory = fallthroughFactory
         return F(s)
 
-    O.multicutDecomposer = staticmethod(multicutDecomposer)
+    O.multicutDecomposerFactory = staticmethod(multicutDecomposerFactory)
 
 
 

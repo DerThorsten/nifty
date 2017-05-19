@@ -52,7 +52,7 @@ class TestLiftedMulticutSolver(unittest.TestCase):
 
         # with verbose visitor
         solver = factory.create(objective)
-        visitor = objective.verboseVisitor(100000000000)
+        visitor = objective.verboseVisitor(10000)
 
         self.assertEqual(visitor.timeLimitTotal, float('inf'))
         self.assertEqual(visitor.timeLimitSolver, float('inf'))
@@ -92,12 +92,39 @@ class TestLiftedMulticutSolver(unittest.TestCase):
 
 
     def testGreedyAdditive(self):
-
         Obj = nifty.graph.UndirectedGraph.MulticutObjective
         self._testGridModelImpl(Obj.greedyAdditiveFactory(), gridSize=[6,6])
 
 
+    def testDefault(self):
+        Obj = nifty.graph.UndirectedGraph.MulticutObjective
+        self._testGridModelImpl(Obj.defaultFactory(), gridSize=[6,6])
+
+    def testMulticutDecomposer(self):
+        Obj = nifty.graph.UndirectedGraph.MulticutObjective
+        self._testGridModelImpl(Obj.multicutDecomposerFactory(), gridSize=[6,6])
 
 
+    def testChainedSolvers(self):
+        Obj = nifty.graph.UndirectedGraph.MulticutObjective
+        a = Obj.greedyAdditiveFactory()
+        b = Obj.defaultFactory()
+        c = Obj.multicutDecomposerFactory()
+        self._testGridModelImpl(Obj.chainedSolversFactory([a,b,c]), gridSize=[6,6])
 
+
+    if nifty.Configuration.WITH_CPLEX:
+        def testMulticutIlpCplex(self):
+            Obj = nifty.graph.UndirectedGraph.MulticutObjective
+            self._testGridModelImpl(Obj.multicutIlpCplexFactory(), gridSize=[5,5])
+
+    if nifty.Configuration.WITH_GUROBI:
+        def testMulticutIlpCplex(self):
+            Obj = nifty.graph.UndirectedGraph.MulticutObjective
+            self._testGridModelImpl(Obj.multicutIlpGurobiFactory(), gridSize=[5,5])
+
+    if nifty.Configuration.WITH_GLPK:
+        def testMulticutIlpCplex(self):
+            Obj = nifty.graph.UndirectedGraph.MulticutObjective
+            self._testGridModelImpl(Obj.multicutIlpGlpkFactory(), gridSize=[5,5])
 
