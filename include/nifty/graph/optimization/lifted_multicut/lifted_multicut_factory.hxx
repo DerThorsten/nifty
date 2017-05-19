@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_GRAPH_OPTIMIZATION_LIFTED_MULTICUT_LIFTED_MULTICUT_FACTORY_HXX
-#define NIFTY_GRAPH_OPTIMIZATION_LIFTED_MULTICUT_LIFTED_MULTICUT_FACTORY_HXX
 
 #include "nifty/graph/optimization/lifted_multicut/lifted_multicut_base.hxx"
 
@@ -49,5 +47,3 @@ namespace lifted_multicut{
 } // namespace lifted_multicut
 } // namespace graph
 } // namespace nifty
-
-#endif /* NIFTY_GRAPH_OPTIMIZATION_LIFTED_MULTICUT_LIFTED_MULTICUT_FACTORY_HXX */

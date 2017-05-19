@@ -1,8 +1,8 @@
 Nifty
 ========
 
-[![Build Status](https://travis-ci.org/DerThorsten/nifty.svg?branch=master)](https://travis-ci.org/DerThorsten/nifty)
-
+[![Build Status master](https://travis-ci.org/DerThorsten/nifty.svg?branch=master)](https://travis-ci.org/DerThorsten/nifty)
+[![Build Status dev](https://travis-ci.org/DerThorsten/nifty.svg?branch=dev)](https://travis-ci.org/DerThorsten/nifty)
 A nifty library for graph based image segmentation.
 
 Almost all features of nifty exist to implement algorithms
