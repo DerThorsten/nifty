@@ -1,0 +1,65 @@
+\hypertarget{classnifty_1_1graph_1_1mincut_1_1ProposalGeneratorFactoryBase}{}\section{nifty\+:\+:graph\+:\+:mincut\+:\+:Proposal\+Generator\+Factory\+Base$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$ Class Template Reference}
+\label{classnifty_1_1graph_1_1mincut_1_1ProposalGeneratorFactoryBase}\index{nifty\+::graph\+::mincut\+::\+Proposal\+Generator\+Factory\+Base$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$@{nifty\+::graph\+::mincut\+::\+Proposal\+Generator\+Factory\+Base$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}}
+
+
+{\ttfamily \#include $<$proposal\+\_\+generator\+\_\+factory\+\_\+base.\+hxx$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef O\+B\+J\+E\+C\+T\+I\+V\+E \hyperlink{classnifty_1_1graph_1_1mincut_1_1ProposalGeneratorFactoryBase_a24f24df2bb0f1d7f10c81cd5f95358f8}{Objective\+Type}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1mincut_1_1ProposalGeneratorBase}{Proposal\+Generator\+Base}$<$ \hyperlink{classnifty_1_1graph_1_1mincut_1_1ProposalGeneratorFactoryBase_a24f24df2bb0f1d7f10c81cd5f95358f8}{Objective\+Type} $>$ \hyperlink{classnifty_1_1graph_1_1mincut_1_1ProposalGeneratorFactoryBase_a75eebf60e173596ea93100a2d77d87e0}{Proposal\+Generator\+Base\+Type}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \hyperlink{classnifty_1_1graph_1_1mincut_1_1ProposalGeneratorFactoryBase_ae2710810b0b9fd3ce28b665918579493}{$\sim$\+Proposal\+Generator\+Factory\+Base} ()
+\item 
+virtual std\+::shared\+\_\+ptr$<$ \hyperlink{classnifty_1_1graph_1_1mincut_1_1ProposalGeneratorFactoryBase_a75eebf60e173596ea93100a2d77d87e0}{Proposal\+Generator\+Base\+Type} $>$ \hyperlink{classnifty_1_1graph_1_1mincut_1_1ProposalGeneratorFactoryBase_aefc9857d66ea960365f2e8dc7e067f00}{create\+Shared\+Ptr} (const \hyperlink{classnifty_1_1graph_1_1mincut_1_1ProposalGeneratorFactoryBase_a24f24df2bb0f1d7f10c81cd5f95358f8}{Objective\+Type} \&objective, const size\+\_\+t number\+Of\+Threads)=0
+\item 
+virtual \hyperlink{classnifty_1_1graph_1_1mincut_1_1ProposalGeneratorFactoryBase_a75eebf60e173596ea93100a2d77d87e0}{Proposal\+Generator\+Base\+Type} $\ast$ \hyperlink{classnifty_1_1graph_1_1mincut_1_1ProposalGeneratorFactoryBase_a731d22a7fc8e0dbfd3b54d44231256af}{create\+Raw\+Ptr} (const \hyperlink{classnifty_1_1graph_1_1mincut_1_1ProposalGeneratorFactoryBase_a24f24df2bb0f1d7f10c81cd5f95358f8}{Objective\+Type} \&objective, const size\+\_\+t number\+Of\+Threads)=0
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{classnifty_1_1graph_1_1mincut_1_1ProposalGeneratorFactoryBase_a24f24df2bb0f1d7f10c81cd5f95358f8}{}\index{nifty\+::graph\+::mincut\+::\+Proposal\+Generator\+Factory\+Base@{nifty\+::graph\+::mincut\+::\+Proposal\+Generator\+Factory\+Base}!Objective\+Type@{Objective\+Type}}
+\index{Objective\+Type@{Objective\+Type}!nifty\+::graph\+::mincut\+::\+Proposal\+Generator\+Factory\+Base@{nifty\+::graph\+::mincut\+::\+Proposal\+Generator\+Factory\+Base}}
+\subsubsection[{Objective\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E$>$ typedef O\+B\+J\+E\+C\+T\+I\+V\+E {\bf nifty\+::graph\+::mincut\+::\+Proposal\+Generator\+Factory\+Base}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Objective\+Type}}\label{classnifty_1_1graph_1_1mincut_1_1ProposalGeneratorFactoryBase_a24f24df2bb0f1d7f10c81cd5f95358f8}
+\hypertarget{classnifty_1_1graph_1_1mincut_1_1ProposalGeneratorFactoryBase_a75eebf60e173596ea93100a2d77d87e0}{}\index{nifty\+::graph\+::mincut\+::\+Proposal\+Generator\+Factory\+Base@{nifty\+::graph\+::mincut\+::\+Proposal\+Generator\+Factory\+Base}!Proposal\+Generator\+Base\+Type@{Proposal\+Generator\+Base\+Type}}
+\index{Proposal\+Generator\+Base\+Type@{Proposal\+Generator\+Base\+Type}!nifty\+::graph\+::mincut\+::\+Proposal\+Generator\+Factory\+Base@{nifty\+::graph\+::mincut\+::\+Proposal\+Generator\+Factory\+Base}}
+\subsubsection[{Proposal\+Generator\+Base\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E$>$ typedef {\bf Proposal\+Generator\+Base}$<${\bf Objective\+Type}$>$ {\bf nifty\+::graph\+::mincut\+::\+Proposal\+Generator\+Factory\+Base}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Proposal\+Generator\+Base\+Type}}\label{classnifty_1_1graph_1_1mincut_1_1ProposalGeneratorFactoryBase_a75eebf60e173596ea93100a2d77d87e0}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classnifty_1_1graph_1_1mincut_1_1ProposalGeneratorFactoryBase_ae2710810b0b9fd3ce28b665918579493}{}\index{nifty\+::graph\+::mincut\+::\+Proposal\+Generator\+Factory\+Base@{nifty\+::graph\+::mincut\+::\+Proposal\+Generator\+Factory\+Base}!````~Proposal\+Generator\+Factory\+Base@{$\sim$\+Proposal\+Generator\+Factory\+Base}}
+\index{````~Proposal\+Generator\+Factory\+Base@{$\sim$\+Proposal\+Generator\+Factory\+Base}!nifty\+::graph\+::mincut\+::\+Proposal\+Generator\+Factory\+Base@{nifty\+::graph\+::mincut\+::\+Proposal\+Generator\+Factory\+Base}}
+\subsubsection[{$\sim$\+Proposal\+Generator\+Factory\+Base()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E$>$ virtual {\bf nifty\+::graph\+::mincut\+::\+Proposal\+Generator\+Factory\+Base}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::$\sim${\bf Proposal\+Generator\+Factory\+Base} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classnifty_1_1graph_1_1mincut_1_1ProposalGeneratorFactoryBase_ae2710810b0b9fd3ce28b665918579493}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classnifty_1_1graph_1_1mincut_1_1ProposalGeneratorFactoryBase_a731d22a7fc8e0dbfd3b54d44231256af}{}\index{nifty\+::graph\+::mincut\+::\+Proposal\+Generator\+Factory\+Base@{nifty\+::graph\+::mincut\+::\+Proposal\+Generator\+Factory\+Base}!create\+Raw\+Ptr@{create\+Raw\+Ptr}}
+\index{create\+Raw\+Ptr@{create\+Raw\+Ptr}!nifty\+::graph\+::mincut\+::\+Proposal\+Generator\+Factory\+Base@{nifty\+::graph\+::mincut\+::\+Proposal\+Generator\+Factory\+Base}}
+\subsubsection[{create\+Raw\+Ptr(const Objective\+Type \&objective, const size\+\_\+t number\+Of\+Threads)=0}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E$>$ virtual {\bf Proposal\+Generator\+Base\+Type}$\ast$ {\bf nifty\+::graph\+::mincut\+::\+Proposal\+Generator\+Factory\+Base}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::create\+Raw\+Ptr (
+\begin{DoxyParamCaption}
+\item[{const {\bf Objective\+Type} \&}]{objective, }
+\item[{const size\+\_\+t}]{number\+Of\+Threads}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{classnifty_1_1graph_1_1mincut_1_1ProposalGeneratorFactoryBase_a731d22a7fc8e0dbfd3b54d44231256af}
+\hypertarget{classnifty_1_1graph_1_1mincut_1_1ProposalGeneratorFactoryBase_aefc9857d66ea960365f2e8dc7e067f00}{}\index{nifty\+::graph\+::mincut\+::\+Proposal\+Generator\+Factory\+Base@{nifty\+::graph\+::mincut\+::\+Proposal\+Generator\+Factory\+Base}!create\+Shared\+Ptr@{create\+Shared\+Ptr}}
+\index{create\+Shared\+Ptr@{create\+Shared\+Ptr}!nifty\+::graph\+::mincut\+::\+Proposal\+Generator\+Factory\+Base@{nifty\+::graph\+::mincut\+::\+Proposal\+Generator\+Factory\+Base}}
+\subsubsection[{create\+Shared\+Ptr(const Objective\+Type \&objective, const size\+\_\+t number\+Of\+Threads)=0}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E$>$ virtual std\+::shared\+\_\+ptr$<${\bf Proposal\+Generator\+Base\+Type}$>$ {\bf nifty\+::graph\+::mincut\+::\+Proposal\+Generator\+Factory\+Base}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::create\+Shared\+Ptr (
+\begin{DoxyParamCaption}
+\item[{const {\bf Objective\+Type} \&}]{objective, }
+\item[{const size\+\_\+t}]{number\+Of\+Threads}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{classnifty_1_1graph_1_1mincut_1_1ProposalGeneratorFactoryBase_aefc9857d66ea960365f2e8dc7e067f00}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/proposal\+\_\+generators/\hyperlink{mincut_2proposal__generators_2proposal__generator__factory__base_8hxx}{proposal\+\_\+generator\+\_\+factory\+\_\+base.\+hxx}\end{DoxyCompactItemize}

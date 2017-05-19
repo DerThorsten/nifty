@@ -1,0 +1,34 @@
+\hypertarget{graph_2optimization_2multicut_2multicut__objective_8hxx}{}\section{/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut\+\_\+objective.hxx File Reference}
+\label{graph_2optimization_2multicut_2multicut__objective_8hxx}\index{/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut\+\_\+objective.\+hxx@{/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut\+\_\+objective.\+hxx}}
+{\ttfamily \#include \char`\"{}nifty/tools/runtime\+\_\+check.\+hxx\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}nifty/graph/subgraph\+\_\+mask.\+hxx\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}nifty/graph/graph\+\_\+maps.\+hxx\char`\"{}}\\*
+Include dependency graph for multicut\+\_\+objective.\+hxx\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classnifty_1_1graph_1_1MulticutObjectiveBase}{nifty\+::graph\+::\+Multicut\+Objective\+Base$<$ C\+H\+I\+L\+D\+\_\+\+O\+B\+J\+E\+C\+T\+I\+V\+E, G\+R\+A\+P\+H, W\+E\+I\+G\+H\+T\+\_\+\+T\+Y\+P\+E $>$}
+\item 
+class \hyperlink{classnifty_1_1graph_1_1MulticutObjective}{nifty\+::graph\+::\+Multicut\+Objective$<$ G\+R\+A\+P\+H, W\+E\+I\+G\+H\+T\+\_\+\+T\+Y\+P\+E $>$}
+\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespacenifty}{nifty}
+\item 
+ \hyperlink{namespacenifty_1_1graph}{nifty\+::graph}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{graph_2optimization_2multicut_2multicut__objective_8hxx_a33cf0e9dfc3943b990cacd10feb70ca2}{N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+O\+B\+J\+E\+C\+T\+I\+V\+E\+\_\+\+H\+X\+X}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{graph_2optimization_2multicut_2multicut__objective_8hxx_a33cf0e9dfc3943b990cacd10feb70ca2}{}\index{graph/optimization/multicut/multicut\+\_\+objective.\+hxx@{graph/optimization/multicut/multicut\+\_\+objective.\+hxx}!N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+O\+B\+J\+E\+C\+T\+I\+V\+E\+\_\+\+H\+X\+X@{N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+O\+B\+J\+E\+C\+T\+I\+V\+E\+\_\+\+H\+X\+X}}
+\index{N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+O\+B\+J\+E\+C\+T\+I\+V\+E\+\_\+\+H\+X\+X@{N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+O\+B\+J\+E\+C\+T\+I\+V\+E\+\_\+\+H\+X\+X}!graph/optimization/multicut/multicut\+\_\+objective.\+hxx@{graph/optimization/multicut/multicut\+\_\+objective.\+hxx}}
+\subsubsection[{N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+O\+B\+J\+E\+C\+T\+I\+V\+E\+\_\+\+H\+X\+X}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+O\+B\+J\+E\+C\+T\+I\+V\+E\+\_\+\+H\+X\+X}\label{graph_2optimization_2multicut_2multicut__objective_8hxx_a33cf0e9dfc3943b990cacd10feb70ca2}

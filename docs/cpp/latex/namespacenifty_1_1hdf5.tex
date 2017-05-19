@@ -1,0 +1,60 @@
+\hypertarget{namespacenifty_1_1hdf5}{}\section{nifty\+:\+:hdf5 Namespace Reference}
+\label{namespacenifty_1_1hdf5}\index{nifty\+::hdf5@{nifty\+::hdf5}}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespacenifty_1_1hdf5_1_1tools}{tools}
+\end{DoxyCompactItemize}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structnifty_1_1hdf5_1_1CacheSettings}{Cache\+Settings}
+\item 
+class \hyperlink{classnifty_1_1hdf5_1_1Hdf5Array}{Hdf5\+Array}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+hid\+\_\+t \hyperlink{namespacenifty_1_1hdf5_a75c90b819349001bc1cf9e4bbe519462}{create\+File} (const std\+::string \&filename, const \hyperlink{structnifty_1_1hdf5_1_1CacheSettings}{Cache\+Settings} \&cache\+Settings, H\+D\+F5\+Version hdf5version=D\+E\+F\+A\+U\+L\+T\+\_\+\+H\+D\+F5\+\_\+\+V\+E\+R\+S\+I\+O\+N)
+\item 
+hid\+\_\+t \hyperlink{namespacenifty_1_1hdf5_a1a87959670d984301cfc2c780099673e}{open\+File} (const std\+::string \&filename, const \hyperlink{structnifty_1_1hdf5_1_1CacheSettings}{Cache\+Settings} \&cache\+Settings, File\+Access\+Mode file\+Access\+Mode=R\+E\+A\+D\+\_\+\+O\+N\+L\+Y, H\+D\+F5\+Version hdf5version=D\+E\+F\+A\+U\+L\+T\+\_\+\+H\+D\+F5\+\_\+\+V\+E\+R\+S\+I\+O\+N)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{namespacenifty_1_1hdf5_a75c90b819349001bc1cf9e4bbe519462}{}\index{nifty\+::hdf5@{nifty\+::hdf5}!create\+File@{create\+File}}
+\index{create\+File@{create\+File}!nifty\+::hdf5@{nifty\+::hdf5}}
+\subsubsection[{create\+File(const std\+::string \&filename, const Cache\+Settings \&cache\+Settings, H\+D\+F5\+Version hdf5version=\+D\+E\+F\+A\+U\+L\+T\+\_\+\+H\+D\+F5\+\_\+\+V\+E\+R\+S\+I\+O\+N)}]{\setlength{\rightskip}{0pt plus 5cm}hid\+\_\+t nifty\+::hdf5\+::create\+File (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{filename, }
+\item[{const {\bf Cache\+Settings} \&}]{cache\+Settings, }
+\item[{H\+D\+F5\+Version}]{hdf5version = {\ttfamily DEFAULT\+\_\+HDF5\+\_\+VERSION}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{namespacenifty_1_1hdf5_a75c90b819349001bc1cf9e4bbe519462}
+\hypertarget{namespacenifty_1_1hdf5_a1a87959670d984301cfc2c780099673e}{}\index{nifty\+::hdf5@{nifty\+::hdf5}!open\+File@{open\+File}}
+\index{open\+File@{open\+File}!nifty\+::hdf5@{nifty\+::hdf5}}
+\subsubsection[{open\+File(const std\+::string \&filename, const Cache\+Settings \&cache\+Settings, File\+Access\+Mode file\+Access\+Mode=\+R\+E\+A\+D\+\_\+\+O\+N\+L\+Y, H\+D\+F5\+Version hdf5version=\+D\+E\+F\+A\+U\+L\+T\+\_\+\+H\+D\+F5\+\_\+\+V\+E\+R\+S\+I\+O\+N)}]{\setlength{\rightskip}{0pt plus 5cm}hid\+\_\+t nifty\+::hdf5\+::open\+File (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{filename, }
+\item[{const {\bf Cache\+Settings} \&}]{cache\+Settings, }
+\item[{File\+Access\+Mode}]{file\+Access\+Mode = {\ttfamily READ\+\_\+ONLY}, }
+\item[{H\+D\+F5\+Version}]{hdf5version = {\ttfamily DEFAULT\+\_\+HDF5\+\_\+VERSION}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{namespacenifty_1_1hdf5_a1a87959670d984301cfc2c780099673e}
+Open an H\+D\+F5 file.
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & Name of the file. \\
+\hline
+{\em file\+Access\+Mode} & File access mode. \\
+\hline
+{\em hdf5version} & H\+D\+F5 version tag.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+H\+D\+F5 handle
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+close\+File(), \hyperlink{namespacenifty_1_1hdf5_a75c90b819349001bc1cf9e4bbe519462}{create\+File()} 
+\end{DoxySeeAlso}

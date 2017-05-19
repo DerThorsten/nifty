@@ -1,0 +1,121 @@
+\hypertarget{classnifty_1_1graph_1_1GridRagStacked2D}{}\section{nifty\+:\+:graph\+:\+:Grid\+Rag\+Stacked2\+D$<$ L\+A\+B\+E\+L\+\_\+\+P\+R\+O\+X\+Y $>$ Class Template Reference}
+\label{classnifty_1_1graph_1_1GridRagStacked2D}\index{nifty\+::graph\+::\+Grid\+Rag\+Stacked2\+D$<$ L\+A\+B\+E\+L\+\_\+\+P\+R\+O\+X\+Y $>$@{nifty\+::graph\+::\+Grid\+Rag\+Stacked2\+D$<$ L\+A\+B\+E\+L\+\_\+\+P\+R\+O\+X\+Y $>$}}
+
+
+{\ttfamily \#include $<$compute\+\_\+grid\+\_\+rag.\+hxx$>$}
+
+
+
+Inheritance diagram for nifty\+:\+:graph\+:\+:Grid\+Rag\+Stacked2\+D$<$ L\+A\+B\+E\+L\+\_\+\+P\+R\+O\+X\+Y $>$\+:
+% FIG 0
+
+
+Collaboration diagram for nifty\+:\+:graph\+:\+:Grid\+Rag\+Stacked2\+D$<$ L\+A\+B\+E\+L\+\_\+\+P\+R\+O\+X\+Y $>$\+:
+% FIG 1
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1GridRag_ad3146f72301da4f45b51e3b692776cf1}{Base\+Type\+::\+Labels\+Proxy} \hyperlink{classnifty_1_1graph_1_1GridRagStacked2D_a09b44c819b97274a1025dc68cb6b3dc9}{Labels\+Proxy}
+\item 
+typedef Base\+Type\+::\+Settings \hyperlink{classnifty_1_1graph_1_1GridRagStacked2D_a7b0a5b8d3cb7ac39213e5306fd42aa27}{Settings}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classnifty_1_1graph_1_1GridRagStacked2D_ad6b23b6d315c94ce484b220ef34ba1ca}{Grid\+Rag\+Stacked2\+D} (const \hyperlink{classnifty_1_1graph_1_1GridRagStacked2D_a09b44c819b97274a1025dc68cb6b3dc9}{Labels\+Proxy} \&\hyperlink{classnifty_1_1graph_1_1GridRag_a9a9b20451bd5ea8ce3ee11af4018c995}{labels\+Proxy}, const \hyperlink{classnifty_1_1graph_1_1GridRagStacked2D_a7b0a5b8d3cb7ac39213e5306fd42aa27}{Settings} \&settings=\hyperlink{classnifty_1_1graph_1_1GridRagStacked2D_a7b0a5b8d3cb7ac39213e5306fd42aa27}{Settings}())
+\item 
+std\+::pair$<$ uint64\+\_\+t, uint64\+\_\+t $>$ \hyperlink{classnifty_1_1graph_1_1GridRagStacked2D_ae7abe343f431f1a1ca953f3f9dd5e659}{min\+Max\+Node} (const uint64\+\_\+t slice\+Index) const 
+\item 
+uint64\+\_\+t \hyperlink{classnifty_1_1graph_1_1GridRagStacked2D_aa87c188ce0a2d246e1461bac64cf3a8a}{number\+Of\+Nodes} (const uint64\+\_\+t slice\+Index) const 
+\item 
+uint64\+\_\+t \hyperlink{classnifty_1_1graph_1_1GridRagStacked2D_a646bcd62254f454d3ac2e584b1b07428}{number\+Of\+In\+Slice\+Edges} (const uint64\+\_\+t slice\+Index) const 
+\item 
+uint64\+\_\+t \hyperlink{classnifty_1_1graph_1_1GridRagStacked2D_acfdac0e16539e96d36fdc1615e3e4ee1}{number\+Of\+In\+Between\+Slice\+Edges} (const uint64\+\_\+t slice\+Index) const 
+\item 
+uint64\+\_\+t \hyperlink{classnifty_1_1graph_1_1GridRagStacked2D_a111282918d5ef7ef97e4328d575b7089}{in\+Slice\+Edge\+Offset} (const uint64\+\_\+t slice\+Index) const 
+\item 
+uint64\+\_\+t \hyperlink{classnifty_1_1graph_1_1GridRagStacked2D_aa55f6424ed3ba64fe5cfc42b69876f8e}{between\+Slice\+Edge\+Offset} (const uint64\+\_\+t slice\+Index) const 
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classnifty_1_1graph_1_1GridRagStacked2D_abafcbd3543961eb6e4ee794aa6a62d66}{detail\+\_\+rag\+::\+Compute\+Rag$<$ Self\+Type $>$}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{classnifty_1_1graph_1_1GridRagStacked2D_a09b44c819b97274a1025dc68cb6b3dc9}{}\index{nifty\+::graph\+::\+Grid\+Rag\+Stacked2\+D@{nifty\+::graph\+::\+Grid\+Rag\+Stacked2\+D}!Labels\+Proxy@{Labels\+Proxy}}
+\index{Labels\+Proxy@{Labels\+Proxy}!nifty\+::graph\+::\+Grid\+Rag\+Stacked2\+D@{nifty\+::graph\+::\+Grid\+Rag\+Stacked2\+D}}
+\subsubsection[{Labels\+Proxy}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class L\+A\+B\+E\+L\+\_\+\+P\+R\+O\+X\+Y $>$ typedef {\bf Base\+Type\+::\+Labels\+Proxy} {\bf nifty\+::graph\+::\+Grid\+Rag\+Stacked2\+D}$<$ L\+A\+B\+E\+L\+\_\+\+P\+R\+O\+X\+Y $>$\+::{\bf Labels\+Proxy}}\label{classnifty_1_1graph_1_1GridRagStacked2D_a09b44c819b97274a1025dc68cb6b3dc9}
+\hypertarget{classnifty_1_1graph_1_1GridRagStacked2D_a7b0a5b8d3cb7ac39213e5306fd42aa27}{}\index{nifty\+::graph\+::\+Grid\+Rag\+Stacked2\+D@{nifty\+::graph\+::\+Grid\+Rag\+Stacked2\+D}!Settings@{Settings}}
+\index{Settings@{Settings}!nifty\+::graph\+::\+Grid\+Rag\+Stacked2\+D@{nifty\+::graph\+::\+Grid\+Rag\+Stacked2\+D}}
+\subsubsection[{Settings}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class L\+A\+B\+E\+L\+\_\+\+P\+R\+O\+X\+Y $>$ typedef Base\+Type\+::\+Settings {\bf nifty\+::graph\+::\+Grid\+Rag\+Stacked2\+D}$<$ L\+A\+B\+E\+L\+\_\+\+P\+R\+O\+X\+Y $>$\+::{\bf Settings}}\label{classnifty_1_1graph_1_1GridRagStacked2D_a7b0a5b8d3cb7ac39213e5306fd42aa27}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classnifty_1_1graph_1_1GridRagStacked2D_ad6b23b6d315c94ce484b220ef34ba1ca}{}\index{nifty\+::graph\+::\+Grid\+Rag\+Stacked2\+D@{nifty\+::graph\+::\+Grid\+Rag\+Stacked2\+D}!Grid\+Rag\+Stacked2\+D@{Grid\+Rag\+Stacked2\+D}}
+\index{Grid\+Rag\+Stacked2\+D@{Grid\+Rag\+Stacked2\+D}!nifty\+::graph\+::\+Grid\+Rag\+Stacked2\+D@{nifty\+::graph\+::\+Grid\+Rag\+Stacked2\+D}}
+\subsubsection[{Grid\+Rag\+Stacked2\+D(const Labels\+Proxy \&labels\+Proxy, const Settings \&settings=\+Settings())}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class L\+A\+B\+E\+L\+\_\+\+P\+R\+O\+X\+Y $>$ {\bf nifty\+::graph\+::\+Grid\+Rag\+Stacked2\+D}$<$ L\+A\+B\+E\+L\+\_\+\+P\+R\+O\+X\+Y $>$\+::{\bf Grid\+Rag\+Stacked2\+D} (
+\begin{DoxyParamCaption}
+\item[{const {\bf Labels\+Proxy} \&}]{labels\+Proxy, }
+\item[{const {\bf Settings} \&}]{settings = {\ttfamily {\bf Settings}()}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1GridRagStacked2D_ad6b23b6d315c94ce484b220ef34ba1ca}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classnifty_1_1graph_1_1GridRagStacked2D_aa55f6424ed3ba64fe5cfc42b69876f8e}{}\index{nifty\+::graph\+::\+Grid\+Rag\+Stacked2\+D@{nifty\+::graph\+::\+Grid\+Rag\+Stacked2\+D}!between\+Slice\+Edge\+Offset@{between\+Slice\+Edge\+Offset}}
+\index{between\+Slice\+Edge\+Offset@{between\+Slice\+Edge\+Offset}!nifty\+::graph\+::\+Grid\+Rag\+Stacked2\+D@{nifty\+::graph\+::\+Grid\+Rag\+Stacked2\+D}}
+\subsubsection[{between\+Slice\+Edge\+Offset(const uint64\+\_\+t slice\+Index) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class L\+A\+B\+E\+L\+\_\+\+P\+R\+O\+X\+Y $>$ uint64\+\_\+t {\bf nifty\+::graph\+::\+Grid\+Rag\+Stacked2\+D}$<$ L\+A\+B\+E\+L\+\_\+\+P\+R\+O\+X\+Y $>$\+::between\+Slice\+Edge\+Offset (
+\begin{DoxyParamCaption}
+\item[{const uint64\+\_\+t}]{slice\+Index}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1GridRagStacked2D_aa55f6424ed3ba64fe5cfc42b69876f8e}
+\hypertarget{classnifty_1_1graph_1_1GridRagStacked2D_a111282918d5ef7ef97e4328d575b7089}{}\index{nifty\+::graph\+::\+Grid\+Rag\+Stacked2\+D@{nifty\+::graph\+::\+Grid\+Rag\+Stacked2\+D}!in\+Slice\+Edge\+Offset@{in\+Slice\+Edge\+Offset}}
+\index{in\+Slice\+Edge\+Offset@{in\+Slice\+Edge\+Offset}!nifty\+::graph\+::\+Grid\+Rag\+Stacked2\+D@{nifty\+::graph\+::\+Grid\+Rag\+Stacked2\+D}}
+\subsubsection[{in\+Slice\+Edge\+Offset(const uint64\+\_\+t slice\+Index) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class L\+A\+B\+E\+L\+\_\+\+P\+R\+O\+X\+Y $>$ uint64\+\_\+t {\bf nifty\+::graph\+::\+Grid\+Rag\+Stacked2\+D}$<$ L\+A\+B\+E\+L\+\_\+\+P\+R\+O\+X\+Y $>$\+::in\+Slice\+Edge\+Offset (
+\begin{DoxyParamCaption}
+\item[{const uint64\+\_\+t}]{slice\+Index}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1GridRagStacked2D_a111282918d5ef7ef97e4328d575b7089}
+\hypertarget{classnifty_1_1graph_1_1GridRagStacked2D_ae7abe343f431f1a1ca953f3f9dd5e659}{}\index{nifty\+::graph\+::\+Grid\+Rag\+Stacked2\+D@{nifty\+::graph\+::\+Grid\+Rag\+Stacked2\+D}!min\+Max\+Node@{min\+Max\+Node}}
+\index{min\+Max\+Node@{min\+Max\+Node}!nifty\+::graph\+::\+Grid\+Rag\+Stacked2\+D@{nifty\+::graph\+::\+Grid\+Rag\+Stacked2\+D}}
+\subsubsection[{min\+Max\+Node(const uint64\+\_\+t slice\+Index) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class L\+A\+B\+E\+L\+\_\+\+P\+R\+O\+X\+Y $>$ std\+::pair$<$uint64\+\_\+t, uint64\+\_\+t$>$ {\bf nifty\+::graph\+::\+Grid\+Rag\+Stacked2\+D}$<$ L\+A\+B\+E\+L\+\_\+\+P\+R\+O\+X\+Y $>$\+::min\+Max\+Node (
+\begin{DoxyParamCaption}
+\item[{const uint64\+\_\+t}]{slice\+Index}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1GridRagStacked2D_ae7abe343f431f1a1ca953f3f9dd5e659}
+\hypertarget{classnifty_1_1graph_1_1GridRagStacked2D_acfdac0e16539e96d36fdc1615e3e4ee1}{}\index{nifty\+::graph\+::\+Grid\+Rag\+Stacked2\+D@{nifty\+::graph\+::\+Grid\+Rag\+Stacked2\+D}!number\+Of\+In\+Between\+Slice\+Edges@{number\+Of\+In\+Between\+Slice\+Edges}}
+\index{number\+Of\+In\+Between\+Slice\+Edges@{number\+Of\+In\+Between\+Slice\+Edges}!nifty\+::graph\+::\+Grid\+Rag\+Stacked2\+D@{nifty\+::graph\+::\+Grid\+Rag\+Stacked2\+D}}
+\subsubsection[{number\+Of\+In\+Between\+Slice\+Edges(const uint64\+\_\+t slice\+Index) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class L\+A\+B\+E\+L\+\_\+\+P\+R\+O\+X\+Y $>$ uint64\+\_\+t {\bf nifty\+::graph\+::\+Grid\+Rag\+Stacked2\+D}$<$ L\+A\+B\+E\+L\+\_\+\+P\+R\+O\+X\+Y $>$\+::number\+Of\+In\+Between\+Slice\+Edges (
+\begin{DoxyParamCaption}
+\item[{const uint64\+\_\+t}]{slice\+Index}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1GridRagStacked2D_acfdac0e16539e96d36fdc1615e3e4ee1}
+\hypertarget{classnifty_1_1graph_1_1GridRagStacked2D_a646bcd62254f454d3ac2e584b1b07428}{}\index{nifty\+::graph\+::\+Grid\+Rag\+Stacked2\+D@{nifty\+::graph\+::\+Grid\+Rag\+Stacked2\+D}!number\+Of\+In\+Slice\+Edges@{number\+Of\+In\+Slice\+Edges}}
+\index{number\+Of\+In\+Slice\+Edges@{number\+Of\+In\+Slice\+Edges}!nifty\+::graph\+::\+Grid\+Rag\+Stacked2\+D@{nifty\+::graph\+::\+Grid\+Rag\+Stacked2\+D}}
+\subsubsection[{number\+Of\+In\+Slice\+Edges(const uint64\+\_\+t slice\+Index) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class L\+A\+B\+E\+L\+\_\+\+P\+R\+O\+X\+Y $>$ uint64\+\_\+t {\bf nifty\+::graph\+::\+Grid\+Rag\+Stacked2\+D}$<$ L\+A\+B\+E\+L\+\_\+\+P\+R\+O\+X\+Y $>$\+::number\+Of\+In\+Slice\+Edges (
+\begin{DoxyParamCaption}
+\item[{const uint64\+\_\+t}]{slice\+Index}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1GridRagStacked2D_a646bcd62254f454d3ac2e584b1b07428}
+\hypertarget{classnifty_1_1graph_1_1GridRagStacked2D_aa87c188ce0a2d246e1461bac64cf3a8a}{}\index{nifty\+::graph\+::\+Grid\+Rag\+Stacked2\+D@{nifty\+::graph\+::\+Grid\+Rag\+Stacked2\+D}!number\+Of\+Nodes@{number\+Of\+Nodes}}
+\index{number\+Of\+Nodes@{number\+Of\+Nodes}!nifty\+::graph\+::\+Grid\+Rag\+Stacked2\+D@{nifty\+::graph\+::\+Grid\+Rag\+Stacked2\+D}}
+\subsubsection[{number\+Of\+Nodes(const uint64\+\_\+t slice\+Index) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class L\+A\+B\+E\+L\+\_\+\+P\+R\+O\+X\+Y $>$ uint64\+\_\+t {\bf nifty\+::graph\+::\+Grid\+Rag\+Stacked2\+D}$<$ L\+A\+B\+E\+L\+\_\+\+P\+R\+O\+X\+Y $>$\+::number\+Of\+Nodes (
+\begin{DoxyParamCaption}
+\item[{const uint64\+\_\+t}]{slice\+Index}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1GridRagStacked2D_aa87c188ce0a2d246e1461bac64cf3a8a}
+
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{classnifty_1_1graph_1_1GridRagStacked2D_abafcbd3543961eb6e4ee794aa6a62d66}{}\index{nifty\+::graph\+::\+Grid\+Rag\+Stacked2\+D@{nifty\+::graph\+::\+Grid\+Rag\+Stacked2\+D}!detail\+\_\+rag\+::\+Compute\+Rag$<$ Self\+Type $>$@{detail\+\_\+rag\+::\+Compute\+Rag$<$ Self\+Type $>$}}
+\index{detail\+\_\+rag\+::\+Compute\+Rag$<$ Self\+Type $>$@{detail\+\_\+rag\+::\+Compute\+Rag$<$ Self\+Type $>$}!nifty\+::graph\+::\+Grid\+Rag\+Stacked2\+D@{nifty\+::graph\+::\+Grid\+Rag\+Stacked2\+D}}
+\subsubsection[{detail\+\_\+rag\+::\+Compute\+Rag$<$ Self\+Type $>$}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class L\+A\+B\+E\+L\+\_\+\+P\+R\+O\+X\+Y $>$ friend class detail\+\_\+rag\+::\+Compute\+Rag$<$ {\bf Self\+Type} $>$\hspace{0.3cm}{\ttfamily [friend]}}\label{classnifty_1_1graph_1_1GridRagStacked2D_abafcbd3543961eb6e4ee794aa6a62d66}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/tbeier/src/nifty/include/nifty/graph/rag/detail\+\_\+rag/\hyperlink{compute__grid__rag_8hxx}{compute\+\_\+grid\+\_\+rag.\+hxx}\item 
+/home/tbeier/src/nifty/include/nifty/graph/rag/\hyperlink{grid__rag__stacked__2d_8hxx}{grid\+\_\+rag\+\_\+stacked\+\_\+2d.\+hxx}\end{DoxyCompactItemize}

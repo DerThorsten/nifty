@@ -1,0 +1,125 @@
+\hypertarget{classnifty_1_1marray_1_1PyView}{}\section{nifty\+:\+:marray\+:\+:Py\+View$<$ V\+A\+L\+U\+E\+\_\+\+T\+Y\+P\+E, D\+I\+M, A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E $>$ Class Template Reference}
+\label{classnifty_1_1marray_1_1PyView}\index{nifty\+::marray\+::\+Py\+View$<$ V\+A\+L\+U\+E\+\_\+\+T\+Y\+P\+E, D\+I\+M, A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E $>$@{nifty\+::marray\+::\+Py\+View$<$ V\+A\+L\+U\+E\+\_\+\+T\+Y\+P\+E, D\+I\+M, A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E $>$}}
+
+
+{\ttfamily \#include $<$converter.\+hxx$>$}
+
+
+
+Inheritance diagram for nifty\+:\+:marray\+:\+:Py\+View$<$ V\+A\+L\+U\+E\+\_\+\+T\+Y\+P\+E, D\+I\+M, A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E $>$\+:
+% FIG 0
+
+
+Collaboration diagram for nifty\+:\+:marray\+:\+:Py\+View$<$ V\+A\+L\+U\+E\+\_\+\+T\+Y\+P\+E, D\+I\+M, A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E $>$\+:
+% FIG 1
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class Shape\+Iterator $>$ }\\\hyperlink{classnifty_1_1marray_1_1PyView_a1c3e1533712d9197ebcdbfded78532e8}{Py\+View} (pybind11\+::array\+\_\+t$<$ V\+A\+L\+U\+E\+\_\+\+T\+Y\+P\+E $>$ array, V\+A\+L\+U\+E\+\_\+\+T\+Y\+P\+E $\ast$data, Shape\+Iterator begin, Shape\+Iterator end)
+\item 
+\hyperlink{classnifty_1_1marray_1_1PyView_afe98775fe6a9b821f3e98f97b352f980}{Py\+View} ()
+\item 
+const V\+A\+L\+U\+E\+\_\+\+T\+Y\+P\+E \& \hyperlink{classnifty_1_1marray_1_1PyView_ae5eb7b78ed8c6d3478e44a66b04d8aff}{operator\mbox{[}$\,$\mbox{]}} (const uint64\+\_\+t index) const 
+\item 
+V\+A\+L\+U\+E\+\_\+\+T\+Y\+P\+E \& \hyperlink{classnifty_1_1marray_1_1PyView_a64d9ff12fbe42e31b957b63180fceb82}{operator\mbox{[}$\,$\mbox{]}} (const uint64\+\_\+t index)
+\item 
+{\footnotesize template$<$class Shape\+Iterator $>$ }\\\hyperlink{classnifty_1_1marray_1_1PyView_aceeb7d7fb74e9dad8a6d930440dfb780}{Py\+View} (Shape\+Iterator begin, Shape\+Iterator end)
+\item 
+{\footnotesize template$<$class Shape\+Iterator $>$ }\\void \hyperlink{classnifty_1_1marray_1_1PyView_a2141d44a685df3c8f24afafc76c86197}{reshape\+If\+Empty} (Shape\+Iterator begin, Shape\+Iterator end)
+\item 
+{\footnotesize template$<$class T\+\_\+\+I\+N\+I\+T $>$ }\\\hyperlink{classnifty_1_1marray_1_1PyView_a2a86aa379876d3ed5d81ed3b42bd094f}{Py\+View} (std\+::initializer\+\_\+list$<$ T\+\_\+\+I\+N\+I\+T $>$ shape)
+\item 
+{\footnotesize template$<$class T\+\_\+\+I\+N\+I\+T $>$ }\\void \hyperlink{classnifty_1_1marray_1_1PyView_a88cd936f03f7f4ba07ee7eb4dce4f6eb}{reshape\+If\+Empty} (std\+::initializer\+\_\+list$<$ T\+\_\+\+I\+N\+I\+T $>$ shape)
+\item 
+void \hyperlink{classnifty_1_1marray_1_1PyView_abd0258ab2bf010a8b2fb07143161bf78}{create\+View\+From} (const nifty\+::marray\+::\+View$<$ V\+A\+L\+U\+E\+\_\+\+T\+Y\+P\+E $>$ \&view)
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{classnifty_1_1marray_1_1PyView_a94710a007ad8e0112330a0a68858b22c}{pybind11\+::detail\+::pymarray\+\_\+caster$<$ V\+A\+L\+U\+E\+\_\+\+T\+Y\+P\+E, D\+I\+M, A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E $>$}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classnifty_1_1marray_1_1PyView_a1c3e1533712d9197ebcdbfded78532e8}{}\index{nifty\+::marray\+::\+Py\+View@{nifty\+::marray\+::\+Py\+View}!Py\+View@{Py\+View}}
+\index{Py\+View@{Py\+View}!nifty\+::marray\+::\+Py\+View@{nifty\+::marray\+::\+Py\+View}}
+\subsubsection[{Py\+View(pybind11\+::array\+\_\+t$<$ V\+A\+L\+U\+E\+\_\+\+T\+Y\+P\+E $>$ array, V\+A\+L\+U\+E\+\_\+\+T\+Y\+P\+E $\ast$data, Shape\+Iterator begin, Shape\+Iterator end)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename V\+A\+L\+U\+E\+\_\+\+T\+Y\+P\+E, size\+\_\+t D\+I\+M = 0, bool A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E = true$>$ template$<$class Shape\+Iterator $>$ {\bf nifty\+::marray\+::\+Py\+View}$<$ V\+A\+L\+U\+E\+\_\+\+T\+Y\+P\+E, D\+I\+M, A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E $>$\+::{\bf Py\+View} (
+\begin{DoxyParamCaption}
+\item[{pybind11\+::array\+\_\+t$<$ V\+A\+L\+U\+E\+\_\+\+T\+Y\+P\+E $>$}]{array, }
+\item[{V\+A\+L\+U\+E\+\_\+\+T\+Y\+P\+E $\ast$}]{data, }
+\item[{Shape\+Iterator}]{begin, }
+\item[{Shape\+Iterator}]{end}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1marray_1_1PyView_a1c3e1533712d9197ebcdbfded78532e8}
+\hypertarget{classnifty_1_1marray_1_1PyView_afe98775fe6a9b821f3e98f97b352f980}{}\index{nifty\+::marray\+::\+Py\+View@{nifty\+::marray\+::\+Py\+View}!Py\+View@{Py\+View}}
+\index{Py\+View@{Py\+View}!nifty\+::marray\+::\+Py\+View@{nifty\+::marray\+::\+Py\+View}}
+\subsubsection[{Py\+View()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename V\+A\+L\+U\+E\+\_\+\+T\+Y\+P\+E, size\+\_\+t D\+I\+M = 0, bool A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E = true$>$ {\bf nifty\+::marray\+::\+Py\+View}$<$ V\+A\+L\+U\+E\+\_\+\+T\+Y\+P\+E, D\+I\+M, A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E $>$\+::{\bf Py\+View} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1marray_1_1PyView_afe98775fe6a9b821f3e98f97b352f980}
+\hypertarget{classnifty_1_1marray_1_1PyView_aceeb7d7fb74e9dad8a6d930440dfb780}{}\index{nifty\+::marray\+::\+Py\+View@{nifty\+::marray\+::\+Py\+View}!Py\+View@{Py\+View}}
+\index{Py\+View@{Py\+View}!nifty\+::marray\+::\+Py\+View@{nifty\+::marray\+::\+Py\+View}}
+\subsubsection[{Py\+View(\+Shape\+Iterator begin, Shape\+Iterator end)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename V\+A\+L\+U\+E\+\_\+\+T\+Y\+P\+E, size\+\_\+t D\+I\+M = 0, bool A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E = true$>$ template$<$class Shape\+Iterator $>$ {\bf nifty\+::marray\+::\+Py\+View}$<$ V\+A\+L\+U\+E\+\_\+\+T\+Y\+P\+E, D\+I\+M, A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E $>$\+::{\bf Py\+View} (
+\begin{DoxyParamCaption}
+\item[{Shape\+Iterator}]{begin, }
+\item[{Shape\+Iterator}]{end}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1marray_1_1PyView_aceeb7d7fb74e9dad8a6d930440dfb780}
+\hypertarget{classnifty_1_1marray_1_1PyView_a2a86aa379876d3ed5d81ed3b42bd094f}{}\index{nifty\+::marray\+::\+Py\+View@{nifty\+::marray\+::\+Py\+View}!Py\+View@{Py\+View}}
+\index{Py\+View@{Py\+View}!nifty\+::marray\+::\+Py\+View@{nifty\+::marray\+::\+Py\+View}}
+\subsubsection[{Py\+View(std\+::initializer\+\_\+list$<$ T\+\_\+\+I\+N\+I\+T $>$ shape)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename V\+A\+L\+U\+E\+\_\+\+T\+Y\+P\+E, size\+\_\+t D\+I\+M = 0, bool A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E = true$>$ template$<$class T\+\_\+\+I\+N\+I\+T $>$ {\bf nifty\+::marray\+::\+Py\+View}$<$ V\+A\+L\+U\+E\+\_\+\+T\+Y\+P\+E, D\+I\+M, A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E $>$\+::{\bf Py\+View} (
+\begin{DoxyParamCaption}
+\item[{std\+::initializer\+\_\+list$<$ T\+\_\+\+I\+N\+I\+T $>$}]{shape}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1marray_1_1PyView_a2a86aa379876d3ed5d81ed3b42bd094f}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classnifty_1_1marray_1_1PyView_abd0258ab2bf010a8b2fb07143161bf78}{}\index{nifty\+::marray\+::\+Py\+View@{nifty\+::marray\+::\+Py\+View}!create\+View\+From@{create\+View\+From}}
+\index{create\+View\+From@{create\+View\+From}!nifty\+::marray\+::\+Py\+View@{nifty\+::marray\+::\+Py\+View}}
+\subsubsection[{create\+View\+From(const nifty\+::marray\+::\+View$<$ V\+A\+L\+U\+E\+\_\+\+T\+Y\+P\+E $>$ \&view)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename V\+A\+L\+U\+E\+\_\+\+T\+Y\+P\+E, size\+\_\+t D\+I\+M = 0, bool A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E = true$>$ void {\bf nifty\+::marray\+::\+Py\+View}$<$ V\+A\+L\+U\+E\+\_\+\+T\+Y\+P\+E, D\+I\+M, A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E $>$\+::create\+View\+From (
+\begin{DoxyParamCaption}
+\item[{const nifty\+::marray\+::\+View$<$ V\+A\+L\+U\+E\+\_\+\+T\+Y\+P\+E $>$ \&}]{view}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1marray_1_1PyView_abd0258ab2bf010a8b2fb07143161bf78}
+\hypertarget{classnifty_1_1marray_1_1PyView_ae5eb7b78ed8c6d3478e44a66b04d8aff}{}\index{nifty\+::marray\+::\+Py\+View@{nifty\+::marray\+::\+Py\+View}!operator\mbox{[}$\,$\mbox{]}@{operator[]}}
+\index{operator\mbox{[}$\,$\mbox{]}@{operator[]}!nifty\+::marray\+::\+Py\+View@{nifty\+::marray\+::\+Py\+View}}
+\subsubsection[{operator[](const uint64\+\_\+t index) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename V\+A\+L\+U\+E\+\_\+\+T\+Y\+P\+E, size\+\_\+t D\+I\+M = 0, bool A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E = true$>$ const V\+A\+L\+U\+E\+\_\+\+T\+Y\+P\+E\& {\bf nifty\+::marray\+::\+Py\+View}$<$ V\+A\+L\+U\+E\+\_\+\+T\+Y\+P\+E, D\+I\+M, A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E $>$\+::operator\mbox{[}$\,$\mbox{]} (
+\begin{DoxyParamCaption}
+\item[{const uint64\+\_\+t}]{index}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1marray_1_1PyView_ae5eb7b78ed8c6d3478e44a66b04d8aff}
+\hypertarget{classnifty_1_1marray_1_1PyView_a64d9ff12fbe42e31b957b63180fceb82}{}\index{nifty\+::marray\+::\+Py\+View@{nifty\+::marray\+::\+Py\+View}!operator\mbox{[}$\,$\mbox{]}@{operator[]}}
+\index{operator\mbox{[}$\,$\mbox{]}@{operator[]}!nifty\+::marray\+::\+Py\+View@{nifty\+::marray\+::\+Py\+View}}
+\subsubsection[{operator[](const uint64\+\_\+t index)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename V\+A\+L\+U\+E\+\_\+\+T\+Y\+P\+E, size\+\_\+t D\+I\+M = 0, bool A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E = true$>$ V\+A\+L\+U\+E\+\_\+\+T\+Y\+P\+E\& {\bf nifty\+::marray\+::\+Py\+View}$<$ V\+A\+L\+U\+E\+\_\+\+T\+Y\+P\+E, D\+I\+M, A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E $>$\+::operator\mbox{[}$\,$\mbox{]} (
+\begin{DoxyParamCaption}
+\item[{const uint64\+\_\+t}]{index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1marray_1_1PyView_a64d9ff12fbe42e31b957b63180fceb82}
+\hypertarget{classnifty_1_1marray_1_1PyView_a2141d44a685df3c8f24afafc76c86197}{}\index{nifty\+::marray\+::\+Py\+View@{nifty\+::marray\+::\+Py\+View}!reshape\+If\+Empty@{reshape\+If\+Empty}}
+\index{reshape\+If\+Empty@{reshape\+If\+Empty}!nifty\+::marray\+::\+Py\+View@{nifty\+::marray\+::\+Py\+View}}
+\subsubsection[{reshape\+If\+Empty(\+Shape\+Iterator begin, Shape\+Iterator end)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename V\+A\+L\+U\+E\+\_\+\+T\+Y\+P\+E, size\+\_\+t D\+I\+M = 0, bool A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E = true$>$ template$<$class Shape\+Iterator $>$ void {\bf nifty\+::marray\+::\+Py\+View}$<$ V\+A\+L\+U\+E\+\_\+\+T\+Y\+P\+E, D\+I\+M, A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E $>$\+::reshape\+If\+Empty (
+\begin{DoxyParamCaption}
+\item[{Shape\+Iterator}]{begin, }
+\item[{Shape\+Iterator}]{end}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1marray_1_1PyView_a2141d44a685df3c8f24afafc76c86197}
+\hypertarget{classnifty_1_1marray_1_1PyView_a88cd936f03f7f4ba07ee7eb4dce4f6eb}{}\index{nifty\+::marray\+::\+Py\+View@{nifty\+::marray\+::\+Py\+View}!reshape\+If\+Empty@{reshape\+If\+Empty}}
+\index{reshape\+If\+Empty@{reshape\+If\+Empty}!nifty\+::marray\+::\+Py\+View@{nifty\+::marray\+::\+Py\+View}}
+\subsubsection[{reshape\+If\+Empty(std\+::initializer\+\_\+list$<$ T\+\_\+\+I\+N\+I\+T $>$ shape)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename V\+A\+L\+U\+E\+\_\+\+T\+Y\+P\+E, size\+\_\+t D\+I\+M = 0, bool A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E = true$>$ template$<$class T\+\_\+\+I\+N\+I\+T $>$ void {\bf nifty\+::marray\+::\+Py\+View}$<$ V\+A\+L\+U\+E\+\_\+\+T\+Y\+P\+E, D\+I\+M, A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E $>$\+::reshape\+If\+Empty (
+\begin{DoxyParamCaption}
+\item[{std\+::initializer\+\_\+list$<$ T\+\_\+\+I\+N\+I\+T $>$}]{shape}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1marray_1_1PyView_a88cd936f03f7f4ba07ee7eb4dce4f6eb}
+
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{classnifty_1_1marray_1_1PyView_a94710a007ad8e0112330a0a68858b22c}{}\index{nifty\+::marray\+::\+Py\+View@{nifty\+::marray\+::\+Py\+View}!pybind11\+::detail\+::pymarray\+\_\+caster$<$ V\+A\+L\+U\+E\+\_\+\+T\+Y\+P\+E, D\+I\+M, A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E $>$@{pybind11\+::detail\+::pymarray\+\_\+caster$<$ V\+A\+L\+U\+E\+\_\+\+T\+Y\+P\+E, D\+I\+M, A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E $>$}}
+\index{pybind11\+::detail\+::pymarray\+\_\+caster$<$ V\+A\+L\+U\+E\+\_\+\+T\+Y\+P\+E, D\+I\+M, A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E $>$@{pybind11\+::detail\+::pymarray\+\_\+caster$<$ V\+A\+L\+U\+E\+\_\+\+T\+Y\+P\+E, D\+I\+M, A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E $>$}!nifty\+::marray\+::\+Py\+View@{nifty\+::marray\+::\+Py\+View}}
+\subsubsection[{pybind11\+::detail\+::pymarray\+\_\+caster$<$ V\+A\+L\+U\+E\+\_\+\+T\+Y\+P\+E, D\+I\+M, A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E $>$}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename V\+A\+L\+U\+E\+\_\+\+T\+Y\+P\+E, size\+\_\+t D\+I\+M = 0, bool A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E = true$>$ friend struct {\bf pybind11\+::detail\+::pymarray\+\_\+caster}$<$ V\+A\+L\+U\+E\+\_\+\+T\+Y\+P\+E, D\+I\+M, A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E $>$\hspace{0.3cm}{\ttfamily [friend]}}\label{classnifty_1_1marray_1_1PyView_a94710a007ad8e0112330a0a68858b22c}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/tbeier/src/nifty/include/nifty/python/\hyperlink{converter_8hxx}{converter.\+hxx}\end{DoxyCompactItemize}

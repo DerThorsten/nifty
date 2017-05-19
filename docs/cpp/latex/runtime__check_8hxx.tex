@@ -1,0 +1,272 @@
+\hypertarget{runtime__check_8hxx}{}\section{/home/tbeier/src/nifty/include/nifty/tools/runtime\+\_\+check.hxx File Reference}
+\label{runtime__check_8hxx}\index{/home/tbeier/src/nifty/include/nifty/tools/runtime\+\_\+check.\+hxx@{/home/tbeier/src/nifty/include/nifty/tools/runtime\+\_\+check.\+hxx}}
+{\ttfamily \#include $<$cstdint$>$}\\*
+{\ttfamily \#include $<$stdexcept$>$}\\*
+{\ttfamily \#include $<$sstream$>$}\\*
+{\ttfamily \#include $<$vector$>$}\\*
+{\ttfamily \#include $<$limits$>$}\\*
+{\ttfamily \#include $<$cmath$>$}\\*
+Include dependency graph for runtime\+\_\+check.\+hxx\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{runtime__check_8hxx_af85db625442ee13ff31f6ac6ed73c694}{N\+I\+F\+T\+Y\+\_\+\+T\+O\+O\+L\+S\+\_\+\+R\+U\+N\+T\+I\+M\+E\+\_\+\+C\+H\+E\+C\+K\+\_\+\+H\+X\+X}
+\item 
+\#define \hyperlink{runtime__check_8hxx_a7fdb092c4b634ea3958b7d7aa2f801eb}{N\+I\+F\+T\+Y\+\_\+\+C\+H\+E\+C\+K\+\_\+\+O\+P}(a,  op,  b,  message)
+\begin{DoxyCompactList}\small\item\em macro for runtime checks \end{DoxyCompactList}\item 
+\#define \hyperlink{runtime__check_8hxx_a003e065ee36ca7e6b022bbfbd68afaca}{N\+I\+F\+T\+Y\+\_\+\+C\+H\+E\+C\+K}(expression,  message)
+\begin{DoxyCompactList}\small\item\em macro for runtime checks \end{DoxyCompactList}\item 
+\#define \hyperlink{runtime__check_8hxx_a32db00cbb481903d7e4cec8fa9a6bd17}{N\+I\+F\+T\+Y\+\_\+\+T\+E\+S\+T}(expression)~\hyperlink{runtime__check_8hxx_a003e065ee36ca7e6b022bbfbd68afaca}{N\+I\+F\+T\+Y\+\_\+\+C\+H\+E\+C\+K}(expression,\char`\"{}\char`\"{})
+\item 
+\#define \hyperlink{runtime__check_8hxx_ac539d7793f817e718c9fb6659e948860}{N\+I\+F\+T\+Y\+\_\+\+T\+E\+S\+T\+\_\+\+O\+P}(a,  op,  b)~\hyperlink{runtime__check_8hxx_a7fdb092c4b634ea3958b7d7aa2f801eb}{N\+I\+F\+T\+Y\+\_\+\+C\+H\+E\+C\+K\+\_\+\+O\+P}(a,op,b,\char`\"{}\char`\"{})
+\item 
+\#define \hyperlink{runtime__check_8hxx_a19bb428a7488f65c42bf92c5e9a280e8}{N\+I\+F\+T\+Y\+\_\+\+C\+H\+E\+C\+K\+\_\+\+E\+Q\+\_\+\+T\+O\+L}(a,  b,  tol)
+\item 
+\#define \hyperlink{runtime__check_8hxx_abc1b4a48bb9eeaf0f9da90aeac68975f}{N\+I\+F\+T\+Y\+\_\+\+T\+E\+S\+T\+\_\+\+E\+Q\+\_\+\+T\+O\+L}(a,  b,  tol)~\hyperlink{runtime__check_8hxx_a19bb428a7488f65c42bf92c5e9a280e8}{N\+I\+F\+T\+Y\+\_\+\+C\+H\+E\+C\+K\+\_\+\+E\+Q\+\_\+\+T\+O\+L}(a,b,tol)
+\item 
+\#define \hyperlink{runtime__check_8hxx_acc61e5e15ebac005c224c5c5e2205ffc}{N\+I\+F\+T\+Y\+\_\+\+C\+H\+E\+C\+K\+\_\+\+N\+U\+M\+B\+E\+R}(number)
+\item 
+\#define \hyperlink{runtime__check_8hxx_a1ae39644615984f31785d52a0b624277}{N\+I\+F\+T\+Y\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+O\+P}(a,  op,  b)
+\begin{DoxyCompactList}\small\item\em macro for runtime checks \end{DoxyCompactList}\item 
+\#define \hyperlink{runtime__check_8hxx_af91d00e1319a132b73765ba661a64b73}{N\+I\+F\+T\+Y\+\_\+\+A\+S\+S\+E\+R\+T}(expression)
+\begin{DoxyCompactList}\small\item\em macro for runtime checks \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{runtime__check_8hxx_af91d00e1319a132b73765ba661a64b73}{}\index{runtime\+\_\+check.\+hxx@{runtime\+\_\+check.\+hxx}!N\+I\+F\+T\+Y\+\_\+\+A\+S\+S\+E\+R\+T@{N\+I\+F\+T\+Y\+\_\+\+A\+S\+S\+E\+R\+T}}
+\index{N\+I\+F\+T\+Y\+\_\+\+A\+S\+S\+E\+R\+T@{N\+I\+F\+T\+Y\+\_\+\+A\+S\+S\+E\+R\+T}!runtime\+\_\+check.\+hxx@{runtime\+\_\+check.\+hxx}}
+\subsubsection[{N\+I\+F\+T\+Y\+\_\+\+A\+S\+S\+E\+R\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+I\+F\+T\+Y\+\_\+\+A\+S\+S\+E\+R\+T(
+\begin{DoxyParamCaption}
+\item[{}]{expression}
+\end{DoxyParamCaption}
+)}\label{runtime__check_8hxx_af91d00e1319a132b73765ba661a64b73}
+{\bfseries Value\+:}
+\begin{DoxyCode}
+\textcolor{keywordflow}{if}(!(expression)) \{ \(\backslash\)
+         std::stringstream s; \(\backslash\)
+         s << \textcolor{stringliteral}{"Nifty assertion "} << #expression \(\backslash\)
+         << \textcolor{stringliteral}{" failed in file "} << \_\_FILE\_\_ \(\backslash\)
+         << \textcolor{stringliteral}{", line "} << \_\_LINE\_\_ << std::endl; \(\backslash\)
+         throw std::runtime\_error(s.str()); \(\backslash\)
+      \}
+\end{DoxyCode}
+
+
+macro for runtime checks 
+
+\begin{DoxyWarning}{Warning}
+The check is {\bfseries only} done in in Debug mode (therefore if N\+D\+E\+B\+U\+G is {\bfseries not} defined)
+\end{DoxyWarning}
+
+\begin{DoxyParams}{Parameters}
+{\em expression} & \+: expression which can evaluate to bool\\
+\hline
+\end{DoxyParams}
+{\bfseries Usage\+:} 
+\begin{DoxyCode}
+1 int a = 1;
+2 NIFTY\_ASSERT(a == 1) // will not fail here 
+3 NIFTY\_ASSERT(a >= 2) // will fail here
+\end{DoxyCode}
+ \hypertarget{runtime__check_8hxx_a1ae39644615984f31785d52a0b624277}{}\index{runtime\+\_\+check.\+hxx@{runtime\+\_\+check.\+hxx}!N\+I\+F\+T\+Y\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+O\+P@{N\+I\+F\+T\+Y\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+O\+P}}
+\index{N\+I\+F\+T\+Y\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+O\+P@{N\+I\+F\+T\+Y\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+O\+P}!runtime\+\_\+check.\+hxx@{runtime\+\_\+check.\+hxx}}
+\subsubsection[{N\+I\+F\+T\+Y\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+O\+P}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+I\+F\+T\+Y\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+O\+P(
+\begin{DoxyParamCaption}
+\item[{}]{a, }
+\item[{}]{op, }
+\item[{}]{b}
+\end{DoxyParamCaption}
+)}\label{runtime__check_8hxx_a1ae39644615984f31785d52a0b624277}
+{\bfseries Value\+:}
+\begin{DoxyCode}
+\textcolor{keywordflow}{if}(!  static\_cast<bool>( a op b )   ) \{ \(\backslash\)
+      std::stringstream s; \(\backslash\)
+      s << \textcolor{stringliteral}{"Nifty assertion :  "} << #a <<#op <<#b<< \textcolor{stringliteral}{"  failed:\(\backslash\)n"}; \(\backslash\)
+      s << #a \textcolor{stringliteral}{" = "}<<a<<\textcolor{stringliteral}{"\(\backslash\)n"}; \(\backslash\)
+      s << #b \textcolor{stringliteral}{" = "}<<b<<\textcolor{stringliteral}{"\(\backslash\)n"}; \(\backslash\)
+      s << \textcolor{stringliteral}{"in file "} << \_\_FILE\_\_ << \textcolor{stringliteral}{", line "} << \_\_LINE\_\_ << \textcolor{stringliteral}{"\(\backslash\)n"}; \(\backslash\)
+      throw std::runtime\_error(s.str()); \(\backslash\)
+   \}
+\end{DoxyCode}
+
+
+macro for runtime checks 
+
+\begin{DoxyWarning}{Warning}
+The check is {\bfseries only} done in in Debug mode (therefore if N\+D\+E\+B\+U\+G is {\bfseries not} defined)
+\end{DoxyWarning}
+
+\begin{DoxyParams}{Parameters}
+{\em a} & \+: first argument (like a number ) \\
+\hline
+{\em op} & \+: operator (== ) \\
+\hline
+{\em b} & \+: second argument (like a number ) \\
+\hline
+{\em message} & \+: error message (as \char`\"{}my error\char`\"{})\\
+\hline
+\end{DoxyParams}
+{\bfseries Usage\+:} 
+\begin{DoxyCode}
+1 int a = 1;
+2 NIFTY\_ASSERT\_OP(a, ==, 1) // will not fail here
+3 NIFTY\_ASSERT\_OP(a, >=, 2) // will fail here
+\end{DoxyCode}
+ \hypertarget{runtime__check_8hxx_a003e065ee36ca7e6b022bbfbd68afaca}{}\index{runtime\+\_\+check.\+hxx@{runtime\+\_\+check.\+hxx}!N\+I\+F\+T\+Y\+\_\+\+C\+H\+E\+C\+K@{N\+I\+F\+T\+Y\+\_\+\+C\+H\+E\+C\+K}}
+\index{N\+I\+F\+T\+Y\+\_\+\+C\+H\+E\+C\+K@{N\+I\+F\+T\+Y\+\_\+\+C\+H\+E\+C\+K}!runtime\+\_\+check.\+hxx@{runtime\+\_\+check.\+hxx}}
+\subsubsection[{N\+I\+F\+T\+Y\+\_\+\+C\+H\+E\+C\+K}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+I\+F\+T\+Y\+\_\+\+C\+H\+E\+C\+K(
+\begin{DoxyParamCaption}
+\item[{}]{expression, }
+\item[{}]{message}
+\end{DoxyParamCaption}
+)}\label{runtime__check_8hxx_a003e065ee36ca7e6b022bbfbd68afaca}
+{\bfseries Value\+:}
+\begin{DoxyCode}
+\textcolor{keywordflow}{if}(!(expression)) \{ \(\backslash\)
+   std::stringstream s; \(\backslash\)
+   s << message <<\textcolor{stringliteral}{"\(\backslash\)n"};\(\backslash\)
+   s << \textcolor{stringliteral}{"Nifty assertion "} << #expression \(\backslash\)
+   << \textcolor{stringliteral}{" failed in file "} << \_\_FILE\_\_ \(\backslash\)
+   << \textcolor{stringliteral}{", line "} << \_\_LINE\_\_ << std::endl; \(\backslash\)
+   throw std::runtime\_error(s.str()); \(\backslash\)
+ \}
+\end{DoxyCode}
+
+
+macro for runtime checks 
+
+\begin{DoxyWarning}{Warning}
+The check is done {\bfseries  even in Release mode } (therefore if N\+D\+E\+B\+U\+G {\bfseries is} defined)
+\end{DoxyWarning}
+
+\begin{DoxyParams}{Parameters}
+{\em expression} & \+: expression which can evaluate to bool \\
+\hline
+{\em message} & \+: error message (as \char`\"{}my error\char`\"{})\\
+\hline
+\end{DoxyParams}
+{\bfseries Usage\+:} 
+\begin{DoxyCode}
+1 int a = 1;
+2 NIFTY\_CHECK\_OP(a==1, "this should never fail")
+3 NIFTY\_CHECK\_OP(a>=2, "this should fail")
+\end{DoxyCode}
+ \hypertarget{runtime__check_8hxx_a19bb428a7488f65c42bf92c5e9a280e8}{}\index{runtime\+\_\+check.\+hxx@{runtime\+\_\+check.\+hxx}!N\+I\+F\+T\+Y\+\_\+\+C\+H\+E\+C\+K\+\_\+\+E\+Q\+\_\+\+T\+O\+L@{N\+I\+F\+T\+Y\+\_\+\+C\+H\+E\+C\+K\+\_\+\+E\+Q\+\_\+\+T\+O\+L}}
+\index{N\+I\+F\+T\+Y\+\_\+\+C\+H\+E\+C\+K\+\_\+\+E\+Q\+\_\+\+T\+O\+L@{N\+I\+F\+T\+Y\+\_\+\+C\+H\+E\+C\+K\+\_\+\+E\+Q\+\_\+\+T\+O\+L}!runtime\+\_\+check.\+hxx@{runtime\+\_\+check.\+hxx}}
+\subsubsection[{N\+I\+F\+T\+Y\+\_\+\+C\+H\+E\+C\+K\+\_\+\+E\+Q\+\_\+\+T\+O\+L}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+I\+F\+T\+Y\+\_\+\+C\+H\+E\+C\+K\+\_\+\+E\+Q\+\_\+\+T\+O\+L(
+\begin{DoxyParamCaption}
+\item[{}]{a, }
+\item[{}]{b, }
+\item[{}]{tol}
+\end{DoxyParamCaption}
+)}\label{runtime__check_8hxx_a19bb428a7488f65c42bf92c5e9a280e8}
+{\bfseries Value\+:}
+\begin{DoxyCode}
+\textcolor{keywordflow}{if}( std::abs(a-b) > tol)\{ \(\backslash\)
+        std::stringstream s; \(\backslash\)
+        s<<\textcolor{stringliteral}{"Nifty assertion "}; \(\backslash\)
+        s<<\textcolor{stringliteral}{"\(\backslash\)""}; \(\backslash\)
+        s<<\textcolor{stringliteral}{" | "}<< #a <<\textcolor{stringliteral}{" - "}<<#b<<\textcolor{stringliteral}{"| < "} #tol <<\textcolor{stringliteral}{"\(\backslash\)" "}; \(\backslash\)
+        s<<\textcolor{stringliteral}{"  failed with:\(\backslash\)n"}; \(\backslash\)
+        s<<#a<<\textcolor{stringliteral}{" = "}<<a<<\textcolor{stringliteral}{"\(\backslash\)n"};\(\backslash\)
+        s<<#b<<\textcolor{stringliteral}{" = "}<<b<<\textcolor{stringliteral}{"\(\backslash\)n"};\(\backslash\)
+        s<<#tol<<\textcolor{stringliteral}{" = "}<<tol<<\textcolor{stringliteral}{"\(\backslash\)n"};\(\backslash\)
+        throw std::runtime\_error(s.str()); \(\backslash\)
+    \}
+\end{DoxyCode}
+\hypertarget{runtime__check_8hxx_acc61e5e15ebac005c224c5c5e2205ffc}{}\index{runtime\+\_\+check.\+hxx@{runtime\+\_\+check.\+hxx}!N\+I\+F\+T\+Y\+\_\+\+C\+H\+E\+C\+K\+\_\+\+N\+U\+M\+B\+E\+R@{N\+I\+F\+T\+Y\+\_\+\+C\+H\+E\+C\+K\+\_\+\+N\+U\+M\+B\+E\+R}}
+\index{N\+I\+F\+T\+Y\+\_\+\+C\+H\+E\+C\+K\+\_\+\+N\+U\+M\+B\+E\+R@{N\+I\+F\+T\+Y\+\_\+\+C\+H\+E\+C\+K\+\_\+\+N\+U\+M\+B\+E\+R}!runtime\+\_\+check.\+hxx@{runtime\+\_\+check.\+hxx}}
+\subsubsection[{N\+I\+F\+T\+Y\+\_\+\+C\+H\+E\+C\+K\+\_\+\+N\+U\+M\+B\+E\+R}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+I\+F\+T\+Y\+\_\+\+C\+H\+E\+C\+K\+\_\+\+N\+U\+M\+B\+E\+R(
+\begin{DoxyParamCaption}
+\item[{}]{number}
+\end{DoxyParamCaption}
+)}\label{runtime__check_8hxx_acc61e5e15ebac005c224c5c5e2205ffc}
+{\bfseries Value\+:}
+\begin{DoxyCode}
+\{ \(\backslash\)
+   std::stringstream s; \(\backslash\)
+   s << \textcolor{stringliteral}{"Nifty assertion failed in file "} << \_\_FILE\_\_ \(\backslash\)
+   << \textcolor{stringliteral}{", line "} << \_\_LINE\_\_ << std::endl; \(\backslash\)
+    if(std::isnan(number))\(\backslash\)
+        throw std::runtime\_error(s.str()+\textcolor{stringliteral}{" number is nan"}); \(\backslash\)
+    if(std::isinf(number))\(\backslash\)
+        throw std::runtime\_error(s.str()+\textcolor{stringliteral}{"number is inf"});\(\backslash\)
+    \}
+\end{DoxyCode}
+\hypertarget{runtime__check_8hxx_a7fdb092c4b634ea3958b7d7aa2f801eb}{}\index{runtime\+\_\+check.\+hxx@{runtime\+\_\+check.\+hxx}!N\+I\+F\+T\+Y\+\_\+\+C\+H\+E\+C\+K\+\_\+\+O\+P@{N\+I\+F\+T\+Y\+\_\+\+C\+H\+E\+C\+K\+\_\+\+O\+P}}
+\index{N\+I\+F\+T\+Y\+\_\+\+C\+H\+E\+C\+K\+\_\+\+O\+P@{N\+I\+F\+T\+Y\+\_\+\+C\+H\+E\+C\+K\+\_\+\+O\+P}!runtime\+\_\+check.\+hxx@{runtime\+\_\+check.\+hxx}}
+\subsubsection[{N\+I\+F\+T\+Y\+\_\+\+C\+H\+E\+C\+K\+\_\+\+O\+P}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+I\+F\+T\+Y\+\_\+\+C\+H\+E\+C\+K\+\_\+\+O\+P(
+\begin{DoxyParamCaption}
+\item[{}]{a, }
+\item[{}]{op, }
+\item[{}]{b, }
+\item[{}]{message}
+\end{DoxyParamCaption}
+)}\label{runtime__check_8hxx_a7fdb092c4b634ea3958b7d7aa2f801eb}
+{\bfseries Value\+:}
+\begin{DoxyCode}
+\textcolor{keywordflow}{if}(!  static\_cast<bool>( a op b )   ) \{ \(\backslash\)
+       std::stringstream s; \(\backslash\)
+       s << \textcolor{stringliteral}{"Nifty Error: "}<< message <<\textcolor{stringliteral}{"\(\backslash\)n"};\(\backslash\)
+       s << \textcolor{stringliteral}{"Nifty check :  "} << #a <<#op <<#b<< \textcolor{stringliteral}{"  failed:\(\backslash\)n"}; \(\backslash\)
+       s << #a \textcolor{stringliteral}{" = "}<<a<<\textcolor{stringliteral}{"\(\backslash\)n"}; \(\backslash\)
+       s << #b \textcolor{stringliteral}{" = "}<<b<<\textcolor{stringliteral}{"\(\backslash\)n"}; \(\backslash\)
+       s << \textcolor{stringliteral}{"in file "} << \_\_FILE\_\_ << \textcolor{stringliteral}{", line "} << \_\_LINE\_\_ << \textcolor{stringliteral}{"\(\backslash\)n"}; \(\backslash\)
+       throw std::runtime\_error(s.str()); \(\backslash\)
+    \}
+\end{DoxyCode}
+
+
+macro for runtime checks 
+
+\begin{DoxyWarning}{Warning}
+The check is done {\bfseries  even in Release mode } (therefore if N\+D\+E\+B\+U\+G {\bfseries is} defined)
+\end{DoxyWarning}
+
+\begin{DoxyParams}{Parameters}
+{\em a} & \+: first argument (like a number ) \\
+\hline
+{\em op} & \+: operator (== ) \\
+\hline
+{\em b} & \+: second argument (like a number ) \\
+\hline
+{\em message} & \+: error message (as \char`\"{}my error\char`\"{})\\
+\hline
+\end{DoxyParams}
+{\bfseries Usage\+:} 
+\begin{DoxyCode}
+1 int a = 1;
+2 NIFTY\_CHECK\_OP(a, ==, 1, "this should never fail")
+3 NIFTY\_CHECK\_OP(a, >=, 2, "this should fail")
+\end{DoxyCode}
+ \hypertarget{runtime__check_8hxx_a32db00cbb481903d7e4cec8fa9a6bd17}{}\index{runtime\+\_\+check.\+hxx@{runtime\+\_\+check.\+hxx}!N\+I\+F\+T\+Y\+\_\+\+T\+E\+S\+T@{N\+I\+F\+T\+Y\+\_\+\+T\+E\+S\+T}}
+\index{N\+I\+F\+T\+Y\+\_\+\+T\+E\+S\+T@{N\+I\+F\+T\+Y\+\_\+\+T\+E\+S\+T}!runtime\+\_\+check.\+hxx@{runtime\+\_\+check.\+hxx}}
+\subsubsection[{N\+I\+F\+T\+Y\+\_\+\+T\+E\+S\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+I\+F\+T\+Y\+\_\+\+T\+E\+S\+T(
+\begin{DoxyParamCaption}
+\item[{}]{expression}
+\end{DoxyParamCaption}
+)~{\bf N\+I\+F\+T\+Y\+\_\+\+C\+H\+E\+C\+K}(expression,\char`\"{}\char`\"{})}\label{runtime__check_8hxx_a32db00cbb481903d7e4cec8fa9a6bd17}
+\hypertarget{runtime__check_8hxx_abc1b4a48bb9eeaf0f9da90aeac68975f}{}\index{runtime\+\_\+check.\+hxx@{runtime\+\_\+check.\+hxx}!N\+I\+F\+T\+Y\+\_\+\+T\+E\+S\+T\+\_\+\+E\+Q\+\_\+\+T\+O\+L@{N\+I\+F\+T\+Y\+\_\+\+T\+E\+S\+T\+\_\+\+E\+Q\+\_\+\+T\+O\+L}}
+\index{N\+I\+F\+T\+Y\+\_\+\+T\+E\+S\+T\+\_\+\+E\+Q\+\_\+\+T\+O\+L@{N\+I\+F\+T\+Y\+\_\+\+T\+E\+S\+T\+\_\+\+E\+Q\+\_\+\+T\+O\+L}!runtime\+\_\+check.\+hxx@{runtime\+\_\+check.\+hxx}}
+\subsubsection[{N\+I\+F\+T\+Y\+\_\+\+T\+E\+S\+T\+\_\+\+E\+Q\+\_\+\+T\+O\+L}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+I\+F\+T\+Y\+\_\+\+T\+E\+S\+T\+\_\+\+E\+Q\+\_\+\+T\+O\+L(
+\begin{DoxyParamCaption}
+\item[{}]{a, }
+\item[{}]{b, }
+\item[{}]{tol}
+\end{DoxyParamCaption}
+)~{\bf N\+I\+F\+T\+Y\+\_\+\+C\+H\+E\+C\+K\+\_\+\+E\+Q\+\_\+\+T\+O\+L}(a,b,tol)}\label{runtime__check_8hxx_abc1b4a48bb9eeaf0f9da90aeac68975f}
+\hypertarget{runtime__check_8hxx_ac539d7793f817e718c9fb6659e948860}{}\index{runtime\+\_\+check.\+hxx@{runtime\+\_\+check.\+hxx}!N\+I\+F\+T\+Y\+\_\+\+T\+E\+S\+T\+\_\+\+O\+P@{N\+I\+F\+T\+Y\+\_\+\+T\+E\+S\+T\+\_\+\+O\+P}}
+\index{N\+I\+F\+T\+Y\+\_\+\+T\+E\+S\+T\+\_\+\+O\+P@{N\+I\+F\+T\+Y\+\_\+\+T\+E\+S\+T\+\_\+\+O\+P}!runtime\+\_\+check.\+hxx@{runtime\+\_\+check.\+hxx}}
+\subsubsection[{N\+I\+F\+T\+Y\+\_\+\+T\+E\+S\+T\+\_\+\+O\+P}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+I\+F\+T\+Y\+\_\+\+T\+E\+S\+T\+\_\+\+O\+P(
+\begin{DoxyParamCaption}
+\item[{}]{a, }
+\item[{}]{op, }
+\item[{}]{b}
+\end{DoxyParamCaption}
+)~{\bf N\+I\+F\+T\+Y\+\_\+\+C\+H\+E\+C\+K\+\_\+\+O\+P}(a,op,b,\char`\"{}\char`\"{})}\label{runtime__check_8hxx_ac539d7793f817e718c9fb6659e948860}
+\hypertarget{runtime__check_8hxx_af85db625442ee13ff31f6ac6ed73c694}{}\index{runtime\+\_\+check.\+hxx@{runtime\+\_\+check.\+hxx}!N\+I\+F\+T\+Y\+\_\+\+T\+O\+O\+L\+S\+\_\+\+R\+U\+N\+T\+I\+M\+E\+\_\+\+C\+H\+E\+C\+K\+\_\+\+H\+X\+X@{N\+I\+F\+T\+Y\+\_\+\+T\+O\+O\+L\+S\+\_\+\+R\+U\+N\+T\+I\+M\+E\+\_\+\+C\+H\+E\+C\+K\+\_\+\+H\+X\+X}}
+\index{N\+I\+F\+T\+Y\+\_\+\+T\+O\+O\+L\+S\+\_\+\+R\+U\+N\+T\+I\+M\+E\+\_\+\+C\+H\+E\+C\+K\+\_\+\+H\+X\+X@{N\+I\+F\+T\+Y\+\_\+\+T\+O\+O\+L\+S\+\_\+\+R\+U\+N\+T\+I\+M\+E\+\_\+\+C\+H\+E\+C\+K\+\_\+\+H\+X\+X}!runtime\+\_\+check.\+hxx@{runtime\+\_\+check.\+hxx}}
+\subsubsection[{N\+I\+F\+T\+Y\+\_\+\+T\+O\+O\+L\+S\+\_\+\+R\+U\+N\+T\+I\+M\+E\+\_\+\+C\+H\+E\+C\+K\+\_\+\+H\+X\+X}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+I\+F\+T\+Y\+\_\+\+T\+O\+O\+L\+S\+\_\+\+R\+U\+N\+T\+I\+M\+E\+\_\+\+C\+H\+E\+C\+K\+\_\+\+H\+X\+X}\label{runtime__check_8hxx_af85db625442ee13ff31f6ac6ed73c694}

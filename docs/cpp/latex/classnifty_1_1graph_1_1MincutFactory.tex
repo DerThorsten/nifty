@@ -1,0 +1,89 @@
+\hypertarget{classnifty_1_1graph_1_1MincutFactory}{}\section{nifty\+:\+:graph\+:\+:Mincut\+Factory$<$ S\+O\+L\+V\+E\+R $>$ Class Template Reference}
+\label{classnifty_1_1graph_1_1MincutFactory}\index{nifty\+::graph\+::\+Mincut\+Factory$<$ S\+O\+L\+V\+E\+R $>$@{nifty\+::graph\+::\+Mincut\+Factory$<$ S\+O\+L\+V\+E\+R $>$}}
+
+
+{\ttfamily \#include $<$mincut\+\_\+factory.\+hxx$>$}
+
+
+
+Inheritance diagram for nifty\+:\+:graph\+:\+:Mincut\+Factory$<$ S\+O\+L\+V\+E\+R $>$\+:
+% FIG 0
+
+
+Collaboration diagram for nifty\+:\+:graph\+:\+:Mincut\+Factory$<$ S\+O\+L\+V\+E\+R $>$\+:
+% FIG 1
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef S\+O\+L\+V\+E\+R\+::\+Objective \hyperlink{classnifty_1_1graph_1_1MincutFactory_a6f92b21c6eee586b7b986488e3b381bc}{Objective}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1MincutBase}{Mincut\+Base}$<$ \hyperlink{classnifty_1_1graph_1_1MincutFactory_a6f92b21c6eee586b7b986488e3b381bc}{Objective} $>$ \hyperlink{classnifty_1_1graph_1_1MincutFactory_a5a23fd8e8d5be1d6b80a8936d530e23a}{Mincut\+Base\+Type}
+\item 
+typedef S\+O\+L\+V\+E\+R \hyperlink{classnifty_1_1graph_1_1MincutFactory_a9d7f5efdd22f5de230a1b477234918d5}{Solver}
+\item 
+typedef Solver\+::\+Settings \hyperlink{classnifty_1_1graph_1_1MincutFactory_a2933cb2ed374c3ad593e2bfafa4a12fa}{Settings}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classnifty_1_1graph_1_1MincutFactory_a802180089b5aa2154fd3e482f8f8c0b5}{Mincut\+Factory} (const \hyperlink{classnifty_1_1graph_1_1MincutFactory_a2933cb2ed374c3ad593e2bfafa4a12fa}{Settings} \&settings=\hyperlink{classnifty_1_1graph_1_1MincutFactory_a2933cb2ed374c3ad593e2bfafa4a12fa}{Settings}())
+\item 
+virtual std\+::shared\+\_\+ptr$<$ \hyperlink{classnifty_1_1graph_1_1MincutFactory_a5a23fd8e8d5be1d6b80a8936d530e23a}{Mincut\+Base\+Type} $>$ \hyperlink{classnifty_1_1graph_1_1MincutFactory_a868a6628c4f9421ee14b75e867cdf06d}{create\+Shared\+Ptr} (const \hyperlink{classnifty_1_1graph_1_1MincutFactory_a6f92b21c6eee586b7b986488e3b381bc}{Objective} \&objective)
+\item 
+virtual \hyperlink{classnifty_1_1graph_1_1MincutFactory_a5a23fd8e8d5be1d6b80a8936d530e23a}{Mincut\+Base\+Type} $\ast$ \hyperlink{classnifty_1_1graph_1_1MincutFactory_aca031f448c6127ab46fb1a6485d6a202}{create\+Raw\+Ptr} (const \hyperlink{classnifty_1_1graph_1_1MincutFactory_a6f92b21c6eee586b7b986488e3b381bc}{Objective} \&objective)
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{classnifty_1_1graph_1_1MincutFactory_a5a23fd8e8d5be1d6b80a8936d530e23a}{}\index{nifty\+::graph\+::\+Mincut\+Factory@{nifty\+::graph\+::\+Mincut\+Factory}!Mincut\+Base\+Type@{Mincut\+Base\+Type}}
+\index{Mincut\+Base\+Type@{Mincut\+Base\+Type}!nifty\+::graph\+::\+Mincut\+Factory@{nifty\+::graph\+::\+Mincut\+Factory}}
+\subsubsection[{Mincut\+Base\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S\+O\+L\+V\+E\+R $>$ typedef {\bf Mincut\+Base}$<${\bf Objective}$>$ {\bf nifty\+::graph\+::\+Mincut\+Factory}$<$ S\+O\+L\+V\+E\+R $>$\+::{\bf Mincut\+Base\+Type}}\label{classnifty_1_1graph_1_1MincutFactory_a5a23fd8e8d5be1d6b80a8936d530e23a}
+\hypertarget{classnifty_1_1graph_1_1MincutFactory_a6f92b21c6eee586b7b986488e3b381bc}{}\index{nifty\+::graph\+::\+Mincut\+Factory@{nifty\+::graph\+::\+Mincut\+Factory}!Objective@{Objective}}
+\index{Objective@{Objective}!nifty\+::graph\+::\+Mincut\+Factory@{nifty\+::graph\+::\+Mincut\+Factory}}
+\subsubsection[{Objective}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S\+O\+L\+V\+E\+R $>$ typedef S\+O\+L\+V\+E\+R\+::\+Objective {\bf nifty\+::graph\+::\+Mincut\+Factory}$<$ S\+O\+L\+V\+E\+R $>$\+::{\bf Objective}}\label{classnifty_1_1graph_1_1MincutFactory_a6f92b21c6eee586b7b986488e3b381bc}
+\hypertarget{classnifty_1_1graph_1_1MincutFactory_a2933cb2ed374c3ad593e2bfafa4a12fa}{}\index{nifty\+::graph\+::\+Mincut\+Factory@{nifty\+::graph\+::\+Mincut\+Factory}!Settings@{Settings}}
+\index{Settings@{Settings}!nifty\+::graph\+::\+Mincut\+Factory@{nifty\+::graph\+::\+Mincut\+Factory}}
+\subsubsection[{Settings}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S\+O\+L\+V\+E\+R $>$ typedef Solver\+::\+Settings {\bf nifty\+::graph\+::\+Mincut\+Factory}$<$ S\+O\+L\+V\+E\+R $>$\+::{\bf Settings}}\label{classnifty_1_1graph_1_1MincutFactory_a2933cb2ed374c3ad593e2bfafa4a12fa}
+\hypertarget{classnifty_1_1graph_1_1MincutFactory_a9d7f5efdd22f5de230a1b477234918d5}{}\index{nifty\+::graph\+::\+Mincut\+Factory@{nifty\+::graph\+::\+Mincut\+Factory}!Solver@{Solver}}
+\index{Solver@{Solver}!nifty\+::graph\+::\+Mincut\+Factory@{nifty\+::graph\+::\+Mincut\+Factory}}
+\subsubsection[{Solver}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S\+O\+L\+V\+E\+R $>$ typedef S\+O\+L\+V\+E\+R {\bf nifty\+::graph\+::\+Mincut\+Factory}$<$ S\+O\+L\+V\+E\+R $>$\+::{\bf Solver}}\label{classnifty_1_1graph_1_1MincutFactory_a9d7f5efdd22f5de230a1b477234918d5}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classnifty_1_1graph_1_1MincutFactory_a802180089b5aa2154fd3e482f8f8c0b5}{}\index{nifty\+::graph\+::\+Mincut\+Factory@{nifty\+::graph\+::\+Mincut\+Factory}!Mincut\+Factory@{Mincut\+Factory}}
+\index{Mincut\+Factory@{Mincut\+Factory}!nifty\+::graph\+::\+Mincut\+Factory@{nifty\+::graph\+::\+Mincut\+Factory}}
+\subsubsection[{Mincut\+Factory(const Settings \&settings=\+Settings())}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S\+O\+L\+V\+E\+R $>$ {\bf nifty\+::graph\+::\+Mincut\+Factory}$<$ S\+O\+L\+V\+E\+R $>$\+::{\bf Mincut\+Factory} (
+\begin{DoxyParamCaption}
+\item[{const {\bf Settings} \&}]{settings = {\ttfamily {\bf Settings}()}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1MincutFactory_a802180089b5aa2154fd3e482f8f8c0b5}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classnifty_1_1graph_1_1MincutFactory_aca031f448c6127ab46fb1a6485d6a202}{}\index{nifty\+::graph\+::\+Mincut\+Factory@{nifty\+::graph\+::\+Mincut\+Factory}!create\+Raw\+Ptr@{create\+Raw\+Ptr}}
+\index{create\+Raw\+Ptr@{create\+Raw\+Ptr}!nifty\+::graph\+::\+Mincut\+Factory@{nifty\+::graph\+::\+Mincut\+Factory}}
+\subsubsection[{create\+Raw\+Ptr(const Objective \&objective)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S\+O\+L\+V\+E\+R $>$ virtual {\bf Mincut\+Base\+Type}$\ast$ {\bf nifty\+::graph\+::\+Mincut\+Factory}$<$ S\+O\+L\+V\+E\+R $>$\+::create\+Raw\+Ptr (
+\begin{DoxyParamCaption}
+\item[{const {\bf Objective} \&}]{objective}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classnifty_1_1graph_1_1MincutFactory_aca031f448c6127ab46fb1a6485d6a202}
+
+
+Implements \hyperlink{classnifty_1_1graph_1_1MincutFactoryBase_a91708f1c96eb24f8923114bea732333c}{nifty\+::graph\+::\+Mincut\+Factory\+Base$<$ S\+O\+L\+V\+E\+R\+::\+Objective $>$}.
+
+\hypertarget{classnifty_1_1graph_1_1MincutFactory_a868a6628c4f9421ee14b75e867cdf06d}{}\index{nifty\+::graph\+::\+Mincut\+Factory@{nifty\+::graph\+::\+Mincut\+Factory}!create\+Shared\+Ptr@{create\+Shared\+Ptr}}
+\index{create\+Shared\+Ptr@{create\+Shared\+Ptr}!nifty\+::graph\+::\+Mincut\+Factory@{nifty\+::graph\+::\+Mincut\+Factory}}
+\subsubsection[{create\+Shared\+Ptr(const Objective \&objective)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S\+O\+L\+V\+E\+R $>$ virtual std\+::shared\+\_\+ptr$<${\bf Mincut\+Base\+Type}$>$ {\bf nifty\+::graph\+::\+Mincut\+Factory}$<$ S\+O\+L\+V\+E\+R $>$\+::create\+Shared\+Ptr (
+\begin{DoxyParamCaption}
+\item[{const {\bf Objective} \&}]{objective}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classnifty_1_1graph_1_1MincutFactory_a868a6628c4f9421ee14b75e867cdf06d}
+
+
+Implements \hyperlink{classnifty_1_1graph_1_1MincutFactoryBase_a55ea4e7c0dea7ea81f27b51a1b87c3f7}{nifty\+::graph\+::\+Mincut\+Factory\+Base$<$ S\+O\+L\+V\+E\+R\+::\+Objective $>$}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/\hyperlink{mincut__factory_8hxx}{mincut\+\_\+factory.\+hxx}\end{DoxyCompactItemize}

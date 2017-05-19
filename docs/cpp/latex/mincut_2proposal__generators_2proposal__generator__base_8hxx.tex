@@ -1,0 +1,33 @@
+\hypertarget{mincut_2proposal__generators_2proposal__generator__base_8hxx}{}\section{/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/proposal\+\_\+generators/proposal\+\_\+generator\+\_\+base.hxx File Reference}
+\label{mincut_2proposal__generators_2proposal__generator__base_8hxx}\index{/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/proposal\+\_\+generators/proposal\+\_\+generator\+\_\+base.\+hxx@{/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/proposal\+\_\+generators/proposal\+\_\+generator\+\_\+base.\+hxx}}
+{\ttfamily \#include $<$memory$>$}\\*
+{\ttfamily \#include \char`\"{}nifty/graph/optimization/mincut/lifted\+\_\+multicut\+\_\+base.\+hxx\char`\"{}}\\*
+Include dependency graph for proposal\+\_\+generator\+\_\+base.\+hxx\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classnifty_1_1graph_1_1mincut_1_1ProposalGeneratorBase}{nifty\+::graph\+::mincut\+::\+Proposal\+Generator\+Base$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}
+\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespacenifty}{nifty}
+\item 
+ \hyperlink{namespacenifty_1_1graph}{nifty\+::graph}
+\item 
+ \hyperlink{namespacenifty_1_1graph_1_1mincut}{nifty\+::graph\+::mincut}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{mincut_2proposal__generators_2proposal__generator__base_8hxx_a40b56e4617b6f8f22a4cc4366e81d6e6}{N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+P\+R\+O\+P\+O\+S\+A\+L\+\_\+\+G\+E\+N\+E\+R\+A\+T\+O\+R\+S\+\_\+\+P\+R\+O\+P\+O\+S\+A\+L\+\_\+\+G\+E\+N\+E\+R\+A\+T\+O\+R\+\_\+\+B\+A\+S\+E\+\_\+\+H\+X\+X2}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{mincut_2proposal__generators_2proposal__generator__base_8hxx_a40b56e4617b6f8f22a4cc4366e81d6e6}{}\index{mincut/proposal\+\_\+generators/proposal\+\_\+generator\+\_\+base.\+hxx@{mincut/proposal\+\_\+generators/proposal\+\_\+generator\+\_\+base.\+hxx}!N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+P\+R\+O\+P\+O\+S\+A\+L\+\_\+\+G\+E\+N\+E\+R\+A\+T\+O\+R\+S\+\_\+\+P\+R\+O\+P\+O\+S\+A\+L\+\_\+\+G\+E\+N\+E\+R\+A\+T\+O\+R\+\_\+\+B\+A\+S\+E\+\_\+\+H\+X\+X2@{N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+P\+R\+O\+P\+O\+S\+A\+L\+\_\+\+G\+E\+N\+E\+R\+A\+T\+O\+R\+S\+\_\+\+P\+R\+O\+P\+O\+S\+A\+L\+\_\+\+G\+E\+N\+E\+R\+A\+T\+O\+R\+\_\+\+B\+A\+S\+E\+\_\+\+H\+X\+X2}}
+\index{N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+P\+R\+O\+P\+O\+S\+A\+L\+\_\+\+G\+E\+N\+E\+R\+A\+T\+O\+R\+S\+\_\+\+P\+R\+O\+P\+O\+S\+A\+L\+\_\+\+G\+E\+N\+E\+R\+A\+T\+O\+R\+\_\+\+B\+A\+S\+E\+\_\+\+H\+X\+X2@{N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+P\+R\+O\+P\+O\+S\+A\+L\+\_\+\+G\+E\+N\+E\+R\+A\+T\+O\+R\+S\+\_\+\+P\+R\+O\+P\+O\+S\+A\+L\+\_\+\+G\+E\+N\+E\+R\+A\+T\+O\+R\+\_\+\+B\+A\+S\+E\+\_\+\+H\+X\+X2}!mincut/proposal\+\_\+generators/proposal\+\_\+generator\+\_\+base.\+hxx@{mincut/proposal\+\_\+generators/proposal\+\_\+generator\+\_\+base.\+hxx}}
+\subsubsection[{N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+P\+R\+O\+P\+O\+S\+A\+L\+\_\+\+G\+E\+N\+E\+R\+A\+T\+O\+R\+S\+\_\+\+P\+R\+O\+P\+O\+S\+A\+L\+\_\+\+G\+E\+N\+E\+R\+A\+T\+O\+R\+\_\+\+B\+A\+S\+E\+\_\+\+H\+X\+X2}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+P\+R\+O\+P\+O\+S\+A\+L\+\_\+\+G\+E\+N\+E\+R\+A\+T\+O\+R\+S\+\_\+\+P\+R\+O\+P\+O\+S\+A\+L\+\_\+\+G\+E\+N\+E\+R\+A\+T\+O\+R\+\_\+\+B\+A\+S\+E\+\_\+\+H\+X\+X2}\label{mincut_2proposal__generators_2proposal__generator__base_8hxx_a40b56e4617b6f8f22a4cc4366e81d6e6}

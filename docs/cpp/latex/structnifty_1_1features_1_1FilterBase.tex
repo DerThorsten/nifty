@@ -1,0 +1,96 @@
+\hypertarget{structnifty_1_1features_1_1FilterBase}{}\section{nifty\+:\+:features\+:\+:Filter\+Base Struct Reference}
+\label{structnifty_1_1features_1_1FilterBase}\index{nifty\+::features\+::\+Filter\+Base@{nifty\+::features\+::\+Filter\+Base}}
+
+
+{\ttfamily \#include $<$fastfilters\+\_\+wrapper.\+hxx$>$}
+
+
+
+Inheritance diagram for nifty\+:\+:features\+:\+:Filter\+Base\+:
+% FIG 0
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structnifty_1_1features_1_1FilterBase_ac10b9d69df645dd2feb7ce555e544502}{Filter\+Base} ()
+\item 
+virtual void \hyperlink{structnifty_1_1features_1_1FilterBase_ab362e4142a783ce298a477557bcd9436}{operator()} (const fastfilters\+\_\+array2d\+\_\+t \&, marray\+::\+View$<$ float $>$ \&, const double) const  =0
+\item 
+virtual void \hyperlink{structnifty_1_1features_1_1FilterBase_ab7d7de20b106e80ccfd65a818e1b6eef}{operator()} (const fastfilters\+\_\+array3d\+\_\+t \&, marray\+::\+View$<$ float $>$ \&, const double) const  =0
+\item 
+virtual bool \hyperlink{structnifty_1_1features_1_1FilterBase_a01fbc04537c69b997079a98a845c5ab3}{is\+Multi\+Channel} () const  =0
+\item 
+void \hyperlink{structnifty_1_1features_1_1FilterBase_ab59d743ba07608b8aaa37e59f049431e}{set\+\_\+window\+\_\+ratio} (const double ratio)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+fastfilters\+\_\+options\+\_\+t \hyperlink{structnifty_1_1features_1_1FilterBase_a4bd3a5f88a4c061e80f0b0c4a1074c8c}{opt\+\_\+}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{structnifty_1_1features_1_1FilterBase_ac10b9d69df645dd2feb7ce555e544502}{}\index{nifty\+::features\+::\+Filter\+Base@{nifty\+::features\+::\+Filter\+Base}!Filter\+Base@{Filter\+Base}}
+\index{Filter\+Base@{Filter\+Base}!nifty\+::features\+::\+Filter\+Base@{nifty\+::features\+::\+Filter\+Base}}
+\subsubsection[{Filter\+Base()}]{\setlength{\rightskip}{0pt plus 5cm}nifty\+::features\+::\+Filter\+Base\+::\+Filter\+Base (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{structnifty_1_1features_1_1FilterBase_ac10b9d69df645dd2feb7ce555e544502}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{structnifty_1_1features_1_1FilterBase_a01fbc04537c69b997079a98a845c5ab3}{}\index{nifty\+::features\+::\+Filter\+Base@{nifty\+::features\+::\+Filter\+Base}!is\+Multi\+Channel@{is\+Multi\+Channel}}
+\index{is\+Multi\+Channel@{is\+Multi\+Channel}!nifty\+::features\+::\+Filter\+Base@{nifty\+::features\+::\+Filter\+Base}}
+\subsubsection[{is\+Multi\+Channel() const  =0}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool nifty\+::features\+::\+Filter\+Base\+::is\+Multi\+Channel (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [pure virtual]}}\label{structnifty_1_1features_1_1FilterBase_a01fbc04537c69b997079a98a845c5ab3}
+
+
+Implemented in \hyperlink{structnifty_1_1features_1_1StructureTensorEigenvalues_aa5167e0e2271ab52102d4afcb11d6634}{nifty\+::features\+::\+Structure\+Tensor\+Eigenvalues}, \hyperlink{structnifty_1_1features_1_1HessianOfGaussianEigenvalues_ab107bd91f72c9567346fce3664e1139c}{nifty\+::features\+::\+Hessian\+Of\+Gaussian\+Eigenvalues}, \hyperlink{structnifty_1_1features_1_1GaussianGradientMagnitude_a38cb11a99efb83ffa19eda0b74d02456}{nifty\+::features\+::\+Gaussian\+Gradient\+Magnitude}, \hyperlink{structnifty_1_1features_1_1LaplacianOfGaussian_a8284b5055a1567105201d3e3ea1b588a}{nifty\+::features\+::\+Laplacian\+Of\+Gaussian}, and \hyperlink{structnifty_1_1features_1_1GaussianSmoothing_a6b759af61a2d8914140565c7bf418f0b}{nifty\+::features\+::\+Gaussian\+Smoothing}.
+
+\hypertarget{structnifty_1_1features_1_1FilterBase_ab362e4142a783ce298a477557bcd9436}{}\index{nifty\+::features\+::\+Filter\+Base@{nifty\+::features\+::\+Filter\+Base}!operator()@{operator()}}
+\index{operator()@{operator()}!nifty\+::features\+::\+Filter\+Base@{nifty\+::features\+::\+Filter\+Base}}
+\subsubsection[{operator()(const fastfilters\+\_\+array2d\+\_\+t \&, marray\+::\+View$<$ float $>$ \&, const double) const  =0}]{\setlength{\rightskip}{0pt plus 5cm}virtual void nifty\+::features\+::\+Filter\+Base\+::operator() (
+\begin{DoxyParamCaption}
+\item[{const fastfilters\+\_\+array2d\+\_\+t \&}]{, }
+\item[{marray\+::\+View$<$ float $>$ \&}]{, }
+\item[{const double}]{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [pure virtual]}}\label{structnifty_1_1features_1_1FilterBase_ab362e4142a783ce298a477557bcd9436}
+
+
+Implemented in \hyperlink{structnifty_1_1features_1_1StructureTensorEigenvalues_ab54e8f7c4d7105c12a4c3ae65123bc61}{nifty\+::features\+::\+Structure\+Tensor\+Eigenvalues}, \hyperlink{structnifty_1_1features_1_1HessianOfGaussianEigenvalues_aceb6fd7d3f60b00eb2463035863cc017}{nifty\+::features\+::\+Hessian\+Of\+Gaussian\+Eigenvalues}, \hyperlink{structnifty_1_1features_1_1GaussianGradientMagnitude_a27ef99659834c0340d07e0012874d38c}{nifty\+::features\+::\+Gaussian\+Gradient\+Magnitude}, \hyperlink{structnifty_1_1features_1_1LaplacianOfGaussian_ac83a5c2fb54fc120106906a6ad7f4ed8}{nifty\+::features\+::\+Laplacian\+Of\+Gaussian}, and \hyperlink{structnifty_1_1features_1_1GaussianSmoothing_a670a26946515c1493170fdc2d74d195c}{nifty\+::features\+::\+Gaussian\+Smoothing}.
+
+\hypertarget{structnifty_1_1features_1_1FilterBase_ab7d7de20b106e80ccfd65a818e1b6eef}{}\index{nifty\+::features\+::\+Filter\+Base@{nifty\+::features\+::\+Filter\+Base}!operator()@{operator()}}
+\index{operator()@{operator()}!nifty\+::features\+::\+Filter\+Base@{nifty\+::features\+::\+Filter\+Base}}
+\subsubsection[{operator()(const fastfilters\+\_\+array3d\+\_\+t \&, marray\+::\+View$<$ float $>$ \&, const double) const  =0}]{\setlength{\rightskip}{0pt plus 5cm}virtual void nifty\+::features\+::\+Filter\+Base\+::operator() (
+\begin{DoxyParamCaption}
+\item[{const fastfilters\+\_\+array3d\+\_\+t \&}]{, }
+\item[{marray\+::\+View$<$ float $>$ \&}]{, }
+\item[{const double}]{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [pure virtual]}}\label{structnifty_1_1features_1_1FilterBase_ab7d7de20b106e80ccfd65a818e1b6eef}
+
+
+Implemented in \hyperlink{structnifty_1_1features_1_1StructureTensorEigenvalues_a3bd67a952442dd5bd961e82e4f120c20}{nifty\+::features\+::\+Structure\+Tensor\+Eigenvalues}, \hyperlink{structnifty_1_1features_1_1HessianOfGaussianEigenvalues_a4ec617b8af83d1d43c9bc2d3381319e2}{nifty\+::features\+::\+Hessian\+Of\+Gaussian\+Eigenvalues}, \hyperlink{structnifty_1_1features_1_1GaussianGradientMagnitude_a6990d7d773aa0223aceed88460d270db}{nifty\+::features\+::\+Gaussian\+Gradient\+Magnitude}, \hyperlink{structnifty_1_1features_1_1LaplacianOfGaussian_a42c4026bf65a2747d04361bc4ebd0c0a}{nifty\+::features\+::\+Laplacian\+Of\+Gaussian}, and \hyperlink{structnifty_1_1features_1_1GaussianSmoothing_a33943d63b7580ee180bda1e4b379773b}{nifty\+::features\+::\+Gaussian\+Smoothing}.
+
+\hypertarget{structnifty_1_1features_1_1FilterBase_ab59d743ba07608b8aaa37e59f049431e}{}\index{nifty\+::features\+::\+Filter\+Base@{nifty\+::features\+::\+Filter\+Base}!set\+\_\+window\+\_\+ratio@{set\+\_\+window\+\_\+ratio}}
+\index{set\+\_\+window\+\_\+ratio@{set\+\_\+window\+\_\+ratio}!nifty\+::features\+::\+Filter\+Base@{nifty\+::features\+::\+Filter\+Base}}
+\subsubsection[{set\+\_\+window\+\_\+ratio(const double ratio)}]{\setlength{\rightskip}{0pt plus 5cm}void nifty\+::features\+::\+Filter\+Base\+::set\+\_\+window\+\_\+ratio (
+\begin{DoxyParamCaption}
+\item[{const double}]{ratio}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{structnifty_1_1features_1_1FilterBase_ab59d743ba07608b8aaa37e59f049431e}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{structnifty_1_1features_1_1FilterBase_a4bd3a5f88a4c061e80f0b0c4a1074c8c}{}\index{nifty\+::features\+::\+Filter\+Base@{nifty\+::features\+::\+Filter\+Base}!opt\+\_\+@{opt\+\_\+}}
+\index{opt\+\_\+@{opt\+\_\+}!nifty\+::features\+::\+Filter\+Base@{nifty\+::features\+::\+Filter\+Base}}
+\subsubsection[{opt\+\_\+}]{\setlength{\rightskip}{0pt plus 5cm}fastfilters\+\_\+options\+\_\+t nifty\+::features\+::\+Filter\+Base\+::opt\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}\label{structnifty_1_1features_1_1FilterBase_a4bd3a5f88a4c061e80f0b0c4a1074c8c}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/tbeier/src/nifty/include/nifty/features/\hyperlink{fastfilters__wrapper_8hxx}{fastfilters\+\_\+wrapper.\+hxx}\end{DoxyCompactItemize}
