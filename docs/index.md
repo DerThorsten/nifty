@@ -2,8 +2,8 @@
 layout: default
 ---
 
-Nifty index
-===========
+# [](#Nifty)Nifty
+
 
 [![Build Status master](https://travis-ci.org/DerThorsten/nifty.svg?branch=master)](https://travis-ci.org/DerThorsten/nifty)
 [![Build Status dev](https://travis-ci.org/DerThorsten/nifty.svg?branch=dev)](https://travis-ci.org/DerThorsten/nifty)
@@ -15,8 +15,8 @@ To be more precise, nifty was developed to implement
 and prototype algorithms for segmentation of neuro data.
 
 
-Important:
-=========
+# [](#Important)Important
+
 To use nifty one needs to checkout some submodules via:
 
     git submodule init
