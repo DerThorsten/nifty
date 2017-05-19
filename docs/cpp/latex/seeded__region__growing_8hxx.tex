@@ -1,0 +1,33 @@
+\hypertarget{seeded__region__growing_8hxx}{}\section{/home/tbeier/src/nifty/include/nifty/region\+\_\+growing/seeded\+\_\+region\+\_\+growing.hxx File Reference}
+\label{seeded__region__growing_8hxx}\index{/home/tbeier/src/nifty/include/nifty/region\+\_\+growing/seeded\+\_\+region\+\_\+growing.\+hxx@{/home/tbeier/src/nifty/include/nifty/region\+\_\+growing/seeded\+\_\+region\+\_\+growing.\+hxx}}
+{\ttfamily \#include $<$vector$>$}\\*
+{\ttfamily \#include $<$queue$>$}\\*
+{\ttfamily \#include $<$algorithm$>$}\\*
+{\ttfamily \#include $<$map$>$}\\*
+{\ttfamily \#include \char`\"{}nifty/marray/marray.\+hxx\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}nifty/tools/for\+\_\+each\+\_\+coordinate.\+hxx\char`\"{}}\\*
+Include dependency graph for seeded\+\_\+region\+\_\+growing.\+hxx\+:
+% FIG 0
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespacenifty}{nifty}
+\item 
+ \hyperlink{namespacenifty_1_1region__growing}{nifty\+::region\+\_\+growing}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{seeded__region__growing_8hxx_a2629522e5adc4a7916f653a76bc0f7da}{N\+I\+F\+T\+Y\+\_\+\+R\+E\+G\+I\+O\+N\+\_\+\+G\+R\+O\+W\+I\+N\+G\+\_\+\+S\+E\+E\+D\+E\+D\+\_\+\+R\+E\+G\+I\+O\+N\+\_\+\+G\+R\+O\+W\+I\+N\+G\+\_\+\+H\+X\+X}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$size\+\_\+t D\+I\+M, class I\+N\+T\+E\+G\+R\+A\+L\+\_\+\+P\+I\+X\+E\+L\+\_\+\+T\+Y\+P\+E , class T $>$ }\\void \hyperlink{namespacenifty_1_1region__growing_a55a922f7df7171419037639093abde8f}{nifty\+::region\+\_\+growing\+::seeded\+Region\+Growing} (const marray\+::\+View$<$ I\+N\+T\+E\+G\+R\+A\+L\+\_\+\+P\+I\+X\+E\+L\+\_\+\+T\+Y\+P\+E $>$ \&elevation, marray\+::\+View$<$ T $>$ \&seeds, const size\+\_\+t number\+Of\+Queues=256)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{seeded__region__growing_8hxx_a2629522e5adc4a7916f653a76bc0f7da}{}\index{seeded\+\_\+region\+\_\+growing.\+hxx@{seeded\+\_\+region\+\_\+growing.\+hxx}!N\+I\+F\+T\+Y\+\_\+\+R\+E\+G\+I\+O\+N\+\_\+\+G\+R\+O\+W\+I\+N\+G\+\_\+\+S\+E\+E\+D\+E\+D\+\_\+\+R\+E\+G\+I\+O\+N\+\_\+\+G\+R\+O\+W\+I\+N\+G\+\_\+\+H\+X\+X@{N\+I\+F\+T\+Y\+\_\+\+R\+E\+G\+I\+O\+N\+\_\+\+G\+R\+O\+W\+I\+N\+G\+\_\+\+S\+E\+E\+D\+E\+D\+\_\+\+R\+E\+G\+I\+O\+N\+\_\+\+G\+R\+O\+W\+I\+N\+G\+\_\+\+H\+X\+X}}
+\index{N\+I\+F\+T\+Y\+\_\+\+R\+E\+G\+I\+O\+N\+\_\+\+G\+R\+O\+W\+I\+N\+G\+\_\+\+S\+E\+E\+D\+E\+D\+\_\+\+R\+E\+G\+I\+O\+N\+\_\+\+G\+R\+O\+W\+I\+N\+G\+\_\+\+H\+X\+X@{N\+I\+F\+T\+Y\+\_\+\+R\+E\+G\+I\+O\+N\+\_\+\+G\+R\+O\+W\+I\+N\+G\+\_\+\+S\+E\+E\+D\+E\+D\+\_\+\+R\+E\+G\+I\+O\+N\+\_\+\+G\+R\+O\+W\+I\+N\+G\+\_\+\+H\+X\+X}!seeded\+\_\+region\+\_\+growing.\+hxx@{seeded\+\_\+region\+\_\+growing.\+hxx}}
+\subsubsection[{N\+I\+F\+T\+Y\+\_\+\+R\+E\+G\+I\+O\+N\+\_\+\+G\+R\+O\+W\+I\+N\+G\+\_\+\+S\+E\+E\+D\+E\+D\+\_\+\+R\+E\+G\+I\+O\+N\+\_\+\+G\+R\+O\+W\+I\+N\+G\+\_\+\+H\+X\+X}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+I\+F\+T\+Y\+\_\+\+R\+E\+G\+I\+O\+N\+\_\+\+G\+R\+O\+W\+I\+N\+G\+\_\+\+S\+E\+E\+D\+E\+D\+\_\+\+R\+E\+G\+I\+O\+N\+\_\+\+G\+R\+O\+W\+I\+N\+G\+\_\+\+H\+X\+X}\label{seeded__region__growing_8hxx_a2629522e5adc4a7916f653a76bc0f7da}

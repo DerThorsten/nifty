@@ -1,0 +1,120 @@
+\hypertarget{classnifty_1_1ilp__backend_1_1Cplex}{}\section{nifty\+:\+:ilp\+\_\+backend\+:\+:Cplex Class Reference}
+\label{classnifty_1_1ilp__backend_1_1Cplex}\index{nifty\+::ilp\+\_\+backend\+::\+Cplex@{nifty\+::ilp\+\_\+backend\+::\+Cplex}}
+
+
+{\ttfamily \#include $<$cplex.\+hxx$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \hyperlink{structnifty_1_1ilp__backend_1_1IlpBackendSettings}{Ilp\+Backend\+Settings} \hyperlink{classnifty_1_1ilp__backend_1_1Cplex_a849b79eb66fde62dd0aa59e1cd919e9a}{Settings}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classnifty_1_1ilp__backend_1_1Cplex_acbdd1f01db0d92354a2e1ec0a4da6028}{Cplex} (const \hyperlink{classnifty_1_1ilp__backend_1_1Cplex_a849b79eb66fde62dd0aa59e1cd919e9a}{Settings} \&settings=\hyperlink{classnifty_1_1ilp__backend_1_1Cplex_a849b79eb66fde62dd0aa59e1cd919e9a}{Settings}())
+\item 
+\hyperlink{classnifty_1_1ilp__backend_1_1Cplex_a5bebd6813a2fbb17fa2b5532c3d21000}{$\sim$\+Cplex} ()
+\item 
+void \hyperlink{classnifty_1_1ilp__backend_1_1Cplex_a52a0ed3e137e56d17daaaf4542d3290c}{init\+Model} (const size\+\_\+t, const double $\ast$)
+\item 
+{\footnotesize template$<$class Iterator $>$ }\\void \hyperlink{classnifty_1_1ilp__backend_1_1Cplex_a1c773d38cf7a0434247a87ee96531c57}{set\+Start} (Iterator)
+\item 
+{\footnotesize template$<$class Variable\+Index\+Iterator , class Coefficient\+Iterator $>$ }\\void \hyperlink{classnifty_1_1ilp__backend_1_1Cplex_ac1aca9700667959bb0d99c55ffec16ed}{add\+Constraint} (Variable\+Index\+Iterator, Variable\+Index\+Iterator, Coefficient\+Iterator, const double, const double)
+\item 
+void \hyperlink{classnifty_1_1ilp__backend_1_1Cplex_aa0055358a4aef6b8b660c14422500b23}{optimize} ()
+\item 
+double \hyperlink{classnifty_1_1ilp__backend_1_1Cplex_aded72f7962341ae66e4a72c2ef463015}{label} (const size\+\_\+t) const 
+\item 
+{\footnotesize template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E\+\_\+\+I\+T\+E\+R\+A\+T\+O\+R $>$ }\\void \hyperlink{classnifty_1_1ilp__backend_1_1Cplex_a38bae82b8a54d28471ceb44514bfba18}{change\+Objective} (O\+B\+J\+E\+C\+T\+I\+V\+E\+\_\+\+I\+T\+E\+R\+A\+T\+O\+R objective\+Iter)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::string \hyperlink{classnifty_1_1ilp__backend_1_1Cplex_a35cb51113bf3b858d470f9c742884cdc}{name} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{classnifty_1_1ilp__backend_1_1Cplex_a849b79eb66fde62dd0aa59e1cd919e9a}{}\index{nifty\+::ilp\+\_\+backend\+::\+Cplex@{nifty\+::ilp\+\_\+backend\+::\+Cplex}!Settings@{Settings}}
+\index{Settings@{Settings}!nifty\+::ilp\+\_\+backend\+::\+Cplex@{nifty\+::ilp\+\_\+backend\+::\+Cplex}}
+\subsubsection[{Settings}]{\setlength{\rightskip}{0pt plus 5cm}typedef {\bf Ilp\+Backend\+Settings} {\bf nifty\+::ilp\+\_\+backend\+::\+Cplex\+::\+Settings}}\label{classnifty_1_1ilp__backend_1_1Cplex_a849b79eb66fde62dd0aa59e1cd919e9a}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classnifty_1_1ilp__backend_1_1Cplex_acbdd1f01db0d92354a2e1ec0a4da6028}{}\index{nifty\+::ilp\+\_\+backend\+::\+Cplex@{nifty\+::ilp\+\_\+backend\+::\+Cplex}!Cplex@{Cplex}}
+\index{Cplex@{Cplex}!nifty\+::ilp\+\_\+backend\+::\+Cplex@{nifty\+::ilp\+\_\+backend\+::\+Cplex}}
+\subsubsection[{Cplex(const Settings \&settings=\+Settings())}]{\setlength{\rightskip}{0pt plus 5cm}nifty\+::ilp\+\_\+backend\+::\+Cplex\+::\+Cplex (
+\begin{DoxyParamCaption}
+\item[{const {\bf Settings} \&}]{settings = {\ttfamily {\bf Settings}()}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1ilp__backend_1_1Cplex_acbdd1f01db0d92354a2e1ec0a4da6028}
+\hypertarget{classnifty_1_1ilp__backend_1_1Cplex_a5bebd6813a2fbb17fa2b5532c3d21000}{}\index{nifty\+::ilp\+\_\+backend\+::\+Cplex@{nifty\+::ilp\+\_\+backend\+::\+Cplex}!````~Cplex@{$\sim$\+Cplex}}
+\index{````~Cplex@{$\sim$\+Cplex}!nifty\+::ilp\+\_\+backend\+::\+Cplex@{nifty\+::ilp\+\_\+backend\+::\+Cplex}}
+\subsubsection[{$\sim$\+Cplex()}]{\setlength{\rightskip}{0pt plus 5cm}nifty\+::ilp\+\_\+backend\+::\+Cplex\+::$\sim$\+Cplex (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1ilp__backend_1_1Cplex_a5bebd6813a2fbb17fa2b5532c3d21000}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classnifty_1_1ilp__backend_1_1Cplex_ac1aca9700667959bb0d99c55ffec16ed}{}\index{nifty\+::ilp\+\_\+backend\+::\+Cplex@{nifty\+::ilp\+\_\+backend\+::\+Cplex}!add\+Constraint@{add\+Constraint}}
+\index{add\+Constraint@{add\+Constraint}!nifty\+::ilp\+\_\+backend\+::\+Cplex@{nifty\+::ilp\+\_\+backend\+::\+Cplex}}
+\subsubsection[{add\+Constraint(\+Variable\+Index\+Iterator, Variable\+Index\+Iterator, Coefficient\+Iterator, const double, const double)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class Variable\+Index\+Iterator , class Coefficient\+Iterator $>$ void nifty\+::ilp\+\_\+backend\+::\+Cplex\+::add\+Constraint (
+\begin{DoxyParamCaption}
+\item[{Variable\+Index\+Iterator}]{vi\+Begin, }
+\item[{Variable\+Index\+Iterator}]{vi\+End, }
+\item[{Coefficient\+Iterator}]{coefficient, }
+\item[{const double}]{lower\+Bound, }
+\item[{const double}]{upper\+Bound}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1ilp__backend_1_1Cplex_ac1aca9700667959bb0d99c55ffec16ed}
+\hypertarget{classnifty_1_1ilp__backend_1_1Cplex_a38bae82b8a54d28471ceb44514bfba18}{}\index{nifty\+::ilp\+\_\+backend\+::\+Cplex@{nifty\+::ilp\+\_\+backend\+::\+Cplex}!change\+Objective@{change\+Objective}}
+\index{change\+Objective@{change\+Objective}!nifty\+::ilp\+\_\+backend\+::\+Cplex@{nifty\+::ilp\+\_\+backend\+::\+Cplex}}
+\subsubsection[{change\+Objective(\+O\+B\+J\+E\+C\+T\+I\+V\+E\+\_\+\+I\+T\+E\+R\+A\+T\+O\+R objective\+Iter)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E\+\_\+\+I\+T\+E\+R\+A\+T\+O\+R $>$ void nifty\+::ilp\+\_\+backend\+::\+Cplex\+::change\+Objective (
+\begin{DoxyParamCaption}
+\item[{O\+B\+J\+E\+C\+T\+I\+V\+E\+\_\+\+I\+T\+E\+R\+A\+T\+O\+R}]{objective\+Iter}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1ilp__backend_1_1Cplex_a38bae82b8a54d28471ceb44514bfba18}
+\hypertarget{classnifty_1_1ilp__backend_1_1Cplex_a52a0ed3e137e56d17daaaf4542d3290c}{}\index{nifty\+::ilp\+\_\+backend\+::\+Cplex@{nifty\+::ilp\+\_\+backend\+::\+Cplex}!init\+Model@{init\+Model}}
+\index{init\+Model@{init\+Model}!nifty\+::ilp\+\_\+backend\+::\+Cplex@{nifty\+::ilp\+\_\+backend\+::\+Cplex}}
+\subsubsection[{init\+Model(const size\+\_\+t, const double $\ast$)}]{\setlength{\rightskip}{0pt plus 5cm}void nifty\+::ilp\+\_\+backend\+::\+Cplex\+::init\+Model (
+\begin{DoxyParamCaption}
+\item[{const size\+\_\+t}]{number\+Of\+Variables, }
+\item[{const double $\ast$}]{coefficients}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1ilp__backend_1_1Cplex_a52a0ed3e137e56d17daaaf4542d3290c}
+\hypertarget{classnifty_1_1ilp__backend_1_1Cplex_aded72f7962341ae66e4a72c2ef463015}{}\index{nifty\+::ilp\+\_\+backend\+::\+Cplex@{nifty\+::ilp\+\_\+backend\+::\+Cplex}!label@{label}}
+\index{label@{label}!nifty\+::ilp\+\_\+backend\+::\+Cplex@{nifty\+::ilp\+\_\+backend\+::\+Cplex}}
+\subsubsection[{label(const size\+\_\+t) const }]{\setlength{\rightskip}{0pt plus 5cm}double nifty\+::ilp\+\_\+backend\+::\+Cplex\+::label (
+\begin{DoxyParamCaption}
+\item[{const size\+\_\+t}]{variable\+Index}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1ilp__backend_1_1Cplex_aded72f7962341ae66e4a72c2ef463015}
+\hypertarget{classnifty_1_1ilp__backend_1_1Cplex_a35cb51113bf3b858d470f9c742884cdc}{}\index{nifty\+::ilp\+\_\+backend\+::\+Cplex@{nifty\+::ilp\+\_\+backend\+::\+Cplex}!name@{name}}
+\index{name@{name}!nifty\+::ilp\+\_\+backend\+::\+Cplex@{nifty\+::ilp\+\_\+backend\+::\+Cplex}}
+\subsubsection[{name()}]{\setlength{\rightskip}{0pt plus 5cm}static std\+::string nifty\+::ilp\+\_\+backend\+::\+Cplex\+::name (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{classnifty_1_1ilp__backend_1_1Cplex_a35cb51113bf3b858d470f9c742884cdc}
+\hypertarget{classnifty_1_1ilp__backend_1_1Cplex_aa0055358a4aef6b8b660c14422500b23}{}\index{nifty\+::ilp\+\_\+backend\+::\+Cplex@{nifty\+::ilp\+\_\+backend\+::\+Cplex}!optimize@{optimize}}
+\index{optimize@{optimize}!nifty\+::ilp\+\_\+backend\+::\+Cplex@{nifty\+::ilp\+\_\+backend\+::\+Cplex}}
+\subsubsection[{optimize()}]{\setlength{\rightskip}{0pt plus 5cm}void nifty\+::ilp\+\_\+backend\+::\+Cplex\+::optimize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1ilp__backend_1_1Cplex_aa0055358a4aef6b8b660c14422500b23}
+\hypertarget{classnifty_1_1ilp__backend_1_1Cplex_a1c773d38cf7a0434247a87ee96531c57}{}\index{nifty\+::ilp\+\_\+backend\+::\+Cplex@{nifty\+::ilp\+\_\+backend\+::\+Cplex}!set\+Start@{set\+Start}}
+\index{set\+Start@{set\+Start}!nifty\+::ilp\+\_\+backend\+::\+Cplex@{nifty\+::ilp\+\_\+backend\+::\+Cplex}}
+\subsubsection[{set\+Start(\+Iterator)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class Iterator $>$ void nifty\+::ilp\+\_\+backend\+::\+Cplex\+::set\+Start (
+\begin{DoxyParamCaption}
+\item[{Iterator}]{value\+Iterator}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1ilp__backend_1_1Cplex_a1c773d38cf7a0434247a87ee96531c57}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/tbeier/src/nifty/include/nifty/ilp\+\_\+backend/\hyperlink{cplex_8hxx}{cplex.\+hxx}\end{DoxyCompactItemize}

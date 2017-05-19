@@ -1,0 +1,92 @@
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorFactory}{}\section{nifty\+:\+:graph\+:\+:optimization\+:\+:common\+:\+:Proposal\+Generator\+Factory$<$ P\+R\+O\+P\+O\+S\+A\+L\+\_\+\+G\+E\+N\+E\+R\+A\+T\+O\+R $>$ Class Template Reference}
+\label{classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorFactory}\index{nifty\+::graph\+::optimization\+::common\+::\+Proposal\+Generator\+Factory$<$ P\+R\+O\+P\+O\+S\+A\+L\+\_\+\+G\+E\+N\+E\+R\+A\+T\+O\+R $>$@{nifty\+::graph\+::optimization\+::common\+::\+Proposal\+Generator\+Factory$<$ P\+R\+O\+P\+O\+S\+A\+L\+\_\+\+G\+E\+N\+E\+R\+A\+T\+O\+R $>$}}
+
+
+{\ttfamily \#include $<$proposal\+\_\+generator\+\_\+factory.\+hxx$>$}
+
+
+
+Inheritance diagram for nifty\+:\+:graph\+:\+:optimization\+:\+:common\+:\+:Proposal\+Generator\+Factory$<$ P\+R\+O\+P\+O\+S\+A\+L\+\_\+\+G\+E\+N\+E\+R\+A\+T\+O\+R $>$\+:
+% FIG 0
+
+
+Collaboration diagram for nifty\+:\+:graph\+:\+:optimization\+:\+:common\+:\+:Proposal\+Generator\+Factory$<$ P\+R\+O\+P\+O\+S\+A\+L\+\_\+\+G\+E\+N\+E\+R\+A\+T\+O\+R $>$\+:
+% FIG 1
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef P\+R\+O\+P\+O\+S\+A\+L\+\_\+\+G\+E\+N\+E\+R\+A\+T\+O\+R \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorFactory_a9b46a7c0aa62bf69002e98575b47a02f}{Proposal\+Generator\+Type}
+\item 
+typedef Proposal\+Generator\+Type\+::\+Settings \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorFactory_a547db95d51746a52120043e5060b9746}{Settings}
+\item 
+typedef Proposal\+Generator\+Type\+::\+Objective\+Type \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorFactory_af32562409096ce8dc76ff0c6cf7a4da6}{Objective\+Type}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorBase}{Proposal\+Generator\+Base}$<$ \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorFactory_af32562409096ce8dc76ff0c6cf7a4da6}{Objective\+Type} $>$ \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorFactory_a51fb7fb1fead374c7db7e4ba99872218}{Proposal\+Generator\+Base\+Type}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorFactory_a55587d173f3b557bb056fcf62a4ffa2b}{Proposal\+Generator\+Factory} (const \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorFactory_a547db95d51746a52120043e5060b9746}{Settings} \&settings=\hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorFactory_a547db95d51746a52120043e5060b9746}{Settings}())
+\item 
+virtual \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorFactory_a9eea8519c329fdd456c64e11c25fa446}{$\sim$\+Proposal\+Generator\+Factory} ()
+\item 
+virtual std\+::shared\+\_\+ptr$<$ \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorFactory_a51fb7fb1fead374c7db7e4ba99872218}{Proposal\+Generator\+Base\+Type} $>$ \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorFactory_a0f8d6fd73baa230e0b3475f5794352e2}{create\+Shared\+Ptr} (const \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorFactory_af32562409096ce8dc76ff0c6cf7a4da6}{Objective\+Type} \&objective, const size\+\_\+t number\+Of\+Threads)
+\item 
+virtual \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorFactory_a51fb7fb1fead374c7db7e4ba99872218}{Proposal\+Generator\+Base\+Type} $\ast$ \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorFactory_a537abecc556cf9e490091139d7d5b0b1}{create\+Raw\+Ptr} (const \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorFactory_af32562409096ce8dc76ff0c6cf7a4da6}{Objective\+Type} \&objective, const size\+\_\+t number\+Of\+Threads)
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorFactory_af32562409096ce8dc76ff0c6cf7a4da6}{}\index{nifty\+::graph\+::optimization\+::common\+::\+Proposal\+Generator\+Factory@{nifty\+::graph\+::optimization\+::common\+::\+Proposal\+Generator\+Factory}!Objective\+Type@{Objective\+Type}}
+\index{Objective\+Type@{Objective\+Type}!nifty\+::graph\+::optimization\+::common\+::\+Proposal\+Generator\+Factory@{nifty\+::graph\+::optimization\+::common\+::\+Proposal\+Generator\+Factory}}
+\subsubsection[{Objective\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class P\+R\+O\+P\+O\+S\+A\+L\+\_\+\+G\+E\+N\+E\+R\+A\+T\+O\+R $>$ typedef Proposal\+Generator\+Type\+::\+Objective\+Type {\bf nifty\+::graph\+::optimization\+::common\+::\+Proposal\+Generator\+Factory}$<$ P\+R\+O\+P\+O\+S\+A\+L\+\_\+\+G\+E\+N\+E\+R\+A\+T\+O\+R $>$\+::{\bf Objective\+Type}}\label{classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorFactory_af32562409096ce8dc76ff0c6cf7a4da6}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorFactory_a51fb7fb1fead374c7db7e4ba99872218}{}\index{nifty\+::graph\+::optimization\+::common\+::\+Proposal\+Generator\+Factory@{nifty\+::graph\+::optimization\+::common\+::\+Proposal\+Generator\+Factory}!Proposal\+Generator\+Base\+Type@{Proposal\+Generator\+Base\+Type}}
+\index{Proposal\+Generator\+Base\+Type@{Proposal\+Generator\+Base\+Type}!nifty\+::graph\+::optimization\+::common\+::\+Proposal\+Generator\+Factory@{nifty\+::graph\+::optimization\+::common\+::\+Proposal\+Generator\+Factory}}
+\subsubsection[{Proposal\+Generator\+Base\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class P\+R\+O\+P\+O\+S\+A\+L\+\_\+\+G\+E\+N\+E\+R\+A\+T\+O\+R $>$ typedef {\bf Proposal\+Generator\+Base}$<${\bf Objective\+Type}$>$ {\bf nifty\+::graph\+::optimization\+::common\+::\+Proposal\+Generator\+Factory}$<$ P\+R\+O\+P\+O\+S\+A\+L\+\_\+\+G\+E\+N\+E\+R\+A\+T\+O\+R $>$\+::{\bf Proposal\+Generator\+Base\+Type}}\label{classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorFactory_a51fb7fb1fead374c7db7e4ba99872218}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorFactory_a9b46a7c0aa62bf69002e98575b47a02f}{}\index{nifty\+::graph\+::optimization\+::common\+::\+Proposal\+Generator\+Factory@{nifty\+::graph\+::optimization\+::common\+::\+Proposal\+Generator\+Factory}!Proposal\+Generator\+Type@{Proposal\+Generator\+Type}}
+\index{Proposal\+Generator\+Type@{Proposal\+Generator\+Type}!nifty\+::graph\+::optimization\+::common\+::\+Proposal\+Generator\+Factory@{nifty\+::graph\+::optimization\+::common\+::\+Proposal\+Generator\+Factory}}
+\subsubsection[{Proposal\+Generator\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class P\+R\+O\+P\+O\+S\+A\+L\+\_\+\+G\+E\+N\+E\+R\+A\+T\+O\+R $>$ typedef P\+R\+O\+P\+O\+S\+A\+L\+\_\+\+G\+E\+N\+E\+R\+A\+T\+O\+R {\bf nifty\+::graph\+::optimization\+::common\+::\+Proposal\+Generator\+Factory}$<$ P\+R\+O\+P\+O\+S\+A\+L\+\_\+\+G\+E\+N\+E\+R\+A\+T\+O\+R $>$\+::{\bf Proposal\+Generator\+Type}}\label{classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorFactory_a9b46a7c0aa62bf69002e98575b47a02f}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorFactory_a547db95d51746a52120043e5060b9746}{}\index{nifty\+::graph\+::optimization\+::common\+::\+Proposal\+Generator\+Factory@{nifty\+::graph\+::optimization\+::common\+::\+Proposal\+Generator\+Factory}!Settings@{Settings}}
+\index{Settings@{Settings}!nifty\+::graph\+::optimization\+::common\+::\+Proposal\+Generator\+Factory@{nifty\+::graph\+::optimization\+::common\+::\+Proposal\+Generator\+Factory}}
+\subsubsection[{Settings}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class P\+R\+O\+P\+O\+S\+A\+L\+\_\+\+G\+E\+N\+E\+R\+A\+T\+O\+R $>$ typedef Proposal\+Generator\+Type\+::\+Settings {\bf nifty\+::graph\+::optimization\+::common\+::\+Proposal\+Generator\+Factory}$<$ P\+R\+O\+P\+O\+S\+A\+L\+\_\+\+G\+E\+N\+E\+R\+A\+T\+O\+R $>$\+::{\bf Settings}}\label{classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorFactory_a547db95d51746a52120043e5060b9746}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorFactory_a55587d173f3b557bb056fcf62a4ffa2b}{}\index{nifty\+::graph\+::optimization\+::common\+::\+Proposal\+Generator\+Factory@{nifty\+::graph\+::optimization\+::common\+::\+Proposal\+Generator\+Factory}!Proposal\+Generator\+Factory@{Proposal\+Generator\+Factory}}
+\index{Proposal\+Generator\+Factory@{Proposal\+Generator\+Factory}!nifty\+::graph\+::optimization\+::common\+::\+Proposal\+Generator\+Factory@{nifty\+::graph\+::optimization\+::common\+::\+Proposal\+Generator\+Factory}}
+\subsubsection[{Proposal\+Generator\+Factory(const Settings \&settings=\+Settings())}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class P\+R\+O\+P\+O\+S\+A\+L\+\_\+\+G\+E\+N\+E\+R\+A\+T\+O\+R $>$ {\bf nifty\+::graph\+::optimization\+::common\+::\+Proposal\+Generator\+Factory}$<$ P\+R\+O\+P\+O\+S\+A\+L\+\_\+\+G\+E\+N\+E\+R\+A\+T\+O\+R $>$\+::{\bf Proposal\+Generator\+Factory} (
+\begin{DoxyParamCaption}
+\item[{const {\bf Settings} \&}]{settings = {\ttfamily {\bf Settings}()}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorFactory_a55587d173f3b557bb056fcf62a4ffa2b}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorFactory_a9eea8519c329fdd456c64e11c25fa446}{}\index{nifty\+::graph\+::optimization\+::common\+::\+Proposal\+Generator\+Factory@{nifty\+::graph\+::optimization\+::common\+::\+Proposal\+Generator\+Factory}!````~Proposal\+Generator\+Factory@{$\sim$\+Proposal\+Generator\+Factory}}
+\index{````~Proposal\+Generator\+Factory@{$\sim$\+Proposal\+Generator\+Factory}!nifty\+::graph\+::optimization\+::common\+::\+Proposal\+Generator\+Factory@{nifty\+::graph\+::optimization\+::common\+::\+Proposal\+Generator\+Factory}}
+\subsubsection[{$\sim$\+Proposal\+Generator\+Factory()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class P\+R\+O\+P\+O\+S\+A\+L\+\_\+\+G\+E\+N\+E\+R\+A\+T\+O\+R $>$ virtual {\bf nifty\+::graph\+::optimization\+::common\+::\+Proposal\+Generator\+Factory}$<$ P\+R\+O\+P\+O\+S\+A\+L\+\_\+\+G\+E\+N\+E\+R\+A\+T\+O\+R $>$\+::$\sim${\bf Proposal\+Generator\+Factory} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorFactory_a9eea8519c329fdd456c64e11c25fa446}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorFactory_a537abecc556cf9e490091139d7d5b0b1}{}\index{nifty\+::graph\+::optimization\+::common\+::\+Proposal\+Generator\+Factory@{nifty\+::graph\+::optimization\+::common\+::\+Proposal\+Generator\+Factory}!create\+Raw\+Ptr@{create\+Raw\+Ptr}}
+\index{create\+Raw\+Ptr@{create\+Raw\+Ptr}!nifty\+::graph\+::optimization\+::common\+::\+Proposal\+Generator\+Factory@{nifty\+::graph\+::optimization\+::common\+::\+Proposal\+Generator\+Factory}}
+\subsubsection[{create\+Raw\+Ptr(const Objective\+Type \&objective, const size\+\_\+t number\+Of\+Threads)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class P\+R\+O\+P\+O\+S\+A\+L\+\_\+\+G\+E\+N\+E\+R\+A\+T\+O\+R $>$ virtual {\bf Proposal\+Generator\+Base\+Type}$\ast$ {\bf nifty\+::graph\+::optimization\+::common\+::\+Proposal\+Generator\+Factory}$<$ P\+R\+O\+P\+O\+S\+A\+L\+\_\+\+G\+E\+N\+E\+R\+A\+T\+O\+R $>$\+::create\+Raw\+Ptr (
+\begin{DoxyParamCaption}
+\item[{const {\bf Objective\+Type} \&}]{objective, }
+\item[{const size\+\_\+t}]{number\+Of\+Threads}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorFactory_a537abecc556cf9e490091139d7d5b0b1}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorFactory_a0f8d6fd73baa230e0b3475f5794352e2}{}\index{nifty\+::graph\+::optimization\+::common\+::\+Proposal\+Generator\+Factory@{nifty\+::graph\+::optimization\+::common\+::\+Proposal\+Generator\+Factory}!create\+Shared\+Ptr@{create\+Shared\+Ptr}}
+\index{create\+Shared\+Ptr@{create\+Shared\+Ptr}!nifty\+::graph\+::optimization\+::common\+::\+Proposal\+Generator\+Factory@{nifty\+::graph\+::optimization\+::common\+::\+Proposal\+Generator\+Factory}}
+\subsubsection[{create\+Shared\+Ptr(const Objective\+Type \&objective, const size\+\_\+t number\+Of\+Threads)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class P\+R\+O\+P\+O\+S\+A\+L\+\_\+\+G\+E\+N\+E\+R\+A\+T\+O\+R $>$ virtual std\+::shared\+\_\+ptr$<${\bf Proposal\+Generator\+Base\+Type}$>$ {\bf nifty\+::graph\+::optimization\+::common\+::\+Proposal\+Generator\+Factory}$<$ P\+R\+O\+P\+O\+S\+A\+L\+\_\+\+G\+E\+N\+E\+R\+A\+T\+O\+R $>$\+::create\+Shared\+Ptr (
+\begin{DoxyParamCaption}
+\item[{const {\bf Objective\+Type} \&}]{objective, }
+\item[{const size\+\_\+t}]{number\+Of\+Threads}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorFactory_a0f8d6fd73baa230e0b3475f5794352e2}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal\+\_\+generators/\hyperlink{common_2proposal__generators_2proposal__generator__factory_8hxx}{proposal\+\_\+generator\+\_\+factory.\+hxx}\end{DoxyCompactItemize}

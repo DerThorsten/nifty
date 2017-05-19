@@ -1,0 +1,62 @@
+\hypertarget{fastfilters__wrapper_8hxx}{}\section{/home/tbeier/src/nifty/include/nifty/features/fastfilters\+\_\+wrapper.hxx File Reference}
+\label{fastfilters__wrapper_8hxx}\index{/home/tbeier/src/nifty/include/nifty/features/fastfilters\+\_\+wrapper.\+hxx@{/home/tbeier/src/nifty/include/nifty/features/fastfilters\+\_\+wrapper.\+hxx}}
+{\ttfamily \#include $<$mutex$>$}\\*
+{\ttfamily \#include \char`\"{}fastfilters.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}nifty/marray/marray.\+hxx\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}nifty/parallel/threadpool.\+hxx\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}nifty/array/arithmetic\+\_\+array.\+hxx\char`\"{}}\\*
+Include dependency graph for fastfilters\+\_\+wrapper.\+hxx\+:
+% FIG 0
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structnifty_1_1features_1_1detail__fastfilters_1_1FastfiltersDim}{nifty\+::features\+::detail\+\_\+fastfilters\+::\+Fastfilters\+Dim$<$ fastfilters\+\_\+array\+\_\+t $>$}
+\item 
+struct \hyperlink{structnifty_1_1features_1_1detail__fastfilters_1_1FastfiltersDim_3_01fastfilters__array2d__t_01_4}{nifty\+::features\+::detail\+\_\+fastfilters\+::\+Fastfilters\+Dim$<$ fastfilters\+\_\+array2d\+\_\+t $>$}
+\item 
+struct \hyperlink{structnifty_1_1features_1_1detail__fastfilters_1_1FastfiltersDim_3_01fastfilters__array3d__t_01_4}{nifty\+::features\+::detail\+\_\+fastfilters\+::\+Fastfilters\+Dim$<$ fastfilters\+\_\+array3d\+\_\+t $>$}
+\item 
+struct \hyperlink{structnifty_1_1features_1_1FilterBase}{nifty\+::features\+::\+Filter\+Base}
+\item 
+struct \hyperlink{structnifty_1_1features_1_1GaussianSmoothing}{nifty\+::features\+::\+Gaussian\+Smoothing}
+\item 
+struct \hyperlink{structnifty_1_1features_1_1LaplacianOfGaussian}{nifty\+::features\+::\+Laplacian\+Of\+Gaussian}
+\item 
+struct \hyperlink{structnifty_1_1features_1_1GaussianGradientMagnitude}{nifty\+::features\+::\+Gaussian\+Gradient\+Magnitude}
+\item 
+struct \hyperlink{structnifty_1_1features_1_1HessianOfGaussianEigenvalues}{nifty\+::features\+::\+Hessian\+Of\+Gaussian\+Eigenvalues}
+\item 
+struct \hyperlink{structnifty_1_1features_1_1StructureTensorEigenvalues}{nifty\+::features\+::\+Structure\+Tensor\+Eigenvalues}
+\item 
+struct \hyperlink{structnifty_1_1features_1_1ApplyFilters}{nifty\+::features\+::\+Apply\+Filters$<$ D\+I\+M $>$}
+\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespacenifty}{nifty}
+\item 
+ \hyperlink{namespacenifty_1_1features}{nifty\+::features}
+\item 
+ \hyperlink{namespacenifty_1_1features_1_1detail__fastfilters}{nifty\+::features\+::detail\+\_\+fastfilters}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{fastfilters__wrapper_8hxx_ad53c56b85e650379ccc7df83ed33b3c6}{N\+I\+F\+T\+Y\+\_\+\+F\+E\+A\+T\+U\+R\+E\+S\+\_\+\+F\+A\+S\+T\+F\+I\+L\+T\+E\+R\+S\+\_\+\+W\+R\+A\+P\+P\+E\+R\+\_\+\+H\+X\+X}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename fastfilters\+\_\+array\+\_\+t $>$ }\\void \hyperlink{namespacenifty_1_1features_1_1detail__fastfilters_a41cdd24872d9ad84d89616e7c68eec05}{nifty\+::features\+::detail\+\_\+fastfilters\+::convert\+Marray2ff} (const marray\+::\+View$<$ float $>$ \&array, fastfilters\+\_\+array\+\_\+t \&ff)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+std\+::once\+\_\+flag \hyperlink{namespacenifty_1_1features_af5770cdfb4d70324029cf0f8a7061e69}{nifty\+::features\+::once\+Flag}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{fastfilters__wrapper_8hxx_ad53c56b85e650379ccc7df83ed33b3c6}{}\index{fastfilters\+\_\+wrapper.\+hxx@{fastfilters\+\_\+wrapper.\+hxx}!N\+I\+F\+T\+Y\+\_\+\+F\+E\+A\+T\+U\+R\+E\+S\+\_\+\+F\+A\+S\+T\+F\+I\+L\+T\+E\+R\+S\+\_\+\+W\+R\+A\+P\+P\+E\+R\+\_\+\+H\+X\+X@{N\+I\+F\+T\+Y\+\_\+\+F\+E\+A\+T\+U\+R\+E\+S\+\_\+\+F\+A\+S\+T\+F\+I\+L\+T\+E\+R\+S\+\_\+\+W\+R\+A\+P\+P\+E\+R\+\_\+\+H\+X\+X}}
+\index{N\+I\+F\+T\+Y\+\_\+\+F\+E\+A\+T\+U\+R\+E\+S\+\_\+\+F\+A\+S\+T\+F\+I\+L\+T\+E\+R\+S\+\_\+\+W\+R\+A\+P\+P\+E\+R\+\_\+\+H\+X\+X@{N\+I\+F\+T\+Y\+\_\+\+F\+E\+A\+T\+U\+R\+E\+S\+\_\+\+F\+A\+S\+T\+F\+I\+L\+T\+E\+R\+S\+\_\+\+W\+R\+A\+P\+P\+E\+R\+\_\+\+H\+X\+X}!fastfilters\+\_\+wrapper.\+hxx@{fastfilters\+\_\+wrapper.\+hxx}}
+\subsubsection[{N\+I\+F\+T\+Y\+\_\+\+F\+E\+A\+T\+U\+R\+E\+S\+\_\+\+F\+A\+S\+T\+F\+I\+L\+T\+E\+R\+S\+\_\+\+W\+R\+A\+P\+P\+E\+R\+\_\+\+H\+X\+X}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+I\+F\+T\+Y\+\_\+\+F\+E\+A\+T\+U\+R\+E\+S\+\_\+\+F\+A\+S\+T\+F\+I\+L\+T\+E\+R\+S\+\_\+\+W\+R\+A\+P\+P\+E\+R\+\_\+\+H\+X\+X}\label{fastfilters__wrapper_8hxx_ad53c56b85e650379ccc7df83ed33b3c6}

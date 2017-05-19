@@ -1,0 +1,110 @@
+\hypertarget{classnifty_1_1graph_1_1DirectedGraphBase}{}\section{nifty\+:\+:graph\+:\+:Directed\+Graph\+Base$<$ C\+H\+I\+L\+D\+\_\+\+G\+R\+A\+P\+H $>$ Class Template Reference}
+\label{classnifty_1_1graph_1_1DirectedGraphBase}\index{nifty\+::graph\+::\+Directed\+Graph\+Base$<$ C\+H\+I\+L\+D\+\_\+\+G\+R\+A\+P\+H $>$@{nifty\+::graph\+::\+Directed\+Graph\+Base$<$ C\+H\+I\+L\+D\+\_\+\+G\+R\+A\+P\+H $>$}}
+
+
+{\ttfamily \#include $<$directed\+\_\+graph\+\_\+base.\+hxx$>$}
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structnifty_1_1graph_1_1DirectedGraphBase_1_1AdjacencyIterRange}{Adjacency\+Iter\+Range}
+\item 
+struct \hyperlink{structnifty_1_1graph_1_1DirectedGraphBase_1_1ArcIterRange}{Arc\+Iter\+Range}
+\item 
+struct \hyperlink{structnifty_1_1graph_1_1DirectedGraphBase_1_1EdgeMap}{Edge\+Map}
+\item 
+struct \hyperlink{structnifty_1_1graph_1_1DirectedGraphBase_1_1NodeIterRange}{Node\+Iter\+Range}
+\item 
+struct \hyperlink{structnifty_1_1graph_1_1DirectedGraphBase_1_1NodeMap}{Node\+Map}
+\end{DoxyCompactItemize}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef C\+H\+I\+L\+D\+\_\+\+G\+R\+A\+P\+H \hyperlink{classnifty_1_1graph_1_1DirectedGraphBase_a583e01641aec296b9bc33a346f90a216}{Child\+Graph}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1DirectedGraphBase}{Directed\+Graph\+Base}$<$ \hyperlink{classnifty_1_1graph_1_1DirectedGraphBase_a583e01641aec296b9bc33a346f90a216}{Child\+Graph} $>$ \hyperlink{classnifty_1_1graph_1_1DirectedGraphBase_ae772bf5744b9fe1af63eb1418b7ab261}{Self}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structnifty_1_1graph_1_1DirectedGraphBase_1_1NodeIterRange}{Node\+Iter\+Range}$<$ \hyperlink{classnifty_1_1graph_1_1DirectedGraphBase_a583e01641aec296b9bc33a346f90a216}{Child\+Graph} $>$ \hyperlink{classnifty_1_1graph_1_1DirectedGraphBase_af2ea4db179032139161358e1dae678bd}{nodes} () const 
+\item 
+\hyperlink{structnifty_1_1graph_1_1DirectedGraphBase_1_1ArcIterRange}{Arc\+Iter\+Range}$<$ \hyperlink{classnifty_1_1graph_1_1DirectedGraphBase_a583e01641aec296b9bc33a346f90a216}{Child\+Graph} $>$ \hyperlink{classnifty_1_1graph_1_1DirectedGraphBase_ad163249d1556275cd3a26be3fb149ea2}{arcs} () const 
+\item 
+\hyperlink{structnifty_1_1graph_1_1DirectedGraphBase_1_1ArcIterRange}{Arc\+Iter\+Range}$<$ \hyperlink{classnifty_1_1graph_1_1DirectedGraphBase_a583e01641aec296b9bc33a346f90a216}{Child\+Graph} $>$ \hyperlink{classnifty_1_1graph_1_1DirectedGraphBase_a1c7072e651f9b4cc2c7ff121d204c8cd}{edges} () const 
+\item 
+\hyperlink{structnifty_1_1graph_1_1DirectedGraphBase_1_1AdjacencyIterRange}{Adjacency\+Iter\+Range}$<$ \hyperlink{classnifty_1_1graph_1_1DirectedGraphBase_a583e01641aec296b9bc33a346f90a216}{Child\+Graph} $>$ \hyperlink{classnifty_1_1graph_1_1DirectedGraphBase_a712c07401a2323f2c4df04e7c4a4ce7e}{adjacency} (const int64\+\_\+t node) const 
+\item 
+int64\+\_\+t \hyperlink{classnifty_1_1graph_1_1DirectedGraphBase_a49976a6e82bc84a7a2827e0e8592fc1a}{find\+Edge} (const uint64\+\_\+t u, const uint64\+\_\+t v)
+\item 
+int64\+\_\+t \hyperlink{classnifty_1_1graph_1_1DirectedGraphBase_a51b3ede5d781b372911dad0cff2ae6f6}{edge\+Id\+Upper\+Bound} () const 
+\item 
+int64\+\_\+t \hyperlink{classnifty_1_1graph_1_1DirectedGraphBase_ad3e9b4a5e810cdfb87bdff0adf3385d4}{number\+Of\+Edges} () const 
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{classnifty_1_1graph_1_1DirectedGraphBase_a583e01641aec296b9bc33a346f90a216}{}\index{nifty\+::graph\+::\+Directed\+Graph\+Base@{nifty\+::graph\+::\+Directed\+Graph\+Base}!Child\+Graph@{Child\+Graph}}
+\index{Child\+Graph@{Child\+Graph}!nifty\+::graph\+::\+Directed\+Graph\+Base@{nifty\+::graph\+::\+Directed\+Graph\+Base}}
+\subsubsection[{Child\+Graph}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class C\+H\+I\+L\+D\+\_\+\+G\+R\+A\+P\+H$>$ typedef C\+H\+I\+L\+D\+\_\+\+G\+R\+A\+P\+H {\bf nifty\+::graph\+::\+Directed\+Graph\+Base}$<$ C\+H\+I\+L\+D\+\_\+\+G\+R\+A\+P\+H $>$\+::{\bf Child\+Graph}}\label{classnifty_1_1graph_1_1DirectedGraphBase_a583e01641aec296b9bc33a346f90a216}
+\hypertarget{classnifty_1_1graph_1_1DirectedGraphBase_ae772bf5744b9fe1af63eb1418b7ab261}{}\index{nifty\+::graph\+::\+Directed\+Graph\+Base@{nifty\+::graph\+::\+Directed\+Graph\+Base}!Self@{Self}}
+\index{Self@{Self}!nifty\+::graph\+::\+Directed\+Graph\+Base@{nifty\+::graph\+::\+Directed\+Graph\+Base}}
+\subsubsection[{Self}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class C\+H\+I\+L\+D\+\_\+\+G\+R\+A\+P\+H$>$ typedef {\bf Directed\+Graph\+Base}$<${\bf Child\+Graph}$>$ {\bf nifty\+::graph\+::\+Directed\+Graph\+Base}$<$ C\+H\+I\+L\+D\+\_\+\+G\+R\+A\+P\+H $>$\+::{\bf Self}}\label{classnifty_1_1graph_1_1DirectedGraphBase_ae772bf5744b9fe1af63eb1418b7ab261}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classnifty_1_1graph_1_1DirectedGraphBase_a712c07401a2323f2c4df04e7c4a4ce7e}{}\index{nifty\+::graph\+::\+Directed\+Graph\+Base@{nifty\+::graph\+::\+Directed\+Graph\+Base}!adjacency@{adjacency}}
+\index{adjacency@{adjacency}!nifty\+::graph\+::\+Directed\+Graph\+Base@{nifty\+::graph\+::\+Directed\+Graph\+Base}}
+\subsubsection[{adjacency(const int64\+\_\+t node) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class C\+H\+I\+L\+D\+\_\+\+G\+R\+A\+P\+H$>$ {\bf Adjacency\+Iter\+Range}$<${\bf Child\+Graph} $>$ {\bf nifty\+::graph\+::\+Directed\+Graph\+Base}$<$ C\+H\+I\+L\+D\+\_\+\+G\+R\+A\+P\+H $>$\+::adjacency (
+\begin{DoxyParamCaption}
+\item[{const int64\+\_\+t}]{node}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1DirectedGraphBase_a712c07401a2323f2c4df04e7c4a4ce7e}
+\hypertarget{classnifty_1_1graph_1_1DirectedGraphBase_ad163249d1556275cd3a26be3fb149ea2}{}\index{nifty\+::graph\+::\+Directed\+Graph\+Base@{nifty\+::graph\+::\+Directed\+Graph\+Base}!arcs@{arcs}}
+\index{arcs@{arcs}!nifty\+::graph\+::\+Directed\+Graph\+Base@{nifty\+::graph\+::\+Directed\+Graph\+Base}}
+\subsubsection[{arcs() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class C\+H\+I\+L\+D\+\_\+\+G\+R\+A\+P\+H$>$ {\bf Arc\+Iter\+Range}$<${\bf Child\+Graph} $>$ {\bf nifty\+::graph\+::\+Directed\+Graph\+Base}$<$ C\+H\+I\+L\+D\+\_\+\+G\+R\+A\+P\+H $>$\+::arcs (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1DirectedGraphBase_ad163249d1556275cd3a26be3fb149ea2}
+\hypertarget{classnifty_1_1graph_1_1DirectedGraphBase_a51b3ede5d781b372911dad0cff2ae6f6}{}\index{nifty\+::graph\+::\+Directed\+Graph\+Base@{nifty\+::graph\+::\+Directed\+Graph\+Base}!edge\+Id\+Upper\+Bound@{edge\+Id\+Upper\+Bound}}
+\index{edge\+Id\+Upper\+Bound@{edge\+Id\+Upper\+Bound}!nifty\+::graph\+::\+Directed\+Graph\+Base@{nifty\+::graph\+::\+Directed\+Graph\+Base}}
+\subsubsection[{edge\+Id\+Upper\+Bound() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class C\+H\+I\+L\+D\+\_\+\+G\+R\+A\+P\+H$>$ int64\+\_\+t {\bf nifty\+::graph\+::\+Directed\+Graph\+Base}$<$ C\+H\+I\+L\+D\+\_\+\+G\+R\+A\+P\+H $>$\+::edge\+Id\+Upper\+Bound (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1DirectedGraphBase_a51b3ede5d781b372911dad0cff2ae6f6}
+\hypertarget{classnifty_1_1graph_1_1DirectedGraphBase_a1c7072e651f9b4cc2c7ff121d204c8cd}{}\index{nifty\+::graph\+::\+Directed\+Graph\+Base@{nifty\+::graph\+::\+Directed\+Graph\+Base}!edges@{edges}}
+\index{edges@{edges}!nifty\+::graph\+::\+Directed\+Graph\+Base@{nifty\+::graph\+::\+Directed\+Graph\+Base}}
+\subsubsection[{edges() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class C\+H\+I\+L\+D\+\_\+\+G\+R\+A\+P\+H$>$ {\bf Arc\+Iter\+Range}$<${\bf Child\+Graph} $>$ {\bf nifty\+::graph\+::\+Directed\+Graph\+Base}$<$ C\+H\+I\+L\+D\+\_\+\+G\+R\+A\+P\+H $>$\+::edges (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1DirectedGraphBase_a1c7072e651f9b4cc2c7ff121d204c8cd}
+\hypertarget{classnifty_1_1graph_1_1DirectedGraphBase_a49976a6e82bc84a7a2827e0e8592fc1a}{}\index{nifty\+::graph\+::\+Directed\+Graph\+Base@{nifty\+::graph\+::\+Directed\+Graph\+Base}!find\+Edge@{find\+Edge}}
+\index{find\+Edge@{find\+Edge}!nifty\+::graph\+::\+Directed\+Graph\+Base@{nifty\+::graph\+::\+Directed\+Graph\+Base}}
+\subsubsection[{find\+Edge(const uint64\+\_\+t u, const uint64\+\_\+t v)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class C\+H\+I\+L\+D\+\_\+\+G\+R\+A\+P\+H$>$ int64\+\_\+t {\bf nifty\+::graph\+::\+Directed\+Graph\+Base}$<$ C\+H\+I\+L\+D\+\_\+\+G\+R\+A\+P\+H $>$\+::find\+Edge (
+\begin{DoxyParamCaption}
+\item[{const uint64\+\_\+t}]{u, }
+\item[{const uint64\+\_\+t}]{v}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1DirectedGraphBase_a49976a6e82bc84a7a2827e0e8592fc1a}
+\hypertarget{classnifty_1_1graph_1_1DirectedGraphBase_af2ea4db179032139161358e1dae678bd}{}\index{nifty\+::graph\+::\+Directed\+Graph\+Base@{nifty\+::graph\+::\+Directed\+Graph\+Base}!nodes@{nodes}}
+\index{nodes@{nodes}!nifty\+::graph\+::\+Directed\+Graph\+Base@{nifty\+::graph\+::\+Directed\+Graph\+Base}}
+\subsubsection[{nodes() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class C\+H\+I\+L\+D\+\_\+\+G\+R\+A\+P\+H$>$ {\bf Node\+Iter\+Range}$<${\bf Child\+Graph} $>$ {\bf nifty\+::graph\+::\+Directed\+Graph\+Base}$<$ C\+H\+I\+L\+D\+\_\+\+G\+R\+A\+P\+H $>$\+::nodes (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1DirectedGraphBase_af2ea4db179032139161358e1dae678bd}
+\hypertarget{classnifty_1_1graph_1_1DirectedGraphBase_ad3e9b4a5e810cdfb87bdff0adf3385d4}{}\index{nifty\+::graph\+::\+Directed\+Graph\+Base@{nifty\+::graph\+::\+Directed\+Graph\+Base}!number\+Of\+Edges@{number\+Of\+Edges}}
+\index{number\+Of\+Edges@{number\+Of\+Edges}!nifty\+::graph\+::\+Directed\+Graph\+Base@{nifty\+::graph\+::\+Directed\+Graph\+Base}}
+\subsubsection[{number\+Of\+Edges() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class C\+H\+I\+L\+D\+\_\+\+G\+R\+A\+P\+H$>$ int64\+\_\+t {\bf nifty\+::graph\+::\+Directed\+Graph\+Base}$<$ C\+H\+I\+L\+D\+\_\+\+G\+R\+A\+P\+H $>$\+::number\+Of\+Edges (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1DirectedGraphBase_ad3e9b4a5e810cdfb87bdff0adf3385d4}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/tbeier/src/nifty/include/nifty/graph/\hyperlink{directed__graph__base_8hxx}{directed\+\_\+graph\+\_\+base.\+hxx}\end{DoxyCompactItemize}

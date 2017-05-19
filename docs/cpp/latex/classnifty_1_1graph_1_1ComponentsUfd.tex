@@ -1,0 +1,160 @@
+\hypertarget{classnifty_1_1graph_1_1ComponentsUfd}{}\section{nifty\+:\+:graph\+:\+:Components\+Ufd$<$ G\+R\+A\+P\+H $>$ Class Template Reference}
+\label{classnifty_1_1graph_1_1ComponentsUfd}\index{nifty\+::graph\+::\+Components\+Ufd$<$ G\+R\+A\+P\+H $>$@{nifty\+::graph\+::\+Components\+Ufd$<$ G\+R\+A\+P\+H $>$}}
+
+
+{\ttfamily \#include $<$components.\+hxx$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef G\+R\+A\+P\+H \hyperlink{classnifty_1_1graph_1_1ComponentsUfd_afafd21184dee3aecdfa218eb5e72af84}{Graph}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classnifty_1_1graph_1_1ComponentsUfd_a6913c18bf7713329a42438c95674536e}{Components\+Ufd} (const \hyperlink{classnifty_1_1graph_1_1ComponentsUfd_afafd21184dee3aecdfa218eb5e72af84}{Graph} \&\hyperlink{classnifty_1_1graph_1_1ComponentsUfd_aec56e122103d4a3593b4fa437695d685}{graph})
+\item 
+uint64\+\_\+t \hyperlink{classnifty_1_1graph_1_1ComponentsUfd_ad41a9eae9bfab1b457630b73adc1b9d3}{build} ()
+\item 
+{\footnotesize template$<$class N\+O\+D\+E\+\_\+\+L\+A\+B\+E\+L\+S $>$ }\\uint64\+\_\+t \hyperlink{classnifty_1_1graph_1_1ComponentsUfd_a1a6d02426ccb3d0f22cd7ad14abfa0b7}{build\+From\+Labels} (const N\+O\+D\+E\+\_\+\+L\+A\+B\+E\+L\+S \&node\+Labels)
+\item 
+{\footnotesize template$<$class S\+U\+B\+G\+R\+A\+P\+H\+\_\+\+M\+A\+S\+K $>$ }\\uint64\+\_\+t \hyperlink{classnifty_1_1graph_1_1ComponentsUfd_addaee74aadc18b2b3a479dca5b0851cc}{build} (const S\+U\+B\+G\+R\+A\+P\+H\+\_\+\+M\+A\+S\+K \&mask)
+\item 
+void \hyperlink{classnifty_1_1graph_1_1ComponentsUfd_af5c4c45f3de807f548f07060e4ac5ed5}{reset} ()
+\item 
+bool \hyperlink{classnifty_1_1graph_1_1ComponentsUfd_a680c25bd16a0728b1d937d21383b0730}{are\+Connected} (const int64\+\_\+t u, const int64\+\_\+t v) const 
+\item 
+bool \hyperlink{classnifty_1_1graph_1_1ComponentsUfd_a530d516ae63b9765ae18671da71bee9f}{are\+Connected} (const int64\+\_\+t u, const int64\+\_\+t v)
+\item 
+uint64\+\_\+t \hyperlink{classnifty_1_1graph_1_1ComponentsUfd_a4af6546f5ae5c08b6ded79278988920a}{component\+Label} (const uint64\+\_\+t u) const 
+\item 
+uint64\+\_\+t \hyperlink{classnifty_1_1graph_1_1ComponentsUfd_ab94489c15d132f7af184f66bf2a2dc2c}{component\+Label} (const uint64\+\_\+t u)
+\item 
+uint64\+\_\+t \hyperlink{classnifty_1_1graph_1_1ComponentsUfd_a40829c2475f277aebdeead2723380381}{operator\mbox{[}$\,$\mbox{]}} (const uint64\+\_\+t u) const 
+\item 
+uint64\+\_\+t \hyperlink{classnifty_1_1graph_1_1ComponentsUfd_a5a2a7b3bf4d5f260932b8129b63b8a15}{max\+Label} () const 
+\item 
+{\footnotesize template$<$class N\+O\+D\+E\+\_\+\+M\+A\+P $>$ }\\void \hyperlink{classnifty_1_1graph_1_1ComponentsUfd_a9631be50bd7cfd87c25945c52797aa45}{dense\+Relabeling} (N\+O\+D\+E\+\_\+\+M\+A\+P \&node\+Map) const 
+\item 
+{\footnotesize template$<$class N\+O\+D\+E\+\_\+\+M\+A\+P , class C\+O\+M\+P\+\_\+\+S\+I\+Z\+E $>$ }\\void \hyperlink{classnifty_1_1graph_1_1ComponentsUfd_a41359f3f6901e4c503b39c224423952a}{dense\+Relabeling} (N\+O\+D\+E\+\_\+\+M\+A\+P \&node\+Map, C\+O\+M\+P\+\_\+\+S\+I\+Z\+E \&comp\+Size) const 
+\item 
+const \hyperlink{classnifty_1_1graph_1_1ComponentsUfd_afafd21184dee3aecdfa218eb5e72af84}{Graph} \& \hyperlink{classnifty_1_1graph_1_1ComponentsUfd_aec56e122103d4a3593b4fa437695d685}{graph} () const 
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{classnifty_1_1graph_1_1ComponentsUfd_afafd21184dee3aecdfa218eb5e72af84}{}\index{nifty\+::graph\+::\+Components\+Ufd@{nifty\+::graph\+::\+Components\+Ufd}!Graph@{Graph}}
+\index{Graph@{Graph}!nifty\+::graph\+::\+Components\+Ufd@{nifty\+::graph\+::\+Components\+Ufd}}
+\subsubsection[{Graph}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H$>$ typedef G\+R\+A\+P\+H {\bf nifty\+::graph\+::\+Components\+Ufd}$<$ G\+R\+A\+P\+H $>$\+::{\bf Graph}}\label{classnifty_1_1graph_1_1ComponentsUfd_afafd21184dee3aecdfa218eb5e72af84}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classnifty_1_1graph_1_1ComponentsUfd_a6913c18bf7713329a42438c95674536e}{}\index{nifty\+::graph\+::\+Components\+Ufd@{nifty\+::graph\+::\+Components\+Ufd}!Components\+Ufd@{Components\+Ufd}}
+\index{Components\+Ufd@{Components\+Ufd}!nifty\+::graph\+::\+Components\+Ufd@{nifty\+::graph\+::\+Components\+Ufd}}
+\subsubsection[{Components\+Ufd(const Graph \&graph)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H$>$ {\bf nifty\+::graph\+::\+Components\+Ufd}$<$ G\+R\+A\+P\+H $>$\+::{\bf Components\+Ufd} (
+\begin{DoxyParamCaption}
+\item[{const {\bf Graph} \&}]{graph}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1ComponentsUfd_a6913c18bf7713329a42438c95674536e}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classnifty_1_1graph_1_1ComponentsUfd_a680c25bd16a0728b1d937d21383b0730}{}\index{nifty\+::graph\+::\+Components\+Ufd@{nifty\+::graph\+::\+Components\+Ufd}!are\+Connected@{are\+Connected}}
+\index{are\+Connected@{are\+Connected}!nifty\+::graph\+::\+Components\+Ufd@{nifty\+::graph\+::\+Components\+Ufd}}
+\subsubsection[{are\+Connected(const int64\+\_\+t u, const int64\+\_\+t v) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H$>$ bool {\bf nifty\+::graph\+::\+Components\+Ufd}$<$ G\+R\+A\+P\+H $>$\+::are\+Connected (
+\begin{DoxyParamCaption}
+\item[{const int64\+\_\+t}]{u, }
+\item[{const int64\+\_\+t}]{v}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1ComponentsUfd_a680c25bd16a0728b1d937d21383b0730}
+\hypertarget{classnifty_1_1graph_1_1ComponentsUfd_a530d516ae63b9765ae18671da71bee9f}{}\index{nifty\+::graph\+::\+Components\+Ufd@{nifty\+::graph\+::\+Components\+Ufd}!are\+Connected@{are\+Connected}}
+\index{are\+Connected@{are\+Connected}!nifty\+::graph\+::\+Components\+Ufd@{nifty\+::graph\+::\+Components\+Ufd}}
+\subsubsection[{are\+Connected(const int64\+\_\+t u, const int64\+\_\+t v)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H$>$ bool {\bf nifty\+::graph\+::\+Components\+Ufd}$<$ G\+R\+A\+P\+H $>$\+::are\+Connected (
+\begin{DoxyParamCaption}
+\item[{const int64\+\_\+t}]{u, }
+\item[{const int64\+\_\+t}]{v}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1ComponentsUfd_a530d516ae63b9765ae18671da71bee9f}
+\hypertarget{classnifty_1_1graph_1_1ComponentsUfd_ad41a9eae9bfab1b457630b73adc1b9d3}{}\index{nifty\+::graph\+::\+Components\+Ufd@{nifty\+::graph\+::\+Components\+Ufd}!build@{build}}
+\index{build@{build}!nifty\+::graph\+::\+Components\+Ufd@{nifty\+::graph\+::\+Components\+Ufd}}
+\subsubsection[{build()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H$>$ uint64\+\_\+t {\bf nifty\+::graph\+::\+Components\+Ufd}$<$ G\+R\+A\+P\+H $>$\+::build (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1ComponentsUfd_ad41a9eae9bfab1b457630b73adc1b9d3}
+\hypertarget{classnifty_1_1graph_1_1ComponentsUfd_addaee74aadc18b2b3a479dca5b0851cc}{}\index{nifty\+::graph\+::\+Components\+Ufd@{nifty\+::graph\+::\+Components\+Ufd}!build@{build}}
+\index{build@{build}!nifty\+::graph\+::\+Components\+Ufd@{nifty\+::graph\+::\+Components\+Ufd}}
+\subsubsection[{build(const S\+U\+B\+G\+R\+A\+P\+H\+\_\+\+M\+A\+S\+K \&mask)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H$>$ template$<$class S\+U\+B\+G\+R\+A\+P\+H\+\_\+\+M\+A\+S\+K $>$ uint64\+\_\+t {\bf nifty\+::graph\+::\+Components\+Ufd}$<$ G\+R\+A\+P\+H $>$\+::build (
+\begin{DoxyParamCaption}
+\item[{const S\+U\+B\+G\+R\+A\+P\+H\+\_\+\+M\+A\+S\+K \&}]{mask}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1ComponentsUfd_addaee74aadc18b2b3a479dca5b0851cc}
+\hypertarget{classnifty_1_1graph_1_1ComponentsUfd_a1a6d02426ccb3d0f22cd7ad14abfa0b7}{}\index{nifty\+::graph\+::\+Components\+Ufd@{nifty\+::graph\+::\+Components\+Ufd}!build\+From\+Labels@{build\+From\+Labels}}
+\index{build\+From\+Labels@{build\+From\+Labels}!nifty\+::graph\+::\+Components\+Ufd@{nifty\+::graph\+::\+Components\+Ufd}}
+\subsubsection[{build\+From\+Labels(const N\+O\+D\+E\+\_\+\+L\+A\+B\+E\+L\+S \&node\+Labels)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H$>$ template$<$class N\+O\+D\+E\+\_\+\+L\+A\+B\+E\+L\+S $>$ uint64\+\_\+t {\bf nifty\+::graph\+::\+Components\+Ufd}$<$ G\+R\+A\+P\+H $>$\+::build\+From\+Labels (
+\begin{DoxyParamCaption}
+\item[{const N\+O\+D\+E\+\_\+\+L\+A\+B\+E\+L\+S \&}]{node\+Labels}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1ComponentsUfd_a1a6d02426ccb3d0f22cd7ad14abfa0b7}
+\hypertarget{classnifty_1_1graph_1_1ComponentsUfd_a4af6546f5ae5c08b6ded79278988920a}{}\index{nifty\+::graph\+::\+Components\+Ufd@{nifty\+::graph\+::\+Components\+Ufd}!component\+Label@{component\+Label}}
+\index{component\+Label@{component\+Label}!nifty\+::graph\+::\+Components\+Ufd@{nifty\+::graph\+::\+Components\+Ufd}}
+\subsubsection[{component\+Label(const uint64\+\_\+t u) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H$>$ uint64\+\_\+t {\bf nifty\+::graph\+::\+Components\+Ufd}$<$ G\+R\+A\+P\+H $>$\+::component\+Label (
+\begin{DoxyParamCaption}
+\item[{const uint64\+\_\+t}]{u}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1ComponentsUfd_a4af6546f5ae5c08b6ded79278988920a}
+\hypertarget{classnifty_1_1graph_1_1ComponentsUfd_ab94489c15d132f7af184f66bf2a2dc2c}{}\index{nifty\+::graph\+::\+Components\+Ufd@{nifty\+::graph\+::\+Components\+Ufd}!component\+Label@{component\+Label}}
+\index{component\+Label@{component\+Label}!nifty\+::graph\+::\+Components\+Ufd@{nifty\+::graph\+::\+Components\+Ufd}}
+\subsubsection[{component\+Label(const uint64\+\_\+t u)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H$>$ uint64\+\_\+t {\bf nifty\+::graph\+::\+Components\+Ufd}$<$ G\+R\+A\+P\+H $>$\+::component\+Label (
+\begin{DoxyParamCaption}
+\item[{const uint64\+\_\+t}]{u}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1ComponentsUfd_ab94489c15d132f7af184f66bf2a2dc2c}
+\hypertarget{classnifty_1_1graph_1_1ComponentsUfd_a9631be50bd7cfd87c25945c52797aa45}{}\index{nifty\+::graph\+::\+Components\+Ufd@{nifty\+::graph\+::\+Components\+Ufd}!dense\+Relabeling@{dense\+Relabeling}}
+\index{dense\+Relabeling@{dense\+Relabeling}!nifty\+::graph\+::\+Components\+Ufd@{nifty\+::graph\+::\+Components\+Ufd}}
+\subsubsection[{dense\+Relabeling(\+N\+O\+D\+E\+\_\+\+M\+A\+P \&node\+Map) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H$>$ template$<$class N\+O\+D\+E\+\_\+\+M\+A\+P $>$ void {\bf nifty\+::graph\+::\+Components\+Ufd}$<$ G\+R\+A\+P\+H $>$\+::dense\+Relabeling (
+\begin{DoxyParamCaption}
+\item[{N\+O\+D\+E\+\_\+\+M\+A\+P \&}]{node\+Map}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1ComponentsUfd_a9631be50bd7cfd87c25945c52797aa45}
+\hypertarget{classnifty_1_1graph_1_1ComponentsUfd_a41359f3f6901e4c503b39c224423952a}{}\index{nifty\+::graph\+::\+Components\+Ufd@{nifty\+::graph\+::\+Components\+Ufd}!dense\+Relabeling@{dense\+Relabeling}}
+\index{dense\+Relabeling@{dense\+Relabeling}!nifty\+::graph\+::\+Components\+Ufd@{nifty\+::graph\+::\+Components\+Ufd}}
+\subsubsection[{dense\+Relabeling(\+N\+O\+D\+E\+\_\+\+M\+A\+P \&node\+Map, C\+O\+M\+P\+\_\+\+S\+I\+Z\+E \&comp\+Size) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H$>$ template$<$class N\+O\+D\+E\+\_\+\+M\+A\+P , class C\+O\+M\+P\+\_\+\+S\+I\+Z\+E $>$ void {\bf nifty\+::graph\+::\+Components\+Ufd}$<$ G\+R\+A\+P\+H $>$\+::dense\+Relabeling (
+\begin{DoxyParamCaption}
+\item[{N\+O\+D\+E\+\_\+\+M\+A\+P \&}]{node\+Map, }
+\item[{C\+O\+M\+P\+\_\+\+S\+I\+Z\+E \&}]{comp\+Size}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1ComponentsUfd_a41359f3f6901e4c503b39c224423952a}
+\hypertarget{classnifty_1_1graph_1_1ComponentsUfd_aec56e122103d4a3593b4fa437695d685}{}\index{nifty\+::graph\+::\+Components\+Ufd@{nifty\+::graph\+::\+Components\+Ufd}!graph@{graph}}
+\index{graph@{graph}!nifty\+::graph\+::\+Components\+Ufd@{nifty\+::graph\+::\+Components\+Ufd}}
+\subsubsection[{graph() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H$>$ const {\bf Graph}\& {\bf nifty\+::graph\+::\+Components\+Ufd}$<$ G\+R\+A\+P\+H $>$\+::graph (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1ComponentsUfd_aec56e122103d4a3593b4fa437695d685}
+\hypertarget{classnifty_1_1graph_1_1ComponentsUfd_a5a2a7b3bf4d5f260932b8129b63b8a15}{}\index{nifty\+::graph\+::\+Components\+Ufd@{nifty\+::graph\+::\+Components\+Ufd}!max\+Label@{max\+Label}}
+\index{max\+Label@{max\+Label}!nifty\+::graph\+::\+Components\+Ufd@{nifty\+::graph\+::\+Components\+Ufd}}
+\subsubsection[{max\+Label() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H$>$ uint64\+\_\+t {\bf nifty\+::graph\+::\+Components\+Ufd}$<$ G\+R\+A\+P\+H $>$\+::max\+Label (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1ComponentsUfd_a5a2a7b3bf4d5f260932b8129b63b8a15}
+\hypertarget{classnifty_1_1graph_1_1ComponentsUfd_a40829c2475f277aebdeead2723380381}{}\index{nifty\+::graph\+::\+Components\+Ufd@{nifty\+::graph\+::\+Components\+Ufd}!operator\mbox{[}$\,$\mbox{]}@{operator[]}}
+\index{operator\mbox{[}$\,$\mbox{]}@{operator[]}!nifty\+::graph\+::\+Components\+Ufd@{nifty\+::graph\+::\+Components\+Ufd}}
+\subsubsection[{operator[](const uint64\+\_\+t u) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H$>$ uint64\+\_\+t {\bf nifty\+::graph\+::\+Components\+Ufd}$<$ G\+R\+A\+P\+H $>$\+::operator\mbox{[}$\,$\mbox{]} (
+\begin{DoxyParamCaption}
+\item[{const uint64\+\_\+t}]{u}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1ComponentsUfd_a40829c2475f277aebdeead2723380381}
+\hypertarget{classnifty_1_1graph_1_1ComponentsUfd_af5c4c45f3de807f548f07060e4ac5ed5}{}\index{nifty\+::graph\+::\+Components\+Ufd@{nifty\+::graph\+::\+Components\+Ufd}!reset@{reset}}
+\index{reset@{reset}!nifty\+::graph\+::\+Components\+Ufd@{nifty\+::graph\+::\+Components\+Ufd}}
+\subsubsection[{reset()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H$>$ void {\bf nifty\+::graph\+::\+Components\+Ufd}$<$ G\+R\+A\+P\+H $>$\+::reset (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1ComponentsUfd_af5c4c45f3de807f548f07060e4ac5ed5}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/tbeier/src/nifty/include/nifty/graph/\hyperlink{components_8hxx}{components.\+hxx}\end{DoxyCompactItemize}
