@@ -38,9 +38,9 @@ def __extendMincutObj(objectiveCls, objectiveName):
     O = objectiveCls
 
     def mincutVerboseVisitor(visitNth=1,timeLimit=0):
-        V = getSolverCls("MincutVerboseVisitor")
+        V = getSolverCls("VerboseVisitor")
         return V(visitNth,timeLimit)
-    O.mincutVerboseVisitor = staticmethod(mincutVerboseVisitor)
+    #O.mincutVerboseVisitor = staticmethod(mincutVerboseVisitor)
     O.verboseVisitor = staticmethod(mincutVerboseVisitor)
 
 

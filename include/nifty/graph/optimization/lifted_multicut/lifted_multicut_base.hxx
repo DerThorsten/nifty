@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_GRAPH_OPTIMIZATION_LIFTED_MULTICUT_LIFTED_MULTICUT_BASE_HXX
-#define NIFTY_GRAPH_OPTIMIZATION_LIFTED_MULTICUT_LIFTED_MULTICUT_BASE_HXX
 
 #include <string>
 #include <initializer_list>
@@ -8,12 +6,23 @@
 #include <stdexcept>
     
 #include "nifty/exceptions/exceptions.hxx"
-#include "nifty/graph/optimization/lifted_multicut/lifted_multicut_visitor_base.hxx"
+
+#include "nifty/graph/optimization/common/solver_base.hxx"
 
 namespace nifty {
 namespace graph {
 namespace lifted_multicut{
 
+
+
+    template<class OBJECTIVE>
+    class LiftedMulticutBase :
+        public nifty::graph::optimization::common::SolverBase<OBJECTIVE>
+    {
+
+    };
+
+    #if 0
 
     template<class OBJECTIVE>
     class LiftedMulticutBase{
@@ -58,13 +67,11 @@ namespace lifted_multicut{
             const auto & obj = this->objective();
             return obj.evalNodeLabels(nl);
         }
-
-
-
     };
+
+    #endif
 
 } // namespace lifted_multicut
 } // namespace graph
 } // namespace nifty
 
-#endif // #ifndef NIFTY_GRAPH_OPTIMIZATION_LIFTED_MULTICUT_LIFTED_MULTICUT_BASE_HXX
