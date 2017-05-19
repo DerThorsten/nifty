@@ -101,4 +101,4 @@ add_subdirectory(tools)
 add_subdirectory(ufd)
 add_subdirectory(cgp)
 add_subdirectory(filters)
-
+add_subdirectory(ground_truth)
