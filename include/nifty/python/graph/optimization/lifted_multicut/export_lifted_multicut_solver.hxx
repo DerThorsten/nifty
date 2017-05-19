@@ -28,7 +28,7 @@ namespace lifted_multicut{
     ){
 
         typedef SOLVER Solver;
-        typedef typename Solver::Objective ObjectiveType;
+        typedef typename Solver::ObjectiveType ObjectiveType;
         typedef typename Solver::Settings Settings;
         typedef LiftedMulticutFactory<Solver> Factory;
         typedef LiftedMulticutFactoryBase<ObjectiveType> LmcFactoryBase;

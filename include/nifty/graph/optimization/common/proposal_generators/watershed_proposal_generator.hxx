@@ -27,7 +27,7 @@ namespace common{
         typedef OBJECTIVE ObjectiveType;
         typedef typename ObjectiveType::GraphType GraphType;
         typedef typename GraphType:: template NodeMap<uint64_t>  ProposalType;
-        typedef typename GraphType:: template EdgeMap<float>       EdgeWeights;
+        typedef typename GraphType:: template EdgeMap<float>     EdgeWeights;
 
         struct Settings{
 

@@ -97,8 +97,9 @@ namespace lifted_multicut{
        
 
         typedef UndirectedGraph<> LiftedGraphType;
-
         typedef GraphType Graph;
+        typedef typename GraphType:: template NodeMap<uint64_t> NodeLabelsType;
+        
         typedef LiftedGraphType LiftedGraph;
         typedef WEIGHT_TYPE WeightType;
         typedef graph_maps::EdgeMap<LiftedGraph, WeightType> WeightsMapType;

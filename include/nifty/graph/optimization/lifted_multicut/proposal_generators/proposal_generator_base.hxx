@@ -20,11 +20,11 @@ namespace lifted_multicut{
         typedef LiftedMulticutBase<ObjectiveType> LiftedMulticutBaseType;
         typedef typename ObjectiveType::GraphType GraphType;
         typedef typename ObjectiveType::LiftedGraphType LiftedGraphType;
-        typedef typename LiftedMulticutBaseType::NodeLabels NodeLabels;
+        typedef typename LiftedMulticutBaseType::NodeLabelsType NodeLabelsType;
     
         virtual ~ProposalGeneratorBase(){}
 
-        virtual void generateProposal( const NodeLabels & currentBest,NodeLabels & labels, const size_t tid) = 0;
+        virtual void generateProposal( const NodeLabelsType & currentBest,NodeLabelsType & labels, const size_t tid) = 0;
 
     private:
     }; 

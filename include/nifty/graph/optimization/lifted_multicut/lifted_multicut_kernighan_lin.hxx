@@ -41,9 +41,9 @@ namespace lifted_multicut{
         typedef typename ObjectiveType::GraphType GraphType;
         typedef typename ObjectiveType::LiftedGraphType LiftedGraphType;
         
-        typedef typename BaseType::VisitorBase VisitorBase;
-        typedef typename BaseType::VisitorProxy VisitorProxy;
-        typedef typename BaseType::NodeLabels NodeLabels;
+        typedef typename BaseType::VisitorBaseType VisitorBaseType;
+        typedef typename BaseType::VisitorProxyType VisitorProxyType;
+        typedef typename BaseType::NodeLabelsType NodeLabelsType;
 
     private:
 
@@ -51,7 +51,7 @@ namespace lifted_multicut{
         typedef ComponentsUfd<GraphType> ComponentsType;
         typedef detail_kernighang_lin::TwoCutBuffers<GraphType> TwoCutBuffersType;
 
-        typedef subgraph_masks::SubgraphWithCutFromNodeLabels<GraphType, NodeLabels> SubgraphWithCut;
+        typedef subgraph_masks::SubgraphWithCutFromNodeLabels<GraphType, NodeLabelsType> SubgraphWithCut;
 
     public:
 
@@ -67,12 +67,12 @@ namespace lifted_multicut{
 
         virtual ~LiftedMulticutKernighanLin(){}
         LiftedMulticutKernighanLin(const ObjectiveType & objective, const Settings & settings = Settings());
-        virtual void optimize(NodeLabels & nodeLabels, VisitorBase * visitor);
+        virtual void optimize(NodeLabelsType & nodeLabels, VisitorBaseType * visitor);
         virtual const ObjectiveType & objective() const;
 
 
 
-        virtual const NodeLabels & currentBestNodeLabels( );
+        virtual const NodeLabelsType & currentBestNodeLabels( );
         virtual std::string name()const;
         virtual double currentBestEnergy();
 
@@ -95,14 +95,14 @@ namespace lifted_multicut{
         Settings settings_;
         const GraphType & graph_;
         const LiftedGraphType & liftedGraph_;
-        NodeLabels * currentBest_;
+        NodeLabelsType * currentBest_;
         double currentBestEnergy_;
 
         TwoCutType twoCut_;
         ComponentsType components_;
         std::vector< std::vector<uint64_t> > partitions_;
         TwoCutBuffersType twoCutBuffers_;
-        NodeLabels lastGoodVertexLabels_;
+        NodeLabelsType lastGoodVertexLabels_;
 
         // auxillary array for BFS/DFS
         typename GraphType:: template NodeMap<uint8_t>  visited_;
@@ -147,12 +147,12 @@ namespace lifted_multicut{
     inline void 
     LiftedMulticutKernighanLin<OBJECTIVE>::
     optimize(
-        NodeLabels & nodeLabels,  VisitorBase * visitor
+        NodeLabelsType & nodeLabels,  VisitorBaseType * visitor
     ){
         
         currentBest_ = &nodeLabels;
 
-        VisitorProxy visitorProxy(visitor);
+        VisitorProxyType visitorProxy(visitor);
         visitorProxy.begin(this);
 
         // build cc on given nodeLabels
@@ -489,7 +489,7 @@ namespace lifted_multicut{
  
     template<class OBJECTIVE>
     inline 
-    const typename LiftedMulticutKernighanLin<OBJECTIVE>::NodeLabels & 
+    const typename LiftedMulticutKernighanLin<OBJECTIVE>::NodeLabelsType & 
     LiftedMulticutKernighanLin<OBJECTIVE>::
     currentBestNodeLabels( ){
         return *currentBest_;

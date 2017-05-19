@@ -232,9 +232,8 @@ namespace lifted_multicut{
         typedef typename Objective::LiftedGraph LiftedGraph;
         typedef detail_lifted_multicut_greedy_additive::LiftedMulticutGreedyAdditiveCallback<Objective> Callback;
         typedef LiftedMulticutBase<OBJECTIVE> Base;
-        typedef typename Base::VisitorBase VisitorBase;
-        typedef typename Base::EdgeLabels EdgeLabels;
-        typedef typename Base::NodeLabels NodeLabels;
+        typedef typename Base::VisitorBaseType VisitorBaseType;
+        typedef typename Base::NodeLabelsType NodeLabelsType;
 
     public:
 
@@ -242,7 +241,7 @@ namespace lifted_multicut{
 
         virtual ~LiftedMulticutGreedyAdditive(){}
         LiftedMulticutGreedyAdditive(const Objective & objective, const Settings & settings = Settings());
-        virtual void optimize(NodeLabels & nodeLabels, VisitorBase * visitor);
+        virtual void optimize(NodeLabelsType & nodeLabels, VisitorBaseType * visitor);
         virtual const Objective & objective() const;
 
         void reset();
@@ -251,7 +250,7 @@ namespace lifted_multicut{
         virtual void weightsChanged(){
             this->reset();
         }
-        virtual const NodeLabels & currentBestNodeLabels( ){
+        virtual const NodeLabelsType & currentBestNodeLabels( ){
             for(auto node : graph_.nodes()){
                 currentBest_->operator[](node) = edgeContractionGraph_.findRepresentativeNode(node);
             }
@@ -268,7 +267,7 @@ namespace lifted_multicut{
 
         const Objective & objective_;
         const Graph & graph_;
-        NodeLabels * currentBest_;
+        NodeLabelsType * currentBest_;
 
         Callback callback_;
         EdgeContractionGraph<LiftedGraph, Callback> edgeContractionGraph_;
@@ -294,7 +293,7 @@ namespace lifted_multicut{
     template<class OBJECTIVE>
     void LiftedMulticutGreedyAdditive<OBJECTIVE>::
     optimize(
-        NodeLabels & nodeLabels,  VisitorBase * visitor
+        NodeLabelsType & nodeLabels,  VisitorBaseType * visitor
     ){
         
         

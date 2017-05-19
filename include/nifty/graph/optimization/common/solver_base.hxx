@@ -1,5 +1,6 @@
 #pragma once
 
+
 #include <string>
 #include <initializer_list>
 #include <sstream>
@@ -8,40 +9,29 @@
 #include "nifty/exceptions/exceptions.hxx"
 
 #include "nifty/graph/optimization/common/solver_base.hxx"
+#include "nifty/graph/optimization/lifted_multicut/lifted_multicut_visitor_base.hxx"
 
 namespace nifty {
 namespace graph {
-namespace lifted_multicut{
+namespace optimization{
+namespace common{
 
-
-
-    template<class OBJECTIVE>
-    class LiftedMulticutBase :
-        public nifty::graph::optimization::common::SolverBase<
-            OBJECTIVE,
-            LiftedMulticutBase<OBJECTIVE>
-        >
-    {
-
-    };
-
-    #if 0
-
-    template<class OBJECTIVE>
-    class LiftedMulticutBase{
+    template<class OBJECTIVE, class CHILD>
+    class SolverBase{
     
     public:
-        typedef OBJECTIVE Objective;
-        typedef LiftedMulticutVisitorBase<Objective> VisitorBase;
-        typedef LiftedMulticutVisitorProxy<Objective> VisitorProxy;
-        typedef typename Objective::Graph Graph;
-        typedef typename Graph:: template EdgeMap<uint8_t>  EdgeLabels;
-        typedef typename Graph:: template NodeMap<uint64_t> NodeLabels;
+        typedef OBJECTIVE                           ObjectiveType;
+        typedef SolverBase<ObjectiveType,CHILD>     SelfType;
+        typedef VisitorBase<CHILD>                  VisitorBaseType;
+        typedef VisitorProxy<CHILD>                 VisitorProxyType;
+        typedef typename ObjectiveType::GraphType   GraphType;
 
-        virtual ~LiftedMulticutBase(){};
-        virtual void optimize(NodeLabels & nodeLabels, VisitorBase * visitor) = 0;
-        virtual const Objective & objective() const = 0;
-        virtual const NodeLabels & currentBestNodeLabels() = 0;
+        typedef typename ObjectiveType::NodeLabelsType NodeLabelsType;
+
+        virtual ~SolverBase(){};
+        virtual void optimize(NodeLabelsType & nodeLabels, VisitorBaseType * visitor) = 0;
+        virtual const ObjectiveType & objective() const = 0;
+        virtual const NodeLabelsType & currentBestNodeLabels() = 0;
 
 
         virtual std::string name() const = 0 ;
@@ -70,11 +60,13 @@ namespace lifted_multicut{
             const auto & obj = this->objective();
             return obj.evalNodeLabels(nl);
         }
+
+
+
     };
 
-    #endif
-
-} // namespace lifted_multicut
-} // namespace graph
+} // namespace nifty::graph::optimization::common
+} // namespace nifty::graph::optimization
+} // namespace nifty::graph
 } // namespace nifty
 

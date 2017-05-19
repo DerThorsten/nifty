@@ -15,30 +15,30 @@ namespace lifted_multicut{
     template<class OBJECTIVE>
     class LiftedMulticutFactoryBase{
     public:
-        typedef OBJECTIVE Objective;
-        typedef LiftedMulticutBase<Objective> LiftedMulticutBaseType;
+        typedef OBJECTIVE ObjectiveType;
+        typedef LiftedMulticutBase<ObjectiveType> LiftedMulticutBaseType;
         virtual ~LiftedMulticutFactoryBase(){}
-        virtual std::shared_ptr<LiftedMulticutBaseType> createSharedPtr(const Objective & objective) = 0;
-        virtual LiftedMulticutBaseType * createRawPtr(const Objective & objective) = 0;
+        virtual std::shared_ptr<LiftedMulticutBaseType> createSharedPtr(const ObjectiveType & objective) = 0;
+        virtual LiftedMulticutBaseType * createRawPtr(const ObjectiveType & objective) = 0;
     };
 
 
     template<class SOLVER>
     class LiftedMulticutFactory :
-    public LiftedMulticutFactoryBase<typename SOLVER::Objective>{
+    public LiftedMulticutFactoryBase<typename SOLVER::ObjectiveType>{
     public:
-        typedef typename SOLVER::Objective Objective;
-        typedef LiftedMulticutBase<Objective> LiftedMulticutBaseType;
+        typedef typename SOLVER::ObjectiveType ObjectiveType;
+        typedef LiftedMulticutBase<ObjectiveType> LiftedMulticutBaseType;
         typedef SOLVER Solver;
         typedef typename Solver::Settings Settings;
         LiftedMulticutFactory(const Settings & settings = Settings())
-        :   LiftedMulticutFactoryBase<Objective>(),
+        :   LiftedMulticutFactoryBase<ObjectiveType>(),
             options_(settings){
         }
-        virtual std::shared_ptr<LiftedMulticutBaseType> createSharedPtr(const Objective & objective){
+        virtual std::shared_ptr<LiftedMulticutBaseType> createSharedPtr(const ObjectiveType & objective){
             return std::make_shared<Solver>(objective, options_);
         }
-        virtual LiftedMulticutBaseType * createRawPtr(const Objective & objective){
+        virtual LiftedMulticutBaseType * createRawPtr(const ObjectiveType & objective){
             LiftedMulticutBaseType *  p =  new Solver(objective, options_);
             return p;
         }

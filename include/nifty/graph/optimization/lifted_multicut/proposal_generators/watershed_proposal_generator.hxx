@@ -25,7 +25,7 @@ namespace lifted_multicut{
         typedef LiftedMulticutBase<ObjectiveType> LiftedMulticutBaseType;
         typedef typename ObjectiveType::GraphType GraphType;
         typedef typename ObjectiveType::LiftedGraphType LiftedGraphType;
-        typedef typename LiftedMulticutBaseType::NodeLabels NodeLabels;
+        typedef typename LiftedMulticutBaseType::NodeLabelsType NodeLabelsType;
     
         typedef typename GraphType:: template EdgeMap<float>  EdgeWeights;
 
@@ -124,7 +124,7 @@ namespace lifted_multicut{
         virtual ~WatershedProposalGenerator(){}
 
         virtual void generateProposal(
-            const NodeLabels & currentBest,NodeLabels & proposal, 
+            const NodeLabelsType & currentBest,NodeLabelsType & proposal, 
             const size_t tid
         ){
             
@@ -138,7 +138,7 @@ namespace lifted_multicut{
                 auto & gen = gens_[tid];
 
                 EdgeWeights noisyEdgeWeights(graph);
-                NodeLabels  seeds(graph, 0);
+                NodeLabelsType  seeds(graph, 0);
 
                 auto nSeeds = settings_.numberOfSeeds <=1.0 ? 
                     size_t(float(graph.numberOfNodes())*settings_.numberOfSeeds+0.5f) :
