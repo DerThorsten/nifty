@@ -93,3 +93,7 @@ script:
   - nosetests  graph/agglo/*.py
   - nosetests  hdf5/*.py
   - nosetests  tools/*.py
+
+
+  # run the python examples (currently by hand)
+  - python src/python/examples/graph/edge_contraction_graph.py
