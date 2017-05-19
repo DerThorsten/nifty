@@ -6,13 +6,28 @@ from ._multicut import *
 from .... import Configuration
 from ... import (UndirectedGraph,EdgeContractionGraphUndirectedGraph)
 
-__all__ = []
+__all__ = [
+    "ilpSettings"
+]
 for key in _multicut.__dict__.keys():
     __all__.append(key)
 
 
 
 def ilpSettings(relativeGap=0.0, absoluteGap=0.0, memLimit=-1.0):
+    """solver for an ilp solver
+    
+    Settings for solvers as Cplex,Gurobi and Glpk
+    
+    Keyword Arguments:
+        relativeGap {number} -- relative optimality gap (default: {0.0})
+        absoluteGap {number} -- absolute optimality gap (default: {0.0})
+        memLimit {number} -- memory limit in mega-bites 
+            a value smaller as zero indicates no limit  (default: {-1.0})
+    
+    Returns:
+        [type] -- [description]
+    """
     s = IlpBackendSettings()
     s.relativeGap = float(relativeGap)
     s.absoluteGap = float(absoluteGap)

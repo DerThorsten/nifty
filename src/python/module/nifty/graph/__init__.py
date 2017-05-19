@@ -17,6 +17,7 @@ from . optimization import mincut
 import numpy
 from functools import partial
 import types
+import sys
 
 __all__ = []
 
@@ -46,44 +47,60 @@ UndirectedGraph.LiftedMulticutObjective = lifted_multicut.LiftedMulticutObjectiv
 
 
 
+if sys.version_info >= (3, 0):
 
 
+    class EdgeContractionGraphCallback(EdgeContractionGraphCallbackImpl):
+        def __init__(self):
+            super(EdgeContractionGraphCallback, self).__init__()
 
-class EdgeContractionGraphCallback(EdgeContractionGraphCallbackImpl):
-    def __init__(self):
-        super(EdgeContractionGraphCallback, self).__init__()
+            try:
+                self.contractEdgeCallback = self.contractEdge
+            except AttributeError:
+                pass
 
+            try:
+                self.mergeEdgesCallback = self.mergeEdges
+            except AttributeError:
+                pass
 
-        try:
-            self.contractEdgeCallback = types.MethodType(self.contractEdge, self,
+            try:
+                self.mergeNodesCallback = self.mergeNodes
+            except AttributeError:
+                pass
+
+            try:
+                self.contractEdgeDoneCallback = self.contractEdgeDone
+            except AttributeError:
+                pass
+else:
+
+    class EdgeContractionGraphCallback(EdgeContractionGraphCallbackImpl):
+        def __init__(self):
+            super(EdgeContractionGraphCallback, self).__init__()
+
+            try:
+                self.contractEdgeCallback = types.MethodType(self.contractEdge, self,
+                                                EdgeContractionGraphCallback)
+            except AttributeError:
+                pass
+
+            try:
+                self.mergeEdgesCallback = types.MethodType(self.mergeEdges, self,
+                                                EdgeContractionGraphCallback)
+            except AttributeError:
+                pass
+
+            try:
+                self.mergeNodesCallback = types.MethodType(self.mergeNodes, self,
                                             EdgeContractionGraphCallback)
-        except AttributeError:
-            pass
-
-        try:
-            self.mergeEdgesCallback = types.MethodType(self.mergeEdges, self,
+            except AttributeError:
+                pass
+            try:
+                self.contractEdgeDoneCallback = types.MethodType(self.contractEdgeDone, self,
                                             EdgeContractionGraphCallback)
-        except AttributeError:
-            pass
-
-        try:
-            self.mergeNodesCallback = types.MethodType(self.mergeNodes, self,
-                                        EdgeContractionGraphCallback)
-        except AttributeError:
-            pass
-
-        try:
-            self.contractEdgeDoneCallback = types.MethodType(self.contractEdgeDone, self,
-                                        EdgeContractionGraphCallback)
-        except AttributeError:
-            pass
-
-    #def contractEdgeCallback(self, edge):
-    #    pass
-    #def contractEdgeDoneCallback(self, edge):
-    #    pass
-
-#EdgeContractionGraphCallback.__module__ = "graph"
+            except AttributeError:
+                pass
 EdgeContractionGraphCallback = EdgeContractionGraphCallback
 
 def edgeContractionGraph(g, callback):
