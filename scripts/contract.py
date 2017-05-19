@@ -1,5 +1,8 @@
 from __future__ import print_function
+import sys
+sys.path.append("/home/tbeier/bld/nifty/python")
 import nifty
+
 
 print(nifty.__file__)
 
@@ -42,10 +45,10 @@ class MyCallback(nifty.graph.EdgeContractionGraphCallback):
         print("     contract edge done", contractedEdge)
 
 
-# make a toy grid graph
-g   = generateGrid((3,3))
+# generate grid graph
+g   = generateGrid((10,10))
 
-# the callback
+# the callback 
 callback = MyCallback()
 
 # the edge contraction graph
@@ -54,20 +57,6 @@ cg = nifty.graph.edgeContractionGraph(g,callback)
 
 
 # - here we just contract all edges of the original graph
-# - check if the edge is still alive
-
-
-# w
-def doFunStuffWithContractedGraph(cg):
-    print("do some fun stuff")
-
-    # iterate over all nodes
-    for node in cg.nodes():
-        print(node)
-        
-        # iterate over all neigbours
-        for otherNode,connectingEdge in cg.nodeAdjacency(node):
-            print("  ",otherNode, connectingEdge)
 
 
 for e in g.edges():
@@ -92,9 +81,6 @@ for e in g.edges():
 
         # lets contract that edge
         cg.contractEdge(ce)
-
-        # lets do fun stuff with the graph
-        doFunStuffWithContractedGraph(cg)
 
 
     else:
