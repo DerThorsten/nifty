@@ -1,3 +1,12 @@
+"""
+Edge Contraction Graph
+====================================
+
+
+Contract the edges of an arbitrary graph
+and call callbacks when edges and nodes
+are merged
+"""
 from __future__ import print_function
 import nifty
 
