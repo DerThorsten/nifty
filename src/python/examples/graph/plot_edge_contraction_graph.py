@@ -51,7 +51,7 @@ class MyCallback(nifty.graph.EdgeContractionGraphCallback):
 
 
 # generate grid graph
-g   = generateGrid((10,10))
+g   = generateGrid((3,3))
 
 # the callback 
 callback = MyCallback()
