@@ -11,9 +11,9 @@ from __future__ import print_function
 import nifty
 
 
-print("WITH_QPBO", nify.Configuration.WITH_QPBO)
-print("WITH_CPLEX", nify.Configuration.WITH_CPLEX)
-print("WITH_GURPBI", nify.Configuration.WITH_GURPBI)
-print("WITH_GLPK", nify.Configuration.WITH_GLPK)
-print("WITH_HDF5", nify.Configuration.WITH_HDF5)
-print("WITH_LP_MP", nify.Configuration.WITH_LP_MP)
+print("WITH_QPBO", nifty.Configuration.WITH_QPBO)
+print("WITH_CPLEX", nifty.Configuration.WITH_CPLEX)
+print("WITH_GURPBI", nifty.Configuration.WITH_GURPBI)
+print("WITH_GLPK", nifty.Configuration.WITH_GLPK)
+print("WITH_HDF5", nifty.Configuration.WITH_HDF5)
+print("WITH_LP_MP", nifty.Configuration.WITH_LP_MP)
