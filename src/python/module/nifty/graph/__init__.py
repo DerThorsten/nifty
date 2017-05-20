@@ -47,7 +47,7 @@ UndirectedGraph.LiftedMulticutObjective = lifted_multicut.LiftedMulticutObjectiv
 
 
 
-if sys.version_info >= (3, 0):
+if sys.version_info >= (1, 0):
 
 
     class EdgeContractionGraphCallback(EdgeContractionGraphCallbackImpl):
