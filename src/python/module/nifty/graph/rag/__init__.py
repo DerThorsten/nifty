@@ -11,7 +11,7 @@ for key in _rag.__dict__.keys():
 
 
 def gridRag(labels, numberOfThreads=-1, serialization = None):
-    labels = numpy.require(labels)
+    labels = numpy.require(labels ,dtype='uint32')
 
 
     if numpy.squeeze(labels).ndim == 2:

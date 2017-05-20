@@ -6,7 +6,7 @@ if(BUILD_DOCS)
     add_subdirectory(cpp)
     add_subdirectory(python)
 
-    install(DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/doc"
+    install(DIRECTORY "${CMAKE_BINARY_DIR}/docs"
     DESTINATION share/doc/nifty
     PATTERN ".git" EXCLUDE PATTERN ".cmake" EXCLUDE
     )
