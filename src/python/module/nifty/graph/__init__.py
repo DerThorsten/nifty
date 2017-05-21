@@ -38,70 +38,37 @@ EdgeContractionGraphUndirectedGraph.MulticutObjective = multicut.MulticutObjecti
 
 
 UndirectedGraph.MincutObjective                     = mincut.MincutObjectiveUndirectedGraph
-UndirectedGraph.EdgeContractionGraph                  = EdgeContractionGraphUndirectedGraph
+UndirectedGraph.EdgeContractionGraph                = EdgeContractionGraphUndirectedGraph
 EdgeContractionGraphUndirectedGraph.MincutObjective = mincut.MincutObjectiveEdgeContractionGraphUndirectedGraph
-
 
 # lifted multicut objective
 UndirectedGraph.LiftedMulticutObjective = lifted_multicut.LiftedMulticutObjectiveUndirectedGraph
 
 
 
-if sys.version_info >= (1, 0):
+class EdgeContractionGraphCallback(EdgeContractionGraphCallbackImpl):
+    def __init__(self):
+        super(EdgeContractionGraphCallback, self).__init__()
 
+        try:
+            self.contractEdgeCallback = self.contractEdge
+        except AttributeError:
+            pass
 
-    class EdgeContractionGraphCallback(EdgeContractionGraphCallbackImpl):
-        def __init__(self):
-            super(EdgeContractionGraphCallback, self).__init__()
+        try:
+            self.mergeEdgesCallback = self.mergeEdges
+        except AttributeError:
+            pass
 
-            try:
-                self.contractEdgeCallback = self.contractEdge
-            except AttributeError:
-                pass
+        try:
+            self.mergeNodesCallback = self.mergeNodes
+        except AttributeError:
+            pass
 
-            try:
-                self.mergeEdgesCallback = self.mergeEdges
-            except AttributeError:
-                pass
-
-            try:
-                self.mergeNodesCallback = self.mergeNodes
-            except AttributeError:
-                pass
-
-            try:
-                self.contractEdgeDoneCallback = self.contractEdgeDone
-            except AttributeError:
-                pass
-else:
-
-    class EdgeContractionGraphCallback(EdgeContractionGraphCallbackImpl):
-        def __init__(self):
-            super(EdgeContractionGraphCallback, self).__init__()
-
-            try:
-                self.contractEdgeCallback = types.MethodType(self.contractEdge, self,
-                                                EdgeContractionGraphCallback)
-            except AttributeError:
-                pass
-
-            try:
-                self.mergeEdgesCallback = types.MethodType(self.mergeEdges, self,
-                                                EdgeContractionGraphCallback)
-            except AttributeError:
-                pass
-
-            try:
-                self.mergeNodesCallback = types.MethodType(self.mergeNodes, self,
-                                            EdgeContractionGraphCallback)
-            except AttributeError:
-                pass
-            try:
-                self.contractEdgeDoneCallback = types.MethodType(self.contractEdgeDone, self,
-                                            EdgeContractionGraphCallback)
-            except AttributeError:
-                pass
-EdgeContractionGraphCallback = EdgeContractionGraphCallback
+        try:
+            self.contractEdgeDoneCallback = self.contractEdgeDone
+        except AttributeError:
+            pass
 
 def edgeContractionGraph(g, callback):
     Ecg = g.__class__.EdgeContractionGraph
@@ -110,4 +77,15 @@ def edgeContractionGraph(g, callback):
 
 
 
+
+def undirectedGridGraph(shape, simpleNh=True):
+    if not simpleNh:
+        raise RuntimeError("currently only simpleNh is implemented")
+    s = [int(s) for s in shape]
+    if(len(s) == 2):
+        return UndirectedGridGraph2DSimpleNh(s)
+    elif(len(s) == 3):
+        return UndirectedGridGraph3DSimpleNh(s)
+    else:
+        raise RuntimeError("currently only 2D and 3D grid graph is exposed to python")
 
