@@ -24,6 +24,28 @@ namespace graph{
 
         auto multicutObjectiveCls = py::class_<ObjectiveType>(multicutModule, clsName.c_str());
         multicutObjectiveCls
+
+            .def("__init__",
+                [](
+                    ObjectiveType & instance,
+                    const Graph & graph,  
+                    nifty::marray::PyView<double> array
+                ){
+                    NIFTY_CHECK_OP(array.dimension(),==,1,"wrong dimensions");
+                    NIFTY_CHECK_OP(array.shape(0),==,graph.edgeIdUpperBound()+1,"wrong shape");
+
+
+                    new (&instance) ObjectiveType(graph);
+
+                    auto & weights = instance.weights();
+                    graph.forEachEdge([&](int64_t edge){
+                        weights[edge] += array(edge);
+                    });
+                },
+                py::keep_alive<1, 2>(),
+                py::arg("graph"),
+                py::arg("weights")  
+            )
             .def_property_readonly("graph", &ObjectiveType::graph)
             .def("evalNodeLabels",[](const ObjectiveType & objective,  nifty::marray::PyView<uint64_t> array){
                 return objective.evalNodeLabels(array);

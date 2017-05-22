@@ -66,14 +66,14 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
     O.verboseVisitor = staticmethod(verboseVisitor)
 
 
-    def logginVisitor(visitNth=1,verbose=True,timeLimitSolver=float('inf'),
+    def loggingVisitor(visitNth=1,verbose=True,timeLimitSolver=float('inf'),
                       timeLimitTotal=float('inf')):
-        V = getMcCls("LogginVisitor")
+        V = getMcCls("LoggingVisitor")
         return V(visitNth=int(visitNth),
                 verbose=bool(verbose),
                 timeLimitSolver=float(timeLimitSolver),
                 timeLimitTotal=float(timeLimitTotal))
-    O.logginVisitor = staticmethod(logginVisitor)
+    O.loggingVisitor = staticmethod(loggingVisitor)
 
 
 
@@ -113,7 +113,7 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
             doBetterCutPhase=False, nodeNumStopCond=0.1, sizeRegularizer=1.0):
         if mincutFactory is None:
             if Configuration.WITH_QPBO:
-                mincutFactory = graphCls.MincutObjective.mincutQpboFactory(improve=False)
+                mincutFactory = graphCls.MincutObjective.mincutQpboFactory(improve=True)
             else:
                 raise RuntimeError("default mincutFactory needs to be compiled WITH_QPBO")
 

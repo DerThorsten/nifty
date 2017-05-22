@@ -93,3 +93,10 @@ script:
   - nosetests  graph/agglo/*.py
   - nosetests  hdf5/*.py
   - nosetests  tools/*.py
+
+  # back to the root
+  - cd ../../..
+  
+  # run the python examples with nose?
+  - python src/python/examples/nifty_configuration.py
+  - python src/python/examples/graph/plot_edge_contraction_graph.py

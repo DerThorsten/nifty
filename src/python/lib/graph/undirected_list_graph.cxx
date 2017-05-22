@@ -38,17 +38,17 @@ namespace graph{
                     }
                 }
             )
-            .def("uvIds",
-                [](Graph & g) {
-                    nifty::marray::PyView<uint64_t> out({uint64_t(g.numberOfEdges()), uint64_t(2)});
-                    for(const auto edge : g.edges()){
-                        const auto uv = g.uv(edge); 
-                        out(edge,0) = uv.first;
-                        out(edge,1) = uv.second;
-                    }
-                    return out;
-                }
-            )
+            //.def("uvIds",
+            //    [](Graph & g) {
+            //        nifty::marray::PyView<uint64_t> out({uint64_t(g.numberOfEdges()), uint64_t(2)});
+            //        for(const auto edge : g.edges()){
+            //            const auto uv = g.uv(edge); 
+            //            out(edge,0) = uv.first;
+            //            out(edge,1) = uv.second;
+            //        }
+            //        return out;
+            //    }
+            //)
             .def("serialize",
                 [](const Graph & g) {
                     nifty::marray::PyView<uint64_t> out({g.serializationSize()});
