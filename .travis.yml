@@ -13,7 +13,10 @@ addons:
     packages:
       - cmake
 
-
+os:
+  - linux
+  - osx
+  
 python:
   # We don't actually use the Travis Python, but this keeps it organized.
   - "2.7"
