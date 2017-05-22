@@ -119,12 +119,17 @@ class TestLiftedMulticutSolver(unittest.TestCase):
             self._testGridModelImpl(Obj.multicutIlpCplexFactory(), gridSize=[5,5])
 
     if nifty.Configuration.WITH_GUROBI:
-        def testMulticutIlpCplex(self):
+        def testMulticutIlpGurobi(self):
             Obj = nifty.graph.UndirectedGraph.MulticutObjective
             self._testGridModelImpl(Obj.multicutIlpGurobiFactory(), gridSize=[5,5])
 
     if nifty.Configuration.WITH_GLPK:
-        def testMulticutIlpCplex(self):
+        def testMulticutIlpCGlpk(self):
             Obj = nifty.graph.UndirectedGraph.MulticutObjective
-            self._testGridModelImpl(Obj.multicutIlpGlpkFactory(), gridSize=[5,5])
-
+            objective = self.gridModel(gridSize=[4,5])
+            factory = Obj.multicutIlpGlpkFactory()
+            solver = factory.create(objective)
+            visitor = objective.verboseVisitor(1000)
+            self.assertEqual(visitor.timeLimitTotal, float('inf'))
+            self.assertEqual(visitor.timeLimitSolver, float('inf'))
+            arg = solver.optimize(visitor)

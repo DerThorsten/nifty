@@ -27,9 +27,9 @@ if(BUILD_NIFTY_PYTHON AND BUILD_PYTHON_DOCS)
             "${CMAKE_CURRENT_SOURCE_DIR}"
             "${SPHINX_HTML_DIR}"
             COMMENT "Building HTML documentation with Sphinx")
-        install(DIRECTORY ${SPHINX_HTML_DIR}
-            DESTINATION share/doc/python-opengm
-        )
+        #install(DIRECTORY ${SPHINX_HTML_DIR}
+        #    DESTINATION share/doc/nifty_python
+        #)
         add_dependencies(python-doc _nifty )
         add_dependencies(python-doc _graph )
         add_dependencies(python-doc _rag )

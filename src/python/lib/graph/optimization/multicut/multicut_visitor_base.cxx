@@ -74,8 +74,8 @@ namespace graph{
 
 
         {
-            const auto visitorName = std::string("LogginVisitor") + objName;
-            typedef nifty::graph::optimization::common::LogginVisitor<SolverBaseType> VisitorType;
+            const auto visitorName = std::string("LoggingVisitor") + objName;
+            typedef nifty::graph::optimization::common::LoggingVisitor<SolverBaseType> VisitorType;
 
             py::class_<VisitorType, std::unique_ptr<VisitorType> >(module, visitorName.c_str(),  visitorBase)
                 .def(py::init<const int, const bool, const double, const double>(),
@@ -85,6 +85,29 @@ namespace graph{
                     py::arg_t<double>("timeLimitTotal",std::numeric_limits<double>::infinity())
                 )
                 .def("stopOptimize",&VisitorType::stopOptimize)
+
+                // logging
+                .def("iterations",[](const VisitorType & visitor){
+                    const auto vec = visitor.iterations();
+                    nifty::marray::PyView<uint32_t> ret({vec.size()});
+                    for(auto i=0; i<vec.size(); ++i)
+                        ret[i] = vec[i];
+                    return ret;
+                })
+                .def("energies",[](const VisitorType & visitor){
+                    const auto vec = visitor.energies();
+                    nifty::marray::PyView<double> ret({vec.size()});
+                    for(auto i=0; i<vec.size(); ++i)
+                        ret[i] = vec[i];
+                    return ret;
+                })
+                .def("runtimes",[](const VisitorType & visitor){
+                    const auto vec = visitor.runtimes();
+                    nifty::marray::PyView<double> ret({vec.size()});
+                    for(auto i=0; i<vec.size(); ++i)
+                        ret[i] = vec[i];
+                    return ret;
+                })
             ;
 
         }

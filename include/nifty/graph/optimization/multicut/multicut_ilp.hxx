@@ -28,7 +28,7 @@ namespace multicut{
         typedef MulticutBase<OBJECTIVE> Base;
         typedef typename Base::VisitorBase VisitorBase;
         typedef typename Base::VisitorProxy VisitorProxy;
-        typedef typename Base::EdgeLabels EdgeLabels;
+        //typedef typename Base::EdgeLabels EdgeLabels;
         typedef typename Base::NodeLabels NodeLabels;
         typedef ILP_SOLVER IlpSovler;
         typedef typename IlpSovler::Settings IlpSettings;
