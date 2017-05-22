@@ -51,6 +51,8 @@ namespace graph{
     public:
         typedef GRAPH Graph;
         typedef Graph GraphType;
+        typedef typename GraphType:: template NodeMap<uint64_t> NodeLabelsType;
+        
         typedef WEIGHT_TYPE WeightType;
         typedef graph_maps::EdgeMap<Graph, WeightType> WeightsMap;
         MulticutObjective(const Graph & g )

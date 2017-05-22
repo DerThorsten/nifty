@@ -1,0 +1,54 @@
+\hypertarget{for__each__coordinate_8hxx}{}\section{/home/tbeier/src/nifty/include/nifty/tools/for\+\_\+each\+\_\+coordinate.hxx File Reference}
+\label{for__each__coordinate_8hxx}\index{/home/tbeier/src/nifty/include/nifty/tools/for\+\_\+each\+\_\+coordinate.\+hxx@{/home/tbeier/src/nifty/include/nifty/tools/for\+\_\+each\+\_\+coordinate.\+hxx}}
+{\ttfamily \#include $<$sstream$>$}\\*
+{\ttfamily \#include $<$chrono$>$}\\*
+{\ttfamily \#include $<$array$>$}\\*
+{\ttfamily \#include \char`\"{}nifty/parallel/threadpool.\+hxx\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}nifty/array/arithmetic\+\_\+array.\+hxx\char`\"{}}\\*
+Include dependency graph for for\+\_\+each\+\_\+coordinate.\+hxx\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespacenifty}{nifty}
+\item 
+ \hyperlink{namespacenifty_1_1tools}{nifty\+::tools}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{for__each__coordinate_8hxx_a320edf18dbb302e98e8d9f8e668b2d3f}{N\+I\+F\+T\+Y\+\_\+\+T\+O\+O\+L\+S\+\_\+\+F\+O\+R\+\_\+\+E\+A\+C\+H\+\_\+\+C\+O\+O\+R\+D\+\_\+\+H\+X\+X}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class S\+H\+A\+P\+E\+\_\+\+T , class F $>$ }\\void \hyperlink{namespacenifty_1_1tools_a2f0a7c111de3217482567849aecac6b6}{nifty\+::tools\+::for\+Each\+Coordinate\+Impl} (const array\+::\+Static\+Array$<$ S\+H\+A\+P\+E\+\_\+\+T, 1 $>$ \&shape, F \&\&f, bool first\+Coordinate\+Major\+Order=true)
+\item 
+{\footnotesize template$<$class S\+H\+A\+P\+E\+\_\+\+T , class F $>$ }\\void \hyperlink{namespacenifty_1_1tools_ade4cdd4e464112baf195beda9d662a96}{nifty\+::tools\+::for\+Each\+Coordinate\+Impl} (const array\+::\+Static\+Array$<$ S\+H\+A\+P\+E\+\_\+\+T, 1 $>$ \&shape\+Begin, const array\+::\+Static\+Array$<$ S\+H\+A\+P\+E\+\_\+\+T, 1 $>$ \&shape\+End, F \&\&f, bool first\+Coordinate\+Major\+Order=true)
+\item 
+{\footnotesize template$<$class S\+H\+A\+P\+E\+\_\+\+T , class F $>$ }\\void \hyperlink{namespacenifty_1_1tools_ad2a256c13ab9dfa6bdd0a1d32ecf49fc}{nifty\+::tools\+::for\+Each\+Coordinate\+Impl} (const array\+::\+Static\+Array$<$ S\+H\+A\+P\+E\+\_\+\+T, 2 $>$ \&shape, F \&\&f, bool first\+Coordinate\+Major\+Order=true)
+\item 
+{\footnotesize template$<$class S\+H\+A\+P\+E\+\_\+\+T , class F $>$ }\\void \hyperlink{namespacenifty_1_1tools_a4d10b12dbebf89f9ad6f38e644547778}{nifty\+::tools\+::for\+Each\+Coordinate\+Impl} (const array\+::\+Static\+Array$<$ S\+H\+A\+P\+E\+\_\+\+T, 2 $>$ \&shape\+Begin, const array\+::\+Static\+Array$<$ S\+H\+A\+P\+E\+\_\+\+T, 2 $>$ \&shape\+End, F \&\&f, bool first\+Coordinate\+Major\+Order=true)
+\item 
+{\footnotesize template$<$class S\+H\+A\+P\+E\+\_\+\+T , class F $>$ }\\void \hyperlink{namespacenifty_1_1tools_ade659d2c15de2ffed10783e9f1602e59}{nifty\+::tools\+::for\+Each\+Coordinate\+Impl} (const array\+::\+Static\+Array$<$ S\+H\+A\+P\+E\+\_\+\+T, 3 $>$ \&shape, F \&\&f, bool first\+Coordinate\+Major\+Order=true)
+\item 
+{\footnotesize template$<$class S\+H\+A\+P\+E\+\_\+\+T , class F $>$ }\\void \hyperlink{namespacenifty_1_1tools_a0d8157dba40263adc2077ffac352ff76}{nifty\+::tools\+::for\+Each\+Coordinate\+Impl} (const array\+::\+Static\+Array$<$ S\+H\+A\+P\+E\+\_\+\+T, 3 $>$ \&shape\+Begin, const array\+::\+Static\+Array$<$ S\+H\+A\+P\+E\+\_\+\+T, 3 $>$ \&shape\+End, F \&\&f, bool first\+Coordinate\+Major\+Order=true)
+\item 
+{\footnotesize template$<$class S\+H\+A\+P\+E\+\_\+\+T , class F $>$ }\\void \hyperlink{namespacenifty_1_1tools_a581fe3925f44b138d984f032f007ea30}{nifty\+::tools\+::for\+Each\+Coordinate\+Impl} (const array\+::\+Static\+Array$<$ S\+H\+A\+P\+E\+\_\+\+T, 4 $>$ \&shape, F \&\&f, bool first\+Coordinate\+Major\+Order=true)
+\item 
+{\footnotesize template$<$class S\+H\+A\+P\+E\+\_\+\+T , class F $>$ }\\void \hyperlink{namespacenifty_1_1tools_aad393bfeb324d5a484bb50a2dd0ac9fa}{nifty\+::tools\+::for\+Each\+Coordinate\+Impl} (const array\+::\+Static\+Array$<$ S\+H\+A\+P\+E\+\_\+\+T, 4 $>$ \&shape\+Begin, const array\+::\+Static\+Array$<$ S\+H\+A\+P\+E\+\_\+\+T, 4 $>$ \&shape\+End, F \&\&f, bool first\+Coordinate\+Major\+Order=true)
+\item 
+{\footnotesize template$<$class S\+H\+A\+P\+E\+\_\+\+T , size\+\_\+t D\+I\+M\+E\+N\+S\+I\+O\+N\+S, class F $>$ }\\void \hyperlink{namespacenifty_1_1tools_a81df2669bba7acc0ad9a253669a28ba4}{nifty\+::tools\+::for\+Each\+Coordinate} (const array\+::\+Static\+Array$<$ S\+H\+A\+P\+E\+\_\+\+T, D\+I\+M\+E\+N\+S\+I\+O\+N\+S $>$ \&shape, F \&\&f, bool first\+Coordinate\+Major\+Order=true)
+\item 
+{\footnotesize template$<$class S\+H\+A\+P\+E\+\_\+\+T , size\+\_\+t D\+I\+M\+E\+N\+S\+I\+O\+N\+S, class F $>$ }\\void \hyperlink{namespacenifty_1_1tools_a757aec65ec994397f40a807952edd219}{nifty\+::tools\+::for\+Each\+Coordinate} (const array\+::\+Static\+Array$<$ S\+H\+A\+P\+E\+\_\+\+T, D\+I\+M\+E\+N\+S\+I\+O\+N\+S $>$ \&shape\+Begin, const array\+::\+Static\+Array$<$ S\+H\+A\+P\+E\+\_\+\+T, D\+I\+M\+E\+N\+S\+I\+O\+N\+S $>$ \&shape\+End, F \&\&f, bool first\+Coordinate\+Major\+Order=true)
+\item 
+{\footnotesize template$<$class S\+H\+A\+P\+E\+\_\+\+T , size\+\_\+t D\+I\+M, class F $>$ }\\void \hyperlink{namespacenifty_1_1tools_a34595523082dffa3f21d4b40cc13cfae}{nifty\+::tools\+::parallel\+For\+Each\+Coordinate} (\hyperlink{classnifty_1_1parallel_1_1ThreadPool}{nifty\+::parallel\+::\+Thread\+Pool} \&threadpool, const array\+::\+Static\+Array$<$ S\+H\+A\+P\+E\+\_\+\+T, D\+I\+M $>$ \&shape, F \&\&f, bool first\+Coordinate\+Major\+Order=true)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{for__each__coordinate_8hxx_a320edf18dbb302e98e8d9f8e668b2d3f}{}\index{for\+\_\+each\+\_\+coordinate.\+hxx@{for\+\_\+each\+\_\+coordinate.\+hxx}!N\+I\+F\+T\+Y\+\_\+\+T\+O\+O\+L\+S\+\_\+\+F\+O\+R\+\_\+\+E\+A\+C\+H\+\_\+\+C\+O\+O\+R\+D\+\_\+\+H\+X\+X@{N\+I\+F\+T\+Y\+\_\+\+T\+O\+O\+L\+S\+\_\+\+F\+O\+R\+\_\+\+E\+A\+C\+H\+\_\+\+C\+O\+O\+R\+D\+\_\+\+H\+X\+X}}
+\index{N\+I\+F\+T\+Y\+\_\+\+T\+O\+O\+L\+S\+\_\+\+F\+O\+R\+\_\+\+E\+A\+C\+H\+\_\+\+C\+O\+O\+R\+D\+\_\+\+H\+X\+X@{N\+I\+F\+T\+Y\+\_\+\+T\+O\+O\+L\+S\+\_\+\+F\+O\+R\+\_\+\+E\+A\+C\+H\+\_\+\+C\+O\+O\+R\+D\+\_\+\+H\+X\+X}!for\+\_\+each\+\_\+coordinate.\+hxx@{for\+\_\+each\+\_\+coordinate.\+hxx}}
+\subsubsection[{N\+I\+F\+T\+Y\+\_\+\+T\+O\+O\+L\+S\+\_\+\+F\+O\+R\+\_\+\+E\+A\+C\+H\+\_\+\+C\+O\+O\+R\+D\+\_\+\+H\+X\+X}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+I\+F\+T\+Y\+\_\+\+T\+O\+O\+L\+S\+\_\+\+F\+O\+R\+\_\+\+E\+A\+C\+H\+\_\+\+C\+O\+O\+R\+D\+\_\+\+H\+X\+X}\label{for__each__coordinate_8hxx_a320edf18dbb302e98e8d9f8e668b2d3f}

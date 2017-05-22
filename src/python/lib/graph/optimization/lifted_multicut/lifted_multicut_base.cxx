@@ -55,7 +55,7 @@ namespace lifted_multicut{
             
 
 
-                    typename LmcBase::NodeLabels nodeLabels(graph,0);
+                    typename LmcBase::NodeLabelsType nodeLabels(graph,0);
                     {
                         py::gil_scoped_release allowThreads;
                         self->optimize(nodeLabels, nullptr);
@@ -80,7 +80,7 @@ namespace lifted_multicut{
             
 
 
-                    typename LmcBase::NodeLabels nodeLabels(graph,0);
+                    typename LmcBase::NodeLabelsType nodeLabels(graph,0);
                     {
                         py::gil_scoped_release allowThreads;
                         self->optimize(nodeLabels, visitor);
@@ -102,7 +102,7 @@ namespace lifted_multicut{
                 ){
                     //std::cout<<"opt array\n";
                     const auto & graph = self->objective().graph();
-                    typename LmcBase::NodeLabels nodeLabels(graph,0);
+                    typename LmcBase::NodeLabelsType nodeLabels(graph,0);
 
 
                     if(array.size() == graph.nodeIdUpperBound()+1){
@@ -132,7 +132,7 @@ namespace lifted_multicut{
                 ){
                     //std::cout<<"opt with both\n";
                     const auto & graph = self->objective().graph();
-                    typename LmcBase::NodeLabels nodeLabels(graph,0);
+                    typename LmcBase::NodeLabelsType nodeLabels(graph,0);
 
 
                     if(array.size() == graph.nodeIdUpperBound()+1){

@@ -5,7 +5,6 @@ addPythonModule(
     SOURCES
         lifted_multicut.cxx
         lifted_multicut_objective.cxx
-        learnable_lifted_multicut_objective.cxx
         lifted_multicut_visitor_base.cxx
         lifted_multicut_base.cxx
         lifted_multicut_factory.cxx

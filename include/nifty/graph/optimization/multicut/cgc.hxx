@@ -594,7 +594,7 @@ namespace multicut{
             double nodeNumStopCond{0.1};
             double sizeRegularizer{1.0};
             bool doCutPhase{true};
-            bool doBetterCutPhase{true};
+            bool doBetterCutPhase{false};
             bool doGlueAndCutPhase{true};
 
             std::shared_ptr<MincutSubMcFactoryBase>   mincutFactory;

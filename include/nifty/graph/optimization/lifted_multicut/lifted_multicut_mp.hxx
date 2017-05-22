@@ -23,27 +23,27 @@ namespace lifted_multicut{
     template<class OBJECTIVE>
     class LiftedMulticutMp : public LiftedMulticutBase<OBJECTIVE>
     {
-    public: 
-    
+    public:
+
         typedef OBJECTIVE ObjectiveType;
         typedef LiftedMulticutBase<ObjectiveType> BaseType;
         typedef typename ObjectiveType::Graph Graph;
         typedef typename ObjectiveType::LiftedGraphType LiftedGraphType;
-        
-        typedef typename BaseType::VisitorBase VisitorBase;
-        typedef typename BaseType::VisitorProxy VisitorProxy;
-        typedef typename BaseType::NodeLabels NodeLabels;
-        
+
+        typedef typename BaseType::VisitorBaseType VisitorBase;
+        typedef typename BaseType::VisitorProxyType VisitorProxy;
+        typedef typename BaseType::NodeLabelsType NodeLabels;
+
         // factory for the lifted primal rounder
         typedef LiftedMulticutFactoryBase<ObjectiveType> LmcFactoryBase;
-    
+
         struct LiftedRounder{
-    
+
             typedef Graph GraphType;
             LiftedRounder(std::shared_ptr<LmcFactoryBase> factory, const bool greedyWarmstart) 
                 : factory_(factory), greedyWarmstart_(greedyWarmstart)
             {}
-            
+
             // TODO do we have to call by value here due to using async or could we also use a call by refernce?
             // TODO need to change between between edge and node labelings -> could be done more efficient ?!
             std::vector<char> operator()(
@@ -300,19 +300,19 @@ namespace lifted_multicut{
     optimize(
         NodeLabels & nodeLabels,  VisitorBase * visitor
     ){
-        //VisitorProxy visitorProxy(visitor);
+        VisitorProxy visitorProxy(visitor);
         // set starting point as current best
         currentBest_ = &nodeLabels;
         
         // TODO for now the visitor is doing nothing, but we should implement one, that is
         // compatible with lp_mp visitor
-        //visitorProxy.begin(this);
+        visitorProxy.begin(this);
         
         if(graph_.numberOfEdges()>0){
             mpSolver_->Solve();
             nodeLabeling();
         }
-        //visitorProxy.end(this);
+        visitorProxy.end(this);
     }
 
 

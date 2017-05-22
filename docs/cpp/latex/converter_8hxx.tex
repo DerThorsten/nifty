@@ -1,0 +1,64 @@
+\hypertarget{converter_8hxx}{}\section{/home/tbeier/src/nifty/include/nifty/python/converter.hxx File Reference}
+\label{converter_8hxx}\index{/home/tbeier/src/nifty/include/nifty/python/converter.\+hxx@{/home/tbeier/src/nifty/include/nifty/python/converter.\+hxx}}
+{\ttfamily \#include $<$type\+\_\+traits$>$}\\*
+{\ttfamily \#include $<$initializer\+\_\+list$>$}\\*
+{\ttfamily \#include $<$pybind11/pybind11.\+h$>$}\\*
+{\ttfamily \#include $<$pybind11/cast.\+h$>$}\\*
+{\ttfamily \#include $<$pybind11/numpy.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}nifty/array/arithmetic\+\_\+array.\+hxx\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}nifty/marray/marray.\+hxx\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}nifty/tools/block\+\_\+access.\+hxx\char`\"{}}\\*
+Include dependency graph for converter.\+hxx\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structpybind11_1_1detail_1_1array__caster__}{pybind11\+::detail\+::array\+\_\+caster\+\_\+$<$ Array\+Type, Value, Resizable, Size $>$}
+\item 
+struct \hyperlink{structpybind11_1_1detail_1_1type__caster_3_01nifty_1_1array_1_1StaticArray_3_01Type_00_01Size_01_4_01_4}{pybind11\+::detail\+::type\+\_\+caster$<$ nifty\+::array\+::\+Static\+Array$<$ Type, Size $>$ $>$}
+\item 
+struct \hyperlink{structpybind11_1_1detail_1_1pymarray__caster}{pybind11\+::detail\+::pymarray\+\_\+caster$<$ Type, D\+I\+M, A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E $>$}
+\item 
+class \hyperlink{classpybind11_1_1gil__release}{pybind11\+::gil\+\_\+release}
+\item 
+class \hyperlink{classnifty_1_1marray_1_1PyView}{nifty\+::marray\+::\+Py\+View$<$ V\+A\+L\+U\+E\+\_\+\+T\+Y\+P\+E, D\+I\+M, A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E $>$}
+\item 
+struct \hyperlink{structnifty_1_1tools_1_1BlockStorageSelector}{nifty\+::tools\+::\+Block\+Storage\+Selector$<$ A\+R\+R\+A\+Y $>$}
+\item 
+struct \hyperlink{structnifty_1_1tools_1_1BlockStorageSelector_3_01marray_1_1PyView_3_01T_00_01DIM_00_01AUTO__CAST__TYPE_01_4_01_4}{nifty\+::tools\+::\+Block\+Storage\+Selector$<$ marray\+::\+Py\+View$<$ T, D\+I\+M, A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E $>$ $>$}
+\item 
+struct \hyperlink{structpybind11_1_1detail_1_1pymarray__caster}{pybind11\+::detail\+::pymarray\+\_\+caster$<$ Type, D\+I\+M, A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E $>$}
+\item 
+struct \hyperlink{structpybind11_1_1detail_1_1type__caster_3_01nifty_1_1marray_1_1PyView_3_01Type_00_01DIM_00_01AUTO__CAST__TYPE_01_4_01_4}{pybind11\+::detail\+::type\+\_\+caster$<$ nifty\+::marray\+::\+Py\+View$<$ Type, D\+I\+M, A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E $>$ $>$}
+\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespacenifty}{nifty}
+\item 
+ \hyperlink{namespacepybind11}{pybind11}
+\item 
+ \hyperlink{namespacepybind11_1_1detail}{pybind11\+::detail}
+\item 
+ \hyperlink{namespacenifty_1_1marray}{nifty\+::marray}
+\item 
+ \hyperlink{namespacenifty_1_1tools}{nifty\+::tools}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{converter_8hxx_a3ca3aa62343444114bd44d341b0aaffa}{N\+I\+F\+T\+Y\+\_\+\+P\+Y\+T\+H\+O\+N\+\_\+\+C\+O\+N\+V\+E\+R\+T\+E\+R\+\_\+\+H\+X\+X}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \hyperlink{namespacenifty_af89b6a59b4fc8d4224d6a73f745d52f9}{nifty\+::lower\+First} (const std\+::string \&name)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{converter_8hxx_a3ca3aa62343444114bd44d341b0aaffa}{}\index{converter.\+hxx@{converter.\+hxx}!N\+I\+F\+T\+Y\+\_\+\+P\+Y\+T\+H\+O\+N\+\_\+\+C\+O\+N\+V\+E\+R\+T\+E\+R\+\_\+\+H\+X\+X@{N\+I\+F\+T\+Y\+\_\+\+P\+Y\+T\+H\+O\+N\+\_\+\+C\+O\+N\+V\+E\+R\+T\+E\+R\+\_\+\+H\+X\+X}}
+\index{N\+I\+F\+T\+Y\+\_\+\+P\+Y\+T\+H\+O\+N\+\_\+\+C\+O\+N\+V\+E\+R\+T\+E\+R\+\_\+\+H\+X\+X@{N\+I\+F\+T\+Y\+\_\+\+P\+Y\+T\+H\+O\+N\+\_\+\+C\+O\+N\+V\+E\+R\+T\+E\+R\+\_\+\+H\+X\+X}!converter.\+hxx@{converter.\+hxx}}
+\subsubsection[{N\+I\+F\+T\+Y\+\_\+\+P\+Y\+T\+H\+O\+N\+\_\+\+C\+O\+N\+V\+E\+R\+T\+E\+R\+\_\+\+H\+X\+X}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+I\+F\+T\+Y\+\_\+\+P\+Y\+T\+H\+O\+N\+\_\+\+C\+O\+N\+V\+E\+R\+T\+E\+R\+\_\+\+H\+X\+X}\label{converter_8hxx_a3ca3aa62343444114bd44d341b0aaffa}

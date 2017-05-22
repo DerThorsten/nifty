@@ -1,0 +1,49 @@
+\hypertarget{lifted__multicut_2fusion__move__based_8hxx}{}\section{/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted\+\_\+multicut/fusion\+\_\+move\+\_\+based.hxx File Reference}
+\label{lifted__multicut_2fusion__move__based_8hxx}\index{/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted\+\_\+multicut/fusion\+\_\+move\+\_\+based.\+hxx@{/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted\+\_\+multicut/fusion\+\_\+move\+\_\+based.\+hxx}}
+{\ttfamily \#include $<$iomanip$>$}\\*
+{\ttfamily \#include $<$algorithm$>$}\\*
+{\ttfamily \#include $<$unordered\+\_\+set$>$}\\*
+{\ttfamily \#include $<$vector$>$}\\*
+{\ttfamily \#include $<$stack$>$}\\*
+{\ttfamily \#include \char`\"{}vigra/priority\+\_\+queue.\+hxx\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}nifty/tools/runtime\+\_\+check.\+hxx\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}nifty/ufd/ufd.\+hxx\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}nifty/graph/detail/adjacency.\+hxx\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}nifty/graph/optimization/lifted\+\_\+multicut/lifted\+\_\+multicut\+\_\+base.\+hxx\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}nifty/graph/edge\+\_\+contraction\+\_\+graph.\+hxx\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}nifty/graph/components.\+hxx\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}nifty/parallel/threadpool.\+hxx\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}nifty/graph/optimization/lifted\+\_\+multicut/fusion\+\_\+move.\+hxx\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}nifty/graph/optimization/lifted\+\_\+multicut/proposal\+\_\+generators/proposal\+\_\+generator\+\_\+base.\+hxx\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}nifty/graph/optimization/lifted\+\_\+multicut/proposal\+\_\+generators/proposal\+\_\+generator\+\_\+factory\+\_\+base.\+hxx\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}nifty/graph/optimization/lifted\+\_\+multicut/proposal\+\_\+generators/proposal\+\_\+generator\+\_\+factory.\+hxx\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}nifty/graph/optimization/lifted\+\_\+multicut/proposal\+\_\+generators/watershed\+\_\+proposal\+\_\+generator.\+hxx\char`\"{}}\\*
+Include dependency graph for fusion\+\_\+move\+\_\+based.\+hxx\+:
+% FIG 0
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classnifty_1_1graph_1_1lifted__multicut_1_1FusionMoveBased}{nifty\+::graph\+::lifted\+\_\+multicut\+::\+Fusion\+Move\+Based$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}
+\begin{DoxyCompactList}\small\item\em Class for fusion move based inference for the lifted multicut objective An implementation of {\bfseries [beier\+\_\+efficient\+\_\+2016]}. \end{DoxyCompactList}\item 
+struct \hyperlink{structnifty_1_1graph_1_1lifted__multicut_1_1FusionMoveBased_1_1Settings}{nifty\+::graph\+::lifted\+\_\+multicut\+::\+Fusion\+Move\+Based$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::\+Settings}
+\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespacenifty}{nifty}
+\item 
+ \hyperlink{namespacenifty_1_1graph}{nifty\+::graph}
+\item 
+ \hyperlink{namespacenifty_1_1graph_1_1lifted__multicut}{nifty\+::graph\+::lifted\+\_\+multicut}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{lifted__multicut_2fusion__move__based_8hxx_a50ff78770cceba6a2df52384ebe90305}{N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+F\+U\+S\+I\+O\+N\+\_\+\+M\+O\+V\+E\+\_\+\+B\+A\+S\+E\+D\+\_\+\+H\+X\+X}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{lifted__multicut_2fusion__move__based_8hxx_a50ff78770cceba6a2df52384ebe90305}{}\index{lifted\+\_\+multicut/fusion\+\_\+move\+\_\+based.\+hxx@{lifted\+\_\+multicut/fusion\+\_\+move\+\_\+based.\+hxx}!N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+F\+U\+S\+I\+O\+N\+\_\+\+M\+O\+V\+E\+\_\+\+B\+A\+S\+E\+D\+\_\+\+H\+X\+X@{N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+F\+U\+S\+I\+O\+N\+\_\+\+M\+O\+V\+E\+\_\+\+B\+A\+S\+E\+D\+\_\+\+H\+X\+X}}
+\index{N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+F\+U\+S\+I\+O\+N\+\_\+\+M\+O\+V\+E\+\_\+\+B\+A\+S\+E\+D\+\_\+\+H\+X\+X@{N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+F\+U\+S\+I\+O\+N\+\_\+\+M\+O\+V\+E\+\_\+\+B\+A\+S\+E\+D\+\_\+\+H\+X\+X}!lifted\+\_\+multicut/fusion\+\_\+move\+\_\+based.\+hxx@{lifted\+\_\+multicut/fusion\+\_\+move\+\_\+based.\+hxx}}
+\subsubsection[{N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+F\+U\+S\+I\+O\+N\+\_\+\+M\+O\+V\+E\+\_\+\+B\+A\+S\+E\+D\+\_\+\+H\+X\+X}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+F\+U\+S\+I\+O\+N\+\_\+\+M\+O\+V\+E\+\_\+\+B\+A\+S\+E\+D\+\_\+\+H\+X\+X}\label{lifted__multicut_2fusion__move__based_8hxx_a50ff78770cceba6a2df52384ebe90305}

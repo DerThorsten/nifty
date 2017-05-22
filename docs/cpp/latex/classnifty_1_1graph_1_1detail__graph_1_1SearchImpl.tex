@@ -1,0 +1,121 @@
+\hypertarget{classnifty_1_1graph_1_1detail__graph_1_1SearchImpl}{}\section{nifty\+:\+:graph\+:\+:detail\+\_\+graph\+:\+:Search\+Impl$<$ G\+R\+A\+P\+H, Q\+U\+E\+U\+E $>$ Class Template Reference}
+\label{classnifty_1_1graph_1_1detail__graph_1_1SearchImpl}\index{nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl$<$ G\+R\+A\+P\+H, Q\+U\+E\+U\+E $>$@{nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl$<$ G\+R\+A\+P\+H, Q\+U\+E\+U\+E $>$}}
+
+
+{\ttfamily \#include $<$search\+\_\+impl.\+hxx$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef G\+R\+A\+P\+H \hyperlink{classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_a8426363c518ca7ef2383b5cb1f06713d}{Graph}
+\item 
+typedef Graph\+::template Node\+Map$<$ int64\+\_\+t $>$ \hyperlink{classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_ae495d858111c13b737fe264a12a273c8}{Predecessors\+Map}
+\item 
+typedef Graph\+::template Node\+Map$<$ int64\+\_\+t $>$ \hyperlink{classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_abbd31f7e73ba6851a8f955cd64d59917}{Distance\+Map}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_ae3b7de8fe1eb6d2f56eb87e6073522ed}{Search\+Impl} (const \hyperlink{classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_a8426363c518ca7ef2383b5cb1f06713d}{Graph} \&g)
+\item 
+{\footnotesize template$<$class F $>$ }\\void \hyperlink{classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_a9c1d6dd401e9557df0f3a3a186ce13c1}{graph\+Neighbourhood} (const uint64\+\_\+t source, const size\+\_\+t max\+Distance, F \&\&f)
+\item 
+void \hyperlink{classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_ae8e3bf7786467e899abb8c4507fc77fe}{run\+Single\+Source\+Single\+Target} (const int64\+\_\+t source, const int64\+\_\+t target=-\/1)
+\item 
+{\footnotesize template$<$class S\+U\+B\+G\+R\+A\+P\+H\+\_\+\+M\+A\+S\+K $>$ }\\void \hyperlink{classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_ab662caa4f11668c78c516554dc6a97a1}{run\+Single\+Source\+Single\+Target} (const int64\+\_\+t source, const int64\+\_\+t target, const S\+U\+B\+G\+R\+A\+P\+H\+\_\+\+M\+A\+S\+K \&subgraph\+Mask)
+\item 
+void \hyperlink{classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_af5ed3bebeeea7d64e9d4118732514fb5}{run\+Single\+Source} (const int64\+\_\+t source)
+\item 
+{\footnotesize template$<$class S\+O\+U\+R\+C\+E\+\_\+\+I\+T\+E\+R , class S\+U\+B\+G\+R\+A\+P\+H\+\_\+\+M\+A\+S\+K , class V\+I\+S\+I\+T\+O\+R $>$ }\\void \hyperlink{classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_a8210b1709b1222c575b5c3e0a591be1f}{run} (S\+O\+U\+R\+C\+E\+\_\+\+I\+T\+E\+R source\+Begin, S\+O\+U\+R\+C\+E\+\_\+\+I\+T\+E\+R source\+End, const S\+U\+B\+G\+R\+A\+P\+H\+\_\+\+M\+A\+S\+K \&subgraph\+Mask, V\+I\+S\+I\+T\+O\+R \&\&visitor)
+\item 
+const \hyperlink{classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_abbd31f7e73ba6851a8f955cd64d59917}{Distance\+Map} \& \hyperlink{classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_ac6aa3c3e65115983363273fe86e25a65}{distances} () const 
+\item 
+const \hyperlink{classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_ae495d858111c13b737fe264a12a273c8}{Predecessors\+Map} \hyperlink{classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_ae3a10a297cde6846106aedc9812cebc3}{predecessors} () const 
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_abbd31f7e73ba6851a8f955cd64d59917}{}\index{nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl@{nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl}!Distance\+Map@{Distance\+Map}}
+\index{Distance\+Map@{Distance\+Map}!nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl@{nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl}}
+\subsubsection[{Distance\+Map}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H, class Q\+U\+E\+U\+E$>$ typedef Graph\+:: template Node\+Map$<$int64\+\_\+t$>$ {\bf nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl}$<$ G\+R\+A\+P\+H, Q\+U\+E\+U\+E $>$\+::{\bf Distance\+Map}}\label{classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_abbd31f7e73ba6851a8f955cd64d59917}
+\hypertarget{classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_a8426363c518ca7ef2383b5cb1f06713d}{}\index{nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl@{nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl}!Graph@{Graph}}
+\index{Graph@{Graph}!nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl@{nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl}}
+\subsubsection[{Graph}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H, class Q\+U\+E\+U\+E$>$ typedef G\+R\+A\+P\+H {\bf nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl}$<$ G\+R\+A\+P\+H, Q\+U\+E\+U\+E $>$\+::{\bf Graph}}\label{classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_a8426363c518ca7ef2383b5cb1f06713d}
+\hypertarget{classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_ae495d858111c13b737fe264a12a273c8}{}\index{nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl@{nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl}!Predecessors\+Map@{Predecessors\+Map}}
+\index{Predecessors\+Map@{Predecessors\+Map}!nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl@{nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl}}
+\subsubsection[{Predecessors\+Map}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H, class Q\+U\+E\+U\+E$>$ typedef Graph\+:: template Node\+Map$<$int64\+\_\+t$>$ {\bf nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl}$<$ G\+R\+A\+P\+H, Q\+U\+E\+U\+E $>$\+::{\bf Predecessors\+Map}}\label{classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_ae495d858111c13b737fe264a12a273c8}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_ae3b7de8fe1eb6d2f56eb87e6073522ed}{}\index{nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl@{nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl}!Search\+Impl@{Search\+Impl}}
+\index{Search\+Impl@{Search\+Impl}!nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl@{nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl}}
+\subsubsection[{Search\+Impl(const Graph \&g)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H, class Q\+U\+E\+U\+E$>$ {\bf nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl}$<$ G\+R\+A\+P\+H, Q\+U\+E\+U\+E $>$\+::{\bf Search\+Impl} (
+\begin{DoxyParamCaption}
+\item[{const {\bf Graph} \&}]{g}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_ae3b7de8fe1eb6d2f56eb87e6073522ed}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_ac6aa3c3e65115983363273fe86e25a65}{}\index{nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl@{nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl}!distances@{distances}}
+\index{distances@{distances}!nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl@{nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl}}
+\subsubsection[{distances() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H, class Q\+U\+E\+U\+E$>$ const {\bf Distance\+Map}\& {\bf nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl}$<$ G\+R\+A\+P\+H, Q\+U\+E\+U\+E $>$\+::distances (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_ac6aa3c3e65115983363273fe86e25a65}
+\hypertarget{classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_a9c1d6dd401e9557df0f3a3a186ce13c1}{}\index{nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl@{nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl}!graph\+Neighbourhood@{graph\+Neighbourhood}}
+\index{graph\+Neighbourhood@{graph\+Neighbourhood}!nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl@{nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl}}
+\subsubsection[{graph\+Neighbourhood(const uint64\+\_\+t source, const size\+\_\+t max\+Distance, F \&\&f)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H, class Q\+U\+E\+U\+E$>$ template$<$class F $>$ void {\bf nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl}$<$ G\+R\+A\+P\+H, Q\+U\+E\+U\+E $>$\+::graph\+Neighbourhood (
+\begin{DoxyParamCaption}
+\item[{const uint64\+\_\+t}]{source, }
+\item[{const size\+\_\+t}]{max\+Distance, }
+\item[{F \&\&}]{f}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_a9c1d6dd401e9557df0f3a3a186ce13c1}
+\hypertarget{classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_ae3a10a297cde6846106aedc9812cebc3}{}\index{nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl@{nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl}!predecessors@{predecessors}}
+\index{predecessors@{predecessors}!nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl@{nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl}}
+\subsubsection[{predecessors() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H, class Q\+U\+E\+U\+E$>$ const {\bf Predecessors\+Map} {\bf nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl}$<$ G\+R\+A\+P\+H, Q\+U\+E\+U\+E $>$\+::predecessors (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_ae3a10a297cde6846106aedc9812cebc3}
+\hypertarget{classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_a8210b1709b1222c575b5c3e0a591be1f}{}\index{nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl@{nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl}!run@{run}}
+\index{run@{run}!nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl@{nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl}}
+\subsubsection[{run(\+S\+O\+U\+R\+C\+E\+\_\+\+I\+T\+E\+R source\+Begin, S\+O\+U\+R\+C\+E\+\_\+\+I\+T\+E\+R source\+End, const S\+U\+B\+G\+R\+A\+P\+H\+\_\+\+M\+A\+S\+K \&subgraph\+Mask, V\+I\+S\+I\+T\+O\+R \&\&visitor)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H, class Q\+U\+E\+U\+E$>$ template$<$class S\+O\+U\+R\+C\+E\+\_\+\+I\+T\+E\+R , class S\+U\+B\+G\+R\+A\+P\+H\+\_\+\+M\+A\+S\+K , class V\+I\+S\+I\+T\+O\+R $>$ void {\bf nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl}$<$ G\+R\+A\+P\+H, Q\+U\+E\+U\+E $>$\+::run (
+\begin{DoxyParamCaption}
+\item[{S\+O\+U\+R\+C\+E\+\_\+\+I\+T\+E\+R}]{source\+Begin, }
+\item[{S\+O\+U\+R\+C\+E\+\_\+\+I\+T\+E\+R}]{source\+End, }
+\item[{const S\+U\+B\+G\+R\+A\+P\+H\+\_\+\+M\+A\+S\+K \&}]{subgraph\+Mask, }
+\item[{V\+I\+S\+I\+T\+O\+R \&\&}]{visitor}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_a8210b1709b1222c575b5c3e0a591be1f}
+\hypertarget{classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_af5ed3bebeeea7d64e9d4118732514fb5}{}\index{nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl@{nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl}!run\+Single\+Source@{run\+Single\+Source}}
+\index{run\+Single\+Source@{run\+Single\+Source}!nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl@{nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl}}
+\subsubsection[{run\+Single\+Source(const int64\+\_\+t source)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H, class Q\+U\+E\+U\+E$>$ void {\bf nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl}$<$ G\+R\+A\+P\+H, Q\+U\+E\+U\+E $>$\+::run\+Single\+Source (
+\begin{DoxyParamCaption}
+\item[{const int64\+\_\+t}]{source}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_af5ed3bebeeea7d64e9d4118732514fb5}
+\hypertarget{classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_ae8e3bf7786467e899abb8c4507fc77fe}{}\index{nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl@{nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl}!run\+Single\+Source\+Single\+Target@{run\+Single\+Source\+Single\+Target}}
+\index{run\+Single\+Source\+Single\+Target@{run\+Single\+Source\+Single\+Target}!nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl@{nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl}}
+\subsubsection[{run\+Single\+Source\+Single\+Target(const int64\+\_\+t source, const int64\+\_\+t target=-\/1)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H, class Q\+U\+E\+U\+E$>$ void {\bf nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl}$<$ G\+R\+A\+P\+H, Q\+U\+E\+U\+E $>$\+::run\+Single\+Source\+Single\+Target (
+\begin{DoxyParamCaption}
+\item[{const int64\+\_\+t}]{source, }
+\item[{const int64\+\_\+t}]{target = {\ttfamily -\/1}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_ae8e3bf7786467e899abb8c4507fc77fe}
+\hypertarget{classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_ab662caa4f11668c78c516554dc6a97a1}{}\index{nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl@{nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl}!run\+Single\+Source\+Single\+Target@{run\+Single\+Source\+Single\+Target}}
+\index{run\+Single\+Source\+Single\+Target@{run\+Single\+Source\+Single\+Target}!nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl@{nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl}}
+\subsubsection[{run\+Single\+Source\+Single\+Target(const int64\+\_\+t source, const int64\+\_\+t target, const S\+U\+B\+G\+R\+A\+P\+H\+\_\+\+M\+A\+S\+K \&subgraph\+Mask)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H, class Q\+U\+E\+U\+E$>$ template$<$class S\+U\+B\+G\+R\+A\+P\+H\+\_\+\+M\+A\+S\+K $>$ void {\bf nifty\+::graph\+::detail\+\_\+graph\+::\+Search\+Impl}$<$ G\+R\+A\+P\+H, Q\+U\+E\+U\+E $>$\+::run\+Single\+Source\+Single\+Target (
+\begin{DoxyParamCaption}
+\item[{const int64\+\_\+t}]{source, }
+\item[{const int64\+\_\+t}]{target, }
+\item[{const S\+U\+B\+G\+R\+A\+P\+H\+\_\+\+M\+A\+S\+K \&}]{subgraph\+Mask}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_ab662caa4f11668c78c516554dc6a97a1}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/tbeier/src/nifty/include/nifty/graph/detail/\hyperlink{search__impl_8hxx}{search\+\_\+impl.\+hxx}\end{DoxyCompactItemize}

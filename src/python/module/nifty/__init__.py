@@ -24,8 +24,13 @@ from . import hdf5
 
 class Timer:
     def __init__(self, name=None, verbose=True):
-        """
-        @brief      Class for timer.
+        """[summary]
+        
+        [description]
+        
+        Keyword Arguments:
+            name {[type]} -- [description] (default: {None})
+            verbose {bool} -- [description] (default: {True})
         """
         self.name = name
         self.verbose = verbose

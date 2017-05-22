@@ -1,12 +1,10 @@
 #pragma once
-#ifndef NIFTY_GRAPH_OPTIMIZATION_MULTICUT_MULTICUT_GREEDY_ADDITIVE_HXX
-#define NIFTY_GRAPH_OPTIMIZATION_MULTICUT_MULTICUT_GREEDY_ADDITIVE_HXX
-
 
 #include <random>
 #include <functional>
 
-#include "vigra/priority_queue.hxx"
+//#include "vigra/priority_queue.hxx"
+#include "nifty/tools/changable_priority_queue.hxx"
 
 #include "nifty/tools/runtime_check.hxx"
 #include "nifty/graph/detail/adjacency.hxx"
@@ -41,7 +39,7 @@ namespace graph{
 
         typedef OBJECTIVE Objective;
         typedef typename Objective::Graph Graph;
-        typedef vigra::ChangeablePriorityQueue< double ,std::greater<double> > QueueType;
+        typedef nifty::tools::ChangeablePriorityQueue< double ,std::greater<double> > QueueType;
 
         MulticutGreedyAdditiveCallback(
             const Objective & objective,
@@ -291,5 +289,3 @@ namespace graph{
 
 } // namespace nifty::graph
 } // namespace nifty
-
-#endif  // NIFTY_GRAPH_OPTIMIZATION_MULTICUT_MULTICUT_GREEDY_ADDITIVE_HXX

@@ -6,13 +6,28 @@ from ._multicut import *
 from .... import Configuration
 from ... import (UndirectedGraph,EdgeContractionGraphUndirectedGraph)
 
-__all__ = []
+__all__ = [
+    "ilpSettings"
+]
 for key in _multicut.__dict__.keys():
     __all__.append(key)
 
 
 
 def ilpSettings(relativeGap=0.0, absoluteGap=0.0, memLimit=-1.0):
+    """solver for an ilp solver
+    
+    Settings for solvers as Cplex,Gurobi and Glpk
+    
+    Keyword Arguments:
+        relativeGap {number} -- relative optimality gap (default: {0.0})
+        absoluteGap {number} -- absolute optimality gap (default: {0.0})
+        memLimit {number} -- memory limit in mega-bites 
+            a value smaller as zero indicates no limit  (default: {-1.0})
+    
+    Returns:
+        [type] -- [description]
+    """
     s = IlpBackendSettings()
     s.relativeGap = float(relativeGap)
     s.absoluteGap = float(absoluteGap)
@@ -44,14 +59,23 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
 
     O = objectiveCls
 
-    def multicutVerboseVisitor(visitNth=1,timeLimit=None):
-        V = getMcCls("MulticutVerboseVisitor")
-        if timeLimit is not None:
-            return V(visitNth,timeLimit)
-        else:
-            return V(visitNth)
-    O.multicutVerboseVisitor = staticmethod(multicutVerboseVisitor)
-    O.verboseVisitor = staticmethod(multicutVerboseVisitor)
+    def verboseVisitor(visitNth=1,timeLimitSolver=float('inf'), 
+                       timeLimitTotal=float('inf')):
+        V = getMcCls("VerboseVisitor")
+        return V(int(visitNth),float(timeLimitSolver),float(timeLimitTotal))
+    O.verboseVisitor = staticmethod(verboseVisitor)
+
+
+    def loggingVisitor(visitNth=1,verbose=True,timeLimitSolver=float('inf'),
+                      timeLimitTotal=float('inf')):
+        V = getMcCls("LoggingVisitor")
+        return V(visitNth=int(visitNth),
+                verbose=bool(verbose),
+                timeLimitSolver=float(timeLimitSolver),
+                timeLimitTotal=float(timeLimitTotal))
+    O.loggingVisitor = staticmethod(loggingVisitor)
+
+
 
     def greedyAdditiveProposals(sigma=1.0, weightStopCond=0.0, nodeNumStopCond=-1.0):
         s = getSettings('FusionMoveBasedGreedyAdditiveProposalGen')
@@ -76,13 +100,6 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
     O.greedyAdditiveFactory = staticmethod(greedyAdditiveFactory)
 
 
-    def blockMulticut(multicutFactory):
-        s,F = getSettingsAndFactoryCls("BlockMulticut")
-        s.multicutFactory = multicutFactory
-        return F(s)
-
-    O.blockMulticut = staticmethod(blockMulticut)
-
     def chainedSolversFactory(multicutFactories):
         s,F = getSettingsAndFactoryCls("ChainedSolvers")
         s.multicutFactories = multicutFactories
@@ -93,10 +110,10 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
 
     def cgcFactory(doCutPhase=True, doGlueAndCutPhase=True, mincutFactory=None,
             multicutFactory=None,
-            doBetterCutPhase=True, nodeNumStopCond=0.1, sizeRegularizer=1.0):
+            doBetterCutPhase=False, nodeNumStopCond=0.1, sizeRegularizer=1.0):
         if mincutFactory is None:
             if Configuration.WITH_QPBO:
-                mincutFactory = graphCls.MincutObjective.mincutQpboFactory(improve=False)
+                mincutFactory = graphCls.MincutObjective.mincutQpboFactory(improve=True)
             else:
                 raise RuntimeError("default mincutFactory needs to be compiled WITH_QPBO")
 
@@ -124,7 +141,7 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
             return O.greedyAdditiveFactory()
 
     O.defaultMulticutFactory = staticmethod(defaultMulticutFactory)
-
+    O.defaultFactory = staticmethod(defaultMulticutFactory)
 
     def multicutAndresGreedyAdditiveFactory():
         s, F = getSettingsAndFactoryCls("MulticutAndresGreedyAdditive")
@@ -149,7 +166,7 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
     O.multicutAndresKernighanLinFactory = staticmethod(multicutAndresKernighanLinFactory)
 
 
-    def multicutDecomposer(submodelFactory=None, fallthroughFactory=None):
+    def multicutDecomposerFactory(submodelFactory=None, fallthroughFactory=None):
 
         if submodelFactory is None:
            submodelFactory = MulticutObjectiveUndirectedGraph.defaultMulticutFactory()
@@ -163,7 +180,7 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
         s.fallthroughFactory = fallthroughFactory
         return F(s)
 
-    O.multicutDecomposer = staticmethod(multicutDecomposer)
+    O.multicutDecomposerFactory = staticmethod(multicutDecomposerFactory)
 
 
 

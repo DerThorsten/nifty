@@ -1,0 +1,260 @@
+\hypertarget{classnifty_1_1graph_1_1EdgeContractionGraph}{}\section{nifty\+:\+:graph\+:\+:Edge\+Contraction\+Graph$<$ G\+R\+A\+P\+H, C\+A\+L\+L\+B\+A\+C\+K, W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D $>$ Class Template Reference}
+\label{classnifty_1_1graph_1_1EdgeContractionGraph}\index{nifty\+::graph\+::\+Edge\+Contraction\+Graph$<$ G\+R\+A\+P\+H, C\+A\+L\+L\+B\+A\+C\+K, W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D $>$@{nifty\+::graph\+::\+Edge\+Contraction\+Graph$<$ G\+R\+A\+P\+H, C\+A\+L\+L\+B\+A\+C\+K, W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D $>$}}
+
+
+{\ttfamily \#include $<$edge\+\_\+contraction\+\_\+graph.\+hxx$>$}
+
+
+
+Inheritance diagram for nifty\+:\+:graph\+:\+:Edge\+Contraction\+Graph$<$ G\+R\+A\+P\+H, C\+A\+L\+L\+B\+A\+C\+K, W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D $>$\+:
+% FIG 0
+
+
+Collaboration diagram for nifty\+:\+:graph\+:\+:Edge\+Contraction\+Graph$<$ G\+R\+A\+P\+H, C\+A\+L\+L\+B\+A\+C\+K, W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D $>$\+:
+% FIG 1
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structnifty_1_1graph_1_1EdgeContractionGraph_1_1AdjacencyIterRange}{Adjacency\+Iter\+Range}
+\end{DoxyCompactItemize}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef std\+::integral\+\_\+constant$<$ bool, W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D $>$ \hyperlink{classnifty_1_1graph_1_1EdgeContractionGraph_a9b33be5b2975fe298604326c10df1f93}{With\+Edge\+Ufd}
+\item 
+typedef G\+R\+A\+P\+H \hyperlink{classnifty_1_1graph_1_1EdgeContractionGraph_a22f00237e657f393dfcaacdc10de9bba}{Graph}
+\item 
+typedef C\+A\+L\+L\+B\+A\+C\+K \hyperlink{classnifty_1_1graph_1_1EdgeContractionGraph_a75e91e51c78d2f427a31c30dcd8996ed}{Callback}
+\item 
+typedef \hyperlink{classnifty_1_1ufd_1_1Ufd}{nifty\+::ufd\+::\+Ufd}$<$  $>$ \hyperlink{classnifty_1_1graph_1_1EdgeContractionGraph_a7ff98238621f4b534e89b1880ee77239}{Node\+Ufd\+Type}
+\item 
+typedef std\+::pair$<$ int64\+\_\+t, int64\+\_\+t $>$ \hyperlink{classnifty_1_1graph_1_1EdgeContractionGraph_ad57e807f7df20892c7bbbb9b53d3aa08}{Edge\+Storage}
+\item 
+typedef \hyperlink{classnifty_1_1container_1_1FlatSet_a0f4cd26da060859b18742abfd534aa24}{Node\+Storage\+::const\+\_\+iterator} \hyperlink{classnifty_1_1graph_1_1EdgeContractionGraph_a447212f5ced0c4ef4d304e8b89f4f200}{Adjacency\+Iter}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classnifty_1_1graph_1_1EdgeContractionGraph_aa11f5c4752ab7b0d1f57a8efd374a5b6}{Edge\+Contraction\+Graph} (const \hyperlink{classnifty_1_1graph_1_1EdgeContractionGraph_a22f00237e657f393dfcaacdc10de9bba}{Graph} \&\hyperlink{classnifty_1_1graph_1_1EdgeContractionGraph_ae22624b7cd920b353a4a6a42bb3603c5}{graph}, \hyperlink{classnifty_1_1graph_1_1EdgeContractionGraph_a75e91e51c78d2f427a31c30dcd8996ed}{Callback} \&callback)
+\item 
+\hyperlink{structnifty_1_1graph_1_1EdgeContractionGraph_1_1AdjacencyIterRange}{Adjacency\+Iter\+Range} \hyperlink{classnifty_1_1graph_1_1EdgeContractionGraph_ac93df8e87fd2e86fa017a563544dabc8}{adjacency} (const int64\+\_\+t node) const 
+\item 
+\hyperlink{classnifty_1_1graph_1_1EdgeContractionGraph_a447212f5ced0c4ef4d304e8b89f4f200}{Adjacency\+Iter} \hyperlink{classnifty_1_1graph_1_1EdgeContractionGraph_a8e01ef0e79ab0947633f0907fc2bb2d0}{adjacency\+Begin} (const int64\+\_\+t node) const 
+\item 
+\hyperlink{classnifty_1_1graph_1_1EdgeContractionGraph_a447212f5ced0c4ef4d304e8b89f4f200}{Adjacency\+Iter} \hyperlink{classnifty_1_1graph_1_1EdgeContractionGraph_a1df973fa6162c58d6ed4b071038cc0b1}{adjacency\+End} (const int64\+\_\+t node) const 
+\item 
+\hyperlink{classnifty_1_1graph_1_1EdgeContractionGraph_a447212f5ced0c4ef4d304e8b89f4f200}{Adjacency\+Iter} \hyperlink{classnifty_1_1graph_1_1EdgeContractionGraph_a932630e316b688529a2a58917f165a93}{adjacency\+Out\+Begin} (const int64\+\_\+t node) const 
+\item 
+\hyperlink{classnifty_1_1graph_1_1EdgeContractionGraph_ad57e807f7df20892c7bbbb9b53d3aa08}{Edge\+Storage} \hyperlink{classnifty_1_1graph_1_1EdgeContractionGraph_abcba22be7d0d62b18390edcd501054ab}{uv} (const uint64\+\_\+t edge) const 
+\item 
+int64\+\_\+t \hyperlink{classnifty_1_1graph_1_1EdgeContractionGraph_a4d0519610b822ff3842b8baa3b5a2580}{u} (const uint64\+\_\+t edge) const 
+\item 
+int64\+\_\+t \hyperlink{classnifty_1_1graph_1_1EdgeContractionGraph_a0b321bb637fd8291985e8cecf3f87fc9}{v} (const uint64\+\_\+t edge) const 
+\item 
+uint64\+\_\+t \hyperlink{classnifty_1_1graph_1_1EdgeContractionGraph_a908385c94499ae9394bb23c52a584e72}{number\+Of\+Nodes} () const 
+\item 
+uint64\+\_\+t \hyperlink{classnifty_1_1graph_1_1EdgeContractionGraph_aebdf2c843a1b95436ecf1493bfab6df9}{number\+Of\+Edges} () const 
+\item 
+uint64\+\_\+t \hyperlink{classnifty_1_1graph_1_1EdgeContractionGraph_afe4ec2d07dd10fb5ba350e43079186a5}{node\+Id\+Upper\+Bound} () const 
+\item 
+uint64\+\_\+t \hyperlink{classnifty_1_1graph_1_1EdgeContractionGraph_a1d67de79a99520219a2090efdfabfc66}{edge\+Id\+Upper\+Bound} () const 
+\item 
+int64\+\_\+t \hyperlink{classnifty_1_1graph_1_1EdgeContractionGraph_ad1d8517ee863c267cefb63dd60fb37c1}{find\+Edge} (const int64\+\_\+t \hyperlink{classnifty_1_1graph_1_1EdgeContractionGraph_a4d0519610b822ff3842b8baa3b5a2580}{u}, const int64\+\_\+t \hyperlink{classnifty_1_1graph_1_1EdgeContractionGraph_a0b321bb637fd8291985e8cecf3f87fc9}{v}) const 
+\item 
+void \hyperlink{classnifty_1_1graph_1_1EdgeContractionGraph_ad13498d6f4fd9e360fa8884febaeba0a}{contract\+Edge} (const uint64\+\_\+t edge\+To\+Contract)
+\item 
+void \hyperlink{classnifty_1_1graph_1_1EdgeContractionGraph_a76a6e084c4dfe14a20f5671ec5f57cbc}{reset} ()
+\item 
+const \hyperlink{classnifty_1_1graph_1_1EdgeContractionGraph_a22f00237e657f393dfcaacdc10de9bba}{Graph} \& \hyperlink{classnifty_1_1graph_1_1EdgeContractionGraph_ae75c47ed3517a8695b0eb0852c5ab888}{base\+Graph} () const 
+\item 
+const \hyperlink{classnifty_1_1graph_1_1EdgeContractionGraph_a22f00237e657f393dfcaacdc10de9bba}{Graph} \& \hyperlink{classnifty_1_1graph_1_1EdgeContractionGraph_ae22624b7cd920b353a4a6a42bb3603c5}{graph} () const 
+\item 
+uint64\+\_\+t \hyperlink{classnifty_1_1graph_1_1EdgeContractionGraph_a934c568562bbcd179f198f5c67ff7bf4}{find\+Representative\+Node} (const uint64\+\_\+t node) const 
+\item 
+uint64\+\_\+t \hyperlink{classnifty_1_1graph_1_1EdgeContractionGraph_a96db6fdacf91e9f67d505f1bfc33ef76}{find\+Representative\+Node} (const uint64\+\_\+t node)
+\item 
+uint64\+\_\+t \hyperlink{classnifty_1_1graph_1_1EdgeContractionGraph_adcf3984a735ed9f44978078264dc4fdd}{node\+Of\+Dead\+Edge} (const uint64\+\_\+t dead\+Edge) const 
+\item 
+const \hyperlink{classnifty_1_1graph_1_1EdgeContractionGraph_a7ff98238621f4b534e89b1880ee77239}{Node\+Ufd\+Type} \& \hyperlink{classnifty_1_1graph_1_1EdgeContractionGraph_a2d7d6984f84e00c2338ef28c971b6bb3}{node\+Ufd} () const 
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{classnifty_1_1graph_1_1EdgeContractionGraph_a447212f5ced0c4ef4d304e8b89f4f200}{}\index{nifty\+::graph\+::\+Edge\+Contraction\+Graph@{nifty\+::graph\+::\+Edge\+Contraction\+Graph}!Adjacency\+Iter@{Adjacency\+Iter}}
+\index{Adjacency\+Iter@{Adjacency\+Iter}!nifty\+::graph\+::\+Edge\+Contraction\+Graph@{nifty\+::graph\+::\+Edge\+Contraction\+Graph}}
+\subsubsection[{Adjacency\+Iter}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H, class C\+A\+L\+L\+B\+A\+C\+K, bool W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D$>$ typedef {\bf Node\+Storage\+::const\+\_\+iterator} {\bf nifty\+::graph\+::\+Edge\+Contraction\+Graph}$<$ G\+R\+A\+P\+H, C\+A\+L\+L\+B\+A\+C\+K, W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D $>$\+::{\bf Adjacency\+Iter}}\label{classnifty_1_1graph_1_1EdgeContractionGraph_a447212f5ced0c4ef4d304e8b89f4f200}
+\hypertarget{classnifty_1_1graph_1_1EdgeContractionGraph_a75e91e51c78d2f427a31c30dcd8996ed}{}\index{nifty\+::graph\+::\+Edge\+Contraction\+Graph@{nifty\+::graph\+::\+Edge\+Contraction\+Graph}!Callback@{Callback}}
+\index{Callback@{Callback}!nifty\+::graph\+::\+Edge\+Contraction\+Graph@{nifty\+::graph\+::\+Edge\+Contraction\+Graph}}
+\subsubsection[{Callback}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H, class C\+A\+L\+L\+B\+A\+C\+K, bool W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D$>$ typedef C\+A\+L\+L\+B\+A\+C\+K {\bf nifty\+::graph\+::\+Edge\+Contraction\+Graph}$<$ G\+R\+A\+P\+H, C\+A\+L\+L\+B\+A\+C\+K, W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D $>$\+::{\bf Callback}}\label{classnifty_1_1graph_1_1EdgeContractionGraph_a75e91e51c78d2f427a31c30dcd8996ed}
+\hypertarget{classnifty_1_1graph_1_1EdgeContractionGraph_ad57e807f7df20892c7bbbb9b53d3aa08}{}\index{nifty\+::graph\+::\+Edge\+Contraction\+Graph@{nifty\+::graph\+::\+Edge\+Contraction\+Graph}!Edge\+Storage@{Edge\+Storage}}
+\index{Edge\+Storage@{Edge\+Storage}!nifty\+::graph\+::\+Edge\+Contraction\+Graph@{nifty\+::graph\+::\+Edge\+Contraction\+Graph}}
+\subsubsection[{Edge\+Storage}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H, class C\+A\+L\+L\+B\+A\+C\+K, bool W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D$>$ typedef std\+::pair$<$int64\+\_\+t,int64\+\_\+t$>$ {\bf nifty\+::graph\+::\+Edge\+Contraction\+Graph}$<$ G\+R\+A\+P\+H, C\+A\+L\+L\+B\+A\+C\+K, W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D $>$\+::{\bf Edge\+Storage}}\label{classnifty_1_1graph_1_1EdgeContractionGraph_ad57e807f7df20892c7bbbb9b53d3aa08}
+\hypertarget{classnifty_1_1graph_1_1EdgeContractionGraph_a22f00237e657f393dfcaacdc10de9bba}{}\index{nifty\+::graph\+::\+Edge\+Contraction\+Graph@{nifty\+::graph\+::\+Edge\+Contraction\+Graph}!Graph@{Graph}}
+\index{Graph@{Graph}!nifty\+::graph\+::\+Edge\+Contraction\+Graph@{nifty\+::graph\+::\+Edge\+Contraction\+Graph}}
+\subsubsection[{Graph}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H, class C\+A\+L\+L\+B\+A\+C\+K, bool W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D$>$ typedef G\+R\+A\+P\+H {\bf nifty\+::graph\+::\+Edge\+Contraction\+Graph}$<$ G\+R\+A\+P\+H, C\+A\+L\+L\+B\+A\+C\+K, W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D $>$\+::{\bf Graph}}\label{classnifty_1_1graph_1_1EdgeContractionGraph_a22f00237e657f393dfcaacdc10de9bba}
+\hypertarget{classnifty_1_1graph_1_1EdgeContractionGraph_a7ff98238621f4b534e89b1880ee77239}{}\index{nifty\+::graph\+::\+Edge\+Contraction\+Graph@{nifty\+::graph\+::\+Edge\+Contraction\+Graph}!Node\+Ufd\+Type@{Node\+Ufd\+Type}}
+\index{Node\+Ufd\+Type@{Node\+Ufd\+Type}!nifty\+::graph\+::\+Edge\+Contraction\+Graph@{nifty\+::graph\+::\+Edge\+Contraction\+Graph}}
+\subsubsection[{Node\+Ufd\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H, class C\+A\+L\+L\+B\+A\+C\+K, bool W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D$>$ typedef {\bf nifty\+::ufd\+::\+Ufd}$<$ $>$ {\bf nifty\+::graph\+::\+Edge\+Contraction\+Graph}$<$ G\+R\+A\+P\+H, C\+A\+L\+L\+B\+A\+C\+K, W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D $>$\+::{\bf Node\+Ufd\+Type}}\label{classnifty_1_1graph_1_1EdgeContractionGraph_a7ff98238621f4b534e89b1880ee77239}
+\hypertarget{classnifty_1_1graph_1_1EdgeContractionGraph_a9b33be5b2975fe298604326c10df1f93}{}\index{nifty\+::graph\+::\+Edge\+Contraction\+Graph@{nifty\+::graph\+::\+Edge\+Contraction\+Graph}!With\+Edge\+Ufd@{With\+Edge\+Ufd}}
+\index{With\+Edge\+Ufd@{With\+Edge\+Ufd}!nifty\+::graph\+::\+Edge\+Contraction\+Graph@{nifty\+::graph\+::\+Edge\+Contraction\+Graph}}
+\subsubsection[{With\+Edge\+Ufd}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H, class C\+A\+L\+L\+B\+A\+C\+K, bool W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D$>$ typedef std\+::integral\+\_\+constant$<$bool,W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D$>$ {\bf nifty\+::graph\+::\+Edge\+Contraction\+Graph}$<$ G\+R\+A\+P\+H, C\+A\+L\+L\+B\+A\+C\+K, W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D $>$\+::{\bf With\+Edge\+Ufd}}\label{classnifty_1_1graph_1_1EdgeContractionGraph_a9b33be5b2975fe298604326c10df1f93}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classnifty_1_1graph_1_1EdgeContractionGraph_aa11f5c4752ab7b0d1f57a8efd374a5b6}{}\index{nifty\+::graph\+::\+Edge\+Contraction\+Graph@{nifty\+::graph\+::\+Edge\+Contraction\+Graph}!Edge\+Contraction\+Graph@{Edge\+Contraction\+Graph}}
+\index{Edge\+Contraction\+Graph@{Edge\+Contraction\+Graph}!nifty\+::graph\+::\+Edge\+Contraction\+Graph@{nifty\+::graph\+::\+Edge\+Contraction\+Graph}}
+\subsubsection[{Edge\+Contraction\+Graph(const Graph \&graph, Callback \&callback)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H , class C\+A\+L\+L\+B\+A\+C\+K , bool W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D$>$ {\bf nifty\+::graph\+::\+Edge\+Contraction\+Graph}$<$ G\+R\+A\+P\+H, C\+A\+L\+L\+B\+A\+C\+K, W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D $>$\+::{\bf Edge\+Contraction\+Graph} (
+\begin{DoxyParamCaption}
+\item[{const {\bf Graph} \&}]{graph, }
+\item[{{\bf Callback} \&}]{callback}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1EdgeContractionGraph_aa11f5c4752ab7b0d1f57a8efd374a5b6}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classnifty_1_1graph_1_1EdgeContractionGraph_ac93df8e87fd2e86fa017a563544dabc8}{}\index{nifty\+::graph\+::\+Edge\+Contraction\+Graph@{nifty\+::graph\+::\+Edge\+Contraction\+Graph}!adjacency@{adjacency}}
+\index{adjacency@{adjacency}!nifty\+::graph\+::\+Edge\+Contraction\+Graph@{nifty\+::graph\+::\+Edge\+Contraction\+Graph}}
+\subsubsection[{adjacency(const int64\+\_\+t node) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H , class C\+A\+L\+L\+B\+A\+C\+K , bool W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D$>$ {\bf Edge\+Contraction\+Graph}$<$ G\+R\+A\+P\+H, C\+A\+L\+L\+B\+A\+C\+K, W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D $>$\+::{\bf Adjacency\+Iter\+Range} {\bf nifty\+::graph\+::\+Edge\+Contraction\+Graph}$<$ G\+R\+A\+P\+H, C\+A\+L\+L\+B\+A\+C\+K, W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D $>$\+::adjacency (
+\begin{DoxyParamCaption}
+\item[{const int64\+\_\+t}]{node}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1EdgeContractionGraph_ac93df8e87fd2e86fa017a563544dabc8}
+\hypertarget{classnifty_1_1graph_1_1EdgeContractionGraph_a8e01ef0e79ab0947633f0907fc2bb2d0}{}\index{nifty\+::graph\+::\+Edge\+Contraction\+Graph@{nifty\+::graph\+::\+Edge\+Contraction\+Graph}!adjacency\+Begin@{adjacency\+Begin}}
+\index{adjacency\+Begin@{adjacency\+Begin}!nifty\+::graph\+::\+Edge\+Contraction\+Graph@{nifty\+::graph\+::\+Edge\+Contraction\+Graph}}
+\subsubsection[{adjacency\+Begin(const int64\+\_\+t node) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H , class C\+A\+L\+L\+B\+A\+C\+K , bool W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D$>$ {\bf Edge\+Contraction\+Graph}$<$ G\+R\+A\+P\+H, C\+A\+L\+L\+B\+A\+C\+K, W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D $>$\+::{\bf Adjacency\+Iter} {\bf nifty\+::graph\+::\+Edge\+Contraction\+Graph}$<$ G\+R\+A\+P\+H, C\+A\+L\+L\+B\+A\+C\+K, W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D $>$\+::adjacency\+Begin (
+\begin{DoxyParamCaption}
+\item[{const int64\+\_\+t}]{node}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1EdgeContractionGraph_a8e01ef0e79ab0947633f0907fc2bb2d0}
+\hypertarget{classnifty_1_1graph_1_1EdgeContractionGraph_a1df973fa6162c58d6ed4b071038cc0b1}{}\index{nifty\+::graph\+::\+Edge\+Contraction\+Graph@{nifty\+::graph\+::\+Edge\+Contraction\+Graph}!adjacency\+End@{adjacency\+End}}
+\index{adjacency\+End@{adjacency\+End}!nifty\+::graph\+::\+Edge\+Contraction\+Graph@{nifty\+::graph\+::\+Edge\+Contraction\+Graph}}
+\subsubsection[{adjacency\+End(const int64\+\_\+t node) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H , class C\+A\+L\+L\+B\+A\+C\+K , bool W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D$>$ {\bf Edge\+Contraction\+Graph}$<$ G\+R\+A\+P\+H, C\+A\+L\+L\+B\+A\+C\+K, W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D $>$\+::{\bf Adjacency\+Iter} {\bf nifty\+::graph\+::\+Edge\+Contraction\+Graph}$<$ G\+R\+A\+P\+H, C\+A\+L\+L\+B\+A\+C\+K, W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D $>$\+::adjacency\+End (
+\begin{DoxyParamCaption}
+\item[{const int64\+\_\+t}]{node}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1EdgeContractionGraph_a1df973fa6162c58d6ed4b071038cc0b1}
+\hypertarget{classnifty_1_1graph_1_1EdgeContractionGraph_a932630e316b688529a2a58917f165a93}{}\index{nifty\+::graph\+::\+Edge\+Contraction\+Graph@{nifty\+::graph\+::\+Edge\+Contraction\+Graph}!adjacency\+Out\+Begin@{adjacency\+Out\+Begin}}
+\index{adjacency\+Out\+Begin@{adjacency\+Out\+Begin}!nifty\+::graph\+::\+Edge\+Contraction\+Graph@{nifty\+::graph\+::\+Edge\+Contraction\+Graph}}
+\subsubsection[{adjacency\+Out\+Begin(const int64\+\_\+t node) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H , class C\+A\+L\+L\+B\+A\+C\+K , bool W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D$>$ {\bf Edge\+Contraction\+Graph}$<$ G\+R\+A\+P\+H, C\+A\+L\+L\+B\+A\+C\+K, W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D $>$\+::{\bf Adjacency\+Iter} {\bf nifty\+::graph\+::\+Edge\+Contraction\+Graph}$<$ G\+R\+A\+P\+H, C\+A\+L\+L\+B\+A\+C\+K, W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D $>$\+::adjacency\+Out\+Begin (
+\begin{DoxyParamCaption}
+\item[{const int64\+\_\+t}]{node}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1EdgeContractionGraph_a932630e316b688529a2a58917f165a93}
+\hypertarget{classnifty_1_1graph_1_1EdgeContractionGraph_ae75c47ed3517a8695b0eb0852c5ab888}{}\index{nifty\+::graph\+::\+Edge\+Contraction\+Graph@{nifty\+::graph\+::\+Edge\+Contraction\+Graph}!base\+Graph@{base\+Graph}}
+\index{base\+Graph@{base\+Graph}!nifty\+::graph\+::\+Edge\+Contraction\+Graph@{nifty\+::graph\+::\+Edge\+Contraction\+Graph}}
+\subsubsection[{base\+Graph() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H , class C\+A\+L\+L\+B\+A\+C\+K , bool W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D$>$ const {\bf Edge\+Contraction\+Graph}$<$ G\+R\+A\+P\+H, C\+A\+L\+L\+B\+A\+C\+K, W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D $>$\+::{\bf Graph} \& {\bf nifty\+::graph\+::\+Edge\+Contraction\+Graph}$<$ G\+R\+A\+P\+H, C\+A\+L\+L\+B\+A\+C\+K, W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D $>$\+::base\+Graph (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1EdgeContractionGraph_ae75c47ed3517a8695b0eb0852c5ab888}
+\hypertarget{classnifty_1_1graph_1_1EdgeContractionGraph_ad13498d6f4fd9e360fa8884febaeba0a}{}\index{nifty\+::graph\+::\+Edge\+Contraction\+Graph@{nifty\+::graph\+::\+Edge\+Contraction\+Graph}!contract\+Edge@{contract\+Edge}}
+\index{contract\+Edge@{contract\+Edge}!nifty\+::graph\+::\+Edge\+Contraction\+Graph@{nifty\+::graph\+::\+Edge\+Contraction\+Graph}}
+\subsubsection[{contract\+Edge(const uint64\+\_\+t edge\+To\+Contract)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H , class C\+A\+L\+L\+B\+A\+C\+K , bool W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D$>$ void {\bf nifty\+::graph\+::\+Edge\+Contraction\+Graph}$<$ G\+R\+A\+P\+H, C\+A\+L\+L\+B\+A\+C\+K, W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D $>$\+::contract\+Edge (
+\begin{DoxyParamCaption}
+\item[{const uint64\+\_\+t}]{edge\+To\+Contract}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1EdgeContractionGraph_ad13498d6f4fd9e360fa8884febaeba0a}
+\hypertarget{classnifty_1_1graph_1_1EdgeContractionGraph_a1d67de79a99520219a2090efdfabfc66}{}\index{nifty\+::graph\+::\+Edge\+Contraction\+Graph@{nifty\+::graph\+::\+Edge\+Contraction\+Graph}!edge\+Id\+Upper\+Bound@{edge\+Id\+Upper\+Bound}}
+\index{edge\+Id\+Upper\+Bound@{edge\+Id\+Upper\+Bound}!nifty\+::graph\+::\+Edge\+Contraction\+Graph@{nifty\+::graph\+::\+Edge\+Contraction\+Graph}}
+\subsubsection[{edge\+Id\+Upper\+Bound() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H , class C\+A\+L\+L\+B\+A\+C\+K , bool W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D$>$ uint64\+\_\+t {\bf nifty\+::graph\+::\+Edge\+Contraction\+Graph}$<$ G\+R\+A\+P\+H, C\+A\+L\+L\+B\+A\+C\+K, W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D $>$\+::edge\+Id\+Upper\+Bound (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1EdgeContractionGraph_a1d67de79a99520219a2090efdfabfc66}
+\hypertarget{classnifty_1_1graph_1_1EdgeContractionGraph_ad1d8517ee863c267cefb63dd60fb37c1}{}\index{nifty\+::graph\+::\+Edge\+Contraction\+Graph@{nifty\+::graph\+::\+Edge\+Contraction\+Graph}!find\+Edge@{find\+Edge}}
+\index{find\+Edge@{find\+Edge}!nifty\+::graph\+::\+Edge\+Contraction\+Graph@{nifty\+::graph\+::\+Edge\+Contraction\+Graph}}
+\subsubsection[{find\+Edge(const int64\+\_\+t u, const int64\+\_\+t v) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H , class C\+A\+L\+L\+B\+A\+C\+K , bool W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D$>$ int64\+\_\+t {\bf nifty\+::graph\+::\+Edge\+Contraction\+Graph}$<$ G\+R\+A\+P\+H, C\+A\+L\+L\+B\+A\+C\+K, W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D $>$\+::find\+Edge (
+\begin{DoxyParamCaption}
+\item[{const int64\+\_\+t}]{u, }
+\item[{const int64\+\_\+t}]{v}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1EdgeContractionGraph_ad1d8517ee863c267cefb63dd60fb37c1}
+\hypertarget{classnifty_1_1graph_1_1EdgeContractionGraph_a934c568562bbcd179f198f5c67ff7bf4}{}\index{nifty\+::graph\+::\+Edge\+Contraction\+Graph@{nifty\+::graph\+::\+Edge\+Contraction\+Graph}!find\+Representative\+Node@{find\+Representative\+Node}}
+\index{find\+Representative\+Node@{find\+Representative\+Node}!nifty\+::graph\+::\+Edge\+Contraction\+Graph@{nifty\+::graph\+::\+Edge\+Contraction\+Graph}}
+\subsubsection[{find\+Representative\+Node(const uint64\+\_\+t node) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H , class C\+A\+L\+L\+B\+A\+C\+K , bool W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D$>$ uint64\+\_\+t {\bf nifty\+::graph\+::\+Edge\+Contraction\+Graph}$<$ G\+R\+A\+P\+H, C\+A\+L\+L\+B\+A\+C\+K, W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D $>$\+::find\+Representative\+Node (
+\begin{DoxyParamCaption}
+\item[{const uint64\+\_\+t}]{node}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1EdgeContractionGraph_a934c568562bbcd179f198f5c67ff7bf4}
+\hypertarget{classnifty_1_1graph_1_1EdgeContractionGraph_a96db6fdacf91e9f67d505f1bfc33ef76}{}\index{nifty\+::graph\+::\+Edge\+Contraction\+Graph@{nifty\+::graph\+::\+Edge\+Contraction\+Graph}!find\+Representative\+Node@{find\+Representative\+Node}}
+\index{find\+Representative\+Node@{find\+Representative\+Node}!nifty\+::graph\+::\+Edge\+Contraction\+Graph@{nifty\+::graph\+::\+Edge\+Contraction\+Graph}}
+\subsubsection[{find\+Representative\+Node(const uint64\+\_\+t node)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H , class C\+A\+L\+L\+B\+A\+C\+K , bool W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D$>$ uint64\+\_\+t {\bf nifty\+::graph\+::\+Edge\+Contraction\+Graph}$<$ G\+R\+A\+P\+H, C\+A\+L\+L\+B\+A\+C\+K, W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D $>$\+::find\+Representative\+Node (
+\begin{DoxyParamCaption}
+\item[{const uint64\+\_\+t}]{node}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1EdgeContractionGraph_a96db6fdacf91e9f67d505f1bfc33ef76}
+\hypertarget{classnifty_1_1graph_1_1EdgeContractionGraph_ae22624b7cd920b353a4a6a42bb3603c5}{}\index{nifty\+::graph\+::\+Edge\+Contraction\+Graph@{nifty\+::graph\+::\+Edge\+Contraction\+Graph}!graph@{graph}}
+\index{graph@{graph}!nifty\+::graph\+::\+Edge\+Contraction\+Graph@{nifty\+::graph\+::\+Edge\+Contraction\+Graph}}
+\subsubsection[{graph() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H , class C\+A\+L\+L\+B\+A\+C\+K , bool W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D$>$ const {\bf Edge\+Contraction\+Graph}$<$ G\+R\+A\+P\+H, C\+A\+L\+L\+B\+A\+C\+K, W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D $>$\+::{\bf Graph} \& {\bf nifty\+::graph\+::\+Edge\+Contraction\+Graph}$<$ G\+R\+A\+P\+H, C\+A\+L\+L\+B\+A\+C\+K, W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D $>$\+::graph (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1EdgeContractionGraph_ae22624b7cd920b353a4a6a42bb3603c5}
+\hypertarget{classnifty_1_1graph_1_1EdgeContractionGraph_afe4ec2d07dd10fb5ba350e43079186a5}{}\index{nifty\+::graph\+::\+Edge\+Contraction\+Graph@{nifty\+::graph\+::\+Edge\+Contraction\+Graph}!node\+Id\+Upper\+Bound@{node\+Id\+Upper\+Bound}}
+\index{node\+Id\+Upper\+Bound@{node\+Id\+Upper\+Bound}!nifty\+::graph\+::\+Edge\+Contraction\+Graph@{nifty\+::graph\+::\+Edge\+Contraction\+Graph}}
+\subsubsection[{node\+Id\+Upper\+Bound() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H , class C\+A\+L\+L\+B\+A\+C\+K , bool W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D$>$ uint64\+\_\+t {\bf nifty\+::graph\+::\+Edge\+Contraction\+Graph}$<$ G\+R\+A\+P\+H, C\+A\+L\+L\+B\+A\+C\+K, W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D $>$\+::node\+Id\+Upper\+Bound (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1EdgeContractionGraph_afe4ec2d07dd10fb5ba350e43079186a5}
+\hypertarget{classnifty_1_1graph_1_1EdgeContractionGraph_adcf3984a735ed9f44978078264dc4fdd}{}\index{nifty\+::graph\+::\+Edge\+Contraction\+Graph@{nifty\+::graph\+::\+Edge\+Contraction\+Graph}!node\+Of\+Dead\+Edge@{node\+Of\+Dead\+Edge}}
+\index{node\+Of\+Dead\+Edge@{node\+Of\+Dead\+Edge}!nifty\+::graph\+::\+Edge\+Contraction\+Graph@{nifty\+::graph\+::\+Edge\+Contraction\+Graph}}
+\subsubsection[{node\+Of\+Dead\+Edge(const uint64\+\_\+t dead\+Edge) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H , class C\+A\+L\+L\+B\+A\+C\+K , bool W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D$>$ uint64\+\_\+t {\bf nifty\+::graph\+::\+Edge\+Contraction\+Graph}$<$ G\+R\+A\+P\+H, C\+A\+L\+L\+B\+A\+C\+K, W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D $>$\+::node\+Of\+Dead\+Edge (
+\begin{DoxyParamCaption}
+\item[{const uint64\+\_\+t}]{dead\+Edge}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1EdgeContractionGraph_adcf3984a735ed9f44978078264dc4fdd}
+\hypertarget{classnifty_1_1graph_1_1EdgeContractionGraph_a2d7d6984f84e00c2338ef28c971b6bb3}{}\index{nifty\+::graph\+::\+Edge\+Contraction\+Graph@{nifty\+::graph\+::\+Edge\+Contraction\+Graph}!node\+Ufd@{node\+Ufd}}
+\index{node\+Ufd@{node\+Ufd}!nifty\+::graph\+::\+Edge\+Contraction\+Graph@{nifty\+::graph\+::\+Edge\+Contraction\+Graph}}
+\subsubsection[{node\+Ufd() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H, class C\+A\+L\+L\+B\+A\+C\+K, bool W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D$>$ const {\bf Node\+Ufd\+Type}\& {\bf nifty\+::graph\+::\+Edge\+Contraction\+Graph}$<$ G\+R\+A\+P\+H, C\+A\+L\+L\+B\+A\+C\+K, W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D $>$\+::node\+Ufd (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1EdgeContractionGraph_a2d7d6984f84e00c2338ef28c971b6bb3}
+\hypertarget{classnifty_1_1graph_1_1EdgeContractionGraph_aebdf2c843a1b95436ecf1493bfab6df9}{}\index{nifty\+::graph\+::\+Edge\+Contraction\+Graph@{nifty\+::graph\+::\+Edge\+Contraction\+Graph}!number\+Of\+Edges@{number\+Of\+Edges}}
+\index{number\+Of\+Edges@{number\+Of\+Edges}!nifty\+::graph\+::\+Edge\+Contraction\+Graph@{nifty\+::graph\+::\+Edge\+Contraction\+Graph}}
+\subsubsection[{number\+Of\+Edges() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H , class C\+A\+L\+L\+B\+A\+C\+K , bool W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D$>$ uint64\+\_\+t {\bf nifty\+::graph\+::\+Edge\+Contraction\+Graph}$<$ G\+R\+A\+P\+H, C\+A\+L\+L\+B\+A\+C\+K, W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D $>$\+::number\+Of\+Edges (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1EdgeContractionGraph_aebdf2c843a1b95436ecf1493bfab6df9}
+\hypertarget{classnifty_1_1graph_1_1EdgeContractionGraph_a908385c94499ae9394bb23c52a584e72}{}\index{nifty\+::graph\+::\+Edge\+Contraction\+Graph@{nifty\+::graph\+::\+Edge\+Contraction\+Graph}!number\+Of\+Nodes@{number\+Of\+Nodes}}
+\index{number\+Of\+Nodes@{number\+Of\+Nodes}!nifty\+::graph\+::\+Edge\+Contraction\+Graph@{nifty\+::graph\+::\+Edge\+Contraction\+Graph}}
+\subsubsection[{number\+Of\+Nodes() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H , class C\+A\+L\+L\+B\+A\+C\+K , bool W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D$>$ uint64\+\_\+t {\bf nifty\+::graph\+::\+Edge\+Contraction\+Graph}$<$ G\+R\+A\+P\+H, C\+A\+L\+L\+B\+A\+C\+K, W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D $>$\+::number\+Of\+Nodes (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1EdgeContractionGraph_a908385c94499ae9394bb23c52a584e72}
+\hypertarget{classnifty_1_1graph_1_1EdgeContractionGraph_a76a6e084c4dfe14a20f5671ec5f57cbc}{}\index{nifty\+::graph\+::\+Edge\+Contraction\+Graph@{nifty\+::graph\+::\+Edge\+Contraction\+Graph}!reset@{reset}}
+\index{reset@{reset}!nifty\+::graph\+::\+Edge\+Contraction\+Graph@{nifty\+::graph\+::\+Edge\+Contraction\+Graph}}
+\subsubsection[{reset()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H , class C\+A\+L\+L\+B\+A\+C\+K , bool W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D$>$ void {\bf nifty\+::graph\+::\+Edge\+Contraction\+Graph}$<$ G\+R\+A\+P\+H, C\+A\+L\+L\+B\+A\+C\+K, W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D $>$\+::reset (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1EdgeContractionGraph_a76a6e084c4dfe14a20f5671ec5f57cbc}
+\hypertarget{classnifty_1_1graph_1_1EdgeContractionGraph_a4d0519610b822ff3842b8baa3b5a2580}{}\index{nifty\+::graph\+::\+Edge\+Contraction\+Graph@{nifty\+::graph\+::\+Edge\+Contraction\+Graph}!u@{u}}
+\index{u@{u}!nifty\+::graph\+::\+Edge\+Contraction\+Graph@{nifty\+::graph\+::\+Edge\+Contraction\+Graph}}
+\subsubsection[{u(const uint64\+\_\+t edge) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H , class C\+A\+L\+L\+B\+A\+C\+K , bool W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D$>$ int64\+\_\+t {\bf nifty\+::graph\+::\+Edge\+Contraction\+Graph}$<$ G\+R\+A\+P\+H, C\+A\+L\+L\+B\+A\+C\+K, W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D $>$\+::u (
+\begin{DoxyParamCaption}
+\item[{const uint64\+\_\+t}]{edge}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1EdgeContractionGraph_a4d0519610b822ff3842b8baa3b5a2580}
+\hypertarget{classnifty_1_1graph_1_1EdgeContractionGraph_abcba22be7d0d62b18390edcd501054ab}{}\index{nifty\+::graph\+::\+Edge\+Contraction\+Graph@{nifty\+::graph\+::\+Edge\+Contraction\+Graph}!uv@{uv}}
+\index{uv@{uv}!nifty\+::graph\+::\+Edge\+Contraction\+Graph@{nifty\+::graph\+::\+Edge\+Contraction\+Graph}}
+\subsubsection[{uv(const uint64\+\_\+t edge) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H , class C\+A\+L\+L\+B\+A\+C\+K , bool W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D$>$ {\bf Edge\+Contraction\+Graph}$<$ G\+R\+A\+P\+H, C\+A\+L\+L\+B\+A\+C\+K, W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D $>$\+::{\bf Edge\+Storage} {\bf nifty\+::graph\+::\+Edge\+Contraction\+Graph}$<$ G\+R\+A\+P\+H, C\+A\+L\+L\+B\+A\+C\+K, W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D $>$\+::uv (
+\begin{DoxyParamCaption}
+\item[{const uint64\+\_\+t}]{edge}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1EdgeContractionGraph_abcba22be7d0d62b18390edcd501054ab}
+\hypertarget{classnifty_1_1graph_1_1EdgeContractionGraph_a0b321bb637fd8291985e8cecf3f87fc9}{}\index{nifty\+::graph\+::\+Edge\+Contraction\+Graph@{nifty\+::graph\+::\+Edge\+Contraction\+Graph}!v@{v}}
+\index{v@{v}!nifty\+::graph\+::\+Edge\+Contraction\+Graph@{nifty\+::graph\+::\+Edge\+Contraction\+Graph}}
+\subsubsection[{v(const uint64\+\_\+t edge) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H , class C\+A\+L\+L\+B\+A\+C\+K , bool W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D$>$ int64\+\_\+t {\bf nifty\+::graph\+::\+Edge\+Contraction\+Graph}$<$ G\+R\+A\+P\+H, C\+A\+L\+L\+B\+A\+C\+K, W\+I\+T\+H\+\_\+\+E\+D\+G\+E\+\_\+\+U\+F\+D $>$\+::v (
+\begin{DoxyParamCaption}
+\item[{const uint64\+\_\+t}]{edge}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1EdgeContractionGraph_a0b321bb637fd8291985e8cecf3f87fc9}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/tbeier/src/nifty/include/nifty/graph/\hyperlink{graph_2edge__contraction__graph_8hxx}{edge\+\_\+contraction\+\_\+graph.\+hxx}\end{DoxyCompactItemize}

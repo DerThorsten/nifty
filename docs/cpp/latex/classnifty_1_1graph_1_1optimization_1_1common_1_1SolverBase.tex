@@ -1,0 +1,144 @@
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase}{}\section{nifty\+:\+:graph\+:\+:optimization\+:\+:common\+:\+:Solver\+Base$<$ O\+B\+J\+E\+C\+T\+I\+V\+E, C\+H\+I\+L\+D $>$ Class Template Reference}
+\label{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase}\index{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base$<$ O\+B\+J\+E\+C\+T\+I\+V\+E, C\+H\+I\+L\+D $>$@{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base$<$ O\+B\+J\+E\+C\+T\+I\+V\+E, C\+H\+I\+L\+D $>$}}
+
+
+{\ttfamily \#include $<$solver\+\_\+base.\+hxx$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef O\+B\+J\+E\+C\+T\+I\+V\+E \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_a28e77903302d3c14fa9fddb5d0a6214d}{Objective\+Type}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase}{Solver\+Base}$<$ \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_a28e77903302d3c14fa9fddb5d0a6214d}{Objective\+Type}, C\+H\+I\+L\+D $>$ \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_ae445fe93efdb410186debfa5a248dfad}{Self\+Type}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1VisitorBase}{Visitor\+Base}$<$ C\+H\+I\+L\+D $>$ \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_a5a14d64c70a9cc0eebc7d71d2b089f9b}{Visitor\+Base\+Type}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1VisitorProxy}{Visitor\+Proxy}$<$ C\+H\+I\+L\+D $>$ \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_a58913ea9ab9232ff72608b710c1012d0}{Visitor\+Proxy\+Type}
+\item 
+typedef Objective\+Type\+::\+Graph\+Type \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_a5b93d8c567c27949a944e908f59f8933}{Graph\+Type}
+\item 
+typedef Objective\+Type\+::\+Node\+Labels\+Type \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_a6e4e465f3b6e039882669fcfb9714818}{Node\+Labels\+Type}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_a9442c4193dab19dbcc37c8f927b6de94}{$\sim$\+Solver\+Base} ()
+\item 
+virtual void \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_a1c08eb1ff2b3cca5366c3aab161ba040}{optimize} (\hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_a6e4e465f3b6e039882669fcfb9714818}{Node\+Labels\+Type} \&node\+Labels, \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_a5a14d64c70a9cc0eebc7d71d2b089f9b}{Visitor\+Base\+Type} $\ast$visitor)=0
+\item 
+virtual const \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_a28e77903302d3c14fa9fddb5d0a6214d}{Objective\+Type} \& \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_ae7d36a7485b12a25979f75771f52e397}{objective} () const  =0
+\item 
+virtual const \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_a6e4e465f3b6e039882669fcfb9714818}{Node\+Labels\+Type} \& \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_a3634ba645adbb7a668500e807608bcca}{current\+Best\+Node\+Labels} ()=0
+\item 
+virtual std\+::string \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_abc9685a3d63748ac470afccb2813be7e}{name} () const  =0
+\item 
+virtual void \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_a8ab38d61068370e24cca475ef1b5d8b1}{weights\+Changed} ()
+\begin{DoxyCompactList}\small\item\em Inform solver about a change of weights. \end{DoxyCompactList}\item 
+virtual double \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_ae6f6d9779398689c84984a7b6083604a}{current\+Best\+Energy} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_a5b93d8c567c27949a944e908f59f8933}{}\index{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base@{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base}!Graph\+Type@{Graph\+Type}}
+\index{Graph\+Type@{Graph\+Type}!nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base@{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base}}
+\subsubsection[{Graph\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E, class C\+H\+I\+L\+D$>$ typedef Objective\+Type\+::\+Graph\+Type {\bf nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E, C\+H\+I\+L\+D $>$\+::{\bf Graph\+Type}}\label{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_a5b93d8c567c27949a944e908f59f8933}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_a6e4e465f3b6e039882669fcfb9714818}{}\index{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base@{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base}!Node\+Labels\+Type@{Node\+Labels\+Type}}
+\index{Node\+Labels\+Type@{Node\+Labels\+Type}!nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base@{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base}}
+\subsubsection[{Node\+Labels\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E, class C\+H\+I\+L\+D$>$ typedef Objective\+Type\+::\+Node\+Labels\+Type {\bf nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E, C\+H\+I\+L\+D $>$\+::{\bf Node\+Labels\+Type}}\label{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_a6e4e465f3b6e039882669fcfb9714818}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_a28e77903302d3c14fa9fddb5d0a6214d}{}\index{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base@{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base}!Objective\+Type@{Objective\+Type}}
+\index{Objective\+Type@{Objective\+Type}!nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base@{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base}}
+\subsubsection[{Objective\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E, class C\+H\+I\+L\+D$>$ typedef O\+B\+J\+E\+C\+T\+I\+V\+E {\bf nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E, C\+H\+I\+L\+D $>$\+::{\bf Objective\+Type}}\label{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_a28e77903302d3c14fa9fddb5d0a6214d}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_ae445fe93efdb410186debfa5a248dfad}{}\index{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base@{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base}!Self\+Type@{Self\+Type}}
+\index{Self\+Type@{Self\+Type}!nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base@{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base}}
+\subsubsection[{Self\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E, class C\+H\+I\+L\+D$>$ typedef {\bf Solver\+Base}$<${\bf Objective\+Type},C\+H\+I\+L\+D$>$ {\bf nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E, C\+H\+I\+L\+D $>$\+::{\bf Self\+Type}}\label{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_ae445fe93efdb410186debfa5a248dfad}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_a5a14d64c70a9cc0eebc7d71d2b089f9b}{}\index{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base@{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base}!Visitor\+Base\+Type@{Visitor\+Base\+Type}}
+\index{Visitor\+Base\+Type@{Visitor\+Base\+Type}!nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base@{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base}}
+\subsubsection[{Visitor\+Base\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E, class C\+H\+I\+L\+D$>$ typedef {\bf Visitor\+Base}$<$C\+H\+I\+L\+D$>$ {\bf nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E, C\+H\+I\+L\+D $>$\+::{\bf Visitor\+Base\+Type}}\label{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_a5a14d64c70a9cc0eebc7d71d2b089f9b}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_a58913ea9ab9232ff72608b710c1012d0}{}\index{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base@{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base}!Visitor\+Proxy\+Type@{Visitor\+Proxy\+Type}}
+\index{Visitor\+Proxy\+Type@{Visitor\+Proxy\+Type}!nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base@{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base}}
+\subsubsection[{Visitor\+Proxy\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E, class C\+H\+I\+L\+D$>$ typedef {\bf Visitor\+Proxy}$<$C\+H\+I\+L\+D$>$ {\bf nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E, C\+H\+I\+L\+D $>$\+::{\bf Visitor\+Proxy\+Type}}\label{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_a58913ea9ab9232ff72608b710c1012d0}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_a9442c4193dab19dbcc37c8f927b6de94}{}\index{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base@{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base}!````~Solver\+Base@{$\sim$\+Solver\+Base}}
+\index{````~Solver\+Base@{$\sim$\+Solver\+Base}!nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base@{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base}}
+\subsubsection[{$\sim$\+Solver\+Base()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E, class C\+H\+I\+L\+D$>$ virtual {\bf nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E, C\+H\+I\+L\+D $>$\+::$\sim${\bf Solver\+Base} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_a9442c4193dab19dbcc37c8f927b6de94}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_ae6f6d9779398689c84984a7b6083604a}{}\index{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base@{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base}!current\+Best\+Energy@{current\+Best\+Energy}}
+\index{current\+Best\+Energy@{current\+Best\+Energy}!nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base@{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base}}
+\subsubsection[{current\+Best\+Energy()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E, class C\+H\+I\+L\+D$>$ virtual double {\bf nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E, C\+H\+I\+L\+D $>$\+::current\+Best\+Energy (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_ae6f6d9779398689c84984a7b6083604a}
+
+
+Reimplemented in \hyperlink{classnifty_1_1graph_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_a90be82d453dd0007fd7d6426f0914407}{nifty\+::graph\+::lifted\+\_\+multicut\+::\+Lifted\+Multicut\+Kernighan\+Lin$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}, and \hyperlink{classnifty_1_1graph_1_1lifted__multicut_1_1PyLiftedMulticutBase_a6b5cd4033bb4044633c3cf41d1035c3c}{nifty\+::graph\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}.
+
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_a3634ba645adbb7a668500e807608bcca}{}\index{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base@{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base}!current\+Best\+Node\+Labels@{current\+Best\+Node\+Labels}}
+\index{current\+Best\+Node\+Labels@{current\+Best\+Node\+Labels}!nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base@{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base}}
+\subsubsection[{current\+Best\+Node\+Labels()=0}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E, class C\+H\+I\+L\+D$>$ virtual const {\bf Node\+Labels\+Type}\& {\bf nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E, C\+H\+I\+L\+D $>$\+::current\+Best\+Node\+Labels (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_a3634ba645adbb7a668500e807608bcca}
+
+
+Implemented in \hyperlink{classnifty_1_1graph_1_1lifted__multicut_1_1LiftedMulticutGreedyAdditive_a90842fb26c786cca721e714f8fe76299}{nifty\+::graph\+::lifted\+\_\+multicut\+::\+Lifted\+Multicut\+Greedy\+Additive$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}, \hyperlink{classnifty_1_1graph_1_1lifted__multicut_1_1LiftedMulticutMp_a3a0f3c251180a16654b02471d4acff9b}{nifty\+::graph\+::lifted\+\_\+multicut\+::\+Lifted\+Multicut\+Mp$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}, \hyperlink{classnifty_1_1graph_1_1lifted__multicut_1_1FusionMoveBased_a47aa9129b1831148d356e892f0593b8f}{nifty\+::graph\+::lifted\+\_\+multicut\+::\+Fusion\+Move\+Based$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}, \hyperlink{classnifty_1_1graph_1_1lifted__multicut_1_1LiftedMulticutIlp_a9786ce36240b3c7b47f25e7de676af84}{nifty\+::graph\+::lifted\+\_\+multicut\+::\+Lifted\+Multicut\+Ilp$<$ O\+B\+J\+E\+C\+T\+I\+V\+E, I\+L\+P\+\_\+\+S\+O\+L\+V\+E\+R $>$}, \hyperlink{classnifty_1_1graph_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_af0cff8d004fa48cbc0d127de9c705e4e}{nifty\+::graph\+::lifted\+\_\+multicut\+::\+Lifted\+Multicut\+Andres\+Kernighan\+Lin$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}, \hyperlink{classnifty_1_1graph_1_1lifted__multicut_1_1LiftedMulticutAndresGreedyAdditive_a132fb579b1756c9a13ddd115dd56670a}{nifty\+::graph\+::lifted\+\_\+multicut\+::\+Lifted\+Multicut\+Andres\+Greedy\+Additive$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}, \hyperlink{classnifty_1_1graph_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_ad8a89088f52b1c107fa125f91b9476fb}{nifty\+::graph\+::lifted\+\_\+multicut\+::\+Lifted\+Multicut\+Kernighan\+Lin$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}, and \hyperlink{classnifty_1_1graph_1_1lifted__multicut_1_1PyLiftedMulticutBase_ab539048e8b335f2dcd6957bbcd107da2}{nifty\+::graph\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}.
+
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_abc9685a3d63748ac470afccb2813be7e}{}\index{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base@{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base}!name@{name}}
+\index{name@{name}!nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base@{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base}}
+\subsubsection[{name() const  =0}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E, class C\+H\+I\+L\+D$>$ virtual std\+::string {\bf nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E, C\+H\+I\+L\+D $>$\+::name (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_abc9685a3d63748ac470afccb2813be7e}
+
+
+Implemented in \hyperlink{classnifty_1_1graph_1_1lifted__multicut_1_1LiftedMulticutGreedyAdditive_aa288d8487af994a6e273a6a6925d2143}{nifty\+::graph\+::lifted\+\_\+multicut\+::\+Lifted\+Multicut\+Greedy\+Additive$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}, \hyperlink{classnifty_1_1graph_1_1lifted__multicut_1_1LiftedMulticutMp_a3d4cd89f1f2064c0433b31d018e0d2b7}{nifty\+::graph\+::lifted\+\_\+multicut\+::\+Lifted\+Multicut\+Mp$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}, \hyperlink{classnifty_1_1graph_1_1lifted__multicut_1_1FusionMoveBased_ae1d1a4029d7bbfe2e71f58eecb866f52}{nifty\+::graph\+::lifted\+\_\+multicut\+::\+Fusion\+Move\+Based$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}, \hyperlink{classnifty_1_1graph_1_1lifted__multicut_1_1LiftedMulticutIlp_a7324f336c92085c7d87c4f3f601302b6}{nifty\+::graph\+::lifted\+\_\+multicut\+::\+Lifted\+Multicut\+Ilp$<$ O\+B\+J\+E\+C\+T\+I\+V\+E, I\+L\+P\+\_\+\+S\+O\+L\+V\+E\+R $>$}, \hyperlink{classnifty_1_1graph_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_abcc8564fd9e78573579058ac0e548ad1}{nifty\+::graph\+::lifted\+\_\+multicut\+::\+Lifted\+Multicut\+Andres\+Kernighan\+Lin$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}, \hyperlink{classnifty_1_1graph_1_1lifted__multicut_1_1LiftedMulticutAndresGreedyAdditive_af0d2791716c89e177e8eaf1cff4d1a17}{nifty\+::graph\+::lifted\+\_\+multicut\+::\+Lifted\+Multicut\+Andres\+Greedy\+Additive$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}, \hyperlink{classnifty_1_1graph_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_ae20a347def094ed6336918b5ac599b83}{nifty\+::graph\+::lifted\+\_\+multicut\+::\+Lifted\+Multicut\+Kernighan\+Lin$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}, and \hyperlink{classnifty_1_1graph_1_1lifted__multicut_1_1PyLiftedMulticutBase_a705e42bcf26acd347bab7c718c967ce6}{nifty\+::graph\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}.
+
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_ae7d36a7485b12a25979f75771f52e397}{}\index{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base@{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base}!objective@{objective}}
+\index{objective@{objective}!nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base@{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base}}
+\subsubsection[{objective() const  =0}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E, class C\+H\+I\+L\+D$>$ virtual const {\bf Objective\+Type}\& {\bf nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E, C\+H\+I\+L\+D $>$\+::objective (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_ae7d36a7485b12a25979f75771f52e397}
+
+
+Implemented in \hyperlink{classnifty_1_1graph_1_1lifted__multicut_1_1LiftedMulticutGreedyAdditive_af2299ffe7e36e736089ed08b4a4cc963}{nifty\+::graph\+::lifted\+\_\+multicut\+::\+Lifted\+Multicut\+Greedy\+Additive$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}, \hyperlink{classnifty_1_1graph_1_1lifted__multicut_1_1LiftedMulticutMp_a8caa8ecb085520cab62a7b2a43edf2d2}{nifty\+::graph\+::lifted\+\_\+multicut\+::\+Lifted\+Multicut\+Mp$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}, \hyperlink{classnifty_1_1graph_1_1lifted__multicut_1_1LiftedMulticutIlp_ae87c418362b292d18094e1b69af68f0a}{nifty\+::graph\+::lifted\+\_\+multicut\+::\+Lifted\+Multicut\+Ilp$<$ O\+B\+J\+E\+C\+T\+I\+V\+E, I\+L\+P\+\_\+\+S\+O\+L\+V\+E\+R $>$}, \hyperlink{classnifty_1_1graph_1_1lifted__multicut_1_1FusionMoveBased_a28d59bfced1c1c9d7b4eadc3eab89418}{nifty\+::graph\+::lifted\+\_\+multicut\+::\+Fusion\+Move\+Based$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}, \hyperlink{classnifty_1_1graph_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_a8919b6ba352f53db3d2123d5b7fca300}{nifty\+::graph\+::lifted\+\_\+multicut\+::\+Lifted\+Multicut\+Andres\+Kernighan\+Lin$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}, \hyperlink{classnifty_1_1graph_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_ad5a0821bb2d713d6a0da1e32b92c11b7}{nifty\+::graph\+::lifted\+\_\+multicut\+::\+Lifted\+Multicut\+Kernighan\+Lin$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}, \hyperlink{classnifty_1_1graph_1_1lifted__multicut_1_1LiftedMulticutAndresGreedyAdditive_a267d174f69b6b76f6808725243b0b2c2}{nifty\+::graph\+::lifted\+\_\+multicut\+::\+Lifted\+Multicut\+Andres\+Greedy\+Additive$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}, and \hyperlink{classnifty_1_1graph_1_1lifted__multicut_1_1PyLiftedMulticutBase_a323e29f88e54144e57ab41a022e4632f}{nifty\+::graph\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}.
+
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_a1c08eb1ff2b3cca5366c3aab161ba040}{}\index{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base@{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base}!optimize@{optimize}}
+\index{optimize@{optimize}!nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base@{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base}}
+\subsubsection[{optimize(\+Node\+Labels\+Type \&node\+Labels, Visitor\+Base\+Type $\ast$visitor)=0}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E, class C\+H\+I\+L\+D$>$ virtual void {\bf nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E, C\+H\+I\+L\+D $>$\+::optimize (
+\begin{DoxyParamCaption}
+\item[{{\bf Node\+Labels\+Type} \&}]{node\+Labels, }
+\item[{{\bf Visitor\+Base\+Type} $\ast$}]{visitor}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_a1c08eb1ff2b3cca5366c3aab161ba040}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_a8ab38d61068370e24cca475ef1b5d8b1}{}\index{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base@{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base}!weights\+Changed@{weights\+Changed}}
+\index{weights\+Changed@{weights\+Changed}!nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base@{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base}}
+\subsubsection[{weights\+Changed()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E, class C\+H\+I\+L\+D$>$ virtual void {\bf nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E, C\+H\+I\+L\+D $>$\+::weights\+Changed (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_a8ab38d61068370e24cca475ef1b5d8b1}
+
+
+Inform solver about a change of weights. 
+
+Inform solver that all weights could have changed. If a particular solver does not overload this function, an Weights\+Changed\+Not\+Supported exception is thrown. After a call of this function it is save to run optimize again, therefore it resets the solver 
+
+Reimplemented in \hyperlink{classnifty_1_1graph_1_1lifted__multicut_1_1LiftedMulticutGreedyAdditive_aedc059129bc6c5e7fae87049693e03e6}{nifty\+::graph\+::lifted\+\_\+multicut\+::\+Lifted\+Multicut\+Greedy\+Additive$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}, and \hyperlink{classnifty_1_1graph_1_1lifted__multicut_1_1LiftedMulticutIlp_a3c1d526c0615ed8b1375044b1e30f4c1}{nifty\+::graph\+::lifted\+\_\+multicut\+::\+Lifted\+Multicut\+Ilp$<$ O\+B\+J\+E\+C\+T\+I\+V\+E, I\+L\+P\+\_\+\+S\+O\+L\+V\+E\+R $>$}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/tbeier/src/nifty/include/nifty/graph/optimization/common/\hyperlink{solver__base_8hxx}{solver\+\_\+base.\+hxx}\end{DoxyCompactItemize}

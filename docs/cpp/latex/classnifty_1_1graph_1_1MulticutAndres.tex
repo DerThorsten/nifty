@@ -1,0 +1,175 @@
+\hypertarget{classnifty_1_1graph_1_1MulticutAndres}{}\section{nifty\+:\+:graph\+:\+:Multicut\+Andres$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$ Class Template Reference}
+\label{classnifty_1_1graph_1_1MulticutAndres}\index{nifty\+::graph\+::\+Multicut\+Andres$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$@{nifty\+::graph\+::\+Multicut\+Andres$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}}
+
+
+{\ttfamily \#include $<$multicut\+\_\+andres.\+hxx$>$}
+
+
+
+Inheritance diagram for nifty\+:\+:graph\+:\+:Multicut\+Andres$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+:
+% FIG 0
+
+
+Collaboration diagram for nifty\+:\+:graph\+:\+:Multicut\+Andres$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+:
+% FIG 1
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef O\+B\+J\+E\+C\+T\+I\+V\+E \hyperlink{classnifty_1_1graph_1_1MulticutAndres_af65f82c6d6f78356d08de6728618fc02}{Objective}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1MulticutBase}{Multicut\+Base}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$ \hyperlink{classnifty_1_1graph_1_1MulticutAndres_a69c11222fd83a2839aad9a67ced87c87}{Base}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1MulticutBase_a5882fb69df59d8113f6a81a0dac26eaa}{Base\+::\+Visitor\+Base} \hyperlink{classnifty_1_1graph_1_1MulticutAndres_ac07b28fb84cb2202147dd666d5d19c25}{Visitor\+Base}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1MulticutBase_a6ede271a3cb0ae4711a7e9da2b07efa9}{Base\+::\+Visitor\+Proxy} \hyperlink{classnifty_1_1graph_1_1MulticutAndres_ad56184f36c01591fbb5d99da132c2833}{Visitor\+Proxy}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1MulticutBase_afba61ad2919d0fad20b3745af19309da}{Base\+::\+Node\+Labels} \hyperlink{classnifty_1_1graph_1_1MulticutAndres_a0948881682fa859a4f2b985e0a95b2c7}{Node\+Labels}
+\item 
+typedef andres\+::graph\+::\+Graph \hyperlink{classnifty_1_1graph_1_1MulticutAndres_ac0ad695f55ab8ac75ab5f8be6f513652}{Graph}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classnifty_1_1graph_1_1MulticutAndres_a73522acdc6759774aa77f6659ed8eb73}{Multicut\+Andres} (const \hyperlink{classnifty_1_1graph_1_1MulticutAndres_af65f82c6d6f78356d08de6728618fc02}{Objective} \&\hyperlink{classnifty_1_1graph_1_1MulticutAndres_acf13b04a87ba58369e9ceef62d833ced}{objective})
+\item 
+virtual void \hyperlink{classnifty_1_1graph_1_1MulticutAndres_acc430246a8ed30d4b19c96effe7d6a4d}{optimize} (\hyperlink{classnifty_1_1graph_1_1MulticutAndres_a0948881682fa859a4f2b985e0a95b2c7}{Node\+Labels} \&nodelabels, \hyperlink{classnifty_1_1graph_1_1MulticutAndres_ac07b28fb84cb2202147dd666d5d19c25}{Visitor\+Base} $\ast$visitor)
+\item 
+virtual const \hyperlink{classnifty_1_1graph_1_1MulticutAndres_af65f82c6d6f78356d08de6728618fc02}{Objective} \& \hyperlink{classnifty_1_1graph_1_1MulticutAndres_acf13b04a87ba58369e9ceef62d833ced}{objective} () const 
+\item 
+virtual const \hyperlink{classnifty_1_1graph_1_1MulticutAndres_a0948881682fa859a4f2b985e0a95b2c7}{Node\+Labels} \& \hyperlink{classnifty_1_1graph_1_1MulticutAndres_a6d7c55e3b4f2d25438c024739110b923}{current\+Best\+Node\+Labels} ()
+\item 
+virtual std\+::string \hyperlink{classnifty_1_1graph_1_1MulticutAndres_af7115b9d29d06164b0239e0a0125d3c9}{name} () const 
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classnifty_1_1graph_1_1MulticutAndres_a036d23a31b5e07e1f038bfdd41ae2640}{node\+Labels\+To\+Edge\+Labels} (std\+::vector$<$ char $>$ \&edge\+Labels)
+\item 
+void \hyperlink{classnifty_1_1graph_1_1MulticutAndres_a78af8d26a59da4c3f6cb1dfbd9286818}{edge\+Labels\+To\+Node\+Labels} (const std\+::vector$<$ char $>$ \&edge\+Labels)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classnifty_1_1graph_1_1MulticutAndres_a0948881682fa859a4f2b985e0a95b2c7}{Node\+Labels} $\ast$ \hyperlink{classnifty_1_1graph_1_1MulticutAndres_a57f4d9bf3df798e150003ef6183711a8}{current\+Best\+\_\+}
+\item 
+\hyperlink{classnifty_1_1graph_1_1MulticutAndres_ac0ad695f55ab8ac75ab5f8be6f513652}{Graph} \hyperlink{classnifty_1_1graph_1_1MulticutAndres_a883767b0afbd1a256949ef3238093399}{graph\+\_\+}
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{classnifty_1_1graph_1_1MulticutAndres_a69c11222fd83a2839aad9a67ced87c87}{}\index{nifty\+::graph\+::\+Multicut\+Andres@{nifty\+::graph\+::\+Multicut\+Andres}!Base@{Base}}
+\index{Base@{Base}!nifty\+::graph\+::\+Multicut\+Andres@{nifty\+::graph\+::\+Multicut\+Andres}}
+\subsubsection[{Base}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ typedef {\bf Multicut\+Base}$<$O\+B\+J\+E\+C\+T\+I\+V\+E$>$ {\bf nifty\+::graph\+::\+Multicut\+Andres}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Base}}\label{classnifty_1_1graph_1_1MulticutAndres_a69c11222fd83a2839aad9a67ced87c87}
+\hypertarget{classnifty_1_1graph_1_1MulticutAndres_ac0ad695f55ab8ac75ab5f8be6f513652}{}\index{nifty\+::graph\+::\+Multicut\+Andres@{nifty\+::graph\+::\+Multicut\+Andres}!Graph@{Graph}}
+\index{Graph@{Graph}!nifty\+::graph\+::\+Multicut\+Andres@{nifty\+::graph\+::\+Multicut\+Andres}}
+\subsubsection[{Graph}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ typedef andres\+::graph\+::\+Graph {\bf nifty\+::graph\+::\+Multicut\+Andres}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Graph}}\label{classnifty_1_1graph_1_1MulticutAndres_ac0ad695f55ab8ac75ab5f8be6f513652}
+\hypertarget{classnifty_1_1graph_1_1MulticutAndres_a0948881682fa859a4f2b985e0a95b2c7}{}\index{nifty\+::graph\+::\+Multicut\+Andres@{nifty\+::graph\+::\+Multicut\+Andres}!Node\+Labels@{Node\+Labels}}
+\index{Node\+Labels@{Node\+Labels}!nifty\+::graph\+::\+Multicut\+Andres@{nifty\+::graph\+::\+Multicut\+Andres}}
+\subsubsection[{Node\+Labels}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ typedef {\bf Base\+::\+Node\+Labels} {\bf nifty\+::graph\+::\+Multicut\+Andres}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Node\+Labels}}\label{classnifty_1_1graph_1_1MulticutAndres_a0948881682fa859a4f2b985e0a95b2c7}
+\hypertarget{classnifty_1_1graph_1_1MulticutAndres_af65f82c6d6f78356d08de6728618fc02}{}\index{nifty\+::graph\+::\+Multicut\+Andres@{nifty\+::graph\+::\+Multicut\+Andres}!Objective@{Objective}}
+\index{Objective@{Objective}!nifty\+::graph\+::\+Multicut\+Andres@{nifty\+::graph\+::\+Multicut\+Andres}}
+\subsubsection[{Objective}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ typedef O\+B\+J\+E\+C\+T\+I\+V\+E {\bf nifty\+::graph\+::\+Multicut\+Andres}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Objective}}\label{classnifty_1_1graph_1_1MulticutAndres_af65f82c6d6f78356d08de6728618fc02}
+\hypertarget{classnifty_1_1graph_1_1MulticutAndres_ac07b28fb84cb2202147dd666d5d19c25}{}\index{nifty\+::graph\+::\+Multicut\+Andres@{nifty\+::graph\+::\+Multicut\+Andres}!Visitor\+Base@{Visitor\+Base}}
+\index{Visitor\+Base@{Visitor\+Base}!nifty\+::graph\+::\+Multicut\+Andres@{nifty\+::graph\+::\+Multicut\+Andres}}
+\subsubsection[{Visitor\+Base}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ typedef {\bf Base\+::\+Visitor\+Base} {\bf nifty\+::graph\+::\+Multicut\+Andres}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Visitor\+Base}}\label{classnifty_1_1graph_1_1MulticutAndres_ac07b28fb84cb2202147dd666d5d19c25}
+\hypertarget{classnifty_1_1graph_1_1MulticutAndres_ad56184f36c01591fbb5d99da132c2833}{}\index{nifty\+::graph\+::\+Multicut\+Andres@{nifty\+::graph\+::\+Multicut\+Andres}!Visitor\+Proxy@{Visitor\+Proxy}}
+\index{Visitor\+Proxy@{Visitor\+Proxy}!nifty\+::graph\+::\+Multicut\+Andres@{nifty\+::graph\+::\+Multicut\+Andres}}
+\subsubsection[{Visitor\+Proxy}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ typedef {\bf Base\+::\+Visitor\+Proxy} {\bf nifty\+::graph\+::\+Multicut\+Andres}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Visitor\+Proxy}}\label{classnifty_1_1graph_1_1MulticutAndres_ad56184f36c01591fbb5d99da132c2833}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classnifty_1_1graph_1_1MulticutAndres_a73522acdc6759774aa77f6659ed8eb73}{}\index{nifty\+::graph\+::\+Multicut\+Andres@{nifty\+::graph\+::\+Multicut\+Andres}!Multicut\+Andres@{Multicut\+Andres}}
+\index{Multicut\+Andres@{Multicut\+Andres}!nifty\+::graph\+::\+Multicut\+Andres@{nifty\+::graph\+::\+Multicut\+Andres}}
+\subsubsection[{Multicut\+Andres(const Objective \&objective)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ {\bf nifty\+::graph\+::\+Multicut\+Andres}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Multicut\+Andres} (
+\begin{DoxyParamCaption}
+\item[{const {\bf Objective} \&}]{objective}
+\end{DoxyParamCaption}
+)}\label{classnifty_1_1graph_1_1MulticutAndres_a73522acdc6759774aa77f6659ed8eb73}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classnifty_1_1graph_1_1MulticutAndres_a6d7c55e3b4f2d25438c024739110b923}{}\index{nifty\+::graph\+::\+Multicut\+Andres@{nifty\+::graph\+::\+Multicut\+Andres}!current\+Best\+Node\+Labels@{current\+Best\+Node\+Labels}}
+\index{current\+Best\+Node\+Labels@{current\+Best\+Node\+Labels}!nifty\+::graph\+::\+Multicut\+Andres@{nifty\+::graph\+::\+Multicut\+Andres}}
+\subsubsection[{current\+Best\+Node\+Labels()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ virtual const {\bf Node\+Labels}\& {\bf nifty\+::graph\+::\+Multicut\+Andres}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::current\+Best\+Node\+Labels (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classnifty_1_1graph_1_1MulticutAndres_a6d7c55e3b4f2d25438c024739110b923}
+
+
+Implements \hyperlink{classnifty_1_1graph_1_1MulticutBase_ac3927bec2b20026187a4c81d490234a2}{nifty\+::graph\+::\+Multicut\+Base$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}.
+
+
+
+Reimplemented in \hyperlink{classnifty_1_1graph_1_1MulticutAndresKernighanLin_aa7c85612e577e3de12df441c6fbf11f6}{nifty\+::graph\+::\+Multicut\+Andres\+Kernighan\+Lin$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}, and \hyperlink{classnifty_1_1graph_1_1MulticutAndresGreedyAdditive_a903049dae2854d7c8bc7e9a5930670df}{nifty\+::graph\+::\+Multicut\+Andres\+Greedy\+Additive$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}.
+
+\hypertarget{classnifty_1_1graph_1_1MulticutAndres_a78af8d26a59da4c3f6cb1dfbd9286818}{}\index{nifty\+::graph\+::\+Multicut\+Andres@{nifty\+::graph\+::\+Multicut\+Andres}!edge\+Labels\+To\+Node\+Labels@{edge\+Labels\+To\+Node\+Labels}}
+\index{edge\+Labels\+To\+Node\+Labels@{edge\+Labels\+To\+Node\+Labels}!nifty\+::graph\+::\+Multicut\+Andres@{nifty\+::graph\+::\+Multicut\+Andres}}
+\subsubsection[{edge\+Labels\+To\+Node\+Labels(const std\+::vector$<$ char $>$ \&edge\+Labels)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ void {\bf nifty\+::graph\+::\+Multicut\+Andres}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::edge\+Labels\+To\+Node\+Labels (
+\begin{DoxyParamCaption}
+\item[{const std\+::vector$<$ char $>$ \&}]{edge\+Labels}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}\label{classnifty_1_1graph_1_1MulticutAndres_a78af8d26a59da4c3f6cb1dfbd9286818}
+\hypertarget{classnifty_1_1graph_1_1MulticutAndres_af7115b9d29d06164b0239e0a0125d3c9}{}\index{nifty\+::graph\+::\+Multicut\+Andres@{nifty\+::graph\+::\+Multicut\+Andres}!name@{name}}
+\index{name@{name}!nifty\+::graph\+::\+Multicut\+Andres@{nifty\+::graph\+::\+Multicut\+Andres}}
+\subsubsection[{name() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ virtual std\+::string {\bf nifty\+::graph\+::\+Multicut\+Andres}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::name (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classnifty_1_1graph_1_1MulticutAndres_af7115b9d29d06164b0239e0a0125d3c9}
+
+
+Implements \hyperlink{classnifty_1_1graph_1_1MulticutBase_aabd27e510ee958a9764ba2305fccc880}{nifty\+::graph\+::\+Multicut\+Base$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}.
+
+
+
+Reimplemented in \hyperlink{classnifty_1_1graph_1_1MulticutAndresKernighanLin_ae816619651f3c22e51a4b3e156337450}{nifty\+::graph\+::\+Multicut\+Andres\+Kernighan\+Lin$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}, and \hyperlink{classnifty_1_1graph_1_1MulticutAndresGreedyAdditive_a01ef9c86ed9c42f41a1700e97634782a}{nifty\+::graph\+::\+Multicut\+Andres\+Greedy\+Additive$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}.
+
+\hypertarget{classnifty_1_1graph_1_1MulticutAndres_a036d23a31b5e07e1f038bfdd41ae2640}{}\index{nifty\+::graph\+::\+Multicut\+Andres@{nifty\+::graph\+::\+Multicut\+Andres}!node\+Labels\+To\+Edge\+Labels@{node\+Labels\+To\+Edge\+Labels}}
+\index{node\+Labels\+To\+Edge\+Labels@{node\+Labels\+To\+Edge\+Labels}!nifty\+::graph\+::\+Multicut\+Andres@{nifty\+::graph\+::\+Multicut\+Andres}}
+\subsubsection[{node\+Labels\+To\+Edge\+Labels(std\+::vector$<$ char $>$ \&edge\+Labels)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ void {\bf nifty\+::graph\+::\+Multicut\+Andres}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::node\+Labels\+To\+Edge\+Labels (
+\begin{DoxyParamCaption}
+\item[{std\+::vector$<$ char $>$ \&}]{edge\+Labels}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}\label{classnifty_1_1graph_1_1MulticutAndres_a036d23a31b5e07e1f038bfdd41ae2640}
+\hypertarget{classnifty_1_1graph_1_1MulticutAndres_acf13b04a87ba58369e9ceef62d833ced}{}\index{nifty\+::graph\+::\+Multicut\+Andres@{nifty\+::graph\+::\+Multicut\+Andres}!objective@{objective}}
+\index{objective@{objective}!nifty\+::graph\+::\+Multicut\+Andres@{nifty\+::graph\+::\+Multicut\+Andres}}
+\subsubsection[{objective() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ virtual const {\bf Objective}\& {\bf nifty\+::graph\+::\+Multicut\+Andres}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::objective (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classnifty_1_1graph_1_1MulticutAndres_acf13b04a87ba58369e9ceef62d833ced}
+
+
+Implements \hyperlink{classnifty_1_1graph_1_1MulticutBase_a25b622bf14da660a3d24d022369e510d}{nifty\+::graph\+::\+Multicut\+Base$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}.
+
+
+
+Reimplemented in \hyperlink{classnifty_1_1graph_1_1MulticutAndresKernighanLin_a427318d82a5184ffb8e082abcbd49af1}{nifty\+::graph\+::\+Multicut\+Andres\+Kernighan\+Lin$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}, and \hyperlink{classnifty_1_1graph_1_1MulticutAndresGreedyAdditive_ae1b0d6a1cdb4472bee3576464a1562af}{nifty\+::graph\+::\+Multicut\+Andres\+Greedy\+Additive$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}.
+
+\hypertarget{classnifty_1_1graph_1_1MulticutAndres_acc430246a8ed30d4b19c96effe7d6a4d}{}\index{nifty\+::graph\+::\+Multicut\+Andres@{nifty\+::graph\+::\+Multicut\+Andres}!optimize@{optimize}}
+\index{optimize@{optimize}!nifty\+::graph\+::\+Multicut\+Andres@{nifty\+::graph\+::\+Multicut\+Andres}}
+\subsubsection[{optimize(\+Node\+Labels \&nodelabels, Visitor\+Base $\ast$visitor)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ virtual void {\bf nifty\+::graph\+::\+Multicut\+Andres}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::optimize (
+\begin{DoxyParamCaption}
+\item[{{\bf Node\+Labels} \&}]{nodelabels, }
+\item[{{\bf Visitor\+Base} $\ast$}]{visitor}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classnifty_1_1graph_1_1MulticutAndres_acc430246a8ed30d4b19c96effe7d6a4d}
+
+
+Reimplemented in \hyperlink{classnifty_1_1graph_1_1MulticutAndresKernighanLin_a766757cae5e24f6c3986b929c68658e7}{nifty\+::graph\+::\+Multicut\+Andres\+Kernighan\+Lin$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}, and \hyperlink{classnifty_1_1graph_1_1MulticutAndresGreedyAdditive_a96674ed03d8e5934d9bde9285475f8a3}{nifty\+::graph\+::\+Multicut\+Andres\+Greedy\+Additive$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classnifty_1_1graph_1_1MulticutAndres_a57f4d9bf3df798e150003ef6183711a8}{}\index{nifty\+::graph\+::\+Multicut\+Andres@{nifty\+::graph\+::\+Multicut\+Andres}!current\+Best\+\_\+@{current\+Best\+\_\+}}
+\index{current\+Best\+\_\+@{current\+Best\+\_\+}!nifty\+::graph\+::\+Multicut\+Andres@{nifty\+::graph\+::\+Multicut\+Andres}}
+\subsubsection[{current\+Best\+\_\+}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ {\bf Node\+Labels}$\ast$ {\bf nifty\+::graph\+::\+Multicut\+Andres}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::current\+Best\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}\label{classnifty_1_1graph_1_1MulticutAndres_a57f4d9bf3df798e150003ef6183711a8}
+\hypertarget{classnifty_1_1graph_1_1MulticutAndres_a883767b0afbd1a256949ef3238093399}{}\index{nifty\+::graph\+::\+Multicut\+Andres@{nifty\+::graph\+::\+Multicut\+Andres}!graph\+\_\+@{graph\+\_\+}}
+\index{graph\+\_\+@{graph\+\_\+}!nifty\+::graph\+::\+Multicut\+Andres@{nifty\+::graph\+::\+Multicut\+Andres}}
+\subsubsection[{graph\+\_\+}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ {\bf Graph} {\bf nifty\+::graph\+::\+Multicut\+Andres}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::graph\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}\label{classnifty_1_1graph_1_1MulticutAndres_a883767b0afbd1a256949ef3238093399}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/\hyperlink{multicut__andres_8hxx}{multicut\+\_\+andres.\+hxx}\end{DoxyCompactItemize}

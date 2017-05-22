@@ -43,7 +43,7 @@ namespace lifted_multicut{
         typedef LiftedMulticutFactoryBase<FmObjective> FmLmcFactoryBase;
         typedef LiftedMulticutBase<FmObjective> FmLmcBase;
         typedef LiftedMulticutEmptyVisitor<FmObjective> FmEmptyVisitor;
-        typedef typename  FmLmcBase::NodeLabels FmNodeLabels;
+        typedef typename  FmLmcBase::NodeLabelsType FmNodeLabelsType;
 
         struct Settings{
             std::shared_ptr<FmLmcFactoryBase> lmcFactory;
@@ -181,7 +181,7 @@ namespace lifted_multicut{
                 NIFTY_CHECK_OP(fmGraph.numberOfEdges(),>,0,"");
 
                 auto solverPtr = settings_.lmcFactory->createRawPtr(fmObjective);
-                FmNodeLabels fmLabels(fmGraph);
+                FmNodeLabelsType fmLabels(fmGraph);
                 solverPtr->optimize(fmLabels, nullptr);
                 delete solverPtr;
 

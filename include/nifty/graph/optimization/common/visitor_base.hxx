@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_GRAPH_OPTIMIZATION_VISITOR_BASE_HXX
-#define NIFTY_GRAPH_OPTIMIZATION_VISITOR_BASE_HXX
 
 #include <string>
 #include <initializer_list>
@@ -218,7 +216,21 @@ namespace common{
         void stopOptimize(){
             runOpt_ = false;
         }
-    
+        
+        double runtimeSolver() const{
+            return runtimeSolver_;
+        }
+        double runtimeTotal() const{
+            return runtimeTotal_;
+        }
+
+        double timeLimitTotal() const{
+            return timeLimitTotal_;
+        }
+        double timeLimitSolver() const{
+            return timeLimitSolver_;
+        }
+
     private:
         bool runOpt_;
         int printNth_;
@@ -320,9 +332,7 @@ namespace common{
 
 
 
-}
-}
-}
-}
-
-#endif // NIFTY_GRAPH_OPTIMIZATION_VISITOR_BASE_HXX
+} // namespace nifty::graph::optimization::common
+} // namespacen ifty::graph::optimization
+} // namespace nifty::graph
+} // namespace nifty

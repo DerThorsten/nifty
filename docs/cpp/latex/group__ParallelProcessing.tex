@@ -1,0 +1,241 @@
+\hypertarget{group__ParallelProcessing}{}\section{Functions and classes for parallel processing.}
+\label{group__ParallelProcessing}\index{Functions and classes for parallel processing.@{Functions and classes for parallel processing.}}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classnifty_1_1parallel_1_1ParallelOptions}{nifty\+::parallel\+::\+Parallel\+Options}
+\begin{DoxyCompactList}\small\item\em Option base class for parallel algorithms. \end{DoxyCompactList}\item 
+class \hyperlink{classnifty_1_1parallel_1_1ThreadPool}{nifty\+::parallel\+::\+Thread\+Pool}
+\begin{DoxyCompactList}\small\item\em Thread pool class to manage a set of parallel workers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class I\+T\+E\+R , class F $>$ }\\void \hyperlink{group__ParallelProcessing_ga7604490d8cf7a5b53de4477c866c8b86}{nifty\+::parallel\+::parallel\+\_\+foreach\+\_\+impl} (Thread\+Pool \&pool, const std\+::ptrdiff\+\_\+t n\+Items, I\+T\+E\+R iter, I\+T\+E\+R end, F \&\&f, std\+::random\+\_\+access\+\_\+iterator\+\_\+tag)
+\item 
+{\footnotesize template$<$class I\+T\+E\+R , class F $>$ }\\void \hyperlink{group__ParallelProcessing_gab81648beb53aff67df1822f993b49ad1}{nifty\+::parallel\+::parallel\+\_\+foreach\+\_\+impl} (Thread\+Pool \&pool, const std\+::ptrdiff\+\_\+t n\+Items, I\+T\+E\+R iter, I\+T\+E\+R end, F \&\&f, std\+::forward\+\_\+iterator\+\_\+tag)
+\item 
+{\footnotesize template$<$class I\+T\+E\+R , class F $>$ }\\void \hyperlink{group__ParallelProcessing_ga402d9e45f8edf065e6775e76a447f72e}{nifty\+::parallel\+::parallel\+\_\+foreach\+\_\+impl} (Thread\+Pool \&pool, const std\+::ptrdiff\+\_\+t n\+Items, I\+T\+E\+R iter, I\+T\+E\+R end, F \&\&f, std\+::input\+\_\+iterator\+\_\+tag)
+\item 
+{\footnotesize template$<$class I\+T\+E\+R , class F $>$ }\\void \hyperlink{group__ParallelProcessing_ga53b7128ccb1cf52e5646440337ce4ece}{nifty\+::parallel\+::parallel\+\_\+foreach\+\_\+single\+\_\+thread} (I\+T\+E\+R begin, I\+T\+E\+R end, F \&\&f, const std\+::ptrdiff\+\_\+t n\+Items=0)
+\item 
+{\footnotesize template$<$class I\+T\+E\+R , class F $>$ }\\void \hyperlink{group__ParallelProcessing_ga505ac3d12ecde87341bce7b6f1027c88}{nifty\+::parallel\+::parallel\+\_\+foreach} (Thread\+Pool \&pool, I\+T\+E\+R begin, I\+T\+E\+R end, F \&\&f, const std\+::ptrdiff\+\_\+t n\+Items=0)
+\begin{DoxyCompactList}\small\item\em Apply a functor to all items in a range in parallel. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class I\+T\+E\+R , class F $>$ }\\void \hyperlink{group__ParallelProcessing_gae081bc77f03a070b9fe0f97966949f58}{nifty\+::parallel\+::parallel\+\_\+foreach} (int64\+\_\+t n\+Threads, I\+T\+E\+R begin, I\+T\+E\+R end, F \&\&f, const std\+::ptrdiff\+\_\+t n\+Items=0)
+\item 
+{\footnotesize template$<$class F $>$ }\\void \hyperlink{group__ParallelProcessing_ga900cd2b90fda714e21082d5ba897f240}{nifty\+::parallel\+::parallel\+\_\+foreach} (int64\+\_\+t n\+Threads, std\+::ptrdiff\+\_\+t n\+Items, F \&\&f)
+\item 
+{\footnotesize template$<$class F $>$ }\\void \hyperlink{group__ParallelProcessing_gaf78ef995aaa44624da018033fd03beeb}{nifty\+::parallel\+::parallel\+\_\+foreach} (Thread\+Pool \&threadpool, std\+::ptrdiff\+\_\+t n\+Items, F \&\&f)
+\item 
+\hyperlink{group__ParallelProcessing_ga77c519ec32559623c64d61f532c570b8}{nifty\+::parallel\+::\+Thread\+Pool\+::$\sim$\+Thread\+Pool} ()
+\item 
+{\footnotesize template$<$class F $>$ }\\std\+::future$<$ typename std\+::result\+\_\+of$<$ F(int)$>$\+::type $>$ \hyperlink{group__ParallelProcessing_ga5ffeb64ca8f60c37ad2db97bf80b05af}{nifty\+::parallel\+::\+Thread\+Pool\+::enqueue\+Returning} (F \&\&f)
+\item 
+{\footnotesize template$<$class F $>$ }\\std\+::future$<$ void $>$ \hyperlink{group__ParallelProcessing_ga030f79847ecd6a609877dd5f997ac875}{nifty\+::parallel\+::\+Thread\+Pool\+::enqueue} (F \&\&f)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Function Documentation}
+\hypertarget{group__ParallelProcessing_ga030f79847ecd6a609877dd5f997ac875}{}\index{Functions and classes for parallel processing.@{Functions and classes for parallel processing.}!enqueue@{enqueue}}
+\index{enqueue@{enqueue}!Functions and classes for parallel processing.@{Functions and classes for parallel processing.}}
+\subsubsection[{enqueue(\+F \&\&f)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class F $>$ std\+::future$<$ void $>$ nifty\+::parallel\+::\+Thread\+Pool\+::enqueue (
+\begin{DoxyParamCaption}
+\item[{F \&\&}]{f}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{group__ParallelProcessing_ga030f79847ecd6a609877dd5f997ac875}
+Enqueue function for tasks without return value. This is a special case of the enqueue\+Returning template function, but some compilers fail on {\ttfamily std\+::result\+\_\+of$<$\+F(int)$>$\+::type} for void(int) functions. \hypertarget{group__ParallelProcessing_ga5ffeb64ca8f60c37ad2db97bf80b05af}{}\index{Functions and classes for parallel processing.@{Functions and classes for parallel processing.}!enqueue\+Returning@{enqueue\+Returning}}
+\index{enqueue\+Returning@{enqueue\+Returning}!Functions and classes for parallel processing.@{Functions and classes for parallel processing.}}
+\subsubsection[{enqueue\+Returning(\+F \&\&f)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class F $>$ std\+::future$<$ typename std\+::result\+\_\+of$<$ F(int)$>$\+::type $>$ nifty\+::parallel\+::\+Thread\+Pool\+::enqueue\+Returning (
+\begin{DoxyParamCaption}
+\item[{F \&\&}]{f}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{group__ParallelProcessing_ga5ffeb64ca8f60c37ad2db97bf80b05af}
+Enqueue a task that will be executed by the thread pool. The task result can be obtained using the get() function of the returned future. If the task throws an exception, it will be raised on the call to get(). \hypertarget{group__ParallelProcessing_ga505ac3d12ecde87341bce7b6f1027c88}{}\index{Functions and classes for parallel processing.@{Functions and classes for parallel processing.}!parallel\+\_\+foreach@{parallel\+\_\+foreach}}
+\index{parallel\+\_\+foreach@{parallel\+\_\+foreach}!Functions and classes for parallel processing.@{Functions and classes for parallel processing.}}
+\subsubsection[{parallel\+\_\+foreach(\+Thread\+Pool \&pool, I\+T\+E\+R begin, I\+T\+E\+R end, F \&\&f, const std\+::ptrdiff\+\_\+t n\+Items=0)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class I\+T\+E\+R , class F $>$ void nifty\+::parallel\+::parallel\+\_\+foreach (
+\begin{DoxyParamCaption}
+\item[{{\bf Thread\+Pool} \&}]{pool, }
+\item[{I\+T\+E\+R}]{begin, }
+\item[{I\+T\+E\+R}]{end, }
+\item[{F \&\&}]{f, }
+\item[{const std\+::ptrdiff\+\_\+t}]{n\+Items = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{group__ParallelProcessing_ga505ac3d12ecde87341bce7b6f1027c88}
+
+
+Apply a functor to all items in a range in parallel. 
+
+Create a thread pool (or use an existing one) to apply the functor \begin{DoxyItemize}
+\item f to all items in the range {\ttfamily \mbox{[}begin, end)} in parallel. \item f must be callable with two arguments of type {\ttfamily size\+\_\+t} and {\ttfamily T}, where the first argument is the thread index (starting at 0) and T is convertible from the iterator\textquotesingle{}s {\ttfamily reference\+\_\+type} (i.\+e. the result of {\ttfamily $\ast$begin}).\end{DoxyItemize}
+If the iterators are forward iterators ({\ttfamily std\+::forward\+\_\+iterator\+\_\+tag}), you can provide the optional argument {\ttfamily n\+Items} to avoid the a {\ttfamily std\+::distance(begin, end)} call to compute the range\textquotesingle{}s length.
+
+Parameter {\ttfamily n\+Threads} controls the number of threads. {\ttfamily parallel\+\_\+foreach} will split the work into about three times as many parallel tasks. If {\ttfamily n\+Threads = \hyperlink{classnifty_1_1parallel_1_1ParallelOptions_a7a945e8bd698883de4af0f906b2aa88aa0bd8f9fd00d78fcfdcb6ee1575f43fd6}{Parallel\+Options\+::\+Auto}}, the number of threads is set to the machine default ({\ttfamily std\+::thread\+::hardware\+\_\+concurrency()}).
+
+If {\ttfamily n\+Threads = 0}, the function will not use threads, but will call the functor sequentially. This can also be enforced by setting the preprocessor flag {\ttfamily N\+I\+F\+T\+Y\+\_\+\+N\+O\+\_\+\+P\+A\+R\+A\+L\+L\+E\+L\+I\+S\+M}, ignoring the value of {\ttfamily n\+Threads} (useful for debugging).
+
+{\bfseries  Declarations\+:}
+
+
+\begin{DoxyCode}
+\textcolor{keyword}{namespace }\hyperlink{namespacenifty}{nifty} \{
+\textcolor{keyword}{namespace }parallel\{
+    \textcolor{comment}{// pass the desired number of threads or ParallelOptions::Auto}
+    \textcolor{comment}{// (creates an internal thread pool accordingly)}
+    \textcolor{keyword}{template}<\textcolor{keyword}{class} ITER, \textcolor{keyword}{class} F>
+    \textcolor{keywordtype}{void} \hyperlink{group__ParallelProcessing_ga505ac3d12ecde87341bce7b6f1027c88}{parallel\_foreach}(int64\_t nThreads,
+                          ITER begin, ITER end,
+                          F && f,
+                          \textcolor{keyword}{const} uint64\_t nItems = 0);
+
+    \textcolor{comment}{// use an existing thread pool}
+    \textcolor{keyword}{template}<\textcolor{keyword}{class} ITER, \textcolor{keyword}{class} F>
+    \textcolor{keywordtype}{void} \hyperlink{group__ParallelProcessing_ga505ac3d12ecde87341bce7b6f1027c88}{parallel\_foreach}(ThreadPool & pool,
+                          ITER begin, ITER end,
+                          F && f,
+                          \textcolor{keyword}{const} uint64\_t nItems = 0);
+
+    \textcolor{comment}{// pass the integers from 0 ... (nItems-1) to the functor f,}
+    \textcolor{comment}{// using the given number of threads or ParallelOptions::Auto}
+    \textcolor{keyword}{template}<\textcolor{keyword}{class} F>
+    \textcolor{keywordtype}{void} \hyperlink{group__ParallelProcessing_ga505ac3d12ecde87341bce7b6f1027c88}{parallel\_foreach}(int64\_t nThreads,
+                          uint64\_t nItems,
+                          F && f);
+
+    \textcolor{comment}{// likewise with an existing thread pool}
+    \textcolor{keyword}{template}<\textcolor{keyword}{class} F>
+    \textcolor{keywordtype}{void} \hyperlink{group__ParallelProcessing_ga505ac3d12ecde87341bce7b6f1027c88}{parallel\_foreach}(ThreadPool & threadpool,
+                          uint64\_t nItems,
+                          F && f);
+\}
+\}
+\end{DoxyCode}
+
+
+{\bfseries Usage\+:}
+
+
+\begin{DoxyCode}
+\textcolor{preprocessor}{#include <iostream>}
+\textcolor{preprocessor}{#include <algorithm>}
+\textcolor{preprocessor}{#include <vector>}
+\textcolor{preprocessor}{#include <\hyperlink{threadpool_8hxx}{nifty/parallel/threadpool.hxx}>}
+
+\textcolor{keyword}{using namespace }std;
+\textcolor{keyword}{using namespace }\hyperlink{namespacenifty_1_1parallel}{nifty::parallel};
+
+\textcolor{keywordtype}{int} main()
+\{
+    \textcolor{keywordtype}{size\_t} \textcolor{keyword}{const} n\_threads = 4;
+    \textcolor{keywordtype}{size\_t} \textcolor{keyword}{const} n = 2000;
+    vector<int> input(n);
+
+    \textcolor{keyword}{auto} iter = input.begin(),
+         end  = input.end();
+
+    \textcolor{comment}{// fill input with 0, 1, 2, ...}
+    iota(iter, end, 0);
+
+    \textcolor{comment}{// compute the sum of the elements in the input vector.}
+    \textcolor{comment}{// (each thread computes the partial sum of the items it sees}
+    \textcolor{comment}{//  and stores the sum at the appropriate index of 'results')}
+    vector<int> results(n\_threads, 0);
+    \hyperlink{group__ParallelProcessing_ga505ac3d12ecde87341bce7b6f1027c88}{parallel\_foreach}(n\_threads, iter, end,
+        \textcolor{comment}{// the functor to be executed, defined as a lambda function}
+        \textcolor{comment}{// (first argument: thread ID, second argument: result of *iter)}
+        [&results](\textcolor{keywordtype}{size\_t} thread\_id, \textcolor{keywordtype}{int} items)
+        \{
+            results[thread\_id] += items;
+        \}
+    );
+
+    \textcolor{comment}{// collect the partial sums of all threads}
+    \textcolor{keywordtype}{int} sum = accumulate(results.begin(), results.end(), 0);
+
+    cout << \textcolor{stringliteral}{"The sum "} << sum << \textcolor{stringliteral}{" should be equal to "} << (n*(n-1))/2 << endl;
+\}
+\end{DoxyCode}
+ \hypertarget{group__ParallelProcessing_gae081bc77f03a070b9fe0f97966949f58}{}\index{Functions and classes for parallel processing.@{Functions and classes for parallel processing.}!parallel\+\_\+foreach@{parallel\+\_\+foreach}}
+\index{parallel\+\_\+foreach@{parallel\+\_\+foreach}!Functions and classes for parallel processing.@{Functions and classes for parallel processing.}}
+\subsubsection[{parallel\+\_\+foreach(int64\+\_\+t n\+Threads, I\+T\+E\+R begin, I\+T\+E\+R end, F \&\&f, const std\+::ptrdiff\+\_\+t n\+Items=0)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class I\+T\+E\+R , class F $>$ void nifty\+::parallel\+::parallel\+\_\+foreach (
+\begin{DoxyParamCaption}
+\item[{int64\+\_\+t}]{n\+Threads, }
+\item[{I\+T\+E\+R}]{begin, }
+\item[{I\+T\+E\+R}]{end, }
+\item[{F \&\&}]{f, }
+\item[{const std\+::ptrdiff\+\_\+t}]{n\+Items = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{group__ParallelProcessing_gae081bc77f03a070b9fe0f97966949f58}
+\hypertarget{group__ParallelProcessing_ga900cd2b90fda714e21082d5ba897f240}{}\index{Functions and classes for parallel processing.@{Functions and classes for parallel processing.}!parallel\+\_\+foreach@{parallel\+\_\+foreach}}
+\index{parallel\+\_\+foreach@{parallel\+\_\+foreach}!Functions and classes for parallel processing.@{Functions and classes for parallel processing.}}
+\subsubsection[{parallel\+\_\+foreach(int64\+\_\+t n\+Threads, std\+::ptrdiff\+\_\+t n\+Items, F \&\&f)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class F $>$ void nifty\+::parallel\+::parallel\+\_\+foreach (
+\begin{DoxyParamCaption}
+\item[{int64\+\_\+t}]{n\+Threads, }
+\item[{std\+::ptrdiff\+\_\+t}]{n\+Items, }
+\item[{F \&\&}]{f}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{group__ParallelProcessing_ga900cd2b90fda714e21082d5ba897f240}
+\hypertarget{group__ParallelProcessing_gaf78ef995aaa44624da018033fd03beeb}{}\index{Functions and classes for parallel processing.@{Functions and classes for parallel processing.}!parallel\+\_\+foreach@{parallel\+\_\+foreach}}
+\index{parallel\+\_\+foreach@{parallel\+\_\+foreach}!Functions and classes for parallel processing.@{Functions and classes for parallel processing.}}
+\subsubsection[{parallel\+\_\+foreach(\+Thread\+Pool \&threadpool, std\+::ptrdiff\+\_\+t n\+Items, F \&\&f)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class F $>$ void nifty\+::parallel\+::parallel\+\_\+foreach (
+\begin{DoxyParamCaption}
+\item[{{\bf Thread\+Pool} \&}]{threadpool, }
+\item[{std\+::ptrdiff\+\_\+t}]{n\+Items, }
+\item[{F \&\&}]{f}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{group__ParallelProcessing_gaf78ef995aaa44624da018033fd03beeb}
+\hypertarget{group__ParallelProcessing_ga7604490d8cf7a5b53de4477c866c8b86}{}\index{Functions and classes for parallel processing.@{Functions and classes for parallel processing.}!parallel\+\_\+foreach\+\_\+impl@{parallel\+\_\+foreach\+\_\+impl}}
+\index{parallel\+\_\+foreach\+\_\+impl@{parallel\+\_\+foreach\+\_\+impl}!Functions and classes for parallel processing.@{Functions and classes for parallel processing.}}
+\subsubsection[{parallel\+\_\+foreach\+\_\+impl(\+Thread\+Pool \&pool, const std\+::ptrdiff\+\_\+t n\+Items, I\+T\+E\+R iter, I\+T\+E\+R end, F \&\&f, std\+::random\+\_\+access\+\_\+iterator\+\_\+tag)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class I\+T\+E\+R , class F $>$ void nifty\+::parallel\+::parallel\+\_\+foreach\+\_\+impl (
+\begin{DoxyParamCaption}
+\item[{{\bf Thread\+Pool} \&}]{pool, }
+\item[{const std\+::ptrdiff\+\_\+t}]{n\+Items, }
+\item[{I\+T\+E\+R}]{iter, }
+\item[{I\+T\+E\+R}]{end, }
+\item[{F \&\&}]{f, }
+\item[{std\+::random\+\_\+access\+\_\+iterator\+\_\+tag}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{group__ParallelProcessing_ga7604490d8cf7a5b53de4477c866c8b86}
+\hypertarget{group__ParallelProcessing_gab81648beb53aff67df1822f993b49ad1}{}\index{Functions and classes for parallel processing.@{Functions and classes for parallel processing.}!parallel\+\_\+foreach\+\_\+impl@{parallel\+\_\+foreach\+\_\+impl}}
+\index{parallel\+\_\+foreach\+\_\+impl@{parallel\+\_\+foreach\+\_\+impl}!Functions and classes for parallel processing.@{Functions and classes for parallel processing.}}
+\subsubsection[{parallel\+\_\+foreach\+\_\+impl(\+Thread\+Pool \&pool, const std\+::ptrdiff\+\_\+t n\+Items, I\+T\+E\+R iter, I\+T\+E\+R end, F \&\&f, std\+::forward\+\_\+iterator\+\_\+tag)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class I\+T\+E\+R , class F $>$ void nifty\+::parallel\+::parallel\+\_\+foreach\+\_\+impl (
+\begin{DoxyParamCaption}
+\item[{{\bf Thread\+Pool} \&}]{pool, }
+\item[{const std\+::ptrdiff\+\_\+t}]{n\+Items, }
+\item[{I\+T\+E\+R}]{iter, }
+\item[{I\+T\+E\+R}]{end, }
+\item[{F \&\&}]{f, }
+\item[{std\+::forward\+\_\+iterator\+\_\+tag}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{group__ParallelProcessing_gab81648beb53aff67df1822f993b49ad1}
+\hypertarget{group__ParallelProcessing_ga402d9e45f8edf065e6775e76a447f72e}{}\index{Functions and classes for parallel processing.@{Functions and classes for parallel processing.}!parallel\+\_\+foreach\+\_\+impl@{parallel\+\_\+foreach\+\_\+impl}}
+\index{parallel\+\_\+foreach\+\_\+impl@{parallel\+\_\+foreach\+\_\+impl}!Functions and classes for parallel processing.@{Functions and classes for parallel processing.}}
+\subsubsection[{parallel\+\_\+foreach\+\_\+impl(\+Thread\+Pool \&pool, const std\+::ptrdiff\+\_\+t n\+Items, I\+T\+E\+R iter, I\+T\+E\+R end, F \&\&f, std\+::input\+\_\+iterator\+\_\+tag)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class I\+T\+E\+R , class F $>$ void nifty\+::parallel\+::parallel\+\_\+foreach\+\_\+impl (
+\begin{DoxyParamCaption}
+\item[{{\bf Thread\+Pool} \&}]{pool, }
+\item[{const std\+::ptrdiff\+\_\+t}]{n\+Items, }
+\item[{I\+T\+E\+R}]{iter, }
+\item[{I\+T\+E\+R}]{end, }
+\item[{F \&\&}]{f, }
+\item[{std\+::input\+\_\+iterator\+\_\+tag}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{group__ParallelProcessing_ga402d9e45f8edf065e6775e76a447f72e}
+\hypertarget{group__ParallelProcessing_ga53b7128ccb1cf52e5646440337ce4ece}{}\index{Functions and classes for parallel processing.@{Functions and classes for parallel processing.}!parallel\+\_\+foreach\+\_\+single\+\_\+thread@{parallel\+\_\+foreach\+\_\+single\+\_\+thread}}
+\index{parallel\+\_\+foreach\+\_\+single\+\_\+thread@{parallel\+\_\+foreach\+\_\+single\+\_\+thread}!Functions and classes for parallel processing.@{Functions and classes for parallel processing.}}
+\subsubsection[{parallel\+\_\+foreach\+\_\+single\+\_\+thread(\+I\+T\+E\+R begin, I\+T\+E\+R end, F \&\&f, const std\+::ptrdiff\+\_\+t n\+Items=0)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class I\+T\+E\+R , class F $>$ void nifty\+::parallel\+::parallel\+\_\+foreach\+\_\+single\+\_\+thread (
+\begin{DoxyParamCaption}
+\item[{I\+T\+E\+R}]{begin, }
+\item[{I\+T\+E\+R}]{end, }
+\item[{F \&\&}]{f, }
+\item[{const std\+::ptrdiff\+\_\+t}]{n\+Items = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{group__ParallelProcessing_ga53b7128ccb1cf52e5646440337ce4ece}
+\hypertarget{group__ParallelProcessing_ga77c519ec32559623c64d61f532c570b8}{}\index{Functions and classes for parallel processing.@{Functions and classes for parallel processing.}!````~Thread\+Pool@{$\sim$\+Thread\+Pool}}
+\index{````~Thread\+Pool@{$\sim$\+Thread\+Pool}!Functions and classes for parallel processing.@{Functions and classes for parallel processing.}}
+\subsubsection[{$\sim$\+Thread\+Pool()}]{\setlength{\rightskip}{0pt plus 5cm}nifty\+::parallel\+::\+Thread\+Pool\+::$\sim$\+Thread\+Pool (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{group__ParallelProcessing_ga77c519ec32559623c64d61f532c570b8}
+The destructor joins all threads. 

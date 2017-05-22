@@ -54,9 +54,9 @@ namespace lifted_multicut{
         typedef typename ObjectiveType::GraphType GraphType;
         typedef typename ObjectiveType::LiftedGraphType LiftedGraphType;
         
-        typedef typename BaseType::VisitorBase VisitorBase;
-        typedef typename BaseType::VisitorProxy VisitorProxy;
-        typedef typename BaseType::NodeLabels NodeLabels;
+        typedef typename BaseType::VisitorBaseType VisitorBaseType;
+        typedef typename BaseType::VisitorProxyType VisitorProxyType;
+        typedef typename BaseType::NodeLabelsType NodeLabelsType;
 
         typedef ProposalGeneratorBase<ObjectiveType> ProposalGeneratorBaseType;
         typedef ProposalGeneratorFactoryBase<ObjectiveType> ProposalGeneratorFactoryBaseType;
@@ -82,7 +82,7 @@ namespace lifted_multicut{
 
         virtual ~FusionMoveBased();
         FusionMoveBased(const ObjectiveType & objective, const Settings & settings = Settings());
-        virtual void optimize(NodeLabels & nodeLabels, VisitorBase * visitor);
+        virtual void optimize(NodeLabelsType & nodeLabels, VisitorBaseType * visitor);
         virtual const ObjectiveType & objective() const;
 
 
@@ -92,7 +92,7 @@ namespace lifted_multicut{
  
 
 
-        virtual const NodeLabels & currentBestNodeLabels( ){
+        virtual const NodeLabelsType & currentBestNodeLabels( ){
             return *currentBest_;
         }
 
@@ -102,15 +102,15 @@ namespace lifted_multicut{
 
 
     private:
-        virtual void optimizeSingleThread(VisitorProxy & visitorProxy);
-        virtual void optimizeMultiThread(VisitorProxy & visitorProxy);
+        virtual void optimizeSingleThread(VisitorProxyType & visitorProxy);
+        virtual void optimizeMultiThread(VisitorProxyType & visitorProxy);
 
 
         const ObjectiveType & objective_;
         Settings settings_;
         const GraphType & graph_;
         const LiftedGraphType & liftedGraph_;
-        NodeLabels * currentBest_;
+        NodeLabelsType * currentBest_;
         double currentBestEnergy_;
 
         nifty::parallel::ParallelOptions parallelOptions_;
@@ -177,7 +177,7 @@ namespace lifted_multicut{
     template<class OBJECTIVE>
     void FusionMoveBased<OBJECTIVE>::
     optimize(
-        NodeLabels & nodeLabels,  VisitorBase * visitor
+        NodeLabelsType & nodeLabels,  VisitorBaseType * visitor
     ){
         
         // set starting point as current best
@@ -186,7 +186,7 @@ namespace lifted_multicut{
 
 
 
-        VisitorProxy visitorProxy(visitor);
+        VisitorProxyType visitorProxy(visitor);
         visitorProxy.begin(this);
 
 
@@ -204,9 +204,9 @@ namespace lifted_multicut{
     template<class OBJECTIVE>
     void FusionMoveBased<OBJECTIVE>::
     optimizeSingleThread(
-        VisitorProxy & visitorProxy
+        VisitorProxyType & visitorProxy
     ){
-        NodeLabels proposal(graph_);
+        NodeLabelsType proposal(graph_);
         auto iterWithoutImprovement = 0;
 
         for(auto iteration=0; iteration<settings_.numberOfIterations; ++iteration){
@@ -226,7 +226,7 @@ namespace lifted_multicut{
                 currentBestEnergy_  = objective_.evalNodeLabels(*currentBest_);
             }
             else{
-                NodeLabels res(graph_);
+                NodeLabelsType res(graph_);
                 auto & fm = *(fusionMoves_[0]);
                 fm.fuse( {&proposal, currentBest_}, &res);
                 auto eFuse = objective_.evalNodeLabels(res);
@@ -252,7 +252,7 @@ namespace lifted_multicut{
     template<class OBJECTIVE>
     void FusionMoveBased<OBJECTIVE>::
     optimizeMultiThread(
-        VisitorProxy & visitorProxy
+        VisitorProxyType & visitorProxy
     ){
         NIFTY_CHECK(false, "currently only single thread is implemented");
     }

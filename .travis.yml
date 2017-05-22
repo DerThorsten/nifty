@@ -1,122 +1,102 @@
-language: cpp
+language: python
 dist: trusty
 sudo: required
-cache:
-  directories:
-  - $HOME/.cache/pip
+
+# we try to avoid to use
+# the travis addon mechanism
+# and use conda instead
 addons:
   apt:
     sources:
       - ubuntu-toolchain-r-test
       - deadsnakes
-      #- boost-latest/ppa
-      #- george-edison55/precise-backports #cmake-3.x
-      #- kubuntu-backports # cmake 2.8.12
     packages:
-      - g++-4.8
-      - g++-4.8-multilib
-      - gcc-6
-      - g++-6
-      - g++-multilib
-      - python-nose
-      - python3-nose
-      - python3.5
-      - python3.5-dev
-      - python3.5-venv
-      - libhdf5-serial-dev
-      - libboost-all-dev
-      - libglpk-dev
       - cmake
-      - libboost-test-dev 
-      ## 
-#before_script:
-#  - wget https://github.com/wjakob/pybind11/archive/master.zip
-#  - unzip master.zip -d .
-#  #
-matrix:
-  include:
-    - os: linux
-      compiler: gcc
-      script:
 
 
-        # Link gcc-6 and g++-6 to their standard commands
-        - sudo ln -s /usr/bin/gcc-6 /usr/local/bin/gcc
-        - sudo ln -s /usr/bin/g++-6 /usr/local/bin/g++
-        # Export CC and CXX to tell cmake which compiler to use
-        - export CC=/usr/bin/gcc-6
-        - export CXX=/usr/bin/g++-6
-        # Check versions of gcc, g++ and cmake
-        - gcc -v && g++ -v && cmake --version
+python:
+  # We don't actually use the Travis Python, but this keeps it organized.
+  - "2.7"
+  - "3.5"
+  - "3.6"
+install:
+  - sudo apt-get update
+  # We do this conditionally because it saves us some downloading if the
+  # version is the same.
+  - if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
+      wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O miniconda.sh;
+    else
+      wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
+    fi
+  - bash miniconda.sh -b -p $HOME/miniconda
+  - export PATH="$HOME/miniconda/bin:$PATH"
+  - hash -r
+  - conda config --set always_yes yes --set changeps1 no
+  - conda update -q conda
+  # Useful for debugging any issues with conda
+  - conda info -a
 
+  # create an environment and install dependencies
+  # In this build we try to add all optional dependencies we can
+  # to get a 'complete' build (TODO, also try a minimal build)
+  - conda create -q -n dev python=$TRAVIS_PYTHON_VERSION numpy nose boost hdf5
+  - source activate dev
+  - conda install -c rdonnelly gcc-6=6.1.0 -v
+  - conda install -c conda-forge glpk
+  # for a python 2.7 we need concurrent futures
+  - if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
+      conda install futures;
+    fi
+  #- python setup.py install
 
-        - pyvenv-3.5 venv
-<<<<<<< HEAD
-        - cmake -DWITHIN_TRAVIS=ON -DWITH_GLPK=ON -DWITH_HDF5=ON  -DBUILD_CPP_TEST=ON -DBUILD_NIFTY_PYTHON=ON -DPYBIND11_PYTHON_VERSION=3.5 -DPYTHON_INCLUDE_DIR:PATH=/usr/include/python3.5m -DPYTHON_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libpython3.5m.so -DPYTHON_EXECUTABLE:FILEPATH=`pwd`/venv/bin/python3.5 
-        #- cmake -DWITHIN_TRAVIS=ON -DWITH_GLPK=ON -DWITH_HDF5=ON  -DBUILD_CPP_TEST=ON -DBUILD_NIFTY_PYTHON=ON -DPYBIND_ELEVEN_INCLUDE_DIR=pybind11-master/include -DCMAKE_CXX_COMPILER=g++-4.8 -DPYBIND11_PYTHON_VERSION=3.5 -DPYTHON_INCLUDE_DIR:PATH=/usr/include/python3.5m -DPYTHON_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libpython3.5m.so -DPYTHON_EXECUTABLE:FILEPATH=`pwd`/venv/bin/python3.5 
-=======
-        - source venv/bin/activate
-        - pip install numpy
-        - pip install nose
-        - cmake -DWITHIN_TRAVIS=ON -DBUILD_CPP_TEST=ON -DBUILD_PYTHON_TEST=ON -DWITH_GLPK=ON -DWITH_HDF5=ON -DBUILD_NIFTY_PYTHON=ON -DPYBIND11_PYTHON_VERSION=3.5 -DPYTHON_INCLUDE_DIR:PATH=/usr/include/python3.5m -DPYTHON_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libpython3.5m.so -DPYTHON_EXECUTABLE:FILEPATH=`pwd`/venv/bin/python3.5 
-        #- cmake -DWITHIN_TRAVIS=ON -DBUILD_CPP_TEST=ON -DBUILD_PYTHON_TEST=ON -DWITH_GLPK=ON -DWITH_HDF5=ON -DBUILD_NIFTY_PYTHON=ON -DPYBIND_ELEVEN_INCLUDE_DIR=pybind11-master/include -DCMAKE_CXX_COMPILER=g++-4.8 -DPYBIND11_PYTHON_VERSION=3.5 -DPYTHON_INCLUDE_DIR:PATH=/usr/include/python3.5m -DPYTHON_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libpython3.5m.so -DPYTHON_EXECUTABLE:FILEPATH=`pwd`/venv/bin/python3.5 
+script:
+  #- chmod +x /home/travis/miniconda/envs/dev/bin/sh
+  #- chmod +x /home/travis/miniconda/envs/dev/bin/nosetests
+  # Your test script goes here
+  - export PATH="$HOME/miniconda/bin:$PATH"
+  - source activate dev
+  - export ENV_ROOT="$HOME/miniconda/envs/dev"
+  - export ENV_INCLUDE="$ENV_ROOT/include"
+  - export ENV_BIN="$ENV_ROOT/bin"
+  # 
+  # configure cmake
+  - cmake -DWITHIN_TRAVIS=ON 
+          -DWITH_QPBO=ON
+          -DWITH_HDF5=OFF
+          -DWITH_QPBO=ON
+          -DWITH_GLPK=OFF 
+          -DWITH_CPLEX=OFF 
+          -DWITH_GUROBI=OFF
+          -DBUILD_CPP_TEST=OFF 
+          -DBUILD_PYTHON_TEST=ON 
+          -DBUILD_NIFTY_PYTHON=ON 
+          -DNOSETESTS_PATH=$ENV_BIN 
+          -DHDF5_INCLUDE_DIR=$ENV_INCLUDE 
+          -DGLPK_INCLUDE_DIR=$ENV_INCLUDE 
+          -DBoost_INCLUDE_DIR=$ENV_INCLUDE 
+          -DCMAKE_CXX_COMPILER=$ENV_BIN/g++ 
+          -DPYTHON_EXECUTABLE=$ENV_BIN/python$TRAVIS_PYTHON_VERSION
+          -DPYTHON_MODULE_INSTALL_DIR=/home/travis/miniconda/envs/dev/lib/python$TRAVIS_PYTHON_VERSION/site-packages/
+  #
+  # build everything
+  - make -j 2
 
->>>>>>> master
-        - make -j2
-        - CTEST_OUTPUT_ON_FAILURE=TRUE make test
-        - sudo make install
-        - pip install numpy
-        - pip install nose
-        - cd python
-        - cd nifty
-        - ls
-        - cd ../..
-        #- make python-test
-        - CTEST_OUTPUT_ON_FAILURE=TRUE make test
-        # 
+  # install the probject
+  - sudo make install
+  - cd src/python/test
+  # this is a fucked up way of running python test
+  # pls, if someone could fix this =)
+  - nosetests  cgp/*.py
+  - nosetests  graph/lifted_multicut/*.py
+  - nosetests  graph/multicut/*.py
+  - nosetests  graph/mincut/*.py
+  - nosetests  graph/agglo/*.py
+  - nosetests  hdf5/*.py
+  - nosetests  tools/*.py
+
+  # back to the root
+  - cd ../../..
   
-    # - os: linux
-    #   compiler: gcc
-    #   script:
-    #     - cmake -DWITHIN_TRAVIS=ON -DBUILD_CPP_TEST=ON -DBUILD_PYTHON_TEST=ON -DWITH_GLPK=ON -DWITH_HDF5=ON -DBUILD_NIFTY_PYTHON=ON -DPYTHON_EXECUTABLE:/usr/bin/python2.7 
-    #     - make -j2
-    #     - CTEST_OUTPUT_ON_FAILURE=TRUE make test
-        
-    #     - pip install numpy
-    #     - sudo make install
-    #     #- make python-test
-    #     - CTEST_OUTPUT_ON_FAILURE=TRUE make test
-
-
-
-
-    - os: linux
-      compiler: gcc-4.8
-      script:
-        - pyvenv-3.5 venv
-
-        - source venv/bin/activate
-        - pip install numpy
-        - cmake -DWITHIN_TRAVIS=ON -DBUILD_CPP_TEST=ON -DBUILD_PYTHON_TEST=ON -DWITH_GLPK=ON -DWITH_HDF5=ON -DBUILD_NIFTY_PYTHON=ON -DCMAKE_CXX_COMPILER=g++-4.8 -DPYBIND11_PYTHON_VERSION=3.5 -DPYTHON_INCLUDE_DIR:PATH=/usr/include/python3.5m -DPYTHON_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libpython3.5m.so -DPYTHON_EXECUTABLE:FILEPATH=`pwd`/venv/bin/python3.5 
-        #- cmake -DWITHIN_TRAVIS=ON -DBUILD_CPP_TEST=ON -DBUILD_PYTHON_TEST=ON -DWITH_GLPK=ON -DWITH_HDF5=ON -DBUILD_NIFTY_PYTHON=ON -DPYBIND_ELEVEN_INCLUDE_DIR=pybind11-master/include -DCMAKE_CXX_COMPILER=g++-4.8 -DPYBIND11_PYTHON_VERSION=3.5 -DPYTHON_INCLUDE_DIR:PATH=/usr/include/python3.5m -DPYTHON_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libpython3.5m.so -DPYTHON_EXECUTABLE:FILEPATH=`pwd`/venv/bin/python3.5 
-
-        - make -j2
-        - CTEST_OUTPUT_ON_FAILURE=TRUE make test
-        
-
-        - pip install numpy
-        - sudo make install
-        #- make python-test
-        - CTEST_OUTPUT_ON_FAILURE=TRUE make test
-
-
-    - os: osx
-      compiler: clang
-      script:
-
-
-        - cmake -DWITHIN_TRAVIS=ON -DBUILD_CPP_TEST=ON -DBUILD_PYTHON_TEST=ON -DWITH_GLPK=OFF -DBUILD_NIFTY_PYTHON=ON -DPYBIND_ELEVEN_INCLUDE_DIR=pybind11-master/include -DPYBIND11_PYTHON_VERSION=2.7
-        - make -j 2
-        - sudo make install
-        - CTEST_OUTPUT_ON_FAILURE=TRUE make test
-        #- make python-test
+  # run the python examples with nose?
+  - python src/python/examples/nifty_configuration.py
+  - python src/python/examples/graph/plot_edge_contraction_graph.py

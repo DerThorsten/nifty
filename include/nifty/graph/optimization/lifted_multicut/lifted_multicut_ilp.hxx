@@ -1,8 +1,5 @@
 #pragma once
-#ifndef NIFTY_GRAPH_OPTIMIZATION_LIFTED_MULTICUT_LIFTED_MULTICUT_ILP_HXX
-#define NIFTY_GRAPH_OPTIMIZATION_LIFTED_MULTICUT_LIFTED_MULTICUT_ILP_HXX
 
-#include "nifty/logging/logging.hxx"
 #include "nifty/tools/runtime_check.hxx"
 #include "nifty/graph/components.hxx"
 #include "nifty/graph/paths.hxx"
@@ -26,10 +23,10 @@ namespace lifted_multicut{
 
         typedef OBJECTIVE Objective;
         typedef LiftedMulticutBase<OBJECTIVE> Base;
-        typedef typename Base::VisitorBase VisitorBase;
-        typedef typename Base::VisitorProxy VisitorProxy;
-        typedef typename Base::EdgeLabels EdgeLabels;
-        typedef typename Base::NodeLabels NodeLabels;
+        typedef typename Base::VisitorBaseType VisitorBaseType;
+        typedef typename Base::VisitorProxyType VisitorProxyType;
+        //typedef typename Base::EdgeLabels EdgeLabels;
+        typedef typename Base::NodeLabelsType NodeLabelsType;
         typedef ILP_SOLVER IlpSovler;
         typedef typename IlpSovler::Settings IlpSettings;
         typedef typename Objective::Graph Graph;
@@ -87,11 +84,11 @@ namespace lifted_multicut{
         LiftedMulticutIlp(const Objective & objective, const Settings & settings = Settings());
 
 
-        virtual void optimize(NodeLabels & nodeLabels, VisitorBase * visitor);
+        virtual void optimize(NodeLabelsType & nodeLabels, VisitorBaseType * visitor);
         virtual const Objective & objective() const;
 
 
-        virtual const NodeLabels & currentBestNodeLabels( ){
+        virtual const NodeLabelsType & currentBestNodeLabels( ){
             return *currentBest_;
         }
 
@@ -123,10 +120,10 @@ namespace lifted_multicut{
         void initializeIlp();
 
 
-        void repairSolution(NodeLabels & nodeLabels);
+        void repairSolution(NodeLabelsType & nodeLabels);
 
 
-        size_t addViolatedInequalities(const bool searchForCutConstraitns, VisitorProxy & visitor);
+        size_t addViolatedInequalities(const bool searchForCutConstraitns, VisitorProxyType & visitor);
         void addThreeCyclesConstraintsExplicitly();
 
         const Objective & objective_;
@@ -144,7 +141,7 @@ namespace lifted_multicut{
         Settings settings_;
         std::vector<size_t> variables_;
         std::vector<double> coefficients_;
-        NodeLabels * currentBest_;
+        NodeLabelsType * currentBest_;
         size_t addedConstraints_;
         size_t numberOfOptRuns_;
     };
@@ -196,11 +193,11 @@ namespace lifted_multicut{
     template<class OBJECTIVE, class ILP_SOLVER>
     void LiftedMulticutIlp<OBJECTIVE, ILP_SOLVER>::
     optimize(
-        NodeLabels & nodeLabels,  VisitorBase * visitor
+        NodeLabelsType & nodeLabels,  VisitorBaseType * visitor
     ){  
 
         // std::cout << "LiftedMulticutIlp::optimize: Start\n";
-        VisitorProxy visitorProxy(visitor);
+        VisitorProxyType visitorProxy(visitor);
 
         visitorProxy.addLogNames({"violatedCycleConstraints","violatedCutConstraints"});
         currentBest_ = &nodeLabels;
@@ -287,7 +284,7 @@ namespace lifted_multicut{
     size_t LiftedMulticutIlp<OBJECTIVE, ILP_SOLVER>::
     addViolatedInequalities(
         const bool searchForCutConstraitns,
-        VisitorProxy & visitorProxy
+        VisitorProxyType & visitorProxy
     ){
         // std::cout << "LiftedMulticutIlp::addViolatedInequalities: Start\n";
         const auto graphSubgraphWithCutTakeUncut = GraphSubgraphWithCut<true >(objective_, *ilpSolver_, denseIds_);
@@ -399,7 +396,7 @@ namespace lifted_multicut{
     template<class OBJECTIVE, class ILP_SOLVER>
     void LiftedMulticutIlp<OBJECTIVE, ILP_SOLVER>::
     repairSolution(
-        NodeLabels & nodeLabels
+        NodeLabelsType & nodeLabels
     ){
         if(graph_.numberOfEdges()!= 0 ){
             for (auto node: graph_.nodes()){
@@ -495,4 +492,3 @@ namespace lifted_multicut{
 } // namespace nifty::graph
 } // namespace nifty
 
-#endif  // NIFTY_GRAPH_OPTIMIZATION_MULTICUT_MULTICUT_ILP_HXX
