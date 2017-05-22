@@ -1,4 +1,5 @@
 from __future__ import absolute_import
+from .._graph import *
 from ._rag import *
 from .. import Configuration
 
