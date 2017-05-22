@@ -8,8 +8,6 @@ from . optimization import multicut
 from . optimization import lifted_multicut
 from . optimization import mincut
 
-from . import rag
-
 import numpy
 from functools import partial
 import types

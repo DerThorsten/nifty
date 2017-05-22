@@ -13,21 +13,16 @@ import time
 import sys
 
 from . import graph
-from . import ground_truth
 from . import tools
 from . import ufd
-
-from . import hdf5
-#from . import marray
-#from . import deep_learning
 
 
 class Timer:
     def __init__(self, name=None, verbose=True):
         """[summary]
-        
+
         [description]
-        
+
         Keyword Arguments:
             name {[type]} -- [description] (default: {None})
             verbose {bool} -- [description] (default: {True})
