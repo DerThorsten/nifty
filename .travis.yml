@@ -75,7 +75,7 @@ before_script:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]];  then
       echo 1;
     else
-        conda install -c rdonnelly gcc-6=6.1.0 -v;
+      conda install -c rdonnelly gcc-6=6.1.0 -v;
     fi
 
   # glpk
@@ -89,23 +89,24 @@ before_script:
 
 script:
 
+
   
-  # compiler to use
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]];  then
-      export CONDA_PYTHON_VERSION=3.5;
-      export COMPILER=$ENV_BIN/clang;
-    else
-      export COMPILER=$ENV_BIN/g++;
-    fi
-
-
 
   - export PATH="$HOME/miniconda/bin:$PATH"
   - source activate dev
   - export ENV_ROOT="$HOME/miniconda/envs/dev"
   - export ENV_INCLUDE="$ENV_ROOT/include"
   - export ENV_BIN="$ENV_ROOT/bin"
-  # 
+
+  
+  # compiler to use
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]];  then
+      export COMPILER=$ENV_BIN/clang;
+    else
+      export COMPILER=$ENV_BIN/g++;
+    fi
+
+
   # configure cmake
   - $ENV_BIN/cmake -DWITHIN_TRAVIS=ON 
           -DWITH_QPBO=ON
