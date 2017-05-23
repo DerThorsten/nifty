@@ -109,7 +109,7 @@ script:
   - source activate dev
   - export ENV_ROOT="$HOME/miniconda/envs/dev"
   - export ENV_INCLUDE="$ENV_ROOT/include"
-  - export ENV_BIN="$ENV_ROOT/bin"
+  - export ENV_BIN=$ENV_ROOT/bin
 
   
   ###############################################
