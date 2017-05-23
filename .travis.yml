@@ -81,7 +81,7 @@ before_script:
 
   # download compiler
   - if [[ "$COMPILER" == "clang" ]];  then
-      conda install -c gulag clang=3.3
+      conda install -c gulag clang=3.3;
     fi
   # 
   - if [[ "$TRAVIS_OS_NAME" == "osx"]  &&  ["$COMPILER" == "gcc"   ]];  then
