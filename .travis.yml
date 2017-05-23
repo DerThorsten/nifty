@@ -2,6 +2,32 @@ language: python
 dist: trusty
 sudo: required
 
+
+matrix:
+  include:
+    - os: linux
+      language: python
+      python: "2.7"
+    - os: linux
+      language: python
+      python: "3.2"
+    - os: linux
+      language: python
+      python: "3.5"
+    - os: linux
+      language: python
+      python: "3.6"
+
+    - os: osx
+      osx_image: xcode7.3
+      #python: "3.6"
+
+
+
+
+
+
+
 # we try to avoid to use
 # the travis addon mechanism
 # and use conda instead
@@ -16,19 +42,24 @@ addons:
 os:
   - linux
 
-python:
-  # We don't actually use the Travis Python, but this keeps it organized.
-  - "2.7"
-  - "3.5"
-  - "3.6"
+
 install:
   - sudo apt-get update
   # We do this conditionally because it saves us some downloading if the
   # version is the same.
-  - if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
-      wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O miniconda.sh;
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]];  then
+      export TRAVIS_PYTHON_VERSION=3.5
+      if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
+        wget https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O miniconda.sh;
+      else
+        wget https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O miniconda.sh;
+      fi
     else
-      wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
+      if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
+        wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O miniconda.sh;
+      else
+        wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
+      fi
     fi
   - bash miniconda.sh -b -p $HOME/miniconda
   - export PATH="$HOME/miniconda/bin:$PATH"
@@ -43,6 +74,11 @@ install:
   # to get a 'complete' build (TODO, also try a minimal build)
   - conda create -q -n dev python=$TRAVIS_PYTHON_VERSION numpy nose boost hdf5
   - source activate dev
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]];  then
+      # pass
+    else
+        conda install -c rdonnelly gcc-6=6.1.0 -v
+    fi
   - conda install -c rdonnelly gcc-6=6.1.0 -v
   - conda install -c conda-forge glpk
   # for a python 2.7 we need concurrent futures
@@ -55,6 +91,17 @@ script:
   #- chmod +x /home/travis/miniconda/envs/dev/bin/sh
   #- chmod +x /home/travis/miniconda/envs/dev/bin/nosetests
   # Your test script goes here
+  
+  # compiler to use
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]];  then
+      export TRAVIS_PYTHON_VERSION=3.5
+      export COMPILER=$ENV_BIN/clang 
+    else
+      export COMPILER=$ENV_BIN/g++ 
+    fi
+
+
+
   - export PATH="$HOME/miniconda/bin:$PATH"
   - source activate dev
   - export ENV_ROOT="$HOME/miniconda/envs/dev"
@@ -76,7 +123,7 @@ script:
           -DHDF5_INCLUDE_DIR=$ENV_INCLUDE 
           -DGLPK_INCLUDE_DIR=$ENV_INCLUDE 
           -DBoost_INCLUDE_DIR=$ENV_INCLUDE 
-          -DCMAKE_CXX_COMPILER=$ENV_BIN/g++ 
+          -DCMAKE_CXX_COMPILER=$COMPILER/ 
           -DPYTHON_EXECUTABLE=$ENV_BIN/python$TRAVIS_PYTHON_VERSION
           -DPYTHON_MODULE_INSTALL_DIR=/home/travis/miniconda/envs/dev/lib/python$TRAVIS_PYTHON_VERSION/site-packages/
   #
