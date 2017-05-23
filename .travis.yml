@@ -67,6 +67,7 @@ matrix:
         - make -j2
         - CTEST_OUTPUT_ON_FAILURE=TRUE make test
   
+  
     # python tests might not work here
     - os: linux
       compiler: gcc-4.8
