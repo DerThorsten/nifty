@@ -80,7 +80,7 @@ before_script:
   - conda install -c anaconda cmake=3.6.3
 
   # download compiler
-  - if   [ "$COMPILER" == "clang" ] ];  then
+  - if [[ "$COMPILER" == "clang" ] ];  then
       conda install -c statiskit clang=3.8.1;
     elif [[ "$TRAVIS_OS_NAME" == "osx"  &&  "$COMPILER" == "gcc"   ] ];  then
       conda install -c anaconda gcc=4.8.5;
