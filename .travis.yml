@@ -120,8 +120,8 @@ script:
   - if [[ "$COMPILER" == "gcc" ]];  then
       export COMPILER_PATH=$ENV_BIN/g++;
       export C_COMPILER_PATH=$ENV_BIN/gcc;
-      export CXX="$HOME/miniconda/env/dev/bin/g++";
-      export CC="$HOME/miniconda/env/dev/bin/gcc";
+      export CXX="$HOME/miniconda/envs/dev/bin/g++";
+      export CC="$HOME/miniconda/envs/dev/bin/gcc";
     else
       export COMPILER_PATH=$ENV_BIN/clang++;
       export C_COMPILER_PATH=$ENV_BIN/clang;
@@ -130,11 +130,13 @@ script:
     fi
   - echo "COMPILER PATH"
   - echo $COMPILER_PATH
-
+  - echo "C_COMPILER PATH"
+  - echo $C_COMPILER_PATH
   ###############################################
   # configure cmake
   ###############################################
   - $ENV_BIN/cmake 
+          -DCMAKE_CXX_COMPILER=
           -DWITHIN_TRAVIS=ON 
           -DWITH_QPBO=ON
           -DWITH_HDF5=OFF
