@@ -6,27 +6,31 @@ sudo: required
 matrix:
   include:
 
-    # - os: linux
-    #   language: python
-    #   python: "2.7"
-    # - os: linux
-    #   language: python
-    #   python: "3.2"
     - os: linux
       language: python
       python: "3.5"
       env: 
         - CONDA_PYTHON_VERSION=3.5
         - COMPILER=gcc
-    # - os: linux
-    #   language: python
-    #   python: "3.6"
+
+    - os: linux
+      language: python
+      python: "3.5"
+      env: 
+        - CONDA_PYTHON_VERSION=3.5
+        - COMPILER=clang
 
     - os: osx
       osx_image: xcode7.3
       env: 
         - CONDA_PYTHON_VERSION=3.5
         - COMPILER=clang
+
+    - os: osx
+      osx_image: xcode7.3
+      env: 
+        - CONDA_PYTHON_VERSION=3.5
+        - COMPILER=gcc
 
 
 
