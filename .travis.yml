@@ -32,8 +32,11 @@ sudo: required
 
 matrix:
   include:
-
-    # python tests might not work here
+  
+    # gcc 6     from some ubuntu ppa's
+    # python3.5 from some ubuntu ppa's
+    # calls C++ test
+    # NO python tests (do not work yet)
     - os: linux
       compiler: gcc
       cache:
@@ -89,9 +92,11 @@ matrix:
           -DPYTHON_EXECUTABLE:FILEPATH=`pwd`/venv/bin/python3.5
         - make -j2
         - CTEST_OUTPUT_ON_FAILURE=TRUE make test
-  
 
-    # python tests might not work here
+    # gcc 4.8     from some ubuntu ppa's
+    # python3.5 from some ubuntu ppa's
+    # calls C++ test
+    # NO python tests (do not work yet)
     - os: linux
       compiler: gcc-4.8
       cache:
@@ -144,7 +149,11 @@ matrix:
         #- sudo make install
         #- make python-test
         #- CTEST_OUTPUT_ON_FAILURE=TRUE make test
-  
+
+    # osx clang
+    # python 2.7
+    # calls C++ test
+    # NO python tests (do not work yet)
     - os: osx
       compiler: clang
       script:
@@ -160,8 +169,10 @@ matrix:
         - sudo make install
         - CTEST_OUTPUT_ON_FAILURE=TRUE make test
 
-
     # conda linux python gcc4 python 2.7
+    # NO C++ test
+    # CALLS python tests by hand 
+    # (make python test does not work yet)
     - os: linux
       language: python
       env: 
@@ -254,6 +265,9 @@ matrix:
         - python src/python/examples/graph/plot_edge_contraction_graph.py
 
     # conda linux python gcc6 python 3.6
+    # NO C++ test
+    # CALLS python tests by hand 
+    # (make python test does not work yet)
     - os: linux
       language: python
       env: 
@@ -346,6 +360,9 @@ matrix:
         - python src/python/examples/graph/plot_edge_contraction_graph.py
     
     # conda linux python gcc4 python 3.5
+    # NO C++ test
+    # CALLS python tests by hand 
+    # (make python test does not work yet)
     - os: osx
       language: python
       env: 
