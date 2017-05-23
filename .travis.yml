@@ -81,7 +81,7 @@ before_script:
 
   # download compiler
   - conda install -c gulag clang=3.3
-  
+
   - if [[ "$COMPILER" == "clang" ]];  then
       conda install -c gulag clang=3.3;
     fi
@@ -112,7 +112,7 @@ script:
   - export ENV_ROOT="$HOME/miniconda/envs/dev"
   - export ENV_INCLUDE="$ENV_ROOT/include"
   - export ENV_BIN=$ENV_ROOT/bin
-
+  - export ROOT_BIN="$HOME/miniconda/bin"
   
 
 
@@ -120,16 +120,17 @@ script:
   # setup compiler
   ###############################################
   - if [[ "$COMPILER" == "gcc" ]];  then
-      export COMPILER_PATH=$ENV_BIN/g++;
-      export C_COMPILER_PATH=$ENV_BIN/gcc;
-      export CXX="$ENV_BIN/g++";
-      export CC="$ENV_BIN/gcc";
+      export COMPILER_PATH=$ROOT_BIN/g++;
+      export C_COMPILER_PATH=$ROOT_BIN/gcc;
+      export CXX="$ROOT_BIN/g++";
+      export CC="$ROOT_BIN/gcc";
     else
-      export COMPILER_PATH=$ENV_BIN/clang++;
-      export C_COMPILER_PATH=$ENV_BIN/clang;
-      export CXX="$ENV_BIN/clang++";
-      export CC="$ENV_BIN/clang";
+      export COMPILER_PATH=$ROOT_BIN/clang++;
+      export C_COMPILER_PATH=$ROOT_BIN/clang;
+      export CXX="$ROOT_BIN/clang++";
+      export CC="$ROOT_BIN/clang";
     fi
+  - ls $ROOT_BIN
   - ls $ENV_BIN
   - echo "COMPILER PATH"
   - echo $COMPILER_PATH
