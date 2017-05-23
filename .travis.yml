@@ -80,7 +80,7 @@ before_script:
   - conda install -c anaconda cmake=3.2
 
   # download compiler
-  - conda install -c gulag clang=3.3
+  #- conda install -c gulag clang=3.3
 
   - if [[ "$COMPILER" == "clang" ]];  then
       conda install -c gulag clang=3.3;
