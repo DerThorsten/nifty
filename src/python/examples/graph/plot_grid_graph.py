@@ -13,7 +13,7 @@ import nifty.graph
 #  2D undirected grid graph
 shape = [3, 4]
 graph = nifty.graph.undirectedGridGraph(shape)
-print("#nodes", graph.nodes)
+print("#nodes", graph.numberOfNodes)
 print("#edges", graph.numberOfEdges)
 print(graph)
 
