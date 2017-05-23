@@ -149,8 +149,6 @@ script:
           -DHDF5_INCLUDE_DIR=$ENV_INCLUDE 
           -DGLPK_INCLUDE_DIR=$ENV_INCLUDE 
           -DBoost_INCLUDE_DIR=$ENV_INCLUDE 
-          #-DCMAKE_CXX_COMPILER=$COMPILER_PATH
-          #-DCMAKE_C_COMPILER=$C_COMPILER_PATH
           -DPYTHON_EXECUTABLE=$ENV_BIN/python$CONDA_PYTHON_VERSION
           -DPYTHON_MODULE_INSTALL_DIR=/home/travis/miniconda/envs/dev/lib/python$CONDA_PYTHON_VERSION/site-packages/
 
