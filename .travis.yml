@@ -130,6 +130,10 @@ script:
       export CXX="$ROOT_BIN/clang++";
       export CC="$ROOT_BIN/clang";
     fi
+  - find $HOME/miniconda -print | grep -i gcc
+  - find $HOME/miniconda -print | grep -i g++
+  - find $HOME/miniconda -print | grep -i clang
+  - find $HOME/miniconda -print | grep -i clang++
   - ls $ROOT_BIN
   - ls $ENV_BIN
   - echo "COMPILER PATH"
