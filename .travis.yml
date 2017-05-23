@@ -120,9 +120,13 @@ script:
   - if [[ "$COMPILER" == "gcc" ]];  then
       export COMPILER_PATH=$ENV_BIN/g++;
       export C_COMPILER_PATH=$ENV_BIN/gcc;
+      export CXX="$HOME/miniconda/env/dev/bin/g++";
+      export CC="$HOME/miniconda/env/dev/bin/gcc";
     else
       export COMPILER_PATH=$ENV_BIN/clang++;
       export C_COMPILER_PATH=$ENV_BIN/clang;
+      export CXX="$HOME/miniconda/env/dev/bin/clang++";
+      export CC="$HOME/miniconda/env/dev/bin/clang";
     fi
   - echo "COMPILER PATH"
   - echo $COMPILER_PATH
@@ -145,8 +149,8 @@ script:
           -DHDF5_INCLUDE_DIR=$ENV_INCLUDE 
           -DGLPK_INCLUDE_DIR=$ENV_INCLUDE 
           -DBoost_INCLUDE_DIR=$ENV_INCLUDE 
-          -DCMAKE_CXX_COMPILER=$COMPILER_PATH
-          -DCMAKE_C_COMPILER=$C_COMPILER_PATH
+          #-DCMAKE_CXX_COMPILER=$COMPILER_PATH
+          #-DCMAKE_C_COMPILER=$C_COMPILER_PATH
           -DPYTHON_EXECUTABLE=$ENV_BIN/python$CONDA_PYTHON_VERSION
           -DPYTHON_MODULE_INSTALL_DIR=/home/travis/miniconda/envs/dev/lib/python$CONDA_PYTHON_VERSION/site-packages/
 
