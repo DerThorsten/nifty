@@ -161,7 +161,7 @@ matrix:
         - CTEST_OUTPUT_ON_FAILURE=TRUE make test
 
 
-    # conda linux python gcc6 python 2.7
+    # conda linux python gcc4 python 2.7
     - os: linux
       language: python
       env: 
@@ -180,7 +180,7 @@ matrix:
         - conda create -q -n dev python=$CONDA_PYTHON_VERSION numpy nose boost hdf5
         - source activate dev
         - conda install -c anaconda cmake=3.2
-        - conda install -c rdonnelly gcc-6=6.1.0;
+        - conda install gcc
         - conda install -c conda-forge glpk
 
       script:
@@ -253,13 +253,13 @@ matrix:
         - python src/python/examples/nifty_configuration.py
         - python src/python/examples/graph/plot_edge_contraction_graph.py
 
-    # conda linux python gcc4 python 3.6
+    # conda linux python gcc6 python 3.6
     - os: linux
       language: python
       env: 
         - USE_CONDA=true
         - CONDA_PYTHON_VERSION=3.6
-        - COMPILER=gcc
+        - COMPILER=gcc6
       before_script:
         - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
         - bash miniconda.sh -b -p $HOME/miniconda
@@ -272,7 +272,7 @@ matrix:
         - conda create -q -n dev python=$CONDA_PYTHON_VERSION numpy nose boost hdf5
         - source activate dev
         - conda install -c anaconda cmake=3.2
-        - conda install -c gcc;
+        - conda install -c rdonnelly gcc-6=6.1.0;
         - conda install -c conda-forge glpk
 
       script:
