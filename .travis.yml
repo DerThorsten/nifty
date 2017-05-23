@@ -120,7 +120,8 @@ script:
     else
       export COMPILER_PATH=$ENV_BIN/clang++;
     fi
-
+  - echo "COMPILER PATH"
+  - echo $COMPILER_PATH
   ###############################################
   # configure cmake
   ###############################################
