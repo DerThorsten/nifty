@@ -96,12 +96,16 @@ before_script:
   #    conda install -c gulag clang;
   #  fi
 
-  - if [["$TRAVIS_OS_NAME" == "linux"]]  ;  then
-      conda install -c rdonnelly gcc-6=6.1.0 -f;
-    fi
-
+  
+  # - if [["$TRAVIS_OS_NAME" != "osx"]]  ;  then
+  #     conda install -c rdonnelly gcc-6=6.1.0 ;
+  #   fi
+  
+  # install gcc
   - if [["$TRAVIS_OS_NAME" == "osx"]] ;  then
       conda install gcc;
+    else
+      conda install -c rdonnelly gcc-6=6.1.0 ;
     fi
 
   # glpk
