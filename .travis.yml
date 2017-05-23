@@ -139,11 +139,11 @@ matrix:
           -DPYTHON_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libpython3.5m.so 
           -DPYTHON_EXECUTABLE:FILEPATH=`pwd`/venv/bin/python3.5 
         - make -j2
-        - CTEST_OUTPUT_ON_FAILURE=TRUE make test
-        - pip install numpy
-        - sudo make install
-        - make python-test
-        - CTEST_OUTPUT_ON_FAILURE=TRUE make test
+        #- CTEST_OUTPUT_ON_FAILURE=TRUE make test
+        #- pip install numpy
+        #- sudo make install
+        #- make python-test
+        #- CTEST_OUTPUT_ON_FAILURE=TRUE make test
   
     - os: osx
       compiler: clang
