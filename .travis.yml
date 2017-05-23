@@ -120,15 +120,15 @@ script:
   # setup compiler
   ###############################################
   - if [ "$COMPILER" == "gcc" ];  then
-      export COMPILER_PATH=$ROOT_BIN/g++;
-      export C_COMPILER_PATH=$ROOT_BIN/gcc;
-      export CXX="$ROOT_BIN/g++";
-      export CC="$ROOT_BIN/gcc";
+      export COMPILER_PATH=$ENV_BIN/g++;
+      export C_COMPILER_PATH=$ENV_BIN/gcc;
+      export CXX="$ENV_BIN/g++";
+      export CC="$ENV_BIN/gcc";
     else
-      export COMPILER_PATH=$ROOT_BIN/clang++;
-      export C_COMPILER_PATH=$ROOT_BIN/clang;
-      export CXX="$ROOT_BIN/clang++";
-      export CC="$ROOT_BIN/clang";
+      export COMPILER_PATH=$ENV_BIN/clang++;
+      export C_COMPILER_PATH=$ENV_BIN/clang;
+      export CXX="$ENV_BIN/clang++";
+      export CC="$ENV_BIN/clang";
     fi
 
   - find $HOME/miniconda -print | grep -i gcc
@@ -137,10 +137,10 @@ script:
   - find $HOME/miniconda -print | grep -i clang++
   - ls $ROOT_BIN
   - ls $ENV_BIN
-  - echo "COMPILER PATH"
-  - echo $COMPILER_PATH
-  - echo "C_COMPILER PATH"
-  - echo $C_COMPILER_PATH
+  #- echo "COMPILER PATH"
+  #- echo $COMPILER_PATH
+  #- echo "C_COMPILER PATH"
+  #- echo $C_COMPILER_PATH
   ###############################################
   # configure cmake
   ###############################################
