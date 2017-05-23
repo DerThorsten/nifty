@@ -40,10 +40,6 @@ addons:
     packages:
       - cmake
 
-os:
-  - linux
-
-
 install:
   - sudo apt-get update
   # We do this conditionally because it saves us some downloading if the
@@ -76,7 +72,7 @@ install:
   - conda create -q -n dev python=$TRAVIS_PYTHON_VERSION numpy nose boost hdf5
   - source activate dev
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]];  then
-      # pass
+      echo 1
     else
         conda install -c rdonnelly gcc-6=6.1.0 -v
     fi
