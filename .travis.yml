@@ -87,7 +87,8 @@ before_script:
     fi
   # 
   - if [[ "$TRAVIS_OS_NAME" == "osx"]  &&  ["$COMPILER" == "gcc"   ]];  then
-      conda install -c anaconda gcc=4.8.5 -f;
+      #conda install -c anaconda gcc=4.8.5 -f;
+      conda install -c asmeurer gcc=4.8.5 -f;
     fi
   #
   - if [[ "$TRAVIS_OS_NAME" == "linux"]  &&  ["$COMPILER" == "gcc" ]];  then
