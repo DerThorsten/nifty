@@ -82,9 +82,11 @@ before_script:
   # download compiler
   - if [[ "$COMPILER" == "clang" ]];  then
       conda install -c statiskit clang=3.8.1;
-    elif [[ "$TRAVIS_OS_NAME" == "osx"  &&  "$COMPILER" == "gcc"   ]];  then
+    fi
+  # 
+  - if [[ "$TRAVIS_OS_NAME" == "osx"]  &&  ["$COMPILER" == "gcc"   ]];  then
       conda install -c anaconda gcc=4.8.5;
-    elif [[ "$TRAVIS_OS_NAME" == "linux"  &&  "$COMPILER" == "gcc" ]];  then
+    elif [[ "$TRAVIS_OS_NAME" == "linux"]  &&  ["$COMPILER" == "gcc" ]];  then
         conda install -c rdonnelly gcc-6=6.1.0;
     fi
 
