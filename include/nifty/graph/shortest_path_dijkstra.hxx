@@ -63,13 +63,14 @@ namespace graph{
             DefaultSubgraphMask<Graph> subgraphMask;
             // visitor
             // TODO does this work ???
-            auto visitor = [&targets]
+            size_t trgtsFound = 0;
+            auto visitor = [&targets, &trgtsFound]
             (   
                 int64_t topNode,
                 const DistanceMap     & distances,
                 const PredecessorsMap & predecessors
             ){
-                thread_local size_t trgtsFound = 0; // this is declared to be thread local to be thread safe
+                 // this is declared to be thread local to be thread safe
                 if( std::find(targets.begin(), targets.end(), topNode) != targets.end() ) 
                     ++trgtsFound;
                 if( trgtsFound >= targets.size() ) {
