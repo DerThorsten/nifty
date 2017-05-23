@@ -77,7 +77,7 @@ before_script:
   - source activate dev
   
   # cmake
-  - conda install -c anaconda cmake=3.6.3
+  - conda install -c anaconda cmake=3.2
 
   # download compiler
   - if [[ "$COMPILER" == "clang" ]];  then
@@ -126,11 +126,12 @@ script:
     fi
   - echo "COMPILER PATH"
   - echo $COMPILER_PATH
-  
+
   ###############################################
   # configure cmake
   ###############################################
-  - $ENV_BIN/cmake -DWITHIN_TRAVIS=ON 
+  - $ENV_BIN/cmake 
+          -DWITHIN_TRAVIS=ON 
           -DWITH_QPBO=ON
           -DWITH_HDF5=OFF
           -DWITH_QPBO=ON
