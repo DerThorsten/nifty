@@ -83,7 +83,7 @@ before_script:
   - conda install gcc
 
   - if [ "$COMPILER" == "clang" ];  then
-      conda install -c gulag clang=3.3 -f;
+      conda install -c gulag clang;
     fi
 
   - if [ "$TRAVIS_OS_NAME" == "linux"]  ;  then
