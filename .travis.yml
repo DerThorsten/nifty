@@ -15,15 +15,15 @@ matrix:
 
     - os: linux
       language: python
-      python: "3.5"
+      python: "2.7"
       env: 
-        - CONDA_PYTHON_VERSION=3.5
+        - CONDA_PYTHON_VERSION=2.7
         - COMPILER=clang
 
     - os: osx
       osx_image: xcode7.3
       env: 
-        - CONDA_PYTHON_VERSION=3.5
+        - CONDA_PYTHON_VERSION=2.7
         - COMPILER=clang
 
     - os: osx
