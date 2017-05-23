@@ -97,13 +97,14 @@ matrix:
     - os: osx
       compiler: clang
       script:
-        - cmake -DWITHIN_TRAVIS=ON 
-        -DBUILD_CPP_TEST=ON 
-        -DBUILD_PYTHON_TEST=ON 
-        -DWITH_GLPK=OFF 
-        -DBUILD_NIFTY_PYTHON=ON 
-        -DPYBIND_ELEVEN_INCLUDE_DIR=pybind11-master/include 
-        -DPYBIND11_PYTHON_VERSION=2.7
+        - cmake 
+            -DWITHIN_TRAVIS=ON 
+            -DBUILD_CPP_TEST=ON 
+            -DBUILD_PYTHON_TEST=ON 
+            -DWITH_GLPK=OFF 
+            -DBUILD_NIFTY_PYTHON=ON 
+            -DPYBIND_ELEVEN_INCLUDE_DIR=pybind11-master/include 
+            -DPYBIND11_PYTHON_VERSION=2.7
         - make -j 2
         - sudo make install
         - CTEST_OUTPUT_ON_FAILURE=TRUE make test
