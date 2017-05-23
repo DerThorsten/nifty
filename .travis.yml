@@ -91,7 +91,7 @@ before_script:
     fi
 
   - if [ "$TRAVIS_OS_NAME" == "osx"]  ;  then
-      conda install gcc
+      conda install gcc;
     fi
 
   # glpk
