@@ -15,14 +15,18 @@ matrix:
     - os: linux
       language: python
       python: "3.5"
-      env: CONDA_PYTHON_VERSION=3.5
+      env: 
+        - CONDA_PYTHON_VERSION=3.5
+        - COMPILER=gcc
     # - os: linux
     #   language: python
     #   python: "3.6"
 
     - os: osx
       osx_image: xcode7.3
-      env: CONDA_PYTHON_VERSION=3.5
+      env: 
+        - CONDA_PYTHON_VERSION=3.5
+        - COMPILER=clang
 
 
 
@@ -71,11 +75,21 @@ before_script:
   - conda install -c anaconda cmake=3.6.3
 
 
-  # compiler
+
+
+  # download compiler
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]];  then
-      echo 1;
+      if [[ "$COMPILER" == "gcc" ]];  then
+        conda install -c anaconda gcc=4.8.5 
+      else
+        conda install -c statiskit clang=3.8.1
+      fi
     else
-      conda install -c rdonnelly gcc-6=6.1.0 -v;
+      if [[ "$COMPILER" == "gcc" ]];  then
+        conda install -c rdonnelly gcc-6=6.1.0 -v;
+      else
+        conda install -c statiskit clang=3.8.1
+      fi
     fi
 
   # glpk
@@ -99,11 +113,11 @@ script:
   - export ENV_BIN="$ENV_ROOT/bin"
 
   
-  # compiler to use
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]];  then
-      export COMPILER=$ENV_BIN/clang;
+  # set compiler to use
+  - if [[ "$COMPILER" == "g++" ]];  then
+      export COMPILER_PATH=$ENV_BIN/g++;
     else
-      export COMPILER=$ENV_BIN/g++;
+      export COMPILER_PATH=$ENV_BIN/clang;
     fi
 
 
@@ -122,7 +136,7 @@ script:
           -DHDF5_INCLUDE_DIR=$ENV_INCLUDE 
           -DGLPK_INCLUDE_DIR=$ENV_INCLUDE 
           -DBoost_INCLUDE_DIR=$ENV_INCLUDE 
-          -DCMAKE_CXX_COMPILER=$COMPILER
+          -DCMAKE_CXX_COMPILER=$COMPILER_PATH
           -DPYTHON_EXECUTABLE=$ENV_BIN/python$CONDA_PYTHON_VERSION
           -DPYTHON_MODULE_INSTALL_DIR=/home/travis/miniconda/envs/dev/lib/python$CONDA_PYTHON_VERSION/site-packages/
   #
