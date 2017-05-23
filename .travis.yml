@@ -120,13 +120,13 @@ script:
   - if [[ "$COMPILER" == "gcc" ]];  then
       export COMPILER_PATH=$ENV_BIN/g++;
       export C_COMPILER_PATH=$ENV_BIN/gcc;
-      export CXX="$HOME/miniconda/envs/dev/bin/g++";
-      export CC="$HOME/miniconda/envs/dev/bin/gcc";
+      export CXX="$ENV_BIN=g++";
+      export CC="$ENV_BIN=gcc";
     else
       export COMPILER_PATH=$ENV_BIN/clang++;
       export C_COMPILER_PATH=$ENV_BIN/clang;
-      export CXX="$HOME/miniconda/envs/dev/bin/clang++";
-      export CC="$HOME/miniconda/envs/dev/bin/clang";
+      export CXX="$ENV_BIN=clang++";
+      export CC="$ENV_BIN=clang";
     fi
   - ls $ENV_BIN
   - echo "COMPILER PATH"
