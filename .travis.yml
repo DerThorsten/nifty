@@ -7,7 +7,6 @@ matrix:
   include:
     
     - os: osx
-      osx_image: xcode7.3
       env: 
         - USE_CONDA=true
         - CONDA_PYTHON_VERSION=2.7
@@ -27,15 +26,12 @@ matrix:
         - CONDA_PYTHON_VERSION=3.6
         - COMPILER=gcc6
 
-
-    - os: osx
-      osx_image: xcode7.3
-      env: 
-        - USE_CONDA=true
-        - CONDA_PYTHON_VERSION=3.5
-        - COMPILER=gcc
-
-
+    # - os: osx
+    #   osx_image: xcode7.3
+    #   env: 
+    #     - USE_CONDA=true
+    #     - CONDA_PYTHON_VERSION=3.5
+    #     - COMPILER=gcc
 
 
 
@@ -151,22 +147,13 @@ script:
       export CC="$ENV_BIN/clang";
     fi
 
-  #- find $HOME/miniconda -print | grep -i gcc
-  #- find $HOME/miniconda -print | grep -i g++
-  #- find $HOME/miniconda -print | grep -i clang
-  #- find $HOME/miniconda -print | grep -i clang++
-  #- ls $ROOT_BIN
-  - ls $ENV_BIN
-  #- echo "COMPILER PATH"
-  #- echo $COMPILER_PATH
-  #- echo "C_COMPILER PATH"
-  #- echo $C_COMPILER_PATH
+  
+  #-DCMAKE_C_COMPILER=$C_COMPILER_PATH
+  #-DCMAKE_CXX_COMPILER=$COMPILER_PATH
   ###############################################
   # configure cmake
   ###############################################
   - $ENV_BIN/cmake 
-          -DCMAKE_C_COMPILER=$C_COMPILER_PATH
-          -DCMAKE_CXX_COMPILER=$COMPILER_PATH
           -DWITHIN_TRAVIS=ON 
           -DWITH_QPBO=ON
           -DWITH_HDF5=OFF
