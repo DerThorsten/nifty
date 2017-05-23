@@ -82,7 +82,7 @@ before_script:
   # download compiler
   - conda install gcc
 
-  - if [[ "$COMPILER" == "clang" ]];  then
+  - if [ "$COMPILER" == "clang" ];  then
       conda install -c gulag clang=3.3 -f;
     fi
 
@@ -119,7 +119,7 @@ script:
   ###############################################
   # setup compiler
   ###############################################
-  - if [[ "$COMPILER" == "gcc" ]];  then
+  - if [ "$COMPILER" == "gcc" ];  then
       export COMPILER_PATH=$ROOT_BIN/g++;
       export C_COMPILER_PATH=$ROOT_BIN/gcc;
       export CXX="$ROOT_BIN/g++";
