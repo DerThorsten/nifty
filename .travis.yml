@@ -115,7 +115,7 @@ script:
   ###############################################
   # setup compiler
   ###############################################
-  - if [[ "$COMPILER" == "g++" ]];  then
+  - if [[ "$COMPILER" == "gcc" ]];  then
       export COMPILER_PATH=$ENV_BIN/g++;
     else
       export COMPILER_PATH=$ENV_BIN/clang++;
