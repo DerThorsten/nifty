@@ -24,6 +24,25 @@ matrix:
         - CONDA_PYTHON_VERSION=3.6
         - COMPILER=gcc
 
+
+    - os: linux
+      language: python
+      env: 
+        - CONDA_PYTHON_VERSION=2.7
+        - COMPILER=gcc6
+
+    - os: linux
+      language: python
+      env: 
+        - CONDA_PYTHON_VERSION=3.5
+        - COMPILER=gcc6
+
+    - os: linux
+      language: python
+      env: 
+        - CONDA_PYTHON_VERSION=3.6
+        - COMPILER=gcc6
+
     - os: osx
       osx_image: xcode7.3
       env: 
@@ -108,6 +127,16 @@ before_script:
       conda install -c rdonnelly gcc-6=6.1.0 ;
     fi
 
+  - if [[ "$COMPILER" == "gcc" ]];  then
+      conda install gcc;
+    fi
+
+  - if [[ "$COMPILER" == "gcc6" ]];  then
+      conda install -c rdonnelly gcc-6=6.1.0 ;
+    fi
+
+
+
   # glpk
   - conda install -c conda-forge glpk
 
@@ -138,7 +167,7 @@ script:
       export C_COMPILER_PATH=$ENV_BIN/gcc;
       export CXX="$ENV_BIN/g++";
       export CC="$ENV_BIN/gcc";
-    else
+    elif [ "$COMPILER" == "gcc6" ];  then
       export COMPILER_PATH=$ENV_BIN/clang++;
       export C_COMPILER_PATH=$ENV_BIN/clang;
       export CXX="$ENV_BIN/clang++";
