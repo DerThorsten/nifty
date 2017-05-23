@@ -131,12 +131,12 @@ script:
       export CC="$ENV_BIN/clang";
     fi
 
-  - find $HOME/miniconda -print | grep -i gcc
-  - find $HOME/miniconda -print | grep -i g++
-  - find $HOME/miniconda -print | grep -i clang
-  - find $HOME/miniconda -print | grep -i clang++
-  - ls $ROOT_BIN
-  - ls $ENV_BIN
+  #- find $HOME/miniconda -print | grep -i gcc
+  #- find $HOME/miniconda -print | grep -i g++
+  #- find $HOME/miniconda -print | grep -i clang
+  #- find $HOME/miniconda -print | grep -i clang++
+  #- ls $ROOT_BIN
+  #- ls $ENV_BIN
   #- echo "COMPILER PATH"
   #- echo $COMPILER_PATH
   #- echo "C_COMPILER PATH"
