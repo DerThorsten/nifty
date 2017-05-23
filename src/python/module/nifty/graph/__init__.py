@@ -78,6 +78,10 @@ def edgeContractionGraph(g, callback):
 
 
 
+
+def undirectedGraph(numberOfNodes):
+    return UndirectedGraph(numberOfNodes)
+
 def undirectedGridGraph(shape, simpleNh=True):
     if not simpleNh:
         raise RuntimeError("currently only simpleNh is implemented")
