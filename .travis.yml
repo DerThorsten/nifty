@@ -118,7 +118,7 @@ script:
   - if [[ "$COMPILER" == "g++" ]];  then
       export COMPILER_PATH=$ENV_BIN/g++;
     else
-      export COMPILER_PATH=$ENV_BIN/clang;
+      export COMPILER_PATH=$ENV_BIN/clang++;
     fi
 
   ###############################################
