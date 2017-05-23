@@ -45,7 +45,8 @@ before_script:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then export PATH="/usr/local/bin:${PATH}"                                                ; fi
 
 
-install:
+#before_script:
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then export PATH="/usr/local/bin:${PATH}"      
   - sudo apt-get update
   # We do this conditionally because it saves us some downloading if the
   # version is the same.
