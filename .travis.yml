@@ -146,11 +146,6 @@ before_script:
   #   fi
   
   # install gcc
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]];  then
-      conda install gcc;
-    else
-      conda install -c rdonnelly gcc-6=6.1.0 ;
-    fi
 
   - if [[ "$COMPILER" == "gcc" ]];  then
       conda install gcc;
