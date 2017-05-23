@@ -1,5 +1,4 @@
-
-language: cpp
+language: generic
 dist: trusty
 sudo: required
 # cache:
@@ -174,7 +173,6 @@ matrix:
     # CALLS python tests by hand 
     # (make python test does not work yet)
     - os: linux
-      language: python
       env: 
         - USE_CONDA=true
         - CONDA_PYTHON_VERSION=2.7
@@ -270,7 +268,6 @@ matrix:
     # CALLS python tests by hand 
     # (make python test does not work yet)
     - os: linux
-      language: python
       env: 
         - USE_CONDA=true
         - CONDA_PYTHON_VERSION=3.6
@@ -365,7 +362,6 @@ matrix:
     # CALLS python tests by hand 
     # (make python test does not work yet)
     - os: osx
-      language: python
       env: 
         - USE_CONDA=true
         - CONDA_PYTHON_VERSION=3.5
