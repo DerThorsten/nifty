@@ -10,7 +10,6 @@ matrix:
       osx_image: xcode7.3
       env: 
         - USE_CONDA=true
-        - CONDA_URL=https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh
         - CONDA_PYTHON_VERSION=2.7
         - COMPILER=gcc
 
@@ -20,7 +19,6 @@ matrix:
       language: python
       env: 
         - USE_CONDA=true
-        - CONDA_URL=https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh
         - CONDA_PYTHON_VERSION=2.7
         - COMPILER=gcc
 
@@ -29,7 +27,6 @@ matrix:
       language: python
       env: 
         - USE_CONDA=true
-        - CONDA_URL=https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh
         - CONDA_PYTHON_VERSION=3.5
         - COMPILER=gcc
 
@@ -37,7 +34,6 @@ matrix:
       language: python
       env: 
         - USE_CONDA=true
-        - CONDA_URL=https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh
         - CONDA_PYTHON_VERSION=3.6
         - COMPILER=gcc
 
@@ -45,7 +41,6 @@ matrix:
       language: python
       env: 
         - USE_CONDA=true
-        - CONDA_URL=https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh
         - CONDA_PYTHON_VERSION=2.7
         - COMPILER=gcc6
 
@@ -53,7 +48,6 @@ matrix:
       language: python
       env: 
         - USE_CONDA=true
-        - CONDA_URL=https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh
         - CONDA_PYTHON_VERSION=3.5
         - COMPILER=gcc6
 
@@ -61,7 +55,6 @@ matrix:
       language: python
       env: 
         - USE_CONDA=true
-        - CONDA_URL=https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh
         - CONDA_PYTHON_VERSION=3.6
         - COMPILER=gcc6
 
@@ -70,7 +63,6 @@ matrix:
       osx_image: xcode7.3
       env: 
         - USE_CONDA=true
-        - CONDA_URL=https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh
         - CONDA_PYTHON_VERSION=3.5
         - COMPILER=gcc
 
@@ -78,7 +70,6 @@ matrix:
       osx_image: xcode7.3
       env: 
         - USE_CONDA=true
-        - CONDA_URL=https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh
         - CONDA_PYTHON_VERSION=3.6
         - COMPILER=gcc
 
@@ -101,7 +92,9 @@ matrix:
 
 before_script:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then 
-      export PATH="/usr/local/bin:${PATH}"; 
+      export CONDA_URL=https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh ;
+    else
+      export CONDA_URL=https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh ;
     fi
 
   ###############################################
