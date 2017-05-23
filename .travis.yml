@@ -30,24 +30,24 @@ matrix:
 
 
 
-# we try to avoid to use
-# the travis addon mechanism
-# and use conda instead
-addons:
-  apt:
-    sources:
-      - ubuntu-toolchain-r-test
-      - deadsnakes
-    packages:
-      - cmake
+# # we try to avoid to use
+# # the travis addon mechanism
+# # and use conda instead
+# addons:
+#   apt:
+#     sources:
+#       - ubuntu-toolchain-r-test
+#       - deadsnakes
+#     packages:
+#       - cmake
 
 before_script:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then 
       export PATH="/usr/local/bin:${PATH}"; 
     fi
-  - sudo apt-get update
-  # We do this conditionally because it saves us some downloading if the
-  # version is the same.
+
+
+
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]];  then
       wget https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O miniconda.sh;
     else
@@ -66,12 +66,21 @@ before_script:
   # to get a 'complete' build (TODO, also try a minimal build)
   - conda create -q -n dev python=$CONDA_PYTHON_VERSION numpy nose boost hdf5
   - source activate dev
+  
+  # cmake
+  - conda install -c anaconda cmake=3.6.3
+
+
+  # compiler
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]];  then
       echo 1;
     else
         conda install -c rdonnelly gcc-6=6.1.0 -v;
     fi
+
+  # glpk
   - conda install -c conda-forge glpk
+
   # for a python 2.7 we need concurrent futures
   - if [[ "$CONDA_PYTHON_VERSION" == "2.7" ]]; then
       conda install futures;
@@ -79,9 +88,7 @@ before_script:
   #- python setup.py install
 
 script:
-  #- chmod +x /home/travis/miniconda/envs/dev/bin/sh
-  #- chmod +x /home/travis/miniconda/envs/dev/bin/nosetests
-  # Your test script goes here
+
   
   # compiler to use
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]];  then
@@ -100,7 +107,7 @@ script:
   - export ENV_BIN="$ENV_ROOT/bin"
   # 
   # configure cmake
-  - cmake -DWITHIN_TRAVIS=ON 
+  - $ENV_BIN/cmake -DWITHIN_TRAVIS=ON 
           -DWITH_QPBO=ON
           -DWITH_HDF5=OFF
           -DWITH_QPBO=ON
