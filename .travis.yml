@@ -83,15 +83,15 @@ before_script:
   #- conda install -c gulag clang=3.3
 
   - if [[ "$COMPILER" == "clang" ]];  then
-      conda install -c gulag clang=3.3;
+      conda install -c gulag clang=3.3 -f;
     fi
   # 
   - if [[ "$TRAVIS_OS_NAME" == "osx"]  &&  ["$COMPILER" == "gcc"   ]];  then
-      conda install -c anaconda gcc=4.8.5;
+      conda install -c anaconda gcc=4.8.5 -f;
     fi
   #
   - if [[ "$TRAVIS_OS_NAME" == "linux"]  &&  ["$COMPILER" == "gcc" ]];  then
-        conda install -c rdonnelly gcc-6=6.1.0;
+        conda install -c rdonnelly gcc-6=6.1.0 -f;
     fi
 
   # glpk
@@ -130,6 +130,7 @@ script:
       export CXX="$ROOT_BIN/clang++";
       export CC="$ROOT_BIN/clang";
     fi
+
   - find $HOME/miniconda -print | grep -i gcc
   - find $HOME/miniconda -print | grep -i g++
   - find $HOME/miniconda -print | grep -i clang
