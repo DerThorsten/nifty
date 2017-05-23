@@ -125,8 +125,8 @@ script:
     else
       export COMPILER_PATH=$ENV_BIN/clang++;
       export C_COMPILER_PATH=$ENV_BIN/clang;
-      export CXX="$HOME/miniconda/env/dev/bin/clang++";
-      export CC="$HOME/miniconda/env/dev/bin/clang";
+      export CXX="$HOME/miniconda/envs/dev/bin/clang++";
+      export CC="$HOME/miniconda/envs/dev/bin/clang";
     fi
   - echo "COMPILER PATH"
   - echo $COMPILER_PATH
@@ -148,7 +148,7 @@ script:
           -DNOSETESTS_PATH=$ENV_BIN 
           -DHDF5_INCLUDE_DIR=$ENV_INCLUDE 
           -DGLPK_INCLUDE_DIR=$ENV_INCLUDE 
-          -DBoost_INCLUDE_DIR=$ENV_INCLUDE 
+          -DBoost_INCLUDE_DIR=$ENV_INCLUDE  
           -DPYTHON_EXECUTABLE=$ENV_BIN/python$CONDA_PYTHON_VERSION
           -DPYTHON_MODULE_INSTALL_DIR=/home/travis/miniconda/envs/dev/lib/python$CONDA_PYTHON_VERSION/site-packages/
 
