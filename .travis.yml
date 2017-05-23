@@ -72,9 +72,9 @@ install:
   - conda create -q -n dev python=$TRAVIS_PYTHON_VERSION numpy nose boost hdf5
   - source activate dev
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]];  then
-      echo 1
+      echo 1;
     else
-        conda install -c rdonnelly gcc-6=6.1.0 -v
+        conda install -c rdonnelly gcc-6=6.1.0 -v;
     fi
   - conda install -c rdonnelly gcc-6=6.1.0 -v
   - conda install -c conda-forge glpk
@@ -91,10 +91,10 @@ script:
   
   # compiler to use
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]];  then
-      export TRAVIS_PYTHON_VERSION=3.5
-      export COMPILER=$ENV_BIN/clang 
+      export TRAVIS_PYTHON_VERSION=3.5;
+      export COMPILER=$ENV_BIN/clang;
     else
-      export COMPILER=$ENV_BIN/g++ 
+      export COMPILER=$ENV_BIN/g++;
     fi
 
 
