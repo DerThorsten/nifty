@@ -70,7 +70,6 @@ namespace graph{
                 const DistanceMap     & distances,
                 const PredecessorsMap & predecessors
             ){
-                 // this is declared to be thread local to be thread safe
                 if( std::find(targets.begin(), targets.end(), topNode) != targets.end() ) 
                     ++trgtsFound;
                 if( trgtsFound >= targets.size() ) {

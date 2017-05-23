@@ -378,7 +378,7 @@ matrix:
         - conda create -q -n dev python=$CONDA_PYTHON_VERSION numpy nose boost hdf5
         - source activate dev
         - conda install -c anaconda cmake=3.2
-        - conda install -c gcc;
+        - conda install gcc;
         - conda install -c conda-forge glpk
 
       script:
