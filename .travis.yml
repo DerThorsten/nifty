@@ -45,7 +45,6 @@ before_script:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then 
       export PATH="/usr/local/bin:${PATH}"; 
     fi
-    
   - sudo apt-get update
   # We do this conditionally because it saves us some downloading if the
   # version is the same.
@@ -72,7 +71,6 @@ before_script:
     else
         conda install -c rdonnelly gcc-6=6.1.0 -v;
     fi
-
   - conda install -c conda-forge glpk
   # for a python 2.7 we need concurrent futures
   - if [[ "$CONDA_PYTHON_VERSION" == "2.7" ]]; then
