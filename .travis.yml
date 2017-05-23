@@ -54,8 +54,9 @@ before_script:
       export PATH="/usr/local/bin:${PATH}"; 
     fi
 
-
-
+  ###############################################
+  # download conda  and conda 
+  ###############################################
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]];  then
       wget https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O miniconda.sh;
     else
@@ -69,17 +70,14 @@ before_script:
   # Useful for debugging any issues with conda
   - conda info -a
 
-  # create an environment and install dependencies
-  # In this build we try to add all optional dependencies we can
-  # to get a 'complete' build (TODO, also try a minimal build)
+  ###############################################
+  # download conda  packages
+  ###############################################
   - conda create -q -n dev python=$CONDA_PYTHON_VERSION numpy nose boost hdf5
   - source activate dev
   
   # cmake
   - conda install -c anaconda cmake=3.6.3
-
-
-
 
   # download compiler
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]];  then
@@ -103,13 +101,12 @@ before_script:
   - if [[ "$CONDA_PYTHON_VERSION" == "2.7" ]]; then
       conda install futures;
     fi
-  #- python setup.py install
 
 script:
 
-
-  
-
+  ###############################################
+  # shortcuts
+  ###############################################
   - export PATH="$HOME/miniconda/bin:$PATH"
   - source activate dev
   - export ENV_ROOT="$HOME/miniconda/envs/dev"
@@ -117,15 +114,18 @@ script:
   - export ENV_BIN="$ENV_ROOT/bin"
 
   
-  # set compiler to use
+  ###############################################
+  # setup compiler
+  ###############################################
   - if [[ "$COMPILER" == "g++" ]];  then
       export COMPILER_PATH=$ENV_BIN/g++;
     else
       export COMPILER_PATH=$ENV_BIN/clang;
     fi
 
-
+  ###############################################
   # configure cmake
+  ###############################################
   - $ENV_BIN/cmake -DWITHIN_TRAVIS=ON 
           -DWITH_QPBO=ON
           -DWITH_HDF5=OFF
@@ -143,11 +143,15 @@ script:
           -DCMAKE_CXX_COMPILER=$COMPILER_PATH
           -DPYTHON_EXECUTABLE=$ENV_BIN/python$CONDA_PYTHON_VERSION
           -DPYTHON_MODULE_INSTALL_DIR=/home/travis/miniconda/envs/dev/lib/python$CONDA_PYTHON_VERSION/site-packages/
-  #
-  # build everything
+
+  ###############################################
+  # the actual build
+  ###############################################
   - make -j 2
 
-  # install the probject
+  ###############################################
+  # install and test the project
+  ###############################################
   - sudo make install
   - cd src/python/test
   # this is a fucked up way of running python test
