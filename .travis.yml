@@ -136,8 +136,8 @@ script:
   # configure cmake
   ###############################################
   - $ENV_BIN/cmake 
-          -DCMAKE_C_COMPILER=$C_COMPILER PATH
-          -DCMAKE_CXX_COMPILER=$COMPILER PATH
+          -DCMAKE_C_COMPILER=$C_COMPILER_PATH
+          -DCMAKE_CXX_COMPILER=$COMPILER_PATH
           -DWITHIN_TRAVIS=ON 
           -DWITH_QPBO=ON
           -DWITH_HDF5=OFF
