@@ -13,43 +13,12 @@ matrix:
         - CONDA_PYTHON_VERSION=2.7
         - COMPILER=gcc
 
-
-
     - os: linux
       language: python
       env: 
         - USE_CONDA=true
         - CONDA_PYTHON_VERSION=2.7
         - COMPILER=gcc
-
-
-    - os: linux
-      language: python
-      env: 
-        - USE_CONDA=true
-        - CONDA_PYTHON_VERSION=3.5
-        - COMPILER=gcc
-
-    - os: linux
-      language: python
-      env: 
-        - USE_CONDA=true
-        - CONDA_PYTHON_VERSION=3.6
-        - COMPILER=gcc
-
-    - os: linux
-      language: python
-      env: 
-        - USE_CONDA=true
-        - CONDA_PYTHON_VERSION=2.7
-        - COMPILER=gcc6
-
-    - os: linux
-      language: python
-      env: 
-        - USE_CONDA=true
-        - CONDA_PYTHON_VERSION=3.5
-        - COMPILER=gcc6
 
     - os: linux
       language: python
@@ -64,13 +33,6 @@ matrix:
       env: 
         - USE_CONDA=true
         - CONDA_PYTHON_VERSION=3.5
-        - COMPILER=gcc
-
-    - os: osx
-      osx_image: xcode7.3
-      env: 
-        - USE_CONDA=true
-        - CONDA_PYTHON_VERSION=3.6
         - COMPILER=gcc
 
 
