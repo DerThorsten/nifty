@@ -18,7 +18,7 @@ SET(MOD_SOURCES
 )
 
 if(WITH_LP_MP)
-    #SET(MOD_LIBS    ${MOD_LIBS} llgl)
+    SET(MOD_LIBS    ${MOD_LIBS} ${HDF5_LIBRARIES} )#llgl)
     SET(MOD_SOURCES ${MOD_SOURCES} multicut_mp.cxx)
 endif(WITH_LP_MP)
 
