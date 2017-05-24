@@ -93,3 +93,31 @@ def undirectedGridGraph(shape, simpleNh=True):
     else:
         raise RuntimeError("currently only 2D and 3D grid graph is exposed to python")
 
+
+
+
+
+def drawGraph(graph, method='spring'):
+
+    import networkx
+
+    G=networkx.Graph()
+    for node in graph.nodes():
+        G.add_node(node)
+
+    #uvIds = graph.uvIds()
+    #for i in range(uvIds.shape[0]):
+    #    u,v = uvIds[i,:]
+    #    G.add_edge(u,v)
+    for edge in graph.edges():
+        u,v = graph.uv(edge)
+        G.add_edge(u,v)
+
+    nodeLabels = dict()
+
+    for node in graph.nodes():
+        nodeLabels[node] = str(node)
+    if method == 'spring':
+        networkx.draw_spring(G,labels=nodeLabels)
+    else:
+        networkx.draw(G, lables=nodeLabels)

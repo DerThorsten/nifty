@@ -8,11 +8,11 @@ Undirected Grid Graph
 """
 from __future__ import print_function
 import nifty.graph
-
+import pylab
 
 ##############################################
 #  2D undirected grid graph
-shape = [3, 4]
+shape = [3, 3]
 graph = nifty.graph.undirectedGridGraph(shape)
 print("#nodes", graph.numberOfNodes)
 print("#edges", graph.numberOfEdges)
@@ -54,3 +54,10 @@ for node in graph.nodes():
 for x0 in range(shape[0]):
     for x1 in range(shape[1]):
         print("coordiante",[x0,x1],"node",graph.coordianteToNode([x0,x1]))
+
+
+##############################################
+# plot the graph:
+# needs networkx
+nifty.graph.drawGraph(graph)
+pylab.show()
