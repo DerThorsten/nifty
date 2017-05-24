@@ -3,7 +3,7 @@
 #define NIFTY_GRAPH_SHORTEST_PATH_DIJKSTRA_HXX
 
 #include "nifty/graph/subgraph_mask.hxx"
-#include "vigra/priority_queue.hxx"
+#include "nifty/tools/changable_priority_queue.hxx"
 
 namespace nifty{
 namespace graph{
@@ -18,7 +18,7 @@ namespace graph{
         typedef typename Graph:: template NodeMap<int64_t>     PredecessorsMap;
         typedef typename Graph:: template NodeMap<WeightType>  DistanceMap;
     private:
-        typedef vigra::ChangeablePriorityQueue<WeightType>    PqType;
+        typedef nifty::tools::ChangeablePriorityQueue<WeightType>    PqType;
     public:
         ShortestPathDijkstra(const Graph & g)
         :   g_(g),
@@ -63,13 +63,13 @@ namespace graph{
             DefaultSubgraphMask<Graph> subgraphMask;
             // visitor
             // TODO does this work ???
-            auto visitor = [&targets]
+            size_t trgtsFound = 0;
+            auto visitor = [&targets, &trgtsFound]
             (   
                 int64_t topNode,
                 const DistanceMap     & distances,
                 const PredecessorsMap & predecessors
             ){
-                thread_local size_t trgtsFound = 0; // this is declared to be thread local to be thread safe
                 if( std::find(targets.begin(), targets.end(), topNode) != targets.end() ) 
                     ++trgtsFound;
                 if( trgtsFound >= targets.size() ) {

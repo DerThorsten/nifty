@@ -6,8 +6,7 @@
 #include <random>
 #include <functional>
 
-#include "vigra/priority_queue.hxx"
-
+#include "nifty/tools/changable_priority_queue.hxx"
 #include "nifty/tools/runtime_check.hxx"
 #include "nifty/graph/detail/adjacency.hxx"
 #include "nifty/graph/optimization/lifted_multicut/lifted_multicut_base.hxx"
@@ -41,7 +40,7 @@ namespace lifted_multicut{
         typedef typename Objective::LiftedGraph LiftedGraph;
         typedef typename LiftedGraph:: template EdgeMap<double> CurrentWeightMap;
         typedef typename LiftedGraph:: template EdgeMap<bool>   IsLiftedMap;
-        typedef vigra::ChangeablePriorityQueue< double ,std::greater<double> > QueueType;
+        typedef nifty::tools::ChangeablePriorityQueue< double ,std::greater<double> > QueueType;
 
         LiftedMulticutGreedyAdditiveCallback(
             const Objective & objective,

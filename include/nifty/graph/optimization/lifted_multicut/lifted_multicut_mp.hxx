@@ -1,5 +1,6 @@
 #pragma once
 
+#include "nifty/graph/optimization/lifted_multicut/lifted_multicut_objective.hxx"
 #include "nifty/graph/optimization/lifted_multicut/lifted_multicut_base.hxx"
 #include "nifty/graph/optimization/lifted_multicut/lifted_multicut_greedy_additive.hxx"
 #include "nifty/graph/optimization/lifted_multicut/lifted_multicut_kernighan_lin.hxx"
@@ -23,39 +24,45 @@ namespace lifted_multicut{
     template<class OBJECTIVE>
     class LiftedMulticutMp : public LiftedMulticutBase<OBJECTIVE>
     {
-    public: 
-    
+    public:
+
         typedef OBJECTIVE ObjectiveType;
         typedef LiftedMulticutBase<ObjectiveType> BaseType;
         typedef typename ObjectiveType::Graph Graph;
         typedef typename ObjectiveType::LiftedGraphType LiftedGraphType;
-        
-        typedef typename BaseType::VisitorBase VisitorBase;
-        typedef typename BaseType::VisitorProxy VisitorProxy;
-        typedef typename BaseType::NodeLabels NodeLabels;
-        
+        typedef typename BaseType::VisitorBaseType VisitorBase;
+        typedef typename BaseType::VisitorProxyType VisitorProxy;
+        typedef typename BaseType::NodeLabelsType NodeLabels;
+
         // factory for the lifted primal rounder
         typedef LiftedMulticutFactoryBase<ObjectiveType> LmcFactoryBase;
-    
+
         struct LiftedRounder{
-    
-            typedef Graph GraphType;
-            LiftedRounder(std::shared_ptr<LmcFactoryBase> factory, const bool greedyWarmstart) 
+
+            typedef UndirectedGraph<> GraphType;
+            typedef LiftedMulticutObjective<GraphType, typename ObjectiveType::WeightType> PrimalRounderObjectiveType;
+            typedef LiftedMulticutBase<PrimalRounderObjectiveType> PrimalRounderBaseType;
+            typedef typename PrimalRounderObjectiveType::LiftedGraphType  PrimalRounderLiftedGraphType;
+            typedef typename PrimalRounderBaseType::NodeLabelsType        PrimalRounderNodeLabels;
+            typedef LiftedMulticutFactoryBase<PrimalRounderObjectiveType> PrimalRounderLmcFactoryBase;
+
+            LiftedRounder(std::shared_ptr<PrimalRounderLmcFactoryBase> factory, const bool greedyWarmstart) 
                 : factory_(factory), greedyWarmstart_(greedyWarmstart)
             {}
-            
+
             // TODO do we have to call by value here due to using async or could we also use a call by refernce?
             // TODO need to change between between edge and node labelings -> could be done more efficient ?!
             std::vector<char> operator()(
-                    GraphType originalGraph,
-                    GraphType liftedGraph,
-                    std::vector<double> edgeValues) {
+                    GraphType           originalGraph,
+                    PrimalRounderLiftedGraphType    liftedGraph,
+                    std::vector<double> edgeValues
+            ) {
 
                 std::vector<char> labeling(edgeValues.size(), 0);
                 if(originalGraph.numberOfEdges() > 0) {
                     
                     const size_t nLocalEdges = originalGraph.numberOfEdges();
-                    ObjectiveType obj(originalGraph);
+                    PrimalRounderObjectiveType obj(originalGraph);
 
                     // insert local costs
                     size_t edgeId = 0;
@@ -69,9 +76,9 @@ namespace lifted_multicut{
                         obj.setCost(uv.first, uv.second, edgeValues[edgeId]);
                     }
                    
-                    NodeLabels nodeLabels(originalGraph.numberOfNodes());
+                    PrimalRounderNodeLabels nodeLabels(originalGraph.numberOfNodes());
                     if(greedyWarmstart_) {
-                        LiftedMulticutGreedyAdditive<ObjectiveType> greedy(obj);
+                        LiftedMulticutGreedyAdditive<PrimalRounderObjectiveType> greedy(obj);
                         greedy.optimize(nodeLabels, nullptr);
                     }
                     
@@ -103,7 +110,7 @@ namespace lifted_multicut{
             }
 
         private:
-            std::shared_ptr<LmcFactoryBase> factory_;
+            std::shared_ptr<PrimalRounderLmcFactoryBase> factory_;
             bool greedyWarmstart_;
     
         };
@@ -115,7 +122,7 @@ namespace lifted_multicut{
         // TODO LP_MP settings
         struct Settings{
             // lifted multicut factory for the primal rounder used in lp_mp
-            std::shared_ptr<LmcFactoryBase> lmcFactory;
+            std::shared_ptr<typename LiftedRounder::PrimalRounderLmcFactoryBase> lmcFactory;
             bool greedyWarmstart{true};
             // parameters for lp_mp solver TODO need better (non-completely-guessed...) default values
             double tightenSlope{0.05};
@@ -188,9 +195,10 @@ namespace lifted_multicut{
         ufd_(graph_.numberOfNodes())
     {
         if(!bool(settings_.lmcFactory)) {
-            typedef LiftedMulticutKernighanLin<ObjectiveType> DefaultSolver;
-            typedef LiftedMulticutFactory<DefaultSolver> DefaultFactory;
-            settings_.lmcFactory = std::make_shared<DefaultFactory>();
+            typedef typename LiftedRounder::PrimalRounderObjectiveType PrimalRounderObjectiveType;
+            typedef LiftedMulticutKernighanLin<PrimalRounderObjectiveType> DefaultSolverType;
+            typedef LiftedMulticutFactory<DefaultSolverType> DefaultFactoryType;
+            settings_.lmcFactory = std::make_shared<DefaultFactoryType>();
         }
         mpSolver_ = new SolverType( toOptionsVector(),
                 LiftedRounder(settings_.lmcFactory, settings_.greedyWarmstart) );

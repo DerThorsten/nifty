@@ -6,6 +6,8 @@
 #include "nifty/graph/optimization/lifted_multicut/lifted_multicut_visitor_base.hxx"
 
 #include "nifty/python/graph/undirected_list_graph.hxx"
+#include "nifty/python/graph/undirected_grid_graph.hxx"
+
 //#include "nifty/python/graph/edge_contraction_graph.hxx"
 #include "nifty/python/graph/optimization/lifted_multicut/lifted_multicut_objective.hxx"
 #include "nifty/python/graph/optimization/lifted_multicut/py_lifted_multicut_visitor_base.hxx"
@@ -66,7 +68,12 @@ namespace lifted_multicut{
     void exportLiftedMulticutVisitorBase(py::module & liftedMulticutModule) {
 
         {
-            typedef PyUndirectedGraph GraphType;
+            typedef nifty::graph::PyUndirectedGraph GraphType;
+            typedef LiftedMulticutObjective<GraphType, double> ObjectiveType;
+            exportLiftedMulticutVisitorBaseT<ObjectiveType>(liftedMulticutModule);
+        }
+        {
+            typedef nifty::graph::UndirectedGridGraph<2,true> GraphType;
             typedef LiftedMulticutObjective<GraphType, double> ObjectiveType;
             exportLiftedMulticutVisitorBaseT<ObjectiveType>(liftedMulticutModule);
         }

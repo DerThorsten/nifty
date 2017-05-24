@@ -4,6 +4,8 @@
 #include <pybind11/numpy.h>
 
 #include "nifty/python/graph/undirected_list_graph.hxx"
+#include "nifty/python/graph/undirected_grid_graph.hxx"
+
 #include "nifty/python/graph/optimization/lifted_multicut/lifted_multicut_objective.hxx"
 #include "nifty/python/converter.hxx"
 
@@ -185,6 +187,10 @@ namespace lifted_multicut{
 
         {
             typedef PyUndirectedGraph GraphType;
+            exportLiftedMulticutObjectiveT<GraphType>(liftedMulticutModule);
+        }
+        {
+            typedef nifty::graph::UndirectedGridGraph<2,true> GraphType;
             exportLiftedMulticutObjectiveT<GraphType>(liftedMulticutModule);
         }
     }

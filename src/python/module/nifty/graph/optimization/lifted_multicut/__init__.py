@@ -225,4 +225,8 @@ def __extendLiftedMulticutObj(objectiveCls, objectiveName):
 
 __extendLiftedMulticutObj(LiftedMulticutObjectiveUndirectedGraph,
     "LiftedMulticutObjectiveUndirectedGraph")
+
+__extendLiftedMulticutObj(LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh,
+    "LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh")
+
 del __extendLiftedMulticutObj

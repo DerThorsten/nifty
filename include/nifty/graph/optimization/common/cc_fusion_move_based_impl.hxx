@@ -6,7 +6,7 @@
 #include <vector>
 #include <stack>
 
-#include "vigra/priority_queue.hxx"
+#include "nifty/tools/changable_priority_queue.hxx"
 
 #include "nifty/tools/runtime_check.hxx"
 #include "nifty/ufd/ufd.hxx"

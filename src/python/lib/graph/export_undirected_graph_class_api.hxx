@@ -194,7 +194,20 @@ namespace graph{
             .def("findEdge",&G::findEdge)
             .def("u",&G::u)
             .def("v",&G::v)
-            .def("uv",&G::uv)
+            .def("uv",[](const  G & self, const uint64_t edge){
+                return self.uv(edge);
+            })
+
+            
+            .def("uvIds",[](G & g) {
+                nifty::marray::PyView<uint64_t> out({uint64_t(g.numberOfEdges()), uint64_t(2)});
+                for(const auto edge : g.edges()){
+                    const auto uv = g.uv(edge); 
+                    out(edge,0) = uv.first;
+                    out(edge,1) = uv.second;
+                }
+                return out;
+            })
             .def("edges", [](py::object g) { 
                 const auto & gg = g.cast<const G &>();
                 return PyEdgeIter(gg,g,gg.edgesBegin(),gg.edgesEnd()); 

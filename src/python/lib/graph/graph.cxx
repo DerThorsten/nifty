@@ -11,6 +11,7 @@ namespace graph{
 
 
     void exportUndirectedListGraph(py::module &);
+    void exportUndirectedGridGraph(py::module &);
     void exportEdgeContractionGraphUndirectedGraph(py::module & );
     void exportShortestPathDijkstra(py::module &);
     void exportConnectedComponents(py::module &);
@@ -20,18 +21,19 @@ namespace graph{
 
 
 PYBIND11_PLUGIN(_graph) {
-    py::module graphModule("_graph", "graph submodule of nifty");
+    py::module module("_graph", "graph submodule of nifty");
 
     using namespace nifty::graph;
 
         
 
-    exportUndirectedListGraph(graphModule);
-    exportEdgeContractionGraphUndirectedGraph(graphModule);
-    exportShortestPathDijkstra(graphModule);
+    exportUndirectedListGraph(module);
+    exportUndirectedGridGraph(module);
+    exportEdgeContractionGraphUndirectedGraph(module);
+    exportShortestPathDijkstra(module);
 
-    exportConnectedComponents(graphModule);
+    exportConnectedComponents(module);
         
-    return graphModule.ptr();
+    return module.ptr();
 }
 
