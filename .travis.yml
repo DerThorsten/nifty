@@ -423,7 +423,7 @@ matrix:
                 -DGLPK_INCLUDE_DIR=$ENV_INCLUDE 
                 -DBoost_INCLUDE_DIR=$ENV_INCLUDE  
                 -DPYTHON_EXECUTABLE=$ENV_BIN/python$CONDA_PYTHON_VERSION
-                -DPYTHON_MODULE_INSTALL_DIR=/home/travis/miniconda/envs/dev/lib/python$CONDA_PYTHON_VERSION/site-packages/
+                #-DPYTHON_MODULE_INSTALL_DIR=/home/travis/miniconda/envs/dev/lib/python$CONDA_PYTHON_VERSION/site-packages/
 
         ###############################################
         # the actual build
@@ -433,7 +433,8 @@ matrix:
         ###############################################
         # install and test the project
         ###############################################
-        - sudo make install
+        #- mkdir -p =/home/travis/miniconda/envs/dev/lib/python$CONDA_PYTHON_VERSION/site-packages/nifty
+        - sudo make install 
         - cd src/python/test
         # this is a fucked up way of running python test
         # pls, if someone could fix this =)
