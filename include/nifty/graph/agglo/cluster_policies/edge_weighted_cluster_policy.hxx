@@ -6,7 +6,7 @@
 
 
 
-#include "vigra/priority_queue.hxx"
+#include "nifty/tools/changable_priority_queue.hxx"
 #include "nifty/graph/edge_contraction_graph.hxx"
 #include "nifty/graph/agglo/cluster_policies/cluster_policies_common.hxx"
 
@@ -49,7 +49,7 @@ private:
     // internal types
 
 
-    typedef vigra::ChangeablePriorityQueue< double ,std::less<double> > QueueType;
+    typedef nifty::tools::ChangeablePriorityQueue< double ,std::less<double> > QueueType;
 
 public:
 
