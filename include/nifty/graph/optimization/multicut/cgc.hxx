@@ -4,7 +4,7 @@
 
 #include "boost/format.hpp"
 
-#include "vigra/priority_queue.hxx"
+#include "nifty/tools/changable_priority_queue.hxx"
 
 
 #include "nifty/tools/runtime_check.hxx"
@@ -417,7 +417,7 @@ namespace multicut{
             typedef typename ObjectiveType::GraphType GraphType;
             typedef typename GraphType:: template NodeMap<uint64_t> CcNodeSize;
             typedef typename GraphType:: template EdgeMap<float>    McWeights;
-            typedef vigra::ChangeablePriorityQueue< double ,std::less<double> > QueueType;
+            typedef nifty::tools::ChangeablePriorityQueue< double ,std::less<double> > QueueType;
 
 
             PartitionCallback(

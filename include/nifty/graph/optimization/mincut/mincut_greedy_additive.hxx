@@ -3,7 +3,7 @@
 #include <random>
 #include <functional>
 
-#include "vigra/priority_queue.hxx"
+#include "nifty/tools/changable_priority_queue.hxx"
 
 #include "nifty/tools/runtime_check.hxx"
 #include "nifty/graph/detail/adjacency.hxx"
@@ -43,7 +43,7 @@ namespace mincut{
 
         typedef OBJECTIVE Objective;
         typedef typename Objective::Graph Graph;
-        typedef vigra::ChangeablePriorityQueue< double ,std::greater<double> > QueueType;
+        typedef nifty::tools::ChangeablePriorityQueue< double ,std::greater<double> > QueueType;
 
         MincutGreedyAdditiveCallback(
             const Objective & objective,
