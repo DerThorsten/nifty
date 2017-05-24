@@ -3,7 +3,7 @@
 #include <random>
 #include <functional>
 
-//#include "vigra/priority_queue.hxx"
+
 #include "nifty/tools/changable_priority_queue.hxx"
 
 #include "nifty/tools/runtime_check.hxx"
