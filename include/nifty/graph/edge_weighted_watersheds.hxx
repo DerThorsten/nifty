@@ -3,6 +3,7 @@
 #define NIFTY_GRAPH_EDGE_WEIGHTED_WATERSHEDS_HXX
 
 #include "vigra/priority_queue.hxx"
+#include "nifty/tools/changable_priority_queue.hxx"
 
 namespace nifty{
 namespace graph{
