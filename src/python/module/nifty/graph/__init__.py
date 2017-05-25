@@ -1,4 +1,5 @@
 from __future__ import absolute_import
+from . import _graph as __graph
 from ._graph import *
 
 from .. import Configuration
@@ -21,8 +22,15 @@ import sys
 
 __all__ = []
 
-for key in _graph.__dict__.keys():
+for key in __graph.__dict__.keys():
+    try:
+        __graph.__dict__[key].__module__='nifty.graph'
+    except:
+        pass
     __all__.append(key)
+
+
+UndirectedGraph.__module__ = "nifty.graph"
 
 
 ilpSettings = multicut.ilpSettings

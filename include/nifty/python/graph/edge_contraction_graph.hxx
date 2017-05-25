@@ -25,6 +25,12 @@ namespace graph{
         static std::string name(){
             return std::string("EdgeContractionGraph") + GraphName<BASE_GRAPH>::name();
         }
+
+        static std::string usageExample(){
+            return std::string(
+                "import nifty\n"
+            );
+        }
     };
 
 }
