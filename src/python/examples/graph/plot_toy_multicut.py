@@ -67,6 +67,10 @@ results = dict()
 
 # greedy-additive
 solverFactory = MulticutObjective.greedyAdditiveFactory()
+# same as above but very verbose
+if False:
+    solverFactory = nifty.graph.UndirectedGraph.MulticutObjective.greedyAdditiveFactory() 
+
 results['greedy-additive'] = runSolver(solverFactory)
 
 if nifty.Configuration.WITH_QPBO:

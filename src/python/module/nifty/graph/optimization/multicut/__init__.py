@@ -333,7 +333,7 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
 
     def multicutIlpFactory(addThreeCyclesConstraints=True,
                             addOnlyViolatedThreeCyclesConstraints=True,
-                            ilpSettings=None,
+                            ilpSolverSettings=None,
                             ilpSolver = 'cplex'):
 
         if ilpSolver == 'cplex':
@@ -356,9 +356,9 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
         s.verbose = int(0)
         s.addThreeCyclesConstraints = bool(addThreeCyclesConstraints)
         s.addOnlyViolatedThreeCyclesConstraints = bool(addOnlyViolatedThreeCyclesConstraints)
-        if ilpSettings is None:
-            ilpSettings()
-        s.ilpSettings = ilpSettings
+        if ilpSolverSettings is None:
+            ilpSolverSettings = ilpSettings()
+        s.ilpSettings = ilpSolverSettings
         return F(s)
 
     O.multicutIlpFactory = staticmethod(multicutIlpFactory)
@@ -386,7 +386,7 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
         addOnlyViolatedThreeCyclesConstraints (bool) :
             explicitly add all violated constraints for only violated cycles
             of length 3 before optimization (default: {True})
-        ilpSettings (:class:``IlpBackendSettings`) :
+        ilpSolverSettings (:class:``IlpBackendSettings`) :
             Settings of the ilp solver (default : {:func:`ilpSettings`})
         ilpSolver (str) : name of the solver. Must be in
             either "cplex", "gurobi" or "glpk".

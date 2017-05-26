@@ -9,6 +9,9 @@ if(BUILD_NIFTY_PYTHON AND BUILD_PYTHON_DOCS)
         endif()
         # configured documentation tools and intermediate build results
         set(SPHINX_BUILD_DIR "${CMAKE_BINARY_DIR}/docs/python/_build")
+
+        file(MAKE_DIRECTORY "${CMAKE_BINARY_DIR}/docs/python/_build/_static")
+
         # Sphinx cache with pickled ReST documents
         set(SPHINX_CACHE_DIR "${CMAKE_BINARY_DIR}/docs/python/_doctrees")
         # HTML output directory
