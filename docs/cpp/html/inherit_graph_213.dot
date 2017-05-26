@@ -3,5 +3,7 @@ digraph "Graphical Class Hierarchy"
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
   rankdir="LR";
-  Node1 [label="nifty::ufd::Ufd\< uint64_t \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classnifty_1_1ufd_1_1Ufd.html"];
+  Node1 [label="nifty::tools::ConstIterator\lRange\< _CHILD_GRAPH::ArcIter \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classnifty_1_1tools_1_1ConstIteratorRange.html"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="nifty::graph::DirectedGraph\lBase\< CHILD_GRAPH \>::ArcIterRange\l\< _CHILD_GRAPH \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structnifty_1_1graph_1_1DirectedGraphBase_1_1ArcIterRange.html"];
 }

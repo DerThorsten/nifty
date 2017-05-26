@@ -1,0 +1,272 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Undirected Grid Graph &#8212; Nifty 0.5.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.5.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Edge Contraction Graph" href="plot_edge_contraction_graph.html" />
+    <link rel="prev" title="Undirected Graph: Simple Example" href="plot_undirected_graph_simple_example.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="plot_edge_contraction_graph.html" title="Edge Contraction Graph"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="plot_undirected_graph_simple_example.html" title="Undirected Graph: Simple Example"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Nifty 0.5.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Gallery of Examples</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="plot_undirected_graph_simple_example.html"
+                        title="previous chapter">Undirected Graph: Simple Example</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="plot_edge_contraction_graph.html"
+                        title="next chapter">Edge Contraction Graph</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="undirected-grid-graph">
+<span id="sphx-glr-auto-examples-graph-plot-undirected-grid-graph-py"></span><h1>Undirected Grid Graph<a class="headerlink" href="#undirected-grid-graph" title="Permalink to this headline">¶</a></h1>
+<p>2D and 3D undirected with simple neighborhood
+(4-neighborhood in 2D, 6-neighborhood in 3D)</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
+<span class="kn">import</span> <span class="nn">nifty.graph</span>
+<span class="kn">import</span> <span class="nn">pylab</span>
+</pre></div>
+</div>
+<p>2D undirected grid graph</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">graph</span> <span class="o">=</span> <span class="n">nifty</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">undirectedGridGraph</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;#nodes&quot;</span><span class="p">,</span> <span class="n">graph</span><span class="o">.</span><span class="n">numberOfNodes</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;#edges&quot;</span><span class="p">,</span> <span class="n">graph</span><span class="o">.</span><span class="n">numberOfEdges</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-default"><div class="highlight"><pre><span></span><span class="c1">#nodes 9</span>
+<span class="c1">#edges 12</span>
+<span class="c1">#Nodes 9 #Edges 12</span>
+</pre></div>
+</div>
+<p>iterate over nodes
+and the adjacency
+of each node</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;u&quot;</span><span class="p">,</span><span class="n">node</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">v</span><span class="p">,</span><span class="n">e</span> <span class="ow">in</span> <span class="n">graph</span><span class="o">.</span><span class="n">nodeAdjacency</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot; v&quot;</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="s2">&quot;e&quot;</span><span class="p">,</span><span class="n">e</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-default"><div class="highlight"><pre><span></span><span class="n">u</span> <span class="mi">0</span>
+ <span class="n">v</span> <span class="mi">1</span> <span class="n">e</span> <span class="mi">0</span>
+ <span class="n">v</span> <span class="mi">3</span> <span class="n">e</span> <span class="mi">6</span>
+<span class="n">u</span> <span class="mi">1</span>
+ <span class="n">v</span> <span class="mi">0</span> <span class="n">e</span> <span class="mi">0</span>
+ <span class="n">v</span> <span class="mi">2</span> <span class="n">e</span> <span class="mi">1</span>
+ <span class="n">v</span> <span class="mi">4</span> <span class="n">e</span> <span class="mi">7</span>
+<span class="n">u</span> <span class="mi">2</span>
+ <span class="n">v</span> <span class="mi">1</span> <span class="n">e</span> <span class="mi">1</span>
+ <span class="n">v</span> <span class="mi">5</span> <span class="n">e</span> <span class="mi">8</span>
+<span class="n">u</span> <span class="mi">3</span>
+ <span class="n">v</span> <span class="mi">0</span> <span class="n">e</span> <span class="mi">6</span>
+ <span class="n">v</span> <span class="mi">4</span> <span class="n">e</span> <span class="mi">2</span>
+ <span class="n">v</span> <span class="mi">6</span> <span class="n">e</span> <span class="mi">9</span>
+<span class="n">u</span> <span class="mi">4</span>
+ <span class="n">v</span> <span class="mi">1</span> <span class="n">e</span> <span class="mi">7</span>
+ <span class="n">v</span> <span class="mi">3</span> <span class="n">e</span> <span class="mi">2</span>
+ <span class="n">v</span> <span class="mi">5</span> <span class="n">e</span> <span class="mi">3</span>
+ <span class="n">v</span> <span class="mi">7</span> <span class="n">e</span> <span class="mi">10</span>
+<span class="n">u</span> <span class="mi">5</span>
+ <span class="n">v</span> <span class="mi">2</span> <span class="n">e</span> <span class="mi">8</span>
+ <span class="n">v</span> <span class="mi">4</span> <span class="n">e</span> <span class="mi">3</span>
+ <span class="n">v</span> <span class="mi">8</span> <span class="n">e</span> <span class="mi">11</span>
+<span class="n">u</span> <span class="mi">6</span>
+ <span class="n">v</span> <span class="mi">3</span> <span class="n">e</span> <span class="mi">9</span>
+ <span class="n">v</span> <span class="mi">7</span> <span class="n">e</span> <span class="mi">4</span>
+<span class="n">u</span> <span class="mi">7</span>
+ <span class="n">v</span> <span class="mi">4</span> <span class="n">e</span> <span class="mi">10</span>
+ <span class="n">v</span> <span class="mi">6</span> <span class="n">e</span> <span class="mi">4</span>
+ <span class="n">v</span> <span class="mi">8</span> <span class="n">e</span> <span class="mi">5</span>
+<span class="n">u</span> <span class="mi">8</span>
+ <span class="n">v</span> <span class="mi">5</span> <span class="n">e</span> <span class="mi">11</span>
+ <span class="n">v</span> <span class="mi">7</span> <span class="n">e</span> <span class="mi">5</span>
+</pre></div>
+</div>
+<p>iterate over edges
+and print the endpoints</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">graph</span><span class="o">.</span><span class="n">edges</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;edge &quot;</span><span class="p">,</span><span class="n">edge</span><span class="p">,</span> <span class="s2">&quot;uv:&quot;</span><span class="p">,</span> <span class="n">graph</span><span class="o">.</span><span class="n">uv</span><span class="p">(</span><span class="n">edge</span><span class="p">))</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-default"><div class="highlight"><pre><span></span><span class="n">edge</span>  <span class="mi">0</span> <span class="n">uv</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">edge</span>  <span class="mi">1</span> <span class="n">uv</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">edge</span>  <span class="mi">2</span> <span class="n">uv</span><span class="p">:</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">edge</span>  <span class="mi">3</span> <span class="n">uv</span><span class="p">:</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">edge</span>  <span class="mi">4</span> <span class="n">uv</span><span class="p">:</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="n">edge</span>  <span class="mi">5</span> <span class="n">uv</span><span class="p">:</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="n">edge</span>  <span class="mi">6</span> <span class="n">uv</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">edge</span>  <span class="mi">7</span> <span class="n">uv</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">edge</span>  <span class="mi">8</span> <span class="n">uv</span><span class="p">:</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">edge</span>  <span class="mi">9</span> <span class="n">uv</span><span class="p">:</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">edge</span>  <span class="mi">10</span> <span class="n">uv</span><span class="p">:</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="n">edge</span>  <span class="mi">11</span> <span class="n">uv</span><span class="p">:</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>get the uv-ids /endpoints
+for all edges simultaneous
+as a numpy array</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">uvIds</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">uvIds</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">uvIds</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-default"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="mi">0</span> <span class="mi">1</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">3</span> <span class="mi">4</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">4</span> <span class="mi">5</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">6</span> <span class="mi">7</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">7</span> <span class="mi">8</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">0</span> <span class="mi">3</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">1</span> <span class="mi">4</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">2</span> <span class="mi">5</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">3</span> <span class="mi">6</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">4</span> <span class="mi">7</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">5</span> <span class="mi">8</span><span class="p">]]</span>
+</pre></div>
+</div>
+<p>get the coordinates of a node</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;node&quot;</span><span class="p">,</span><span class="n">node</span><span class="p">,</span><span class="s2">&quot;coordiante&quot;</span><span class="p">,</span><span class="n">graph</span><span class="o">.</span><span class="n">nodeToCoordinate</span><span class="p">(</span><span class="n">node</span><span class="p">))</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-default"><div class="highlight"><pre><span></span><span class="n">node</span> <span class="mi">0</span> <span class="n">coordiante</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">node</span> <span class="mi">1</span> <span class="n">coordiante</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">node</span> <span class="mi">2</span> <span class="n">coordiante</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="n">node</span> <span class="mi">3</span> <span class="n">coordiante</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">node</span> <span class="mi">4</span> <span class="n">coordiante</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">node</span> <span class="mi">5</span> <span class="n">coordiante</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="n">node</span> <span class="mi">6</span> <span class="n">coordiante</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">node</span> <span class="mi">7</span> <span class="n">coordiante</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">node</span> <span class="mi">8</span> <span class="n">coordiante</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>get the node of a coordinate</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">x0</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+    <span class="k">for</span> <span class="n">x1</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;coordiante&quot;</span><span class="p">,[</span><span class="n">x0</span><span class="p">,</span><span class="n">x1</span><span class="p">],</span><span class="s2">&quot;node&quot;</span><span class="p">,</span><span class="n">graph</span><span class="o">.</span><span class="n">coordianteToNode</span><span class="p">([</span><span class="n">x0</span><span class="p">,</span><span class="n">x1</span><span class="p">]))</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-default"><div class="highlight"><pre><span></span><span class="n">coordiante</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="n">node</span> <span class="mi">0</span>
+<span class="n">coordiante</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="n">node</span> <span class="mi">1</span>
+<span class="n">coordiante</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="n">node</span> <span class="mi">2</span>
+<span class="n">coordiante</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="n">node</span> <span class="mi">3</span>
+<span class="n">coordiante</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="n">node</span> <span class="mi">4</span>
+<span class="n">coordiante</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="n">node</span> <span class="mi">5</span>
+<span class="n">coordiante</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="n">node</span> <span class="mi">6</span>
+<span class="n">coordiante</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="n">node</span> <span class="mi">7</span>
+<span class="n">coordiante</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="n">node</span> <span class="mi">8</span>
+</pre></div>
+</div>
+<p>plot the graph:
+needs networkx</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">nifty</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">drawGraph</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../../_images/sphx_glr_plot_undirected_grid_graph_001.png" class="align-center" src="../../_images/sphx_glr_plot_undirected_grid_graph_001.png" />
+<p><strong>Total running time of the script:</strong> ( 0 minutes  0.054 seconds)</p>
+<div class="sphx-glr-footer docutils container">
+<div class="sphx-glr-download docutils container">
+<a class="reference download internal" href="../../_downloads/plot_undirected_grid_graph.py" download=""><code class="xref download docutils literal"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_undirected_grid_graph.py</span></code></a></div>
+<div class="sphx-glr-download docutils container">
+<a class="reference download internal" href="../../_downloads/plot_undirected_grid_graph.ipynb" download=""><code class="xref download docutils literal"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_undirected_grid_graph.ipynb</span></code></a></div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.readthedocs.io">Generated by Sphinx-Gallery</a></p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="plot_edge_contraction_graph.html" title="Edge Contraction Graph"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="plot_undirected_graph_simple_example.html" title="Undirected Graph: Simple Example"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Nifty 0.5.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Gallery of Examples</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.1.
+    </div>
+  </body>
+</html>

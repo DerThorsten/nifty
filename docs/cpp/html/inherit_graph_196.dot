@@ -3,5 +3,7 @@ digraph "Graphical Class Hierarchy"
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
   rankdir="LR";
-  Node1 [label="nifty::tools::BlockStorage\lSelector\< ARRAY \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structnifty_1_1tools_1_1BlockStorageSelector.html"];
+  Node1 [label="NumericTraits",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="nifty::math::NumericTraits\< T \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structnifty_1_1math_1_1NumericTraits.html"];
 }

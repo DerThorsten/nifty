@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Nifty
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.1</span>
    </div>
   </td>
  </tr>
@@ -158,13 +158,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            <a class="code" href="structnifty_1_1graph_1_1DefaultSubgraphMask.html">DefaultSubgraphMask&lt;Graph&gt;</a> subgraphMask;</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            <span class="comment">// visitor</span></div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            <span class="comment">// TODO does this work ???</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            <span class="keyword">auto</span> visitor = [&amp;targets]</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            (   </div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                int64_t topNode,</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                <span class="keyword">const</span> DistanceMap     &amp; <a class="code" href="classnifty_1_1graph_1_1ShortestPathDijkstra.html#ad6163b3d85e34b8e857b5a3f27c3efbb">distances</a>,</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                <span class="keyword">const</span> PredecessorsMap &amp; <a class="code" href="classnifty_1_1graph_1_1ShortestPathDijkstra.html#a7e8d4715856c89271e44c1f56c162f57">predecessors</a></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            ){</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                thread_local <span class="keywordtype">size_t</span> trgtsFound = 0; <span class="comment">// this is declared to be thread local to be thread safe</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            <span class="keywordtype">size_t</span> trgtsFound = 0;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            <span class="keyword">auto</span> visitor = [&amp;targets, &amp;trgtsFound]</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            (   </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                int64_t topNode,</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                <span class="keyword">const</span> DistanceMap     &amp; <a class="code" href="classnifty_1_1graph_1_1ShortestPathDijkstra.html#ad6163b3d85e34b8e857b5a3f27c3efbb">distances</a>,</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                <span class="keyword">const</span> PredecessorsMap &amp; <a class="code" href="classnifty_1_1graph_1_1ShortestPathDijkstra.html#a7e8d4715856c89271e44c1f56c162f57">predecessors</a></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            ){</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                <span class="keywordflow">if</span>( std::find(targets.begin(), targets.end(), topNode) != targets.end() ) </div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                    ++trgtsFound;</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                <span class="keywordflow">if</span>( trgtsFound &gt;= targets.size() ) {</div>
