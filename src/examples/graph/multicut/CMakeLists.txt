@@ -1,1 +1,0 @@
-add_autorun_example(multicut multicut.cxx )
