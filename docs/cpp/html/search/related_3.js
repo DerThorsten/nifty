@@ -1,5 +1,0 @@
-var searchData=
-[
-  ['edgecontractiongraph_3c_20graphtype_2c_20selftype_2c_20enable_5fucm_20_3e',['EdgeContractionGraph&lt; GraphType, SelfType, ENABLE_UCM &gt;',['../classnifty_1_1graph_1_1agglo_1_1EdgeWeightedClusterPolicy.html#a6939aa4c6113ba9c44fd5e048687ba92',1,'nifty::graph::agglo::EdgeWeightedClusterPolicy::EdgeContractionGraph&lt; GraphType, SelfType, ENABLE_UCM &gt;()'],['../classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy.html#a6939aa4c6113ba9c44fd5e048687ba92',1,'nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy::EdgeContractionGraph&lt; GraphType, SelfType, ENABLE_UCM &gt;()'],['../classnifty_1_1graph_1_1agglo_1_1MalaClusterPolicy.html#a6939aa4c6113ba9c44fd5e048687ba92',1,'nifty::graph::agglo::MalaClusterPolicy::EdgeContractionGraph&lt; GraphType, SelfType, ENABLE_UCM &gt;()']]],
-  ['edgecontractiongraph_3c_20graphtype_2c_20selftype_2c_20false_20_3e',['EdgeContractionGraph&lt; GraphType, SelfType, false &gt;',['../classnifty_1_1graph_1_1agglo_1_1MinimumNodeSizeClusterPolicy.html#aca0e7e94ea239b3e26ea0173e356de7a',1,'nifty::graph::agglo::MinimumNodeSizeClusterPolicy']]]
-];
