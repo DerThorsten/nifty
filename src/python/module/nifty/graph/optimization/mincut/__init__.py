@@ -1,13 +1,18 @@
 from __future__ import absolute_import
+
+from . import _mincut as __mincut
 from ._mincut import *
 from .... import Configuration
 
 from functools import partial
 
 __all__ = []
-for key in _mincut.__dict__.keys():
+for key in __mincut.__dict__.keys():
     __all__.append(key)
-
+    try:
+        __mincut.__dict__[key].__module__='nifty.graph.optimization.mincut'
+    except:
+        pass
 
 
 

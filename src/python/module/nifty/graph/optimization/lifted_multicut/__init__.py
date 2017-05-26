@@ -1,14 +1,18 @@
 from __future__ import absolute_import
+from .import _lifted_multicut as __lifted_multicut
 from ._lifted_multicut import *
 from functools import partial
 from ..multicut import ilpSettings
 from .. import Configuration
 
 __all__ = []
-for key in _lifted_multicut.__dict__.keys():
+for key in __lifted_multicut.__dict__.keys():
     __all__.append(key)
 
-
+    try:
+        __lifted_multicut.__dict__[key].__module__='nifty.graph.optimization.lifted_multicut'
+    except:
+        pass
 
 
 def __extendLiftedMulticutObj(objectiveCls, objectiveName):

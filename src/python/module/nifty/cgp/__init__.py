@@ -1,5 +1,6 @@
 from __future__ import absolute_import
 from __future__ import print_function
+from .import _cgp as __cgp
 from ._cgp import *
 
 
@@ -10,11 +11,16 @@ try:
 except ImportError:
     __hasPyLabAndMatplotlib = False
 
-__all__ = []
+__all__ = [
+    'makeCellImage'
+]
 
-for key in _cgp.__dict__.keys():
+for key in __cgp.__dict__.keys():
     __all__.append(key)
-
+    try:
+         __cgp.__dict__[key].__module__='nifty.cgp'
+    except:
+        pass
 
 import numpy 
 

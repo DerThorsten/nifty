@@ -8,6 +8,7 @@ Very simple example how to use undirected graphs
 from __future__ import print_function
 import nifty.graph
 import numpy
+import pylab
 
 ##############################################
 #  2D undirected grid graph
@@ -27,7 +28,7 @@ graph.insertEdge(0,2)
 
 ##############################################
 #  insert multiple edges at once
-uvIds = numpy.array([[0,3],[0,4],[1,2],[1,3]])
+uvIds = numpy.array([[0,3],[1,2],[1,4],[1,3],[3,4]])
 graph.insertEdges(uvIds)
 ##############################################
 # iterate over nodes
@@ -53,3 +54,11 @@ for edge in graph.edges():
 uvIds = graph.uvIds()
 print(uvIds)
 
+
+
+
+##############################################
+# plot the graph:
+# needs networkx
+nifty.graph.drawGraph(graph)
+pylab.show()

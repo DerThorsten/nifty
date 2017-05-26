@@ -4,8 +4,10 @@
 #include <pybind11/numpy.h>
 #include <pybind11/stl.h>
 
-#include "nifty/graph/undirected_grid_graph.hxx"
 
+#include "boost/format.hpp"
+
+#include "nifty/graph/undirected_grid_graph.hxx"
 #include "export_undirected_graph_class_api.hxx"
 #include "nifty/python/converter.hxx"
 
@@ -23,7 +25,9 @@ namespace graph{
         const auto clsName = std::string("UndirectedGridGraph") +
                         std::to_string(DIM) + std::string("DSimpleNh");
 
-        auto graphCls = py::class_<GraphType>(module, clsName.c_str());
+        auto graphCls = py::class_<GraphType>(module, clsName.c_str(),
+            (boost::format("%dDimensional Grid Graph")%DIM).str().c_str()
+        );
 
         graphCls
             .def(py::init<const typename GraphType::ShapeType>(),

@@ -74,6 +74,7 @@ namespace graph{
 
 
         ;
+        
 
         // export the base graph API (others might derive)
         exportUndirectedGraphClassAPI<GraphType>(graphModule, cls, clsName);
