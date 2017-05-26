@@ -20,5 +20,5 @@ var searchData=
   ['liftedmulticutobjectivename_3c_20learnableliftedmulticutobjective_3c_20graph_2c_20t_20_3e_20_3e',['LiftedMulticutObjectiveName&lt; LearnableLiftedMulticutObjective&lt; GRAPH, T &gt; &gt;',['../structnifty_1_1graph_1_1lifted__multicut_1_1LiftedMulticutObjectiveName_3_01LearnableLiftedMulti73428f6cd4cc305234bfd757fb72d133.html',1,'nifty::graph::lifted_multicut']]],
   ['liftedmulticutobjectivename_3c_20pydefaultmulticutobjective_3c_20graph_20_3e_20_3e',['LiftedMulticutObjectiveName&lt; PyDefaultMulticutObjective&lt; GRAPH &gt; &gt;',['../structnifty_1_1graph_1_1lifted__multicut_1_1LiftedMulticutObjectiveName_3_01PyDefaultMulticutObjective_3_01GRAPH_01_4_01_4.html',1,'nifty::graph::lifted_multicut']]],
   ['liftedrounder',['LiftedRounder',['../structnifty_1_1graph_1_1lifted__multicut_1_1LiftedMulticutMp_1_1LiftedRounder.html',1,'nifty::graph::lifted_multicut::LiftedMulticutMp']]],
-  ['logginvisitor',['LogginVisitor',['../classnifty_1_1graph_1_1optimization_1_1common_1_1LogginVisitor.html',1,'nifty::graph::optimization::common']]]
+  ['loggingvisitor',['LoggingVisitor',['../classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor.html',1,'nifty::graph::optimization::common']]]
 ];

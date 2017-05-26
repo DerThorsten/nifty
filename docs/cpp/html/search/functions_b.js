@@ -18,7 +18,7 @@ var searchData=
   ['liftedshortedpathfeatures',['liftedShortedPathFeatures',['../namespacenifty_1_1graph_1_1lifted__multicut.html#a59f3cc129887c91479dde6d6a201d5b3',1,'nifty::graph::lifted_multicut']]],
   ['lifteducmfeatures',['liftedUcmFeatures',['../namespacenifty_1_1graph_1_1lifted__multicut.html#aa03838ef8d643b30932610ad7d955327',1,'nifty::graph::lifted_multicut']]],
   ['load',['load',['../structpybind11_1_1detail_1_1array__caster__.html#a26ad1fb7dab7c82cd832c8c3a356fead',1,'pybind11::detail::array_caster_::load()'],['../structpybind11_1_1detail_1_1pymarray__caster.html#a86104f2febd079f88902bfbcaf211275',1,'pybind11::detail::pymarray_caster::load()']]],
-  ['logginvisitor',['LogginVisitor',['../classnifty_1_1graph_1_1optimization_1_1common_1_1LogginVisitor.html#a8c518aafb5e27de9d938a9ee2e8cfbbf',1,'nifty::graph::optimization::common::LogginVisitor']]],
+  ['loggingvisitor',['LoggingVisitor',['../classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor.html#a4e186902e51f27ca16814e8660d4c839',1,'nifty::graph::optimization::common::LoggingVisitor']]],
   ['lower_5fbound',['lower_bound',['../classnifty_1_1container_1_1FlatSet.html#aa2765a252ba34d9403d625e38fac8d39',1,'nifty::container::FlatSet::lower_bound(const key_type &amp;) const '],['../classnifty_1_1container_1_1FlatSet.html#a824de5a2d87a1d938af264a8e06c4a2a',1,'nifty::container::FlatSet::lower_bound(const key_type &amp;)']]],
   ['lowerfirst',['lowerFirst',['../namespacenifty.html#af89b6a59b4fc8d4224d6a73f745d52f9',1,'nifty']]]
 ];

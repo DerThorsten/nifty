@@ -1,9 +1,10 @@
 var searchData=
 [
   ['accoptions',['AccOptions',['../structnifty_1_1graph_1_1AccOptions.html',1,'nifty::graph']]],
-  ['adjacencyiterrange',['AdjacencyIterRange',['../structnifty_1_1graph_1_1EdgeContractionGraph_1_1AdjacencyIterRange.html',1,'nifty::graph::EdgeContractionGraph']]],
-  ['adjacencyiterrange',['AdjacencyIterRange',['../structnifty_1_1graph_1_1UndirectedGraphBase_1_1AdjacencyIterRange.html',1,'nifty::graph::UndirectedGraphBase']]],
+  ['adjacencyiter',['AdjacencyIter',['../classnifty_1_1graph_1_1detail__graph_1_1UndirectedGridGraphIter_1_1AdjacencyIter.html',1,'nifty::graph::detail_graph::UndirectedGridGraphIter']]],
   ['adjacencyiterrange',['AdjacencyIterRange',['../structnifty_1_1graph_1_1DirectedGraphBase_1_1AdjacencyIterRange.html',1,'nifty::graph::DirectedGraphBase']]],
+  ['adjacencyiterrange',['AdjacencyIterRange',['../structnifty_1_1graph_1_1UndirectedGraphBase_1_1AdjacencyIterRange.html',1,'nifty::graph::UndirectedGraphBase']]],
+  ['adjacencyiterrange',['AdjacencyIterRange',['../structnifty_1_1graph_1_1EdgeContractionGraph_1_1AdjacencyIterRange.html',1,'nifty::graph::EdgeContractionGraph']]],
   ['adjacencytag',['AdjacencyTag',['../structnifty_1_1graph_1_1AdjacencyTag.html',1,'nifty::graph']]],
   ['agglomerativeclustering',['AgglomerativeClustering',['../classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering.html',1,'nifty::graph::agglo']]],
   ['applyfilters',['ApplyFilters',['../structnifty_1_1features_1_1ApplyFilters.html',1,'nifty::features']]],

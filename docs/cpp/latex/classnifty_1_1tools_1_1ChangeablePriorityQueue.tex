@@ -1,0 +1,230 @@
+\hypertarget{classnifty_1_1tools_1_1ChangeablePriorityQueue}{}\section{nifty\+:\+:tools\+:\+:Changeable\+Priority\+Queue$<$ T, C\+O\+M\+P\+A\+R\+E $>$ Class Template Reference}
+\label{classnifty_1_1tools_1_1ChangeablePriorityQueue}\index{nifty\+::tools\+::\+Changeable\+Priority\+Queue$<$ T, C\+O\+M\+P\+A\+R\+E $>$@{nifty\+::tools\+::\+Changeable\+Priority\+Queue$<$ T, C\+O\+M\+P\+A\+R\+E $>$}}
+
+
+Heap-\/based changable priority queue with a maximum number of elemements.  
+
+
+
+
+{\ttfamily \#include $<$changable\+\_\+priority\+\_\+queue.\+hxx$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef T \hyperlink{classnifty_1_1tools_1_1ChangeablePriorityQueue_a6ecafb387f99a1cfa7ff5795c924682c}{priority\+\_\+type}
+\item 
+typedef int \hyperlink{classnifty_1_1tools_1_1ChangeablePriorityQueue_a3b9e96ad70a62b02b4a117d58f758a1f}{Value\+Type}
+\item 
+typedef \hyperlink{classnifty_1_1tools_1_1ChangeablePriorityQueue_a3b9e96ad70a62b02b4a117d58f758a1f}{Value\+Type} \hyperlink{classnifty_1_1tools_1_1ChangeablePriorityQueue_aa00fbc748b94bdc6175b4c49bb2bba48}{value\+\_\+type}
+\item 
+typedef \hyperlink{classnifty_1_1tools_1_1ChangeablePriorityQueue_a3b9e96ad70a62b02b4a117d58f758a1f}{Value\+Type} \hyperlink{classnifty_1_1tools_1_1ChangeablePriorityQueue_acb7eb23bd9ca7c52955adc06bf4816c3}{const\+\_\+reference}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classnifty_1_1tools_1_1ChangeablePriorityQueue_a5882abdd882fadd12ba20fd181b80c00}{Changeable\+Priority\+Queue} (const size\+\_\+t max\+Size)
+\begin{DoxyCompactList}\small\item\em Create an empty \hyperlink{classnifty_1_1tools_1_1ChangeablePriorityQueue}{Changeable\+Priority\+Queue} which can contain atmost max\+Size elements. \end{DoxyCompactList}\item 
+void \hyperlink{classnifty_1_1tools_1_1ChangeablePriorityQueue_a544ad33d36c8c3884951b048c9fae0d7}{reset} ()
+\item 
+bool \hyperlink{classnifty_1_1tools_1_1ChangeablePriorityQueue_acdf305d34b52f49fc7da051e244176db}{empty} () const 
+\begin{DoxyCompactList}\small\item\em check if the P\+Q is empty \end{DoxyCompactList}\item 
+void \hyperlink{classnifty_1_1tools_1_1ChangeablePriorityQueue_ab919dd067f7435c0e10268d81f474179}{clear} ()
+\begin{DoxyCompactList}\small\item\em check if the P\+Q is empty \end{DoxyCompactList}\item 
+bool \hyperlink{classnifty_1_1tools_1_1ChangeablePriorityQueue_aff0718c7915d834072155b5ec692e01f}{contains} (const int i) const 
+\begin{DoxyCompactList}\small\item\em check if i is an index on the P\+Q \end{DoxyCompactList}\item 
+int \hyperlink{classnifty_1_1tools_1_1ChangeablePriorityQueue_a2ed3d3d66aefbc62095858fc6a0dfcd1}{size} () const 
+\begin{DoxyCompactList}\small\item\em return the number of elements in the P\+Q \end{DoxyCompactList}\item 
+void \hyperlink{classnifty_1_1tools_1_1ChangeablePriorityQueue_ada41a7adfde46118d48833321ac94066}{push} (const \hyperlink{classnifty_1_1tools_1_1ChangeablePriorityQueue_aa00fbc748b94bdc6175b4c49bb2bba48}{value\+\_\+type} i, const \hyperlink{classnifty_1_1tools_1_1ChangeablePriorityQueue_a6ecafb387f99a1cfa7ff5795c924682c}{priority\+\_\+type} p)
+\begin{DoxyCompactList}\small\item\em Insert a index with a given priority. \end{DoxyCompactList}\item 
+\hyperlink{classnifty_1_1tools_1_1ChangeablePriorityQueue_acb7eb23bd9ca7c52955adc06bf4816c3}{const\+\_\+reference} \hyperlink{classnifty_1_1tools_1_1ChangeablePriorityQueue_acbfa1600a36b452c65f774f3af32cd02}{top} () const 
+\begin{DoxyCompactList}\small\item\em get index with top priority \end{DoxyCompactList}\item 
+\hyperlink{classnifty_1_1tools_1_1ChangeablePriorityQueue_a6ecafb387f99a1cfa7ff5795c924682c}{priority\+\_\+type} \hyperlink{classnifty_1_1tools_1_1ChangeablePriorityQueue_aa0f5e1ac67eb42e45ee6470483646b31}{top\+Priority} () const 
+\begin{DoxyCompactList}\small\item\em get top priority \end{DoxyCompactList}\item 
+void \hyperlink{classnifty_1_1tools_1_1ChangeablePriorityQueue_a7c5e4f9f3f2a837a9a1738144c76c17d}{pop} ()
+\begin{DoxyCompactList}\small\item\em Remove the current top element. \end{DoxyCompactList}\item 
+\hyperlink{classnifty_1_1tools_1_1ChangeablePriorityQueue_a6ecafb387f99a1cfa7ff5795c924682c}{priority\+\_\+type} \hyperlink{classnifty_1_1tools_1_1ChangeablePriorityQueue_a6eceb658416fdce27ec6056984bbb432}{priority} (const \hyperlink{classnifty_1_1tools_1_1ChangeablePriorityQueue_aa00fbc748b94bdc6175b4c49bb2bba48}{value\+\_\+type} i) const 
+\begin{DoxyCompactList}\small\item\em returns the value associated with index i \end{DoxyCompactList}\item 
+void \hyperlink{classnifty_1_1tools_1_1ChangeablePriorityQueue_af5b15b7c4cfedc7f95d168553a06a189}{delete\+Item} (const \hyperlink{classnifty_1_1tools_1_1ChangeablePriorityQueue_aa00fbc748b94bdc6175b4c49bb2bba48}{value\+\_\+type} i)
+\begin{DoxyCompactList}\small\item\em deleqte the priority associated with index i \end{DoxyCompactList}\item 
+void \hyperlink{classnifty_1_1tools_1_1ChangeablePriorityQueue_a5db5d4bd2d451623897e27c1aa5f8fff}{change\+Priority} (const \hyperlink{classnifty_1_1tools_1_1ChangeablePriorityQueue_aa00fbc748b94bdc6175b4c49bb2bba48}{value\+\_\+type} i, const \hyperlink{classnifty_1_1tools_1_1ChangeablePriorityQueue_a6ecafb387f99a1cfa7ff5795c924682c}{priority\+\_\+type} p)
+\begin{DoxyCompactList}\small\item\em change priority of a given index. The index must be in the queue! Call push to auto insert / change . \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class T, class C\+O\+M\+P\+A\+R\+E = std\+::less$<$\+T$>$$>$class nifty\+::tools\+::\+Changeable\+Priority\+Queue$<$ T, C\+O\+M\+P\+A\+R\+E $>$}
+
+Heap-\/based changable priority queue with a maximum number of elemements. 
+
+This pq allows to change the priorities of elements in the queue
+
+{\bfseries \#include} $<$nifty/tools/priority\+\_\+queue.\+hxx$>$~\newline
+
+
+Namespace\+: \hyperlink{namespacenifty_1_1tools}{nifty\+::tools} 
+
+\subsection{Member Typedef Documentation}
+\hypertarget{classnifty_1_1tools_1_1ChangeablePriorityQueue_acb7eb23bd9ca7c52955adc06bf4816c3}{}\index{nifty\+::tools\+::\+Changeable\+Priority\+Queue@{nifty\+::tools\+::\+Changeable\+Priority\+Queue}!const\+\_\+reference@{const\+\_\+reference}}
+\index{const\+\_\+reference@{const\+\_\+reference}!nifty\+::tools\+::\+Changeable\+Priority\+Queue@{nifty\+::tools\+::\+Changeable\+Priority\+Queue}}
+\subsubsection[{const\+\_\+reference}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , class C\+O\+M\+P\+A\+R\+E  = std\+::less$<$\+T$>$$>$ typedef {\bf Value\+Type} {\bf nifty\+::tools\+::\+Changeable\+Priority\+Queue}$<$ T, C\+O\+M\+P\+A\+R\+E $>$\+::{\bf const\+\_\+reference}}\label{classnifty_1_1tools_1_1ChangeablePriorityQueue_acb7eb23bd9ca7c52955adc06bf4816c3}
+\hypertarget{classnifty_1_1tools_1_1ChangeablePriorityQueue_a6ecafb387f99a1cfa7ff5795c924682c}{}\index{nifty\+::tools\+::\+Changeable\+Priority\+Queue@{nifty\+::tools\+::\+Changeable\+Priority\+Queue}!priority\+\_\+type@{priority\+\_\+type}}
+\index{priority\+\_\+type@{priority\+\_\+type}!nifty\+::tools\+::\+Changeable\+Priority\+Queue@{nifty\+::tools\+::\+Changeable\+Priority\+Queue}}
+\subsubsection[{priority\+\_\+type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , class C\+O\+M\+P\+A\+R\+E  = std\+::less$<$\+T$>$$>$ typedef T {\bf nifty\+::tools\+::\+Changeable\+Priority\+Queue}$<$ T, C\+O\+M\+P\+A\+R\+E $>$\+::{\bf priority\+\_\+type}}\label{classnifty_1_1tools_1_1ChangeablePriorityQueue_a6ecafb387f99a1cfa7ff5795c924682c}
+\hypertarget{classnifty_1_1tools_1_1ChangeablePriorityQueue_aa00fbc748b94bdc6175b4c49bb2bba48}{}\index{nifty\+::tools\+::\+Changeable\+Priority\+Queue@{nifty\+::tools\+::\+Changeable\+Priority\+Queue}!value\+\_\+type@{value\+\_\+type}}
+\index{value\+\_\+type@{value\+\_\+type}!nifty\+::tools\+::\+Changeable\+Priority\+Queue@{nifty\+::tools\+::\+Changeable\+Priority\+Queue}}
+\subsubsection[{value\+\_\+type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , class C\+O\+M\+P\+A\+R\+E  = std\+::less$<$\+T$>$$>$ typedef {\bf Value\+Type} {\bf nifty\+::tools\+::\+Changeable\+Priority\+Queue}$<$ T, C\+O\+M\+P\+A\+R\+E $>$\+::{\bf value\+\_\+type}}\label{classnifty_1_1tools_1_1ChangeablePriorityQueue_aa00fbc748b94bdc6175b4c49bb2bba48}
+\hypertarget{classnifty_1_1tools_1_1ChangeablePriorityQueue_a3b9e96ad70a62b02b4a117d58f758a1f}{}\index{nifty\+::tools\+::\+Changeable\+Priority\+Queue@{nifty\+::tools\+::\+Changeable\+Priority\+Queue}!Value\+Type@{Value\+Type}}
+\index{Value\+Type@{Value\+Type}!nifty\+::tools\+::\+Changeable\+Priority\+Queue@{nifty\+::tools\+::\+Changeable\+Priority\+Queue}}
+\subsubsection[{Value\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , class C\+O\+M\+P\+A\+R\+E  = std\+::less$<$\+T$>$$>$ typedef int {\bf nifty\+::tools\+::\+Changeable\+Priority\+Queue}$<$ T, C\+O\+M\+P\+A\+R\+E $>$\+::{\bf Value\+Type}}\label{classnifty_1_1tools_1_1ChangeablePriorityQueue_a3b9e96ad70a62b02b4a117d58f758a1f}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classnifty_1_1tools_1_1ChangeablePriorityQueue_a5882abdd882fadd12ba20fd181b80c00}{}\index{nifty\+::tools\+::\+Changeable\+Priority\+Queue@{nifty\+::tools\+::\+Changeable\+Priority\+Queue}!Changeable\+Priority\+Queue@{Changeable\+Priority\+Queue}}
+\index{Changeable\+Priority\+Queue@{Changeable\+Priority\+Queue}!nifty\+::tools\+::\+Changeable\+Priority\+Queue@{nifty\+::tools\+::\+Changeable\+Priority\+Queue}}
+\subsubsection[{Changeable\+Priority\+Queue(const size\+\_\+t max\+Size)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , class C\+O\+M\+P\+A\+R\+E  = std\+::less$<$\+T$>$$>$ {\bf nifty\+::tools\+::\+Changeable\+Priority\+Queue}$<$ T, C\+O\+M\+P\+A\+R\+E $>$\+::{\bf Changeable\+Priority\+Queue} (
+\begin{DoxyParamCaption}
+\item[{const size\+\_\+t}]{max\+Size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1tools_1_1ChangeablePriorityQueue_a5882abdd882fadd12ba20fd181b80c00}
+
+
+Create an empty \hyperlink{classnifty_1_1tools_1_1ChangeablePriorityQueue}{Changeable\+Priority\+Queue} which can contain atmost max\+Size elements. 
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classnifty_1_1tools_1_1ChangeablePriorityQueue_a5db5d4bd2d451623897e27c1aa5f8fff}{}\index{nifty\+::tools\+::\+Changeable\+Priority\+Queue@{nifty\+::tools\+::\+Changeable\+Priority\+Queue}!change\+Priority@{change\+Priority}}
+\index{change\+Priority@{change\+Priority}!nifty\+::tools\+::\+Changeable\+Priority\+Queue@{nifty\+::tools\+::\+Changeable\+Priority\+Queue}}
+\subsubsection[{change\+Priority(const value\+\_\+type i, const priority\+\_\+type p)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , class C\+O\+M\+P\+A\+R\+E  = std\+::less$<$\+T$>$$>$ void {\bf nifty\+::tools\+::\+Changeable\+Priority\+Queue}$<$ T, C\+O\+M\+P\+A\+R\+E $>$\+::change\+Priority (
+\begin{DoxyParamCaption}
+\item[{const {\bf value\+\_\+type}}]{i, }
+\item[{const {\bf priority\+\_\+type}}]{p}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1tools_1_1ChangeablePriorityQueue_a5db5d4bd2d451623897e27c1aa5f8fff}
+
+
+change priority of a given index. The index must be in the queue! Call push to auto insert / change . 
+
+\hypertarget{classnifty_1_1tools_1_1ChangeablePriorityQueue_ab919dd067f7435c0e10268d81f474179}{}\index{nifty\+::tools\+::\+Changeable\+Priority\+Queue@{nifty\+::tools\+::\+Changeable\+Priority\+Queue}!clear@{clear}}
+\index{clear@{clear}!nifty\+::tools\+::\+Changeable\+Priority\+Queue@{nifty\+::tools\+::\+Changeable\+Priority\+Queue}}
+\subsubsection[{clear()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , class C\+O\+M\+P\+A\+R\+E  = std\+::less$<$\+T$>$$>$ void {\bf nifty\+::tools\+::\+Changeable\+Priority\+Queue}$<$ T, C\+O\+M\+P\+A\+R\+E $>$\+::clear (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1tools_1_1ChangeablePriorityQueue_ab919dd067f7435c0e10268d81f474179}
+
+
+check if the P\+Q is empty 
+
+\hypertarget{classnifty_1_1tools_1_1ChangeablePriorityQueue_aff0718c7915d834072155b5ec692e01f}{}\index{nifty\+::tools\+::\+Changeable\+Priority\+Queue@{nifty\+::tools\+::\+Changeable\+Priority\+Queue}!contains@{contains}}
+\index{contains@{contains}!nifty\+::tools\+::\+Changeable\+Priority\+Queue@{nifty\+::tools\+::\+Changeable\+Priority\+Queue}}
+\subsubsection[{contains(const int i) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , class C\+O\+M\+P\+A\+R\+E  = std\+::less$<$\+T$>$$>$ bool {\bf nifty\+::tools\+::\+Changeable\+Priority\+Queue}$<$ T, C\+O\+M\+P\+A\+R\+E $>$\+::contains (
+\begin{DoxyParamCaption}
+\item[{const int}]{i}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1tools_1_1ChangeablePriorityQueue_aff0718c7915d834072155b5ec692e01f}
+
+
+check if i is an index on the P\+Q 
+
+\hypertarget{classnifty_1_1tools_1_1ChangeablePriorityQueue_af5b15b7c4cfedc7f95d168553a06a189}{}\index{nifty\+::tools\+::\+Changeable\+Priority\+Queue@{nifty\+::tools\+::\+Changeable\+Priority\+Queue}!delete\+Item@{delete\+Item}}
+\index{delete\+Item@{delete\+Item}!nifty\+::tools\+::\+Changeable\+Priority\+Queue@{nifty\+::tools\+::\+Changeable\+Priority\+Queue}}
+\subsubsection[{delete\+Item(const value\+\_\+type i)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , class C\+O\+M\+P\+A\+R\+E  = std\+::less$<$\+T$>$$>$ void {\bf nifty\+::tools\+::\+Changeable\+Priority\+Queue}$<$ T, C\+O\+M\+P\+A\+R\+E $>$\+::delete\+Item (
+\begin{DoxyParamCaption}
+\item[{const {\bf value\+\_\+type}}]{i}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1tools_1_1ChangeablePriorityQueue_af5b15b7c4cfedc7f95d168553a06a189}
+
+
+deleqte the priority associated with index i 
+
+\hypertarget{classnifty_1_1tools_1_1ChangeablePriorityQueue_acdf305d34b52f49fc7da051e244176db}{}\index{nifty\+::tools\+::\+Changeable\+Priority\+Queue@{nifty\+::tools\+::\+Changeable\+Priority\+Queue}!empty@{empty}}
+\index{empty@{empty}!nifty\+::tools\+::\+Changeable\+Priority\+Queue@{nifty\+::tools\+::\+Changeable\+Priority\+Queue}}
+\subsubsection[{empty() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , class C\+O\+M\+P\+A\+R\+E  = std\+::less$<$\+T$>$$>$ bool {\bf nifty\+::tools\+::\+Changeable\+Priority\+Queue}$<$ T, C\+O\+M\+P\+A\+R\+E $>$\+::empty (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1tools_1_1ChangeablePriorityQueue_acdf305d34b52f49fc7da051e244176db}
+
+
+check if the P\+Q is empty 
+
+\hypertarget{classnifty_1_1tools_1_1ChangeablePriorityQueue_a7c5e4f9f3f2a837a9a1738144c76c17d}{}\index{nifty\+::tools\+::\+Changeable\+Priority\+Queue@{nifty\+::tools\+::\+Changeable\+Priority\+Queue}!pop@{pop}}
+\index{pop@{pop}!nifty\+::tools\+::\+Changeable\+Priority\+Queue@{nifty\+::tools\+::\+Changeable\+Priority\+Queue}}
+\subsubsection[{pop()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , class C\+O\+M\+P\+A\+R\+E  = std\+::less$<$\+T$>$$>$ void {\bf nifty\+::tools\+::\+Changeable\+Priority\+Queue}$<$ T, C\+O\+M\+P\+A\+R\+E $>$\+::pop (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1tools_1_1ChangeablePriorityQueue_a7c5e4f9f3f2a837a9a1738144c76c17d}
+
+
+Remove the current top element. 
+
+\hypertarget{classnifty_1_1tools_1_1ChangeablePriorityQueue_a6eceb658416fdce27ec6056984bbb432}{}\index{nifty\+::tools\+::\+Changeable\+Priority\+Queue@{nifty\+::tools\+::\+Changeable\+Priority\+Queue}!priority@{priority}}
+\index{priority@{priority}!nifty\+::tools\+::\+Changeable\+Priority\+Queue@{nifty\+::tools\+::\+Changeable\+Priority\+Queue}}
+\subsubsection[{priority(const value\+\_\+type i) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , class C\+O\+M\+P\+A\+R\+E  = std\+::less$<$\+T$>$$>$ {\bf priority\+\_\+type} {\bf nifty\+::tools\+::\+Changeable\+Priority\+Queue}$<$ T, C\+O\+M\+P\+A\+R\+E $>$\+::priority (
+\begin{DoxyParamCaption}
+\item[{const {\bf value\+\_\+type}}]{i}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1tools_1_1ChangeablePriorityQueue_a6eceb658416fdce27ec6056984bbb432}
+
+
+returns the value associated with index i 
+
+\hypertarget{classnifty_1_1tools_1_1ChangeablePriorityQueue_ada41a7adfde46118d48833321ac94066}{}\index{nifty\+::tools\+::\+Changeable\+Priority\+Queue@{nifty\+::tools\+::\+Changeable\+Priority\+Queue}!push@{push}}
+\index{push@{push}!nifty\+::tools\+::\+Changeable\+Priority\+Queue@{nifty\+::tools\+::\+Changeable\+Priority\+Queue}}
+\subsubsection[{push(const value\+\_\+type i, const priority\+\_\+type p)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , class C\+O\+M\+P\+A\+R\+E  = std\+::less$<$\+T$>$$>$ void {\bf nifty\+::tools\+::\+Changeable\+Priority\+Queue}$<$ T, C\+O\+M\+P\+A\+R\+E $>$\+::push (
+\begin{DoxyParamCaption}
+\item[{const {\bf value\+\_\+type}}]{i, }
+\item[{const {\bf priority\+\_\+type}}]{p}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1tools_1_1ChangeablePriorityQueue_ada41a7adfde46118d48833321ac94066}
+
+
+Insert a index with a given priority. 
+
+If the queue contains i bevore this call the priority of the given index will be changed \hypertarget{classnifty_1_1tools_1_1ChangeablePriorityQueue_a544ad33d36c8c3884951b048c9fae0d7}{}\index{nifty\+::tools\+::\+Changeable\+Priority\+Queue@{nifty\+::tools\+::\+Changeable\+Priority\+Queue}!reset@{reset}}
+\index{reset@{reset}!nifty\+::tools\+::\+Changeable\+Priority\+Queue@{nifty\+::tools\+::\+Changeable\+Priority\+Queue}}
+\subsubsection[{reset()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , class C\+O\+M\+P\+A\+R\+E  = std\+::less$<$\+T$>$$>$ void {\bf nifty\+::tools\+::\+Changeable\+Priority\+Queue}$<$ T, C\+O\+M\+P\+A\+R\+E $>$\+::reset (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1tools_1_1ChangeablePriorityQueue_a544ad33d36c8c3884951b048c9fae0d7}
+\hypertarget{classnifty_1_1tools_1_1ChangeablePriorityQueue_a2ed3d3d66aefbc62095858fc6a0dfcd1}{}\index{nifty\+::tools\+::\+Changeable\+Priority\+Queue@{nifty\+::tools\+::\+Changeable\+Priority\+Queue}!size@{size}}
+\index{size@{size}!nifty\+::tools\+::\+Changeable\+Priority\+Queue@{nifty\+::tools\+::\+Changeable\+Priority\+Queue}}
+\subsubsection[{size() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , class C\+O\+M\+P\+A\+R\+E  = std\+::less$<$\+T$>$$>$ int {\bf nifty\+::tools\+::\+Changeable\+Priority\+Queue}$<$ T, C\+O\+M\+P\+A\+R\+E $>$\+::size (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1tools_1_1ChangeablePriorityQueue_a2ed3d3d66aefbc62095858fc6a0dfcd1}
+
+
+return the number of elements in the P\+Q 
+
+\hypertarget{classnifty_1_1tools_1_1ChangeablePriorityQueue_acbfa1600a36b452c65f774f3af32cd02}{}\index{nifty\+::tools\+::\+Changeable\+Priority\+Queue@{nifty\+::tools\+::\+Changeable\+Priority\+Queue}!top@{top}}
+\index{top@{top}!nifty\+::tools\+::\+Changeable\+Priority\+Queue@{nifty\+::tools\+::\+Changeable\+Priority\+Queue}}
+\subsubsection[{top() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , class C\+O\+M\+P\+A\+R\+E  = std\+::less$<$\+T$>$$>$ {\bf const\+\_\+reference} {\bf nifty\+::tools\+::\+Changeable\+Priority\+Queue}$<$ T, C\+O\+M\+P\+A\+R\+E $>$\+::top (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1tools_1_1ChangeablePriorityQueue_acbfa1600a36b452c65f774f3af32cd02}
+
+
+get index with top priority 
+
+\hypertarget{classnifty_1_1tools_1_1ChangeablePriorityQueue_aa0f5e1ac67eb42e45ee6470483646b31}{}\index{nifty\+::tools\+::\+Changeable\+Priority\+Queue@{nifty\+::tools\+::\+Changeable\+Priority\+Queue}!top\+Priority@{top\+Priority}}
+\index{top\+Priority@{top\+Priority}!nifty\+::tools\+::\+Changeable\+Priority\+Queue@{nifty\+::tools\+::\+Changeable\+Priority\+Queue}}
+\subsubsection[{top\+Priority() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , class C\+O\+M\+P\+A\+R\+E  = std\+::less$<$\+T$>$$>$ {\bf priority\+\_\+type} {\bf nifty\+::tools\+::\+Changeable\+Priority\+Queue}$<$ T, C\+O\+M\+P\+A\+R\+E $>$\+::top\+Priority (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1tools_1_1ChangeablePriorityQueue_aa0f5e1ac67eb42e45ee6470483646b31}
+
+
+get top priority 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/tbeier/src/nifty/include/nifty/tools/\hyperlink{changable__priority__queue_8hxx}{changable\+\_\+priority\+\_\+queue.\+hxx}\end{DoxyCompactItemize}

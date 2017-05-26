@@ -10,6 +10,7 @@ var searchData=
   ['graphname',['GraphName',['../structnifty_1_1graph_1_1GraphName.html',1,'nifty::graph']]],
   ['graphname_3c_20pycontractiongraph_3c_20base_5fgraph_20_3e_20_3e',['GraphName&lt; PyContractionGraph&lt; BASE_GRAPH &gt; &gt;',['../structnifty_1_1graph_1_1GraphName_3_01PyContractionGraph_3_01BASE__GRAPH_01_4_01_4.html',1,'nifty::graph']]],
   ['graphname_3c_20pyundirectedgraph_20_3e',['GraphName&lt; PyUndirectedGraph &gt;',['../structnifty_1_1graph_1_1GraphName_3_01PyUndirectedGraph_01_4.html',1,'nifty::graph']]],
+  ['graphname_3c_20undirectedgridgraph_3c_20dim_2c_20simple_5fnh_20_3e_20_3e',['GraphName&lt; UndirectedGridGraph&lt; DIM, SIMPLE_NH &gt; &gt;',['../structnifty_1_1graph_1_1GraphName_3_01UndirectedGridGraph_3_01DIM_00_01SIMPLE__NH_01_4_01_4.html',1,'nifty::graph']]],
   ['greedyadditivemulticutproposals',['GreedyAdditiveMulticutProposals',['../classnifty_1_1graph_1_1optimization_1_1common_1_1GreedyAdditiveMulticutProposals.html',1,'nifty::graph::optimization::common']]],
   ['greedyadditiveproposals',['GreedyAdditiveProposals',['../classnifty_1_1graph_1_1GreedyAdditiveProposals.html',1,'nifty::graph']]],
   ['gridrag',['GridRag',['../classnifty_1_1graph_1_1GridRag.html',1,'nifty::graph']]],

@@ -1,0 +1,1066 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>nifty.graph.optimization.lifted_multicut &#8212; Nifty 0.5.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.5.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="nifty.graph.optimization.mincut" href="nifty.graph.optimization.mincut.html" />
+    <link rel="prev" title="nifty.graph.optimization.multicut" href="nifty.graph.optimization.multicut.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="nifty.graph.optimization.mincut.html" title="nifty.graph.optimization.mincut"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="nifty.graph.optimization.multicut.html" title="nifty.graph.optimization.multicut"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Nifty 0.5.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../reference.html" accesskey="U">Nifty API Reference</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">nifty.graph.optimization.lifted_multicut</a><ul>
+<li><a class="reference internal" href="#functions">Functions</a><ul>
+<li><a class="reference internal" href="#classes">Classes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="nifty.graph.optimization.multicut.html"
+                        title="previous chapter">nifty.graph.optimization.multicut</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="nifty.graph.optimization.mincut.html"
+                        title="next chapter">nifty.graph.optimization.mincut</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-nifty.graph.optimization.lifted_multicut">
+<span id="nifty-graph-optimization-lifted-multicut"></span><h1>nifty.graph.optimization.lifted_multicut<a class="headerlink" href="#module-nifty.graph.optimization.lifted_multicut" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="nifty.graph.optimization.lifted_multicut.liftedMulticutObjective">
+<code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">liftedMulticutObjective</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.liftedMulticutObjective" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li>liftedMulticutObjective(graph: nifty.graph._graph.UndirectedGraph) -&gt; nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutObjectiveUndirectedGraph</li>
+<li>liftedMulticutObjective(graph: nifty.graph._graph.UndirectedGridGraph2DSimpleNh) -&gt; nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh</li>
+</ol>
+</dd></dl>
+
+<div style='clear:both'></div><dl class="function">
+<dt id="nifty.graph.optimization.lifted_multicut.liftedUcmFeatures">
+<code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">liftedUcmFeatures</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.liftedUcmFeatures" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li>liftedUcmFeatures(objective: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutObjectiveUndirectedGraph, edgeIndicators: array&lt;float&gt;, edgeSizes: array&lt;float&gt;, nodeSizes: array&lt;float&gt;, sizeRegularizers: List[float]) -&gt; array&lt;float&gt;</li>
+<li>liftedUcmFeatures(objective: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh, edgeIndicators: array&lt;float&gt;, edgeSizes: array&lt;float&gt;, nodeSizes: array&lt;float&gt;, sizeRegularizers: List[float]) -&gt; array&lt;float&gt;</li>
+</ol>
+</dd></dl>
+
+<div style='clear:both'></div><div class="section" id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="nifty.graph.optimization.lifted_multicut.FusionMoveBasedFactoryLiftedMulticutObjectiveUndirectedGraph">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">FusionMoveBasedFactoryLiftedMulticutObjectiveUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.FusionMoveBasedFactoryLiftedMulticutObjectiveUndirectedGraph" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="nifty.graph.optimization.lifted_multicut.FusionMoveBasedFactoryLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">FusionMoveBasedFactoryLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.FusionMoveBasedFactoryLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="nifty.graph.optimization.lifted_multicut.FusionMoveBasedLiftedMulticutObjectiveUndirectedGraph">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">FusionMoveBasedLiftedMulticutObjectiveUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.FusionMoveBasedLiftedMulticutObjectiveUndirectedGraph" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="nifty.graph.optimization.lifted_multicut.FusionMoveBasedLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">FusionMoveBasedLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.FusionMoveBasedLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="nifty.graph.optimization.lifted_multicut.FusionMoveBasedSettingsLiftedMulticutObjectiveUndirectedGraph">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">FusionMoveBasedSettingsLiftedMulticutObjectiveUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.FusionMoveBasedSettingsLiftedMulticutObjectiveUndirectedGraph" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.FusionMoveBasedSettingsLiftedMulticutObjectiveUndirectedGraph.numberOfIterations">
+<code class="descname">numberOfIterations</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.FusionMoveBasedSettingsLiftedMulticutObjectiveUndirectedGraph.numberOfIterations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.FusionMoveBasedSettingsLiftedMulticutObjectiveUndirectedGraph.numberOfThreads">
+<code class="descname">numberOfThreads</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.FusionMoveBasedSettingsLiftedMulticutObjectiveUndirectedGraph.numberOfThreads" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.FusionMoveBasedSettingsLiftedMulticutObjectiveUndirectedGraph.proposalGenerator">
+<code class="descname">proposalGenerator</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.FusionMoveBasedSettingsLiftedMulticutObjectiveUndirectedGraph.proposalGenerator" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.FusionMoveBasedSettingsLiftedMulticutObjectiveUndirectedGraph.stopIfNoImprovement">
+<code class="descname">stopIfNoImprovement</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.FusionMoveBasedSettingsLiftedMulticutObjectiveUndirectedGraph.stopIfNoImprovement" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="nifty.graph.optimization.lifted_multicut.FusionMoveBasedSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">FusionMoveBasedSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.FusionMoveBasedSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.FusionMoveBasedSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.numberOfIterations">
+<code class="descname">numberOfIterations</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.FusionMoveBasedSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.numberOfIterations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.FusionMoveBasedSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.numberOfThreads">
+<code class="descname">numberOfThreads</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.FusionMoveBasedSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.numberOfThreads" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.FusionMoveBasedSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.proposalGenerator">
+<code class="descname">proposalGenerator</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.FusionMoveBasedSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.proposalGenerator" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.FusionMoveBasedSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.stopIfNoImprovement">
+<code class="descname">stopIfNoImprovement</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.FusionMoveBasedSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.stopIfNoImprovement" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutAndresGreedyAdditiveFactoryLiftedMulticutObjectiveUndirectedGraph">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">LiftedMulticutAndresGreedyAdditiveFactoryLiftedMulticutObjectiveUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutAndresGreedyAdditiveFactoryLiftedMulticutObjectiveUndirectedGraph" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutAndresGreedyAdditiveFactoryLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">LiftedMulticutAndresGreedyAdditiveFactoryLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutAndresGreedyAdditiveFactoryLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutAndresGreedyAdditiveLiftedMulticutObjectiveUndirectedGraph">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">LiftedMulticutAndresGreedyAdditiveLiftedMulticutObjectiveUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutAndresGreedyAdditiveLiftedMulticutObjectiveUndirectedGraph" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutAndresGreedyAdditiveLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">LiftedMulticutAndresGreedyAdditiveLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutAndresGreedyAdditiveLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutAndresGreedyAdditiveSettingsLiftedMulticutObjectiveUndirectedGraph">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">LiftedMulticutAndresGreedyAdditiveSettingsLiftedMulticutObjectiveUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutAndresGreedyAdditiveSettingsLiftedMulticutObjectiveUndirectedGraph" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutAndresGreedyAdditiveSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">LiftedMulticutAndresGreedyAdditiveSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutAndresGreedyAdditiveSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutBaseLiftedMulticutObjectiveUndirectedGraph">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">LiftedMulticutBaseLiftedMulticutObjectiveUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutBaseLiftedMulticutObjectiveUndirectedGraph" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutBaseLiftedMulticutObjectiveUndirectedGraph.optimize">
+<code class="descname">optimize</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutBaseLiftedMulticutObjectiveUndirectedGraph.optimize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li>optimize(self: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutBaseLiftedMulticutObjectiveUndirectedGraph) -&gt; array&lt;int&gt;</li>
+<li>optimize(self: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutBaseLiftedMulticutObjectiveUndirectedGraph, visitor: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutVisitorBaseLiftedMulticutObjectiveUndirectedGraph) -&gt; array&lt;int&gt;</li>
+<li>optimize(self: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutBaseLiftedMulticutObjectiveUndirectedGraph, nodeLabels: array&lt;int&gt;) -&gt; array&lt;int&gt;</li>
+<li>optimize(self: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutBaseLiftedMulticutObjectiveUndirectedGraph, visitor: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutVisitorBaseLiftedMulticutObjectiveUndirectedGraph, nodeLabels: array&lt;int&gt;) -&gt; array&lt;int&gt;</li>
+</ol>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutBaseLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">LiftedMulticutBaseLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutBaseLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutBaseLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.optimize">
+<code class="descname">optimize</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutBaseLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.optimize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li>optimize(self: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutBaseLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh) -&gt; array&lt;int&gt;</li>
+<li>optimize(self: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutBaseLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh, visitor: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutVisitorBaseLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh) -&gt; array&lt;int&gt;</li>
+<li>optimize(self: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutBaseLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh, nodeLabels: array&lt;int&gt;) -&gt; array&lt;int&gt;</li>
+<li>optimize(self: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutBaseLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh, visitor: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutVisitorBaseLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh, nodeLabels: array&lt;int&gt;) -&gt; array&lt;int&gt;</li>
+</ol>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutFactoryBaseLiftedMulticutObjectiveUndirectedGraph">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">LiftedMulticutFactoryBaseLiftedMulticutObjectiveUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutFactoryBaseLiftedMulticutObjectiveUndirectedGraph" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutFactoryBaseLiftedMulticutObjectiveUndirectedGraph.create">
+<code class="descname">create</code><span class="sig-paren">(</span><em>self: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutFactoryBaseLiftedMulticutObjectiveUndirectedGraph</em>, <em>arg0: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutObjectiveUndirectedGraph</em><span class="sig-paren">)</span> &#x2192; nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutBaseLiftedMulticutObjectiveUndirectedGraph<a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutFactoryBaseLiftedMulticutObjectiveUndirectedGraph.create" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutFactoryBaseLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">LiftedMulticutFactoryBaseLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutFactoryBaseLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutFactoryBaseLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.create">
+<code class="descname">create</code><span class="sig-paren">(</span><em>self: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutFactoryBaseLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh</em>, <em>arg0: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh</em><span class="sig-paren">)</span> &#x2192; nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutBaseLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh<a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutFactoryBaseLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.create" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutGreedyAdditiveFactoryLiftedMulticutObjectiveUndirectedGraph">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">LiftedMulticutGreedyAdditiveFactoryLiftedMulticutObjectiveUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutGreedyAdditiveFactoryLiftedMulticutObjectiveUndirectedGraph" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutGreedyAdditiveFactoryLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">LiftedMulticutGreedyAdditiveFactoryLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutGreedyAdditiveFactoryLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutGreedyAdditiveLiftedMulticutObjectiveUndirectedGraph">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">LiftedMulticutGreedyAdditiveLiftedMulticutObjectiveUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutGreedyAdditiveLiftedMulticutObjectiveUndirectedGraph" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutGreedyAdditiveLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">LiftedMulticutGreedyAdditiveLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutGreedyAdditiveLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutGreedyAdditiveSettingsLiftedMulticutObjectiveUndirectedGraph">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">LiftedMulticutGreedyAdditiveSettingsLiftedMulticutObjectiveUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutGreedyAdditiveSettingsLiftedMulticutObjectiveUndirectedGraph" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutGreedyAdditiveSettingsLiftedMulticutObjectiveUndirectedGraph.nodeNumStopCond">
+<code class="descname">nodeNumStopCond</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutGreedyAdditiveSettingsLiftedMulticutObjectiveUndirectedGraph.nodeNumStopCond" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutGreedyAdditiveSettingsLiftedMulticutObjectiveUndirectedGraph.weightStopCond">
+<code class="descname">weightStopCond</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutGreedyAdditiveSettingsLiftedMulticutObjectiveUndirectedGraph.weightStopCond" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutGreedyAdditiveSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">LiftedMulticutGreedyAdditiveSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutGreedyAdditiveSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutGreedyAdditiveSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.nodeNumStopCond">
+<code class="descname">nodeNumStopCond</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutGreedyAdditiveSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.nodeNumStopCond" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutGreedyAdditiveSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.weightStopCond">
+<code class="descname">weightStopCond</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutGreedyAdditiveSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.weightStopCond" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpCplexFactoryLiftedMulticutObjectiveUndirectedGraph">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">LiftedMulticutIlpCplexFactoryLiftedMulticutObjectiveUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpCplexFactoryLiftedMulticutObjectiveUndirectedGraph" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpCplexFactoryLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">LiftedMulticutIlpCplexFactoryLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpCplexFactoryLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpCplexLiftedMulticutObjectiveUndirectedGraph">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">LiftedMulticutIlpCplexLiftedMulticutObjectiveUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpCplexLiftedMulticutObjectiveUndirectedGraph" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpCplexLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">LiftedMulticutIlpCplexLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpCplexLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpCplexSettingsLiftedMulticutObjectiveUndirectedGraph">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">LiftedMulticutIlpCplexSettingsLiftedMulticutObjectiveUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpCplexSettingsLiftedMulticutObjectiveUndirectedGraph" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpCplexSettingsLiftedMulticutObjectiveUndirectedGraph.addOnlyViolatedThreeCyclesConstraints">
+<code class="descname">addOnlyViolatedThreeCyclesConstraints</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpCplexSettingsLiftedMulticutObjectiveUndirectedGraph.addOnlyViolatedThreeCyclesConstraints" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpCplexSettingsLiftedMulticutObjectiveUndirectedGraph.addThreeCyclesConstraints">
+<code class="descname">addThreeCyclesConstraints</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpCplexSettingsLiftedMulticutObjectiveUndirectedGraph.addThreeCyclesConstraints" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpCplexSettingsLiftedMulticutObjectiveUndirectedGraph.ilpSettings">
+<code class="descname">ilpSettings</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpCplexSettingsLiftedMulticutObjectiveUndirectedGraph.ilpSettings" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpCplexSettingsLiftedMulticutObjectiveUndirectedGraph.numberOfIterations">
+<code class="descname">numberOfIterations</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpCplexSettingsLiftedMulticutObjectiveUndirectedGraph.numberOfIterations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpCplexSettingsLiftedMulticutObjectiveUndirectedGraph.verbose">
+<code class="descname">verbose</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpCplexSettingsLiftedMulticutObjectiveUndirectedGraph.verbose" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpCplexSettingsLiftedMulticutObjectiveUndirectedGraph.verboseIlp">
+<code class="descname">verboseIlp</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpCplexSettingsLiftedMulticutObjectiveUndirectedGraph.verboseIlp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpCplexSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">LiftedMulticutIlpCplexSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpCplexSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpCplexSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.addOnlyViolatedThreeCyclesConstraints">
+<code class="descname">addOnlyViolatedThreeCyclesConstraints</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpCplexSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.addOnlyViolatedThreeCyclesConstraints" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpCplexSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.addThreeCyclesConstraints">
+<code class="descname">addThreeCyclesConstraints</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpCplexSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.addThreeCyclesConstraints" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpCplexSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.ilpSettings">
+<code class="descname">ilpSettings</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpCplexSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.ilpSettings" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpCplexSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.numberOfIterations">
+<code class="descname">numberOfIterations</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpCplexSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.numberOfIterations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpCplexSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.verbose">
+<code class="descname">verbose</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpCplexSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.verbose" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpCplexSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.verboseIlp">
+<code class="descname">verboseIlp</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpCplexSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.verboseIlp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpGlpkFactoryLiftedMulticutObjectiveUndirectedGraph">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">LiftedMulticutIlpGlpkFactoryLiftedMulticutObjectiveUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpGlpkFactoryLiftedMulticutObjectiveUndirectedGraph" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpGlpkFactoryLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">LiftedMulticutIlpGlpkFactoryLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpGlpkFactoryLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpGlpkLiftedMulticutObjectiveUndirectedGraph">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">LiftedMulticutIlpGlpkLiftedMulticutObjectiveUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpGlpkLiftedMulticutObjectiveUndirectedGraph" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpGlpkLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">LiftedMulticutIlpGlpkLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpGlpkLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpGlpkSettingsLiftedMulticutObjectiveUndirectedGraph">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">LiftedMulticutIlpGlpkSettingsLiftedMulticutObjectiveUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpGlpkSettingsLiftedMulticutObjectiveUndirectedGraph" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpGlpkSettingsLiftedMulticutObjectiveUndirectedGraph.addOnlyViolatedThreeCyclesConstraints">
+<code class="descname">addOnlyViolatedThreeCyclesConstraints</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpGlpkSettingsLiftedMulticutObjectiveUndirectedGraph.addOnlyViolatedThreeCyclesConstraints" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpGlpkSettingsLiftedMulticutObjectiveUndirectedGraph.addThreeCyclesConstraints">
+<code class="descname">addThreeCyclesConstraints</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpGlpkSettingsLiftedMulticutObjectiveUndirectedGraph.addThreeCyclesConstraints" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpGlpkSettingsLiftedMulticutObjectiveUndirectedGraph.ilpSettings">
+<code class="descname">ilpSettings</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpGlpkSettingsLiftedMulticutObjectiveUndirectedGraph.ilpSettings" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpGlpkSettingsLiftedMulticutObjectiveUndirectedGraph.numberOfIterations">
+<code class="descname">numberOfIterations</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpGlpkSettingsLiftedMulticutObjectiveUndirectedGraph.numberOfIterations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpGlpkSettingsLiftedMulticutObjectiveUndirectedGraph.verbose">
+<code class="descname">verbose</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpGlpkSettingsLiftedMulticutObjectiveUndirectedGraph.verbose" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpGlpkSettingsLiftedMulticutObjectiveUndirectedGraph.verboseIlp">
+<code class="descname">verboseIlp</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpGlpkSettingsLiftedMulticutObjectiveUndirectedGraph.verboseIlp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpGlpkSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">LiftedMulticutIlpGlpkSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpGlpkSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpGlpkSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.addOnlyViolatedThreeCyclesConstraints">
+<code class="descname">addOnlyViolatedThreeCyclesConstraints</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpGlpkSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.addOnlyViolatedThreeCyclesConstraints" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpGlpkSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.addThreeCyclesConstraints">
+<code class="descname">addThreeCyclesConstraints</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpGlpkSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.addThreeCyclesConstraints" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpGlpkSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.ilpSettings">
+<code class="descname">ilpSettings</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpGlpkSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.ilpSettings" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpGlpkSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.numberOfIterations">
+<code class="descname">numberOfIterations</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpGlpkSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.numberOfIterations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpGlpkSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.verbose">
+<code class="descname">verbose</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpGlpkSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.verbose" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpGlpkSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.verboseIlp">
+<code class="descname">verboseIlp</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutIlpGlpkSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.verboseIlp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutKernighanLinFactoryLiftedMulticutObjectiveUndirectedGraph">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">LiftedMulticutKernighanLinFactoryLiftedMulticutObjectiveUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutKernighanLinFactoryLiftedMulticutObjectiveUndirectedGraph" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutKernighanLinFactoryLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">LiftedMulticutKernighanLinFactoryLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutKernighanLinFactoryLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutKernighanLinLiftedMulticutObjectiveUndirectedGraph">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">LiftedMulticutKernighanLinLiftedMulticutObjectiveUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutKernighanLinLiftedMulticutObjectiveUndirectedGraph" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutKernighanLinLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">LiftedMulticutKernighanLinLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutKernighanLinLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutKernighanLinSettingsLiftedMulticutObjectiveUndirectedGraph">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">LiftedMulticutKernighanLinSettingsLiftedMulticutObjectiveUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutKernighanLinSettingsLiftedMulticutObjectiveUndirectedGraph" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutKernighanLinSettingsLiftedMulticutObjectiveUndirectedGraph.epsilon">
+<code class="descname">epsilon</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutKernighanLinSettingsLiftedMulticutObjectiveUndirectedGraph.epsilon" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutKernighanLinSettingsLiftedMulticutObjectiveUndirectedGraph.numberOfInnerIterations">
+<code class="descname">numberOfInnerIterations</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutKernighanLinSettingsLiftedMulticutObjectiveUndirectedGraph.numberOfInnerIterations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutKernighanLinSettingsLiftedMulticutObjectiveUndirectedGraph.numberOfOuterIterations">
+<code class="descname">numberOfOuterIterations</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutKernighanLinSettingsLiftedMulticutObjectiveUndirectedGraph.numberOfOuterIterations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutKernighanLinSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">LiftedMulticutKernighanLinSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutKernighanLinSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutKernighanLinSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.epsilon">
+<code class="descname">epsilon</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutKernighanLinSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.epsilon" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutKernighanLinSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.numberOfInnerIterations">
+<code class="descname">numberOfInnerIterations</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutKernighanLinSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.numberOfInnerIterations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutKernighanLinSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.numberOfOuterIterations">
+<code class="descname">numberOfOuterIterations</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutKernighanLinSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.numberOfOuterIterations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">LiftedMulticutObjectiveUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.evalNodeLabels">
+<code class="descname">evalNodeLabels</code><span class="sig-paren">(</span><em>self: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutObjectiveUndirectedGraph</em>, <em>arg0: array&lt;int&gt;</em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.evalNodeLabels" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.fusionMoveBasedFactory">
+<em class="property">static </em><code class="descname">fusionMoveBasedFactory</code><span class="sig-paren">(</span><em>proposalGenerator=None</em>, <em>numberOfThreads=1</em>, <em>numberOfIterations=1000</em>, <em>stopIfNoImprovement=100</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.fusionMoveBasedFactory" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>factory function for a fusion move based lifted</dt>
+<dd>multicut solver</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>proposalGenerator</strong> (<em>None</em><em>, </em><em>optional</em>) – Proposal generator (default watershedProposalGenerator)</li>
+<li><strong>numberOfThreads</strong> (<em>int</em><em>, </em><em>optional</em>) – (default 1)</li>
+<li><strong>numberOfIterations</strong> (<em>int</em><em>, </em><em>optional</em>) – Maximum number of iterations(default 1000)</li>
+<li><strong>stopIfNoImprovement</strong> (<em>int</em><em>, </em><em>optional</em>) – Stop after n iterations without improvement (default 100)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Description</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">TYPE</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.graph">
+<code class="descname">graph</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.graph" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.insertLiftedEdgesBfs">
+<code class="descname">insertLiftedEdgesBfs</code><span class="sig-paren">(</span><em>maxDistance</em>, <em>returnDistance=False</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.insertLiftedEdgesBfs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.liftedGraph">
+<code class="descname">liftedGraph</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.liftedGraph" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.liftedMulticutAndresGreedyAdditiveFactory">
+<em class="property">static </em><code class="descname">liftedMulticutAndresGreedyAdditiveFactory</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.liftedMulticutAndresGreedyAdditiveFactory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.liftedMulticutAndresKernighanLinFactory">
+<em class="property">static </em><code class="descname">liftedMulticutAndresKernighanLinFactory</code><span class="sig-paren">(</span><em>numberOfOuterIterations=1000000</em>, <em>numberOfInnerIterations=100</em>, <em>epsilon=1e-07</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.liftedMulticutAndresKernighanLinFactory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.liftedMulticutGreedyAdditiveFactory">
+<em class="property">static </em><code class="descname">liftedMulticutGreedyAdditiveFactory</code><span class="sig-paren">(</span><em>weightStopCond=0.0</em>, <em>nodeNumStopCond=-1.0</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.liftedMulticutGreedyAdditiveFactory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.liftedMulticutIlpCplexFactory">
+<code class="descname">liftedMulticutIlpCplexFactory</code><em class="property"> = functools.partial(&lt;function __extendLiftedMulticutObj.&lt;locals&gt;.liftedMulticutIlpFactory&gt;, ilpSolver=’cplex’)</em><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.liftedMulticutIlpCplexFactory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.liftedMulticutIlpFactory">
+<em class="property">static </em><code class="descname">liftedMulticutIlpFactory</code><span class="sig-paren">(</span><em>verbose=0</em>, <em>addThreeCyclesConstraints=True</em>, <em>addOnlyViolatedThreeCyclesConstraints=True</em>, <em>relativeGap=0.0</em>, <em>absoluteGap=0.0</em>, <em>memLimit=-1.0</em>, <em>ilpSolver=’cplex’</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.liftedMulticutIlpFactory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.liftedMulticutIlpGlpkFactory">
+<code class="descname">liftedMulticutIlpGlpkFactory</code><em class="property"> = functools.partial(&lt;function __extendLiftedMulticutObj.&lt;locals&gt;.liftedMulticutIlpFactory&gt;, ilpSolver=’glpk’)</em><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.liftedMulticutIlpGlpkFactory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.liftedMulticutIlpGurobiFactory">
+<code class="descname">liftedMulticutIlpGurobiFactory</code><em class="property"> = functools.partial(&lt;function __extendLiftedMulticutObj.&lt;locals&gt;.liftedMulticutIlpFactory&gt;, ilpSolver=’gurobi’)</em><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.liftedMulticutIlpGurobiFactory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.liftedMulticutKernighanLinFactory">
+<em class="property">static </em><code class="descname">liftedMulticutKernighanLinFactory</code><span class="sig-paren">(</span><em>numberOfOuterIterations=1000000</em>, <em>numberOfInnerIterations=100</em>, <em>epsilon=1e-07</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.liftedMulticutKernighanLinFactory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.liftedUvIds">
+<code class="descname">liftedUvIds</code><span class="sig-paren">(</span><em>self: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutObjectiveUndirectedGraph</em><span class="sig-paren">)</span> &#x2192; array&lt;int&gt;<a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.liftedUvIds" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.numberOfLiftedEdges">
+<code class="descname">numberOfLiftedEdges</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.numberOfLiftedEdges" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.setCost">
+<code class="descname">setCost</code><span class="sig-paren">(</span><em>self: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutObjectiveUndirectedGraph</em>, <em>u: int</em>, <em>v: int</em>, <em>weight: float</em>, <em>overwrite: bool=False</em><span class="sig-paren">)</span> &#x2192; Tuple[bool, int]<a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.setCost" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.setCosts">
+<code class="descname">setCosts</code><span class="sig-paren">(</span><em>self: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutObjectiveUndirectedGraph</em>, <em>uv: array&lt;int&gt;</em>, <em>weight: array&lt;float&gt;</em>, <em>overwrite: bool=False</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.setCosts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.setGraphEdgesCosts">
+<code class="descname">setGraphEdgesCosts</code><span class="sig-paren">(</span><em>self: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutObjectiveUndirectedGraph</em>, <em>weights: array&lt;float&gt;</em>, <em>overwrite: bool=False</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.setGraphEdgesCosts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.setLiftedEdgesCosts">
+<code class="descname">setLiftedEdgesCosts</code><span class="sig-paren">(</span><em>self: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutObjectiveUndirectedGraph</em>, <em>weights: array&lt;float&gt;</em>, <em>overwrite: bool=False</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.setLiftedEdgesCosts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.verboseVisitor">
+<em class="property">static </em><code class="descname">verboseVisitor</code><span class="sig-paren">(</span><em>visitNth=1</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.verboseVisitor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.watershedProposalGenerator">
+<em class="property">static </em><code class="descname">watershedProposalGenerator</code><span class="sig-paren">(</span><em>sigma=1.0</em>, <em>numberOfSeeds=0.1</em>, <em>seedingStrategie=’SEED_FROM_LIFTED’</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.watershedProposalGenerator" title="Permalink to this definition">¶</a></dt>
+<dd><p>factory function for a watershed based proposal generator for fusion move based
+lifted multicuts.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>sigma</strong> (<em>float</em><em>, </em><em>optional</em>) – The weights are perturbed by a additive
+Gaussian noise n(0,sigma) (default  0.0)</li>
+<li><strong>numberOfSeeds</strong> (<em>float</em><em>, </em><em>optional</em>) – Number of seed to generate.
+A number smaller as one will be interpreted as a fraction of
+the number of nodes (default 0.1)</li>
+<li><strong>seedingStrategie</strong> (<em>str</em><em>, </em><em>optional</em>) – <p>Can be:
+- ‘SEED_FROM_LIFTED’ : All negative weighted lifted edges</p>
+<blockquote>
+<div>can be used to generate seeds.</div></blockquote>
+<ul>
+<li><dl class="first docutils">
+<dt>’SEED_FROM_LOCAL’ <span class="classifier-delimiter">:</span> <span class="classifier">All negative weighted local edges</span></dt>
+<dd>can be used to generate seeds.</dd>
+</dl>
+</li>
+<li>’SEED_FROM_BOTH’ : Both, lifted and local edges</li>
+</ul>
+<p>can be used for seeding</p>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">parameter object used construct a WatershedProposalGenerator</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">TYPE</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.evalNodeLabels">
+<code class="descname">evalNodeLabels</code><span class="sig-paren">(</span><em>self: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh</em>, <em>arg0: array&lt;int&gt;</em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.evalNodeLabels" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.fusionMoveBasedFactory">
+<em class="property">static </em><code class="descname">fusionMoveBasedFactory</code><span class="sig-paren">(</span><em>proposalGenerator=None</em>, <em>numberOfThreads=1</em>, <em>numberOfIterations=1000</em>, <em>stopIfNoImprovement=100</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.fusionMoveBasedFactory" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>factory function for a fusion move based lifted</dt>
+<dd>multicut solver</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>proposalGenerator</strong> (<em>None</em><em>, </em><em>optional</em>) – Proposal generator (default watershedProposalGenerator)</li>
+<li><strong>numberOfThreads</strong> (<em>int</em><em>, </em><em>optional</em>) – (default 1)</li>
+<li><strong>numberOfIterations</strong> (<em>int</em><em>, </em><em>optional</em>) – Maximum number of iterations(default 1000)</li>
+<li><strong>stopIfNoImprovement</strong> (<em>int</em><em>, </em><em>optional</em>) – Stop after n iterations without improvement (default 100)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Description</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">TYPE</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.graph">
+<code class="descname">graph</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.graph" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.insertLiftedEdgesBfs">
+<code class="descname">insertLiftedEdgesBfs</code><span class="sig-paren">(</span><em>maxDistance</em>, <em>returnDistance=False</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.insertLiftedEdgesBfs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.liftedGraph">
+<code class="descname">liftedGraph</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.liftedGraph" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.liftedMulticutAndresGreedyAdditiveFactory">
+<em class="property">static </em><code class="descname">liftedMulticutAndresGreedyAdditiveFactory</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.liftedMulticutAndresGreedyAdditiveFactory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.liftedMulticutAndresKernighanLinFactory">
+<em class="property">static </em><code class="descname">liftedMulticutAndresKernighanLinFactory</code><span class="sig-paren">(</span><em>numberOfOuterIterations=1000000</em>, <em>numberOfInnerIterations=100</em>, <em>epsilon=1e-07</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.liftedMulticutAndresKernighanLinFactory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.liftedMulticutGreedyAdditiveFactory">
+<em class="property">static </em><code class="descname">liftedMulticutGreedyAdditiveFactory</code><span class="sig-paren">(</span><em>weightStopCond=0.0</em>, <em>nodeNumStopCond=-1.0</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.liftedMulticutGreedyAdditiveFactory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.liftedMulticutIlpCplexFactory">
+<code class="descname">liftedMulticutIlpCplexFactory</code><em class="property"> = functools.partial(&lt;function __extendLiftedMulticutObj.&lt;locals&gt;.liftedMulticutIlpFactory&gt;, ilpSolver=’cplex’)</em><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.liftedMulticutIlpCplexFactory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.liftedMulticutIlpFactory">
+<em class="property">static </em><code class="descname">liftedMulticutIlpFactory</code><span class="sig-paren">(</span><em>verbose=0</em>, <em>addThreeCyclesConstraints=True</em>, <em>addOnlyViolatedThreeCyclesConstraints=True</em>, <em>relativeGap=0.0</em>, <em>absoluteGap=0.0</em>, <em>memLimit=-1.0</em>, <em>ilpSolver=’cplex’</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.liftedMulticutIlpFactory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.liftedMulticutIlpGlpkFactory">
+<code class="descname">liftedMulticutIlpGlpkFactory</code><em class="property"> = functools.partial(&lt;function __extendLiftedMulticutObj.&lt;locals&gt;.liftedMulticutIlpFactory&gt;, ilpSolver=’glpk’)</em><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.liftedMulticutIlpGlpkFactory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.liftedMulticutIlpGurobiFactory">
+<code class="descname">liftedMulticutIlpGurobiFactory</code><em class="property"> = functools.partial(&lt;function __extendLiftedMulticutObj.&lt;locals&gt;.liftedMulticutIlpFactory&gt;, ilpSolver=’gurobi’)</em><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.liftedMulticutIlpGurobiFactory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.liftedMulticutKernighanLinFactory">
+<em class="property">static </em><code class="descname">liftedMulticutKernighanLinFactory</code><span class="sig-paren">(</span><em>numberOfOuterIterations=1000000</em>, <em>numberOfInnerIterations=100</em>, <em>epsilon=1e-07</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.liftedMulticutKernighanLinFactory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.liftedUvIds">
+<code class="descname">liftedUvIds</code><span class="sig-paren">(</span><em>self: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh</em><span class="sig-paren">)</span> &#x2192; array&lt;int&gt;<a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.liftedUvIds" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.numberOfLiftedEdges">
+<code class="descname">numberOfLiftedEdges</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.numberOfLiftedEdges" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.setCost">
+<code class="descname">setCost</code><span class="sig-paren">(</span><em>self: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh</em>, <em>u: int</em>, <em>v: int</em>, <em>weight: float</em>, <em>overwrite: bool=False</em><span class="sig-paren">)</span> &#x2192; Tuple[bool, int]<a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.setCost" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.setCosts">
+<code class="descname">setCosts</code><span class="sig-paren">(</span><em>self: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh</em>, <em>uv: array&lt;int&gt;</em>, <em>weight: array&lt;float&gt;</em>, <em>overwrite: bool=False</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.setCosts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.setGraphEdgesCosts">
+<code class="descname">setGraphEdgesCosts</code><span class="sig-paren">(</span><em>self: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh</em>, <em>weights: array&lt;float&gt;</em>, <em>overwrite: bool=False</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.setGraphEdgesCosts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.setLiftedEdgesCosts">
+<code class="descname">setLiftedEdgesCosts</code><span class="sig-paren">(</span><em>self: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh</em>, <em>weights: array&lt;float&gt;</em>, <em>overwrite: bool=False</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.setLiftedEdgesCosts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.verboseVisitor">
+<em class="property">static </em><code class="descname">verboseVisitor</code><span class="sig-paren">(</span><em>visitNth=1</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.verboseVisitor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.watershedProposalGenerator">
+<em class="property">static </em><code class="descname">watershedProposalGenerator</code><span class="sig-paren">(</span><em>sigma=1.0</em>, <em>numberOfSeeds=0.1</em>, <em>seedingStrategie=’SEED_FROM_LIFTED’</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.watershedProposalGenerator" title="Permalink to this definition">¶</a></dt>
+<dd><p>factory function for a watershed based proposal generator for fusion move based
+lifted multicuts.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>sigma</strong> (<em>float</em><em>, </em><em>optional</em>) – The weights are perturbed by a additive
+Gaussian noise n(0,sigma) (default  0.0)</li>
+<li><strong>numberOfSeeds</strong> (<em>float</em><em>, </em><em>optional</em>) – Number of seed to generate.
+A number smaller as one will be interpreted as a fraction of
+the number of nodes (default 0.1)</li>
+<li><strong>seedingStrategie</strong> (<em>str</em><em>, </em><em>optional</em>) – <p>Can be:
+- ‘SEED_FROM_LIFTED’ : All negative weighted lifted edges</p>
+<blockquote>
+<div>can be used to generate seeds.</div></blockquote>
+<ul>
+<li><dl class="first docutils">
+<dt>’SEED_FROM_LOCAL’ <span class="classifier-delimiter">:</span> <span class="classifier">All negative weighted local edges</span></dt>
+<dd>can be used to generate seeds.</dd>
+</dl>
+</li>
+<li>’SEED_FROM_BOTH’ : Both, lifted and local edges</li>
+</ul>
+<p>can be used for seeding</p>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">parameter object used construct a WatershedProposalGenerator</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">TYPE</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutVerboseVisitorLiftedMulticutObjectiveUndirectedGraph">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">LiftedMulticutVerboseVisitorLiftedMulticutObjectiveUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutVerboseVisitorLiftedMulticutObjectiveUndirectedGraph" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutVerboseVisitorLiftedMulticutObjectiveUndirectedGraph.stopOptimize">
+<code class="descname">stopOptimize</code><span class="sig-paren">(</span><em>self: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutVerboseVisitorLiftedMulticutObjectiveUndirectedGraph</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutVerboseVisitorLiftedMulticutObjectiveUndirectedGraph.stopOptimize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutVerboseVisitorLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">LiftedMulticutVerboseVisitorLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutVerboseVisitorLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutVerboseVisitorLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.stopOptimize">
+<code class="descname">stopOptimize</code><span class="sig-paren">(</span><em>self: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutVerboseVisitorLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutVerboseVisitorLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.stopOptimize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutVisitorBaseLiftedMulticutObjectiveUndirectedGraph">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">LiftedMulticutVisitorBaseLiftedMulticutObjectiveUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutVisitorBaseLiftedMulticutObjectiveUndirectedGraph" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutVisitorBaseLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">LiftedMulticutVisitorBaseLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutVisitorBaseLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="nifty.graph.optimization.lifted_multicut.ProposalGeneratorFactoryBaseLiftedMulticutObjectiveUndirectedGraph">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">ProposalGeneratorFactoryBaseLiftedMulticutObjectiveUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.ProposalGeneratorFactoryBaseLiftedMulticutObjectiveUndirectedGraph" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="nifty.graph.optimization.lifted_multicut.ProposalGeneratorFactoryBaseLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">ProposalGeneratorFactoryBaseLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.ProposalGeneratorFactoryBaseLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="nifty.graph.optimization.lifted_multicut.WatershedProposalGeneratorFactoryLiftedMulticutObjectiveUndirectedGraph">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">WatershedProposalGeneratorFactoryLiftedMulticutObjectiveUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.WatershedProposalGeneratorFactoryLiftedMulticutObjectiveUndirectedGraph" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="nifty.graph.optimization.lifted_multicut.WatershedProposalGeneratorFactoryLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">WatershedProposalGeneratorFactoryLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.WatershedProposalGeneratorFactoryLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="nifty.graph.optimization.lifted_multicut.WatershedProposalGeneratorSettingsLiftedMulticutObjectiveUndirectedGraph">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">WatershedProposalGeneratorSettingsLiftedMulticutObjectiveUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.WatershedProposalGeneratorSettingsLiftedMulticutObjectiveUndirectedGraph" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="class">
+<dt id="nifty.graph.optimization.lifted_multicut.WatershedProposalGeneratorSettingsLiftedMulticutObjectiveUndirectedGraph.SeedingStrategie">
+<em class="property">class </em><code class="descname">SeedingStrategie</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.WatershedProposalGeneratorSettingsLiftedMulticutObjectiveUndirectedGraph.SeedingStrategie" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.WatershedProposalGeneratorSettingsLiftedMulticutObjectiveUndirectedGraph.SeedingStrategie.SEED_FROM_BOTH">
+<code class="descname">SEED_FROM_BOTH</code><em class="property"> = SeedingStrategie.SEED_FROM_BOTH</em><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.WatershedProposalGeneratorSettingsLiftedMulticutObjectiveUndirectedGraph.SeedingStrategie.SEED_FROM_BOTH" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.WatershedProposalGeneratorSettingsLiftedMulticutObjectiveUndirectedGraph.SeedingStrategie.SEED_FROM_LIFTED">
+<code class="descname">SEED_FROM_LIFTED</code><em class="property"> = SeedingStrategie.SEED_FROM_LIFTED</em><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.WatershedProposalGeneratorSettingsLiftedMulticutObjectiveUndirectedGraph.SeedingStrategie.SEED_FROM_LIFTED" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.WatershedProposalGeneratorSettingsLiftedMulticutObjectiveUndirectedGraph.SeedingStrategie.SEED_FROM_LOCAL">
+<code class="descname">SEED_FROM_LOCAL</code><em class="property"> = SeedingStrategie.SEED_FROM_LOCAL</em><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.WatershedProposalGeneratorSettingsLiftedMulticutObjectiveUndirectedGraph.SeedingStrategie.SEED_FROM_LOCAL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.WatershedProposalGeneratorSettingsLiftedMulticutObjectiveUndirectedGraph.numberOfSeeds">
+<code class="descname">numberOfSeeds</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.WatershedProposalGeneratorSettingsLiftedMulticutObjectiveUndirectedGraph.numberOfSeeds" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.WatershedProposalGeneratorSettingsLiftedMulticutObjectiveUndirectedGraph.seedingStrategie">
+<code class="descname">seedingStrategie</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.WatershedProposalGeneratorSettingsLiftedMulticutObjectiveUndirectedGraph.seedingStrategie" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.WatershedProposalGeneratorSettingsLiftedMulticutObjectiveUndirectedGraph.sigma">
+<code class="descname">sigma</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.WatershedProposalGeneratorSettingsLiftedMulticutObjectiveUndirectedGraph.sigma" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="nifty.graph.optimization.lifted_multicut.WatershedProposalGeneratorSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">WatershedProposalGeneratorSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.WatershedProposalGeneratorSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="class">
+<dt id="nifty.graph.optimization.lifted_multicut.WatershedProposalGeneratorSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.SeedingStrategie">
+<em class="property">class </em><code class="descname">SeedingStrategie</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.WatershedProposalGeneratorSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.SeedingStrategie" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.WatershedProposalGeneratorSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.SeedingStrategie.SEED_FROM_BOTH">
+<code class="descname">SEED_FROM_BOTH</code><em class="property"> = SeedingStrategie.SEED_FROM_BOTH</em><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.WatershedProposalGeneratorSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.SeedingStrategie.SEED_FROM_BOTH" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.WatershedProposalGeneratorSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.SeedingStrategie.SEED_FROM_LIFTED">
+<code class="descname">SEED_FROM_LIFTED</code><em class="property"> = SeedingStrategie.SEED_FROM_LIFTED</em><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.WatershedProposalGeneratorSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.SeedingStrategie.SEED_FROM_LIFTED" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.WatershedProposalGeneratorSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.SeedingStrategie.SEED_FROM_LOCAL">
+<code class="descname">SEED_FROM_LOCAL</code><em class="property"> = SeedingStrategie.SEED_FROM_LOCAL</em><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.WatershedProposalGeneratorSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.SeedingStrategie.SEED_FROM_LOCAL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.WatershedProposalGeneratorSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.numberOfSeeds">
+<code class="descname">numberOfSeeds</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.WatershedProposalGeneratorSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.numberOfSeeds" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.WatershedProposalGeneratorSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.seedingStrategie">
+<code class="descname">seedingStrategie</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.WatershedProposalGeneratorSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.seedingStrategie" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.lifted_multicut.WatershedProposalGeneratorSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.sigma">
+<code class="descname">sigma</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.WatershedProposalGeneratorSettingsLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.sigma" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="nifty.graph.optimization.mincut.html" title="nifty.graph.optimization.mincut"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="nifty.graph.optimization.multicut.html" title="nifty.graph.optimization.multicut"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Nifty 0.5.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../reference.html" >Nifty API Reference</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.1.
+    </div>
+  </body>
+</html>

@@ -26,6 +26,7 @@ var searchData=
   ['cellvector',['CellVector',['../classnifty_1_1cgp_1_1CellVector.html',1,'nifty::cgp']]],
   ['cgc',['Cgc',['../classnifty_1_1graph_1_1optimization_1_1multicut_1_1Cgc.html',1,'nifty::graph::optimization::multicut']]],
   ['chainedsolvers',['ChainedSolvers',['../classnifty_1_1graph_1_1ChainedSolvers.html',1,'nifty::graph']]],
+  ['changeablepriorityqueue',['ChangeablePriorityQueue',['../classnifty_1_1tools_1_1ChangeablePriorityQueue.html',1,'nifty::tools']]],
   ['componentsbfs',['ComponentsBfs',['../classnifty_1_1graph_1_1ComponentsBfs.html',1,'nifty::graph']]],
   ['componentsufd',['ComponentsUfd',['../classnifty_1_1graph_1_1ComponentsUfd.html',1,'nifty::graph']]],
   ['componentsufd_3c_20graph_20_3e',['ComponentsUfd&lt; Graph &gt;',['../classnifty_1_1graph_1_1ComponentsUfd.html',1,'nifty::graph']]],

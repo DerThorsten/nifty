@@ -1,0 +1,227 @@
+
+
+.. _sphx_glr_auto_examples_graph_plot_edge_contraction_graph.py:
+
+
+Edge Contraction Graph
+====================================
+
+
+Contract the edges of an arbitrary graph
+and call callbacks when edges and nodes
+are merged
+
+
+
+
+.. rst-class:: sphx-glr-horizontal
+
+
+    *
+
+      .. image:: /auto_examples/graph/images/sphx_glr_plot_edge_contraction_graph_001.png
+            :scale: 47
+
+    *
+
+      .. image:: /auto_examples/graph/images/sphx_glr_plot_edge_contraction_graph_002.png
+            :scale: 47
+
+    *
+
+      .. image:: /auto_examples/graph/images/sphx_glr_plot_edge_contraction_graph_003.png
+            :scale: 47
+
+    *
+
+      .. image:: /auto_examples/graph/images/sphx_glr_plot_edge_contraction_graph_004.png
+            :scale: 47
+
+    *
+
+      .. image:: /auto_examples/graph/images/sphx_glr_plot_edge_contraction_graph_005.png
+            :scale: 47
+
+    *
+
+      .. image:: /auto_examples/graph/images/sphx_glr_plot_edge_contraction_graph_006.png
+            :scale: 47
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out::
+
+    contraction graph: 2
+    e 0
+          u 0 cv 2
+         cu 0  v 2
+         contract edge 0
+         merge nodes 0 2
+         contract edge done 0
+    contraction graph: 1
+    e 1
+          u 0 cv 1
+         cu 0  v 1
+         contract edge 1
+         merge nodes 0 1
+         merge edges 4 2
+         contract edge done 1
+    contraction graph: 3
+    e 2
+          u 1 cv 3
+         cu 0  v 3
+         contract edge 4
+         merge nodes 0 3
+         contract edge done 4
+    contraction graph: 4
+    e 3
+          u 2 cv 4
+         cu 0  v 4
+         contract edge 3
+         merge nodes 0 4
+         merge edges 5 6
+         contract edge done 3
+    contraction graph: 0
+    e 4
+          u 2 cv 3
+         cu 0  v 0
+    contraction graph: 5
+    e 5
+          u 3 cv 5
+         cu 0  v 5
+         contract edge 5
+         merge nodes 0 5
+         contract edge done 5
+    contraction graph: 0
+    e 6
+          u 4 cv 5
+         cu 0  v 0
+
+
+
+
+|
+
+
+.. code-block:: python
+
+    from __future__ import print_function
+    import nifty
+    import nifty.graph
+    import pylab
+
+    def generateGrid(gridSize):
+        def nid(x, y):
+            return x*gridSize[1] + y
+        G = nifty.graph.UndirectedGraph
+        g =  G(gridSize[0] * gridSize[1])
+        for x in range(gridSize[0]):
+            for y in range(gridSize[1]):  
+
+                u = nid(x,y)
+
+                if x + 1 < gridSize[0]:
+
+                    v = nid(x+1, y)
+                    g.insertEdge(u, v)
+
+                if y + 1 < gridSize[1]:
+
+                    v = nid(x, y+1)
+                    g.insertEdge(u, v)
+        return g
+
+
+    class MyCallback(nifty.graph.EdgeContractionGraphCallback):
+        def __init__(self):
+            super(MyCallback, self).__init__()
+
+        def contractEdge(self, edgeToContract):
+            print("     contract edge",edgeToContract)
+
+        def mergeEdges(self, aliveEdge, deadEdge):
+            print("     merge edges",aliveEdge, deadEdge)
+
+        def mergeNodes(self, aliveNode, deadNode):
+            print("     merge nodes", aliveNode, deadNode)
+
+        def contractEdgeDone(self, contractedEdge):
+            print("     contract edge done", contractedEdge)
+
+
+    # generate grid graph
+    g   = generateGrid((3,2))
+
+    # the callback 
+    callback = MyCallback()
+
+    # the edge contraction graph
+    cg = nifty.graph.edgeContractionGraph(g,callback)
+
+
+
+    # plot the graph
+    pylab.figure()
+    pylab.title('graph')
+    nifty.graph.drawGraph(g)
+    pylab.show()
+
+    # - here we just contract all edges of the original graph
+    counter = 0
+    for e in g.edges():
+        
+
+        # get the endpoints of e in the original    
+        u,v = g.uv(e)
+
+        # get the nodes in the merged graph
+        cu = cg.findRepresentativeNode(u)
+        cv = cg.findRepresentativeNode(v)
+
+        print("contraction graph:", cv)
+        print("e",e,)   
+        print("      u",u, "cv",v)
+        print("     cu",cu," v",cv)
+
+        if(cu != cv):
+            # the edge is still alive 
+            # since the endpoints are still in 
+            # different clusters
+            ce = cg.findRepresentativeEdge(e)
+
+            # lets contract that edge
+            cg.contractEdge(ce)
+
+            # plot the graph
+            pylab.figure()
+            pylab.title('after contracting %d -- %d'%(cu, cv))
+            nifty.graph.drawGraph(cg)
+            counter += 1
+            pylab.show()
+
+
+        else:
+            # the edge is not alive any more
+            tmp = cg.nodeOfDeadEdge(e)
+            assert tmp == cv
+**Total running time of the script:** ( 0 minutes  0.376 seconds)
+
+
+
+.. container:: sphx-glr-footer
+
+
+  .. container:: sphx-glr-download
+
+     :download:`Download Python source code: plot_edge_contraction_graph.py <plot_edge_contraction_graph.py>`
+
+
+
+  .. container:: sphx-glr-download
+
+     :download:`Download Jupyter notebook: plot_edge_contraction_graph.ipynb <plot_edge_contraction_graph.ipynb>`
+
+.. rst-class:: sphx-glr-signature
+
+    `Generated by Sphinx-Gallery <https://sphinx-gallery.readthedocs.io>`_
