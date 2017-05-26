@@ -1,0 +1,34 @@
+\hypertarget{watershed__proposals_8hxx}{}\section{/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/proposal\+\_\+generators/watershed\+\_\+proposals.hxx File Reference}
+\label{watershed__proposals_8hxx}\index{/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/proposal\+\_\+generators/watershed\+\_\+proposals.\+hxx@{/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/proposal\+\_\+generators/watershed\+\_\+proposals.\+hxx}}
+{\ttfamily \#include $<$string$>$}\\*
+{\ttfamily \#include $<$random$>$}\\*
+{\ttfamily \#include \char`\"{}nifty/tools/runtime\+\_\+check.\+hxx\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}nifty/graph/optimization/multicut/multicut\+\_\+base.\+hxx\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}nifty/graph/edge\+\_\+weighted\+\_\+watersheds.\+hxx\char`\"{}}\\*
+Include dependency graph for watershed\+\_\+proposals.\+hxx\+:
+% FIG 0
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classnifty_1_1graph_1_1WatershedProposals}{nifty\+::graph\+::\+Watershed\+Proposals$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}
+\item 
+struct \hyperlink{structnifty_1_1graph_1_1WatershedProposals_1_1Settings}{nifty\+::graph\+::\+Watershed\+Proposals$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::\+Settings}
+\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespacenifty}{nifty}
+\item 
+ \hyperlink{namespacenifty_1_1graph}{nifty\+::graph}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{watershed__proposals_8hxx_ad80215d3225e5c0e0916c2ce3f0b8965}{N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+W\+A\+T\+E\+R\+S\+H\+E\+D\+\_\+\+P\+R\+O\+P\+O\+S\+A\+L\+S\+\_\+\+H\+X\+X}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{watershed__proposals_8hxx_ad80215d3225e5c0e0916c2ce3f0b8965}{}\index{watershed\+\_\+proposals.\+hxx@{watershed\+\_\+proposals.\+hxx}!N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+W\+A\+T\+E\+R\+S\+H\+E\+D\+\_\+\+P\+R\+O\+P\+O\+S\+A\+L\+S\+\_\+\+H\+X\+X@{N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+W\+A\+T\+E\+R\+S\+H\+E\+D\+\_\+\+P\+R\+O\+P\+O\+S\+A\+L\+S\+\_\+\+H\+X\+X}}
+\index{N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+W\+A\+T\+E\+R\+S\+H\+E\+D\+\_\+\+P\+R\+O\+P\+O\+S\+A\+L\+S\+\_\+\+H\+X\+X@{N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+W\+A\+T\+E\+R\+S\+H\+E\+D\+\_\+\+P\+R\+O\+P\+O\+S\+A\+L\+S\+\_\+\+H\+X\+X}!watershed\+\_\+proposals.\+hxx@{watershed\+\_\+proposals.\+hxx}}
+\subsubsection[{N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+W\+A\+T\+E\+R\+S\+H\+E\+D\+\_\+\+P\+R\+O\+P\+O\+S\+A\+L\+S\+\_\+\+H\+X\+X}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+W\+A\+T\+E\+R\+S\+H\+E\+D\+\_\+\+P\+R\+O\+P\+O\+S\+A\+L\+S\+\_\+\+H\+X\+X}\label{watershed__proposals_8hxx_ad80215d3225e5c0e0916c2ce3f0b8965}

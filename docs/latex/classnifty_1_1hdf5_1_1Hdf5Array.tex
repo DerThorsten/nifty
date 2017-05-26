@@ -1,0 +1,156 @@
+\hypertarget{classnifty_1_1hdf5_1_1Hdf5Array}{}\section{nifty\+:\+:hdf5\+:\+:Hdf5\+Array$<$ T $>$ Class Template Reference}
+\label{classnifty_1_1hdf5_1_1Hdf5Array}\index{nifty\+::hdf5\+::\+Hdf5\+Array$<$ T $>$@{nifty\+::hdf5\+::\+Hdf5\+Array$<$ T $>$}}
+
+
+{\ttfamily \#include $<$hdf5\+\_\+array.\+hxx$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class S\+H\+A\+P\+E\+\_\+\+I\+T\+E\+R , class C\+H\+U\+N\+K\+\_\+\+S\+H\+A\+P\+E\+\_\+\+I\+T\+E\+R $>$ }\\\hyperlink{classnifty_1_1hdf5_1_1Hdf5Array_af164b10a52ab55e3f5a72004b6f6e278}{Hdf5\+Array} (const hid\+\_\+t \&group\+Handle, const std\+::string \&dataset\+Name, S\+H\+A\+P\+E\+\_\+\+I\+T\+E\+R shape\+Begin, S\+H\+A\+P\+E\+\_\+\+I\+T\+E\+R shape\+End, C\+H\+U\+N\+K\+\_\+\+S\+H\+A\+P\+E\+\_\+\+I\+T\+E\+R chunk\+Shape\+Begin, const int compression=-\/1)
+\item 
+\hyperlink{classnifty_1_1hdf5_1_1Hdf5Array_a8ce039a0d357f3c20a30fa5f6d595cb5}{Hdf5\+Array} (const hid\+\_\+t \&group\+Handle, const std\+::string \&dataset\+Name)
+\item 
+int \hyperlink{classnifty_1_1hdf5_1_1Hdf5Array_a59e94ddc29dd4ba7e85a11c68960ea77}{set\+Cache} ()
+\item 
+\hyperlink{classnifty_1_1hdf5_1_1Hdf5Array_a6f02962174e64b4c893b287f735cd30d}{$\sim$\+Hdf5\+Array} ()
+\item 
+uint64\+\_\+t \hyperlink{classnifty_1_1hdf5_1_1Hdf5Array_a31ff7ce3b1524babd925a2013c590665}{dimension} () const 
+\item 
+uint64\+\_\+t \hyperlink{classnifty_1_1hdf5_1_1Hdf5Array_aeb4aac8f0da32df48d776c608798991e}{shape} (const size\+\_\+t d) const 
+\item 
+const std\+::vector$<$ uint64\+\_\+t $>$ \& \hyperlink{classnifty_1_1hdf5_1_1Hdf5Array_af749bd9be409404fb41fa614dcdd3c45}{shape} () const 
+\item 
+uint64\+\_\+t \hyperlink{classnifty_1_1hdf5_1_1Hdf5Array_a18194b4d9b9424c9b2e132185b517687}{chunk\+Shape} (const size\+\_\+t d) const 
+\item 
+const std\+::vector$<$ uint64\+\_\+t $>$ \& \hyperlink{classnifty_1_1hdf5_1_1Hdf5Array_a5e0e489414e1bef413cdf6f9b33aae66}{chunk\+Shape} () const 
+\item 
+bool \hyperlink{classnifty_1_1hdf5_1_1Hdf5Array_a4f528ec226501c76d88d66933e5bed81}{is\+Chunked} () const 
+\item 
+{\footnotesize template$<$class I\+T\+E\+R $>$ }\\void \hyperlink{classnifty_1_1hdf5_1_1Hdf5Array_a09f2804eb2d92a53c3123df6f4970414}{read\+Subarray} (I\+T\+E\+R roi\+Begin\+Iter, marray\+::\+View$<$ T $>$ \&out) const 
+\item 
+{\footnotesize template$<$class I\+T\+E\+R $>$ }\\void \hyperlink{classnifty_1_1hdf5_1_1Hdf5Array_a098888418cf243be746971ebdbb06754}{read\+Subarray\+Locked} (I\+T\+E\+R roi\+Begin\+Iter, marray\+::\+View$<$ T $>$ \&out) const 
+\item 
+{\footnotesize template$<$class I\+T\+E\+R $>$ }\\void \hyperlink{classnifty_1_1hdf5_1_1Hdf5Array_af6773c766d8f098f715e74de486df0af}{write\+Subarray} (I\+T\+E\+R roi\+Begin\+Iter, const marray\+::\+View$<$ T $>$ \&in)
+\item 
+{\footnotesize template$<$class I\+T\+E\+R $>$ }\\void \hyperlink{classnifty_1_1hdf5_1_1Hdf5Array_aaa52559f3b3baf61a0e3f4fed81dbb9c}{write\+Subarray\+Locked} (I\+T\+E\+R roi\+Begin\+Iter, const marray\+::\+View$<$ T $>$ \&in) const 
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classnifty_1_1hdf5_1_1Hdf5Array_af164b10a52ab55e3f5a72004b6f6e278}{}\index{nifty\+::hdf5\+::\+Hdf5\+Array@{nifty\+::hdf5\+::\+Hdf5\+Array}!Hdf5\+Array@{Hdf5\+Array}}
+\index{Hdf5\+Array@{Hdf5\+Array}!nifty\+::hdf5\+::\+Hdf5\+Array@{nifty\+::hdf5\+::\+Hdf5\+Array}}
+\subsubsection[{Hdf5\+Array(const hid\+\_\+t \&group\+Handle, const std\+::string \&dataset\+Name, S\+H\+A\+P\+E\+\_\+\+I\+T\+E\+R shape\+Begin, S\+H\+A\+P\+E\+\_\+\+I\+T\+E\+R shape\+End, C\+H\+U\+N\+K\+\_\+\+S\+H\+A\+P\+E\+\_\+\+I\+T\+E\+R chunk\+Shape\+Begin, const int compression=-\/1)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T$>$ template$<$class S\+H\+A\+P\+E\+\_\+\+I\+T\+E\+R , class C\+H\+U\+N\+K\+\_\+\+S\+H\+A\+P\+E\+\_\+\+I\+T\+E\+R $>$ {\bf nifty\+::hdf5\+::\+Hdf5\+Array}$<$ T $>$\+::{\bf Hdf5\+Array} (
+\begin{DoxyParamCaption}
+\item[{const hid\+\_\+t \&}]{group\+Handle, }
+\item[{const std\+::string \&}]{dataset\+Name, }
+\item[{S\+H\+A\+P\+E\+\_\+\+I\+T\+E\+R}]{shape\+Begin, }
+\item[{S\+H\+A\+P\+E\+\_\+\+I\+T\+E\+R}]{shape\+End, }
+\item[{C\+H\+U\+N\+K\+\_\+\+S\+H\+A\+P\+E\+\_\+\+I\+T\+E\+R}]{chunk\+Shape\+Begin, }
+\item[{const int}]{compression = {\ttfamily -\/1}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1hdf5_1_1Hdf5Array_af164b10a52ab55e3f5a72004b6f6e278}
+\hypertarget{classnifty_1_1hdf5_1_1Hdf5Array_a8ce039a0d357f3c20a30fa5f6d595cb5}{}\index{nifty\+::hdf5\+::\+Hdf5\+Array@{nifty\+::hdf5\+::\+Hdf5\+Array}!Hdf5\+Array@{Hdf5\+Array}}
+\index{Hdf5\+Array@{Hdf5\+Array}!nifty\+::hdf5\+::\+Hdf5\+Array@{nifty\+::hdf5\+::\+Hdf5\+Array}}
+\subsubsection[{Hdf5\+Array(const hid\+\_\+t \&group\+Handle, const std\+::string \&dataset\+Name)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T$>$ {\bf nifty\+::hdf5\+::\+Hdf5\+Array}$<$ T $>$\+::{\bf Hdf5\+Array} (
+\begin{DoxyParamCaption}
+\item[{const hid\+\_\+t \&}]{group\+Handle, }
+\item[{const std\+::string \&}]{dataset\+Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1hdf5_1_1Hdf5Array_a8ce039a0d357f3c20a30fa5f6d595cb5}
+\hypertarget{classnifty_1_1hdf5_1_1Hdf5Array_a6f02962174e64b4c893b287f735cd30d}{}\index{nifty\+::hdf5\+::\+Hdf5\+Array@{nifty\+::hdf5\+::\+Hdf5\+Array}!````~Hdf5\+Array@{$\sim$\+Hdf5\+Array}}
+\index{````~Hdf5\+Array@{$\sim$\+Hdf5\+Array}!nifty\+::hdf5\+::\+Hdf5\+Array@{nifty\+::hdf5\+::\+Hdf5\+Array}}
+\subsubsection[{$\sim$\+Hdf5\+Array()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T$>$ {\bf nifty\+::hdf5\+::\+Hdf5\+Array}$<$ T $>$\+::$\sim${\bf Hdf5\+Array} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1hdf5_1_1Hdf5Array_a6f02962174e64b4c893b287f735cd30d}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classnifty_1_1hdf5_1_1Hdf5Array_a18194b4d9b9424c9b2e132185b517687}{}\index{nifty\+::hdf5\+::\+Hdf5\+Array@{nifty\+::hdf5\+::\+Hdf5\+Array}!chunk\+Shape@{chunk\+Shape}}
+\index{chunk\+Shape@{chunk\+Shape}!nifty\+::hdf5\+::\+Hdf5\+Array@{nifty\+::hdf5\+::\+Hdf5\+Array}}
+\subsubsection[{chunk\+Shape(const size\+\_\+t d) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T$>$ uint64\+\_\+t {\bf nifty\+::hdf5\+::\+Hdf5\+Array}$<$ T $>$\+::chunk\+Shape (
+\begin{DoxyParamCaption}
+\item[{const size\+\_\+t}]{d}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1hdf5_1_1Hdf5Array_a18194b4d9b9424c9b2e132185b517687}
+\hypertarget{classnifty_1_1hdf5_1_1Hdf5Array_a5e0e489414e1bef413cdf6f9b33aae66}{}\index{nifty\+::hdf5\+::\+Hdf5\+Array@{nifty\+::hdf5\+::\+Hdf5\+Array}!chunk\+Shape@{chunk\+Shape}}
+\index{chunk\+Shape@{chunk\+Shape}!nifty\+::hdf5\+::\+Hdf5\+Array@{nifty\+::hdf5\+::\+Hdf5\+Array}}
+\subsubsection[{chunk\+Shape() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T$>$ const std\+::vector$<$uint64\+\_\+t$>$\& {\bf nifty\+::hdf5\+::\+Hdf5\+Array}$<$ T $>$\+::chunk\+Shape (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1hdf5_1_1Hdf5Array_a5e0e489414e1bef413cdf6f9b33aae66}
+\hypertarget{classnifty_1_1hdf5_1_1Hdf5Array_a31ff7ce3b1524babd925a2013c590665}{}\index{nifty\+::hdf5\+::\+Hdf5\+Array@{nifty\+::hdf5\+::\+Hdf5\+Array}!dimension@{dimension}}
+\index{dimension@{dimension}!nifty\+::hdf5\+::\+Hdf5\+Array@{nifty\+::hdf5\+::\+Hdf5\+Array}}
+\subsubsection[{dimension() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T$>$ uint64\+\_\+t {\bf nifty\+::hdf5\+::\+Hdf5\+Array}$<$ T $>$\+::dimension (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1hdf5_1_1Hdf5Array_a31ff7ce3b1524babd925a2013c590665}
+\hypertarget{classnifty_1_1hdf5_1_1Hdf5Array_a4f528ec226501c76d88d66933e5bed81}{}\index{nifty\+::hdf5\+::\+Hdf5\+Array@{nifty\+::hdf5\+::\+Hdf5\+Array}!is\+Chunked@{is\+Chunked}}
+\index{is\+Chunked@{is\+Chunked}!nifty\+::hdf5\+::\+Hdf5\+Array@{nifty\+::hdf5\+::\+Hdf5\+Array}}
+\subsubsection[{is\+Chunked() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T$>$ bool {\bf nifty\+::hdf5\+::\+Hdf5\+Array}$<$ T $>$\+::is\+Chunked (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1hdf5_1_1Hdf5Array_a4f528ec226501c76d88d66933e5bed81}
+\hypertarget{classnifty_1_1hdf5_1_1Hdf5Array_a09f2804eb2d92a53c3123df6f4970414}{}\index{nifty\+::hdf5\+::\+Hdf5\+Array@{nifty\+::hdf5\+::\+Hdf5\+Array}!read\+Subarray@{read\+Subarray}}
+\index{read\+Subarray@{read\+Subarray}!nifty\+::hdf5\+::\+Hdf5\+Array@{nifty\+::hdf5\+::\+Hdf5\+Array}}
+\subsubsection[{read\+Subarray(\+I\+T\+E\+R roi\+Begin\+Iter, marray\+::\+View$<$ T $>$ \&out) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T$>$ template$<$class I\+T\+E\+R $>$ void {\bf nifty\+::hdf5\+::\+Hdf5\+Array}$<$ T $>$\+::read\+Subarray (
+\begin{DoxyParamCaption}
+\item[{I\+T\+E\+R}]{roi\+Begin\+Iter, }
+\item[{marray\+::\+View$<$ T $>$ \&}]{out}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1hdf5_1_1Hdf5Array_a09f2804eb2d92a53c3123df6f4970414}
+\hypertarget{classnifty_1_1hdf5_1_1Hdf5Array_a098888418cf243be746971ebdbb06754}{}\index{nifty\+::hdf5\+::\+Hdf5\+Array@{nifty\+::hdf5\+::\+Hdf5\+Array}!read\+Subarray\+Locked@{read\+Subarray\+Locked}}
+\index{read\+Subarray\+Locked@{read\+Subarray\+Locked}!nifty\+::hdf5\+::\+Hdf5\+Array@{nifty\+::hdf5\+::\+Hdf5\+Array}}
+\subsubsection[{read\+Subarray\+Locked(\+I\+T\+E\+R roi\+Begin\+Iter, marray\+::\+View$<$ T $>$ \&out) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T$>$ template$<$class I\+T\+E\+R $>$ void {\bf nifty\+::hdf5\+::\+Hdf5\+Array}$<$ T $>$\+::read\+Subarray\+Locked (
+\begin{DoxyParamCaption}
+\item[{I\+T\+E\+R}]{roi\+Begin\+Iter, }
+\item[{marray\+::\+View$<$ T $>$ \&}]{out}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1hdf5_1_1Hdf5Array_a098888418cf243be746971ebdbb06754}
+\hypertarget{classnifty_1_1hdf5_1_1Hdf5Array_a59e94ddc29dd4ba7e85a11c68960ea77}{}\index{nifty\+::hdf5\+::\+Hdf5\+Array@{nifty\+::hdf5\+::\+Hdf5\+Array}!set\+Cache@{set\+Cache}}
+\index{set\+Cache@{set\+Cache}!nifty\+::hdf5\+::\+Hdf5\+Array@{nifty\+::hdf5\+::\+Hdf5\+Array}}
+\subsubsection[{set\+Cache()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T$>$ int {\bf nifty\+::hdf5\+::\+Hdf5\+Array}$<$ T $>$\+::set\+Cache (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1hdf5_1_1Hdf5Array_a59e94ddc29dd4ba7e85a11c68960ea77}
+\hypertarget{classnifty_1_1hdf5_1_1Hdf5Array_aeb4aac8f0da32df48d776c608798991e}{}\index{nifty\+::hdf5\+::\+Hdf5\+Array@{nifty\+::hdf5\+::\+Hdf5\+Array}!shape@{shape}}
+\index{shape@{shape}!nifty\+::hdf5\+::\+Hdf5\+Array@{nifty\+::hdf5\+::\+Hdf5\+Array}}
+\subsubsection[{shape(const size\+\_\+t d) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T$>$ uint64\+\_\+t {\bf nifty\+::hdf5\+::\+Hdf5\+Array}$<$ T $>$\+::shape (
+\begin{DoxyParamCaption}
+\item[{const size\+\_\+t}]{d}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1hdf5_1_1Hdf5Array_aeb4aac8f0da32df48d776c608798991e}
+\hypertarget{classnifty_1_1hdf5_1_1Hdf5Array_af749bd9be409404fb41fa614dcdd3c45}{}\index{nifty\+::hdf5\+::\+Hdf5\+Array@{nifty\+::hdf5\+::\+Hdf5\+Array}!shape@{shape}}
+\index{shape@{shape}!nifty\+::hdf5\+::\+Hdf5\+Array@{nifty\+::hdf5\+::\+Hdf5\+Array}}
+\subsubsection[{shape() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T$>$ const std\+::vector$<$uint64\+\_\+t$>$\& {\bf nifty\+::hdf5\+::\+Hdf5\+Array}$<$ T $>$\+::shape (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1hdf5_1_1Hdf5Array_af749bd9be409404fb41fa614dcdd3c45}
+\hypertarget{classnifty_1_1hdf5_1_1Hdf5Array_af6773c766d8f098f715e74de486df0af}{}\index{nifty\+::hdf5\+::\+Hdf5\+Array@{nifty\+::hdf5\+::\+Hdf5\+Array}!write\+Subarray@{write\+Subarray}}
+\index{write\+Subarray@{write\+Subarray}!nifty\+::hdf5\+::\+Hdf5\+Array@{nifty\+::hdf5\+::\+Hdf5\+Array}}
+\subsubsection[{write\+Subarray(\+I\+T\+E\+R roi\+Begin\+Iter, const marray\+::\+View$<$ T $>$ \&in)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T$>$ template$<$class I\+T\+E\+R $>$ void {\bf nifty\+::hdf5\+::\+Hdf5\+Array}$<$ T $>$\+::write\+Subarray (
+\begin{DoxyParamCaption}
+\item[{I\+T\+E\+R}]{roi\+Begin\+Iter, }
+\item[{const marray\+::\+View$<$ T $>$ \&}]{in}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1hdf5_1_1Hdf5Array_af6773c766d8f098f715e74de486df0af}
+\hypertarget{classnifty_1_1hdf5_1_1Hdf5Array_aaa52559f3b3baf61a0e3f4fed81dbb9c}{}\index{nifty\+::hdf5\+::\+Hdf5\+Array@{nifty\+::hdf5\+::\+Hdf5\+Array}!write\+Subarray\+Locked@{write\+Subarray\+Locked}}
+\index{write\+Subarray\+Locked@{write\+Subarray\+Locked}!nifty\+::hdf5\+::\+Hdf5\+Array@{nifty\+::hdf5\+::\+Hdf5\+Array}}
+\subsubsection[{write\+Subarray\+Locked(\+I\+T\+E\+R roi\+Begin\+Iter, const marray\+::\+View$<$ T $>$ \&in) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T$>$ template$<$class I\+T\+E\+R $>$ void {\bf nifty\+::hdf5\+::\+Hdf5\+Array}$<$ T $>$\+::write\+Subarray\+Locked (
+\begin{DoxyParamCaption}
+\item[{I\+T\+E\+R}]{roi\+Begin\+Iter, }
+\item[{const marray\+::\+View$<$ T $>$ \&}]{in}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1hdf5_1_1Hdf5Array_aaa52559f3b3baf61a0e3f4fed81dbb9c}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/tbeier/src/nifty/include/nifty/hdf5/\hyperlink{hdf5__array_8hxx}{hdf5\+\_\+array.\+hxx}\end{DoxyCompactItemize}

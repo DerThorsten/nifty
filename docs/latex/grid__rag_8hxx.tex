@@ -1,0 +1,64 @@
+\hypertarget{grid__rag_8hxx}{}\section{/home/tbeier/src/nifty/include/nifty/graph/rag/grid\+\_\+rag.hxx File Reference}
+\label{grid__rag_8hxx}\index{/home/tbeier/src/nifty/include/nifty/graph/rag/grid\+\_\+rag.\+hxx@{/home/tbeier/src/nifty/include/nifty/graph/rag/grid\+\_\+rag.\+hxx}}
+{\ttfamily \#include $<$random$>$}\\*
+{\ttfamily \#include $<$functional$>$}\\*
+{\ttfamily \#include $<$ctime$>$}\\*
+{\ttfamily \#include $<$stack$>$}\\*
+{\ttfamily \#include $<$algorithm$>$}\\*
+{\ttfamily \#include $<$unordered\+\_\+set$>$}\\*
+{\ttfamily \#include \char`\"{}nifty/array/arithmetic\+\_\+array.\+hxx\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}nifty/graph/rag/grid\+\_\+rag\+\_\+labels.\+hxx\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}nifty/graph/rag/detail\+\_\+rag/compute\+\_\+grid\+\_\+rag.\+hxx\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}nifty/marray/marray.\+hxx\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}nifty/graph/undirected\+\_\+list\+\_\+graph.\+hxx\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}nifty/parallel/threadpool.\+hxx\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}nifty/tools/timer.\+hxx\char`\"{}}\\*
+Include dependency graph for grid\+\_\+rag.\+hxx\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classnifty_1_1graph_1_1ExplicitLabels}{nifty\+::graph\+::\+Explicit\+Labels$<$ D\+I\+M, L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E $>$}
+\item 
+struct \hyperlink{structnifty_1_1graph_1_1RefHelper}{nifty\+::graph\+::\+Ref\+Helper$<$ L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y $>$}
+\item 
+struct \hyperlink{structnifty_1_1graph_1_1RefHelper_3_01ExplicitLabels_3_01DIM_00_01LABEL__TYPE_01_4_01_4}{nifty\+::graph\+::\+Ref\+Helper$<$ Explicit\+Labels$<$ D\+I\+M, L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E $>$ $>$}
+\item 
+class \hyperlink{classnifty_1_1graph_1_1GridRag}{nifty\+::graph\+::\+Grid\+Rag$<$ D\+I\+M, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y $>$}
+\item 
+struct \hyperlink{structnifty_1_1graph_1_1GridRag_1_1DontComputeRag}{nifty\+::graph\+::\+Grid\+Rag$<$ D\+I\+M, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y $>$\+::\+Dont\+Compute\+Rag}
+\item 
+struct \hyperlink{structnifty_1_1graph_1_1GridRag_1_1Settings}{nifty\+::graph\+::\+Grid\+Rag$<$ D\+I\+M, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y $>$\+::\+Settings}
+\item 
+class \hyperlink{classnifty_1_1graph_1_1GridRag3DStacked2D}{nifty\+::graph\+::\+Grid\+Rag3\+D\+Stacked2\+D$<$ L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y $>$}
+\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespacenifty}{nifty}
+\item 
+ \hyperlink{namespacenifty_1_1graph}{nifty\+::graph}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{grid__rag_8hxx_aae6c4ff35dcc6029be17e0cf48c07042}{N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+R\+A\+G\+\_\+\+G\+R\+I\+D\+\_\+\+R\+A\+G\+\_\+\+H\+X\+X}
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$unsigned int D\+I\+M, class L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E $>$ }\\using \hyperlink{namespacenifty_1_1graph_a45cca2dcd061996d13ec8e6bb8afb200}{nifty\+::graph\+::\+Explicit\+Labels\+Grid\+Rag} = Grid\+Rag$<$ D\+I\+M, Explicit\+Labels$<$ D\+I\+M, L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E $>$ $>$
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class C\+O\+O\+R\+D $>$ }\\C\+O\+O\+R\+D \hyperlink{namespacenifty_1_1graph_aca62625e3c61b810e2f6cda338de2c26}{nifty\+::graph\+::make\+Coord2} (const C\+O\+O\+R\+D \&coord, const size\+\_\+t axis)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{grid__rag_8hxx_aae6c4ff35dcc6029be17e0cf48c07042}{}\index{grid\+\_\+rag.\+hxx@{grid\+\_\+rag.\+hxx}!N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+R\+A\+G\+\_\+\+G\+R\+I\+D\+\_\+\+R\+A\+G\+\_\+\+H\+X\+X@{N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+R\+A\+G\+\_\+\+G\+R\+I\+D\+\_\+\+R\+A\+G\+\_\+\+H\+X\+X}}
+\index{N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+R\+A\+G\+\_\+\+G\+R\+I\+D\+\_\+\+R\+A\+G\+\_\+\+H\+X\+X@{N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+R\+A\+G\+\_\+\+G\+R\+I\+D\+\_\+\+R\+A\+G\+\_\+\+H\+X\+X}!grid\+\_\+rag.\+hxx@{grid\+\_\+rag.\+hxx}}
+\subsubsection[{N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+R\+A\+G\+\_\+\+G\+R\+I\+D\+\_\+\+R\+A\+G\+\_\+\+H\+X\+X}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+R\+A\+G\+\_\+\+G\+R\+I\+D\+\_\+\+R\+A\+G\+\_\+\+H\+X\+X}\label{grid__rag_8hxx_aae6c4ff35dcc6029be17e0cf48c07042}

@@ -1,0 +1,30 @@
+\hypertarget{namespacenifty_1_1region__growing}{}\section{nifty\+:\+:region\+\_\+growing Namespace Reference}
+\label{namespacenifty_1_1region__growing}\index{nifty\+::region\+\_\+growing@{nifty\+::region\+\_\+growing}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$size\+\_\+t D\+I\+M, class I\+N\+T\+E\+G\+R\+A\+L\+\_\+\+P\+I\+X\+E\+L\+\_\+\+T\+Y\+P\+E , class T $>$ }\\void \hyperlink{namespacenifty_1_1region__growing_a55a922f7df7171419037639093abde8f}{seeded\+Region\+Growing} (const marray\+::\+View$<$ I\+N\+T\+E\+G\+R\+A\+L\+\_\+\+P\+I\+X\+E\+L\+\_\+\+T\+Y\+P\+E $>$ \&elevation, marray\+::\+View$<$ T $>$ \&seeds, const size\+\_\+t number\+Of\+Queues=256)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{namespacenifty_1_1region__growing_a55a922f7df7171419037639093abde8f}{}\index{nifty\+::region\+\_\+growing@{nifty\+::region\+\_\+growing}!seeded\+Region\+Growing@{seeded\+Region\+Growing}}
+\index{seeded\+Region\+Growing@{seeded\+Region\+Growing}!nifty\+::region\+\_\+growing@{nifty\+::region\+\_\+growing}}
+\subsubsection[{seeded\+Region\+Growing(const marray\+::\+View$<$ I\+N\+T\+E\+G\+R\+A\+L\+\_\+\+P\+I\+X\+E\+L\+\_\+\+T\+Y\+P\+E $>$ \&elevation, marray\+::\+View$<$ T $>$ \&seeds, const size\+\_\+t number\+Of\+Queues=256)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$size\+\_\+t D\+I\+M, class I\+N\+T\+E\+G\+R\+A\+L\+\_\+\+P\+I\+X\+E\+L\+\_\+\+T\+Y\+P\+E , class T $>$ void nifty\+::region\+\_\+growing\+::seeded\+Region\+Growing (
+\begin{DoxyParamCaption}
+\item[{const marray\+::\+View$<$ I\+N\+T\+E\+G\+R\+A\+L\+\_\+\+P\+I\+X\+E\+L\+\_\+\+T\+Y\+P\+E $>$ \&}]{elevation, }
+\item[{marray\+::\+View$<$ T $>$ \&}]{seeds, }
+\item[{const size\+\_\+t}]{number\+Of\+Queues = {\ttfamily 256}}
+\end{DoxyParamCaption}
+)}\label{namespacenifty_1_1region__growing_a55a922f7df7171419037639093abde8f}
+Seeded region growing in an n-\/dimension array, using the 2n-\/neighborhood
+
+This function operates in-\/place on its second parameter.
+
+
+\begin{DoxyParams}{Parameters}
+{\em elevation} & 8-\/bit Elevation map \\
+\hline
+{\em seeds} & As input\+: labeled seeds; as output\+: labeled grown regions \\
+\hline
+\end{DoxyParams}

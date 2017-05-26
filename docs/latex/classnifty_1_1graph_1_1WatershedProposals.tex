@@ -1,0 +1,122 @@
+\hypertarget{classnifty_1_1graph_1_1WatershedProposals}{}\section{nifty\+:\+:graph\+:\+:Watershed\+Proposals$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$ Class Template Reference}
+\label{classnifty_1_1graph_1_1WatershedProposals}\index{nifty\+::graph\+::\+Watershed\+Proposals$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$@{nifty\+::graph\+::\+Watershed\+Proposals$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}}
+
+
+{\ttfamily \#include $<$watershed\+\_\+proposals.\+hxx$>$}
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structnifty_1_1graph_1_1WatershedProposals_1_1Settings}{Settings}
+\end{DoxyCompactItemize}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef O\+B\+J\+E\+C\+T\+I\+V\+E \hyperlink{classnifty_1_1graph_1_1WatershedProposals_a6c8b1e69ffce69a32dc4a1a5fdd8b455}{Objective}
+\item 
+typedef Objective\+::\+Graph \hyperlink{classnifty_1_1graph_1_1WatershedProposals_ac1b4debb35285dc3e993460a4d579ebb}{Graph}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1MulticutBase}{Multicut\+Base}$<$ \hyperlink{classnifty_1_1graph_1_1WatershedProposals_a6c8b1e69ffce69a32dc4a1a5fdd8b455}{Objective} $>$ \hyperlink{classnifty_1_1graph_1_1WatershedProposals_addfa29bbb1e705c4ea5eed5b700ec6ac}{Base}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1MulticutGreedyAdditive}{Multicut\+Greedy\+Additive}$<$ \hyperlink{classnifty_1_1graph_1_1WatershedProposals_a6c8b1e69ffce69a32dc4a1a5fdd8b455}{Objective} $>$ \hyperlink{classnifty_1_1graph_1_1WatershedProposals_a2a9b608a2398e725e2b8e6dd79916069}{Solver}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1MulticutGreedyAdditive_ab14192647e24d574c75538087acfd090}{Solver\+::\+Settings} \hyperlink{classnifty_1_1graph_1_1WatershedProposals_ad16d7c31eb54158ffc0e637b604f7126}{Solver\+Settings}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1MulticutBase_aaeefe3c5df81d9c9efffec878cf2fcd7}{Base\+::\+Edge\+Labels} \hyperlink{classnifty_1_1graph_1_1WatershedProposals_a193558ab36f22b02bd769212a3369304}{Edge\+Labels}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1MulticutBase_afba61ad2919d0fad20b3745af19309da}{Base\+::\+Node\+Labels} \hyperlink{classnifty_1_1graph_1_1WatershedProposals_aaf3781be9f0ca924072375a681149673}{Node\+Labels}
+\item 
+typedef Graph\+::template Edge\+Map$<$ double $>$ \hyperlink{classnifty_1_1graph_1_1WatershedProposals_adfde03fd0d46304ec23018bde36cfe87}{Edge\+Weights}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classnifty_1_1graph_1_1WatershedProposals_ab1911fe9ef1a543dd06ec717aaccd311}{Watershed\+Proposals} (const \hyperlink{classnifty_1_1graph_1_1WatershedProposals_a6c8b1e69ffce69a32dc4a1a5fdd8b455}{Objective} \&objective, const \hyperlink{structnifty_1_1graph_1_1WatershedProposals_1_1Settings}{Settings} \&settings, const size\+\_\+t thread\+Index)
+\item 
+\hyperlink{classnifty_1_1graph_1_1WatershedProposals_afec4765189f57d7a20f60f4bfb814e2b}{$\sim$\+Watershed\+Proposals} ()
+\item 
+void \hyperlink{classnifty_1_1graph_1_1WatershedProposals_afa676a3f6c3bfbc586830faf4f658eb9}{generate} (const \hyperlink{classnifty_1_1graph_1_1WatershedProposals_aaf3781be9f0ca924072375a681149673}{Node\+Labels} \&current\+Best, \hyperlink{classnifty_1_1graph_1_1WatershedProposals_aaf3781be9f0ca924072375a681149673}{Node\+Labels} \&proposal)
+\item 
+void \hyperlink{classnifty_1_1graph_1_1WatershedProposals_a312df197f5047813e840f90aa07ffe1f}{reset} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::string \hyperlink{classnifty_1_1graph_1_1WatershedProposals_a22ff2b41f49840cb9821fffd4d6f026b}{name} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{classnifty_1_1graph_1_1WatershedProposals_addfa29bbb1e705c4ea5eed5b700ec6ac}{}\index{nifty\+::graph\+::\+Watershed\+Proposals@{nifty\+::graph\+::\+Watershed\+Proposals}!Base@{Base}}
+\index{Base@{Base}!nifty\+::graph\+::\+Watershed\+Proposals@{nifty\+::graph\+::\+Watershed\+Proposals}}
+\subsubsection[{Base}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ typedef {\bf Multicut\+Base}$<${\bf Objective}$>$ {\bf nifty\+::graph\+::\+Watershed\+Proposals}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Base}}\label{classnifty_1_1graph_1_1WatershedProposals_addfa29bbb1e705c4ea5eed5b700ec6ac}
+\hypertarget{classnifty_1_1graph_1_1WatershedProposals_a193558ab36f22b02bd769212a3369304}{}\index{nifty\+::graph\+::\+Watershed\+Proposals@{nifty\+::graph\+::\+Watershed\+Proposals}!Edge\+Labels@{Edge\+Labels}}
+\index{Edge\+Labels@{Edge\+Labels}!nifty\+::graph\+::\+Watershed\+Proposals@{nifty\+::graph\+::\+Watershed\+Proposals}}
+\subsubsection[{Edge\+Labels}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ typedef {\bf Base\+::\+Edge\+Labels} {\bf nifty\+::graph\+::\+Watershed\+Proposals}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Edge\+Labels}}\label{classnifty_1_1graph_1_1WatershedProposals_a193558ab36f22b02bd769212a3369304}
+\hypertarget{classnifty_1_1graph_1_1WatershedProposals_adfde03fd0d46304ec23018bde36cfe87}{}\index{nifty\+::graph\+::\+Watershed\+Proposals@{nifty\+::graph\+::\+Watershed\+Proposals}!Edge\+Weights@{Edge\+Weights}}
+\index{Edge\+Weights@{Edge\+Weights}!nifty\+::graph\+::\+Watershed\+Proposals@{nifty\+::graph\+::\+Watershed\+Proposals}}
+\subsubsection[{Edge\+Weights}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ typedef Graph\+:: template Edge\+Map$<$double$>$ {\bf nifty\+::graph\+::\+Watershed\+Proposals}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Edge\+Weights}}\label{classnifty_1_1graph_1_1WatershedProposals_adfde03fd0d46304ec23018bde36cfe87}
+\hypertarget{classnifty_1_1graph_1_1WatershedProposals_ac1b4debb35285dc3e993460a4d579ebb}{}\index{nifty\+::graph\+::\+Watershed\+Proposals@{nifty\+::graph\+::\+Watershed\+Proposals}!Graph@{Graph}}
+\index{Graph@{Graph}!nifty\+::graph\+::\+Watershed\+Proposals@{nifty\+::graph\+::\+Watershed\+Proposals}}
+\subsubsection[{Graph}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ typedef Objective\+::\+Graph {\bf nifty\+::graph\+::\+Watershed\+Proposals}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Graph}}\label{classnifty_1_1graph_1_1WatershedProposals_ac1b4debb35285dc3e993460a4d579ebb}
+\hypertarget{classnifty_1_1graph_1_1WatershedProposals_aaf3781be9f0ca924072375a681149673}{}\index{nifty\+::graph\+::\+Watershed\+Proposals@{nifty\+::graph\+::\+Watershed\+Proposals}!Node\+Labels@{Node\+Labels}}
+\index{Node\+Labels@{Node\+Labels}!nifty\+::graph\+::\+Watershed\+Proposals@{nifty\+::graph\+::\+Watershed\+Proposals}}
+\subsubsection[{Node\+Labels}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ typedef {\bf Base\+::\+Node\+Labels} {\bf nifty\+::graph\+::\+Watershed\+Proposals}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Node\+Labels}}\label{classnifty_1_1graph_1_1WatershedProposals_aaf3781be9f0ca924072375a681149673}
+\hypertarget{classnifty_1_1graph_1_1WatershedProposals_a6c8b1e69ffce69a32dc4a1a5fdd8b455}{}\index{nifty\+::graph\+::\+Watershed\+Proposals@{nifty\+::graph\+::\+Watershed\+Proposals}!Objective@{Objective}}
+\index{Objective@{Objective}!nifty\+::graph\+::\+Watershed\+Proposals@{nifty\+::graph\+::\+Watershed\+Proposals}}
+\subsubsection[{Objective}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ typedef O\+B\+J\+E\+C\+T\+I\+V\+E {\bf nifty\+::graph\+::\+Watershed\+Proposals}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Objective}}\label{classnifty_1_1graph_1_1WatershedProposals_a6c8b1e69ffce69a32dc4a1a5fdd8b455}
+\hypertarget{classnifty_1_1graph_1_1WatershedProposals_a2a9b608a2398e725e2b8e6dd79916069}{}\index{nifty\+::graph\+::\+Watershed\+Proposals@{nifty\+::graph\+::\+Watershed\+Proposals}!Solver@{Solver}}
+\index{Solver@{Solver}!nifty\+::graph\+::\+Watershed\+Proposals@{nifty\+::graph\+::\+Watershed\+Proposals}}
+\subsubsection[{Solver}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ typedef {\bf Multicut\+Greedy\+Additive}$<${\bf Objective}$>$ {\bf nifty\+::graph\+::\+Watershed\+Proposals}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Solver}}\label{classnifty_1_1graph_1_1WatershedProposals_a2a9b608a2398e725e2b8e6dd79916069}
+\hypertarget{classnifty_1_1graph_1_1WatershedProposals_ad16d7c31eb54158ffc0e637b604f7126}{}\index{nifty\+::graph\+::\+Watershed\+Proposals@{nifty\+::graph\+::\+Watershed\+Proposals}!Solver\+Settings@{Solver\+Settings}}
+\index{Solver\+Settings@{Solver\+Settings}!nifty\+::graph\+::\+Watershed\+Proposals@{nifty\+::graph\+::\+Watershed\+Proposals}}
+\subsubsection[{Solver\+Settings}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ typedef {\bf Solver\+::\+Settings} {\bf nifty\+::graph\+::\+Watershed\+Proposals}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Solver\+Settings}}\label{classnifty_1_1graph_1_1WatershedProposals_ad16d7c31eb54158ffc0e637b604f7126}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classnifty_1_1graph_1_1WatershedProposals_ab1911fe9ef1a543dd06ec717aaccd311}{}\index{nifty\+::graph\+::\+Watershed\+Proposals@{nifty\+::graph\+::\+Watershed\+Proposals}!Watershed\+Proposals@{Watershed\+Proposals}}
+\index{Watershed\+Proposals@{Watershed\+Proposals}!nifty\+::graph\+::\+Watershed\+Proposals@{nifty\+::graph\+::\+Watershed\+Proposals}}
+\subsubsection[{Watershed\+Proposals(const Objective \&objective, const Settings \&settings, const size\+\_\+t thread\+Index)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ {\bf nifty\+::graph\+::\+Watershed\+Proposals}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Watershed\+Proposals} (
+\begin{DoxyParamCaption}
+\item[{const {\bf Objective} \&}]{objective, }
+\item[{const {\bf Settings} \&}]{settings, }
+\item[{const size\+\_\+t}]{thread\+Index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1WatershedProposals_ab1911fe9ef1a543dd06ec717aaccd311}
+\hypertarget{classnifty_1_1graph_1_1WatershedProposals_afec4765189f57d7a20f60f4bfb814e2b}{}\index{nifty\+::graph\+::\+Watershed\+Proposals@{nifty\+::graph\+::\+Watershed\+Proposals}!````~Watershed\+Proposals@{$\sim$\+Watershed\+Proposals}}
+\index{````~Watershed\+Proposals@{$\sim$\+Watershed\+Proposals}!nifty\+::graph\+::\+Watershed\+Proposals@{nifty\+::graph\+::\+Watershed\+Proposals}}
+\subsubsection[{$\sim$\+Watershed\+Proposals()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ {\bf nifty\+::graph\+::\+Watershed\+Proposals}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::$\sim${\bf Watershed\+Proposals} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1WatershedProposals_afec4765189f57d7a20f60f4bfb814e2b}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classnifty_1_1graph_1_1WatershedProposals_afa676a3f6c3bfbc586830faf4f658eb9}{}\index{nifty\+::graph\+::\+Watershed\+Proposals@{nifty\+::graph\+::\+Watershed\+Proposals}!generate@{generate}}
+\index{generate@{generate}!nifty\+::graph\+::\+Watershed\+Proposals@{nifty\+::graph\+::\+Watershed\+Proposals}}
+\subsubsection[{generate(const Node\+Labels \&current\+Best, Node\+Labels \&proposal)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ void {\bf nifty\+::graph\+::\+Watershed\+Proposals}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::generate (
+\begin{DoxyParamCaption}
+\item[{const {\bf Node\+Labels} \&}]{current\+Best, }
+\item[{{\bf Node\+Labels} \&}]{proposal}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1WatershedProposals_afa676a3f6c3bfbc586830faf4f658eb9}
+\hypertarget{classnifty_1_1graph_1_1WatershedProposals_a22ff2b41f49840cb9821fffd4d6f026b}{}\index{nifty\+::graph\+::\+Watershed\+Proposals@{nifty\+::graph\+::\+Watershed\+Proposals}!name@{name}}
+\index{name@{name}!nifty\+::graph\+::\+Watershed\+Proposals@{nifty\+::graph\+::\+Watershed\+Proposals}}
+\subsubsection[{name()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ static std\+::string {\bf nifty\+::graph\+::\+Watershed\+Proposals}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::name (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{classnifty_1_1graph_1_1WatershedProposals_a22ff2b41f49840cb9821fffd4d6f026b}
+\hypertarget{classnifty_1_1graph_1_1WatershedProposals_a312df197f5047813e840f90aa07ffe1f}{}\index{nifty\+::graph\+::\+Watershed\+Proposals@{nifty\+::graph\+::\+Watershed\+Proposals}!reset@{reset}}
+\index{reset@{reset}!nifty\+::graph\+::\+Watershed\+Proposals@{nifty\+::graph\+::\+Watershed\+Proposals}}
+\subsubsection[{reset()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ void {\bf nifty\+::graph\+::\+Watershed\+Proposals}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::reset (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1WatershedProposals_a312df197f5047813e840f90aa07ffe1f}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/proposal\+\_\+generators/\hyperlink{watershed__proposals_8hxx}{watershed\+\_\+proposals.\+hxx}\end{DoxyCompactItemize}

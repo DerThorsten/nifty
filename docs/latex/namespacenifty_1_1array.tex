@@ -1,0 +1,117 @@
+\hypertarget{namespacenifty_1_1array}{}\section{nifty\+:\+:array Namespace Reference}
+\label{namespacenifty_1_1array}\index{nifty\+::array@{nifty\+::array}}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classnifty_1_1array_1_1ArrayExtender}{Array\+Extender}
+\item 
+class \hyperlink{classnifty_1_1array_1_1StaticArrayBase}{Static\+Array\+Base}
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class T , size\+\_\+t S\+I\+Z\+E$>$ }\\using \hyperlink{namespacenifty_1_1array_a683f151f19c851754e0c6d55ed16a0c2}{Static\+Array} = \hyperlink{classnifty_1_1array_1_1ArrayExtender}{Array\+Extender}$<$ \hyperlink{classnifty_1_1array_1_1StaticArrayBase}{Static\+Array\+Base}$<$ T, S\+I\+Z\+E $>$ $>$
+\item 
+{\footnotesize template$<$class T , class A\+L\+L\+O\+C\+A\+T\+O\+R  = std\+::allocator$<$\+T$>$$>$ }\\using \hyperlink{namespacenifty_1_1array_aa0fe9e5e97322da484fa8ffd2fe44cd5}{Vector} = \hyperlink{classnifty_1_1array_1_1ArrayExtender}{Array\+Extender}$<$ std\+::vector$<$ T, A\+L\+L\+O\+C\+A\+T\+O\+R $>$ $>$
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class S\+T\+R\+E\+A\+M , class A\+R\+R\+A\+Y\+\_\+\+C\+L\+A\+S\+S $>$ }\\S\+T\+R\+E\+A\+M \& \hyperlink{namespacenifty_1_1array_ae3d01c9b4b4259a31ac35ce0a6cf3b48}{operator$<$$<$} (S\+T\+R\+E\+A\+M \&out, const \hyperlink{classnifty_1_1array_1_1ArrayExtender}{Array\+Extender}$<$ A\+R\+R\+A\+Y\+\_\+\+C\+L\+A\+S\+S $>$ \&array)
+\item 
+\hyperlink{namespacenifty_1_1array_a9cfe55e7ae08c0c0a43a6f27d18929d4}{N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P\+\_\+\+I\+N\+P\+L\+A\+C\+E} (+=)
+\item 
+\hyperlink{namespacenifty_1_1array_a9f4f64ff2f9c1ab8afe746625ce8fbc9}{N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P\+\_\+\+I\+N\+P\+L\+A\+C\+E} (-\/=)
+\item 
+N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P\+\_\+\+I\+N\+P\+L\+A\+C\+E $\ast$ \hyperlink{namespacenifty_1_1array_a4786c4b393cff5d99d56b55ec1aabe5b}{N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P\+\_\+\+I\+N\+P\+L\+A\+C\+E} (/=);       N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P\+\_\+\+I\+N\+P\+L\+A\+C\+E(\&=
+\item 
+\hyperlink{namespacenifty_1_1array_a7b3793e9633aafbb149e77b4292d0a74}{N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P\+\_\+\+I\+N\+P\+L\+A\+C\+E} ($\vert$=)
+\item 
+\hyperlink{namespacenifty_1_1array_adacdae329fa7ea377154bbc41717f86f}{N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P} (+,+=)
+\item 
+\hyperlink{namespacenifty_1_1array_a7960bc347c963a7cde9178e3e66d8903}{N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P} (-\/,-\/=)
+\item 
+N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P $\ast$ \hyperlink{namespacenifty_1_1array_a7777b1eeea0908a2cf0259b2d79db7fb}{N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P} (/,/=);       N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P(\&,\&=
+\item 
+\hyperlink{namespacenifty_1_1array_adbe1f99691b0c07ecfb3d57a3ad3f194}{N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P} ($\vert$,$\vert$=)
+\end{DoxyCompactItemize}
+
+
+\subsection{Typedef Documentation}
+\hypertarget{namespacenifty_1_1array_a683f151f19c851754e0c6d55ed16a0c2}{}\index{nifty\+::array@{nifty\+::array}!Static\+Array@{Static\+Array}}
+\index{Static\+Array@{Static\+Array}!nifty\+::array@{nifty\+::array}}
+\subsubsection[{Static\+Array}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , size\+\_\+t S\+I\+Z\+E$>$ using {\bf nifty\+::array\+::\+Static\+Array} = typedef {\bf Array\+Extender}$<$ {\bf Static\+Array\+Base}$<$T,S\+I\+Z\+E$>$ $>$}\label{namespacenifty_1_1array_a683f151f19c851754e0c6d55ed16a0c2}
+\hypertarget{namespacenifty_1_1array_aa0fe9e5e97322da484fa8ffd2fe44cd5}{}\index{nifty\+::array@{nifty\+::array}!Vector@{Vector}}
+\index{Vector@{Vector}!nifty\+::array@{nifty\+::array}}
+\subsubsection[{Vector}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , class A\+L\+L\+O\+C\+A\+T\+O\+R  = std\+::allocator$<$\+T$>$$>$ using {\bf nifty\+::array\+::\+Vector} = typedef {\bf Array\+Extender}$<$ std\+::vector$<$T,A\+L\+L\+O\+C\+A\+T\+O\+R$>$ $>$}\label{namespacenifty_1_1array_aa0fe9e5e97322da484fa8ffd2fe44cd5}
+
+
+\subsection{Function Documentation}
+\hypertarget{namespacenifty_1_1array_adacdae329fa7ea377154bbc41717f86f}{}\index{nifty\+::array@{nifty\+::array}!N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P@{N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P}}
+\index{N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P@{N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P}!nifty\+::array@{nifty\+::array}}
+\subsubsection[{N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P(+,+=)}]{\setlength{\rightskip}{0pt plus 5cm}nifty\+::array\+::\+N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P (
+\begin{DoxyParamCaption}
+\item[{+}]{, }
+\item[{+}]{}
+\end{DoxyParamCaption}
+)}\label{namespacenifty_1_1array_adacdae329fa7ea377154bbc41717f86f}
+\hypertarget{namespacenifty_1_1array_a7960bc347c963a7cde9178e3e66d8903}{}\index{nifty\+::array@{nifty\+::array}!N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P@{N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P}}
+\index{N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P@{N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P}!nifty\+::array@{nifty\+::array}}
+\subsubsection[{N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P(-\/,-\/=)}]{\setlength{\rightskip}{0pt plus 5cm}nifty\+::array\+::\+N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P (
+\begin{DoxyParamCaption}
+\item[{-\/}]{, }
+\item[{-\/}]{}
+\end{DoxyParamCaption}
+)}\label{namespacenifty_1_1array_a7960bc347c963a7cde9178e3e66d8903}
+\hypertarget{namespacenifty_1_1array_a7777b1eeea0908a2cf0259b2d79db7fb}{}\index{nifty\+::array@{nifty\+::array}!N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P@{N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P}}
+\index{N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P@{N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P}!nifty\+::array@{nifty\+::array}}
+\subsubsection[{N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P(/,/=);       N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P(\&,\&=}]{\setlength{\rightskip}{0pt plus 5cm}N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P$\ast$ nifty\+::array\+::\+N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P (
+\begin{DoxyParamCaption}
+\item[{/}]{, }
+\item[{/}]{}
+\end{DoxyParamCaption}
+)}\label{namespacenifty_1_1array_a7777b1eeea0908a2cf0259b2d79db7fb}
+\hypertarget{namespacenifty_1_1array_adbe1f99691b0c07ecfb3d57a3ad3f194}{}\index{nifty\+::array@{nifty\+::array}!N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P@{N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P}}
+\index{N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P@{N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P}!nifty\+::array@{nifty\+::array}}
+\subsubsection[{N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P(\texttt{"|},\texttt{"|}=)}]{\setlength{\rightskip}{0pt plus 5cm}nifty\+::array\+::\+N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P (
+\begin{DoxyParamCaption}
+\item[{$\vert$}]{, }
+\item[{$\vert$}]{}
+\end{DoxyParamCaption}
+)}\label{namespacenifty_1_1array_adbe1f99691b0c07ecfb3d57a3ad3f194}
+\hypertarget{namespacenifty_1_1array_a9cfe55e7ae08c0c0a43a6f27d18929d4}{}\index{nifty\+::array@{nifty\+::array}!N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P\+\_\+\+I\+N\+P\+L\+A\+C\+E@{N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P\+\_\+\+I\+N\+P\+L\+A\+C\+E}}
+\index{N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P\+\_\+\+I\+N\+P\+L\+A\+C\+E@{N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P\+\_\+\+I\+N\+P\+L\+A\+C\+E}!nifty\+::array@{nifty\+::array}}
+\subsubsection[{N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P\+\_\+\+I\+N\+P\+L\+A\+C\+E(+=)}]{\setlength{\rightskip}{0pt plus 5cm}nifty\+::array\+::\+N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P\+\_\+\+I\+N\+P\+L\+A\+C\+E (
+\begin{DoxyParamCaption}
+\item[{+}]{}
+\end{DoxyParamCaption}
+)}\label{namespacenifty_1_1array_a9cfe55e7ae08c0c0a43a6f27d18929d4}
+\hypertarget{namespacenifty_1_1array_a9f4f64ff2f9c1ab8afe746625ce8fbc9}{}\index{nifty\+::array@{nifty\+::array}!N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P\+\_\+\+I\+N\+P\+L\+A\+C\+E@{N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P\+\_\+\+I\+N\+P\+L\+A\+C\+E}}
+\index{N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P\+\_\+\+I\+N\+P\+L\+A\+C\+E@{N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P\+\_\+\+I\+N\+P\+L\+A\+C\+E}!nifty\+::array@{nifty\+::array}}
+\subsubsection[{N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P\+\_\+\+I\+N\+P\+L\+A\+C\+E(-\/=)}]{\setlength{\rightskip}{0pt plus 5cm}nifty\+::array\+::\+N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P\+\_\+\+I\+N\+P\+L\+A\+C\+E (
+\begin{DoxyParamCaption}
+\item[{-\/}]{}
+\end{DoxyParamCaption}
+)}\label{namespacenifty_1_1array_a9f4f64ff2f9c1ab8afe746625ce8fbc9}
+\hypertarget{namespacenifty_1_1array_a4786c4b393cff5d99d56b55ec1aabe5b}{}\index{nifty\+::array@{nifty\+::array}!N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P\+\_\+\+I\+N\+P\+L\+A\+C\+E@{N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P\+\_\+\+I\+N\+P\+L\+A\+C\+E}}
+\index{N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P\+\_\+\+I\+N\+P\+L\+A\+C\+E@{N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P\+\_\+\+I\+N\+P\+L\+A\+C\+E}!nifty\+::array@{nifty\+::array}}
+\subsubsection[{N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P\+\_\+\+I\+N\+P\+L\+A\+C\+E(/=);       N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P\+\_\+\+I\+N\+P\+L\+A\+C\+E(\&=}]{\setlength{\rightskip}{0pt plus 5cm}N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P\+\_\+\+I\+N\+P\+L\+A\+C\+E$\ast$ nifty\+::array\+::\+N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P\+\_\+\+I\+N\+P\+L\+A\+C\+E (
+\begin{DoxyParamCaption}
+\item[{/}]{}
+\end{DoxyParamCaption}
+)}\label{namespacenifty_1_1array_a4786c4b393cff5d99d56b55ec1aabe5b}
+\hypertarget{namespacenifty_1_1array_a7b3793e9633aafbb149e77b4292d0a74}{}\index{nifty\+::array@{nifty\+::array}!N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P\+\_\+\+I\+N\+P\+L\+A\+C\+E@{N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P\+\_\+\+I\+N\+P\+L\+A\+C\+E}}
+\index{N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P\+\_\+\+I\+N\+P\+L\+A\+C\+E@{N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P\+\_\+\+I\+N\+P\+L\+A\+C\+E}!nifty\+::array@{nifty\+::array}}
+\subsubsection[{N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P\+\_\+\+I\+N\+P\+L\+A\+C\+E(\texttt{"|}=)}]{\setlength{\rightskip}{0pt plus 5cm}nifty\+::array\+::\+N\+I\+F\+T\+Y\+\_\+\+M\+A\+C\+R\+O\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+O\+P\+\_\+\+I\+N\+P\+L\+A\+C\+E (
+\begin{DoxyParamCaption}
+\item[{$\vert$}]{}
+\end{DoxyParamCaption}
+)}\label{namespacenifty_1_1array_a7b3793e9633aafbb149e77b4292d0a74}
+\hypertarget{namespacenifty_1_1array_ae3d01c9b4b4259a31ac35ce0a6cf3b48}{}\index{nifty\+::array@{nifty\+::array}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!nifty\+::array@{nifty\+::array}}
+\subsubsection[{operator$<$$<$(\+S\+T\+R\+E\+A\+M \&out, const Array\+Extender$<$ A\+R\+R\+A\+Y\+\_\+\+C\+L\+A\+S\+S $>$ \&array)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S\+T\+R\+E\+A\+M , class A\+R\+R\+A\+Y\+\_\+\+C\+L\+A\+S\+S $>$ S\+T\+R\+E\+A\+M\& nifty\+::array\+::operator$<$$<$ (
+\begin{DoxyParamCaption}
+\item[{S\+T\+R\+E\+A\+M \&}]{out, }
+\item[{const {\bf Array\+Extender}$<$ A\+R\+R\+A\+Y\+\_\+\+C\+L\+A\+S\+S $>$ \&}]{array}
+\end{DoxyParamCaption}
+)}\label{namespacenifty_1_1array_ae3d01c9b4b4259a31ac35ce0a6cf3b48}

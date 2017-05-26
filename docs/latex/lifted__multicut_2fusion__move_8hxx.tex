@@ -1,0 +1,43 @@
+\hypertarget{lifted__multicut_2fusion__move_8hxx}{}\section{/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted\+\_\+multicut/fusion\+\_\+move.hxx File Reference}
+\label{lifted__multicut_2fusion__move_8hxx}\index{/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted\+\_\+multicut/fusion\+\_\+move.\+hxx@{/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted\+\_\+multicut/fusion\+\_\+move.\+hxx}}
+{\ttfamily \#include $<$mutex$>$}\\*
+{\ttfamily \#include $<$memory$>$}\\*
+{\ttfamily \#include $<$unordered\+\_\+set$>$}\\*
+{\ttfamily \#include \char`\"{}nifty/graph/optimization/lifted\+\_\+multicut/lifted\+\_\+multicut\+\_\+greedy\+\_\+additive.\+hxx\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}nifty/tools/runtime\+\_\+check.\+hxx\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}nifty/ufd/ufd.\+hxx\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}nifty/graph/optimization/lifted\+\_\+multicut/lifted\+\_\+multicut\+\_\+base.\+hxx\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}nifty/graph/optimization/lifted\+\_\+multicut/lifted\+\_\+multicut\+\_\+factory.\+hxx\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}nifty/graph/optimization/lifted\+\_\+multicut/lifted\+\_\+multicut\+\_\+objective.\+hxx\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}nifty/graph/undirected\+\_\+list\+\_\+graph.\+hxx\char`\"{}}\\*
+Include dependency graph for fusion\+\_\+move.\+hxx\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classnifty_1_1graph_1_1lifted__multicut_1_1FusionMove}{nifty\+::graph\+::lifted\+\_\+multicut\+::\+Fusion\+Move$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}
+\begin{DoxyCompactList}\small\item\em Fuse multiple labels into single one w.\+r.\+t. a Lifted\+Multicut objective. \end{DoxyCompactList}\item 
+struct \hyperlink{structnifty_1_1graph_1_1lifted__multicut_1_1FusionMove_1_1Settings}{nifty\+::graph\+::lifted\+\_\+multicut\+::\+Fusion\+Move$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::\+Settings}
+\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespacenifty}{nifty}
+\item 
+ \hyperlink{namespacenifty_1_1graph}{nifty\+::graph}
+\item 
+ \hyperlink{namespacenifty_1_1graph_1_1lifted__multicut}{nifty\+::graph\+::lifted\+\_\+multicut}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{lifted__multicut_2fusion__move_8hxx_a05fa486fb1af9890c58dcc189a70e80d}{N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+F\+U\+S\+I\+O\+N\+\_\+\+M\+O\+V\+E\+\_\+\+H\+X\+X}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{lifted__multicut_2fusion__move_8hxx_a05fa486fb1af9890c58dcc189a70e80d}{}\index{lifted\+\_\+multicut/fusion\+\_\+move.\+hxx@{lifted\+\_\+multicut/fusion\+\_\+move.\+hxx}!N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+F\+U\+S\+I\+O\+N\+\_\+\+M\+O\+V\+E\+\_\+\+H\+X\+X@{N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+F\+U\+S\+I\+O\+N\+\_\+\+M\+O\+V\+E\+\_\+\+H\+X\+X}}
+\index{N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+F\+U\+S\+I\+O\+N\+\_\+\+M\+O\+V\+E\+\_\+\+H\+X\+X@{N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+F\+U\+S\+I\+O\+N\+\_\+\+M\+O\+V\+E\+\_\+\+H\+X\+X}!lifted\+\_\+multicut/fusion\+\_\+move.\+hxx@{lifted\+\_\+multicut/fusion\+\_\+move.\+hxx}}
+\subsubsection[{N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+F\+U\+S\+I\+O\+N\+\_\+\+M\+O\+V\+E\+\_\+\+H\+X\+X}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+F\+U\+S\+I\+O\+N\+\_\+\+M\+O\+V\+E\+\_\+\+H\+X\+X}\label{lifted__multicut_2fusion__move_8hxx_a05fa486fb1af9890c58dcc189a70e80d}

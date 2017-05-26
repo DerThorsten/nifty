@@ -1,0 +1,202 @@
+\hypertarget{classnifty_1_1graph_1_1BlockMulticut}{}\section{nifty\+:\+:graph\+:\+:Block\+Multicut$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$ Class Template Reference}
+\label{classnifty_1_1graph_1_1BlockMulticut}\index{nifty\+::graph\+::\+Block\+Multicut$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$@{nifty\+::graph\+::\+Block\+Multicut$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}}
+
+
+{\ttfamily \#include $<$block\+\_\+multicut.\+hxx$>$}
+
+
+
+Inheritance diagram for nifty\+:\+:graph\+:\+:Block\+Multicut$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+:
+% FIG 0
+
+
+Collaboration diagram for nifty\+:\+:graph\+:\+:Block\+Multicut$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+:
+% FIG 1
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structnifty_1_1graph_1_1BlockMulticut_1_1Settings}{Settings}
+\end{DoxyCompactItemize}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef O\+B\+J\+E\+C\+T\+I\+V\+E \hyperlink{classnifty_1_1graph_1_1BlockMulticut_a5a0258cebb392718a4565551cd43ab89}{Objective}
+\item 
+typedef O\+B\+J\+E\+C\+T\+I\+V\+E \hyperlink{classnifty_1_1graph_1_1BlockMulticut_a1b38a95ca33ba1eaed19e994484c58fc}{Objective\+Type}
+\item 
+typedef Objective\+Type\+::\+Weight\+Type \hyperlink{classnifty_1_1graph_1_1BlockMulticut_a5c18649d14bae96da8d0c6359c57673a}{Weight\+Type}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1MulticutBase}{Multicut\+Base}$<$ \hyperlink{classnifty_1_1graph_1_1BlockMulticut_a1b38a95ca33ba1eaed19e994484c58fc}{Objective\+Type} $>$ \hyperlink{classnifty_1_1graph_1_1BlockMulticut_a6ca8b03b1ff07bfcbc7a76b7c0b5dbda}{Base}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1MulticutBase_a5882fb69df59d8113f6a81a0dac26eaa}{Base\+::\+Visitor\+Base} \hyperlink{classnifty_1_1graph_1_1BlockMulticut_a7338bedc1f9032f950cfc3a2ca446a17}{Visitor\+Base}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1MulticutBase_a6ede271a3cb0ae4711a7e9da2b07efa9}{Base\+::\+Visitor\+Proxy} \hyperlink{classnifty_1_1graph_1_1BlockMulticut_a47cf68caa6860e2e05a55b10ac73d39d}{Visitor\+Proxy}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1MulticutBase_aaeefe3c5df81d9c9efffec878cf2fcd7}{Base\+::\+Edge\+Labels} \hyperlink{classnifty_1_1graph_1_1BlockMulticut_a5aaec5810245dab0540ea428f771eeb2}{Edge\+Labels}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1MulticutBase_afba61ad2919d0fad20b3745af19309da}{Base\+::\+Node\+Labels} \hyperlink{classnifty_1_1graph_1_1BlockMulticut_a5ee7c08b785b538685e3e30a93586d39}{Node\+Labels}
+\item 
+typedef Objective\+Type\+::\+Graph \hyperlink{classnifty_1_1graph_1_1BlockMulticut_a5b1f16a5619ee57423c662797066b4ab}{Graph}
+\item 
+typedef Objective\+Type\+::\+Graph\+Type \hyperlink{classnifty_1_1graph_1_1BlockMulticut_aa4c491df2afb630fd1a9897a2bc24d89}{Graph\+Type}
+\item 
+typedef Objective\+Type\+::\+Weights\+Map \hyperlink{classnifty_1_1graph_1_1BlockMulticut_a4bb4ad199019ba7e70c905d6316413c2}{Weights\+Map}
+\item 
+typedef Graph\+Type\+::template Edge\+Map$<$ uint8\+\_\+t $>$ \hyperlink{classnifty_1_1graph_1_1BlockMulticut_afa9cc25eb3e220d66fffaa687f18f4ad}{Is\+Dirty\+Edge}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1MulticutFactoryBase}{Multicut\+Factory\+Base}$<$ \hyperlink{classnifty_1_1graph_1_1BlockMulticut_a1b38a95ca33ba1eaed19e994484c58fc}{Objective\+Type} $>$ \hyperlink{classnifty_1_1graph_1_1BlockMulticut_a59d6c0f5c4f2b8cf5c715371fab907a7}{Mc\+Factory\+Base}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \hyperlink{classnifty_1_1graph_1_1BlockMulticut_aa93ec015453a1db38b4584536c1f08e9}{$\sim$\+Block\+Multicut} ()
+\item 
+\hyperlink{classnifty_1_1graph_1_1BlockMulticut_aff4bdd169d64ae91a10559dc6d8b4816}{Block\+Multicut} (const \hyperlink{classnifty_1_1graph_1_1BlockMulticut_a5a0258cebb392718a4565551cd43ab89}{Objective} \&\hyperlink{classnifty_1_1graph_1_1BlockMulticut_ae47bcd7baf68c06f14349238001e6da6}{objective}, const \hyperlink{structnifty_1_1graph_1_1BlockMulticut_1_1Settings}{Settings} \&settings=\hyperlink{structnifty_1_1graph_1_1BlockMulticut_1_1Settings}{Settings}())
+\item 
+virtual void \hyperlink{classnifty_1_1graph_1_1BlockMulticut_a160c2bc3b8b70e886c7234d3a7f013f6}{optimize} (\hyperlink{classnifty_1_1graph_1_1BlockMulticut_a5ee7c08b785b538685e3e30a93586d39}{Node\+Labels} \&node\+Labels, \hyperlink{classnifty_1_1graph_1_1BlockMulticut_a7338bedc1f9032f950cfc3a2ca446a17}{Visitor\+Base} $\ast$visitor)
+\item 
+virtual const \hyperlink{classnifty_1_1graph_1_1BlockMulticut_a5a0258cebb392718a4565551cd43ab89}{Objective} \& \hyperlink{classnifty_1_1graph_1_1BlockMulticut_ae47bcd7baf68c06f14349238001e6da6}{objective} () const 
+\item 
+virtual const \hyperlink{classnifty_1_1graph_1_1BlockMulticut_a5ee7c08b785b538685e3e30a93586d39}{Node\+Labels} \& \hyperlink{classnifty_1_1graph_1_1BlockMulticut_a725bb3c39577cf5db096c27be733f971}{current\+Best\+Node\+Labels} ()
+\item 
+virtual std\+::string \hyperlink{classnifty_1_1graph_1_1BlockMulticut_ae8d808c313c70ce15e77f4638e245bd6}{name} () const 
+\item 
+virtual void \hyperlink{classnifty_1_1graph_1_1BlockMulticut_a808b91b14299d5c0c6581216f8a1c865}{weights\+Changed} ()
+\begin{DoxyCompactList}\small\item\em Inform solver about a change of weights. \end{DoxyCompactList}\item 
+virtual double \hyperlink{classnifty_1_1graph_1_1BlockMulticut_a19c52eccee54d6489f2684ce2706b1e5}{current\+Best\+Energy} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{classnifty_1_1graph_1_1BlockMulticut_a6ca8b03b1ff07bfcbc7a76b7c0b5dbda}{}\index{nifty\+::graph\+::\+Block\+Multicut@{nifty\+::graph\+::\+Block\+Multicut}!Base@{Base}}
+\index{Base@{Base}!nifty\+::graph\+::\+Block\+Multicut@{nifty\+::graph\+::\+Block\+Multicut}}
+\subsubsection[{Base}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E$>$ typedef {\bf Multicut\+Base}$<${\bf Objective\+Type}$>$ {\bf nifty\+::graph\+::\+Block\+Multicut}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Base}}\label{classnifty_1_1graph_1_1BlockMulticut_a6ca8b03b1ff07bfcbc7a76b7c0b5dbda}
+\hypertarget{classnifty_1_1graph_1_1BlockMulticut_a5aaec5810245dab0540ea428f771eeb2}{}\index{nifty\+::graph\+::\+Block\+Multicut@{nifty\+::graph\+::\+Block\+Multicut}!Edge\+Labels@{Edge\+Labels}}
+\index{Edge\+Labels@{Edge\+Labels}!nifty\+::graph\+::\+Block\+Multicut@{nifty\+::graph\+::\+Block\+Multicut}}
+\subsubsection[{Edge\+Labels}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E$>$ typedef {\bf Base\+::\+Edge\+Labels} {\bf nifty\+::graph\+::\+Block\+Multicut}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Edge\+Labels}}\label{classnifty_1_1graph_1_1BlockMulticut_a5aaec5810245dab0540ea428f771eeb2}
+\hypertarget{classnifty_1_1graph_1_1BlockMulticut_a5b1f16a5619ee57423c662797066b4ab}{}\index{nifty\+::graph\+::\+Block\+Multicut@{nifty\+::graph\+::\+Block\+Multicut}!Graph@{Graph}}
+\index{Graph@{Graph}!nifty\+::graph\+::\+Block\+Multicut@{nifty\+::graph\+::\+Block\+Multicut}}
+\subsubsection[{Graph}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E$>$ typedef Objective\+Type\+::\+Graph {\bf nifty\+::graph\+::\+Block\+Multicut}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Graph}}\label{classnifty_1_1graph_1_1BlockMulticut_a5b1f16a5619ee57423c662797066b4ab}
+\hypertarget{classnifty_1_1graph_1_1BlockMulticut_aa4c491df2afb630fd1a9897a2bc24d89}{}\index{nifty\+::graph\+::\+Block\+Multicut@{nifty\+::graph\+::\+Block\+Multicut}!Graph\+Type@{Graph\+Type}}
+\index{Graph\+Type@{Graph\+Type}!nifty\+::graph\+::\+Block\+Multicut@{nifty\+::graph\+::\+Block\+Multicut}}
+\subsubsection[{Graph\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E$>$ typedef Objective\+Type\+::\+Graph\+Type {\bf nifty\+::graph\+::\+Block\+Multicut}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Graph\+Type}}\label{classnifty_1_1graph_1_1BlockMulticut_aa4c491df2afb630fd1a9897a2bc24d89}
+\hypertarget{classnifty_1_1graph_1_1BlockMulticut_afa9cc25eb3e220d66fffaa687f18f4ad}{}\index{nifty\+::graph\+::\+Block\+Multicut@{nifty\+::graph\+::\+Block\+Multicut}!Is\+Dirty\+Edge@{Is\+Dirty\+Edge}}
+\index{Is\+Dirty\+Edge@{Is\+Dirty\+Edge}!nifty\+::graph\+::\+Block\+Multicut@{nifty\+::graph\+::\+Block\+Multicut}}
+\subsubsection[{Is\+Dirty\+Edge}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E$>$ typedef Graph\+Type\+:: template Edge\+Map$<$uint8\+\_\+t$>$ {\bf nifty\+::graph\+::\+Block\+Multicut}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Is\+Dirty\+Edge}}\label{classnifty_1_1graph_1_1BlockMulticut_afa9cc25eb3e220d66fffaa687f18f4ad}
+\hypertarget{classnifty_1_1graph_1_1BlockMulticut_a59d6c0f5c4f2b8cf5c715371fab907a7}{}\index{nifty\+::graph\+::\+Block\+Multicut@{nifty\+::graph\+::\+Block\+Multicut}!Mc\+Factory\+Base@{Mc\+Factory\+Base}}
+\index{Mc\+Factory\+Base@{Mc\+Factory\+Base}!nifty\+::graph\+::\+Block\+Multicut@{nifty\+::graph\+::\+Block\+Multicut}}
+\subsubsection[{Mc\+Factory\+Base}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E$>$ typedef {\bf Multicut\+Factory\+Base}$<${\bf Objective\+Type}$>$ {\bf nifty\+::graph\+::\+Block\+Multicut}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Mc\+Factory\+Base}}\label{classnifty_1_1graph_1_1BlockMulticut_a59d6c0f5c4f2b8cf5c715371fab907a7}
+\hypertarget{classnifty_1_1graph_1_1BlockMulticut_a5ee7c08b785b538685e3e30a93586d39}{}\index{nifty\+::graph\+::\+Block\+Multicut@{nifty\+::graph\+::\+Block\+Multicut}!Node\+Labels@{Node\+Labels}}
+\index{Node\+Labels@{Node\+Labels}!nifty\+::graph\+::\+Block\+Multicut@{nifty\+::graph\+::\+Block\+Multicut}}
+\subsubsection[{Node\+Labels}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E$>$ typedef {\bf Base\+::\+Node\+Labels} {\bf nifty\+::graph\+::\+Block\+Multicut}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Node\+Labels}}\label{classnifty_1_1graph_1_1BlockMulticut_a5ee7c08b785b538685e3e30a93586d39}
+\hypertarget{classnifty_1_1graph_1_1BlockMulticut_a5a0258cebb392718a4565551cd43ab89}{}\index{nifty\+::graph\+::\+Block\+Multicut@{nifty\+::graph\+::\+Block\+Multicut}!Objective@{Objective}}
+\index{Objective@{Objective}!nifty\+::graph\+::\+Block\+Multicut@{nifty\+::graph\+::\+Block\+Multicut}}
+\subsubsection[{Objective}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E$>$ typedef O\+B\+J\+E\+C\+T\+I\+V\+E {\bf nifty\+::graph\+::\+Block\+Multicut}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Objective}}\label{classnifty_1_1graph_1_1BlockMulticut_a5a0258cebb392718a4565551cd43ab89}
+\hypertarget{classnifty_1_1graph_1_1BlockMulticut_a1b38a95ca33ba1eaed19e994484c58fc}{}\index{nifty\+::graph\+::\+Block\+Multicut@{nifty\+::graph\+::\+Block\+Multicut}!Objective\+Type@{Objective\+Type}}
+\index{Objective\+Type@{Objective\+Type}!nifty\+::graph\+::\+Block\+Multicut@{nifty\+::graph\+::\+Block\+Multicut}}
+\subsubsection[{Objective\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E$>$ typedef O\+B\+J\+E\+C\+T\+I\+V\+E {\bf nifty\+::graph\+::\+Block\+Multicut}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Objective\+Type}}\label{classnifty_1_1graph_1_1BlockMulticut_a1b38a95ca33ba1eaed19e994484c58fc}
+\hypertarget{classnifty_1_1graph_1_1BlockMulticut_a7338bedc1f9032f950cfc3a2ca446a17}{}\index{nifty\+::graph\+::\+Block\+Multicut@{nifty\+::graph\+::\+Block\+Multicut}!Visitor\+Base@{Visitor\+Base}}
+\index{Visitor\+Base@{Visitor\+Base}!nifty\+::graph\+::\+Block\+Multicut@{nifty\+::graph\+::\+Block\+Multicut}}
+\subsubsection[{Visitor\+Base}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E$>$ typedef {\bf Base\+::\+Visitor\+Base} {\bf nifty\+::graph\+::\+Block\+Multicut}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Visitor\+Base}}\label{classnifty_1_1graph_1_1BlockMulticut_a7338bedc1f9032f950cfc3a2ca446a17}
+\hypertarget{classnifty_1_1graph_1_1BlockMulticut_a47cf68caa6860e2e05a55b10ac73d39d}{}\index{nifty\+::graph\+::\+Block\+Multicut@{nifty\+::graph\+::\+Block\+Multicut}!Visitor\+Proxy@{Visitor\+Proxy}}
+\index{Visitor\+Proxy@{Visitor\+Proxy}!nifty\+::graph\+::\+Block\+Multicut@{nifty\+::graph\+::\+Block\+Multicut}}
+\subsubsection[{Visitor\+Proxy}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E$>$ typedef {\bf Base\+::\+Visitor\+Proxy} {\bf nifty\+::graph\+::\+Block\+Multicut}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Visitor\+Proxy}}\label{classnifty_1_1graph_1_1BlockMulticut_a47cf68caa6860e2e05a55b10ac73d39d}
+\hypertarget{classnifty_1_1graph_1_1BlockMulticut_a4bb4ad199019ba7e70c905d6316413c2}{}\index{nifty\+::graph\+::\+Block\+Multicut@{nifty\+::graph\+::\+Block\+Multicut}!Weights\+Map@{Weights\+Map}}
+\index{Weights\+Map@{Weights\+Map}!nifty\+::graph\+::\+Block\+Multicut@{nifty\+::graph\+::\+Block\+Multicut}}
+\subsubsection[{Weights\+Map}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E$>$ typedef Objective\+Type\+::\+Weights\+Map {\bf nifty\+::graph\+::\+Block\+Multicut}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Weights\+Map}}\label{classnifty_1_1graph_1_1BlockMulticut_a4bb4ad199019ba7e70c905d6316413c2}
+\hypertarget{classnifty_1_1graph_1_1BlockMulticut_a5c18649d14bae96da8d0c6359c57673a}{}\index{nifty\+::graph\+::\+Block\+Multicut@{nifty\+::graph\+::\+Block\+Multicut}!Weight\+Type@{Weight\+Type}}
+\index{Weight\+Type@{Weight\+Type}!nifty\+::graph\+::\+Block\+Multicut@{nifty\+::graph\+::\+Block\+Multicut}}
+\subsubsection[{Weight\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E$>$ typedef Objective\+Type\+::\+Weight\+Type {\bf nifty\+::graph\+::\+Block\+Multicut}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Weight\+Type}}\label{classnifty_1_1graph_1_1BlockMulticut_a5c18649d14bae96da8d0c6359c57673a}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classnifty_1_1graph_1_1BlockMulticut_aa93ec015453a1db38b4584536c1f08e9}{}\index{nifty\+::graph\+::\+Block\+Multicut@{nifty\+::graph\+::\+Block\+Multicut}!````~Block\+Multicut@{$\sim$\+Block\+Multicut}}
+\index{````~Block\+Multicut@{$\sim$\+Block\+Multicut}!nifty\+::graph\+::\+Block\+Multicut@{nifty\+::graph\+::\+Block\+Multicut}}
+\subsubsection[{$\sim$\+Block\+Multicut()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E$>$ virtual {\bf nifty\+::graph\+::\+Block\+Multicut}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::$\sim${\bf Block\+Multicut} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classnifty_1_1graph_1_1BlockMulticut_aa93ec015453a1db38b4584536c1f08e9}
+\hypertarget{classnifty_1_1graph_1_1BlockMulticut_aff4bdd169d64ae91a10559dc6d8b4816}{}\index{nifty\+::graph\+::\+Block\+Multicut@{nifty\+::graph\+::\+Block\+Multicut}!Block\+Multicut@{Block\+Multicut}}
+\index{Block\+Multicut@{Block\+Multicut}!nifty\+::graph\+::\+Block\+Multicut@{nifty\+::graph\+::\+Block\+Multicut}}
+\subsubsection[{Block\+Multicut(const Objective \&objective, const Settings \&settings=\+Settings())}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ {\bf nifty\+::graph\+::\+Block\+Multicut}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Block\+Multicut} (
+\begin{DoxyParamCaption}
+\item[{const {\bf Objective} \&}]{objective, }
+\item[{const {\bf Settings} \&}]{settings = {\ttfamily {\bf Settings}()}}
+\end{DoxyParamCaption}
+)}\label{classnifty_1_1graph_1_1BlockMulticut_aff4bdd169d64ae91a10559dc6d8b4816}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classnifty_1_1graph_1_1BlockMulticut_a19c52eccee54d6489f2684ce2706b1e5}{}\index{nifty\+::graph\+::\+Block\+Multicut@{nifty\+::graph\+::\+Block\+Multicut}!current\+Best\+Energy@{current\+Best\+Energy}}
+\index{current\+Best\+Energy@{current\+Best\+Energy}!nifty\+::graph\+::\+Block\+Multicut@{nifty\+::graph\+::\+Block\+Multicut}}
+\subsubsection[{current\+Best\+Energy()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E$>$ virtual double {\bf nifty\+::graph\+::\+Block\+Multicut}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::current\+Best\+Energy (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classnifty_1_1graph_1_1BlockMulticut_a19c52eccee54d6489f2684ce2706b1e5}
+
+
+Reimplemented from \hyperlink{classnifty_1_1graph_1_1MulticutBase_ad5d1c4f60fc6134ebc418e241f02a2c4}{nifty\+::graph\+::\+Multicut\+Base$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}.
+
+\hypertarget{classnifty_1_1graph_1_1BlockMulticut_a725bb3c39577cf5db096c27be733f971}{}\index{nifty\+::graph\+::\+Block\+Multicut@{nifty\+::graph\+::\+Block\+Multicut}!current\+Best\+Node\+Labels@{current\+Best\+Node\+Labels}}
+\index{current\+Best\+Node\+Labels@{current\+Best\+Node\+Labels}!nifty\+::graph\+::\+Block\+Multicut@{nifty\+::graph\+::\+Block\+Multicut}}
+\subsubsection[{current\+Best\+Node\+Labels()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E$>$ virtual const {\bf Node\+Labels}\& {\bf nifty\+::graph\+::\+Block\+Multicut}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::current\+Best\+Node\+Labels (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classnifty_1_1graph_1_1BlockMulticut_a725bb3c39577cf5db096c27be733f971}
+
+
+Implements \hyperlink{classnifty_1_1graph_1_1MulticutBase_ac3927bec2b20026187a4c81d490234a2}{nifty\+::graph\+::\+Multicut\+Base$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}.
+
+\hypertarget{classnifty_1_1graph_1_1BlockMulticut_ae8d808c313c70ce15e77f4638e245bd6}{}\index{nifty\+::graph\+::\+Block\+Multicut@{nifty\+::graph\+::\+Block\+Multicut}!name@{name}}
+\index{name@{name}!nifty\+::graph\+::\+Block\+Multicut@{nifty\+::graph\+::\+Block\+Multicut}}
+\subsubsection[{name() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E$>$ virtual std\+::string {\bf nifty\+::graph\+::\+Block\+Multicut}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::name (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classnifty_1_1graph_1_1BlockMulticut_ae8d808c313c70ce15e77f4638e245bd6}
+
+
+Implements \hyperlink{classnifty_1_1graph_1_1MulticutBase_aabd27e510ee958a9764ba2305fccc880}{nifty\+::graph\+::\+Multicut\+Base$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}.
+
+\hypertarget{classnifty_1_1graph_1_1BlockMulticut_ae47bcd7baf68c06f14349238001e6da6}{}\index{nifty\+::graph\+::\+Block\+Multicut@{nifty\+::graph\+::\+Block\+Multicut}!objective@{objective}}
+\index{objective@{objective}!nifty\+::graph\+::\+Block\+Multicut@{nifty\+::graph\+::\+Block\+Multicut}}
+\subsubsection[{objective() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ const {\bf Block\+Multicut}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Objective} \& {\bf nifty\+::graph\+::\+Block\+Multicut}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::objective (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}\label{classnifty_1_1graph_1_1BlockMulticut_ae47bcd7baf68c06f14349238001e6da6}
+
+
+Implements \hyperlink{classnifty_1_1graph_1_1MulticutBase_a25b622bf14da660a3d24d022369e510d}{nifty\+::graph\+::\+Multicut\+Base$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}.
+
+\hypertarget{classnifty_1_1graph_1_1BlockMulticut_a160c2bc3b8b70e886c7234d3a7f013f6}{}\index{nifty\+::graph\+::\+Block\+Multicut@{nifty\+::graph\+::\+Block\+Multicut}!optimize@{optimize}}
+\index{optimize@{optimize}!nifty\+::graph\+::\+Block\+Multicut@{nifty\+::graph\+::\+Block\+Multicut}}
+\subsubsection[{optimize(\+Node\+Labels \&node\+Labels, Visitor\+Base $\ast$visitor)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ void {\bf nifty\+::graph\+::\+Block\+Multicut}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::optimize (
+\begin{DoxyParamCaption}
+\item[{{\bf Node\+Labels} \&}]{node\+Labels, }
+\item[{{\bf Visitor\+Base} $\ast$}]{visitor}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classnifty_1_1graph_1_1BlockMulticut_a160c2bc3b8b70e886c7234d3a7f013f6}
+\hypertarget{classnifty_1_1graph_1_1BlockMulticut_a808b91b14299d5c0c6581216f8a1c865}{}\index{nifty\+::graph\+::\+Block\+Multicut@{nifty\+::graph\+::\+Block\+Multicut}!weights\+Changed@{weights\+Changed}}
+\index{weights\+Changed@{weights\+Changed}!nifty\+::graph\+::\+Block\+Multicut@{nifty\+::graph\+::\+Block\+Multicut}}
+\subsubsection[{weights\+Changed()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E$>$ virtual void {\bf nifty\+::graph\+::\+Block\+Multicut}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::weights\+Changed (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classnifty_1_1graph_1_1BlockMulticut_a808b91b14299d5c0c6581216f8a1c865}
+
+
+Inform solver about a change of weights. 
+
+Inform solver that all weights could have changed. If a particular solver does not overload this function, an Weights\+Changed\+Not\+Supported exception is thrown. After a call of this function it is save to run optimize again, therefore it resets the solver 
+
+Reimplemented from \hyperlink{classnifty_1_1graph_1_1MulticutBase_a4c7a44afdc661993b3252dba62b5386f}{nifty\+::graph\+::\+Multicut\+Base$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/\hyperlink{block__multicut_8hxx}{block\+\_\+multicut.\+hxx}\end{DoxyCompactItemize}

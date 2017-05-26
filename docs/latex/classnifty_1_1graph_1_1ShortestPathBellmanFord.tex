@@ -1,0 +1,107 @@
+\hypertarget{classnifty_1_1graph_1_1ShortestPathBellmanFord}{}\section{nifty\+:\+:graph\+:\+:Shortest\+Path\+Bellman\+Ford$<$ G\+R\+A\+P\+H, W\+E\+I\+G\+H\+T\+\_\+\+T\+Y\+P\+E $>$ Class Template Reference}
+\label{classnifty_1_1graph_1_1ShortestPathBellmanFord}\index{nifty\+::graph\+::\+Shortest\+Path\+Bellman\+Ford$<$ G\+R\+A\+P\+H, W\+E\+I\+G\+H\+T\+\_\+\+T\+Y\+P\+E $>$@{nifty\+::graph\+::\+Shortest\+Path\+Bellman\+Ford$<$ G\+R\+A\+P\+H, W\+E\+I\+G\+H\+T\+\_\+\+T\+Y\+P\+E $>$}}
+
+
+{\ttfamily \#include $<$shortest\+\_\+path\+\_\+bellman\+\_\+ford.\+hxx$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef G\+R\+A\+P\+H \hyperlink{classnifty_1_1graph_1_1ShortestPathBellmanFord_affd61ff19b32441c605a63759511cfdc}{Graph}
+\item 
+typedef W\+E\+I\+G\+H\+T\+\_\+\+T\+Y\+P\+E \hyperlink{classnifty_1_1graph_1_1ShortestPathBellmanFord_a0455c814a964983fe8b43278bb7528e8}{Weight\+Type}
+\item 
+typedef Graph\+::template Node\+Map$<$ int64\+\_\+t $>$ \hyperlink{classnifty_1_1graph_1_1ShortestPathBellmanFord_a871bb54c135ad8324dfff2d4a694372d}{Predecessors\+Map}
+\item 
+typedef Graph\+::template Node\+Map$<$ \hyperlink{classnifty_1_1graph_1_1ShortestPathBellmanFord_a0455c814a964983fe8b43278bb7528e8}{Weight\+Type} $>$ \hyperlink{classnifty_1_1graph_1_1ShortestPathBellmanFord_afb719c11ba9422051fa5650115735e46}{Distance\+Map}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classnifty_1_1graph_1_1ShortestPathBellmanFord_a7c47cefb1d6ff0335a32d5c7f991afaf}{Shortest\+Path\+Bellman\+Ford} (const \hyperlink{classnifty_1_1graph_1_1ShortestPathBellmanFord_affd61ff19b32441c605a63759511cfdc}{Graph} \&g)
+\item 
+{\footnotesize template$<$class Arc\+Weights $>$ }\\void \hyperlink{classnifty_1_1graph_1_1ShortestPathBellmanFord_a0b0ac675dcade4a09ac4c54a55ffb322}{run\+Single\+Source\+Single\+Target} (Arc\+Weights arc\+Weights, const int64\+\_\+t source, const int64\+\_\+t target=-\/1)
+\item 
+{\footnotesize template$<$class Arc\+Weights $>$ }\\void \hyperlink{classnifty_1_1graph_1_1ShortestPathBellmanFord_a2a400586a2b42f61751668b9e4539b62}{run\+Single\+Source} (Arc\+Weights arc\+Weights, const int64\+\_\+t source)
+\item 
+{\footnotesize template$<$class Arc\+Weights , class S\+O\+U\+R\+C\+E\+\_\+\+I\+T\+E\+R , class S\+U\+B\+G\+R\+A\+P\+H\+\_\+\+M\+A\+S\+K , class V\+I\+S\+I\+T\+O\+R $>$ }\\void \hyperlink{classnifty_1_1graph_1_1ShortestPathBellmanFord_ac70ef6c0b842b0ff7b7046d73e79a08c}{run} (Arc\+Weights arc\+Weights, S\+O\+U\+R\+C\+E\+\_\+\+I\+T\+E\+R source\+Begin, S\+O\+U\+R\+C\+E\+\_\+\+I\+T\+E\+R source\+End, const S\+U\+B\+G\+R\+A\+P\+H\+\_\+\+M\+A\+S\+K \&subgraph\+Mask, V\+I\+S\+I\+T\+O\+R \&\&visitor)
+\item 
+const \hyperlink{classnifty_1_1graph_1_1ShortestPathBellmanFord_afb719c11ba9422051fa5650115735e46}{Distance\+Map} \& \hyperlink{classnifty_1_1graph_1_1ShortestPathBellmanFord_a1f37d719386f1cc0611aa8a0cd82836c}{distances} () const 
+\item 
+const \hyperlink{classnifty_1_1graph_1_1ShortestPathBellmanFord_a871bb54c135ad8324dfff2d4a694372d}{Predecessors\+Map} \hyperlink{classnifty_1_1graph_1_1ShortestPathBellmanFord_aa09feff89e12a09097c49c3552c298cf}{predecessors} () const 
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{classnifty_1_1graph_1_1ShortestPathBellmanFord_afb719c11ba9422051fa5650115735e46}{}\index{nifty\+::graph\+::\+Shortest\+Path\+Bellman\+Ford@{nifty\+::graph\+::\+Shortest\+Path\+Bellman\+Ford}!Distance\+Map@{Distance\+Map}}
+\index{Distance\+Map@{Distance\+Map}!nifty\+::graph\+::\+Shortest\+Path\+Bellman\+Ford@{nifty\+::graph\+::\+Shortest\+Path\+Bellman\+Ford}}
+\subsubsection[{Distance\+Map}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H , class W\+E\+I\+G\+H\+T\+\_\+\+T\+Y\+P\+E $>$ typedef Graph\+:: template Node\+Map$<${\bf Weight\+Type}$>$ {\bf nifty\+::graph\+::\+Shortest\+Path\+Bellman\+Ford}$<$ G\+R\+A\+P\+H, W\+E\+I\+G\+H\+T\+\_\+\+T\+Y\+P\+E $>$\+::{\bf Distance\+Map}}\label{classnifty_1_1graph_1_1ShortestPathBellmanFord_afb719c11ba9422051fa5650115735e46}
+\hypertarget{classnifty_1_1graph_1_1ShortestPathBellmanFord_affd61ff19b32441c605a63759511cfdc}{}\index{nifty\+::graph\+::\+Shortest\+Path\+Bellman\+Ford@{nifty\+::graph\+::\+Shortest\+Path\+Bellman\+Ford}!Graph@{Graph}}
+\index{Graph@{Graph}!nifty\+::graph\+::\+Shortest\+Path\+Bellman\+Ford@{nifty\+::graph\+::\+Shortest\+Path\+Bellman\+Ford}}
+\subsubsection[{Graph}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H , class W\+E\+I\+G\+H\+T\+\_\+\+T\+Y\+P\+E $>$ typedef G\+R\+A\+P\+H {\bf nifty\+::graph\+::\+Shortest\+Path\+Bellman\+Ford}$<$ G\+R\+A\+P\+H, W\+E\+I\+G\+H\+T\+\_\+\+T\+Y\+P\+E $>$\+::{\bf Graph}}\label{classnifty_1_1graph_1_1ShortestPathBellmanFord_affd61ff19b32441c605a63759511cfdc}
+\hypertarget{classnifty_1_1graph_1_1ShortestPathBellmanFord_a871bb54c135ad8324dfff2d4a694372d}{}\index{nifty\+::graph\+::\+Shortest\+Path\+Bellman\+Ford@{nifty\+::graph\+::\+Shortest\+Path\+Bellman\+Ford}!Predecessors\+Map@{Predecessors\+Map}}
+\index{Predecessors\+Map@{Predecessors\+Map}!nifty\+::graph\+::\+Shortest\+Path\+Bellman\+Ford@{nifty\+::graph\+::\+Shortest\+Path\+Bellman\+Ford}}
+\subsubsection[{Predecessors\+Map}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H , class W\+E\+I\+G\+H\+T\+\_\+\+T\+Y\+P\+E $>$ typedef Graph\+:: template Node\+Map$<$int64\+\_\+t$>$ {\bf nifty\+::graph\+::\+Shortest\+Path\+Bellman\+Ford}$<$ G\+R\+A\+P\+H, W\+E\+I\+G\+H\+T\+\_\+\+T\+Y\+P\+E $>$\+::{\bf Predecessors\+Map}}\label{classnifty_1_1graph_1_1ShortestPathBellmanFord_a871bb54c135ad8324dfff2d4a694372d}
+\hypertarget{classnifty_1_1graph_1_1ShortestPathBellmanFord_a0455c814a964983fe8b43278bb7528e8}{}\index{nifty\+::graph\+::\+Shortest\+Path\+Bellman\+Ford@{nifty\+::graph\+::\+Shortest\+Path\+Bellman\+Ford}!Weight\+Type@{Weight\+Type}}
+\index{Weight\+Type@{Weight\+Type}!nifty\+::graph\+::\+Shortest\+Path\+Bellman\+Ford@{nifty\+::graph\+::\+Shortest\+Path\+Bellman\+Ford}}
+\subsubsection[{Weight\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H , class W\+E\+I\+G\+H\+T\+\_\+\+T\+Y\+P\+E $>$ typedef W\+E\+I\+G\+H\+T\+\_\+\+T\+Y\+P\+E {\bf nifty\+::graph\+::\+Shortest\+Path\+Bellman\+Ford}$<$ G\+R\+A\+P\+H, W\+E\+I\+G\+H\+T\+\_\+\+T\+Y\+P\+E $>$\+::{\bf Weight\+Type}}\label{classnifty_1_1graph_1_1ShortestPathBellmanFord_a0455c814a964983fe8b43278bb7528e8}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classnifty_1_1graph_1_1ShortestPathBellmanFord_a7c47cefb1d6ff0335a32d5c7f991afaf}{}\index{nifty\+::graph\+::\+Shortest\+Path\+Bellman\+Ford@{nifty\+::graph\+::\+Shortest\+Path\+Bellman\+Ford}!Shortest\+Path\+Bellman\+Ford@{Shortest\+Path\+Bellman\+Ford}}
+\index{Shortest\+Path\+Bellman\+Ford@{Shortest\+Path\+Bellman\+Ford}!nifty\+::graph\+::\+Shortest\+Path\+Bellman\+Ford@{nifty\+::graph\+::\+Shortest\+Path\+Bellman\+Ford}}
+\subsubsection[{Shortest\+Path\+Bellman\+Ford(const Graph \&g)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H , class W\+E\+I\+G\+H\+T\+\_\+\+T\+Y\+P\+E $>$ {\bf nifty\+::graph\+::\+Shortest\+Path\+Bellman\+Ford}$<$ G\+R\+A\+P\+H, W\+E\+I\+G\+H\+T\+\_\+\+T\+Y\+P\+E $>$\+::{\bf Shortest\+Path\+Bellman\+Ford} (
+\begin{DoxyParamCaption}
+\item[{const {\bf Graph} \&}]{g}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1ShortestPathBellmanFord_a7c47cefb1d6ff0335a32d5c7f991afaf}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classnifty_1_1graph_1_1ShortestPathBellmanFord_a1f37d719386f1cc0611aa8a0cd82836c}{}\index{nifty\+::graph\+::\+Shortest\+Path\+Bellman\+Ford@{nifty\+::graph\+::\+Shortest\+Path\+Bellman\+Ford}!distances@{distances}}
+\index{distances@{distances}!nifty\+::graph\+::\+Shortest\+Path\+Bellman\+Ford@{nifty\+::graph\+::\+Shortest\+Path\+Bellman\+Ford}}
+\subsubsection[{distances() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H , class W\+E\+I\+G\+H\+T\+\_\+\+T\+Y\+P\+E $>$ const {\bf Distance\+Map}\& {\bf nifty\+::graph\+::\+Shortest\+Path\+Bellman\+Ford}$<$ G\+R\+A\+P\+H, W\+E\+I\+G\+H\+T\+\_\+\+T\+Y\+P\+E $>$\+::distances (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1ShortestPathBellmanFord_a1f37d719386f1cc0611aa8a0cd82836c}
+\hypertarget{classnifty_1_1graph_1_1ShortestPathBellmanFord_aa09feff89e12a09097c49c3552c298cf}{}\index{nifty\+::graph\+::\+Shortest\+Path\+Bellman\+Ford@{nifty\+::graph\+::\+Shortest\+Path\+Bellman\+Ford}!predecessors@{predecessors}}
+\index{predecessors@{predecessors}!nifty\+::graph\+::\+Shortest\+Path\+Bellman\+Ford@{nifty\+::graph\+::\+Shortest\+Path\+Bellman\+Ford}}
+\subsubsection[{predecessors() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H , class W\+E\+I\+G\+H\+T\+\_\+\+T\+Y\+P\+E $>$ const {\bf Predecessors\+Map} {\bf nifty\+::graph\+::\+Shortest\+Path\+Bellman\+Ford}$<$ G\+R\+A\+P\+H, W\+E\+I\+G\+H\+T\+\_\+\+T\+Y\+P\+E $>$\+::predecessors (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1ShortestPathBellmanFord_aa09feff89e12a09097c49c3552c298cf}
+\hypertarget{classnifty_1_1graph_1_1ShortestPathBellmanFord_ac70ef6c0b842b0ff7b7046d73e79a08c}{}\index{nifty\+::graph\+::\+Shortest\+Path\+Bellman\+Ford@{nifty\+::graph\+::\+Shortest\+Path\+Bellman\+Ford}!run@{run}}
+\index{run@{run}!nifty\+::graph\+::\+Shortest\+Path\+Bellman\+Ford@{nifty\+::graph\+::\+Shortest\+Path\+Bellman\+Ford}}
+\subsubsection[{run(\+Arc\+Weights arc\+Weights, S\+O\+U\+R\+C\+E\+\_\+\+I\+T\+E\+R source\+Begin, S\+O\+U\+R\+C\+E\+\_\+\+I\+T\+E\+R source\+End, const S\+U\+B\+G\+R\+A\+P\+H\+\_\+\+M\+A\+S\+K \&subgraph\+Mask, V\+I\+S\+I\+T\+O\+R \&\&visitor)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H , class W\+E\+I\+G\+H\+T\+\_\+\+T\+Y\+P\+E $>$ template$<$class Arc\+Weights , class S\+O\+U\+R\+C\+E\+\_\+\+I\+T\+E\+R , class S\+U\+B\+G\+R\+A\+P\+H\+\_\+\+M\+A\+S\+K , class V\+I\+S\+I\+T\+O\+R $>$ void {\bf nifty\+::graph\+::\+Shortest\+Path\+Bellman\+Ford}$<$ G\+R\+A\+P\+H, W\+E\+I\+G\+H\+T\+\_\+\+T\+Y\+P\+E $>$\+::run (
+\begin{DoxyParamCaption}
+\item[{Arc\+Weights}]{arc\+Weights, }
+\item[{S\+O\+U\+R\+C\+E\+\_\+\+I\+T\+E\+R}]{source\+Begin, }
+\item[{S\+O\+U\+R\+C\+E\+\_\+\+I\+T\+E\+R}]{source\+End, }
+\item[{const S\+U\+B\+G\+R\+A\+P\+H\+\_\+\+M\+A\+S\+K \&}]{subgraph\+Mask, }
+\item[{V\+I\+S\+I\+T\+O\+R \&\&}]{visitor}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1ShortestPathBellmanFord_ac70ef6c0b842b0ff7b7046d73e79a08c}
+\hypertarget{classnifty_1_1graph_1_1ShortestPathBellmanFord_a2a400586a2b42f61751668b9e4539b62}{}\index{nifty\+::graph\+::\+Shortest\+Path\+Bellman\+Ford@{nifty\+::graph\+::\+Shortest\+Path\+Bellman\+Ford}!run\+Single\+Source@{run\+Single\+Source}}
+\index{run\+Single\+Source@{run\+Single\+Source}!nifty\+::graph\+::\+Shortest\+Path\+Bellman\+Ford@{nifty\+::graph\+::\+Shortest\+Path\+Bellman\+Ford}}
+\subsubsection[{run\+Single\+Source(\+Arc\+Weights arc\+Weights, const int64\+\_\+t source)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H , class W\+E\+I\+G\+H\+T\+\_\+\+T\+Y\+P\+E $>$ template$<$class Arc\+Weights $>$ void {\bf nifty\+::graph\+::\+Shortest\+Path\+Bellman\+Ford}$<$ G\+R\+A\+P\+H, W\+E\+I\+G\+H\+T\+\_\+\+T\+Y\+P\+E $>$\+::run\+Single\+Source (
+\begin{DoxyParamCaption}
+\item[{Arc\+Weights}]{arc\+Weights, }
+\item[{const int64\+\_\+t}]{source}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1ShortestPathBellmanFord_a2a400586a2b42f61751668b9e4539b62}
+\hypertarget{classnifty_1_1graph_1_1ShortestPathBellmanFord_a0b0ac675dcade4a09ac4c54a55ffb322}{}\index{nifty\+::graph\+::\+Shortest\+Path\+Bellman\+Ford@{nifty\+::graph\+::\+Shortest\+Path\+Bellman\+Ford}!run\+Single\+Source\+Single\+Target@{run\+Single\+Source\+Single\+Target}}
+\index{run\+Single\+Source\+Single\+Target@{run\+Single\+Source\+Single\+Target}!nifty\+::graph\+::\+Shortest\+Path\+Bellman\+Ford@{nifty\+::graph\+::\+Shortest\+Path\+Bellman\+Ford}}
+\subsubsection[{run\+Single\+Source\+Single\+Target(\+Arc\+Weights arc\+Weights, const int64\+\_\+t source, const int64\+\_\+t target=-\/1)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H , class W\+E\+I\+G\+H\+T\+\_\+\+T\+Y\+P\+E $>$ template$<$class Arc\+Weights $>$ void {\bf nifty\+::graph\+::\+Shortest\+Path\+Bellman\+Ford}$<$ G\+R\+A\+P\+H, W\+E\+I\+G\+H\+T\+\_\+\+T\+Y\+P\+E $>$\+::run\+Single\+Source\+Single\+Target (
+\begin{DoxyParamCaption}
+\item[{Arc\+Weights}]{arc\+Weights, }
+\item[{const int64\+\_\+t}]{source, }
+\item[{const int64\+\_\+t}]{target = {\ttfamily -\/1}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1ShortestPathBellmanFord_a0b0ac675dcade4a09ac4c54a55ffb322}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/tbeier/src/nifty/include/nifty/graph/\hyperlink{shortest__path__bellman__ford_8hxx}{shortest\+\_\+path\+\_\+bellman\+\_\+ford.\+hxx}\end{DoxyCompactItemize}

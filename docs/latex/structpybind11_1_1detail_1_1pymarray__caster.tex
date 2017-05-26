@@ -1,0 +1,81 @@
+\hypertarget{structpybind11_1_1detail_1_1pymarray__caster}{}\section{pybind11\+:\+:detail\+:\+:pymarray\+\_\+caster$<$ Type, D\+I\+M, A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E $>$ Struct Template Reference}
+\label{structpybind11_1_1detail_1_1pymarray__caster}\index{pybind11\+::detail\+::pymarray\+\_\+caster$<$ Type, D\+I\+M, A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E $>$@{pybind11\+::detail\+::pymarray\+\_\+caster$<$ Type, D\+I\+M, A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E $>$}}
+
+
+{\ttfamily \#include $<$converter.\+hxx$>$}
+
+
+
+Inheritance diagram for pybind11\+:\+:detail\+:\+:pymarray\+\_\+caster$<$ Type, D\+I\+M, A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E $>$\+:
+% FIG 0
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \hyperlink{classnifty_1_1marray_1_1PyView}{nifty\+::marray\+::\+Py\+View}$<$ Type, D\+I\+M, A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E $>$ \hyperlink{structpybind11_1_1detail_1_1pymarray__caster_a0593b33c0ed08f1b25b34dbc3da1b01c}{View\+Type}
+\item 
+typedef type\+\_\+caster$<$ typename intrinsic\+\_\+type$<$ Type $>$\+::type $>$ \hyperlink{structpybind11_1_1detail_1_1pymarray__caster_aa57421c8e7e64ab62bac67897f864ea1}{value\+\_\+conv}
+\item 
+typedef std\+::conditional$<$ A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E, pybind11\+::array\+\_\+t$<$ Type, py\+::array\+::forcecast $>$, pybind11\+::array\+\_\+t$<$ Type, py\+::array\+::c\+\_\+style $>$ $>$\+::type \hyperlink{structpybind11_1_1detail_1_1pymarray__caster_a70ad611a7f6fd17d02b461c43dff6ea0}{pyarray\+\_\+type}
+\item 
+typedef type\+\_\+caster$<$ \hyperlink{structpybind11_1_1detail_1_1pymarray__caster_a70ad611a7f6fd17d02b461c43dff6ea0}{pyarray\+\_\+type} $>$ \hyperlink{structpybind11_1_1detail_1_1pymarray__caster_a0fe8ba6e31f03c24d130c0dba1a55fa8}{pyarray\+\_\+conv}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{structpybind11_1_1detail_1_1pymarray__caster_a86104f2febd079f88902bfbcaf211275}{load} (handle src, bool convert)
+\item 
+\hyperlink{structpybind11_1_1detail_1_1pymarray__caster_a40c677529b61ffbe09c3031a28c17bfd}{P\+Y\+B\+I\+N\+D11\+\_\+\+T\+Y\+P\+E\+\_\+\+C\+A\+S\+T\+E\+R} (\hyperlink{structpybind11_1_1detail_1_1pymarray__caster_a0593b33c0ed08f1b25b34dbc3da1b01c}{View\+Type}, \+\_\+(\char`\"{}array$<$\char`\"{})+value\+\_\+conv\+::name()+\+\_\+(\char`\"{}$>$\char`\"{}))
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static handle \hyperlink{structpybind11_1_1detail_1_1pymarray__caster_ac614bd95690d2ab5f17c3b2603485404}{cast} (\hyperlink{structpybind11_1_1detail_1_1pymarray__caster_a0593b33c0ed08f1b25b34dbc3da1b01c}{View\+Type} src, return\+\_\+value\+\_\+policy policy, handle parent)
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{structpybind11_1_1detail_1_1pymarray__caster_a0fe8ba6e31f03c24d130c0dba1a55fa8}{}\index{pybind11\+::detail\+::pymarray\+\_\+caster@{pybind11\+::detail\+::pymarray\+\_\+caster}!pyarray\+\_\+conv@{pyarray\+\_\+conv}}
+\index{pyarray\+\_\+conv@{pyarray\+\_\+conv}!pybind11\+::detail\+::pymarray\+\_\+caster@{pybind11\+::detail\+::pymarray\+\_\+caster}}
+\subsubsection[{pyarray\+\_\+conv}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename Type , size\+\_\+t D\+I\+M, bool A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E$>$ typedef type\+\_\+caster$<${\bf pyarray\+\_\+type}$>$ {\bf pybind11\+::detail\+::pymarray\+\_\+caster}$<$ Type, D\+I\+M, A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E $>$\+::{\bf pyarray\+\_\+conv}}\label{structpybind11_1_1detail_1_1pymarray__caster_a0fe8ba6e31f03c24d130c0dba1a55fa8}
+\hypertarget{structpybind11_1_1detail_1_1pymarray__caster_a70ad611a7f6fd17d02b461c43dff6ea0}{}\index{pybind11\+::detail\+::pymarray\+\_\+caster@{pybind11\+::detail\+::pymarray\+\_\+caster}!pyarray\+\_\+type@{pyarray\+\_\+type}}
+\index{pyarray\+\_\+type@{pyarray\+\_\+type}!pybind11\+::detail\+::pymarray\+\_\+caster@{pybind11\+::detail\+::pymarray\+\_\+caster}}
+\subsubsection[{pyarray\+\_\+type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename Type , size\+\_\+t D\+I\+M, bool A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E$>$ typedef std\+::conditional$<$A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E, pybind11\+::array\+\_\+t$<$Type, py\+::array\+::forcecast$>$, pybind11\+::array\+\_\+t$<$Type, py\+::array\+::c\+\_\+style $>$ $>$\+::type {\bf pybind11\+::detail\+::pymarray\+\_\+caster}$<$ Type, D\+I\+M, A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E $>$\+::{\bf pyarray\+\_\+type}}\label{structpybind11_1_1detail_1_1pymarray__caster_a70ad611a7f6fd17d02b461c43dff6ea0}
+\hypertarget{structpybind11_1_1detail_1_1pymarray__caster_aa57421c8e7e64ab62bac67897f864ea1}{}\index{pybind11\+::detail\+::pymarray\+\_\+caster@{pybind11\+::detail\+::pymarray\+\_\+caster}!value\+\_\+conv@{value\+\_\+conv}}
+\index{value\+\_\+conv@{value\+\_\+conv}!pybind11\+::detail\+::pymarray\+\_\+caster@{pybind11\+::detail\+::pymarray\+\_\+caster}}
+\subsubsection[{value\+\_\+conv}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename Type , size\+\_\+t D\+I\+M, bool A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E$>$ typedef type\+\_\+caster$<$typename intrinsic\+\_\+type$<$Type$>$\+::type$>$ {\bf pybind11\+::detail\+::pymarray\+\_\+caster}$<$ Type, D\+I\+M, A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E $>$\+::{\bf value\+\_\+conv}}\label{structpybind11_1_1detail_1_1pymarray__caster_aa57421c8e7e64ab62bac67897f864ea1}
+\hypertarget{structpybind11_1_1detail_1_1pymarray__caster_a0593b33c0ed08f1b25b34dbc3da1b01c}{}\index{pybind11\+::detail\+::pymarray\+\_\+caster@{pybind11\+::detail\+::pymarray\+\_\+caster}!View\+Type@{View\+Type}}
+\index{View\+Type@{View\+Type}!pybind11\+::detail\+::pymarray\+\_\+caster@{pybind11\+::detail\+::pymarray\+\_\+caster}}
+\subsubsection[{View\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename Type , size\+\_\+t D\+I\+M, bool A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E$>$ typedef {\bf nifty\+::marray\+::\+Py\+View}$<$Type, D\+I\+M, A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E$>$ {\bf pybind11\+::detail\+::pymarray\+\_\+caster}$<$ Type, D\+I\+M, A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E $>$\+::{\bf View\+Type}}\label{structpybind11_1_1detail_1_1pymarray__caster_a0593b33c0ed08f1b25b34dbc3da1b01c}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{structpybind11_1_1detail_1_1pymarray__caster_ac614bd95690d2ab5f17c3b2603485404}{}\index{pybind11\+::detail\+::pymarray\+\_\+caster@{pybind11\+::detail\+::pymarray\+\_\+caster}!cast@{cast}}
+\index{cast@{cast}!pybind11\+::detail\+::pymarray\+\_\+caster@{pybind11\+::detail\+::pymarray\+\_\+caster}}
+\subsubsection[{cast(\+View\+Type src, return\+\_\+value\+\_\+policy policy, handle parent)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename Type , size\+\_\+t D\+I\+M, bool A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E$>$ static handle {\bf pybind11\+::detail\+::pymarray\+\_\+caster}$<$ Type, D\+I\+M, A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E $>$\+::cast (
+\begin{DoxyParamCaption}
+\item[{{\bf View\+Type}}]{src, }
+\item[{return\+\_\+value\+\_\+policy}]{policy, }
+\item[{handle}]{parent}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{structpybind11_1_1detail_1_1pymarray__caster_ac614bd95690d2ab5f17c3b2603485404}
+\hypertarget{structpybind11_1_1detail_1_1pymarray__caster_a86104f2febd079f88902bfbcaf211275}{}\index{pybind11\+::detail\+::pymarray\+\_\+caster@{pybind11\+::detail\+::pymarray\+\_\+caster}!load@{load}}
+\index{load@{load}!pybind11\+::detail\+::pymarray\+\_\+caster@{pybind11\+::detail\+::pymarray\+\_\+caster}}
+\subsubsection[{load(handle src, bool convert)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename Type , size\+\_\+t D\+I\+M, bool A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E$>$ bool {\bf pybind11\+::detail\+::pymarray\+\_\+caster}$<$ Type, D\+I\+M, A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E $>$\+::load (
+\begin{DoxyParamCaption}
+\item[{handle}]{src, }
+\item[{bool}]{convert}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{structpybind11_1_1detail_1_1pymarray__caster_a86104f2febd079f88902bfbcaf211275}
+\hypertarget{structpybind11_1_1detail_1_1pymarray__caster_a40c677529b61ffbe09c3031a28c17bfd}{}\index{pybind11\+::detail\+::pymarray\+\_\+caster@{pybind11\+::detail\+::pymarray\+\_\+caster}!P\+Y\+B\+I\+N\+D11\+\_\+\+T\+Y\+P\+E\+\_\+\+C\+A\+S\+T\+E\+R@{P\+Y\+B\+I\+N\+D11\+\_\+\+T\+Y\+P\+E\+\_\+\+C\+A\+S\+T\+E\+R}}
+\index{P\+Y\+B\+I\+N\+D11\+\_\+\+T\+Y\+P\+E\+\_\+\+C\+A\+S\+T\+E\+R@{P\+Y\+B\+I\+N\+D11\+\_\+\+T\+Y\+P\+E\+\_\+\+C\+A\+S\+T\+E\+R}!pybind11\+::detail\+::pymarray\+\_\+caster@{pybind11\+::detail\+::pymarray\+\_\+caster}}
+\subsubsection[{P\+Y\+B\+I\+N\+D11\+\_\+\+T\+Y\+P\+E\+\_\+\+C\+A\+S\+T\+E\+R(\+View\+Type, \+\_\+(""array$<$"")+value\+\_\+conv\+::name()+\+\_\+(""$>$""))}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename Type , size\+\_\+t D\+I\+M, bool A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E$>$ {\bf pybind11\+::detail\+::pymarray\+\_\+caster}$<$ Type, D\+I\+M, A\+U\+T\+O\+\_\+\+C\+A\+S\+T\+\_\+\+T\+Y\+P\+E $>$\+::P\+Y\+B\+I\+N\+D11\+\_\+\+T\+Y\+P\+E\+\_\+\+C\+A\+S\+T\+E\+R (
+\begin{DoxyParamCaption}
+\item[{{\bf View\+Type}}]{, }
+\item[{\+\_\+(\char`\"{}array$<$\char`\"{})+value\+\_\+conv\+::name()+\+\_\+(\char`\"{}$>$\char`\"{})}]{}
+\end{DoxyParamCaption}
+)}\label{structpybind11_1_1detail_1_1pymarray__caster_a40c677529b61ffbe09c3031a28c17bfd}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/tbeier/src/nifty/include/nifty/python/\hyperlink{converter_8hxx}{converter.\+hxx}\end{DoxyCompactItemize}

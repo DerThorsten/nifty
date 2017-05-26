@@ -1,0 +1,206 @@
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor}{}\section{nifty\+:\+:graph\+:\+:optimization\+:\+:common\+:\+:Logging\+Visitor$<$ S\+O\+L\+V\+E\+R $>$ Class Template Reference}
+\label{classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor}\index{nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor$<$ S\+O\+L\+V\+E\+R $>$@{nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor$<$ S\+O\+L\+V\+E\+R $>$}}
+
+
+{\ttfamily \#include $<$logging\+\_\+visitor.\+hxx$>$}
+
+
+
+Inheritance diagram for nifty\+:\+:graph\+:\+:optimization\+:\+:common\+:\+:Logging\+Visitor$<$ S\+O\+L\+V\+E\+R $>$\+:
+% FIG 0
+
+
+Collaboration diagram for nifty\+:\+:graph\+:\+:optimization\+:\+:common\+:\+:Logging\+Visitor$<$ S\+O\+L\+V\+E\+R $>$\+:
+% FIG 1
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef S\+O\+L\+V\+E\+R \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_a948f90213104a37e586b5024cb918f40}{Solver\+Type}
+\item 
+typedef \hyperlink{classnifty_1_1tools_1_1Timer}{nifty\+::tools\+::\+Timer} \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_a38539dee10778eecf56be540fd64eea2}{Timer\+Type}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_a4e186902e51f27ca16814e8660d4c839}{Logging\+Visitor} (const int visit\+Nth=1, const bool verbose=true, const double time\+Limit\+Solver=std\+::numeric\+\_\+limits$<$ double $>$\+::infinity(), const double time\+Limit\+Total=std\+::numeric\+\_\+limits$<$ double $>$\+::infinity())
+\item 
+virtual void \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_a0d371764a35038bb959c30787ee27115}{begin} (\hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_a948f90213104a37e586b5024cb918f40}{Solver\+Type} $\ast$)
+\item 
+virtual bool \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_a09686da1cd21063cf5fbe6c80fd7eaf2}{visit} (\hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_a948f90213104a37e586b5024cb918f40}{Solver\+Type} $\ast$solver)
+\item 
+virtual void \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_ab5e361c429ce734f000be8396b2b08d8}{end} (\hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_a948f90213104a37e586b5024cb918f40}{Solver\+Type} $\ast$)
+\item 
+virtual void \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_ab0c92d5a637a2f4184bc8b3616b7c1d7}{clear\+Log\+Names} ()
+\item 
+virtual void \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_a937aea0724cef965a33c13f80600e5d3}{add\+Log\+Names} (std\+::initializer\+\_\+list$<$ std\+::string $>$ log\+Names)
+\item 
+virtual void \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_aa4d1b29f58c61e836488869f2171bbe1}{set\+Log\+Value} (const size\+\_\+t log\+Index, double log\+Value)
+\item 
+virtual void \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_adb75d5a267ca5465a9d01a88fd160e74}{print\+Log} (const \hyperlink{namespacenifty_1_1logging_a3385625f9a0dbb17f70c47d3fca2f64d}{nifty\+::logging\+::\+Log\+Level} log\+Level, const std\+::string \&log\+String)
+\item 
+void \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_abce5bb67a05da90465eeb020c90210ba}{stop\+Optimize} ()
+\item 
+const std\+::vector$<$ uint32\+\_\+t $>$ \& \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_a526c951d42128b2538f31ac029507c25}{iterations} () const 
+\begin{DoxyCompactList}\small\item\em logged iteration number vector \end{DoxyCompactList}\item 
+const std\+::vector$<$ double $>$ \& \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_aebcf36bb46057979ecf18cedf6aeadbe}{energies} () const 
+\begin{DoxyCompactList}\small\item\em logged current best energies vector \end{DoxyCompactList}\item 
+const std\+::vector$<$ double $>$ \& \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_a5c20b8621b87d4d188685694672e7b48}{runtimes} () const 
+\begin{DoxyCompactList}\small\item\em logged runtime vector \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_a948f90213104a37e586b5024cb918f40}{}\index{nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor@{nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor}!Solver\+Type@{Solver\+Type}}
+\index{Solver\+Type@{Solver\+Type}!nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor@{nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor}}
+\subsubsection[{Solver\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S\+O\+L\+V\+E\+R $>$ typedef S\+O\+L\+V\+E\+R {\bf nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor}$<$ S\+O\+L\+V\+E\+R $>$\+::{\bf Solver\+Type}}\label{classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_a948f90213104a37e586b5024cb918f40}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_a38539dee10778eecf56be540fd64eea2}{}\index{nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor@{nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor}!Timer\+Type@{Timer\+Type}}
+\index{Timer\+Type@{Timer\+Type}!nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor@{nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor}}
+\subsubsection[{Timer\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S\+O\+L\+V\+E\+R $>$ typedef {\bf nifty\+::tools\+::\+Timer} {\bf nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor}$<$ S\+O\+L\+V\+E\+R $>$\+::{\bf Timer\+Type}}\label{classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_a38539dee10778eecf56be540fd64eea2}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_a4e186902e51f27ca16814e8660d4c839}{}\index{nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor@{nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor}!Logging\+Visitor@{Logging\+Visitor}}
+\index{Logging\+Visitor@{Logging\+Visitor}!nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor@{nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor}}
+\subsubsection[{Logging\+Visitor(const int visit\+Nth=1, const bool verbose=true, const double time\+Limit\+Solver=std\+::numeric\+\_\+limits$<$ double $>$\+::infinity(), const double time\+Limit\+Total=std\+::numeric\+\_\+limits$<$ double $>$\+::infinity())}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S\+O\+L\+V\+E\+R $>$ {\bf nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor}$<$ S\+O\+L\+V\+E\+R $>$\+::{\bf Logging\+Visitor} (
+\begin{DoxyParamCaption}
+\item[{const int}]{visit\+Nth = {\ttfamily 1}, }
+\item[{const bool}]{verbose = {\ttfamily true}, }
+\item[{const double}]{time\+Limit\+Solver = {\ttfamily std\+:\+:numeric\+\_\+limits$<$double$>$\+:\+:infinity()}, }
+\item[{const double}]{time\+Limit\+Total = {\ttfamily std\+:\+:numeric\+\_\+limits$<$double$>$\+:\+:infinity()}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_a4e186902e51f27ca16814e8660d4c839}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_a937aea0724cef965a33c13f80600e5d3}{}\index{nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor@{nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor}!add\+Log\+Names@{add\+Log\+Names}}
+\index{add\+Log\+Names@{add\+Log\+Names}!nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor@{nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor}}
+\subsubsection[{add\+Log\+Names(std\+::initializer\+\_\+list$<$ std\+::string $>$ log\+Names)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S\+O\+L\+V\+E\+R $>$ virtual void {\bf nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor}$<$ S\+O\+L\+V\+E\+R $>$\+::add\+Log\+Names (
+\begin{DoxyParamCaption}
+\item[{std\+::initializer\+\_\+list$<$ std\+::string $>$}]{log\+Names}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_a937aea0724cef965a33c13f80600e5d3}
+
+
+Reimplemented from \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1VisitorBase_a73804c5f23d41036e8d83df9ff89f313}{nifty\+::graph\+::optimization\+::common\+::\+Visitor\+Base$<$ S\+O\+L\+V\+E\+R $>$}.
+
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_a0d371764a35038bb959c30787ee27115}{}\index{nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor@{nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor}!begin@{begin}}
+\index{begin@{begin}!nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor@{nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor}}
+\subsubsection[{begin(\+Solver\+Type $\ast$)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S\+O\+L\+V\+E\+R $>$ virtual void {\bf nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor}$<$ S\+O\+L\+V\+E\+R $>$\+::begin (
+\begin{DoxyParamCaption}
+\item[{{\bf Solver\+Type} $\ast$}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_a0d371764a35038bb959c30787ee27115}
+
+
+Implements \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1VisitorBase_a9560f91b3b7667fd560cc763dabaf0d0}{nifty\+::graph\+::optimization\+::common\+::\+Visitor\+Base$<$ S\+O\+L\+V\+E\+R $>$}.
+
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_ab0c92d5a637a2f4184bc8b3616b7c1d7}{}\index{nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor@{nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor}!clear\+Log\+Names@{clear\+Log\+Names}}
+\index{clear\+Log\+Names@{clear\+Log\+Names}!nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor@{nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor}}
+\subsubsection[{clear\+Log\+Names()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S\+O\+L\+V\+E\+R $>$ virtual void {\bf nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor}$<$ S\+O\+L\+V\+E\+R $>$\+::clear\+Log\+Names (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_ab0c92d5a637a2f4184bc8b3616b7c1d7}
+
+
+Reimplemented from \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1VisitorBase_a0f7bfb9cc07cc4bc1c0b6d0ef1fd8e7f}{nifty\+::graph\+::optimization\+::common\+::\+Visitor\+Base$<$ S\+O\+L\+V\+E\+R $>$}.
+
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_ab5e361c429ce734f000be8396b2b08d8}{}\index{nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor@{nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor}!end@{end}}
+\index{end@{end}!nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor@{nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor}}
+\subsubsection[{end(\+Solver\+Type $\ast$)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S\+O\+L\+V\+E\+R $>$ virtual void {\bf nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor}$<$ S\+O\+L\+V\+E\+R $>$\+::end (
+\begin{DoxyParamCaption}
+\item[{{\bf Solver\+Type} $\ast$}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_ab5e361c429ce734f000be8396b2b08d8}
+
+
+Implements \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1VisitorBase_a484ee4ba40a202fe2c49432506276548}{nifty\+::graph\+::optimization\+::common\+::\+Visitor\+Base$<$ S\+O\+L\+V\+E\+R $>$}.
+
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_aebcf36bb46057979ecf18cedf6aeadbe}{}\index{nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor@{nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor}!energies@{energies}}
+\index{energies@{energies}!nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor@{nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor}}
+\subsubsection[{energies() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S\+O\+L\+V\+E\+R $>$ const std\+::vector$<$double$>$\& {\bf nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor}$<$ S\+O\+L\+V\+E\+R $>$\+::energies (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_aebcf36bb46057979ecf18cedf6aeadbe}
+
+
+logged current best energies vector 
+
+get the current best energies for each logged iteration \begin{DoxyReturn}{Returns}
+energy vector 
+\end{DoxyReturn}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_a526c951d42128b2538f31ac029507c25}{}\index{nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor@{nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor}!iterations@{iterations}}
+\index{iterations@{iterations}!nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor@{nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor}}
+\subsubsection[{iterations() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S\+O\+L\+V\+E\+R $>$ const std\+::vector$<$uint32\+\_\+t$>$\& {\bf nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor}$<$ S\+O\+L\+V\+E\+R $>$\+::iterations (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_a526c951d42128b2538f31ac029507c25}
+
+
+logged iteration number vector 
+
+iteration number for each logged iteration \begin{DoxyReturn}{Returns}
+iterations vector 
+\end{DoxyReturn}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_adb75d5a267ca5465a9d01a88fd160e74}{}\index{nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor@{nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor}!print\+Log@{print\+Log}}
+\index{print\+Log@{print\+Log}!nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor@{nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor}}
+\subsubsection[{print\+Log(const nifty\+::logging\+::\+Log\+Level log\+Level, const std\+::string \&log\+String)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S\+O\+L\+V\+E\+R $>$ virtual void {\bf nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor}$<$ S\+O\+L\+V\+E\+R $>$\+::print\+Log (
+\begin{DoxyParamCaption}
+\item[{const {\bf nifty\+::logging\+::\+Log\+Level}}]{log\+Level, }
+\item[{const std\+::string \&}]{log\+String}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_adb75d5a267ca5465a9d01a88fd160e74}
+
+
+Reimplemented from \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1VisitorBase_abc345e20d2aa73df274b6f8a001bc296}{nifty\+::graph\+::optimization\+::common\+::\+Visitor\+Base$<$ S\+O\+L\+V\+E\+R $>$}.
+
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_a5c20b8621b87d4d188685694672e7b48}{}\index{nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor@{nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor}!runtimes@{runtimes}}
+\index{runtimes@{runtimes}!nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor@{nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor}}
+\subsubsection[{runtimes() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S\+O\+L\+V\+E\+R $>$ const std\+::vector$<$double$>$\& {\bf nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor}$<$ S\+O\+L\+V\+E\+R $>$\+::runtimes (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_a5c20b8621b87d4d188685694672e7b48}
+
+
+logged runtime vector 
+
+get cumulative runtime for each logged iteration \begin{DoxyReturn}{Returns}
+runtime vector 
+\end{DoxyReturn}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_aa4d1b29f58c61e836488869f2171bbe1}{}\index{nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor@{nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor}!set\+Log\+Value@{set\+Log\+Value}}
+\index{set\+Log\+Value@{set\+Log\+Value}!nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor@{nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor}}
+\subsubsection[{set\+Log\+Value(const size\+\_\+t log\+Index, double log\+Value)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S\+O\+L\+V\+E\+R $>$ virtual void {\bf nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor}$<$ S\+O\+L\+V\+E\+R $>$\+::set\+Log\+Value (
+\begin{DoxyParamCaption}
+\item[{const size\+\_\+t}]{log\+Index, }
+\item[{double}]{log\+Value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_aa4d1b29f58c61e836488869f2171bbe1}
+
+
+Reimplemented from \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1VisitorBase_a2a086bb79dfe9b59ec6d1dd4f9a7e138}{nifty\+::graph\+::optimization\+::common\+::\+Visitor\+Base$<$ S\+O\+L\+V\+E\+R $>$}.
+
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_abce5bb67a05da90465eeb020c90210ba}{}\index{nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor@{nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor}!stop\+Optimize@{stop\+Optimize}}
+\index{stop\+Optimize@{stop\+Optimize}!nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor@{nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor}}
+\subsubsection[{stop\+Optimize()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S\+O\+L\+V\+E\+R $>$ void {\bf nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor}$<$ S\+O\+L\+V\+E\+R $>$\+::stop\+Optimize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_abce5bb67a05da90465eeb020c90210ba}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_a09686da1cd21063cf5fbe6c80fd7eaf2}{}\index{nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor@{nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor}!visit@{visit}}
+\index{visit@{visit}!nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor@{nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor}}
+\subsubsection[{visit(\+Solver\+Type $\ast$solver)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S\+O\+L\+V\+E\+R $>$ virtual bool {\bf nifty\+::graph\+::optimization\+::common\+::\+Logging\+Visitor}$<$ S\+O\+L\+V\+E\+R $>$\+::visit (
+\begin{DoxyParamCaption}
+\item[{{\bf Solver\+Type} $\ast$}]{solver}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_a09686da1cd21063cf5fbe6c80fd7eaf2}
+
+
+Implements \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1VisitorBase_aff1cecd18a8436d5e0991fcf32f56400}{nifty\+::graph\+::optimization\+::common\+::\+Visitor\+Base$<$ S\+O\+L\+V\+E\+R $>$}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/tbeier/src/nifty/include/nifty/graph/optimization/common/\hyperlink{logging__visitor_8hxx}{logging\+\_\+visitor.\+hxx}\end{DoxyCompactItemize}
