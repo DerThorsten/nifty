@@ -24,10 +24,31 @@ namespace graph{
         typedef typename Solver::Settings Settings;
 
         const auto objName = MulticutObjectiveName<ObjectiveType>::name();
-
         const auto solverName = std::string("MulticutMp");
+
+
+
+        ///////////////////////////////////////////////////////////////
+        // DOCSTRING HELPER
+        ///////////////////////////////////////////////////////////////
+        nifty::graph::optimization::SolverDocstringHelper docHelper;
+        docHelper.objectiveName = "multicut objective";
+        docHelper.objectiveClsName = MulticutObjectiveName<OBJECTIVE>::name();
+        docHelper.name = "mp-lp";
+        docHelper.mainText =  
+        "Optimize the multicut objective by convergent message passing as\n"
+        "described by :cite:`TODO`"
+        docHelper.cites.emplace_back("TODO");
+
+        docHelper.requirements.emplace("WITH_MP_LP")
+        docHelper.requirements.emplace("CPP_14")
+
+
+
+
+
         // FIXME verbose has no effect yet
-        exportMulticutSolver<Solver>(multicutModule, solverName.c_str())
+        exportMulticutSolver<Solver>(multicutModule, solverName.c_str(), docHelper)
             .def(py::init<>())
             .def_readwrite("mcFactory",&Settings::mcFactory)
             .def_readwrite("verbose",&Settings::verbose)

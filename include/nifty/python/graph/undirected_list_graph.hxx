@@ -18,6 +18,9 @@ namespace graph{
         static std::string name(){
             return std::string("UndirectedGraph");
         }
+        static std::string moduleName(){
+            return std::string("nifty.graph");
+        }
         static std::string usageExample(){
             return std::string(
                 "import nifty\n"

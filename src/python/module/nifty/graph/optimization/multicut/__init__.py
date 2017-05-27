@@ -386,7 +386,7 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
         addOnlyViolatedThreeCyclesConstraints (bool) :
             explicitly add all violated constraints for only violated cycles
             of length 3 before optimization (default: {True})
-        ilpSolverSettings (:class:``IlpBackendSettings`) :
+        ilpSolverSettings (:class:`IlpBackendSettings`) :
             Settings of the ilp solver (default : {:func:`ilpSettings`})
         ilpSolver (str) : name of the solver. Must be in
             either "cplex", "gurobi" or "glpk".

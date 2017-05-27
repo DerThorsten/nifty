@@ -24,6 +24,11 @@ namespace graph{
                     std::string("ExtendedNh"));
                 
         }
+
+        static std::string moduleName(){
+            return std::string("nifty.graph");
+        }
+
         static std::string usageExample(){
             return std::string(
                 "import nifty\n"

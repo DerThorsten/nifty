@@ -22,6 +22,33 @@ namespace graph{
     
     template<class OBJECTIVE>
     void exportMulticutDecomposerT(py::module & multicutModule){
+
+
+
+            ///////////////////////////////////////////////////////////////
+            // DOCSTRING HELPER
+            ///////////////////////////////////////////////////////////////
+            nifty::graph::optimization::SolverDocstringHelper docHelper;
+            docHelper.objectiveName = "multicut objective";
+            docHelper.objectiveClsName = MulticutObjectiveName<OBJECTIVE>::name();
+            docHelper.name = "multicut decomposer";
+            docHelper.mainText =  
+                "This solver tries to decompose the model into\n"
+                "sub-models  as described in :cite:`alush_2013_simbad`.\n"
+                "If a model decomposes into components such that there are no\n"
+                "positive weighted edges between the components one can\n"
+                "optimize each model separately.\n";
+
+        
+            docHelper.cites.emplace_back("alush_2013_simbad");
+            docHelper.note = "This solver should be warm started,"
+                            "otherwise  results are very poor."
+                            "Using :func:`greedyAdditiveFactory` to create "
+                            "a solver for warm starting is suggested.";
+
+
+
+
         typedef OBJECTIVE ObjectiveType;
         typedef MulticutDecomposer<ObjectiveType> Solver;
         typedef typename Solver::Settings Settings;
