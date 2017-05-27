@@ -1,12 +1,12 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>nifty.ground_truth &#8212; Nifty 0.7.1 documentation</title>
+    <title>nifty.ground_truth &#8212; Nifty 0.9.3 documentation</title>
     
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -15,7 +15,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '0.7.1',
+        VERSION:     '0.9.3',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -31,7 +31,7 @@
     <link rel="next" title="nifty.hdf5" href="nifty.hdf5.html" />
     <link rel="prev" title="nifty.graph.optimization.mincut" href="nifty.graph.optimization.mincut.html" /> 
   </head>
-  <body>
+  <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -47,7 +47,7 @@
         <li class="right" >
           <a href="nifty.graph.optimization.mincut.html" title="nifty.graph.optimization.mincut"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Nifty 0.7.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Nifty 0.9.3 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../reference.html" accesskey="U">Nifty API Reference</a> &#187;</li> 
       </ul>
     </div>
@@ -56,7 +56,10 @@
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">nifty.ground_truth</a><ul>
-<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#functions">Functions</a><ul>
+<li><a class="reference internal" href="#classes">Classes</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -90,11 +93,164 @@
 <div class="section" id="functions">
 <h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
+<dt id="nifty.ground_truth.seg2dToLiftedEdges">
+<code class="descclassname">nifty.ground_truth.</code><code class="descname">seg2dToLiftedEdges</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.ground_truth.seg2dToLiftedEdges" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li>seg2dToLiftedEdges(segmentation: array&lt;int&gt;, edges: array&lt;int&gt;) -&gt; array&lt;int&gt;</li>
+<li>seg2dToLiftedEdges(segmentation: array&lt;int&gt;, edges: array&lt;int&gt;, z: int) -&gt; array&lt;int&gt;</li>
+</ol>
+</dd></dl>
+
+<div style='clear:both'></div><dl class="function">
+<dt id="nifty.ground_truth.seg3dToCremiZ5Edges">
+<code class="descclassname">nifty.ground_truth.</code><code class="descname">seg3dToCremiZ5Edges</code><span class="sig-paren">(</span><em>segmentation: array&lt;int&gt;</em>, <em>edges: array&lt;int&gt;</em><span class="sig-paren">)</span> &#x2192; array&lt;int&gt;<a class="headerlink" href="#nifty.ground_truth.seg3dToCremiZ5Edges" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<div style='clear:both'></div><dl class="function">
+<dt id="nifty.ground_truth.segToEdges2D">
+<code class="descclassname">nifty.ground_truth.</code><code class="descname">segToEdges2D</code><span class="sig-paren">(</span><em>segmentation: array&lt;int&gt;</em><span class="sig-paren">)</span> &#x2192; array&lt;int&gt;<a class="headerlink" href="#nifty.ground_truth.segToEdges2D" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<div style='clear:both'></div><dl class="function">
 <dt id="nifty.ground_truth.thinSegFilter">
 <code class="descclassname">nifty.ground_truth.</code><code class="descname">thinSegFilter</code><span class="sig-paren">(</span><em>seg</em>, <em>sigma</em>, <em>radius=None</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.ground_truth.thinSegFilter" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<div style='clear:both'></div><div class="section" id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="nifty.ground_truth.Overlap">
+<em class="property">class </em><code class="descclassname">nifty.ground_truth.</code><code class="descname">Overlap</code><a class="headerlink" href="#nifty.ground_truth.Overlap" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="nifty.ground_truth.Overlap.bleeding">
+<code class="descname">bleeding</code><span class="sig-paren">(</span><em>self: nifty.ground_truth._ground_truth.Overlap</em>, <em>arg0: array&lt;int&gt;</em><span class="sig-paren">)</span> &#x2192; array&lt;float&gt;<a class="headerlink" href="#nifty.ground_truth.Overlap.bleeding" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.ground_truth.Overlap.counts">
+<code class="descname">counts</code><span class="sig-paren">(</span><em>self: nifty.ground_truth._ground_truth.Overlap</em><span class="sig-paren">)</span> &#x2192; array&lt;int&gt;<a class="headerlink" href="#nifty.ground_truth.Overlap.counts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.ground_truth.Overlap.differentOverlaps">
+<code class="descname">differentOverlaps</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.ground_truth.Overlap.differentOverlaps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li>differentOverlaps(self: nifty.ground_truth._ground_truth.Overlap, arg0: int, arg1: int) -&gt; float</li>
+<li>differentOverlaps(self: nifty.ground_truth._ground_truth.Overlap, arg0: array&lt;int&gt;) -&gt; array&lt;float&gt;</li>
+</ol>
+</dd></dl>
+
+<dl class="method">
+<dt id="nifty.ground_truth.Overlap.overlapArrays">
+<code class="descname">overlapArrays</code><span class="sig-paren">(</span><em>self: nifty.ground_truth._ground_truth.Overlap</em>, <em>index: int</em>, <em>sorted: bool=False</em><span class="sig-paren">)</span> &#x2192; Tuple[array&lt;int&gt;, array&lt;int&gt;]<a class="headerlink" href="#nifty.ground_truth.Overlap.overlapArrays" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.ground_truth.Overlap.overlapArraysNormalized">
+<code class="descname">overlapArraysNormalized</code><span class="sig-paren">(</span><em>self: nifty.ground_truth._ground_truth.Overlap</em>, <em>index: int</em>, <em>sorted: bool=False</em><span class="sig-paren">)</span> &#x2192; Tuple[array&lt;int&gt;, array&lt;float&gt;]<a class="headerlink" href="#nifty.ground_truth.Overlap.overlapArraysNormalized" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<div style='clear:both'></div><dl class="class">
+<dt id="nifty.ground_truth.RandError">
+<em class="property">class </em><code class="descclassname">nifty.ground_truth.</code><code class="descname">RandError</code><a class="headerlink" href="#nifty.ground_truth.RandError" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="nifty.ground_truth.RandError.cutsInPrediction">
+<code class="descname">cutsInPrediction</code><a class="headerlink" href="#nifty.ground_truth.RandError.cutsInPrediction" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.ground_truth.RandError.cutsInTruth">
+<code class="descname">cutsInTruth</code><a class="headerlink" href="#nifty.ground_truth.RandError.cutsInTruth" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.ground_truth.RandError.error">
+<code class="descname">error</code><a class="headerlink" href="#nifty.ground_truth.RandError.error" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.ground_truth.RandError.falseCuts">
+<code class="descname">falseCuts</code><a class="headerlink" href="#nifty.ground_truth.RandError.falseCuts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.ground_truth.RandError.falseJoins">
+<code class="descname">falseJoins</code><a class="headerlink" href="#nifty.ground_truth.RandError.falseJoins" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.ground_truth.RandError.index">
+<code class="descname">index</code><a class="headerlink" href="#nifty.ground_truth.RandError.index" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.ground_truth.RandError.joinsInPrediction">
+<code class="descname">joinsInPrediction</code><a class="headerlink" href="#nifty.ground_truth.RandError.joinsInPrediction" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.ground_truth.RandError.joinsInTruth">
+<code class="descname">joinsInTruth</code><a class="headerlink" href="#nifty.ground_truth.RandError.joinsInTruth" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.ground_truth.RandError.precisionOfCuts">
+<code class="descname">precisionOfCuts</code><a class="headerlink" href="#nifty.ground_truth.RandError.precisionOfCuts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.ground_truth.RandError.precisionOfJoins">
+<code class="descname">precisionOfJoins</code><a class="headerlink" href="#nifty.ground_truth.RandError.precisionOfJoins" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.ground_truth.RandError.recallOfCuts">
+<code class="descname">recallOfCuts</code><a class="headerlink" href="#nifty.ground_truth.RandError.recallOfCuts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.ground_truth.RandError.recallOfJoins">
+<code class="descname">recallOfJoins</code><a class="headerlink" href="#nifty.ground_truth.RandError.recallOfJoins" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.ground_truth.RandError.trueCuts">
+<code class="descname">trueCuts</code><a class="headerlink" href="#nifty.ground_truth.RandError.trueCuts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.ground_truth.RandError.trueJoins">
+<code class="descname">trueJoins</code><a class="headerlink" href="#nifty.ground_truth.RandError.trueJoins" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<div style='clear:both'></div><dl class="class">
+<dt id="nifty.ground_truth.VariationOfInformation">
+<em class="property">class </em><code class="descclassname">nifty.ground_truth.</code><code class="descname">VariationOfInformation</code><a class="headerlink" href="#nifty.ground_truth.VariationOfInformation" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="nifty.ground_truth.VariationOfInformation.value">
+<code class="descname">value</code><a class="headerlink" href="#nifty.ground_truth.VariationOfInformation.value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.ground_truth.VariationOfInformation.valueFalseCut">
+<code class="descname">valueFalseCut</code><a class="headerlink" href="#nifty.ground_truth.VariationOfInformation.valueFalseCut" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.ground_truth.VariationOfInformation.valueFalseJoin">
+<code class="descname">valueFalseJoin</code><a class="headerlink" href="#nifty.ground_truth.VariationOfInformation.valueFalseJoin" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 <div style='clear:both'></div></div>
+</div>
 </div>
 
 
@@ -118,12 +274,12 @@
         <li class="right" >
           <a href="nifty.graph.optimization.mincut.html" title="nifty.graph.optimization.mincut"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Nifty 0.7.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Nifty 0.9.3 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../reference.html" >Nifty API Reference</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.1.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
     </div>
   </body>
 </html>

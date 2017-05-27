@@ -64,6 +64,9 @@ and log the runtime / energies.
 
     # construct a multicut objective
     MulticutObjective = Graph.MulticutObjective
+    # the actual class of the objective
+    assert MulticutObjective == nifty_multicut.MulticutObjectiveUndirectedGraph
+
     objective = MulticutObjective(graph, weights)
 
 
@@ -83,6 +86,11 @@ and log the runtime / energies.
 
     # greedy-additive
     solverFactory = MulticutObjective.greedyAdditiveFactory()
+    # same as above but very verbose
+    if False:
+        solverFactory = nifty_multicut.MulticutObjectiveUndirectedGraph.greedyAdditiveFactory()
+
+
     results['greedy-additive'] = runSolver(solverFactory)
 
     if nifty.Configuration.WITH_QPBO:
@@ -129,7 +137,7 @@ and log the runtime / energies.
 
 
 
-**Total running time of the script:** ( 0 minutes  0.089 seconds)
+**Total running time of the script:** ( 0 minutes  0.070 seconds)
 
 
 

@@ -1,0 +1,475 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>nifty.graph.agglo &#8212; Nifty 0.9.3 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.9.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="nifty.graph.optimization" href="nifty.graph.optimization.html" />
+    <link rel="prev" title="nifty.graph.rag" href="nifty.graph.rag.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="nifty.graph.optimization.html" title="nifty.graph.optimization"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="nifty.graph.rag.html" title="nifty.graph.rag"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Nifty 0.9.3 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../reference.html" accesskey="U">Nifty API Reference</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">nifty.graph.agglo</a><ul>
+<li><a class="reference internal" href="#functions">Functions</a><ul>
+<li><a class="reference internal" href="#classes">Classes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="nifty.graph.rag.html"
+                        title="previous chapter">nifty.graph.rag</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="nifty.graph.optimization.html"
+                        title="next chapter">nifty.graph.optimization</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-nifty.graph.agglo">
+<span id="nifty-graph-agglo"></span><h1>nifty.graph.agglo<a class="headerlink" href="#module-nifty.graph.agglo" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="nifty.graph.agglo.agglomerativeClustering">
+<code class="descclassname">nifty.graph.agglo.</code><code class="descname">agglomerativeClustering</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.agglo.agglomerativeClustering" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li>agglomerativeClustering(clusterPolicy: nifty.graph.agglo._agglo.MalaClusterPolicyUndirectedGraph) -&gt; nifty.graph.agglo._agglo.AgglomerativeClusteringMalaClusterPolicyUndirectedGraph</li>
+<li>agglomerativeClustering(clusterPolicy: nifty.graph.agglo._agglo.MalaClusterPolicyWithUcmUndirectedGraph) -&gt; nifty.graph.agglo._agglo.AgglomerativeClusteringMalaClusterPolicyWithUcmUndirectedGraph</li>
+<li>agglomerativeClustering(clusterPolicy: nifty.graph.agglo._agglo.EdgeWeightedClusterPolicyUndirectedGraph) -&gt; nifty.graph.agglo._agglo.AgglomerativeClusteringEdgeWeightedClusterPolicyUndirectedGraph</li>
+<li>agglomerativeClustering(clusterPolicy: nifty.graph.agglo._agglo.EdgeWeightedClusterPolicyWithUcmUndirectedGraph) -&gt; nifty.graph.agglo._agglo.AgglomerativeClusteringEdgeWeightedClusterPolicyWithUcmUndirectedGraph</li>
+<li>agglomerativeClustering(clusterPolicy: nifty.graph.agglo._agglo.NodeAndEdgeWeightedClusterPolicyUndirectedGraph) -&gt; nifty.graph.agglo._agglo.AgglomerativeClusteringNodeAndEdgeWeightedClusterPolicyUndirectedGraph</li>
+<li>agglomerativeClustering(clusterPolicy: nifty.graph.agglo._agglo.NodeAndEdgeWeightedClusterPolicyWithUcmUndirectedGraph) -&gt; nifty.graph.agglo._agglo.AgglomerativeClusteringNodeAndEdgeWeightedClusterPolicyWithUcmUndirectedGraph</li>
+<li>agglomerativeClustering(clusterPolicy: nifty.graph.agglo._agglo.MinimumNodeSizeClusterPolicyUndirectedGraph) -&gt; nifty.graph.agglo._agglo.AgglomerativeClusteringMinimumNodeSizeClusterPolicyUndirectedGraph</li>
+</ol>
+</dd></dl>
+
+<div style='clear:both'></div><dl class="function">
+<dt id="nifty.graph.agglo.edgeWeightedClusterPolicy">
+<code class="descclassname">nifty.graph.agglo.</code><code class="descname">edgeWeightedClusterPolicy</code><span class="sig-paren">(</span><em>graph: nifty.graph._graph.UndirectedGraph</em>, <em>edgeIndicators: array&lt;float&gt;</em>, <em>edgeSizes: array&lt;float&gt;</em>, <em>nodeSizes: array&lt;float&gt;</em>, <em>numberOfNodesStop: int=1</em>, <em>sizeRegularizer: float=0.5</em><span class="sig-paren">)</span> &#x2192; nifty.graph.agglo._agglo.EdgeWeightedClusterPolicyUndirectedGraph<a class="headerlink" href="#nifty.graph.agglo.edgeWeightedClusterPolicy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<div style='clear:both'></div><dl class="function">
+<dt id="nifty.graph.agglo.edgeWeightedClusterPolicyWithUcm">
+<code class="descclassname">nifty.graph.agglo.</code><code class="descname">edgeWeightedClusterPolicyWithUcm</code><span class="sig-paren">(</span><em>graph: nifty.graph._graph.UndirectedGraph</em>, <em>edgeIndicators: array&lt;float&gt;</em>, <em>edgeSizes: array&lt;float&gt;</em>, <em>nodeSizes: array&lt;float&gt;</em>, <em>numberOfNodesStop: int=1</em>, <em>sizeRegularizer: float=0.5</em><span class="sig-paren">)</span> &#x2192; nifty.graph.agglo._agglo.EdgeWeightedClusterPolicyWithUcmUndirectedGraph<a class="headerlink" href="#nifty.graph.agglo.edgeWeightedClusterPolicyWithUcm" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<div style='clear:both'></div><dl class="function">
+<dt id="nifty.graph.agglo.malaClusterPolicy">
+<code class="descclassname">nifty.graph.agglo.</code><code class="descname">malaClusterPolicy</code><span class="sig-paren">(</span><em>graph: nifty.graph._graph.UndirectedGraph</em>, <em>edgeIndicators: array&lt;float&gt;</em>, <em>edgeSizes: array&lt;float&gt;</em>, <em>nodeSizes: array&lt;float&gt;</em>, <em>threshold: float=0.5</em>, <em>numberOfNodesStop: int=1</em>, <em>sizeRegularizer: float=0.5</em>, <em>verbose: bool=False</em><span class="sig-paren">)</span> &#x2192; nifty.graph.agglo._agglo.MalaClusterPolicyUndirectedGraph<a class="headerlink" href="#nifty.graph.agglo.malaClusterPolicy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<div style='clear:both'></div><dl class="function">
+<dt id="nifty.graph.agglo.malaClusterPolicyWithUcm">
+<code class="descclassname">nifty.graph.agglo.</code><code class="descname">malaClusterPolicyWithUcm</code><span class="sig-paren">(</span><em>graph: nifty.graph._graph.UndirectedGraph</em>, <em>edgeIndicators: array&lt;float&gt;</em>, <em>edgeSizes: array&lt;float&gt;</em>, <em>nodeSizes: array&lt;float&gt;</em>, <em>threshold: float=0.5</em>, <em>numberOfNodesStop: int=1</em>, <em>sizeRegularizer: float=0.5</em>, <em>verbose: bool=False</em><span class="sig-paren">)</span> &#x2192; nifty.graph.agglo._agglo.MalaClusterPolicyWithUcmUndirectedGraph<a class="headerlink" href="#nifty.graph.agglo.malaClusterPolicyWithUcm" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<div style='clear:both'></div><dl class="function">
+<dt id="nifty.graph.agglo.minimumNodeSizeClusterPolicy">
+<code class="descclassname">nifty.graph.agglo.</code><code class="descname">minimumNodeSizeClusterPolicy</code><span class="sig-paren">(</span><em>graph: nifty.graph._graph.UndirectedGraph</em>, <em>edgeIndicators: array&lt;float&gt;</em>, <em>edgeSizes: array&lt;float&gt;</em>, <em>nodeSizes: array&lt;float&gt;</em>, <em>minimumNodeSize: float=1</em>, <em>sizeRegularizer: float=0.001</em>, <em>gamma: float=0.999</em><span class="sig-paren">)</span> &#x2192; nifty.graph.agglo._agglo.MinimumNodeSizeClusterPolicyUndirectedGraph<a class="headerlink" href="#nifty.graph.agglo.minimumNodeSizeClusterPolicy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<div style='clear:both'></div><dl class="function">
+<dt id="nifty.graph.agglo.nodeAndEdgeWeightedClusterPolicy">
+<code class="descclassname">nifty.graph.agglo.</code><code class="descname">nodeAndEdgeWeightedClusterPolicy</code><span class="sig-paren">(</span><em>graph: nifty.graph._graph.UndirectedGraph</em>, <em>edgeIndicators: array&lt;float&gt;</em>, <em>edgeSizes: array&lt;float&gt;</em>, <em>nodeFeatures: array&lt;float&gt;</em>, <em>nodeSizes: array&lt;float&gt;</em>, <em>beta: float=0.5</em>, <em>numberOfNodesStop: int=1</em>, <em>sizeRegularizer: float=0.5</em><span class="sig-paren">)</span> &#x2192; nifty.graph.agglo._agglo.NodeAndEdgeWeightedClusterPolicyUndirectedGraph<a class="headerlink" href="#nifty.graph.agglo.nodeAndEdgeWeightedClusterPolicy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<div style='clear:both'></div><dl class="function">
+<dt id="nifty.graph.agglo.nodeAndEdgeWeightedClusterPolicyWithUcm">
+<code class="descclassname">nifty.graph.agglo.</code><code class="descname">nodeAndEdgeWeightedClusterPolicyWithUcm</code><span class="sig-paren">(</span><em>graph: nifty.graph._graph.UndirectedGraph</em>, <em>edgeIndicators: array&lt;float&gt;</em>, <em>edgeSizes: array&lt;float&gt;</em>, <em>nodeFeatures: array&lt;float&gt;</em>, <em>nodeSizes: array&lt;float&gt;</em>, <em>beta: float=0.5</em>, <em>numberOfNodesStop: int=1</em>, <em>sizeRegularizer: float=0.5</em><span class="sig-paren">)</span> &#x2192; nifty.graph.agglo._agglo.NodeAndEdgeWeightedClusterPolicyWithUcmUndirectedGraph<a class="headerlink" href="#nifty.graph.agglo.nodeAndEdgeWeightedClusterPolicyWithUcm" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<div style='clear:both'></div><dl class="function">
+<dt id="nifty.graph.agglo.sizeLimitClustering">
+<code class="descclassname">nifty.graph.agglo.</code><code class="descname">sizeLimitClustering</code><span class="sig-paren">(</span><em>graph</em>, <em>nodeSizes</em>, <em>minimumNodeSize</em>, <em>edgeIndicators=None</em>, <em>edgeSizes=None</em>, <em>sizeRegularizer=0.001</em>, <em>gamma=0.999</em>, <em>makeDenseLabels=False</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.agglo.sizeLimitClustering" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<div style='clear:both'></div><dl class="function">
+<dt id="nifty.graph.agglo.ucmFeatures">
+<code class="descclassname">nifty.graph.agglo.</code><code class="descname">ucmFeatures</code><span class="sig-paren">(</span><em>graph</em>, <em>edgeIndicators</em>, <em>edgeSizes</em>, <em>nodeSizes</em>, <em>sizeRegularizers=array([ 0.1</em>, <em>0.2</em>, <em>0.3</em>, <em>0.4</em>, <em>0.5</em>, <em>0.6</em>, <em>0.7</em>, <em>0.8</em>, <em>0.9])</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.agglo.ucmFeatures" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<div style='clear:both'></div><div class="section" id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="nifty.graph.agglo.AgglomerativeClusteringEdgeWeightedClusterPolicyUndirectedGraph">
+<em class="property">class </em><code class="descclassname">nifty.graph.agglo.</code><code class="descname">AgglomerativeClusteringEdgeWeightedClusterPolicyUndirectedGraph</code><a class="headerlink" href="#nifty.graph.agglo.AgglomerativeClusteringEdgeWeightedClusterPolicyUndirectedGraph" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="nifty.graph.agglo.AgglomerativeClusteringEdgeWeightedClusterPolicyUndirectedGraph.result">
+<code class="descname">result</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.agglo.AgglomerativeClusteringEdgeWeightedClusterPolicyUndirectedGraph.result" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li>result(self: nifty.graph.agglo._agglo.AgglomerativeClusteringEdgeWeightedClusterPolicyUndirectedGraph) -&gt; array&lt;int&gt;</li>
+<li>result(self: nifty.graph.agglo._agglo.AgglomerativeClusteringEdgeWeightedClusterPolicyUndirectedGraph, out: array&lt;int&gt;) -&gt; array&lt;int&gt;</li>
+</ol>
+</dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.agglo.AgglomerativeClusteringEdgeWeightedClusterPolicyUndirectedGraph.run">
+<code class="descname">run</code><span class="sig-paren">(</span><em>self: nifty.graph.agglo._agglo.AgglomerativeClusteringEdgeWeightedClusterPolicyUndirectedGraph</em>, <em>verbose: bool=False</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#nifty.graph.agglo.AgglomerativeClusteringEdgeWeightedClusterPolicyUndirectedGraph.run" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.agglo.AgglomerativeClusteringEdgeWeightedClusterPolicyUndirectedGraph.runAndGetDendrogramHeight">
+<code class="descname">runAndGetDendrogramHeight</code><span class="sig-paren">(</span><em>self: nifty.graph.agglo._agglo.AgglomerativeClusteringEdgeWeightedClusterPolicyUndirectedGraph</em>, <em>verbose: bool=False</em><span class="sig-paren">)</span> &#x2192; array&lt;float&gt;<a class="headerlink" href="#nifty.graph.agglo.AgglomerativeClusteringEdgeWeightedClusterPolicyUndirectedGraph.runAndGetDendrogramHeight" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.agglo.AgglomerativeClusteringEdgeWeightedClusterPolicyUndirectedGraph.ucmTransform">
+<code class="descname">ucmTransform</code><span class="sig-paren">(</span><em>self: nifty.graph.agglo._agglo.AgglomerativeClusteringEdgeWeightedClusterPolicyUndirectedGraph</em>, <em>arg0: nifty.graph._graph.UndirectedGraphEdgeMapFloat64</em><span class="sig-paren">)</span> &#x2192; array&lt;float&gt;<a class="headerlink" href="#nifty.graph.agglo.AgglomerativeClusteringEdgeWeightedClusterPolicyUndirectedGraph.ucmTransform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<div style='clear:both'></div><dl class="class">
+<dt id="nifty.graph.agglo.AgglomerativeClusteringEdgeWeightedClusterPolicyWithUcmUndirectedGraph">
+<em class="property">class </em><code class="descclassname">nifty.graph.agglo.</code><code class="descname">AgglomerativeClusteringEdgeWeightedClusterPolicyWithUcmUndirectedGraph</code><a class="headerlink" href="#nifty.graph.agglo.AgglomerativeClusteringEdgeWeightedClusterPolicyWithUcmUndirectedGraph" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="nifty.graph.agglo.AgglomerativeClusteringEdgeWeightedClusterPolicyWithUcmUndirectedGraph.result">
+<code class="descname">result</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.agglo.AgglomerativeClusteringEdgeWeightedClusterPolicyWithUcmUndirectedGraph.result" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li>result(self: nifty.graph.agglo._agglo.AgglomerativeClusteringEdgeWeightedClusterPolicyWithUcmUndirectedGraph) -&gt; array&lt;int&gt;</li>
+<li>result(self: nifty.graph.agglo._agglo.AgglomerativeClusteringEdgeWeightedClusterPolicyWithUcmUndirectedGraph, out: array&lt;int&gt;) -&gt; array&lt;int&gt;</li>
+</ol>
+</dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.agglo.AgglomerativeClusteringEdgeWeightedClusterPolicyWithUcmUndirectedGraph.run">
+<code class="descname">run</code><span class="sig-paren">(</span><em>self: nifty.graph.agglo._agglo.AgglomerativeClusteringEdgeWeightedClusterPolicyWithUcmUndirectedGraph</em>, <em>verbose: bool=False</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#nifty.graph.agglo.AgglomerativeClusteringEdgeWeightedClusterPolicyWithUcmUndirectedGraph.run" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.agglo.AgglomerativeClusteringEdgeWeightedClusterPolicyWithUcmUndirectedGraph.runAndGetDendrogramHeight">
+<code class="descname">runAndGetDendrogramHeight</code><span class="sig-paren">(</span><em>self: nifty.graph.agglo._agglo.AgglomerativeClusteringEdgeWeightedClusterPolicyWithUcmUndirectedGraph</em>, <em>verbose: bool=False</em><span class="sig-paren">)</span> &#x2192; array&lt;float&gt;<a class="headerlink" href="#nifty.graph.agglo.AgglomerativeClusteringEdgeWeightedClusterPolicyWithUcmUndirectedGraph.runAndGetDendrogramHeight" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.agglo.AgglomerativeClusteringEdgeWeightedClusterPolicyWithUcmUndirectedGraph.ucmTransform">
+<code class="descname">ucmTransform</code><span class="sig-paren">(</span><em>self: nifty.graph.agglo._agglo.AgglomerativeClusteringEdgeWeightedClusterPolicyWithUcmUndirectedGraph</em>, <em>arg0: nifty.graph._graph.UndirectedGraphEdgeMapFloat64</em><span class="sig-paren">)</span> &#x2192; array&lt;float&gt;<a class="headerlink" href="#nifty.graph.agglo.AgglomerativeClusteringEdgeWeightedClusterPolicyWithUcmUndirectedGraph.ucmTransform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<div style='clear:both'></div><dl class="class">
+<dt id="nifty.graph.agglo.AgglomerativeClusteringMalaClusterPolicyUndirectedGraph">
+<em class="property">class </em><code class="descclassname">nifty.graph.agglo.</code><code class="descname">AgglomerativeClusteringMalaClusterPolicyUndirectedGraph</code><a class="headerlink" href="#nifty.graph.agglo.AgglomerativeClusteringMalaClusterPolicyUndirectedGraph" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="nifty.graph.agglo.AgglomerativeClusteringMalaClusterPolicyUndirectedGraph.result">
+<code class="descname">result</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.agglo.AgglomerativeClusteringMalaClusterPolicyUndirectedGraph.result" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li>result(self: nifty.graph.agglo._agglo.AgglomerativeClusteringMalaClusterPolicyUndirectedGraph) -&gt; array&lt;int&gt;</li>
+<li>result(self: nifty.graph.agglo._agglo.AgglomerativeClusteringMalaClusterPolicyUndirectedGraph, out: array&lt;int&gt;) -&gt; array&lt;int&gt;</li>
+</ol>
+</dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.agglo.AgglomerativeClusteringMalaClusterPolicyUndirectedGraph.run">
+<code class="descname">run</code><span class="sig-paren">(</span><em>self: nifty.graph.agglo._agglo.AgglomerativeClusteringMalaClusterPolicyUndirectedGraph</em>, <em>verbose: bool=False</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#nifty.graph.agglo.AgglomerativeClusteringMalaClusterPolicyUndirectedGraph.run" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.agglo.AgglomerativeClusteringMalaClusterPolicyUndirectedGraph.runAndGetDendrogramHeight">
+<code class="descname">runAndGetDendrogramHeight</code><span class="sig-paren">(</span><em>self: nifty.graph.agglo._agglo.AgglomerativeClusteringMalaClusterPolicyUndirectedGraph</em>, <em>verbose: bool=False</em><span class="sig-paren">)</span> &#x2192; array&lt;float&gt;<a class="headerlink" href="#nifty.graph.agglo.AgglomerativeClusteringMalaClusterPolicyUndirectedGraph.runAndGetDendrogramHeight" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.agglo.AgglomerativeClusteringMalaClusterPolicyUndirectedGraph.ucmTransform">
+<code class="descname">ucmTransform</code><span class="sig-paren">(</span><em>self: nifty.graph.agglo._agglo.AgglomerativeClusteringMalaClusterPolicyUndirectedGraph</em>, <em>arg0: nifty.graph._graph.UndirectedGraphEdgeMapFloat64</em><span class="sig-paren">)</span> &#x2192; array&lt;float&gt;<a class="headerlink" href="#nifty.graph.agglo.AgglomerativeClusteringMalaClusterPolicyUndirectedGraph.ucmTransform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<div style='clear:both'></div><dl class="class">
+<dt id="nifty.graph.agglo.AgglomerativeClusteringMalaClusterPolicyWithUcmUndirectedGraph">
+<em class="property">class </em><code class="descclassname">nifty.graph.agglo.</code><code class="descname">AgglomerativeClusteringMalaClusterPolicyWithUcmUndirectedGraph</code><a class="headerlink" href="#nifty.graph.agglo.AgglomerativeClusteringMalaClusterPolicyWithUcmUndirectedGraph" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="nifty.graph.agglo.AgglomerativeClusteringMalaClusterPolicyWithUcmUndirectedGraph.result">
+<code class="descname">result</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.agglo.AgglomerativeClusteringMalaClusterPolicyWithUcmUndirectedGraph.result" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li>result(self: nifty.graph.agglo._agglo.AgglomerativeClusteringMalaClusterPolicyWithUcmUndirectedGraph) -&gt; array&lt;int&gt;</li>
+<li>result(self: nifty.graph.agglo._agglo.AgglomerativeClusteringMalaClusterPolicyWithUcmUndirectedGraph, out: array&lt;int&gt;) -&gt; array&lt;int&gt;</li>
+</ol>
+</dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.agglo.AgglomerativeClusteringMalaClusterPolicyWithUcmUndirectedGraph.run">
+<code class="descname">run</code><span class="sig-paren">(</span><em>self: nifty.graph.agglo._agglo.AgglomerativeClusteringMalaClusterPolicyWithUcmUndirectedGraph</em>, <em>verbose: bool=False</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#nifty.graph.agglo.AgglomerativeClusteringMalaClusterPolicyWithUcmUndirectedGraph.run" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.agglo.AgglomerativeClusteringMalaClusterPolicyWithUcmUndirectedGraph.runAndGetDendrogramHeight">
+<code class="descname">runAndGetDendrogramHeight</code><span class="sig-paren">(</span><em>self: nifty.graph.agglo._agglo.AgglomerativeClusteringMalaClusterPolicyWithUcmUndirectedGraph</em>, <em>verbose: bool=False</em><span class="sig-paren">)</span> &#x2192; array&lt;float&gt;<a class="headerlink" href="#nifty.graph.agglo.AgglomerativeClusteringMalaClusterPolicyWithUcmUndirectedGraph.runAndGetDendrogramHeight" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.agglo.AgglomerativeClusteringMalaClusterPolicyWithUcmUndirectedGraph.ucmTransform">
+<code class="descname">ucmTransform</code><span class="sig-paren">(</span><em>self: nifty.graph.agglo._agglo.AgglomerativeClusteringMalaClusterPolicyWithUcmUndirectedGraph</em>, <em>arg0: nifty.graph._graph.UndirectedGraphEdgeMapFloat64</em><span class="sig-paren">)</span> &#x2192; array&lt;float&gt;<a class="headerlink" href="#nifty.graph.agglo.AgglomerativeClusteringMalaClusterPolicyWithUcmUndirectedGraph.ucmTransform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<div style='clear:both'></div><dl class="class">
+<dt id="nifty.graph.agglo.AgglomerativeClusteringMinimumNodeSizeClusterPolicyUndirectedGraph">
+<em class="property">class </em><code class="descclassname">nifty.graph.agglo.</code><code class="descname">AgglomerativeClusteringMinimumNodeSizeClusterPolicyUndirectedGraph</code><a class="headerlink" href="#nifty.graph.agglo.AgglomerativeClusteringMinimumNodeSizeClusterPolicyUndirectedGraph" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="nifty.graph.agglo.AgglomerativeClusteringMinimumNodeSizeClusterPolicyUndirectedGraph.result">
+<code class="descname">result</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.agglo.AgglomerativeClusteringMinimumNodeSizeClusterPolicyUndirectedGraph.result" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li>result(self: nifty.graph.agglo._agglo.AgglomerativeClusteringMinimumNodeSizeClusterPolicyUndirectedGraph) -&gt; array&lt;int&gt;</li>
+<li>result(self: nifty.graph.agglo._agglo.AgglomerativeClusteringMinimumNodeSizeClusterPolicyUndirectedGraph, out: array&lt;int&gt;) -&gt; array&lt;int&gt;</li>
+</ol>
+</dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.agglo.AgglomerativeClusteringMinimumNodeSizeClusterPolicyUndirectedGraph.run">
+<code class="descname">run</code><span class="sig-paren">(</span><em>self: nifty.graph.agglo._agglo.AgglomerativeClusteringMinimumNodeSizeClusterPolicyUndirectedGraph</em>, <em>verbose: bool=False</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#nifty.graph.agglo.AgglomerativeClusteringMinimumNodeSizeClusterPolicyUndirectedGraph.run" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.agglo.AgglomerativeClusteringMinimumNodeSizeClusterPolicyUndirectedGraph.runAndGetDendrogramHeight">
+<code class="descname">runAndGetDendrogramHeight</code><span class="sig-paren">(</span><em>self: nifty.graph.agglo._agglo.AgglomerativeClusteringMinimumNodeSizeClusterPolicyUndirectedGraph</em>, <em>verbose: bool=False</em><span class="sig-paren">)</span> &#x2192; array&lt;float&gt;<a class="headerlink" href="#nifty.graph.agglo.AgglomerativeClusteringMinimumNodeSizeClusterPolicyUndirectedGraph.runAndGetDendrogramHeight" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.agglo.AgglomerativeClusteringMinimumNodeSizeClusterPolicyUndirectedGraph.ucmTransform">
+<code class="descname">ucmTransform</code><span class="sig-paren">(</span><em>self: nifty.graph.agglo._agglo.AgglomerativeClusteringMinimumNodeSizeClusterPolicyUndirectedGraph</em>, <em>arg0: nifty.graph._graph.UndirectedGraphEdgeMapFloat64</em><span class="sig-paren">)</span> &#x2192; array&lt;float&gt;<a class="headerlink" href="#nifty.graph.agglo.AgglomerativeClusteringMinimumNodeSizeClusterPolicyUndirectedGraph.ucmTransform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<div style='clear:both'></div><dl class="class">
+<dt id="nifty.graph.agglo.AgglomerativeClusteringNodeAndEdgeWeightedClusterPolicyUndirectedGraph">
+<em class="property">class </em><code class="descclassname">nifty.graph.agglo.</code><code class="descname">AgglomerativeClusteringNodeAndEdgeWeightedClusterPolicyUndirectedGraph</code><a class="headerlink" href="#nifty.graph.agglo.AgglomerativeClusteringNodeAndEdgeWeightedClusterPolicyUndirectedGraph" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="nifty.graph.agglo.AgglomerativeClusteringNodeAndEdgeWeightedClusterPolicyUndirectedGraph.result">
+<code class="descname">result</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.agglo.AgglomerativeClusteringNodeAndEdgeWeightedClusterPolicyUndirectedGraph.result" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li>result(self: nifty.graph.agglo._agglo.AgglomerativeClusteringNodeAndEdgeWeightedClusterPolicyUndirectedGraph) -&gt; array&lt;int&gt;</li>
+<li>result(self: nifty.graph.agglo._agglo.AgglomerativeClusteringNodeAndEdgeWeightedClusterPolicyUndirectedGraph, out: array&lt;int&gt;) -&gt; array&lt;int&gt;</li>
+</ol>
+</dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.agglo.AgglomerativeClusteringNodeAndEdgeWeightedClusterPolicyUndirectedGraph.run">
+<code class="descname">run</code><span class="sig-paren">(</span><em>self: nifty.graph.agglo._agglo.AgglomerativeClusteringNodeAndEdgeWeightedClusterPolicyUndirectedGraph</em>, <em>verbose: bool=False</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#nifty.graph.agglo.AgglomerativeClusteringNodeAndEdgeWeightedClusterPolicyUndirectedGraph.run" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.agglo.AgglomerativeClusteringNodeAndEdgeWeightedClusterPolicyUndirectedGraph.runAndGetDendrogramHeight">
+<code class="descname">runAndGetDendrogramHeight</code><span class="sig-paren">(</span><em>self: nifty.graph.agglo._agglo.AgglomerativeClusteringNodeAndEdgeWeightedClusterPolicyUndirectedGraph</em>, <em>verbose: bool=False</em><span class="sig-paren">)</span> &#x2192; array&lt;float&gt;<a class="headerlink" href="#nifty.graph.agglo.AgglomerativeClusteringNodeAndEdgeWeightedClusterPolicyUndirectedGraph.runAndGetDendrogramHeight" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.agglo.AgglomerativeClusteringNodeAndEdgeWeightedClusterPolicyUndirectedGraph.ucmTransform">
+<code class="descname">ucmTransform</code><span class="sig-paren">(</span><em>self: nifty.graph.agglo._agglo.AgglomerativeClusteringNodeAndEdgeWeightedClusterPolicyUndirectedGraph</em>, <em>arg0: nifty.graph._graph.UndirectedGraphEdgeMapFloat64</em><span class="sig-paren">)</span> &#x2192; array&lt;float&gt;<a class="headerlink" href="#nifty.graph.agglo.AgglomerativeClusteringNodeAndEdgeWeightedClusterPolicyUndirectedGraph.ucmTransform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<div style='clear:both'></div><dl class="class">
+<dt id="nifty.graph.agglo.AgglomerativeClusteringNodeAndEdgeWeightedClusterPolicyWithUcmUndirectedGraph">
+<em class="property">class </em><code class="descclassname">nifty.graph.agglo.</code><code class="descname">AgglomerativeClusteringNodeAndEdgeWeightedClusterPolicyWithUcmUndirectedGraph</code><a class="headerlink" href="#nifty.graph.agglo.AgglomerativeClusteringNodeAndEdgeWeightedClusterPolicyWithUcmUndirectedGraph" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="nifty.graph.agglo.AgglomerativeClusteringNodeAndEdgeWeightedClusterPolicyWithUcmUndirectedGraph.result">
+<code class="descname">result</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.agglo.AgglomerativeClusteringNodeAndEdgeWeightedClusterPolicyWithUcmUndirectedGraph.result" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li>result(self: nifty.graph.agglo._agglo.AgglomerativeClusteringNodeAndEdgeWeightedClusterPolicyWithUcmUndirectedGraph) -&gt; array&lt;int&gt;</li>
+<li>result(self: nifty.graph.agglo._agglo.AgglomerativeClusteringNodeAndEdgeWeightedClusterPolicyWithUcmUndirectedGraph, out: array&lt;int&gt;) -&gt; array&lt;int&gt;</li>
+</ol>
+</dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.agglo.AgglomerativeClusteringNodeAndEdgeWeightedClusterPolicyWithUcmUndirectedGraph.run">
+<code class="descname">run</code><span class="sig-paren">(</span><em>self: nifty.graph.agglo._agglo.AgglomerativeClusteringNodeAndEdgeWeightedClusterPolicyWithUcmUndirectedGraph</em>, <em>verbose: bool=False</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#nifty.graph.agglo.AgglomerativeClusteringNodeAndEdgeWeightedClusterPolicyWithUcmUndirectedGraph.run" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.agglo.AgglomerativeClusteringNodeAndEdgeWeightedClusterPolicyWithUcmUndirectedGraph.runAndGetDendrogramHeight">
+<code class="descname">runAndGetDendrogramHeight</code><span class="sig-paren">(</span><em>self: nifty.graph.agglo._agglo.AgglomerativeClusteringNodeAndEdgeWeightedClusterPolicyWithUcmUndirectedGraph</em>, <em>verbose: bool=False</em><span class="sig-paren">)</span> &#x2192; array&lt;float&gt;<a class="headerlink" href="#nifty.graph.agglo.AgglomerativeClusteringNodeAndEdgeWeightedClusterPolicyWithUcmUndirectedGraph.runAndGetDendrogramHeight" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.agglo.AgglomerativeClusteringNodeAndEdgeWeightedClusterPolicyWithUcmUndirectedGraph.ucmTransform">
+<code class="descname">ucmTransform</code><span class="sig-paren">(</span><em>self: nifty.graph.agglo._agglo.AgglomerativeClusteringNodeAndEdgeWeightedClusterPolicyWithUcmUndirectedGraph</em>, <em>arg0: nifty.graph._graph.UndirectedGraphEdgeMapFloat64</em><span class="sig-paren">)</span> &#x2192; array&lt;float&gt;<a class="headerlink" href="#nifty.graph.agglo.AgglomerativeClusteringNodeAndEdgeWeightedClusterPolicyWithUcmUndirectedGraph.ucmTransform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<div style='clear:both'></div><dl class="class">
+<dt id="nifty.graph.agglo.EdgeWeightedClusterPolicyUndirectedGraph">
+<em class="property">class </em><code class="descclassname">nifty.graph.agglo.</code><code class="descname">EdgeWeightedClusterPolicyUndirectedGraph</code><a class="headerlink" href="#nifty.graph.agglo.EdgeWeightedClusterPolicyUndirectedGraph" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="nifty.graph.agglo.EdgeWeightedClusterPolicyUndirectedGraph.edgeIndicators">
+<code class="descname">edgeIndicators</code><a class="headerlink" href="#nifty.graph.agglo.EdgeWeightedClusterPolicyUndirectedGraph.edgeIndicators" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.agglo.EdgeWeightedClusterPolicyUndirectedGraph.edgeSizes">
+<code class="descname">edgeSizes</code><a class="headerlink" href="#nifty.graph.agglo.EdgeWeightedClusterPolicyUndirectedGraph.edgeSizes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<div style='clear:both'></div><dl class="class">
+<dt id="nifty.graph.agglo.EdgeWeightedClusterPolicyWithUcmUndirectedGraph">
+<em class="property">class </em><code class="descclassname">nifty.graph.agglo.</code><code class="descname">EdgeWeightedClusterPolicyWithUcmUndirectedGraph</code><a class="headerlink" href="#nifty.graph.agglo.EdgeWeightedClusterPolicyWithUcmUndirectedGraph" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="nifty.graph.agglo.EdgeWeightedClusterPolicyWithUcmUndirectedGraph.edgeIndicators">
+<code class="descname">edgeIndicators</code><a class="headerlink" href="#nifty.graph.agglo.EdgeWeightedClusterPolicyWithUcmUndirectedGraph.edgeIndicators" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.agglo.EdgeWeightedClusterPolicyWithUcmUndirectedGraph.edgeSizes">
+<code class="descname">edgeSizes</code><a class="headerlink" href="#nifty.graph.agglo.EdgeWeightedClusterPolicyWithUcmUndirectedGraph.edgeSizes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<div style='clear:both'></div><dl class="class">
+<dt id="nifty.graph.agglo.MalaClusterPolicyUndirectedGraph">
+<em class="property">class </em><code class="descclassname">nifty.graph.agglo.</code><code class="descname">MalaClusterPolicyUndirectedGraph</code><a class="headerlink" href="#nifty.graph.agglo.MalaClusterPolicyUndirectedGraph" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<div style='clear:both'></div><dl class="class">
+<dt id="nifty.graph.agglo.MalaClusterPolicyWithUcmUndirectedGraph">
+<em class="property">class </em><code class="descclassname">nifty.graph.agglo.</code><code class="descname">MalaClusterPolicyWithUcmUndirectedGraph</code><a class="headerlink" href="#nifty.graph.agglo.MalaClusterPolicyWithUcmUndirectedGraph" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<div style='clear:both'></div><dl class="class">
+<dt id="nifty.graph.agglo.MinimumNodeSizeClusterPolicyUndirectedGraph">
+<em class="property">class </em><code class="descclassname">nifty.graph.agglo.</code><code class="descname">MinimumNodeSizeClusterPolicyUndirectedGraph</code><a class="headerlink" href="#nifty.graph.agglo.MinimumNodeSizeClusterPolicyUndirectedGraph" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<div style='clear:both'></div><dl class="class">
+<dt id="nifty.graph.agglo.NodeAndEdgeWeightedClusterPolicyUndirectedGraph">
+<em class="property">class </em><code class="descclassname">nifty.graph.agglo.</code><code class="descname">NodeAndEdgeWeightedClusterPolicyUndirectedGraph</code><a class="headerlink" href="#nifty.graph.agglo.NodeAndEdgeWeightedClusterPolicyUndirectedGraph" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="nifty.graph.agglo.NodeAndEdgeWeightedClusterPolicyUndirectedGraph.edgeIndicators">
+<code class="descname">edgeIndicators</code><a class="headerlink" href="#nifty.graph.agglo.NodeAndEdgeWeightedClusterPolicyUndirectedGraph.edgeIndicators" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.agglo.NodeAndEdgeWeightedClusterPolicyUndirectedGraph.edgeSizes">
+<code class="descname">edgeSizes</code><a class="headerlink" href="#nifty.graph.agglo.NodeAndEdgeWeightedClusterPolicyUndirectedGraph.edgeSizes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<div style='clear:both'></div><dl class="class">
+<dt id="nifty.graph.agglo.NodeAndEdgeWeightedClusterPolicyWithUcmUndirectedGraph">
+<em class="property">class </em><code class="descclassname">nifty.graph.agglo.</code><code class="descname">NodeAndEdgeWeightedClusterPolicyWithUcmUndirectedGraph</code><a class="headerlink" href="#nifty.graph.agglo.NodeAndEdgeWeightedClusterPolicyWithUcmUndirectedGraph" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="nifty.graph.agglo.NodeAndEdgeWeightedClusterPolicyWithUcmUndirectedGraph.edgeIndicators">
+<code class="descname">edgeIndicators</code><a class="headerlink" href="#nifty.graph.agglo.NodeAndEdgeWeightedClusterPolicyWithUcmUndirectedGraph.edgeIndicators" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.agglo.NodeAndEdgeWeightedClusterPolicyWithUcmUndirectedGraph.edgeSizes">
+<code class="descname">edgeSizes</code><a class="headerlink" href="#nifty.graph.agglo.NodeAndEdgeWeightedClusterPolicyWithUcmUndirectedGraph.edgeSizes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<div style='clear:both'></div></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="nifty.graph.optimization.html" title="nifty.graph.optimization"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="nifty.graph.rag.html" title="nifty.graph.rag"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Nifty 0.9.3 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../reference.html" >Nifty API Reference</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
+    </div>
+  </body>
+</html>

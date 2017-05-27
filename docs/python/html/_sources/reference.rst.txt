@@ -12,6 +12,7 @@ Nifty API Reference
     nifty.cgp
     nifty.graph
     nifty.graph.rag
+    nifty.graph.agglo
     nifty.graph.optimization
     nifty.graph.optimization.multicut
     nifty.graph.optimization.lifted_multicut

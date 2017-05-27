@@ -1,12 +1,12 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>nifty.graph.optimization.mincut &#8212; Nifty 0.7.1 documentation</title>
+    <title>nifty.graph.optimization.mincut &#8212; Nifty 0.9.3 documentation</title>
     
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -15,7 +15,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '0.7.1',
+        VERSION:     '0.9.3',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -31,7 +31,7 @@
     <link rel="next" title="nifty.ground_truth" href="nifty.ground_truth.html" />
     <link rel="prev" title="nifty.graph.optimization.lifted_multicut" href="nifty.graph.optimization.lifted_multicut.html" /> 
   </head>
-  <body>
+  <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -47,7 +47,7 @@
         <li class="right" >
           <a href="nifty.graph.optimization.lifted_multicut.html" title="nifty.graph.optimization.lifted_multicut"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Nifty 0.7.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Nifty 0.9.3 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../reference.html" accesskey="U">Nifty API Reference</a> &#187;</li> 
       </ul>
     </div>
@@ -105,6 +105,41 @@
 <div style='clear:both'></div><div class="section" id="classes">
 <h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
+<dt id="nifty.graph.optimization.mincut.Configuration">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.mincut.</code><code class="descname">Configuration</code><a class="headerlink" href="#nifty.graph.optimization.mincut.Configuration" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="nifty.graph.optimization.mincut.Configuration.WITH_CPLEX">
+<code class="descname">WITH_CPLEX</code><em class="property"> = True</em><a class="headerlink" href="#nifty.graph.optimization.mincut.Configuration.WITH_CPLEX" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.mincut.Configuration.WITH_GLPK">
+<code class="descname">WITH_GLPK</code><em class="property"> = True</em><a class="headerlink" href="#nifty.graph.optimization.mincut.Configuration.WITH_GLPK" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.mincut.Configuration.WITH_GUROBI">
+<code class="descname">WITH_GUROBI</code><em class="property"> = False</em><a class="headerlink" href="#nifty.graph.optimization.mincut.Configuration.WITH_GUROBI" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.mincut.Configuration.WITH_HDF5">
+<code class="descname">WITH_HDF5</code><em class="property"> = True</em><a class="headerlink" href="#nifty.graph.optimization.mincut.Configuration.WITH_HDF5" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.mincut.Configuration.WITH_LP_MP">
+<code class="descname">WITH_LP_MP</code><em class="property"> = True</em><a class="headerlink" href="#nifty.graph.optimization.mincut.Configuration.WITH_LP_MP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.mincut.Configuration.WITH_QPBO">
+<code class="descname">WITH_QPBO</code><em class="property"> = True</em><a class="headerlink" href="#nifty.graph.optimization.mincut.Configuration.WITH_QPBO" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<div style='clear:both'></div><dl class="class">
 <dt id="nifty.graph.optimization.mincut.MincutBaseMincutObjectiveEdgeContractionGraphUndirectedGraph">
 <em class="property">class </em><code class="descclassname">nifty.graph.optimization.mincut.</code><code class="descname">MincutBaseMincutObjectiveEdgeContractionGraphUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.mincut.MincutBaseMincutObjectiveEdgeContractionGraphUndirectedGraph" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="method">
@@ -121,7 +156,7 @@
 
 </dd></dl>
 
-<dl class="class">
+<div style='clear:both'></div><dl class="class">
 <dt id="nifty.graph.optimization.mincut.MincutBaseMincutObjectiveUndirectedGraph">
 <em class="property">class </em><code class="descclassname">nifty.graph.optimization.mincut.</code><code class="descname">MincutBaseMincutObjectiveUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.mincut.MincutBaseMincutObjectiveUndirectedGraph" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="method">
@@ -138,17 +173,17 @@
 
 </dd></dl>
 
-<dl class="class">
+<div style='clear:both'></div><dl class="class">
 <dt id="nifty.graph.optimization.mincut.MincutCcFusionMoveBasedFactoryMincutObjectiveUndirectedGraph">
 <em class="property">class </em><code class="descclassname">nifty.graph.optimization.mincut.</code><code class="descname">MincutCcFusionMoveBasedFactoryMincutObjectiveUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.mincut.MincutCcFusionMoveBasedFactoryMincutObjectiveUndirectedGraph" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="class">
+<div style='clear:both'></div><dl class="class">
 <dt id="nifty.graph.optimization.mincut.MincutCcFusionMoveBasedMincutObjectiveUndirectedGraph">
 <em class="property">class </em><code class="descclassname">nifty.graph.optimization.mincut.</code><code class="descname">MincutCcFusionMoveBasedMincutObjectiveUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.mincut.MincutCcFusionMoveBasedMincutObjectiveUndirectedGraph" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="class">
+<div style='clear:both'></div><dl class="class">
 <dt id="nifty.graph.optimization.mincut.MincutCcFusionMoveBasedSettingsMincutObjectiveUndirectedGraph">
 <em class="property">class </em><code class="descclassname">nifty.graph.optimization.mincut.</code><code class="descname">MincutCcFusionMoveBasedSettingsMincutObjectiveUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.mincut.MincutCcFusionMoveBasedSettingsMincutObjectiveUndirectedGraph" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="attribute">
@@ -178,7 +213,7 @@
 
 </dd></dl>
 
-<dl class="class">
+<div style='clear:both'></div><dl class="class">
 <dt id="nifty.graph.optimization.mincut.MincutCcFusionMoveSettingsMincutObjectiveUndirectedGraph">
 <em class="property">class </em><code class="descclassname">nifty.graph.optimization.mincut.</code><code class="descname">MincutCcFusionMoveSettingsMincutObjectiveUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.mincut.MincutCcFusionMoveSettingsMincutObjectiveUndirectedGraph" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="attribute">
@@ -188,7 +223,7 @@
 
 </dd></dl>
 
-<dl class="class">
+<div style='clear:both'></div><dl class="class">
 <dt id="nifty.graph.optimization.mincut.MincutFactoryBaseMincutObjectiveEdgeContractionGraphUndirectedGraph">
 <em class="property">class </em><code class="descclassname">nifty.graph.optimization.mincut.</code><code class="descname">MincutFactoryBaseMincutObjectiveEdgeContractionGraphUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.mincut.MincutFactoryBaseMincutObjectiveEdgeContractionGraphUndirectedGraph" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="method">
@@ -198,7 +233,7 @@
 
 </dd></dl>
 
-<dl class="class">
+<div style='clear:both'></div><dl class="class">
 <dt id="nifty.graph.optimization.mincut.MincutFactoryBaseMincutObjectiveUndirectedGraph">
 <em class="property">class </em><code class="descclassname">nifty.graph.optimization.mincut.</code><code class="descname">MincutFactoryBaseMincutObjectiveUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.mincut.MincutFactoryBaseMincutObjectiveUndirectedGraph" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="method">
@@ -208,67 +243,7 @@
 
 </dd></dl>
 
-<dl class="class">
-<dt id="nifty.graph.optimization.mincut.MincutGreedyAdditiveFactoryMincutObjectiveEdgeContractionGraphUndirectedGraph">
-<em class="property">class </em><code class="descclassname">nifty.graph.optimization.mincut.</code><code class="descname">MincutGreedyAdditiveFactoryMincutObjectiveEdgeContractionGraphUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.mincut.MincutGreedyAdditiveFactoryMincutObjectiveEdgeContractionGraphUndirectedGraph" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="class">
-<dt id="nifty.graph.optimization.mincut.MincutGreedyAdditiveFactoryMincutObjectiveUndirectedGraph">
-<em class="property">class </em><code class="descclassname">nifty.graph.optimization.mincut.</code><code class="descname">MincutGreedyAdditiveFactoryMincutObjectiveUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.mincut.MincutGreedyAdditiveFactoryMincutObjectiveUndirectedGraph" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="class">
-<dt id="nifty.graph.optimization.mincut.MincutGreedyAdditiveMincutObjectiveEdgeContractionGraphUndirectedGraph">
-<em class="property">class </em><code class="descclassname">nifty.graph.optimization.mincut.</code><code class="descname">MincutGreedyAdditiveMincutObjectiveEdgeContractionGraphUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.mincut.MincutGreedyAdditiveMincutObjectiveEdgeContractionGraphUndirectedGraph" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="class">
-<dt id="nifty.graph.optimization.mincut.MincutGreedyAdditiveMincutObjectiveUndirectedGraph">
-<em class="property">class </em><code class="descclassname">nifty.graph.optimization.mincut.</code><code class="descname">MincutGreedyAdditiveMincutObjectiveUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.mincut.MincutGreedyAdditiveMincutObjectiveUndirectedGraph" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="class">
-<dt id="nifty.graph.optimization.mincut.MincutGreedyAdditiveSettingsMincutObjectiveEdgeContractionGraphUndirectedGraph">
-<em class="property">class </em><code class="descclassname">nifty.graph.optimization.mincut.</code><code class="descname">MincutGreedyAdditiveSettingsMincutObjectiveEdgeContractionGraphUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.mincut.MincutGreedyAdditiveSettingsMincutObjectiveEdgeContractionGraphUndirectedGraph" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="attribute">
-<dt id="nifty.graph.optimization.mincut.MincutGreedyAdditiveSettingsMincutObjectiveEdgeContractionGraphUndirectedGraph.improve">
-<code class="descname">improve</code><a class="headerlink" href="#nifty.graph.optimization.mincut.MincutGreedyAdditiveSettingsMincutObjectiveEdgeContractionGraphUndirectedGraph.improve" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="nifty.graph.optimization.mincut.MincutGreedyAdditiveSettingsMincutObjectiveEdgeContractionGraphUndirectedGraph.nodeNumStopCond">
-<code class="descname">nodeNumStopCond</code><a class="headerlink" href="#nifty.graph.optimization.mincut.MincutGreedyAdditiveSettingsMincutObjectiveEdgeContractionGraphUndirectedGraph.nodeNumStopCond" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="nifty.graph.optimization.mincut.MincutGreedyAdditiveSettingsMincutObjectiveEdgeContractionGraphUndirectedGraph.weightStopCond">
-<code class="descname">weightStopCond</code><a class="headerlink" href="#nifty.graph.optimization.mincut.MincutGreedyAdditiveSettingsMincutObjectiveEdgeContractionGraphUndirectedGraph.weightStopCond" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="nifty.graph.optimization.mincut.MincutGreedyAdditiveSettingsMincutObjectiveUndirectedGraph">
-<em class="property">class </em><code class="descclassname">nifty.graph.optimization.mincut.</code><code class="descname">MincutGreedyAdditiveSettingsMincutObjectiveUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.mincut.MincutGreedyAdditiveSettingsMincutObjectiveUndirectedGraph" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="attribute">
-<dt id="nifty.graph.optimization.mincut.MincutGreedyAdditiveSettingsMincutObjectiveUndirectedGraph.improve">
-<code class="descname">improve</code><a class="headerlink" href="#nifty.graph.optimization.mincut.MincutGreedyAdditiveSettingsMincutObjectiveUndirectedGraph.improve" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="nifty.graph.optimization.mincut.MincutGreedyAdditiveSettingsMincutObjectiveUndirectedGraph.nodeNumStopCond">
-<code class="descname">nodeNumStopCond</code><a class="headerlink" href="#nifty.graph.optimization.mincut.MincutGreedyAdditiveSettingsMincutObjectiveUndirectedGraph.nodeNumStopCond" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="nifty.graph.optimization.mincut.MincutGreedyAdditiveSettingsMincutObjectiveUndirectedGraph.weightStopCond">
-<code class="descname">weightStopCond</code><a class="headerlink" href="#nifty.graph.optimization.mincut.MincutGreedyAdditiveSettingsMincutObjectiveUndirectedGraph.weightStopCond" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
+<div style='clear:both'></div><dl class="class">
 <dt id="nifty.graph.optimization.mincut.MincutObjectiveEdgeContractionGraphUndirectedGraph">
 <em class="property">class </em><code class="descclassname">nifty.graph.optimization.mincut.</code><code class="descname">MincutObjectiveEdgeContractionGraphUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.mincut.MincutObjectiveEdgeContractionGraphUndirectedGraph" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="method">
@@ -295,11 +270,11 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>proposalGenerator</strong> (<em>None</em><em>, </em><em>optional</em>) – Proposal generator (default watershedProposalGenerator)</li>
-<li><strong>numberOfThreads</strong> (<em>int</em><em>, </em><em>optional</em>) – (default 1)</li>
-<li><strong>numberOfIterations</strong> (<em>int</em><em>, </em><em>optional</em>) – Maximum number of iterations(default 1000)</li>
-<li><strong>stopIfNoImprovement</strong> (<em>int</em><em>, </em><em>optional</em>) – Stop after n iterations without improvement (default 100)</li>
-<li><strong>fusionMoveSettings</strong> (<em>FusionMoveSettings</em><em>, </em><em>optional</em>) – The settings of the underlaying mincutCcFusionMove</li>
+<li><strong>proposalGenerator</strong> (<em>None</em><em>, </em><em>optional</em>) &#8211; Proposal generator (default watershedProposalGenerator)</li>
+<li><strong>numberOfThreads</strong> (<em>int</em><em>, </em><em>optional</em>) &#8211; (default 1)</li>
+<li><strong>numberOfIterations</strong> (<em>int</em><em>, </em><em>optional</em>) &#8211; Maximum number of iterations(default 1000)</li>
+<li><strong>stopIfNoImprovement</strong> (<em>int</em><em>, </em><em>optional</em>) &#8211; Stop after n iterations without improvement (default 100)</li>
+<li><strong>fusionMoveSettings</strong> (<em>FusionMoveSettings</em><em>, </em><em>optional</em>) &#8211; The settings of the underlaying mincutCcFusionMove</li>
 </ul>
 </td>
 </tr>
@@ -325,25 +300,25 @@
 
 <dl class="staticmethod">
 <dt id="nifty.graph.optimization.mincut.MincutObjectiveEdgeContractionGraphUndirectedGraph.watershedProposalGenerator">
-<em class="property">static </em><code class="descname">watershedProposalGenerator</code><span class="sig-paren">(</span><em>sigma=1.0</em>, <em>numberOfSeeds=0.1</em>, <em>seedingStrategie=’SEED_FROM_NEGATIVE’</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.optimization.mincut.MincutObjectiveEdgeContractionGraphUndirectedGraph.watershedProposalGenerator" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="descname">watershedProposalGenerator</code><span class="sig-paren">(</span><em>sigma=1.0</em>, <em>numberOfSeeds=0.1</em>, <em>seedingStrategie='SEED_FROM_NEGATIVE'</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.optimization.mincut.MincutObjectiveEdgeContractionGraphUndirectedGraph.watershedProposalGenerator" title="Permalink to this definition">¶</a></dt>
 <dd><p>factory function for a watershed based proposal generator for mincutCcFusionMoveBased</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>sigma</strong> (<em>float</em><em>, </em><em>optional</em>) – The weights are perturbed by a additive
+<li><strong>sigma</strong> (<em>float</em><em>, </em><em>optional</em>) &#8211; The weights are perturbed by a additive
 Gaussian noise n(0,sigma) (default  0.0)</li>
-<li><strong>numberOfSeeds</strong> (<em>float</em><em>, </em><em>optional</em>) – Number of seed to generate.
+<li><strong>numberOfSeeds</strong> (<em>float</em><em>, </em><em>optional</em>) &#8211; Number of seed to generate.
 A number smaller as one will be interpreted as a fraction of
 the number of nodes (default 0.1)</li>
-<li><strong>seedingStrategie</strong> (<em>str</em><em>, </em><em>optional</em>) – <p>Can be:
-- ‘SEED_FROM_NEGATIVE’ : All negative weighted  edges</p>
+<li><strong>seedingStrategie</strong> (<em>str</em><em>, </em><em>optional</em>) &#8211; <p>Can be:
+- &#8216;SEED_FROM_NEGATIVE&#8217; : All negative weighted  edges</p>
 <blockquote>
 <div>can be used to generate seeds.</div></blockquote>
 <ul>
 <li><dl class="first docutils">
-<dt>’SEED_FROM_ALL’ <span class="classifier-delimiter">:</span> <span class="classifier">All edges</span></dt>
+<dt>&#8216;SEED_FROM_ALL&#8217; <span class="classifier-delimiter">:</span> <span class="classifier">All edges</span></dt>
 <dd>can be used to generate seeds.</dd>
 </dl>
 </li>
@@ -364,7 +339,7 @@ the number of nodes (default 0.1)</li>
 
 </dd></dl>
 
-<dl class="class">
+<div style='clear:both'></div><dl class="class">
 <dt id="nifty.graph.optimization.mincut.MincutObjectiveUndirectedGraph">
 <em class="property">class </em><code class="descclassname">nifty.graph.optimization.mincut.</code><code class="descname">MincutObjectiveUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.mincut.MincutObjectiveUndirectedGraph" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="method">
@@ -391,11 +366,11 @@ the number of nodes (default 0.1)</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>proposalGenerator</strong> (<em>None</em><em>, </em><em>optional</em>) – Proposal generator (default watershedProposalGenerator)</li>
-<li><strong>numberOfThreads</strong> (<em>int</em><em>, </em><em>optional</em>) – (default 1)</li>
-<li><strong>numberOfIterations</strong> (<em>int</em><em>, </em><em>optional</em>) – Maximum number of iterations(default 1000)</li>
-<li><strong>stopIfNoImprovement</strong> (<em>int</em><em>, </em><em>optional</em>) – Stop after n iterations without improvement (default 100)</li>
-<li><strong>fusionMoveSettings</strong> (<em>FusionMoveSettings</em><em>, </em><em>optional</em>) – The settings of the underlaying mincutCcFusionMove</li>
+<li><strong>proposalGenerator</strong> (<em>None</em><em>, </em><em>optional</em>) &#8211; Proposal generator (default watershedProposalGenerator)</li>
+<li><strong>numberOfThreads</strong> (<em>int</em><em>, </em><em>optional</em>) &#8211; (default 1)</li>
+<li><strong>numberOfIterations</strong> (<em>int</em><em>, </em><em>optional</em>) &#8211; Maximum number of iterations(default 1000)</li>
+<li><strong>stopIfNoImprovement</strong> (<em>int</em><em>, </em><em>optional</em>) &#8211; Stop after n iterations without improvement (default 100)</li>
+<li><strong>fusionMoveSettings</strong> (<em>FusionMoveSettings</em><em>, </em><em>optional</em>) &#8211; The settings of the underlaying mincutCcFusionMove</li>
 </ul>
 </td>
 </tr>
@@ -421,25 +396,25 @@ the number of nodes (default 0.1)</li>
 
 <dl class="staticmethod">
 <dt id="nifty.graph.optimization.mincut.MincutObjectiveUndirectedGraph.watershedProposalGenerator">
-<em class="property">static </em><code class="descname">watershedProposalGenerator</code><span class="sig-paren">(</span><em>sigma=1.0</em>, <em>numberOfSeeds=0.1</em>, <em>seedingStrategie=’SEED_FROM_NEGATIVE’</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.optimization.mincut.MincutObjectiveUndirectedGraph.watershedProposalGenerator" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="descname">watershedProposalGenerator</code><span class="sig-paren">(</span><em>sigma=1.0</em>, <em>numberOfSeeds=0.1</em>, <em>seedingStrategie='SEED_FROM_NEGATIVE'</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.optimization.mincut.MincutObjectiveUndirectedGraph.watershedProposalGenerator" title="Permalink to this definition">¶</a></dt>
 <dd><p>factory function for a watershed based proposal generator for mincutCcFusionMoveBased</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>sigma</strong> (<em>float</em><em>, </em><em>optional</em>) – The weights are perturbed by a additive
+<li><strong>sigma</strong> (<em>float</em><em>, </em><em>optional</em>) &#8211; The weights are perturbed by a additive
 Gaussian noise n(0,sigma) (default  0.0)</li>
-<li><strong>numberOfSeeds</strong> (<em>float</em><em>, </em><em>optional</em>) – Number of seed to generate.
+<li><strong>numberOfSeeds</strong> (<em>float</em><em>, </em><em>optional</em>) &#8211; Number of seed to generate.
 A number smaller as one will be interpreted as a fraction of
 the number of nodes (default 0.1)</li>
-<li><strong>seedingStrategie</strong> (<em>str</em><em>, </em><em>optional</em>) – <p>Can be:
-- ‘SEED_FROM_NEGATIVE’ : All negative weighted  edges</p>
+<li><strong>seedingStrategie</strong> (<em>str</em><em>, </em><em>optional</em>) &#8211; <p>Can be:
+- &#8216;SEED_FROM_NEGATIVE&#8217; : All negative weighted  edges</p>
 <blockquote>
 <div>can be used to generate seeds.</div></blockquote>
 <ul>
 <li><dl class="first docutils">
-<dt>’SEED_FROM_ALL’ <span class="classifier-delimiter">:</span> <span class="classifier">All edges</span></dt>
+<dt>&#8216;SEED_FROM_ALL&#8217; <span class="classifier-delimiter">:</span> <span class="classifier">All edges</span></dt>
 <dd>can be used to generate seeds.</dd>
 </dl>
 </li>
@@ -460,62 +435,22 @@ the number of nodes (default 0.1)</li>
 
 </dd></dl>
 
-<dl class="class">
-<dt id="nifty.graph.optimization.mincut.MincutQpboFactoryMincutObjectiveEdgeContractionGraphUndirectedGraph">
-<em class="property">class </em><code class="descclassname">nifty.graph.optimization.mincut.</code><code class="descname">MincutQpboFactoryMincutObjectiveEdgeContractionGraphUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.mincut.MincutQpboFactoryMincutObjectiveEdgeContractionGraphUndirectedGraph" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="class">
-<dt id="nifty.graph.optimization.mincut.MincutQpboFactoryMincutObjectiveUndirectedGraph">
-<em class="property">class </em><code class="descclassname">nifty.graph.optimization.mincut.</code><code class="descname">MincutQpboFactoryMincutObjectiveUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.mincut.MincutQpboFactoryMincutObjectiveUndirectedGraph" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="class">
-<dt id="nifty.graph.optimization.mincut.MincutQpboMincutObjectiveEdgeContractionGraphUndirectedGraph">
-<em class="property">class </em><code class="descclassname">nifty.graph.optimization.mincut.</code><code class="descname">MincutQpboMincutObjectiveEdgeContractionGraphUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.mincut.MincutQpboMincutObjectiveEdgeContractionGraphUndirectedGraph" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="class">
-<dt id="nifty.graph.optimization.mincut.MincutQpboMincutObjectiveUndirectedGraph">
-<em class="property">class </em><code class="descclassname">nifty.graph.optimization.mincut.</code><code class="descname">MincutQpboMincutObjectiveUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.mincut.MincutQpboMincutObjectiveUndirectedGraph" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="class">
-<dt id="nifty.graph.optimization.mincut.MincutQpboSettingsMincutObjectiveEdgeContractionGraphUndirectedGraph">
-<em class="property">class </em><code class="descclassname">nifty.graph.optimization.mincut.</code><code class="descname">MincutQpboSettingsMincutObjectiveEdgeContractionGraphUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.mincut.MincutQpboSettingsMincutObjectiveEdgeContractionGraphUndirectedGraph" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="attribute">
-<dt id="nifty.graph.optimization.mincut.MincutQpboSettingsMincutObjectiveEdgeContractionGraphUndirectedGraph.improve">
-<code class="descname">improve</code><a class="headerlink" href="#nifty.graph.optimization.mincut.MincutQpboSettingsMincutObjectiveEdgeContractionGraphUndirectedGraph.improve" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="nifty.graph.optimization.mincut.MincutQpboSettingsMincutObjectiveUndirectedGraph">
-<em class="property">class </em><code class="descclassname">nifty.graph.optimization.mincut.</code><code class="descname">MincutQpboSettingsMincutObjectiveUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.mincut.MincutQpboSettingsMincutObjectiveUndirectedGraph" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="attribute">
-<dt id="nifty.graph.optimization.mincut.MincutQpboSettingsMincutObjectiveUndirectedGraph.improve">
-<code class="descname">improve</code><a class="headerlink" href="#nifty.graph.optimization.mincut.MincutQpboSettingsMincutObjectiveUndirectedGraph.improve" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
+<div style='clear:both'></div><dl class="class">
 <dt id="nifty.graph.optimization.mincut.MincutVisitorBaseMincutObjectiveEdgeContractionGraphUndirectedGraph">
 <em class="property">class </em><code class="descclassname">nifty.graph.optimization.mincut.</code><code class="descname">MincutVisitorBaseMincutObjectiveEdgeContractionGraphUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.mincut.MincutVisitorBaseMincutObjectiveEdgeContractionGraphUndirectedGraph" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="class">
+<div style='clear:both'></div><dl class="class">
 <dt id="nifty.graph.optimization.mincut.MincutVisitorBaseMincutObjectiveUndirectedGraph">
 <em class="property">class </em><code class="descclassname">nifty.graph.optimization.mincut.</code><code class="descname">MincutVisitorBaseMincutObjectiveUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.mincut.MincutVisitorBaseMincutObjectiveUndirectedGraph" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="class">
+<div style='clear:both'></div><dl class="class">
 <dt id="nifty.graph.optimization.mincut.ProposalGeneratorFactoryBaseMincutObjectiveUndirectedGraph">
 <em class="property">class </em><code class="descclassname">nifty.graph.optimization.mincut.</code><code class="descname">ProposalGeneratorFactoryBaseMincutObjectiveUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.mincut.ProposalGeneratorFactoryBaseMincutObjectiveUndirectedGraph" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="class">
+<div style='clear:both'></div><dl class="class">
 <dt id="nifty.graph.optimization.mincut.VerboseVisitorMincutObjectiveEdgeContractionGraphUndirectedGraph">
 <em class="property">class </em><code class="descclassname">nifty.graph.optimization.mincut.</code><code class="descname">VerboseVisitorMincutObjectiveEdgeContractionGraphUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.mincut.VerboseVisitorMincutObjectiveEdgeContractionGraphUndirectedGraph" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="attribute">
@@ -545,7 +480,7 @@ the number of nodes (default 0.1)</li>
 
 </dd></dl>
 
-<dl class="class">
+<div style='clear:both'></div><dl class="class">
 <dt id="nifty.graph.optimization.mincut.VerboseVisitorMincutObjectiveUndirectedGraph">
 <em class="property">class </em><code class="descclassname">nifty.graph.optimization.mincut.</code><code class="descname">VerboseVisitorMincutObjectiveUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.mincut.VerboseVisitorMincutObjectiveUndirectedGraph" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="attribute">
@@ -575,12 +510,12 @@ the number of nodes (default 0.1)</li>
 
 </dd></dl>
 
-<dl class="class">
+<div style='clear:both'></div><dl class="class">
 <dt id="nifty.graph.optimization.mincut.WatershedProposalGeneratorFactoryMincutObjectiveUndirectedGraph">
 <em class="property">class </em><code class="descclassname">nifty.graph.optimization.mincut.</code><code class="descname">WatershedProposalGeneratorFactoryMincutObjectiveUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.mincut.WatershedProposalGeneratorFactoryMincutObjectiveUndirectedGraph" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="class">
+<div style='clear:both'></div><dl class="class">
 <dt id="nifty.graph.optimization.mincut.WatershedProposalGeneratorSettingsMincutObjectiveUndirectedGraph">
 <em class="property">class </em><code class="descclassname">nifty.graph.optimization.mincut.</code><code class="descname">WatershedProposalGeneratorSettingsMincutObjectiveUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.mincut.WatershedProposalGeneratorSettingsMincutObjectiveUndirectedGraph" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="class">
@@ -615,7 +550,32 @@ the number of nodes (default 0.1)</li>
 
 </dd></dl>
 
-</div>
+<div style='clear:both'></div><dl class="class">
+<dt id="nifty.graph.optimization.mincut.partial">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.mincut.</code><code class="descname">partial</code><a class="headerlink" href="#nifty.graph.optimization.mincut.partial" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id1"><span class="problematic" id="id2">*</span></a>args, <a href="#id3"><span class="problematic" id="id4">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+<dl class="attribute">
+<dt id="nifty.graph.optimization.mincut.partial.args">
+<code class="descname">args</code><a class="headerlink" href="#nifty.graph.optimization.mincut.partial.args" title="Permalink to this definition">¶</a></dt>
+<dd><p>tuple of arguments to future partial calls</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.mincut.partial.func">
+<code class="descname">func</code><a class="headerlink" href="#nifty.graph.optimization.mincut.partial.func" title="Permalink to this definition">¶</a></dt>
+<dd><p>function object to use in future partial calls</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.mincut.partial.keywords">
+<code class="descname">keywords</code><a class="headerlink" href="#nifty.graph.optimization.mincut.partial.keywords" title="Permalink to this definition">¶</a></dt>
+<dd><p>dictionary of keyword arguments to future partial calls</p>
+</dd></dl>
+
+</dd></dl>
+
+<div style='clear:both'></div></div>
 </div>
 </div>
 
@@ -640,12 +600,12 @@ the number of nodes (default 0.1)</li>
         <li class="right" >
           <a href="nifty.graph.optimization.lifted_multicut.html" title="nifty.graph.optimization.lifted_multicut"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Nifty 0.7.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Nifty 0.9.3 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../reference.html" >Nifty API Reference</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.1.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
     </div>
   </body>
 </html>

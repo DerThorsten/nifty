@@ -1,12 +1,12 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>nifty.graph.optimization &#8212; Nifty 0.7.1 documentation</title>
+    <title>nifty.graph.optimization &#8212; Nifty 0.9.3 documentation</title>
     
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -15,7 +15,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '0.7.1',
+        VERSION:     '0.9.3',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -29,9 +29,9 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="nifty.graph.optimization.multicut" href="nifty.graph.optimization.multicut.html" />
-    <link rel="prev" title="nifty.graph.rag" href="nifty.graph.rag.html" /> 
+    <link rel="prev" title="nifty.graph.agglo" href="nifty.graph.agglo.html" /> 
   </head>
-  <body>
+  <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -45,17 +45,25 @@
           <a href="nifty.graph.optimization.multicut.html" title="nifty.graph.optimization.multicut"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="nifty.graph.rag.html" title="nifty.graph.rag"
+          <a href="nifty.graph.agglo.html" title="nifty.graph.agglo"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Nifty 0.7.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Nifty 0.9.3 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../reference.html" accesskey="U">Nifty API Reference</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">nifty.graph.optimization</a><ul>
+<li><a class="reference internal" href="#classes">Classes</a></li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
-  <p class="topless"><a href="nifty.graph.rag.html"
-                        title="previous chapter">nifty.graph.rag</a></p>
+  <p class="topless"><a href="nifty.graph.agglo.html"
+                        title="previous chapter">nifty.graph.agglo</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="nifty.graph.optimization.multicut.html"
                         title="next chapter">nifty.graph.optimization.multicut</a></p>
@@ -79,6 +87,44 @@
             
   <div class="section" id="module-nifty.graph.optimization">
 <span id="nifty-graph-optimization"></span><h1>nifty.graph.optimization<a class="headerlink" href="#module-nifty.graph.optimization" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="nifty.graph.optimization.Configuration">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.</code><code class="descname">Configuration</code><a class="headerlink" href="#nifty.graph.optimization.Configuration" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="nifty.graph.optimization.Configuration.WITH_CPLEX">
+<code class="descname">WITH_CPLEX</code><em class="property"> = True</em><a class="headerlink" href="#nifty.graph.optimization.Configuration.WITH_CPLEX" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.Configuration.WITH_GLPK">
+<code class="descname">WITH_GLPK</code><em class="property"> = True</em><a class="headerlink" href="#nifty.graph.optimization.Configuration.WITH_GLPK" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.Configuration.WITH_GUROBI">
+<code class="descname">WITH_GUROBI</code><em class="property"> = False</em><a class="headerlink" href="#nifty.graph.optimization.Configuration.WITH_GUROBI" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.Configuration.WITH_HDF5">
+<code class="descname">WITH_HDF5</code><em class="property"> = True</em><a class="headerlink" href="#nifty.graph.optimization.Configuration.WITH_HDF5" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.Configuration.WITH_LP_MP">
+<code class="descname">WITH_LP_MP</code><em class="property"> = True</em><a class="headerlink" href="#nifty.graph.optimization.Configuration.WITH_LP_MP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.optimization.Configuration.WITH_QPBO">
+<code class="descname">WITH_QPBO</code><em class="property"> = True</em><a class="headerlink" href="#nifty.graph.optimization.Configuration.WITH_QPBO" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<div style='clear:both'></div></div>
 </div>
 
 
@@ -100,14 +146,14 @@
           <a href="nifty.graph.optimization.multicut.html" title="nifty.graph.optimization.multicut"
              >next</a> |</li>
         <li class="right" >
-          <a href="nifty.graph.rag.html" title="nifty.graph.rag"
+          <a href="nifty.graph.agglo.html" title="nifty.graph.agglo"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Nifty 0.7.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Nifty 0.9.3 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../reference.html" >Nifty API Reference</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.1.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
     </div>
   </body>
 </html>

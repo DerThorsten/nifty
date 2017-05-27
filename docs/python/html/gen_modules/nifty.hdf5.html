@@ -1,12 +1,12 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>nifty.hdf5 &#8212; Nifty 0.7.1 documentation</title>
+    <title>nifty.hdf5 &#8212; Nifty 0.9.3 documentation</title>
     
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -15,7 +15,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '0.7.1',
+        VERSION:     '0.9.3',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -31,7 +31,7 @@
     <link rel="next" title="nifty.ufd" href="nifty.ufd.html" />
     <link rel="prev" title="nifty.ground_truth" href="nifty.ground_truth.html" /> 
   </head>
-  <body>
+  <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -47,7 +47,7 @@
         <li class="right" >
           <a href="nifty.ground_truth.html" title="nifty.ground_truth"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Nifty 0.7.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Nifty 0.9.3 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../reference.html" accesskey="U">Nifty API Reference</a> &#187;</li> 
       </ul>
     </div>
@@ -56,10 +56,7 @@
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">nifty.hdf5</a><ul>
-<li><a class="reference internal" href="#functions">Functions</a><ul>
 <li><a class="reference internal" href="#classes">Classes</a></li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
@@ -90,472 +87,44 @@
             
   <div class="section" id="module-nifty.hdf5">
 <span id="nifty-hdf5"></span><h1>nifty.hdf5<a class="headerlink" href="#module-nifty.hdf5" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="functions">
-<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
-<dl class="function">
-<dt id="nifty.hdf5.blockwiseWatershed_float32_uint32_3d">
-<code class="descclassname">nifty.hdf5.</code><code class="descname">blockwiseWatershed_float32_uint32_3d</code><span class="sig-paren">(</span><em>arg0: str, arg1: str, arg2: str, arg3: str, arg4: List[int[3]], arg5: List[int[3]], arg6: int</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#nifty.hdf5.blockwiseWatershed_float32_uint32_3d" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<div style='clear:both'></div><dl class="function">
-<dt id="nifty.hdf5.closeFile">
-<code class="descclassname">nifty.hdf5.</code><code class="descname">closeFile</code><span class="sig-paren">(</span><em>hidT: int</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#nifty.hdf5.closeFile" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<div style='clear:both'></div><dl class="function">
-<dt id="nifty.hdf5.closeGroup">
-<code class="descclassname">nifty.hdf5.</code><code class="descname">closeGroup</code><span class="sig-paren">(</span><em>hidT: int</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#nifty.hdf5.closeGroup" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<div style='clear:both'></div><dl class="function">
-<dt id="nifty.hdf5.createFile">
-<code class="descclassname">nifty.hdf5.</code><code class="descname">createFile</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.hdf5.createFile" title="Permalink to this definition">¶</a></dt>
-<dd><p>Overloaded function.</p>
-<ol class="arabic simple">
-<li>createFile(filename: str, cacheSettings: nifty.hdf5._hdf5.CacheSettings, hdf5version: nifty.hdf5._hdf5.HDF5Version=HDF5Version.DEFAULT_HDF5_VERSION) -&gt; int</li>
-<li>createFile(filename: str, hdf5version: nifty.hdf5._hdf5.HDF5Version=HDF5Version.DEFAULT_HDF5_VERSION) -&gt; int</li>
-</ol>
-</dd></dl>
-
-<div style='clear:both'></div><dl class="function">
-<dt id="nifty.hdf5.createGroup">
-<code class="descclassname">nifty.hdf5.</code><code class="descname">createGroup</code><span class="sig-paren">(</span><em>hidT: int</em>, <em>groupName: str</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#nifty.hdf5.createGroup" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<div style='clear:both'></div><dl class="function">
-<dt id="nifty.hdf5.openFile">
-<code class="descclassname">nifty.hdf5.</code><code class="descname">openFile</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.hdf5.openFile" title="Permalink to this definition">¶</a></dt>
-<dd><p>Overloaded function.</p>
-<ol class="arabic simple">
-<li>openFile(filename: str, cacheSettings: nifty.hdf5._hdf5.CacheSettings, fileAccessMode: nifty.hdf5._hdf5.FileAccessMode=FileAccessMode.READ_ONLY, hdf5version: nifty.hdf5._hdf5.HDF5Version=HDF5Version.DEFAULT_HDF5_VERSION) -&gt; int</li>
-<li>openFile(filename: str, fileAccessMode: nifty.hdf5._hdf5.FileAccessMode=FileAccessMode.READ_ONLY, hdf5version: nifty.hdf5._hdf5.HDF5Version=HDF5Version.DEFAULT_HDF5_VERSION) -&gt; int</li>
-</ol>
-</dd></dl>
-
-<div style='clear:both'></div><dl class="function">
-<dt id="nifty.hdf5.openGroup">
-<code class="descclassname">nifty.hdf5.</code><code class="descname">openGroup</code><span class="sig-paren">(</span><em>hidT: int</em>, <em>groupName: str</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#nifty.hdf5.openGroup" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<div style='clear:both'></div><dl class="function">
-<dt id="nifty.hdf5.runBenchmark">
-<code class="descclassname">nifty.hdf5.</code><code class="descname">runBenchmark</code><span class="sig-paren">(</span><em>arg0: nifty.hdf5._hdf5.Hdf5ArrayUInt32</em>, <em>arg1: nifty.tools._tools.Blocking3d</em>, <em>arg2: int</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#nifty.hdf5.runBenchmark" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<div style='clear:both'></div><dl class="function">
-<dt id="nifty.hdf5.unionFindWatershed">
-<code class="descclassname">nifty.hdf5.</code><code class="descname">unionFindWatershed</code><span class="sig-paren">(</span><em>heightMapFilename</em>, <em>heightMapDataset</em>, <em>labelsFilename</em>, <em>labelsDataset</em>, <em>blockShape</em>, <em>numberOfThreads=-1</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.hdf5.unionFindWatershed" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<div style='clear:both'></div><div class="section" id="classes">
-<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="nifty.hdf5.CacheSettings">
-<em class="property">class </em><code class="descclassname">nifty.hdf5.</code><code class="descname">CacheSettings</code><a class="headerlink" href="#nifty.hdf5.CacheSettings" title="Permalink to this definition">¶</a></dt>
+<dt id="nifty.hdf5.Configuration">
+<em class="property">class </em><code class="descclassname">nifty.hdf5.</code><code class="descname">Configuration</code><a class="headerlink" href="#nifty.hdf5.Configuration" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="attribute">
-<dt id="nifty.hdf5.CacheSettings.hashTabelSize">
-<code class="descname">hashTabelSize</code><a class="headerlink" href="#nifty.hdf5.CacheSettings.hashTabelSize" title="Permalink to this definition">¶</a></dt>
+<dt id="nifty.hdf5.Configuration.WITH_CPLEX">
+<code class="descname">WITH_CPLEX</code><em class="property"> = True</em><a class="headerlink" href="#nifty.hdf5.Configuration.WITH_CPLEX" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
-<dt id="nifty.hdf5.CacheSettings.nBytes">
-<code class="descname">nBytes</code><a class="headerlink" href="#nifty.hdf5.CacheSettings.nBytes" title="Permalink to this definition">¶</a></dt>
+<dt id="nifty.hdf5.Configuration.WITH_GLPK">
+<code class="descname">WITH_GLPK</code><em class="property"> = True</em><a class="headerlink" href="#nifty.hdf5.Configuration.WITH_GLPK" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
-<dt id="nifty.hdf5.CacheSettings.rddc">
-<code class="descname">rddc</code><a class="headerlink" href="#nifty.hdf5.CacheSettings.rddc" title="Permalink to this definition">¶</a></dt>
+<dt id="nifty.hdf5.Configuration.WITH_GUROBI">
+<code class="descname">WITH_GUROBI</code><em class="property"> = False</em><a class="headerlink" href="#nifty.hdf5.Configuration.WITH_GUROBI" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.hdf5.Configuration.WITH_HDF5">
+<code class="descname">WITH_HDF5</code><em class="property"> = True</em><a class="headerlink" href="#nifty.hdf5.Configuration.WITH_HDF5" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.hdf5.Configuration.WITH_LP_MP">
+<code class="descname">WITH_LP_MP</code><em class="property"> = True</em><a class="headerlink" href="#nifty.hdf5.Configuration.WITH_LP_MP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.hdf5.Configuration.WITH_QPBO">
+<code class="descname">WITH_QPBO</code><em class="property"> = True</em><a class="headerlink" href="#nifty.hdf5.Configuration.WITH_QPBO" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
-<dt id="nifty.hdf5.FileAccessMode">
-<em class="property">class </em><code class="descclassname">nifty.hdf5.</code><code class="descname">FileAccessMode</code><a class="headerlink" href="#nifty.hdf5.FileAccessMode" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="attribute">
-<dt id="nifty.hdf5.FileAccessMode.READ_ONLY">
-<code class="descname">READ_ONLY</code><em class="property"> = FileAccessMode.READ_ONLY</em><a class="headerlink" href="#nifty.hdf5.FileAccessMode.READ_ONLY" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="nifty.hdf5.FileAccessMode.READ_WRITE">
-<code class="descname">READ_WRITE</code><em class="property"> = FileAccessMode.READ_WRITE</em><a class="headerlink" href="#nifty.hdf5.FileAccessMode.READ_WRITE" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="nifty.hdf5.HDF5Version">
-<em class="property">class </em><code class="descclassname">nifty.hdf5.</code><code class="descname">HDF5Version</code><a class="headerlink" href="#nifty.hdf5.HDF5Version" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="attribute">
-<dt id="nifty.hdf5.HDF5Version.DEFAULT_HDF5_VERSION">
-<code class="descname">DEFAULT_HDF5_VERSION</code><em class="property"> = HDF5Version.DEFAULT_HDF5_VERSION</em><a class="headerlink" href="#nifty.hdf5.HDF5Version.DEFAULT_HDF5_VERSION" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="nifty.hdf5.HDF5Version.LATEST_HDF5_VERSION">
-<code class="descname">LATEST_HDF5_VERSION</code><em class="property"> = HDF5Version.LATEST_HDF5_VERSION</em><a class="headerlink" href="#nifty.hdf5.HDF5Version.LATEST_HDF5_VERSION" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="nifty.hdf5.Hdf5ArrayFloat32">
-<em class="property">class </em><code class="descclassname">nifty.hdf5.</code><code class="descname">Hdf5ArrayFloat32</code><a class="headerlink" href="#nifty.hdf5.Hdf5ArrayFloat32" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="attribute">
-<dt id="nifty.hdf5.Hdf5ArrayFloat32.chunkShape">
-<code class="descname">chunkShape</code><a class="headerlink" href="#nifty.hdf5.Hdf5ArrayFloat32.chunkShape" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="nifty.hdf5.Hdf5ArrayFloat32.isChunked">
-<code class="descname">isChunked</code><a class="headerlink" href="#nifty.hdf5.Hdf5ArrayFloat32.isChunked" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="nifty.hdf5.Hdf5ArrayFloat32.ndim">
-<code class="descname">ndim</code><a class="headerlink" href="#nifty.hdf5.Hdf5ArrayFloat32.ndim" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="nifty.hdf5.Hdf5ArrayFloat32.readSubarray">
-<code class="descname">readSubarray</code><span class="sig-paren">(</span><em>self: nifty.hdf5._hdf5.Hdf5ArrayFloat32, arg0: List[int], arg1: List[int]</em><span class="sig-paren">)</span> &#x2192; array&lt;float&gt;<a class="headerlink" href="#nifty.hdf5.Hdf5ArrayFloat32.readSubarray" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="nifty.hdf5.Hdf5ArrayFloat32.shape">
-<code class="descname">shape</code><a class="headerlink" href="#nifty.hdf5.Hdf5ArrayFloat32.shape" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="nifty.hdf5.Hdf5ArrayFloat32.writeSubarray">
-<code class="descname">writeSubarray</code><span class="sig-paren">(</span><em>self: nifty.hdf5._hdf5.Hdf5ArrayFloat32, arg0: List[int], arg1: array&lt;float&gt;</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#nifty.hdf5.Hdf5ArrayFloat32.writeSubarray" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="nifty.hdf5.Hdf5ArrayFloat64">
-<em class="property">class </em><code class="descclassname">nifty.hdf5.</code><code class="descname">Hdf5ArrayFloat64</code><a class="headerlink" href="#nifty.hdf5.Hdf5ArrayFloat64" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="attribute">
-<dt id="nifty.hdf5.Hdf5ArrayFloat64.chunkShape">
-<code class="descname">chunkShape</code><a class="headerlink" href="#nifty.hdf5.Hdf5ArrayFloat64.chunkShape" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="nifty.hdf5.Hdf5ArrayFloat64.isChunked">
-<code class="descname">isChunked</code><a class="headerlink" href="#nifty.hdf5.Hdf5ArrayFloat64.isChunked" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="nifty.hdf5.Hdf5ArrayFloat64.ndim">
-<code class="descname">ndim</code><a class="headerlink" href="#nifty.hdf5.Hdf5ArrayFloat64.ndim" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="nifty.hdf5.Hdf5ArrayFloat64.readSubarray">
-<code class="descname">readSubarray</code><span class="sig-paren">(</span><em>self: nifty.hdf5._hdf5.Hdf5ArrayFloat64, arg0: List[int], arg1: List[int]</em><span class="sig-paren">)</span> &#x2192; array&lt;float&gt;<a class="headerlink" href="#nifty.hdf5.Hdf5ArrayFloat64.readSubarray" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="nifty.hdf5.Hdf5ArrayFloat64.shape">
-<code class="descname">shape</code><a class="headerlink" href="#nifty.hdf5.Hdf5ArrayFloat64.shape" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="nifty.hdf5.Hdf5ArrayFloat64.writeSubarray">
-<code class="descname">writeSubarray</code><span class="sig-paren">(</span><em>self: nifty.hdf5._hdf5.Hdf5ArrayFloat64, arg0: List[int], arg1: array&lt;float&gt;</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#nifty.hdf5.Hdf5ArrayFloat64.writeSubarray" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="nifty.hdf5.Hdf5ArrayInt16">
-<em class="property">class </em><code class="descclassname">nifty.hdf5.</code><code class="descname">Hdf5ArrayInt16</code><a class="headerlink" href="#nifty.hdf5.Hdf5ArrayInt16" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="attribute">
-<dt id="nifty.hdf5.Hdf5ArrayInt16.chunkShape">
-<code class="descname">chunkShape</code><a class="headerlink" href="#nifty.hdf5.Hdf5ArrayInt16.chunkShape" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="nifty.hdf5.Hdf5ArrayInt16.isChunked">
-<code class="descname">isChunked</code><a class="headerlink" href="#nifty.hdf5.Hdf5ArrayInt16.isChunked" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="nifty.hdf5.Hdf5ArrayInt16.ndim">
-<code class="descname">ndim</code><a class="headerlink" href="#nifty.hdf5.Hdf5ArrayInt16.ndim" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="nifty.hdf5.Hdf5ArrayInt16.readSubarray">
-<code class="descname">readSubarray</code><span class="sig-paren">(</span><em>self: nifty.hdf5._hdf5.Hdf5ArrayInt16, arg0: List[int], arg1: List[int]</em><span class="sig-paren">)</span> &#x2192; array&lt;int&gt;<a class="headerlink" href="#nifty.hdf5.Hdf5ArrayInt16.readSubarray" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="nifty.hdf5.Hdf5ArrayInt16.shape">
-<code class="descname">shape</code><a class="headerlink" href="#nifty.hdf5.Hdf5ArrayInt16.shape" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="nifty.hdf5.Hdf5ArrayInt16.writeSubarray">
-<code class="descname">writeSubarray</code><span class="sig-paren">(</span><em>self: nifty.hdf5._hdf5.Hdf5ArrayInt16, arg0: List[int], arg1: array&lt;int&gt;</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#nifty.hdf5.Hdf5ArrayInt16.writeSubarray" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="nifty.hdf5.Hdf5ArrayInt32">
-<em class="property">class </em><code class="descclassname">nifty.hdf5.</code><code class="descname">Hdf5ArrayInt32</code><a class="headerlink" href="#nifty.hdf5.Hdf5ArrayInt32" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="attribute">
-<dt id="nifty.hdf5.Hdf5ArrayInt32.chunkShape">
-<code class="descname">chunkShape</code><a class="headerlink" href="#nifty.hdf5.Hdf5ArrayInt32.chunkShape" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="nifty.hdf5.Hdf5ArrayInt32.isChunked">
-<code class="descname">isChunked</code><a class="headerlink" href="#nifty.hdf5.Hdf5ArrayInt32.isChunked" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="nifty.hdf5.Hdf5ArrayInt32.ndim">
-<code class="descname">ndim</code><a class="headerlink" href="#nifty.hdf5.Hdf5ArrayInt32.ndim" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="nifty.hdf5.Hdf5ArrayInt32.readSubarray">
-<code class="descname">readSubarray</code><span class="sig-paren">(</span><em>self: nifty.hdf5._hdf5.Hdf5ArrayInt32, arg0: List[int], arg1: List[int]</em><span class="sig-paren">)</span> &#x2192; array&lt;int&gt;<a class="headerlink" href="#nifty.hdf5.Hdf5ArrayInt32.readSubarray" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="nifty.hdf5.Hdf5ArrayInt32.shape">
-<code class="descname">shape</code><a class="headerlink" href="#nifty.hdf5.Hdf5ArrayInt32.shape" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="nifty.hdf5.Hdf5ArrayInt32.writeSubarray">
-<code class="descname">writeSubarray</code><span class="sig-paren">(</span><em>self: nifty.hdf5._hdf5.Hdf5ArrayInt32, arg0: List[int], arg1: array&lt;int&gt;</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#nifty.hdf5.Hdf5ArrayInt32.writeSubarray" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="nifty.hdf5.Hdf5ArrayInt64">
-<em class="property">class </em><code class="descclassname">nifty.hdf5.</code><code class="descname">Hdf5ArrayInt64</code><a class="headerlink" href="#nifty.hdf5.Hdf5ArrayInt64" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="attribute">
-<dt id="nifty.hdf5.Hdf5ArrayInt64.chunkShape">
-<code class="descname">chunkShape</code><a class="headerlink" href="#nifty.hdf5.Hdf5ArrayInt64.chunkShape" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="nifty.hdf5.Hdf5ArrayInt64.isChunked">
-<code class="descname">isChunked</code><a class="headerlink" href="#nifty.hdf5.Hdf5ArrayInt64.isChunked" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="nifty.hdf5.Hdf5ArrayInt64.ndim">
-<code class="descname">ndim</code><a class="headerlink" href="#nifty.hdf5.Hdf5ArrayInt64.ndim" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="nifty.hdf5.Hdf5ArrayInt64.readSubarray">
-<code class="descname">readSubarray</code><span class="sig-paren">(</span><em>self: nifty.hdf5._hdf5.Hdf5ArrayInt64, arg0: List[int], arg1: List[int]</em><span class="sig-paren">)</span> &#x2192; array&lt;int&gt;<a class="headerlink" href="#nifty.hdf5.Hdf5ArrayInt64.readSubarray" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="nifty.hdf5.Hdf5ArrayInt64.shape">
-<code class="descname">shape</code><a class="headerlink" href="#nifty.hdf5.Hdf5ArrayInt64.shape" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="nifty.hdf5.Hdf5ArrayInt64.writeSubarray">
-<code class="descname">writeSubarray</code><span class="sig-paren">(</span><em>self: nifty.hdf5._hdf5.Hdf5ArrayInt64, arg0: List[int], arg1: array&lt;int&gt;</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#nifty.hdf5.Hdf5ArrayInt64.writeSubarray" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="nifty.hdf5.Hdf5ArrayInt8">
-<em class="property">class </em><code class="descclassname">nifty.hdf5.</code><code class="descname">Hdf5ArrayInt8</code><a class="headerlink" href="#nifty.hdf5.Hdf5ArrayInt8" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="attribute">
-<dt id="nifty.hdf5.Hdf5ArrayInt8.chunkShape">
-<code class="descname">chunkShape</code><a class="headerlink" href="#nifty.hdf5.Hdf5ArrayInt8.chunkShape" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="nifty.hdf5.Hdf5ArrayInt8.isChunked">
-<code class="descname">isChunked</code><a class="headerlink" href="#nifty.hdf5.Hdf5ArrayInt8.isChunked" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="nifty.hdf5.Hdf5ArrayInt8.ndim">
-<code class="descname">ndim</code><a class="headerlink" href="#nifty.hdf5.Hdf5ArrayInt8.ndim" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="nifty.hdf5.Hdf5ArrayInt8.readSubarray">
-<code class="descname">readSubarray</code><span class="sig-paren">(</span><em>self: nifty.hdf5._hdf5.Hdf5ArrayInt8, arg0: List[int], arg1: List[int]</em><span class="sig-paren">)</span> &#x2192; array&lt;int&gt;<a class="headerlink" href="#nifty.hdf5.Hdf5ArrayInt8.readSubarray" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="nifty.hdf5.Hdf5ArrayInt8.shape">
-<code class="descname">shape</code><a class="headerlink" href="#nifty.hdf5.Hdf5ArrayInt8.shape" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="nifty.hdf5.Hdf5ArrayInt8.writeSubarray">
-<code class="descname">writeSubarray</code><span class="sig-paren">(</span><em>self: nifty.hdf5._hdf5.Hdf5ArrayInt8, arg0: List[int], arg1: array&lt;int&gt;</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#nifty.hdf5.Hdf5ArrayInt8.writeSubarray" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="nifty.hdf5.Hdf5ArrayUInt16">
-<em class="property">class </em><code class="descclassname">nifty.hdf5.</code><code class="descname">Hdf5ArrayUInt16</code><a class="headerlink" href="#nifty.hdf5.Hdf5ArrayUInt16" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="attribute">
-<dt id="nifty.hdf5.Hdf5ArrayUInt16.chunkShape">
-<code class="descname">chunkShape</code><a class="headerlink" href="#nifty.hdf5.Hdf5ArrayUInt16.chunkShape" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="nifty.hdf5.Hdf5ArrayUInt16.isChunked">
-<code class="descname">isChunked</code><a class="headerlink" href="#nifty.hdf5.Hdf5ArrayUInt16.isChunked" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="nifty.hdf5.Hdf5ArrayUInt16.ndim">
-<code class="descname">ndim</code><a class="headerlink" href="#nifty.hdf5.Hdf5ArrayUInt16.ndim" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="nifty.hdf5.Hdf5ArrayUInt16.readSubarray">
-<code class="descname">readSubarray</code><span class="sig-paren">(</span><em>self: nifty.hdf5._hdf5.Hdf5ArrayUInt16, arg0: List[int], arg1: List[int]</em><span class="sig-paren">)</span> &#x2192; array&lt;int&gt;<a class="headerlink" href="#nifty.hdf5.Hdf5ArrayUInt16.readSubarray" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="nifty.hdf5.Hdf5ArrayUInt16.shape">
-<code class="descname">shape</code><a class="headerlink" href="#nifty.hdf5.Hdf5ArrayUInt16.shape" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="nifty.hdf5.Hdf5ArrayUInt16.writeSubarray">
-<code class="descname">writeSubarray</code><span class="sig-paren">(</span><em>self: nifty.hdf5._hdf5.Hdf5ArrayUInt16, arg0: List[int], arg1: array&lt;int&gt;</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#nifty.hdf5.Hdf5ArrayUInt16.writeSubarray" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="nifty.hdf5.Hdf5ArrayUInt32">
-<em class="property">class </em><code class="descclassname">nifty.hdf5.</code><code class="descname">Hdf5ArrayUInt32</code><a class="headerlink" href="#nifty.hdf5.Hdf5ArrayUInt32" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="attribute">
-<dt id="nifty.hdf5.Hdf5ArrayUInt32.chunkShape">
-<code class="descname">chunkShape</code><a class="headerlink" href="#nifty.hdf5.Hdf5ArrayUInt32.chunkShape" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="nifty.hdf5.Hdf5ArrayUInt32.isChunked">
-<code class="descname">isChunked</code><a class="headerlink" href="#nifty.hdf5.Hdf5ArrayUInt32.isChunked" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="nifty.hdf5.Hdf5ArrayUInt32.ndim">
-<code class="descname">ndim</code><a class="headerlink" href="#nifty.hdf5.Hdf5ArrayUInt32.ndim" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="nifty.hdf5.Hdf5ArrayUInt32.readSubarray">
-<code class="descname">readSubarray</code><span class="sig-paren">(</span><em>self: nifty.hdf5._hdf5.Hdf5ArrayUInt32, arg0: List[int], arg1: List[int]</em><span class="sig-paren">)</span> &#x2192; array&lt;int&gt;<a class="headerlink" href="#nifty.hdf5.Hdf5ArrayUInt32.readSubarray" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="nifty.hdf5.Hdf5ArrayUInt32.shape">
-<code class="descname">shape</code><a class="headerlink" href="#nifty.hdf5.Hdf5ArrayUInt32.shape" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="nifty.hdf5.Hdf5ArrayUInt32.writeSubarray">
-<code class="descname">writeSubarray</code><span class="sig-paren">(</span><em>self: nifty.hdf5._hdf5.Hdf5ArrayUInt32, arg0: List[int], arg1: array&lt;int&gt;</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#nifty.hdf5.Hdf5ArrayUInt32.writeSubarray" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="nifty.hdf5.Hdf5ArrayUInt64">
-<em class="property">class </em><code class="descclassname">nifty.hdf5.</code><code class="descname">Hdf5ArrayUInt64</code><a class="headerlink" href="#nifty.hdf5.Hdf5ArrayUInt64" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="attribute">
-<dt id="nifty.hdf5.Hdf5ArrayUInt64.chunkShape">
-<code class="descname">chunkShape</code><a class="headerlink" href="#nifty.hdf5.Hdf5ArrayUInt64.chunkShape" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="nifty.hdf5.Hdf5ArrayUInt64.isChunked">
-<code class="descname">isChunked</code><a class="headerlink" href="#nifty.hdf5.Hdf5ArrayUInt64.isChunked" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="nifty.hdf5.Hdf5ArrayUInt64.ndim">
-<code class="descname">ndim</code><a class="headerlink" href="#nifty.hdf5.Hdf5ArrayUInt64.ndim" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="nifty.hdf5.Hdf5ArrayUInt64.readSubarray">
-<code class="descname">readSubarray</code><span class="sig-paren">(</span><em>self: nifty.hdf5._hdf5.Hdf5ArrayUInt64, arg0: List[int], arg1: List[int]</em><span class="sig-paren">)</span> &#x2192; array&lt;int&gt;<a class="headerlink" href="#nifty.hdf5.Hdf5ArrayUInt64.readSubarray" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="nifty.hdf5.Hdf5ArrayUInt64.shape">
-<code class="descname">shape</code><a class="headerlink" href="#nifty.hdf5.Hdf5ArrayUInt64.shape" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="nifty.hdf5.Hdf5ArrayUInt64.writeSubarray">
-<code class="descname">writeSubarray</code><span class="sig-paren">(</span><em>self: nifty.hdf5._hdf5.Hdf5ArrayUInt64, arg0: List[int], arg1: array&lt;int&gt;</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#nifty.hdf5.Hdf5ArrayUInt64.writeSubarray" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="nifty.hdf5.Hdf5ArrayUInt8">
-<em class="property">class </em><code class="descclassname">nifty.hdf5.</code><code class="descname">Hdf5ArrayUInt8</code><a class="headerlink" href="#nifty.hdf5.Hdf5ArrayUInt8" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="attribute">
-<dt id="nifty.hdf5.Hdf5ArrayUInt8.chunkShape">
-<code class="descname">chunkShape</code><a class="headerlink" href="#nifty.hdf5.Hdf5ArrayUInt8.chunkShape" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="nifty.hdf5.Hdf5ArrayUInt8.isChunked">
-<code class="descname">isChunked</code><a class="headerlink" href="#nifty.hdf5.Hdf5ArrayUInt8.isChunked" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="nifty.hdf5.Hdf5ArrayUInt8.ndim">
-<code class="descname">ndim</code><a class="headerlink" href="#nifty.hdf5.Hdf5ArrayUInt8.ndim" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="nifty.hdf5.Hdf5ArrayUInt8.readSubarray">
-<code class="descname">readSubarray</code><span class="sig-paren">(</span><em>self: nifty.hdf5._hdf5.Hdf5ArrayUInt8, arg0: List[int], arg1: List[int]</em><span class="sig-paren">)</span> &#x2192; array&lt;int&gt;<a class="headerlink" href="#nifty.hdf5.Hdf5ArrayUInt8.readSubarray" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="nifty.hdf5.Hdf5ArrayUInt8.shape">
-<code class="descname">shape</code><a class="headerlink" href="#nifty.hdf5.Hdf5ArrayUInt8.shape" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="nifty.hdf5.Hdf5ArrayUInt8.writeSubarray">
-<code class="descname">writeSubarray</code><span class="sig-paren">(</span><em>self: nifty.hdf5._hdf5.Hdf5ArrayUInt8, arg0: List[int], arg1: array&lt;int&gt;</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#nifty.hdf5.Hdf5ArrayUInt8.writeSubarray" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="nifty.hdf5.HidT">
-<em class="property">class </em><code class="descclassname">nifty.hdf5.</code><code class="descname">HidT</code><a class="headerlink" href="#nifty.hdf5.HidT" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</div>
-</div>
+<div style='clear:both'></div></div>
 </div>
 
 
@@ -579,12 +148,12 @@
         <li class="right" >
           <a href="nifty.ground_truth.html" title="nifty.ground_truth"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Nifty 0.7.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Nifty 0.9.3 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../reference.html" >Nifty API Reference</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.1.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
     </div>
   </body>
 </html>

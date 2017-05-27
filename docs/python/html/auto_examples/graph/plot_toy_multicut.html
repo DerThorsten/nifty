@@ -1,12 +1,12 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Multicut Logging Visitor &#8212; Nifty 0.7.1 documentation</title>
+    <title>Multicut Logging Visitor &#8212; Nifty 0.9.3 documentation</title>
     
     <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -15,7 +15,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '0.7.1',
+        VERSION:     '0.9.3',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -29,9 +29,9 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Cgp Cartesian Grid Partitioning 2D" href="plot_cgp_introduction.html" />
-    <link rel="prev" title="Agglomerative Clustering" href="plot_agglomerative_clustering.html" /> 
+    <link rel="prev" title="RGB Agglomerative Clustering" href="plot_agglomerative_clustering_size_regularizer.html" /> 
   </head>
-  <body>
+  <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -45,17 +45,17 @@
           <a href="plot_cgp_introduction.html" title="Cgp Cartesian Grid Partitioning 2D"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="plot_agglomerative_clustering.html" title="Agglomerative Clustering"
+          <a href="plot_agglomerative_clustering_size_regularizer.html" title="RGB Agglomerative Clustering"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">Nifty 0.7.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Nifty 0.9.3 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Gallery of Examples</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h4>Previous topic</h4>
-  <p class="topless"><a href="plot_agglomerative_clustering.html"
-                        title="previous chapter">Agglomerative Clustering</a></p>
+  <p class="topless"><a href="plot_agglomerative_clustering_size_regularizer.html"
+                        title="previous chapter">RGB Agglomerative Clustering</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="plot_cgp_introduction.html"
                         title="next chapter">Cgp Cartesian Grid Partitioning 2D</a></p>
@@ -123,6 +123,9 @@ and log the runtime / energies.</p>
 
 <span class="c1"># construct a multicut objective</span>
 <span class="n">MulticutObjective</span> <span class="o">=</span> <span class="n">Graph</span><span class="o">.</span><span class="n">MulticutObjective</span>
+<span class="c1"># the actual class of the objective</span>
+<span class="k">assert</span> <span class="n">MulticutObjective</span> <span class="o">==</span> <a href="../../gen_modules/nifty.graph.optimization.multicut.html#nifty.graph.optimization.multicut.MulticutObjectiveUndirectedGraph" title="View documentation for nifty.graph.optimization.multicut.MulticutObjectiveUndirectedGraph"><span class="n">nifty_multicut</span><span class="o">.</span><span class="n">MulticutObjectiveUndirectedGraph</span></a>
+
 <span class="n">objective</span> <span class="o">=</span> <span class="n">MulticutObjective</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
 
 
@@ -142,9 +145,14 @@ and log the runtime / energies.</p>
 
 <span class="c1"># greedy-additive</span>
 <span class="n">solverFactory</span> <span class="o">=</span> <span class="n">MulticutObjective</span><span class="o">.</span><span class="n">greedyAdditiveFactory</span><span class="p">()</span>
+<span class="c1"># same as above but very verbose</span>
+<span class="k">if</span> <span class="bp">False</span><span class="p">:</span>
+    <span class="n">solverFactory</span> <span class="o">=</span> <a href="../../gen_modules/nifty.graph.optimization.multicut.html#nifty.graph.optimization.multicut.MulticutObjectiveUndirectedGraph.greedyAdditiveFactory" title="View documentation for nifty.graph.optimization.multicut.MulticutObjectiveUndirectedGraph.greedyAdditiveFactory"><span class="n">nifty_multicut</span><span class="o">.</span><span class="n">MulticutObjectiveUndirectedGraph</span><span class="o">.</span><span class="n">greedyAdditiveFactory</span></a><span class="p">()</span>
+
+
 <span class="n">results</span><span class="p">[</span><span class="s1">&#39;greedy-additive&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">runSolver</span><span class="p">(</span><span class="n">solverFactory</span><span class="p">)</span>
 
-<span class="k">if</span> <span class="n">nifty</span><span class="o">.</span><span class="n">Configuration</span><span class="o">.</span><span class="n">WITH_QPBO</span><span class="p">:</span>
+<span class="k">if</span> <a href="../../gen_modules/nifty.html#nifty.Configuration.WITH_QPBO" title="View documentation for nifty.Configuration.WITH_QPBO"><span class="n">nifty</span><span class="o">.</span><span class="n">Configuration</span><span class="o">.</span><span class="n">WITH_QPBO</span></a><span class="p">:</span>
 
     <span class="c1"># cgc</span>
     <span class="n">solverFactory</span> <span class="o">=</span> <span class="n">MulticutObjective</span><span class="o">.</span><span class="n">cgcFactory</span><span class="p">(</span><span class="bp">True</span><span class="p">,</span><span class="bp">True</span><span class="p">)</span>
@@ -158,15 +166,15 @@ and log the runtime / energies.</p>
     <span class="n">results</span><span class="p">[</span><span class="s1">&#39;greedy-additive + cgc-qpbo&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">runSolver</span><span class="p">(</span><span class="n">solverFactory</span><span class="p">)</span>
 
 
-<span class="k">if</span> <span class="n">nifty</span><span class="o">.</span><span class="n">Configuration</span><span class="o">.</span><span class="n">WITH_CPLEX</span><span class="p">:</span>
+<span class="k">if</span> <a href="../../gen_modules/nifty.html#nifty.Configuration.WITH_CPLEX" title="View documentation for nifty.Configuration.WITH_CPLEX"><span class="n">nifty</span><span class="o">.</span><span class="n">Configuration</span><span class="o">.</span><span class="n">WITH_CPLEX</span></a><span class="p">:</span>
     <span class="n">solverFactory</span> <span class="o">=</span> <span class="n">MulticutObjective</span><span class="o">.</span><span class="n">multicutIlpCplexFactory</span><span class="p">()</span>
     <span class="n">results</span><span class="p">[</span><span class="s1">&#39;ilp-cplex&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">runSolver</span><span class="p">(</span><span class="n">solverFactory</span><span class="p">)</span>
 
-<span class="k">if</span> <span class="n">nifty</span><span class="o">.</span><span class="n">Configuration</span><span class="o">.</span><span class="n">WITH_GUROBI</span><span class="p">:</span>
+<span class="k">if</span> <a href="../../gen_modules/nifty.html#nifty.Configuration.WITH_GUROBI" title="View documentation for nifty.Configuration.WITH_GUROBI"><span class="n">nifty</span><span class="o">.</span><span class="n">Configuration</span><span class="o">.</span><span class="n">WITH_GUROBI</span></a><span class="p">:</span>
     <span class="n">solverFactory</span> <span class="o">=</span> <span class="n">MulticutObjective</span><span class="o">.</span><span class="n">multicutIlpGurobiFactory</span><span class="p">()</span>
     <span class="n">results</span><span class="p">[</span><span class="s1">&#39;ilp-gurbi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">runSolver</span><span class="p">(</span><span class="n">solverFactory</span><span class="p">)</span>
 
-<span class="k">if</span> <span class="n">nifty</span><span class="o">.</span><span class="n">Configuration</span><span class="o">.</span><span class="n">WITH_GLPK</span><span class="p">:</span>
+<span class="k">if</span> <a href="../../gen_modules/nifty.html#nifty.Configuration.WITH_GLPK" title="View documentation for nifty.Configuration.WITH_GLPK"><span class="n">nifty</span><span class="o">.</span><span class="n">Configuration</span><span class="o">.</span><span class="n">WITH_GLPK</span></a><span class="p">:</span>
     <span class="n">solverFactory</span> <span class="o">=</span> <span class="n">MulticutObjective</span><span class="o">.</span><span class="n">multicutIlpGlpkFactory</span><span class="p">()</span>
     <span class="n">results</span><span class="p">[</span><span class="s1">&#39;ilp-glpk&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">runSolver</span><span class="p">(</span><span class="n">solverFactory</span><span class="p">)</span>
 
@@ -187,7 +195,7 @@ and log the runtime / energies.</p>
 <span class="n">pylab</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p><strong>Total running time of the script:</strong> ( 0 minutes  0.089 seconds)</p>
+<p><strong>Total running time of the script:</strong> ( 0 minutes  0.070 seconds)</p>
 <div class="sphx-glr-footer docutils container">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" href="../../_downloads/plot_toy_multicut.py" download=""><code class="xref download docutils literal"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_toy_multicut.py</span></code></a></div>
@@ -216,14 +224,14 @@ and log the runtime / energies.</p>
           <a href="plot_cgp_introduction.html" title="Cgp Cartesian Grid Partitioning 2D"
              >next</a> |</li>
         <li class="right" >
-          <a href="plot_agglomerative_clustering.html" title="Agglomerative Clustering"
+          <a href="plot_agglomerative_clustering_size_regularizer.html" title="RGB Agglomerative Clustering"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">Nifty 0.7.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Nifty 0.9.3 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../index.html" >Gallery of Examples</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.1.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
     </div>
   </body>
 </html>
