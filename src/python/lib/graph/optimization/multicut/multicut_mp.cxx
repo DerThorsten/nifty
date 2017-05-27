@@ -40,8 +40,8 @@ namespace graph{
         "described by :cite:`TODO`";
         docHelper.cites.emplace_back("TODO");
 
-        docHelper.requirements.emplace("WITH_MP_LP")
-        docHelper.requirements.emplace("CPP_14")
+        docHelper.requirements.emplace("WITH_MP_LP");
+        docHelper.requirements.emplace("CPP_14");
 
 
 
