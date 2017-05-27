@@ -37,7 +37,7 @@ namespace graph{
         docHelper.name = "mp-lp";
         docHelper.mainText =  
         "Optimize the multicut objective by convergent message passing as\n"
-        "described by :cite:`TODO`"
+        "described by :cite:`TODO`";
         docHelper.cites.emplace_back("TODO");
 
         docHelper.requirements.emplace("WITH_MP_LP")
