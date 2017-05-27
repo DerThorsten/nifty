@@ -25,22 +25,70 @@ namespace graph{
         
         // export greedy additive
         {
+
+
+            ///////////////////////////////////////////////////////////////
+            // DOCSTRING HELPER
+            ///////////////////////////////////////////////////////////////
+            nifty::graph::optimization::SolverDocstringHelper docHelper;
+            docHelper.objectiveName =
+                "multicut objective";
+            docHelper.objectiveClsName = 
+                MulticutObjectiveName<OBJECTIVE>::name();
+            docHelper.name = 
+                "greedy additive andres";
+            docHelper.mainText =  
+                "Find approximate solutions via\n"
+                "agglomerative clustering as in :cite:`beier_15_funsion`.\n";
+            docHelper.cites.emplace_back("beier_15_funsion");
+            docHelper.note = 
+                "This solver should be used to\n"        
+                "warm start other solvers with.\n"
+                "This solver is very fast but\n"
+                "yields rather suboptimal results.\n";
+            docHelper.warning = 
+                "This native nifty implementation as this implementation\n";
+                "from andres which is just used for comparison\n";
+
+
             typedef MulticutAndresGreedyAdditive<ObjectiveType> Solver;
             typedef typename Solver::Settings Settings;
             const auto solverName = std::string("MulticutAndresGreedyAdditive");
             // FIXME verbose has no effect yet
-            exportMulticutSolver<Solver>(multicutModule, solverName.c_str())
+            exportMulticutSolver<Solver>(multicutModule, solverName.c_str(), docHelper)
                 .def(py::init<>())
             ; 
         }
         
         // export kernighan lin
         {
+
+
+
+            ///////////////////////////////////////////////////////////////
+            // DOCSTRING HELPER
+            ///////////////////////////////////////////////////////////////
+            nifty::graph::optimization::SolverDocstringHelper docHelper;
+            docHelper.objectiveName = "multicut objective";
+            docHelper.objectiveClsName = MulticutObjectiveName<OBJECTIVE>::name();
+            docHelper.name = "Kernighan Lin";
+            docHelper.mainText =  
+            "KernighanLin Algorithm with joins for multicuts\n"
+            "As introduced in TODO"; 
+            docHelper.cites.emplace_back("TODO");
+            docHelper.note = "This solver should be warm started,"
+                            "otherwise  results are very poor."
+                            "Using :func:`greedyAdditiveFactory` to create "
+                            "a solver for warm starting is suggested.";
+
+
+
+
             typedef MulticutAndresKernighanLin<ObjectiveType> Solver;
             typedef typename Solver::Settings Settings;
             const auto solverName = std::string("MulticutAndresKernighanLin");
             // FIXME verbose has no effect yet
-            exportMulticutSolver<Solver>(multicutModule, solverName.c_str())
+            exportMulticutSolver<Solver>(multicutModule, solverName.c_str(), docHelper)
                 .def(py::init<>())
                 .def_readwrite("numberOfInnerIterations", &Settings::numberOfInnerIterations)
                 .def_readwrite("numberOfOuterIterations", &Settings::numberOfOuterIterations)

@@ -20,6 +20,7 @@ namespace graph {
     
     public:
         typedef OBJECTIVE Objective;
+        typedef OBJECTIVE ObjectiveType;
         typedef MulticutVisitorBase<Objective> VisitorBase;
         typedef MulticutVisitorProxy<Objective> VisitorProxy;
         typedef typename Objective::Graph Graph;
