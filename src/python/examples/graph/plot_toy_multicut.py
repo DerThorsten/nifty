@@ -48,6 +48,9 @@ weights = numpy.random.rand(graph.numberOfEdges) -0.5
 
 # construct a multicut objective
 MulticutObjective = Graph.MulticutObjective
+# the actual class of the objective
+assert MulticutObjective == nifty_multicut.MulticutObjectiveUndirectedGraph
+
 objective = MulticutObjective(graph, weights)
 
 
@@ -69,7 +72,8 @@ results = dict()
 solverFactory = MulticutObjective.greedyAdditiveFactory()
 # same as above but very verbose
 if False:
-    solverFactory = nifty.graph.UndirectedGraph.MulticutObjective.greedyAdditiveFactory() 
+    solverFactory = nifty_multicut.MulticutObjectiveUndirectedGraph.greedyAdditiveFactory()
+
 
 results['greedy-additive'] = runSolver(solverFactory)
 

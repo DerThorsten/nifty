@@ -39,7 +39,7 @@ namespace graph{
         const std::string solverBaseName = std::string("MulticutBase") + objName;
         
         const std::string sName = solverName + objName;
-        const std::string settingsName = solverName + std::string("Settings") + objName;
+        const std::string settingsName = std::string("__") + solverName + std::string("Settings") + objName;
         const std::string factoryName = solverName + std::string("Factory") + objName;
         std::string factoryFactoryName = factoryName;
         factoryFactoryName[0] = std::tolower(factoryFactoryName[0]);
