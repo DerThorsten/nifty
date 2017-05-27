@@ -49,7 +49,7 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
         return _multicut.__dict__[prefix+postfix]
 
     def getSettingsCls(baseName):
-        S =  getCls("  "+baseName + "Settings" ,objectiveName)
+        S =  getCls("__"+baseName + "Settings" ,objectiveName)
         return S
     def getMcCls(baseName):
         S =  getCls(baseName,objectiveName)
