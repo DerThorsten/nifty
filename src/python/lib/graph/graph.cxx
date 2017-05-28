@@ -31,7 +31,6 @@ PYBIND11_PLUGIN(_graph) {
     exportUndirectedGridGraph(module);
     exportEdgeContractionGraphUndirectedGraph(module);
     exportShortestPathDijkstra(module);
-
     exportConnectedComponents(module);
         
     return module.ptr();

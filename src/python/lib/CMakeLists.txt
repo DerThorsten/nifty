@@ -55,11 +55,16 @@ macro(addPythonModule)
     pybind11_add_module(_${MODULE_NAME} 
         ${ADD_PY_MOD_SOURCES}
     )
+    #if (APPLE AND NOT ${CMAKE_BUILD_TYPE} MATCHES Debug)
+    target_compile_options(_${MODULE_NAME} PRIVATE "-fvisibility=default")
 
+    #endif()
     set_target_properties(_${MODULE_NAME}  PROPERTIES PREFIX "")
 
     #message(STATUS ********Module: ${MODULE_NAME})
     #message(STATUS ********Libs: ${ADD_PY_MOD_LIBRRARIES})
+
+    
 
     # link additional libraries
     target_link_libraries(_${MODULE_NAME} 

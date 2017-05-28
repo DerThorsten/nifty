@@ -1,13 +1,18 @@
 from __future__ import absolute_import,print_function
+from . import _ground_truth as __ground_truth
 from ._ground_truth import *
 
 import numpy
 #from scipy import ndimage as ndi
 
 __all__ = []
-for key in _ground_truth.__dict__.keys():
+for key in __ground_truth.__dict__.keys():
     __all__.append(key)
 
+    try:
+        __ground_truth.__dict__[key].__module__='nifty.ground_truth'
+    except:
+        pass
 
 
 

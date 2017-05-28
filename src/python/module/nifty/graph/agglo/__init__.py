@@ -1,12 +1,16 @@
 from __future__ import absolute_import
+from . import _agglo as __agglo
 from ._agglo import *
 
 import numpy
 
 __all__ = []
-for key in _agglo.__dict__.keys():
+for key in __agglo.__dict__.keys():
     __all__.append(key)
-
+    try:
+        __agglo.__dict__[key].__module__='nifty.graph.agglo'
+    except:
+        pass
 
 from ...tools import makeDense as __makeDense
 

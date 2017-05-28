@@ -1,5 +1,6 @@
 #include <pybind11/pybind11.h>
 
+#include <boost/algorithm/string.hpp>
 
 
 // concrete solvers for concrete factories
@@ -21,6 +22,7 @@
 #include "nifty/python/graph/edge_contraction_graph.hxx"
 #include "nifty/python/graph/optimization/multicut/multicut_objective.hxx"
 #include "nifty/python/converter.hxx"
+#include "nifty/python/graph/optimization/solver_docstring.hxx"
 #include "nifty/python/graph/optimization/multicut/export_multicut_solver.hxx"
 
 namespace py = pybind11;
@@ -34,6 +36,31 @@ namespace multicut{
     
     template<class OBJECTIVE, class BACKEND>
     void exportMulticutIlpWithBackendT(py::module & multicutModule, const std::string & backendName){
+
+
+
+
+
+
+        ///////////////////////////////////////////////////////////////
+        // DOCSTRING HELPER
+        ///////////////////////////////////////////////////////////////
+        nifty::graph::optimization::SolverDocstringHelper docHelper;
+        docHelper.objectiveName = "multicut objective"; 
+        docHelper.objectiveClsName = MulticutObjectiveName<OBJECTIVE>::name();
+        docHelper.name = "multicut ilp " + backendName; 
+        docHelper.mainText =  
+            "Find a global optimal solution by a cutting plane ILP solver\n"
+            "as described in :cite:`Kappes-2011` \n"
+            "and :cite:`andres_2011_probabilistic` \n";
+        docHelper.cites.emplace_back("Kappes-2011");
+        docHelper.cites.emplace_back("andres_2011_probabilistic");
+        docHelper.note = "This might take very long for large models.";
+        docHelper.requirements.emplace_back(
+            std::string("WITH_") + boost::to_upper_copy<std::string>(backendName)
+        );
+
+
         
         typedef OBJECTIVE ObjectiveType;
         typedef BACKEND IlpSolver;
@@ -45,7 +72,7 @@ namespace multicut{
         
         const auto solverName = std::string("MulticutIlp") + backendName;
         // todo exportMulticutSolver should be in the correct namespace
-        nifty::graph::exportMulticutSolver<Solver>(multicutModule, solverName.c_str())
+        nifty::graph::exportMulticutSolver<Solver>(multicutModule, solverName.c_str(), docHelper)
             .def(py::init<>())
             .def_readwrite("numberOfIterations", &Settings::numberOfIterations)
             .def_readwrite("verbose", &Settings::verbose)

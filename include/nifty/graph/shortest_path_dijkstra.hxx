@@ -3,7 +3,7 @@
 #define NIFTY_GRAPH_SHORTEST_PATH_DIJKSTRA_HXX
 
 #include "nifty/graph/subgraph_mask.hxx"
-#include "vigra/priority_queue.hxx"
+#include "nifty/tools/changable_priority_queue.hxx"
 
 namespace nifty{
 namespace graph{
@@ -18,7 +18,7 @@ namespace graph{
         typedef typename Graph:: template NodeMap<int64_t>     PredecessorsMap;
         typedef typename Graph:: template NodeMap<WeightType>  DistanceMap;
     private:
-        typedef vigra::ChangeablePriorityQueue<WeightType>    PqType;
+        typedef nifty::tools::ChangeablePriorityQueue<WeightType>    PqType;
     public:
         ShortestPathDijkstra(const Graph & g)
         :   g_(g),
@@ -39,7 +39,7 @@ namespace graph{
             DefaultSubgraphMask<Graph> subgraphMask;
             // visitor
             auto visitor = [&]
-            (   
+            (
                 int64_t topNode,
                 const DistanceMap     & distances,
                 const PredecessorsMap & predecessors
@@ -50,7 +50,7 @@ namespace graph{
             this->initializeMaps(&source, &source +1);
             runImpl(edgeWeights, subgraphMask, visitor);
         }
-        
+
         // run single source multiple targets
         // no  callback no mask exposed
         template<class EDGE_WEGIHTS>
@@ -61,16 +61,16 @@ namespace graph{
         ){
             // subgraph mask
             DefaultSubgraphMask<Graph> subgraphMask;
-            
+
             // visitor
             size_t trgtsFound = 0;
             auto visitor = [&targets, &trgtsFound]
-            (   
+            (
                 int64_t topNode,
                 const DistanceMap     & distances,
                 const PredecessorsMap & predecessors
             ){
-                if( std::find(targets.begin(), targets.end(), topNode) != targets.end() ) 
+                if( std::find(targets.begin(), targets.end(), topNode) != targets.end() )
                     ++trgtsFound;
                 if( trgtsFound >= targets.size() ) {
                     trgtsFound = 0;

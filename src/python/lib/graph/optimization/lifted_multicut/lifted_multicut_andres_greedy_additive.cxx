@@ -3,7 +3,7 @@
 #include "nifty/graph/optimization/lifted_multicut/lifted_multicut_andres_greedy_additive.hxx"
 
 #include "nifty/python/converter.hxx"
-
+#include "nifty/python/graph/undirected_grid_graph.hxx"
 #include "nifty/python/graph/undirected_list_graph.hxx"
 #include "nifty/python/graph/edge_contraction_graph.hxx"
 #include "nifty/python/graph/optimization/lifted_multicut/lifted_multicut_objective.hxx"
@@ -34,6 +34,11 @@ namespace lifted_multicut{
     void exportLiftedMulticutAndresGreedyAdditive(py::module & liftedMulticutModule) {
         {
             typedef PyUndirectedGraph GraphType;
+            typedef LiftedMulticutObjective<GraphType, double> ObjectiveType;
+            exportLiftedMulticutAndresGreedyAdditiveT<ObjectiveType>(liftedMulticutModule);
+        }
+        {
+            typedef nifty::graph::UndirectedGridGraph<2,true> GraphType;
             typedef LiftedMulticutObjective<GraphType, double> ObjectiveType;
             exportLiftedMulticutAndresGreedyAdditiveT<ObjectiveType>(liftedMulticutModule);
         }

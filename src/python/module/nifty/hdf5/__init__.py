@@ -5,8 +5,13 @@ __all__ = []
 
 if Configuration.WITH_HDF5:
     from ._hdf5 import *
-    for key in _hdf5.__dict__.keys():
+    from . import _hdf5 as __hdf5
+    for key in __hdf5.__dict__.keys():
         __all__.append(key)
+        try:
+            __hdf5.__dict__[key].__module__='nifty.hdf5'
+        except:
+            pass
 else:
     pass
 

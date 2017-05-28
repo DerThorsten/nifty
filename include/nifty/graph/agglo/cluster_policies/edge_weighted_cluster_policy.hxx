@@ -1,12 +1,10 @@
 #pragma once
-#ifndef NIFTY_GRAPH_AGGLO_CLUSTER_POLICIES_EDGE_WEIGHTED_CLUSTER_POLICY_HXX
-#define NIFTY_GRAPH_AGGLO_CLUSTER_POLICIES_EDGE_WEIGHTED_CLUSTER_POLICY_HXX
 
 #include <functional>
 
 
 
-#include "vigra/priority_queue.hxx"
+#include "nifty/tools/changable_priority_queue.hxx"
 #include "nifty/graph/edge_contraction_graph.hxx"
 #include "nifty/graph/agglo/cluster_policies/cluster_policies_common.hxx"
 
@@ -49,7 +47,7 @@ private:
     // internal types
 
 
-    typedef vigra::ChangeablePriorityQueue< double ,std::less<double> > QueueType;
+    typedef nifty::tools::ChangeablePriorityQueue< double ,std::less<double> > QueueType;
 
 public:
 
@@ -239,4 +237,3 @@ contractEdgeDone(
 } // namespace nifty::graph
 } // namespace nifty
 
-#endif /*NIFTY_GRAPH_AGGLO_CLUSTER_POLICIES_EDGE_WEIGHTED_CLUSTER_POLICY_HXX*/

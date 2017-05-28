@@ -34,7 +34,7 @@ namespace lifted_multicut{
 
     private:
         typedef ComponentsUfd<Graph> Components;
-        typedef detail_graph::EdgeIndicesToContiguousEdgeIndices<Graph> DenseIds;
+        typedef detail_graph::EdgeIndicesToContiguousEdgeIndices<LiftedGraph> DenseIds;
         typedef DepthFirstSearch<Graph> DfsType;
 
 

@@ -22,6 +22,10 @@ If WITH_MP_LP is active, one needs:
 
     git submodule update --init --recursive
 
+Documentation:
+===============
+A very tentative [documentation of the nifty python
+module](http://derthorsten.github.io/nifty/docs/python/html/index.html).
 
 
 Features (Highlights):
