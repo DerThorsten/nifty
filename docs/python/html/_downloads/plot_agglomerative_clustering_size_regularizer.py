@@ -27,7 +27,6 @@ if not os.path.isfile(fname):
 img = vigra.impex.readImage(fname)
 img = numpy.swapaxes(img, 0, 1)
 
-
 # edge indicator
 edgeStrength = vigra.filters.gaussianGradientMagnitude(img,2.5).squeeze()
 
@@ -82,7 +81,7 @@ pylab.rcParams['figure.figsize'] = 1.5*a, 1.5*b
     
 f = pylab.figure()
 f.add_subplot(2, 2, 1)
-pylab.imshow(img, cmap='gray')
+pylab.imshow(img/255, cmap='gray')
 pylab.title('Raw Data')
 
 

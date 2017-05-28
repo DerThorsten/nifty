@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>nifty.graph.optimization.multicut &#8212; Nifty 0.9.3 documentation</title>
+    <title>nifty.graph.optimization.multicut &#8212; Nifty 0.9.4 documentation</title>
     
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -15,7 +15,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '0.9.3',
+        VERSION:     '0.9.4',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -47,7 +47,7 @@
         <li class="right" >
           <a href="nifty.graph.optimization.html" title="nifty.graph.optimization"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Nifty 0.9.3 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Nifty 0.9.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../reference.html" accesskey="U">Nifty API Reference</a> &#187;</li> 
       </ul>
     </div>
@@ -181,7 +181,7 @@ a value smaller as zero indicates no limit  (default: {-1.0})</li>
 <p>Cut glue &amp; and cut (CGC) <a class="reference internal" href="../zbibliography.html#beier-14-cut" id="id1">[BKK+14]</a> works by applying a series
 Of two-colorings / min-cuts to optimize the multicut problem.
 The algorithm works as illustrated in the figure below.</p>
-<div class="figure" id="id46">
+<div class="figure" id="id56">
 <img alt="../_images/cgc.png" src="../_images/cgc.png" />
 <p class="caption"><span class="caption-text">Left: The graph is recursively partitioned by applying a min-cut on each
 connected component.
@@ -210,7 +210,7 @@ This is repeated until nothing improves anymore.</span></p>
 <p>Cut glue &amp; and cut (CGC) <a class="reference internal" href="../zbibliography.html#beier-14-cut" id="id3">[BKK+14]</a> works by applying a series
 Of two-colorings / min-cuts to optimize the multicut problem.
 The algorithm works as illustrated in the figure below.</p>
-<div class="figure" id="id47">
+<div class="figure" id="id57">
 <img alt="../_images/cgc.png" src="../_images/cgc.png" />
 <p class="caption"><span class="caption-text">Left: The graph is recursively partitioned by applying a min-cut on each
 connected component.
@@ -303,7 +303,9 @@ its predecessor solver.</p>
 <div style='clear:both'></div><dl class="class">
 <dt id="nifty.graph.optimization.multicut.Configuration">
 <em class="property">class </em><code class="descclassname">nifty.graph.optimization.multicut.</code><code class="descname">Configuration</code><a class="headerlink" href="#nifty.graph.optimization.multicut.Configuration" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="attribute">
+<dd><p>This class show the compile Configuration
+Of the nifty python bindings</p>
+<dl class="attribute">
 <dt id="nifty.graph.optimization.multicut.Configuration.WITH_CPLEX">
 <code class="descname">WITH_CPLEX</code><em class="property"> = True</em><a class="headerlink" href="#nifty.graph.optimization.multicut.Configuration.WITH_CPLEX" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -1158,6 +1160,106 @@ and <a class="reference internal" href="../zbibliography.html#andres-2011-probab
 </dd></dl>
 
 <div style='clear:both'></div><dl class="class">
+<dt id="nifty.graph.optimization.multicut.MulticutIlpGlpkFactoryMulticutObjectiveEdgeContractionGraphUndirectedGraph">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.multicut.</code><code class="descname">MulticutIlpGlpkFactoryMulticutObjectiveEdgeContractionGraphUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.multicut.MulticutIlpGlpkFactoryMulticutObjectiveEdgeContractionGraphUndirectedGraph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Factory for multicut objective solver <cite>Multicut ilp Glpk.</cite></p>
+<p>Factory class to create instances of <a class="reference internal" href="#nifty.graph.optimization.multicut.MulticutIlpGlpkMulticutObjectiveEdgeContractionGraphUndirectedGraph" title="nifty.graph.optimization.multicut.MulticutIlpGlpkMulticutObjectiveEdgeContractionGraphUndirectedGraph"><code class="xref py py-class docutils literal"><span class="pre">MulticutIlpGlpkMulticutObjectiveEdgeContractionGraphUndirectedGraph</span></code></a></p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p>Objective Class: <a class="reference internal" href="#nifty.graph.optimization.multicut.MulticutObjectiveEdgeContractionGraphUndirectedGraph" title="nifty.graph.optimization.multicut.MulticutObjectiveEdgeContractionGraphUndirectedGraph"><code class="xref py py-class docutils literal"><span class="pre">MulticutObjectiveEdgeContractionGraphUndirectedGraph</span></code></a></p>
+<p>Graph Class: <a class="reference internal" href="nifty.graph.html#nifty.graph.EdgeContractionGraphUndirectedGraph" title="nifty.graph.EdgeContractionGraphUndirectedGraph"><code class="xref py py-class docutils literal"><span class="pre">nifty.graph.EdgeContractionGraphUndirectedGraph</span></code></a></p>
+<p>Solver Class: <a class="reference internal" href="#nifty.graph.optimization.multicut.MulticutIlpGlpkMulticutObjectiveEdgeContractionGraphUndirectedGraph" title="nifty.graph.optimization.multicut.MulticutIlpGlpkMulticutObjectiveEdgeContractionGraphUndirectedGraph"><code class="xref py py-class docutils literal"><span class="pre">MulticutIlpGlpkMulticutObjectiveEdgeContractionGraphUndirectedGraph</span></code></a></p>
+<p class="last">Factory Base Class: <a class="reference internal" href="#nifty.graph.optimization.multicut.MulticutFactoryBaseMulticutObjectiveEdgeContractionGraphUndirectedGraph" title="nifty.graph.optimization.multicut.MulticutFactoryBaseMulticutObjectiveEdgeContractionGraphUndirectedGraph"><code class="xref py py-class docutils literal"><span class="pre">MulticutFactoryBaseMulticutObjectiveEdgeContractionGraphUndirectedGraph</span></code></a></p>
+</div>
+</dd></dl>
+
+<div style='clear:both'></div><dl class="class">
+<dt id="nifty.graph.optimization.multicut.MulticutIlpGlpkFactoryMulticutObjectiveUndirectedGraph">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.multicut.</code><code class="descname">MulticutIlpGlpkFactoryMulticutObjectiveUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.multicut.MulticutIlpGlpkFactoryMulticutObjectiveUndirectedGraph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Factory for multicut objective solver <cite>Multicut ilp Glpk.</cite></p>
+<p>Factory class to create instances of <a class="reference internal" href="#nifty.graph.optimization.multicut.MulticutIlpGlpkMulticutObjectiveUndirectedGraph" title="nifty.graph.optimization.multicut.MulticutIlpGlpkMulticutObjectiveUndirectedGraph"><code class="xref py py-class docutils literal"><span class="pre">MulticutIlpGlpkMulticutObjectiveUndirectedGraph</span></code></a></p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p>Objective Class: <a class="reference internal" href="#nifty.graph.optimization.multicut.MulticutObjectiveUndirectedGraph" title="nifty.graph.optimization.multicut.MulticutObjectiveUndirectedGraph"><code class="xref py py-class docutils literal"><span class="pre">MulticutObjectiveUndirectedGraph</span></code></a></p>
+<p>Graph Class: <a class="reference internal" href="nifty.graph.html#nifty.graph.UndirectedGraph" title="nifty.graph.UndirectedGraph"><code class="xref py py-class docutils literal"><span class="pre">nifty.graph.UndirectedGraph</span></code></a></p>
+<p>Solver Class: <a class="reference internal" href="#nifty.graph.optimization.multicut.MulticutIlpGlpkMulticutObjectiveUndirectedGraph" title="nifty.graph.optimization.multicut.MulticutIlpGlpkMulticutObjectiveUndirectedGraph"><code class="xref py py-class docutils literal"><span class="pre">MulticutIlpGlpkMulticutObjectiveUndirectedGraph</span></code></a></p>
+<p class="last">Factory Base Class: <a class="reference internal" href="#nifty.graph.optimization.multicut.MulticutFactoryBaseMulticutObjectiveUndirectedGraph" title="nifty.graph.optimization.multicut.MulticutFactoryBaseMulticutObjectiveUndirectedGraph"><code class="xref py py-class docutils literal"><span class="pre">MulticutFactoryBaseMulticutObjectiveUndirectedGraph</span></code></a></p>
+</div>
+</dd></dl>
+
+<div style='clear:both'></div><dl class="class">
+<dt id="nifty.graph.optimization.multicut.MulticutIlpGlpkMulticutObjectiveEdgeContractionGraphUndirectedGraph">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.multicut.</code><code class="descname">MulticutIlpGlpkMulticutObjectiveEdgeContractionGraphUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.multicut.MulticutIlpGlpkMulticutObjectiveEdgeContractionGraphUndirectedGraph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Multicut objective solver <cite>Multicut ilp Glpk.</cite></p>
+<p>Find a global optimal solution by a cutting plane ILP solver
+as described in <a class="reference internal" href="../zbibliography.html#kappes-2011" id="id28">[KSA+11]</a>
+and <a class="reference internal" href="../zbibliography.html#andres-2011-probabilistic" id="id29">[AKB+11]</a></p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p>Objective Class: <a class="reference internal" href="#nifty.graph.optimization.multicut.MulticutObjectiveEdgeContractionGraphUndirectedGraph" title="nifty.graph.optimization.multicut.MulticutObjectiveEdgeContractionGraphUndirectedGraph"><code class="xref py py-class docutils literal"><span class="pre">MulticutObjectiveEdgeContractionGraphUndirectedGraph</span></code></a></p>
+<p>Graph Class: <a class="reference internal" href="nifty.graph.html#nifty.graph.EdgeContractionGraphUndirectedGraph" title="nifty.graph.EdgeContractionGraphUndirectedGraph"><code class="xref py py-class docutils literal"><span class="pre">nifty.graph.EdgeContractionGraphUndirectedGraph</span></code></a></p>
+<p>Solver Base Class: <a class="reference internal" href="#nifty.graph.optimization.multicut.MulticutBaseMulticutObjectiveEdgeContractionGraphUndirectedGraph" title="nifty.graph.optimization.multicut.MulticutBaseMulticutObjectiveEdgeContractionGraphUndirectedGraph"><code class="xref py py-class docutils literal"><span class="pre">MulticutBaseMulticutObjectiveEdgeContractionGraphUndirectedGraph</span></code></a></p>
+<p class="last">Solver Factory Class: <a class="reference internal" href="#nifty.graph.optimization.multicut.MulticutIlpGlpkFactoryMulticutObjectiveEdgeContractionGraphUndirectedGraph" title="nifty.graph.optimization.multicut.MulticutIlpGlpkFactoryMulticutObjectiveEdgeContractionGraphUndirectedGraph"><code class="xref py py-class docutils literal"><span class="pre">MulticutIlpGlpkFactoryMulticutObjectiveEdgeContractionGraphUndirectedGraph</span></code></a></p>
+</div>
+<p><strong>Cite:</strong> <a class="reference internal" href="../zbibliography.html#kappes-2011" id="id30">[KSA+11]</a> <a class="reference internal" href="../zbibliography.html#andres-2011-probabilistic" id="id31">[AKB+11]</a></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This might take very long for large models.</p>
+</div>
+</dd></dl>
+
+<div style='clear:both'></div><dl class="class">
+<dt id="nifty.graph.optimization.multicut.MulticutIlpGlpkMulticutObjectiveUndirectedGraph">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.multicut.</code><code class="descname">MulticutIlpGlpkMulticutObjectiveUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.multicut.MulticutIlpGlpkMulticutObjectiveUndirectedGraph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Multicut objective solver <cite>Multicut ilp Glpk.</cite></p>
+<p>Find a global optimal solution by a cutting plane ILP solver
+as described in <a class="reference internal" href="../zbibliography.html#kappes-2011" id="id32">[KSA+11]</a>
+and <a class="reference internal" href="../zbibliography.html#andres-2011-probabilistic" id="id33">[AKB+11]</a></p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p>Objective Class: <a class="reference internal" href="#nifty.graph.optimization.multicut.MulticutObjectiveUndirectedGraph" title="nifty.graph.optimization.multicut.MulticutObjectiveUndirectedGraph"><code class="xref py py-class docutils literal"><span class="pre">MulticutObjectiveUndirectedGraph</span></code></a></p>
+<p>Graph Class: <a class="reference internal" href="nifty.graph.html#nifty.graph.UndirectedGraph" title="nifty.graph.UndirectedGraph"><code class="xref py py-class docutils literal"><span class="pre">nifty.graph.UndirectedGraph</span></code></a></p>
+<p>Solver Base Class: <a class="reference internal" href="#nifty.graph.optimization.multicut.MulticutBaseMulticutObjectiveUndirectedGraph" title="nifty.graph.optimization.multicut.MulticutBaseMulticutObjectiveUndirectedGraph"><code class="xref py py-class docutils literal"><span class="pre">MulticutBaseMulticutObjectiveUndirectedGraph</span></code></a></p>
+<p class="last">Solver Factory Class: <a class="reference internal" href="#nifty.graph.optimization.multicut.MulticutIlpGlpkFactoryMulticutObjectiveUndirectedGraph" title="nifty.graph.optimization.multicut.MulticutIlpGlpkFactoryMulticutObjectiveUndirectedGraph"><code class="xref py py-class docutils literal"><span class="pre">MulticutIlpGlpkFactoryMulticutObjectiveUndirectedGraph</span></code></a></p>
+</div>
+<p><strong>Cite:</strong> <a class="reference internal" href="../zbibliography.html#kappes-2011" id="id34">[KSA+11]</a> <a class="reference internal" href="../zbibliography.html#andres-2011-probabilistic" id="id35">[AKB+11]</a></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This might take very long for large models.</p>
+</div>
+</dd></dl>
+
+<div style='clear:both'></div><dl class="class">
+<dt id="nifty.graph.optimization.multicut.MulticutMpFactoryMulticutObjectiveUndirectedGraph">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.multicut.</code><code class="descname">MulticutMpFactoryMulticutObjectiveUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.multicut.MulticutMpFactoryMulticutObjectiveUndirectedGraph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Factory for multicut objective solver <cite>Mp-lp.</cite></p>
+<p>Factory class to create instances of <a class="reference internal" href="#nifty.graph.optimization.multicut.MulticutMpMulticutObjectiveUndirectedGraph" title="nifty.graph.optimization.multicut.MulticutMpMulticutObjectiveUndirectedGraph"><code class="xref py py-class docutils literal"><span class="pre">MulticutMpMulticutObjectiveUndirectedGraph</span></code></a></p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p>Objective Class: <a class="reference internal" href="#nifty.graph.optimization.multicut.MulticutObjectiveUndirectedGraph" title="nifty.graph.optimization.multicut.MulticutObjectiveUndirectedGraph"><code class="xref py py-class docutils literal"><span class="pre">MulticutObjectiveUndirectedGraph</span></code></a></p>
+<p>Graph Class: <a class="reference internal" href="nifty.graph.html#nifty.graph.UndirectedGraph" title="nifty.graph.UndirectedGraph"><code class="xref py py-class docutils literal"><span class="pre">nifty.graph.UndirectedGraph</span></code></a></p>
+<p>Solver Class: <a class="reference internal" href="#nifty.graph.optimization.multicut.MulticutMpMulticutObjectiveUndirectedGraph" title="nifty.graph.optimization.multicut.MulticutMpMulticutObjectiveUndirectedGraph"><code class="xref py py-class docutils literal"><span class="pre">MulticutMpMulticutObjectiveUndirectedGraph</span></code></a></p>
+<p class="last">Factory Base Class: <a class="reference internal" href="#nifty.graph.optimization.multicut.MulticutFactoryBaseMulticutObjectiveUndirectedGraph" title="nifty.graph.optimization.multicut.MulticutFactoryBaseMulticutObjectiveUndirectedGraph"><code class="xref py py-class docutils literal"><span class="pre">MulticutFactoryBaseMulticutObjectiveUndirectedGraph</span></code></a></p>
+</div>
+</dd></dl>
+
+<div style='clear:both'></div><dl class="class">
+<dt id="nifty.graph.optimization.multicut.MulticutMpMulticutObjectiveUndirectedGraph">
+<em class="property">class </em><code class="descclassname">nifty.graph.optimization.multicut.</code><code class="descname">MulticutMpMulticutObjectiveUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.multicut.MulticutMpMulticutObjectiveUndirectedGraph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Multicut objective solver <cite>Mp-lp.</cite></p>
+<p>Optimize the multicut objective by convergent message passing as
+described by [TODO]</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p>Objective Class: <a class="reference internal" href="#nifty.graph.optimization.multicut.MulticutObjectiveUndirectedGraph" title="nifty.graph.optimization.multicut.MulticutObjectiveUndirectedGraph"><code class="xref py py-class docutils literal"><span class="pre">MulticutObjectiveUndirectedGraph</span></code></a></p>
+<p>Graph Class: <a class="reference internal" href="nifty.graph.html#nifty.graph.UndirectedGraph" title="nifty.graph.UndirectedGraph"><code class="xref py py-class docutils literal"><span class="pre">nifty.graph.UndirectedGraph</span></code></a></p>
+<p>Solver Base Class: <a class="reference internal" href="#nifty.graph.optimization.multicut.MulticutBaseMulticutObjectiveUndirectedGraph" title="nifty.graph.optimization.multicut.MulticutBaseMulticutObjectiveUndirectedGraph"><code class="xref py py-class docutils literal"><span class="pre">MulticutBaseMulticutObjectiveUndirectedGraph</span></code></a></p>
+<p class="last">Solver Factory Class: <a class="reference internal" href="#nifty.graph.optimization.multicut.MulticutMpFactoryMulticutObjectiveUndirectedGraph" title="nifty.graph.optimization.multicut.MulticutMpFactoryMulticutObjectiveUndirectedGraph"><code class="xref py py-class docutils literal"><span class="pre">MulticutMpFactoryMulticutObjectiveUndirectedGraph</span></code></a></p>
+</div>
+<p><strong>Cite:</strong> [TODO]</p>
+</dd></dl>
+
+<div style='clear:both'></div><dl class="class">
 <dt id="nifty.graph.optimization.multicut.MulticutObjectiveEdgeContractionGraphUndirectedGraph">
 <em class="property">class </em><code class="descclassname">nifty.graph.optimization.multicut.</code><code class="descname">MulticutObjectiveEdgeContractionGraphUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.multicut.MulticutObjectiveEdgeContractionGraphUndirectedGraph" title="Permalink to this definition">¶</a></dt>
 <dd><p>Multicut objective for a graph of type nifty.graph.EdgeContractionGraphUndirectedGraph</p>
@@ -1172,7 +1274,7 @@ and <a class="reference internal" href="../zbibliography.html#andres-2011-probab
 <em class="property">static </em><code class="descname">cgcFactory</code><span class="sig-paren">(</span><em>doCutPhase=True</em>, <em>doGlueAndCutPhase=True</em>, <em>mincutFactory=None</em>, <em>multicutFactory=None</em>, <em>doBetterCutPhase=False</em>, <em>nodeNumStopCond=0.1</em>, <em>sizeRegularizer=1.0</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.optimization.multicut.MulticutObjectiveEdgeContractionGraphUndirectedGraph.cgcFactory" title="Permalink to this definition">¶</a></dt>
 <dd><p>create an instance of <a class="reference internal" href="#nifty.graph.optimization.multicut.CgcFactoryMulticutObjectiveEdgeContractionGraphUndirectedGraph" title="nifty.graph.optimization.multicut.CgcFactoryMulticutObjectiveEdgeContractionGraphUndirectedGraph"><code class="xref py py-class docutils literal"><span class="pre">CgcFactoryMulticutObjectiveEdgeContractionGraphUndirectedGraph</span></code></a></p>
 <blockquote>
-<div>Cut glue and cut as described in <a class="reference internal" href="../zbibliography.html#beier-14-cut" id="id28">[BKK+14]</a>.</div></blockquote>
+<div>Cut glue and cut as described in <a class="reference internal" href="../zbibliography.html#beier-14-cut" id="id38">[BKK+14]</a>.</div></blockquote>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">This solver should be warm started, otherwise
@@ -1317,7 +1419,7 @@ stopping condition is ignored  (default: {-1})</li>
 <dd><p>create an instance of <a class="reference internal" href="#nifty.graph.optimization.multicut.MulticutGreedyAdditiveFactoryMulticutObjectiveEdgeContractionGraphUndirectedGraph" title="nifty.graph.optimization.multicut.MulticutGreedyAdditiveFactoryMulticutObjectiveEdgeContractionGraphUndirectedGraph"><code class="xref py py-class docutils literal"><span class="pre">MulticutGreedyAdditiveFactoryMulticutObjectiveEdgeContractionGraphUndirectedGraph</span></code></a></p>
 <blockquote>
 <div>Find approximate solutions via
-agglomerative clustering as in <a class="reference internal" href="../zbibliography.html#beier-15-funsion" id="id29">[BHK15]</a>.</div></blockquote>
+agglomerative clustering as in <a class="reference internal" href="../zbibliography.html#beier-15-funsion" id="id39">[BHK15]</a>.</div></blockquote>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">This solver should be used to
@@ -1367,7 +1469,7 @@ stopping condition is ignored  (default: {-1})</li>
 <dd><p>create an instance of <code class="xref py py-class docutils literal"><span class="pre">MulticutAndresGreedyAdditiveFactoryMulticutObjectiveEdgeContractionGraphUndirectedGraph</span></code></p>
 <blockquote>
 <div>Find approximate solutions via
-agglomerative clustering as in <a class="reference internal" href="../zbibliography.html#beier-15-funsion" id="id30">[BHK15]</a>.</div></blockquote>
+agglomerative clustering as in <a class="reference internal" href="../zbibliography.html#beier-15-funsion" id="id40">[BHK15]</a>.</div></blockquote>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">This is just for comparison since it implements the
@@ -1426,7 +1528,7 @@ same as <code class="xref py py-func docutils literal"><span class="pre">greedyA
 <dd><p>create an instance of <a class="reference internal" href="#nifty.graph.optimization.multicut.MulticutDecomposerFactoryMulticutObjectiveEdgeContractionGraphUndirectedGraph" title="nifty.graph.optimization.multicut.MulticutDecomposerFactoryMulticutObjectiveEdgeContractionGraphUndirectedGraph"><code class="xref py py-class docutils literal"><span class="pre">MulticutDecomposerFactoryMulticutObjectiveEdgeContractionGraphUndirectedGraph</span></code></a></p>
 <blockquote>
 <div>This solver tries to decompose the model into
-sub-models  as described in <a class="reference internal" href="../zbibliography.html#alush-2013-simbad" id="id32">[AG13]</a>.
+sub-models  as described in <a class="reference internal" href="../zbibliography.html#alush-2013-simbad" id="id42">[AG13]</a>.
 If a model decomposes into components such that there are no
 positive weighted edges between the components one can
 optimize each model separately.</div></blockquote>
@@ -1467,8 +1569,8 @@ if model does not decompose (default: {<a class="reference internal" href="#nift
 <dd><p>create an instance of an ilp multicut solver.</p>
 <blockquote>
 <div>Find a global optimal solution by a cutting plane ILP solver
-as described in <a class="reference internal" href="../zbibliography.html#kappes-2011" id="id33">[KSA+11]</a>
-and <a class="reference internal" href="../zbibliography.html#andres-2011-probabilistic" id="id34">[AKB+11]</a></div></blockquote>
+as described in <a class="reference internal" href="../zbibliography.html#kappes-2011" id="id43">[KSA+11]</a>
+and <a class="reference internal" href="../zbibliography.html#andres-2011-probabilistic" id="id44">[AKB+11]</a></div></blockquote>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">This might take very long for large models.</p>
@@ -1493,7 +1595,7 @@ either &#8220;cplex&#8221;, &#8220;gurobi&#8221; or &#8220;glpk&#8221;.
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">multicut factory for the corresponding solver</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#nifty.graph.optimization.multicut.MulticutIlpCplexFactoryMulticutObjectiveEdgeContractionGraphUndirectedGraph" title="nifty.graph.optimization.multicut.MulticutIlpCplexFactoryMulticutObjectiveEdgeContractionGraphUndirectedGraph">MulticutIlpCplexFactoryMulticutObjectiveEdgeContractionGraphUndirectedGraph</a> or MulticutIlpGurobiFactoryMulticutObjectiveEdgeContractionGraphUndirectedGraph or MulticutIlpGlpkFactoryMulticutObjectiveEdgeContractionGraphUndirectedGraph</p>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#nifty.graph.optimization.multicut.MulticutIlpCplexFactoryMulticutObjectiveEdgeContractionGraphUndirectedGraph" title="nifty.graph.optimization.multicut.MulticutIlpCplexFactoryMulticutObjectiveEdgeContractionGraphUndirectedGraph">MulticutIlpCplexFactoryMulticutObjectiveEdgeContractionGraphUndirectedGraph</a> or MulticutIlpGurobiFactoryMulticutObjectiveEdgeContractionGraphUndirectedGraph or <a class="reference internal" href="#nifty.graph.optimization.multicut.MulticutIlpGlpkFactoryMulticutObjectiveEdgeContractionGraphUndirectedGraph" title="nifty.graph.optimization.multicut.MulticutIlpGlpkFactoryMulticutObjectiveEdgeContractionGraphUndirectedGraph">MulticutIlpGlpkFactoryMulticutObjectiveEdgeContractionGraphUndirectedGraph</a></p>
 </td>
 </tr>
 </tbody>
@@ -1547,7 +1649,7 @@ either &#8220;cplex&#8221;, &#8220;gurobi&#8221; or &#8220;glpk&#8221;.
 <em class="property">static </em><code class="descname">cgcFactory</code><span class="sig-paren">(</span><em>doCutPhase=True</em>, <em>doGlueAndCutPhase=True</em>, <em>mincutFactory=None</em>, <em>multicutFactory=None</em>, <em>doBetterCutPhase=False</em>, <em>nodeNumStopCond=0.1</em>, <em>sizeRegularizer=1.0</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.optimization.multicut.MulticutObjectiveUndirectedGraph.cgcFactory" title="Permalink to this definition">¶</a></dt>
 <dd><p>create an instance of <a class="reference internal" href="#nifty.graph.optimization.multicut.CgcFactoryMulticutObjectiveUndirectedGraph" title="nifty.graph.optimization.multicut.CgcFactoryMulticutObjectiveUndirectedGraph"><code class="xref py py-class docutils literal"><span class="pre">CgcFactoryMulticutObjectiveUndirectedGraph</span></code></a></p>
 <blockquote>
-<div>Cut glue and cut as described in <a class="reference internal" href="../zbibliography.html#beier-14-cut" id="id35">[BKK+14]</a>.</div></blockquote>
+<div>Cut glue and cut as described in <a class="reference internal" href="../zbibliography.html#beier-14-cut" id="id45">[BKK+14]</a>.</div></blockquote>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">This solver should be warm started, otherwise
@@ -1692,7 +1794,7 @@ stopping condition is ignored  (default: {-1})</li>
 <dd><p>create an instance of <a class="reference internal" href="#nifty.graph.optimization.multicut.MulticutGreedyAdditiveFactoryMulticutObjectiveUndirectedGraph" title="nifty.graph.optimization.multicut.MulticutGreedyAdditiveFactoryMulticutObjectiveUndirectedGraph"><code class="xref py py-class docutils literal"><span class="pre">MulticutGreedyAdditiveFactoryMulticutObjectiveUndirectedGraph</span></code></a></p>
 <blockquote>
 <div>Find approximate solutions via
-agglomerative clustering as in <a class="reference internal" href="../zbibliography.html#beier-15-funsion" id="id36">[BHK15]</a>.</div></blockquote>
+agglomerative clustering as in <a class="reference internal" href="../zbibliography.html#beier-15-funsion" id="id46">[BHK15]</a>.</div></blockquote>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">This solver should be used to
@@ -1742,7 +1844,7 @@ stopping condition is ignored  (default: {-1})</li>
 <dd><p>create an instance of <a class="reference internal" href="#nifty.graph.optimization.multicut.MulticutAndresGreedyAdditiveFactoryMulticutObjectiveUndirectedGraph" title="nifty.graph.optimization.multicut.MulticutAndresGreedyAdditiveFactoryMulticutObjectiveUndirectedGraph"><code class="xref py py-class docutils literal"><span class="pre">MulticutAndresGreedyAdditiveFactoryMulticutObjectiveUndirectedGraph</span></code></a></p>
 <blockquote>
 <div>Find approximate solutions via
-agglomerative clustering as in <a class="reference internal" href="../zbibliography.html#beier-15-funsion" id="id37">[BHK15]</a>.</div></blockquote>
+agglomerative clustering as in <a class="reference internal" href="../zbibliography.html#beier-15-funsion" id="id47">[BHK15]</a>.</div></blockquote>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">This is just for comparison since it implements the
@@ -1801,7 +1903,7 @@ same as <code class="xref py py-func docutils literal"><span class="pre">greedyA
 <dd><p>create an instance of <a class="reference internal" href="#nifty.graph.optimization.multicut.MulticutDecomposerFactoryMulticutObjectiveUndirectedGraph" title="nifty.graph.optimization.multicut.MulticutDecomposerFactoryMulticutObjectiveUndirectedGraph"><code class="xref py py-class docutils literal"><span class="pre">MulticutDecomposerFactoryMulticutObjectiveUndirectedGraph</span></code></a></p>
 <blockquote>
 <div>This solver tries to decompose the model into
-sub-models  as described in <a class="reference internal" href="../zbibliography.html#alush-2013-simbad" id="id39">[AG13]</a>.
+sub-models  as described in <a class="reference internal" href="../zbibliography.html#alush-2013-simbad" id="id49">[AG13]</a>.
 If a model decomposes into components such that there are no
 positive weighted edges between the components one can
 optimize each model separately.</div></blockquote>
@@ -1842,8 +1944,8 @@ if model does not decompose (default: {<a class="reference internal" href="#nift
 <dd><p>create an instance of an ilp multicut solver.</p>
 <blockquote>
 <div>Find a global optimal solution by a cutting plane ILP solver
-as described in <a class="reference internal" href="../zbibliography.html#kappes-2011" id="id40">[KSA+11]</a>
-and <a class="reference internal" href="../zbibliography.html#andres-2011-probabilistic" id="id41">[AKB+11]</a></div></blockquote>
+as described in <a class="reference internal" href="../zbibliography.html#kappes-2011" id="id50">[KSA+11]</a>
+and <a class="reference internal" href="../zbibliography.html#andres-2011-probabilistic" id="id51">[AKB+11]</a></div></blockquote>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">This might take very long for large models.</p>
@@ -1868,7 +1970,7 @@ either &#8220;cplex&#8221;, &#8220;gurobi&#8221; or &#8220;glpk&#8221;.
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">multicut factory for the corresponding solver</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#nifty.graph.optimization.multicut.MulticutIlpCplexFactoryMulticutObjectiveUndirectedGraph" title="nifty.graph.optimization.multicut.MulticutIlpCplexFactoryMulticutObjectiveUndirectedGraph">MulticutIlpCplexFactoryMulticutObjectiveUndirectedGraph</a> or MulticutIlpGurobiFactoryMulticutObjectiveUndirectedGraph or MulticutIlpGlpkFactoryMulticutObjectiveUndirectedGraph</p>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#nifty.graph.optimization.multicut.MulticutIlpCplexFactoryMulticutObjectiveUndirectedGraph" title="nifty.graph.optimization.multicut.MulticutIlpCplexFactoryMulticutObjectiveUndirectedGraph">MulticutIlpCplexFactoryMulticutObjectiveUndirectedGraph</a> or MulticutIlpGurobiFactoryMulticutObjectiveUndirectedGraph or <a class="reference internal" href="#nifty.graph.optimization.multicut.MulticutIlpGlpkFactoryMulticutObjectiveUndirectedGraph" title="nifty.graph.optimization.multicut.MulticutIlpGlpkFactoryMulticutObjectiveUndirectedGraph">MulticutIlpGlpkFactoryMulticutObjectiveUndirectedGraph</a></p>
 </td>
 </tr>
 </tbody>
@@ -1909,7 +2011,7 @@ either &#8220;cplex&#8221;, &#8220;gurobi&#8221; or &#8220;glpk&#8221;.
 
 <div class="section" id="examples-using-nifty-graph-optimization-multicut-multicutobjectiveundirectedgraph">
 <h4>Examples using <code class="docutils literal"><span class="pre">nifty.graph.optimization.multicut.MulticutObjectiveUndirectedGraph</span></code><a class="headerlink" href="#examples-using-nifty-graph-optimization-multicut-multicutobjectiveundirectedgraph" title="Permalink to this headline">¶</a></h4>
-<div class="sphx-glr-thumbcontainer" tooltip="Compare multicut solvers on a graph with a random topology and random edge weights."><div class="figure" id="id48">
+<div class="sphx-glr-thumbcontainer" tooltip="Compare multicut solvers on a graph with a random topology and random edge weights."><div class="figure" id="id58">
 <img alt="../_images/sphx_glr_plot_toy_multicut_thumb.png" src="../_images/sphx_glr_plot_toy_multicut_thumb.png" />
 <p class="caption"><span class="caption-text"><a class="reference internal" href="../auto_examples/graph/plot_toy_multicut.html#sphx-glr-auto-examples-graph-plot-toy-multicut-py"><span class="std std-ref">Multicut Logging Visitor</span></a></span></p>
 </div>
@@ -2368,7 +2470,7 @@ of nodes which are in the graph and  -1 otherwise.</td>
 <div style='clear:both'></div><dl class="class">
 <dt id="nifty.graph.optimization.multicut.partial">
 <em class="property">class </em><code class="descclassname">nifty.graph.optimization.multicut.</code><code class="descname">partial</code><a class="headerlink" href="#nifty.graph.optimization.multicut.partial" title="Permalink to this definition">¶</a></dt>
-<dd><p>partial(func, <a href="#id42"><span class="problematic" id="id43">*</span></a>args, <a href="#id44"><span class="problematic" id="id45">**</span></a>keywords) - new function with partial application
+<dd><p>partial(func, <a href="#id52"><span class="problematic" id="id53">*</span></a>args, <a href="#id54"><span class="problematic" id="id55">**</span></a>keywords) - new function with partial application
 of the given arguments and keywords.</p>
 <dl class="attribute">
 <dt id="nifty.graph.optimization.multicut.partial.args">
@@ -2416,7 +2518,7 @@ of the given arguments and keywords.</p>
         <li class="right" >
           <a href="nifty.graph.optimization.html" title="nifty.graph.optimization"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Nifty 0.9.3 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Nifty 0.9.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../reference.html" >Nifty API Reference</a> &#187;</li> 
       </ul>
     </div>

@@ -43,7 +43,6 @@ We start from a region adjacency graph.
     img = vigra.impex.readImage(fname)
     img = numpy.swapaxes(img, 0, 1)
 
-
     # edge indicator
     edgeStrength = vigra.filters.gaussianGradientMagnitude(img,2.5).squeeze()
 
@@ -98,7 +97,7 @@ We start from a region adjacency graph.
     
     f = pylab.figure()
     f.add_subplot(2, 2, 1)
-    pylab.imshow(img, cmap='gray')
+    pylab.imshow(img/255, cmap='gray')
     pylab.title('Raw Data')
 
 
@@ -120,7 +119,7 @@ We start from a region adjacency graph.
     pylab.title('Segmentation')
 
     pylab.show()
-**Total running time of the script:** ( 0 minutes  0.457 seconds)
+**Total running time of the script:** ( 0 minutes  0.458 seconds)
 
 
 

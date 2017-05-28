@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>nifty.graph.rag &#8212; Nifty 0.9.3 documentation</title>
+    <title>nifty.graph.rag &#8212; Nifty 0.9.4 documentation</title>
     
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -15,7 +15,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '0.9.3',
+        VERSION:     '0.9.4',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -47,7 +47,7 @@
         <li class="right" >
           <a href="nifty.graph.html" title="nifty.graph"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Nifty 0.9.3 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Nifty 0.9.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../reference.html" accesskey="U">Nifty API Reference</a> &#187;</li> 
       </ul>
     </div>
@@ -189,6 +189,36 @@
 <dd></dd></dl>
 
 <div style='clear:both'></div><dl class="function">
+<dt id="nifty.graph.rag.gridRag2DHdf5">
+<code class="descclassname">nifty.graph.rag.</code><code class="descname">gridRag2DHdf5</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.rag.gridRag2DHdf5" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li>gridRag2DHdf5(labelsProxy: nifty.graph.rag._rag.GridRagHdf5Labels2DLabelsProxy, blockShape: List[int]=[], numberOfThreads: int=-1) -&gt; nifty.graph.rag._rag.GridRagHdf5Labels2D</li>
+<li>gridRag2DHdf5(labels: nifty.graph.rag._rag.GridRagHdf5Labels2DLabelsProxy, serialization: array&lt;int&gt;) -&gt; nifty.graph.rag._rag.GridRagHdf5Labels2D</li>
+</ol>
+</dd></dl>
+
+<div style='clear:both'></div><dl class="function">
+<dt id="nifty.graph.rag.gridRag2DHdf5LabelsProxy">
+<code class="descclassname">nifty.graph.rag.</code><code class="descname">gridRag2DHdf5LabelsProxy</code><span class="sig-paren">(</span><em>labels: nifty::hdf5::Hdf5Array&lt;unsigned int&gt;</em>, <em>numberOfLabels: int</em><span class="sig-paren">)</span> &#x2192; nifty.graph.rag._rag.GridRagHdf5Labels2DLabelsProxy<a class="headerlink" href="#nifty.graph.rag.gridRag2DHdf5LabelsProxy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<div style='clear:both'></div><dl class="function">
+<dt id="nifty.graph.rag.gridRag3DHdf5">
+<code class="descclassname">nifty.graph.rag.</code><code class="descname">gridRag3DHdf5</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.rag.gridRag3DHdf5" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li>gridRag3DHdf5(labelsProxy: nifty.graph.rag._rag.GridRagHdf5Labels3DLabelsProxy, blockShape: List[int]=[], numberOfThreads: int=-1) -&gt; nifty.graph.rag._rag.GridRagHdf5Labels3D</li>
+<li>gridRag3DHdf5(labels: nifty.graph.rag._rag.GridRagHdf5Labels3DLabelsProxy, serialization: array&lt;int&gt;) -&gt; nifty.graph.rag._rag.GridRagHdf5Labels3D</li>
+</ol>
+</dd></dl>
+
+<div style='clear:both'></div><dl class="function">
+<dt id="nifty.graph.rag.gridRag3DHdf5LabelsProxy">
+<code class="descclassname">nifty.graph.rag.</code><code class="descname">gridRag3DHdf5LabelsProxy</code><span class="sig-paren">(</span><em>labels: nifty::hdf5::Hdf5Array&lt;unsigned int&gt;</em>, <em>numberOfLabels: int</em><span class="sig-paren">)</span> &#x2192; nifty.graph.rag._rag.GridRagHdf5Labels3DLabelsProxy<a class="headerlink" href="#nifty.graph.rag.gridRag3DHdf5LabelsProxy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<div style='clear:both'></div><dl class="function">
 <dt id="nifty.graph.rag.gridRagAccumulateLabels">
 <code class="descclassname">nifty.graph.rag.</code><code class="descname">gridRagAccumulateLabels</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.rag.gridRagAccumulateLabels" title="Permalink to this definition">¶</a></dt>
 <dd><p>Overloaded function.</p>
@@ -201,8 +231,23 @@
 </dd></dl>
 
 <div style='clear:both'></div><dl class="function">
+<dt id="nifty.graph.rag.gridRagHdf5">
+<code class="descclassname">nifty.graph.rag.</code><code class="descname">gridRagHdf5</code><span class="sig-paren">(</span><em>labels</em>, <em>numberOfLabels</em>, <em>blockShape=None</em>, <em>numberOfThreads=-1</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.rag.gridRagHdf5" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<div style='clear:both'></div><dl class="function">
 <dt id="nifty.graph.rag.gridRagStacked2DExplicitImpl">
 <code class="descclassname">nifty.graph.rag.</code><code class="descname">gridRagStacked2DExplicitImpl</code><span class="sig-paren">(</span><em>labels: array&lt;int&gt;</em>, <em>numberOfThreads: int=-1</em><span class="sig-paren">)</span> &#x2192; nifty.graph.rag._rag.GridRagStacked2DExplicit<a class="headerlink" href="#nifty.graph.rag.gridRagStacked2DExplicitImpl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<div style='clear:both'></div><dl class="function">
+<dt id="nifty.graph.rag.gridRagStacked2DHdf5">
+<code class="descclassname">nifty.graph.rag.</code><code class="descname">gridRagStacked2DHdf5</code><span class="sig-paren">(</span><em>labels</em>, <em>numberOfLabels</em>, <em>numberOfThreads=-1</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.rag.gridRagStacked2DHdf5" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<div style='clear:both'></div><dl class="function">
+<dt id="nifty.graph.rag.gridRagStacked2DHdf5Impl">
+<code class="descclassname">nifty.graph.rag.</code><code class="descname">gridRagStacked2DHdf5Impl</code><span class="sig-paren">(</span><em>labelsProxy: nifty.graph.rag._rag.GridRagHdf5Labels3DLabelsProxy</em>, <em>numberOfThreads: int=-1</em><span class="sig-paren">)</span> &#x2192; nifty.graph.rag._rag.GridRagStacked2DHdf5<a class="headerlink" href="#nifty.graph.rag.gridRagStacked2DHdf5Impl" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <div style='clear:both'></div><dl class="function">
@@ -226,7 +271,9 @@
 <dl class="class">
 <dt id="nifty.graph.rag.Configuration">
 <em class="property">class </em><code class="descclassname">nifty.graph.rag.</code><code class="descname">Configuration</code><a class="headerlink" href="#nifty.graph.rag.Configuration" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="attribute">
+<dd><p>This class show the compile Configuration
+Of the nifty python bindings</p>
+<dl class="attribute">
 <dt id="nifty.graph.rag.Configuration.WITH_CPLEX">
 <code class="descname">WITH_CPLEX</code><em class="property"> = True</em><a class="headerlink" href="#nifty.graph.rag.Configuration.WITH_CPLEX" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -289,6 +336,66 @@
 </dd></dl>
 
 <div style='clear:both'></div><dl class="class">
+<dt id="nifty.graph.rag.GridRagHdf5Labels2D">
+<em class="property">class </em><code class="descclassname">nifty.graph.rag.</code><code class="descname">GridRagHdf5Labels2D</code><a class="headerlink" href="#nifty.graph.rag.GridRagHdf5Labels2D" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="nifty.graph.rag.GridRagHdf5Labels2D.insertEdge">
+<code class="descname">insertEdge</code><span class="sig-paren">(</span><em>self: nifty.graph.rag._rag.GridRagHdf5Labels2D</em>, <em>arg0: int</em>, <em>arg1: int</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#nifty.graph.rag.GridRagHdf5Labels2D.insertEdge" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.rag.GridRagHdf5Labels2D.insertEdges">
+<code class="descname">insertEdges</code><span class="sig-paren">(</span><em>self: nifty.graph.rag._rag.GridRagHdf5Labels2D, arg0: numpy.ndarray[uint64]</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#nifty.graph.rag.GridRagHdf5Labels2D.insertEdges" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.rag.GridRagHdf5Labels2D.labelsProxy">
+<code class="descname">labelsProxy</code><span class="sig-paren">(</span><em>self: nifty.graph.rag._rag.GridRagHdf5Labels2D</em><span class="sig-paren">)</span> &#x2192; nifty.graph.rag._rag.GridRagHdf5Labels2DLabelsProxy<a class="headerlink" href="#nifty.graph.rag.GridRagHdf5Labels2D.labelsProxy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<div style='clear:both'></div><dl class="class">
+<dt id="nifty.graph.rag.GridRagHdf5Labels2DLabelsProxy">
+<em class="property">class </em><code class="descclassname">nifty.graph.rag.</code><code class="descname">GridRagHdf5Labels2DLabelsProxy</code><a class="headerlink" href="#nifty.graph.rag.GridRagHdf5Labels2DLabelsProxy" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="nifty.graph.rag.GridRagHdf5Labels2DLabelsProxy.hdf5Array">
+<code class="descname">hdf5Array</code><span class="sig-paren">(</span><em>self: nifty.graph.rag._rag.GridRagHdf5Labels2DLabelsProxy</em><span class="sig-paren">)</span> &#x2192; nifty::hdf5::Hdf5Array&lt;unsigned int&gt;<a class="headerlink" href="#nifty.graph.rag.GridRagHdf5Labels2DLabelsProxy.hdf5Array" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<div style='clear:both'></div><dl class="class">
+<dt id="nifty.graph.rag.GridRagHdf5Labels3D">
+<em class="property">class </em><code class="descclassname">nifty.graph.rag.</code><code class="descname">GridRagHdf5Labels3D</code><a class="headerlink" href="#nifty.graph.rag.GridRagHdf5Labels3D" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="nifty.graph.rag.GridRagHdf5Labels3D.insertEdge">
+<code class="descname">insertEdge</code><span class="sig-paren">(</span><em>self: nifty.graph.rag._rag.GridRagHdf5Labels3D</em>, <em>arg0: int</em>, <em>arg1: int</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#nifty.graph.rag.GridRagHdf5Labels3D.insertEdge" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.rag.GridRagHdf5Labels3D.insertEdges">
+<code class="descname">insertEdges</code><span class="sig-paren">(</span><em>self: nifty.graph.rag._rag.GridRagHdf5Labels3D, arg0: numpy.ndarray[uint64]</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#nifty.graph.rag.GridRagHdf5Labels3D.insertEdges" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.rag.GridRagHdf5Labels3D.labelsProxy">
+<code class="descname">labelsProxy</code><span class="sig-paren">(</span><em>self: nifty.graph.rag._rag.GridRagHdf5Labels3D</em><span class="sig-paren">)</span> &#x2192; nifty.graph.rag._rag.GridRagHdf5Labels3DLabelsProxy<a class="headerlink" href="#nifty.graph.rag.GridRagHdf5Labels3D.labelsProxy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<div style='clear:both'></div><dl class="class">
+<dt id="nifty.graph.rag.GridRagHdf5Labels3DLabelsProxy">
+<em class="property">class </em><code class="descclassname">nifty.graph.rag.</code><code class="descname">GridRagHdf5Labels3DLabelsProxy</code><a class="headerlink" href="#nifty.graph.rag.GridRagHdf5Labels3DLabelsProxy" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="nifty.graph.rag.GridRagHdf5Labels3DLabelsProxy.hdf5Array">
+<code class="descname">hdf5Array</code><span class="sig-paren">(</span><em>self: nifty.graph.rag._rag.GridRagHdf5Labels3DLabelsProxy</em><span class="sig-paren">)</span> &#x2192; nifty::hdf5::Hdf5Array&lt;unsigned int&gt;<a class="headerlink" href="#nifty.graph.rag.GridRagHdf5Labels3DLabelsProxy.hdf5Array" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<div style='clear:both'></div><dl class="class">
 <dt id="nifty.graph.rag.GridRagStacked2DExplicit">
 <em class="property">class </em><code class="descclassname">nifty.graph.rag.</code><code class="descname">GridRagStacked2DExplicit</code><a class="headerlink" href="#nifty.graph.rag.GridRagStacked2DExplicit" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="method">
@@ -333,6 +440,56 @@
 
 </dd></dl>
 
+<div style='clear:both'></div><dl class="class">
+<dt id="nifty.graph.rag.GridRagStacked2DHdf5">
+<em class="property">class </em><code class="descclassname">nifty.graph.rag.</code><code class="descname">GridRagStacked2DHdf5</code><a class="headerlink" href="#nifty.graph.rag.GridRagStacked2DHdf5" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="nifty.graph.rag.GridRagStacked2DHdf5.betweenSliceEdgeOffset">
+<code class="descname">betweenSliceEdgeOffset</code><span class="sig-paren">(</span><em>self: nifty.graph.rag._rag.GridRagStacked2DHdf5</em><span class="sig-paren">)</span> &#x2192; array&lt;int&gt;<a class="headerlink" href="#nifty.graph.rag.GridRagStacked2DHdf5.betweenSliceEdgeOffset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.rag.GridRagStacked2DHdf5.inSliceEdgeOffset">
+<code class="descname">inSliceEdgeOffset</code><span class="sig-paren">(</span><em>self: nifty.graph.rag._rag.GridRagStacked2DHdf5</em><span class="sig-paren">)</span> &#x2192; array&lt;int&gt;<a class="headerlink" href="#nifty.graph.rag.GridRagStacked2DHdf5.inSliceEdgeOffset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.rag.GridRagStacked2DHdf5.insertEdge">
+<code class="descname">insertEdge</code><span class="sig-paren">(</span><em>self: nifty.graph.rag._rag.GridRagStacked2DHdf5</em>, <em>arg0: int</em>, <em>arg1: int</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#nifty.graph.rag.GridRagStacked2DHdf5.insertEdge" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.rag.GridRagStacked2DHdf5.insertEdges">
+<code class="descname">insertEdges</code><span class="sig-paren">(</span><em>self: nifty.graph.rag._rag.GridRagStacked2DHdf5, arg0: numpy.ndarray[uint64]</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#nifty.graph.rag.GridRagStacked2DHdf5.insertEdges" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.rag.GridRagStacked2DHdf5.labelsProxy">
+<code class="descname">labelsProxy</code><span class="sig-paren">(</span><em>self: nifty.graph.rag._rag.GridRagHdf5Labels3D</em><span class="sig-paren">)</span> &#x2192; nifty.graph.rag._rag.GridRagHdf5Labels3DLabelsProxy<a class="headerlink" href="#nifty.graph.rag.GridRagStacked2DHdf5.labelsProxy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.rag.GridRagStacked2DHdf5.minMaxLabelPerSlice">
+<code class="descname">minMaxLabelPerSlice</code><span class="sig-paren">(</span><em>self: nifty.graph.rag._rag.GridRagStacked2DHdf5</em><span class="sig-paren">)</span> &#x2192; array&lt;int&gt;<a class="headerlink" href="#nifty.graph.rag.GridRagStacked2DHdf5.minMaxLabelPerSlice" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.rag.GridRagStacked2DHdf5.numberOfInBetweenSliceEdges">
+<code class="descname">numberOfInBetweenSliceEdges</code><span class="sig-paren">(</span><em>self: nifty.graph.rag._rag.GridRagStacked2DHdf5</em><span class="sig-paren">)</span> &#x2192; array&lt;int&gt;<a class="headerlink" href="#nifty.graph.rag.GridRagStacked2DHdf5.numberOfInBetweenSliceEdges" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.rag.GridRagStacked2DHdf5.numberOfInSliceEdges">
+<code class="descname">numberOfInSliceEdges</code><span class="sig-paren">(</span><em>self: nifty.graph.rag._rag.GridRagStacked2DHdf5</em><span class="sig-paren">)</span> &#x2192; array&lt;int&gt;<a class="headerlink" href="#nifty.graph.rag.GridRagStacked2DHdf5.numberOfInSliceEdges" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.rag.GridRagStacked2DHdf5.numberOfNodesPerSlice">
+<code class="descname">numberOfNodesPerSlice</code><span class="sig-paren">(</span><em>self: nifty.graph.rag._rag.GridRagStacked2DHdf5</em><span class="sig-paren">)</span> &#x2192; array&lt;int&gt;<a class="headerlink" href="#nifty.graph.rag.GridRagStacked2DHdf5.numberOfNodesPerSlice" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 <div style='clear:both'></div></div>
 </div>
 </div>
@@ -358,7 +515,7 @@
         <li class="right" >
           <a href="nifty.graph.html" title="nifty.graph"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Nifty 0.9.3 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Nifty 0.9.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../reference.html" >Nifty API Reference</a> &#187;</li> 
       </ul>
     </div>
