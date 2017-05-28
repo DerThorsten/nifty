@@ -15,6 +15,7 @@ namespace nifty{
 namespace graph{
 
     typedef std::vector<int64_t> NodePath;
+    typedef std::vector<int64_t> EdgePath;
 
     template <typename SP_TYPE>
     NodePath pathsFromPredecessors(
@@ -40,6 +41,35 @@ namespace graph{
     }
     
     template <typename SP_TYPE>
+    EdgePath edgePathsFromPredecessors(
+            const SP_TYPE & sp,
+            const int64_t source,
+            const int64_t target) {
+
+        const auto & predecessors = sp.predecessors();
+        const int64_t invalidNode = -1;
+        const auto & graph = sp.graph();
+
+        EdgePath path;
+        int64_t last = target;
+        int64_t edge, next;
+        while(next != source) {
+
+            next = predecessors[next];
+            // invalid node -> there is no path between target and source
+            // we return an empty path
+            if(next == invalidNode) {
+                EdgePath emptyPath;
+                return emptyPath;
+            }
+            edge = graph.findEdge(last, next);
+            path.push_back(edge);
+            last = next;
+        }
+        return path;
+    }
+    
+    template <typename SP_TYPE>
     std::vector<NodePath> pathsFromPredecessors(
             const SP_TYPE & sp,
             const int64_t source,
@@ -47,6 +77,17 @@ namespace graph{
         std::vector<NodePath> paths;
         for(auto trgt : targets)
             paths.push_back(pathsFromPredecessors(sp, source, trgt));
+        return paths;
+    }
+    
+    template <typename SP_TYPE>
+    std::vector<EdgePath> edgePathsFromPredecessors(
+            const SP_TYPE & sp,
+            const int64_t source,
+            const std::vector<int64_t> & targets) {
+        std::vector<EdgePath> paths;
+        for(auto trgt : targets)
+            paths.push_back(edgePathsFromPredecessors(sp, source, trgt));
         return paths;
     }
 
@@ -62,19 +103,23 @@ namespace graph{
         auto shortestPathCls = py::class_<ShortestPathType>(graphModule, clsName.c_str());
 
         shortestPathCls
-            .def(py::init<const GraphType &>()
-                //,py::arg_t<GraphType>("graph")
-            )
+            .def(py::init<const GraphType &>())
             .def("runSingleSourceSingleTarget", // single source -> single target
-                [](ShortestPathType & self, const EdgeWeightsType & weights, const int64_t source, const int64_t target) {
+                [](ShortestPathType & self, const EdgeWeightsType & weights, const int64_t source, const int64_t target, const bool returnNodes) {
                     self.runSingleSourceSingleTarget(weights, source, target); 
-                    return pathsFromPredecessors(self, source, target);
+                    if(returnNodes)
+                        return pathsFromPredecessors(self, source, target);
+                    else
+                        return edgePathsFromPredecessors(self, source, target);
                 }
             )
             .def("runSingleSourceMultiTarget", // single source -> multiple targets
-                [](ShortestPathType & self, const EdgeWeightsType & weights, const int64_t source, const std::vector<int64_t> & targets) {
-                    self.runSingleSourceMultiTarget(weights, source, targets); // TODO implement
-                    return pathsFromPredecessors(self, source, targets);
+                [](ShortestPathType & self, const EdgeWeightsType & weights, const int64_t source, const std::vector<int64_t> & targets, const bool returnNodes) {
+                    self.runSingleSourceMultiTarget(weights, source, targets);
+                    if(returnNodes)
+                        return pathsFromPredecessors(self, source, targets);
+                    else
+                        return edgePathsFromPredecessors(self, source, targets);
                 }
             )
         ;

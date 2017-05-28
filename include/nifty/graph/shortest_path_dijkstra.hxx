@@ -107,7 +107,7 @@ namespace graph{
         template<class EDGE_WEIGHTS, class SOURCE_ITER, class SUBGRAPH_MASK, class VISITOR>
         void run(
             const EDGE_WEIGHTS & edgeWeights,
-            SOURCE_ITER sourceBegin, 
+            SOURCE_ITER sourceBegin,
             SOURCE_ITER sourceEnd,
             const SUBGRAPH_MASK &  subgraphMask,
             VISITOR && visitor
@@ -119,15 +119,20 @@ namespace graph{
         const DistanceMap & distances()const{
             return distMap_;
         }
-        const PredecessorsMap & predecessors()const{ // is there a reason that this was not returned by ref before ?
+
+        const PredecessorsMap & predecessors()const{
             return predMap_;
+        }
+
+        const Graph & graph() const {
+            return g_;
         }
     private:
 
         template<
-            class EDGE_WEIGHTS, 
+            class EDGE_WEIGHTS,
             class SUBGRAPH_MASK,
-            class VISITOR 
+            class VISITOR
         >
         void runImpl(
             const EDGE_WEIGHTS & edgeWeights,
@@ -142,7 +147,7 @@ namespace graph{
 
                 if(!visitor(topNode, distMap_, predMap_)){
                     break;
-                }               
+                }
                 if(subgraphMask.useNode(topNode)){
                     // loop over all neigbours
                     for(auto adj : g_.adjacency(topNode)){
@@ -194,7 +199,7 @@ namespace graph{
             }
         }
 
-        const GRAPH & g_;
+        const Graph & g_;
         PqType pq_;
         PredecessorsMap predMap_;
         DistanceMap     distMap_;
