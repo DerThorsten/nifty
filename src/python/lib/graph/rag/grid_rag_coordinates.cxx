@@ -4,7 +4,7 @@
 
 #include "nifty/python/converter.hxx"
 
-// now hdf5 support for now
+// no hdf5 support for now
 //#ifdef WITH_HDF5
 //#include "nifty/hdf5/hdf5_array.hxx"
 //#include "nifty/graph/rag/grid_rag_hdf5.hxx"
@@ -19,40 +19,79 @@ namespace py = pybind11;
 
 namespace nifty{
 namespace graph{
-    
+
     using namespace py;
 
-    //struct PyCoordinateVectorType : public CoordinateVectorType {
-    //};
+    template<size_t DIM, class LABELS_PROXY>
+    void exportGridRagCoordinatesT(py::module & module, const std::string & name) {
 
-    //void exportCoordinateVectorType(py::module & module) {
-    //    module.class_<>
-    //}
+        typedef RagCoordinates<DIM, LABELS_PROXY> CoordinatesType;
+        typedef typename CoordinatesType::RagType RagType;
+        typedef typename CoordinatesType::Coord Coord;
 
-    // TODO export CoordinateVectorType properly to not rely on
-    // pybind::stl magic ?!
-    template<class RAG>
-    void exportGridRagCoordinatesT(py::module & module) {
-        module.def("edgeCoordinatesImpl",
-        [](
-           const RAG & rag,
-           const int numberOfThreads
-        ){
-            CoordinateVectorType out;
-            {
-                py::gil_scoped_release allowThreads;
-                computeEdgeCoordinates(rag, out, numberOfThreads);
+        std::string className = "RagCoordinates" + name;
+        std::string factoryName = "coordinatesFactory" + name;
+
+        py::class_<CoordinatesType>(module, className.c_str())
+        .def("topologicalEdgeCoordinates", [](const CoordinatesType & self, const int64_t edgeId){
+            const auto & coords = self.edgeCoordinates(edgeId);
+            size_t nCoordinates = coords.size() / DIM;
+            marray::PyView<int32_t,DIM> out({nCoordinates,DIM});
+            size_t jj = 0;
+            for(size_t ii = 0; ii < nCoordinates; ++ii) {
+                for(size_t d = 0; d < DIM; ++d) {
+                    out(ii,d) = coords[jj];
+                    ++jj;
+                }
             }
             return out;
+        })
+        .def("edgeCoordinates", [](const CoordinatesType & self, const int64_t edgeId){
+            const auto & coords = self.edgeCoordinates(edgeId);
+            size_t nCoordinates = 2 * coords.size() / DIM;
+            marray::PyView<int32_t,DIM> out({nCoordinates,DIM});
+            size_t jj = 0;
+            for(size_t ii = 0; ii < nCoordinates / 2; ++ii) {
+                for(size_t d = 0; d < DIM; ++d) {
+                    out(2*ii, d)   = std::floor(coords[jj] / 2);
+                    out(2*ii+1, d) = std::ceil( coords[jj] / 2);
+                    ++jj;
+                }
+            }
+            return out;
+        })
+        .def("edgesToVolume", [](
+                const CoordinatesType & self,
+                const std::vector<uint32_t> & edgeValues,
+                const int edgeDirection,
+                const uint32_t ignoreValue,
+                const int numberOfThreads) {
+
+            const auto & shape = self.rag().shape();
+            marray::PyView<uint32_t,DIM> out(shape.begin(), shape.end());
+            self.edgesToVolume(edgeValues, out, edgeDirection, ignoreValue, numberOfThreads);
+            return out;
+        }, py::arg("edgeValues"), py::arg("edgeDirection") = 0, py::arg("ignoreValue") = 0, py::arg("numberOfThreads") = -1)
+        ;
+
+        module.def(factoryName.c_str(),
+        [](
+           const RagType & rag,
+           const int numberOfThreads
+        ){
+            auto ptr = new CoordinatesType(rag, numberOfThreads);
+            return ptr;
         },
+        py::return_value_policy::take_ownership,
+        py::keep_alive<0, 1>(),
         py::arg("rag"), py::arg("numberOfThreads") = -1
-        ); 
+        );
 
     }
 
     void exportGridRagCoordinates(py::module & module) {
-        typedef ExplicitLabelsGridRag<3, uint32_t> Rag3d;
-        exportGridRagCoordinatesT<Rag3d>(module);
+        typedef ExplicitLabels<3,uint32_t> LabelsType;
+        exportGridRagCoordinatesT<3,LabelsType>(module, "Explicit3d");
     }
 
 }
