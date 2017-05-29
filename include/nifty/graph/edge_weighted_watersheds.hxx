@@ -3,8 +3,10 @@
 
 #include <algorithm> // sort
 
+
 #include "vigra/priority_queue.hxx"
 #include "nifty/tools/changable_priority_queue.hxx"
+#include "tools/ufd.hxx"
 
 namespace nifty{
 namespace graph{
