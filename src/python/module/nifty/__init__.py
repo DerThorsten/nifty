@@ -7,7 +7,6 @@ from ._nifty import *
 
 
 import types
-from functools import partial
 import numpy
 import time
 import sys
@@ -20,13 +19,21 @@ from . import ufd
 
 class Timer:
     def __init__(self, name=None, verbose=True):
-        """[summary]
+        """Timer class as with statement
         
-        [description]
-        
-        Keyword Arguments:
-            name {[type]} -- [description] (default: {None})
-            verbose {bool} -- [description] (default: {True})
+        Time pieces of code with a with statement timer
+
+        Examples:
+
+            import nifty
+            with nifty.Timer() as t:
+                import time
+                time.sleep()
+
+            
+        Args:
+            name: name to print (default: {None})
+            verbose: do printout (default: {True})
         """
         self.name = name
         self.verbose = verbose
@@ -37,12 +44,12 @@ class Timer:
 
     def __exit__(self, *args):
         self.end = time.clock()
-        self.dt = self.end - self.start
+        self.elapsedTime = self.end - self.start
         if self.verbose:
             if self.name is not None:
-                print(self.name,"took",self.dt,"sec")
+                print(self.name,"took",self.elapsedTime,"sec")
             else:
-                print("took",self.dt,"sec")
+                print("took",self.elapsedTime,"sec")
 
 
 

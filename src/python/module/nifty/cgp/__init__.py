@@ -3,6 +3,8 @@ from __future__ import print_function
 from .import _cgp as __cgp
 from ._cgp import *
 
+from scipy.ndimage import grey_dilation
+
 
 try:
     import pylab
@@ -110,7 +112,9 @@ del __extend__
 
 
 
-def makeCellImage(image, mask_image, lut):
+def makeCellImage(image, mask_image, lut, size=None):
+    if size is not None:
+        mask_image = grey_dilation(mask_image, size=size)
     if(not __hasPyLabAndMatplotlib):
         raise RuntimeError("showCellValues")
     else:
@@ -131,7 +135,12 @@ def makeCellImage(image, mask_image, lut):
             zeroValue = numpy.array(zeroValue)[None,:]
             _lut = numpy.concatenate((zeroValue,lut))
 
+            #lutImg0 
+            #lutImg1
+            #lutImg2
+
             lutImg = _lut[mask_image.ravel(),:].reshape(mask_image.shape+(3,))
+
             resImage = image.copy()
             whereImage = mask_image!=0
             resImage[whereImage] = lutImg[whereImage]
@@ -140,10 +149,10 @@ def makeCellImage(image, mask_image, lut):
         else:
             raise ValueError("lut ndim must be in [1,2]")
        
-        print("theklut",_lut.shape,mask_image.shape)
+        #print("theklut",_lut.shape,mask_image.shape)
         lutImg = numpy.take(_lut, mask_image)
         lutImg = _lut[mask_image.ravel(),:].reshape(mask_image.shape+(3,))
-        print("lut image",lutImg.shape)
+        #print("lut image",lutImg.shape)
         resImage = image.copy()
         whereImage = mask_image!=0
         resImage[whereImage] = lutImg[whereImage]

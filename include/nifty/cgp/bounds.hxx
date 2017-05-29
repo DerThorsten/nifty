@@ -239,7 +239,6 @@ namespace cgp{
             auto even0 = tCoord[0] % 2 == 0 ;
             auto even1 = tCoord[1] % 2 == 0 ;
 
-            //std::cout<<"tCoord "<<tCoord[0]<<" "<<tCoord[1]<<"\n";
 
             if(!even0 && !even1){
                 const auto cell0Label = tGrid(tCoord);
@@ -269,8 +268,6 @@ namespace cgp{
                         cell2LabelA=tGrid( tCoord[0], tCoord[1]-1);
                         cell2LabelB=tGrid( tCoord[0], tCoord[1]+1);
                     } 
-                    //std::cout<<"cell1Label "<<cell1Label<<"\n";
-                    //std::cout<<"size "<<std::get<1>(bounds_).size()<<"\n";
 
                     std::get<1>(bounds_)[cell1Label-1] = CellBounds<2,1>(cell2LabelA,cell2LabelB);
                 }

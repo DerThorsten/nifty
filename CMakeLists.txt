@@ -4,8 +4,8 @@ set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules)
 project(nifty)
 
 set (NIFTY_VERSION_MAJOR 0)
-set (NIFTY_VERSION_MINOR 9)
-set (NIFTY_VERSION_PATCH 4)
+set (NIFTY_VERSION_MINOR 10)
+set (NIFTY_VERSION_PATCH 2)
 
 
 set (NIFTY_VERSION_SHORT_STR "${NIFTY_VERSION_MAJOR}.${NIFTY_VERSION_MINOR}")
@@ -49,6 +49,10 @@ if(REMOVE_SOME_WARNINGS)
         add_definitions(-Wno-terminate)
         add_definitions(-Wno-write-strings)
     endif()
+endif()
+
+if(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
+    add_definitions(-fext-numeric-literals)
 endif()
 #-------------------------------------------------------------------------------------------------------------------
 # check for c++ 14 support

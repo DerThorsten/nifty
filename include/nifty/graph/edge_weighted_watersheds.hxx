@@ -1,9 +1,12 @@
 #pragma once
-#ifndef NIFTY_GRAPH_EDGE_WEIGHTED_WATERSHEDS_HXX
-#define NIFTY_GRAPH_EDGE_WEIGHTED_WATERSHEDS_HXX
+
+
+#include <algorithm> // sort
+
 
 #include "vigra/priority_queue.hxx"
 #include "nifty/tools/changable_priority_queue.hxx"
+#include "nifty/ufd/ufd.hxx"
 
 namespace nifty{
 namespace graph{
@@ -125,6 +128,85 @@ namespace detail_watersheds_segmentation{
         }
     }
 
+
+    template<
+        class GRAPH,
+        class EDGE_WEIGHTS,
+        class SEEDS,
+        class LABELS
+    >
+    void edgeWeightedWatershedsSegmentationKruskalImpl(
+        const GRAPH & g,
+        const EDGE_WEIGHTS      & edgeWeights,
+        const SEEDS             & seeds,
+        LABELS                  & labels
+    ){  
+        typedef GRAPH Graph;
+        typedef typename EDGE_WEIGHTS::value_type WeightType;
+        typedef typename LABELS::value_type  LabelType;
+        //typedef typename Graph:: template EdgeMap<bool>    EdgeBoolMap;
+       
+
+
+        for(auto node : g.nodes()){
+            labels[node] = seeds[node];
+        }
+        
+    
+        typedef std::pair<uint64_t, WeightType> IndexedWeight;
+        std::vector< IndexedWeight > indexedWeights(g.numberOfEdges());
+
+        auto c=0;
+        for(auto edge : g.edges()){
+            indexedWeights[c] = IndexedWeight(edge, edgeWeights[edge]);
+            ++c;
+        }
+
+        // sort
+        std::sort(indexedWeights.begin(), indexedWeights.end(), 
+            [](const IndexedWeight & a, const IndexedWeight & b) {
+                return a.second < b.second;   
+            }
+        ); 
+
+
+        // merge
+        nifty::ufd::Ufd<> ufd(g.nodeIdUpperBound()+1);
+
+        for(const auto & indexWeight : indexedWeights){
+            const auto edge = indexWeight.first;
+
+            const auto uv = g.uv(edge);
+            const auto u = uv.first;
+            const auto v = uv.second;
+            const auto ru = ufd.find(u);
+            const auto rv = ufd.find(v);
+
+            // not yet merged
+            if(ru != rv){
+
+                const auto lu = labels[ru];
+                const auto lv = labels[rv];
+
+                if( lu==0 || lv==0){
+                    
+                    auto newLabel = std::max(lu, lv);
+                    ufd.merge(u,v);
+                    labels[u] = newLabel;
+                    labels[v] = newLabel;
+                    labels[ru] = newLabel;
+                    labels[rv] = newLabel;
+                }
+            }
+        }
+
+        for(auto node : g.nodes()){
+            labels[node] = labels[ufd.find(node)];
+        }
+    }
+
+
+
 } // end namespace detail_watersheds_segmentation 
 
 // \endcond
@@ -178,4 +260,3 @@ namespace detail_watersheds_segmentation{
 } // namespace nifty::graph
 } // namespace nifty
 
-#endif  // NIFTY_GRAPH_EDGE_WEIGHTED_WATERSHEDS_HXX
