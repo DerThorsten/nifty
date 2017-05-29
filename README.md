@@ -2,8 +2,6 @@ Nifty
 ========
 
 Master:[![Build Status master](https://travis-ci.org/DerThorsten/nifty.svg?branch=master)](https://travis-ci.org/DerThorsten/nifty)
-
-
 Dev: [![Build Status dev](https://travis-ci.org/DerThorsten/nifty.svg?branch=dev)](https://travis-ci.org/DerThorsten/nifty)
 
 
