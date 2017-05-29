@@ -1,11 +1,9 @@
 #pragma once
-#ifndef NIFTY_PYTHON_GRAPH_MULTICUT_EXPORT_MULTICUT_SOLVER_HXX
-#define NIFTY_PYTHON_GRAPH_MULTICUT_EXPORT_MULTICUT_SOLVER_HXX
-
 
 
 #include <pybind11/pybind11.h>
 
+#include "nifty/python/graph/optimization/solver_docstring.hxx"
 #include "nifty/python/graph/optimization/multicut/multicut_objective.hxx"
 #include "py_multicut_factory.hxx"
 #include "py_multicut_base.hxx"
@@ -24,7 +22,8 @@ namespace graph{
     template<class SOLVER>
     py::class_<typename SOLVER::Settings>  exportMulticutSolver(
         py::module & multicutModule,
-        const std::string & solverName
+        const std::string & solverName,
+        nifty::graph::optimization::SolverDocstringHelper docHelper = nifty::graph::optimization::SolverDocstringHelper()
     ){
 
         typedef SOLVER Solver;
@@ -39,10 +38,22 @@ namespace graph{
         const std::string solverBaseName = std::string("MulticutBase") + objName;
         
         const std::string sName = solverName + objName;
-        const std::string settingsName = solverName + std::string("Settings") + objName;
+        const std::string settingsName = std::string("__") + solverName + std::string("Settings") + objName;
         const std::string factoryName = solverName + std::string("Factory") + objName;
         std::string factoryFactoryName = factoryName;
         factoryFactoryName[0] = std::tolower(factoryFactoryName[0]);
+
+
+        // setup dochelper
+        docHelper.factoryBaseClsName = factoryBaseName;
+        docHelper.solverBaseClsName = solverBaseName;
+        docHelper.solverClsName = sName;
+        docHelper.factoryClsName = factoryName;
+        docHelper.factoryBaseClsName = factoryBaseName;
+        docHelper.factoryBaseClsName = factoryBaseName;
+        docHelper.factoryFactoryName = factoryFactoryName;
+
+
 
 
         py::object factoryBase = multicutModule.attr(factoryBaseName.c_str());
@@ -53,14 +64,23 @@ namespace graph{
         ;
 
         // factory
-        py::class_<Factory, std::shared_ptr<Factory> >(multicutModule, factoryName.c_str(),  factoryBase)
+        py::class_<Factory, std::shared_ptr<Factory> >(
+            multicutModule,
+            factoryName.c_str(),  
+            factoryBase,
+            docHelper.factoryDocstring<Factory>().c_str()
+        )
             .def(py::init<const Settings &>(),
                 py::arg_t<Settings>("setttings",Settings())
             )
         ;
 
         // solver
-        py::class_<Solver >(multicutModule, sName.c_str(),  solverBase)
+        py::class_<Solver >(
+            multicutModule, sName.c_str(),  
+            solverBase,
+            docHelper.solverDocstring<Solver>().c_str()
+        )
             //.def(py::init<>())
         ;
 
@@ -130,7 +150,3 @@ namespace graph{
 
 }
 }
-
-
-
-#endif /* NIFTY_PYTHON_GRAPH_MULTICUT_EXPORT_MULTICUT_SOLVER_HXX */

@@ -121,7 +121,7 @@ namespace cgp{
         }
         {
             typedef Cell1BasicTopologicalFeatures Op;
-            const auto clsName = std::string("Cell1BasicTopologicalFeatures");
+            const auto clsName = std::string("Cell1BasicTopologicalFeatures2D");
             auto pyCls = py::class_<Op>(module, clsName.c_str());
 
             pyCls

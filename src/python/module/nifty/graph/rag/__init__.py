@@ -1,4 +1,5 @@
 from __future__ import absolute_import
+from . import _rag as __rag
 from ._rag import *
 from .. import Configuration
 
@@ -6,7 +7,12 @@ import numpy
 
 
 __all__ = []
-for key in _rag.__dict__.keys():
+for key in __rag.__dict__.keys():
+    try:
+        __rag.__dict__[key].__module__='nifty.graph.rag'
+    except:
+        pass
+
     __all__.append(key)
 
 

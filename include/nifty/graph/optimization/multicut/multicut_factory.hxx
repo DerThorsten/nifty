@@ -28,6 +28,7 @@ namespace graph {
     public MulticutFactoryBase<typename SOLVER::Objective>{
     public:
         typedef typename SOLVER::Objective Objective;
+        typedef typename SOLVER::ObjectiveType ObjectiveType;
         typedef MulticutBase<Objective> MulticutBaseType;
         typedef SOLVER Solver;
         typedef typename Solver::Settings Settings;

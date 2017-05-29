@@ -4,6 +4,7 @@
 
 #include "nifty/python/converter.hxx"
 
+#include "nifty/python/graph/undirected_grid_graph.hxx"
 #include "nifty/python/graph/undirected_list_graph.hxx"
 //#include "nifty/python/graph/edge_contraction_graph.hxx"
 #include "nifty/python/graph/optimization/lifted_multicut/lifted_multicut_objective.hxx"
@@ -43,6 +44,12 @@ namespace lifted_multicut{
             typedef LiftedMulticutObjective<GraphType, double> ObjectiveType;
             exportLiftedMulticutKernighanLinT<ObjectiveType>(liftedMulticutModule);
         }
+        {
+            typedef nifty::graph::UndirectedGridGraph<2,true> GraphType;
+            typedef LiftedMulticutObjective<GraphType, double> ObjectiveType;
+            exportLiftedMulticutKernighanLinT<ObjectiveType>(liftedMulticutModule);
+        }
+
         //{
         //    typedef PyContractionGraph<PyUndirectedGraph> GraphType;
         //    typedef MulticutObjective<GraphType, double> ObjectiveType;

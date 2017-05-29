@@ -1,11 +1,15 @@
 from __future__ import absolute_import
+from . import _ufd as __ufd
 from ._ufd import *
 
 
 __all__ = []
 for key in _ufd.__dict__.keys():
     __all__.append(key)
-
+    try:
+        __ufd.__dict__[key].__module__='nifty.ufd'
+    except:
+        pass
 
 def ufd(size, dtype='uint64'):
     if dtype not in ['uint32','uint64']:

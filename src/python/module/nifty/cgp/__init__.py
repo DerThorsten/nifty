@@ -1,6 +1,9 @@
 from __future__ import absolute_import
 from __future__ import print_function
+from .import _cgp as __cgp
 from ._cgp import *
+
+from scipy.ndimage import grey_dilation
 
 
 try:
@@ -10,11 +13,16 @@ try:
 except ImportError:
     __hasPyLabAndMatplotlib = False
 
-__all__ = []
+__all__ = [
+    'makeCellImage'
+]
 
-for key in _cgp.__dict__.keys():
+for key in __cgp.__dict__.keys():
     __all__.append(key)
-
+    try:
+         __cgp.__dict__[key].__module__='nifty.cgp'
+    except:
+        pass
 
 import numpy 
 
@@ -104,7 +112,9 @@ del __extend__
 
 
 
-def makeCellImage(image, mask_image, lut):
+def makeCellImage(image, mask_image, lut, size=None):
+    if size is not None:
+        mask_image = grey_dilation(mask_image, size=size)
     if(not __hasPyLabAndMatplotlib):
         raise RuntimeError("showCellValues")
     else:
@@ -125,7 +135,12 @@ def makeCellImage(image, mask_image, lut):
             zeroValue = numpy.array(zeroValue)[None,:]
             _lut = numpy.concatenate((zeroValue,lut))
 
+            #lutImg0 
+            #lutImg1
+            #lutImg2
+
             lutImg = _lut[mask_image.ravel(),:].reshape(mask_image.shape+(3,))
+
             resImage = image.copy()
             whereImage = mask_image!=0
             resImage[whereImage] = lutImg[whereImage]

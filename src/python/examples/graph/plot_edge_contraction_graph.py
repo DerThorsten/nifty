@@ -9,7 +9,8 @@ are merged
 """
 from __future__ import print_function
 import nifty
-
+import nifty.graph
+import pylab
 
 def generateGrid(gridSize):
     def nid(x, y):
@@ -51,7 +52,7 @@ class MyCallback(nifty.graph.EdgeContractionGraphCallback):
 
 
 # generate grid graph
-g   = generateGrid((3,3))
+g   = generateGrid((3,2))
 
 # the callback 
 callback = MyCallback()
@@ -61,11 +62,17 @@ cg = nifty.graph.edgeContractionGraph(g,callback)
 
 
 
+# plot the graph
+pylab.figure()
+pylab.title('graph')
+nifty.graph.drawGraph(g)
+pylab.show()
+
 # - here we just contract all edges of the original graph
-
-
+counter = 0
 for e in g.edges():
-    
+        
+
     # get the endpoints of e in the original    
     u,v = g.uv(e)
 
@@ -86,6 +93,13 @@ for e in g.edges():
 
         # lets contract that edge
         cg.contractEdge(ce)
+
+        # plot the graph
+        pylab.figure()
+        pylab.title('after contracting %d -- %d'%(cu, cv))
+        nifty.graph.drawGraph(cg)
+        counter += 1
+        pylab.show()
 
 
     else:

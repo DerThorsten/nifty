@@ -215,7 +215,7 @@ public:
         return NodeIter(this->numberOfNodes());
     }
     EdgeIter edgesBegin()const{
-        return EdgeIter(this->numberOfEdges());
+        return EdgeIter(0);
     }
     EdgeIter edgesEnd()const{
         return EdgeIter(this->numberOfEdges());

@@ -40,49 +40,58 @@ PYBIND11_PLUGIN(_nifty) {
     #endif
 
     // \TODO move to another header
-    py::class_<Configuration>(niftyModule, "Configuration")
+    py::class_<Configuration>(niftyModule, "Configuration",
+        "This class show the compile Configuration\n"
+        "Of the nifty python bindings\n"
+    )
         .def_property_readonly_static("WITH_CPLEX", [](py::object /* self */) { 
             #ifdef  WITH_CPLEX
             return true;
             #else
             return false;
             #endif
-        })
+        }
+        )
         .def_property_readonly_static("WITH_GUROBI", [](py::object /* self */) { 
             #ifdef  WITH_GUROBI
             return true;
             #else
             return false;
             #endif
-        })
+        }
+        )
         .def_property_readonly_static("WITH_GLPK", [](py::object /* self */) { 
             #ifdef  WITH_GLPK
             return true;
             #else
             return false;
             #endif
-        })
+        }
+        )
         .def_property_readonly_static("WITH_HDF5", [](py::object /* self */) { 
             #ifdef  WITH_HDF5
             return true;
             #else
             return false;
             #endif
-        })
+        }
+        )
         .def_property_readonly_static("WITH_LP_MP", [](py::object /* self */) { 
             #ifdef  WITH_LP_MP
             return true;
             #else
             return false;
             #endif
-        })
+        }
+        )
         .def_property_readonly_static("WITH_QPBO", [](py::object /* self */) { 
             #ifdef  WITH_QPBO
             return true;
             #else
             return false;
             #endif
-        })
+        }
+        )
         
         ;
     return niftyModule.ptr();

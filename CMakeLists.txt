@@ -4,8 +4,9 @@ set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules)
 project(nifty)
 
 set (NIFTY_VERSION_MAJOR 0)
-set (NIFTY_VERSION_MINOR 4)
-set (NIFTY_VERSION_PATCH 0)
+set (NIFTY_VERSION_MINOR 9)
+set (NIFTY_VERSION_PATCH 4)
+
 
 set (NIFTY_VERSION_SHORT_STR "${NIFTY_VERSION_MAJOR}.${NIFTY_VERSION_MINOR}")
 set (NIFTY_VERSION_STR "${NIFTY_VERSION_MAJOR}.${NIFTY_VERSION_MINOR}.${NIFTY_VERSION_PATCH}")
@@ -49,6 +50,7 @@ if(REMOVE_SOME_WARNINGS)
         add_definitions(-Wno-write-strings)
     endif()
 endif()
+add_definitions(-fext-numeric-literals)
 #-------------------------------------------------------------------------------------------------------------------
 # check for c++ 14 support
 #-------------------------------------------------------------------------------------------------------------------
@@ -209,7 +211,12 @@ endif()
 # additional dependencies for LP_MP
 #-------------------------------------------------------------------------------------------------------------------
 if(WITH_LP_MP)
-    
+
+
+    find_package(HDF5 REQUIRED)
+    include_directories(${HDF5_INCLUDE_DIR})
+    add_definitions(-DWITH_HDF5)
+
     include_directories("${CMAKE_CURRENT_SOURCE_DIR}/externals/LP_MP/include")
     include_directories("${CMAKE_CURRENT_SOURCE_DIR}/externals/LP_MP/lib")
     add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/externals/LP_MP/lib")
