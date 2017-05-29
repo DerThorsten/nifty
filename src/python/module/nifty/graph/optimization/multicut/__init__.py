@@ -334,7 +334,18 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
     def multicutIlpFactory(addThreeCyclesConstraints=True,
                             addOnlyViolatedThreeCyclesConstraints=True,
                             ilpSolverSettings=None,
-                            ilpSolver = 'cplex'):
+                            ilpSolver = None):
+        # default solver:
+        if ilpSolver is None and Configuration.WITH_CPLEX:
+            ilpSolver = 'cplex'
+        if ilpSolver is None and Configuration.WITH_GUROBI:
+            ilpSolver = 'gurobi'
+        if ilpSolver is None and Configuration.WITH_GLPK:
+            ilpSolver = 'glpk'
+        if ilpSolver is None:
+            raise RuntimeError("multicutIlpFactory needs either "
+                               "'WITH_CPLEX', 'WITH_GUROBI'"
+                               " or 'WITH_GLPK'  to be enabled")
 
         if ilpSolver == 'cplex':
             if not Configuration.WITH_CPLEX:
