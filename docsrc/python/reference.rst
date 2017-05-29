@@ -6,6 +6,7 @@ Nifty API Reference
 
 .. autosummary::
     :toctree: gen_modules/
+    
     :template: template_module.rst
     
     nifty
