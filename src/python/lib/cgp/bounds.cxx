@@ -202,7 +202,6 @@ namespace cgp{
                 ){
                     //return self.bounds0_;
                     return self. template bounds<0>();
-                    //std::cout<<"addr 0 "<<&r<<"\n";
                     //return r;
 
                 },py::return_value_policy::reference_internal)
@@ -212,7 +211,6 @@ namespace cgp{
                 ){
                     //return self.bounds1_;
                     return self. template bounds<1>();
-                    //std::cout<<"addr 1 "<<&r<<"\n";
                     //return r;
 
                 },py::return_value_policy::reference_internal)

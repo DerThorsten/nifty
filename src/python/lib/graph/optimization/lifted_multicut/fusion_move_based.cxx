@@ -62,7 +62,7 @@ namespace lifted_multicut{
 
         const auto objName = LiftedMulticutObjectiveName<ObjectiveType>::name();
 
-        const std::string settingsName = clsName + std::string("Settings") + objName;
+        const std::string settingsName = std::string("__")+clsName + std::string("Settings") + objName;
         const std::string factoryBaseName = std::string("ProposalGeneratorFactoryBase")+objName;
         const std::string factoryName = clsName + std::string("Factory") + objName;
 

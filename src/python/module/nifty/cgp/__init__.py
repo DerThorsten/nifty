@@ -149,10 +149,10 @@ def makeCellImage(image, mask_image, lut, size=None):
         else:
             raise ValueError("lut ndim must be in [1,2]")
        
-        print("theklut",_lut.shape,mask_image.shape)
+        #print("theklut",_lut.shape,mask_image.shape)
         lutImg = numpy.take(_lut, mask_image)
         lutImg = _lut[mask_image.ravel(),:].reshape(mask_image.shape+(3,))
-        print("lut image",lutImg.shape)
+        #print("lut image",lutImg.shape)
         resImage = image.copy()
         whereImage = mask_image!=0
         resImage[whereImage] = lutImg[whereImage]
