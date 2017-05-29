@@ -70,7 +70,7 @@ namespace graph{
             typedef typename Solver::Settings Settings;
 
             const std::string solverName = "FusionMoveBasedGreedyAdditive";
-            const std::string pgenSettingsName = solverName + std::string("ProposalGenSettings") + objName;
+            const std::string pgenSettingsName = std::string("__")+solverName + std::string("ProposalGenSettings") + objName;
 
             py::class_<ProposalGenSettings>(multicutModule, pgenSettingsName.c_str())
                 .def(py::init<>())
