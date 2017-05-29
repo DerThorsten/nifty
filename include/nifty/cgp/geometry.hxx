@@ -208,19 +208,22 @@ namespace cgp{
                         const auto c = tGrid(tCoord[0] + 1, tCoord[1]    );
                         const auto d = tGrid(tCoord[0]    , tCoord[1] - 1);
 
+                        bool r = false;
                         if(a && ( a==b  || a==c  || a==d ) ){
                             // relabel inactive cell-0 as cell-1
                             std::get<1>(geometry_)[a-1].push_back(tCoordCasted);
-
+                            r = true;
                         }
-                        else if(b && ( b==c  || b==d) ){
+                        if(b && ( b==c  || b==d) ){
                             std::get<1>(geometry_)[b-1].push_back(tCoordCasted);
+                            r = true;
                         }
-                        else if(c && ( c==d  ) ){
+                        if(c && ( c==d  ) ){
                             // relabel inactive cell-0 as cell-1
                             std::get<1>(geometry_)[c-1].push_back(tCoordCasted);
+                            r = true;
                         }
-                        else{
+                        if(!r){
                             // relabel inactive cell-0 as cell-2
                             const auto cell2Label = tGrid( tCoord[0]-1, tCoord[1]-1);
                             std::get<2>(geometry_)[cell2Label-1].push_back(tCoordCasted);
@@ -282,7 +285,10 @@ namespace cgp{
                         if(dx + dy == 1){
                             return true;
                         }
-                        // in the else case we will fall trough
+                        else{
+                            return false;
+                        }
+                        
                     }
                     
                     // more complicated
