@@ -38,7 +38,7 @@ namespace graph{
         {
             typedef FusionMove<ObjectiveType> FusionMoveType;
             typedef typename FusionMoveType::Settings FusionMoveSettings;
-            const auto fmSettingsName = std::string("FusionMoveSettings") + objName;
+            const auto fmSettingsName = std::string("__FusionMoveSettings") + objName;
             py::class_<FusionMoveSettings>(multicutModule, fmSettingsName.c_str())
                 .def(py::init<>())
                 .def_readwrite("mcFactory",&FusionMoveSettings::mcFactory)
