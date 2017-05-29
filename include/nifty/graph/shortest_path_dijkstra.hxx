@@ -39,7 +39,7 @@ namespace graph{
             DefaultSubgraphMask<Graph> subgraphMask;
             // visitor
             auto visitor = [&]
-            (   
+            (
                 int64_t topNode,
                 const DistanceMap     & distances,
                 const PredecessorsMap & predecessors
@@ -50,7 +50,7 @@ namespace graph{
             this->initializeMaps(&source, &source +1);
             runImpl(edgeWeights, subgraphMask, visitor);
         }
-        
+
         // run single source multiple targets
         // no  callback no mask exposed
         template<class EDGE_WEGIHTS>
@@ -61,16 +61,16 @@ namespace graph{
         ){
             // subgraph mask
             DefaultSubgraphMask<Graph> subgraphMask;
-            
+
             // visitor
             size_t trgtsFound = 0;
             auto visitor = [&targets, &trgtsFound]
-            (   
+            (
                 int64_t topNode,
                 const DistanceMap     & distances,
                 const PredecessorsMap & predecessors
             ){
-                if( std::find(targets.begin(), targets.end(), topNode) != targets.end() ) 
+                if( std::find(targets.begin(), targets.end(), topNode) != targets.end() )
                     ++trgtsFound;
                 if( trgtsFound >= targets.size() ) {
                     trgtsFound = 0;
@@ -107,7 +107,7 @@ namespace graph{
         template<class EDGE_WEIGHTS, class SOURCE_ITER, class SUBGRAPH_MASK, class VISITOR>
         void run(
             const EDGE_WEIGHTS & edgeWeights,
-            SOURCE_ITER sourceBegin, 
+            SOURCE_ITER sourceBegin,
             SOURCE_ITER sourceEnd,
             const SUBGRAPH_MASK &  subgraphMask,
             VISITOR && visitor
@@ -119,15 +119,20 @@ namespace graph{
         const DistanceMap & distances()const{
             return distMap_;
         }
-        const PredecessorsMap & predecessors()const{ // is there a reason that this was not returned by ref before ?
+
+        const PredecessorsMap & predecessors()const{
             return predMap_;
+        }
+
+        const Graph & graph() const {
+            return g_;
         }
     private:
 
         template<
-            class EDGE_WEIGHTS, 
+            class EDGE_WEIGHTS,
             class SUBGRAPH_MASK,
-            class VISITOR 
+            class VISITOR
         >
         void runImpl(
             const EDGE_WEIGHTS & edgeWeights,
@@ -142,7 +147,7 @@ namespace graph{
 
                 if(!visitor(topNode, distMap_, predMap_)){
                     break;
-                }               
+                }
                 if(subgraphMask.useNode(topNode)){
                     // loop over all neigbours
                     for(auto adj : g_.adjacency(topNode)){
@@ -194,7 +199,7 @@ namespace graph{
             }
         }
 
-        const GRAPH & g_;
+        const Graph & g_;
         PqType pq_;
         PredecessorsMap predMap_;
         DistanceMap     distMap_;

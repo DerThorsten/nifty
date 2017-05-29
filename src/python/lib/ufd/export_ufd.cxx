@@ -42,7 +42,7 @@ namespace ufd{
                 return out;
             })
             // merge for a single element
-            .def("merge", &UfdType::merge) 
+            .def("merge", &UfdType::merge)
             // merge vectorized
             .def("merge", [](UfdType & self, marray::PyView<T,2> mergeIndices) {
                 NIFTY_CHECK_OP(mergeIndices.shape(1),==,2,"We need pairs of indices for merging!")
