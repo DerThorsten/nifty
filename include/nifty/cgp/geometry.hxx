@@ -249,7 +249,7 @@ namespace cgp{
                     }
                 }
 
-                //std::cout<<"\n";
+              
             });
         }
 
@@ -257,12 +257,10 @@ namespace cgp{
         // a waste! 
         // but i guess in practice for 2D this might not be harmful
         if(sort1Cells){
-            //std::cout<<"Fill "<<fill<<" sort1Cells "<<sort1Cells<<"\n"; 
-            //std::cout<<"sort "<<tGrid.numberOfCells()[1]<<"  1 cells\n";
+           
             auto & cells = std::get<1>(geometry_);
 
             for(uint32_t cell1Index=0; cell1Index<tGrid.numberOfCells()[1]; ++cell1Index){
-                //std::cout<<"    cell1Index"<<cell1Index<<"\n";
                 auto & geo     = cells[cell1Index];
                 geo.isSorted_ = true;
                 auto nUsed = 0;
@@ -330,10 +328,8 @@ namespace cgp{
                         return false;
                     }
                 };
-                //std::cout<<"        size: "<<geo.size()<<"\n";
                 while(nUsed != geo.size()){
                     auto added = false;
-                    //std::cout<<" loop\n";
                     for(auto c=0; c<geo.size(); ++c){
 
                         if(!used[c]){
@@ -364,8 +360,6 @@ namespace cgp{
                 //geo.clear();
 
                 std::copy(sorted.begin(), sorted.end(), geo.begin());
-                //std::cout<<"sorted.size() "<<sorted.size()<<"\n";
-                //std::cout<<"geo.size() "<<geo.size()<<"\n\n";
             }
         }
     }

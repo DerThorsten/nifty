@@ -38,7 +38,7 @@ namespace graph{
         {
             typedef FusionMove<ObjectiveType> FusionMoveType;
             typedef typename FusionMoveType::Settings FusionMoveSettings;
-            const auto fmSettingsName = std::string("FusionMoveSettings") + objName;
+            const auto fmSettingsName = std::string("__FusionMoveSettings") + objName;
             py::class_<FusionMoveSettings>(multicutModule, fmSettingsName.c_str())
                 .def(py::init<>())
                 .def_readwrite("mcFactory",&FusionMoveSettings::mcFactory)
@@ -70,7 +70,7 @@ namespace graph{
             typedef typename Solver::Settings Settings;
 
             const std::string solverName = "FusionMoveBasedGreedyAdditive";
-            const std::string pgenSettingsName = solverName + std::string("ProposalGenSettings") + objName;
+            const std::string pgenSettingsName = std::string("__")+solverName + std::string("ProposalGenSettings") + objName;
 
             py::class_<ProposalGenSettings>(multicutModule, pgenSettingsName.c_str())
                 .def(py::init<>())
