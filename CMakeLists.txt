@@ -50,7 +50,10 @@ if(REMOVE_SOME_WARNINGS)
         add_definitions(-Wno-write-strings)
     endif()
 endif()
-add_definitions(-fext-numeric-literals)
+
+if(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
+    add_definitions(-fext-numeric-literals)
+endif()
 #-------------------------------------------------------------------------------------------------------------------
 # check for c++ 14 support
 #-------------------------------------------------------------------------------------------------------------------
