@@ -6,7 +6,7 @@
 
 #include "vigra/priority_queue.hxx"
 #include "nifty/tools/changable_priority_queue.hxx"
-#include "tools/ufd.hxx"
+#include "nifty/ufd/ufd.hxx"
 
 namespace nifty{
 namespace graph{
