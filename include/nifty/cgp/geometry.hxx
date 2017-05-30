@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <deque>
+//#include <boost/format.hpp>
 
 #include "nifty/marray/marray.hxx"
 #include "nifty/cgp/topological_grid.hxx"
@@ -207,19 +208,22 @@ namespace cgp{
                         const auto c = tGrid(tCoord[0] + 1, tCoord[1]    );
                         const auto d = tGrid(tCoord[0]    , tCoord[1] - 1);
 
+                        bool r = false;
                         if(a && ( a==b  || a==c  || a==d ) ){
                             // relabel inactive cell-0 as cell-1
                             std::get<1>(geometry_)[a-1].push_back(tCoordCasted);
-
+                            r = true;
                         }
-                        else if(b && ( b==c  || b==d) ){
+                        if(b && ( b==c  || b==d) ){
                             std::get<1>(geometry_)[b-1].push_back(tCoordCasted);
+                            r = true;
                         }
-                        else if(c && ( c==d  ) ){
+                        if(c && ( c==d  ) ){
                             // relabel inactive cell-0 as cell-1
                             std::get<1>(geometry_)[c-1].push_back(tCoordCasted);
+                            r = true;
                         }
-                        else{
+                        if(!r){
                             // relabel inactive cell-0 as cell-2
                             const auto cell2Label = tGrid( tCoord[0]-1, tCoord[1]-1);
                             std::get<2>(geometry_)[cell2Label-1].push_back(tCoordCasted);
@@ -263,6 +267,7 @@ namespace cgp{
             for(uint32_t cell1Index=0; cell1Index<tGrid.numberOfCells()[1]; ++cell1Index){
                 auto & geo     = cells[cell1Index];
                 geo.isSorted_ = true;
+
                 auto nUsed = 0;
                 std::vector<bool> used(geo.size(), false);
                 std::deque<CoordinateType>  sorted;
@@ -273,67 +278,82 @@ namespace cgp{
 
                 auto isMatch = [fill](const CoordinateType & a, const CoordinateType b){
                     if(fill){
-                        // if we used filled coordinates,
-                        // only one coordinate should differ by one
-                        // => if so, we know it's a match
                         
+
                         const auto dx = std::abs(int(a[0]) -int(b[0]));
                         const auto dy = std::abs(int(a[1]) -int(b[1]));
-                        return dx + dy == 1;
+                        if(dx + dy == 1){
+                            return true;
+                        }
+                        else{
+                            return false;
+                        }
+                        
                     }
-                    else{
-                        // more complicated
-                        //    horizontal   
-                        //      |   |
-                        //    - * - * - 
-                        //      |   |
-                        //      
-                        if(a[0]%2 == 0){
-                            const int offsets[6][2] = {
-                                {-2, 0},
-                                { 2, 0},
-                                {-1,-1},
-                                { 1,-1},
-                                {-1, 1},
-                                { 1, 1}                           
-                            };
-                            for(auto oi=0; oi<6; ++oi){
-                                if(b[0]+offsets[oi][0] == a[0] && b[1]+offsets[oi][1]){
-                                    return true;
-                                }
-                            }
-                        }   
-                        //     vertical   
-                        //         | 
-                        //       - * -
-                        //         |
-                        //       - * -
-                        //         |
-                        //         
-                        if(a[0]%2 == 1){
-                            const int offsets[6][2] = {
-                                { 0,-2},
-                                { 0, 2},
-                                {-1,-1},
-                                {-1, 1},
-                                { 1,-1},
-                                { 1, 1}                         
-                            };
-                            for(auto oi=0; oi<6; ++oi){
-                                if(b[0]+offsets[oi][0] == a[0] && b[1]+offsets[oi][1]){
-                                    return true;
-                                }
+                    
+                    // more complicated
+                    //    horizontal   
+                    //      |   |
+                    //    - * - * - 
+                    //      |   |
+                    //      
+                    if(a[0]%2 == 0){
+                        const int offsets[6][2] = {
+                            {-2, 0},
+                            { 2, 0},
+                            {-1,-1},
+                            { 1,-1},
+                            {-1, 1},
+                            { 1, 1}                           
+                        };
+                        for(auto oi=0; oi<6; ++oi){
+                            if(b[0]+offsets[oi][0] == a[0] && b[1]+offsets[oi][1]){
+                                return true;
                             }
                         }
-                        return false;
+                    }   
+                    //     vertical   
+                    //         | 
+                    //       - * -
+                    //         |
+                    //       - * -
+                    //         |
+                    //         
+                    if(a[0]%2 == 1){
+                        const int offsets[6][2] = {
+                            { 0,-2},
+                            { 0, 2},
+                            {-1,-1},
+                            {-1, 1},
+                            { 1,-1},
+                            { 1, 1}                         
+                        };
+                        for(auto oi=0; oi<6; ++oi){
+                            if(b[0]+offsets[oi][0] == a[0] && b[1]+offsets[oi][1]){
+                                return true;
+                            }
+                        }
                     }
+                    return false;
+                    
                 };
+
+                //{
+                //    auto cc = 0;
+                //    for(auto coord : geo){
+                //        std::cout<<boost::format("coord[%d] = %d %d")
+                //            %cc %coord[0] %coord[1] <<"\n";
+                //    }
+                //}
+
                 while(nUsed != geo.size()){
                     auto added = false;
                     for(auto c=0; c<geo.size(); ++c){
 
                         if(!used[c]){
                             auto & coord = geo[c];
+
+                            //std::cout<<boost::format("try to find %d %d")%coord[0] %coord[1]<<"\n";
                             // check if coord matches begin or end
                             if(isMatch(sorted.front(), coord)){
                                 sorted.push_front(coord);

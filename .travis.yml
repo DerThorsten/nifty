@@ -186,7 +186,7 @@ matrix:
         - conda update -q conda;
         - conda info -a;
         #
-        - conda create -q -n dev python=$CONDA_PYTHON_VERSION numpy nose boost hdf5
+        - conda create -q -n dev python=$CONDA_PYTHON_VERSION numpy nose boost hdf5 scikit-image
         - source activate dev
         - conda install -c anaconda cmake=3.2
         - conda install gcc
@@ -282,7 +282,7 @@ matrix:
         - conda update -q conda;
         - conda info -a;
         #
-        - conda create -q -n dev python=$CONDA_PYTHON_VERSION numpy nose boost hdf5
+        - conda create -q -n dev python=$CONDA_PYTHON_VERSION numpy nose boost hdf5 scikit-image
         - source activate dev
         - conda install -c anaconda cmake=3.2
         - conda install -c rdonnelly gcc-6=6.1.0;
@@ -377,7 +377,7 @@ matrix:
         - conda update -q conda;
         - conda info -a;
         #
-        - conda create -q -n dev python=$CONDA_PYTHON_VERSION numpy nose boost hdf5
+        - conda create -q -n dev python=$CONDA_PYTHON_VERSION numpy nose boost hdf5 scikit-image
         - source activate dev
         - conda install -c anaconda cmake=3.2
         - conda install gcc;
