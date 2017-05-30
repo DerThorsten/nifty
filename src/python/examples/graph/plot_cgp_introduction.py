@@ -202,12 +202,3 @@ for i,cellType in enumerate((2,1,0)):
     pylab.title('Cell-%d Labels / \n%s Labels '%(cellType,cellNames[cellType] )  )
 pylab.show()
 
-
-############################################################################
-# Compute edge strength
-
-smoothed = skimage.filters.gaussian(img, 2.5)
-edgeStrength = skimage.filters.sobel(smoothed)
-
-# pylab.imshow(edgeStrength)
-# pylab.show()
