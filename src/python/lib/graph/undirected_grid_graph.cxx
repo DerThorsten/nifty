@@ -61,7 +61,7 @@ namespace graph{
                                 return std::min(a,b);
                             }
                         } op;
-                        return g.imageToEdgeMap(image, op, out);
+                        g.imageToEdgeMap(image, op, out);
                     }
                     else if(functorType == std::string("max")){
                         struct {
@@ -69,7 +69,7 @@ namespace graph{
                                 return std::max(a,b);
                             }
                         } op;
-                        return g.imageToEdgeMap(image, op, out);
+                        g.imageToEdgeMap(image, op, out);
                     }
                     else if(functorType == std::string("sum")){
                         struct {
@@ -77,7 +77,7 @@ namespace graph{
                                 return a + b;
                             }
                         } op;
-                        return g.imageToEdgeMap(image, op, out);
+                        g.imageToEdgeMap(image, op, out);
                     }
                     else if(functorType == std::string("prod")){
                         struct {
@@ -85,13 +85,17 @@ namespace graph{
                                 return a*b;
                             }
                         } op;
-                        return g.imageToEdgeMap(image, op, out);
+                        g.imageToEdgeMap(image, op, out);
+                    }
+                    else if(functorType == std::string("interpixel")){
+                        throw std::runtime_error("mode='interpixel' is not yet supported");
                     }
                     else{
                         const auto s = boost::format("'%s' is an unknown mode. Must be in "
                             "['min', 'max', 'sum', 'prod', 'interpixel']")%functorType;
                         throw std::runtime_error(s.str());
                     }
+                    return out;
                 },
                 py::arg("image"),
                 py::arg("mode"),
