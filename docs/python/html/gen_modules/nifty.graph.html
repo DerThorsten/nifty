@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>nifty.graph &#8212; Nifty 0.10.2 documentation</title>
+    <title>nifty.graph &#8212; Nifty 0.12.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -15,7 +15,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '0.10.2',
+        VERSION:     '0.12.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -47,7 +47,7 @@
         <li class="right" >
           <a href="nifty.cgp.html" title="nifty.cgp"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Nifty 0.10.2 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Nifty 0.12.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../reference.html" accesskey="U">Nifty API Reference</a> &#187;</li> 
       </ul>
     </div>
@@ -109,7 +109,67 @@
 </ol>
 </dd></dl>
 
-<div style='clear:both'></div><div style='clear:both'></div><dl class="function">
+<div style='clear:both'></div><dl class="function">
+<dt id="nifty.graph.connectedComponentsFromNodeLabels">
+<code class="descclassname">nifty.graph.</code><code class="descname">connectedComponentsFromNodeLabels</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.connectedComponentsFromNodeLabels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li>connectedComponentsFromNodeLabels(graph: nifty.graph._graph.UndirectedGraph, nodeLabels: array&lt;int&gt;, dense: bool=True) -&gt; array&lt;int&gt;</li>
+</ol>
+<p>compute connected component labels of a node labeling</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>graph</strong> &#8211; the input graph
+nodeLabels (numpy.ndarray): node labeling
+dense (bool): should the returned labeling be dense (default {True})</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">connected components labels</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">numpy.ndarray</td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple" start="2">
+<li>connectedComponentsFromNodeLabels(graph: nifty.graph._graph.UndirectedGridGraph2DSimpleNh, nodeLabels: array&lt;int&gt;, dense: bool=True) -&gt; array&lt;int&gt;</li>
+</ol>
+<p>compute connected component labels of a node labeling</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>graph</strong> &#8211; the input graph
+nodeLabels (numpy.ndarray): node labeling
+dense (bool): should the returned labeling be dense (default {True})</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">connected components labels</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">numpy.ndarray</td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple" start="3">
+<li>connectedComponentsFromNodeLabels(graph: nifty.graph._graph.UndirectedGridGraph3DSimpleNh, nodeLabels: array&lt;int&gt;, dense: bool=True) -&gt; array&lt;int&gt;</li>
+</ol>
+<p>compute connected component labels of a node labeling</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>graph</strong> &#8211; the input graph
+nodeLabels (numpy.ndarray): node labeling
+dense (bool): should the returned labeling be dense (default {True})</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">connected components labels</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">numpy.ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<div style='clear:both'></div><dl class="function">
 <dt id="nifty.graph.drawGraph">
 <code class="descclassname">nifty.graph.</code><code class="descname">drawGraph</code><span class="sig-paren">(</span><em>graph</em>, <em>method='spring'</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.drawGraph" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -133,6 +193,66 @@
 <p class="caption"><span class="caption-text"><a class="reference internal" href="../auto_examples/graph/plot_edge_contraction_graph.html#sphx-glr-auto-examples-graph-plot-edge-contraction-graph-py"><span class="std std-ref">Edge Contraction Graph</span></a></span></p>
 </div>
 </div><div style='clear:both'></div><dl class="function">
+<dt id="nifty.graph.edgeWeightedWatershedsSegmentation">
+<code class="descclassname">nifty.graph.</code><code class="descname">edgeWeightedWatershedsSegmentation</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.edgeWeightedWatershedsSegmentation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li>edgeWeightedWatershedsSegmentation(graph: nifty.graph._graph.UndirectedGraph, seeds: array&lt;int&gt;, edgeWeights: array&lt;float&gt;) -&gt; array&lt;int&gt;</li>
+</ol>
+<p>Edge weighted watershed on a graph</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>graph</strong> &#8211; the input graph
+seeds (numpy.ndarray): the seeds
+edgeWeights (numpy.ndarray): the edge weights</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the segmentation</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">numpy.ndarray</td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple" start="2">
+<li>edgeWeightedWatershedsSegmentation(graph: nifty.graph._graph.UndirectedGridGraph2DSimpleNh, seeds: array&lt;int&gt;, edgeWeights: array&lt;float&gt;) -&gt; array&lt;int&gt;</li>
+</ol>
+<p>Edge weighted watershed on a graph</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>graph</strong> &#8211; the input graph
+seeds (numpy.ndarray): the seeds
+edgeWeights (numpy.ndarray): the edge weights</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the segmentation</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">numpy.ndarray</td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple" start="3">
+<li>edgeWeightedWatershedsSegmentation(graph: nifty.graph._graph.UndirectedGridGraph3DSimpleNh, seeds: array&lt;int&gt;, edgeWeights: array&lt;float&gt;) -&gt; array&lt;int&gt;</li>
+</ol>
+<p>Edge weighted watershed on a graph</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>graph</strong> &#8211; the input graph
+seeds (numpy.ndarray): the seeds
+edgeWeights (numpy.ndarray): the edge weights</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the segmentation</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">numpy.ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<div style='clear:both'></div><dl class="function">
 <dt id="nifty.graph.ilpSettings">
 <code class="descclassname">nifty.graph.</code><code class="descname">ilpSettings</code><span class="sig-paren">(</span><em>relativeGap=0.0</em>, <em>absoluteGap=0.0</em>, <em>memLimit=-1.0</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.ilpSettings" title="Permalink to this definition">¶</a></dt>
 <dd><p>factory function to create <code class="xref py py-class docutils literal"><span class="pre">IlpBackendSettigns</span></code> .</p>
@@ -156,6 +276,66 @@ a value smaller as zero indicates no limit  (default: {-1.0})</li>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><code class="xref py py-class docutils literal"><span class="pre">IlpBackendSettings</span></code></p>
 </td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<div style='clear:both'></div><dl class="function">
+<dt id="nifty.graph.nodeWeightedWatershedsSegmentation">
+<code class="descclassname">nifty.graph.</code><code class="descname">nodeWeightedWatershedsSegmentation</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.nodeWeightedWatershedsSegmentation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li>nodeWeightedWatershedsSegmentation(graph: nifty.graph._graph.UndirectedGraph, seeds: array&lt;int&gt;, nodeWeights: array&lt;float&gt;) -&gt; array&lt;int&gt;</li>
+</ol>
+<p>Node weighted watershed on a graph</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>graph</strong> &#8211; the input graph
+seeds (numpy.ndarray): the seeds
+nodeWeights (numpy.ndarray): the node weights</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the segmentation</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">numpy.ndarray</td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple" start="2">
+<li>nodeWeightedWatershedsSegmentation(graph: nifty.graph._graph.UndirectedGridGraph2DSimpleNh, seeds: array&lt;int&gt;, nodeWeights: array&lt;float&gt;) -&gt; array&lt;int&gt;</li>
+</ol>
+<p>Node weighted watershed on a graph</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>graph</strong> &#8211; the input graph
+seeds (numpy.ndarray): the seeds
+nodeWeights (numpy.ndarray): the node weights</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the segmentation</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">numpy.ndarray</td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple" start="3">
+<li>nodeWeightedWatershedsSegmentation(graph: nifty.graph._graph.UndirectedGridGraph3DSimpleNh, seeds: array&lt;int&gt;, nodeWeights: array&lt;float&gt;) -&gt; array&lt;int&gt;</li>
+</ol>
+<p>Node weighted watershed on a graph</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>graph</strong> &#8211; the input graph
+seeds (numpy.ndarray): the seeds
+nodeWeights (numpy.ndarray): the node weights</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the segmentation</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">numpy.ndarray</td>
 </tr>
 </tbody>
 </table>
@@ -199,6 +379,46 @@ a value smaller as zero indicates no limit  (default: {-1.0})</li>
 <dl class="method">
 <dt id="nifty.graph.ComponentsUndirectedGraph.componentLabels">
 <code class="descname">componentLabels</code><span class="sig-paren">(</span><em>self: nifty.graph._graph.ComponentsUndirectedGraph</em><span class="sig-paren">)</span> &#x2192; array&lt;int&gt;<a class="headerlink" href="#nifty.graph.ComponentsUndirectedGraph.componentLabels" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<div style='clear:both'></div><dl class="class">
+<dt id="nifty.graph.ComponentsUndirectedGridGraph2DSimpleNh">
+<em class="property">class </em><code class="descclassname">nifty.graph.</code><code class="descname">ComponentsUndirectedGridGraph2DSimpleNh</code><a class="headerlink" href="#nifty.graph.ComponentsUndirectedGridGraph2DSimpleNh" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="nifty.graph.ComponentsUndirectedGridGraph2DSimpleNh.build">
+<code class="descname">build</code><span class="sig-paren">(</span><em>self: nifty.graph._graph.ComponentsUndirectedGridGraph2DSimpleNh</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#nifty.graph.ComponentsUndirectedGridGraph2DSimpleNh.build" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.ComponentsUndirectedGridGraph2DSimpleNh.buildFromNodeLabels">
+<code class="descname">buildFromNodeLabels</code><span class="sig-paren">(</span><em>self: nifty.graph._graph.ComponentsUndirectedGridGraph2DSimpleNh</em>, <em>arg0: array&lt;int&gt;</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#nifty.graph.ComponentsUndirectedGridGraph2DSimpleNh.buildFromNodeLabels" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.ComponentsUndirectedGridGraph2DSimpleNh.componentLabels">
+<code class="descname">componentLabels</code><span class="sig-paren">(</span><em>self: nifty.graph._graph.ComponentsUndirectedGridGraph2DSimpleNh</em><span class="sig-paren">)</span> &#x2192; array&lt;int&gt;<a class="headerlink" href="#nifty.graph.ComponentsUndirectedGridGraph2DSimpleNh.componentLabels" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<div style='clear:both'></div><dl class="class">
+<dt id="nifty.graph.ComponentsUndirectedGridGraph3DSimpleNh">
+<em class="property">class </em><code class="descclassname">nifty.graph.</code><code class="descname">ComponentsUndirectedGridGraph3DSimpleNh</code><a class="headerlink" href="#nifty.graph.ComponentsUndirectedGridGraph3DSimpleNh" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="nifty.graph.ComponentsUndirectedGridGraph3DSimpleNh.build">
+<code class="descname">build</code><span class="sig-paren">(</span><em>self: nifty.graph._graph.ComponentsUndirectedGridGraph3DSimpleNh</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#nifty.graph.ComponentsUndirectedGridGraph3DSimpleNh.build" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.ComponentsUndirectedGridGraph3DSimpleNh.buildFromNodeLabels">
+<code class="descname">buildFromNodeLabels</code><span class="sig-paren">(</span><em>self: nifty.graph._graph.ComponentsUndirectedGridGraph3DSimpleNh</em>, <em>arg0: array&lt;int&gt;</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#nifty.graph.ComponentsUndirectedGridGraph3DSimpleNh.buildFromNodeLabels" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.ComponentsUndirectedGridGraph3DSimpleNh.componentLabels">
+<code class="descname">componentLabels</code><span class="sig-paren">(</span><em>self: nifty.graph._graph.ComponentsUndirectedGridGraph3DSimpleNh</em><span class="sig-paren">)</span> &#x2192; array&lt;int&gt;<a class="headerlink" href="#nifty.graph.ComponentsUndirectedGridGraph3DSimpleNh.componentLabels" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -874,6 +1094,30 @@ of nodes which are in the graph and  -1 otherwise.</td>
 </dd></dl>
 
 <dl class="method">
+<dt id="nifty.graph.UndirectedGridGraph2DSimpleNh.imageToEdgeMap">
+<code class="descname">imageToEdgeMap</code><span class="sig-paren">(</span><em>self: nifty.graph._graph.UndirectedGridGraph2DSimpleNh</em>, <em>image: array&lt;float&gt;</em>, <em>mode: str</em><span class="sig-paren">)</span> &#x2192; array&lt;float&gt;<a class="headerlink" href="#nifty.graph.UndirectedGridGraph2DSimpleNh.imageToEdgeMap" title="Permalink to this definition">¶</a></dt>
+<dd><p>convert an image to an edge map</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>image</strong> (<em>numpy.ndarray</em>) &#8211; <p>the image
+mode str: mode can be:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;min&#8217;:  Minimum of the two image values at edges endpoints of coordinates.</li>
+<li>&#8216;max&#8217;:  Maximum of the two image values at edges endpoints of coordinates.</li>
+<li>&#8216;sum&#8217;:      Sum of the two image values at edges endpoints of coordinates.</li>
+<li>&#8216;prod&#8217;: Product of the two image values at edges endpoints of coordinates.</li>
+</ul>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="nifty.graph.UndirectedGridGraph2DSimpleNh.nodeAdjacency">
 <code class="descname">nodeAdjacency</code><span class="sig-paren">(</span><em>self: object</em>, <em>arg0: int</em><span class="sig-paren">)</span> &#x2192; nifty.graph._graph.UndirectedGridGraph2DSimpleNhAdjacencyIter<a class="headerlink" href="#nifty.graph.UndirectedGridGraph2DSimpleNh.nodeAdjacency" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -1083,6 +1327,30 @@ of nodes which are in the graph and  -1 otherwise.</td>
 </dd></dl>
 
 <dl class="method">
+<dt id="nifty.graph.UndirectedGridGraph3DSimpleNh.imageToEdgeMap">
+<code class="descname">imageToEdgeMap</code><span class="sig-paren">(</span><em>self: nifty.graph._graph.UndirectedGridGraph3DSimpleNh</em>, <em>image: array&lt;float&gt;</em>, <em>mode: str</em><span class="sig-paren">)</span> &#x2192; array&lt;float&gt;<a class="headerlink" href="#nifty.graph.UndirectedGridGraph3DSimpleNh.imageToEdgeMap" title="Permalink to this definition">¶</a></dt>
+<dd><p>convert an image to an edge map</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>image</strong> (<em>numpy.ndarray</em>) &#8211; <p>the image
+mode str: mode can be:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;min&#8217;:  Minimum of the two image values at edges endpoints of coordinates.</li>
+<li>&#8216;max&#8217;:  Maximum of the two image values at edges endpoints of coordinates.</li>
+<li>&#8216;sum&#8217;:      Sum of the two image values at edges endpoints of coordinates.</li>
+<li>&#8216;prod&#8217;: Product of the two image values at edges endpoints of coordinates.</li>
+</ul>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="nifty.graph.UndirectedGridGraph3DSimpleNh.nodeAdjacency">
 <code class="descname">nodeAdjacency</code><span class="sig-paren">(</span><em>self: object</em>, <em>arg0: int</em><span class="sig-paren">)</span> &#x2192; nifty.graph._graph.UndirectedGridGraph3DSimpleNhAdjacencyIter<a class="headerlink" href="#nifty.graph.UndirectedGridGraph3DSimpleNh.nodeAdjacency" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -1259,7 +1527,7 @@ of the given arguments and keywords.</p>
         <li class="right" >
           <a href="nifty.cgp.html" title="nifty.cgp"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Nifty 0.10.2 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Nifty 0.12.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../reference.html" >Nifty API Reference</a> &#187;</li> 
       </ul>
     </div>

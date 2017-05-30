@@ -99,7 +99,7 @@ pylab.title('Edge Strength')
 
 f.add_subplot(2, 2, 4)
 b_img = skimage.segmentation.mark_boundaries(img, 
-        seg.astype('uint32'), mode='inner', color=(1,0,0))
+        seg.astype('uint32'), mode='inner', color=(0,0,0))
 pylab.imshow(b_img)
 pylab.title('Segmentation')
 
