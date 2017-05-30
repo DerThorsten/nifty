@@ -183,14 +183,6 @@ private:
 
 
 
-
-
-
-
-
-
-
-
 template<class G, class T>
 struct EdgeMap : public std::vector<T>{
     EdgeMap( const G & g, const T & val)
@@ -215,14 +207,6 @@ struct EdgeMap : public std::vector<T>{
         }
     }
 };
-
-
-
-
-
-
-
-
 
 
 } // namespace nifty::graph::graph_maps

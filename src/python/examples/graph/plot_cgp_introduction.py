@@ -4,6 +4,7 @@ Cgp Cartesian Grid Partitioning 2D
 
 An introduction into the cgp.
 """
+# sphinx_gallery_thumbnail_number = 5
 from __future__ import print_function, division
 
 
@@ -37,7 +38,7 @@ cellNames = ['Junctions','Edges','Regions']
 
 ############################################################################
 # Load image and compute over-segmentation
-img = skimage.data.coins()[10:80,10:80]
+img = skimage.data.coins()[10:80,10:80].astype('float32')/255
 pylab.imshow(img)
 pylab.show()
 
@@ -50,7 +51,7 @@ imgRGB = numpy.concatenate([img[...,None]]*3,axis=2)
 ############################################################################
 # Superpixels
 overseg = skimage.segmentation.slic(img, n_segments=50,
-    compactness=0.2, sigma=1)
+    compactness=0.04, sigma=1)
 # let overseg start from 1
 overseg += 1 
 assert overseg.min() == 1
@@ -201,12 +202,3 @@ for i,cellType in enumerate((2,1,0)):
     pylab.title('Cell-%d Labels / \n%s Labels '%(cellType,cellNames[cellType] )  )
 pylab.show()
 
-
-############################################################################
-# Compute edge strength
-
-smoothed = skimage.filters.gaussian(img, 2.5)
-edgeStrength = skimage.filters.sobel(smoothed)
-
-# pylab.imshow(edgeStrength)
-# pylab.show()
