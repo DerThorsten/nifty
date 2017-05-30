@@ -1,12 +1,13 @@
 """
-Grid Graph Edge Weighted Watersheds
+Edge/Node Weighted Watersheds
 ====================================
-Edge Weighted Watersheds on a Undirected Grid Graph
 
-Warning:
+Compare edge weighted watersheds
+and node weighted on a grid graph.
 
-    This function is still somewhat experimental
+
 """
+# sphinx_gallery_thumbnail_number = 4
 
 ####################################
 # load modules
@@ -23,7 +24,7 @@ import numpy
 
 # increase default figure size
 a,b = pylab.rcParams['figure.figsize']
-pylab.rcParams['figure.figsize'] = 1.5*a, 1.5*b
+pylab.rcParams['figure.figsize'] = 2.0*a, 2.0*b
 
 
 ####################################
@@ -35,11 +36,12 @@ shape = img.shape[0:2]
 pylab.imshow(img/255)
 pylab.show()
 
-###################################################
-# get some edge indicator to get seeds from
+################################################
+# get some edge indicator
 taggedImg = vigra.taggedView(img,'xyc')
-edgeStrength = vigra.filters.structureTensorEigenvalues(taggedImg, 1.0, 4.0)[:,:,0]
+edgeStrength = vigra.filters.structureTensorEigenvalues(taggedImg, 1.5, 1.9)[:,:,0]
 edgeStrength = edgeStrength.squeeze()
+edgeStrength = numpy.array(edgeStrength)
 pylab.imshow(edgeStrength)
 pylab.show()
 
@@ -55,18 +57,13 @@ cmap = matplotlib.colors.ListedColormap ( cmap)
 pylab.imshow(seeds, cmap=cmap)
 pylab.show()
 
+
+
 #########################################
 # grid graph
 gridGraph = nifty.graph.undirectedGridGraph(shape)
 
 
-
-#########################################
-# edgeStrength
-edgeStrength = vigra.filters.gaussianGradientMagnitude(vigra.taggedView(img,'xyc'), 1.0)
-edgeStrength = edgeStrength.squeeze()
-pylab.imshow(edgeStrength)
-pylab.show()
 
 
 #########################################
@@ -75,16 +72,37 @@ gridGraphEdgeStrength = gridGraph.imageToEdgeMap(edgeStrength, mode='sum')
 numpy.random.permutation(gridGraphEdgeStrength)
 
 
-#########################################
-# run the actual algorithm
-overseg = nifty.graph.edgeWeightedWatershedSegmentation(graph=gridGraph, seeds=seeds.ravel(),
-    edgeWeights=gridGraphEdgeStrength.ravel())
-overseg = overseg.reshape(shape)
-
 
 #########################################
-# result
+# run edge weighted watershed algorithm
+oversegEdgeWeighted = nifty.graph.edgeWeightedWatershedsSegmentation(graph=gridGraph, seeds=seeds.ravel(),
+    edgeWeights=gridGraphEdgeStrength)
+oversegEdgeWeighted = oversegEdgeWeighted.reshape(shape)
+
+
+
+#########################################
+# run node weighted watershed algorithm
+oversegNodeWeighted = nifty.graph.nodeWeightedWatershedsSegmentation(graph=gridGraph, seeds=seeds.ravel(),
+    nodeWeights=edgeStrength.ravel())
+oversegNodeWeighted = oversegNodeWeighted.reshape(shape)
+
+
+
+#########################################
+# plot results
+f = pylab.figure()
+f.add_subplot(1, 2, 1)
 b_img = skimage.segmentation.mark_boundaries(img/255, 
-        overseg.astype('uint32'), mode='inner', color=(0,0,0))
+        oversegEdgeWeighted.astype('uint32'), mode='inner', color=(0.1,0.1,0.2))
 pylab.imshow(b_img)
+pylab.title('Edge Weighted Watershed')
+
+f.add_subplot(1, 2, 2)
+b_img = skimage.segmentation.mark_boundaries(img/255, 
+        oversegNodeWeighted.astype('uint32'), mode='inner', color=(0.1,0.1,0.2))
+pylab.imshow(b_img)
+pylab.title('Node Weighted Watershed')
+
+
 pylab.show()

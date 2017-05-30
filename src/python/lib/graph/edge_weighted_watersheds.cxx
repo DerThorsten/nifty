@@ -18,23 +18,23 @@ namespace nifty{
 namespace graph{
 
     template<class GRAPH>
-    void exportEdgeWeightedWatershedT(py::module & module) {
+    void exportEdgeWeightedWatershedsT(py::module & module) {
 
         // function
-        module.def("edgeWeightedWatershedSegmentation",
-        [](
-            const GRAPH & graph,
-            nifty::marray::PyView<uint64_t,1> seeds,
-            nifty::marray::PyView<float,1> edgeWeights
-        ){
-       
-            nifty::marray::PyView<uint64_t> labels({seeds.shape(0)});
-            
-            edgeWeightedWatershedsSegmentation(graph, edgeWeights, seeds, labels);
+        module.def("edgeWeightedWatershedsSegmentation",
+            [](
+                const GRAPH & graph,
+                nifty::marray::PyView<uint64_t,1> seeds,
+                nifty::marray::PyView<float,1> edgeWeights
+            ){
+           
+                nifty::marray::PyView<uint64_t> labels({seeds.shape(0)});
+                
+                edgeWeightedWatershedsSegmentation(graph, edgeWeights, seeds, labels);
 
-            return labels;
+                return labels;
 
-        },
+            },
             py::arg("graph"),
             py::arg("seeds"),
             py::arg("edgeWeights"),
@@ -52,19 +52,19 @@ namespace graph{
 
     }
 
-    void exportEdgeWeightedWatershed(py::module & module) {
+    void exportEdgeWeightedWatersheds(py::module & module) {
 
         {
             typedef UndirectedGraph<> GraphType;
-            exportEdgeWeightedWatershedT<GraphType>(module);
+            exportEdgeWeightedWatershedsT<GraphType>(module);
         }   
         {
             typedef UndirectedGridGraph<2, true> GraphType;
-            exportEdgeWeightedWatershedT<GraphType>(module);
+            exportEdgeWeightedWatershedsT<GraphType>(module);
         }
         {
             typedef UndirectedGridGraph<3, true> GraphType;
-            exportEdgeWeightedWatershedT<GraphType>(module);
+            exportEdgeWeightedWatershedsT<GraphType>(module);
         }
     }
 
