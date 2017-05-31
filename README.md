@@ -1,8 +1,10 @@
 Nifty
 ========
 
-[![Build Status master](https://travis-ci.org/DerThorsten/nifty.svg?branch=master)](https://travis-ci.org/DerThorsten/nifty)
-[![Build Status dev](https://travis-ci.org/DerThorsten/nifty.svg?branch=dev)](https://travis-ci.org/DerThorsten/nifty)
+Master: [![Build Status master](https://travis-ci.org/DerThorsten/nifty.svg?branch=master)](https://travis-ci.org/DerThorsten/nifty) Dev: [![Build Status dev](https://travis-ci.org/DerThorsten/nifty.svg?branch=dev)](https://travis-ci.org/DerThorsten/nifty)
+
+
+
 A nifty library for graph based image segmentation.
 
 Almost all features of nifty exist to implement algorithms
@@ -22,6 +24,10 @@ If WITH_MP_LP is active, one needs:
 
     git submodule update --init --recursive
 
+Documentation:
+===============
+A very tentative [documentation of the nifty python
+module](http://derthorsten.github.io/nifty/docs/python/html/index.html).
 
 
 Features (Highlights):

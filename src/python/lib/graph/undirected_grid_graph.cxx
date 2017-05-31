@@ -4,8 +4,10 @@
 #include <pybind11/numpy.h>
 #include <pybind11/stl.h>
 
-#include "nifty/graph/undirected_grid_graph.hxx"
 
+#include "boost/format.hpp"
+
+#include "nifty/graph/undirected_grid_graph.hxx"
 #include "export_undirected_graph_class_api.hxx"
 #include "nifty/python/converter.hxx"
 
@@ -23,7 +25,9 @@ namespace graph{
         const auto clsName = std::string("UndirectedGridGraph") +
                         std::to_string(DIM) + std::string("DSimpleNh");
 
-        auto graphCls = py::class_<GraphType>(module, clsName.c_str());
+        auto graphCls = py::class_<GraphType>(module, clsName.c_str(),
+            (boost::format("%dDimensional Grid Graph")%DIM).str().c_str()
+        );
 
         graphCls
             .def(py::init<const typename GraphType::ShapeType>(),
@@ -41,6 +45,71 @@ namespace graph{
             ){
                 return g.coordianteToNode(coord);
             })
+
+            .def("imageToEdgeMap",
+                [](
+                    const GraphType & g,
+                    nifty::marray::PyView<float, DIM> image,
+                    const std::string & functorType
+                ){
+
+                    nifty::marray::PyView<float> out({g.edgeIdUpperBound()+1});
+
+                    if(functorType == std::string("min")){
+                        struct {
+                            double operator()(const float a, const float b){
+                                return std::min(a,b);
+                            }
+                        } op;
+                        g.imageToEdgeMap(image, op, out);
+                    }
+                    else if(functorType == std::string("max")){
+                        struct {
+                            double operator()(const float a, const float b){
+                                return std::max(a,b);
+                            }
+                        } op;
+                        g.imageToEdgeMap(image, op, out);
+                    }
+                    else if(functorType == std::string("sum")){
+                        struct {
+                            double operator()(const float a, const float b){
+                                return a + b;
+                            }
+                        } op;
+                        g.imageToEdgeMap(image, op, out);
+                    }
+                    else if(functorType == std::string("prod")){
+                        struct {
+                            double operator()(const float a, const float b){
+                                return a*b;
+                            }
+                        } op;
+                        g.imageToEdgeMap(image, op, out);
+                    }
+                    else if(functorType == std::string("interpixel")){
+                        g.imageToInterpixelEdgeMap(image, out);
+                    }
+                    else{
+                        const auto s = boost::format("'%s' is an unknown mode. Must be in "
+                            "['min', 'max', 'sum', 'prod', 'interpixel']")%functorType;
+                        throw std::runtime_error(s.str());
+                    }
+                    return out;
+                },
+                py::arg("image"),
+                py::arg("mode"),
+                "convert an image to an edge map\n\n"
+                "Arguments:\n\n"
+                "   image (numpy.ndarray): the image\n"
+                "    mode str: mode can be:\n"
+                "       *   'min':  Minimum of the two image values at edges endpoints of coordinates.\n"
+                "       *   'max':  Maximum of the two image values at edges endpoints of coordinates.\n"
+                "       *   'sum':      Sum of the two image values at edges endpoints of coordinates.\n"
+                "       *   'prod': Product of the two image values at edges endpoints of coordinates.\n"
+            )
+
+
             //.def("uvIds",
             //    [](GraphType & g) {
             //        nifty::marray::PyView<uint64_t> out({uint64_t(g.numberOfEdges()), uint64_t(2)});

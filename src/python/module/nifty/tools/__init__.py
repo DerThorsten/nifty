@@ -1,6 +1,7 @@
 from __future__ import absolute_import
 from __future__ import print_function
 
+from . import _tools as __tools
 from ._tools import *
 
 from concurrent.futures import ThreadPoolExecutor
@@ -23,9 +24,12 @@ except ImportError:
 
 __all__ = []
 
-for key in _tools.__dict__.keys():
+for key in __tools.__dict__.keys():
     __all__.append(key)
-
+    try:
+        __tools.__dict__[key].__module__='nifty.tools'
+    except:
+        pass
 
 
 

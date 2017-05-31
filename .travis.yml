@@ -186,7 +186,7 @@ matrix:
         - conda update -q conda;
         - conda info -a;
         #
-        - conda create -q -n dev python=$CONDA_PYTHON_VERSION numpy nose boost hdf5
+        - conda create -q -n dev python=$CONDA_PYTHON_VERSION numpy nose boost hdf5 scikit-image
         - source activate dev
         - conda install -c anaconda cmake=3.2
         - conda install gcc
@@ -261,7 +261,8 @@ matrix:
         
         # run the python examples with nose?
         - python src/python/examples/nifty_configuration.py
-        - python src/python/examples/graph/plot_edge_contraction_graph.py
+        # this example uses plotting...
+        #- python src/python/examples/graph/plot_edge_contraction_graph.py
 
     # conda linux python gcc6 python 3.6
     # NO C++ test
@@ -281,7 +282,7 @@ matrix:
         - conda update -q conda;
         - conda info -a;
         #
-        - conda create -q -n dev python=$CONDA_PYTHON_VERSION numpy nose boost hdf5
+        - conda create -q -n dev python=$CONDA_PYTHON_VERSION numpy nose boost hdf5 scikit-image
         - source activate dev
         - conda install -c anaconda cmake=3.2
         - conda install -c rdonnelly gcc-6=6.1.0;
@@ -355,7 +356,8 @@ matrix:
         
         # run the python examples with nose?
         - python src/python/examples/nifty_configuration.py
-        - python src/python/examples/graph/plot_edge_contraction_graph.py
+        # this example uses plotting...
+        #- python src/python/examples/graph/plot_edge_contraction_graph.py
     
     # conda linux python gcc4 python 3.5
     # NO C++ test
@@ -375,7 +377,7 @@ matrix:
         - conda update -q conda;
         - conda info -a;
         #
-        - conda create -q -n dev python=$CONDA_PYTHON_VERSION numpy nose boost hdf5
+        - conda create -q -n dev python=$CONDA_PYTHON_VERSION numpy nose boost hdf5 scikit-image
         - source activate dev
         - conda install -c anaconda cmake=3.2
         - conda install gcc;
@@ -451,6 +453,7 @@ matrix:
         
         # run the python examples with nose?
         - python src/python/examples/nifty_configuration.py
-        - python src/python/examples/graph/plot_edge_contraction_graph.py
+        # this example uses plotting...
+        #- python src/python/examples/graph/plot_edge_contraction_graph.py
 
 

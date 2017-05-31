@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_GRAPH_AGGLO_CLUSTER_POLICIES_EDGE_WEIGHTED_CLUSTER_POLICY_HXX
-#define NIFTY_GRAPH_AGGLO_CLUSTER_POLICIES_EDGE_WEIGHTED_CLUSTER_POLICY_HXX
 
 #include <functional>
 
@@ -239,4 +237,3 @@ contractEdgeDone(
 } // namespace nifty::graph
 } // namespace nifty
 
-#endif /*NIFTY_GRAPH_AGGLO_CLUSTER_POLICIES_EDGE_WEIGHTED_CLUSTER_POLICY_HXX*/

@@ -2,6 +2,8 @@
 #ifndef NIFTY_PYTHON_GRAPH_EXPORT_UNDIRECTED_GRAPH_CLASS_API_HXX
 #define NIFTY_PYTHON_GRAPH_EXPORT_UNDIRECTED_GRAPH_CLASS_API_HXX
 
+#include "boost/format.hpp"
+
 #include <pybind11/pybind11.h>
 #include <pybind11/cast.h>
 
@@ -176,42 +178,99 @@ namespace graph{
             .def_property_readonly("nodeIdUpperBound",&G::nodeIdUpperBound)
             .def_property_readonly("edgeIdUpperBound",&G::edgeIdUpperBound)
 
-            .def("findEdge",[](const G & self, std::pair<uint64_t, uint64_t> uv){
-                return self.findEdge(uv.first, uv.second);
-            })
+            .def("findEdge",
+                [](const G & self, std::pair<uint64_t, uint64_t> uv){
+                    return self.findEdge(uv.first, uv.second);
+                },
+                py::arg("uv"),
+                "Find an edge in the graph\n\n"
+                "Args:\n"
+                "   uv (tuple): a pair of nodes\n\n"
+                "Returns:\n"
+                "   int: edge index if edge is in graph, -1 otherwise."
+            )
+            .def("findEdge",&G::findEdge,
+                py::arg("u"),
+                py::arg("v"),
+                "Find an edge in the graph\n\n"
+                "Args:\n"
+                "   u (int): first node\n"
+                "   v (int): second node\n\n"
+                "Returns:\n"
+                "   int: edge index if edge is in graph, -1 otherwise."
+            )
             .def("findEdges",[](
-                const G & self,
-                nifty::marray::PyView<uint64_t, 2> uv
-            ){
-                nifty::marray::PyView<int64_t> edgeIds({uv.shape(0)});
-                NIFTY_CHECK_OP(uv.shape(1),==,2,"uv.shape(1) must be 2");
+                    const G & self,
+                    nifty::marray::PyView<uint64_t, 2> uv
+                ){
+                    nifty::marray::PyView<int64_t> edgeIds({uv.shape(0)});
+                    NIFTY_CHECK_OP(uv.shape(1),==,2,"uv.shape(1) must be 2");
 
-                for(auto i=0; i<uv.shape(0); ++i){
-                   edgeIds(i) = self.findEdge(uv(i,0), uv(i,1)); 
-                }
-                return edgeIds;
-            })
-            .def("findEdge",&G::findEdge)
-            .def("u",&G::u)
-            .def("v",&G::v)
+                    for(auto i=0; i<uv.shape(0); ++i){
+                       edgeIds(i) = self.findEdge(uv(i,0), uv(i,1)); 
+                    }
+                    return edgeIds;
+                },
+                py::arg("uv"),
+                "Find  multiple edges in the graph simultaneous\n\n"
+                "Args:\n"
+                "   uv (numpy.ndarray): array with pairs of nodes (Ex2) \n"
+                "Returns:\n"
+                "   numpy.ndarray: array filed with edge indexes for all pairs\n"
+                "   of nodes which are in the graph and  -1 otherwise."
+            )
+            .def("u",&G::u,
+                py::arg("edge"),
+                "Get first endpoint of an edge\n\n"
+                "Args:\n"
+                "   edge (int) : edge index\n\n"
+                "Returns:\n"
+                "   int : node index of the first endpoint of the edge."
+            )
+             .def("v",&G::v,
+                py::arg("edge"),
+                "Get second endpoint of an edge\n\n"
+                "Args:\n"
+                "   edge (int) : edge index\n\n"
+                "Returns:\n"
+                "   int : node index of the second endpoint of the edge."
+            )
             .def("uv",[](const  G & self, const uint64_t edge){
-                return self.uv(edge);
-            })
+                    return self.uv(edge);
+                },
+                py::arg("edge"),
+                "Get both endpoints of an edge\n\n"
+                "Args:\n"
+                "   edge (int) : edge index\n\n"
+                "Returns:\n"
+                "   tuple : pair of node indexes / enpoints of the edge."
+            )
 
             
-            .def("uvIds",[](G & g) {
-                nifty::marray::PyView<uint64_t> out({uint64_t(g.numberOfEdges()), uint64_t(2)});
-                for(const auto edge : g.edges()){
-                    const auto uv = g.uv(edge); 
-                    out(edge,0) = uv.first;
-                    out(edge,1) = uv.second;
+            .def("uvIds",
+                [](G & g) {
+                    nifty::marray::PyView<uint64_t> out({uint64_t(g.numberOfEdges()), uint64_t(2)});
+                    auto c = 0 ;
+                    for(const auto edge : g.edges()){
+                        const auto uv = g.uv(edge); 
+                        out(c,0) = uv.first;
+                        out(c,1) = uv.second;
+                        ++c;
+                    }
+                    return out;
+                },
+                "Get the two endpoints of all edges simultaneous.                \n"  
+                "                                                                \n"  
+                "                                                                \n"
+                "Returns:                                                        \n"
+                "    numpy.ndarray: uv-ids as array with shape [numberOfEdges,2]   "            
+            )
+            .def("edges", 
+                [](py::object g) { 
+                    const auto & gg = g.cast<const G &>();
+                    return PyEdgeIter(gg,g,gg.edgesBegin(),gg.edgesEnd()); 
                 }
-                return out;
-            })
-            .def("edges", [](py::object g) { 
-                const auto & gg = g.cast<const G &>();
-                return PyEdgeIter(gg,g,gg.edgesBegin(),gg.edgesEnd()); 
-            })
+            )
             .def("nodes", [](py::object g) { 
                 const auto & gg = g.cast<const G &>();
                 return PyNodeIter(gg,g,gg.nodesBegin(),gg.nodesEnd()); 

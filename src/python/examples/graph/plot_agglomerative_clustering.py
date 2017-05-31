@@ -1,10 +1,10 @@
 """
-Agglomerative Clustering
-====================================
+Agglomerative Clustering on RAG
+================================
 
-
-Segment an image with agglomerative clustering.
-We start from a region adjacency graph
+We start from a region adjacency graph as initial
+graph and use agglomerative clustering
+on this graph/
 """
 from __future__ import print_function
 
@@ -28,7 +28,6 @@ import nifty.graph.agglo    # Agglomerative clustering
 
 # load some image
 img = skimage.data.coins()
-
 
 
 
@@ -99,7 +98,7 @@ pylab.title('Edge Strength')
 
 f.add_subplot(2, 2, 4)
 b_img = skimage.segmentation.mark_boundaries(img, 
-        seg.astype('uint32'), mode='inner', color=(1,0,0))
+        seg.astype('uint32'), mode='inner', color=(0,0,0))
 pylab.imshow(b_img)
 pylab.title('Segmentation')
 

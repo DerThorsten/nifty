@@ -28,8 +28,6 @@ namespace multicut{
 
 
         typedef OBJECTIVE ObjectiveType;
-
-
         const auto objName = MulticutObjectiveName<ObjectiveType>::name();
         const std::string factoryBaseName = std::string("MulticutFactoryBase")+objName;
         const std::string solverBaseName = std::string("MulticutBase") + objName;
@@ -40,7 +38,7 @@ namespace multicut{
         {
             typedef FusionMove<ObjectiveType> FusionMoveType;
             typedef typename FusionMoveType::Settings FusionMoveSettings;
-            const auto fmSettingsName = std::string("FusionMoveSettings") + objName;
+            const auto fmSettingsName = std::string("__FusionMoveSettings") + objName;
             py::class_<FusionMoveSettings>(multicutModule, fmSettingsName.c_str())
                 .def(py::init<>())
                 .def_readwrite("mcFactory",&FusionMoveSettings::mcFactory)
@@ -52,13 +50,27 @@ namespace multicut{
 
         // the inference 
         {
+
+            ///////////////////////////////////////////////////////////////
+            // DOCSTRING HELPER
+            ///////////////////////////////////////////////////////////////
+            nifty::graph::optimization::SolverDocstringHelper docHelper;
+            docHelper.objectiveName = "fusion move based greedy additive"; 
+            docHelper.objectiveClsName = MulticutObjectiveName<OBJECTIVE>::name();
+            docHelper.name = "chained solvers "; 
+            docHelper.mainText =  
+                "Fusion moves for multicuts / correlation clustering \n"
+                "as descried in :cite:`beier_15_funsion`\n";
+            docHelper.cites.emplace_back("beier_15_funsion");
+
+
             typedef GreedyAdditiveProposals<ObjectiveType> ProposalGen;
             typedef typename ProposalGen::Settings ProposalGenSettings;
             typedef FusionMoveBased<ProposalGen> Solver;
             typedef typename Solver::Settings Settings;
 
             const std::string solverName = "FusionMoveBasedGreedyAdditive";
-            const std::string pgenSettingsName = solverName + std::string("ProposalGenSettings") + objName;
+            const std::string pgenSettingsName = std::string("__")+solverName + std::string("ProposalGenSettings") + objName;
 
             py::class_<ProposalGenSettings>(multicutModule, pgenSettingsName.c_str())
                 .def(py::init<>())
@@ -67,7 +79,7 @@ namespace multicut{
                 .def_readwrite("nodeNumStopCond",  &ProposalGenSettings::nodeNumStopCond)
             ;
 
-            exportMulticutSolver<Solver>(multicutModule,solverName.c_str())
+            exportMulticutSolver<Solver>(multicutModule,solverName.c_str(), docHelper)
                 .def(py::init<>())
                 .def_readwrite("verbose", &Settings::verbose)
                 .def_readwrite("numberOfIterations", &Settings::numberOfIterations)
@@ -82,6 +94,21 @@ namespace multicut{
 
         // the inference 
         {
+
+
+            ///////////////////////////////////////////////////////////////
+            // DOCSTRING HELPER
+            ///////////////////////////////////////////////////////////////
+            nifty::graph::optimization::SolverDocstringHelper docHelper;
+            docHelper.objectiveName = "fusion move based greedy additive"; 
+            docHelper.objectiveClsName = MulticutObjectiveName<OBJECTIVE>::name();
+            docHelper.name = "chained solvers "; 
+            docHelper.mainText =  
+                "Fusion moves for multicuts / correlation clustering \n"
+                "as descried in :cite:`beier_15_funsion`\n";
+            docHelper.cites.emplace_back("beier_15_funsion");
+
+
             typedef WatershedProposals<ObjectiveType> ProposalGen;
             typedef typename ProposalGen::Settings ProposalGenSettings;
             typedef FusionMoveBased<ProposalGen> Solver;
@@ -96,7 +123,7 @@ namespace multicut{
                 .def_readwrite("seedFraction", &ProposalGenSettings::seedFraction)
             ;
 
-            exportMulticutSolver<Solver>(multicutModule,solverName.c_str())
+            exportMulticutSolver<Solver>(multicutModule,solverName.c_str(), docHelper)
                 .def(py::init<>())
                 .def_readwrite("verbose", &Settings::verbose)
                 .def_readwrite("numberOfIterations", &Settings::numberOfIterations)

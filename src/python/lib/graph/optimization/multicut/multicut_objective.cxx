@@ -3,6 +3,8 @@
 #include <sstream>
 #include <pybind11/numpy.h>
 
+#include <boost/format.hpp>
+
 #include "nifty/python/graph/undirected_list_graph.hxx"
 #include "nifty/python/graph/edge_contraction_graph.hxx"
 #include "nifty/python/graph/optimization/multicut/multicut_objective.hxx"
@@ -21,9 +23,26 @@ namespace multicut{
 
         typedef GRAPH Graph;
         typedef MulticutObjective<Graph, double> ObjectiveType;
+
+        const auto graphClsName = GraphName<Graph>::name();
         const auto clsName = MulticutObjectiveName<ObjectiveType>::name();
 
-        auto multicutObjectiveCls = py::class_<ObjectiveType>(multicutModule, clsName.c_str());
+        auto multicutObjectiveCls = py::class_<ObjectiveType>(multicutModule, clsName.c_str(),
+            (
+                boost::format(
+                        "Multicut objective for a graph of type nifty.graph.%s\n\n"
+                        "The multicut objective function is given by:\n\n"
+                        ".. math::\n"
+                        "      E(y) = \\sum_{e \\in E} w_e \\cdot y_e \n\n"
+                        "      st. y \\in MulticutPolytop_{G}        \n\n"
+                        "This energy function can be used to find the optimal multicut:\n\n"
+                        ".. math::\n"
+                        "      y^* = argmin_{y} \\sum_{e \\in E} w_e \\cdot y_e \n\n"
+                        "      st. y \\in MulticutPolytop_{G}                     \n"
+                    )%graphClsName
+            ).str().c_str()
+
+        );
         multicutObjectiveCls
 
             .def("__init__",
@@ -45,7 +64,15 @@ namespace multicut{
                 },
                 py::keep_alive<1, 2>(),
                 py::arg("graph"),
-                py::arg("weights")  
+                py::arg("weights")
+                ,
+                (boost::format("Factory function to create a multicut objective\n\n"
+                "Args:\n"
+                "   graph: (%s) : The graph\n"
+                "   weights: (numpy.ndarray) : weights map\n\n"
+                "Returns:\n"
+                "  %s :  multicut objective"
+                )%graphClsName%clsName).str().c_str()
             )
             .def_property_readonly("graph", &ObjectiveType::graph)
             .def("evalNodeLabels",[](const ObjectiveType & objective,  nifty::marray::PyView<uint64_t> array){

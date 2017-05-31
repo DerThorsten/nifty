@@ -274,6 +274,76 @@ public:
     void deserialize(ITER iter);
 
 
+    /**
+     * @brief convert an image with DIM dimension to an edge map
+     * @details convert an image with DIM dimension to an edge map
+     * by applying a binary functor to the values of a node map at
+     * the endpoints of an edge.
+     * 
+     * @param       image the  input image
+     * @param       binaryFunctor a binary functor
+     * @param[out]  the result edge map
+     * 
+     * @return [description]
+     */
+    template<class IMAGE, class BINARY_FUNCTOR, class EDGE_MAP>
+    void imageToEdgeMap(
+        const IMAGE & image,
+        BINARY_FUNCTOR binaryFunctor,
+        EDGE_MAP & edgeMap
+    )const{
+        for(const auto edge : this->edges()){
+            const auto uv = this->uv(edge);
+            CoordinateType cU,cV;
+            nodeToCoordinate(uv.first,  cU);
+            nodeToCoordinate(uv.second, cV); 
+            const auto uVal = image(cU.asStdArray());
+            const auto vVal = image(cU.asStdArray()); 
+            edgeMap[edge] = binaryFunctor(uVal, vVal);
+        }
+    }
+
+    /**
+     * @brief convert an image with DIM dimension to an edge map
+     * @details convert an image with DIM dimension to an edge map
+     * by taking the values of the image at the 
+     * interpixel coordinates.
+     * The shape of the image must be 2*shape-1
+     * 
+     * 
+     * @param       image the  input image
+     * @param       binaryFunctor a binary functor
+     * @param[out]  the result edge map
+     * 
+     * @return [description]
+     */
+    template<class IMAGE, class EDGE_MAP>
+    void imageToInterpixelEdgeMap(
+        const IMAGE & image,
+        EDGE_MAP & edgeMap
+    )const{
+
+        for(auto d=0; d<DIM; ++d){
+            NIFTY_CHECK_OP(shape(d)*2-1, ==, image.shape(d), 
+                "wrong shape foer image to interpixel edge map")
+        }
+
+        for(const auto edge : this->edges()){
+            const auto uv = this->uv(edge);
+            CoordinateType cU,cV;
+            nodeToCoordinate(uv.first,  cU);
+            nodeToCoordinate(uv.second, cV); 
+            const auto uVal = image(cU.asStdArray());
+            cU += cV;
+            edgeMap[edge] = image(cU.asStdArray());
+        }
+    }
+
+
+    uint64_t shape(const size_t d)const{
+        return gridGraph_.shape(DIM-1-d);
+    }
+
     // COORDINATE RELATED
     CoordinateType nodeToCoordinate(const uint64_t node)const{
         CoordinateType ret;

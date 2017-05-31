@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_UNDIRECTED_GRAPH_GRAPH_MAPS_HXX
-#define NIFTY_UNDIRECTED_GRAPH_GRAPH_MAPS_HXX
 
 #include "nifty/marray/marray.hxx"
 
@@ -34,6 +32,157 @@ struct NodeMap : public std::vector<T>{
     }
 };
 
+
+
+/**
+ * @brief Multiband node map
+ * @details Sometimes we need to hold not a single scalar,
+ * but a fixed length vector for each node.
+ * The return type of operator[] is a tiny proxy
+ * object holding the vector.
+ * 
+ * 
+ * @tparam G GraphType4
+ * @tparam T ValueType
+ */
+template<class G, class T>
+struct MultibandNodeMap 
+{
+
+public:
+    class Proxy{
+    public:
+        Proxy(T * ptr, const size_t size)
+        :   ptr_(ptr),
+            size_(size){
+        }
+        const T & operator[](const size_t i)const{
+            return ptr_[i];
+        }
+        T & operator[](const size_t i){
+            return ptr_[i];
+        }
+    private:
+        T * ptr_;
+        size_t size_;
+    };
+
+    class ConstProxy{
+    public:
+        ConstProxy(const T * ptr, const size_t size)
+        :   ptr_(ptr),
+            size_(size){
+        }
+        const T & operator[](const size_t i)const{
+            return ptr_[i];
+        }
+        const T & operator[](const size_t i){
+            return ptr_[i];
+        }
+    private:
+        const T * ptr_;
+        size_t size_;
+    };
+
+
+    MultibandNodeMap( const G & g, const size_t nChannels)
+    :   nChannels_(nChannels),
+        data_((g.nodeIdUpperBound()+1)*nChannels){
+    }
+    MultibandNodeMap( const G & g, const size_t nChannels, const T & val)
+    :   nChannels_(nChannels),
+        data_((g.nodeIdUpperBound()+1)*nChannels, val){
+    }
+
+    Proxy operator[](const uint64_t nodeIndex){
+        return Proxy(data_.data() + nodeIndex*nChannels_, nChannels_);
+    }
+    ConstProxy operator[](const uint64_t nodeIndex)const{
+        return ConstProxy(data_.data() + nodeIndex*nChannels_, nChannels_);
+    }
+    const size_t numberOfChannels()const{
+        return nChannels_;
+    }
+private:
+    std::vector<T> data_;
+    size_t nChannels_;
+};
+
+
+
+template<class ARRAY>
+struct MultibandArrayViewNodeMap 
+{
+
+public:
+    typedef typename ARRAY::value_type value_type;
+    typedef typename ARRAY::reference reference;
+    typedef typename ARRAY::const_reference const_reference;
+    class Proxy{
+    public:
+        Proxy(ARRAY & array, const uint64_t node)
+        :   array_(&array),
+            node_(node){
+        }
+        const_reference operator[](const size_t i)const{
+            return array_->operator()(node_, i);
+        }
+        reference operator[](const size_t i){
+            return array_->operator()(node_, i);
+        }
+        size_t size()const{
+            return array_->shape(1);
+        }
+    private:
+        uint64_t node_;
+        ARRAY * array_;
+    };
+    class ConstProxy{
+    public:
+        ConstProxy(const ARRAY & array, const uint64_t node)
+        :   array_(&array),
+            node_(node){
+        }
+        const_reference operator[](const size_t i)const{
+            return array_->operator()(node_, i);
+        }
+        const_reference operator[](const size_t i){
+            return array_->operator()(node_, i);
+        }
+        size_t size()const{
+            return array_->shape(1);
+        }
+    private:
+        uint64_t node_;
+        const ARRAY * array_;
+    };
+
+
+
+
+    MultibandArrayViewNodeMap( const ARRAY & array)
+    :   nChannels_(array.shape(1)),
+        array_(array){
+    }
+
+
+    Proxy operator[](const uint64_t nodeIndex){
+        return Proxy(array_, nodeIndex);
+    }
+    ConstProxy operator[](const uint64_t nodeIndex)const{
+        return ConstProxy(array_, nodeIndex);
+    }
+    const size_t numberOfChannels()const{
+        return nChannels_;
+    }
+private:
+    const ARRAY & array_;
+    size_t nChannels_;
+};
+
+
+
+
 template<class G, class T>
 struct EdgeMap : public std::vector<T>{
     EdgeMap( const G & g, const T & val)
@@ -60,16 +209,7 @@ struct EdgeMap : public std::vector<T>{
 };
 
 
-
-
-
-
-
-
-
-
 } // namespace nifty::graph::graph_maps
 } // namespace nifty::graph
 } // namespace nifty
-  // 
-#endif  // NIFTY_UNDIRECTED_GRAPH_GRAPH_MAPS_HXX
+

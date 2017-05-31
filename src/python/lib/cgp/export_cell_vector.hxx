@@ -15,6 +15,9 @@ inline  void exportCellVector(pybind11::module & m, pybind11::class_<CLS> & pyCl
         },
             pybind11::return_value_policy::reference_internal
         )
+        .def("__len__",[](const CLS & self){
+            return self.size();
+        })
     ;
 }
 

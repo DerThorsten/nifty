@@ -4,8 +4,9 @@
 #include <pybind11/numpy.h>
 
 #include "nifty/python/graph/undirected_list_graph.hxx"
-#include "nifty/graph/components.hxx"
+#include "nifty/python/graph/undirected_grid_graph.hxx"
 
+#include "nifty/graph/components.hxx"
 #include "nifty/python/converter.hxx"
 
 namespace py = pybind11;
@@ -18,20 +19,36 @@ namespace graph{
     void exportConnectedComponentsT(py::module & module) {
 
         // function
-        module.def("connectedComponents",
+        module.def("connectedComponentsFromNodeLabels",
         [](
             const GRAPH & graph,
-            nifty::marray::PyView<uint64_t,1> labels
+            nifty::marray::PyView<uint64_t,1> nodeLabels,
+            const bool dense = true
         ){
-            nifty::marray::PyView<uint64_t> ccLabels({labels.shape(0)});
-
+       
+            nifty::marray::PyView<uint64_t> ccLabels({nodeLabels.shape(0)});
             ComponentsUfd<GRAPH> componentsUfd(graph);
-            componentsUfd.buildFromLabels(labels);
+            componentsUfd.buildFromLabels(nodeLabels);
             for(const auto node : graph.nodes()){
                 ccLabels[node] = componentsUfd.componentLabel(node);
             }
+            if(dense){
+                componentsUfd.denseRelabeling(ccLabels);
+            }
             return ccLabels;
-        });
+
+        },
+            py::arg("graph"),
+            py::arg("nodeLabels"),
+            py::arg("dense")=true,
+            "compute connected component labels of a node labeling\n\n"
+            "Arguments:\n\n"
+            "  graph : the input graph\n"
+            "   nodeLabels (numpy.ndarray): node labeling\n"
+            "   dense (bool): should the returned labeling be dense (default {True})\n\n"
+            "Returns:\n\n"
+            "   numpy.ndarray : connected components labels"
+        );
 
         typedef GRAPH GraphType;
         typedef ComponentsUfd<GraphType> ComponentsType;
@@ -81,8 +98,15 @@ namespace graph{
         {
             typedef UndirectedGraph<> GraphType;
             exportConnectedComponentsT<GraphType>(module);
+        }   
+        {
+            typedef UndirectedGridGraph<2, true> GraphType;
+            exportConnectedComponentsT<GraphType>(module);
         }
-        
+        {
+            typedef UndirectedGridGraph<3, true> GraphType;
+            exportConnectedComponentsT<GraphType>(module);
+        }
     }
 
 }
