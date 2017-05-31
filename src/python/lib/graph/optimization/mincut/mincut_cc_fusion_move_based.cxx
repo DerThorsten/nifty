@@ -22,6 +22,7 @@ PYBIND11_DECLARE_HOLDER_TYPE(T, std::shared_ptr<T>);
 
 namespace nifty{
 namespace graph{
+namespace optimization{
 namespace mincut{
 
 
@@ -102,6 +103,7 @@ namespace mincut{
         //}
     }
 
-}
+} // namespace nifty::graph::optimization::mincut
+} // namespace nifty::graph::optimization
 }
 }

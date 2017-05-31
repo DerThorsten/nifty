@@ -16,7 +16,8 @@
 
 namespace nifty{
 namespace graph{
-
+namespace optimization{
+namespace multicut{
 
 
     template<class OBJECTIVE>
@@ -219,8 +220,8 @@ namespace graph{
 
 
 
-
-
+} // namespace nifty::graph::optimization::multicut
+} // namespace nifty::graph::optimization
 } // namespace nifty::graph
 } // namespace nifty
 

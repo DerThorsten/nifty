@@ -17,6 +17,8 @@ namespace py = pybind11;
 
 namespace nifty{
 namespace graph{
+namespace optimization{
+namespace mincut{
 
     using namespace py;
     //PYBIND11_DECLARE_HOLDER_TYPE(McBase, std::shared_ptr<McBase>);
@@ -173,7 +175,8 @@ namespace graph{
         }
     }        
 
-    
+} // namespace nifty::graph::optimization::mincut 
+} // namespace nifty::graph::optimization   
 }
 }
     

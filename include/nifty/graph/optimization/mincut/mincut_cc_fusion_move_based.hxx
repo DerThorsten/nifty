@@ -18,6 +18,7 @@
 
 namespace nifty{
 namespace graph{
+namespace optimization{
 namespace mincut{
 
     struct DefaultProposalGeneratorMock{
@@ -58,6 +59,7 @@ namespace mincut{
  
 
 
-}
+} // namespace nifty::graph::optimization::mincut
+} // namespace nifty::graph::optimization
 } // namespace nifty::graph
 } // namespace nifty

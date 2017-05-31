@@ -15,6 +15,7 @@
 
 namespace nifty{
 namespace graph{
+namespace optimization{
 namespace lifted_multicut{
 
     // \cond SUPPRESS_DOXYGEN
@@ -357,6 +358,7 @@ namespace lifted_multicut{
 
     
 } // lifted_multicut
+} // namespace nifty::graph::optimization
 } // namespace nifty::graph
 } // namespace nifty
 

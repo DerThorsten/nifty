@@ -29,7 +29,7 @@ namespace multicut{
         typedef typename Solver::Settings Settings;
         typedef MulticutFactory<Solver> Factory;
         const auto solverName = std::string("Cgc");
-        nifty::graph::exportMulticutSolver<Solver>(multicutModule, solverName.c_str())
+        nifty::graph::optimization::exportMulticutSolver<Solver>(multicutModule, solverName.c_str())
             .def(py::init<>())
 
             .def_readwrite("doCutPhase", &Settings::doCutPhase)

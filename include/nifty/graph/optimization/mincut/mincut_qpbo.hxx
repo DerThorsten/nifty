@@ -12,7 +12,8 @@
 
 namespace nifty{
 namespace graph{
-
+namespace optimization{
+namespace mincut{
 
     template<class OBJECTIVE>
     class MincutQpbo : public MincutBase<OBJECTIVE>
@@ -195,7 +196,7 @@ namespace graph{
         }
     }
 
-
-
+} // namespace nifty::graph::optimization::mincut
+} // namespace nifty::graph::optimization
 } // namespace nifty::graph
 } // namespace nifty

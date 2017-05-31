@@ -45,7 +45,7 @@ namespace multicut{
         
         const auto solverName = std::string("MulticutIlp") + backendName;
         // todo exportMulticutSolver should be in the correct namespace
-        nifty::graph::exportMulticutSolver<Solver>(multicutModule, solverName.c_str())
+        nifty::graph::optimization::multicut::exportMulticutSolver<Solver>(multicutModule, solverName.c_str())
             .def(py::init<>())
             .def_readwrite("numberOfIterations", &Settings::numberOfIterations)
             .def_readwrite("verbose", &Settings::verbose)

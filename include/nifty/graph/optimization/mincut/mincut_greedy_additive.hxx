@@ -18,6 +18,7 @@
 
 namespace nifty{
 namespace graph{
+namespace optimization{
 namespace mincut{
 
     // \cond SUPPRESS_DOXYGEN
@@ -373,6 +374,7 @@ namespace mincut{
     }
 
     
-} // namespace nifty::graph::mincut
+} // namespace nifty::graph::optimization::mincut
+} // namespace nifty::graph::optimization
 } // namespace nifty::graph
 } // namespace nifty

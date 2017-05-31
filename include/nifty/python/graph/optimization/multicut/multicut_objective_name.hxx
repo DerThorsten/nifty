@@ -4,6 +4,8 @@
 
 namespace nifty{
 namespace graph{
+namespace optimization{
+namespace multicut{
 
     template<class OBJECTIVE>
     struct MulticutObjectiveName;
@@ -14,7 +16,9 @@ namespace graph{
     // 
     //     }
     // };
-    
+
+} // namespace multicut 
+} // namespace optimization   
 }
 }
 

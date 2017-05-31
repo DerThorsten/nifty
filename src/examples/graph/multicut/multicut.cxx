@@ -35,7 +35,7 @@ int main( int argc , char *argv[] ){
 
     // create multicut objective
     // do not add more edges to graph after creating the mc objective
-    typedef nifty::graph::MulticutObjective<Graph, float> MulticutObjective;
+    typedef nifty::graph::optimization::multicut::MulticutObjective<Graph, float> MulticutObjective;
     MulticutObjective objective(graph);
 
     // Set edge weights 
@@ -52,8 +52,8 @@ int main( int argc , char *argv[] ){
     // solve not very powerful but simple solver
     {  
        
-        typedef nifty::graph::MulticutGreedyAdditive<MulticutObjective> MulticutSolver;
-        typedef nifty::graph::MulticutVerboseVisitor<MulticutObjective> MulticutVerboseVisitor;
+        typedef nifty::graph::optimization::multicut::MulticutGreedyAdditive<MulticutObjective> MulticutSolver;
+        typedef nifty::graph::optimization::multicut::MulticutVerboseVisitor<MulticutObjective> MulticutVerboseVisitor;
         typedef typename MulticutSolver::NodeLabels NodeLabels;
         MulticutSolver solver(objective);
 

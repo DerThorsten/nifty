@@ -16,6 +16,7 @@ PYBIND11_DECLARE_HOLDER_TYPE(T, std::shared_ptr<T>);
 
 namespace nifty{
 namespace graph{
+namespace optimization{
 namespace lifted_multicut{
 
 
@@ -58,5 +59,6 @@ namespace lifted_multicut{
     }
 
 }
+} // namespace nifty::graph::optimization
 }
 }

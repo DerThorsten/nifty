@@ -16,7 +16,8 @@
 
 namespace nifty{
 namespace graph{
-
+namespace optimization{
+namespace multicut{
     // \cond SUPPRESS_DOXYGEN
 
     namespace detail_multicut_greedy_additive{
@@ -285,7 +286,7 @@ namespace graph{
         callback_.changeSettings(settings);
     }
 
-    
-
+} // namespace nifty::graph::optimization::multicut   
+} // namespace nifty::graph::optimization
 } // namespace nifty::graph
 } // namespace nifty

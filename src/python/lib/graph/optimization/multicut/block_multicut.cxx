@@ -19,7 +19,8 @@ PYBIND11_DECLARE_HOLDER_TYPE(T, std::shared_ptr<T>);
 
 namespace nifty{
 namespace graph{
-    
+namespace optimization{
+namespace multicut{    
     template<class OBJECTIVE>
     void exportBlockMulticutT(py::module & multicutModule){
         typedef OBJECTIVE ObjectiveType;
@@ -49,5 +50,7 @@ namespace graph{
         }    
          
     }
+} // namespace nifty::graph::optimization::multicut
+} // namespace nifty::graph::optimization
 }
 }
