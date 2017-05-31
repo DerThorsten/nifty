@@ -33,8 +33,8 @@ BOOST_AUTO_TEST_CASE(RandomizedMulticutTest)
 
     typedef double WeightType;
     typedef nifty::graph::UndirectedGraph<> Graph;
-    typedef nifty::graph::MulticutObjective<Graph, WeightType> Objective;
-    typedef nifty::graph::MulticutVerboseVisitor<Objective> VerboseVisitor;
+    typedef nifty::graph::optimization::multicut::MulticutObjective<Graph, WeightType> Objective;
+    typedef nifty::graph::optimization::multicut::MulticutVerboseVisitor<Objective> VerboseVisitor;
 
 
 
@@ -128,8 +128,8 @@ BOOST_AUTO_TEST_CASE(SimpleMulticutTest)
 
     typedef double WeightType;
     typedef nifty::graph::UndirectedGraph<> Graph;
-    typedef nifty::graph::MulticutObjective<Graph, WeightType> Objective;
-    typedef nifty::graph::MulticutVerboseVisitor<Objective> VerboseVisitor;
+    typedef nifty::graph::optimization::multicut::MulticutObjective<Graph, WeightType> Objective;
+    typedef nifty::graph::optimization::multicut::MulticutVerboseVisitor<Objective> VerboseVisitor;
 
 
 
