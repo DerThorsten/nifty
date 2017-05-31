@@ -7,8 +7,6 @@
 #include "nifty/python/graph/undirected_grid_graph.hxx"
 
 #include "nifty/graph/components.hxx"
-
-
 #include "nifty/python/converter.hxx"
 
 namespace py = pybind11;

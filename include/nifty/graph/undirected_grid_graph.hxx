@@ -274,6 +274,37 @@ public:
     void deserialize(ITER iter);
 
 
+    /**
+     * @brief convert an image with DIM dimension to an edge map
+     * @details convert an image with DIM dimension to an edge map
+     * by applying a binary functor to the values of a node map at
+     * the endpoints of an edge.
+     * 
+     * @param       image the  input image
+     * @param       binaryFunctor a binary functor
+     * @param[out]  the result edge map
+     * 
+     * @return [description]
+     */
+    template<class IMAGE, class BINARY_FUNCTOR, class EDGE_MAP>
+    void imageToEdgeMap(
+        const IMAGE & image,
+        BINARY_FUNCTOR binaryFunctor,
+        EDGE_MAP & edgeMap
+    )const{
+        for(const auto edge : this->edges()){
+            const auto uv = this->uv(edge);
+            CoordinateType cU,cV;
+            nodeToCoordinate(uv.first,  cU);
+            nodeToCoordinate(uv.second, cV); 
+            const auto uVal = image(cU.asStdArray());
+            const auto vVal = image(cU.asStdArray()); 
+            edgeMap[edge] = binaryFunctor(uVal, vVal);
+        }
+    }
+
+
+
     // COORDINATE RELATED
     CoordinateType nodeToCoordinate(const uint64_t node)const{
         CoordinateType ret;

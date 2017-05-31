@@ -4,7 +4,7 @@
 
 #include <type_traits>
 #include <initializer_list>
-
+#include <iostream>
 
 
 #include <pybind11/pybind11.h>
@@ -307,10 +307,19 @@ namespace marray
     };
 
 
-
-
-
 }
+
+
+template <typename VALUE_TYPE, size_t DIM,  bool AUTO_CAST_TYPE> 
+std::ostream& operator<<(
+    std::ostream& os, 
+    const nifty::marray::PyView<VALUE_TYPE, DIM, AUTO_CAST_TYPE> & obj
+)
+{
+    os<<"PyViewArray[..]\n";
+    return os;
+}
+
 
 namespace tools{
 

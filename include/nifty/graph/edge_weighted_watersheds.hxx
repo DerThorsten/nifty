@@ -224,8 +224,11 @@ namespace detail_watersheds_segmentation{
         const SEEDS        & seeds,
         LABELS             & labels
     ){  
-        detail_watersheds_segmentation::RawPriorityFunctor fPriority;
-        detail_watersheds_segmentation::edgeWeightedWatershedsSegmentationImpl(g,edgeWeights,seeds,fPriority,labels);
+        detail_watersheds_segmentation::edgeWeightedWatershedsSegmentationKruskalImpl(
+            g,edgeWeights,seeds,labels);
+        
+        //detail_watersheds_segmentation::RawPriorityFunctor fPriority;
+        //detail_watersheds_segmentation::edgeWeightedWatershedsSegmentationImpl(g,edgeWeights,seeds,fPriority,labels);
     }   
     
 
