@@ -18,12 +18,13 @@ namespace graph{
     template<class GRAPH>
     void exportConnectedComponentsT(py::module & module) {
 
-        // function
+
         module.def("connectedComponentsFromNodeLabels",
         [](
             const GRAPH & graph,
             nifty::marray::PyView<uint64_t,1> nodeLabels,
-            const bool dense = true
+            const bool dense = true,
+            const bool ignoreBackground = false
         ){
        
             nifty::marray::PyView<uint64_t> ccLabels({nodeLabels.shape(0)});
@@ -35,20 +36,42 @@ namespace graph{
             if(dense){
                 componentsUfd.denseRelabeling(ccLabels);
             }
+            if(ignoreBackground){
+                for(const auto node : graph.nodes()){
+                    const auto nl = nodeLabels[node];
+                    if(nl == uint64_t(0)){
+                        ccLabels[node] = 0;
+                    }
+                    else{
+                        ccLabels[node] += 1;
+                    }  
+                }
+            }
+
             return ccLabels;
 
         },
             py::arg("graph"),
             py::arg("nodeLabels"),
             py::arg("dense")=true,
+            py::arg("ignoreBackground")=true,
             "compute connected component labels of a node labeling\n\n"
+            ""
+            "All nodes which have zero as nodeLabel will keep a zero"
+            ""
             "Arguments:\n\n"
             "  graph : the input graph\n"
             "   nodeLabels (numpy.ndarray): node labeling\n"
             "   dense (bool): should the returned labeling be dense (default {True})\n\n"
+            "   ignoreBackground (bool): if true, all input zeros are mapped to zeros (default {False})\n\n"
             "Returns:\n\n"
             "   numpy.ndarray : connected components labels"
         );
+
+
+
+
+
 
         typedef GRAPH GraphType;
         typedef ComponentsUfd<GraphType> ComponentsType;

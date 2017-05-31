@@ -103,7 +103,7 @@ def undirectedGridGraph(shape, simpleNh=True):
         raise RuntimeError("currently only 2D and 3D grid graph is exposed to python")
 
 
-
+gridGraph = undirectedGridGraph
 
 
 def drawGraph(graph, method='spring'):
