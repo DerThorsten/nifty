@@ -17,13 +17,15 @@ namespace graph{
     typedef std::vector<int64_t> Path;
 
     template <typename SP_TYPE>
-    Path pathsFromPredecessors(
+    inline void pathsFromPredecessors(
             const SP_TYPE & sp,
             const int64_t source,
-            const int64_t target) {
+            const int64_t target,
+            Path & path) {
+
+        path.clear();
         const auto & predecessors = sp.predecessors();
         const int64_t invalidNode = -1;
-        Path path;
         int64_t next = target;
         while(next != source) {
             path.push_back(next);
@@ -31,25 +33,26 @@ namespace graph{
             // invalid node -> there is no path between target and source
             // we return an empty path
             if(next == invalidNode) {
-                Path emptyPath;
-                return emptyPath;
+                path.clear();
+                return;
             }
         }
         path.push_back(source);
-        return path;
     }
 
+
     template <typename SP_TYPE>
-    Path edgePathsFromPredecessors(
+    inline void edgePathsFromPredecessors(
             const SP_TYPE & sp,
             const int64_t source,
-            const int64_t target) {
+            const int64_t target,
+            Path & path) {
 
         const auto & predecessors = sp.predecessors();
         const int64_t invalidNode = -1;
         const auto & graph = sp.graph();
 
-        Path path;
+        path.clear();
         int64_t next = target;
         int64_t last = target;
         int64_t edge;
@@ -60,36 +63,39 @@ namespace graph{
             // invalid node -> there is no path between target and source
             // we return an empty path
             if(next == invalidNode) {
-                Path emptyPath;
-                return emptyPath;
+                path.clear();
+                return;
             }
             edge = graph.findEdge(last, next);
             path.push_back(edge);
             last = next;
         }
-        return path;
     }
 
     template <typename SP_TYPE>
-    std::vector<Path> pathsFromPredecessors(
+    inline void pathsFromPredecessors(
             const SP_TYPE & sp,
             const int64_t source,
-            const std::vector<int64_t> & targets) {
-        std::vector<Path> paths;
-        for(auto trgt : targets)
-            paths.push_back(pathsFromPredecessors(sp, source, trgt));
-        return paths;
+            const std::vector<int64_t> & targets,
+            std::vector<Path> & paths) {
+        paths.clear();
+        paths.resize(targets.size());
+        for(size_t ii = 0; ii < targets.size(); ++ii) {
+            pathsFromPredecessors(sp, source, targets[ii], paths[ii]);
+        }
     }
 
     template <typename SP_TYPE>
-    std::vector<Path> edgePathsFromPredecessors(
+    inline void edgePathsFromPredecessors(
             const SP_TYPE & sp,
             const int64_t source,
-            const std::vector<int64_t> & targets) {
-        std::vector<Path> paths;
-        for(auto trgt : targets)
-            paths.push_back(edgePathsFromPredecessors(sp, source, trgt));
-        return paths;
+            const std::vector<int64_t> & targets,
+            std::vector<Path> & paths) {
+        paths.clear();
+        paths.resize(targets.size());
+        for(size_t ii = 0; ii < targets.size(); ++ii) {
+            edgePathsFromPredecessors(sp, source, targets[ii], paths[ii]);
+        }
     }
 
     template<typename WEIGHT_TYPE>
@@ -105,23 +111,37 @@ namespace graph{
 
         shortestPathCls
             .def(py::init<const GraphType &>())
+
             .def("runSingleSourceSingleTarget", // single source -> single target
                 [](ShortestPathType & self, const EdgeWeightsType & weights, const int64_t source, const int64_t target, const bool returnNodes) {
-                    self.runSingleSourceSingleTarget(weights, source, target);
-                    if(returnNodes)
-                        return pathsFromPredecessors(self, source, target);
-                    else
-                        return edgePathsFromPredecessors(self, source, target);
+
+                    Path path;
+                    {
+                        py::gil_scoped_release allowThreads;
+                        self.runSingleSourceSingleTarget(weights, source, target);
+                        if(returnNodes)
+                            pathsFromPredecessors(self, source, target, path);
+                        else
+                            edgePathsFromPredecessors(self, source, target, path);
+                    }
+                    return path;
                 },
                 py::arg("weights"), py::arg("source"), py::arg("target"), py::arg("returnNodes")=true
             )
+
             .def("runSingleSourceMultiTarget", // single source -> multiple targets
                 [](ShortestPathType & self, const EdgeWeightsType & weights, const int64_t source, const std::vector<int64_t> & targets, const bool returnNodes) {
-                    self.runSingleSourceMultiTarget(weights, source, targets);
-                    if(returnNodes)
-                        return pathsFromPredecessors(self, source, targets);
-                    else
-                        return edgePathsFromPredecessors(self, source, targets);
+
+                std::vector<Path> paths;
+                    {
+                        py::gil_scoped_release allowThreads;
+                        self.runSingleSourceMultiTarget(weights, source, targets);
+                        if(returnNodes)
+                            pathsFromPredecessors(self, source, targets, paths);
+                        else
+                            edgePathsFromPredecessors(self, source, targets, paths);
+                    }
+                    return paths;
                 },
                 py::arg("weights"), py::arg("source"), py::arg("targets"), py::arg("returnNodes")=true
             )
@@ -148,26 +168,29 @@ namespace graph{
                 const int numberOfThreads) {
 
                 std::vector<Path> paths(sources.size());
-                parallel::ThreadPool threadpool(numberOfThreads);
-
-                // initialize a shortest path class for each thread
-                std::vector<ShortestPathType> shortestPathThreads( threadpool.nThreads(), ShortestPathType(graph) );
 
                 {
                     py::gil_scoped_release allowThreads;
+
+                    parallel::ThreadPool threadpool(numberOfThreads);
+                    // initialize a shortest path class for each thread
+                    std::vector<ShortestPathType> shortestPathThreads( threadpool.nThreads(), ShortestPathType(graph) );
+
                     parallel::parallel_foreach(threadpool, sources.size(), [&](const int tid, const int ii) {
                         auto & sp = shortestPathThreads[tid];
                         sp.runSingleSourceSingleTarget(edgeWeights, sources[ii], targets[ii]);
                         if(returnNodes)
-                            paths[ii] = pathsFromPredecessors(sp, sources[ii], targets[ii]);
+                            pathsFromPredecessors(sp, sources[ii], targets[ii], paths[ii]);
                         else
-                            paths[ii] = edgePathsFromPredecessors(sp, sources[ii], targets[ii]);
+                            edgePathsFromPredecessors(sp, sources[ii], targets[ii], paths[ii]);
                     });
                 }
                 return paths;
+
             },
             py::arg("graph"),py::arg("edgeWeights"),py::arg("sources"),py::arg("targets"),py::arg("returnNodes")=true,py::arg("numberOfThreads")=-1
         );
+
 
         graphModule.def("shortestPathMultiTargetParallel",
             [](
@@ -179,20 +202,23 @@ namespace graph{
                 const int numberOfThreads) {
 
                 std::vector<std::vector<Path>> paths(sources.size());
-                parallel::ThreadPool threadpool(numberOfThreads);
-
-                // initialize a shortest path class for each thread
-                std::vector<ShortestPathType> shortestPathThreads( threadpool.nThreads(), ShortestPathType(graph) );
 
                 {
                     py::gil_scoped_release allowThreads;
+
+                    std::cout << "N-threads: " << numberOfThreads << std::endl;
+                    parallel::ThreadPool threadpool(numberOfThreads);
+                    std::cout << "N-pool: " << threadpool.nThreads() << std::endl;
+                    // initialize a shortest path class for each thread
+                    std::vector<ShortestPathType> shortestPathThreads( threadpool.nThreads(), ShortestPathType(graph) );
+
                     parallel::parallel_foreach(threadpool, sources.size(), [&](const int tid, const int ii) {
                         auto & sp = shortestPathThreads[tid];
                         sp.runSingleSourceMultiTarget(edgeWeights, sources[ii], targetVectors[ii]);
                         if(returnNodes)
-                            paths[ii] = pathsFromPredecessors(sp, sources[ii], targetVectors[ii]);
+                            pathsFromPredecessors(sp, sources[ii], targetVectors[ii], paths[ii]);
                         else
-                            paths[ii] = edgePathsFromPredecessors(sp, sources[ii], targetVectors[ii]);
+                            edgePathsFromPredecessors(sp, sources[ii], targetVectors[ii], paths[ii]);
                     });
                 }
                 return paths;
