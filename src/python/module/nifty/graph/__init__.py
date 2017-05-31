@@ -1,3 +1,4 @@
+# sphinx_gallery_thumbnail_number = 4
 from __future__ import absolute_import
 from . import _graph as __graph
 from ._graph import *

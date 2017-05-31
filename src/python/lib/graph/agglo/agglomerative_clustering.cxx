@@ -3,6 +3,7 @@
 
 #include "nifty/python/converter.hxx"
 #include "nifty/python/graph/undirected_list_graph.hxx"
+#include "nifty/python/graph/undirected_grid_graph.hxx"
 #include "nifty/python/graph/agglo/export_agglomerative_clustering.hxx"
 
 #include "nifty/graph/graph_maps.hxx"
@@ -273,6 +274,35 @@ namespace agglo{
             exportNodeAndEdgeWeightedClusterPolicy<GraphType, false>(aggloModule);
             exportNodeAndEdgeWeightedClusterPolicy<GraphType, true>(aggloModule);
 
+            exportMinimumNodeSizeClusterPolicy<GraphType>(aggloModule);
+        }
+
+        {
+            typedef UndirectedGridGraph<2,true> GraphType;
+
+            exportMalaClusterPolicy<GraphType, false>(aggloModule);
+            exportMalaClusterPolicy<GraphType, true>(aggloModule);
+
+            exportEdgeWeightedClusterPolicy<GraphType, false>(aggloModule);
+            exportEdgeWeightedClusterPolicy<GraphType, true>(aggloModule);
+
+            exportNodeAndEdgeWeightedClusterPolicy<GraphType, false>(aggloModule);
+            exportNodeAndEdgeWeightedClusterPolicy<GraphType, true>(aggloModule);
+
+            exportMinimumNodeSizeClusterPolicy<GraphType>(aggloModule);
+        }
+
+        {
+            typedef UndirectedGridGraph<3,true> GraphType;
+
+            exportMalaClusterPolicy<GraphType, false>(aggloModule);
+            exportMalaClusterPolicy<GraphType, true>(aggloModule);
+
+            exportEdgeWeightedClusterPolicy<GraphType, false>(aggloModule);
+            exportEdgeWeightedClusterPolicy<GraphType, true>(aggloModule);
+
+            exportNodeAndEdgeWeightedClusterPolicy<GraphType, false>(aggloModule);
+            exportNodeAndEdgeWeightedClusterPolicy<GraphType, true>(aggloModule);
 
             exportMinimumNodeSizeClusterPolicy<GraphType>(aggloModule);
         }
