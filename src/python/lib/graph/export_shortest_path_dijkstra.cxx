@@ -65,7 +65,6 @@ namespace graph{
             }
             edge = graph.findEdge(last, next);
             path.push_back(edge);
-            // std::cout << last << " " << next << " " << edge << std::endl;
             last = next;
         }
         return path;
@@ -146,10 +145,10 @@ namespace graph{
                 const NodeVector & sources,
                 const NodeVector & targets,
                 const bool returnNodes,
-                const int nThreads) {
+                const int numberOfThreads) {
 
                 std::vector<Path> paths(sources.size());
-                parallel::ThreadPool threadpool(nThreads);
+                parallel::ThreadPool threadpool(numberOfThreads);
 
                 // initialize a shortest path class for each thread
                 std::vector<ShortestPathType> shortestPathThreads( threadpool.nThreads(), ShortestPathType(graph) );
@@ -167,7 +166,7 @@ namespace graph{
                 }
                 return paths;
             },
-            py::arg("graph"),py::arg("edgeWeights"),py::arg("sources"),py::arg("targets"),py::arg("returnNodes")=true,py::arg("nThreads")=-1
+            py::arg("graph"),py::arg("edgeWeights"),py::arg("sources"),py::arg("targets"),py::arg("returnNodes")=true,py::arg("numberOfThreads")=-1
         );
 
         graphModule.def("shortestPathMultiTargetParallel",
@@ -177,10 +176,10 @@ namespace graph{
                 const NodeVector & sources,
                 const std::vector<NodeVector> & targetVectors,
                 const bool returnNodes,
-                const int nThreads) {
+                const int numberOfThreads) {
 
                 std::vector<std::vector<Path>> paths(sources.size());
-                parallel::ThreadPool threadpool(nThreads);
+                parallel::ThreadPool threadpool(numberOfThreads);
 
                 // initialize a shortest path class for each thread
                 std::vector<ShortestPathType> shortestPathThreads( threadpool.nThreads(), ShortestPathType(graph) );
@@ -198,7 +197,7 @@ namespace graph{
                 }
                 return paths;
             },
-            py::arg("graph"),py::arg("edgeWeights"),py::arg("sources"),py::arg("targetVectors"),py::arg("returnNodes")=true,py::arg("nThreads")=-1
+            py::arg("graph"),py::arg("edgeWeights"),py::arg("sources"),py::arg("targetVectors"),py::arg("returnNodes")=true,py::arg("numberOfThreads")=-1
         );
     }
 
