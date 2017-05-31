@@ -6,6 +6,7 @@
 
 namespace nifty {
 namespace graph {
+namespace optimization{
 namespace lifted_multicut{
 
 
@@ -73,6 +74,7 @@ public:
 
 
 } // namespace lifted_mutlcut
+} // namespace optimization
 } // namespace graph
 } // namespace nifty
 

@@ -7,7 +7,8 @@
 
 namespace nifty{
 namespace graph{
-
+namespace optimization{
+namespace mincut{
 
 
     template<class OBJECTIVE>
@@ -23,7 +24,8 @@ namespace graph{
             return std::string("MincutObjective") + GraphName<GRAPH>::name();
         }
     };
-    
+} // namespace mincut
+} // namespace optimization   
 }
 }
 

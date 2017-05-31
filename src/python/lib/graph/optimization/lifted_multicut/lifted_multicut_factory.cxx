@@ -20,6 +20,7 @@ PYBIND11_DECLARE_HOLDER_TYPE(LmcBase, std::shared_ptr<LmcBase>);
 
 namespace nifty{
 namespace graph{
+namespace optimization{
 namespace lifted_multicut{
 
 
@@ -76,5 +77,6 @@ namespace lifted_multicut{
     }
 
 }
+} // namespace nifty::graph::optimization
 }
 }

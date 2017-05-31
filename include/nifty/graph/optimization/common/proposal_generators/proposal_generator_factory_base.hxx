@@ -26,7 +26,7 @@ namespace common{
 
 
 } // namespace nifty::graph::optimization::common
-} // namespacen ifty::graph::optimization
+} // namespace nifty::graph::optimization
 } // namespace nifty::graph
 } // namespace nifty
 

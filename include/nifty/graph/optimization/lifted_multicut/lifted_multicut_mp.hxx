@@ -12,6 +12,7 @@
 
 namespace nifty{
 namespace graph{
+namespace optimization{
 namespace lifted_multicut{
     
     /**
@@ -325,5 +326,6 @@ namespace lifted_multicut{
 
 
 } // namespace nifty
+} // namespace nifty::graph::optimization
 } // namespace graph
 } // namespace lifted_multicut

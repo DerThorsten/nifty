@@ -19,6 +19,8 @@ PYBIND11_DECLARE_HOLDER_TYPE(McBase, std::shared_ptr<McBase>);
 
 namespace nifty{
 namespace graph{
+namespace optimization{
+namespace mincut{
 
 
 
@@ -69,5 +71,7 @@ namespace graph{
         }
     }
 
+} // namespace nifty::graph::optimization::mincut    
+} // namespace nifty::graph::optimization
 }
 }

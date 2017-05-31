@@ -50,10 +50,10 @@ namespace multicut{
 
 
             typedef nifty::graph::UndirectedGraph<>           SubGraph;
-            typedef MincutObjective<SubGraph, double>         MincutSubObjective;
-            typedef MincutFactoryBase<MincutSubObjective>     MincutSubMcFactoryBase;
-            typedef MincutBase<MincutSubObjective>            MincutSubBase;
-            typedef MincutVerboseVisitor<MincutSubObjective>  SubMcVerboseVisitor;
+            typedef mincut::MincutObjective<SubGraph, double>         MincutSubObjective;
+            typedef mincut::MincutFactoryBase<MincutSubObjective>     MincutSubMcFactoryBase;
+            typedef mincut::MincutBase<MincutSubObjective>            MincutSubBase;
+            typedef mincut::MincutVerboseVisitor<MincutSubObjective>  SubMcVerboseVisitor;
      
             typedef typename  MincutSubBase::NodeLabels     MincutSubNodeLabels;
 
@@ -572,9 +572,9 @@ namespace multicut{
         typedef typename GraphType:: template EdgeMap<uint8_t> IsDirtyEdge;
 
         typedef UndirectedGraph<>                           SubGraph;
-        typedef MincutObjective<SubGraph, double>           MincutSubObjective;
-        typedef MincutFactoryBase<MincutSubObjective>       MincutSubMcFactoryBase;
-        typedef MincutBase<MincutSubObjective>              MincutSubBase;
+        typedef mincut::MincutObjective<SubGraph, double>           MincutSubObjective;
+        typedef mincut::MincutFactoryBase<MincutSubObjective>       MincutSubMcFactoryBase;
+        typedef mincut::MincutBase<MincutSubObjective>              MincutSubBase;
         typedef typename  MincutSubBase::NodeLabels         MincutSubNodeLabels;
 
         typedef MulticutObjective<SubGraph, double>         MulticutSubObjective;

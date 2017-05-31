@@ -17,7 +17,8 @@ namespace py = pybind11;
 
 namespace nifty{
 namespace graph{
-
+namespace optimization{
+namespace multicut{
 
     template<class SOLVER>
     py::class_<typename SOLVER::Settings>  exportMulticutSolver(
@@ -147,6 +148,7 @@ namespace graph{
     }
 
     */
-
+} // namespace multicut
+} // namespace optimization
 }
 }
