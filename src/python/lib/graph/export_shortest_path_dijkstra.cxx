@@ -50,8 +50,10 @@ namespace graph{
         const auto & graph = sp.graph();
 
         Path path;
+        int64_t next = target;
         int64_t last = target;
-        int64_t edge, next;
+        int64_t edge;
+
         while(next != source) {
 
             next = predecessors[next];
@@ -63,6 +65,7 @@ namespace graph{
             }
             edge = graph.findEdge(last, next);
             path.push_back(edge);
+            // std::cout << last << " " << next << " " << edge << std::endl;
             last = next;
         }
         return path;
