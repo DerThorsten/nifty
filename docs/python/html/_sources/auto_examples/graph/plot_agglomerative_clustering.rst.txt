@@ -3,12 +3,12 @@
 .. _sphx_glr_auto_examples_graph_plot_agglomerative_clustering.py:
 
 
-Agglomerative Clustering
-====================================
+Agglomerative Clustering on RAG
+================================
 
-
-Segment an image with agglomerative clustering.
-We start from a region adjacency graph
+We start from a region adjacency graph as initial
+graph and use agglomerative clustering
+on this graph/
 
 
 
@@ -41,6 +41,7 @@ We start from a region adjacency graph
     import skimage.segmentation  # Superpixels
     import skimage.data          # Data
     import skimage.color         # rgb2Gray
+    import matplotlib 
 
     # pylab
     import pylab                # Plotting
@@ -49,12 +50,10 @@ We start from a region adjacency graph
     # nifty
     import nifty.graph.rag      # RAG
     import nifty.graph.agglo    # Agglomerative clustering
-
+    import nifty.segmentation
 
     # load some image
     img = skimage.data.coins()
-
-
 
 
     # slic superpixels
@@ -98,7 +97,6 @@ We start from a region adjacency graph
 
 
 
-
     # plot the results
 
     # increase default figure size
@@ -112,9 +110,8 @@ We start from a region adjacency graph
 
 
     f.add_subplot(2, 2, 2)
-    b_img = skimage.segmentation.mark_boundaries(img, 
-            overseg.astype('uint32'), mode='inner', color=(1,0,0))
-    pylab.imshow(b_img, cmap='gray')
+    bImg = nifty.segmentation.markBoundaries(img, overseg, color=(1,0,0))
+    pylab.imshow(bImg, cmap='gray')
     pylab.title('Superpixels')
 
     f.add_subplot(2, 2, 3)
@@ -123,13 +120,12 @@ We start from a region adjacency graph
 
 
     f.add_subplot(2, 2, 4)
-    b_img = skimage.segmentation.mark_boundaries(img, 
-            seg.astype('uint32'), mode='inner', color=(0,0,0))
-    pylab.imshow(b_img)
+    bImg = nifty.segmentation.markBoundaries(img, seg, color=(1,0,0))
+    pylab.imshow(bImg)
     pylab.title('Segmentation')
 
     pylab.show()
-**Total running time of the script:** ( 0 minutes  0.585 seconds)
+**Total running time of the script:** ( 0 minutes  0.554 seconds)
 
 
 

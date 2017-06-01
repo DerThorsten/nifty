@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Agglomerative Clustering &#8212; Nifty 0.12.0 documentation</title>
+    <title>Agglomerative Clustering on RAG &#8212; Nifty 0.14.0 documentation</title>
     
     <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -15,7 +15,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '0.12.0',
+        VERSION:     '0.14.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -47,7 +47,7 @@
         <li class="right" >
           <a href="plot_edge_contraction_graph.html" title="Edge Contraction Graph"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">Nifty 0.12.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Nifty 0.14.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Gallery of Examples</a> &#187;</li> 
       </ul>
     </div>
@@ -77,10 +77,11 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="agglomerative-clustering">
-<span id="sphx-glr-auto-examples-graph-plot-agglomerative-clustering-py"></span><h1>Agglomerative Clustering<a class="headerlink" href="#agglomerative-clustering" title="Permalink to this headline">¶</a></h1>
-<p>Segment an image with agglomerative clustering.
-We start from a region adjacency graph</p>
+  <div class="section" id="agglomerative-clustering-on-rag">
+<span id="sphx-glr-auto-examples-graph-plot-agglomerative-clustering-py"></span><h1>Agglomerative Clustering on RAG<a class="headerlink" href="#agglomerative-clustering-on-rag" title="Permalink to this headline">¶</a></h1>
+<p>We start from a region adjacency graph as initial
+graph and use agglomerative clustering
+on this graph/</p>
 <img alt="../../_images/sphx_glr_plot_agglomerative_clustering_001.png" class="align-center" src="../../_images/sphx_glr_plot_agglomerative_clustering_001.png" />
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">303</span><span class="p">,</span> <span class="mi">384</span><span class="p">)</span> <span class="p">(</span><span class="mi">303</span><span class="p">,</span> <span class="mi">384</span><span class="p">)</span>
@@ -99,6 +100,7 @@ We start from a region adjacency graph</p>
 <span class="kn">import</span> <span class="nn">skimage.segmentation</span>  <span class="c1"># Superpixels</span>
 <span class="kn">import</span> <span class="nn">skimage.data</span>          <span class="c1"># Data</span>
 <span class="kn">import</span> <span class="nn">skimage.color</span>         <span class="c1"># rgb2Gray</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
 
 <span class="c1"># pylab</span>
 <span class="kn">import</span> <span class="nn">pylab</span>                <span class="c1"># Plotting</span>
@@ -107,12 +109,10 @@ We start from a region adjacency graph</p>
 <span class="c1"># nifty</span>
 <span class="kn">import</span> <span class="nn">nifty.graph.rag</span>      <span class="c1"># RAG</span>
 <span class="kn">import</span> <span class="nn">nifty.graph.agglo</span>    <span class="c1"># Agglomerative clustering</span>
-
+<span class="kn">import</span> <span class="nn">nifty.segmentation</span>
 
 <span class="c1"># load some image</span>
 <span class="n">img</span> <span class="o">=</span> <span class="n">skimage</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">coins</span><span class="p">()</span>
-
-
 
 
 <span class="c1"># slic superpixels</span>
@@ -156,7 +156,6 @@ We start from a region adjacency graph</p>
 
 
 
-
 <span class="c1"># plot the results</span>
 
 <span class="c1"># increase default figure size</span>
@@ -170,9 +169,8 @@ We start from a region adjacency graph</p>
 
 
 <span class="n">f</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">b_img</span> <span class="o">=</span> <span class="n">skimage</span><span class="o">.</span><span class="n">segmentation</span><span class="o">.</span><span class="n">mark_boundaries</span><span class="p">(</span><span class="n">img</span><span class="p">,</span>
-        <span class="n">overseg</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;uint32&#39;</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
-<span class="n">pylab</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">b_img</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">bImg</span> <span class="o">=</span> <span class="n">nifty</span><span class="o">.</span><span class="n">segmentation</span><span class="o">.</span><span class="n">markBoundaries</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">overseg</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">bImg</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
 <span class="n">pylab</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Superpixels&#39;</span><span class="p">)</span>
 
 <span class="n">f</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
@@ -181,15 +179,14 @@ We start from a region adjacency graph</p>
 
 
 <span class="n">f</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-<span class="n">b_img</span> <span class="o">=</span> <span class="n">skimage</span><span class="o">.</span><span class="n">segmentation</span><span class="o">.</span><span class="n">mark_boundaries</span><span class="p">(</span><span class="n">img</span><span class="p">,</span>
-        <span class="n">seg</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;uint32&#39;</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
-<span class="n">pylab</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">b_img</span><span class="p">)</span>
+<span class="n">bImg</span> <span class="o">=</span> <span class="n">nifty</span><span class="o">.</span><span class="n">segmentation</span><span class="o">.</span><span class="n">markBoundaries</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">seg</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">bImg</span><span class="p">)</span>
 <span class="n">pylab</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Segmentation&#39;</span><span class="p">)</span>
 
 <span class="n">pylab</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p><strong>Total running time of the script:</strong> ( 0 minutes  0.585 seconds)</p>
+<p><strong>Total running time of the script:</strong> ( 0 minutes  0.554 seconds)</p>
 <div class="sphx-glr-footer docutils container">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" href="../../_downloads/plot_agglomerative_clustering.py" download=""><code class="xref download docutils literal"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_agglomerative_clustering.py</span></code></a></div>
@@ -220,7 +217,7 @@ We start from a region adjacency graph</p>
         <li class="right" >
           <a href="plot_edge_contraction_graph.html" title="Edge Contraction Graph"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">Nifty 0.12.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Nifty 0.14.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../index.html" >Gallery of Examples</a> &#187;</li> 
       </ul>
     </div>
