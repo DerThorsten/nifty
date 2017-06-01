@@ -72,6 +72,7 @@ namespace graph{
             self.edgesToVolume(edgeValues, out, edgeDirection, ignoreValue, numberOfThreads);
             return out;
         }, py::arg("edgeValues"), py::arg("edgeDirection") = 0, py::arg("ignoreValue") = 0, py::arg("numberOfThreads") = -1)
+        .def("storageLengths", &CoordinatesType::storageLengths)
         ;
 
         module.def(factoryName.c_str(),

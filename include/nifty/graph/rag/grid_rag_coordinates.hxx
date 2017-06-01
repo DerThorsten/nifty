@@ -43,6 +43,10 @@ namespace graph {
             return rag_;
         }
 
+        size_t storageLengths() const {
+            return storage_.size();
+        }
+
     private:
         void initStorage(const int nThreads);
 
