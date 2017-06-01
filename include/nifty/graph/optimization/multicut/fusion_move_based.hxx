@@ -13,8 +13,8 @@
 
 namespace nifty{
 namespace graph{
-
-
+namespace optimization{
+namespace multicut{
 
 
 
@@ -382,8 +382,8 @@ namespace graph{
         return objective_;
     }
 
-
-
+} // namespace nifty::graph::optimization::multicut
+} // namespace nifty::graph::optimization
 } // namespace nifty::graph
 } // namespace nifty
 

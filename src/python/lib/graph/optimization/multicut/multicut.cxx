@@ -9,8 +9,8 @@ PYBIND11_DECLARE_HOLDER_TYPE(T, std::shared_ptr<T>);
 
 namespace nifty{
 namespace graph{
-
-
+namespace optimization{
+namespace multicut{
 
     void exportMulticutObjective(py::module &);
     void exportMulticutFactory(py::module &);
@@ -19,12 +19,10 @@ namespace graph{
 
     // we are currently  refactoring in little 
     // pieces: optimization::multicut is the new cool namespace
-    namespace optimization{
-    namespace multicut{
-        void exportMulticutIlp(py::module &);
-        void exportCgc(py::module &);
-    }
-    }
+    // implemented by Nish
+
+    void exportMulticutIlp(py::module &);
+    void exportCgc(py::module &);
     void exportMulticutGreedyAdditive(py::module &);
     void exportFusionMoveBased(py::module &);
     void exportPerturbAndMap(py::module &);
@@ -38,20 +36,20 @@ namespace graph{
     #endif
 }
 }
-
-
+}
+}
 
 PYBIND11_PLUGIN(_multicut) {
     py::module multicutModule("_multicut", "multicut submodule of nifty.graph");
     
-    using namespace nifty::graph;
+    using namespace nifty::graph::optimization::multicut;
 
     exportMulticutObjective(multicutModule);
     exportMulticutVisitorBase(multicutModule);
     exportMulticutBase(multicutModule);
     exportMulticutFactory(multicutModule);
-    nifty::graph::optimization::multicut::exportMulticutIlp(multicutModule);
-    nifty::graph::optimization::multicut::exportCgc(multicutModule);
+    exportMulticutIlp(multicutModule);
+    exportCgc(multicutModule);
     exportMulticutGreedyAdditive(multicutModule);
     exportFusionMoveBased(multicutModule);
     exportPerturbAndMap(multicutModule);

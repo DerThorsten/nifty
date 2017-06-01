@@ -9,6 +9,7 @@
 
 namespace nifty{
 namespace graph{
+namespace optimization{
 namespace mincut{
 
 
@@ -33,6 +34,7 @@ namespace mincut{
     
     
 
+}
 }
 }
 }

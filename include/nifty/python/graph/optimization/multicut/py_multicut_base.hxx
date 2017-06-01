@@ -6,8 +6,8 @@
 
 namespace nifty {
 namespace graph {
-
-
+namespace optimization{
+namespace multicut{
 
 
 
@@ -71,7 +71,8 @@ public:
     }
 };
 
-
+} // namespace multicut
+} // namespace optimization
 } // namespace graph
 } // namespace nifty
 

@@ -18,6 +18,7 @@ Nifty API Reference
     nifty.graph.optimization.multicut
     nifty.graph.optimization.lifted_multicut
     nifty.graph.optimization.mincut
+    nifty.segmentation
     nifty.ground_truth
     nifty.hdf5
     nifty.ufd

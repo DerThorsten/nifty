@@ -14,7 +14,8 @@
 
 namespace nifty{
 namespace graph{
-
+namespace optimization{
+namespace common{
 
 
     template<class OBJECTIVE>
@@ -215,8 +216,8 @@ namespace graph{
 
 
 
-
-
+} // namespace nifty::graph::optimization::common
+} // namespace nifty::graph::optimization
 } // namespace nifty::graph
 } // namespace nifty
 

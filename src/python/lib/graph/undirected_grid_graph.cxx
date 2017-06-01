@@ -88,7 +88,7 @@ namespace graph{
                         g.imageToEdgeMap(image, op, out);
                     }
                     else if(functorType == std::string("interpixel")){
-                        throw std::runtime_error("mode='interpixel' is not yet supported");
+                        g.imageToInterpixelEdgeMap(image, out);
                     }
                     else{
                         const auto s = boost::format("'%s' is an unknown mode. Must be in "

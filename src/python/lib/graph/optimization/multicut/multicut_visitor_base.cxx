@@ -25,7 +25,8 @@ namespace py = pybind11;
 
 namespace nifty{
 namespace graph{
-
+namespace optimization{
+namespace multicut{
 
 
     using namespace py;
@@ -128,8 +129,8 @@ namespace graph{
             exportMulticutVisitorBaseT<ObjectiveType>(module);
         }
     }      
-
-
+} // namespace nifty::graph::optimization::multicut
+} // namespace nifty::graph::optimization
 }
 }
     

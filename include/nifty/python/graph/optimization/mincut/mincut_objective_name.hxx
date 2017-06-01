@@ -4,6 +4,8 @@
 
 namespace nifty{
 namespace graph{
+namespace optimization{
+namespace mincut{
 
     template<class OBJECTIVE>
     struct MincutObjectiveName;
@@ -14,7 +16,9 @@ namespace graph{
     // 
     //     }
     // };
-    
+
+} // namespace mincut
+} // namespace optimization    
 }
 }
 

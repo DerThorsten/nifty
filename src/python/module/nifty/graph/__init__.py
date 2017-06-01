@@ -1,3 +1,4 @@
+# sphinx_gallery_thumbnail_number = 4
 from __future__ import absolute_import
 from . import _graph as __graph
 from ._graph import *
@@ -96,7 +97,7 @@ def undirectedGridGraph(shape, simpleNh=True):
         raise RuntimeError("currently only 2D and 3D grid graph is exposed to python")
 
 
-
+gridGraph = undirectedGridGraph
 
 
 def drawGraph(graph, method='spring'):

@@ -6,7 +6,8 @@
 
 namespace nifty {
 namespace graph {
-
+namespace optimization{
+namespace multicut{
 
     template<class OBJECTIVE>
     class MulticutBase;
@@ -46,7 +47,8 @@ namespace graph {
     private:
         Settings options_;
     };
-
+} // namespace nifty::graph::optimization::multicut
+} // namespace nifty::graph::optimization
 } // namespace graph
 } // namespace nifty
 

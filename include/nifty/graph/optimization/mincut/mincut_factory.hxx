@@ -5,6 +5,8 @@
 
 namespace nifty {
 namespace graph {
+namespace optimization{
+namespace mincut{
 
 
     template<class OBJECTIVE>
@@ -44,7 +46,8 @@ namespace graph {
     private:
         Settings options_;
     };
-
+} // namespace nifty::graph::optimization::mincut
+} // namespace nifty::graph::optimization
 } // namespace graph
 } // namespace nifty
 

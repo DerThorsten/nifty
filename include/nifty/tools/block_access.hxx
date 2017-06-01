@@ -12,8 +12,8 @@ namespace tools{
 template<class T>
 class BlockStorage{
 public:
-    typedef marray::Marray<T> ArrayType;
-    typedef marray::View<T> ViewType;
+    typedef nifty::marray::Marray<T> ArrayType;
+    typedef nifty::marray::View<T> ViewType;
     template<class SHAPE>
     BlockStorage(
         const SHAPE & maxShape,  
@@ -54,7 +54,7 @@ private:
 template<class T>
 class BlockView{
 public:
-    typedef marray::View<T> ViewType;
+    typedef nifty::marray::View<T> ViewType;
 
 
     template<class SHAPE>

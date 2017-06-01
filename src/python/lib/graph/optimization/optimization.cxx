@@ -7,9 +7,9 @@ PYBIND11_DECLARE_HOLDER_TYPE(T, std::shared_ptr<T>);
 
 namespace nifty{
 namespace graph{
+namespace optimization{
 
-
-
+} // namespace nifty::graph::optimization
 }
 }
 
@@ -18,7 +18,7 @@ namespace graph{
 PYBIND11_PLUGIN(_optimization) {
     py::module optimizationModule("_optimization", "optimization submodule of nifty.graph");
     
-    using namespace nifty::graph;
+    using namespace nifty::graph::optimization;
     return optimizationModule.ptr();
 }
 
