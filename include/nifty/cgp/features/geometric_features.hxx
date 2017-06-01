@@ -37,7 +37,6 @@ namespace cgp{
 
         std::vector<std::string> names()const{
 
-
             std::string accNames [] = {
                 std::string("Mean"),
                 std::string("Sum"),
@@ -223,12 +222,14 @@ namespace cgp{
 
 
     class Cell1BasicGeometricFeatures2D{
+    private:
+        typedef nifty::features::DefaultAccumulatedStatistics<float> AccType;
     public:
         Cell1BasicGeometricFeatures2D(){
         }
 
         size_t numberOfFeatures()const{
-            return 20;
+            return 20 +  6*AccType::NFeatures::value ;
         }
             
 
@@ -239,7 +240,10 @@ namespace cgp{
             const CellBoundsVector<2,1>     & cell1BoundsVector,
             nifty::marray::View<T> & features
         )const{  
+
             using namespace nifty::math;
+            std::vector<float> buffer(AccType::NFeatures::value);
+            std::vector<float> buffer2(AccType::NFeatures::value);
             for(auto cell1Index=0; cell1Index<cell1GeometryVector.size(); ++cell1Index){
 
                 const auto & cell1Bounds = cell1BoundsVector[cell1Index];
@@ -304,10 +308,65 @@ namespace cgp{
                     insertCell2ValFeats(ratU, ratV);
                 }
 
+                // statistic  over ||centerOfMass-points||  for cell 1
+                {
+                    AccType acc;
+                    for(auto i=0; i<geoE.size(); ++i){
+                        const auto & coord = geoE[i];
+                        const auto d  = nifty::math::euclideanDistance(coord, comE);
+                        acc.acc(d);
+                    }
+                    // write to buffer
+                    acc.result(buffer.begin(), buffer.end()); 
+                    // write results
+                    for(auto i=0; i<buffer.size(); ++i){
+                        features(cell1Index,  fIndex++) = buffer[i];
+                    }
+                }
+
+                // statistic  over ||centerOfMass_cell1-points_cell2|| 
+                {
+                    AccType acc;
+                    AccType accU;
+                    AccType accV;
+
+                    for(auto i=0; i<geoU.size(); ++i){
+                        const auto & coord = geoU[i];
+                        const auto d  = nifty::math::euclideanDistance(coord, comE);
+                        acc.acc(d);
+                        accU.acc(d);
+                    }
+                    for(auto i=0; i<geoV.size(); ++i){
+                        const auto & coord = geoV[i];
+                        const auto d  = nifty::math::euclideanDistance(coord, comE);
+                        acc.acc(d);
+                        accV.acc(d);
+                    }
+
+                    // write to buffer and write results
+                    acc.result(buffer.begin(), buffer.end()); 
+
+                    for(auto i=0; i<buffer.size(); ++i){
+                        features(cell1Index,  fIndex++) = buffer[i];
+                    }
+
+
+                    accU.result(buffer.begin(), buffer.end()); 
+                    accV.result(buffer2.begin(), buffer2.end()); 
+
+                    for(auto i=0; i<buffer.size(); ++i){
+                        insertCell2ValFeats(buffer[i], buffer2[i]);
+                    }
+
+                }
+
 
                 // angle between cell2CenterOfMass  and cell1CenterOfMass
                 // ...
-                
+
+
+
+                NIFTY_CHECK_OP(fIndex,==,numberOfFeatures(),"internal error");
 
 
             }
@@ -320,75 +379,8 @@ namespace cgp{
 
 
 
-    class Cell1Cell2CurvatureFeatures2D{
-    };
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    class Cell1GeoHistFeatures{
-        typedef nifty::features::DefaultAccumulatedStatistics<float> AccType;
-    public:
-        Cell1GeoHistFeatures(){
-        }
-
-        size_t numberOfFeatures()const{
-            return AccType::NFeatures::value;
-        }
-            
-
-        template<class T>
-        void operator()(
-            const CellGeometryVector<2,1> & cellsGeometry,
-            nifty::marray::View<T> & features
-        )const{  
-
-            std::vector<float> buffer(AccType::NFeatures::value);
-            for(auto cellIndex=0; cellIndex<cellsGeometry.size(); ++cellIndex){
-
-
-
-                const auto & cellGeometry = cellsGeometry[cellIndex];
-                const auto centerOfMass = cellGeometry.centerOfMass();
-
-
-                AccType acc;
-
-                for(auto i=0; i<cellGeometry.size(); ++i){
-                    const auto & coord = cellGeometry[i];
-                    const auto d  = nifty::math::euclideanDistance(coord, centerOfMass);
-                    acc.acc(d);
-                }
-                
-                // write to buffer
-                acc.result(buffer.begin(), buffer.end()); 
-
-                // write results
-                for(auto i=0; i<buffer.size(); ++i){
-                    features(cellIndex, i) = buffer[i];
-                }
-
-            }
-        }
-
-    private:
-
-    };
 
 
 }
