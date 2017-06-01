@@ -279,6 +279,7 @@ namespace marray
         }
 
     public:
+        
         void createViewFrom(const nifty::marray::View<VALUE_TYPE> & view)
         {
             std::vector<size_t> shape(view.shapeBegin(), view.shapeEnd());
@@ -410,7 +411,7 @@ namespace pybind11
         //                  "Please use nifty::marray::PyView instead of nifty::marray::View for arguments and return values.");
         //};
         //template <typename Type> 
-        //struct type_caster<andres::View<Type> > 
+        //struct type_caster<nifty::marray::View<Type> > 
         //: marray_caster<Type> {
         //};
     }

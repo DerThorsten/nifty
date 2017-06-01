@@ -7,7 +7,46 @@ import numpy
 
 
 def seededWatersheds(heightMap, seeds, method="node_weighted", acc="max"):
+    """Seeded watersheds segmentation
+    
+    Get a segmentation via seeded watersheds.
+    This is a high level wrapper around 
+    :func:`nifty.graph.nodeWeightedWatershedsSegmentation`
+    and :func:`nifty.graph.nodeWeightedWatershedsSegmentation`.
 
+    
+    Args:
+        heightMap (numpy.ndarray) : height / evaluation map  
+        seeds (numpy.ndarray) : Seeds as non zero elements in the array
+        method (str): Algorithm type can be:
+
+            *   "node_weighted": ordinary node weighted watershed
+            *   "edge_weighted": edge weighted watershed (minimum spanning tree)
+        
+            (default: {"node_weighted"})
+
+        acc (str): If method is "edge_weighted", one needs to specify how
+            to convert the heightMap into an edgeMap.
+            This parameter specificities this method.
+            Allow values are:
+
+            *   'min' : Take the minimum value of the endpoints of the edge 
+            *   'max' : Take the minimum value of the endpoints of the edge 
+            *   'sum' : Take the sum  of the values of the endpoints of the edge 
+            *   'prod' : Take the product of the values of the endpoints of the edge 
+            *   'interpixel' : Take the value of the image at the interpixel
+                coordinate in between the two endpoints.
+                To do this the image is resampled to have shape :math: `2 \cdot shape -1 `
+
+            (default: {"max"})
+    
+    Returns:
+        [description]
+        [type]
+    
+    Raises:
+        RuntimeError: [description]
+    """
     hshape = heightMap.shape 
     sshape = seeds.shape 
     shape = sshape 
@@ -21,7 +60,7 @@ def seededWatersheds(heightMap, seeds, method="node_weighted", acc="max"):
                 nodeWeights=heightMap.ravel())
         seg = seg.reshape(shape)
 
-    if method == "edge_weighted":
+    elif method == "edge_weighted":
         if acc != 'interpixel':
             assert hshape == sshape
             gridGraphEdgeStrength = gridGraph.imageToEdgeMap(heightMap, mode=acc)
@@ -86,6 +125,22 @@ def localMaxima(image):
 
 
 def connectedComponents(labels, dense=True, ignoreBackground=False):
+    """get connected components of a label image
+    
+    Get connected components of an image w.r.t.
+    a 4-neighborhood .      
+    This is a high level wrapper for
+        :func:`nifty.graph.connectedComponentsFromNodeLabels` 
+
+    Args:
+        labels (numpy.ndarray): 
+        dense (bool): should the return labeling be dense (default: {True})
+        ignoreBackground (bool): should values of zero be excluded (default: {False})
+    
+    Returns:
+        [description]
+        [type]
+    """
     shape = labels.shape
     gridGraph = graph.gridGraph(shape)
 
@@ -97,6 +152,24 @@ def connectedComponents(labels, dense=True, ignoreBackground=False):
 
 
 def localMinimaSeeds(image):
+    """Get seed from local minima
+    
+    Get seeds by running connected components 
+    on the local minima.
+    This is a high level wrapper around
+    :func:`nifty.segmentation.localMinima` 
+    and :func:`nifty.segmentation.connectedComponents` 
+    
+    Args:
+        image: [description]
+    
+    Returns:
+        [description]
+        [type]
+    
+    Raises:
+        RuntimeError: [description]
+    """
     if image.ndim != 2:
         raise RuntimeError("localMinimaSeeds is currently only implemented for 2D images")
 
