@@ -2,7 +2,10 @@ from __future__ import absolute_import,print_function
 from .. import graph
 
 from skimage.feature import peak_local_max as __peak_local_max
+from skimage.segmentation import mark_boundaries as __mark_boundaries
 from scipy.misc import imresize as __imresize
+from scipy.ndimage import zoom as __zoom
+
 import numpy
 
 
@@ -41,8 +44,7 @@ def seededWatersheds(heightMap, seeds, method="node_weighted", acc="max"):
             (default: {"max"})
     
     Returns:
-        [description]
-        [type]
+        numpy.ndarray : the segmentation
     
     Raises:
         RuntimeError: [description]
@@ -80,7 +82,6 @@ def seededWatersheds(heightMap, seeds, method="node_weighted", acc="max"):
 
 
     return seg
-
 
 def localMinima(image):
     """get the local minima of an image
@@ -177,3 +178,35 @@ def localMinimaSeeds(image):
     cc = connectedComponents(lm, dense=True, ignoreBackground=True)
     return cc
     
+
+
+def markBoundaries(image, segmentation, color=None):
+    """Mark the boundaries in an image
+    
+    Mark boundaries in an image.
+
+    Warning:
+
+        The returned image shape is twice as large
+        as the input.
+    
+    Args:
+        image:  the input image 
+        segmentation:  the segmentation
+        color (tuple) : the edge color(default: {(0,0,0)})
+    
+    Returns:
+        (numpy.ndarray) : image with marked boundaries. Note that
+            result image has twice as large shape as the input.
+    """
+    if color is None:
+        color = (0,0,0)
+
+    shape = segmentation.shape
+    img2 =   __imresize(image, [2*s for s in shape])#, interp='nearest')
+    #img2 = __zoom(segmentation.astype('float32'), 2, order=1)
+    seg2 = __zoom(segmentation.astype('float32'), 2, order=0)
+    seg2 = seg2.astype('uint32')
+
+    return __mark_boundaries(img2, seg2.astype('uint32'), color=color)
+
