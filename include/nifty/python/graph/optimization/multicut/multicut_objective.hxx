@@ -7,8 +7,8 @@
 
 namespace nifty{
 namespace graph{
-
-
+namespace optimization{
+namespace multicut{
 
     template<class OBJECTIVE>
     struct MulticutObjectiveName;
@@ -23,7 +23,9 @@ namespace graph{
             return std::string("MulticutObjective") + GraphName<GRAPH>::name();
         }
     };
-    
+ 
+} // namespace multicut 
+} // namespace optimization   
 }
 }
 

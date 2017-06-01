@@ -1,18 +1,18 @@
 #include <pybind11/pybind11.h>
 
-//#include "nifty/graph/optimization/mincut/fusion_move_based.hxx"
+//#include "nifty/graph/optimization/multicut/fusion_move_based.hxx"
 
 #include "nifty/python/converter.hxx"
 
 #include "nifty/python/graph/undirected_list_graph.hxx"
 #include "nifty/python/graph/edge_contraction_graph.hxx"
-#include "nifty/python/graph/optimization/mincut/mincut_objective.hxx"
-#include "nifty/python/graph/optimization/mincut/export_mincut_solver.hxx"
+#include "nifty/python/graph/optimization/multicut/multicut_objective.hxx"
+#include "nifty/python/graph/optimization/multicut/export_multicut_solver.hxx"
 
 #include "nifty/python/graph/optimization/common/py_proposal_generator_factory_base.hxx"
 #include "nifty/graph/optimization/common/proposal_generators/watershed_proposal_generator.hxx"
 
-#include "nifty/graph/optimization/mincut/mincut_cc_fusion_move_based.hxx"
+#include "nifty/graph/optimization/multicut/multicut_cc_fusion_move_based.hxx"
 
 
 namespace py = pybind11;
@@ -23,19 +23,19 @@ PYBIND11_DECLARE_HOLDER_TYPE(T, std::shared_ptr<T>);
 namespace nifty{
 namespace graph{
 namespace optimization{
-namespace mincut{
+namespace multicut{
 
 
 
 
     
     template<class OBJECTIVE>
-    void exportMincutCcFusionMoveBasedT(py::module & module) {
+    void exportMulticutCcFusionMoveBasedT(py::module & module) {
         typedef OBJECTIVE ObjectiveType;
 
         // the base factory
         optCommon::exportCCProposalGeneratorFactoryBaseT<ObjectiveType>(
-            module, MincutObjectiveName<ObjectiveType>::name()
+            module, MulticutObjectiveName<ObjectiveType>::name()
         );
 
         
@@ -45,7 +45,7 @@ namespace mincut{
             typedef typename ProposalGeneratorType::Settings PGenSettigns;
             typedef typename PGenSettigns::SeedingStrategie SeedingStrategie;
             auto pGenSettigns = optCommon::exportCCProposalGenerator<ProposalGeneratorType>(module, "WatershedProposalGenerator",
-                MincutObjectiveName<ObjectiveType>::name());
+                MulticutObjectiveName<ObjectiveType>::name());
             py::enum_<SeedingStrategie>(pGenSettigns, "SeedingStrategie")
                 .value("SEED_FROM_NEGATIVE", SeedingStrategie::SEED_FROM_NEGATIVE)
                 .value("SEED_FROM_ALL", SeedingStrategie::SEED_FROM_ALL)
@@ -60,24 +60,24 @@ namespace mincut{
     
 
         // the fusion move itself (or at least the settings)
-        typedef MincutCcFusionMove<ObjectiveType>       MinCcFusionMoveType;
+        typedef MulticutCcFusionMove<ObjectiveType>       MinCcFusionMoveType;
         typedef typename MinCcFusionMoveType::Settings  MinCcFusionMoveSettings;
 
-        const std::string  fmSettingsName = std::string("MincutCcFusionMoveSettings") + MincutObjectiveName<ObjectiveType>::name();
+        const std::string  fmSettingsName = std::string("MulticutCcFusionMoveSettings") + MulticutObjectiveName<ObjectiveType>::name();
         py::class_<MinCcFusionMoveSettings >(module, fmSettingsName.c_str())
             .def(py::init<>())
-            .def_readwrite("mincutFactory", &MinCcFusionMoveSettings::mincutFactory)
+            .def_readwrite("multicutFactory", &MinCcFusionMoveSettings::multicutFactory)
         ;
 
 
 
-        typedef MincutCcFusionMoveBased<ObjectiveType> Solver;
+        typedef MulticutCcFusionMoveBased<ObjectiveType> Solver;
         typedef typename Solver::Settings Settings;
 
         
 
         
-        exportMincutSolver<Solver>(module,"MincutCcFusionMoveBased")
+        exportMulticutSolver<Solver>(module,"MulticutCcFusionMoveBased")
            .def(py::init<>())
            .def_readwrite("proposalGenerator", &Settings::proposalGeneratorFactory)
            .def_readwrite("numberOfThreads", &Settings::numberOfThreads)
@@ -90,20 +90,20 @@ namespace mincut{
      
     }
 
-    void exportMincutCcFusionMoveBased(py::module & module) {
+    void exportMulticutCcFusionMoveBased(py::module & module) {
         {
             typedef PyUndirectedGraph GraphType;
-            typedef MincutObjective<GraphType, double> ObjectiveType;
-            exportMincutCcFusionMoveBasedT<ObjectiveType>(module);
+            typedef MulticutObjective<GraphType, double> ObjectiveType;
+            exportMulticutCcFusionMoveBasedT<ObjectiveType>(module);
         }
         //{
         //    typedef PyContractionGraph<PyUndirectedGraph> GraphType;
         //    typedef MulticutObjective<GraphType, double> ObjectiveType;
-        //    exportMincutCcFusionMoveBased<ObjectiveType>(module);
+        //    exportMulticutCcFusionMoveBased<ObjectiveType>(module);
         //}
     }
 
-} // namespace nifty::graph::optimization::mincut
+} // namespace nifty::graph::optimization::multicut
 } // namespace nifty::graph::optimization
 }
 }

@@ -65,11 +65,8 @@ namespace multicut{
         typedef MulticutFactory<Solver> Factory;
         const auto solverName = std::string("Cgc");
 
-        nifty::graph::exportMulticutSolver<Solver>(
-            multicutModule, 
-            solverName.c_str(),
-            docHelper
-        )
+
+        nifty::graph::optimization::multicut::exportMulticutSolver<Solver>(multicutModule, solverName.c_str(), docHelper)
             .def(py::init<>())
 
             .def_readwrite("doCutPhase", &Settings::doCutPhase)

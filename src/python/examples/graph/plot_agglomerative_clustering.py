@@ -1,10 +1,10 @@
 """
-Agglomerative Clustering
-====================================
+Agglomerative Clustering on RAG
+================================
 
-
-Segment an image with agglomerative clustering.
-We start from a region adjacency graph
+We start from a region adjacency graph as initial
+graph and use agglomerative clustering
+on this graph/
 """
 from __future__ import print_function
 
@@ -16,6 +16,7 @@ import skimage.filters       # filters
 import skimage.segmentation  # Superpixels
 import skimage.data          # Data
 import skimage.color         # rgb2Gray
+import matplotlib 
 
 # pylab
 import pylab                # Plotting
@@ -24,12 +25,10 @@ import pylab                # Plotting
 # nifty
 import nifty.graph.rag      # RAG
 import nifty.graph.agglo    # Agglomerative clustering
-
+import nifty.segmentation
 
 # load some image
 img = skimage.data.coins()
-
-
 
 
 # slic superpixels
@@ -73,7 +72,6 @@ seg = nifty.graph.rag.projectScalarNodeDataToPixels(rag, nodeSeg)
 
 
 
-
 # plot the results
 
 # increase default figure size
@@ -87,9 +85,8 @@ pylab.title('Raw Data')
 
 
 f.add_subplot(2, 2, 2)
-b_img = skimage.segmentation.mark_boundaries(img, 
-        overseg.astype('uint32'), mode='inner', color=(1,0,0))
-pylab.imshow(b_img, cmap='gray')
+bImg = nifty.segmentation.markBoundaries(img, overseg, color=(1,0,0))
+pylab.imshow(bImg, cmap='gray')
 pylab.title('Superpixels')
 
 f.add_subplot(2, 2, 3)
@@ -98,9 +95,8 @@ pylab.title('Edge Strength')
 
 
 f.add_subplot(2, 2, 4)
-b_img = skimage.segmentation.mark_boundaries(img, 
-        seg.astype('uint32'), mode='inner', color=(0,0,0))
-pylab.imshow(b_img)
+bImg = nifty.segmentation.markBoundaries(img, seg, color=(1,0,0))
+pylab.imshow(bImg)
 pylab.title('Segmentation')
 
 pylab.show()

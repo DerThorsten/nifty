@@ -23,7 +23,8 @@ namespace py = pybind11;
 
 namespace nifty{
 namespace graph{
-
+namespace optimization{
+namespace mincut{
 
 
     using namespace py;
@@ -89,8 +90,8 @@ namespace graph{
             exportMincutVisitorBaseT<ObjectiveType>(module);
         }
     }      
-
-
+} // namespace nifty::graph::optimization::mincut
+} // namespace nifty::graph::optimization
 }
 }
     

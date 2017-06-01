@@ -20,7 +20,8 @@ PYBIND11_DECLARE_HOLDER_TYPE(T, std::shared_ptr<T>);
 
 namespace nifty{
 namespace graph{
-
+namespace optimization{
+namespace multicut{
 
     template<class OBJECTIVE>
     void exportPerturbAndMapT(py::module & multicutModule) {
@@ -123,6 +124,7 @@ namespace graph{
             exportPerturbAndMapT<ObjectiveType>(multicutModule);
         }
     }
-
+} // namespace nifty::graph::optimization::multicut
+} // namespace nifty::graph::optimization
 }
 }

@@ -15,6 +15,8 @@
 
 namespace nifty{
 namespace graph{
+namespace optimization{
+namespace multicut{
     
     template<class OBJECTIVE>
     class MulticutMp : public MulticutBase<OBJECTIVE>
@@ -272,6 +274,7 @@ namespace graph{
         }
         //visitorProxy.end(this);
     }
-
+} // namespace nifty::graph::optimization::multicut
+} // namespace nifty::graph::optimization
 } // namespace nifty::graph
 } // namespace nifty

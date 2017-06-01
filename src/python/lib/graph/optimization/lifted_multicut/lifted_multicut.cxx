@@ -7,6 +7,7 @@ PYBIND11_DECLARE_HOLDER_TYPE(T, std::shared_ptr<T>);
 
 namespace nifty{
 namespace graph{
+namespace optimization{
 namespace lifted_multicut{
 
     void exportLiftedMulticutObjective(py::module &);
@@ -23,6 +24,7 @@ namespace lifted_multicut{
     void exportLiftedGraphFeatures(py::module &);
 
 }
+} // namespace nifty::graph::optimization
 }
 }
 
@@ -31,7 +33,7 @@ namespace lifted_multicut{
 PYBIND11_PLUGIN(_lifted_multicut) {
     py::module liftedMulticutModule("_lifted_multicut", "lifted_multicut submodule of nifty.graph");
     
-    using namespace nifty::graph::lifted_multicut;
+    using namespace nifty::graph::optimization::lifted_multicut;
 
     exportLiftedMulticutObjective(liftedMulticutModule);
     exportLiftedMulticutVisitorBase(liftedMulticutModule);

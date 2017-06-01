@@ -7,7 +7,8 @@ PYBIND11_DECLARE_HOLDER_TYPE(T, std::shared_ptr<T>);
 
 namespace nifty{
 namespace graph{
-
+namespace optimization{
+namespace mincut{
 
     void exportMincutObjective(py::module &);
     void exportMincutFactory(py::module &);
@@ -16,21 +17,24 @@ namespace graph{
     #if WITH_QPBO
     void exportMincutQpbo(py::module &);
     #endif 
-    namespace mincut{
-        void exportMincutCcFusionMoveBased(py::module &);
-        #if WITH_QPBO
-        void exportMincutGreedyAdditive(py::module &);
-        #endif 
-    }
+
+    void exportMincutCcFusionMoveBased(py::module &);
+    #if WITH_QPBO
+    void exportMincutGreedyAdditive(py::module &);
+    #endif 
+
+} // namespace nifty::graph::optimization::mincut
+} // namespace nifty::graph::optimization
 }
 }
+
 
 
 
 PYBIND11_PLUGIN(_mincut) {
     py::module mincutModule("_mincut", "mincut submodule of nifty.graph");
     
-    using namespace nifty::graph;
+    using namespace nifty::graph::optimization::mincut;
 
     exportMincutObjective(mincutModule);
     exportMincutVisitorBase(mincutModule);
@@ -38,9 +42,9 @@ PYBIND11_PLUGIN(_mincut) {
     exportMincutFactory(mincutModule);
     #ifdef WITH_QPBO
     exportMincutQpbo(mincutModule);
-    mincut::exportMincutGreedyAdditive(mincutModule);
+    exportMincutGreedyAdditive(mincutModule);
     #endif
-    mincut::exportMincutCcFusionMoveBased(mincutModule);
+    exportMincutCcFusionMoveBased(mincutModule);
     return mincutModule.ptr();
 }
 

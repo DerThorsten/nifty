@@ -9,7 +9,8 @@
 
 namespace nifty {
 namespace graph {
-
+namespace optimization{
+namespace mincut{
 
     template<class OBJECTIVE>
     class MincutBase;
@@ -26,7 +27,8 @@ namespace graph {
     template<class OBJECTIVE>
     using MincutVisitorProxy = nifty::graph::optimization::common::VisitorProxy< MincutBase<OBJECTIVE> >;
 
-
+} // namespace nifty::graph::optimization::mincut
+} // namespace nifty::graph::optimization
 } // namespace graph
 } // namespace nifty
 

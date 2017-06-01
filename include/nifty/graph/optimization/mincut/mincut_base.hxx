@@ -9,7 +9,8 @@
 
 namespace nifty {
 namespace graph {
-
+namespace optimization{
+namespace mincut{
 
 
     
@@ -60,7 +61,8 @@ namespace graph {
 
 
     };
-
+} // namespace nifty::graph::optimization::mincut
+} // namespace nifty::graph::optimization
 } // namespace graph
 } // namespace nifty
 

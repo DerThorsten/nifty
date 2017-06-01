@@ -11,6 +11,8 @@
 
 namespace nifty{
 namespace graph{
+namespace optimization{
+namespace multicut{
     
     template<class OBJECTIVE>
     class MulticutAndres : public MulticutBase<OBJECTIVE>
@@ -193,6 +195,7 @@ namespace graph{
             Base::edgeLabelsToNodeLabels(edgeLabels);
         }
     }
-
+} // namespace nifty::graph::optimization::multicut
+} // namespace nifty::graph::optimization
 }
 }

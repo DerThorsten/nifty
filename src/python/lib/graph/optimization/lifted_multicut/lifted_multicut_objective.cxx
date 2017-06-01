@@ -14,6 +14,7 @@ namespace py = pybind11;
 
 namespace nifty{
 namespace graph{
+namespace optimization{
 namespace lifted_multicut{
 
     template<class GRAPH>
@@ -196,5 +197,6 @@ namespace lifted_multicut{
     }
 
 }
+} // namespace nifty::graph::optimization
 }
 }

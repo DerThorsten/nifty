@@ -6,7 +6,12 @@
 #include <vector>
 
 #include "nifty/graph/optimization/common/proposal_generators/proposal_generator_base.hxx"
-#include "nifty/graph/edge_weighted_watersheds.hxx"
+#include "nifty/graph/optimization/multicut/multicut_base.hxx"
+#include "nifty/graph/optimization/multicut/multicut_greedy_additive.hxx"
+
+
+#include "nifty/graph/optimization/multicut/multicut_base.hxx"
+#include "nifty/graph/optimization/multicut/multicut_greedy_additive.hxx"
 
 
 namespace nifty{
@@ -21,13 +26,24 @@ namespace common{
      * @tparam     OBJECTIVE  { description }
      */
     template<class OBJECTIVE>
-    class WatershedProposalGenerator : 
+    class GreedyAdditiveMulticutProposals : 
         public ProposalGeneratorBase<OBJECTIVE>{
     public:
         typedef OBJECTIVE ObjectiveType;
         typedef typename ObjectiveType::GraphType GraphType;
+
+
+        typedef nifty::graph::optimization::MulticutBase<ObjectiveType> Base;
+        typedef MulticutGreedyAdditive<Objective> Solver;
+        typedef typename Solver::Settings SolverSettings;
+        typedef typename Base::EdgeLabels EdgeLabels;
+        typedef typename Base::NodeLabels NodeLabels;
+
+
+
+
         typedef typename GraphType:: template NodeMap<uint64_t>  ProposalType;
-        typedef typename GraphType:: template EdgeMap<float>     EdgeWeights;
+        typedef typename GraphType:: template EdgeMap<float>       EdgeWeights;
 
         struct Settings{
 
@@ -42,7 +58,7 @@ namespace common{
             double numberOfSeeds{0.1};
         };
 
-        WatershedProposalGenerator(
+        GreedyAdditiveMulticutProposals(
             const ObjectiveType & objective, 
             const size_t numberOfThreads,
             const Settings & settings  = Settings()
@@ -84,7 +100,7 @@ namespace common{
             }
         }
 
-        virtual ~WatershedProposalGenerator(){}
+        virtual ~GreedyAdditiveMulticutProposals(){}
 
         virtual void generateProposal(
             const ProposalType & currentBest, 
@@ -151,6 +167,6 @@ namespace common{
 
 
 } // namespace nifty::graph::optimization::common
-} // namespace nifty::graph::optimization
+} // namespacen ifty::graph::optimization
 } // namespace nifty::graph
 } // namespace nifty

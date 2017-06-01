@@ -6,7 +6,8 @@
 
 namespace nifty{
 namespace graph{
-
+namespace optimization{
+namespace mincut{
 
     template<class CHILD_OBJECTIVE, class GRAPH, class WEIGHT_TYPE>
     class MincutObjectiveBase{
@@ -73,6 +74,7 @@ namespace graph{
         const Graph & graph_;
         WeightsMap weights_;
     };
-
+} // namespace nifty::graph::optimization::mincut
+} // namespace nifty::graph::optimization
 } // namespace nifty::graph
 } // namespace nifty
