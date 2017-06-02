@@ -1,5 +1,6 @@
 #pragma once
 
+#define HAVE_CPP11_INITIALIZER_LISTS
 #include <nifty/marray/marray.hxx>
 #include <andres/marray.hxx>
 #include <andres/marray-hdf5.hxx>

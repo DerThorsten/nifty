@@ -2,7 +2,7 @@
 // https://github.com/bjoern-andres/graph
 
 #pragma once
-#define NIFTY_GRAPH_OPTIMIZATION_LIFTED_MULTICUT_LIFTED_MULTICUT_KERNIGHAN_LIN_HXX
+
 
 
 #include <iomanip>
