@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_GRAPH_EDGE_CONTRACTION_GRAPH_HXX
-#define NIFTY_GRAPH_EDGE_CONTRACTION_GRAPH_HXX
 
 #include <functional>
 #include <type_traits>
@@ -785,4 +783,3 @@ namespace graph{
 } // namespace nifty::graph
 } // namespace nifty
 
-#endif  // NIFTY_GRAPH_EDGE_CONTRACTION_GRAPH_HXX

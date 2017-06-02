@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_GRAPH_SUBGRAPH_MASKS_SUBGRAPH_WITH_CUT_HXX
-#define NIFTY_GRAPH_SUBGRAPH_MASKS_SUBGRAPH_WITH_CUT_HXX
 
 
 namespace nifty{
@@ -37,4 +35,3 @@ namespace subgraph_masks{
 }
 }
 
-#endif // NIFTY_GRAPH_SUBGRAPH_MASKS_SUBGRAPH_WITH_CUT_HXX

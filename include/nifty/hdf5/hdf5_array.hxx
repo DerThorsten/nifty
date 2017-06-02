@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_HDF5_HDF5_ARRAY
-#define NIFTY_HDF5_HDF5_ARRAY
 
 #include <string>
 #include <vector>
@@ -487,4 +485,3 @@ namespace tools{
 
 } // namespace nifty
 
-#endif  // NIFTY_HDF5_HDF5_ARRAY

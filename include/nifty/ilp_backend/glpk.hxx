@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_ILP_GLPK_HXX
-#define NIFTY_ILP_GLPK_HXX
 
 #include <limits>
 #include <string>
@@ -181,4 +179,3 @@ Glpk::setStart(
 } // namespace nifty
 
 
-#endif // #ifndef NIFTY_ILP_GLPK_HXX

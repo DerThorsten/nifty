@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_GRAPH_OPTIMIZATION_MULTICUT_MULTICUT_ILP_HXX
-#define NIFTY_GRAPH_OPTIMIZATION_MULTICUT_MULTICUT_ILP_HXX
 
 
 #include "nifty/tools/runtime_check.hxx"
@@ -366,4 +364,3 @@ namespace multicut{
 } // namespace nifty::graph
 } // namespace nifty
 
-#endif  // NIFTY_GRAPH_OPTIMIZATION_MULTICUT_MULTICUT_ILP_HXX

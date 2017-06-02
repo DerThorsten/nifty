@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_PYTHON_GRAPH_MULTICUT_PY_MULTICUT_FACTORY_HXX
-#define NIFTY_PYTHON_GRAPH_MULTICUT_PY_MULTICUT_FACTORY_HXX
 
 #include "nifty/graph/optimization/multicut/multicut_base.hxx"
 #include "nifty/graph/optimization/multicut/multicut_factory.hxx"
@@ -59,4 +57,3 @@ public:
 } // namespace graph
 } // namespace nifty
 
-#endif /* NIFTY_PYTHON_GRAPH_MULTICUT_PY_MULTICUT_FACTORY_HXX */

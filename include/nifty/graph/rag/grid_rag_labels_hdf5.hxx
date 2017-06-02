@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_GRAPH_RAG_GRID_RAG_LABELS_HDF5_HXX
-#define NIFTY_GRAPH_RAG_GRID_RAG_LABELS_HDF5_HXX
 
 
 #include <algorithm>
@@ -91,4 +89,3 @@ namespace tools{
 
 
 
-#endif /* NIFTY_GRAPH_RAG_GRID_RAG_LABELS_HDF5_HXX */

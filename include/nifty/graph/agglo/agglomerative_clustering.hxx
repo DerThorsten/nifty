@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_GRAPH_AGGLO_AGGLOMERATIVE_CLUSTERING_HXX
-#define NIFTY_GRAPH_AGGLO_AGGLOMERATIVE_CLUSTERING_HXX
 
 #include <iostream>
 #include "nifty/graph/subgraph_mask.hxx"
@@ -108,4 +106,3 @@ private:
 } // namespace nifty::graph
 } // namespace nifty
 
-#endif /*NIFTY_GRAPH_AGGLO_AGGLOMERATIVE_CLUSTERING_HXX*/

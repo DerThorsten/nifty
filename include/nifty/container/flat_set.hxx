@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_CONTAINER_FLAT_SET_XX
-#define NIFTY_CONTAINER_FLAT_SET_XX
 
 #include <cstddef>
 #include <vector>
@@ -392,4 +390,3 @@ FlatSet<Key, Comparison, Allocator>::get_allocator() const {
 }
 } // namespace nifty
 
-#endif // #ifndef NIFTY_CONTAINER_FLAT_SET_XX

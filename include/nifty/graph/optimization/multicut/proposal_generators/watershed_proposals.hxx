@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_GRAPH_OPTIMIZATION_MULTICUT_WATERSHED_PROPOSALS_HXX
-#define NIFTY_GRAPH_OPTIMIZATION_MULTICUT_WATERSHED_PROPOSALS_HXX
 
 #include <string>
 #include <random>
@@ -138,4 +136,3 @@ namespace multicut{
 } // namespace nifty::graph
 } // namespace nifty
 
-#endif  // NIFTY_GRAPH_OPTIMIZATION_MULTICUT_WATERSHED_PROPOSALS_HXX

@@ -144,4 +144,3 @@ seededRegionGrowing(
 } // namespace region_growing
 } // namespace nifty
 
-#endif // #ifndef NIFTY_REGION_GROWING_SEEDED_REGION_GROWING_HXX

@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_PYTHON_CONVERTER_HXX
-#define NIFTY_PYTHON_CONVERTER_HXX
 
 #include <type_traits>
 #include <initializer_list>
@@ -498,4 +496,3 @@ namespace nifty{
 } // namespace nifty
 */
 
-#endif  // NIFTY_PYTHON_CONVERTER_HXX

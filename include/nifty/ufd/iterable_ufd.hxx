@@ -1,6 +1,4 @@
-#ifndef NIFTY_UFD_ITERABLE_UFD_HXX
-#define NIFTY_UFD_ITERABLE_UFD_HXX
-
+#pragma once
 #include <vector>
 #include <iterator>
 
@@ -368,4 +366,3 @@ IterableUfd<T>::numberOfSets() const
 } // end namespace nifty::ufd
 } // end namespace nifty
 
-#endif /*NIFTY_UFD_ITERABLE_UFD_HXX*/

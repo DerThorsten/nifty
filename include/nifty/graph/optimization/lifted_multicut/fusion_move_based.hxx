@@ -1,7 +1,5 @@
 
 #pragma once
-#ifndef NIFTY_GRAPH_OPTIMIZATION_LIFTED_MULTICUT_FUSION_MOVE_BASED_HXX
-#define NIFTY_GRAPH_OPTIMIZATION_LIFTED_MULTICUT_FUSION_MOVE_BASED_HXX
 
 
 #include <iomanip>
@@ -274,4 +272,3 @@ namespace lifted_multicut{
 } // namespace nifty::graph
 } // namespace nifty
 
-#endif  // NIFTY_GRAPH_OPTIMIZATION_LIFTED_MULTICUT_FUSION_MOVE_BASED_HXX

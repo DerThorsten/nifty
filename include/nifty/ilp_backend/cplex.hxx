@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_GRAPH_OPTIMIZATION_MULTICUT_ILP_BACKEND_CPLEX_HXX
-#define NIFTY_GRAPH_OPTIMIZATION_MULTICUT_ILP_BACKEND_CPLEX_HXX
 
 #include <limits>
 #include <string>
@@ -291,4 +289,3 @@ Cplex::setStart(
 } // namespace ilp_backend
 } // namespace nifty
 
-#endif // #ifndef NIFTY_GRAPH_OPTIMIZATION_MULTICUT_ILP_BACKEND_CPLEX_HXX

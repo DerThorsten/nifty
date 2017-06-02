@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_UNDIRECTED_GRAPH_DETAIL_ADJACENCY_HXX
-#define NIFTY_UNDIRECTED_GRAPH_DETAIL_ADJACENCY_HXX
 
 
 namespace nifty{
@@ -89,4 +87,3 @@ public:
 } // namespace nifty::graph
 } // namespace nifty
   // 
-#endif  // NIFTY_UNDIRECTED_GRAPH_DETAIL_ADJACENCY_HXX

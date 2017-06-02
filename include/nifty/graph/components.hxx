@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_GRAPH_COMPONENTS_HXX
-#define NIFTY_GRAPH_COMPONENTS_HXX
 
 
 #include <unordered_map>
@@ -267,4 +265,3 @@ private:
 } // namespace nifty::graph
 } // namespace nifty
 
-#endif /*NIFTY_GRAPH_COMPONENTS_HXX*/
