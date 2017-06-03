@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_PYTHON_GRAPH_MULTICUT_MULTICUT_BASE_HXX
-#define NIFTY_PYTHON_GRAPH_MULTICUT_MULTICUT_BASE_HXX
 
 #include "nifty/graph/optimization/mincut/mincut_base.hxx"
 
@@ -76,4 +74,3 @@ public:
 } // namespace graph
 } // namespace nifty
 
-#endif /* NIFTY_PYTHON_GRAPH_MULTICUT_MULTICUT_BASE_HXX */

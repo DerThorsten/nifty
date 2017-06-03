@@ -67,6 +67,7 @@ namespace multicut{
 
 
         nifty::graph::optimization::multicut::exportMulticutSolver<Solver>(multicutModule, solverName.c_str(), docHelper)
+
             .def(py::init<>())
 
             .def_readwrite("doCutPhase", &Settings::doCutPhase)

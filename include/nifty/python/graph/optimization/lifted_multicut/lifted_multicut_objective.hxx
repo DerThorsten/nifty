@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_PYTHON_GRAPH_LIFTED_MULTICUT_LIFTED_MULTICUT_OBJECTIVE_NAME_HXX
-#define NIFTY_PYTHON_GRAPH_LIFTED_MULTICUT_LIFTED_MULTICUT_OBJECTIVE_NAME_HXX
 
 #include "nifty/graph/optimization/lifted_multicut/lifted_multicut_objective.hxx"
 #include "nifty/python/graph/graph_name.hxx"
@@ -31,4 +29,3 @@ namespace lifted_multicut{
 }
 }
 
-#endif /* NIFTY_PYTHON_GRAPH_LIFTED_MULTICUT_LIFTED_MULTICUT_OBJECTIVE_NAME_HXX */

@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_GRAPH_SIMPLE_GRAPH_HXX
-#define NIFTY_GRAPH_SIMPLE_GRAPH_HXX
 
 #include <vector>
 #include <map>
@@ -494,4 +492,3 @@ extractSubgraphFromNodes(
 } // namespace nifty::graph
 } // namespace nifty
 
-#endif  // NIFTY_GRAPH_SIMPLE_GRAPH_HXX

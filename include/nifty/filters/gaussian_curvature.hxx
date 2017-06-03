@@ -280,8 +280,8 @@ private:
     std::vector<ValueType> kdx_;
     std::vector<ValueType> kdxx_;
 };
-#endif
 
+#endif
 
 
 

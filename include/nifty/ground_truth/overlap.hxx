@@ -1,6 +1,4 @@
-#ifndef NIFTY_TOOLS_OVERLAP_HXX
-#define NIFTY_TOOLS_OVERLAP_HXX
-
+#pragma once
 #include <vector>
 #include <unordered_map>
 
@@ -226,4 +224,3 @@ namespace ground_truth{
 } // end namespace nifty::ground_truth
 } // end namespace nifty
 
-#endif /*NIFTY_TOOLS_OVERLAP_HXX*/

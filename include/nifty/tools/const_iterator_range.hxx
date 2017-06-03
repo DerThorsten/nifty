@@ -1,6 +1,4 @@
-#ifndef NIFTY_TOOLS_CONST_ITERATOR_RANGE_HXX
-#define NIFTY_TOOLS_CONST_ITERATOR_RANGE_HXX
-
+#pragma once
 
 namespace nifty{
 namespace tools{
@@ -37,4 +35,3 @@ private:
 } // end namespace nifty::tools
 } // end namespace nifty
 
-#endif /*NIFTY_TOOLS_CONST_ITERATOR_RANGE_HXX*/

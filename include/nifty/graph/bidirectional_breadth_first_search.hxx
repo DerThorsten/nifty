@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_GRAPH_BIDIRECTIONAL_BREADTH_FIRST_SEARCH_HXX
-#define NIFTY_GRAPH_BIDIRECTIONAL_BREADTH_FIRST_SEARCH_HXX
 
 #include <cstddef>
 #include <limits> // std::numeric_limits
@@ -235,4 +233,3 @@ namespace graph{
 } // namespace nifty::graph
 } // namespace nifty
 
-#endif  // NIFTY_GRAPH_BIDIRECTIONAL_BREADTH_FIRST_SEARCH_HXX

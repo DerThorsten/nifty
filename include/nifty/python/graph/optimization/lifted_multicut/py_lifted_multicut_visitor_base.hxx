@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_PYTHON_GRAPH_MULTICUT_MULTICUT_VISITOR_BASE_HXX
-#define NIFTY_PYTHON_GRAPH_MULTICUT_MULTICUT_VISITOR_BASE_HXX
 
 #include <string>
 #include <initializer_list>
@@ -84,4 +82,3 @@ public:
 } // namespace graph
 } // namespace nifty
 
-#endif /* NIFTY_PYTHON_GRAPH_MULTICUT_MULTICUT_VISITOR_BASE_HXX */

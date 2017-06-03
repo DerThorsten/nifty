@@ -2,8 +2,7 @@
 // https://github.com/bjoern-andres/graph
 
 #pragma once
-#ifndef NIFTY_GRAPH_OPTIMIZATION_LIFTED_MULTICUT_LIFTED_MULTICUT_KERNIGHAN_LIN_HXX
-#define NIFTY_GRAPH_OPTIMIZATION_LIFTED_MULTICUT_LIFTED_MULTICUT_KERNIGHAN_LIN_HXX
+
 
 
 #include <iomanip>
@@ -520,4 +519,3 @@ namespace lifted_multicut{
 } // namespace nifty::graph
 } // namespace nifty
 
-#endif  // NIFTY_GRAPH_OPTIMIZATION_LIFTED_MULTICUT_LIFTED_MULTICUT_KERNIGHAN_LIN_HXX
