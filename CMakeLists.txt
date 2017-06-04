@@ -4,7 +4,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules)
 project(nifty)
 
 set (NIFTY_VERSION_MAJOR 0)
-set (NIFTY_VERSION_MINOR 13)
+set (NIFTY_VERSION_MINOR 15)
 set (NIFTY_VERSION_PATCH 0)
 
 
@@ -124,7 +124,7 @@ endif()
 #-------------------------------------------------------------------------------------------------------------------
 
 include_directories( "${CMAKE_CURRENT_SOURCE_DIR}/externals/qpbo")
-include_directories( "${CMAKE_CURRENT_SOURCE_DIR}/externals/marray/include")
+#include_directories( "${CMAKE_CURRENT_SOURCE_DIR}/externals/marray/include")
 include_directories( "${CMAKE_CURRENT_SOURCE_DIR}/externals/pybind11/include")
 include_directories( "${CMAKE_CURRENT_SOURCE_DIR}/externals/vigra/include")
 include_directories( "${CMAKE_CURRENT_SOURCE_DIR}/externals/graph/include")
