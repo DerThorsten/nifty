@@ -16,16 +16,17 @@ namespace graph{
     void gridRagAccumulateLabels(
         const ExplicitLabelsGridRag<DIM, LABELS_TYPE> & graph,
         nifty::marray::View<LABELS> data,
-        NODE_MAP &  nodeMap
+        NODE_MAP &  nodeMap,
+        const bool ignoreBackground = false
     ){
         typedef std::array<int64_t, DIM> Coord;
 
         const auto labelsProxy = graph.labelsProxy();
         const auto & shape = labelsProxy.shape();
-        const auto labels = labelsProxy.labels(); 
+        const auto labels = labelsProxy.labels();
 
-        std::vector<  std::unordered_map<uint64_t, uint64_t> > overlaps(graph.numberOfNodes());
-        
+        std::vector<  std::unordered_map<LABELS, size_t> > overlaps(graph.numberOfNodes());
+
 
 
         nifty::tools::forEachCoordinate(shape,[&](const Coord & coord){
@@ -36,11 +37,13 @@ namespace graph{
 
         for(const auto node : graph.nodes()){
             const auto & ol = overlaps[node];
-            // find max ol 
-            uint64_t maxOl = 0 ;
-            uint64_t maxOlLabel = 0;
+            // find max ol
+            size_t maxOl = 0;
+            LABELS maxOlLabel = 0;
             for(auto kv : ol){
                 if(kv.second > maxOl){
+                    if(ignoreBackground && kv.first == 0)
+                        continue;
                     maxOl = kv.second;
                     maxOlLabel = kv.first;
                 }
@@ -48,7 +51,7 @@ namespace graph{
             nodeMap[node] = maxOlLabel;
         }
     }
-    
+
 
 } // end namespace graph
 } // end namespace nifty

@@ -28,17 +28,18 @@ namespace graph{
         ragModule.def("gridRagAccumulateLabels",
             [](
                 const RAG & rag,
-                nifty::marray::PyView<T, DATA_DIM> labels
+                nifty::marray::PyView<T, DATA_DIM> labels,
+                const bool ignoreBackground
             ){  
                 nifty::marray::PyView<T> nodeLabels({rag.numberOfNodes()});
                 {
                     py::gil_scoped_release allowThreads;
-                    gridRagAccumulateLabels(rag, labels, nodeLabels);
+                    gridRagAccumulateLabels(rag, labels, nodeLabels, ignoreBackground);
                 }
                 return nodeLabels;
 
             },
-            py::arg("graph"),py::arg("labels")
+            py::arg("graph"),py::arg("labels"),py::arg("ignoreBackground")=false
         );
     }
     
