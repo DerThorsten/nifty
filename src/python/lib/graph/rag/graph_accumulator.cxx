@@ -29,20 +29,21 @@ namespace graph{
             [](
                 const RAG & rag,
                 nifty::marray::PyView<T, DATA_DIM> labels,
-                const bool ignoreBackground
-            ){  
+                const bool ignoreBackground,
+                const T ignoreValue
+            ){
                 nifty::marray::PyView<T> nodeLabels({rag.numberOfNodes()});
                 {
                     py::gil_scoped_release allowThreads;
-                    gridRagAccumulateLabels(rag, labels, nodeLabels, ignoreBackground);
+                    gridRagAccumulateLabels(rag, labels, nodeLabels, ignoreBackground, ignoreValue);
                 }
                 return nodeLabels;
 
             },
-            py::arg("graph"),py::arg("labels"),py::arg("ignoreBackground")=false
+            py::arg("graph"),py::arg("labels"),py::arg("ignoreBackground")=false,py::arg("ignoreValue")=0
         );
     }
-    
+
     template<class RAG, class DATA>
     void exportGridRagStackedAccumulateLabelsT(py::module & ragModule){
 
@@ -66,21 +67,21 @@ namespace graph{
             py::arg("numberOfThreads") = -1
         );
     }
-    
+
     template<class RAG, class NODE_TYPE>
     void exportGetSkipEdgesForSliceT(
         py::module & ragModule
     ){
         ragModule.def("getSkipEdgesForSlice",
-        []( 
+        [](
             const RAG & rag,
             const uint64_t z,
             std::map<size_t,std::vector<NODE_TYPE>> & defectNodes, // all defect nodes
             const bool lowerIsCompletelyDefected
         ){
-            std::vector<size_t> deleteEdges; 
+            std::vector<size_t> deleteEdges;
             std::vector<size_t> ignoreEdges;
-            
+
             std::vector<std::pair<NODE_TYPE,NODE_TYPE>> skipEdges;
             std::vector<size_t> skipRanges;
             {
