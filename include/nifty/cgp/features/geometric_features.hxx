@@ -54,12 +54,12 @@ namespace cgp{
             auto baseName = std::string("GaussianCurvatureSigma");
             for(auto sigmaIndex=0; sigmaIndex<sigmas_.size(); ++sigmaIndex){
                 auto name  = baseName + std::to_string(sigmas_[sigmaIndex]);
-                for(const auto & accName : accNames){
-                    name += accName;
+                for(const auto & accName : accNames){    
+                    res.push_back(name + accName);
                 }
-                res.push_back(name);
+                
             }
-
+            return res;
         }
 
         template<class T>
@@ -153,7 +153,35 @@ namespace cgp{
         size_t numberOfFeatures()const{
             return  dists_.size()*AccType::NFeatures::value;
         }
-            
+
+       std::vector<std::string> names()const{
+
+            std::string accNames [] = {
+                std::string("Mean"),
+                std::string("Sum"),
+                std::string("Min"),
+                std::string("Max"),
+                std::string("Moment2"),
+                std::string("Moment3"),
+                std::string("Q0.10"),
+                std::string("Q0.25"),
+                std::string("Q0.50"),
+                std::string("Q0.75"),
+                std::string("Q0.90")
+            };
+            std::vector<std::string> res;
+            auto baseName = std::string("Cell1LineSegmentDistD");
+            for(auto i=0; i<dists_.size(); ++i){
+                auto name  = baseName + std::to_string(dists_[i]);
+                for(const auto & accName : accNames){
+                    res.push_back(name + accName);
+                }
+                
+            }
+            return res;
+        }
+
+
 
         template<class T>
         void operator()(
@@ -229,9 +257,58 @@ namespace cgp{
         }
 
         size_t numberOfFeatures()const{
-            return 20 +  6*AccType::NFeatures::value ;
+            return 4 * 4 +  2*AccType::NFeatures::value + 4;   
         }
+
+
+
+        std::vector<std::string> names()const{
+
+            std::string accNames [] = {
+                std::string("Mean"),
+                std::string("Sum"),
+                std::string("Min"),
+                std::string("Max"),
+                std::string("Moment2"),
+                std::string("Moment3"),
+                std::string("Q0.10"),
+                std::string("Q0.25"),
+                std::string("Q0.50"),
+                std::string("Q0.75"),
+                std::string("Q0.90")
+            };
+
+            std::vector<std::string> res;
+            const auto baseName = std::string("BasicGeometricFeatures");
+            auto insertUVFeat = [&](const std::string & name){
+                res.push_back(baseName+name+std::string("UV-Min"));
+                res.push_back(baseName+name+std::string("UV-Max"));
+                res.push_back(baseName+name+std::string("UV-Sum"));
+                res.push_back(baseName+name+std::string("UV-AbsDiff"));
+            };
+            auto insertStatFeat = [&](const std::string & name){
+                for(const auto & an : accNames){
+                    res.push_back(baseName+name+an);
+                }
+            };
+
+            res.push_back(baseName+std::string("EdgeSize"));
+            insertUVFeat("NodeSize");
+            insertUVFeat("NodeEdgeSizeRatio");
+
+            res.push_back(baseName+std::string("EdgeEndpointDistance"));
+            res.push_back(baseName+std::string("EdgeRelativeEndpointDistance"));
+            res.push_back(baseName+std::string("NodeEndpointDistance"));
+
             
+            insertUVFeat("EdgeNodeCenterOfMassDist");
+            insertUVFeat("EdgeNodeCenterOfMassRatio");  
+
+            insertStatFeat("CenterOfMassCell1PointsDist");
+            insertStatFeat("CenterOfMassCell2PointsDist");
+
+            return res;
+        }
 
         template<class T>
         void operator()(
@@ -243,7 +320,6 @@ namespace cgp{
 
             using namespace nifty::math;
             std::vector<float> buffer(AccType::NFeatures::value);
-            std::vector<float> buffer2(AccType::NFeatures::value);
             for(auto cell1Index=0; cell1Index<cell1GeometryVector.size(); ++cell1Index){
 
                 const auto & cell1Bounds = cell1BoundsVector[cell1Index];
@@ -324,23 +400,24 @@ namespace cgp{
                     }
                 }
 
+
+
+
+
                 // statistic  over ||centerOfMass_cell1-points_cell2|| 
                 {
                     AccType acc;
-                    AccType accU;
-                    AccType accV;
+
 
                     for(auto i=0; i<geoU.size(); ++i){
                         const auto & coord = geoU[i];
                         const auto d  = nifty::math::euclideanDistance(coord, comE);
                         acc.acc(d);
-                        accU.acc(d);
                     }
                     for(auto i=0; i<geoV.size(); ++i){
                         const auto & coord = geoV[i];
                         const auto d  = nifty::math::euclideanDistance(coord, comE);
                         acc.acc(d);
-                        accV.acc(d);
                     }
 
                     // write to buffer and write results
@@ -348,14 +425,6 @@ namespace cgp{
 
                     for(auto i=0; i<buffer.size(); ++i){
                         features(cell1Index,  fIndex++) = buffer[i];
-                    }
-
-
-                    accU.result(buffer.begin(), buffer.end()); 
-                    accV.result(buffer2.begin(), buffer2.end()); 
-
-                    for(auto i=0; i<buffer.size(); ++i){
-                        insertCell2ValFeats(buffer[i], buffer2[i]);
                     }
 
                 }
@@ -377,9 +446,47 @@ namespace cgp{
     };
 
 
+    /**
+    class GeometricAccumulator{
+    private:
+        typedef nifty::features::DefaultAccumulatedStatistics<float> AccType;
+    public:
+        GeometricAccumulator(
+            const std::vector<size_t> & dists  = std::vector<size_t>({size_t(3),size_t(5),size_t(7)})
+        )
+        :   dists_(dists)
+        {
+        }
+
+        size_t numberOfFeatures()const{
+            return  dists_.size()*AccType::NFeatures::value;
+        }
+            
+
+        template<class T>
+        void operator()(
+            const CellGeometryVector<2,1>  & cell1GeometryVector,
+            nifty::marray::View<T> & features
+        )const{  
+
+            std::vector<float> buffer(AccType::NFeatures::value);
+
+            typedef boost::geometry::model::d2::point_xy<double> point_type;
+            typedef boost::geometry::model::linestring<point_type> linestring_type;
 
 
+                
+            for(auto cell1Index=0; cell1Index<cell1GeometryVector.size(); ++cell1Index){
 
+                const auto & geo = cell1GeometryVector[cell1Index];
+                
+            }
+        
+        }
+    private:
+        std::vector<size_t> dists_;
+    };
+    */
 
 
 

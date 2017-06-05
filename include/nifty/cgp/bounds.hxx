@@ -273,16 +273,13 @@ namespace cgp{
                 }
             }
         });
+
+
+        // sort the bounded by relation of 2 cells
+        // such that one can iterate over them in order??
+
+
     }
-
-
-
-
-
-
-
-
-
 
 } // namespace nifty::cgp
 } // namespace nifty

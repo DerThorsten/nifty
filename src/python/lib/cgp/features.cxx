@@ -85,6 +85,7 @@ namespace cgp{
                 },
                 py::arg("cell1GeometryVector")
             )
+            .def("names", &Op::names)
             ;
         }
         {
@@ -118,6 +119,7 @@ namespace cgp{
                 py::arg("cell2GeometryVector"),
                 py::arg("cell1BoundsVector")
             )
+            .def("names", &Op::names)
             ;
         }
         {
@@ -154,6 +156,7 @@ namespace cgp{
                 py::arg("cell1BoundedByVector"),
                 py::arg("cell2BoundedByVector")
             )
+            .def("names", &Op::names)
             ;
         }
     }

@@ -5,13 +5,13 @@ Master: [![Build Status master](https://travis-ci.org/DerThorsten/nifty.svg?bran
 
 
 
-A nifty library for graph based image segmentation.
-
-Almost all features of nifty exist to implement algorithms
-for 2D and 3D image segmentation.
-To be more precise, nifty was developed to implement
-and prototype algorithms for segmentation of neuro data.
-
+A nifty library for 2D and 3D image segmentation,
+graph based segmentation an optimization.
+This library provided building blocks for segmentation
+algorithms and complex segmentation pipelines.
+The core is implemented in C++ but
+the suggested language to use this library from is
+python.
 
 Important:
 =========
