@@ -1,0 +1,529 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>ISBI 2012 Simple 2D Multicut Pipeline &#8212; Nifty 0.15.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.15.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Nifty API Reference" href="../../reference.html" />
+    <link rel="prev" title="Multicut Logging Visitor" href="../graph/plot_toy_multicut.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../../reference.html" title="Nifty API Reference"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../graph/plot_toy_multicut.html" title="Multicut Logging Visitor"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Nifty 0.15.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Gallery of Examples</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">ISBI 2012 Simple 2D Multicut Pipeline</a></li>
+<li><a class="reference internal" href="#download-isbi-2012">Download  ISBI 2012:</a></li>
+<li><a class="reference internal" href="#setup-datasets">Setup Datasets:</a></li>
+<li><a class="reference internal" href="#helper-functions">Helper Functions:</a></li>
+<li><a class="reference internal" href="#over-segmentation-rag-extract-features">Over-segmentation, RAG &amp; Extract Features:</a></li>
+<li><a class="reference internal" href="#build-the-training-set">Build the training set:</a></li>
+<li><a class="reference internal" href="#train-the-random-forest-rf">Train the random forest (RF):</a></li>
+<li><a class="reference internal" href="#predict-edge-probabilities-optimize-multicut-objective">Predict Edge Probabilities &amp; Optimize Multicut Objective:</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../graph/plot_toy_multicut.html"
+                        title="previous chapter">Multicut Logging Visitor</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../../reference.html"
+                        title="next chapter">Nifty API Reference</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="isbi-2012-simple-2d-multicut-pipeline">
+<span id="sphx-glr-auto-examples-multicut-plot-isbi-2012-multicut-2d-simple-py"></span><h1>ISBI 2012 Simple 2D Multicut Pipeline<a class="headerlink" href="#isbi-2012-simple-2d-multicut-pipeline" title="Permalink to this headline">¶</a></h1>
+<p>Here we segment neuro data as in  <a class="reference internal" href="../../zbibliography.html#beier-17-multicut" id="id1">[BPR+17]</a>.
+In fact, this is a simplified version of <a class="reference internal" href="../../zbibliography.html#beier-17-multicut" id="id2">[BPR+17]</a>.
+We start from an distance transform watershed
+over-segmentation.
+We compute a RAG and features for all edges.
+Next, we learn the edge probabilities
+with a random forest classifier.
+The predicted edge probabilities are
+fed into multicut objective.
+This is optimized with an ILP solver (if available).
+This results into a ok-ish learned segmentation
+for the ISBI 2012 dataset.</p>
+<p>This example will download a about 400 MB large zip file
+with the dataset and precomputed results from <a class="reference internal" href="../../zbibliography.html#beier-17-multicut" id="id3">[BPR+17]</a></p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># multi purpose</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">import</span> <span class="nn">scipy</span>
+
+<span class="c1"># plotting</span>
+<span class="kn">import</span> <span class="nn">pylab</span>
+
+<span class="c1"># to download data and unzip it</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">urllib.request</span>
+<span class="kn">import</span> <span class="nn">zipfile</span>
+
+<span class="c1"># to read the tiff files</span>
+<span class="kn">import</span> <span class="nn">skimage.io</span>
+<span class="kn">import</span> <span class="nn">skimage.filters</span>
+<span class="kn">import</span> <span class="nn">skimage.morphology</span>
+
+<span class="c1"># classifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+
+<span class="c1"># needed parts of nifty</span>
+<span class="kn">import</span> <span class="nn">nifty</span>
+<span class="kn">import</span> <span class="nn">nifty.segmentation</span>
+<span class="kn">import</span> <span class="nn">nifty.filters</span>
+<span class="kn">import</span> <span class="nn">nifty.graph.rag</span>
+<span class="kn">import</span> <span class="nn">nifty.ground_truth</span>
+<span class="kn">import</span> <span class="nn">nifty.graph.optimization.multicut</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="download-isbi-2012">
+<h1>Download  ISBI 2012:<a class="headerlink" href="#download-isbi-2012" title="Permalink to this headline">¶</a></h1>
+<p>Download the  ISBI 2012 dataset
+and precomputed results form <a class="reference internal" href="../../zbibliography.html#beier-17-multicut" id="id4">[BPR+17]</a>
+and extract it in-place.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">fname</span> <span class="o">=</span> <span class="s2">&quot;data.zip&quot;</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;http://files.ilastik.org/multicut/NaturePaperDataUpl.zip&quot;</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">fname</span><span class="p">):</span>
+    <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">fname</span><span class="p">)</span>
+    <span class="nb">zip</span> <span class="o">=</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+    <span class="nb">zip</span><span class="o">.</span><span class="n">extractall</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="setup-datasets">
+<h1>Setup Datasets:<a class="headerlink" href="#setup-datasets" title="Permalink to this headline">¶</a></h1>
+<p>load ISBI 2012 raw and probabilities
+for train and test set
+and the ground-truth for the train set</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">rawDsets</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;train&#39;</span> <span class="p">:</span> <span class="n">skimage</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;NaturePaperDataUpl/ISBI2012/raw_train.tif&#39;</span><span class="p">),</span>
+    <span class="s1">&#39;test&#39;</span> <span class="p">:</span> <span class="n">skimage</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;NaturePaperDataUpl/ISBI2012/raw_test.tif&#39;</span><span class="p">),</span>
+<span class="p">}</span>
+<span class="c1"># read pmaps and convert to 01 pmaps</span>
+<span class="n">pmapDsets</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;train&#39;</span> <span class="p">:</span> <span class="n">skimage</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;NaturePaperDataUpl/ISBI2012/probabilities_train.tif&#39;</span><span class="p">),</span>
+    <span class="s1">&#39;test&#39;</span> <span class="p">:</span> <span class="n">skimage</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;NaturePaperDataUpl/ISBI2012/probabilities_test.tif&#39;</span><span class="p">),</span>
+<span class="p">}</span>
+<span class="n">pmapDsets</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;train&#39;</span> <span class="p">:</span> <span class="n">pmapDsets</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span><span class="o">/</span><span class="mf">255.0</span><span class="p">,</span>
+    <span class="s1">&#39;test&#39;</span> <span class="p">:</span> <span class="n">pmapDsets</span><span class="p">[</span><span class="s1">&#39;test&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span><span class="o">/</span><span class="mf">255.0</span>
+<span class="p">}</span>
+<span class="n">gtDsets</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;train&#39;</span> <span class="p">:</span> <span class="n">skimage</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;NaturePaperDataUpl/ISBI2012/groundtruth.tif&#39;</span><span class="p">),</span>
+    <span class="s1">&#39;test&#39;</span>  <span class="p">:</span> <span class="bp">None</span>
+<span class="p">}</span>
+
+<span class="n">computedData</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;train&#39;</span> <span class="p">:</span> <span class="p">[{}</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rawDsets</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])],</span>
+    <span class="s1">&#39;test&#39;</span>  <span class="p">:</span> <span class="p">[{}</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rawDsets</span><span class="p">[</span><span class="s1">&#39;test&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="helper-functions">
+<h1>Helper Functions:<a class="headerlink" href="#helper-functions" title="Permalink to this headline">¶</a></h1>
+<p>Function to compute features for a RAG
+(used later)</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">computeFeatures</span><span class="p">(</span><span class="n">raw</span><span class="p">,</span> <span class="n">pmap</span><span class="p">,</span> <span class="n">rag</span><span class="p">):</span>
+
+    <span class="n">uv</span> <span class="o">=</span> <span class="n">rag</span><span class="o">.</span><span class="n">uvIds</span><span class="p">()</span>
+    <span class="n">nrag</span> <span class="o">=</span> <a href="../../gen_modules/nifty.graph.rag.html#nifty.graph.rag" title="View documentation for nifty.graph.rag"><span class="n">nifty</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">rag</span></a>
+
+    <span class="c1"># list of all edge features we fill</span>
+    <span class="n">feats</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># helper function to convert</span>
+    <span class="c1"># node features to edge features</span>
+    <span class="k">def</span> <span class="nf">nodeToEdgeFeat</span><span class="p">(</span><span class="n">nodeFeatures</span><span class="p">):</span>
+        <span class="n">uF</span> <span class="o">=</span> <span class="n">nodeFeatures</span><span class="p">[</span><span class="n">uv</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="p">:]</span>
+        <span class="n">vF</span> <span class="o">=</span> <span class="n">nodeFeatures</span><span class="p">[</span><span class="n">uv</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="p">:]</span>
+        <span class="n">feats</span> <span class="o">=</span> <span class="p">[</span> <span class="n">numpy</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">uF</span><span class="o">-</span><span class="n">vF</span><span class="p">),</span> <span class="n">uF</span> <span class="o">+</span> <span class="n">vF</span><span class="p">,</span> <span class="n">uF</span> <span class="o">*</span>  <span class="n">vF</span><span class="p">,</span>
+                 <a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.minimum.html#numpy.minimum" title="View documentation for numpy.minimum"><span class="n">numpy</span><span class="o">.</span><span class="n">minimum</span></a><span class="p">(</span><span class="n">uF</span><span class="p">,</span><span class="n">vF</span><span class="p">),</span> <a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.maximum.html#numpy.maximum" title="View documentation for numpy.maximum"><span class="n">numpy</span><span class="o">.</span><span class="n">maximum</span></a><span class="p">(</span><span class="n">uF</span><span class="p">,</span><span class="n">vF</span><span class="p">)]</span>
+        <span class="k">return</span> <a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.concatenate.html#numpy.concatenate" title="View documentation for numpy.concatenate"><span class="n">numpy</span><span class="o">.</span><span class="n">concatenate</span></a><span class="p">(</span><span class="n">feats</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+
+    <span class="c1"># accumulate features from raw data</span>
+    <span class="n">fRawEdge</span><span class="p">,</span> <span class="n">fRawNode</span> <span class="o">=</span> <span class="n">nrag</span><span class="o">.</span><span class="n">accumulateStandartFeatures</span><span class="p">(</span><span class="n">rag</span><span class="o">=</span><span class="n">rag</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">raw</span><span class="p">,</span>
+        <span class="n">minVal</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">maxVal</span><span class="o">=</span><span class="mf">255.0</span><span class="p">,</span> <span class="n">numberOfThreads</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">feats</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fRawEdge</span><span class="p">)</span>
+    <span class="n">feats</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nodeToEdgeFeat</span><span class="p">(</span><span class="n">fRawNode</span><span class="p">))</span>
+
+    <span class="c1"># accumulate data from pmap</span>
+    <span class="n">fPmapEdge</span><span class="p">,</span> <span class="n">fPmapNode</span> <span class="o">=</span> <span class="n">nrag</span><span class="o">.</span><span class="n">accumulateStandartFeatures</span><span class="p">(</span><span class="n">rag</span><span class="o">=</span><span class="n">rag</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">pmap</span><span class="p">,</span>
+        <span class="n">minVal</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">maxVal</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">numberOfThreads</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">feats</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fPmapEdge</span><span class="p">)</span>
+    <span class="n">feats</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nodeToEdgeFeat</span><span class="p">(</span><span class="n">fPmapNode</span><span class="p">))</span>
+
+    <span class="c1"># accumulate node and edge features from</span>
+    <span class="c1"># superpixels geometry</span>
+    <span class="n">fGeoEdge</span> <span class="o">=</span> <span class="n">nrag</span><span class="o">.</span><span class="n">accumulateGeometricEdgeFeatures</span><span class="p">(</span><span class="n">rag</span><span class="o">=</span><span class="n">rag</span><span class="p">,</span> <span class="n">numberOfThreads</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">feats</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fGeoEdge</span><span class="p">)</span>
+
+    <span class="n">fGeoNode</span> <span class="o">=</span> <span class="n">nrag</span><span class="o">.</span><span class="n">accumulateGeometricNodeFeatures</span><span class="p">(</span><span class="n">rag</span><span class="o">=</span><span class="n">rag</span><span class="p">,</span> <span class="n">numberOfThreads</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">feats</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nodeToEdgeFeat</span><span class="p">(</span><span class="n">fGeoNode</span><span class="p">))</span>
+
+    <span class="k">return</span> <a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.concatenate.html#numpy.concatenate" title="View documentation for numpy.concatenate"><span class="n">numpy</span><span class="o">.</span><span class="n">concatenate</span></a><span class="p">(</span><span class="n">feats</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="over-segmentation-rag-extract-features">
+<h1>Over-segmentation, RAG &amp; Extract Features:<a class="headerlink" href="#over-segmentation-rag-extract-features" title="Permalink to this headline">¶</a></h1>
+<dl class="docutils">
+<dt>Compute:</dt>
+<dd><ul class="first last simple">
+<li>Over-segmentation  with distance transform watersheds.</li>
+<li>Construct a region adjacency graph (RAG)</li>
+<li>Extract features for all edges in the graph</li>
+<li>Map the ground truth to the edges in the graph.
+(only for the training set)</li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">ds</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">]:</span>
+
+    <span class="n">rawDset</span> <span class="o">=</span> <span class="n">rawDsets</span><span class="p">[</span><span class="n">ds</span><span class="p">]</span>
+    <span class="n">pmapDset</span> <span class="o">=</span> <span class="n">pmapDsets</span><span class="p">[</span><span class="n">ds</span><span class="p">]</span>
+    <span class="n">gtDset</span> <span class="o">=</span> <span class="n">gtDsets</span><span class="p">[</span><span class="n">ds</span><span class="p">]</span>
+    <span class="n">dataDset</span> <span class="o">=</span> <span class="n">computedData</span><span class="p">[</span><span class="n">ds</span><span class="p">]</span>
+
+    <span class="c1"># for each slice</span>
+    <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rawDset</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+
+
+        <span class="n">data</span> <span class="o">=</span> <span class="n">dataDset</span><span class="p">[</span><span class="n">z</span><span class="p">]</span>
+
+        <span class="c1"># get raw and pmap slice</span>
+        <span class="n">raw</span>  <span class="o">=</span> <span class="n">rawDset</span><span class="p">[</span><span class="n">z</span><span class="p">,</span> <span class="o">...</span> <span class="p">]</span>
+        <span class="n">pmap</span> <span class="o">=</span> <span class="n">pmapDset</span><span class="p">[</span><span class="n">z</span><span class="p">,</span> <span class="o">...</span> <span class="p">]</span>
+
+
+
+        <span class="c1"># oversementation</span>
+        <span class="n">overseg</span> <span class="o">=</span> <span class="n">nifty</span><span class="o">.</span><span class="n">segmentation</span><span class="o">.</span><span class="n">distanceTransformWatersheds</span><span class="p">(</span><span class="n">pmap</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+        <span class="n">overseg</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="n">data</span><span class="p">[</span><span class="s1">&#39;overseg&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">overseg</span>
+
+        <span class="c1"># region adjacency graph</span>
+        <span class="n">rag</span> <span class="o">=</span> <a href="../../gen_modules/nifty.graph.rag.html#nifty.graph.rag.gridRag" title="View documentation for nifty.graph.rag.gridRag"><span class="n">nifty</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">rag</span><span class="o">.</span><span class="n">gridRag</span></a><span class="p">(</span><span class="n">overseg</span><span class="p">)</span>
+        <span class="n">data</span><span class="p">[</span><span class="s1">&#39;rag&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">rag</span>
+
+        <span class="c1"># compute features</span>
+        <span class="n">features</span> <span class="o">=</span> <span class="n">computeFeatures</span><span class="p">(</span><span class="n">raw</span><span class="o">=</span><span class="n">raw</span><span class="p">,</span> <span class="n">pmap</span><span class="o">=</span><span class="n">pmap</span><span class="p">,</span> <span class="n">rag</span><span class="o">=</span><span class="n">rag</span><span class="p">)</span>
+
+        <span class="n">data</span><span class="p">[</span><span class="s1">&#39;features&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">features</span>
+
+        <span class="c1"># map the gt to edge</span>
+        <span class="k">if</span> <span class="n">ds</span> <span class="o">==</span> <span class="s1">&#39;train&#39;</span><span class="p">:</span>
+
+            <span class="c1"># the gt is on membrane level</span>
+            <span class="c1"># 0 at membranes pixels</span>
+            <span class="c1"># 1 at non-membrane pixels</span>
+            <span class="n">gtImage</span> <span class="o">=</span> <span class="n">gtDset</span><span class="p">[</span><span class="n">z</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+
+            <span class="c1"># local maxima seeds</span>
+            <span class="n">seeds</span> <span class="o">=</span> <span class="n">nifty</span><span class="o">.</span><span class="n">segmentation</span><span class="o">.</span><span class="n">localMaximaSeeds</span><span class="p">(</span><span class="n">gtImage</span><span class="p">)</span>
+
+            <span class="c1"># growing map</span>
+            <span class="n">growMap</span> <span class="o">=</span> <span class="n">nifty</span><span class="o">.</span><span class="n">filters</span><span class="o">.</span><span class="n">gaussianSmoothing</span><span class="p">(</span><span class="mf">1.0</span><span class="o">-</span><span class="n">gtImage</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+            <span class="n">growMap</span> <span class="o">+=</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">nifty</span><span class="o">.</span><span class="n">filters</span><span class="o">.</span><span class="n">gaussianSmoothing</span><span class="p">(</span><span class="mf">1.0</span><span class="o">-</span><span class="n">gtImage</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">)</span>
+            <span class="n">gt</span> <span class="o">=</span> <a href="../../gen_modules/nifty.segmentation.html#nifty.segmentation.seededWatersheds" title="View documentation for nifty.segmentation.seededWatersheds"><span class="n">nifty</span><span class="o">.</span><span class="n">segmentation</span><span class="o">.</span><span class="n">seededWatersheds</span></a><span class="p">(</span><span class="n">growMap</span><span class="p">,</span> <span class="n">seeds</span><span class="o">=</span><span class="n">seeds</span><span class="p">)</span>
+
+
+            <span class="c1"># map the gt to the edges</span>
+            <span class="n">overlap</span> <span class="o">=</span> <span class="n">nifty</span><span class="o">.</span><span class="n">ground_truth</span><span class="o">.</span><span class="n">overlap</span><span class="p">(</span><span class="n">segmentation</span><span class="o">=</span><span class="n">overseg</span><span class="p">,</span>
+                                       <span class="n">groundTruth</span><span class="o">=</span><span class="n">gt</span><span class="p">)</span>
+
+            <span class="c1"># edge gt</span>
+            <span class="n">edgeGt</span> <span class="o">=</span> <span class="n">overlap</span><span class="o">.</span><span class="n">differentOverlaps</span><span class="p">(</span><span class="n">rag</span><span class="o">.</span><span class="n">uvIds</span><span class="p">())</span>
+            <span class="n">data</span><span class="p">[</span><span class="s1">&#39;edgeGt&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">edgeGt</span>
+
+
+            <span class="c1"># plot each 14th</span>
+            <span class="k">if</span> <span class="n">z</span>  <span class="o">%</span> <span class="mi">14</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">:</span>
+                <span class="n">figure</span> <span class="o">=</span> <span class="n">pylab</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+                <span class="n">figure</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Training Set Slice </span><span class="si">%d</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">z</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+
+                <span class="c1">#fig = matplotlib.pyplot.gcf()</span>
+                <span class="n">figure</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mf">18.5</span><span class="p">,</span> <span class="mf">10.5</span><span class="p">)</span>
+
+                <span class="n">figure</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="n">pylab</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">raw</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+                <span class="n">pylab</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Raw data </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">ds</span><span class="p">))</span>
+
+                <span class="n">figure</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+                <span class="n">pylab</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">pmap</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+                <span class="n">pylab</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Membrane pmap </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">ds</span><span class="p">))</span>
+
+
+                <span class="n">figure</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+                <span class="n">pylab</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">nifty</span><span class="o">.</span><span class="n">segmentation</span><span class="o">.</span><span class="n">segmentOverlay</span><span class="p">(</span><span class="n">raw</span><span class="p">,</span> <span class="n">overseg</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">thin</span><span class="o">=</span><span class="bp">False</span><span class="p">))</span>
+                <span class="n">pylab</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Superpixels </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">ds</span><span class="p">))</span>
+
+                <span class="n">figure</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+                <span class="n">pylab</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">seeds</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><a href="../../gen_modules/nifty.segmentation.html#nifty.segmentation.randomColormap" title="View documentation for nifty.segmentation.randomColormap"><span class="n">nifty</span><span class="o">.</span><span class="n">segmentation</span><span class="o">.</span><span class="n">randomColormap</span></a><span class="p">(</span><span class="n">zeroToZero</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
+                <span class="n">pylab</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Partial ground truth </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">ds</span><span class="p">))</span>
+
+                <span class="n">figure</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+                <span class="n">pylab</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">nifty</span><span class="o">.</span><span class="n">segmentation</span><span class="o">.</span><span class="n">segmentOverlay</span><span class="p">(</span><span class="n">raw</span><span class="p">,</span> <span class="n">gt</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">thin</span><span class="o">=</span><span class="bp">False</span><span class="p">))</span>
+                <span class="n">pylab</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Dense ground truth </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">ds</span><span class="p">))</span>
+                <span class="n">pylab</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+                <span class="n">pylab</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">data</span><span class="p">[</span><span class="s1">&#39;edgeGt&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
+</pre></div>
+</div>
+<ul class="sphx-glr-horizontal">
+<li><a class="first reference internal image-reference" href="../../_images/sphx_glr_plot_isbi_2012_multicut_2D_simple_001.png"><img alt="../../_images/sphx_glr_plot_isbi_2012_multicut_2D_simple_001.png" src="../../_images/sphx_glr_plot_isbi_2012_multicut_2D_simple_001.png" style="width: 869.5px; height: 493.5px;" /></a>
+</li>
+<li><a class="first reference internal image-reference" href="../../_images/sphx_glr_plot_isbi_2012_multicut_2D_simple_002.png"><img alt="../../_images/sphx_glr_plot_isbi_2012_multicut_2D_simple_002.png" src="../../_images/sphx_glr_plot_isbi_2012_multicut_2D_simple_002.png" style="width: 869.5px; height: 493.5px;" /></a>
+</li>
+<li><a class="first reference internal image-reference" href="../../_images/sphx_glr_plot_isbi_2012_multicut_2D_simple_003.png"><img alt="../../_images/sphx_glr_plot_isbi_2012_multicut_2D_simple_003.png" src="../../_images/sphx_glr_plot_isbi_2012_multicut_2D_simple_003.png" style="width: 869.5px; height: 493.5px;" /></a>
+</li>
+</ul>
+</div>
+<div class="section" id="build-the-training-set">
+<h1>Build the training set:<a class="headerlink" href="#build-the-training-set" title="Permalink to this headline">¶</a></h1>
+<p>We only use high confidence boundaries.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">dataDset</span> <span class="o">=</span> <span class="n">computedData</span><span class="p">[</span><span class="n">ds</span><span class="p">]</span>
+<span class="n">trainingSet</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;features&#39;</span><span class="p">:[],</span><span class="s1">&#39;labels&#39;</span><span class="p">:[]}</span>
+
+<span class="k">for</span> <span class="n">ds</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">]:</span>
+
+    <span class="n">rawDset</span> <span class="o">=</span> <span class="n">rawDsets</span><span class="p">[</span><span class="n">ds</span><span class="p">]</span>
+    <span class="n">pmapDset</span> <span class="o">=</span> <span class="n">pmapDsets</span><span class="p">[</span><span class="n">ds</span><span class="p">]</span>
+    <span class="n">gtDset</span> <span class="o">=</span> <span class="n">gtDsets</span><span class="p">[</span><span class="n">ds</span><span class="p">]</span>
+    <span class="n">dataDset</span> <span class="o">=</span> <span class="n">computedData</span><span class="p">[</span><span class="n">ds</span><span class="p">]</span>
+
+    <span class="c1"># for each slice</span>
+    <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rawDset</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="n">dataDset</span><span class="p">[</span><span class="n">z</span><span class="p">]</span>
+
+        <span class="n">rag</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;rag&#39;</span><span class="p">]</span>
+        <span class="n">edgeGt</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;edgeGt&#39;</span><span class="p">]</span>
+        <span class="n">features</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;features&#39;</span><span class="p">]</span>
+
+        <span class="c1"># we use only edges which have</span>
+        <span class="c1"># a high certainty</span>
+        <span class="n">where1</span> <span class="o">=</span> <a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.where.html#numpy.where" title="View documentation for numpy.where"><span class="n">numpy</span><span class="o">.</span><span class="n">where</span></a><span class="p">(</span><span class="n">edgeGt</span> <span class="o">&gt;</span> <span class="mf">0.85</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">where0</span> <span class="o">=</span> <a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.where.html#numpy.where" title="View documentation for numpy.where"><span class="n">numpy</span><span class="o">.</span><span class="n">where</span></a><span class="p">(</span><span class="n">edgeGt</span> <span class="o">&lt;</span> <span class="mf">0.15</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="n">trainingSet</span><span class="p">[</span><span class="s1">&#39;features&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">features</span><span class="p">[</span><span class="n">where0</span><span class="p">,:])</span>
+        <span class="n">trainingSet</span><span class="p">[</span><span class="s1">&#39;features&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">features</span><span class="p">[</span><span class="n">where1</span><span class="p">,:])</span>
+        <span class="n">trainingSet</span><span class="p">[</span><span class="s1">&#39;labels&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.zeros.html#numpy.zeros" title="View documentation for numpy.zeros"><span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span></a><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">where0</span><span class="p">)))</span>
+        <span class="n">trainingSet</span><span class="p">[</span><span class="s1">&#39;labels&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.ones.html#numpy.ones" title="View documentation for numpy.ones"><span class="n">numpy</span><span class="o">.</span><span class="n">ones</span></a><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">where1</span><span class="p">)))</span>
+
+<span class="n">features</span> <span class="o">=</span> <a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.concatenate.html#numpy.concatenate" title="View documentation for numpy.concatenate"><span class="n">numpy</span><span class="o">.</span><span class="n">concatenate</span></a><span class="p">(</span><span class="n">trainingSet</span><span class="p">[</span><span class="s1">&#39;features&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">labels</span> <span class="o">=</span> <a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.concatenate.html#numpy.concatenate" title="View documentation for numpy.concatenate"><span class="n">numpy</span><span class="o">.</span><span class="n">concatenate</span></a><span class="p">(</span><span class="n">trainingSet</span><span class="p">[</span><span class="s1">&#39;labels&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="train-the-random-forest-rf">
+<h1>Train the random forest (RF):<a class="headerlink" href="#train-the-random-forest-rf" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">rf</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">oob_score</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">rf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;OOB SCORE&quot;</span><span class="p">,</span><span class="n">rf</span><span class="o">.</span><span class="n">oob_score_</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-default"><div class="highlight"><pre><span></span><span class="n">OOB</span> <span class="n">SCORE</span> <span class="mf">0.98234459566</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="predict-edge-probabilities-optimize-multicut-objective">
+<h1>Predict Edge Probabilities &amp; Optimize Multicut Objective:<a class="headerlink" href="#predict-edge-probabilities-optimize-multicut-objective" title="Permalink to this headline">¶</a></h1>
+<p>Predict the edge probabilities with the learned
+random forest classifier.
+Set up a multicut objective and find the argmin
+with an ILP solver (if available).</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">ds</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;test&#39;</span><span class="p">]:</span>
+
+    <span class="n">rawDset</span> <span class="o">=</span> <span class="n">rawDsets</span><span class="p">[</span><span class="n">ds</span><span class="p">]</span>
+    <span class="n">pmapDset</span> <span class="o">=</span> <span class="n">pmapDsets</span><span class="p">[</span><span class="n">ds</span><span class="p">]</span>
+    <span class="n">gtDset</span> <span class="o">=</span> <span class="n">gtDsets</span><span class="p">[</span><span class="n">ds</span><span class="p">]</span>
+    <span class="n">dataDset</span> <span class="o">=</span> <span class="n">computedData</span><span class="p">[</span><span class="n">ds</span><span class="p">]</span>
+
+    <span class="c1"># for each slice</span>
+    <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rawDset</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+
+
+        <span class="n">data</span> <span class="o">=</span> <span class="n">dataDset</span><span class="p">[</span><span class="n">z</span><span class="p">]</span>
+
+        <span class="n">raw</span> <span class="o">=</span> <span class="n">rawDset</span><span class="p">[</span><span class="n">z</span><span class="p">,</span><span class="o">...</span><span class="p">]</span>
+        <span class="n">pmap</span> <span class="o">=</span> <span class="n">pmapDset</span><span class="p">[</span><span class="n">z</span><span class="p">,</span><span class="o">...</span><span class="p">]</span>
+        <span class="n">overseg</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;overseg&#39;</span><span class="p">]</span>
+        <span class="n">rag</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;rag&#39;</span><span class="p">]</span>
+        <span class="n">edgeGt</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;edgeGt&#39;</span><span class="p">]</span>
+        <span class="n">features</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;features&#39;</span><span class="p">]</span>
+
+        <span class="n">predictions</span> <span class="o">=</span> <span class="n">rf</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">features</span><span class="p">)[:,</span><span class="mi">1</span><span class="p">]</span>
+
+
+        <span class="c1"># setup multicut objective</span>
+        <span class="n">MulticutObjective</span> <span class="o">=</span> <span class="n">rag</span><span class="o">.</span><span class="n">MulticutObjective</span>
+
+        <span class="n">eps</span> <span class="o">=</span>  <span class="mf">0.00001</span>
+        <span class="n">p1</span> <span class="o">=</span> <a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.clip.html#numpy.clip" title="View documentation for numpy.clip"><span class="n">numpy</span><span class="o">.</span><span class="n">clip</span></a><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">eps</span><span class="p">)</span>
+        <span class="n">weights</span> <span class="o">=</span> <a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.log.html#numpy.log" title="View documentation for numpy.log"><span class="n">numpy</span><span class="o">.</span><span class="n">log</span></a><span class="p">((</span><span class="mf">1.0</span><span class="o">-</span><span class="n">p1</span><span class="p">)</span><span class="o">/</span><span class="n">p1</span><span class="p">)</span>
+
+
+
+
+        <span class="n">objective</span> <span class="o">=</span> <span class="n">MulticutObjective</span><span class="p">(</span><span class="n">rag</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
+
+        <span class="c1"># do multicut obtimization</span>
+        <span class="k">if</span> <a href="../../gen_modules/nifty.html#nifty.Configuration.WITH_CPLEX" title="View documentation for nifty.Configuration.WITH_CPLEX"><span class="n">nifty</span><span class="o">.</span><span class="n">Configuration</span><span class="o">.</span><span class="n">WITH_CPLEX</span></a><span class="p">:</span>
+            <span class="n">solver</span> <span class="o">=</span> <span class="n">MulticutObjective</span><span class="o">.</span><span class="n">multicutIlpCplexFactory</span><span class="p">()</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">objective</span><span class="p">)</span>
+        <span class="k">elif</span> <a href="../../gen_modules/nifty.html#nifty.Configuration.WITH_GLPK" title="View documentation for nifty.Configuration.WITH_GLPK"><span class="n">nifty</span><span class="o">.</span><span class="n">Configuration</span><span class="o">.</span><span class="n">WITH_GLPK</span></a><span class="p">:</span>
+            <span class="n">solver</span> <span class="o">=</span> <span class="n">MulticutObjective</span><span class="o">.</span><span class="n">multicutIlpGurobiFactory</span><span class="p">()</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">objective</span><span class="p">)</span>
+        <span class="k">elif</span> <a href="../../gen_modules/nifty.html#nifty.Configuration.WITH_GLPK" title="View documentation for nifty.Configuration.WITH_GLPK"><span class="n">nifty</span><span class="o">.</span><span class="n">Configuration</span><span class="o">.</span><span class="n">WITH_GLPK</span></a><span class="p">:</span>
+            <span class="n">solver</span> <span class="o">=</span> <span class="n">MulticutObjective</span><span class="o">.</span><span class="n">multicutIlpGlpkFactory</span><span class="p">()</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">objective</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">solver</span> <span class="o">=</span> <span class="n">MulticutObjective</span><span class="o">.</span><span class="n">fusionMoveBasedFactory</span><span class="p">()</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">objective</span><span class="p">)</span>
+
+
+        <span class="n">arg</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">visitor</span><span class="o">=</span><span class="n">MulticutObjective</span><span class="o">.</span><span class="n">verboseVisitor</span><span class="p">())</span>
+        <span class="n">result</span> <span class="o">=</span> <a href="../../gen_modules/nifty.graph.rag.html#nifty.graph.rag.projectScalarNodeDataToPixels" title="View documentation for nifty.graph.rag.projectScalarNodeDataToPixels"><span class="n">nifty</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">rag</span><span class="o">.</span><span class="n">projectScalarNodeDataToPixels</span></a><span class="p">(</span><span class="n">rag</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span>
+
+
+        <span class="c1"># plot for each 14th slice</span>
+        <span class="k">if</span> <span class="n">z</span> <span class="o">%</span> <span class="mi">14</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">figure</span> <span class="o">=</span> <span class="n">pylab</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+
+            <span class="n">figure</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Test Set Results Slice </span><span class="si">%d</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">z</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+
+            <span class="c1">#fig = matplotlib.pyplot.gcf()</span>
+            <span class="n">figure</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mf">18.5</span><span class="p">,</span> <span class="mf">10.5</span><span class="p">)</span>
+
+            <span class="n">figure</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">pylab</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">raw</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+            <span class="n">pylab</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Raw data </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">ds</span><span class="p">))</span>
+
+            <span class="n">figure</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="n">pylab</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">pmap</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+            <span class="n">pylab</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Membrane pmap </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">ds</span><span class="p">))</span>
+
+
+            <span class="n">figure</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+            <span class="n">pylab</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">nifty</span><span class="o">.</span><span class="n">segmentation</span><span class="o">.</span><span class="n">segmentOverlay</span><span class="p">(</span><span class="n">raw</span><span class="p">,</span> <span class="n">overseg</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">thin</span><span class="o">=</span><span class="bp">False</span><span class="p">))</span>
+            <span class="n">pylab</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Superpixels </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">ds</span><span class="p">))</span>
+
+            <span class="n">figure</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+            <span class="n">pylab</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><a href="../../gen_modules/nifty.segmentation.html#nifty.segmentation.randomColormap" title="View documentation for nifty.segmentation.randomColormap"><span class="n">nifty</span><span class="o">.</span><span class="n">segmentation</span><span class="o">.</span><span class="n">randomColormap</span></a><span class="p">())</span>
+            <span class="n">pylab</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Result seg. </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">ds</span><span class="p">))</span>
+
+            <span class="n">figure</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+            <span class="n">pylab</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">nifty</span><span class="o">.</span><span class="n">segmentation</span><span class="o">.</span><span class="n">segmentOverlay</span><span class="p">(</span><span class="n">raw</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">thin</span><span class="o">=</span><span class="bp">False</span><span class="p">))</span>
+            <span class="n">pylab</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Result seg. </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">ds</span><span class="p">))</span>
+            <span class="n">pylab</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+            <span class="n">pylab</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<ul class="sphx-glr-horizontal">
+<li><a class="first reference internal image-reference" href="../../_images/sphx_glr_plot_isbi_2012_multicut_2D_simple_004.png"><img alt="../../_images/sphx_glr_plot_isbi_2012_multicut_2D_simple_004.png" src="../../_images/sphx_glr_plot_isbi_2012_multicut_2D_simple_004.png" style="width: 869.5px; height: 493.5px;" /></a>
+</li>
+<li><a class="first reference internal image-reference" href="../../_images/sphx_glr_plot_isbi_2012_multicut_2D_simple_005.png"><img alt="../../_images/sphx_glr_plot_isbi_2012_multicut_2D_simple_005.png" src="../../_images/sphx_glr_plot_isbi_2012_multicut_2D_simple_005.png" style="width: 869.5px; height: 493.5px;" /></a>
+</li>
+<li><a class="first reference internal image-reference" href="../../_images/sphx_glr_plot_isbi_2012_multicut_2D_simple_006.png"><img alt="../../_images/sphx_glr_plot_isbi_2012_multicut_2D_simple_006.png" src="../../_images/sphx_glr_plot_isbi_2012_multicut_2D_simple_006.png" style="width: 869.5px; height: 493.5px;" /></a>
+</li>
+</ul>
+<p><strong>Total running time of the script:</strong> ( 1 minutes  37.011 seconds)</p>
+<div class="sphx-glr-footer docutils container">
+<div class="sphx-glr-download docutils container">
+<a class="reference download internal" href="../../_downloads/plot_isbi_2012_multicut_2D_simple.py" download=""><code class="xref download docutils literal"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_isbi_2012_multicut_2D_simple.py</span></code></a></div>
+<div class="sphx-glr-download docutils container">
+<a class="reference download internal" href="../../_downloads/plot_isbi_2012_multicut_2D_simple.ipynb" download=""><code class="xref download docutils literal"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_isbi_2012_multicut_2D_simple.ipynb</span></code></a></div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.readthedocs.io">Generated by Sphinx-Gallery</a></p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../../reference.html" title="Nifty API Reference"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../graph/plot_toy_multicut.html" title="Multicut Logging Visitor"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Nifty 0.15.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Gallery of Examples</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
+    </div>
+  </body>
+</html>

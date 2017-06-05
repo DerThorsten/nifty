@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>nifty.cgp &#8212; Nifty 0.14.0 documentation</title>
+    <title>nifty.cgp &#8212; Nifty 0.15.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -15,7 +15,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '0.14.0',
+        VERSION:     '0.15.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -47,7 +47,7 @@
         <li class="right" >
           <a href="nifty.html" title="nifty"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Nifty 0.14.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Nifty 0.15.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../reference.html" accesskey="U">Nifty API Reference</a> &#187;</li> 
       </ul>
     </div>
@@ -57,11 +57,12 @@
   <ul>
 <li><a class="reference internal" href="#">nifty.cgp</a><ul>
 <li><a class="reference internal" href="#functions">Functions</a><ul>
-<li><a class="reference internal" href="#classes">Classes</a><ul>
-<li><a class="reference internal" href="#examples-using-nifty-cgp-filledtopologicalgrid2d">Examples using <code class="docutils literal"><span class="pre">nifty.cgp.FilledTopologicalGrid2D</span></code></a></li>
-<li><a class="reference internal" href="#examples-using-nifty-cgp-topologicalgrid2d">Examples using <code class="docutils literal"><span class="pre">nifty.cgp.TopologicalGrid2D</span></code></a></li>
+<li><a class="reference internal" href="#examples-using-nifty-cgp-cell1features">Examples using <code class="docutils literal"><span class="pre">nifty.cgp.cell1Features</span></code></a><ul>
+<li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#examples-using-nifty-cgp-filledtopologicalgrid2d">Examples using <code class="docutils literal"><span class="pre">nifty.cgp.FilledTopologicalGrid2D</span></code></a></li>
+<li><a class="reference internal" href="#examples-using-nifty-cgp-topologicalgrid2d">Examples using <code class="docutils literal"><span class="pre">nifty.cgp.TopologicalGrid2D</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -97,6 +98,17 @@
 <div class="section" id="functions">
 <h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
+<dt id="nifty.cgp.cell1Features">
+<code class="descclassname">nifty.cgp.</code><code class="descname">cell1Features</code><span class="sig-paren">(</span><em>tgrid</em>, <em>geometry=None</em>, <em>bounds=None</em>, <em>boundedBy=None</em>, <em>raw=None</em>, <em>pmap=None</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.cgp.cell1Features" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<div class="section" id="examples-using-nifty-cgp-cell1features">
+<h3>Examples using <code class="docutils literal"><span class="pre">nifty.cgp.cell1Features</span></code><a class="headerlink" href="#examples-using-nifty-cgp-cell1features" title="Permalink to this headline">¶</a></h3>
+<div class="sphx-glr-thumbcontainer" tooltip="Compute features for 1-cells "><div class="figure" id="id5">
+<img alt="../_images/sphx_glr_plot_cgp_features_thumb.png" src="../_images/sphx_glr_plot_cgp_features_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="../auto_examples/cgp/plot_cgp_features.html#sphx-glr-auto-examples-cgp-plot-cgp-features-py"><span class="std std-ref">Cell 1 Features</span></a></span></p>
+</div>
+</div><div style='clear:both'></div><dl class="function">
 <dt id="nifty.cgp.grey_dilation">
 <code class="descclassname">nifty.cgp.</code><code class="descname">grey_dilation</code><span class="sig-paren">(</span><em>input</em>, <em>size=None</em>, <em>footprint=None</em>, <em>structure=None</em>, <em>output=None</em>, <em>mode='reflect'</em>, <em>cval=0.0</em>, <em>origin=0</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.cgp.grey_dilation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate a greyscale dilation, using either a structuring element,
@@ -221,7 +233,7 @@ input image inside a sliding window defined by E.</p>
 <dd></dd></dl>
 
 <div style='clear:both'></div><div class="section" id="classes">
-<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h3>
+<h4>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h4>
 <dl class="class">
 <dt id="nifty.cgp.Bounds2D">
 <em class="property">class </em><code class="descclassname">nifty.cgp.</code><code class="descname">Bounds2D</code><a class="headerlink" href="#nifty.cgp.Bounds2D" title="Permalink to this definition">¶</a></dt>
@@ -255,12 +267,22 @@ input image inside a sliding window defined by E.</p>
 <div style='clear:both'></div><dl class="class">
 <dt id="nifty.cgp.Cell1BasicGeometricFeatures2D">
 <em class="property">class </em><code class="descclassname">nifty.cgp.</code><code class="descname">Cell1BasicGeometricFeatures2D</code><a class="headerlink" href="#nifty.cgp.Cell1BasicGeometricFeatures2D" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="nifty.cgp.Cell1BasicGeometricFeatures2D.names">
+<code class="descname">names</code><span class="sig-paren">(</span><em>self: nifty.cgp._cgp.Cell1BasicGeometricFeatures2D</em><span class="sig-paren">)</span> &#x2192; List[str]<a class="headerlink" href="#nifty.cgp.Cell1BasicGeometricFeatures2D.names" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+</dd></dl>
 
 <div style='clear:both'></div><dl class="class">
 <dt id="nifty.cgp.Cell1BasicTopologicalFeatures2D">
 <em class="property">class </em><code class="descclassname">nifty.cgp.</code><code class="descname">Cell1BasicTopologicalFeatures2D</code><a class="headerlink" href="#nifty.cgp.Cell1BasicTopologicalFeatures2D" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="nifty.cgp.Cell1BasicTopologicalFeatures2D.names">
+<code class="descname">names</code><span class="sig-paren">(</span><em>self: nifty.cgp._cgp.Cell1BasicTopologicalFeatures2D</em><span class="sig-paren">)</span> &#x2192; List[str]<a class="headerlink" href="#nifty.cgp.Cell1BasicTopologicalFeatures2D.names" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+</dd></dl>
 
 <div style='clear:both'></div><dl class="class">
 <dt id="nifty.cgp.Cell1BoundedBy2D">
@@ -295,7 +317,12 @@ input image inside a sliding window defined by E.</p>
 <div style='clear:both'></div><dl class="class">
 <dt id="nifty.cgp.Cell1CurvatureFeatures2D">
 <em class="property">class </em><code class="descclassname">nifty.cgp.</code><code class="descname">Cell1CurvatureFeatures2D</code><a class="headerlink" href="#nifty.cgp.Cell1CurvatureFeatures2D" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="nifty.cgp.Cell1CurvatureFeatures2D.names">
+<code class="descname">names</code><span class="sig-paren">(</span><em>self: nifty.cgp._cgp.Cell1CurvatureFeatures2D</em><span class="sig-paren">)</span> &#x2192; List[str]<a class="headerlink" href="#nifty.cgp.Cell1CurvatureFeatures2D.names" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+</dd></dl>
 
 <div style='clear:both'></div><dl class="class">
 <dt id="nifty.cgp.Cell1Geometry2D">
@@ -320,7 +347,12 @@ input image inside a sliding window defined by E.</p>
 <div style='clear:both'></div><dl class="class">
 <dt id="nifty.cgp.Cell1LineSegmentDist2D">
 <em class="property">class </em><code class="descclassname">nifty.cgp.</code><code class="descname">Cell1LineSegmentDist2D</code><a class="headerlink" href="#nifty.cgp.Cell1LineSegmentDist2D" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="nifty.cgp.Cell1LineSegmentDist2D.names">
+<code class="descname">names</code><span class="sig-paren">(</span><em>self: nifty.cgp._cgp.Cell1LineSegmentDist2D</em><span class="sig-paren">)</span> &#x2192; List[str]<a class="headerlink" href="#nifty.cgp.Cell1LineSegmentDist2D.names" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+</dd></dl>
 
 <div style='clear:both'></div><dl class="class">
 <dt id="nifty.cgp.Cell2BoundedBy2D">
@@ -392,11 +424,13 @@ input image inside a sliding window defined by E.</p>
 
 </dd></dl>
 
+</div>
+</div>
 <div class="section" id="examples-using-nifty-cgp-filledtopologicalgrid2d">
-<h4>Examples using <code class="docutils literal"><span class="pre">nifty.cgp.FilledTopologicalGrid2D</span></code><a class="headerlink" href="#examples-using-nifty-cgp-filledtopologicalgrid2d" title="Permalink to this headline">¶</a></h4>
-<div class="sphx-glr-thumbcontainer" tooltip="An introduction into the cgp. "><div class="figure" id="id5">
+<h3>Examples using <code class="docutils literal"><span class="pre">nifty.cgp.FilledTopologicalGrid2D</span></code><a class="headerlink" href="#examples-using-nifty-cgp-filledtopologicalgrid2d" title="Permalink to this headline">¶</a></h3>
+<div class="sphx-glr-thumbcontainer" tooltip="An introduction into the cgp. "><div class="figure" id="id6">
 <img alt="../_images/sphx_glr_plot_cgp_introduction_thumb.png" src="../_images/sphx_glr_plot_cgp_introduction_thumb.png" />
-<p class="caption"><span class="caption-text"><a class="reference internal" href="../auto_examples/graph/plot_cgp_introduction.html#sphx-glr-auto-examples-graph-plot-cgp-introduction-py"><span class="std std-ref">Cgp Cartesian Grid Partitioning 2D</span></a></span></p>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="../auto_examples/cgp/plot_cgp_introduction.html#sphx-glr-auto-examples-cgp-plot-cgp-introduction-py"><span class="std std-ref">Introduction</span></a></span></p>
 </div>
 </div><div style='clear:both'></div><dl class="class">
 <dt id="nifty.cgp.Geometry2D">
@@ -450,13 +484,16 @@ input image inside a sliding window defined by E.</p>
 
 </div>
 <div class="section" id="examples-using-nifty-cgp-topologicalgrid2d">
-<h4>Examples using <code class="docutils literal"><span class="pre">nifty.cgp.TopologicalGrid2D</span></code><a class="headerlink" href="#examples-using-nifty-cgp-topologicalgrid2d" title="Permalink to this headline">¶</a></h4>
-<div class="sphx-glr-thumbcontainer" tooltip="An introduction into the cgp. "><div class="figure" id="id6">
+<h3>Examples using <code class="docutils literal"><span class="pre">nifty.cgp.TopologicalGrid2D</span></code><a class="headerlink" href="#examples-using-nifty-cgp-topologicalgrid2d" title="Permalink to this headline">¶</a></h3>
+<div class="sphx-glr-thumbcontainer" tooltip="Compute features for 1-cells "><div class="figure" id="id7">
+<img alt="../_images/sphx_glr_plot_cgp_features_thumb.png" src="../_images/sphx_glr_plot_cgp_features_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="../auto_examples/cgp/plot_cgp_features.html#sphx-glr-auto-examples-cgp-plot-cgp-features-py"><span class="std std-ref">Cell 1 Features</span></a></span></p>
+</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="An introduction into the cgp. "><div class="figure" id="id8">
 <img alt="../_images/sphx_glr_plot_cgp_introduction_thumb.png" src="../_images/sphx_glr_plot_cgp_introduction_thumb.png" />
-<p class="caption"><span class="caption-text"><a class="reference internal" href="../auto_examples/graph/plot_cgp_introduction.html#sphx-glr-auto-examples-graph-plot-cgp-introduction-py"><span class="std std-ref">Cgp Cartesian Grid Partitioning 2D</span></a></span></p>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="../auto_examples/cgp/plot_cgp_introduction.html#sphx-glr-auto-examples-cgp-plot-cgp-introduction-py"><span class="std std-ref">Introduction</span></a></span></p>
 </div>
 </div><div style='clear:both'></div></div>
-</div>
 </div>
 </div>
 
@@ -481,7 +518,7 @@ input image inside a sliding window defined by E.</p>
         <li class="right" >
           <a href="nifty.html" title="nifty"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Nifty 0.14.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Nifty 0.15.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../reference.html" >Nifty API Reference</a> &#187;</li> 
       </ul>
     </div>

@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>nifty.graph.rag &#8212; Nifty 0.14.0 documentation</title>
+    <title>nifty.graph.rag &#8212; Nifty 0.15.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -15,7 +15,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '0.14.0',
+        VERSION:     '0.15.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -47,7 +47,7 @@
         <li class="right" >
           <a href="nifty.graph.html" title="nifty.graph"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Nifty 0.14.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Nifty 0.15.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../reference.html" accesskey="U">Nifty API Reference</a> &#187;</li> 
       </ul>
     </div>
@@ -57,7 +57,11 @@
   <ul>
 <li><a class="reference internal" href="#">nifty.graph.rag</a><ul>
 <li><a class="reference internal" href="#functions">Functions</a><ul>
+<li><a class="reference internal" href="#examples-using-nifty-graph-rag-gridrag">Examples using <code class="docutils literal"><span class="pre">nifty.graph.rag.gridRag</span></code></a></li>
+<li><a class="reference internal" href="#examples-using-nifty-graph-rag-projectscalarnodedatatopixels">Examples using <code class="docutils literal"><span class="pre">nifty.graph.rag.projectScalarNodeDataToPixels</span></code></a><ul>
 <li><a class="reference internal" href="#classes">Classes</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -188,7 +192,13 @@
 <code class="descclassname">nifty.graph.rag.</code><code class="descname">gridRag</code><span class="sig-paren">(</span><em>labels</em>, <em>numberOfThreads=-1</em>, <em>serialization=None</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.rag.gridRag" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<div style='clear:both'></div><dl class="function">
+<div class="section" id="examples-using-nifty-graph-rag-gridrag">
+<h3>Examples using <code class="docutils literal"><span class="pre">nifty.graph.rag.gridRag</span></code><a class="headerlink" href="#examples-using-nifty-graph-rag-gridrag" title="Permalink to this headline">¶</a></h3>
+<div class="sphx-glr-thumbcontainer" tooltip="Here we segment neuro data as in  :cite:`beier_17_multicut`. In fact, this is a simplified vers..."><div class="figure" id="id1">
+<img alt="../_images/sphx_glr_plot_isbi_2012_multicut_2D_simple_thumb.png" src="../_images/sphx_glr_plot_isbi_2012_multicut_2D_simple_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="../auto_examples/multicut/plot_isbi_2012_multicut_2D_simple.html#sphx-glr-auto-examples-multicut-plot-isbi-2012-multicut-2d-simple-py"><span class="std std-ref">ISBI 2012 Simple 2D Multicut Pipeline</span></a></span></p>
+</div>
+</div><div style='clear:both'></div><dl class="function">
 <dt id="nifty.graph.rag.gridRag2DHdf5">
 <code class="descclassname">nifty.graph.rag.</code><code class="descname">gridRag2DHdf5</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.rag.gridRag2DHdf5" title="Permalink to this definition">¶</a></dt>
 <dd><p>Overloaded function.</p>
@@ -266,8 +276,15 @@
 </ol>
 </dd></dl>
 
-<div style='clear:both'></div><div class="section" id="classes">
-<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="examples-using-nifty-graph-rag-projectscalarnodedatatopixels">
+<h3>Examples using <code class="docutils literal"><span class="pre">nifty.graph.rag.projectScalarNodeDataToPixels</span></code><a class="headerlink" href="#examples-using-nifty-graph-rag-projectscalarnodedatatopixels" title="Permalink to this headline">¶</a></h3>
+<div class="sphx-glr-thumbcontainer" tooltip="Here we segment neuro data as in  :cite:`beier_17_multicut`. In fact, this is a simplified vers..."><div class="figure" id="id2">
+<img alt="../_images/sphx_glr_plot_isbi_2012_multicut_2D_simple_thumb.png" src="../_images/sphx_glr_plot_isbi_2012_multicut_2D_simple_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="../auto_examples/multicut/plot_isbi_2012_multicut_2D_simple.html#sphx-glr-auto-examples-multicut-plot-isbi-2012-multicut-2d-simple-py"><span class="std std-ref">ISBI 2012 Simple 2D Multicut Pipeline</span></a></span></p>
+</div>
+</div><div style='clear:both'></div><div class="section" id="classes">
+<h4>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h4>
 <dl class="class">
 <dt id="nifty.graph.rag.Configuration">
 <em class="property">class </em><code class="descclassname">nifty.graph.rag.</code><code class="descname">Configuration</code><a class="headerlink" href="#nifty.graph.rag.Configuration" title="Permalink to this definition">¶</a></dt>
@@ -493,6 +510,7 @@ Of the nifty python bindings</p>
 <div style='clear:both'></div></div>
 </div>
 </div>
+</div>
 
 
           </div>
@@ -515,7 +533,7 @@ Of the nifty python bindings</p>
         <li class="right" >
           <a href="nifty.graph.html" title="nifty.graph"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Nifty 0.14.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Nifty 0.15.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../reference.html" >Nifty API Reference</a> &#187;</li> 
       </ul>
     </div>

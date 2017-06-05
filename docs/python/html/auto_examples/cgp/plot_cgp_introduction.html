@@ -1,0 +1,321 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Introduction &#8212; Nifty 0.15.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.15.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Undirected Graph: Simple Example" href="../graph/plot_undirected_graph_simple_example.html" />
+    <link rel="prev" title="Cell 1 Features" href="plot_cgp_features.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../graph/plot_undirected_graph_simple_example.html" title="Undirected Graph: Simple Example"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="plot_cgp_features.html" title="Cell 1 Features"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Nifty 0.15.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Gallery of Examples</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="plot_cgp_features.html"
+                        title="previous chapter">Cell 1 Features</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../graph/plot_undirected_graph_simple_example.html"
+                        title="next chapter">Undirected Graph: Simple Example</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="introduction">
+<span id="sphx-glr-auto-examples-cgp-plot-cgp-introduction-py"></span><h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<p>An introduction into the cgp.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># sphinx_gallery_thumbnail_number = 5</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">division</span>
+
+
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">import</span> <span class="nn">scipy</span>
+
+<span class="c1"># skimage</span>
+<span class="kn">import</span> <span class="nn">skimage.filters</span>       <span class="c1"># filters</span>
+<span class="kn">import</span> <span class="nn">skimage.segmentation</span>  <span class="c1"># Superpixels</span>
+<span class="kn">import</span> <span class="nn">skimage.data</span>          <span class="c1"># Data</span>
+<span class="kn">import</span> <span class="nn">skimage.color</span>         <span class="c1"># rgb2Gray</span>
+
+<span class="c1"># pylab</span>
+<span class="kn">import</span> <span class="nn">pylab</span>                <span class="c1"># Plotting</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+
+<span class="c1"># increase default figure size</span>
+<span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="n">pylab</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">2.0</span><span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="mf">2.0</span><span class="o">*</span><span class="n">b</span>
+
+
+<span class="kn">import</span> <span class="nn">sys</span><span class="p">;</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;/home/tbeier/bld/nifty/python/&quot;</span><span class="p">)</span>
+<span class="c1"># nifty</span>
+<span class="kn">import</span> <span class="nn">nifty</span>
+<span class="kn">import</span> <span class="nn">nifty.cgp</span>
+
+<span class="n">cellNames</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Junctions&#39;</span><span class="p">,</span><span class="s1">&#39;Edges&#39;</span><span class="p">,</span><span class="s1">&#39;Regions&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Load image and compute over-segmentation</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">img</span> <span class="o">=</span> <span class="n">skimage</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">coins</span><span class="p">()[</span><span class="mi">10</span><span class="p">:</span><span class="mi">80</span><span class="p">,</span><span class="mi">10</span><span class="p">:</span><span class="mi">80</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span><span class="o">/</span><span class="mi">255</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># img is a gray value image</span>
+<span class="c1"># to use it as a rgb img we just</span>
+<span class="c1"># repeat the gray value</span>
+<span class="n">imgRGB</span> <span class="o">=</span> <a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.concatenate.html#numpy.concatenate" title="View documentation for numpy.concatenate"><span class="n">numpy</span><span class="o">.</span><span class="n">concatenate</span></a><span class="p">([</span><span class="n">img</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="bp">None</span><span class="p">]]</span><span class="o">*</span><span class="mi">3</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../../_images/sphx_glr_plot_cgp_introduction_001.png" class="align-center" src="../../_images/sphx_glr_plot_cgp_introduction_001.png" />
+<p>Superpixels</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">overseg</span> <span class="o">=</span> <span class="n">skimage</span><span class="o">.</span><span class="n">segmentation</span><span class="o">.</span><span class="n">slic</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">n_segments</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+    <span class="n">compactness</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># let overseg start from 1</span>
+<span class="n">overseg</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="k">assert</span> <span class="n">overseg</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">==</span> <span class="mi">1</span>
+<span class="n">cmap</span> <span class="o">=</span> <a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.random.rand.html#numpy.random.rand" title="View documentation for numpy.random.rand"><span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span></a> <span class="p">(</span> <span class="n">overseg</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">ListedColormap</span><span class="p">(</span><span class="n">cmap</span><span class="p">)</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">overseg</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">)</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../../_images/sphx_glr_plot_cgp_introduction_002.png" class="align-center" src="../../_images/sphx_glr_plot_cgp_introduction_002.png" />
+<p>Compute cgp / topological grid</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">tgrid</span> <span class="o">=</span> <a href="../../gen_modules/nifty.cgp.html#nifty.cgp.TopologicalGrid2D" title="View documentation for nifty.cgp.TopologicalGrid2D"><span class="n">nifty</span><span class="o">.</span><span class="n">cgp</span><span class="o">.</span><span class="n">TopologicalGrid2D</span></a><span class="p">(</span><span class="n">overseg</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Get the geometry of the cell-complex</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">cellGeometry</span> <span class="o">=</span> <span class="n">tgrid</span><span class="o">.</span><span class="n">extractCellsGeometry</span><span class="p">()</span>
+
+
+<span class="n">cell0Geomtry</span> <span class="o">=</span> <span class="n">cellGeometry</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">cell1Geomtry</span> <span class="o">=</span> <span class="n">cellGeometry</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">cell2Geomtry</span> <span class="o">=</span> <span class="n">cellGeometry</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+
+<span class="c1"># coordinates of some specific 1 cell</span>
+<span class="n">cell1Index</span> <span class="o">=</span> <span class="n">tgrid</span><span class="o">.</span><span class="n">numberOfCells</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">//</span><span class="mi">2</span>
+<span class="n">coordinates</span>  <span class="o">=</span> <span class="n">cell1Geomtry</span><span class="p">[</span><span class="n">cell1Index</span><span class="p">]</span>
+
+<span class="c1"># cast coordinates to numpy array</span>
+<span class="n">coordinates</span>  <span class="o">=</span> <a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.array.html#numpy.array" title="View documentation for numpy.array"><span class="n">numpy</span><span class="o">.</span><span class="n">array</span></a><span class="p">(</span><span class="n">coordinates</span><span class="p">)</span>
+
+<span class="c1"># the coordinates are interpixel-coordinates</span>
+<span class="c1"># to convert them to normal pixels</span>
+<span class="c1"># we need divide them by 2</span>
+<span class="c1"># This will lead to non integer coordinates.</span>
+<span class="c1"># Floor and ceil will lead to integer coordinates</span>
+<span class="n">cCoords</span> <span class="o">=</span> <a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.ceil.html#numpy.ceil" title="View documentation for numpy.ceil"><span class="n">numpy</span><span class="o">.</span><span class="n">ceil</span></a><span class="p">(</span><span class="n">coordinates</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;uint32&#39;</span><span class="p">)</span>
+<span class="n">fCoords</span> <span class="o">=</span> <a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.floor.html#numpy.floor" title="View documentation for numpy.floor"><span class="n">numpy</span><span class="o">.</span><span class="n">floor</span></a><span class="p">(</span><span class="n">coordinates</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;uint32&#39;</span><span class="p">)</span>
+<span class="n">coords</span> <span class="o">=</span> <a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.concatenate.html#numpy.concatenate" title="View documentation for numpy.concatenate"><span class="n">numpy</span><span class="o">.</span><span class="n">concatenate</span></a><span class="p">([</span><span class="n">cCoords</span><span class="p">,</span><span class="n">fCoords</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># write into image</span>
+<span class="n">pixelImg</span> <span class="o">=</span> <span class="n">imgRGB</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">pixelImg</span><span class="p">[</span><span class="n">coords</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">coords</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>  <span class="p">,:]</span> <span class="o">=</span> <span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span>
+
+
+<span class="c1"># we can also use the</span>
+<span class="c1"># interpixel-coordinates directly</span>
+<span class="n">topologicalGridShape</span> <span class="o">=</span> <span class="n">tgrid</span><span class="o">.</span><span class="n">topologicalGridShape</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;shape&quot;</span><span class="p">,</span><span class="n">tgrid</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="s2">&quot;topologicalGridShape&quot;</span><span class="p">,</span><span class="n">topologicalGridShape</span><span class="p">)</span>
+<span class="n">interPixelImg</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">imresize</span><span class="p">(</span><span class="n">imgRGB</span><span class="p">,</span> <span class="n">topologicalGridShape</span><span class="p">)</span>
+<span class="n">interPixelImg</span><span class="p">[</span><span class="n">coordinates</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">coordinates</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],:]</span> <span class="o">=</span> <span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span>
+
+<span class="n">f</span> <span class="o">=</span> <span class="n">pylab</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">f</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">pixelImg</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Pixel coordinates&#39;</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">interPixelImg</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Interpixel coordinates&#39;</span><span class="p">)</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../../_images/sphx_glr_plot_cgp_introduction_003.png" class="align-center" src="../../_images/sphx_glr_plot_cgp_introduction_003.png" />
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-default"><div class="highlight"><pre><span></span><span class="n">shape</span> <span class="p">[</span><span class="mi">70</span><span class="p">,</span> <span class="mi">70</span><span class="p">]</span> <span class="n">topologicalGridShape</span> <span class="p">[</span><span class="mi">139</span><span class="p">,</span> <span class="mi">139</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>get the bounds and bounded by
+relations</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">cellBounds</span> <span class="o">=</span> <span class="n">tgrid</span><span class="o">.</span><span class="n">extractCellsBounds</span><span class="p">()</span>
+
+<span class="c1"># this gives you the boundaries (1-cells)</span>
+<span class="c1"># of a certain junction (0-cell)</span>
+<span class="n">cell0Bounds</span> <span class="o">=</span> <span class="n">cellBounds</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># this will give us the junctions (0-cells)</span>
+<span class="c1"># of a certain boundary (1-cell)</span>
+<span class="n">cell1BoundedBy</span> <span class="o">=</span> <span class="n">cell0Bounds</span><span class="o">.</span><span class="n">reverseMapping</span><span class="p">()</span>
+
+<span class="c1"># get the labels junctions of a particular</span>
+<span class="c1"># boundary (1-cel)</span>
+<span class="c1"># Important: Labels start at 1, indexes</span>
+<span class="c1"># start at 0.</span>
+<span class="c1"># Bounds/ bounded by returns labels!.</span>
+<span class="n">cell0Labels</span> <span class="o">=</span> <span class="n">cell1BoundedBy</span><span class="p">[</span><span class="n">cell1Index</span><span class="p">]</span>
+<span class="n">cell0Indices</span> <span class="o">=</span> <a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.array.html#numpy.array" title="View documentation for numpy.array"><span class="n">numpy</span><span class="o">.</span><span class="n">array</span></a><span class="p">(</span><span class="n">cell0Labels</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+
+
+<span class="k">for</span> <span class="n">cell0Index</span> <span class="ow">in</span> <span class="n">cell0Indices</span><span class="p">:</span>
+
+
+
+    <span class="c1"># iterate over the boundaries of this junction</span>
+    <span class="n">cell1Labels</span> <span class="o">=</span> <span class="n">cell0Bounds</span><span class="p">[</span><span class="n">cell0Index</span><span class="p">]</span>
+    <span class="n">otherCell1Indices</span> <span class="o">=</span> <a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.array.html#numpy.array" title="View documentation for numpy.array"><span class="n">numpy</span><span class="o">.</span><span class="n">array</span></a><span class="p">(</span><span class="n">cell1Labels</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+
+    <span class="k">for</span> <span class="n">otherCell1Index</span> <span class="ow">in</span> <span class="n">otherCell1Indices</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">otherCell1Index</span> <span class="o">!=</span> <span class="n">cell1Index</span><span class="p">:</span>
+
+
+            <span class="n">coords</span>  <span class="o">=</span> <a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.array.html#numpy.array" title="View documentation for numpy.array"><span class="n">numpy</span><span class="o">.</span><span class="n">array</span></a><span class="p">(</span><span class="n">cell1Geomtry</span><span class="p">[</span><span class="n">otherCell1Index</span><span class="p">])</span>
+            <span class="n">interPixelImg</span><span class="p">[</span><span class="n">coords</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">coords</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>  <span class="p">,:]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">255</span>
+            <span class="n">cCoords</span> <span class="o">=</span> <a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.ceil.html#numpy.ceil" title="View documentation for numpy.ceil"><span class="n">numpy</span><span class="o">.</span><span class="n">ceil</span></a><span class="p">(</span><span class="n">coords</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;uint32&#39;</span><span class="p">)</span>
+            <span class="n">fCoords</span> <span class="o">=</span> <a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.floor.html#numpy.floor" title="View documentation for numpy.floor"><span class="n">numpy</span><span class="o">.</span><span class="n">floor</span></a><span class="p">(</span><span class="n">coords</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;uint32&#39;</span><span class="p">)</span>
+            <span class="n">coords</span> <span class="o">=</span> <a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.concatenate.html#numpy.concatenate" title="View documentation for numpy.concatenate"><span class="n">numpy</span><span class="o">.</span><span class="n">concatenate</span></a><span class="p">([</span><span class="n">cCoords</span><span class="p">,</span><span class="n">fCoords</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">pixelImg</span><span class="p">[</span><span class="n">coords</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">coords</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>  <span class="p">,:]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">255</span>
+
+
+
+    <span class="c1"># junctions only have a single coordinate</span>
+    <span class="c1"># in supixels coordinates</span>
+    <span class="n">coord</span> <span class="o">=</span> <span class="n">cell0Geomtry</span><span class="p">[</span><span class="n">cell0Index</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">interPixelImg</span><span class="p">[</span><span class="n">coord</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">coord</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">:]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1"># in the image, this are 4 pixels</span>
+    <span class="n">pixelImg</span><span class="p">[</span><span class="n">coord</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="n">coord</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">pixelImg</span><span class="p">[</span><span class="n">coord</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="n">coord</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">//</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">pixelImg</span><span class="p">[</span><span class="n">coord</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">//</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">coord</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">pixelImg</span><span class="p">[</span><span class="n">coord</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">//</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">coord</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">//</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+
+
+
+<span class="n">f</span> <span class="o">=</span> <span class="n">pylab</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">f</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">pixelImg</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Pixel coordinates&#39;</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">interPixelImg</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Interpixel coordinates&#39;</span><span class="p">)</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../../_images/sphx_glr_plot_cgp_introduction_004.png" class="align-center" src="../../_images/sphx_glr_plot_cgp_introduction_004.png" />
+<p>Show all cells labels at once</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">ftgrid</span> <span class="o">=</span> <a href="../../gen_modules/nifty.cgp.html#nifty.cgp.FilledTopologicalGrid2D" title="View documentation for nifty.cgp.FilledTopologicalGrid2D"><span class="n">nifty</span><span class="o">.</span><span class="n">cgp</span><span class="o">.</span><span class="n">FilledTopologicalGrid2D</span></a><span class="p">(</span><span class="n">tgrid</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">pylab</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+
+<span class="n">f</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Raw Data&#39;</span><span class="p">)</span>
+<span class="n">cmap</span> <span class="o">=</span> <a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.random.rand.html#numpy.random.rand" title="View documentation for numpy.random.rand"><span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span></a> <span class="p">(</span> <span class="mi">100000</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">cmap</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">ListedColormap</span><span class="p">(</span><span class="n">cmap</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">cellType</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)):</span>
+    <span class="n">showCells</span> <span class="o">=</span> <span class="p">[</span><span class="bp">False</span><span class="p">,</span><span class="bp">False</span><span class="p">,</span><span class="bp">False</span><span class="p">]</span>
+    <span class="n">showCells</span><span class="p">[</span><span class="n">cellType</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">cellMask</span> <span class="o">=</span> <span class="n">ftgrid</span><span class="o">.</span><span class="n">cellMask</span><span class="p">(</span><span class="n">showCells</span><span class="p">)</span>
+    <span class="n">cellMask</span><span class="p">[</span><span class="n">cellMask</span><span class="o">!=</span><span class="mi">0</span><span class="p">]</span> <span class="o">-=</span>  <span class="n">ftgrid</span><span class="o">.</span><span class="n">cellTypeOffset</span><span class="p">[</span><span class="n">cellType</span><span class="p">]</span>
+
+    <span class="n">f</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">pylab</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">cellMask</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">)</span>
+    <span class="n">pylab</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Cell-</span><span class="si">%d</span><span class="s1"> Labels / </span><span class="se">\n</span><span class="si">%s</span><span class="s1"> Labels &#39;</span><span class="o">%</span><span class="p">(</span><span class="n">cellType</span><span class="p">,</span><span class="n">cellNames</span><span class="p">[</span><span class="n">cellType</span><span class="p">]</span> <span class="p">)</span>  <span class="p">)</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../../_images/sphx_glr_plot_cgp_introduction_005.png" class="align-center" src="../../_images/sphx_glr_plot_cgp_introduction_005.png" />
+<p><strong>Total running time of the script:</strong> ( 0 minutes  0.507 seconds)</p>
+<div class="sphx-glr-footer docutils container">
+<div class="sphx-glr-download docutils container">
+<a class="reference download internal" href="../../_downloads/plot_cgp_introduction.py" download=""><code class="xref download docutils literal"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_cgp_introduction.py</span></code></a></div>
+<div class="sphx-glr-download docutils container">
+<a class="reference download internal" href="../../_downloads/plot_cgp_introduction.ipynb" download=""><code class="xref download docutils literal"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_cgp_introduction.ipynb</span></code></a></div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.readthedocs.io">Generated by Sphinx-Gallery</a></p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../graph/plot_undirected_graph_simple_example.html" title="Undirected Graph: Simple Example"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="plot_cgp_features.html" title="Cell 1 Features"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Nifty 0.15.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Gallery of Examples</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
+    </div>
+  </body>
+</html>

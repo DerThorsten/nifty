@@ -8,7 +8,7 @@ on this graph/
 """
 from __future__ import print_function
 
-# numpy
+# numpy[]
 import numpy
 
 # skimage
