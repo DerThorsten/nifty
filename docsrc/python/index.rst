@@ -2,10 +2,12 @@ Contents:
 =========
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
+
 
     sections/documentation
-    auto_examples/index
+    examples
+    faq
     reference
     zbibliography
 
