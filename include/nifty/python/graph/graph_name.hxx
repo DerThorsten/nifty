@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_PYTHON_GRAPH_GRAPH_NAMES_HXX
-#define NIFTY_PYTHON_GRAPH_GRAPH_NAMES_HXX
 
 namespace nifty{
 namespace graph{
@@ -21,4 +19,3 @@ namespace graph{
 }
 }
 
-#endif /* NIFTY_PYTHON_GRAPH_GRAPH_NAMES_HXX */

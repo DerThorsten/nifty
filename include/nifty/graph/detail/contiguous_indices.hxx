@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_GRAPH_DETAIL_CONTIGUOUS_INDICES_HXX
-#define NIFTY_GRAPH_DETAIL_CONTIGUOUS_INDICES_HXX
 
 
 #include "nifty/graph/graph_tags.hxx"
@@ -110,4 +108,3 @@ namespace detail_graph{
 } // namespace nifty::graph
 } // namespace nifty
 
-#endif /*NIFTY_GRAPH_DETAIL_CONTIGUOUS_INDICES_HXX*/

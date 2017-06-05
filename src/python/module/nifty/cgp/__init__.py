@@ -4,7 +4,8 @@ from .import _cgp as __cgp
 from ._cgp import *
 
 from scipy.ndimage import grey_dilation
-
+from scipy.misc import imresize as __imresize
+from scipy.ndimage import zoom as __zoom
 
 try:
     import pylab
@@ -113,6 +114,9 @@ del __extend__
 
 
 def makeCellImage(image, mask_image, lut, size=None):
+    if image.shape[0:2] != mask_image.shape:
+        image =   __imresize(image, mask_image.shape)#, interp='nearest')
+
     if size is not None:
         mask_image = grey_dilation(mask_image, size=size)
     if(not __hasPyLabAndMatplotlib):
@@ -130,6 +134,10 @@ def makeCellImage(image, mask_image, lut, size=None):
 
 
         elif lut.ndim ==2:
+            lutC = lut.shape[1]
+            if image.ndim == 2:
+                image = numpy.concatenate([image[:,:,None]]*lutC,axis=2)
+
             nLutChannels = lut.shape[1]
             zeroValue = [0]*nLutChannels
             zeroValue = numpy.array(zeroValue)[None,:]
@@ -139,12 +147,26 @@ def makeCellImage(image, mask_image, lut, size=None):
             #lutImg1
             #lutImg2
 
-            lutImg = _lut[mask_image.ravel(),:].reshape(mask_image.shape+(3,))
+
+
+
+            lutImg = _lut[mask_image.ravel(),:].reshape(mask_image.shape+(lutC,))
+
 
             resImage = image.copy()
             whereImage = mask_image!=0
             resImage[whereImage] = lutImg[whereImage]
             return resImage
+
+
+            #resImage = image.copy()
+            #print("resImg",resImage.shape)
+            #whereImage = mask_image!=0
+            #for c in range(lutC):
+            #    resImgC = resImage[:,:,c]
+            #    lutImgC = lutImg[:,:,c]
+            #    resImgC[whereImage] = lutImgC[whereImage]
+            #return resImage
 
         else:
             raise ValueError("lut ndim must be in [1,2]")
@@ -162,3 +184,67 @@ def makeCellImage(image, mask_image, lut, size=None):
 
 
 
+
+def cell1Features(tgrid, geometry=None, bounds=None,
+        boundedBy=None,raw=None, pmap=None):
+    
+    
+    if geometry is None:
+        geometry = tgrid.extractCellsGeometry()
+    if geometry is None:
+        bounds = tgrid.extractCellsBounds()
+    if boundedBy is None:
+        boundedBy = {1:bounds[0].reverseMapping(), 
+                     2:bounds[1].reverseMapping()}
+
+
+    feats = []
+    names = []
+
+    # curvature
+    op = Cell1CurvatureFeatures2D()
+    feat = op(cell1GeometryVector=geometry[1], 
+              cell1BoundedByVector=boundedBy[1])
+    feats.append(feat)
+    fNames = op.names()
+    
+    assert len(fNames) == feat.shape[1]
+
+    names.extend(fNames)
+
+    # line segment dist
+    op = Cell1LineSegmentDist2D()
+    feat = op(cell1GeometryVector=geometry[1])
+    feats.append(feat)
+    fNames = op.names()
+    assert len(fNames) == feat.shape[1]
+    names.extend(fNames)
+
+    # basic geometric features
+    op = Cell1BasicGeometricFeatures2D()
+    feat = op(cell1GeometryVector=geometry[1], 
+             cell2GeometryVector=geometry[2], 
+             cell1BoundsVector=bounds[1])
+    feats.append(feat)
+    fNames = op.names()
+    print(feat.shape, len(fNames))
+    assert len(fNames) == feat.shape[1]
+    names.extend(fNames)
+
+    # basic topological features
+    op = Cell1BasicTopologicalFeatures2D()
+    feat = op(cell0BoundsVector=bounds[0], 
+              cell1BoundsVector=bounds[1], 
+              cell1BoundedByVector=boundedBy[1], 
+              cell2BoundedByVector=boundedBy[2])
+    feats.append(feat)
+    fNames = op.names()
+    assert len(fNames) == feat.shape[1]
+    names.extend(fNames)
+
+    feats =  numpy.concatenate(feats, axis=1)
+    assert len(names) == feats.shape[1]
+
+    return feats, names
+
+    

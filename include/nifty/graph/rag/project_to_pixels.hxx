@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_GRAPH_RAG_PROJECT_TO_PIXELS_HXX
-#define NIFTY_GRAPH_RAG_PROJECT_TO_PIXELS_HXX
 
 
 #include <algorithm>
@@ -53,4 +51,3 @@ void projectScalarNodeDataToPixels(
 
 
 
-#endif /* NIFTY_GRAPH_RAG_PROJECT_TO_PIXELS_HXX */

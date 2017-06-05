@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_TOOLS_FOR_EACH_BLOCK_HXX
-#define NIFTY_TOOLS_FOR_EACH_BLOCK_HXX
 
 #include <sstream>
 #include <chrono>
@@ -90,4 +88,3 @@ namespace tools{
 } // end namespace nifty::tools
 } // end namespace nifty
 
-#endif /*NIFTY_TOOLS_FOR_EACH_BLOCK_HXX*/

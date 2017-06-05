@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_GRAPH_SIMPLE_UNDIRECTED_GRAPH_HXX
-#define NIFTY_GRAPH_SIMPLE_UNDIRECTED_GRAPH_HXX
 
 #include <vector>
 #include <set>
@@ -120,4 +118,3 @@ private:
 } // namespace nifty::graph
 } // namespace nifty
 
-#endif  // NIFTY_GRAPH_SIMPLE_UNDIRECTED_GRAPH_HXX

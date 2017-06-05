@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_GRAPH_RAG_GRID_RAG_STACKED_2D_HXX
-#define NIFTY_GRAPH_RAG_GRID_RAG_STACKED_2D_HXX
 
 
 #include "nifty/array/arithmetic_array.hxx"
@@ -96,4 +94,3 @@ private:
 } // end namespace graph
 } // end namespace nifty
 
-#endif /* NIFTY_GRAPH_RAG_GRID_RAG_STACKED_2D_HXX */

@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_TOOLS_RUNTIME_CHECK_HXX
-#define NIFTY_TOOLS_RUNTIME_CHECK_HXX
 
 #include <cstdint>
 #include <stdexcept>
@@ -194,4 +192,4 @@
 
 
 
-#endif // #ifndef NIFTY_TOOLS_RUNTIME_CHECK_HXX
+

@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_GRAPH_DETAIL_NODE_LABELS_TO_EDGE_LABELS_ITERATOR_HXX
-#define NIFTY_GRAPH_DETAIL_NODE_LABELS_TO_EDGE_LABELS_ITERATOR_HXX
 
 #include <boost/iterator/transform_iterator.hpp>
 
@@ -63,4 +61,3 @@ namespace detail_graph{
 } // namespace nifty
 
 
-#endif /* NIFTY_GRAPH_DETAIL_NODE_LABELS_TO_EDGE_LABELS_ITERATOR_HXX */

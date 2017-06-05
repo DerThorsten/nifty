@@ -1,6 +1,4 @@
-#ifndef NIFTY_EXCEPTIONS_EXCEPTIONS_HXX
-#define NIFTY_EXCEPTIONS_EXCEPTIONS_HXX
-
+#pragma once
 #include <stdexcept>
 
 
@@ -32,4 +30,3 @@ namespace exceptions{
 }
 }
 
-#endif // NIFTY_EXCEPTIONS_EXCEPTIONS_HXX

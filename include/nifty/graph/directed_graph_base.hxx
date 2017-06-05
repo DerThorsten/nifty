@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_DIRECTED_GRAPH_BASE_HXX
-#define NIFTY_DIRECTED_GRAPH_BASE_HXX
 
 #include <boost/iterator/transform_iterator.hpp>
 
@@ -88,4 +86,3 @@ private:
 } // namespace nifty::graph
 } // namespace nifty
   // 
-#endif  // NIFTY_DIRECTED_GRAPH_BASE_HXX

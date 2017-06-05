@@ -1,6 +1,4 @@
-#ifndef NIFTY_TOOLS_BLOCK_ACCESS_HXX
-#define NIFTY_TOOLS_BLOCK_ACCESS_HXX
-
+#pragma once
 #include "nifty/marray/marray.hxx"
 #include "nifty/array/arithmetic_array.hxx"
 #include "nifty/parallel/threadpool.hxx"
@@ -104,4 +102,3 @@ struct BlockStorageSelector<marray::Marray<T, A> >
 } // end namespace nifty::tools
 } // end namespace nifty
 
-#endif /*NIFTY_TOOLS_BLOCK_ACCESS_HXX*/

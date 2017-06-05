@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_CONTAINER_BOOST_FLAT_SET_hXX
-#define NIFTY_CONTAINER_BOOST_FLAT_SET_hXX
 
 
 
@@ -21,4 +19,3 @@ namespace container{
 } // container
 } // namespace nifty
   
-#endif /* NIFTY_CONTAINER_BOOST_FLAT_SET_hXX */

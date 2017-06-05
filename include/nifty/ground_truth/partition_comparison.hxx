@@ -2,7 +2,6 @@
 // https://raw.githubusercontent.com/bjoern-andres/partition-comparison/master/include/andres/partition-comparison.hxx
 
 #pragma once
-#ifndef ANDRES_PARTITION_COMPARISON_HXX
 #define ANDRES_PARTITION_COMPARISON_HXX
 
 #include <map>
@@ -252,4 +251,3 @@ private:
 } // namespace ground_truth
 } // namespace nifty
 
-#endif // #ifndef ANDRES_PARTITION_COMPARISON_HXX

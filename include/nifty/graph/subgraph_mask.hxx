@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_GRAPH_SUBGRAPH_MASK_HXX
-#define NIFTY_GRAPH_SUBGRAPH_MASK_HXX
 
 
 namespace nifty{
@@ -21,4 +19,3 @@ namespace graph{
 } // namespace nifty::graph
 } // namespace nifty
 
-#endif  // NIFTY_GRAPH_SUBGRAPH_MASK_HXX

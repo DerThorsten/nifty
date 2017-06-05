@@ -72,7 +72,6 @@ namespace lifted_multicut{
             return obj.evalNodeLabels(nl);
         }
     };
-
     #endif
 
 } // namespace lifted_multicut

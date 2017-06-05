@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_GRAPH_OPTIMIZATION_MULTICUT_ILP_BACKEND_HXX
-#define NIFTY_GRAPH_OPTIMIZATION_MULTICUT_ILP_BACKEND_HXX
 
 #include <limits>
 
@@ -42,4 +40,3 @@ namespace ilp_backend{
 } // namespace ilp_backend
 } // namespace nifty
 
-#endif
