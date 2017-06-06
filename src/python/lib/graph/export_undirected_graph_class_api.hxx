@@ -287,21 +287,21 @@ namespace graph{
                     return ss.str();
                 }
             )
-            .def("__repr__",
-                [](const G & g) {
-                    std::stringstream ss;
-                    auto first = true;
-                    for(auto edge : g.edges()){
-                        if(first){
-                            first = false;
-                            ss<<g.u(edge)<<"-"<<g.v(edge);
-                        }
-                        else
-                            ss<<"\n"<<g.u(edge)<<"-"<<g.v(edge);
-                    }
-                    return ss.str();
-                }
-            )
+            // .def("__repr__",
+            //     [](const G & g) {
+            //         std::stringstream ss;
+            //         auto first = true;
+            //         for(auto edge : g.edges()){
+            //             if(first){
+            //                 first = false;
+            //                 ss<<g.u(edge)<<"-"<<g.v(edge);
+            //             }
+            //             else
+            //                 ss<<"\n"<<g.u(edge)<<"-"<<g.v(edge);
+            //         }
+            //         return ss.str();
+            //     }
+            // )
 
         ;
     }
