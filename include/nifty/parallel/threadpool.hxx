@@ -1,6 +1,4 @@
-#ifndef NIFTY_PARALLEL_THREADPOOL_HXX
-#define NIFTY_PARALLEL_THREADPOOL_HXX
-
+#pragma once
 #include <functional>
 #include <thread>
 #include <atomic>
@@ -638,4 +636,3 @@ inline void parallel_foreach(
 } // namespace parallel
 } // namespace nifty
 
-#endif // NIFTY_PARALLEL_THREADPOOL_HXX

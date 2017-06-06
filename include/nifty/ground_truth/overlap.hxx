@@ -1,6 +1,4 @@
-#ifndef NIFTY_TOOLS_OVERLAP_HXX
-#define NIFTY_TOOLS_OVERLAP_HXX
-
+#pragma once
 #include <vector>
 #include <unordered_map>
 
@@ -11,7 +9,7 @@
 namespace nifty{
 namespace ground_truth{
 
-    template<class LABEL_TYPE = uint32_t, class COUNT_TYPE = uint32_t>
+    template<class LABEL_TYPE = uint64_t, class COUNT_TYPE = uint64_t>
     class Overlap{
     public:
 
@@ -226,4 +224,3 @@ namespace ground_truth{
 } // end namespace nifty::ground_truth
 } // end namespace nifty
 
-#endif /*NIFTY_TOOLS_OVERLAP_HXX*/

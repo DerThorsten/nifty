@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_GRAPH_PATHS_HXX
-#define NIFTY_GRAPH_PATHS_HXX
 
 #include <cstddef>
 #include <utility> // std::pair
@@ -93,4 +91,3 @@ size_t buildPathInLargeEnoughBuffer(
 } // namespace graph
 } // namespace nifty
 
-#endif // #ifndef NIFTY_GRAPH_PATHS_HXX

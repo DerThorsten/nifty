@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_TOOLS_TIMER_HXX
-#define NIFTY_TOOLS_TIMER_HXX
 
 #include <sstream>
 #include <chrono>
@@ -99,4 +97,3 @@ inline std::string Timer::toString() const{
 } // end namespace nifty::tools
 } // end namespace nifty
 
-#endif /*NIFTY_TOOLS_TIMER_HXX*/

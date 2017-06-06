@@ -74,6 +74,7 @@ namespace multicut{
         // todo exportMulticutSolver should be in the correct namespace
 
         nifty::graph::optimization::multicut::exportMulticutSolver<Solver>(multicutModule, solverName.c_str(), docHelper)
+
             .def(py::init<>())
             .def_readwrite("numberOfIterations", &Settings::numberOfIterations)
             .def_readwrite("verbose", &Settings::verbose)

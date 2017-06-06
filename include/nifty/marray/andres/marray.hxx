@@ -63,8 +63,8 @@
 /// ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 /// 
 #pragma once
-#ifndef ANDRES_MARRAY_HXX
-#define ANDRES_MARRAY_HXX
+#ifndef NIFTY_ANDRES_MARRAY_HXX
+#define NIFTY_ANDRES_MARRAY_HXX
 
 #include <cassert>
 #include <cstddef>
@@ -6043,4 +6043,4 @@ inline void operate
 
 } // namespace andres
 
-#endif // #ifndef ANDRES_MARRAY_HXX
+#endif // #ifndef NIFTY_ANDRES_MARRAY_HXX

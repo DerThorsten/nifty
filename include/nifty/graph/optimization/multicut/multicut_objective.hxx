@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_GRAPH_OPTIMIZATION_MULTICUT_MULTICUT_OBJECTIVE_HXX
-#define NIFTY_GRAPH_OPTIMIZATION_MULTICUT_MULTICUT_OBJECTIVE_HXX
 
 #include "nifty/tools/runtime_check.hxx"
 #include "nifty/graph/subgraph_mask.hxx"
@@ -83,4 +81,3 @@ namespace multicut{
 } // namespace nifty::graph
 } // namespace nifty
 
-#endif  // NIFTY_GRAPH_OPTIMIZATION_MULTICUT_MULTICUT_OBJECTIVE_HXX

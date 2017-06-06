@@ -1,5 +1,5 @@
 """
-Cgp Cartesian Grid Partitioning 2D
+Introduction
 ====================================
 
 An introduction into the cgp.

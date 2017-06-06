@@ -1,6 +1,4 @@
-#ifndef NIFTY_FEATURES_ACCUMULATED_FEATURES_HXX
-#define NIFTY_FEATURES_ACCUMULATED_FEATURES_HXX
-
+#pragma once
 
 
 #include <boost/accumulators/accumulators.hpp>
@@ -94,4 +92,3 @@ namespace features{
 }
 }
 
-#endif /*NIFTY_FEATURES_ACCUMULATED_FEATURES_HXX*/

@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_GRAPH_OPTIMIZATION_LIFTED_MULTICUT_LIFTED_GRAPH_FEATURES_HXX
-#define NIFTY_GRAPH_OPTIMIZATION_LIFTED_MULTICUT_LIFTED_GRAPH_FEATURES_HXX
 
 #include <vector>
 
@@ -206,4 +204,3 @@ namespace lifted_multicut{
 } // namespace nifty::graph
 } // namespace nifty
 
-#endif  // NIFTY_GRAPH_OPTIMIZATION_LIFTED_MULTICUT_LIFTED_GRAPH_FEATURES_HXX

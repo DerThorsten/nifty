@@ -26,9 +26,9 @@ namespace ground_truth{
             .def("__init__",
                 [](
                     OverlapType &instance,
-                    const uint32_t maxLabelA,
-                    nifty::marray::PyView<uint32_t> labelA,
-                    nifty::marray::PyView<uint32_t> labelB
+                    const uint64_t maxLabelA,
+                    nifty::marray::PyView<uint64_t> labelA,
+                    nifty::marray::PyView<uint64_t> labelB
                 ) {
                     new (&instance) OverlapType(maxLabelA, labelA, labelB);
                 }
@@ -41,7 +41,7 @@ namespace ground_truth{
             })
             .def("differentOverlaps",[](
                 const OverlapType & self,
-                nifty::marray::PyView<uint32_t> uv
+                nifty::marray::PyView<uint64_t> uv
             ){
                 nifty::marray::PyView<float> out({uv.shape(0)});
 
@@ -54,7 +54,7 @@ namespace ground_truth{
 
             .def("bleeding",[](
                 const OverlapType & self,
-                nifty::marray::PyView<uint32_t> ids
+                nifty::marray::PyView<uint64_t> ids
             ){
                 nifty::marray::PyView<float> out({ids.shape(0)});
 
@@ -66,7 +66,7 @@ namespace ground_truth{
             .def("counts",[](const OverlapType & self){
 
                 const auto & counts = self.counts();
-                nifty::marray::PyView<uint32_t> out({counts.size()});
+                nifty::marray::PyView<uint64_t> out({counts.size()});
 
                 for(auto i=0; i<counts.size(); ++i){
                     out(i) = counts[i];
@@ -81,7 +81,7 @@ namespace ground_truth{
 
                 const auto & olMap = overlaps[index];
 
-                typedef nifty::marray::PyView<uint32_t>  ArrayType;
+                typedef nifty::marray::PyView<uint64_t>  ArrayType;
                 
                 ArrayType olIndices({olMap.size()});
                 ArrayType olCounts({olMap.size()});
@@ -95,7 +95,7 @@ namespace ground_truth{
                     }
                 }
                 else{
-                    typedef std::pair<uint32_t, uint32_t> PairType;
+                    typedef std::pair<uint64_t, uint64_t> PairType;
                     std::vector<PairType> pairVec(olMap.size());
                     auto c=0;
                     for(const auto & kv : olMap){
@@ -122,7 +122,7 @@ namespace ground_truth{
 
                 const auto & olMap = overlaps[index];
        
-                nifty::marray::PyView<uint32_t> olIndices({olMap.size()});
+                nifty::marray::PyView<uint64_t> olIndices({olMap.size()});
                 nifty::marray::PyView<float> olCounts({olMap.size()});
 
                 if(!sorted){
@@ -134,7 +134,7 @@ namespace ground_truth{
                     }
                 }
                 else{
-                    typedef std::pair<uint32_t, uint32_t> PairType;
+                    typedef std::pair<uint64_t, uint64_t> PairType;
                     std::vector<PairType> pairVec(olMap.size());
                     auto c=0;
                     for(const auto & kv : olMap){

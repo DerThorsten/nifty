@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_GRAPH_RAG_GRID_RAG_ACCUMULATE_HXX
-#define NIFTY_GRAPH_RAG_GRID_RAG_ACCUMULATE_HXX
 
 #include <vector>
 #include <cmath>
@@ -1458,4 +1456,3 @@ namespace graph{
 } // end namespace nifty
 
 
-#endif /* NIFTY_GRAPH_RAG_GRID_RAG_ACCUMULATE_HXX */

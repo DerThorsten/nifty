@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_ARRAY_ARITHMETIC_ARRAY_HXX
-#define NIFTY_ARRAY_ARITHMETIC_ARRAY_HXX
 
 #include <array>
 #include <vector>
@@ -151,4 +149,3 @@ namespace array{
 } // namespace nifty::graph
 } // namespace nifty
 
-#endif  // NIFTY_ARRAY_ARITHMETIC_ARRAY_HXX

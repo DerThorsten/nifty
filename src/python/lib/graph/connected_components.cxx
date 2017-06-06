@@ -30,13 +30,41 @@ namespace graph{
             nifty::marray::PyView<uint64_t> ccLabels({nodeLabels.shape(0)});
             ComponentsUfd<GRAPH> componentsUfd(graph);
             componentsUfd.buildFromLabels(nodeLabels);
+
             for(const auto node : graph.nodes()){
                 ccLabels[node] = componentsUfd.componentLabel(node);
             }
-            if(dense){
+
+
+            if(dense  && ignoreBackground){
+                std::unordered_map<uint64_t, uint64_t> mapping;
+                for(const auto node: graph.nodes()){
+
+                    const auto nl = nodeLabels[node];
+                    const auto ccl = ccLabels[node];
+                    if(nl != 0 ){
+                        const auto fr = mapping.find(ccl);
+                        if(fr==mapping.end()){
+                            mapping.emplace(ccl, mapping.size());
+                        }
+                    }
+                }
+                for(const auto node: graph.nodes()){
+                    const auto nl = nodeLabels[node];
+                    const auto ccl = ccLabels[node];
+                    if(nl != 0 ){
+                        ccLabels[node] = mapping.find(ccl)->second;
+                    }
+                    else{
+                        ccLabels[node] = 0;
+                    }
+                }
+                
+            }
+            else if(dense  && !ignoreBackground){
                 componentsUfd.denseRelabeling(ccLabels);
             }
-            if(ignoreBackground){
+            else if(ignoreBackground){
                 for(const auto node : graph.nodes()){
                     const auto nl = nodeLabels[node];
                     if(nl == uint64_t(0)){
@@ -47,7 +75,6 @@ namespace graph{
                     }  
                 }
             }
-
             return ccLabels;
 
         },
