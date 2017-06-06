@@ -5,11 +5,11 @@ from skimage.feature import peak_local_max as __peak_local_max
 from skimage.segmentation import mark_boundaries as __mark_boundaries
 from scipy.misc import imresize as __imresize
 from scipy.ndimage import zoom as __zoom
-
+from matplotlib.colors import ListedColormap as __ListedColormap
 import numpy
 
 
-def seededWatersheds(heightMap, seeds, method="node_weighted", acc="max"):
+def seededWatersheds(heightMap, seeds=None, method="node_weighted", acc="max"):
     """Seeded watersheds segmentation
     
     Get a segmentation via seeded watersheds.
@@ -20,13 +20,14 @@ def seededWatersheds(heightMap, seeds, method="node_weighted", acc="max"):
     
     Args:
         heightMap (numpy.ndarray) : height / evaluation map  
-        seeds (numpy.ndarray) : Seeds as non zero elements in the array
+        seeds (numpy.ndarray) : Seeds as non zero elements in the array 
+            (default: {"max"})
         method (str): Algorithm type can be:
 
             *   "node_weighted": ordinary node weighted watershed
             *   "edge_weighted": edge weighted watershed (minimum spanning tree)
         
-            (default: {"node_weighted"})
+            (default: {nifty.segmentation.localMinimaSeeds(heightMap)})
 
         acc (str): If method is "edge_weighted", one needs to specify how
             to convert the heightMap into an edgeMap.
@@ -49,9 +50,14 @@ def seededWatersheds(heightMap, seeds, method="node_weighted", acc="max"):
     Raises:
         RuntimeError: [description]
     """
+    if seeds is None:
+        seeds = localMinimaSeeds(heightMap)
+
     hshape = heightMap.shape 
     sshape = seeds.shape 
     shape = sshape 
+
+
     ishape = [2*s -1 for s in shape]
     gridGraph = graph.gridGraph(shape)
 
@@ -101,7 +107,6 @@ def localMinima(image):
         raise RuntimeError("localMinima is currently only implemented for 2D images")
     return localMaxima(-1.0*image)
 
-
 def localMaxima(image):
     """get the local maxima of an image
     
@@ -123,7 +128,6 @@ def localMaxima(image):
     coords = __peak_local_max(image)
     lm[coords[:,0], coords[:,1]] = 1
     return lm
-
 
 def connectedComponents(labels, dense=True, ignoreBackground=False):
     """get connected components of a label image
@@ -151,7 +155,6 @@ def connectedComponents(labels, dense=True, ignoreBackground=False):
     
     return ccLabels.reshape(shape)
 
-
 def localMinimaSeeds(image):
     """Get seed from local minima
     
@@ -178,8 +181,6 @@ def localMinimaSeeds(image):
     cc = connectedComponents(lm, dense=True, ignoreBackground=True)
     return cc
     
-
-
 def markBoundaries(image, segmentation, color=None):
     """Mark the boundaries in an image
     
@@ -210,3 +211,9 @@ def markBoundaries(image, segmentation, color=None):
 
     return __mark_boundaries(img2, seg2.astype('uint32'), color=color)
 
+def randColormap(size, zeroToZero=False):
+    cmap = numpy.random.rand (size,3)
+    if zeroToZero:
+        cmap[0,:] = 0
+    cmap = __ListedColormap(cmap)
+    return cmap

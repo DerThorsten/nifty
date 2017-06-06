@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_ILP_GUROBI_HXX
-#define NIFTY_ILP_GUROBI_HXX
 
 #include <limits>
 #include <string>
@@ -215,4 +213,3 @@ Gurobi::setStart(
 } // namespace nifty
 
 
-#endif // #ifndef NIFTY_ILP_GUROBI_HXX

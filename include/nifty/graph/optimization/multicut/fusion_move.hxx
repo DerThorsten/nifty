@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_GRAPH_OPTIMIZATION_MULTICUT_FUSION_MOVE_HXX
-#define NIFTY_GRAPH_OPTIMIZATION_MULTICUT_FUSION_MOVE_HXX
 
 #include <mutex>          // std::mutex
 #include <memory>
@@ -225,4 +223,3 @@ namespace multicut{
 } // namespace nifty::graph
 } // namespace nifty
 
-#endif  // NIFTY_GRAPH_OPTIMIZATION_MULTICUT_FUSION_MOVE_HXX

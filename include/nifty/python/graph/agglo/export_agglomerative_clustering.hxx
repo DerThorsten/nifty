@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_PYTHON_GRAPH_AGGLO_EXPORT_AGGLOMERATIVE_CLUSTERING_HXX
-#define NIFTY_PYTHON_GRAPH_AGGLO_EXPORT_AGGLOMERATIVE_CLUSTERING_HXX
 
 
 #include <pybind11/pybind11.h>
@@ -155,4 +153,3 @@ namespace agglo{
 } // end namespace graph
 } // end namespace nifty
     
-#endif //NIFTY_PYTHON_GRAPH_AGGLO_EXPORT_AGGLOMERATIVE_CLUSTERING_HXX

@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_GRAPH_RAG_GRID_RAG_HXX
-#define NIFTY_GRAPH_RAG_GRID_RAG_HXX
 
 
 #include <random>
@@ -119,4 +117,3 @@ using ExplicitLabelsGridRag = GridRag<DIM, ExplicitLabels<DIM, LABEL_TYPE> > ;
 } // end namespace graph
 } // end namespace nifty
 
-#endif /* NIFTY_GRAPH_RAG_GRID_RAG_HXX */

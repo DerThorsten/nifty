@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_GRAPH_RAG_GRID_RAG_FEATURES_HXX
-#define NIFTY_GRAPH_RAG_GRID_RAG_FEATURES_HXX
 
 
 #include "nifty/graph/rag/grid_rag.hxx"
@@ -59,4 +57,3 @@ namespace graph{
 } // end namespace nifty
 
 
-#endif /* NIFTY_GRAPH_RAG_GRID_RAG_FEATURES_HXX */

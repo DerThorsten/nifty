@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_PYTHON_GRAPH_EDGE_CONTRACTION_GRAPH_HXX
-#define NIFTY_PYTHON_GRAPH_EDGE_CONTRACTION_GRAPH_HXX
 
 #include <string>
 #include <set>
@@ -40,4 +38,3 @@ namespace graph{
 }
 }
 
-#endif // NIFTY_PYTHON_GRAPH_EDGE_CONTRACTION_GRAPH_HXX

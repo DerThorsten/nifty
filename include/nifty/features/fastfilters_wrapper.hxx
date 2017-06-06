@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_FEATURES_FASTFILTERS_WRAPPER_HXX
-#define NIFTY_FEATURES_FASTFILTERS_WRAPPER_HXX
 
 #include <mutex>
 #include <map>
@@ -563,4 +561,3 @@ namespace detail_fastfilters {
 } // end namespace nifty
 
 
-#endif /* NIFTY_FEATURES_FASTFILTERS_WRAPPER_HXX */

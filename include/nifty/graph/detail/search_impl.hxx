@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_GRAPH_DETAIL_SEARCH_IMPL_HXX
-#define NIFTY_GRAPH_DETAIL_SEARCH_IMPL_HXX
 
 #include <queue>
 #include <stack>
@@ -238,4 +236,3 @@ namespace detail_graph{
 } // namespace nifty::graph
 } // namespace nifty
 
-#endif  // NIFTY_GRAPH_DETAIL_SEARCH_IMPL_HXX

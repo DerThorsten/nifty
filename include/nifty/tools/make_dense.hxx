@@ -1,6 +1,4 @@
-#ifndef NIFTY_TOOLS_MAKE_DENSE_HXX
-#define NIFTY_TOOLS_MAKE_DENSE_HXX
-
+#pragma once
 #include <unordered_map>
 
 
@@ -44,4 +42,3 @@ namespace tools{
 }
 }
 
-#endif /*NIFTY_TOOLS_MAKE_DENSE_HXX*/

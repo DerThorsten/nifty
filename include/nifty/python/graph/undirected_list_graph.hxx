@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_PYTHON_GRAPH_SIMPLE_GRAPH_HXX
-#define NIFTY_PYTHON_GRAPH_SIMPLE_GRAPH_HXX
 
 #include <string>
 
@@ -31,4 +29,3 @@ namespace graph{
 }
 }
 
-#endif // NIFTY_PYTHON_GRAPH_SIMPLE_GRAPH_HXX

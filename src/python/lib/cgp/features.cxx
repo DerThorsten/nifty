@@ -56,6 +56,7 @@ namespace cgp{
                 py::arg("cell1GeometryVector"),
                 py::arg("cell1BoundedByVector")
             )
+            .def("names", &Op::names)
             ;
         }
         {

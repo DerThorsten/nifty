@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_GRAPH_OPTIMIZATION_MULTICUT_PERTURB_AND_MAP_HXX
-#define NIFTY_GRAPH_OPTIMIZATION_MULTICUT_PERTURB_AND_MAP_HXX
 
 #include <iostream>
 #include <string>
@@ -266,4 +264,3 @@ namespace multicut{
 } // namespace graph
 } // namespace nifty
 
-#endif // #ifndef NIFTY_GRAPH_OPTIMIZATION_MULTICUT_PERTURB_AND_MAP_HXX

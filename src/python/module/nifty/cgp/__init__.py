@@ -162,3 +162,51 @@ def makeCellImage(image, mask_image, lut, size=None):
 
 
 
+
+def cell1Features(tgrid, geometry=None, bounds=None,
+        boundedBy=None,raw=None, pmap=None):
+    
+    
+    if geometry is None:
+        geometry = tgrid.extractCellsGeometry()
+    if geometry is None:
+        bounds = tgrid.extractCellsBounds()
+    if boundedBy is None:
+        boundedBy = {1:bounds[0].reverseMapping(), 
+                     2:bounds[1].reverseMapping()}
+
+
+    cell1Feat = []
+
+
+    # curvature
+    op = Cell1CurvatureFeatures2D()
+    feat = op(cell1GeometryVector=geometry[1], 
+              cell1BoundedByVector=boundedBy[1])
+    cell1Feat.append(feat)
+
+
+    # line segment dist
+    op = Cell1LineSegmentDist2D()
+    feat = op(cell1GeometryVector=geometry[1])
+    cell1Feat.append(feat)
+
+
+    # basic geometric features
+    op = Cell1BasicGeometricFeatures2D()
+    feat = op(cell1GeometryVector=geometry[1], 
+             cell2GeometryVector=geometry[2], 
+             cell1BoundsVector=bounds[1])
+    cell1Feat.append(feat)
+
+
+    # basic topological features
+    op = Cell1BasicTopologicalFeatures2D()
+    feat = op(cell0BoundsVector=bounds[0], 
+              cell1BoundsVector=bounds[1], 
+              cell1BoundedByVector=boundedBy[1], 
+              cell2BoundedByVector=boundedBy[2])
+    cell1Feat.append(feat)
+    
+
+    return numpy.concatenate(cell1Feat, axis=1)
