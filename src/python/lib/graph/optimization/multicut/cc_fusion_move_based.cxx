@@ -15,6 +15,7 @@
 // proposal generators
 #include "nifty/graph/optimization/common/proposal_generators/watershed_proposal_generator.hxx"
 #include "nifty/graph/optimization/common/proposal_generators/interface_flipper_proposal_generator.hxx"
+#include "nifty/graph/optimization/common/proposal_generators/random_node_color_proposal_generator.hxx"
 
 // the solver
 #include "nifty/graph/optimization/multicut/cc_fusion_move_based.hxx"
@@ -66,6 +67,7 @@ namespace multicut{
                 .def_readwrite("numberOfSeeds", &PGenSettigns::numberOfSeeds)
             ;
         }
+
         { // interface flipper proposal generator
             typedef optCommon::InterfaceFlipperProposalGenerator<ObjectiveType> ProposalGeneratorType;
             typedef typename ProposalGeneratorType::Settings PGenSettigns;
@@ -80,15 +82,26 @@ namespace multicut{
             ;
         }
 
+        { // interface flipper proposal generator
+            typedef optCommon::RandomNodeColorProposalGenerator<ObjectiveType> ProposalGeneratorType;
+            typedef typename ProposalGeneratorType::Settings PGenSettigns;
+            auto pGenSettigns = optCommon::exportCCProposalGenerator<ProposalGeneratorType>(
+                module, 
+                "RandomNodeColorProposalGenerator",
+                MulticutObjectiveName<ObjectiveType>::name()
+            );
 
+            pGenSettigns
+                .def(py::init<>())
+                .def_readwrite("numberOfColors", &PGenSettigns::numberOfColors)
+            ;
+        }
 
     
 
 
         typedef CcFusionMoveBased<ObjectiveType> Solver;
         typedef typename Solver::Settings Settings;
-
-        
 
         
         exportMulticutSolver<Solver>(module,"CcFusionMoveBased")

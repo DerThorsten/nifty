@@ -539,6 +539,13 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
     O.interfaceFlipperCcProposals = staticmethod(interfaceFlipperCcProposals)
 
 
+    def ramdomNodeColorCcProposals(numberOfColors=2):
+        s,F = getSettingsAndFactoryCls("RandomNodeColorProposalGenerator")
+        s.numberOfColors = int(numberOfColors)
+        return F(s)
+    O.ramdomNodeColorCcProposals = staticmethod(ramdomNodeColorCcProposals)
+
+
     def ccFusionMoveBasedFactory(proposalGenerator=None,
         numberOfThreads=1, numberOfIterations=100,
         stopIfNoImprovement=10, fusionMove=None):
