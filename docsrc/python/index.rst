@@ -6,7 +6,7 @@ Contents:
 
     sections/installation
     sections/theory/theory
-    sections/examples
+    examples
     sections/faq
     sections/reference
     sections/contribute
