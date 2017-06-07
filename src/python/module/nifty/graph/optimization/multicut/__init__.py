@@ -24,39 +24,11 @@ for key in _multicut.__dict__.keys():
     
     if key not in ["__spec__","__doc__"]:
         try:
-                       
+                            
             value.__module__='nifty.graph.optimization.multicut'
-
         except Exception as e:
-            print(e)
             continue
-
         __all__.append(key)
-
-
-
-
-for key in _multicut.__dict__.keys():
-    print("\n\n")
-    try:
-        
-
-        print("KEY 222",key)
-        value =_multicut.__dict__[key]
-
-        print("VALUE 2222",value)
-   
-
-        
-        
-        value.__module__='nifty.graph.optimization.multicut'
-
-    except Exception as e:
-        print(e)
-        continue
-    __all__.append(key)
-
-
 
 
 
@@ -508,7 +480,10 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
 
     def fusionMoveSettings(mcFactory=None):
         if mcFactory is None:
-            mcFactory = MulticutObjectiveUndirectedGraph.greedyAdditiveFactory()
+            if Configuration.WITH_CPLEX:
+                mcFactory = MulticutObjectiveUndirectedGraph.multicutIlpCplexFactory()
+            else:
+                mcFactory = MulticutObjectiveUndirectedGraph.defaultMulticutFactory()
         s = getSettings('FusionMove')
         s.mcFactory = mcFactory
         return s
@@ -546,6 +521,49 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
         factory = factoryCls(solverSettings)
         return factory
     O.fusionMoveBasedFactory = staticmethod(fusionMoveBasedFactory)
+
+
+
+
+    def watershedCcProposals(sigma=1.0, numberOfSeeds=0.1):
+        s,F = getSettingsAndFactoryCls("WatershedProposalGenerator")
+        s.sigma = float(sigma)
+        s.numberOfSeeds = float(numberOfSeeds)
+        return F(s)
+    O.watershedCcProposals = staticmethod(watershedCcProposals)
+
+
+    def interfaceFlipperCcProposals():
+        s,F = getSettingsAndFactoryCls("InterfaceFlipperProposalGenerator")
+        return F(s)
+    O.interfaceFlipperCcProposals = staticmethod(interfaceFlipperCcProposals)
+
+
+    def ccFusionMoveBasedFactory(proposalGenerator=None,
+        numberOfThreads=1, numberOfIterations=100,
+        stopIfNoImprovement=10, fusionMove=None):
+
+
+        solverSettings,F = getSettingsAndFactoryCls("CcFusionMoveBased")
+
+        if proposalGenerator is None:
+            proposalGenerator = watershedCcProposals()
+        if fusionMove is None:
+            fusionMove = fusionMoveSettings()
+
+
+
+        solverSettings.fusionMoveSettings = fusionMove
+        solverSettings.proposalGenerator = proposalGenerator
+        solverSettings.numberOfIterations = int(numberOfIterations)
+        solverSettings.stopIfNoImprovement = int(stopIfNoImprovement)
+        solverSettings.numberOfThreads = int(numberOfThreads)
+        factory = F(solverSettings)
+        return factory
+    O.ccFusionMoveBasedFactory = staticmethod(ccFusionMoveBasedFactory)
+
+
+
 
 
 

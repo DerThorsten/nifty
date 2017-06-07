@@ -29,7 +29,7 @@ namespace multicut{
     void exportMulticutDecomposer(py::module &);
     void exportMulticutAndres(py::module &);
     void exportChainedSolvers(py::module &);
-    
+    void exportMulticutCcFusionMoveBased(py::module &);
     
     #if WITH_LP_MP
     void exportMulticutMp(py::module &);
@@ -60,6 +60,7 @@ PYBIND11_PLUGIN(_multicut) {
     exportMulticutDecomposer(multicutModule);
     exportMulticutAndres(multicutModule);
     exportChainedSolvers(multicutModule);
+    exportMulticutCcFusionMoveBased(multicutModule);
 
     
     #ifdef WITH_LP_MP

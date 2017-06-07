@@ -52,7 +52,7 @@ void exportCCProposalGeneratorFactoryBaseT(
 ) {
     typedef OBJECTIVE ObjectiveType;
     //const auto objName = LiftedMulticutObjectiveName<ObjectiveType>::name();
-    const auto clsName = std::string("ProposalGeneratorFactoryBase") + objName;
+    const auto clsName = std::string("__ProposalGeneratorFactoryBase") + objName;
 
     typedef ProposalGeneratorFactoryBase<ObjectiveType> PropGenFactoryBase;
     typedef PyProposalGeneratorFactoryBase<ObjectiveType> PyPropGenFactoryBase;
@@ -84,8 +84,8 @@ exportCCProposalGenerator(
     typedef ProposalGeneratorFactory<ProposalGeneratorType> Factory;
 
 
-    const std::string settingsName = clsName + std::string("Settings") + objName;
-    const std::string factoryBaseName = std::string("ProposalGeneratorFactoryBase")+objName;
+    const std::string settingsName = std::string("__") + clsName + std::string("Settings") + objName;
+    const std::string factoryBaseName = std::string("__ProposalGeneratorFactoryBase")+objName;
     const std::string factoryName = clsName + std::string("Factory") + objName;
 
 
