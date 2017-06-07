@@ -115,10 +115,12 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
         return s
     O.watershedProposals = staticmethod(watershedProposals)
 
-    def greedyAdditiveFactory( weightStopCond=0.0, nodeNumStopCond=-1.0):
+    def greedyAdditiveFactory( weightStopCond=0.0, nodeNumStopCond=-1.0, visitNth=100):
         s,F = getSettingsAndFactoryCls("MulticutGreedyAdditive")
         s.weightStopCond = float(weightStopCond)
         s.nodeNumStopCond = float(nodeNumStopCond)
+        s.visitNth = int(visitNth)
+
         return F(s)
     O.greedyAdditiveFactory = staticmethod(greedyAdditiveFactory)
     O.greedyAdditiveFactory.__doc__ = """ create an instance of :class:`%s`
@@ -135,15 +137,35 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
     Args:
         weightStopCond (float): stop clustering when the highest
             weight in cluster-graph is lower as this value (default: {0.0})
-        nodeNumStopCond: stop clustering when a cluster-graph
+        nodeNumStopCond (float): stop clustering when a cluster-graph
             reached a certain number of nodes.
             Numbers smaller 1 are interpreted as fraction 
             of the graphs number of nodes.
             If nodeNumStopCond is smaller 0 this
             stopping condition is ignored  (default: {-1})
+        visitNth (int) : only call the visitor each nth time.
+            This is useful to avoid to many couts (default: {1}).
     Returns:    
         %s : multicut factory
     """%(factoryClsName("MulticutGreedyAdditive"),factoryClsName("MulticutGreedyAdditive"))
+
+
+
+    def warmStartGreeedyDecorator(func):
+        def func_wrapper(*args, warmStartGreedy=False, greedyVisitNth=100, **kwargs):
+            if(warmStartGreedy):
+                greedyFactory = greedyAdditiveFactory(visitNth=int(greedyVisitNth))
+                factory = func(*args, **kwargs)
+                return chainedSolversFactory(multicutFactories=[
+                    #greedyFactory,
+                    factory
+                ])
+            else:
+                return func(*args, **kwargs)
+        return func_wrapper
+
+
+
 
 
     def chainedSolversFactory(multicutFactories):
@@ -176,6 +198,7 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
 
 
 
+    @warmStartGreeedyDecorator
     def cgcFactory(doCutPhase=True, doGlueAndCutPhase=True, mincutFactory=None,
             multicutFactory=None,
             doBetterCutPhase=False, nodeNumStopCond=0.1, sizeRegularizer=1.0):
@@ -546,6 +569,7 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
     O.ramdomNodeColorCcProposals = staticmethod(ramdomNodeColorCcProposals)
 
 
+    @warmStartGreeedyDecorator
     def ccFusionMoveBasedFactory(proposalGenerator=None,
         numberOfThreads=1, numberOfIterations=100,
         stopIfNoImprovement=10, fusionMove=None):
