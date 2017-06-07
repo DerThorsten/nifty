@@ -14,6 +14,7 @@ install:
 - if [%BUILD_TYPE%]==[MSVC_64] call activate nifty
 
 build_script:
+- if [%BUILD_TYPE%]==[MSVC_64] git submodule update --init --recursive
 - if [%BUILD_TYPE%]==[MSVC_64] mkdir build
 - if [%BUILD_TYPE%]==[MSVC_64] cd build
 - if [%BUILD_TYPE%]==[MSVC_64] cmake -G "Visual Studio 14 2015 Win64" -DBUILD_CPP_TEST=yes -DBUILD_CPP_EXAMPLES=yes -DWITH_GLPK=yes -DWITH_HDF5=yes -DWITH_LP_MP=yes -DWITH_QPBO=yes ..
