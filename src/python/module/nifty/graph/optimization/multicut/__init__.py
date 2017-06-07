@@ -1,3 +1,14 @@
+""" Multicut module of nifty    
+
+This module implements multicut
+related functionality.
+
+For more details, see seection :ref:`theory_multicut`.
+
+"""
+
+
+
 from __future__ import absolute_import
 import sys
 from functools import partial
@@ -9,12 +20,43 @@ from ... import (UndirectedGraph,EdgeContractionGraphUndirectedGraph)
 __all__ = [
     "ilpSettings"
 ]
-for key in __multicut.__dict__.keys():
+for key in _multicut.__dict__.keys():
+    
+    if key not in ["__spec__","__doc__"]:
+        try:
+                       
+            value.__module__='nifty.graph.optimization.multicut'
+
+        except Exception as e:
+            print(e)
+            continue
+
+        __all__.append(key)
+
+
+
+
+for key in _multicut.__dict__.keys():
+    print("\n\n")
     try:
-        __multicut.__dict__[key].__module__='nifty.graph.optimization.multicut'
-    except:
-        pass
+        
+
+        print("KEY 222",key)
+        value =_multicut.__dict__[key]
+
+        print("VALUE 2222",value)
+   
+
+        
+        
+        value.__module__='nifty.graph.optimization.multicut'
+
+    except Exception as e:
+        print(e)
+        continue
     __all__.append(key)
+
+
 
 
 

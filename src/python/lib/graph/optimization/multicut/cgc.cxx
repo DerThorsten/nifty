@@ -84,6 +84,10 @@ namespace multicut{
     
     void exportCgc(py::module & multicutModule){
 
+
+        py::options options;
+        options.disable_function_signatures();
+    
         {
             typedef PyUndirectedGraph GraphType;
             typedef MulticutObjective<GraphType, double> ObjectiveType;

@@ -40,6 +40,10 @@ namespace multicut{
 }
 
 PYBIND11_PLUGIN(_multicut) {
+
+    py::options options;
+    options.disable_function_signatures();
+    
     py::module multicutModule("_multicut", "multicut submodule of nifty.graph");
     
     using namespace nifty::graph::optimization::multicut;

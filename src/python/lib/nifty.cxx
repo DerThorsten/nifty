@@ -20,6 +20,10 @@ struct Configuration{
 
 
 PYBIND11_PLUGIN(_nifty) {
+
+    py::options options;
+    options.disable_function_signatures();
+    
     py::module niftyModule("_nifty", "nifty python bindings");
 
     using namespace nifty;

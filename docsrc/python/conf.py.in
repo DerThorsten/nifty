@@ -52,10 +52,15 @@ extensions = [
     'sphinx.ext.graphviz',
     'sphinx_gallery.gen_gallery', 
     'sphinxcontrib.bibtex',
-    'sphinx.ext.napoleon'
+    'sphinx.ext.napoleon' ,
+    'breathe'
 ]
 
 
+
+breathe_projects = { 
+    "nifty": "@CMAKE_BINARY_DIR@/docs/cpp/xml/" 
+}
 
 
 

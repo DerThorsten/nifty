@@ -1,4 +1,3 @@
-/// \mainpage
 /// Marray: Fast Runtime-Flexible Multi-dimensional Arrays and Views in C++.
 /// \newline
 ///

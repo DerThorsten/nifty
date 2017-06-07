@@ -4,11 +4,18 @@ Contents:
 .. toctree::
     :maxdepth: 1
 
-
-    sections/documentation
-    examples
-    faq
-    reference
+    sections/installation
+    sections/theory/theory
+    sections/examples
+    sections/faq
+    sections/reference
+    sections/contribute
     zbibliography
 
 
+
+.. This is a test
+.. .. doxygenindex::
+..    :project: nifty
+..    :outline:
+..    :no-link:

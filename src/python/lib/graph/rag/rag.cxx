@@ -19,6 +19,10 @@ namespace graph{
 
 
 PYBIND11_PLUGIN(_rag) {
+
+    py::options options;
+    options.disable_function_signatures();
+    
     py::module ragModule("_rag", "rag submodule of nifty.graph");
 
     using namespace nifty::graph;

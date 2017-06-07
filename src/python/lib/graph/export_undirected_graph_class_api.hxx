@@ -270,11 +270,22 @@ namespace graph{
                     const auto & gg = g.cast<const G &>();
                     return PyEdgeIter(gg,g,gg.edgesBegin(),gg.edgesEnd()); 
                 }
+                ,
+                "Get an edge iterator\n\n"
+                "Get an edge iterator to iterate over all edges\n\n"
+                "Returns:\n"
+                "   edge iterator"
             )
-            .def("nodes", [](py::object g) { 
-                const auto & gg = g.cast<const G &>();
-                return PyNodeIter(gg,g,gg.nodesBegin(),gg.nodesEnd()); 
-            })
+            .def("nodes", 
+                [](py::object g) { 
+                    const auto & gg = g.cast<const G &>();
+                    return PyNodeIter(gg,g,gg.nodesBegin(),gg.nodesEnd()); 
+                },
+                "Get an node iterator\n\n"
+                "Get an node iterator to iterate over all nodes\n\n"
+                "Returns:\n"
+                "   node iterator"
+            )
             .def("nodeAdjacency", [](py::object g, const uint64_t nodeId) { 
                 const auto & gg = g.cast<const G &>();
                 return PyAdjacencyIter(gg,g,gg.adjacencyBegin(nodeId),gg.adjacencyEnd(nodeId)); 
