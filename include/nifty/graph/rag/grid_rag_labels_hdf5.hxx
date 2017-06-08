@@ -2,6 +2,7 @@
 
 
 #include <algorithm>
+#include <cstddef>
 
 #include "nifty/marray/marray.hxx"
 #include "nifty/tools/runtime_check.hxx"
@@ -11,7 +12,7 @@
 namespace nifty{
 namespace graph{
 
-template<size_t DIM, class LABEL_TYPE>
+template<std::size_t DIM, class LABEL_TYPE>
 class Hdf5Labels{
 public:
     typedef tools::BlockStorage< LABEL_TYPE> BlockStorageType;
@@ -23,7 +24,7 @@ public:
         shape_(),
         numberOfLabels_(numberOfLabels)
     {
-        for(size_t i=0; i<DIM; ++i)
+        for(std::size_t i=0; i<DIM; ++i)
             shape_[i] = labels_.shape(i);
     }
 
@@ -70,7 +71,7 @@ private:
 
 namespace tools{
 
-    template<class LABEL_TYPE, size_t DIM, class COORD>
+    template<class LABEL_TYPE, std::size_t DIM, class COORD>
     inline void readSubarray(
         const graph::Hdf5Labels<DIM, LABEL_TYPE> & labels,
         const COORD & beginCoord,
@@ -85,7 +86,3 @@ namespace tools{
 
 
 } // namespace nifty
-
-
-
-

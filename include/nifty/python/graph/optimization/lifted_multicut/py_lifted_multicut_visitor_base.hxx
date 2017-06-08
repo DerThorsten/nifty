@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cstddef>
 #include <string>
 #include <initializer_list>
 
@@ -66,7 +67,7 @@ public:
         );
     }
 
-    void setLogValue(const size_t logIndex, double logValue) {
+    void setLogValue(const std::size_t logIndex, double logValue) {
         PYBIND11_OVERLOAD(
             void,                    /* Return type */
             VisitorBase,             /* Parent class */
@@ -81,4 +82,3 @@ public:
 } // namespace optimization
 } // namespace graph
 } // namespace nifty
-

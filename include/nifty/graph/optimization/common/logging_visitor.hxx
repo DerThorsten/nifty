@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cstddef>
 #include <string>
 #include <initializer_list>
 #include <sstream>
@@ -17,18 +18,18 @@ namespace common{
 
 
 
-    //template<class SOLVER> 
+    //template<class SOLVER>
     //class VisitorBase;
-    
 
-    template<class SOLVER> 
+
+    template<class SOLVER>
     class LoggingVisitor : public VisitorBase<SOLVER>{
     public:
         typedef SOLVER SolverType;
         typedef nifty::tools::Timer TimerType;
 
         LoggingVisitor(
-            const int visitNth = 1, 
+            const int visitNth = 1,
             const bool verbose = true,
             const double timeLimitSolver = std::numeric_limits<double>::infinity(),
             const double timeLimitTotal  = std::numeric_limits<double>::infinity()
@@ -43,8 +44,8 @@ namespace common{
             runtimeTotal_(0.0),
             logNames_(),
             logValues_(),
-            iterations_(), 
-            energies_(), 
+            iterations_(),
+            energies_(),
             runtimes_()
         {
 
@@ -57,7 +58,7 @@ namespace common{
             timerSolver_.start();
             timerTotal_.start();
         }
-        
+
         virtual bool visit(SolverType * solver) {
             timerSolver_.stop();
             timerTotal_.stop();
@@ -78,7 +79,7 @@ namespace common{
                     ss << "E: " << e << " ";
                     ss << "t[s]: " << runtimeSolver_ << " ";
                     ss << "/ " << runtimeTotal_ << " ";
-                    for(size_t i=0; i<logNames_.size(); ++i){
+                    for(std::size_t i=0; i<logNames_.size(); ++i){
                         ss<<logNames_[i]<<" "<<logValues_[i]<<" ";
                     }
                     ss<<"\n";
@@ -90,14 +91,14 @@ namespace common{
             timerSolver_.reset().start();
             return runOpt_;
         }
-        
+
         virtual void end(SolverType * )   {
             if(verbose_){
                 std::cout<<"end inference\n";
             }
             timerSolver_.stop();
         }
-        
+
         virtual void clearLogNames(){
             logNames_.clear();
             logValues_.clear();
@@ -106,8 +107,8 @@ namespace common{
             logNames_.assign(logNames.begin(), logNames.end());
             logValues_.resize(logNames.size());
         }
-        
-        virtual void setLogValue(const size_t logIndex, double logValue){
+
+        virtual void setLogValue(const std::size_t logIndex, double logValue){
             logValues_[logIndex] = logValue;
         }
 
@@ -127,7 +128,7 @@ namespace common{
          * @return iterations vector
          */
         const std::vector<uint32_t> & iterations()const{
-            return iterations_; 
+            return iterations_;
         }
         /**
          * @brief logged current best energies vector
@@ -135,7 +136,7 @@ namespace common{
          * @return energy vector
          */
         const std::vector<double>   & energies()const{
-            return energies_; 
+            return energies_;
         }
         /**
          * @brief logged runtime vector
@@ -143,16 +144,16 @@ namespace common{
          * @return runtime vector
          */
         const std::vector<double>   & runtimes()const{
-            return runtimes_; 
+            return runtimes_;
         }
-                
+
     private:
-       
+
         int visitNth_;
         bool verbose_;
         bool runOpt_;
         int iter_;
-        
+
         double timeLimitTotal_;
         double timeLimitSolver_;
         double runtimeSolver_;
@@ -163,9 +164,9 @@ namespace common{
         std::vector<std::string>    logNames_;
         std::vector<double>         logValues_;
         // logging vectors
-        std::vector<uint32_t> iterations_; 
-        std::vector<double>   energies_; 
-        std::vector<double>   runtimes_; 
+        std::vector<uint32_t> iterations_;
+        std::vector<double>   energies_;
+        std::vector<double>   runtimes_;
 
         inline void checkRuntime() {
             if(runtimeSolver_ > timeLimitSolver_) {
