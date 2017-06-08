@@ -15,7 +15,8 @@ namespace graph{
         const ExplicitLabelsGridRag<DIM, LABELS_TYPE> & graph,
         nifty::marray::View<LABELS> data,
         NODE_MAP &  nodeMap,
-        const bool ignoreBackground = false
+        const bool ignoreBackground = false,
+        const LABELS ignoreValue = 0
     ){
         typedef std::array<int64_t, DIM> Coord;
 
@@ -40,8 +41,9 @@ namespace graph{
             LABELS maxOlLabel = 0;
             for(auto kv : ol){
                 if(kv.second > maxOl){
-                    if(ignoreBackground && kv.first == 0)
+                    if(ignoreBackground && kv.first == ignoreValue) {
                         continue;
+                    }
                     maxOl = kv.second;
                     maxOlLabel = kv.first;
                 }
