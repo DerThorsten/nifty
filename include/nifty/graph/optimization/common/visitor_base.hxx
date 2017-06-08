@@ -143,7 +143,8 @@ namespace common{
         VerboseVisitor(
             const int printNth = 1, 
             const double timeLimitSolver = std::numeric_limits<double>::infinity(),
-            const double timeLimitTotal = std::numeric_limits<double>::infinity()
+            const double timeLimitTotal = std::numeric_limits<double>::infinity(),
+            const nifty::logging::LogLevel logLevel = nifty::logging::LogLevel::WARN
         )
         :   printNth_(printNth),
             runOpt_(true),
@@ -151,7 +152,8 @@ namespace common{
             timeLimitSolver_(timeLimitSolver),
             timeLimitTotal_(timeLimitTotal),
             runtimeSolver_(0.0),
-            runtimeTotal_(0.0)
+            runtimeTotal_(0.0),
+            logLevel_(logLevel)
         {}
 
         virtual void begin(SolverType * ) {
@@ -202,7 +204,9 @@ namespace common{
         }
 
         virtual void printLog(const nifty::logging::LogLevel logLevel, const std::string & logString){
-            std::cout<<"LOG["<<int(logLevel)<<"]: "<<logString<<"\n";
+            if(int(logLevel) <= int(logLevel_)){
+                std::cout<<"LOG["<<nifty::logging::logLevelName(logLevel)<<"]: "<<logString<<"\n";\
+            }
         }
 
         void stopOptimize(){
@@ -232,6 +236,7 @@ namespace common{
         double timeLimitSolver_;
         double runtimeSolver_;
         double runtimeTotal_;
+        nifty::logging::LogLevel logLevel_;
         TimerType timerSolver_;
         TimerType timerTotal_;
         std::vector<std::string> logNames_;

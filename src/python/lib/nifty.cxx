@@ -2,6 +2,9 @@
 #include <pybind11/numpy.h>
 #include <sstream>
 
+
+#include "nifty/tools/logging.hxx"
+
 #include "nifty/python/converter.hxx"
 
 namespace py = pybind11;
@@ -23,8 +26,20 @@ PYBIND11_PLUGIN(_nifty) {
 
     py::options options;
     options.disable_function_signatures();
-    
-    py::module niftyModule("_nifty", "nifty python bindings");
+    py::module module("_nifty", "nifty python bindings");
+
+
+
+    py::enum_<nifty::logging::LogLevel>(module, "LogLevel", py::arithmetic())
+        .value("NONE", nifty::logging::LogLevel::NONE)
+        .value("FATAL", nifty::logging::LogLevel::FATAL)
+        .value("ERROR", nifty::logging::LogLevel::ERROR)
+        .value("WARN", nifty::logging::LogLevel::WARN)
+        .value("INFO", nifty::logging::LogLevel::INFO)
+        .value("TRACE", nifty::logging::LogLevel::TRACE)
+        //.value("Cat", LogLevel::Cat)
+        //.export_values();
+    ;
 
     using namespace nifty;
 
@@ -32,7 +47,7 @@ PYBIND11_PLUGIN(_nifty) {
     #ifdef WITH_GUROBI
         // Translate Gurobi exceptions to Python exceptions
         // (Must do this explicitly since GRBException doesn't inherit from std::exception)
-        static py::exception<GRBException> exc(niftyModule, "GRBException");
+        static py::exception<GRBException> exc(module, "GRBException");
         py::register_exception_translator([](std::exception_ptr p) {
             try {
                 if (p) std::rethrow_exception(p);
@@ -45,7 +60,7 @@ PYBIND11_PLUGIN(_nifty) {
     #endif
 
     // \TODO move to another header
-    py::class_<Configuration>(niftyModule, "Configuration",
+    py::class_<Configuration>(module, "Configuration",
         "This class show the compile Configuration\n"
         "Of the nifty python bindings\n"
     )
@@ -99,5 +114,5 @@ PYBIND11_PLUGIN(_nifty) {
         )
         
         ;
-    return niftyModule.ptr();
+    return module.ptr();
 }

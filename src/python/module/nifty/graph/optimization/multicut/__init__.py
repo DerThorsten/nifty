@@ -14,7 +14,7 @@ import sys
 from functools import partial
 from . import _multicut as __multicut
 from ._multicut import *
-from .... import Configuration
+from .... import Configuration, LogLevel
 from ... import (UndirectedGraph,EdgeContractionGraphUndirectedGraph)
 
 __all__ = [
@@ -83,19 +83,20 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
     O = objectiveCls
 
     def verboseVisitor(visitNth=1,timeLimitSolver=float('inf'), 
-                       timeLimitTotal=float('inf')):
+                       timeLimitTotal=float('inf'), logLevel=LogLevel.WARN):
         V = getMcCls("VerboseVisitor")
-        return V(int(visitNth),float(timeLimitSolver),float(timeLimitTotal))
+        return V(int(visitNth),float(timeLimitSolver),float(timeLimitTotal),logLevel)
     O.verboseVisitor = staticmethod(verboseVisitor)
 
 
     def loggingVisitor(visitNth=1,verbose=True,timeLimitSolver=float('inf'),
-                      timeLimitTotal=float('inf')):
+                      timeLimitTotal=float('inf'), logLevel=LogLevel.WARN):
         V = getMcCls("LoggingVisitor")
         return V(visitNth=int(visitNth),
                 verbose=bool(verbose),
                 timeLimitSolver=float(timeLimitSolver),
-                timeLimitTotal=float(timeLimitTotal))
+                timeLimitTotal=float(timeLimitTotal),
+                logLevel=logLevel)
     O.loggingVisitor = staticmethod(loggingVisitor)
 
 
@@ -157,7 +158,7 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
                 greedyFactory = greedyAdditiveFactory(visitNth=int(greedyVisitNth))
                 factory = func(*args, **kwargs)
                 return chainedSolversFactory(multicutFactories=[
-                    #greedyFactory,
+                    greedyFactory,
                     factory
                 ])
             else:
@@ -562,11 +563,11 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
     O.interfaceFlipperCcProposals = staticmethod(interfaceFlipperCcProposals)
 
 
-    def ramdomNodeColorCcProposals(numberOfColors=2):
+    def randomNodeColorCcProposals(numberOfColors=2):
         s,F = getSettingsAndFactoryCls("RandomNodeColorProposalGenerator")
         s.numberOfColors = int(numberOfColors)
         return F(s)
-    O.ramdomNodeColorCcProposals = staticmethod(ramdomNodeColorCcProposals)
+    O.randomNodeColorCcProposals = staticmethod(randomNodeColorCcProposals)
 
 
     @warmStartGreeedyDecorator

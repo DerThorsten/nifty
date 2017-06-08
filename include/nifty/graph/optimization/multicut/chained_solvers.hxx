@@ -160,8 +160,20 @@ namespace multicut{
         visitorProxy.begin(this);
 
         for(auto & mcFactory : settings_.multicutFactories){
+
+
+
+
+
+
+
             auto solver = mcFactory->createRawPtr(objective_);
+            visitorProxy.printLog(nifty::logging::LogLevel::INFO, 
+                std::string("Starting Solver: ")+solver->name());
+
+
             if(visitor != nullptr){
+                visitor->clearLogNames();
                 solver->optimize(nodeLabels, &noBeginEndVisitor);
             }
             else{

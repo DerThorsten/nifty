@@ -31,7 +31,8 @@ namespace common{
             const int visitNth = 1, 
             const bool verbose = true,
             const double timeLimitSolver = std::numeric_limits<double>::infinity(),
-            const double timeLimitTotal  = std::numeric_limits<double>::infinity()
+            const double timeLimitTotal  = std::numeric_limits<double>::infinity(),
+            const nifty::logging::LogLevel logLevel = nifty::logging::LogLevel::WARN
         )
         :   visitNth_(visitNth),
             verbose_(verbose),
@@ -41,6 +42,7 @@ namespace common{
             timeLimitTotal_(timeLimitTotal),
             runtimeSolver_(0.0),
             runtimeTotal_(0.0),
+            logLevel_(logLevel),
             logNames_(),
             logValues_(),
             iterations_(), 
@@ -112,8 +114,8 @@ namespace common{
         }
 
         virtual void printLog(const nifty::logging::LogLevel logLevel, const std::string & logString){
-            if(verbose_){
-                std::cout<<"LOG["<<int(logLevel)<<"]: "<<logString<<"\n";
+            if(int(logLevel) <= int(logLevel_)){
+                std::cout<<"LOG["<<nifty::logging::logLevelName(logLevel)<<"]: "<<logString<<"\n";
             }
         }
 
@@ -157,6 +159,7 @@ namespace common{
         double timeLimitSolver_;
         double runtimeSolver_;
         double runtimeTotal_;
+        nifty::logging::LogLevel logLevel_;
         TimerType timerSolver_;
         TimerType timerTotal_;
 
