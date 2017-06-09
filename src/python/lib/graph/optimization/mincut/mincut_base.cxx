@@ -1,3 +1,4 @@
+#include <cstddef>
 #include <pybind11/pybind11.h>
 #include <pybind11/numpy.h>
 
@@ -39,22 +40,22 @@ namespace mincut{
         const auto clsName = std::string("MincutBase") + objName;
         // base factory
         py::class_<
-            McBase, 
-            std::unique_ptr<McBase>, 
-            PyMcBase 
+            McBase,
+            std::unique_ptr<McBase>,
+            PyMcBase
         > mcBase(mincutModule, clsName.c_str());
-        
+
         mcBase
             .def(py::init<>())
 
-            .def("optimize", 
+            .def("optimize",
                 [](
                     McBase * self
                 ){
                     //std::cout<<"without arg\n";
                     const auto & graph = self->objective().graph();
                     //std::cout<<"optimize that damn thing\n";
-            
+
 
 
                     typename McBase::NodeLabels nodeLabels(graph,0);
@@ -62,7 +63,7 @@ namespace mincut{
                         py::gil_scoped_release allowThreads;
                         self->optimize(nodeLabels, nullptr);
                     }
-                    std::vector<size_t> shape = {size_t(graph.nodeIdUpperBound()+1)};
+                    std::vector<std::size_t> shape = {std::size_t(graph.nodeIdUpperBound()+1)};
                     nifty::marray::PyView<uint64_t> array(shape.begin(),shape.end());
                     for(auto node : graph.nodes()){
                         array(node) = nodeLabels[node];
@@ -71,7 +72,7 @@ namespace mincut{
 
                 }
             )
-            .def("optimize", 
+            .def("optimize",
                 [](
                     McBase * self,
                     McVisitorBase * visitor
@@ -79,7 +80,7 @@ namespace mincut{
                     //std::cout<<"with visitor\n";
                     const auto & graph = self->objective().graph();
                     //std::cout<<"optimize that damn thing\n";
-            
+
 
 
                     typename McBase::NodeLabels nodeLabels(graph,0);
@@ -87,7 +88,7 @@ namespace mincut{
                         py::gil_scoped_release allowThreads;
                         self->optimize(nodeLabels, visitor);
                     }
-                    std::vector<size_t> shape = {size_t(graph.nodeIdUpperBound()+1)};
+                    std::vector<std::size_t> shape = {std::size_t(graph.nodeIdUpperBound()+1)};
                     nifty::marray::PyView<uint64_t> array(shape.begin(),shape.end());
                     for(auto node : graph.nodes()){
                         array(node) = nodeLabels[node];
@@ -97,7 +98,7 @@ namespace mincut{
                 },
                 py::arg("visitor")
             )
-            .def("optimize", 
+            .def("optimize",
                 [](
                     McBase * self,
                     nifty::marray::PyView<uint64_t> array
@@ -126,7 +127,7 @@ namespace mincut{
                 },
                 py::arg("nodeLabels")
             )
-            .def("optimize", 
+            .def("optimize",
                 [](
                     McBase * self,
                     McVisitorBase * visitor,
@@ -173,10 +174,9 @@ namespace mincut{
             typedef MincutObjective<GraphType, double> ObjectiveType;
             exportMincutBaseT<ObjectiveType>(mincutModule);
         }
-    }        
+    }
 
-} // namespace nifty::graph::optimization::mincut 
-} // namespace nifty::graph::optimization   
+} // namespace nifty::graph::optimization::mincut
+} // namespace nifty::graph::optimization
 }
 }
-    

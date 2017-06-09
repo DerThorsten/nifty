@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cstddef>
 #include <vector>
 
 
@@ -18,10 +19,10 @@ namespace nifty{
 namespace graph{
 
 
-template<size_t DIM, class LABEL_TYPE>
+template<std::size_t DIM, class LABEL_TYPE>
 class Hdf5Labels;
 
-template<size_t DIM, class LABELS_PROXY>
+template<std::size_t DIM, class LABELS_PROXY>
 class GridRag;
 
 template<class LABEL_TYPE>
@@ -35,7 +36,7 @@ template< class GRID_RAG>
 struct ComputeRag;
 
 
-template<size_t DIM, class LABEL_TYPE>
+template<std::size_t DIM, class LABEL_TYPE>
 struct ComputeRag< GridRag<DIM,  Hdf5Labels<DIM, LABEL_TYPE> > > {
 
     template<class S>
@@ -50,7 +51,7 @@ struct ComputeRag< GridRag<DIM,  Hdf5Labels<DIM, LABEL_TYPE> > > {
 
         const auto & labelsProxy = rag.labelsProxy();
         const auto & shape = labelsProxy.shape();
-        
+
 
         const auto numberOfLabels = labelsProxy.numberOfLabels();
         rag.assign(numberOfLabels);
@@ -75,9 +76,9 @@ struct ComputeRag< GridRag<DIM,  Hdf5Labels<DIM, LABEL_TYPE> > > {
             perThreadDataVec[i].blockLabels.resize(blockShapeWithBorder.begin(), blockShapeWithBorder.end());
             perThreadDataVec[i].adjacency.resize(numberOfLabels);
         });
-        
-        
-        auto makeCoord2 = [](const Coord & coord,const size_t axis){
+
+
+        auto makeCoord2 = [](const Coord & coord,const std::size_t axis){
             Coord coord2 = coord;
             coord2[axis] += 1;
             return coord2;
@@ -92,7 +93,7 @@ struct ComputeRag< GridRag<DIM,  Hdf5Labels<DIM, LABEL_TYPE> > > {
         auto nBlocks = 0;
 
 
-        
+
         nifty::parallel::ThreadPool stSp(nifty::parallel::ParallelOptions(1));
         tools::parallelForEachBlockWithOverlap(stSp,shape, settings.blockShape, overlapBegin, overlapEnd,
         [&](
@@ -130,7 +131,7 @@ struct ComputeRag< GridRag<DIM,  Hdf5Labels<DIM, LABEL_TYPE> > > {
             auto & adjacency = perThreadDataVec[tid].adjacency;
             nifty::tools::forEachCoordinate(actualBlockShape,[&](const Coord & coord){
                 const auto lU = blockLabels(coord.asStdArray());
-                for(size_t axis=0; axis<DIM; ++axis){
+                for(std::size_t axis=0; axis<DIM; ++axis){
                     const auto coord2 = makeCoord2(coord, axis);
                     if(coord2[axis] < actualBlockShape[axis]){
                         const auto lV = blockLabels(coord2.asStdArray());
@@ -163,5 +164,3 @@ struct ComputeRag< GridRag<DIM,  Hdf5Labels<DIM, LABEL_TYPE> > > {
 
 } // end namespace graph
 } // end namespace nifty
-
-

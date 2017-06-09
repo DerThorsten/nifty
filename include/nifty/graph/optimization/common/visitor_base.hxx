@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cstddef>
 #include <string>
 #include <initializer_list>
 #include <sstream>
@@ -16,7 +17,7 @@ namespace common{
 
 
 
-    template<class SOLVER> 
+    template<class SOLVER>
     class VisitorBase{
     public:
 
@@ -34,7 +35,7 @@ namespace common{
         virtual void addLogNames(std::initializer_list<std::string> logNames){
 
         }
-        virtual void setLogValue(const size_t logIndex, double logValue){
+        virtual void setLogValue(const std::size_t logIndex, double logValue){
 
         }
 
@@ -47,7 +48,7 @@ namespace common{
 
 
     /*
-    template<class SOLVER> 
+    template<class SOLVER>
     class VerboseVisitor : public VisitorBase<SOLVER>{
     public:
         typedef SOLVER SolverType;
@@ -55,7 +56,7 @@ namespace common{
         typedef std::chrono::time_point<std::chrono::steady_clock> TimePointType;
 
         VerboseVisitor(
-            const int printNth = 1, 
+            const int printNth = 1,
             const double timeLimit = std::numeric_limits<double>::infinity()
         )
         :   printNth_(printNth),
@@ -69,7 +70,7 @@ namespace common{
             std::cout<<"begin inference\n";
             startTime_ = std::chrono::steady_clock::now();
         }
-        
+
         virtual bool visit(SolverType * solver) {
             runtime_ = std::chrono::duration_cast<TimeType>(std::chrono::steady_clock::now() - startTime_).count();
             if(iter_%printNth_ == 0){
@@ -86,11 +87,11 @@ namespace common{
             ++iter_;
             return runOpt_;
         }
-        
+
         virtual void end(SolverType * )   {
             std::cout<<"end inference\n";
         }
-        
+
         virtual void clearLogNames(){
             logNames_.clear();
             logValues_.clear();
@@ -99,7 +100,7 @@ namespace common{
             logNames_.assign(logNames.begin(), logNames.end());
             logValues_.resize(logNames.size());
         }
-        
+
         virtual void setLogValue(const size_t logIndex, double logValue){
             logValues_[logIndex] = logValue;
         }
@@ -111,12 +112,12 @@ namespace common{
         void stopOptimize(){
             runOpt_ = false;
         }
-    
+
     private:
         bool runOpt_;
         int printNth_;
         int iter_;
-        
+
         double timeLimit_;
         TimePointType startTime_;
         size_t runtime_;
@@ -134,14 +135,14 @@ namespace common{
     };
     */
 
-    template<class SOLVER> 
+    template<class SOLVER>
     class VerboseVisitor : public VisitorBase<SOLVER>{
     public:
         typedef SOLVER SolverType;
         typedef nifty::tools::Timer TimerType;
 
         VerboseVisitor(
-            const int printNth = 1, 
+            const int printNth = 1,
             const double timeLimitSolver = std::numeric_limits<double>::infinity(),
             const double timeLimitTotal = std::numeric_limits<double>::infinity(),
             const nifty::logging::LogLevel logLevel = nifty::logging::LogLevel::WARN
@@ -161,19 +162,19 @@ namespace common{
             timerSolver_.start();
             timerTotal_.start();
         }
-        
+
         virtual bool visit(SolverType * solver) {
             timerSolver_.stop();
             timerTotal_.stop();
             runtimeTotal_  += timerTotal_.elapsedSeconds();
             timerTotal_.reset().start();
-            runtimeSolver_ += timerSolver_.elapsedSeconds();           
+            runtimeSolver_ += timerSolver_.elapsedSeconds();
             if(iter_%printNth_ == 0){
                 std::stringstream ss;
                 ss << "E: " << solver->currentBestEnergy() << " ";
                 ss << "t[s]: " << runtimeSolver_ << " ";
                 ss << "/ " << runtimeTotal_ << " ";
-                for(size_t i=0; i<logNames_.size(); ++i){
+                for(std::size_t i=0; i<logNames_.size(); ++i){
                     ss<<logNames_[i]<<" "<<logValues_[i]<<" ";
                 }
                 ss<<"\n";
@@ -184,12 +185,12 @@ namespace common{
             timerSolver_.reset().start();
             return runOpt_;
         }
-        
+
         virtual void end(SolverType * )   {
             std::cout<<"end inference\n";
             timerSolver_.stop();
         }
-        
+
         virtual void clearLogNames(){
             logNames_.clear();
             logValues_.clear();
@@ -198,8 +199,8 @@ namespace common{
             logNames_.assign(logNames.begin(), logNames.end());
             logValues_.resize(logNames.size());
         }
-        
-        virtual void setLogValue(const size_t logIndex, double logValue){
+
+        virtual void setLogValue(const std::size_t logIndex, double logValue){
             logValues_[logIndex] = logValue;
         }
 
@@ -212,7 +213,7 @@ namespace common{
         void stopOptimize(){
             runOpt_ = false;
         }
-        
+
         double runtimeSolver() const{
             return runtimeSolver_;
         }
@@ -231,7 +232,7 @@ namespace common{
         bool runOpt_;
         int printNth_;
         int iter_;
-        
+
         double timeLimitTotal_;
         double timeLimitSolver_;
         double runtimeSolver_;
@@ -257,7 +258,7 @@ namespace common{
     };
 
 
-    template<class SOLVER> 
+    template<class SOLVER>
     class EmptyVisitor : public VisitorBase<SOLVER>{
     public:
         typedef SOLVER SolverType;
@@ -307,7 +308,7 @@ namespace common{
             }
         }
 
-        void setLogValue(const size_t logIndex, const double logValue)   {
+        void setLogValue(const std::size_t logIndex, const double logValue)   {
             if(visitor_ != nullptr){
                 visitor_->setLogValue(logIndex, logValue);
             }
