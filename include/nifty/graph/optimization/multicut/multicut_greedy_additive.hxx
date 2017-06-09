@@ -35,6 +35,8 @@ namespace multicut{
             int seed {42};
             bool addNoise {false};
             double sigma{1.0};
+
+            int visitNth{100};
         };
 
 
@@ -134,6 +136,10 @@ namespace multicut{
 
         const QueueType & queue()const{
             return pq_;
+        }   
+
+        const Settings & settings()const{
+            return settings_;
         }
 
     private:
@@ -232,6 +238,7 @@ namespace multicut{
             visitor->addLogNames({"#nodes","topWeight"});
             visitor->begin(this);
         }
+        auto c = 1;
         if(graph_.numberOfEdges()>0){
             currentBest_ = & nodeLabels;
             while(!callback_.done() ){
@@ -242,15 +249,19 @@ namespace multicut{
                 // contract it
                 edgeContractionGraph_.contractEdge(edgeToContract);
 
-            
-                if(visitor!=nullptr){
-                   visitor->setLogValue(0, edgeContractionGraph_.numberOfNodes());
-                   visitor->setLogValue(1, callback_.queue().topPriority());
-                   if(!visitor->visit(this)){
-                        std::cout<<"end by visitor\n";
-                       break;
-                   }
+                
+                if(c % callback_.settings().visitNth == 0){
+
+                    if(visitor!=nullptr){
+                       visitor->setLogValue(0, edgeContractionGraph_.numberOfNodes());
+                       visitor->setLogValue(1, callback_.queue().topPriority());
+                       if(!visitor->visit(this)){
+                            std::cout<<"end by visitor\n";
+                           break;
+                       }
+                    }
                 }
+                ++c;
             }
             
             for(auto node : graph_.nodes()){

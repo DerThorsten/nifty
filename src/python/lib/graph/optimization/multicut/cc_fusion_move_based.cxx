@@ -9,10 +9,16 @@
 #include "nifty/python/graph/optimization/multicut/multicut_objective.hxx"
 #include "nifty/python/graph/optimization/multicut/export_multicut_solver.hxx"
 
+// proposal generator helper
 #include "nifty/python/graph/optimization/common/py_proposal_generator_factory_base.hxx"
-#include "nifty/graph/optimization/common/proposal_generators/watershed_proposal_generator.hxx"
 
-#include "nifty/graph/optimization/multicut/multicut_cc_fusion_move_based.hxx"
+// proposal generators
+#include "nifty/graph/optimization/common/proposal_generators/watershed_proposal_generator.hxx"
+#include "nifty/graph/optimization/common/proposal_generators/interface_flipper_proposal_generator.hxx"
+#include "nifty/graph/optimization/common/proposal_generators/random_node_color_proposal_generator.hxx"
+
+// the solver
+#include "nifty/graph/optimization/multicut/cc_fusion_move_based.hxx"
 
 
 namespace py = pybind11;
@@ -39,13 +45,17 @@ namespace multicut{
         );
 
         
-        // concrete factories
-        { // watershed factory
+        // concrete proposal generators
+
+        { // watershed proposal generators
             typedef optCommon::WatershedProposalGenerator<ObjectiveType> ProposalGeneratorType;
             typedef typename ProposalGeneratorType::Settings PGenSettigns;
             typedef typename PGenSettigns::SeedingStrategie SeedingStrategie;
-            auto pGenSettigns = optCommon::exportCCProposalGenerator<ProposalGeneratorType>(module, "WatershedProposalGenerator",
-                MulticutObjectiveName<ObjectiveType>::name());
+            auto pGenSettigns = optCommon::exportCCProposalGenerator<ProposalGeneratorType>(
+                module, 
+                "WatershedProposalGenerator",
+                MulticutObjectiveName<ObjectiveType>::name()
+            );
             py::enum_<SeedingStrategie>(pGenSettigns, "SeedingStrategie")
                 .value("SEED_FROM_NEGATIVE", SeedingStrategie::SEED_FROM_NEGATIVE)
                 .value("SEED_FROM_ALL", SeedingStrategie::SEED_FROM_ALL)
@@ -57,27 +67,44 @@ namespace multicut{
                 .def_readwrite("numberOfSeeds", &PGenSettigns::numberOfSeeds)
             ;
         }
+
+        { // interface flipper proposal generator
+            typedef optCommon::InterfaceFlipperProposalGenerator<ObjectiveType> ProposalGeneratorType;
+            typedef typename ProposalGeneratorType::Settings PGenSettigns;
+            auto pGenSettigns = optCommon::exportCCProposalGenerator<ProposalGeneratorType>(
+                module, 
+                "InterfaceFlipperProposalGenerator",
+                MulticutObjectiveName<ObjectiveType>::name()
+            );
+
+            pGenSettigns
+                .def(py::init<>())
+            ;
+        }
+
+        { // interface flipper proposal generator
+            typedef optCommon::RandomNodeColorProposalGenerator<ObjectiveType> ProposalGeneratorType;
+            typedef typename ProposalGeneratorType::Settings PGenSettigns;
+            auto pGenSettigns = optCommon::exportCCProposalGenerator<ProposalGeneratorType>(
+                module, 
+                "RandomNodeColorProposalGenerator",
+                MulticutObjectiveName<ObjectiveType>::name()
+            );
+
+            pGenSettigns
+                .def(py::init<>())
+                .def_readwrite("numberOfColors", &PGenSettigns::numberOfColors)
+            ;
+        }
+
     
 
-        // the fusion move itself (or at least the settings)
-        typedef MulticutCcFusionMove<ObjectiveType>       MinCcFusionMoveType;
-        typedef typename MinCcFusionMoveType::Settings  MinCcFusionMoveSettings;
 
-        const std::string  fmSettingsName = std::string("MulticutCcFusionMoveSettings") + MulticutObjectiveName<ObjectiveType>::name();
-        py::class_<MinCcFusionMoveSettings >(module, fmSettingsName.c_str())
-            .def(py::init<>())
-            .def_readwrite("multicutFactory", &MinCcFusionMoveSettings::multicutFactory)
-        ;
-
-
-
-        typedef MulticutCcFusionMoveBased<ObjectiveType> Solver;
+        typedef CcFusionMoveBased<ObjectiveType> Solver;
         typedef typename Solver::Settings Settings;
 
         
-
-        
-        exportMulticutSolver<Solver>(module,"MulticutCcFusionMoveBased")
+        exportMulticutSolver<Solver>(module,"CcFusionMoveBased")
            .def(py::init<>())
            .def_readwrite("proposalGenerator", &Settings::proposalGeneratorFactory)
            .def_readwrite("numberOfThreads", &Settings::numberOfThreads)

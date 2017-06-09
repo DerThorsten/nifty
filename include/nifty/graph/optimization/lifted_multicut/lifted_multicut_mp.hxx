@@ -54,9 +54,9 @@ namespace lifted_multicut{
             // TODO do we have to call by value here due to using async or could we also use a call by refernce?
             // TODO need to change between between edge and node labelings -> could be done more efficient ?!
             std::vector<char> operator()(
-                    GraphType           originalGraph,
-                    PrimalRounderLiftedGraphType    liftedGraph,
-                    std::vector<double> edgeValues
+                    GraphType &&           originalGraph,
+                    PrimalRounderLiftedGraphType &&    liftedGraph,
+                    std::vector<double> && edgeValues
             ) {
 
                 std::vector<char> labeling(edgeValues.size(), 0);
@@ -101,8 +101,8 @@ namespace lifted_multicut{
             
             // Dummy implementation to work with LP_MP::MulticutConstructor
             std::vector<char> operator()(
-                    GraphType,
-                    std::vector<double>) {
+                    GraphType &&,
+                    std::vector<double> &&) {
                 return std::vector<char>();
             }
 

@@ -46,7 +46,7 @@ namespace multicut{
 
             // TODO do we have to call by value here due to using async or could we also use a call by refernce?
             // TODO need to change between between edge and node labelings -> could be done more efficient ?!
-            std::vector<char> operator()(GraphType g, std::vector<double> edgeValues) {
+            std::vector<char> operator()(GraphType && g, std::vector<double> && edgeValues) {
 
                 std::vector<char> labeling(g.numberOfEdges(), 0);
                 if(g.numberOfEdges() > 0) {

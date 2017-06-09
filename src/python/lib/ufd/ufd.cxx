@@ -10,6 +10,10 @@ namespace ufd{
 
     
 PYBIND11_PLUGIN(_ufd) {
+
+    py::options options;
+    options.disable_function_signatures();
+    
     py::module ufdModule("_ufd","ufd submodule");
     
     using namespace nifty::ufd;

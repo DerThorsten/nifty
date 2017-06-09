@@ -31,12 +31,12 @@ def gaussianGradientMagnitude(image, sigma, nSpatialDimensions=2):
         nChannels = image.shape[image.ndim-1]
         for c in range(nChannels):
             cImage = image[...,c]
-            gm = scipy.ndimage.filters.gaussian_gradient_magnitude(image, sigma)
+            gm = scipy.ndimage.filters.gaussian_gradient_magnitude(cImage, sigma)
             if out is None:
                 out = gm
             else:
                 out += gm
-            out /= image.nChannels
+            out /= nChannels
         return out
     else:
         raise RuntimeError("image dimension does not match spatial dimension")

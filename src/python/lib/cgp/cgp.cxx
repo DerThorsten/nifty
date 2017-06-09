@@ -22,6 +22,10 @@ namespace cgp{
 
 
 PYBIND11_PLUGIN(_cgp) {
+
+    py::options options;
+    options.disable_function_signatures();
+
     py::module cgpModule("_cgp", "cgp submodule of nifty");
 
     using namespace nifty::cgp;
