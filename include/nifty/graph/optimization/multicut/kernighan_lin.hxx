@@ -112,7 +112,7 @@ namespace multicut{
             return mx;
         }
 
-        double update_bipartition(std::vector<size_t>& A, std::vector<size_t>& B);
+        double update_bipartition(std::vector<uint64_t>& A, std::vector<uint64_t>& B);
 
         const Objective & objective_;
         const GraphType & graph_;
