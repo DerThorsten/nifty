@@ -93,7 +93,6 @@ namespace common{
             timerSolver_.reset().start();
             return runOpt_;
         }
-        virtual void end(SolverType * )   {
         
         virtual void end(SolverType * solver)   {
 
