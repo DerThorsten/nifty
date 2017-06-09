@@ -112,7 +112,7 @@ namespace multicut{
             return mx;
         }
 
-        double update_bipartition(std::vector<size_t>& A, std::vector<size_t>& B);
+        double update_bipartition(std::vector<uint64_t>& A, std::vector<uint64_t>& B);
 
         const Objective & objective_;
         const GraphType & graph_;
@@ -293,7 +293,7 @@ namespace multicut{
 
                     buffer_.referenced_by[i] = numberOfComponents;
 
-                    partitions.emplace_back(std::vector<size_t>());
+                    partitions.emplace_back(std::vector<uint64_t>());
                     partitions.back().push_back(i);
 
                     while (!S.empty())
@@ -607,7 +607,7 @@ namespace multicut{
             return max_move.first;
         }
         else{
-            for (size_t i = 0; i < moves.size(); ++i){
+            for (auto i = 0; i < moves.size(); ++i){
                 if (moves[i].new_label == label_B){
                     buffer_.vertex_labels[moves[i].v] = label_A;
                 }

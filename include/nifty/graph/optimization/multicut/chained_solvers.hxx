@@ -54,9 +54,12 @@ namespace multicut{
                 // nothing
             }
             virtual bool visit(Base * solver) {
-                if(visitor_ != nullptr)
-                    visitor_->visit(solver);
-                return true;
+                if(visitor_ != nullptr){
+                    return visitor_->visit(solver);
+                }
+                else{
+                    return true;
+                }
             }
             virtual void end(Base * solver)   {
                 // nothing
