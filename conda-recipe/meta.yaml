@@ -68,6 +68,7 @@ requirements:
     - futures
     - scikit-image >=0.13
     - scipy >= 0.19
+    
 
     {% if WITH_CPLEX is defined and WITH_CPLEX %}
     - cplex-shared # Need to make sure that cplex dylibs exist
