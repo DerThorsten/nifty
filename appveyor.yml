@@ -3,6 +3,9 @@ environment:
     - BUILD_TYPE: "MSVC_64"
       COMPILER: MSVC15
       PLATFORM: "x64"
+    - BUILD_TYPE: "MSVC_64_Python"
+      COMPILER: MSVC15
+      PLATFORM: "x64"
   global:
     PLATFORMTOOLSET: "v140"
 
@@ -13,12 +16,24 @@ install:
 # NOTE: need to use "call" because otherwise it won't work within an if block.
 - if [%BUILD_TYPE%]==[MSVC_64] call activate nifty
 
+- if [%BUILD_TYPE%]==[MSVC_64_Python] set PATH=C:\Miniconda36-x64\Scripts;%PATH%
+- if [%BUILD_TYPE%]==[MSVC_64_Python] conda config --add channels conda-forge --force
+- if [%BUILD_TYPE%]==[MSVC_64_Python] conda create -y --name nifty python=3 numpy boost hdf5 glpk
+# NOTE: need to use "call" because otherwise it won't work within an if block.
+- if [%BUILD_TYPE%]==[MSVC_64_Python] call activate nifty
+
 build_script:
 - if [%BUILD_TYPE%]==[MSVC_64] git submodule update --init --recursive
 - if [%BUILD_TYPE%]==[MSVC_64] mkdir build
 - if [%BUILD_TYPE%]==[MSVC_64] cd build
 - if [%BUILD_TYPE%]==[MSVC_64] cmake -G "Visual Studio 14 2015 Win64" -DBUILD_CPP_TEST=yes -DBUILD_CPP_EXAMPLES=yes -DWITH_GLPK=yes -DWITH_HDF5=yes -DWITH_LP_MP=yes -DWITH_QPBO=yes ..
 - if [%BUILD_TYPE%]==[MSVC_64] cmake --build . --config Release
+
+- if [%BUILD_TYPE%]==[MSVC_64_Python] git submodule update --init --recursive
+- if [%BUILD_TYPE%]==[MSVC_64_Python] mkdir build
+- if [%BUILD_TYPE%]==[MSVC_64_Python] cd build
+- if [%BUILD_TYPE%]==[MSVC_64_Python] cmake -G "Visual Studio 14 2015 Win64" -DBUILD_NIFTY_PYTHON=yes -DBUILD_CPP_TEST=no -DBUILD_CPP_EXAMPLES=no -DWITH_GLPK=yes -DWITH_HDF5=yes -DWITH_LP_MP=yes -DWITH_QPBO=yes  ..
+- if [%BUILD_TYPE%]==[MSVC_64_Python] cmake --build . --config Release
 
 test_script:
 - if [%BUILD_TYPE%]==[MSVC_64] ctest --output-on-failure

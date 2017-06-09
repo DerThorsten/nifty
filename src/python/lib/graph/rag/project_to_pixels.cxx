@@ -1,3 +1,4 @@
+#include <cstddef>
 #include <pybind11/pybind11.h>
 #include <pybind11/numpy.h>
 
@@ -17,7 +18,7 @@ namespace graph{
 
     using namespace py;
 
-    template<class RAG,class T,size_t DATA_DIM, bool AUTO_CONVERT>
+    template<class RAG,class T,std::size_t DATA_DIM, bool AUTO_CONVERT>
     void exportProjectScalarNodeDataToPixelsT(py::module & ragModule){
 
         ragModule.def("projectScalarNodeDataToPixels",
@@ -25,10 +26,10 @@ namespace graph{
                 const RAG & rag,
                 nifty::marray::PyView<T, 1, AUTO_CONVERT> nodeData,
                 const int numberOfThreads
-           ){  
+           ){
                 const auto labelsProxy = rag.labelsProxy();
                 const auto & shape = labelsProxy.shape();
-                const auto labels = labelsProxy.labels(); 
+                const auto labels = labelsProxy.labels();
 
                 nifty::marray::PyView<T, DATA_DIM> pixelData(shape.begin(),shape.end());
                 {
@@ -41,9 +42,9 @@ namespace graph{
         );
     }
 
-    
-    
-    
+
+
+
 
 
 
@@ -70,4 +71,3 @@ namespace graph{
 
 } // end namespace graph
 } // end namespace nifty
-    
