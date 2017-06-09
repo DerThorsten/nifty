@@ -1,3 +1,4 @@
+#include <cstddef>
 #include <pybind11/pybind11.h>
 #include <pybind11/numpy.h>
 
@@ -21,14 +22,14 @@ namespace graph{
     using namespace py;
 
 
-    template<class RAG,class T,size_t DATA_DIM>
+    template<class RAG,class T,std::size_t DATA_DIM>
     void exportGridRagAccumulateLabelsT(py::module & ragModule){
 
         ragModule.def("gridRagAccumulateLabels",
             [](
                 const RAG & rag,
                 nifty::marray::PyView<T, DATA_DIM> labels
-            ){  
+            ){
                 nifty::marray::PyView<T> nodeLabels({rag.numberOfNodes()});
                 {
                     py::gil_scoped_release allowThreads;
@@ -57,11 +58,10 @@ namespace graph{
             // accumulate labels
             exportGridRagAccumulateLabelsT<ExplicitLabelsGridRag2D, uint32_t, 2>(ragModule);
             exportGridRagAccumulateLabelsT<ExplicitLabelsGridRag3D, uint32_t, 3>(ragModule);
-            
+
 
         }
     }
 
 } // end namespace graph
 } // end namespace nifty
-    

@@ -1,6 +1,6 @@
 #pragma once
 
-
+#include <cstddef>
 #include <boost/iterator/counting_iterator.hpp>
 #include <boost/iterator/transform_iterator.hpp>
 #include <boost/iterator/iterator_facade.hpp>
@@ -39,7 +39,7 @@ namespace detail_graph{
 
 
 
-    template<size_t DIM, bool SIMPLE_NH>
+    template<std::size_t DIM, bool SIMPLE_NH>
     class UndirectedGridGraphIter{
     public:
         typedef andres::graph::GridGraph<DIM> AGridGraph;
@@ -65,10 +65,10 @@ namespace detail_graph{
 
         class AdjacencyIter
         : public boost::iterator_facade<
-            AdjacencyIter, 
+            AdjacencyIter,
             NodeAdjacency,
             std::random_access_iterator_tag,
-            const NodeAdjacency & 
+            const NodeAdjacency &
         >
         {
         public:
@@ -85,7 +85,7 @@ namespace detail_graph{
             void dencrement(){
                 --iter_;
             }
-            void advance(const size_t n){
+            void advance(const std::size_t n){
                 iter_+=n;
             }
             std::ptrdiff_t distance_to(const AdjacencyIter & other)const{
@@ -117,12 +117,12 @@ namespace detail_graph{
 };
 
 
-template<size_t DIM, bool SIMPLE_NH>
+template<std::size_t DIM, bool SIMPLE_NH>
 class UndirectedGridGraph;
 
 
 
-template<size_t DIM>
+template<std::size_t DIM>
 class UndirectedGridGraph<DIM,true> : public
     UndirectedGraphBase<
         UndirectedGridGraph<DIM, true>,
@@ -130,7 +130,7 @@ class UndirectedGridGraph<DIM,true> : public
         typename detail_graph::UndirectedGridGraphIter<DIM,true>::EdgeIter,
         typename detail_graph::UndirectedGridGraphIter<DIM,true>::AdjacencyIter
     >
-{  
+{
 private:
     typedef andres::graph::GridGraph<DIM> AndresGridGraphType;
     typedef typename AndresGridGraphType::VertexCoordinate AndresVertexCoordinate;
@@ -150,7 +150,7 @@ public:
     typedef SortedTag NodeIdOrderTag;
 
 
-    
+
     UndirectedGridGraph()
     : gridGraph_(){
     }
@@ -171,12 +171,12 @@ public:
         AndresVertexCoordinate ashape;
         std::copy(shape.rbegin(), shape.rend(), ashape.begin());
         gridGraph_.assign(ashape);
-        
+
     }
 
 
     //void assign(const uint64_t numberOfNodes = 0, const uint64_t reserveNumberOfEdges = 0);
-    
+
 
 
     // MUST IMPL INTERFACE
@@ -279,11 +279,11 @@ public:
      * @details convert an image with DIM dimension to an edge map
      * by applying a binary functor to the values of a node map at
      * the endpoints of an edge.
-     * 
+     *
      * @param       image the  input image
      * @param       binaryFunctor a binary functor
      * @param[out]  the result edge map
-     * 
+     *
      * @return [description]
      */
     template<class IMAGE, class BINARY_FUNCTOR, class EDGE_MAP>
@@ -296,9 +296,9 @@ public:
             const auto uv = this->uv(edge);
             CoordinateType cU,cV;
             nodeToCoordinate(uv.first,  cU);
-            nodeToCoordinate(uv.second, cV); 
+            nodeToCoordinate(uv.second, cV);
             const auto uVal = image(cU.asStdArray());
-            const auto vVal = image(cU.asStdArray()); 
+            const auto vVal = image(cU.asStdArray());
             edgeMap[edge] = binaryFunctor(uVal, vVal);
         }
     }
@@ -306,15 +306,15 @@ public:
     /**
      * @brief convert an image with DIM dimension to an edge map
      * @details convert an image with DIM dimension to an edge map
-     * by taking the values of the image at the 
+     * by taking the values of the image at the
      * interpixel coordinates.
      * The shape of the image must be 2*shape-1
-     * 
-     * 
+     *
+     *
      * @param       image the  input image
      * @param       binaryFunctor a binary functor
      * @param[out]  the result edge map
-     * 
+     *
      * @return [description]
      */
     template<class IMAGE, class EDGE_MAP>
@@ -324,7 +324,7 @@ public:
     )const{
 
         for(auto d=0; d<DIM; ++d){
-            NIFTY_CHECK_OP(shape(d)*2-1, ==, image.shape(d), 
+            NIFTY_CHECK_OP(shape(d)*2-1, ==, image.shape(d),
                 "wrong shape foer image to interpixel edge map")
         }
 
@@ -332,7 +332,7 @@ public:
             const auto uv = this->uv(edge);
             CoordinateType cU,cV;
             nodeToCoordinate(uv.first,  cU);
-            nodeToCoordinate(uv.second, cV); 
+            nodeToCoordinate(uv.second, cV);
             const auto uVal = image(cU.asStdArray());
             cU += cV;
             edgeMap[edge] = image(cU.asStdArray());
@@ -340,7 +340,7 @@ public:
     }
 
 
-    uint64_t shape(const size_t d)const{
+    uint64_t shape(const std::size_t d)const{
         return gridGraph_.shape(DIM-1-d);
     }
 
@@ -383,4 +383,3 @@ private:
 
 } // namespace nifty::graph
 } // namespace nifty
-

@@ -9,8 +9,6 @@ namespace agglo{
 
 
 
-
-
 template<class CLUSTER_POLICY>
 class AgglomerativeClustering{
 public:
@@ -22,6 +20,7 @@ public:
     :  clusterPolicy_(clusterPolicy){
 
     }
+
 
     void run(const bool verbose=false){
         while(!clusterPolicy_.isDone()){

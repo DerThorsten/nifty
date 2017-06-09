@@ -29,8 +29,8 @@ namespace multicut{
     void exportMulticutDecomposer(py::module &);
     void exportMulticutAndres(py::module &);
     void exportChainedSolvers(py::module &);
-    
-    
+    void exportMulticutCcFusionMoveBased(py::module &);
+    void exportKernighanLin(py::module &);
     #if WITH_LP_MP
     void exportMulticutMp(py::module &);
     #endif
@@ -40,6 +40,10 @@ namespace multicut{
 }
 
 PYBIND11_PLUGIN(_multicut) {
+
+    py::options options;
+    options.disable_function_signatures();
+    
     py::module multicutModule("_multicut", "multicut submodule of nifty.graph");
     
     using namespace nifty::graph::optimization::multicut;
@@ -56,7 +60,8 @@ PYBIND11_PLUGIN(_multicut) {
     exportMulticutDecomposer(multicutModule);
     exportMulticutAndres(multicutModule);
     exportChainedSolvers(multicutModule);
-
+    exportMulticutCcFusionMoveBased(multicutModule);
+    exportKernighanLin(multicutModule);
     
     #ifdef WITH_LP_MP
     exportMulticutMp(multicutModule);

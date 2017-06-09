@@ -32,6 +32,10 @@ namespace mincut{
 
 
 PYBIND11_PLUGIN(_mincut) {
+
+    py::options options;
+    options.disable_function_signatures();
+    
     py::module mincutModule("_mincut", "mincut submodule of nifty.graph");
     
     using namespace nifty::graph::optimization::mincut;

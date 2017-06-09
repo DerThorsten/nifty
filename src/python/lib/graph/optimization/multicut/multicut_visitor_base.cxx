@@ -60,10 +60,11 @@ namespace multicut{
             const auto visitorClsName = std::string("VerboseVisitor") + objName;
             typedef MulticutVerboseVisitor<ObjectiveType> VisitorType; 
             py::class_<VisitorType, std::unique_ptr<VisitorType> >(module, visitorClsName.c_str(),  visitorBase)
-                .def(py::init<const int, const double , const double>(),
-                    py::arg_t<int>("visitNth",1),
-                    py::arg_t<double>("timeLimitSolver",std::numeric_limits<double>::infinity()),
-                    py::arg_t<double>("timeLimitTotal",std::numeric_limits<double>::infinity())
+                .def(py::init<const int, const double , const double, const nifty::logging::LogLevel>(),
+                    py::arg("visitNth")=1,
+                    py::arg("timeLimitSolver") = std::numeric_limits<double>::infinity(),
+                    py::arg("timeLimitTotal") = std::numeric_limits<double>::infinity(),
+                    py::arg("logLevel") = nifty::logging::LogLevel::WARN
                 )
                 .def("stopOptimize",&VisitorType::stopOptimize)
                 .def_property_readonly("timeLimitSolver", &VisitorType::timeLimitSolver)
@@ -79,11 +80,12 @@ namespace multicut{
             typedef nifty::graph::optimization::common::LoggingVisitor<SolverBaseType> VisitorType;
 
             py::class_<VisitorType, std::unique_ptr<VisitorType> >(module, visitorName.c_str(),  visitorBase)
-                .def(py::init<const int, const bool, const double, const double>(),
+                .def(py::init<const int, const bool, const double, const double,const nifty::logging::LogLevel>(),
                     py::arg_t<int>("visitNth",1),
                     py::arg_t<bool>("verbose",true),
                     py::arg_t<double>("timeLimitSolver",std::numeric_limits<double>::infinity()),
-                    py::arg_t<double>("timeLimitTotal",std::numeric_limits<double>::infinity())
+                    py::arg_t<double>("timeLimitTotal",std::numeric_limits<double>::infinity()),
+                    py::arg("logLevel") = nifty::logging::LogLevel::WARN
                 )
                 .def("stopOptimize",&VisitorType::stopOptimize)
 

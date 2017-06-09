@@ -16,13 +16,13 @@ namespace nifty{
 namespace graph{
 namespace optimization{
 namespace multicut{
-   
+
 
 
     template<class OBJECTIVE>
     class ChainedSolvers : public MulticutBase<OBJECTIVE>
     {
-    public: 
+    public:
 
         typedef OBJECTIVE Objective;
         typedef OBJECTIVE ObjectiveType;
@@ -42,7 +42,7 @@ namespace multicut{
 
 
 
- 
+
         class NoBeginEndVisitor : public VisitorBase{
         public:
 
@@ -54,8 +54,12 @@ namespace multicut{
                 // nothing
             }
             virtual bool visit(Base * solver) {
-                if(visitor_ != nullptr)
-                    visitor_->visit(solver);
+                if(visitor_ != nullptr){
+                    return visitor_->visit(solver);
+                }
+                else{
+                    return true;
+                }
             }
             virtual void end(Base * solver)   {
                 // nothing
@@ -66,10 +70,10 @@ namespace multicut{
                     visitor_->clearLogNames();
             }
             virtual void addLogNames(std::initializer_list<std::string> logNames){
-                if(visitor_ != nullptr)                    
+                if(visitor_ != nullptr)
                     visitor_->addLogNames(logNames);
             }
-            
+
             virtual void setLogValue(const size_t logIndex, double logValue){
                 if(visitor_ != nullptr)
                     visitor_->setLogValue(logIndex, logValue);
@@ -85,7 +89,7 @@ namespace multicut{
             VisitorBase * visitor_;
         };
 
-    
+
     public:
 
         struct Settings{
@@ -95,7 +99,7 @@ namespace multicut{
         };
 
         virtual ~ChainedSolvers(){
-            
+
         }
         ChainedSolvers(const Objective & objective, const Settings & settings = Settings());
 
@@ -111,11 +115,11 @@ namespace multicut{
         virtual std::string name()const{
             return std::string("ChainedSolvers");
         }
-        virtual void weightsChanged(){ 
+        virtual void weightsChanged(){
         }
-        virtual double currentBestEnergy() {
-           return currentBestEnergy_;
-        }
+        //virtual double currentBestEnergy() {
+        //   return currentBestEnergy_;
+        // }
     private:
 
 
@@ -123,20 +127,21 @@ namespace multicut{
         Settings settings_;
         NodeLabels * currentBest_;
         double currentBestEnergy_;
-    
+
     };
 
-    
+
     template<class OBJECTIVE>
     ChainedSolvers<OBJECTIVE>::
     ChainedSolvers(
-        const Objective & objective, 
+        const Objective & objective,
         const Settings & settings
     )
     :   objective_(objective),
         settings_(settings),
-        currentBest_(nullptr),
-        currentBestEnergy_(std::numeric_limits<double>::infinity())
+        currentBest_(nullptr)
+        //,
+        //currentBestEnergy_(std::numeric_limits<double>::infinity())
     {
 
     }
@@ -145,23 +150,35 @@ namespace multicut{
     void ChainedSolvers<OBJECTIVE>::
     optimize(
         NodeLabels & nodeLabels,  VisitorBase * visitor
-    ){  
+    ){
 
 
-        
+
         VisitorProxy visitorProxy(visitor);
         NoBeginEndVisitor noBeginEndVisitor(visitor);
 
 
 
         currentBest_ = &nodeLabels;
-        currentBestEnergy_ = objective_.evalNodeLabels(nodeLabels);
-        
+        //currentBestEnergy_ = objective_.evalNodeLabels(nodeLabels);
+
         visitorProxy.begin(this);
 
         for(auto & mcFactory : settings_.multicutFactories){
+
+
+
+
+
+
+
             auto solver = mcFactory->createRawPtr(objective_);
+            visitorProxy.printLog(nifty::logging::LogLevel::INFO,
+                std::string("Starting Solver: ")+solver->name());
+
+
             if(visitor != nullptr){
+                visitor->clearLogNames();
                 solver->optimize(nodeLabels, &noBeginEndVisitor);
             }
             else{
@@ -169,7 +186,7 @@ namespace multicut{
             }
             delete solver;
         }
-       
+
         visitorProxy.end(this);
     }
 
@@ -185,4 +202,3 @@ namespace multicut{
 } // namespace nifty::graph::optimization
 } // namespace nifty::graph
 } // namespace nifty
-

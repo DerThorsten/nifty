@@ -1,36 +1,50 @@
+""" Multicut module of nifty
+
+This module implements multicut
+related functionality.
+
+For more details, see seection :ref:`theory_multicut`.
+
+"""
+
+
+
 from __future__ import absolute_import
 import sys
 from functools import partial
 from . import _multicut as __multicut
 from ._multicut import *
-from .... import Configuration
+from .... import Configuration, LogLevel
 from ... import (UndirectedGraph,EdgeContractionGraphUndirectedGraph)
 
 __all__ = [
     "ilpSettings"
 ]
-for key in __multicut.__dict__.keys():
-    try:
-        __multicut.__dict__[key].__module__='nifty.graph.optimization.multicut'
-    except:
-        pass
-    __all__.append(key)
+for key in _multicut.__dict__.keys():
+
+    if key not in ["__spec__","__doc__"]:
+        try:
+
+            value.__module__='nifty.graph.optimization.multicut'
+        except Exception as e:
+            continue
+        __all__.append(key)
 
 
 
 def ilpSettings(relativeGap=0.0, absoluteGap=0.0, memLimit=-1.0):
     """factory function to create :class:`IlpBackendSettigns` .
-    
+
     factory function to create :class:`IlpBackendSettigns` .
     This settings might be consumed by ILP solvers
     as CPLEX GUROBI and GLPK.
-        
+
     Args:
         relativeGap  (float): relative optimality gap (default: {0.0})
         absoluteGap  (float): absolute optimality gap (default: {0.0})
-        memLimit (float): memory limit in mega-bites 
+        memLimit (float): memory limit in mega-bites
             a value smaller as zero indicates no limit  (default: {-1.0})
-    
+
     Returns:
         :class:`IlpBackendSettings`: ilpSettings
     """
@@ -68,20 +82,21 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
 
     O = objectiveCls
 
-    def verboseVisitor(visitNth=1,timeLimitSolver=float('inf'), 
-                       timeLimitTotal=float('inf')):
+    def verboseVisitor(visitNth=1,timeLimitSolver=float('inf'),
+                       timeLimitTotal=float('inf'), logLevel=LogLevel.WARN):
         V = getMcCls("VerboseVisitor")
-        return V(int(visitNth),float(timeLimitSolver),float(timeLimitTotal))
+        return V(int(visitNth),float(timeLimitSolver),float(timeLimitTotal),logLevel)
     O.verboseVisitor = staticmethod(verboseVisitor)
 
 
     def loggingVisitor(visitNth=1,verbose=True,timeLimitSolver=float('inf'),
-                      timeLimitTotal=float('inf')):
+                      timeLimitTotal=float('inf'), logLevel=LogLevel.WARN):
         V = getMcCls("LoggingVisitor")
         return V(visitNth=int(visitNth),
                 verbose=bool(verbose),
                 timeLimitSolver=float(timeLimitSolver),
-                timeLimitTotal=float(timeLimitTotal))
+                timeLimitTotal=float(timeLimitTotal),
+                logLevel=logLevel)
     O.loggingVisitor = staticmethod(loggingVisitor)
 
 
@@ -101,10 +116,12 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
         return s
     O.watershedProposals = staticmethod(watershedProposals)
 
-    def greedyAdditiveFactory( weightStopCond=0.0, nodeNumStopCond=-1.0):
+    def greedyAdditiveFactory( weightStopCond=0.0, nodeNumStopCond=-1.0, visitNth=100):
         s,F = getSettingsAndFactoryCls("MulticutGreedyAdditive")
         s.weightStopCond = float(weightStopCond)
         s.nodeNumStopCond = float(nodeNumStopCond)
+        s.visitNth = int(visitNth)
+
         return F(s)
     O.greedyAdditiveFactory = staticmethod(greedyAdditiveFactory)
     O.greedyAdditiveFactory.__doc__ = """ create an instance of :class:`%s`
@@ -121,15 +138,37 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
     Args:
         weightStopCond (float): stop clustering when the highest
             weight in cluster-graph is lower as this value (default: {0.0})
-        nodeNumStopCond: stop clustering when a cluster-graph
+        nodeNumStopCond (float): stop clustering when a cluster-graph
             reached a certain number of nodes.
-            Numbers smaller 1 are interpreted as fraction 
+            Numbers smaller 1 are interpreted as fraction
             of the graphs number of nodes.
             If nodeNumStopCond is smaller 0 this
             stopping condition is ignored  (default: {-1})
-    Returns:    
+        visitNth (int) : only call the visitor each nth time.
+            This is useful to avoid to many couts (default: {1}).
+    Returns:
         %s : multicut factory
     """%(factoryClsName("MulticutGreedyAdditive"),factoryClsName("MulticutGreedyAdditive"))
+
+
+
+    def warmStartGreeedyDecorator(func):
+        def func_wrapper(*args, **kwargs):
+            warmStartGreedy = kwargs.pop('warmStartGreedy', False)
+            greedyVisitNth = kwargs.pop('greedyVisitNth', 100)
+            if(warmStartGreedy):
+                greedyFactory = greedyAdditiveFactory(visitNth=int(greedyVisitNth))
+                factory = func(*args, **kwargs)
+                return chainedSolversFactory(multicutFactories=[
+                    greedyFactory,
+                    factory
+                ])
+            else:
+                return func(*args, **kwargs)
+        return func_wrapper
+
+
+
 
 
     def chainedSolversFactory(multicutFactories):
@@ -141,7 +180,7 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
     O.chainedSolversFactory.__doc__ = """ create an instance of :class:`%s`
 
         Chain multiple solvers
-        such that each successor is warm-started with 
+        such that each successor is warm-started with
         its predecessor solver.
 
     Warning:
@@ -152,16 +191,17 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
             weight in cluster-graph is lower as this value (default: {0.0})
         nodeNumStopCond: stop clustering when a cluster-graph
             reached a certain number of nodes.
-            Numbers smaller 1 are interpreted as fraction 
+            Numbers smaller 1 are interpreted as fraction
             of the graphs number of nodes.
             If nodeNumStopCond is smaller 0 this
             stopping condition is ignored  (default: {-1})
-    Returns:    
+    Returns:
         %s : multicut factory
     """%(factoryClsName("ChainedSolvers"),factoryClsName("ChainedSolvers"))
 
 
 
+    @warmStartGreeedyDecorator
     def cgcFactory(doCutPhase=True, doGlueAndCutPhase=True, mincutFactory=None,
             multicutFactory=None,
             doBetterCutPhase=False, nodeNumStopCond=0.1, sizeRegularizer=1.0):
@@ -191,9 +231,9 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
         Cut glue and cut as described in :cite:`beier_14_cut`.
 
     Warning:
-        This solver should be warm started, otherwise 
+        This solver should be warm started, otherwise
         the glue phase is very slow.
-        Using :func:`greedyAdditiveFactory` to create 
+        Using :func:`greedyAdditiveFactory` to create
         a solver for warm starting is suggested.
 
 
@@ -214,7 +254,7 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
         sizeRegularizer: If doBetterCutPhase is True, we use a agglomeration to
             create a set of clusters.
             If this number is larger as zero, the clusters have about equal size (default: {1.0})
-    Returns:    
+    Returns:
         %s : multicut factory
     """%(factoryClsName("Cgc"),factoryClsName("Cgc"))
 
@@ -228,7 +268,7 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
         Currently the this function returns the same as
         :func:`greedyAdditiveFactory`
 
-    Returns:    
+    Returns:
         %s : multicut factory
     """%(factoryClsName("MulticutGreedyAdditive"))
 
@@ -248,9 +288,39 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
         same as :func:`greedyAddtiveFactory`.
 
 
-    Returns:    
+    Returns:
         %s : multicut factory
     """%tuple([factoryClsName("MulticutAndresGreedyAdditive")]*2)
+
+
+
+    @warmStartGreeedyDecorator
+    def kernighanLinFactory(
+            numberOfInnerIterations = sys.maxsize,
+            numberOfOuterIterations = 100,
+            epsilon = 1e-6):
+
+        s, F = getSettingsAndFactoryCls("KernighanLin")
+        s.numberOfInnerIterations = numberOfInnerIterations
+        s.numberOfOuterIterations = numberOfOuterIterations
+        s.epsilon = epsilon
+        return F(s)
+    O.kernighanLinFactory = staticmethod(kernighanLinFactory)
+    O.kernighanLinFactory.__doc__ = """ create an instance of :class:`%s`
+
+        Find approximate solutions via
+        agglomerative clustering as in :cite:`TODO`.
+
+
+    Args:
+        numberOfInnerIterations (int): number of inner iterations (default: {sys.maxsize})
+        numberOfOuterIterations (int): number of outer iterations        (default: {100})
+        epsilon (float): epsilon   (default: { 1e-6})
+        warmStartGreedy (bool): initialize with greedyAdditive  (default: {False})
+
+    Returns:
+        %s : multicut factory
+    """%tuple([factoryClsName("KernighanLin")]*2)
 
 
 
@@ -285,10 +355,9 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
         verbose (bool):                (default: {False})
         greedyWarmstart (bool): initialize with greedyAdditive  (default: {True})
 
-
-    Returns:    
+    Returns:
         %s : multicut factory
-    """%tuple([factoryClsName("MulticutAndresGreedyAdditive")]*2)
+    """%tuple([factoryClsName("MulticutAndresKernighanLin")]*2)
 
 
     def multicutDecomposerFactory(submodelFactory=None, fallthroughFactory=None):
@@ -314,15 +383,15 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
         positive weighted edges between the components one can
         optimize each model separately.
 
-        
+
 
     Note:
         Models might not decompose at all.
 
     Args:
-        submodelFactory: multicut factory for solving subproblems 
+        submodelFactory: multicut factory for solving subproblems
             if model decomposes (default: {:func:`defaultMulticutFactory()`})
-        fallthroughFactory: multicut factory for solving subproblems 
+        fallthroughFactory: multicut factory for solving subproblems
             if model does not decompose (default: {:func:`defaultMulticutFactory()`})
 
     Returns:
@@ -383,15 +452,15 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
     O.multicutIlpFactory.__doc__ = """ create an instance of an ilp multicut solver.
 
         Find a global optimal solution by a cutting plane ILP solver
-        as described in :cite:`Kappes-2011` 
-        and :cite:`andres_2011_probabilistic` 
-        
+        as described in :cite:`Kappes-2011`
+        and :cite:`andres_2011_probabilistic`
+
 
     Note:
         This might take very long for large models.
 
     Args:
-        addThreeCyclesConstraints (bool) : 
+        addThreeCyclesConstraints (bool) :
             explicitly add constraints for cycles
             of length 3 before optimization (default: {True})
         addOnlyViolatedThreeCyclesConstraints (bool) :
@@ -401,20 +470,20 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
             Settings of the ilp solver (default : {:func:`ilpSettings`})
         ilpSolver (str) : name of the solver. Must be in
             either "cplex", "gurobi" or "glpk".
-            "glpk" is only capable of solving very small models. 
+            "glpk" is only capable of solving very small models.
             (default: {"cplex"}).
-            
+
     Returns:
         %s or %s or %s : multicut factory for the corresponding solver
 
-    """%(      
+    """%(
         factoryClsName("MulticutIlpCplex"),
         factoryClsName("MulticutIlpGurobi"),
         factoryClsName("MulticutIlpGlpk"),
     )
 
 
-    # O.multicutIlpCplexFactory.__doc__ = 
+    # O.multicutIlpCplexFactory.__doc__ =
     # O.multicutIlpGurobiFactory
     # O.multicutIlpGlpkFactory
 
@@ -466,7 +535,10 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
 
     def fusionMoveSettings(mcFactory=None):
         if mcFactory is None:
-            mcFactory = MulticutObjectiveUndirectedGraph.greedyAdditiveFactory()
+            if Configuration.WITH_CPLEX:
+                mcFactory = MulticutObjectiveUndirectedGraph.multicutIlpCplexFactory()
+            else:
+                mcFactory = MulticutObjectiveUndirectedGraph.defaultMulticutFactory()
         s = getSettings('FusionMove')
         s.mcFactory = mcFactory
         return s
@@ -504,6 +576,57 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
         factory = factoryCls(solverSettings)
         return factory
     O.fusionMoveBasedFactory = staticmethod(fusionMoveBasedFactory)
+
+
+
+
+    def watershedCcProposals(sigma=1.0, numberOfSeeds=0.1):
+        s,F = getSettingsAndFactoryCls("WatershedProposalGenerator")
+        s.sigma = float(sigma)
+        s.numberOfSeeds = float(numberOfSeeds)
+        return F(s)
+    O.watershedCcProposals = staticmethod(watershedCcProposals)
+
+
+    def interfaceFlipperCcProposals():
+        s,F = getSettingsAndFactoryCls("InterfaceFlipperProposalGenerator")
+        return F(s)
+    O.interfaceFlipperCcProposals = staticmethod(interfaceFlipperCcProposals)
+
+
+    def randomNodeColorCcProposals(numberOfColors=2):
+        s,F = getSettingsAndFactoryCls("RandomNodeColorProposalGenerator")
+        s.numberOfColors = int(numberOfColors)
+        return F(s)
+    O.randomNodeColorCcProposals = staticmethod(randomNodeColorCcProposals)
+
+
+    @warmStartGreeedyDecorator
+    def ccFusionMoveBasedFactory(proposalGenerator=None,
+        numberOfThreads=1, numberOfIterations=100,
+        stopIfNoImprovement=10, fusionMove=None):
+
+
+        solverSettings,F = getSettingsAndFactoryCls("CcFusionMoveBased")
+
+        if proposalGenerator is None:
+            proposalGenerator = watershedCcProposals()
+        if fusionMove is None:
+            fusionMove = fusionMoveSettings()
+
+
+
+        solverSettings.fusionMoveSettings = fusionMove
+        solverSettings.proposalGenerator = proposalGenerator
+        solverSettings.numberOfIterations = int(numberOfIterations)
+        solverSettings.stopIfNoImprovement = int(stopIfNoImprovement)
+        solverSettings.numberOfThreads = int(numberOfThreads)
+        factory = F(solverSettings)
+        return factory
+    O.ccFusionMoveBasedFactory = staticmethod(ccFusionMoveBasedFactory)
+
+
+
 
 
 
@@ -567,9 +690,9 @@ del __extendMulticutObj
 
 #        (a + b)^2  &=  (a + b)(a + b) \\
 #                   &=  a^2 + 2ab + b^2
-                  
 
-    
+
+
 
 #     # hack docstrings
 #     MulticutObjectiveUndirectedGraph.__doc__ = mcDocstring % ("UndirectedGraph")
