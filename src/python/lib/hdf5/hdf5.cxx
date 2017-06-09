@@ -23,6 +23,10 @@ namespace hdf5{
 
 
 PYBIND11_PLUGIN(_hdf5) {
+
+    py::options options;
+    options.disable_function_signatures();
+    
     py::module hdf5Module("_hdf5", "hdf5 submodule of nifty");
 
     using namespace nifty::hdf5;

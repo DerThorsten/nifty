@@ -11,6 +11,9 @@ namespace filters{
 
     
 PYBIND11_PLUGIN(_filters) {
+    py::options options;
+    options.disable_function_signatures();
+    
     py::module filtersModule("_filters","filters submodule");
     
     using namespace nifty::filters;

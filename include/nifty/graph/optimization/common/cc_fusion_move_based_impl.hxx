@@ -1,5 +1,8 @@
 #pragma once
 
+#include <mutex>          // std::mutex
+
+
 #include <iomanip>
 #include <algorithm>
 #include <unordered_set>
@@ -69,7 +72,7 @@ namespace detail_cc_fusion{
             size_t numberOfIterations{1000};
             size_t stopIfNoImprovement{10};
             int numberOfThreads{1};
-
+            int numberOfParallelProposals{-1};
             FusionMoveSettingsType fusionMoveSettings;
         };
 
@@ -106,6 +109,8 @@ namespace detail_cc_fusion{
         ProposalGeneratorBaseType * proposalGenerator_;
 
         std::vector<FusionMoveType *> fusionMoves_;
+        std::vector<NodeLabels *>     solBufferIn_;
+        std::vector<NodeLabels *>     solBufferOut_;
     };
 
     
@@ -130,7 +135,12 @@ namespace detail_cc_fusion{
             // settings_.proposalGeneratorFactory =  std::make_shared<DefaultProposalGeneratorFactoryType>(pgenSettings);
         }
 
+
         const auto numberOfThreads = parallelOptions_.getActualNumThreads();
+
+        if(settings_.numberOfParallelProposals<0){
+            settings_.numberOfParallelProposals = numberOfThreads;
+        }
 
         // generate proposal generators
         proposalGenerator_ = settings_.proposalGeneratorFactory->createRawPtr(objective_, numberOfThreads);
@@ -138,10 +148,11 @@ namespace detail_cc_fusion{
 
         // generate fusion moves
         fusionMoves_.resize(numberOfThreads);
-
+        solBufferIn_.resize(numberOfThreads);
 
         parallel::parallel_foreach(threadPool_, numberOfThreads, [&](const int tid, const int i){
             fusionMoves_[i] = new FusionMoveType(objective_, settings_.fusionMoveSettings);
+            solBufferIn_[i] = new NodeLabels(graph_);
         });
 
 
@@ -159,6 +170,7 @@ namespace detail_cc_fusion{
         parallel::parallel_foreach(threadPool_,numberOfThreads,
         [&](const int tid, const int i){
             delete fusionMoves_[i];
+            delete solBufferIn_[i];
         });
     }
 
@@ -237,7 +249,130 @@ namespace detail_cc_fusion{
     optimizeMultiThread(
         VisitorProxy & visitorProxy
     ){
-        NIFTY_CHECK(false, "currently only single thread is implemented");
+        // NIFTY_CHECK(false, "currently only single thread is implemented");
+
+
+        std::mutex mtxCurrentBest;
+        std::mutex mtxProposals;
+        std::vector<NodeLabels> proposals;
+
+
+        auto & currentBest = *currentBest_;
+
+        auto nWithoutImprovment = 0;
+        for(auto iteration=0; iteration<settings_.numberOfIterations; ++iteration){
+
+            const auto oldBestEnergy = currentBestEnergy_;
+            proposals.clear();
+
+
+
+            visitorProxy.printLog(nifty::logging::LogLevel::INFO, 
+                std::string("Generating Proposals (and fuse with current best)"));
+
+
+            nifty::parallel::parallel_foreach(threadPool_,
+                settings_.numberOfParallelProposals,
+                [&](const size_t threadId, int proposalIndex){
+
+                    
+                    NodeLabels currentBestBuffer(graph_);
+
+                    // buffer current best
+                    mtxCurrentBest.lock();
+                    for(const auto node : graph_.nodes()){
+                        currentBestBuffer[node] = currentBest[node];
+                    }
+                    mtxCurrentBest.unlock();
+
+                    // generate a proposal
+                    auto & proposal = *solBufferIn_[threadId];
+                    proposalGenerator_->generateProposal(currentBestBuffer, proposal, threadId);
+                        
+
+                    // evaluate the energy of the proposal
+                    const auto eProposal = objective_.evalNodeLabels(proposal);
+
+
+                    if(currentBestEnergy_ >= -0.0000001 && iteration == 0){
+
+                        // just accept this as current best
+                        mtxCurrentBest.lock();
+                        for(const auto node : graph_.nodes()){
+                            currentBest[node] = proposal[node];
+                        }
+                        currentBestEnergy_ = eProposal;
+                        mtxCurrentBest.unlock();
+
+                    }
+                    else{
+                        // fuse with the current best
+                        NodeLabels res(graph_);
+                        auto & fm = *(fusionMoves_[threadId]);
+                        fm.fuse( {&proposal, &currentBestBuffer}, &res);
+                        const auto eFused = objective_.evalNodeLabels(res);
+
+                        if(eFused < currentBestEnergy_){
+                            mtxCurrentBest.lock();
+                            for(const auto node : graph_.nodes()){
+                                currentBest[node] = res[node];
+                            }
+                            currentBestEnergy_ = eFused;
+                            mtxCurrentBest.unlock();
+                        }
+                        else if(eFused + 0.0000001 >= currentBestEnergy_){
+                            // the same...
+
+                        }
+                        else{
+                            // remember
+                            mtxProposals.lock();
+                            proposals.push_back(res);
+                            mtxProposals.unlock();
+                        }
+                    }
+                }
+            );
+
+            
+            if(proposals.size() >= 2){
+
+                visitorProxy.printLog(nifty::logging::LogLevel::INFO, 
+                    std::string("Fuse proposals #")+std::to_string(proposals.size()));
+
+                std::vector<const NodeLabels*> toFuse;
+                for(const auto & p : proposals){
+                    toFuse.push_back(&p);
+                }  
+
+                auto & fm = *(fusionMoves_[0]);
+                fm.fuse( toFuse, &currentBest);
+                currentBestEnergy_ = objective_.evalNodeLabels(currentBest);
+            }
+
+            if(currentBestEnergy_ < oldBestEnergy){
+                if(!visitorProxy.visit(this)){
+                    break;
+                }
+                nWithoutImprovment = 0;
+            }
+            else{
+                ++nWithoutImprovment;
+            }
+
+            if(nWithoutImprovment >= settings_.stopIfNoImprovement){
+                break;
+            }
+
+
+
+        }
+
+
+
+
+
+
     }
 
     template<class OBJECTIVE, class SOLVER_BASE, class FUSION_MOVE>

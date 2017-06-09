@@ -27,6 +27,10 @@ namespace ground_truth{
 
 
 PYBIND11_PLUGIN(_ground_truth) {
+
+    py::options options;
+    options.disable_function_signatures();
+    
     py::module groundTruthModule("_ground_truth", "ground truth submodule of nifty python bindings");
 
     using namespace nifty::ground_truth;

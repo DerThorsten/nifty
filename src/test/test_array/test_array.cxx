@@ -1,7 +1,3 @@
-#define BOOST_TEST_MODULE NiftyArrayTest
-
-#include <boost/test/unit_test.hpp>
-
 #include <iostream> 
 #include <typeinfo>
 #include <typeindex>
@@ -13,8 +9,7 @@
 #include "nifty/tools/runtime_check.hxx"
 
 
-
-BOOST_AUTO_TEST_CASE(ArrayTest)
+void testArray()
 {
     
     typedef nifty::array::ArrayExtender<std::vector<int> > IntVec;
@@ -37,7 +32,7 @@ BOOST_AUTO_TEST_CASE(ArrayTest)
     std::cout<<aVec;
 }
 
-BOOST_AUTO_TEST_CASE(StaticArrayTest)
+void testStaticArray()
 {
     
     typedef nifty::array::ArrayExtender<nifty::array::StaticArray<int,2> > IntVec;
@@ -56,8 +51,7 @@ BOOST_AUTO_TEST_CASE(StaticArrayTest)
     std::cout<<bVec;
 }
 
-
-BOOST_AUTO_TEST_CASE(ArrayCoutOperator)
+void testArrayCoutOperator()
 {
     
     typedef nifty::array::ArrayExtender<nifty::array::StaticArray<int,2> > IntVec;
@@ -69,8 +63,7 @@ BOOST_AUTO_TEST_CASE(ArrayCoutOperator)
     std::cout<<ss.str();
 }
 
-
-BOOST_AUTO_TEST_CASE(StaticArrayConstructor)
+void testStaticArrayConstructor()
 {
     typedef nifty::array::StaticArray<int64_t, 3> Coord;
     Coord c(-2);
@@ -78,4 +71,12 @@ BOOST_AUTO_TEST_CASE(StaticArrayConstructor)
     NIFTY_TEST_OP(c[0],==,-2);
     NIFTY_TEST_OP(c[1],==,-2);
     NIFTY_TEST_OP(c[2],==,-2);
+}
+
+int main(){
+
+    testArray();
+    testStaticArray();
+    testArrayCoutOperator();
+    testStaticArrayConstructor();
 }

@@ -32,7 +32,8 @@ namespace common{
             const int visitNth = 1,
             const bool verbose = true,
             const double timeLimitSolver = std::numeric_limits<double>::infinity(),
-            const double timeLimitTotal  = std::numeric_limits<double>::infinity()
+            const double timeLimitTotal  = std::numeric_limits<double>::infinity(),
+            const nifty::logging::LogLevel logLevel = nifty::logging::LogLevel::WARN
         )
         :   visitNth_(visitNth),
             verbose_(verbose),
@@ -42,6 +43,7 @@ namespace common{
             timeLimitTotal_(timeLimitTotal),
             runtimeSolver_(0.0),
             runtimeTotal_(0.0),
+            logLevel_(logLevel),
             logNames_(),
             logValues_(),
             iterations_(),
@@ -91,8 +93,30 @@ namespace common{
             timerSolver_.reset().start();
             return runOpt_;
         }
-
         virtual void end(SolverType * )   {
+        
+        virtual void end(SolverType * solver)   {
+
+
+            timerSolver_.stop();
+            timerTotal_.stop();
+            runtimeTotal_  += timerTotal_.elapsedSeconds();
+            timerTotal_.reset().start();
+            runtimeSolver_ +=  timerSolver_.elapsedSeconds();
+
+
+            const auto e = solver->currentBestEnergy();
+            iterations_.push_back(iter_);
+            energies_.push_back(e);
+            runtimes_.push_back(runtimeSolver_);
+
+            std::stringstream ss;
+            ss << "E: " << e << " ";
+            ss << "t[s]: " << runtimeSolver_ << " ";
+            ss << "/ " << runtimeTotal_ << " ";
+            ss<<"\n";
+            std::cout<<ss.str();
+
             if(verbose_){
                 std::cout<<"end inference\n";
             }
@@ -113,8 +137,8 @@ namespace common{
         }
 
         virtual void printLog(const nifty::logging::LogLevel logLevel, const std::string & logString){
-            if(verbose_){
-                std::cout<<"LOG["<<int(logLevel)<<"]: "<<logString<<"\n";
+            if(int(logLevel) <= int(logLevel_)){
+                std::cout<<"LOG["<<nifty::logging::logLevelName(logLevel)<<"]: "<<logString<<"\n";
             }
         }
 
@@ -158,6 +182,7 @@ namespace common{
         double timeLimitSolver_;
         double runtimeSolver_;
         double runtimeTotal_;
+        nifty::logging::LogLevel logLevel_;
         TimerType timerSolver_;
         TimerType timerTotal_;
 
