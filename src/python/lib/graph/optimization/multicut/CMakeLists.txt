@@ -15,6 +15,7 @@ SET(MOD_SOURCES
         perturb_and_map.cxx
         chained_solvers.cxx
         cgc.cxx
+        kernighan_lin.cxx
 )
 
 if(WITH_LP_MP)

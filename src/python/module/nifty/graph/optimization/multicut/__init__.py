@@ -294,6 +294,36 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
 
 
 
+    @warmStartGreeedyDecorator
+    def kernighanLinFactory(
+            numberOfInnerIterations = sys.maxsize,
+            numberOfOuterIterations = 100,
+            epsilon = 1e-6):
+
+        s, F = getSettingsAndFactoryCls("KernighanLin")
+        s.numberOfInnerIterations = numberOfInnerIterations
+        s.numberOfOuterIterations = numberOfOuterIterations
+        s.epsilon = epsilon
+        return F(s)
+    O.kernighanLinFactory = staticmethod(kernighanLinFactory)
+    O.kernighanLinFactory.__doc__ = """ create an instance of :class:`%s`
+
+        Find approximate solutions via
+        agglomerative clustering as in :cite:`TODO`.
+
+
+    Args:
+        numberOfInnerIterations (int): number of inner iterations (default: {sys.maxsize})
+        numberOfOuterIterations (int): number of outer iterations        (default: {100})
+        epsilon (float): epsilon   (default: { 1e-6})
+        warmStartGreedy (bool): initialize with greedyAdditive  (default: {False})
+
+    Returns:
+        %s : multicut factory
+    """%tuple([factoryClsName("KernighanLin")]*2)
+
+
+
     def multicutAndresKernighanLinFactory(
             numberOfInnerIterations = sys.maxsize,
             numberOfOuterIterations = 100,
@@ -325,10 +355,9 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
         verbose (bool):                (default: {False})
         greedyWarmstart (bool): initialize with greedyAdditive  (default: {True})
 
-
     Returns:
         %s : multicut factory
-    """%tuple([factoryClsName("MulticutAndresGreedyAdditive")]*2)
+    """%tuple([factoryClsName("MulticutAndresKernighanLin")]*2)
 
 
     def multicutDecomposerFactory(submodelFactory=None, fallthroughFactory=None):

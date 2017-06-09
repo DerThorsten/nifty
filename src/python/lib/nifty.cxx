@@ -36,6 +36,7 @@ PYBIND11_PLUGIN(_nifty) {
         .value("ERROR", nifty::logging::LogLevel::ERROR)
         .value("WARN", nifty::logging::LogLevel::WARN)
         .value("INFO", nifty::logging::LogLevel::INFO)
+        .value("DEBUG", nifty::logging::LogLevel::DEBUG)
         .value("TRACE", nifty::logging::LogLevel::TRACE)
         //.value("Cat", LogLevel::Cat)
         //.export_values();

@@ -113,9 +113,9 @@ namespace multicut{
         }
         virtual void weightsChanged(){ 
         }
-        virtual double currentBestEnergy() {
-           return currentBestEnergy_;
-        }
+        //virtual double currentBestEnergy() {
+        //   return currentBestEnergy_;
+        // }
     private:
 
 
@@ -135,8 +135,9 @@ namespace multicut{
     )
     :   objective_(objective),
         settings_(settings),
-        currentBest_(nullptr),
-        currentBestEnergy_(std::numeric_limits<double>::infinity())
+        currentBest_(nullptr)
+        //,
+        //currentBestEnergy_(std::numeric_limits<double>::infinity())
     {
 
     }
@@ -155,7 +156,7 @@ namespace multicut{
 
 
         currentBest_ = &nodeLabels;
-        currentBestEnergy_ = objective_.evalNodeLabels(nodeLabels);
+        //currentBestEnergy_ = objective_.evalNodeLabels(nodeLabels);
         
         visitorProxy.begin(this);
 

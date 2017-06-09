@@ -93,7 +93,29 @@ namespace common{
             return runOpt_;
         }
         
-        virtual void end(SolverType * )   {
+        virtual void end(SolverType * solver)   {
+
+
+            timerSolver_.stop();
+            timerTotal_.stop();
+            runtimeTotal_  += timerTotal_.elapsedSeconds();
+            timerTotal_.reset().start();
+            runtimeSolver_ +=  timerSolver_.elapsedSeconds();
+
+
+            const auto e = solver->currentBestEnergy();
+            iterations_.push_back(iter_);
+            energies_.push_back(e);
+            runtimes_.push_back(runtimeSolver_);
+
+            std::stringstream ss;
+            ss << "E: " << e << " ";
+            ss << "t[s]: " << runtimeSolver_ << " ";
+            ss << "/ " << runtimeTotal_ << " ";
+            ss<<"\n";
+            std::cout<<ss.str();
+
+
             if(verbose_){
                 std::cout<<"end inference\n";
             }
