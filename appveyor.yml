@@ -12,13 +12,13 @@ environment:
 install:
 - if [%BUILD_TYPE%]==[MSVC_64] set PATH=C:\Miniconda36-x64\Scripts;%PATH%
 - if [%BUILD_TYPE%]==[MSVC_64] conda config --add channels conda-forge --force
-- if [%BUILD_TYPE%]==[MSVC_64] conda create -y --name nifty python=3 numpy boost hdf5 glpk
+- if [%BUILD_TYPE%]==[MSVC_64] conda create        -y --name nifty python=3 numpy boost hdf5 glpk scikit-image scipy nose
 # NOTE: need to use "call" because otherwise it won't work within an if block.
 - if [%BUILD_TYPE%]==[MSVC_64] call activate nifty
 
 - if [%BUILD_TYPE%]==[MSVC_64_Python] set PATH=C:\Miniconda36-x64\Scripts;%PATH%
 - if [%BUILD_TYPE%]==[MSVC_64_Python] conda config --add channels conda-forge --force
-- if [%BUILD_TYPE%]==[MSVC_64_Python] conda create -y --name nifty python=3 numpy boost hdf5 glpk
+- if [%BUILD_TYPE%]==[MSVC_64_Python] conda create -y --name nifty python=3 numpy boost hdf5 glpk scikit-image scipy nose
 # NOTE: need to use "call" because otherwise it won't work within an if block.
 - if [%BUILD_TYPE%]==[MSVC_64_Python] call activate nifty
 
@@ -34,9 +34,12 @@ build_script:
 - if [%BUILD_TYPE%]==[MSVC_64_Python] cd build
 - if [%BUILD_TYPE%]==[MSVC_64_Python] cmake -G "Visual Studio 14 2015 Win64" -DBUILD_NIFTY_PYTHON=yes -DBUILD_CPP_TEST=no -DBUILD_CPP_EXAMPLES=no -DWITH_GLPK=yes -DWITH_HDF5=yes -DWITH_LP_MP=no -DWITH_QPBO=no  ..
 - if [%BUILD_TYPE%]==[MSVC_64_Python] cmake --build . --config Release
+- if [%BUILD_TYPE%]==[MSVC_64_Python] cmake --build . --config Release
+- if [%BUILD_TYPE%]==[MSVC_64_Python] cmake --install . --config Release
 
 test_script:
 - if [%BUILD_TYPE%]==[MSVC_64] ctest --output-on-failure
+- if [%BUILD_TYPE%]==[MSVC_64_Python] cmake --python-test . --config Release
 
 # Enable this to be able to login to the build worker. You can use the
 # `remmina` program in Ubuntu, use the login information that the line below
