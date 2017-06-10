@@ -39,7 +39,14 @@ build_script:
 
 test_script:
 - if [%BUILD_TYPE%]==[MSVC_64] ctest --output-on-failure
-- if [%BUILD_TYPE%]==[MSVC_64_Python] cmake --python-test . --config Release
+- if [%BUILD_TYPE%]==[MSVC_64_Python] cd ../src/python/test
+- if [%BUILD_TYPE%]==[MSVC_64_Python] call nosetests  cgp/*.py
+- if [%BUILD_TYPE%]==[MSVC_64_Python] call nosetests  graph/lifted_multicut/*.py
+- if [%BUILD_TYPE%]==[MSVC_64_Python] call nosetests  graph/multicut/*.py
+- if [%BUILD_TYPE%]==[MSVC_64_Python] call nosetests  graph/mincut/*.py
+- if [%BUILD_TYPE%]==[MSVC_64_Python] call nosetests  graph/agglo/*.py
+- if [%BUILD_TYPE%]==[MSVC_64_Python] call nosetests  hdf5/*.py
+- if [%BUILD_TYPE%]==[MSVC_64_Python] call nosetests  tools/*.py
 
 # Enable this to be able to login to the build worker. You can use the
 # `remmina` program in Ubuntu, use the login information that the line below
