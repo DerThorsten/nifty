@@ -31,13 +31,13 @@ namespace common{
         typedef typename GraphType:: template NodeMap<uint64_t>  ProposalType;
         typedef typename GraphType:: template NodeMap<bool>  IsUsed;    
             
-        struct Settings{
+        struct SettingsType{
         };
 
         InterfaceFlipperProposalGenerator(
             const ObjectiveType & objective, 
             const size_t numberOfThreads,
-            const Settings & settings  = Settings()
+            const SettingsType & settings  = SettingsType()
         )
         :   objective_(objective),
             numberOfThreads_(numberOfThreads),
@@ -103,7 +103,7 @@ namespace common{
     private:
         const ObjectiveType & objective_;
         size_t numberOfThreads_;
-        Settings settings_;
+        SettingsType settings_;
         std::vector<std::mt19937> gens_;
         std::vector< std::unique_ptr<IsUsed> > isUsedVec_;
         std::uniform_int_distribution<>  binaryDist_;

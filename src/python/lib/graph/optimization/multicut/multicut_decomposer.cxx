@@ -53,13 +53,12 @@ namespace multicut{
 
         typedef OBJECTIVE ObjectiveType;
         typedef MulticutDecomposer<ObjectiveType> Solver;
-        typedef typename Solver::Settings Settings;
-        typedef MulticutFactory<Solver> Factory;
+        typedef typename Solver::SettingsType SettingsType;
         const auto solverName = std::string("MulticutDecomposer");
         exportMulticutSolver<Solver>(multicutModule, solverName.c_str())
             .def(py::init<>())
-            .def_readwrite("submodelFactory",   &Settings::submodelFactory)
-            .def_readwrite("fallthroughFactory",&Settings::fallthroughFactory)
+            .def_readwrite("submodelFactory",   &SettingsType::submodelFactory)
+            .def_readwrite("fallthroughFactory",&SettingsType::fallthroughFactory)
         ; 
     }
 

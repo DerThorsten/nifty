@@ -64,7 +64,7 @@ namespace detail_kernighang_lin{
 
 
 
-        struct Settings {
+        struct SettingsType {
             std::size_t numberOfIterations { std::numeric_limits<std::size_t>::max() };
             double epsilon { 1e-9 };
         };
@@ -85,7 +85,7 @@ namespace detail_kernighang_lin{
 
         TwoCut(
             const ObjectiveType & objective,
-            const Settings & settings = Settings()
+            const SettingsType & settings = SettingsType()
         )
         :   objective_(objective),
             settings_(settings),
@@ -326,7 +326,7 @@ namespace detail_kernighang_lin{
 
     private:
         const ObjectiveType & objective_;
-        Settings settings_;
+        SettingsType settings_;
         const GraphType & graph_;
         const LiftedGraphType & liftedGraph_;
         const WeightsMap & weights_;

@@ -22,7 +22,7 @@ namespace multicut{
         
         typedef OBJECTIVE ObjectiveType;
         typedef MulticutMp<ObjectiveType> Solver;
-        typedef typename Solver::Settings Settings;
+        typedef typename Solver::SettingsType SettingsType;
 
         const auto objName = MulticutObjectiveName<ObjectiveType>::name();
         const auto solverName = std::string("MulticutMp");
@@ -51,23 +51,23 @@ namespace multicut{
         // FIXME verbose has no effect yet
         exportMulticutSolver<Solver>(multicutModule, solverName.c_str(), docHelper)
             .def(py::init<>())
-            .def_readwrite("mcFactory",&Settings::mcFactory)
-            .def_readwrite("verbose",&Settings::verbose)
-            .def_readwrite("numberOfIterations",&Settings::numberOfIterations)
-            .def_readwrite("primalComputationInterval",&Settings::primalComputationInterval)
-            .def_readwrite("standardReparametrization",&Settings::standardReparametrization)
-            .def_readwrite("roundingReparametrization",&Settings::roundingReparametrization)
-            .def_readwrite("tightenReparametrization",&Settings::tightenReparametrization)
-            .def_readwrite("tighten",&Settings::tighten)
-            .def_readwrite("tightenInterval",&Settings::tightenInterval)
-            .def_readwrite("tightenIteration",&Settings::tightenIteration)
-            .def_readwrite("tightenSlope",&Settings::tightenSlope)
-            .def_readwrite("tightenConstraintsPercentage",&Settings::tightenConstraintsPercentage)
-            .def_readwrite("numberOfIterations",&Settings::numberOfIterations)
-            .def_readwrite("minDualImprovement",&Settings::minDualImprovement)
-            .def_readwrite("minDualImprovementInterval",&Settings::minDualImprovementInterval)
-            .def_readwrite("timeout",&Settings::timeout)
-            .def_readwrite("numberOfThreads",&Settings::numberOfThreads)
+            .def_readwrite("mcFactory",&SettingsType::mcFactory)
+            .def_readwrite("verbose",&SettingsType::verbose)
+            .def_readwrite("numberOfIterations",&SettingsType::numberOfIterations)
+            .def_readwrite("primalComputationInterval",&SettingsType::primalComputationInterval)
+            .def_readwrite("standardReparametrization",&SettingsType::standardReparametrization)
+            .def_readwrite("roundingReparametrization",&SettingsType::roundingReparametrization)
+            .def_readwrite("tightenReparametrization",&SettingsType::tightenReparametrization)
+            .def_readwrite("tighten",&SettingsType::tighten)
+            .def_readwrite("tightenInterval",&SettingsType::tightenInterval)
+            .def_readwrite("tightenIteration",&SettingsType::tightenIteration)
+            .def_readwrite("tightenSlope",&SettingsType::tightenSlope)
+            .def_readwrite("tightenConstraintsPercentage",&SettingsType::tightenConstraintsPercentage)
+            .def_readwrite("numberOfIterations",&SettingsType::numberOfIterations)
+            .def_readwrite("minDualImprovement",&SettingsType::minDualImprovement)
+            .def_readwrite("minDualImprovementInterval",&SettingsType::minDualImprovementInterval)
+            .def_readwrite("timeout",&SettingsType::timeout)
+            .def_readwrite("numberOfThreads",&SettingsType::numberOfThreads)
         ; 
 
     }

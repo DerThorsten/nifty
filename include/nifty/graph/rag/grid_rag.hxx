@@ -52,8 +52,8 @@ class GridRag : public UndirectedGraph<>{
 public:
     struct DontComputeRag{};
     typedef LABELS_PROXY LabelsProxy;
-    struct Settings{
-        Settings()
+    struct SettingsType{
+        SettingsType()
         :   numberOfThreads(-1),
             blockShape()
         {
@@ -70,7 +70,7 @@ public:
     friend class detail_rag::ComputeRag< SelfType >;
 
 
-    GridRag(const LabelsProxy & labelsProxy, const Settings & settings = Settings())
+    GridRag(const LabelsProxy & labelsProxy, const SettingsType & settings = SettingsType())
     :   settings_(settings),
         labelsProxy_(labelsProxy)
     {
@@ -81,7 +81,7 @@ public:
     GridRag(
         const LabelsProxy & labelsProxy, 
         ITER serializationBegin,
-        const Settings & settings = Settings()
+        const SettingsType & settings = SettingsType()
     )
     :   settings_(settings),
         labelsProxy_(labelsProxy)
@@ -97,14 +97,14 @@ public:
         return labelsProxy_.shape();
     }
 protected:
-    GridRag(const LabelsProxy & labelsProxy, const Settings & settings, const DontComputeRag)
+    GridRag(const LabelsProxy & labelsProxy, const SettingsType & settings, const DontComputeRag)
     :   settings_(settings),
         labelsProxy_(labelsProxy){
 
     }
 protected:
     typedef typename RefHelper<LABELS_PROXY>::type StorageType;
-    Settings settings_;
+    SettingsType settings_;
     StorageType labelsProxy_;
 
 };

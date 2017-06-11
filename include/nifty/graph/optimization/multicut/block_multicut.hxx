@@ -28,11 +28,11 @@ namespace multicut{
         typedef OBJECTIVE Objective;
         typedef OBJECTIVE ObjectiveType;
         typedef typename ObjectiveType::WeightType WeightType;
-        typedef MulticutBase<ObjectiveType> Base;
-        typedef typename Base::VisitorBase VisitorBase;
-        typedef typename Base::VisitorProxy VisitorProxy;
-        typedef typename Base::EdgeLabels EdgeLabels;
-        typedef typename Base::NodeLabels NodeLabels;
+        typedef MulticutBase<ObjectiveType> BaseType;
+        typedef typename BaseType::VisitorBase VisitorBase;
+        typedef typename BaseType::VisitorProxy VisitorProxy;
+        typedef typename BaseType::EdgeLabels EdgeLabels;
+        typedef typename BaseType::NodeLabels NodeLabels;
         typedef typename ObjectiveType::Graph Graph;
         typedef typename ObjectiveType::GraphType GraphType;
         typedef typename ObjectiveType::WeightsMap WeightsMap;
@@ -45,14 +45,14 @@ namespace multicut{
     
     public:
 
-        struct Settings{
+        struct SettingsType{
             std::shared_ptr<McFactoryBase> multicutFactory;
         };
 
         virtual ~BlockMulticut(){
             
         }
-        BlockMulticut(const Objective & objective, const Settings & settings = Settings());
+        BlockMulticut(const Objective & objective, const SettingsType & settings = SettingsType());
 
 
         virtual void optimize(NodeLabels & nodeLabels, VisitorBase * visitor);
@@ -75,7 +75,7 @@ namespace multicut{
 
 
         const Objective & objective_;
-        Settings settings_;
+        SettingsType settings_;
         NodeLabels * currentBest_;
         double currentBestEnergy_;
     
@@ -86,7 +86,7 @@ namespace multicut{
     BlockMulticut<OBJECTIVE>::
     BlockMulticut(
         const Objective & objective, 
-        const Settings & settings
+        const SettingsType & settings
     )
     :   objective_(objective),
         settings_(settings),

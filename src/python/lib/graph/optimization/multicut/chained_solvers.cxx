@@ -44,12 +44,11 @@ namespace multicut{
 
         typedef OBJECTIVE ObjectiveType;
         typedef ChainedSolvers<ObjectiveType> Solver;
-        typedef typename Solver::Settings Settings;
-        typedef MulticutFactory<Solver> Factory;
+        typedef typename Solver::SettingsType SettingsType;
         const auto solverName = std::string("ChainedSolvers");
         exportMulticutSolver<Solver>(multicutModule, solverName.c_str(), docHelper)
             .def(py::init<>())
-            .def_readwrite("multicutFactories", &Settings::multicutFactories)
+            .def_readwrite("multicutFactories", &SettingsType::multicutFactories)
 
         ; 
     }

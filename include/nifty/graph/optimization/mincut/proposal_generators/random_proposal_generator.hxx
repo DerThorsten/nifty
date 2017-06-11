@@ -28,7 +28,7 @@ namespace mincut{
     
         typedef typename GraphType:: template EdgeMap<float>  EdgeWeights;
 
-        struct Settings{
+        struct SettingsType{
 
 
             enum SeedingStrategie{
@@ -45,7 +45,7 @@ namespace mincut{
         RandomProposalGenerator(
             const ObjectiveType & objective, 
             const size_t numberOfThreads,
-            const Settings & settings  = Settings()
+            const SettingsType & settings  = SettingsType()
         )
         :   objective_(objective),
             numberOfThreads_(numberOfThreads),
@@ -78,7 +78,7 @@ namespace mincut{
     private:
         const ObjectiveType & objective_;
         size_t numberOfThreads_;
-        Settings settings_;
+        SettingsType settings_;
         std::vector<std::mt19937> gens_;    
     }; 
 

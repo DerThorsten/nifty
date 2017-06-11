@@ -61,13 +61,13 @@ namespace detail_cc_fusion{
 
     private:
         typedef FUSION_MOVE FusionMoveType;
-        typedef typename  FusionMoveType::Settings FusionMoveSettingsType;
+        typedef typename  FusionMoveType::SettingsType FusionMoveSettingsType;
 
     
 
     public:
 
-        struct Settings{
+        struct SettingsType{
             std::shared_ptr<ProposalGeneratorFactoryBaseType> proposalGeneratorFactory;
             size_t numberOfIterations{1000};
             size_t stopIfNoImprovement{10};
@@ -79,7 +79,7 @@ namespace detail_cc_fusion{
 
 
         virtual ~CcFusionMoveBasedImpl();
-        CcFusionMoveBasedImpl(const ObjectiveType & objective, const Settings & settings = Settings());
+        CcFusionMoveBasedImpl(const ObjectiveType & objective, const SettingsType & settings = SettingsType());
         virtual void optimize(NodeLabels & nodeLabels, VisitorBase * visitor);
         virtual const ObjectiveType & objective() const;
 
@@ -99,7 +99,7 @@ namespace detail_cc_fusion{
 
 
         const ObjectiveType & objective_;
-        Settings settings_;
+        SettingsType settings_;
         const GraphType & graph_;
         NodeLabels * currentBest_;
         double currentBestEnergy_;
@@ -118,7 +118,7 @@ namespace detail_cc_fusion{
     CcFusionMoveBasedImpl<OBJECTIVE, SOLVER_BASE, FUSION_MOVE>::
     CcFusionMoveBasedImpl(
         const ObjectiveType & objective, 
-        const Settings & settings
+        const SettingsType & settings
     )
     :   objective_(objective),
         settings_(settings),
@@ -131,7 +131,7 @@ namespace detail_cc_fusion{
     {
         if(!bool(settings_.proposalGeneratorFactory)){
             throw std::runtime_error("proposalGeneratorFactory shall not be empty!");
-            // auto pgenSettings  = typename DefaultProposalGeneratorType::Settings();
+            // auto pgenSettings  = typename DefaultProposalGeneratorType::SettingsType();
             // settings_.proposalGeneratorFactory =  std::make_shared<DefaultProposalGeneratorFactoryType>(pgenSettings);
         }
 

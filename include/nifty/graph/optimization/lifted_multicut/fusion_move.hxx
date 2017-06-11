@@ -8,7 +8,7 @@
 #include "nifty/tools/runtime_check.hxx"
 #include "nifty/ufd/ufd.hxx"
 #include "nifty/graph/optimization/lifted_multicut/lifted_multicut_base.hxx"
-#include "nifty/graph/optimization/lifted_multicut/lifted_multicut_factory.hxx"
+#include "nifty/graph/optimization/common/solver_factory.hxx"
 #include "nifty/graph/optimization/lifted_multicut/lifted_multicut_objective.hxx"
 #include "nifty/graph/undirected_list_graph.hxx"
 
@@ -39,16 +39,17 @@ namespace lifted_multicut{
         typedef UndirectedGraph<> FmGraphType;
         typedef UndirectedGraph<> FmLiftedGraphType;
         typedef LiftedMulticutObjective<FmGraphType, double> FmObjective;
-        typedef LiftedMulticutFactoryBase<FmObjective> FmLmcFactoryBase;
         typedef LiftedMulticutBase<FmObjective> FmLmcBase;
+        typedef nifty::graph::optimization::common::SolverFactoryBase<FmLmcBase> FmLmcFactoryBase;
+        
         typedef LiftedMulticutEmptyVisitor<FmObjective> FmEmptyVisitor;
         typedef typename  FmLmcBase::NodeLabelsType FmNodeLabelsType;
 
-        struct Settings{
+        struct SettingsType{
             std::shared_ptr<FmLmcFactoryBase> lmcFactory;
         };
 
-        FusionMove(const Objective & objective, const Settings & settings = Settings())
+        FusionMove(const Objective & objective, const SettingsType & settings = SettingsType())
         :   objective_(objective),
             graph_(objective.graph()),
             liftedGraph_(objective_.liftedGraph()),
@@ -58,7 +59,7 @@ namespace lifted_multicut{
         {
             if(!bool(settings_.lmcFactory)){
                 typedef LiftedMulticutGreedyAdditive<FmObjective> FmSolver;
-                typedef LiftedMulticutFactory<FmSolver> FmFactory;
+                typedef nifty::graph::optimization::common::SolverFactory<FmSolver> FmFactory;
                 settings_.lmcFactory = std::make_shared<FmFactory>();
             }
         }
@@ -207,7 +208,7 @@ namespace lifted_multicut{
         const Objective & objective_;
         const GraphType & graph_;
         const LiftedGraphType & liftedGraph_;
-        Settings settings_;
+        SettingsType settings_;
         nifty::ufd::Ufd< > ufd_;
         NodeLabels nodeToDense_;
     };

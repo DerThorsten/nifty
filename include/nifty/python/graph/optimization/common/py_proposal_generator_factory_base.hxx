@@ -72,7 +72,7 @@ void exportCCProposalGeneratorFactoryBaseT(
 
 
 template<class PROPOSAL_GENERATOR>
-py::class_<typename PROPOSAL_GENERATOR::Settings> 
+py::class_<typename PROPOSAL_GENERATOR::SettingsType> 
 exportCCProposalGenerator(
     py::module & module,
     const std::string & clsName,
@@ -80,24 +80,24 @@ exportCCProposalGenerator(
 ){
     typedef PROPOSAL_GENERATOR ProposalGeneratorType;
     typedef typename ProposalGeneratorType::ObjectiveType   ObjectiveType;
-    typedef typename ProposalGeneratorType::Settings        Settings;
+    typedef typename ProposalGeneratorType::SettingsType        SettingsType;
     typedef ProposalGeneratorFactory<ProposalGeneratorType> Factory;
 
 
-    const std::string settingsName = std::string("__") + clsName + std::string("Settings") + objName;
+    const std::string settingsName = std::string("__") + clsName + std::string("SettingsType") + objName;
     const std::string factoryBaseName = std::string("__ProposalGeneratorFactoryBase")+objName;
     const std::string factoryName = clsName + std::string("Factory") + objName;
 
 
      // settings
-    auto settingsCls = py::class_< Settings >(module, settingsName.c_str())
+    auto settingsCls = py::class_< SettingsType >(module, settingsName.c_str())
     ;
 
     // factory
     py::object factoryBase = module.attr(factoryBaseName.c_str());
     py::class_<Factory, std::shared_ptr<Factory> >(module, factoryName.c_str(),  factoryBase)
-        .def(py::init<const Settings &>(),
-            py::arg_t<Settings>("setttings",Settings())
+        .def(py::init<const SettingsType &>(),
+            py::arg_t<SettingsType>("setttings",SettingsType())
         )
     ;
 

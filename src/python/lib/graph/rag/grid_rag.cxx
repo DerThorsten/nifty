@@ -56,7 +56,7 @@ namespace graph{
                nifty::marray::PyView<LABELS, DIM> labels,
                const int numberOfThreads
             ){
-                auto s = typename  GridRagType::Settings();
+                auto s = typename  GridRagType::SettingsType();
                 s.numberOfThreads = numberOfThreads;
                 ExplicitLabels<DIM, LABELS> explicitLabels(labels);
                 auto ptr = new GridRagType(explicitLabels, s);
@@ -83,7 +83,7 @@ namespace graph{
                 NIFTY_CHECK_OP(d,==,serialization.size(), "serialization must be contiguous");
 
 
-                auto s = typename  GridRagType::Settings();
+                auto s = typename  GridRagType::SettingsType();
                 s.numberOfThreads = -1;
                 ExplicitLabels<DIM, LABELS> explicitLabels(labels);
                 auto ptr = new GridRagType(explicitLabels,startPtr, s);
@@ -147,7 +147,7 @@ namespace graph{
                 std::vector<int64_t>  blockShape,
                 const int numberOfThreads
             ){
-                auto s = typename  GridRagType::Settings();
+                auto s = typename  GridRagType::SettingsType();
                 s.numberOfThreads = numberOfThreads;
 
                 if(blockShape.size() == DIM){
@@ -185,7 +185,7 @@ namespace graph{
                 NIFTY_CHECK_OP(d,==,serialization.size(), "serialization must be contiguous");
 
 
-                auto s = typename  GridRagType::Settings();
+                auto s = typename  GridRagType::SettingsType();
                 s.numberOfThreads = -1;
 
                 auto ptr = new GridRagType(labelsProxy, startPtr, s);
@@ -280,7 +280,7 @@ namespace graph{
                 const LabelsProxyType & labelsProxy,
                 const int numberOfThreads
             ){
-                auto s = typename  GridRagType::Settings();
+                auto s = typename  GridRagType::SettingsType();
                 s.numberOfThreads = numberOfThreads;
 
                 auto ptr = new GridRagType(labelsProxy, s);
@@ -376,7 +376,7 @@ namespace graph{
                nifty::marray::PyView<LABELS, 3> labels,
                const int numberOfThreads
             ){
-                auto s = typename  GridRagType::Settings();
+                auto s = typename  GridRagType::SettingsType();
                 s.numberOfThreads = numberOfThreads;
                 ExplicitLabels<3, LABELS> explicitLabels(labels);
                 auto ptr = new GridRagType(explicitLabels, s);

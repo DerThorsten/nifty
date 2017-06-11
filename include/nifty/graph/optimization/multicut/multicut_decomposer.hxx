@@ -4,7 +4,7 @@
 #include "nifty/graph/components.hxx"
 
 #include "nifty/graph/optimization/multicut/multicut_base.hxx"
-#include "nifty/graph/optimization/multicut/multicut_factory.hxx"
+#include "nifty/graph/optimization/common/solver_factory.hxx"
 #include "nifty/graph/optimization/multicut/multicut_objective.hxx"
 #include "nifty/graph/undirected_list_graph.hxx"
 
@@ -20,31 +20,32 @@ namespace multicut{
 
         typedef OBJECTIVE Objective;
         typedef typename Objective::WeightType WeightType;
-        typedef MulticutBase<OBJECTIVE> Base;
-        typedef typename Base::VisitorBase VisitorBase;
-        typedef typename Base::VisitorProxy VisitorProxy;
-        typedef typename Base::EdgeLabels EdgeLabels;
-        typedef typename Base::NodeLabels NodeLabels;
+        typedef MulticutBase<OBJECTIVE> BaseType;
+        typedef typename BaseType::VisitorBase VisitorBase;
+        typedef typename BaseType::VisitorProxy VisitorProxy;
+        typedef typename BaseType::EdgeLabels EdgeLabels;
+        typedef typename BaseType::NodeLabels NodeLabels;
         typedef typename Objective::Graph Graph;
         typedef typename Objective::WeightsMap WeightsMap;
 
 
-        typedef MulticutFactoryBase<Objective>         FactoryBase;
+        typedef nifty::graph::optimization::common::SolverFactoryBase<BaseType> FactoryBase;
        
     private:
         typedef ComponentsUfd<Graph> Components;
         
         
     public:
-        typedef UndirectedGraph<>                            SubmodelGraph;
-        typedef MulticutObjective<SubmodelGraph, WeightType> SubmodelObjective;
-        typedef MulticutBase<SubmodelObjective>              SubmodelMulticutBase;
-        typedef MulticutFactoryBase<SubmodelObjective>       SubmodelFactoryBase;
-        typedef typename SubmodelMulticutBase::NodeLabels    SubmodelNodeLabels;
+        typedef UndirectedGraph<>                                                               SubmodelGraph;
+        typedef MulticutObjective<SubmodelGraph, WeightType>                                    SubmodelObjective;
+        typedef MulticutBase<SubmodelObjective>                                                 SubmodelMulticutBaseType;
+        typedef nifty::graph::optimization::common::SolverFactoryBase<SubmodelMulticutBaseType> SubmodelFactoryBase;
+
+        typedef typename SubmodelMulticutBaseType::NodeLabels    SubmodelNodeLabels;
 
     public:
 
-        struct Settings{
+        struct SettingsType{
             std::shared_ptr<SubmodelFactoryBase> submodelFactory;
             std::shared_ptr<FactoryBase>         fallthroughFactory;
             
@@ -53,7 +54,7 @@ namespace multicut{
         virtual ~MulticutDecomposer(){
             
         }
-        MulticutDecomposer(const Objective & objective, const Settings & settings = Settings());
+        MulticutDecomposer(const Objective & objective, const SettingsType & settings = SettingsType());
 
 
         virtual void optimize(NodeLabels & nodeLabels, VisitorBase * visitor);
@@ -97,7 +98,7 @@ namespace multicut{
         Components components_;
         NodeLabels * currentBest_;
 
-        Settings settings_;
+        SettingsType settings_;
     };
 
     
@@ -105,7 +106,7 @@ namespace multicut{
     MulticutDecomposer<OBJECTIVE>::
     MulticutDecomposer(
         const Objective & objective, 
-        const Settings & settings
+        const SettingsType & settings
     )
     :   objective_(objective),
         graph_(objective.graph()),
@@ -114,10 +115,10 @@ namespace multicut{
         settings_(settings)
     {
         if(!bool(settings_.fallthroughFactory)){
-            throw std::runtime_error("MulticutDecomposer Settings: fallthroughFactory may not be empty!");
+            throw std::runtime_error("MulticutDecomposer SettingsType: fallthroughFactory may not be empty!");
         }
         if(!bool(settings_.submodelFactory)){
-            throw std::runtime_error("MulticutDecomposer Settings: submodelFactory may not be empty!");
+            throw std::runtime_error("MulticutDecomposer SettingsType: submodelFactory may not be empty!");
         }
     }
 

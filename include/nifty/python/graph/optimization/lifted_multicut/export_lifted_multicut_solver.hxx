@@ -5,7 +5,7 @@
 #include <pybind11/pybind11.h>
 
 #include "nifty/python/graph/optimization/lifted_multicut/lifted_multicut_objective.hxx"
-#include "py_lifted_multicut_factory.hxx"
+#include "nifty/graph/optimization/common/solver_factory.hxx"
 #include "py_lifted_multicut_base.hxx"
 
 
@@ -21,24 +21,24 @@ namespace optimization{
 namespace lifted_multicut{
 
     template<class SOLVER>
-    py::class_<typename SOLVER::Settings>  exportLiftedMulticutSolver(
+    py::class_<typename SOLVER::SettingsType>  exportLiftedMulticutSolver(
         py::module & liftedMulticutModule,
         const std::string & solverName
     ){
 
         typedef SOLVER Solver;
         typedef typename Solver::ObjectiveType ObjectiveType;
-        typedef typename Solver::Settings Settings;
-        typedef LiftedMulticutFactory<Solver> Factory;
-        typedef LiftedMulticutFactoryBase<ObjectiveType> LmcFactoryBase;
+        typedef typename Solver::SettingsType SettingsType;
+        typedef nifty::graph::optimization::common::SolverFactory<Solver> Factory;
+
 
         const auto objName = LiftedMulticutObjectiveName<ObjectiveType>::name();
 
-        const std::string factoryBaseName = std::string("LiftedMulticutFactoryBase")+objName;
+        const std::string factoryBaseName = std::string("SolverFactoryBase")+objName;
         const std::string solverBaseName = std::string("LiftedMulticutBase") + objName;
         
         const std::string sName = solverName + objName;
-        const std::string settingsName = solverName + std::string("Settings") + objName;
+        const std::string settingsName = solverName + std::string("SettingsType") + objName;
         const std::string factoryName = solverName + std::string("Factory") + objName;
         std::string factoryFactoryName = factoryName;
         factoryFactoryName[0] = std::tolower(factoryFactoryName[0]);
@@ -48,13 +48,13 @@ namespace lifted_multicut{
         py::object solverBase = liftedMulticutModule.attr(solverBaseName.c_str());
 
         // settings
-        auto settingsCls = py::class_< Settings >(liftedMulticutModule, settingsName.c_str())
+        auto settingsCls = py::class_< SettingsType >(liftedMulticutModule, settingsName.c_str())
         ;
 
         // factory
         py::class_<Factory, std::shared_ptr<Factory> >(liftedMulticutModule, factoryName.c_str(),  factoryBase)
-            .def(py::init<const Settings &>(),
-                py::arg_t<Settings>("setttings",Settings())
+            .def(py::init<const SettingsType &>(),
+                py::arg_t<SettingsType>("setttings",SettingsType())
             )
         ;
 

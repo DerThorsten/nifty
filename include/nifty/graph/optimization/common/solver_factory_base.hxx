@@ -8,14 +8,15 @@ namespace common{
 
 
 
-    template<class OBJECTIVE, class SOLVER_BASE>
+    template<class SOLVER_BASE>
     class SolverFactoryBase{
     public:
-        typedef OBJECTIVE ObjectiveType;
+        
         typedef SOLVER_BASE SolverBaseType;
+        typedef typename SolverBaseType::ObjectiveType ObjectiveType;
         virtual ~SolverFactoryBase(){}
         virtual std::shared_ptr<SolverBaseType> createShared(const ObjectiveType & objective) = 0;
-        virtual SolverBaseType * createRaw(const ObjectiveType & objective) = 0;
+        virtual SolverBaseType * create(const ObjectiveType & objective) = 0;
     };
 
 

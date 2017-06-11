@@ -5,7 +5,8 @@
 
 #include "nifty/python/graph/optimization/solver_docstring.hxx"
 #include "nifty/python/graph/optimization/multicut/multicut_objective.hxx"
-#include "py_multicut_factory.hxx"
+//#include "nifty/python/graph/optimization/common/py_solver_factory_base.hxx"
+#include "nifty/graph/optimization/common/solver_factory.hxx"
 #include "py_multicut_base.hxx"
 
 
@@ -21,7 +22,7 @@ namespace optimization{
 namespace multicut{
 
     template<class SOLVER>
-    py::class_<typename SOLVER::Settings>  exportMulticutSolver(
+    py::class_<typename SOLVER::SettingsType>  exportMulticutSolver(
         py::module & multicutModule,
         const std::string & solverName,
         nifty::graph::optimization::SolverDocstringHelper docHelper = nifty::graph::optimization::SolverDocstringHelper()
@@ -29,17 +30,17 @@ namespace multicut{
 
         typedef SOLVER Solver;
         typedef typename Solver::Objective ObjectiveType;
-        typedef typename Solver::Settings Settings;
-        typedef MulticutFactory<Solver> Factory;
-        typedef MulticutFactoryBase<ObjectiveType> McFactoryBase;
+        typedef typename Solver::SettingsType SettingsType;
+        typedef nifty::graph::optimization::common::SolverFactory<Solver> Factory;
+
 
         const auto objName = MulticutObjectiveName<ObjectiveType>::name();
 
-        const std::string factoryBaseName = std::string("MulticutFactoryBase")+objName;
+        const std::string factoryBaseName = std::string("SolverFactoryBase")+objName;
         const std::string solverBaseName = std::string("MulticutBase") + objName;
         
         const std::string sName = solverName + objName;
-        const std::string settingsName = std::string("__") + solverName + std::string("Settings") + objName;
+        const std::string settingsName = std::string("__") + solverName + std::string("SettingsType") + objName;
         const std::string factoryName = solverName + std::string("Factory") + objName;
         std::string factoryFactoryName = factoryName;
         factoryFactoryName[0] = std::tolower(factoryFactoryName[0]);
@@ -61,7 +62,7 @@ namespace multicut{
         py::object solverBase = multicutModule.attr(solverBaseName.c_str());
 
         // settings
-        auto settingsCls = py::class_< Settings >(multicutModule, settingsName.c_str())
+        auto settingsCls = py::class_< SettingsType >(multicutModule, settingsName.c_str())
         ;
 
         // factory
@@ -71,8 +72,8 @@ namespace multicut{
             factoryBase,
             docHelper.factoryDocstring<Factory>().c_str()
         )
-            .def(py::init<const Settings &>(),
-                py::arg_t<Settings>("setttings",Settings())
+            .def(py::init<const SettingsType &>(),
+                py::arg_t<SettingsType>("setttings",SettingsType())
             )
         ;
 

@@ -19,11 +19,11 @@ namespace multicut{
         typedef typename Objective::Graph Graph;
         typedef MulticutBase<Objective> Base;
         typedef MulticutGreedyAdditive<Objective> Solver;
-        typedef typename Solver::Settings SolverSettings;
+        typedef typename Solver::SettingsType SolverSettings;
         typedef typename Base::EdgeLabels EdgeLabels;
         typedef typename Base::NodeLabels NodeLabels;
 
-        struct Settings{
+        struct SettingsType{
             double sigma{1.0};
             double weightStopCond{0.0};
             double nodeNumStopCond{-1.0};
@@ -36,7 +36,7 @@ namespace multicut{
 
         GreedyAdditiveProposals(
             const Objective & objective, 
-            const Settings  & settings,
+            const SettingsType  & settings,
             const size_t threadIndex
         )
         :   objective_(objective),
@@ -84,7 +84,7 @@ namespace multicut{
 
         const Objective & objective_;
         const Graph graph_;
-        Settings settings_;
+        SettingsType settings_;
         size_t threadIndex_;
         size_t proposalNumber_;
 

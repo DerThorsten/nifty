@@ -17,11 +17,11 @@ namespace mincut{
     class ProposalGeneratorFactory : public ProposalGeneratorFactoryBase<typename PROPOSAL_GENERATOR::ObjectiveType>{
     public:
         typedef PROPOSAL_GENERATOR ProposalGeneratorType;       
-        typedef typename ProposalGeneratorType::Settings Settings;
+        typedef typename ProposalGeneratorType::SettingsType SettingsType;
         typedef typename ProposalGeneratorType::ObjectiveType ObjectiveType;
         typedef ProposalGeneratorBase<ObjectiveType> ProposalGeneratorBaseType;
 
-        ProposalGeneratorFactory(const Settings & settings = Settings())
+        ProposalGeneratorFactory(const SettingsType & settings = SettingsType())
         :   settings_(settings){
 
         }
@@ -35,7 +35,7 @@ namespace mincut{
             return new ProposalGeneratorType(objective, numberOfThreads, settings_);
         }
     private:
-        Settings settings_;
+        SettingsType settings_;
     };
 
 

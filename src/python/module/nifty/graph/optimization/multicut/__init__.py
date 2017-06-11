@@ -63,7 +63,7 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
         return _multicut.__dict__[prefix+postfix]
 
     def getSettingsCls(baseName):
-        S =  getCls("__"+baseName + "Settings" ,objectiveName)
+        S =  getCls("__"+baseName + "SettingsType" ,objectiveName)
         return S
     def getMcCls(baseName):
         S =  getCls(baseName,objectiveName)
@@ -467,7 +467,7 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
             explicitly add all violated constraints for only violated cycles
             of length 3 before optimization (default: {True})
         ilpSolverSettings (:class:`IlpBackendSettings`) :
-            Settings of the ilp solver (default : {:func:`ilpSettings`})
+            SettingsType of the ilp solver (default : {:func:`ilpSettings`})
         ilpSolver (str) : name of the solver. Must be in
             either "cplex", "gurobi" or "glpk".
             "glpk" is only capable of solving very small models.

@@ -44,12 +44,12 @@ namespace mincut{
             MincutBase<OBJECTIVE>,
             MincutCcFusionMove<OBJECTIVE>
         >                                   BaseType;
-        typedef typename BaseType::Settings Settings;
+        typedef typename BaseType::SettingsType SettingsType;
     
         virtual ~MincutCcFusionMoveBased(){
         }
 
-        MincutCcFusionMoveBased(const ObjectiveType & objective, const Settings & settings = Settings())
+        MincutCcFusionMoveBased(const ObjectiveType & objective, const SettingsType & settings = SettingsType())
         :   BaseType(objective, settings){
         }
 

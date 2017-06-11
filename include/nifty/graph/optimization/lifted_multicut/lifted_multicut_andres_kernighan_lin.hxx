@@ -61,7 +61,7 @@ namespace lifted_multicut{
     public:
 
 
-        struct Settings {
+        struct SettingsType {
             std::size_t numberOfInnerIterations { std::numeric_limits<std::size_t>::max() };
             std::size_t numberOfOuterIterations { 100 };
             double epsilon { 1e-7 };
@@ -72,7 +72,7 @@ namespace lifted_multicut{
 
 
         virtual ~LiftedMulticutAndresKernighanLin(){}
-        LiftedMulticutAndresKernighanLin(const ObjectiveType & objective, const Settings & settings = Settings());
+        LiftedMulticutAndresKernighanLin(const ObjectiveType & objective, const SettingsType & settings = SettingsType());
         virtual void optimize(NodeLabels & nodeLabels, VisitorBase * visitor);
         virtual const ObjectiveType & objective() const;
 
@@ -98,7 +98,7 @@ namespace lifted_multicut{
 
 
         const ObjectiveType & objective_;
-        Settings settings_;
+        SettingsType settings_;
         const GraphType & graph_;
         const LiftedGraphType & liftedGraph_;
         NodeLabels * currentBest_;
@@ -113,7 +113,7 @@ namespace lifted_multicut{
     LiftedMulticutAndresKernighanLin<OBJECTIVE>::
     LiftedMulticutAndresKernighanLin(
         const ObjectiveType & objective, 
-        const Settings & settings
+        const SettingsType & settings
     )
     :   objective_(objective),
         settings_(settings),

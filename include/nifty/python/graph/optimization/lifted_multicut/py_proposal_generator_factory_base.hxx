@@ -1,7 +1,5 @@
 #pragma once
 
-#include "nifty/graph/optimization/lifted_multicut/lifted_multicut_base.hxx"
-#include "nifty/graph/optimization/lifted_multicut/lifted_multicut_factory.hxx"
 #include "nifty/graph/optimization/lifted_multicut/proposal_generators/proposal_generator_factory_base.hxx"
 
 

@@ -37,7 +37,7 @@ namespace multicut{
         // the fusion mover parameter itself
         {
             typedef FusionMove<ObjectiveType> FusionMoveType;
-            typedef typename FusionMoveType::Settings FusionMoveSettings;
+            typedef typename FusionMoveType::SettingsType FusionMoveSettings;
             const auto fmSettingsName = std::string("__FusionMoveSettings") + objName;
             py::class_<FusionMoveSettings>(multicutModule, fmSettingsName.c_str())
                 .def(py::init<>())
@@ -65,9 +65,9 @@ namespace multicut{
 
 
             typedef GreedyAdditiveProposals<ObjectiveType> ProposalGen;
-            typedef typename ProposalGen::Settings ProposalGenSettings;
+            typedef typename ProposalGen::SettingsType ProposalGenSettings;
             typedef FusionMoveBased<ProposalGen> Solver;
-            typedef typename Solver::Settings Settings;
+            typedef typename Solver::SettingsType SettingsType;
 
             const std::string solverName = "FusionMoveBasedGreedyAdditive";
             const std::string pgenSettingsName = std::string("__")+solverName + std::string("ProposalGenSettings") + objName;
@@ -81,14 +81,14 @@ namespace multicut{
 
             exportMulticutSolver<Solver>(multicutModule,solverName.c_str(), docHelper)
                 .def(py::init<>())
-                .def_readwrite("verbose", &Settings::verbose)
-                .def_readwrite("numberOfIterations", &Settings::numberOfIterations)
-                .def_readwrite("numberOfParallelProposals",&Settings::numberOfParallelProposals)
-                .def_readwrite("fuseN",&Settings::fuseN)
-                .def_readwrite("stopIfNoImprovement",&Settings::stopIfNoImprovement)
-                .def_readwrite("proposalGenSettings", &Settings::proposalGenSettings)
-                .def_readwrite("fusionMoveSettings",  &Settings::fusionMoveSettings)
-                .def_readwrite("numberOfThreads",  &Settings::numberOfThreads)
+                .def_readwrite("verbose", &SettingsType::verbose)
+                .def_readwrite("numberOfIterations", &SettingsType::numberOfIterations)
+                .def_readwrite("numberOfParallelProposals",&SettingsType::numberOfParallelProposals)
+                .def_readwrite("fuseN",&SettingsType::fuseN)
+                .def_readwrite("stopIfNoImprovement",&SettingsType::stopIfNoImprovement)
+                .def_readwrite("proposalGenSettings", &SettingsType::proposalGenSettings)
+                .def_readwrite("fusionMoveSettings",  &SettingsType::fusionMoveSettings)
+                .def_readwrite("numberOfThreads",  &SettingsType::numberOfThreads)
             ;
         }
 
@@ -110,9 +110,9 @@ namespace multicut{
 
 
             typedef WatershedProposals<ObjectiveType> ProposalGen;
-            typedef typename ProposalGen::Settings ProposalGenSettings;
+            typedef typename ProposalGen::SettingsType ProposalGenSettings;
             typedef FusionMoveBased<ProposalGen> Solver;
-            typedef typename Solver::Settings Settings;
+            typedef typename Solver::SettingsType SettingsType;
 
             const std::string solverName = "FusionMoveBasedWatershed";
             const std::string pgenSettingsName = solverName + std::string("ProposalGenSettings") + objName;
@@ -125,14 +125,14 @@ namespace multicut{
 
             exportMulticutSolver<Solver>(multicutModule,solverName.c_str(), docHelper)
                 .def(py::init<>())
-                .def_readwrite("verbose", &Settings::verbose)
-                .def_readwrite("numberOfIterations", &Settings::numberOfIterations)
-                .def_readwrite("numberOfParallelProposals",&Settings::numberOfParallelProposals)
-                .def_readwrite("fuseN",&Settings::fuseN)
-                .def_readwrite("stopIfNoImprovement",&Settings::stopIfNoImprovement)
-                .def_readwrite("proposalGenSettings", &Settings::proposalGenSettings)
-                .def_readwrite("fusionMoveSettings",  &Settings::fusionMoveSettings)
-                .def_readwrite("numberOfThreads",  &Settings::numberOfThreads)
+                .def_readwrite("verbose", &SettingsType::verbose)
+                .def_readwrite("numberOfIterations", &SettingsType::numberOfIterations)
+                .def_readwrite("numberOfParallelProposals",&SettingsType::numberOfParallelProposals)
+                .def_readwrite("fuseN",&SettingsType::fuseN)
+                .def_readwrite("stopIfNoImprovement",&SettingsType::stopIfNoImprovement)
+                .def_readwrite("proposalGenSettings", &SettingsType::proposalGenSettings)
+                .def_readwrite("fusionMoveSettings",  &SettingsType::fusionMoveSettings)
+                .def_readwrite("numberOfThreads",  &SettingsType::numberOfThreads)
             ;
         }
      

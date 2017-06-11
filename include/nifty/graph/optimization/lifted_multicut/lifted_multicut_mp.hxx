@@ -36,7 +36,7 @@ namespace lifted_multicut{
         typedef typename BaseType::NodeLabelsType NodeLabels;
 
         // factory for the lifted primal rounder
-        typedef LiftedMulticutFactoryBase<ObjectiveType> LmcFactoryBase;
+        typedef nifty::graph::optimization::common::SolverFactoryBase<BaseType> LmcFactoryBase;
 
         struct LiftedRounder{
 
@@ -45,7 +45,7 @@ namespace lifted_multicut{
             typedef LiftedMulticutBase<PrimalRounderObjectiveType> PrimalRounderBaseType;
             typedef typename PrimalRounderObjectiveType::LiftedGraphType  PrimalRounderLiftedGraphType;
             typedef typename PrimalRounderBaseType::NodeLabelsType        PrimalRounderNodeLabels;
-            typedef LiftedMulticutFactoryBase<PrimalRounderObjectiveType> PrimalRounderLmcFactoryBase;
+            typedef nifty::graph::optimization::common::SolverFactoryBase<PrimalRounderBaseType> PrimalRounderLmcFactoryBase;
 
             LiftedRounder(std::shared_ptr<PrimalRounderLmcFactoryBase> factory, const bool greedyWarmstart) 
                 : factory_(factory), greedyWarmstart_(greedyWarmstart)
@@ -121,7 +121,7 @@ namespace lifted_multicut{
         typedef LP_MP::ProblemConstructorRoundingSolver<SolverBase> SolverType;
     
         // TODO LP_MP settings
-        struct Settings{
+        struct SettingsType{
             // lifted multicut factory for the primal rounder used in lp_mp
             std::shared_ptr<typename LiftedRounder::PrimalRounderLmcFactoryBase> lmcFactory;
             bool greedyWarmstart{true};
@@ -146,7 +146,7 @@ namespace lifted_multicut{
             size_t numLpThreads{1};
         };
             
-        LiftedMulticutMp(const ObjectiveType & objective, const Settings & settings = Settings());
+        LiftedMulticutMp(const ObjectiveType & objective, const SettingsType & settings = SettingsType());
         
         virtual void optimize(NodeLabels & nodeLabels, VisitorBase * visitor);
         
@@ -173,7 +173,7 @@ namespace lifted_multicut{
         std::vector<std::string> toOptionsVector() const;
         
         const ObjectiveType & objective_;
-        Settings settings_;
+        SettingsType settings_;
         const Graph & graph_;
         const LiftedGraphType & liftedGraph_;
         
@@ -186,7 +186,7 @@ namespace lifted_multicut{
     template<class OBJECTIVE>
     LiftedMulticutMp<OBJECTIVE>::LiftedMulticutMp(
         const OBJECTIVE & objective,
-        const Settings & settings)
+        const SettingsType & settings)
     :   objective_(objective),
         settings_(settings),
         graph_(objective.graph()),
@@ -198,7 +198,7 @@ namespace lifted_multicut{
         if(!bool(settings_.lmcFactory)) {
             typedef typename LiftedRounder::PrimalRounderObjectiveType PrimalRounderObjectiveType;
             typedef LiftedMulticutKernighanLin<PrimalRounderObjectiveType> DefaultSolverType;
-            typedef LiftedMulticutFactory<DefaultSolverType> DefaultFactoryType;
+            typedef nifty::graph::optimization::common::SolverFactory<DefaultSolverType> DefaultFactoryType;
             settings_.lmcFactory = std::make_shared<DefaultFactoryType>();
         }
         mpSolver_ = new SolverType( toOptionsVector(),

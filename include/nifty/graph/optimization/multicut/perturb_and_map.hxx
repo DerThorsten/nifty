@@ -8,7 +8,7 @@
 #include "nifty/parallel/threadpool.hxx"
 #include "nifty/graph/optimization/multicut/multicut_base.hxx"
 #include "nifty/graph/optimization/multicut/multicut_visitor_base.hxx"
-#include "nifty/graph/optimization/multicut/multicut_factory.hxx"
+#include "nifty/graph/optimization/common/solver_factory.hxx"
 #include "nifty/graph/optimization/multicut/multicut_objective.hxx"
 
 namespace nifty {
@@ -23,7 +23,8 @@ namespace multicut{
         typedef typename  Objective::Graph Graph;
         typedef MulticutObjective<Graph, double> InternalObjective;
         typedef MulticutBase<Objective> MulticutBaseType;
-        typedef MulticutFactoryBase<InternalObjective> InternalMcFactoryBase;
+        typedef MulticutBase<InternalObjective> IternalMulticutBaseType;
+        typedef nifty::graph::optimization::common::SolverFactoryBase<IternalMulticutBaseType> InternalMcFactoryBase;
         typedef typename Graph:: template NodeMap<uint64_t> NodeLabels;
         typedef typename Graph:: template EdgeMap<double>   EdgeState;
         typedef std::shared_ptr<InternalMcFactoryBase> FactorySmartPtr;
@@ -37,7 +38,7 @@ namespace multicut{
         };
 
 
-        struct Settings{
+        struct SettingsType{
             FactorySmartPtr mcFactory;
             size_t numberOfIterations{100};
             int numberOfThreads{-1};
@@ -47,7 +48,7 @@ namespace multicut{
             double noiseMagnitude{1.0};
         };
 
-        PerturbAndMap(const Objective & objective, const Settings settings = Settings());
+        PerturbAndMap(const Objective & objective, const SettingsType settings = SettingsType());
         ~PerturbAndMap();
 
 
@@ -87,7 +88,7 @@ namespace multicut{
 
         const Objective & objective_;
         const Graph & graph_;
-        Settings settings_;
+        SettingsType settings_;
 
         std::vector<ThreadData*> threadDataVec_;
     };
@@ -97,7 +98,7 @@ namespace multicut{
     PerturbAndMap<OBJECTIVE>::
     PerturbAndMap(
         const Objective & objective, 
-        const Settings settings
+        const SettingsType settings
     )
     :   objective_(objective),
         graph_(objective.graph()),

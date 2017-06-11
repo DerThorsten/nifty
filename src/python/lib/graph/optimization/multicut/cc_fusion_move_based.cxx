@@ -49,7 +49,7 @@ namespace multicut{
 
         { // watershed proposal generators
             typedef optCommon::WatershedProposalGenerator<ObjectiveType> ProposalGeneratorType;
-            typedef typename ProposalGeneratorType::Settings PGenSettigns;
+            typedef typename ProposalGeneratorType::SettingsType PGenSettigns;
             typedef typename PGenSettigns::SeedingStrategie SeedingStrategie;
             auto pGenSettigns = optCommon::exportCCProposalGenerator<ProposalGeneratorType>(
                 module, 
@@ -70,7 +70,7 @@ namespace multicut{
 
         { // interface flipper proposal generator
             typedef optCommon::InterfaceFlipperProposalGenerator<ObjectiveType> ProposalGeneratorType;
-            typedef typename ProposalGeneratorType::Settings PGenSettigns;
+            typedef typename ProposalGeneratorType::SettingsType PGenSettigns;
             auto pGenSettigns = optCommon::exportCCProposalGenerator<ProposalGeneratorType>(
                 module, 
                 "InterfaceFlipperProposalGenerator",
@@ -84,7 +84,7 @@ namespace multicut{
 
         { // interface flipper proposal generator
             typedef optCommon::RandomNodeColorProposalGenerator<ObjectiveType> ProposalGeneratorType;
-            typedef typename ProposalGeneratorType::Settings PGenSettigns;
+            typedef typename ProposalGeneratorType::SettingsType PGenSettigns;
             auto pGenSettigns = optCommon::exportCCProposalGenerator<ProposalGeneratorType>(
                 module, 
                 "RandomNodeColorProposalGenerator",
@@ -101,17 +101,17 @@ namespace multicut{
 
 
         typedef CcFusionMoveBased<ObjectiveType> Solver;
-        typedef typename Solver::Settings Settings;
+        typedef typename Solver::SettingsType SettingsType;
 
         
         exportMulticutSolver<Solver>(module,"CcFusionMoveBased")
            .def(py::init<>())
-           .def_readwrite("proposalGenerator", &Settings::proposalGeneratorFactory)
-           .def_readwrite("numberOfThreads", &Settings::numberOfThreads)
-           .def_readwrite("numberOfIterations",&Settings::numberOfIterations)
-           .def_readwrite("stopIfNoImprovement",&Settings::stopIfNoImprovement)
-           .def_readwrite("fusionMoveSettings",&Settings::fusionMoveSettings)
-           //.def_readwrite("verbose", &Settings::verbose)
+           .def_readwrite("proposalGenerator", &SettingsType::proposalGeneratorFactory)
+           .def_readwrite("numberOfThreads", &SettingsType::numberOfThreads)
+           .def_readwrite("numberOfIterations",&SettingsType::numberOfIterations)
+           .def_readwrite("stopIfNoImprovement",&SettingsType::stopIfNoImprovement)
+           .def_readwrite("fusionMoveSettings",&SettingsType::fusionMoveSettings)
+           //.def_readwrite("verbose", &SettingsType::verbose)
         ;
         
      

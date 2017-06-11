@@ -48,7 +48,7 @@ namespace lifted_multicut{
             true
         > ClusterPolicyType;
 
-        typedef typename ClusterPolicyType::Settings ClusterPolicySettingsType;
+        typedef typename ClusterPolicyType::SettingsType ClusterPolicySettingsType;
         typedef agglo::AgglomerativeClustering<ClusterPolicyType> AgglomerativeClusteringType;
 
 

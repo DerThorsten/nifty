@@ -30,20 +30,20 @@ namespace multicut{
 
         typedef typename PROPPOSAL_GEN::Objective Objective;
         typedef typename Objective::Graph Graph;
-        typedef MulticutBase<Objective> Base;
-        typedef typename Base::VisitorBase VisitorBase;
-        typedef typename Base::VisitorProxy VisitorProxy;
-        typedef typename Base::EdgeLabels EdgeLabels;
-        typedef typename Base::NodeLabels NodeLabels;
+        typedef MulticutBase<Objective> BaseType;
+        typedef typename BaseType::VisitorBase VisitorBase;
+        typedef typename BaseType::VisitorProxy VisitorProxy;
+        typedef typename BaseType::EdgeLabels EdgeLabels;
+        typedef typename BaseType::NodeLabels NodeLabels;
 
         typedef FusionMove<Objective> FusionMoveType;
         typedef PROPPOSAL_GEN ProposalGen;
-        typedef typename ProposalGen::Settings ProposalGenSettings;
-        typedef typename FusionMoveType::Settings FusionMoveSettings;
+        typedef typename ProposalGen::SettingsType ProposalGenSettings;
+        typedef typename FusionMoveType::SettingsType FusionMoveSettings;
         typedef typename Graph:: template EdgeMap<double> EdgeWeights;
     public:
 
-        struct Settings{
+        struct SettingsType{
             int verbose { 1 };
             int numberOfThreads {-1};
             size_t numberOfIterations {10};
@@ -55,7 +55,7 @@ namespace multicut{
         };
 
 
-        FusionMoveBased(const Objective & objective, const Settings & settings = Settings());
+        FusionMoveBased(const Objective & objective, const SettingsType & settings = SettingsType());
         ~FusionMoveBased();
         virtual void optimize(NodeLabels & nodeLabels, VisitorBase * visitor);
         virtual const Objective & objective() const;
@@ -80,7 +80,7 @@ namespace multicut{
 
         const Objective & objective_;
         const Graph & graph_;
-        Settings settings_;
+        SettingsType settings_;
         nifty::parallel::ParallelOptions parallelOptions_;
 
         std::vector<ProposalGen *>     pgens_;
@@ -96,7 +96,7 @@ namespace multicut{
     FusionMoveBased<PROPPOSAL_GEN>::
     FusionMoveBased(
         const Objective & objective, 
-        const Settings & settings
+        const SettingsType & settings
     )
     :   objective_(objective),
         graph_(objective.graph()),

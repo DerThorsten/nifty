@@ -70,7 +70,7 @@ namespace lifted_multicut{
 
     public:
 
-        struct Settings{
+        struct SettingsType{
             std::shared_ptr<ProposalGeneratorFactoryBaseType> proposalGeneratorFactory;
             size_t numberOfIterations{1000};
             size_t stopIfNoImprovement{10};
@@ -80,7 +80,7 @@ namespace lifted_multicut{
 
 
         virtual ~FusionMoveBased();
-        FusionMoveBased(const ObjectiveType & objective, const Settings & settings = Settings());
+        FusionMoveBased(const ObjectiveType & objective, const SettingsType & settings = SettingsType());
         virtual void optimize(NodeLabelsType & nodeLabels, VisitorBaseType * visitor);
         virtual const ObjectiveType & objective() const;
 
@@ -106,7 +106,7 @@ namespace lifted_multicut{
 
 
         const ObjectiveType & objective_;
-        Settings settings_;
+        SettingsType settings_;
         const GraphType & graph_;
         const LiftedGraphType & liftedGraph_;
         NodeLabelsType * currentBest_;
@@ -124,7 +124,7 @@ namespace lifted_multicut{
     FusionMoveBased<OBJECTIVE>::
     FusionMoveBased(
         const ObjectiveType & objective, 
-        const Settings & settings
+        const SettingsType & settings
     )
     :   objective_(objective),
         settings_(settings),
@@ -137,7 +137,7 @@ namespace lifted_multicut{
         fusionMoves_()
     {
         if(!bool(settings_.proposalGeneratorFactory)){
-            auto pgenSettings  = typename DefaultProposalGeneratorType::Settings();
+            auto pgenSettings  = typename DefaultProposalGeneratorType::SettingsType();
             settings_.proposalGeneratorFactory =  std::make_shared<DefaultProposalGeneratorFactoryType>(pgenSettings);
         }
 

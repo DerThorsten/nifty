@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 #include "nifty/graph/optimization/common/solver_factory_base.hxx"
 
 namespace nifty {
@@ -13,30 +15,38 @@ namespace common{
 
 
 
-template<class OBJECTIVE, class SOLVER_BASE>
-class PyMulticutFactoryBase : public MulticutFactoryBase<OBJECTIVE> {
+template<class SOLVER_BASE>
+class PySolverFactoryBase : public SolverFactoryBase<SOLVER_BASE> {
 public:
     /* Inherit the constructors */
-    // using MulticutFactory<ObjectiveType>::MulticutFactory;
-    typedef OBJECTIVE ObjectiveType;
+    // using SolverFactory<ObjectiveType>::SolverFactory;
+    
+    typedef SolverFactoryBase<SOLVER_BASE> BaseType;
     typedef SOLVER_BASE SolverBaseType;
+    typedef typename SolverBaseType::ObjectiveType ObjectiveType;
+    
     /* Trampoline (need one for each virtual function) */
+
+
+
     std::shared_ptr<SolverBaseType> createShared(const ObjectiveType & objective) {
         PYBIND11_OVERLOAD_PURE(
             std::shared_ptr<SolverBaseType>, /* Return type */
-            MulticutFactoryBase<ObjectiveType>,    /* Parent class */
-            createShared,                   /* Name of function */
-            objective                          /* Argument(s) */
+            BaseType,                        /* Parent class */
+            createShared,                    /* Name of function */
+            objective                        /* Argument(s) */
         );
     }
+
     SolverBaseType * create(const ObjectiveType & objective) {
         PYBIND11_OVERLOAD_PURE(
             SolverBaseType* ,                /* Return type */
-            MulticutFactoryBase<ObjectiveType>,    /* Parent class */
-            create,                            /* Name of function */
-            objective                          /* Argument(s) */
+            BaseType,                        /* Parent class */
+            create,                          /* Name of function */
+            objective                        /* Argument(s) */
         );
     }
+
 };
 
 } // namespace common

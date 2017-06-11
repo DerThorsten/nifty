@@ -30,7 +30,7 @@ namespace multicut{
         typedef typename Graph:: template EdgeMap<double>   EdgeState;
         typedef typename Graph:: template NodeMap<uint64_t> NodeLabels;
         typedef PerturbAndMap<ObjectiveType> PerturbAndMapType;
-        typedef typename PerturbAndMapType::Settings PerturbAndMapSettingsType;
+        typedef typename PerturbAndMapType::SettingsType PerturbAndMapSettingsType;
 
 
         const auto objName = MulticutObjectiveName<ObjectiveType>::name();

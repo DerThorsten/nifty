@@ -14,9 +14,9 @@ namespace ilp_backend{
     
 class Cplex {
 public:
-    typedef IlpBackendSettings Settings;
+    typedef IlpBackendSettings SettingsType;
 
-    Cplex(const Settings & settings = Settings());
+    Cplex(const SettingsType & settings = SettingsType());
     ~Cplex(){
         cplex_.end();
         env_.end();
@@ -63,7 +63,7 @@ public:
     }
 
 private:
-   Settings         settings_;
+   SettingsType         settings_;
    uint64_t         nVariables_;
    IloEnv           env_;
    IloModel         model_;
@@ -74,7 +74,7 @@ private:
    IloCplex         cplex_;
 };
 
-inline Cplex::Cplex(const Settings & settings) 
+inline Cplex::Cplex(const SettingsType & settings) 
 :   settings_(settings),
     nVariables_(0),
     env_(),

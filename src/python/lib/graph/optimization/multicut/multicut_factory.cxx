@@ -4,10 +4,13 @@
 #include "nifty/python/graph/undirected_list_graph.hxx"
 #include "nifty/python/graph/edge_contraction_graph.hxx"
 #include "nifty/python/graph/optimization/multicut/multicut_objective.hxx"
+#include "nifty/python/graph/optimization/multicut/multicut_objective_name.hxx"
+#include "nifty/python/graph/optimization/common/export_solver_factory.hxx"
 
+
+#include "nifty/graph/optimization/multicut/multicut_base.hxx"
 
 #include "nifty/python/converter.hxx"
-#include "nifty/python/graph/optimization/multicut/py_multicut_factory.hxx"
 
 
 
@@ -23,50 +26,29 @@ namespace optimization{
 namespace multicut{
 
 
-    template<class OBJECTIVE>
-    void exportMulticutFactoryT(py::module & multicutModule) {
-
-        typedef OBJECTIVE ObjectiveType;
-        typedef PyMulticutFactoryBase<ObjectiveType> PyMcFactoryBase;
-        typedef MulticutFactoryBase<ObjectiveType> McFactoryBase;
-
-
-        const auto objName = MulticutObjectiveName<ObjectiveType>::name();
-        const auto clsName = std::string("MulticutFactoryBase") + objName;
-
-        // base factory
-        py::class_<
-            McFactoryBase, 
-            std::shared_ptr<McFactoryBase>, 
-            PyMcFactoryBase 
-        > mcFactoryBase(multicutModule, clsName.c_str());
-        
-        mcFactoryBase
-            .def(py::init<>())
-
-            .def("create", 
-                //&McFactoryBase::create,
-                [](McFactoryBase * self, const ObjectiveType & obj){
-                    return self->create(obj);
-                },
-                //,
-                py::return_value_policy::take_ownership,
-                py::keep_alive<0,2>()
-                )
-        ;
-
-    }
 
     void exportMulticutFactory(py::module & multicutModule) {
+
+
         {
             typedef PyUndirectedGraph GraphType;
             typedef MulticutObjective<GraphType, double> ObjectiveType;
-            exportMulticutFactoryT<ObjectiveType>(multicutModule);
+            typedef MulticutBase<ObjectiveType> SolverBaseType;
+
+            nifty::graph::optimization::common::exportSolverFactory<SolverBaseType>(
+                multicutModule, 
+                MulticutObjectiveName<ObjectiveType>::name()
+            );
         }
         {
             typedef PyContractionGraph<PyUndirectedGraph> GraphType;
             typedef MulticutObjective<GraphType, double> ObjectiveType;
-            exportMulticutFactoryT<ObjectiveType>(multicutModule);
+            typedef MulticutBase<ObjectiveType> SolverBaseType;
+
+            nifty::graph::optimization::common::exportSolverFactory<SolverBaseType>(
+                multicutModule, 
+                MulticutObjectiveName<ObjectiveType>::name()
+            );
         }
     }
 

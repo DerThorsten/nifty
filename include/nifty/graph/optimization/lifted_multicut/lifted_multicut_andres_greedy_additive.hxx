@@ -58,13 +58,13 @@ namespace lifted_multicut{
 
     public:
 
-        struct Settings{
+        struct SettingsType{
         };
 
 
 
         virtual ~LiftedMulticutAndresGreedyAdditive(){}
-        LiftedMulticutAndresGreedyAdditive(const ObjectiveType & objective, const Settings & settings = Settings());
+        LiftedMulticutAndresGreedyAdditive(const ObjectiveType & objective, const SettingsType & settings = SettingsType());
         virtual void optimize(NodeLabelsType & nodeLabels, VisitorBaseType * visitor);
         virtual const ObjectiveType & objective() const;
 
@@ -90,7 +90,7 @@ namespace lifted_multicut{
 
 
         const ObjectiveType & objective_;
-        Settings settings_;
+        SettingsType settings_;
         const GraphType & graph_;
         const LiftedGraphType & liftedGraph_;
         NodeLabelsType * currentBest_;
@@ -105,7 +105,7 @@ namespace lifted_multicut{
     LiftedMulticutAndresGreedyAdditive<OBJECTIVE>::
     LiftedMulticutAndresGreedyAdditive(
         const ObjectiveType & objective, 
-        const Settings & settings
+        const SettingsType & settings
     )
     :   objective_(objective),
         settings_(settings),

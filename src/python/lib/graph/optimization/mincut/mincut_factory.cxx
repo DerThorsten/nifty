@@ -7,8 +7,10 @@
 
 
 #include "nifty/python/converter.hxx"
-#include "nifty/python/graph/optimization/mincut/py_mincut_factory.hxx"
 
+
+#include "nifty/graph/optimization/mincut/mincut_base.hxx"
+#include "nifty/python/graph/optimization/common/export_solver_factory.hxx"
 
 
 
@@ -24,54 +26,32 @@ namespace mincut{
 
 
 
-    template<class OBJECTIVE>
-    void exportMincutFactoryT(py::module & mincutModule) {
-
-        typedef OBJECTIVE ObjectiveType;
-        typedef PyMincutFactoryBase<ObjectiveType> PyMcFactoryBase;
-        typedef MincutFactoryBase<ObjectiveType> McFactoryBase;
+    void exportMincutFactory(py::module & multicutModule) {
 
 
-        const auto objName = MincutObjectiveName<ObjectiveType>::name();
-        const auto clsName = std::string("MincutFactoryBase") + objName;
-
-        // base factory
-        py::class_<
-            McFactoryBase, 
-            std::shared_ptr<McFactoryBase>, 
-            PyMcFactoryBase 
-        > mcFactoryBase(mincutModule, clsName.c_str());
-        
-        mcFactoryBase
-            .def(py::init<>())
-
-            .def("create", 
-                //&McFactoryBase::create,
-                [](McFactoryBase * self, const ObjectiveType & obj){
-                    return self->create(obj);
-                },
-                //,
-                py::return_value_policy::take_ownership,
-                py::keep_alive<0,2>()
-                )
-        ;
-
-    }
-
-    void exportMincutFactory(py::module & mincutModule) {
         {
             typedef PyUndirectedGraph GraphType;
             typedef MincutObjective<GraphType, double> ObjectiveType;
-            exportMincutFactoryT<ObjectiveType>(mincutModule);
+            typedef MincutBase<ObjectiveType> SolverBaseType;
+
+            nifty::graph::optimization::common::exportSolverFactory<SolverBaseType>(
+                multicutModule, 
+                MincutObjectiveName<ObjectiveType>::name()
+            );
         }
         {
             typedef PyContractionGraph<PyUndirectedGraph> GraphType;
             typedef MincutObjective<GraphType, double> ObjectiveType;
-            exportMincutFactoryT<ObjectiveType>(mincutModule);
+            typedef MincutBase<ObjectiveType> SolverBaseType;
+
+            nifty::graph::optimization::common::exportSolverFactory<SolverBaseType>(
+                multicutModule, 
+                MincutObjectiveName<ObjectiveType>::name()
+            );
         }
     }
 
-} // namespace nifty::graph::optimization::mincut    
+} // namespace nifty::graph::optimization::mincut
 } // namespace nifty::graph::optimization
 }
 }

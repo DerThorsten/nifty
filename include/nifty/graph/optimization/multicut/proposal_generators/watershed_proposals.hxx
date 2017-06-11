@@ -20,12 +20,12 @@ namespace multicut{
         typedef typename Objective::Graph Graph;
         typedef MulticutBase<Objective> Base;
         typedef MulticutGreedyAdditive<Objective> Solver;
-        typedef typename Solver::Settings SolverSettings;
+        typedef typename Solver::SettingsType SolverSettings;
         typedef typename Base::EdgeLabels EdgeLabels;
         typedef typename Base::NodeLabels NodeLabels;
         typedef typename Graph:: template EdgeMap<double>  EdgeWeights;
 
-        struct Settings{
+        struct SettingsType{
             double sigma{1.0};
             double seedFraction{0.1};
         };
@@ -36,7 +36,7 @@ namespace multicut{
 
         WatershedProposals(
             const Objective & objective, 
-            const Settings  & settings,
+            const SettingsType  & settings,
             const size_t threadIndex
         )
         :   objective_(objective),
@@ -121,7 +121,7 @@ namespace multicut{
         EdgeWeights weights_;
         NodeLabels seeds_;
         std::vector<uint64_t> negativeEdges_;
-        Settings settings_;
+        SettingsType settings_;
         size_t threadIndex_;
         size_t proposalNumber_;
         std::mt19937 gen_;

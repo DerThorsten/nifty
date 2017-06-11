@@ -28,7 +28,7 @@ namespace lifted_multicut{
     
         typedef typename GraphType:: template EdgeMap<float>  EdgeWeights;
 
-        struct Settings{
+        struct SettingsType{
 
 
             enum SeedingStrategie{
@@ -45,7 +45,7 @@ namespace lifted_multicut{
         WatershedProposalGenerator(
             const ObjectiveType & objective, 
             const size_t numberOfThreads,
-            const Settings & settings  = Settings()
+            const SettingsType & settings  = SettingsType()
         )
         :   objective_(objective),
             numberOfThreads_(numberOfThreads),
@@ -71,7 +71,7 @@ namespace lifted_multicut{
                 graphEdgeWeights_[graphEdge] = weights[edge];
             });
 
-            if(settings_.seedingStrategie == Settings::SEED_FROM_LIFTED){
+            if(settings_.seedingStrategie == SettingsType::SEED_FROM_LIFTED){
                 objective_.forEachLiftedeEdge([&](const uint64_t edge){
                     if(weights[edge] < 0.0){
                         negativeEdges_.push_back(edge);
@@ -87,7 +87,7 @@ namespace lifted_multicut{
                     });
                 }
             }
-            else if(settings_.seedingStrategie == Settings::SEED_FROM_LOCAL){
+            else if(settings_.seedingStrategie == SettingsType::SEED_FROM_LOCAL){
                 objective_.forEachGraphEdge([&](const uint64_t edge){
                     if(weights[edge] < 0.0){
                         negativeEdges_.push_back(edge);
@@ -103,7 +103,7 @@ namespace lifted_multicut{
                     });
                 }
             }
-            else if(settings_.seedingStrategie == Settings::SEED_FROM_BOTH){
+            else if(settings_.seedingStrategie == SettingsType::SEED_FROM_BOTH){
                 objective_.liftedGraph().forEachEdge([&](const uint64_t edge){
                     if(weights[edge] < 0.0){
                         negativeEdges_.push_back(edge);
@@ -170,7 +170,7 @@ namespace lifted_multicut{
     private:
         const ObjectiveType & objective_;
         size_t numberOfThreads_;
-        Settings settings_;
+        SettingsType settings_;
         std::vector<uint64_t> negativeEdges_;
         EdgeWeights graphEdgeWeights_;
 

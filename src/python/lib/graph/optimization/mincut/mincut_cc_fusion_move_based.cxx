@@ -42,7 +42,7 @@ namespace mincut{
         // concrete factories
         { // watershed factory
             typedef optCommon::WatershedProposalGenerator<ObjectiveType> ProposalGeneratorType;
-            typedef typename ProposalGeneratorType::Settings PGenSettigns;
+            typedef typename ProposalGeneratorType::SettingsType PGenSettigns;
             typedef typename PGenSettigns::SeedingStrategie SeedingStrategie;
             auto pGenSettigns = optCommon::exportCCProposalGenerator<ProposalGeneratorType>(module, "WatershedProposalGenerator",
                 MincutObjectiveName<ObjectiveType>::name());
@@ -61,7 +61,7 @@ namespace mincut{
 
         // the fusion move itself (or at least the settings)
         typedef MincutCcFusionMove<ObjectiveType>       MinCcFusionMoveType;
-        typedef typename MinCcFusionMoveType::Settings  MinCcFusionMoveSettings;
+        typedef typename MinCcFusionMoveType::SettingsType  MinCcFusionMoveSettings;
 
         const std::string  fmSettingsName = std::string("MincutCcFusionMoveSettings") + MincutObjectiveName<ObjectiveType>::name();
         py::class_<MinCcFusionMoveSettings >(module, fmSettingsName.c_str())
@@ -72,19 +72,19 @@ namespace mincut{
 
 
         typedef MincutCcFusionMoveBased<ObjectiveType> Solver;
-        typedef typename Solver::Settings Settings;
+        typedef typename Solver::SettingsType SettingsType;
 
         
 
         
         exportMincutSolver<Solver>(module,"MincutCcFusionMoveBased")
            .def(py::init<>())
-           .def_readwrite("proposalGenerator", &Settings::proposalGeneratorFactory)
-           .def_readwrite("numberOfThreads", &Settings::numberOfThreads)
-           .def_readwrite("numberOfIterations",&Settings::numberOfIterations)
-           .def_readwrite("stopIfNoImprovement",&Settings::stopIfNoImprovement)
-           .def_readwrite("fusionMoveSettings",&Settings::fusionMoveSettings)
-           //.def_readwrite("verbose", &Settings::verbose)
+           .def_readwrite("proposalGenerator", &SettingsType::proposalGeneratorFactory)
+           .def_readwrite("numberOfThreads", &SettingsType::numberOfThreads)
+           .def_readwrite("numberOfIterations",&SettingsType::numberOfIterations)
+           .def_readwrite("stopIfNoImprovement",&SettingsType::stopIfNoImprovement)
+           .def_readwrite("fusionMoveSettings",&SettingsType::fusionMoveSettings)
+           //.def_readwrite("verbose", &SettingsType::verbose)
         ;
         
      

@@ -53,7 +53,7 @@ namespace multicut{
 
 
             typedef MulticutAndresGreedyAdditive<ObjectiveType> Solver;
-            typedef typename Solver::Settings Settings;
+            typedef typename Solver::SettingsType SettingsType;
             const auto solverName = std::string("MulticutAndresGreedyAdditive");
             // FIXME verbose has no effect yet
             exportMulticutSolver<Solver>(multicutModule, solverName.c_str(), docHelper)
@@ -86,16 +86,16 @@ namespace multicut{
 
 
             typedef MulticutAndresKernighanLin<ObjectiveType> Solver;
-            typedef typename Solver::Settings Settings;
+            typedef typename Solver::SettingsType SettingsType;
             const auto solverName = std::string("MulticutAndresKernighanLin");
             // FIXME verbose has no effect yet
             exportMulticutSolver<Solver>(multicutModule, solverName.c_str(), docHelper)
                 .def(py::init<>())
-                .def_readwrite("numberOfInnerIterations", &Settings::numberOfInnerIterations)
-                .def_readwrite("numberOfOuterIterations", &Settings::numberOfOuterIterations)
-                .def_readwrite("epsilon", &Settings::epsilon)
-                .def_readwrite("verbose", &Settings::verbose)
-                .def_readwrite("greedyWarmstart", &Settings::greedyWarmstart)
+                .def_readwrite("numberOfInnerIterations", &SettingsType::numberOfInnerIterations)
+                .def_readwrite("numberOfOuterIterations", &SettingsType::numberOfOuterIterations)
+                .def_readwrite("epsilon", &SettingsType::epsilon)
+                .def_readwrite("verbose", &SettingsType::verbose)
+                .def_readwrite("greedyWarmstart", &SettingsType::greedyWarmstart)
             ; 
         }
 

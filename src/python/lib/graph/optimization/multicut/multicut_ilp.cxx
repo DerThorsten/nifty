@@ -66,22 +66,19 @@ namespace multicut{
         typedef BACKEND IlpSolver;
         typedef MulticutIlp<ObjectiveType, IlpSolver> Solver;
         
-        typedef typename Solver::Settings Settings;
-        // FIXME Where is this typedefs used ?
-        typedef MulticutFactory<Solver> Factory;
-        
+        typedef typename Solver::SettingsType SettingsType;        
         const auto solverName = std::string("MulticutIlp") + backendName;
         // todo exportMulticutSolver should be in the correct namespace
 
         nifty::graph::optimization::multicut::exportMulticutSolver<Solver>(multicutModule, solverName.c_str(), docHelper)
 
             .def(py::init<>())
-            .def_readwrite("numberOfIterations", &Settings::numberOfIterations)
-            .def_readwrite("verbose", &Settings::verbose)
-            .def_readwrite("verboseIlp", &Settings::verboseIlp)
-            .def_readwrite("addThreeCyclesConstraints", &Settings::addThreeCyclesConstraints)
-            .def_readwrite("addOnlyViolatedThreeCyclesConstraints", &Settings::addOnlyViolatedThreeCyclesConstraints)
-            .def_readwrite("ilpSettings",&Settings::ilpSettings)
+            .def_readwrite("numberOfIterations", &SettingsType::numberOfIterations)
+            .def_readwrite("verbose", &SettingsType::verbose)
+            .def_readwrite("verboseIlp", &SettingsType::verboseIlp)
+            .def_readwrite("addThreeCyclesConstraints", &SettingsType::addThreeCyclesConstraints)
+            .def_readwrite("addOnlyViolatedThreeCyclesConstraints", &SettingsType::addOnlyViolatedThreeCyclesConstraints)
+            .def_readwrite("ilpSettings",&SettingsType::ilpSettings)
         ; 
     }
 

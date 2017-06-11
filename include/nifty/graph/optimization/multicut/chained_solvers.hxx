@@ -3,8 +3,8 @@
 
 #include "nifty/tools/runtime_check.hxx"
 
+#include "nifty/graph/optimization/common/solver_factory_base.hxx"
 #include "nifty/graph/optimization/multicut/multicut_base.hxx"
-#include "nifty/graph/optimization/multicut/multicut_factory.hxx"
 #include "nifty/graph/optimization/multicut/multicut_objective.hxx"
 
 
@@ -27,18 +27,18 @@ namespace multicut{
         typedef OBJECTIVE Objective;
         typedef OBJECTIVE ObjectiveType;
         typedef typename ObjectiveType::WeightType WeightType;
-        typedef MulticutBase<ObjectiveType> Base;
-        typedef typename Base::VisitorBase VisitorBase;
-        typedef typename Base::VisitorProxy VisitorProxy;
-        typedef typename Base::EdgeLabels EdgeLabels;
-        typedef typename Base::NodeLabels NodeLabels;
+        typedef MulticutBase<ObjectiveType> BaseType;
+        typedef typename BaseType::VisitorBase VisitorBase;
+        typedef typename BaseType::VisitorProxy VisitorProxy;
+        typedef typename BaseType::EdgeLabels EdgeLabels;
+        typedef typename BaseType::NodeLabels NodeLabels;
         typedef typename ObjectiveType::Graph Graph;
         typedef typename ObjectiveType::GraphType GraphType;
         typedef typename ObjectiveType::WeightsMap WeightsMap;
         typedef typename GraphType:: template EdgeMap<uint8_t> IsDirtyEdge;
 
 
-        typedef MulticutFactoryBase<ObjectiveType>  McFactoryBase;
+        typedef nifty::graph::optimization::common::SolverFactoryBase<BaseType>  McFactoryBase;
 
 
 
@@ -50,10 +50,10 @@ namespace multicut{
             :   visitor_(visitor){
             }
 
-            virtual void begin(Base * solver) {
+            virtual void begin(BaseType * solver) {
                 // nothing
             }
-            virtual bool visit(Base * solver) {
+            virtual bool visit(BaseType * solver) {
                 if(visitor_ != nullptr){
                     return visitor_->visit(solver);
                 }
@@ -61,7 +61,7 @@ namespace multicut{
                     return true;
                 }
             }
-            virtual void end(Base * solver)   {
+            virtual void end(BaseType * solver)   {
                 // nothing
             }
 
@@ -92,7 +92,7 @@ namespace multicut{
 
     public:
 
-        struct Settings{
+        struct SettingsType{
             std::vector<
                 std::shared_ptr<McFactoryBase>
             > multicutFactories;
@@ -101,7 +101,7 @@ namespace multicut{
         virtual ~ChainedSolvers(){
 
         }
-        ChainedSolvers(const Objective & objective, const Settings & settings = Settings());
+        ChainedSolvers(const Objective & objective, const SettingsType & settings = SettingsType());
 
 
         virtual void optimize(NodeLabels & nodeLabels, VisitorBase * visitor);
@@ -124,7 +124,7 @@ namespace multicut{
 
 
         const Objective & objective_;
-        Settings settings_;
+        SettingsType settings_;
         NodeLabels * currentBest_;
         double currentBestEnergy_;
 
@@ -135,7 +135,7 @@ namespace multicut{
     ChainedSolvers<OBJECTIVE>::
     ChainedSolvers(
         const Objective & objective,
-        const Settings & settings
+        const SettingsType & settings
     )
     :   objective_(objective),
         settings_(settings),

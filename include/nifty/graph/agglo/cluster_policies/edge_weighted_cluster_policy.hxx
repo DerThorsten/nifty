@@ -38,7 +38,7 @@ public:
     typedef FloatEdgeMap                                EdgeIndicatorsType;
     typedef FloatEdgeMap                                EdgeSizesType;
     typedef FloatNodeMap                                NodeSizesType;
-    typedef EdgeWeightedClusterPolicySettings           Settings;
+    typedef EdgeWeightedClusterPolicySettings           SettingsType;
     typedef EdgeContractionGraph<GraphType, SelfType>   EdgeContractionGraphType;
 
     friend class EdgeContractionGraph<GraphType, SelfType, ENABLE_UCM> ;
@@ -56,7 +56,7 @@ public:
                               const EDGE_INDICATORS & , 
                               const EDGE_SIZES & , 
                               const NODE_SIZES & ,
-                              const Settings & settings = Settings());
+                              const SettingsType & settings = SettingsType());
 
 
     std::pair<uint64_t, double> edgeToContractNext() const;
@@ -94,7 +94,7 @@ private:
     EdgeIndicatorsType  edgeIndicators_;
     EdgeSizesType       edgeSizes_;
     NodeSizesType       nodeSizes_;
-    Settings            settings_;
+    SettingsType            settings_;
     
     // INTERNAL
     EdgeContractionGraphType edgeContractionGraph_;
@@ -111,7 +111,7 @@ EdgeWeightedClusterPolicy(
     const EDGE_INDICATORS & edgeIndicators,
     const EDGE_SIZES      & edgeSizes,
     const NODE_SIZES      & nodeSizes,
-    const Settings & settings
+    const SettingsType & settings
 )
 :   graph_(graph),
     edgeIndicators_(graph),
