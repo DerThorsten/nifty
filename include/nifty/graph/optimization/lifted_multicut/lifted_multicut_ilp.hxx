@@ -23,13 +23,12 @@ namespace lifted_multicut{
     public: 
 
         typedef OBJECTIVE Objective;
-        typedef LiftedMulticutBase<OBJECTIVE> Base;
-        typedef typename Base::VisitorBaseType VisitorBaseType;
-        typedef typename Base::VisitorProxyType VisitorProxyType;
-        //typedef typename Base::EdgeLabels EdgeLabels;
-        typedef typename Base::NodeLabelsType NodeLabelsType;
+        typedef LiftedMulticutBase<OBJECTIVE> BaseType;
+        typedef typename BaseType::VisitorBaseType VisitorBaseType;
+        typedef typename BaseType::VisitorProxyType VisitorProxyType;
+        typedef typename BaseType::NodeLabelsType NodeLabelsType;
         typedef ILP_SOLVER IlpSovler;
-        typedef typename IlpSovler::Settings IlpSettings;
+        typedef typename IlpSovler::SettingsType IlpSettings;
         typedef typename Objective::Graph Graph;
         typedef typename Objective::LiftedGraph LiftedGraph;
 
@@ -68,7 +67,7 @@ namespace lifted_multicut{
 
     public:
 
-        struct Settings{
+        struct SettingsType{
 
             size_t numberOfIterations{0};
             int verbose { 0 };
@@ -82,7 +81,7 @@ namespace lifted_multicut{
             if(ilpSolver_ != nullptr)
                 delete ilpSolver_;
         }
-        LiftedMulticutIlp(const Objective & objective, const Settings & settings = Settings());
+        LiftedMulticutIlp(const Objective & objective, const SettingsType & settings = SettingsType());
 
 
         virtual void optimize(NodeLabelsType & nodeLabels, VisitorBaseType * visitor);
@@ -139,7 +138,7 @@ namespace lifted_multicut{
         DenseIds denseIds_;
         BidirectionalBreadthFirstSearch<Graph> bibfs_;
         DfsType dfs_;
-        Settings settings_;
+        SettingsType settings_;
         std::vector<size_t> variables_;
         std::vector<double> coefficients_;
         NodeLabelsType * currentBest_;
@@ -152,7 +151,7 @@ namespace lifted_multicut{
     LiftedMulticutIlp<OBJECTIVE, ILP_SOLVER>::
     LiftedMulticutIlp(
         const Objective & objective, 
-        const Settings & settings
+        const SettingsType & settings
     )
     :   objective_(objective),
         graph_(objective.graph()),

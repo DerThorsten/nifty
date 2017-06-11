@@ -9,7 +9,6 @@
 #include "nifty/container/boost_flat_set.hxx"
 
 #include "nifty/graph/optimization/multicut/multicut_base.hxx"
-#include "nifty/graph/optimization/multicut/multicut_factory.hxx"
 #include "nifty/graph/optimization/multicut/multicut_objective.hxx"
 
 
@@ -32,20 +31,54 @@ namespace multicut{
         typedef OBJECTIVE Objective;
         typedef OBJECTIVE ObjectiveType;
         typedef typename ObjectiveType::WeightType WeightType;
-        typedef MulticutBase<ObjectiveType> Base;
-        typedef typename Base::VisitorBase VisitorBase;
-        typedef typename Base::VisitorProxy VisitorProxy;
-        typedef typename Base::EdgeLabels EdgeLabels;
-        typedef typename Base::NodeLabels NodeLabels;
+        typedef MulticutBase<ObjectiveType> BaseType;
+        typedef typename BaseType::VisitorBase VisitorBase;
+        typedef typename BaseType::VisitorProxy VisitorProxy;
+        typedef typename BaseType::EdgeLabels EdgeLabels;
+        typedef typename BaseType::NodeLabels NodeLabels;
         typedef typename ObjectiveType::Graph Graph;
         typedef typename ObjectiveType::GraphType GraphType;
         typedef typename ObjectiveType::WeightsMap WeightsMap;
         typedef typename GraphType:: template EdgeMap<uint8_t> IsDirtyEdge;
 
 
-        typedef MulticutFactoryBase<ObjectiveType>  McFactoryBase;
 
 
+
+
+    
+    public:
+
+        struct SettingsType{
+            uint64_t numberOfInnerIterations { std::numeric_limits<uint64_t>::max() };
+            uint64_t numberOfOuterIterations { 100 };
+            double epsilon { 1e-6 };
+            bool verbose { false };
+        };
+
+        virtual ~KernighanLin(){
+            
+        }
+        KernighanLin(const Objective & objective, const SettingsType & settings = SettingsType());
+
+
+        virtual void optimize(NodeLabels & nodeLabels, VisitorBase * visitor);
+        virtual const Objective & objective() const;
+
+
+        virtual const NodeLabels & currentBestNodeLabels( ){
+            return *currentBest_;
+        }
+
+        virtual std::string name()const{
+            return std::string("KernighanLin");
+        }
+        virtual void weightsChanged(){ 
+        }
+        //virtual double currentBestEnergy() {
+        //   return currentBestEnergy_;
+        //}
+    private:
 
 
         struct TwoCutBuffers{
@@ -67,42 +100,6 @@ namespace multicut{
         };
 
 
-
-
-    
-    public:
-
-        struct Settings{
-            uint64_t numberOfInnerIterations { std::numeric_limits<uint64_t>::max() };
-            uint64_t numberOfOuterIterations { 100 };
-            double epsilon { 1e-6 };
-            bool verbose { false };
-        };
-
-        virtual ~KernighanLin(){
-            
-        }
-        KernighanLin(const Objective & objective, const Settings & settings = Settings());
-
-
-        virtual void optimize(NodeLabels & nodeLabels, VisitorBase * visitor);
-        virtual const Objective & objective() const;
-
-
-        virtual const NodeLabels & currentBestNodeLabels( ){
-            return *currentBest_;
-        }
-
-        virtual std::string name()const{
-            return std::string("KernighanLin");
-        }
-        virtual void weightsChanged(){ 
-        }
-        //virtual double currentBestEnergy() {
-        //   return currentBestEnergy_;
-        //}
-    private:
-
         template<class NODE_LABELS>
         uint64_t maxLabel(const NODE_LABELS & nodeLabels){
             uint64_t mx = 0;
@@ -116,7 +113,7 @@ namespace multicut{
 
         const Objective & objective_;
         const GraphType & graph_;
-        Settings settings_;
+        SettingsType settings_;
         NodeLabels * currentBest_;
         double currentBestEnergy_;
 
@@ -129,7 +126,7 @@ namespace multicut{
     KernighanLin<OBJECTIVE>::
     KernighanLin(
         const Objective & objective, 
-        const Settings & settings
+        const SettingsType & settings
     )
     :   objective_(objective),
         graph_(objective.graph()),

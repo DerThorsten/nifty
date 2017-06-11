@@ -24,7 +24,7 @@ namespace lifted_multicut{
 
         typedef OBJECTIVE ObjectiveType;
         typedef LiftedMulticutAndresGreedyAdditive<ObjectiveType> Solver;
-        typedef typename Solver::Settings Settings;
+        typedef typename Solver::SettingsType SettingsType;
         
         exportLiftedMulticutSolver<Solver>(liftedMulticutModule,"LiftedMulticutAndresGreedyAdditive")
             .def(py::init<>())

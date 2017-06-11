@@ -25,13 +25,13 @@ namespace lifted_multicut{
 
         typedef OBJECTIVE ObjectiveType;
         typedef LiftedMulticutGreedyAdditive<ObjectiveType> Solver;
-        typedef typename Solver::Settings Settings;
+        typedef typename Solver::SettingsType SettingsType;
         
         exportLiftedMulticutSolver<Solver>(liftedMulticutModule,"LiftedMulticutGreedyAdditive")
             .def(py::init<>())
-            .def_readwrite("nodeNumStopCond", &Settings::nodeNumStopCond)
-            .def_readwrite("weightStopCond", &Settings::weightStopCond)
-            //.def_readwrite("verbose", &Settings::verbose)
+            .def_readwrite("nodeNumStopCond", &SettingsType::nodeNumStopCond)
+            .def_readwrite("weightStopCond", &SettingsType::weightStopCond)
+            //.def_readwrite("verbose", &SettingsType::verbose)
         ;
      
     }

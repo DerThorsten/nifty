@@ -8,7 +8,7 @@
 #include "nifty/tools/runtime_check.hxx"
 #include "nifty/ufd/ufd.hxx"
 #include "nifty/graph/optimization/mincut/mincut_base.hxx"
-#include "nifty/graph/optimization/mincut/mincut_factory.hxx"
+#include "nifty/graph/optimization/common/solver_factory.hxx"
 #include "nifty/graph/optimization/mincut/mincut_objective.hxx"
 #include "nifty/graph/undirected_list_graph.hxx"
 
@@ -28,16 +28,17 @@ namespace mincut{
 
         typedef UndirectedGraph<> FmGraph;
         typedef MincutObjective<FmGraph, double> FmObjective;
-        typedef MincutFactoryBase<FmObjective>   FmMcFactoryBase;
         typedef MincutBase<FmObjective>          FmMcBase;
+        typedef nifty::graph::optimization::common::SolverFactoryBase<FmMcBase>   FmMcFactoryBase;
+        
         typedef MincutEmptyVisitor<FmObjective>  FmEmptyVisitor;
         typedef typename  FmMcBase::NodeLabels     FmNodeLabels;
 
-        struct Settings{
+        struct SettingsType{
             std::shared_ptr<FmMcFactoryBase> mincutFactory;
         };
 
-        MincutCcFusionMove(const Objective & objective, const Settings & settings = Settings())
+        MincutCcFusionMove(const Objective & objective, const SettingsType & settings = SettingsType())
         :   objective_(objective),
             graph_(objective.graph()),
             settings_(settings),
@@ -177,7 +178,7 @@ namespace mincut{
 
                 //std::cout<<"fm solve\n";
                 // solve that thin
-                auto solverPtr = settings_.mincutFactory->createRawPtr(fmObjective);
+                auto solverPtr = settings_.mincutFactory->create(fmObjective);
                 FmNodeLabels fmLabels(fmGraph);
                 FmEmptyVisitor fmVisitor;
                 //std::cout<<"opt\n";
@@ -207,7 +208,7 @@ namespace mincut{
 
         const Objective & objective_;
         const Graph & graph_;
-        Settings settings_;
+        SettingsType settings_;
         nifty::ufd::Ufd< > ufd_;
         NodeLabels nodeToDense_;
     };

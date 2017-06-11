@@ -38,17 +38,16 @@ namespace lifted_multicut{
         typedef OBJECTIVE ObjectiveType;
         typedef BACKEND IlpSolver;
         typedef LiftedMulticutIlp<ObjectiveType, IlpSolver> Solver;
-        typedef typename Solver::Settings Settings;
-        typedef LiftedMulticutFactory<Solver> Factory;
+        typedef typename Solver::SettingsType SettingsType;
         const auto solverName = std::string("LiftedMulticutIlp") + backendName;
         exportLiftedMulticutSolver<Solver>(liftedMulticutModule, solverName.c_str())
             .def(py::init<>())
-            .def_readwrite("numberOfIterations", &Settings::numberOfIterations)
-            .def_readwrite("verbose", &Settings::verbose)
-            .def_readwrite("verboseIlp", &Settings::verboseIlp)
-            .def_readwrite("addThreeCyclesConstraints", &Settings::addThreeCyclesConstraints)
-            .def_readwrite("addOnlyViolatedThreeCyclesConstraints", &Settings::addOnlyViolatedThreeCyclesConstraints)
-            .def_readwrite("ilpSettings",&Settings::ilpSettings)
+            .def_readwrite("numberOfIterations", &SettingsType::numberOfIterations)
+            .def_readwrite("verbose", &SettingsType::verbose)
+            .def_readwrite("verboseIlp", &SettingsType::verboseIlp)
+            .def_readwrite("addThreeCyclesConstraints", &SettingsType::addThreeCyclesConstraints)
+            .def_readwrite("addOnlyViolatedThreeCyclesConstraints", &SettingsType::addOnlyViolatedThreeCyclesConstraints)
+            .def_readwrite("ilpSettings",&SettingsType::ilpSettings)
         ; 
     }
 

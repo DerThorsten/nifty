@@ -42,14 +42,13 @@ namespace multicut{
 
         typedef OBJECTIVE ObjectiveType;
         typedef KernighanLin<ObjectiveType> Solver;
-        typedef typename Solver::Settings Settings;
-        typedef MulticutFactory<Solver> Factory;
+        typedef typename Solver::SettingsType SettingsType;
         const auto solverName = std::string("KernighanLin");
         exportMulticutSolver<Solver>(multicutModule, solverName.c_str(), docHelper)
             .def(py::init<>())
-            .def_readwrite("numberOfInnerIterations", &Settings::numberOfInnerIterations)
-            .def_readwrite("numberOfOuterIterations", &Settings::numberOfOuterIterations)
-            .def_readwrite("epsilon", &Settings::epsilon)
+            .def_readwrite("numberOfInnerIterations", &SettingsType::numberOfInnerIterations)
+            .def_readwrite("numberOfOuterIterations", &SettingsType::numberOfOuterIterations)
+            .def_readwrite("epsilon", &SettingsType::epsilon)
         ; 
     }
 

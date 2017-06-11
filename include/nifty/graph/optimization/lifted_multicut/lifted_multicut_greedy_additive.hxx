@@ -23,7 +23,7 @@ namespace lifted_multicut{
     class LiftedMulticutGreedyAdditiveCallback{
     public:
 
-        struct Settings{
+        struct SettingsType{
 
             double weightStopCond{0.0};
             double nodeNumStopCond{-1};
@@ -43,7 +43,7 @@ namespace lifted_multicut{
 
         LiftedMulticutGreedyAdditiveCallback(
             const Objective & objective,
-            const Settings & settings
+            const SettingsType & settings
         )
         :   objective_(objective),
             liftedGraph_(objective.liftedGraph()),
@@ -190,7 +190,7 @@ namespace lifted_multicut{
         }
 
         void changeSettings(
-            const Settings & settings
+            const SettingsType & settings
         ){
             settings_ = settings;
         }
@@ -208,7 +208,7 @@ namespace lifted_multicut{
         IsLiftedMap   isLifted_;
         CurrentWeightMap currentWeight_;
 
-        Settings settings_;
+        SettingsType settings_;
         uint64_t currentNodeNum_;
 
         std::mt19937 gen_;
@@ -229,21 +229,21 @@ namespace lifted_multicut{
         typedef typename Objective::Graph Graph;
         typedef typename Objective::LiftedGraph LiftedGraph;
         typedef detail_lifted_multicut_greedy_additive::LiftedMulticutGreedyAdditiveCallback<Objective> Callback;
-        typedef LiftedMulticutBase<OBJECTIVE> Base;
-        typedef typename Base::VisitorBaseType VisitorBaseType;
-        typedef typename Base::NodeLabelsType NodeLabelsType;
+        typedef LiftedMulticutBase<OBJECTIVE> BaseType;
+        typedef typename BaseType::VisitorBaseType VisitorBaseType;
+        typedef typename BaseType::NodeLabelsType NodeLabelsType;
 
     public:
 
-        typedef typename Callback::Settings Settings;
+        typedef typename Callback::SettingsType SettingsType;
 
         virtual ~LiftedMulticutGreedyAdditive(){}
-        LiftedMulticutGreedyAdditive(const Objective & objective, const Settings & settings = Settings());
+        LiftedMulticutGreedyAdditive(const Objective & objective, const SettingsType & settings = SettingsType());
         virtual void optimize(NodeLabelsType & nodeLabels, VisitorBaseType * visitor);
         virtual const Objective & objective() const;
 
         void reset();
-        void changeSettings(const Settings & settings);
+        void changeSettings(const SettingsType & settings);
 
         virtual void weightsChanged(){
             this->reset();
@@ -276,7 +276,7 @@ namespace lifted_multicut{
     LiftedMulticutGreedyAdditive<OBJECTIVE>::
     LiftedMulticutGreedyAdditive(
         const Objective & objective, 
-        const Settings & settings
+        const SettingsType & settings
     )
     :   objective_(objective),
         graph_(objective.graph()),
@@ -349,7 +349,7 @@ namespace lifted_multicut{
     inline void 
     LiftedMulticutGreedyAdditive<OBJECTIVE>::
     changeSettings(
-        const Settings & settings
+        const SettingsType & settings
     ){
         callback_.changeSettings(settings);
     }

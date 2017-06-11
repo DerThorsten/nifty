@@ -26,7 +26,7 @@ namespace multicut{
     class MulticutGreedyAdditiveCallback{
     public:
 
-        struct Settings{
+        struct SettingsType{
 
             double weightStopCond{0.0};
             double nodeNumStopCond{-1};
@@ -46,7 +46,7 @@ namespace multicut{
 
         MulticutGreedyAdditiveCallback(
             const Objective & objective,
-            const Settings & settings
+            const SettingsType & settings
         )
         :   objective_(objective),
             graph_(objective.graph()),
@@ -129,7 +129,7 @@ namespace multicut{
         }
 
         void changeSettings(
-            const Settings & settings
+            const SettingsType & settings
         ){
             settings_ = settings;
         }
@@ -138,7 +138,7 @@ namespace multicut{
             return pq_;
         }   
 
-        const Settings & settings()const{
+        const SettingsType & settings()const{
             return settings_;
         }
 
@@ -147,7 +147,7 @@ namespace multicut{
         const Objective & objective_;
         const Graph & graph_;
         QueueType pq_;
-        Settings settings_;
+        SettingsType settings_;
         uint64_t currentNodeNum_;
 
         std::mt19937 gen_;
@@ -167,22 +167,22 @@ namespace multicut{
         typedef OBJECTIVE Objective;
         typedef typename Objective::Graph Graph;
         typedef detail_multicut_greedy_additive::MulticutGreedyAdditiveCallback<Objective> Callback;
-        typedef MulticutBase<OBJECTIVE> Base;
-        typedef typename Base::VisitorBase VisitorBase;
-        typedef typename Base::EdgeLabels EdgeLabels;
-        typedef typename Base::NodeLabels NodeLabels;
+        typedef MulticutBase<OBJECTIVE> BaseType;
+        typedef typename BaseType::VisitorBase VisitorBase;
+        typedef typename BaseType::EdgeLabels EdgeLabels;
+        typedef typename BaseType::NodeLabels NodeLabels;
 
     public:
 
-        typedef typename Callback::Settings Settings;
+        typedef typename Callback::SettingsType SettingsType;
 
         virtual ~MulticutGreedyAdditive(){}
-        MulticutGreedyAdditive(const Objective & objective, const Settings & settings = Settings());
+        MulticutGreedyAdditive(const Objective & objective, const SettingsType & settings = SettingsType());
         virtual void optimize(NodeLabels & nodeLabels, VisitorBase * visitor);
         virtual const Objective & objective() const;
 
         void reset();
-        void changeSettings(const Settings & settings);
+        void changeSettings(const SettingsType & settings);
 
         virtual void weightsChanged(){
             this->reset();
@@ -215,7 +215,7 @@ namespace multicut{
     MulticutGreedyAdditive<OBJECTIVE>::
     MulticutGreedyAdditive(
         const Objective & objective, 
-        const Settings & settings
+        const SettingsType & settings
     )
     :   objective_(objective),
         graph_(objective.graph()),
@@ -292,7 +292,7 @@ namespace multicut{
     inline void 
     MulticutGreedyAdditive<OBJECTIVE>::
     changeSettings(
-        const Settings & settings
+        const SettingsType & settings
     ){
         callback_.changeSettings(settings);
     }

@@ -29,7 +29,7 @@ namespace mincut{
     class MincutGreedyAdditiveCallback{
     public:
 
-        struct Settings{
+        struct SettingsType{
 
             double weightStopCond{0.0};
             double nodeNumStopCond{-1};
@@ -48,7 +48,7 @@ namespace mincut{
 
         MincutGreedyAdditiveCallback(
             const Objective & objective,
-            const Settings & settings
+            const SettingsType & settings
         )
         :   objective_(objective),
             graph_(objective.graph()),
@@ -136,7 +136,7 @@ namespace mincut{
         }
 
         void changeSettings(
-            const Settings & settings
+            const SettingsType & settings
         ){
             settings_ = settings;
         }
@@ -144,7 +144,7 @@ namespace mincut{
         const QueueType & queue()const{
             return pq_;
         }
-        const Settings & settings()const{
+        const SettingsType & settings()const{
             return settings_;
         }
     private:
@@ -152,7 +152,7 @@ namespace mincut{
         const Objective & objective_;
         const Graph & graph_;
         QueueType pq_;
-        Settings settings_;
+        SettingsType settings_;
         uint64_t currentNodeNum_;
 
         std::mt19937 gen_;
@@ -175,23 +175,23 @@ namespace mincut{
         typedef typename ObjectiveType::GraphType GraphType;
         typedef detail_mincut_greedy_additive::MincutGreedyAdditiveCallback<Objective> CallbackType;
         typedef nifty::graph::EdgeContractionGraph<GraphType, CallbackType> ContractionGraphType;
-        typedef MincutBase<OBJECTIVE> Base;
-        typedef typename Base::VisitorBase VisitorBase;
-        typedef typename Base::VisitorProxy VisitorProxy;
-        typedef typename Base::EdgeLabels EdgeLabels;
-        typedef typename Base::NodeLabels NodeLabels;
+        typedef MincutBase<OBJECTIVE> BaseType;
+        typedef typename BaseType::VisitorBase VisitorBase;
+        typedef typename BaseType::VisitorProxy VisitorProxy;
+        typedef typename BaseType::EdgeLabels EdgeLabels;
+        typedef typename BaseType::NodeLabels NodeLabels;
 
     public:
 
-        typedef typename CallbackType::Settings Settings;
+        typedef typename CallbackType::SettingsType SettingsType;
 
         virtual ~MincutGreedyAdditive(){}
-        MincutGreedyAdditive(const Objective & objective, const Settings & settings = Settings());
+        MincutGreedyAdditive(const Objective & objective, const SettingsType & settings = SettingsType());
         virtual void optimize(NodeLabels & nodeLabels, VisitorBase * visitor);
         virtual const Objective & objective() const;
 
         void reset();
-        void changeSettings(const Settings & settings);
+        void changeSettings(const SettingsType & settings);
 
         virtual void weightsChanged(){
             this->reset();
@@ -227,7 +227,7 @@ namespace mincut{
     MincutGreedyAdditive<OBJECTIVE>::
     MincutGreedyAdditive(
         const Objective & objective, 
-        const Settings & settings
+        const SettingsType & settings
     )
     :   objective_(objective),
         graph_(objective.graph()),
@@ -368,7 +368,7 @@ namespace mincut{
     inline void 
     MincutGreedyAdditive<OBJECTIVE>::
     changeSettings(
-        const Settings & settings
+        const SettingsType & settings
     ){
         callback_.changeSettings(settings);
     }

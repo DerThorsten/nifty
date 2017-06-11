@@ -25,31 +25,30 @@ namespace lifted_multicut{
         
         typedef OBJECTIVE ObjectiveType;
         typedef LiftedMulticutMp<ObjectiveType> Solver;
-        typedef typename Solver::Settings Settings;
-        typedef LiftedMulticutFactory<Solver> Factory;
+        typedef typename Solver::SettingsType SettingsType;
         const auto solverName = std::string("LiftedMulticutMp");
         exportLiftedMulticutSolver<Solver>(liftedMulticutModule, solverName.c_str())
             .def(py::init<>())
-            .def_readwrite("lmcFactory", &Settings::lmcFactory)
-            .def_readwrite("greedyWarmstart", &Settings::greedyWarmstart)
-            .def_readwrite("tightenSlope", &Settings::tightenSlope)
-            .def_readwrite("tightenMinDualImprovementInterval", &Settings::tightenMinDualImprovementInterval)
-            .def_readwrite("tightenMinDualImprovement", &Settings::tightenMinDualImprovement)
-            .def_readwrite("tightenConstraintsPercentage", &Settings::tightenConstraintsPercentage)
-            .def_readwrite("tightenConstraintsMax", &Settings::tightenConstraintsMax)
-            .def_readwrite("tightenInterval", &Settings::tightenInterval)
-            .def_readwrite("tightenIteration", &Settings::tightenIteration)
-            .def_readwrite("tightenReparametrization", &Settings::tightenReparametrization)
-            .def_readwrite("roundingReparametrization", &Settings::roundingReparametrization)
-            .def_readwrite("standardReparametrization", &Settings::standardReparametrization)
-            .def_readwrite("tighten", &Settings::tighten)
-            .def_readwrite("minDualImprovementInterval", &Settings::minDualImprovementInterval)
-            .def_readwrite("minDualImprovement", &Settings::minDualImprovement)
-            .def_readwrite("lowerBoundComputationInterval", &Settings::lowerBoundComputationInterval)
-            .def_readwrite("primalComputationInterval", &Settings::primalComputationInterval)
-            .def_readwrite("timeout", &Settings::timeout)
-            .def_readwrite("maxIter", &Settings::maxIter)
-            .def_readwrite("numThreads", &Settings::numLpThreads)
+            .def_readwrite("lmcFactory", &SettingsType::lmcFactory)
+            .def_readwrite("greedyWarmstart", &SettingsType::greedyWarmstart)
+            .def_readwrite("tightenSlope", &SettingsType::tightenSlope)
+            .def_readwrite("tightenMinDualImprovementInterval", &SettingsType::tightenMinDualImprovementInterval)
+            .def_readwrite("tightenMinDualImprovement", &SettingsType::tightenMinDualImprovement)
+            .def_readwrite("tightenConstraintsPercentage", &SettingsType::tightenConstraintsPercentage)
+            .def_readwrite("tightenConstraintsMax", &SettingsType::tightenConstraintsMax)
+            .def_readwrite("tightenInterval", &SettingsType::tightenInterval)
+            .def_readwrite("tightenIteration", &SettingsType::tightenIteration)
+            .def_readwrite("tightenReparametrization", &SettingsType::tightenReparametrization)
+            .def_readwrite("roundingReparametrization", &SettingsType::roundingReparametrization)
+            .def_readwrite("standardReparametrization", &SettingsType::standardReparametrization)
+            .def_readwrite("tighten", &SettingsType::tighten)
+            .def_readwrite("minDualImprovementInterval", &SettingsType::minDualImprovementInterval)
+            .def_readwrite("minDualImprovement", &SettingsType::minDualImprovement)
+            .def_readwrite("lowerBoundComputationInterval", &SettingsType::lowerBoundComputationInterval)
+            .def_readwrite("primalComputationInterval", &SettingsType::primalComputationInterval)
+            .def_readwrite("timeout", &SettingsType::timeout)
+            .def_readwrite("maxIter", &SettingsType::maxIter)
+            .def_readwrite("numThreads", &SettingsType::numLpThreads)
         ;
     }
    

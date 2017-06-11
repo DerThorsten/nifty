@@ -11,7 +11,7 @@
 #include "nifty/graph/components.hxx"
 
 #include "nifty/graph/optimization/multicut/multicut_base.hxx"
-#include "nifty/graph/optimization/multicut/multicut_factory.hxx"
+#include "nifty/graph/optimization/common/solver_factory.hxx"
 #include "nifty/graph/optimization/multicut/multicut_objective.hxx"
 #include "nifty/graph/undirected_list_graph.hxx"
 #include "nifty/ufd/ufd.hxx"
@@ -20,7 +20,6 @@
 
 #include "nifty/graph/optimization/mincut/mincut_visitor_base.hxx"
 #include "nifty/graph/optimization/mincut/mincut_base.hxx"
-#include "nifty/graph/optimization/mincut/mincut_factory.hxx"
 #include "nifty/graph/optimization/mincut/mincut_objective.hxx"
 #include "nifty/graph/undirected_list_graph.hxx"
 
@@ -51,8 +50,9 @@ namespace multicut{
 
             typedef nifty::graph::UndirectedGraph<>           SubGraph;
             typedef mincut::MincutObjective<SubGraph, double>         MincutSubObjective;
-            typedef mincut::MincutFactoryBase<MincutSubObjective>     MincutSubMcFactoryBase;
             typedef mincut::MincutBase<MincutSubObjective>            MincutSubBase;
+            typedef nifty::graph::optimization::common::SolverFactoryBase<MincutSubBase>   MincutSubMcFactoryBase;
+            
             typedef mincut::MincutVerboseVisitor<MincutSubObjective>  SubMcVerboseVisitor;
      
             typedef typename  MincutSubBase::NodeLabels     MincutSubNodeLabels;
@@ -140,7 +140,7 @@ namespace multicut{
                     });
                     // solve it
                     MincutSubNodeLabels subgraphRes(subGraph);
-                    auto solverPtr = mincutFactory_->createRawPtr(subObjective);
+                    auto solverPtr = mincutFactory_->create(subObjective);
 
                     //SubMcVerboseVisitor visitor;
                     solverPtr->optimize(subgraphRes,nullptr);
@@ -229,7 +229,7 @@ namespace multicut{
 
                 // optimize
                 MincutSubNodeLabels subgraphRes(subGraph);
-                auto solverPtr = mincutFactory_->createRawPtr(subObjective);
+                auto solverPtr = mincutFactory_->create(subObjective);
                 solverPtr->optimize(subgraphRes,nullptr);
                 const auto minCutValue  = subObjective.evalNodeLabels(subgraphRes);
                 delete solverPtr;   
@@ -561,36 +561,38 @@ namespace multicut{
         typedef OBJECTIVE Objective;    
         typedef OBJECTIVE ObjectiveType;
         typedef typename ObjectiveType::WeightType WeightType;
-        typedef MulticutBase<ObjectiveType> Base;
-        typedef typename Base::VisitorBase VisitorBase;
-        typedef typename Base::VisitorProxy VisitorProxy;
-        typedef typename Base::EdgeLabels EdgeLabels;
-        typedef typename Base::NodeLabels NodeLabels;
+        typedef MulticutBase<ObjectiveType> BaseType;
+        typedef typename BaseType::VisitorBase VisitorBase;
+        typedef typename BaseType::VisitorProxy VisitorProxy;
+        typedef typename BaseType::EdgeLabels EdgeLabels;
+        typedef typename BaseType::NodeLabels NodeLabels;
         typedef typename ObjectiveType::Graph Graph;
         typedef typename ObjectiveType::GraphType GraphType;
         typedef typename ObjectiveType::WeightsMap WeightsMap;
         typedef typename GraphType:: template EdgeMap<uint8_t> IsDirtyEdge;
 
-        typedef UndirectedGraph<>                           SubGraph;
-        typedef mincut::MincutObjective<SubGraph, double>           MincutSubObjective;
-        typedef mincut::MincutFactoryBase<MincutSubObjective>       MincutSubMcFactoryBase;
-        typedef mincut::MincutBase<MincutSubObjective>              MincutSubBase;
-        typedef typename  MincutSubBase::NodeLabels         MincutSubNodeLabels;
+        typedef UndirectedGraph<>                              SubGraph;
+        typedef mincut::MincutObjective<SubGraph, double>      MincutSubObjective;
+        typedef mincut::MincutBase<MincutSubObjective>         MincutSubBase;
+        typedef nifty::graph::optimization::common::SolverFactoryBase<MincutSubBase>  MincutSubMcFactoryBase;
+        
+        typedef typename  MincutSubBase::NodeLabels            MincutSubNodeLabels;
 
         typedef MulticutObjective<SubGraph, double>         MulticutSubObjective;
-        typedef MulticutFactoryBase<MulticutSubObjective>   MulticutSubMcFactoryBase;
         typedef MulticutBase<MulticutSubObjective>          MulticutSubBase;
+        typedef nifty::graph::optimization::common::SolverFactoryBase<MulticutSubBase>   MulticutSubMcFactoryBase;
+       
         typedef typename  MulticutSubBase::NodeLabels       MulticutSubNodeLabels;
 
 
-        typedef MulticutFactoryBase<Objective>         FactoryBase;
+        typedef nifty::graph::optimization::common::SolverFactoryBase<BaseType> FactoryBase;
        
     private:
         typedef ComponentsUfd<Graph> Components;
     
     public:
 
-        struct Settings {
+        struct SettingsType {
             double nodeNumStopCond{0.1};
             double sizeRegularizer{1.0};
             bool doCutPhase{true};
@@ -601,13 +603,13 @@ namespace multicut{
             std::shared_ptr<MulticutSubMcFactoryBase> multicutFactory;
         };
     private:
-        typedef detail_cgc::PartitionCallback<OBJECTIVE, Settings> CallbackType;
+        typedef detail_cgc::PartitionCallback<OBJECTIVE, SettingsType> CallbackType;
         //typedef typename CallbackType::SettingsType      CallbackSettingsType;
     public:
         virtual ~Cgc(){
             
         }
-        Cgc(const Objective & objective, const Settings & settings = Settings());
+        Cgc(const Objective & objective, const SettingsType & settings = SettingsType());
 
 
         virtual void optimize(NodeLabels & nodeLabels, VisitorBase * visitor);
@@ -639,7 +641,7 @@ namespace multicut{
         const WeightsMap & weights_;
 
         Components components_;
-        Settings settings_;
+        SettingsType settings_;
         IsDirtyEdge isDirtyEdge_;
         detail_cgc::SubmodelOptimizer<Objective> submodel_;
         NodeLabels * currentBest_;
@@ -655,7 +657,7 @@ namespace multicut{
     Cgc<OBJECTIVE>::
     Cgc(
         const Objective & objective, 
-        const Settings & settings
+        const SettingsType & settings
     )
     :   objective_(objective),
         graph_(objective.graph()),
@@ -849,7 +851,7 @@ namespace multicut{
             visitorProxy.setLogValue(0, subGraphs[i]->numberOfNodes());
             visitorProxy.visit(this);
 
-            auto solver = settings_.multicutFactory->createRawPtr(*subObjectives[i]);
+            auto solver = settings_.multicutFactory->create(*subObjectives[i]);
             solver->optimize(*subLabels[i],nullptr);
             delete solver;  
         }

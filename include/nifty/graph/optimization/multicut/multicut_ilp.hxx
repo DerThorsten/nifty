@@ -23,13 +23,13 @@ namespace multicut{
     public: 
 
         typedef OBJECTIVE Objective;
-        typedef MulticutBase<OBJECTIVE> Base;
-        typedef typename Base::VisitorBase VisitorBase;
-        typedef typename Base::VisitorProxy VisitorProxy;
+        typedef MulticutBase<OBJECTIVE> BaseType;
+        typedef typename BaseType::VisitorBase VisitorBase;
+        typedef typename BaseType::VisitorProxy VisitorProxy;
         //typedef typename Base::EdgeLabels EdgeLabels;
-        typedef typename Base::NodeLabels NodeLabels;
+        typedef typename BaseType::NodeLabels NodeLabels;
         typedef ILP_SOLVER IlpSovler;
-        typedef typename IlpSovler::Settings IlpSettings;
+        typedef typename IlpSovler::SettingsType IlpSettings;
         typedef typename Objective::Graph Graph;
 
     private:
@@ -52,7 +52,7 @@ namespace multicut{
 
     public:
 
-        struct Settings{
+        struct SettingsType{
 
             size_t numberOfIterations{0};
             int verbose { 0 };
@@ -66,7 +66,7 @@ namespace multicut{
             if(ilpSolver_ != nullptr)
                 delete ilpSolver_;
         }
-        MulticutIlp(const Objective & objective, const Settings & settings = Settings());
+        MulticutIlp(const Objective & objective, const SettingsType & settings = SettingsType());
 
 
         virtual void optimize(NodeLabels & nodeLabels, VisitorBase * visitor);
@@ -121,7 +121,7 @@ namespace multicut{
         // since all so far existing graphs have contiguous edge ids
         DenseIds denseIds_;
         BidirectionalBreadthFirstSearch<Graph> bibfs_;
-        Settings settings_;
+        SettingsType settings_;
         std::vector<size_t> variables_;
         std::vector<double> coefficients_;
         NodeLabels * currentBest_;
@@ -134,7 +134,7 @@ namespace multicut{
     MulticutIlp<OBJECTIVE, ILP_SOLVER>::
     MulticutIlp(
         const Objective & objective, 
-        const Settings & settings
+        const SettingsType & settings
     )
     :   objective_(objective),
         graph_(objective.graph()),

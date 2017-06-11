@@ -61,8 +61,7 @@ namespace multicut{
 
         typedef OBJECTIVE ObjectiveType;
         typedef Cgc<ObjectiveType> Solver;
-        typedef typename Solver::Settings Settings;
-        typedef MulticutFactory<Solver> Factory;
+        typedef typename Solver::SettingsType SettingsType;
         const auto solverName = std::string("Cgc");
 
 
@@ -70,13 +69,13 @@ namespace multicut{
 
             .def(py::init<>())
 
-            .def_readwrite("doCutPhase", &Settings::doCutPhase)
-            .def_readwrite("doBetterCutPhase", &Settings::doBetterCutPhase)
-            .def_readwrite("sizeRegularizer", &Settings::sizeRegularizer)
-            .def_readwrite("nodeNumStopCond", &Settings::nodeNumStopCond)
-            .def_readwrite("doGlueAndCutPhase", &Settings::doGlueAndCutPhase)
-            .def_readwrite("mincutFactory", &Settings::mincutFactory)
-            .def_readwrite("multicutFactory", &Settings::multicutFactory)
+            .def_readwrite("doCutPhase", &SettingsType::doCutPhase)
+            .def_readwrite("doBetterCutPhase", &SettingsType::doBetterCutPhase)
+            .def_readwrite("sizeRegularizer", &SettingsType::sizeRegularizer)
+            .def_readwrite("nodeNumStopCond", &SettingsType::nodeNumStopCond)
+            .def_readwrite("doGlueAndCutPhase", &SettingsType::doGlueAndCutPhase)
+            .def_readwrite("mincutFactory", &SettingsType::mincutFactory)
+            .def_readwrite("multicutFactory", &SettingsType::multicutFactory)
 
         ; 
     }

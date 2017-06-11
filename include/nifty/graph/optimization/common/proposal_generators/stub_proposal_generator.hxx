@@ -29,13 +29,13 @@ namespace common{
         typedef typename GraphType:: template NodeMap<uint64_t>  ProposalType;
 
 
-        struct Settings{
+        struct SettingsType{
         };
 
         StubProposalGenerator(
             const ObjectiveType & objective, 
             const size_t numberOfThreads,
-            const Settings & settings  = Settings()
+            const SettingsType & settings  = SettingsType()
         )
         :   objective_(objective),
             numberOfThreads_(numberOfThreads),
@@ -58,7 +58,7 @@ namespace common{
     private:
         const ObjectiveType & objective_;
         size_t numberOfThreads_;
-        Settings settings_;
+        SettingsType settings_;
     }; 
 
 

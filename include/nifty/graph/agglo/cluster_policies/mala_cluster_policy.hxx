@@ -40,7 +40,7 @@ public:
     typedef FloatEdgeMap                                EdgeSizesType;
     typedef FloatNodeMap                                NodeSizesType;
 
-    struct Settings : public EdgeWeightedClusterPolicySettings
+    struct SettingsType : public EdgeWeightedClusterPolicySettings
     {
 
         float threshold{0.5};
@@ -66,7 +66,7 @@ public:
                               const EDGE_INDICATORS & , 
                               const EDGE_SIZES & , 
                               const NODE_SIZES & ,
-                              const Settings & settings = Settings());
+                              const SettingsType & settings = SettingsType());
 
 
     std::pair<uint64_t, double> edgeToContractNext() const;
@@ -102,7 +102,7 @@ private:
     EdgeIndicatorsType  edgeIndicators_;
     EdgeSizesType       edgeSizes_;
     NodeSizesType       nodeSizes_;
-    Settings            settings_;
+    SettingsType            settings_;
     
     // INTERNAL
     EdgeContractionGraphType edgeContractionGraph_;
@@ -123,7 +123,7 @@ MalaClusterPolicy(
     const EDGE_INDICATORS & edgeIndicators,
     const EDGE_SIZES      & edgeSizes,
     const NODE_SIZES      & nodeSizes,
-    const Settings & settings
+    const SettingsType & settings
 )
 :   graph_(graph),
     edgeIndicators_(graph),

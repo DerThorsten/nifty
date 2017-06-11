@@ -1,7 +1,6 @@
 #pragma once
 
 #include "nifty/graph/optimization/multicut/multicut_base.hxx"
-#include "nifty/graph/optimization/multicut/multicut_factory.hxx"
 #include "nifty/ufd/ufd.hxx"
 
 // andres::graph includes
@@ -19,10 +18,10 @@ namespace multicut{
     {
     public: 
         typedef OBJECTIVE Objective;
-        typedef MulticutBase<OBJECTIVE> Base;
-        typedef typename Base::VisitorBase VisitorBase;
-        typedef typename Base::VisitorProxy VisitorProxy;
-        typedef typename Base::NodeLabels NodeLabels;
+        typedef MulticutBase<OBJECTIVE> BaseType;
+        typedef typename BaseType::VisitorBase VisitorBase;
+        typedef typename BaseType::VisitorProxy VisitorProxy;
+        typedef typename BaseType::NodeLabels NodeLabels;
         typedef andres::graph::Graph<> Graph;
 
         MulticutAndres(const Objective & objective);
@@ -101,8 +100,8 @@ namespace multicut{
         typedef typename Base::NodeLabels NodeLabels;
         typedef typename Base::VisitorBase VisitorBase;
         
-        struct Settings {};
-        MulticutAndresGreedyAdditive(const Objective & objective, const Settings & settings = Settings());
+        struct SettingsType {};
+        MulticutAndresGreedyAdditive(const Objective & objective, const SettingsType & settings = SettingsType());
         
         virtual void optimize(NodeLabels & nodeLabels, VisitorBase * visitor);
         virtual const Objective & objective() const {return Base::objective();}
@@ -113,7 +112,7 @@ namespace multicut{
 
     template<class OBJECTIVE>
     MulticutAndresGreedyAdditive<OBJECTIVE>::
-    MulticutAndresGreedyAdditive(const Objective & objective, const Settings &)
+    MulticutAndresGreedyAdditive(const Objective & objective, const SettingsType &)
     : Base(objective)
     {}
 
@@ -145,7 +144,7 @@ namespace multicut{
 
         typedef andres::graph::multicut::KernighanLinSettings KlSettings;
 
-        struct Settings {
+        struct SettingsType {
             size_t numberOfInnerIterations { std::numeric_limits<size_t>::max() };
             size_t numberOfOuterIterations { 100 };
             double epsilon { 1e-6 };
@@ -153,7 +152,7 @@ namespace multicut{
             bool greedyWarmstart{true};
         };
 
-        MulticutAndresKernighanLin(const Objective & objective, const Settings & settings = Settings());
+        MulticutAndresKernighanLin(const Objective & objective, const SettingsType & settings = SettingsType());
         
         virtual void optimize(NodeLabels & nodeLabels, VisitorBase * visitor);
         virtual const Objective & objective() const {return Base::objective();}
@@ -161,13 +160,13 @@ namespace multicut{
         virtual std::string name() const {return "MulticutAndresKernighanLin";}
 
     private:
-        Settings settings_;
+        SettingsType settings_;
         KlSettings klSettings_;
     };
 
     template<class OBJECTIVE>
     MulticutAndresKernighanLin<OBJECTIVE>::
-    MulticutAndresKernighanLin(const Objective & objective, const Settings & settings)
+    MulticutAndresKernighanLin(const Objective & objective, const SettingsType & settings)
     : Base(objective),
       settings_(settings),
       klSettings_()

@@ -21,11 +21,11 @@ namespace mincut{
     public: 
 
         typedef OBJECTIVE Objective;
-        typedef MincutBase<OBJECTIVE> Base;
-        typedef typename Base::VisitorBase VisitorBase;
-        typedef typename Base::VisitorProxy VisitorProxy;
-        typedef typename Base::EdgeLabels EdgeLabels;
-        typedef typename Base::NodeLabels NodeLabels;
+        typedef MincutBase<OBJECTIVE> BaseType;
+        typedef typename BaseType::VisitorBase VisitorBase;
+        typedef typename BaseType::VisitorProxy VisitorProxy;
+        typedef typename BaseType::EdgeLabels EdgeLabels;
+        typedef typename BaseType::NodeLabels NodeLabels;
         typedef typename Objective::Graph Graph;
 
     private:
@@ -36,7 +36,7 @@ namespace mincut{
 
     public:
 
-        struct Settings{
+        struct SettingsType{
             bool improve{true};
             //bool guaranteeNoParallelEdges {false};
         };
@@ -44,7 +44,7 @@ namespace mincut{
         virtual ~MincutQpbo(){
 
         }
-        MincutQpbo(const Objective & objective, const Settings & settings = Settings());
+        MincutQpbo(const Objective & objective, const SettingsType & settings = SettingsType());
 
 
         virtual void optimize(NodeLabels & nodeLabels, VisitorBase * visitor);
@@ -83,7 +83,7 @@ namespace mincut{
         // zero overhead lookup for graphs which have already
         // dense ids (only merge graph does not have dense ids)
         DenseIds denseNodeIds_;
-        Settings settings_;
+        SettingsType settings_;
         NodeLabels * currentBest_;
         double currentBestEnergy_;
         QPBO<QpboValueType> qpbo_;
@@ -94,7 +94,7 @@ namespace mincut{
     MincutQpbo<OBJECTIVE>::
     MincutQpbo(
         const Objective & objective, 
-        const Settings & settings
+        const SettingsType & settings
     )
     :   objective_(objective),
         graph_(objective.graph()),

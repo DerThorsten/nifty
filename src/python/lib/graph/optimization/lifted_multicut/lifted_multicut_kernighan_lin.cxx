@@ -25,16 +25,16 @@ namespace lifted_multicut{
 
         typedef OBJECTIVE ObjectiveType;
         typedef LiftedMulticutKernighanLin<ObjectiveType> Solver;
-        typedef typename Solver::Settings Settings;
+        typedef typename Solver::SettingsType SettingsType;
         
         exportLiftedMulticutSolver<Solver>(liftedMulticutModule,"LiftedMulticutKernighanLin")
             .def(py::init<>())
-            .def_readwrite("numberOfInnerIterations", &Settings::numberOfInnerIterations)
-            .def_readwrite("numberOfOuterIterations", &Settings::numberOfOuterIterations)
-            .def_readwrite("epsilon", &Settings::epsilon)
-            //.def_readwrite("numberOfOuterIterations", &Settings::numberOfOuterIterations)
+            .def_readwrite("numberOfInnerIterations", &SettingsType::numberOfInnerIterations)
+            .def_readwrite("numberOfOuterIterations", &SettingsType::numberOfOuterIterations)
+            .def_readwrite("epsilon", &SettingsType::epsilon)
+            //.def_readwrite("numberOfOuterIterations", &SettingsType::numberOfOuterIterations)
 
-            //.def_readwrite("verbose", &Settings::verbose)
+            //.def_readwrite("verbose", &SettingsType::verbose)
         ;
      
     }

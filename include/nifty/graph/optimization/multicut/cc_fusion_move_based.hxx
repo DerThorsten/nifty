@@ -40,12 +40,12 @@ namespace multicut{
             MulticutBase<OBJECTIVE>,
             FusionMove<OBJECTIVE>
         >                                   BaseType;
-        typedef typename BaseType::Settings Settings;
+        typedef typename BaseType::SettingsType SettingsType;
     
         virtual ~CcFusionMoveBased(){
         }
 
-        CcFusionMoveBased(const ObjectiveType & objective, const Settings & settings = Settings())
+        CcFusionMoveBased(const ObjectiveType & objective, const SettingsType & settings = SettingsType())
         :   BaseType(objective, settings){
         }
 

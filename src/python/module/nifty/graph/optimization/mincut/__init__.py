@@ -26,7 +26,7 @@ def __extendMincutObj(objectiveCls, objectiveName):
         return _mincut.__dict__[prefix+postfix]
 
     def getSettingsCls(baseName):
-        S =  getCls(baseName + "Settings" ,objectiveName)
+        S =  getCls(baseName + "SettingsType" ,objectiveName)
         return S
     def getSolverCls(baseName):
         S =  getCls(baseName,objectiveName)

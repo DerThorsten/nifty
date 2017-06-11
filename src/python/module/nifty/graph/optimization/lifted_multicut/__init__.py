@@ -35,7 +35,7 @@ def __extendLiftedMulticutObj(objectiveCls, objectiveName):
         return _lifted_multicut.__dict__[prefix+postfix]
 
     def getSettingsCls(baseName):
-        S =  getCls(baseName + "Settings" ,objectiveName)
+        S =  getCls(baseName + "SettingsType" ,objectiveName)
         return S
     def getLmcCls(baseName):
         S =  getCls(baseName,objectiveName)

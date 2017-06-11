@@ -4,7 +4,8 @@
 
 #include "nifty/tools/runtime_check.hxx"
 #include "nifty/graph/optimization/multicut/multicut_base.hxx"
-#include "nifty/graph/optimization/multicut/multicut_factory.hxx"
+#include "nifty/graph/optimization/common/solver_factory.hxx"
+#include "nifty/graph/optimization/common/solver_factory_base.hxx"
 #include "nifty/graph/optimization/multicut/multicut_andres.hxx"
 #include "nifty/ufd/ufd.hxx"
 
@@ -24,15 +25,15 @@ namespace multicut{
     public: 
 
         typedef OBJECTIVE Objective;
-        typedef MulticutBase<OBJECTIVE> Base;
-        typedef typename Base::VisitorBase VisitorBase;
-        typedef typename Base::VisitorProxy VisitorProxy;
-        typedef typename Base::EdgeLabels EdgeLabels;
-        typedef typename Base::NodeLabels NodeLabels;
+        typedef MulticutBase<OBJECTIVE> BaseType;
+        typedef typename BaseType::VisitorBase VisitorBase;
+        typedef typename BaseType::VisitorProxy VisitorProxy;
+        typedef typename BaseType::EdgeLabels EdgeLabels;
+        typedef typename BaseType::NodeLabels NodeLabels;
         typedef typename Objective::Graph Graph;
         
         // factory for the lp_mp primal rounder
-        typedef MulticutFactoryBase<Objective> McFactoryBase;
+        typedef nifty::graph::optimization::common::SolverFactoryBase<BaseType> McFactoryBase;
 
     public:
         
@@ -60,7 +61,7 @@ namespace multicut{
                    
                     NodeLabels nodeLabels(g.numberOfNodes());
                     
-                    auto solverPtr = factory_->createRawPtr(obj);
+                    auto solverPtr = factory_->create(obj);
                     std::cout << "compute multicut primal with " << solverPtr->name()  << std::endl;
                     solverPtr->optimize(nodeLabels, nullptr);
                     delete solverPtr;
@@ -96,7 +97,7 @@ namespace multicut{
         typedef LP_MP::ProblemConstructorRoundingSolver<SolverBase> SolverType;
 
         // FIXME verbose deosn't have any effect right now
-        struct Settings{
+        struct SettingsType{
             // multicut factory for the primal rounder used in lp_mp
             std::shared_ptr<McFactoryBase> mcFactory;
             // settings for the lp_mp solver
@@ -121,7 +122,7 @@ namespace multicut{
             delete mpSolver_;
         }
         
-        MulticutMp(const Objective & objective, const Settings & settings = Settings());
+        MulticutMp(const Objective & objective, const SettingsType & settings = SettingsType());
 
         virtual void optimize(NodeLabels & nodeLabels, VisitorBase * visitor);
         
@@ -146,7 +147,7 @@ namespace multicut{
         const Objective & objective_;
         const Graph & graph_;
 
-        Settings settings_;
+        SettingsType settings_;
         NodeLabels * currentBest_;
         size_t numberOfOptRuns_;
         SolverType * mpSolver_;
@@ -158,7 +159,7 @@ namespace multicut{
     MulticutMp<OBJECTIVE>::
     MulticutMp(
         const Objective & objective, 
-        const Settings & settings
+        const SettingsType & settings
     )
     :   objective_(objective),
         graph_(objective.graph()),
@@ -170,7 +171,7 @@ namespace multicut{
         // if we don't have a mc-factory, we use the LP_MP default rounder
         if(!bool(settings_.mcFactory)) {
             typedef MulticutAndresKernighanLin<Objective> DefaultSolver;
-            typedef MulticutFactory<DefaultSolver> DefaultFactory;
+            typedef nifty::graph::optimization::common::SolverFactory<DefaultSolver> DefaultFactory;
             settings_.mcFactory = std::make_shared<DefaultFactory>();
         }
         mpSolver_ = new SolverType(toOptionsVector(), NiftyRounder(settings_.mcFactory));

@@ -8,7 +8,7 @@
 #include "nifty/tools/runtime_check.hxx"
 #include "nifty/ufd/ufd.hxx"
 #include "nifty/graph/optimization/multicut/multicut_base.hxx"
-#include "nifty/graph/optimization/multicut/multicut_factory.hxx"
+#include "nifty/graph/optimization/common/solver_factory.hxx"
 #include "nifty/graph/optimization/multicut/multicut_objective.hxx"
 #include "nifty/graph/undirected_list_graph.hxx"
 
@@ -28,16 +28,16 @@ namespace multicut{
 
         typedef UndirectedGraph<> FmGraph;
         typedef MulticutObjective<FmGraph, double> FmObjective;
-        typedef MulticutFactoryBase<FmObjective> FmMcFactoryBase;
         typedef MulticutBase<FmObjective> FmMcBase;
+        typedef nifty::graph::optimization::common::SolverFactoryBase<FmMcBase> FmMcFactoryBase;
         typedef MulticutEmptyVisitor<FmObjective> FmEmptyVisitor;
         typedef typename  FmMcBase::NodeLabels FmNodeLabels;
 
-        struct Settings{
+        struct SettingsType{
             std::shared_ptr<FmMcFactoryBase> mcFactory;
         };
 
-        FusionMove(const Objective & objective, const Settings & settings = Settings())
+        FusionMove(const Objective & objective, const SettingsType & settings = SettingsType())
         :   objective_(objective),
             graph_(objective.graph()),
             settings_(settings),
@@ -46,7 +46,7 @@ namespace multicut{
         {
             if(!bool(settings_.mcFactory)){
                 typedef MulticutGreedyAdditive<FmObjective> FmSolver;
-                typedef MulticutFactory<FmSolver> FmFactory;
+                typedef nifty::graph::optimization::common::SolverFactory<FmSolver> FmFactory;
                 settings_.mcFactory = std::make_shared<FmFactory>();
             }
         }
@@ -179,7 +179,7 @@ namespace multicut{
 
                 //std::cout<<"fm solve\n";
                 // solve that thin
-                auto solverPtr = settings_.mcFactory->createRawPtr(fmObjective);
+                auto solverPtr = settings_.mcFactory->create(fmObjective);
                 FmNodeLabels fmLabels(fmGraph);
                 FmEmptyVisitor fmVisitor;
                 //std::cout<<"opt\n";
@@ -209,7 +209,7 @@ namespace multicut{
 
         const Objective & objective_;
         const Graph & graph_;
-        Settings settings_;
+        SettingsType settings_;
         nifty::ufd::Ufd< > ufd_;
         NodeLabels nodeToDense_;
     };

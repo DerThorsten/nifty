@@ -33,11 +33,11 @@ namespace common{
         typedef MulticutEmptyVisitor<FmObjective>  FmEmptyVisitor;
         typedef typename  FmMcBase::NodeLabels     FmNodeLabels;
 
-        struct Settings{
+        struct SettingsType{
             std::shared_ptr<FmMcFactoryBase> minCutFactory;
         };
 
-        FusionMove(const Objective & objective, const Settings & settings = Settings())
+        FusionMove(const Objective & objective, const SettingsType & settings = SettingsType())
         :   objective_(objective),
             graph_(objective.graph()),
             settings_(settings),
@@ -177,7 +177,7 @@ namespace common{
 
                 //std::cout<<"fm solve\n";
                 // solve that thin
-                auto solverPtr = settings_.minCutFactory->createRawPtr(fmObjective);
+                auto solverPtr = settings_.minCutFactory->create(fmObjective);
                 FmNodeLabels fmLabels(fmGraph);
                 FmEmptyVisitor fmVisitor;
                 //std::cout<<"opt\n";
@@ -207,7 +207,7 @@ namespace common{
 
         const Objective & objective_;
         const Graph & graph_;
-        Settings settings_;
+        SettingsType settings_;
         nifty::ufd::Ufd< > ufd_;
         NodeLabels nodeToDense_;
     };

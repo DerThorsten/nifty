@@ -29,7 +29,7 @@ namespace common{
         typedef typename GraphType:: template NodeMap<uint64_t>  ProposalType;
         typedef typename GraphType:: template EdgeMap<float>     EdgeWeights;
 
-        struct Settings{
+        struct SettingsType{
 
 
             enum SeedingStrategie{
@@ -45,7 +45,7 @@ namespace common{
         WatershedProposalGenerator(
             const ObjectiveType & objective, 
             const size_t numberOfThreads,
-            const Settings & settings  = Settings()
+            const SettingsType & settings  = SettingsType()
         )
         :   objective_(objective),
             numberOfThreads_(numberOfThreads),
@@ -68,7 +68,7 @@ namespace common{
             const auto & weights = objective_.weights();
 
             
-            if(settings_.seedingStrategie == Settings::SEED_FROM_NEGATIVE){
+            if(settings_.seedingStrategie == SettingsType::SEED_FROM_NEGATIVE){
                 objective_.graph().forEachEdge([&](const uint64_t edge){
                     if(weights[edge] < 0.0){
                         negativeEdges_.push_back(edge);
@@ -137,7 +137,7 @@ namespace common{
     private:
         const ObjectiveType & objective_;
         size_t numberOfThreads_;
-        Settings settings_;
+        SettingsType settings_;
         std::vector<uint64_t> negativeEdges_;
         EdgeWeights noisyEdgeWeights_;
         ProposalType  seeds_;

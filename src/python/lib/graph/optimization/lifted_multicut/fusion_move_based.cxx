@@ -51,32 +51,32 @@ namespace lifted_multicut{
 
 
     template<class PROPOSAL_GENERATOR>
-    py::class_<typename PROPOSAL_GENERATOR::Settings> 
+    py::class_<typename PROPOSAL_GENERATOR::SettingsType> 
     exportProposalGenerator(
         py::module & liftedMulticutModule,
         const std::string & clsName
     ){
         typedef PROPOSAL_GENERATOR ProposalGeneratorType;
         typedef typename ProposalGeneratorType::ObjectiveType ObjectiveType;
-        typedef typename ProposalGeneratorType::Settings Settings;
+        typedef typename ProposalGeneratorType::SettingsType SettingsType;
         typedef ProposalGeneratorFactory<ProposalGeneratorType> Factory;
 
         const auto objName = LiftedMulticutObjectiveName<ObjectiveType>::name();
 
-        const std::string settingsName = clsName + std::string("Settings") + objName;
+        const std::string settingsName = clsName + std::string("SettingsType") + objName;
         const std::string factoryBaseName = std::string("ProposalGeneratorFactoryBase")+objName;
         const std::string factoryName = clsName + std::string("Factory") + objName;
 
 
          // settings
-        auto settingsCls = py::class_< Settings >(liftedMulticutModule, settingsName.c_str())
+        auto settingsCls = py::class_< SettingsType >(liftedMulticutModule, settingsName.c_str())
         ;
 
         // factory
         py::object factoryBase = liftedMulticutModule.attr(factoryBaseName.c_str());
         py::class_<Factory, std::shared_ptr<Factory> >(liftedMulticutModule, factoryName.c_str(),  factoryBase)
-            .def(py::init<const Settings &>(),
-                py::arg_t<Settings>("setttings",Settings())
+            .def(py::init<const SettingsType &>(),
+                py::arg_t<SettingsType>("setttings",SettingsType())
             )
         ;
 
@@ -101,7 +101,7 @@ namespace lifted_multicut{
         // concrete factories
         { // watershed factory
             typedef WatershedProposalGenerator<ObjectiveType> ProposalGeneratorType;
-            typedef typename ProposalGeneratorType::Settings PGenSettigns;
+            typedef typename ProposalGeneratorType::SettingsType PGenSettigns;
             typedef typename PGenSettigns::SeedingStrategie SeedingStrategie;
             auto pGenSettigns = exportProposalGenerator<ProposalGeneratorType>(liftedMulticutModule, "WatershedProposalGenerator");
 
@@ -121,16 +121,16 @@ namespace lifted_multicut{
 
         
         typedef FusionMoveBased<ObjectiveType> Solver;
-        typedef typename Solver::Settings Settings;
+        typedef typename Solver::SettingsType SettingsType;
         
         exportLiftedMulticutSolver<Solver>(liftedMulticutModule,"FusionMoveBased")
            .def(py::init<>())
-           .def_readwrite("proposalGenerator", &Settings::proposalGeneratorFactory)
-           .def_readwrite("numberOfThreads", &Settings::numberOfThreads)
-           .def_readwrite("numberOfIterations",&Settings::numberOfIterations)
-           .def_readwrite("stopIfNoImprovement",&Settings::stopIfNoImprovement)
+           .def_readwrite("proposalGenerator", &SettingsType::proposalGeneratorFactory)
+           .def_readwrite("numberOfThreads", &SettingsType::numberOfThreads)
+           .def_readwrite("numberOfIterations",&SettingsType::numberOfIterations)
+           .def_readwrite("stopIfNoImprovement",&SettingsType::stopIfNoImprovement)
            
-           //.def_readwrite("verbose", &Settings::verbose)
+           //.def_readwrite("verbose", &SettingsType::verbose)
         ;
      
     }

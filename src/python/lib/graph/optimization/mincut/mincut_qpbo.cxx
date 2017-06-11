@@ -24,12 +24,12 @@ namespace mincut{
 
         typedef OBJECTIVE ObjectiveType;
         typedef MincutQpbo<ObjectiveType> Solver;
-        typedef typename Solver::Settings Settings;
+        typedef typename Solver::SettingsType SettingsType;
         
         exportMincutSolver<Solver>(module,"MincutQpbo")
             .def(py::init<>())
-            .def_readwrite("improve", &Settings::improve)
-            //.def_readwrite("verbose", &Settings::verbose)
+            .def_readwrite("improve", &SettingsType::improve)
+            //.def_readwrite("verbose", &SettingsType::verbose)
         ;
      
     }
