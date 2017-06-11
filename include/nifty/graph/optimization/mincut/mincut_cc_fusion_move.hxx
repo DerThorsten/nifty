@@ -177,7 +177,7 @@ namespace mincut{
 
                 //std::cout<<"fm solve\n";
                 // solve that thin
-                auto solverPtr = settings_.mincutFactory->createRawPtr(fmObjective);
+                auto solverPtr = settings_.mincutFactory->create(fmObjective);
                 FmNodeLabels fmLabels(fmGraph);
                 FmEmptyVisitor fmVisitor;
                 //std::cout<<"opt\n";

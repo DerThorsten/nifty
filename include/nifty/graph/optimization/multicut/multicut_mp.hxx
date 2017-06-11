@@ -60,7 +60,7 @@ namespace multicut{
                    
                     NodeLabels nodeLabels(g.numberOfNodes());
                     
-                    auto solverPtr = factory_->createRawPtr(obj);
+                    auto solverPtr = factory_->create(obj);
                     std::cout << "compute multicut primal with " << solverPtr->name()  << std::endl;
                     solverPtr->optimize(nodeLabels, nullptr);
                     delete solverPtr;

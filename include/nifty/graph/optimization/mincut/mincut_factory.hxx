@@ -19,8 +19,8 @@ namespace mincut{
         typedef OBJECTIVE Objective;
         typedef MincutBase<Objective> MincutBaseType;
         virtual ~MincutFactoryBase(){}
-        virtual std::shared_ptr<MincutBaseType> createSharedPtr(const Objective & objective) = 0;
-        virtual MincutBaseType * createRawPtr(const Objective & objective) = 0;
+        virtual std::shared_ptr<MincutBaseType> createShared(const Objective & objective) = 0;
+        virtual MincutBaseType * create(const Objective & objective) = 0;
     };
 
 
@@ -36,10 +36,10 @@ namespace mincut{
         :   MincutFactoryBase<Objective>(),
             options_(settings){
         }
-        virtual std::shared_ptr<MincutBaseType> createSharedPtr(const Objective & objective){
+        virtual std::shared_ptr<MincutBaseType> createShared(const Objective & objective){
             return std::make_shared<Solver>(objective, options_);
         }
-        virtual MincutBaseType * createRawPtr(const Objective & objective){
+        virtual MincutBaseType * create(const Objective & objective){
             MincutBaseType *  p =  new Solver(objective, options_);
             return p;
         }

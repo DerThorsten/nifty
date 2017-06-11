@@ -179,7 +179,7 @@ namespace lifted_multicut{
 
                 NIFTY_CHECK_OP(fmGraph.numberOfEdges(),>,0,"");
 
-                auto solverPtr = settings_.lmcFactory->createRawPtr(fmObjective);
+                auto solverPtr = settings_.lmcFactory->create(fmObjective);
                 FmNodeLabelsType fmLabels(fmGraph);
                 solverPtr->optimize(fmLabels, nullptr);
                 delete solverPtr;

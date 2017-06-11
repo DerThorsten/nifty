@@ -83,7 +83,7 @@ namespace lifted_multicut{
                         greedy.optimize(nodeLabels, nullptr);
                     }
                     
-                    auto solverPtr = factory_->createRawPtr(obj);
+                    auto solverPtr = factory_->create(obj);
                     std::cout << "compute lifted multicut primal with " << (greedyWarmstart_ ? "GAEC + " : "") << solverPtr->name() << std::endl;
                     solverPtr->optimize(nodeLabels, nullptr);
                     delete solverPtr;

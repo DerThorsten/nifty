@@ -140,7 +140,7 @@ namespace multicut{
                     });
                     // solve it
                     MincutSubNodeLabels subgraphRes(subGraph);
-                    auto solverPtr = mincutFactory_->createRawPtr(subObjective);
+                    auto solverPtr = mincutFactory_->create(subObjective);
 
                     //SubMcVerboseVisitor visitor;
                     solverPtr->optimize(subgraphRes,nullptr);
@@ -229,7 +229,7 @@ namespace multicut{
 
                 // optimize
                 MincutSubNodeLabels subgraphRes(subGraph);
-                auto solverPtr = mincutFactory_->createRawPtr(subObjective);
+                auto solverPtr = mincutFactory_->create(subObjective);
                 solverPtr->optimize(subgraphRes,nullptr);
                 const auto minCutValue  = subObjective.evalNodeLabels(subgraphRes);
                 delete solverPtr;   
@@ -849,7 +849,7 @@ namespace multicut{
             visitorProxy.setLogValue(0, subGraphs[i]->numberOfNodes());
             visitorProxy.visit(this);
 
-            auto solver = settings_.multicutFactory->createRawPtr(*subObjectives[i]);
+            auto solver = settings_.multicutFactory->create(*subObjectives[i]);
             solver->optimize(*subLabels[i],nullptr);
             delete solver;  
         }

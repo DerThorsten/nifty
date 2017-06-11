@@ -179,7 +179,7 @@ namespace multicut{
 
                 //std::cout<<"fm solve\n";
                 // solve that thin
-                auto solverPtr = settings_.mcFactory->createRawPtr(fmObjective);
+                auto solverPtr = settings_.mcFactory->create(fmObjective);
                 FmNodeLabels fmLabels(fmGraph);
                 FmEmptyVisitor fmVisitor;
                 //std::cout<<"opt\n";

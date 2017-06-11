@@ -253,7 +253,7 @@ namespace multicut{
                     subNodeLabelsVec[i] = new SubmodelNodeLabels(subGraph);
 
                     // create solver and optimize 
-                    auto subSolver = settings_.submodelFactory->createRawPtr(subObj);
+                    auto subSolver = settings_.submodelFactory->create(subObj);
                     subSolver->optimize(*subNodeLabelsVec[i], nullptr);
                     delete subSolver;
                     delete subObjectiveVec[i];
@@ -300,7 +300,7 @@ namespace multicut{
             visitorProxy.clearLogNames();
         }
         else{
-            auto solverPtr = settings_.fallthroughFactory->createRawPtr(objective_);
+            auto solverPtr = settings_.fallthroughFactory->create(objective_);
             // TODO handle visitor:
             // Problem: if we just pass the
             // visitor begin and end are called twice

@@ -172,7 +172,7 @@ namespace multicut{
 
 
 
-            auto solver = mcFactory->createRawPtr(objective_);
+            auto solver = mcFactory->create(objective_);
             visitorProxy.printLog(nifty::logging::LogLevel::INFO,
                 std::string("Starting Solver: ")+solver->name());
 

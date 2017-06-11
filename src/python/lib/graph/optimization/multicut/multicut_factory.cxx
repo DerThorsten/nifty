@@ -47,7 +47,7 @@ namespace multicut{
             .def("create", 
                 //&McFactoryBase::create,
                 [](McFactoryBase * self, const ObjectiveType & obj){
-                    return self->createRawPtr(obj);
+                    return self->create(obj);
                 },
                 //,
                 py::return_value_policy::take_ownership,

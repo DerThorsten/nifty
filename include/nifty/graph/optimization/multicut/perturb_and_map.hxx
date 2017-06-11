@@ -125,7 +125,7 @@ namespace multicut{
                     weightsCopy[edge] = weightsOriginal[edge];
 
                 // allocate solver
-                threadDataPtr->solver_ = settings_.mcFactory->createRawPtr(threadDataPtr->objective_);
+                threadDataPtr->solver_ = settings_.mcFactory->create(threadDataPtr->objective_);
             }
         );
 

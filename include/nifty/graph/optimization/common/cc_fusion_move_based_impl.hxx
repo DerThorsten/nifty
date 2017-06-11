@@ -143,7 +143,7 @@ namespace detail_cc_fusion{
         }
 
         // generate proposal generators
-        proposalGenerator_ = settings_.proposalGeneratorFactory->createRawPtr(objective_, numberOfThreads);
+        proposalGenerator_ = settings_.proposalGeneratorFactory->create(objective_, numberOfThreads);
 
 
         // generate fusion moves

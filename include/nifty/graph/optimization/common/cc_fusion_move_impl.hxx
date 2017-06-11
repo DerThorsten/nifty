@@ -177,7 +177,7 @@ namespace common{
 
                 //std::cout<<"fm solve\n";
                 // solve that thin
-                auto solverPtr = settings_.minCutFactory->createRawPtr(fmObjective);
+                auto solverPtr = settings_.minCutFactory->create(fmObjective);
                 FmNodeLabels fmLabels(fmGraph);
                 FmEmptyVisitor fmVisitor;
                 //std::cout<<"opt\n";

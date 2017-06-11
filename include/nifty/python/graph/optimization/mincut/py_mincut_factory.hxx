@@ -34,19 +34,19 @@ public:
     typedef OBJECTIVE Objective;
     typedef MincutBase<Objective> MincutBaseType;
     /* Trampoline (need one for each virtual function) */
-    std::shared_ptr<MincutBaseType> createSharedPtr(const Objective & objective) {
+    std::shared_ptr<MincutBaseType> createShared(const Objective & objective) {
         PYBIND11_OVERLOAD_PURE(
             std::shared_ptr<MincutBaseType>, /* Return type */
             MincutFactoryBase<Objective>,    /* Parent class */
-            createSharedPtr,                   /* Name of function */
+            createShared,                   /* Name of function */
             objective                          /* Argument(s) */
         );
     }
-    MincutBaseType * createRawPtr(const Objective & objective) {
+    MincutBaseType * create(const Objective & objective) {
         PYBIND11_OVERLOAD_PURE(
             MincutBaseType* ,                /* Return type */
             MincutFactoryBase<Objective>,    /* Parent class */
-            createRawPtr,                            /* Name of function */
+            create,                            /* Name of function */
             objective                          /* Argument(s) */
         );
     }

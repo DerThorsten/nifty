@@ -31,10 +31,10 @@ namespace common{
 
         virtual ~ProposalGeneratorFactory(){}
 
-        virtual std::shared_ptr<ProposalGeneratorBaseType> createSharedPtr(const ObjectiveType & objective,  const size_t numberOfThreads){
+        virtual std::shared_ptr<ProposalGeneratorBaseType> createShared(const ObjectiveType & objective,  const size_t numberOfThreads){
             return std::make_shared<ProposalGeneratorType>(objective, numberOfThreads, settings_);
         }
-        virtual ProposalGeneratorBaseType *                createRawPtr(   const ObjectiveType & objective,  const size_t numberOfThreads){
+        virtual ProposalGeneratorBaseType *                create(   const ObjectiveType & objective,  const size_t numberOfThreads){
             return new ProposalGeneratorType(objective, numberOfThreads, settings_);
         }
     private:

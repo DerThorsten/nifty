@@ -25,7 +25,7 @@ public:
         PYBIND11_OVERLOAD_PURE(
             std::shared_ptr<SolverBaseType>, /* Return type */
             MulticutFactoryBase<ObjectiveType>,    /* Parent class */
-            createSharedPtr,                   /* Name of function */
+            createShared,                   /* Name of function */
             objective                          /* Argument(s) */
         );
     }
@@ -33,7 +33,7 @@ public:
         PYBIND11_OVERLOAD_PURE(
             SolverBaseType* ,                /* Return type */
             MulticutFactoryBase<ObjectiveType>,    /* Parent class */
-            createRawPtr,                            /* Name of function */
+            create,                            /* Name of function */
             objective                          /* Argument(s) */
         );
     }

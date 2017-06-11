@@ -17,8 +17,8 @@ namespace lifted_multicut{
         typedef OBJECTIVE ObjectiveType;
         typedef LiftedMulticutBase<ObjectiveType> LiftedMulticutBaseType;
         virtual ~LiftedMulticutFactoryBase(){}
-        virtual std::shared_ptr<LiftedMulticutBaseType> createSharedPtr(const ObjectiveType & objective) = 0;
-        virtual LiftedMulticutBaseType * createRawPtr(const ObjectiveType & objective) = 0;
+        virtual std::shared_ptr<LiftedMulticutBaseType> createShared(const ObjectiveType & objective) = 0;
+        virtual LiftedMulticutBaseType * create(const ObjectiveType & objective) = 0;
     };
 
 
@@ -34,10 +34,10 @@ namespace lifted_multicut{
         :   LiftedMulticutFactoryBase<ObjectiveType>(),
             options_(settings){
         }
-        virtual std::shared_ptr<LiftedMulticutBaseType> createSharedPtr(const ObjectiveType & objective){
+        virtual std::shared_ptr<LiftedMulticutBaseType> createShared(const ObjectiveType & objective){
             return std::make_shared<Solver>(objective, options_);
         }
-        virtual LiftedMulticutBaseType * createRawPtr(const ObjectiveType & objective){
+        virtual LiftedMulticutBaseType * create(const ObjectiveType & objective){
             LiftedMulticutBaseType *  p =  new Solver(objective, options_);
             return p;
         }
