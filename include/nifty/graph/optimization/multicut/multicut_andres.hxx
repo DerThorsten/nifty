@@ -19,23 +19,23 @@ namespace multicut{
     public: 
         typedef OBJECTIVE Objective;
         typedef MulticutBase<OBJECTIVE> BaseType;
-        typedef typename BaseType::VisitorBase VisitorBase;
+        typedef typename BaseType::VisitorBaseType VisitorBaseType;
         typedef typename BaseType::VisitorProxy VisitorProxy;
-        typedef typename BaseType::NodeLabels NodeLabels;
+        typedef typename BaseType::NodeLabelsType NodeLabelsType;
         typedef andres::graph::Graph<> Graph;
 
         MulticutAndres(const Objective & objective);
 
-        virtual void optimize(NodeLabels & nodelabels, VisitorBase * visitor){}
+        virtual void optimize(NodeLabelsType & nodelabels, VisitorBaseType * visitor){}
 
         virtual const Objective & objective() const {return objective_;}
-        virtual const NodeLabels & currentBestNodeLabels() {return *currentBest_;}
+        virtual const NodeLabelsType & currentBestNodeLabels() {return *currentBest_;}
         virtual std::string name() const {return "MulticutAndres";}
         
     protected:
         void nodeLabelsToEdgeLabels(std::vector<char> & edgeLabels);
         void edgeLabelsToNodeLabels(const std::vector<char> & edgeLabels);
-        NodeLabels * currentBest_;
+        NodeLabelsType * currentBest_;
         Graph graph_;
 
     private:
@@ -97,15 +97,15 @@ namespace multicut{
         
         typedef OBJECTIVE Objective;
         typedef MulticutAndres<OBJECTIVE> Base;
-        typedef typename Base::NodeLabels NodeLabels;
-        typedef typename Base::VisitorBase VisitorBase;
+        typedef typename Base::NodeLabelsType NodeLabelsType;
+        typedef typename Base::VisitorBaseType VisitorBaseType;
         
         struct SettingsType {};
         MulticutAndresGreedyAdditive(const Objective & objective, const SettingsType & settings = SettingsType());
         
-        virtual void optimize(NodeLabels & nodeLabels, VisitorBase * visitor);
+        virtual void optimize(NodeLabelsType & nodeLabels, VisitorBaseType * visitor);
         virtual const Objective & objective() const {return Base::objective();}
-        virtual const NodeLabels & currentBestNodeLabels() {return Base::currentBestNodeLabels();}
+        virtual const NodeLabelsType & currentBestNodeLabels() {return Base::currentBestNodeLabels();}
         virtual std::string name() const {return "MulticutAndresGreedyAdditive";}
 
     };
@@ -118,7 +118,7 @@ namespace multicut{
 
     template<class OBJECTIVE>
     void MulticutAndresGreedyAdditive<OBJECTIVE>::optimize(
-        NodeLabels & nodeLabels,  VisitorBase * visitor
+        NodeLabelsType & nodeLabels,  VisitorBaseType * visitor
     ){  
         //VisitorProxy visitorProxy(visitor);
         Base::currentBest_ = &nodeLabels;
@@ -139,8 +139,8 @@ namespace multicut{
         
         typedef OBJECTIVE Objective;
         typedef MulticutAndres<OBJECTIVE> Base;
-        typedef typename Base::NodeLabels NodeLabels;
-        typedef typename Base::VisitorBase VisitorBase;
+        typedef typename Base::NodeLabelsType NodeLabelsType;
+        typedef typename Base::VisitorBaseType VisitorBaseType;
 
         typedef andres::graph::multicut::KernighanLinSettings KlSettings;
 
@@ -154,9 +154,9 @@ namespace multicut{
 
         MulticutAndresKernighanLin(const Objective & objective, const SettingsType & settings = SettingsType());
         
-        virtual void optimize(NodeLabels & nodeLabels, VisitorBase * visitor);
+        virtual void optimize(NodeLabelsType & nodeLabels, VisitorBaseType * visitor);
         virtual const Objective & objective() const {return Base::objective();}
-        virtual const NodeLabels & currentBestNodeLabels() {return Base::currentBestNodeLabels();}
+        virtual const NodeLabelsType & currentBestNodeLabels() {return Base::currentBestNodeLabels();}
         virtual std::string name() const {return "MulticutAndresKernighanLin";}
 
     private:
@@ -179,7 +179,7 @@ namespace multicut{
 
     template<class OBJECTIVE>
     void MulticutAndresKernighanLin<OBJECTIVE>::optimize(
-        NodeLabels & nodeLabels,  VisitorBase * visitor
+        NodeLabelsType & nodeLabels,  VisitorBaseType * visitor
     ){  
         //VisitorProxy visitorProxy(visitor);
         Base::currentBest_ = &nodeLabels;

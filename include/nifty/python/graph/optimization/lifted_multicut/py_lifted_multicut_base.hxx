@@ -1,6 +1,8 @@
 #pragma once
 
 #include "nifty/graph/optimization/lifted_multicut/lifted_multicut_base.hxx"
+#include "nifty/graph/optimization/lifted_multicut/lifted_multicut_visitor_base.hxx"
+
 
 namespace nifty {
 namespace graph {
@@ -20,15 +22,15 @@ public:
     // using LiftedMulticutFactory<Objective>::LiftedMulticutFactory;
 
     typedef OBJECTIVE Objective;
-    typedef LiftedMulticutVisitorBase<OBJECTIVE> VisitorBase;
+    typedef LiftedMulticutVisitorBase<OBJECTIVE> VisitorBaseType;
     typedef LiftedMulticutBase<Objective> McBase;
     typedef typename Objective::Graph Graph;
     typedef typename Graph:: template EdgeMap<uint8_t>  EdgeLabels;
-    typedef typename Graph:: template NodeMap<uint64_t> NodeLabels;
+    typedef typename Graph:: template NodeMap<uint64_t> NodeLabelsType;
 
 
     /* Trampoline (need one for each virtual function) */
-    void optimize(NodeLabels & nodeLabels, VisitorBase * visitor) {
+    void optimize(NodeLabelsType & nodeLabels, VisitorBaseType * visitor) {
         PYBIND11_OVERLOAD_PURE(
             void,                  /* Return type */
             McBase,                /* Parent class */
@@ -37,9 +39,9 @@ public:
         );
     }
 
-    const NodeLabels & currentBestNodeLabels()  {
+    const NodeLabelsType & currentBestNodeLabels()  {
         PYBIND11_OVERLOAD_PURE(
-            const NodeLabels &,                 /* Return type */
+            const NodeLabelsType &,                 /* Return type */
             McBase,                             /* Parent class */
             currentBestNodeLabels,              /* Name of function */
         );

@@ -31,10 +31,10 @@ namespace multicut{
         typedef typename PROPPOSAL_GEN::Objective Objective;
         typedef typename Objective::Graph Graph;
         typedef MulticutBase<Objective> BaseType;
-        typedef typename BaseType::VisitorBase VisitorBase;
+        typedef typename BaseType::VisitorBaseType VisitorBaseType;
         typedef typename BaseType::VisitorProxy VisitorProxy;
         typedef typename BaseType::EdgeLabels EdgeLabels;
-        typedef typename BaseType::NodeLabels NodeLabels;
+        typedef typename BaseType::NodeLabelsType NodeLabelsType;
 
         typedef FusionMove<Objective> FusionMoveType;
         typedef PROPPOSAL_GEN ProposalGen;
@@ -57,7 +57,7 @@ namespace multicut{
 
         FusionMoveBased(const Objective & objective, const SettingsType & settings = SettingsType());
         ~FusionMoveBased();
-        virtual void optimize(NodeLabels & nodeLabels, VisitorBase * visitor);
+        virtual void optimize(NodeLabels & nodeLabels, VisitorBaseType * visitor);
         virtual const Objective & objective() const;
 
 
@@ -75,8 +75,8 @@ namespace multicut{
             }
         }
     private:
-        void optimizeParallel(NodeLabels & nodeLabels, VisitorBase * visitor);
-        void optimizeSerial(NodeLabels & nodeLabels, VisitorBase * visitor);
+        void optimizeParallel(NodeLabels & nodeLabels, VisitorBaseType * visitor);
+        void optimizeSerial(NodeLabels & nodeLabels, VisitorBaseType * visitor);
 
         const Objective & objective_;
         const Graph & graph_;
@@ -140,7 +140,7 @@ namespace multicut{
     template<class PROPPOSAL_GEN>
     void FusionMoveBased<PROPPOSAL_GEN>::
     optimize(
-        NodeLabels & nodeLabels,  VisitorBase * visitor
+        NodeLabels & nodeLabels,  VisitorBaseType * visitor
     ){
         if(graph_.numberOfEdges()==0){
             if(visitor!=nullptr){
@@ -162,7 +162,7 @@ namespace multicut{
     template<class PROPPOSAL_GEN>
     void FusionMoveBased<PROPPOSAL_GEN>::
     optimizeParallel(
-        NodeLabels & nodeLabels,  VisitorBase * visitor
+        NodeLabels & nodeLabels,  VisitorBaseType * visitor
     ){
 
         currentBest_ = &nodeLabels;
@@ -314,7 +314,7 @@ namespace multicut{
     template<class PROPPOSAL_GEN>
     void FusionMoveBased<PROPPOSAL_GEN>::
     optimizeSerial(
-        NodeLabels & nodeLabels,  VisitorBase * visitor
+        NodeLabels & nodeLabels,  VisitorBaseType * visitor
     ){
         VisitorProxy visitorProxy(visitor);
 

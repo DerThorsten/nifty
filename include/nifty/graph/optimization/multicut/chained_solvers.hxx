@@ -28,10 +28,10 @@ namespace multicut{
         typedef OBJECTIVE ObjectiveType;
         typedef typename ObjectiveType::WeightType WeightType;
         typedef MulticutBase<ObjectiveType> BaseType;
-        typedef typename BaseType::VisitorBase VisitorBase;
+        typedef typename BaseType::VisitorBaseType VisitorBaseType;
         typedef typename BaseType::VisitorProxy VisitorProxy;
         typedef typename BaseType::EdgeLabels EdgeLabels;
-        typedef typename BaseType::NodeLabels NodeLabels;
+        typedef typename BaseType::NodeLabelsType NodeLabelsType;
         typedef typename ObjectiveType::Graph Graph;
         typedef typename ObjectiveType::GraphType GraphType;
         typedef typename ObjectiveType::WeightsMap WeightsMap;
@@ -43,10 +43,10 @@ namespace multicut{
 
 
 
-        class NoBeginEndVisitor : public VisitorBase{
+        class NoBeginEndVisitor : public VisitorBaseType{
         public:
 
-            NoBeginEndVisitor(VisitorBase * visitor)
+            NoBeginEndVisitor(VisitorBaseType * visitor)
             :   visitor_(visitor){
             }
 
@@ -86,7 +86,7 @@ namespace multicut{
 
 
         private:
-            VisitorBase * visitor_;
+            VisitorBaseType * visitor_;
         };
 
 
@@ -104,7 +104,7 @@ namespace multicut{
         ChainedSolvers(const Objective & objective, const SettingsType & settings = SettingsType());
 
 
-        virtual void optimize(NodeLabels & nodeLabels, VisitorBase * visitor);
+        virtual void optimize(NodeLabels & nodeLabels, VisitorBaseType * visitor);
         virtual const Objective & objective() const;
 
 
@@ -149,7 +149,7 @@ namespace multicut{
     template<class OBJECTIVE>
     void ChainedSolvers<OBJECTIVE>::
     optimize(
-        NodeLabels & nodeLabels,  VisitorBase * visitor
+        NodeLabels & nodeLabels,  VisitorBaseType * visitor
     ){
 
 

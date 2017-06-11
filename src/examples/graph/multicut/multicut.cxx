@@ -54,10 +54,10 @@ int main( int argc , char *argv[] ){
        
         typedef nifty::graph::optimization::multicut::MulticutGreedyAdditive<MulticutObjective> MulticutSolver;
         typedef nifty::graph::optimization::multicut::MulticutVerboseVisitor<MulticutObjective> MulticutVerboseVisitor;
-        typedef typename MulticutSolver::NodeLabels NodeLabels;
+        typedef typename MulticutSolver::NodeLabelsType NodeLabelsType;
         MulticutSolver solver(objective);
 
-        NodeLabels labels(graph);
+        NodeLabelsType labels(graph);
         MulticutVerboseVisitor visitor;
         solver.optimize(labels, &visitor);
 

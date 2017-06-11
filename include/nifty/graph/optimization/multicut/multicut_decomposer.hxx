@@ -21,10 +21,10 @@ namespace multicut{
         typedef OBJECTIVE Objective;
         typedef typename Objective::WeightType WeightType;
         typedef MulticutBase<OBJECTIVE> BaseType;
-        typedef typename BaseType::VisitorBase VisitorBase;
+        typedef typename BaseType::VisitorBaseType VisitorBaseType;
         typedef typename BaseType::VisitorProxy VisitorProxy;
         typedef typename BaseType::EdgeLabels EdgeLabels;
-        typedef typename BaseType::NodeLabels NodeLabels;
+        typedef typename BaseType::NodeLabelsType NodeLabelsType;
         typedef typename Objective::Graph Graph;
         typedef typename Objective::WeightsMap WeightsMap;
 
@@ -57,7 +57,7 @@ namespace multicut{
         MulticutDecomposer(const Objective & objective, const SettingsType & settings = SettingsType());
 
 
-        virtual void optimize(NodeLabels & nodeLabels, VisitorBase * visitor);
+        virtual void optimize(NodeLabels & nodeLabels, VisitorBaseType * visitor);
         virtual const Objective & objective() const;
 
 
@@ -125,7 +125,7 @@ namespace multicut{
     template<class OBJECTIVE>
     void MulticutDecomposer<OBJECTIVE>::
     optimize(
-        NodeLabels & nodeLabels,  VisitorBase * visitor
+        NodeLabels & nodeLabels,  VisitorBaseType * visitor
     ){  
 
         

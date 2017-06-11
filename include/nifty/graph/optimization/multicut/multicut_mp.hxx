@@ -26,10 +26,10 @@ namespace multicut{
 
         typedef OBJECTIVE Objective;
         typedef MulticutBase<OBJECTIVE> BaseType;
-        typedef typename BaseType::VisitorBase VisitorBase;
+        typedef typename BaseType::VisitorBaseType VisitorBaseType;
         typedef typename BaseType::VisitorProxy VisitorProxy;
         typedef typename BaseType::EdgeLabels EdgeLabels;
-        typedef typename BaseType::NodeLabels NodeLabels;
+        typedef typename BaseType::NodeLabelsType NodeLabelsType;
         typedef typename Objective::Graph Graph;
         
         // factory for the lp_mp primal rounder
@@ -124,7 +124,7 @@ namespace multicut{
         
         MulticutMp(const Objective & objective, const SettingsType & settings = SettingsType());
 
-        virtual void optimize(NodeLabels & nodeLabels, VisitorBase * visitor);
+        virtual void optimize(NodeLabels & nodeLabels, VisitorBaseType * visitor);
         
         virtual const Objective & objective() const {return objective_;}
         virtual const NodeLabels & currentBestNodeLabels() {return *currentBest_;}
@@ -259,7 +259,7 @@ namespace multicut{
     template<class OBJECTIVE>
     void MulticutMp<OBJECTIVE>::
     optimize(
-        NodeLabels & nodeLabels,  VisitorBase * visitor
+        NodeLabels & nodeLabels,  VisitorBaseType * visitor
     ){  
 
         //VisitorProxy visitorProxy(visitor);

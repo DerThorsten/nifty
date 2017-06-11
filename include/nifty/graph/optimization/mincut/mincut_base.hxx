@@ -19,16 +19,15 @@ namespace mincut{
     
     public:
         typedef OBJECTIVE ObjectiveType;
-        typedef MincutVisitorBase<ObjectiveType> VisitorBase;
+        typedef MincutVisitorBase<ObjectiveType> VisitorBaseType;
         typedef MincutVisitorProxy<ObjectiveType> VisitorProxy;
         typedef typename ObjectiveType::Graph Graph;
-        typedef typename Graph:: template EdgeMap<uint8_t> EdgeLabels;
-        typedef typename Graph:: template NodeMap<uint64_t> NodeLabels;
+        typedef typename Graph:: template NodeMap<uint64_t> NodeLabelsType;
 
         virtual ~MincutBase(){};
-        virtual void optimize(NodeLabels & nodeLabels, VisitorBase * visitor) = 0;
+        virtual void optimize(NodeLabelsType & nodeLabels, VisitorBaseType * visitor) = 0;
         virtual const ObjectiveType & objective() const = 0;
-        virtual const NodeLabels & currentBestNodeLabels() = 0;
+        virtual const NodeLabelsType & currentBestNodeLabels() = 0;
 
 
         virtual std::string name() const = 0 ;
