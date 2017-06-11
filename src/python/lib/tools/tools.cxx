@@ -14,6 +14,7 @@ namespace tools{
     void exportTake(py::module &);
     void exportUnique(py::module &);
     void exportNodesToBlocks(py::module &);
+    void exportEdgeMapping(py::module &);
 }
 }
 
@@ -28,6 +29,7 @@ PYBIND11_PLUGIN(_tools) {
     exportTake(toolsModule);
     exportUnique(toolsModule);
     exportNodesToBlocks(toolsModule);
+    exportEdgeMapping(toolsModule);
 
     return toolsModule.ptr();
 }

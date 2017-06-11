@@ -182,7 +182,7 @@ namespace graph{
     void getSkipEdgesForSlice(
         const GridRagStacked2D<LABELS_PROXY> & rag,
         const int64_t z,
-        std::map<size_t,std::vector<NODE_TYPE>> & defectNodes, 
+        std::map<size_t,std::vector<NODE_TYPE>> & defectNodes,
         std::vector<EDGE_TYPE> & deleteEdges, // ref to outvec
         std::vector<EDGE_TYPE> & ignoreEdges, // ref to outvec
         std::vector<std::pair<NODE_TYPE,NODE_TYPE>> & skipEdges, // skip edges, ref to outvec
