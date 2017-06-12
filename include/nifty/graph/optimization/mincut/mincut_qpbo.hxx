@@ -23,7 +23,7 @@ namespace mincut{
         typedef OBJECTIVE Objective;
         typedef MincutBase<OBJECTIVE> BaseType;
         typedef typename BaseType::VisitorBaseType VisitorBaseType;
-        typedef typename BaseType::VisitorProxy VisitorProxy;
+        typedef typename BaseType::VisitorProxyType VisitorProxyType;
         typedef typename BaseType::NodeLabelsType NodeLabelsType;
         typedef typename Objective::Graph Graph;
 
@@ -115,7 +115,7 @@ namespace mincut{
         NodeLabelsType & nodeLabels,  VisitorBaseType * visitor
     ){  
 
-        VisitorProxy visitorProxy(visitor);
+        VisitorProxyType visitorProxy(visitor);
         visitorProxy.begin(this);
 
         currentBest_ = &nodeLabels;

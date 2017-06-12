@@ -25,7 +25,7 @@ namespace multicut{
         typedef OBJECTIVE Objective;
         typedef MulticutBase<OBJECTIVE> BaseType;
         typedef typename BaseType::VisitorBaseType VisitorBaseType;
-        typedef typename BaseType::VisitorProxy VisitorProxy;
+        typedef typename BaseType::VisitorProxyType VisitorProxyType;
         //typedef typename Base::EdgeLabels EdgeLabels;
         typedef typename BaseType::NodeLabelsType NodeLabelsType;
         typedef ILP_SOLVER IlpSovler;
@@ -163,7 +163,7 @@ namespace multicut{
     ){  
 
         //std::cout<<"nStartConstraints "<<addedConstraints_<<"\n";
-        VisitorProxy visitorProxy(visitor);
+        VisitorProxyType visitorProxy(visitor);
 
         visitorProxy.addLogNames({"violatedConstraints"});
 

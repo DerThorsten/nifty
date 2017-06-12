@@ -50,7 +50,7 @@ namespace detail_cc_fusion{
      
         
         typedef typename BaseType::VisitorBaseType VisitorBaseType;
-        typedef typename BaseType::VisitorProxy VisitorProxy;
+        typedef typename BaseType::VisitorProxyType VisitorProxyType;
         typedef typename BaseType::NodeLabelsType NodeLabelsType;
 
 
@@ -94,8 +94,8 @@ namespace detail_cc_fusion{
 
 
     private:
-        virtual void optimizeSingleThread(VisitorProxy & visitorProxy);
-        virtual void optimizeMultiThread(VisitorProxy & visitorProxy);
+        virtual void optimizeSingleThread(VisitorProxyType & visitorProxy);
+        virtual void optimizeMultiThread(VisitorProxyType & visitorProxy);
 
 
         const ObjectiveType & objective_;
@@ -186,7 +186,7 @@ namespace detail_cc_fusion{
 
 
 
-        VisitorProxy visitorProxy(visitor);
+        VisitorProxyType visitorProxy(visitor);
         visitorProxy.begin(this);
 
 
@@ -204,7 +204,7 @@ namespace detail_cc_fusion{
     template<class OBJECTIVE, class SOLVER_BASE, class FUSION_MOVE>
     void CcFusionMoveBasedImpl<OBJECTIVE, SOLVER_BASE, FUSION_MOVE>::
     optimizeSingleThread(
-        VisitorProxy & visitorProxy
+        VisitorProxyType & visitorProxy
     ){
         NodeLabelsType proposal(graph_);
         auto iterWithoutImprovement = 0;
@@ -247,7 +247,7 @@ namespace detail_cc_fusion{
     template<class OBJECTIVE, class SOLVER_BASE, class FUSION_MOVE>
     void CcFusionMoveBasedImpl<OBJECTIVE, SOLVER_BASE, FUSION_MOVE>::
     optimizeMultiThread(
-        VisitorProxy & visitorProxy
+        VisitorProxyType & visitorProxy
     ){
         // NIFTY_CHECK(false, "currently only single thread is implemented");
 

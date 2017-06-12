@@ -55,7 +55,7 @@ namespace multicut{
             
             typedef mincut::MincutVerboseVisitor<MincutSubObjective>  SubMcVerboseVisitor;
      
-            typedef typename  MincutSubBase::NodeLabels     MincutSubNodeLabels;
+            typedef typename  MincutSubBase::NodeLabelsType     MincutSubNodeLabels;
 
             struct Optimzie1ReturnType{
                 Optimzie1ReturnType(const bool imp, const double val)
@@ -563,8 +563,7 @@ namespace multicut{
         typedef typename ObjectiveType::WeightType WeightType;
         typedef MulticutBase<ObjectiveType> BaseType;
         typedef typename BaseType::VisitorBaseType VisitorBaseType;
-        typedef typename BaseType::VisitorProxy VisitorProxy;
-        typedef typename BaseType::EdgeLabels EdgeLabels;
+        typedef typename BaseType::VisitorProxyType VisitorProxyType;
         typedef typename BaseType::NodeLabelsType NodeLabelsType;
         typedef typename ObjectiveType::Graph Graph;
         typedef typename ObjectiveType::GraphType GraphType;
@@ -576,13 +575,13 @@ namespace multicut{
         typedef mincut::MincutBase<MincutSubObjective>         MincutSubBase;
         typedef nifty::graph::optimization::common::SolverFactoryBase<MincutSubBase>  MincutSubMcFactoryBase;
         
-        typedef typename  MincutSubBase::NodeLabels            MincutSubNodeLabels;
+        typedef typename  MincutSubBase::NodeLabelsType            MincutSubNodeLabels;
 
         typedef MulticutObjective<SubGraph, double>         MulticutSubObjective;
         typedef MulticutBase<MulticutSubObjective>          MulticutSubBase;
         typedef nifty::graph::optimization::common::SolverFactoryBase<MulticutSubBase>   MulticutSubMcFactoryBase;
        
-        typedef typename  MulticutSubBase::NodeLabels       MulticutSubNodeLabels;
+        typedef typename  MulticutSubBase::NodeLabelsType       MulticutSubNodeLabels;
 
 
         typedef nifty::graph::optimization::common::SolverFactoryBase<BaseType> FactoryBase;
@@ -612,11 +611,11 @@ namespace multicut{
         Cgc(const Objective & objective, const SettingsType & settings = SettingsType());
 
 
-        virtual void optimize(NodeLabels & nodeLabels, VisitorBaseType * visitor);
+        virtual void optimize(NodeLabelsType & nodeLabels, VisitorBaseType * visitor);
         virtual const Objective & objective() const;
 
 
-        virtual const NodeLabels & currentBestNodeLabels( ){
+        virtual const NodeLabelsType & currentBestNodeLabels( ){
             return *currentBest_;
         }
 
@@ -631,10 +630,10 @@ namespace multicut{
     private:
 
 
-        void cutPhase(VisitorProxy & visitorProxy);
-        void betterCutPhase(VisitorProxy & visitorProxy);
+        void cutPhase(VisitorProxyType & visitorProxy);
+        void betterCutPhase(VisitorProxyType & visitorProxy);
 
-        void glueAndCutPhase(VisitorProxy & visitorProxy);
+        void glueAndCutPhase(VisitorProxyType & visitorProxy);
 
         const Objective & objective_;
         const Graph & graph_;
@@ -644,7 +643,7 @@ namespace multicut{
         SettingsType settings_;
         IsDirtyEdge isDirtyEdge_;
         detail_cgc::SubmodelOptimizer<Objective> submodel_;
-        NodeLabels * currentBest_;
+        NodeLabelsType * currentBest_;
         double currentBestEnergy_;
 
         
@@ -676,7 +675,7 @@ namespace multicut{
     template<class OBJECTIVE>
     void Cgc<OBJECTIVE>::
     cutPhase(
-        VisitorProxy & visitorProxy
+        VisitorProxyType & visitorProxy
     ){
 
        
@@ -739,7 +738,7 @@ namespace multicut{
     template<class OBJECTIVE>
     void Cgc<OBJECTIVE>::
     betterCutPhase(
-        VisitorProxy & visitorProxy
+        VisitorProxyType & visitorProxy
     ){
         visitorProxy.clearLogNames();
         visitorProxy.addLogNames({std::string("#Node"),std::string("priority")});
@@ -896,7 +895,7 @@ namespace multicut{
     template<class OBJECTIVE>
     void Cgc<OBJECTIVE>::
     glueAndCutPhase(
-        VisitorProxy & visitorProxy
+        VisitorProxyType & visitorProxy
     ){
         currentBestEnergy_ = objective_.evalNodeLabels(*currentBest_);
 
@@ -971,11 +970,11 @@ namespace multicut{
     template<class OBJECTIVE>
     void Cgc<OBJECTIVE>::
     optimize(
-        NodeLabels & nodeLabels,  VisitorBaseType * visitor
+        NodeLabelsType & nodeLabels,  VisitorBaseType * visitor
     ){  
 
         
-        VisitorProxy visitorProxy(visitor);
+        VisitorProxyType visitorProxy(visitor);
         //visitorProxy.addLogNames({"violatedConstraints"});
 
         currentBest_ = &nodeLabels;

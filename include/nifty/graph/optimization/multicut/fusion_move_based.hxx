@@ -32,8 +32,7 @@ namespace multicut{
         typedef typename Objective::Graph Graph;
         typedef MulticutBase<Objective> BaseType;
         typedef typename BaseType::VisitorBaseType VisitorBaseType;
-        typedef typename BaseType::VisitorProxy VisitorProxy;
-        typedef typename BaseType::EdgeLabels EdgeLabels;
+        typedef typename BaseType::VisitorProxyType VisitorProxyType;
         typedef typename BaseType::NodeLabelsType NodeLabelsType;
 
         typedef FusionMove<Objective> FusionMoveType;
@@ -57,11 +56,11 @@ namespace multicut{
 
         FusionMoveBased(const Objective & objective, const SettingsType & settings = SettingsType());
         ~FusionMoveBased();
-        virtual void optimize(NodeLabels & nodeLabels, VisitorBaseType * visitor);
+        virtual void optimize(NodeLabelsType & nodeLabels, VisitorBaseType * visitor);
         virtual const Objective & objective() const;
 
 
-        virtual const NodeLabels & currentBestNodeLabels( ){
+        virtual const NodeLabelsType & currentBestNodeLabels( ){
             return *currentBest_;
         }
 
@@ -75,8 +74,8 @@ namespace multicut{
             }
         }
     private:
-        void optimizeParallel(NodeLabels & nodeLabels, VisitorBaseType * visitor);
-        void optimizeSerial(NodeLabels & nodeLabels, VisitorBaseType * visitor);
+        void optimizeParallel(NodeLabelsType & nodeLabels, VisitorBaseType * visitor);
+        void optimizeSerial(NodeLabelsType & nodeLabels, VisitorBaseType * visitor);
 
         const Objective & objective_;
         const Graph & graph_;
@@ -84,10 +83,10 @@ namespace multicut{
         nifty::parallel::ParallelOptions parallelOptions_;
 
         std::vector<ProposalGen *>     pgens_;
-        std::vector<NodeLabels *>      solBufferIn_;
-        std::vector<NodeLabels *>      solBufferOut_;
+        std::vector<NodeLabelsType *>      solBufferIn_;
+        std::vector<NodeLabelsType *>      solBufferOut_;
         std::vector<FusionMoveType * > fusionMoves_;
-        NodeLabels * currentBest_;
+        NodeLabelsType * currentBest_;
 
         nifty::parallel::ThreadPool threadPool_;
     };
@@ -119,7 +118,7 @@ namespace multicut{
                 NIFTY_CHECK_OP(threadId,<,fusionMoves_.size(),"");
                 pgens_[i] = new ProposalGen(objective_, settings_.proposalGenSettings, i);
                 fusionMoves_[i] = new FusionMoveType(objective_, settings_.fusionMoveSettings);
-                solBufferIn_[i] = new NodeLabels(graph_);
+                solBufferIn_[i] = new NodeLabelsType(graph_);
         });
 
 
@@ -140,7 +139,7 @@ namespace multicut{
     template<class PROPPOSAL_GEN>
     void FusionMoveBased<PROPPOSAL_GEN>::
     optimize(
-        NodeLabels & nodeLabels,  VisitorBaseType * visitor
+        NodeLabelsType & nodeLabels,  VisitorBaseType * visitor
     ){
         if(graph_.numberOfEdges()==0){
             if(visitor!=nullptr){
@@ -162,7 +161,7 @@ namespace multicut{
     template<class PROPPOSAL_GEN>
     void FusionMoveBased<PROPPOSAL_GEN>::
     optimizeParallel(
-        NodeLabels & nodeLabels,  VisitorBaseType * visitor
+        NodeLabelsType & nodeLabels,  VisitorBaseType * visitor
     ){
 
         currentBest_ = &nodeLabels;
@@ -177,7 +176,7 @@ namespace multicut{
         std::mutex mtx;
 
 
-        std::vector<NodeLabels> proposals;
+        std::vector<NodeLabelsType> proposals;
         auto iterWithoutImprovement = 0;
         for(auto iter=0; iter<settings_.numberOfIterations; ++iter){
             //std::cout<<"iter "<<iter<<"\n";
@@ -204,12 +203,12 @@ namespace multicut{
                         //std::cout<<"a\n";
 
                         mtx.lock();
-                        NodeLabels bestCopy = currentBest;
+                        NodeLabelsType bestCopy = currentBest;
                         auto eBestCopy = objective_.evalNodeLabels(bestCopy);
                         mtx.unlock(); 
 
 
-                        NodeLabels res(graph_);
+                        NodeLabelsType res(graph_);
                         auto & fm = *(fusionMoves_[threadId]);
                         fm.fuse( {&proposal, &currentBest}, &res);
                         auto eFuse = objective_.evalNodeLabels(res);
@@ -226,7 +225,7 @@ namespace multicut{
                     else{  // just keep this one and do not fuse with current best
                         //std::cout<<"a\n";
                         mtx.lock();
-                        NodeLabels bestCopy = currentBest;
+                        NodeLabelsType bestCopy = currentBest;
                         auto eBestCopy = objective_.evalNodeLabels(bestCopy);
                         if(eProposal < eBestCopy){
                             bestEnergy = eProposal;
@@ -240,7 +239,7 @@ namespace multicut{
           
             //std::cout<<"proposals size "<<proposals.size()<<"\n\n";
             // recursive thing
-            std::vector<NodeLabels> proposals2;
+            std::vector<NodeLabelsType> proposals2;
             size_t nFuse = settings_.fuseN;
 
             if(!proposals.empty()){
@@ -263,14 +262,14 @@ namespace multicut{
                 
                         auto i = ii*nFuse;
 
-                        std::vector<const NodeLabels*> toFuse;
+                        std::vector<const NodeLabelsType*> toFuse;
                         for(size_t j=0; j<nFuse; ++j){
                             auto k = i + j < proposals.size() ? i+j : i+j - proposals.size();
                             toFuse.push_back(&proposals[k]);
                         }
 
                         // here we start to fuse them
-                        NodeLabels res(graph_);
+                        NodeLabelsType res(graph_);
                         auto & fm = *(fusionMoves_[threadId]);
 
                         fm.fuse(toFuse, &res);
@@ -314,9 +313,9 @@ namespace multicut{
     template<class PROPPOSAL_GEN>
     void FusionMoveBased<PROPPOSAL_GEN>::
     optimizeSerial(
-        NodeLabels & nodeLabels,  VisitorBaseType * visitor
+        NodeLabelsType & nodeLabels,  VisitorBaseType * visitor
     ){
-        VisitorProxy visitorProxy(visitor);
+        VisitorProxyType visitorProxy(visitor);
 
         currentBest_ = &nodeLabels;
        
@@ -330,7 +329,7 @@ namespace multicut{
 
 
 
-        std::vector<NodeLabels> proposals;
+        std::vector<NodeLabelsType> proposals;
         auto iterWithoutImprovement = 0;
         for(auto iter=0; iter<settings_.numberOfIterations; ++iter){
             const auto oldBestEnergy = bestEnergy;
@@ -345,7 +344,7 @@ namespace multicut{
                 iterWithoutImprovement = 0;
             }
             else{
-                NodeLabels res(graph_);
+                NodeLabelsType res(graph_);
                 auto & fm = *(fusionMoves_[0]);
                 fm.fuse( {&proposal, &currentBest}, &res);
                 auto eFuse = objective_.evalNodeLabels(res);

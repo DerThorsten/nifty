@@ -4,7 +4,6 @@
 #include <initializer_list>
 #include <sstream>
 
-#include "nifty/exceptions/exceptions.hxx"
 #include "nifty/graph/optimization/common/solver_base.hxx"
 #include "nifty/graph/optimization/multicut/multicut_visitor_base.hxx"
 

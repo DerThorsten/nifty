@@ -20,7 +20,7 @@ namespace multicut{
         typedef OBJECTIVE Objective;
         typedef MulticutBase<OBJECTIVE> BaseType;
         typedef typename BaseType::VisitorBaseType VisitorBaseType;
-        typedef typename BaseType::VisitorProxy VisitorProxy;
+        typedef typename BaseType::VisitorProxyType VisitorProxyType;
         typedef typename BaseType::NodeLabelsType NodeLabelsType;
         typedef andres::graph::Graph<> Graph;
 
@@ -120,7 +120,7 @@ namespace multicut{
     void MulticutAndresGreedyAdditive<OBJECTIVE>::optimize(
         NodeLabelsType & nodeLabels,  VisitorBaseType * visitor
     ){  
-        //VisitorProxy visitorProxy(visitor);
+        //VisitorProxyType visitorProxy(visitor);
         Base::currentBest_ = &nodeLabels;
         
         if(Base::graph_.numberOfEdges()>0){
@@ -181,7 +181,7 @@ namespace multicut{
     void MulticutAndresKernighanLin<OBJECTIVE>::optimize(
         NodeLabelsType & nodeLabels,  VisitorBaseType * visitor
     ){  
-        //VisitorProxy visitorProxy(visitor);
+        //VisitorProxyType visitorProxy(visitor);
         Base::currentBest_ = &nodeLabels;
         
         if(Base::graph_.numberOfEdges()>0){

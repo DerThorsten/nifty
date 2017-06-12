@@ -177,8 +177,7 @@ namespace mincut{
         typedef nifty::graph::EdgeContractionGraph<GraphType, CallbackType> ContractionGraphType;
         typedef MincutBase<OBJECTIVE> BaseType;
         typedef typename BaseType::VisitorBaseType VisitorBaseType;
-        typedef typename BaseType::VisitorProxy VisitorProxy;
-        typedef typename BaseType::EdgeLabels EdgeLabels;
+        typedef typename BaseType::VisitorProxyType VisitorProxyType;
         typedef typename BaseType::NodeLabelsType NodeLabelsType;
 
     public:
@@ -247,7 +246,7 @@ namespace mincut{
         NodeLabelsType & nodeLabels,  VisitorBaseType * visitor
     ){
 
-        VisitorProxy visitorProxy(visitor);
+        VisitorProxyType visitorProxy(visitor);
         visitorProxy.addLogNames({"#nodes","topWeight"});
         visitorProxy.begin(this);
 

@@ -4,7 +4,7 @@
 #include <initializer_list>
 #include <sstream>
 
-#include "nifty/exceptions/exceptions.hxx"
+#include "nifty/graph/optimization/common/solver_base.hxx"
 #include "mincut_visitor_base.hxx"
 
 namespace nifty {
@@ -13,6 +13,17 @@ namespace optimization{
 namespace mincut{
 
 
+    template<class OBJECTIVE>
+    class MincutBase :
+        public nifty::graph::optimization::common::SolverBase<
+            OBJECTIVE,
+            MincutBase<OBJECTIVE>
+        >
+    {
+
+    };
+
+    #if 0
     
     template<class OBJECTIVE>
     class MincutBase{
@@ -56,10 +67,9 @@ namespace mincut{
             const auto & obj = this->objective();
             return obj.evalNodeLabels(nl);
         }
-
-
-
     };
+    #endif
+
 } // namespace nifty::graph::optimization::mincut
 } // namespace nifty::graph::optimization
 } // namespace graph

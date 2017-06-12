@@ -27,8 +27,7 @@ namespace multicut{
         typedef OBJECTIVE Objective;
         typedef MulticutBase<OBJECTIVE> BaseType;
         typedef typename BaseType::VisitorBaseType VisitorBaseType;
-        typedef typename BaseType::VisitorProxy VisitorProxy;
-        typedef typename BaseType::EdgeLabels EdgeLabels;
+        typedef typename BaseType::VisitorProxyType VisitorProxyType;
         typedef typename BaseType::NodeLabelsType NodeLabelsType;
         typedef typename Objective::Graph Graph;
         
@@ -59,7 +58,7 @@ namespace multicut{
                         objWeights[eId] = edgeValues[eId];
                     }
                    
-                    NodeLabels nodeLabels(g.numberOfNodes());
+                    NodeLabelsType nodeLabels(g);
                     
                     auto solverPtr = factory_->create(obj);
                     std::cout << "compute multicut primal with " << solverPtr->name()  << std::endl;
@@ -124,10 +123,10 @@ namespace multicut{
         
         MulticutMp(const Objective & objective, const SettingsType & settings = SettingsType());
 
-        virtual void optimize(NodeLabels & nodeLabels, VisitorBaseType * visitor);
+        virtual void optimize(NodeLabelsType & nodeLabels, VisitorBaseType * visitor);
         
         virtual const Objective & objective() const {return objective_;}
-        virtual const NodeLabels & currentBestNodeLabels() {return *currentBest_;}
+        virtual const NodeLabelsType & currentBestNodeLabels() {return *currentBest_;}
 
         virtual std::string name() const {
             return std::string("MulticutMp");
@@ -148,7 +147,7 @@ namespace multicut{
         const Graph & graph_;
 
         SettingsType settings_;
-        NodeLabels * currentBest_;
+        NodeLabelsType * currentBest_;
         size_t numberOfOptRuns_;
         SolverType * mpSolver_;
         ufd::Ufd<uint64_t> ufd_;
@@ -259,21 +258,21 @@ namespace multicut{
     template<class OBJECTIVE>
     void MulticutMp<OBJECTIVE>::
     optimize(
-        NodeLabels & nodeLabels,  VisitorBaseType * visitor
+        NodeLabelsType & nodeLabels,  VisitorBaseType * visitor
     ){  
 
-        //VisitorProxy visitorProxy(visitor);
+        VisitorProxyType visitorProxy(visitor);
         currentBest_ = &nodeLabels;
         
         // TODO for now the visitor is doing nothing, but we should implement one, that is
         // compatible with lp_mp visitor
-        //visitorProxy.begin(this);
+        visitorProxy.begin(this);
         
         if(graph_.numberOfEdges()>0){
             mpSolver_->Solve();
             nodeLabeling();
         }
-        //visitorProxy.end(this);
+        visitorProxy.end(this);
     }
 } // namespace nifty::graph::optimization::multicut
 } // namespace nifty::graph::optimization
