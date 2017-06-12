@@ -19,15 +19,15 @@ public:
     // using MulticutFactory<Objective>::MulticutFactory;
 
     typedef OBJECTIVE Objective;
-    typedef MulticutVisitorBase<OBJECTIVE> VisitorBase;
+    typedef MulticutVisitorBase<OBJECTIVE> VisitorBaseType;
     typedef MulticutBase<Objective> McBase;
     typedef typename Objective::Graph Graph;
     typedef typename Graph:: template EdgeMap<uint8_t>  EdgeLabels;
-    typedef typename Graph:: template NodeMap<uint64_t> NodeLabels;
+    typedef typename Graph:: template NodeMap<uint64_t> NodeLabelsType;
 
 
     /* Trampoline (need one for each virtual function) */
-    void optimize(NodeLabels & nodeLabels, VisitorBase * visitor) {
+    void optimize(NodeLabelsType & nodeLabels, VisitorBaseType * visitor) {
         PYBIND11_OVERLOAD_PURE(
             void,                  /* Return type */
             McBase,                /* Parent class */
@@ -36,9 +36,9 @@ public:
         );
     }
 
-    const NodeLabels & currentBestNodeLabels()  {
+    const NodeLabelsType & currentBestNodeLabels()  {
         PYBIND11_OVERLOAD_PURE(
-            const NodeLabels &,                 /* Return type */
+            const NodeLabelsType &,                 /* Return type */
             McBase,                             /* Parent class */
             currentBestNodeLabels,              /* Name of function */
         );

@@ -49,9 +49,9 @@ namespace lifted_multicut{
         typedef typename ObjectiveType::GraphType GraphType;
         typedef typename ObjectiveType::LiftedGraphType LiftedGraphType;
         
-        typedef typename BaseType::VisitorBase VisitorBase;
+        typedef typename BaseType::VisitorBaseType VisitorBaseType;
         typedef typename BaseType::VisitorProxy VisitorProxy;
-        typedef typename BaseType::NodeLabels NodeLabels;
+        typedef typename BaseType::NodeLabelsType NodeLabelsType;
 
     private:
 
@@ -73,7 +73,7 @@ namespace lifted_multicut{
 
         virtual ~LiftedMulticutAndresKernighanLin(){}
         LiftedMulticutAndresKernighanLin(const ObjectiveType & objective, const SettingsType & settings = SettingsType());
-        virtual void optimize(NodeLabels & nodeLabels, VisitorBase * visitor);
+        virtual void optimize(NodeLabels & nodeLabels, VisitorBaseType * visitor);
         virtual const ObjectiveType & objective() const;
 
 
@@ -141,7 +141,7 @@ namespace lifted_multicut{
     template<class OBJECTIVE>
     void LiftedMulticutAndresKernighanLin<OBJECTIVE>::
     optimize(
-        NodeLabels & nodeLabels,  VisitorBase * visitor
+        NodeLabels & nodeLabels,  VisitorBaseType * visitor
     ){
         
         currentBest_ = &nodeLabels;

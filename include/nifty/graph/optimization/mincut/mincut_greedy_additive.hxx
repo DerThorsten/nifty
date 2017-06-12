@@ -176,10 +176,9 @@ namespace mincut{
         typedef detail_mincut_greedy_additive::MincutGreedyAdditiveCallback<Objective> CallbackType;
         typedef nifty::graph::EdgeContractionGraph<GraphType, CallbackType> ContractionGraphType;
         typedef MincutBase<OBJECTIVE> BaseType;
-        typedef typename BaseType::VisitorBase VisitorBase;
-        typedef typename BaseType::VisitorProxy VisitorProxy;
-        typedef typename BaseType::EdgeLabels EdgeLabels;
-        typedef typename BaseType::NodeLabels NodeLabels;
+        typedef typename BaseType::VisitorBaseType VisitorBaseType;
+        typedef typename BaseType::VisitorProxyType VisitorProxyType;
+        typedef typename BaseType::NodeLabelsType NodeLabelsType;
 
     public:
 
@@ -187,7 +186,7 @@ namespace mincut{
 
         virtual ~MincutGreedyAdditive(){}
         MincutGreedyAdditive(const Objective & objective, const SettingsType & settings = SettingsType());
-        virtual void optimize(NodeLabels & nodeLabels, VisitorBase * visitor);
+        virtual void optimize(NodeLabelsType & nodeLabels, VisitorBaseType * visitor);
         virtual const Objective & objective() const;
 
         void reset();
@@ -196,7 +195,7 @@ namespace mincut{
         virtual void weightsChanged(){
             this->reset();
         }
-        virtual const NodeLabels & currentBestNodeLabels( ){
+        virtual const NodeLabelsType & currentBestNodeLabels( ){
             //for(auto node : graph_.nodes()){
             //    currentBest_->operator[](node) = edgeContractionGraph_.findRepresentativeNode(node);
             //}
@@ -215,7 +214,7 @@ namespace mincut{
 
         const Objective & objective_;
         const Graph & graph_;
-        NodeLabels * currentBest_;
+        NodeLabelsType * currentBest_;
         double currentBestEnergy_;
         CallbackType callback_;
         ContractionGraphType edgeContractionGraph_;
@@ -244,10 +243,10 @@ namespace mincut{
     template<class OBJECTIVE>
     void MincutGreedyAdditive<OBJECTIVE>::
     optimize(
-        NodeLabels & nodeLabels,  VisitorBase * visitor
+        NodeLabelsType & nodeLabels,  VisitorBaseType * visitor
     ){
 
-        VisitorProxy visitorProxy(visitor);
+        VisitorProxyType visitorProxy(visitor);
         visitorProxy.addLogNames({"#nodes","topWeight"});
         visitorProxy.begin(this);
 

@@ -29,7 +29,7 @@ namespace multicut{
     ){
 
         typedef SOLVER Solver;
-        typedef typename Solver::Objective ObjectiveType;
+        typedef typename Solver::ObjectiveType ObjectiveType;
         typedef typename Solver::SettingsType SettingsType;
         typedef nifty::graph::optimization::common::SolverFactory<Solver> Factory;
 

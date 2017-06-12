@@ -58,7 +58,7 @@ namespace mincut{
 
 
 
-                    typename McBase::NodeLabels nodeLabels(graph,0);
+                    typename McBase::NodeLabelsType nodeLabels(graph,0);
                     {
                         py::gil_scoped_release allowThreads;
                         self->optimize(nodeLabels, nullptr);
@@ -83,7 +83,7 @@ namespace mincut{
 
 
 
-                    typename McBase::NodeLabels nodeLabels(graph,0);
+                    typename McBase::NodeLabelsType nodeLabels(graph,0);
                     {
                         py::gil_scoped_release allowThreads;
                         self->optimize(nodeLabels, visitor);
@@ -105,7 +105,7 @@ namespace mincut{
                 ){
                     //std::cout<<"opt array\n";
                     const auto & graph = self->objective().graph();
-                    typename McBase::NodeLabels nodeLabels(graph,0);
+                    typename McBase::NodeLabelsType nodeLabels(graph,0);
 
 
                     if(array.size() == graph.nodeIdUpperBound()+1){
@@ -135,7 +135,7 @@ namespace mincut{
                 ){
                     //std::cout<<"opt with both\n";
                     const auto & graph = self->objective().graph();
-                    typename McBase::NodeLabels nodeLabels(graph,0);
+                    typename McBase::NodeLabelsType nodeLabels(graph,0);
 
 
                     if(array.size() == graph.nodeIdUpperBound()+1){

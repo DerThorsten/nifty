@@ -4,7 +4,7 @@
 #include <initializer_list>
 #include <sstream>
 
-#include "nifty/exceptions/exceptions.hxx"
+#include "nifty/graph/optimization/common/solver_base.hxx"
 #include "nifty/graph/optimization/multicut/multicut_visitor_base.hxx"
 
 namespace nifty {
@@ -12,14 +12,26 @@ namespace graph {
 namespace optimization{
 namespace multicut{
 
-    
+
+    template<class OBJECTIVE>
+    class MulticutBase :
+        public nifty::graph::optimization::common::SolverBase<
+            OBJECTIVE,
+            MulticutBase<OBJECTIVE>
+        >
+    {
+
+    };
+
+
+    #if 0
     template<class OBJECTIVE>
     class MulticutBase{
     
     public:
         typedef OBJECTIVE Objective;
         typedef OBJECTIVE ObjectiveType;
-        typedef MulticutVisitorBase<Objective> VisitorBase;
+        typedef MulticutVisitorBase<Objective> VisitorBaseType;
         typedef MulticutVisitorProxy<Objective> VisitorProxy;
         typedef typename Objective::Graph Graph;
         typedef Graph GraphType;
@@ -27,7 +39,7 @@ namespace multicut{
         typedef typename Graph:: template NodeMap<uint64_t> NodeLabels;
 
         virtual ~MulticutBase(){};
-        virtual void optimize(NodeLabels & nodeLabels, VisitorBase * visitor) = 0;
+        virtual void optimize(NodeLabels & nodeLabels, VisitorBaseType * visitor) = 0;
         virtual const Objective & objective() const = 0;
         virtual const NodeLabels & currentBestNodeLabels() = 0;
 
@@ -58,10 +70,8 @@ namespace multicut{
             const auto & obj = this->objective();
             return obj.evalNodeLabels(nl);
         }
-
-
-
     };
+    #endif
 } // namespace nifty::graph::optimization::multicut
 } // namespace nifty::graph::optimization
 } // namespace graph

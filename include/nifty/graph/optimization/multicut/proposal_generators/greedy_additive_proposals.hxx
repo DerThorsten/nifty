@@ -20,8 +20,7 @@ namespace multicut{
         typedef MulticutBase<Objective> Base;
         typedef MulticutGreedyAdditive<Objective> Solver;
         typedef typename Solver::SettingsType SolverSettings;
-        typedef typename Base::EdgeLabels EdgeLabels;
-        typedef typename Base::NodeLabels NodeLabels;
+        typedef typename Base::NodeLabelsType NodeLabelsType;
 
         struct SettingsType{
             double sigma{1.0};
@@ -60,7 +59,7 @@ namespace multicut{
             delete solver_;
         }
 
-        void generate( const NodeLabels & currentBest, NodeLabels & proposal){
+        void generate( const NodeLabelsType & currentBest, NodeLabelsType & proposal){
             if(proposalNumber_ != 0){
                 solver_->reset();
             }

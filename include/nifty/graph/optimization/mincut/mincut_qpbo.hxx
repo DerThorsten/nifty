@@ -22,10 +22,9 @@ namespace mincut{
 
         typedef OBJECTIVE Objective;
         typedef MincutBase<OBJECTIVE> BaseType;
-        typedef typename BaseType::VisitorBase VisitorBase;
-        typedef typename BaseType::VisitorProxy VisitorProxy;
-        typedef typename BaseType::EdgeLabels EdgeLabels;
-        typedef typename BaseType::NodeLabels NodeLabels;
+        typedef typename BaseType::VisitorBaseType VisitorBaseType;
+        typedef typename BaseType::VisitorProxyType VisitorProxyType;
+        typedef typename BaseType::NodeLabelsType NodeLabelsType;
         typedef typename Objective::Graph Graph;
 
     private:
@@ -47,11 +46,11 @@ namespace mincut{
         MincutQpbo(const Objective & objective, const SettingsType & settings = SettingsType());
 
 
-        virtual void optimize(NodeLabels & nodeLabels, VisitorBase * visitor);
+        virtual void optimize(NodeLabelsType & nodeLabels, VisitorBaseType * visitor);
         virtual const Objective & objective() const;
 
 
-        virtual const NodeLabels & currentBestNodeLabels( ){
+        virtual const NodeLabelsType & currentBestNodeLabels( ){
             return *currentBest_;
         }
         virtual double currentBestEnergy() {
@@ -71,7 +70,7 @@ namespace mincut{
         void initializeQpbo();
 
 
-        void repairSolution(NodeLabels & nodeLabels);
+        void repairSolution(NodeLabelsType & nodeLabels);
 
 
         size_t addCycleInequalities();
@@ -84,7 +83,7 @@ namespace mincut{
         // dense ids (only merge graph does not have dense ids)
         DenseIds denseNodeIds_;
         SettingsType settings_;
-        NodeLabels * currentBest_;
+        NodeLabelsType * currentBest_;
         double currentBestEnergy_;
         QPBO<QpboValueType> qpbo_;
     };
@@ -113,10 +112,10 @@ namespace mincut{
     template<class OBJECTIVE>
     void MincutQpbo<OBJECTIVE>::
     optimize(
-        NodeLabels & nodeLabels,  VisitorBase * visitor
+        NodeLabelsType & nodeLabels,  VisitorBaseType * visitor
     ){  
 
-        VisitorProxy visitorProxy(visitor);
+        VisitorProxyType visitorProxy(visitor);
         visitorProxy.begin(this);
 
         currentBest_ = &nodeLabels;

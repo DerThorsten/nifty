@@ -23,7 +23,7 @@ namespace multicut{
     public:
         typedef OBJECTIVE Objective;
         typedef typename Objective::Graph Graph;
-        typedef typename Graph:: template NodeMap<uint64_t> NodeLabels;
+        typedef typename Graph:: template NodeMap<uint64_t> NodeLabelsType;
         
 
         typedef UndirectedGraph<> FmGraph;
@@ -31,7 +31,7 @@ namespace multicut{
         typedef MulticutBase<FmObjective> FmMcBase;
         typedef nifty::graph::optimization::common::SolverFactoryBase<FmMcBase> FmMcFactoryBase;
         typedef MulticutEmptyVisitor<FmObjective> FmEmptyVisitor;
-        typedef typename  FmMcBase::NodeLabels FmNodeLabels;
+        typedef typename  FmMcBase::NodeLabelsType FmNodeLabelsType;
 
         struct SettingsType{
             std::shared_ptr<FmMcFactoryBase> mcFactory;
@@ -180,7 +180,7 @@ namespace multicut{
                 //std::cout<<"fm solve\n";
                 // solve that thin
                 auto solverPtr = settings_.mcFactory->create(fmObjective);
-                FmNodeLabels fmLabels(fmGraph);
+                FmNodeLabelsType fmLabels(fmGraph);
                 FmEmptyVisitor fmVisitor;
                 //std::cout<<"opt\n";
                 solverPtr->optimize(fmLabels, &fmVisitor);
@@ -211,7 +211,7 @@ namespace multicut{
         const Graph & graph_;
         SettingsType settings_;
         nifty::ufd::Ufd< > ufd_;
-        NodeLabels nodeToDense_;
+        NodeLabelsType nodeToDense_;
     };
 
 

@@ -69,13 +69,13 @@ BOOST_AUTO_TEST_CASE(RandomizedMulticutTest)
         std::cout<<"opt gurobi \n";
         typedef nifty::ilp_backend::Gurobi IlpSolver;
         typedef nifty::graph::optimization::multicut::MulticutIlp<Objective, IlpSolver> Solver;
-        typedef typename Solver::NodeLabels NodeLabels;
+        typedef typename Solver::NodeLabelsType NodeLabelsType;
         // optimize 
         Solver solver(objective);
         nifty::graph::graph_maps::EdgeMap<Graph, uint8_t> outputEdgeLabels(g,0);
         
         VerboseVisitor visitor; 
-        NodeLabels nodeLabels(g, 0);
+        NodeLabelsType nodeLabels(g, 0);
         solver.optimize(nodeLabels, &visitor);
         g.nodeLabelsToEdgeLabels(nodeLabels, outputEdgeLabels);     
     }
@@ -86,13 +86,13 @@ BOOST_AUTO_TEST_CASE(RandomizedMulticutTest)
         std::cout<<"opt cplex \n";
         typedef nifty::ilp_backend::Cplex IlpSolver;
         typedef nifty::graph::optimization::multicut::MulticutIlp<Objective, IlpSolver> Solver;
-        typedef typename Solver::NodeLabels NodeLabels;
+        typedef typename Solver::NodeLabelsType NodeLabelsType;
         // optimize 
         Solver solver(objective);
         nifty::graph::graph_maps::EdgeMap<Graph, uint8_t> outputEdgeLabels(g,0);
         
         VerboseVisitor visitor; 
-        NodeLabels nodeLabels(g, 0);
+        NodeLabelsType nodeLabels(g, 0);
         solver.optimize(nodeLabels, &visitor);
         g.nodeLabelsToEdgeLabels(nodeLabels, outputEdgeLabels);     
     }
@@ -103,13 +103,13 @@ BOOST_AUTO_TEST_CASE(RandomizedMulticutTest)
         std::cout<<"opt glpk \n";
         typedef nifty::ilp_backend::Glpk IlpSolver;
         typedef nifty::graph::optimization::multicut::MulticutIlp<Objective, IlpSolver> Solver;
-        typedef typename Solver::NodeLabels NodeLabels;
+        typedef typename Solver::NodeLabelsType NodeLabelsType;
         // optimize 
         Solver solver(objective);
         nifty::graph::graph_maps::EdgeMap<Graph, uint8_t> outputEdgeLabels(g,0);
         
         VerboseVisitor visitor; 
-        NodeLabels nodeLabels(g, 0);
+        NodeLabelsType nodeLabels(g, 0);
         solver.optimize(nodeLabels, &visitor);
         g.nodeLabelsToEdgeLabels(nodeLabels, outputEdgeLabels);     
     }
@@ -185,13 +185,13 @@ BOOST_AUTO_TEST_CASE(SimpleMulticutTest)
         typedef nifty::ilp_backend::Gurobi IlpSolver;
         typedef nifty::graph::optimization::multicut::MulticutIlp<Objective, IlpSolver> Solver;
         
-        typedef typename Solver::NodeLabels NodeLabels;
+        typedef typename Solver::NodeLabelsType NodeLabelsType;
         Solver solver(objective);
 
         nifty::graph::graph_maps::EdgeMap<Graph, uint16_t> outputEdgeLabels(g,0);
 
         VerboseVisitor visitor; 
-        NodeLabels nodeLabels(g, 0);
+        NodeLabelsType nodeLabels(g, 0);
         solver.optimize(nodeLabels, &visitor);
         g.nodeLabelsToEdgeLabels(nodeLabels, outputEdgeLabels);
 
@@ -208,7 +208,7 @@ BOOST_AUTO_TEST_CASE(SimpleMulticutTest)
         std::cout<<"opt cplex \n";
         typedef nifty::ilp_backend::Cplex IlpSolver;
         typedef nifty::graph::optimization::multicut::MulticutIlp<Objective, IlpSolver> Solver;
-        typedef typename Solver::NodeLabels NodeLabels;
+        typedef typename Solver::NodeLabelsType NodeLabelsType;
 
 
         Solver solver(objective);
@@ -217,7 +217,7 @@ BOOST_AUTO_TEST_CASE(SimpleMulticutTest)
 
 
         VerboseVisitor visitor; 
-        NodeLabels nodeLabels(g, 0);
+        NodeLabelsType nodeLabels(g, 0);
         solver.optimize(nodeLabels, &visitor);
         g.nodeLabelsToEdgeLabels(nodeLabels, outputEdgeLabels);
         
@@ -233,7 +233,7 @@ BOOST_AUTO_TEST_CASE(SimpleMulticutTest)
         std::cout<<"opt glpk \n";
         typedef nifty::ilp_backend::Glpk IlpSolver;
         typedef nifty::graph::optimization::multicut::MulticutIlp<Objective, IlpSolver> Solver;
-        typedef typename Solver::NodeLabels NodeLabels;
+        typedef typename Solver::NodeLabelsType NodeLabelsType;
 
 
         Solver solver(objective);
@@ -242,7 +242,7 @@ BOOST_AUTO_TEST_CASE(SimpleMulticutTest)
 
 
         VerboseVisitor visitor; 
-        NodeLabels nodeLabels(g, 0);
+        NodeLabelsType nodeLabels(g, 0);
         solver.optimize(nodeLabels, &visitor);
         g.nodeLabelsToEdgeLabels(nodeLabels, outputEdgeLabels);
         

@@ -4,7 +4,7 @@
 #include <initializer_list>
 #include <sstream>
 
-#include "nifty/exceptions/exceptions.hxx"
+#include "nifty/graph/optimization/common/solver_base.hxx"
 #include "mincut_visitor_base.hxx"
 
 namespace nifty {
@@ -13,22 +13,32 @@ namespace optimization{
 namespace mincut{
 
 
+    template<class OBJECTIVE>
+    class MincutBase :
+        public nifty::graph::optimization::common::SolverBase<
+            OBJECTIVE,
+            MincutBase<OBJECTIVE>
+        >
+    {
+
+    };
+
+    #if 0
     
     template<class OBJECTIVE>
     class MincutBase{
     
     public:
         typedef OBJECTIVE ObjectiveType;
-        typedef MincutVisitorBase<ObjectiveType> VisitorBase;
+        typedef MincutVisitorBase<ObjectiveType> VisitorBaseType;
         typedef MincutVisitorProxy<ObjectiveType> VisitorProxy;
         typedef typename ObjectiveType::Graph Graph;
-        typedef typename Graph:: template EdgeMap<uint8_t> EdgeLabels;
-        typedef typename Graph:: template NodeMap<uint64_t> NodeLabels;
+        typedef typename Graph:: template NodeMap<uint64_t> NodeLabelsType;
 
         virtual ~MincutBase(){};
-        virtual void optimize(NodeLabels & nodeLabels, VisitorBase * visitor) = 0;
+        virtual void optimize(NodeLabelsType & nodeLabels, VisitorBaseType * visitor) = 0;
         virtual const ObjectiveType & objective() const = 0;
-        virtual const NodeLabels & currentBestNodeLabels() = 0;
+        virtual const NodeLabelsType & currentBestNodeLabels() = 0;
 
 
         virtual std::string name() const = 0 ;
@@ -57,10 +67,9 @@ namespace mincut{
             const auto & obj = this->objective();
             return obj.evalNodeLabels(nl);
         }
-
-
-
     };
+    #endif
+
 } // namespace nifty::graph::optimization::mincut
 } // namespace nifty::graph::optimization
 } // namespace graph
