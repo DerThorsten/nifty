@@ -1,7 +1,3 @@
-#define BOOST_TEST_MODULE NiftyShortestPathDijkstraTest
-
-#include <boost/test/unit_test.hpp>
-
 #include <iostream> 
 
 #include "nifty/tools/runtime_check.hxx"
@@ -10,7 +6,7 @@
 #include "nifty/graph/shortest_path_dijkstra.hxx"
 
 
-BOOST_AUTO_TEST_CASE(UndirectedGraphShortestPathDijkstraTest)
+void undirectedGraphShortestPathDijkstraTest()
 {
     typedef nifty::graph::UndirectedGraph<>  Graph;
     Graph g(6);
@@ -79,7 +75,7 @@ BOOST_AUTO_TEST_CASE(UndirectedGraphShortestPathDijkstraTest)
 }
 
 
-BOOST_AUTO_TEST_CASE(DirectedGraphShortestPathDijkstraTest)
+void directedGraphShortestPathDijkstraTest()
 {
     typedef nifty::graph::SimpleDirectedGraph<>  Graph;
     Graph g(6);
@@ -145,4 +141,9 @@ BOOST_AUTO_TEST_CASE(DirectedGraphShortestPathDijkstraTest)
         NIFTY_TEST_EQ_TOL(dmap[5],27.0f,0.00001);
     }
 
+}
+
+int main(){
+    undirectedGraphShortestPathDijkstraTest();
+    directedGraphShortestPathDijkstraTest();
 }

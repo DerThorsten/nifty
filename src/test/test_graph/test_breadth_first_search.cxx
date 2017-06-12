@@ -1,7 +1,3 @@
-#define BOOST_TEST_MODULE NiftyBreadthFirstSearchTest
-
-#include <boost/test/unit_test.hpp>
-
 #include <iostream> 
 
 #include "nifty/tools/runtime_check.hxx"
@@ -9,7 +5,7 @@
 #include "nifty/graph/shortest_path_dijkstra.hxx"
 #include "nifty/graph/breadth_first_search.hxx"
 
-BOOST_AUTO_TEST_CASE(BreadthFirstSearchTest)
+void breadthFirstSearchTest()
 {
     typedef nifty::graph::UndirectedGraph<>  Graph;
     Graph g(6);
@@ -75,4 +71,8 @@ BOOST_AUTO_TEST_CASE(BreadthFirstSearchTest)
         NIFTY_TEST_OP(dmap[5],==,4);
     }
 
+}
+
+int main(){
+    breadthFirstSearchTest();
 }
