@@ -25,7 +25,7 @@ public:
     // using LiftedMulticutFactory<Objective>::LiftedMulticutFactory;
 
     typedef OBJECTIVE Objective;
-    typedef LiftedMulticutVisitorBase<OBJECTIVE> VisitorBase;
+    typedef LiftedMulticutVisitorBase<OBJECTIVE> VisitorBaseType;
     typedef LiftedMulticutBase<Objective> LmcBase;
     typedef typename Objective::Graph Graph;
 
@@ -34,7 +34,7 @@ public:
     void begin(LmcBase * mcBase) {
         PYBIND11_OVERLOAD_PURE(
             void,                       /* Return type */
-            VisitorBase,                /* Parent class */
+            VisitorBaseType,                /* Parent class */
             begin,                      /* Name of function */
             mcBase                      /* Argument(s) */
         );
@@ -43,7 +43,7 @@ public:
     bool visit(LmcBase * mcBase) {
         PYBIND11_OVERLOAD_PURE(
             bool,                       /* Return type */
-            VisitorBase,                /* Parent class */
+            VisitorBaseType,                /* Parent class */
             visit,                      /* Name of function */
             mcBase                      /* Argument(s) */
         );
@@ -52,7 +52,7 @@ public:
     void end(LmcBase * mcBase) {
         PYBIND11_OVERLOAD_PURE(
             void,                    /* Return type */
-            VisitorBase,             /* Parent class */
+            VisitorBaseType,             /* Parent class */
             end,                     /* Name of function */
             mcBase                   /* Argument(s) */
         );
@@ -61,7 +61,7 @@ public:
     void addLogNames(std::initializer_list<std::string> logNames) {
         PYBIND11_OVERLOAD(
             void,                    /* Return type */
-            VisitorBase,             /* Parent class */
+            VisitorBaseType,             /* Parent class */
             addLogNames,                     /* Name of function */
             logNames                   /* Argument(s) */
         );
@@ -70,7 +70,7 @@ public:
     void setLogValue(const std::size_t logIndex, double logValue) {
         PYBIND11_OVERLOAD(
             void,                    /* Return type */
-            VisitorBase,             /* Parent class */
+            VisitorBaseType,             /* Parent class */
             setLogValue,                     /* Name of function */
             logIndex,logValue        /* Argument(s) */
         );

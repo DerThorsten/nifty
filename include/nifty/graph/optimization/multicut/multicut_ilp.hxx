@@ -24,10 +24,10 @@ namespace multicut{
 
         typedef OBJECTIVE Objective;
         typedef MulticutBase<OBJECTIVE> BaseType;
-        typedef typename BaseType::VisitorBase VisitorBase;
-        typedef typename BaseType::VisitorProxy VisitorProxy;
+        typedef typename BaseType::VisitorBaseType VisitorBaseType;
+        typedef typename BaseType::VisitorProxyType VisitorProxyType;
         //typedef typename Base::EdgeLabels EdgeLabels;
-        typedef typename BaseType::NodeLabels NodeLabels;
+        typedef typename BaseType::NodeLabelsType NodeLabelsType;
         typedef ILP_SOLVER IlpSovler;
         typedef typename IlpSovler::SettingsType IlpSettings;
         typedef typename Objective::Graph Graph;
@@ -69,11 +69,11 @@ namespace multicut{
         MulticutIlp(const Objective & objective, const SettingsType & settings = SettingsType());
 
 
-        virtual void optimize(NodeLabels & nodeLabels, VisitorBase * visitor);
+        virtual void optimize(NodeLabelsType & nodeLabels, VisitorBaseType * visitor);
         virtual const Objective & objective() const;
 
 
-        virtual const NodeLabels & currentBestNodeLabels( ){
+        virtual const NodeLabelsType & currentBestNodeLabels( ){
             return *currentBest_;
         }
 
@@ -105,7 +105,7 @@ namespace multicut{
         void initializeIlp();
 
 
-        void repairSolution(NodeLabels & nodeLabels);
+        void repairSolution(NodeLabelsType & nodeLabels);
 
 
         size_t addCycleInequalities();
@@ -124,7 +124,7 @@ namespace multicut{
         SettingsType settings_;
         std::vector<size_t> variables_;
         std::vector<double> coefficients_;
-        NodeLabels * currentBest_;
+        NodeLabelsType * currentBest_;
         size_t addedConstraints_;
         size_t numberOfOptRuns_;
     };
@@ -159,11 +159,11 @@ namespace multicut{
     template<class OBJECTIVE, class ILP_SOLVER>
     void MulticutIlp<OBJECTIVE, ILP_SOLVER>::
     optimize(
-        NodeLabels & nodeLabels,  VisitorBase * visitor
+        NodeLabelsType & nodeLabels,  VisitorBaseType * visitor
     ){  
 
         //std::cout<<"nStartConstraints "<<addedConstraints_<<"\n";
-        VisitorProxy visitorProxy(visitor);
+        VisitorProxyType visitorProxy(visitor);
 
         visitorProxy.addLogNames({"violatedConstraints"});
 
@@ -265,7 +265,7 @@ namespace multicut{
     template<class OBJECTIVE, class ILP_SOLVER>
     void MulticutIlp<OBJECTIVE, ILP_SOLVER>::
     repairSolution(
-        NodeLabels & nodeLabels
+        NodeLabelsType & nodeLabels
     ){
         if(graph_.numberOfEdges()!= 0 ){
             for (auto node: graph_.nodes()){

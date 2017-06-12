@@ -32,10 +32,9 @@ namespace multicut{
         typedef OBJECTIVE ObjectiveType;
         typedef typename ObjectiveType::WeightType WeightType;
         typedef MulticutBase<ObjectiveType> BaseType;
-        typedef typename BaseType::VisitorBase VisitorBase;
-        typedef typename BaseType::VisitorProxy VisitorProxy;
-        typedef typename BaseType::EdgeLabels EdgeLabels;
-        typedef typename BaseType::NodeLabels NodeLabels;
+        typedef typename BaseType::VisitorBaseType VisitorBaseType;
+        typedef typename BaseType::VisitorProxyType VisitorProxyType;
+        typedef typename BaseType::NodeLabelsType NodeLabelsType;
         typedef typename ObjectiveType::Graph Graph;
         typedef typename ObjectiveType::GraphType GraphType;
         typedef typename ObjectiveType::WeightsMap WeightsMap;
@@ -62,11 +61,11 @@ namespace multicut{
         KernighanLin(const Objective & objective, const SettingsType & settings = SettingsType());
 
 
-        virtual void optimize(NodeLabels & nodeLabels, VisitorBase * visitor);
+        virtual void optimize(NodeLabelsType & nodeLabels, VisitorBaseType * visitor);
         virtual const Objective & objective() const;
 
 
-        virtual const NodeLabels & currentBestNodeLabels( ){
+        virtual const NodeLabelsType & currentBestNodeLabels( ){
             return *currentBest_;
         }
 
@@ -96,7 +95,7 @@ namespace multicut{
             typename GraphType:: template NodeMap<char>   is_moved;
             uint64_t max_not_used_label;
             typename GraphType:: template NodeMap<uint64_t> referenced_by;
-            NodeLabels vertex_labels;    
+            NodeLabelsType vertex_labels;    
         };
 
 
@@ -114,7 +113,7 @@ namespace multicut{
         const Objective & objective_;
         const GraphType & graph_;
         SettingsType settings_;
-        NodeLabels * currentBest_;
+        NodeLabelsType * currentBest_;
         double currentBestEnergy_;
 
         TwoCutBuffers buffer_;
@@ -141,11 +140,11 @@ namespace multicut{
     template<class OBJECTIVE>
     void KernighanLin<OBJECTIVE>::
     optimize(
-        NodeLabels & nodeLabels,  VisitorBase * visitor
+        NodeLabelsType & nodeLabels,  VisitorBaseType * visitor
     ){  
 
         
-        VisitorProxy visitorProxy(visitor);
+        VisitorProxyType visitorProxy(visitor);
      
         currentBest_ = &nodeLabels;
         currentBestEnergy_ = objective_.evalNodeLabels(nodeLabels);
@@ -170,7 +169,7 @@ namespace multicut{
         buffer_.max_not_used_label = partitions.size();
 
 
-        //NodeLabels last_good_vertex_labels(graph_);
+        //NodeLabelsType last_good_vertex_labels(graph_);
 
         auto & last_good_vertex_labels = nodeLabels;
 

@@ -31,7 +31,7 @@ namespace lifted_multicut{
         typedef LiftedMulticutBase<ObjectiveType> BaseType;
         typedef typename ObjectiveType::Graph Graph;
         typedef typename ObjectiveType::LiftedGraphType LiftedGraphType;
-        typedef typename BaseType::VisitorBaseType VisitorBase;
+        typedef typename BaseType::VisitorBaseType VisitorBaseType;
         typedef typename BaseType::VisitorProxyType VisitorProxy;
         typedef typename BaseType::NodeLabelsType NodeLabels;
 
@@ -148,7 +148,7 @@ namespace lifted_multicut{
             
         LiftedMulticutMp(const ObjectiveType & objective, const SettingsType & settings = SettingsType());
         
-        virtual void optimize(NodeLabels & nodeLabels, VisitorBase * visitor);
+        virtual void optimize(NodeLabels & nodeLabels, VisitorBaseType * visitor);
         
         virtual ~LiftedMulticutMp() {
             delete mpSolver_;
@@ -307,7 +307,7 @@ namespace lifted_multicut{
     template<class OBJECTIVE>
     void LiftedMulticutMp<OBJECTIVE>::
     optimize(
-        NodeLabels & nodeLabels,  VisitorBase * visitor
+        NodeLabels & nodeLabels,  VisitorBaseType * visitor
     ){
         VisitorProxy visitorProxy(visitor);
         // set starting point as current best

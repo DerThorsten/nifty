@@ -41,8 +41,6 @@ namespace lifted_multicut{
         typedef LiftedMulticutObjective<FmGraphType, double> FmObjective;
         typedef LiftedMulticutBase<FmObjective> FmLmcBase;
         typedef nifty::graph::optimization::common::SolverFactoryBase<FmLmcBase> FmLmcFactoryBase;
-        
-        typedef LiftedMulticutEmptyVisitor<FmObjective> FmEmptyVisitor;
         typedef typename  FmLmcBase::NodeLabelsType FmNodeLabelsType;
 
         struct SettingsType{

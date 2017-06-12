@@ -19,15 +19,14 @@ public:
     // using MincutFactory<Objective>::MincutFactory;
 
     typedef OBJECTIVE Objective;
-    typedef MincutVisitorBase<OBJECTIVE> VisitorBase;
+    typedef MincutVisitorBase<OBJECTIVE> VisitorBaseType;
     typedef MincutBase<Objective> McBase;
     typedef typename Objective::Graph Graph;
-    typedef typename McBase::EdgeLabels EdgeLabels;
-    typedef typename McBase::NodeLabels NodeLabels;
+    typedef typename McBase::NodeLabelsType NodeLabelsType;
 
 
     /* Trampoline (need one for each virtual function) */
-    void optimize(NodeLabels & nodeLabels, VisitorBase * visitor) {
+    void optimize(NodeLabelsType & nodeLabels, VisitorBaseType * visitor) {
         PYBIND11_OVERLOAD_PURE(
             void,                  /* Return type */
             McBase,                /* Parent class */
@@ -36,9 +35,9 @@ public:
         );
     }
 
-    const NodeLabels & currentBestNodeLabels()  {
+    const NodeLabelsType & currentBestNodeLabels()  {
         PYBIND11_OVERLOAD_PURE(
-            const NodeLabels &,                 /* Return type */
+            const NodeLabelsType &,                 /* Return type */
             McBase,                             /* Parent class */
             currentBestNodeLabels,              /* Name of function */
         );

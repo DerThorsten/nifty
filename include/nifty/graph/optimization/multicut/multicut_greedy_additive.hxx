@@ -168,9 +168,8 @@ namespace multicut{
         typedef typename Objective::Graph Graph;
         typedef detail_multicut_greedy_additive::MulticutGreedyAdditiveCallback<Objective> Callback;
         typedef MulticutBase<OBJECTIVE> BaseType;
-        typedef typename BaseType::VisitorBase VisitorBase;
-        typedef typename BaseType::EdgeLabels EdgeLabels;
-        typedef typename BaseType::NodeLabels NodeLabels;
+        typedef typename BaseType::VisitorBaseType VisitorBaseType;
+        typedef typename BaseType::NodeLabelsType NodeLabelsType;
 
     public:
 
@@ -178,7 +177,7 @@ namespace multicut{
 
         virtual ~MulticutGreedyAdditive(){}
         MulticutGreedyAdditive(const Objective & objective, const SettingsType & settings = SettingsType());
-        virtual void optimize(NodeLabels & nodeLabels, VisitorBase * visitor);
+        virtual void optimize(NodeLabelsType & nodeLabels, VisitorBaseType * visitor);
         virtual const Objective & objective() const;
 
         void reset();
@@ -187,7 +186,7 @@ namespace multicut{
         virtual void weightsChanged(){
             this->reset();
         }
-        virtual const NodeLabels & currentBestNodeLabels( ){
+        virtual const NodeLabelsType & currentBestNodeLabels( ){
             for(auto node : graph_.nodes()){
                 currentBest_->operator[](node) = edgeContractionGraph_.findRepresentativeNode(node);
             }
@@ -204,7 +203,7 @@ namespace multicut{
 
         const Objective & objective_;
         const Graph & graph_;
-        NodeLabels * currentBest_;
+        NodeLabelsType * currentBest_;
 
         Callback callback_;
         EdgeContractionGraph<Graph, Callback> edgeContractionGraph_;
@@ -230,7 +229,7 @@ namespace multicut{
     template<class OBJECTIVE>
     void MulticutGreedyAdditive<OBJECTIVE>::
     optimize(
-        NodeLabels & nodeLabels,  VisitorBase * visitor
+        NodeLabelsType & nodeLabels,  VisitorBaseType * visitor
     ){
         
 

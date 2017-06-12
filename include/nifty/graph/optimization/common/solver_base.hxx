@@ -9,7 +9,9 @@
 #include "nifty/exceptions/exceptions.hxx"
 
 #include "nifty/graph/optimization/common/solver_base.hxx"
-#include "nifty/graph/optimization/lifted_multicut/lifted_multicut_visitor_base.hxx"
+#include "nifty/graph/optimization/common/visitor_base.hxx"
+
+
 
 namespace nifty {
 namespace graph {
@@ -60,8 +62,6 @@ namespace common{
             const auto & obj = this->objective();
             return obj.evalNodeLabels(nl);
         }
-
-
 
     };
 

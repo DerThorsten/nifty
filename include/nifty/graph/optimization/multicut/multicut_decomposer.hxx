@@ -21,10 +21,9 @@ namespace multicut{
         typedef OBJECTIVE Objective;
         typedef typename Objective::WeightType WeightType;
         typedef MulticutBase<OBJECTIVE> BaseType;
-        typedef typename BaseType::VisitorBase VisitorBase;
-        typedef typename BaseType::VisitorProxy VisitorProxy;
-        typedef typename BaseType::EdgeLabels EdgeLabels;
-        typedef typename BaseType::NodeLabels NodeLabels;
+        typedef typename BaseType::VisitorBaseType VisitorBaseType;
+        typedef typename BaseType::VisitorProxyType VisitorProxyType;
+        typedef typename BaseType::NodeLabelsType NodeLabelsType;
         typedef typename Objective::Graph Graph;
         typedef typename Objective::WeightsMap WeightsMap;
 
@@ -41,7 +40,7 @@ namespace multicut{
         typedef MulticutBase<SubmodelObjective>                                                 SubmodelMulticutBaseType;
         typedef nifty::graph::optimization::common::SolverFactoryBase<SubmodelMulticutBaseType> SubmodelFactoryBase;
 
-        typedef typename SubmodelMulticutBaseType::NodeLabels    SubmodelNodeLabels;
+        typedef typename SubmodelMulticutBaseType::NodeLabelsType    SubmodelNodeLabels;
 
     public:
 
@@ -57,11 +56,11 @@ namespace multicut{
         MulticutDecomposer(const Objective & objective, const SettingsType & settings = SettingsType());
 
 
-        virtual void optimize(NodeLabels & nodeLabels, VisitorBase * visitor);
+        virtual void optimize(NodeLabelsType & nodeLabels, VisitorBaseType * visitor);
         virtual const Objective & objective() const;
 
 
-        virtual const NodeLabels & currentBestNodeLabels( ){
+        virtual const NodeLabelsType & currentBestNodeLabels( ){
             return *currentBest_;
         }
 
@@ -96,7 +95,7 @@ namespace multicut{
         const WeightsMap & weights_;
 
         Components components_;
-        NodeLabels * currentBest_;
+        NodeLabelsType * currentBest_;
 
         SettingsType settings_;
     };
@@ -125,11 +124,11 @@ namespace multicut{
     template<class OBJECTIVE>
     void MulticutDecomposer<OBJECTIVE>::
     optimize(
-        NodeLabels & nodeLabels,  VisitorBase * visitor
+        NodeLabelsType & nodeLabels,  VisitorBaseType * visitor
     ){  
 
         
-        VisitorProxy visitorProxy(visitor);
+        VisitorProxyType visitorProxy(visitor);
         //visitorProxy.addLogNames({"violatedConstraints"});
         currentBest_ = &nodeLabels;
         
@@ -137,7 +136,7 @@ namespace multicut{
 
 
         // build the connected components
-        NodeLabels denseLabels(graph_);
+        NodeLabelsType denseLabels(graph_);
         const auto nComponents = components_.build(SubgraphWithCut(weights_));
         std::vector<size_t> componentsSize(nComponents,0);
         components_.denseRelabeling(denseLabels, componentsSize);

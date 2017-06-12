@@ -33,14 +33,14 @@ namespace lifted_multicut{
     
     public:
         typedef OBJECTIVE Objective;
-        typedef LiftedMulticutVisitorBase<Objective> VisitorBase;
+        typedef LiftedMulticutVisitorBase<Objective> VisitorBaseType;
         typedef LiftedMulticutVisitorProxy<Objective> VisitorProxy;
         typedef typename Objective::Graph Graph;
         typedef typename Graph:: template EdgeMap<uint8_t>  EdgeLabels;
         typedef typename Graph:: template NodeMap<uint64_t> NodeLabels;
 
         virtual ~LiftedMulticutBase(){};
-        virtual void optimize(NodeLabels & nodeLabels, VisitorBase * visitor) = 0;
+        virtual void optimize(NodeLabels & nodeLabels, VisitorBaseType * visitor) = 0;
         virtual const Objective & objective() const = 0;
         virtual const NodeLabels & currentBestNodeLabels() = 0;
 

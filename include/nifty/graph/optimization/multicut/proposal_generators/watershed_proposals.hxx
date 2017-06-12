@@ -21,8 +21,7 @@ namespace multicut{
         typedef MulticutBase<Objective> Base;
         typedef MulticutGreedyAdditive<Objective> Solver;
         typedef typename Solver::SettingsType SolverSettings;
-        typedef typename Base::EdgeLabels EdgeLabels;
-        typedef typename Base::NodeLabels NodeLabels;
+        typedef typename Base::NodeLabelsType NodeLabelsType;
         typedef typename Graph:: template EdgeMap<double>  EdgeWeights;
 
         struct SettingsType{
@@ -58,7 +57,7 @@ namespace multicut{
             
         }
 
-        void generate( const NodeLabels & currentBest, NodeLabels & proposal){
+        void generate( const NodeLabelsType & currentBest, NodeLabelsType & proposal){
             if(negativeEdges_.empty()){
                 proposal = currentBest;
             }
@@ -119,7 +118,7 @@ namespace multicut{
         const Objective & objective_;
         const Graph graph_;
         EdgeWeights weights_;
-        NodeLabels seeds_;
+        NodeLabelsType seeds_;
         std::vector<uint64_t> negativeEdges_;
         SettingsType settings_;
         size_t threadIndex_;

@@ -19,7 +19,7 @@ namespace common{
 
 
     //template<class SOLVER>
-    //class VisitorBase;
+    //class VisitorBaseType;
 
 
     template<class SOLVER>
