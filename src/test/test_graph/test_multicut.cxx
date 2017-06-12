@@ -1,7 +1,3 @@
-#define BOOST_TEST_MODULE NiftyMulticutTest
-
-#include <boost/test/unit_test.hpp>
-
 #include <iostream> 
 #include <random>
 
@@ -22,7 +18,7 @@
 #include "nifty/ilp_backend/glpk.hxx"
 #endif
 
-BOOST_AUTO_TEST_CASE(RandomizedMulticutTest)
+void randomizedMulticutTest()
 {
     // rand gen 
     //std::random_device rd();
@@ -117,7 +113,7 @@ BOOST_AUTO_TEST_CASE(RandomizedMulticutTest)
 }
 
 
-BOOST_AUTO_TEST_CASE(SimpleMulticutTest)
+void simpleMulticutTest()
 {
     // rand gen 
     //std::random_device rd();
@@ -251,4 +247,9 @@ BOOST_AUTO_TEST_CASE(SimpleMulticutTest)
         }
     }
     #endif
+}
+
+int main(){
+    randomizedMulticutTest();
+    simpleMulticutTest();
 }
