@@ -27,17 +27,14 @@ find_package(PythonLibsNew ${PYBIND11_PYTHON_VERSION} REQUIRED)
 if(PYTHON_VERSION_MAJOR STREQUAL "2")
     #message(STATUS "222222")
     find_program(NOSETESTS_PATH NAMES
-            #"nosetests${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}"
-            #"nosetests-${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}"
-            #"nosetests${PYTHON_VERSION_MAJOR}"
-            #"nosetests-${PYTHON_VERSION_MAJOR}"
+            "nosetests${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}"
+            "nosetests-${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}"
+            "nosetests${PYTHON_VERSION_MAJOR}"
+            "nosetests-${PYTHON_VERSION_MAJOR}"
             "nosetests")
 else()
     find_program(NOSETESTS_PATH NAMES
-        #"nosetests${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}"
-        #"nosetests-${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}"
-        #"nosetests${PYTHON_VERSION_MAJOR}"
-        #"nosetests-${PYTHON_VERSION_MAJOR}"
+        "nosetest"
         "nosetests3")
 endif()
 
