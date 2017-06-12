@@ -56,6 +56,8 @@ if(REMOVE_SOME_WARNINGS AND (CMAKE_CXX_COMPILER_ID MATCHES "GNU" OR CMAKE_CXX_CO
     endif()
 endif()
 
+
+# boost geometry needs this 
 if(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
     add_definitions(-fext-numeric-literals)
 endif()
