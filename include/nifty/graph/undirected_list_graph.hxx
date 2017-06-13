@@ -460,7 +460,7 @@ extractSubgraphFromNodes(
     for(auto u : nodeList) {
         for(auto adjacencyIt = this->adjacencyBegin(u); adjacencyIt != this->adjacencyEnd(u); ++adjacencyIt) {
             auto v = adjacencyIt->node();
-            auto e = this->findEdge(u, v);
+            auto e = adjacencyIt->edge();
             if( std::find(nodeList.begin(), nodeList.end(), v) != nodeList.end() )
                 innerEdgesOut.push_back(e);
             else

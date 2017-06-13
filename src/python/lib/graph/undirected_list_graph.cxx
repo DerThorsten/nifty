@@ -67,15 +67,15 @@ namespace graph{
                     NIFTY_CHECK_OP(d,==,serialization.size(), "serialization must be contiguous");
 
 
-                    
+
                     g.deserialize(startPtr);
                 }
             )
             .def("extractSubgraphFromNodes",
                 []( Graph & g, const std::vector<int64_t> & nodeList) {
-                    
-                    std::vector<int64_t> innerEdgesVec;  
-                    std::vector<int64_t> outerEdgesVec;  
+
+                    std::vector<int64_t> innerEdgesVec;
+                    std::vector<int64_t> outerEdgesVec;
                     Graph subgraph;
                     {
                         py::gil_scoped_release allowThreads;
