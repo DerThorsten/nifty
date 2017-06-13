@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Nifty
-   &#160;<span id="projectnumber">0.5.1</span>
+   &#160;<span id="projectnumber">0.19.0</span>
    </div>
   </td>
  </tr>
@@ -91,24 +91,36 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#namespaces">Namespaces</a> &#124;
-<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">edge_weighted_watersheds.hxx File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;vigra/priority_queue.hxx&quot;</code><br />
+<div class="textblock"><code>#include &lt;algorithm&gt;</code><br />
+<code>#include &quot;vigra/priority_queue.hxx&quot;</code><br />
+<code>#include &quot;<a class="el" href="changable__priority__queue_8hxx_source.html">nifty/tools/changable_priority_queue.hxx</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="ufd_8hxx_source.html">nifty/ufd/ufd.hxx</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for edge_weighted_watersheds.hxx:</div>
 <div class="dyncontent">
 <div class="center"><img src="edge__weighted__watersheds_8hxx__incl.png" border="0" usemap="#_2home_2tbeier_2src_2nifty_2include_2nifty_2graph_2edge__weighted__watersheds_8hxx" alt=""/></div>
-<!-- MAP 0 -->
+<map name="_2home_2tbeier_2src_2nifty_2include_2nifty_2graph_2edge__weighted__watersheds_8hxx" id="_2home_2tbeier_2src_2nifty_2include_2nifty_2graph_2edge__weighted__watersheds_8hxx">
+<area shape="rect" id="node4" href="changable__priority__queue_8hxx.html" title="nifty/tools/changable\l_priority_queue.hxx" alt="" coords="289,109,431,151"/>
+<area shape="rect" id="node6" href="ufd_8hxx.html" title="nifty/ufd/ufd.hxx" alt="" coords="465,117,581,143"/>
+</map>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="edge__weighted__watersheds_8hxx__dep__incl.png" border="0" usemap="#_2home_2tbeier_2src_2nifty_2include_2nifty_2graph_2edge__weighted__watersheds_8hxxdep" alt=""/></div>
-<!-- MAP 1 -->
+<map name="_2home_2tbeier_2src_2nifty_2include_2nifty_2graph_2edge__weighted__watersheds_8hxxdep" id="_2home_2tbeier_2src_2nifty_2include_2nifty_2graph_2edge__weighted__watersheds_8hxxdep">
+<area shape="rect" id="node2" href="interface__flipper__proposal__generator_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/common/proposal_generators/interface\l_flipper_proposal_generator.hxx" alt="" coords="5,109,256,180"/>
+<area shape="rect" id="node3" href="common_2proposal__generators_2watershed__proposal__generator_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/common/proposal_generators/watershed\l_proposal_generator.hxx" alt="" coords="280,109,541,180"/>
+<area shape="rect" id="node4" href="lifted__multicut_2proposal__generators_2watershed__proposal__generator_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/lifted_multicut/proposal_generators\l/watershed_proposal_generator.hxx" alt="" coords="566,109,794,180"/>
+<area shape="rect" id="node6" href="random__proposal__generator_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/mincut/proposal_generators/random\l_proposal_generator.hxx" alt="" coords="818,109,1051,180"/>
+<area shape="rect" id="node7" href="watershed__proposals_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/multicut/proposal_generators\l/watershed_proposals.hxx" alt="" coords="1075,109,1282,180"/>
+<area shape="rect" id="node5" href="lifted__multicut_2fusion__move__based_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/lifted_multicut/fusion_move\l_based.hxx" alt="" coords="577,228,783,299"/>
+</map>
 </div>
 </div>
 <p><a href="edge__weighted__watersheds_8hxx_source.html">Go to the source code of this file.</a></p>
@@ -119,11 +131,6 @@ Namespaces</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespacenifty_1_1graph"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenifty_1_1graph.html">nifty::graph</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
-Macros</h2></td></tr>
-<tr class="memitem:ae17bba6d8b361659b0da92be3ca3d4e2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="edge__weighted__watersheds_8hxx.html#ae17bba6d8b361659b0da92be3ca3d4e2">NIFTY_GRAPH_EDGE_WEIGHTED_WATERSHEDS_HXX</a></td></tr>
-<tr class="separator:ae17bba6d8b361659b0da92be3ca3d4e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -136,19 +143,6 @@ Functions</h2></td></tr>
 <tr class="memdesc:a428250605a1a1f6fc93fd6aac965b931"><td class="mdescLeft">&#160;</td><td class="mdescRight">edge weighted watersheds Segmentataion  <a href="namespacenifty_1_1graph.html#a428250605a1a1f6fc93fd6aac965b931">More...</a><br /></td></tr>
 <tr class="separator:a428250605a1a1f6fc93fd6aac965b931"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Macro Definition Documentation</h2>
-<a class="anchor" id="ae17bba6d8b361659b0da92be3ca3d4e2"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define NIFTY_GRAPH_EDGE_WEIGHTED_WATERSHEDS_HXX</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

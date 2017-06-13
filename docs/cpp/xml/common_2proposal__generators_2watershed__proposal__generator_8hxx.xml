@@ -1,0 +1,247 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="common_2proposal__generators_2watershed__proposal__generator_8hxx" kind="file" language="C++">
+    <compoundname>watershed_proposal_generator.hxx</compoundname>
+    <includes local="no">string</includes>
+    <includes local="no">random</includes>
+    <includes local="no">vector</includes>
+    <includes refid="common_2proposal__generators_2proposal__generator__base_8hxx" local="yes">nifty/graph/optimization/common/proposal_generators/proposal_generator_base.hxx</includes>
+    <includes refid="edge__weighted__watersheds_8hxx" local="yes">nifty/graph/edge_weighted_watersheds.hxx</includes>
+    <incdepgraph>
+      <node id="8083">
+        <label>queue</label>
+      </node>
+      <node id="8074">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal_generators/watershed_proposal_generator.hxx</label>
+        <link refid="common/proposal_generators/watershed_proposal_generator.hxx"/>
+        <childnode refid="8075" relation="include">
+        </childnode>
+        <childnode refid="8076" relation="include">
+        </childnode>
+        <childnode refid="8077" relation="include">
+        </childnode>
+        <childnode refid="8078" relation="include">
+        </childnode>
+        <childnode refid="8079" relation="include">
+        </childnode>
+      </node>
+      <node id="8075">
+        <label>string</label>
+      </node>
+      <node id="8086">
+        <label>map</label>
+      </node>
+      <node id="8076">
+        <label>random</label>
+      </node>
+      <node id="8084">
+        <label>nifty/ufd/ufd.hxx</label>
+        <link refid="ufd_8hxx"/>
+        <childnode refid="8085" relation="include">
+        </childnode>
+        <childnode refid="8077" relation="include">
+        </childnode>
+        <childnode refid="8086" relation="include">
+        </childnode>
+      </node>
+      <node id="8082">
+        <label>nifty/tools/changable_priority_queue.hxx</label>
+        <link refid="changable__priority__queue_8hxx"/>
+        <childnode refid="8083" relation="include">
+        </childnode>
+      </node>
+      <node id="8081">
+        <label>vigra/priority_queue.hxx</label>
+      </node>
+      <node id="8077">
+        <label>vector</label>
+      </node>
+      <node id="8085">
+        <label>cstddef</label>
+      </node>
+      <node id="8079">
+        <label>nifty/graph/edge_weighted_watersheds.hxx</label>
+        <link refid="edge__weighted__watersheds_8hxx"/>
+        <childnode refid="8080" relation="include">
+        </childnode>
+        <childnode refid="8081" relation="include">
+        </childnode>
+        <childnode refid="8082" relation="include">
+        </childnode>
+        <childnode refid="8084" relation="include">
+        </childnode>
+      </node>
+      <node id="8078">
+        <label>nifty/graph/optimization/common/proposal_generators/proposal_generator_base.hxx</label>
+        <link refid="common_2proposal__generators_2proposal__generator__base_8hxx"/>
+      </node>
+      <node id="8080">
+        <label>algorithm</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classnifty_1_1graph_1_1optimization_1_1common_1_1WatershedProposalGenerator" prot="public">nifty::graph::optimization::common::WatershedProposalGenerator</innerclass>
+    <innerclass refid="structnifty_1_1graph_1_1optimization_1_1common_1_1WatershedProposalGenerator_1_1SettingsType" prot="public">nifty::graph::optimization::common::WatershedProposalGenerator::SettingsType</innerclass>
+    <innernamespace refid="namespacenifty">nifty</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph">nifty::graph</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph_1_1optimization">nifty::graph::optimization</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph_1_1optimization_1_1common">nifty::graph::optimization::common</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;random&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="common_2proposal__generators_2proposal__generator__base_8hxx" kindref="compound">nifty/graph/optimization/common/proposal_generators/proposal_generator_base.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="edge__weighted__watersheds_8hxx" kindref="compound">nifty/graph/edge_weighted_watersheds.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacenifty" kindref="compound">nifty</ref>{</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">graph{</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">optimization{</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">common{</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
+<codeline lineno="24" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1WatershedProposalGenerator" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1WatershedProposalGenerator" kindref="compound">WatershedProposalGenerator</ref><sp/>:<sp/></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorBase" kindref="compound">ProposalGeneratorBase</ref>&lt;OBJECTIVE&gt;{</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="27" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1WatershedProposalGenerator_1a2de6e9c22ef125106cb152bcc78a9499" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>OBJECTIVE<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1WatershedProposalGenerator_1a2de6e9c22ef125106cb152bcc78a9499" kindref="member">ObjectiveType</ref>;</highlight></codeline>
+<codeline lineno="28" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1WatershedProposalGenerator_1af611ecb32c5b35254c3819c30c3e45dd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>ObjectiveType::GraphType<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1WatershedProposalGenerator_1af611ecb32c5b35254c3819c30c3e45dd" kindref="member">GraphType</ref>;</highlight></codeline>
+<codeline lineno="29" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1WatershedProposalGenerator_1a8cc703b2708f27f2a7820b985ebfdd11" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>GraphType::<sp/>template<sp/>NodeMap&lt;uint64_t&gt;<sp/><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1WatershedProposalGenerator_1a8cc703b2708f27f2a7820b985ebfdd11" kindref="member">ProposalType</ref>;</highlight></codeline>
+<codeline lineno="30" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1WatershedProposalGenerator_1a58c25ae97936dbf58091b2ffef541b33" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>GraphType::<sp/>template<sp/>EdgeMap&lt;float&gt;<sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1WatershedProposalGenerator_1a58c25ae97936dbf58091b2ffef541b33" kindref="member">EdgeWeights</ref>;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32" refid="structnifty_1_1graph_1_1optimization_1_1common_1_1WatershedProposalGenerator_1_1SettingsType" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structnifty_1_1graph_1_1optimization_1_1common_1_1WatershedProposalGenerator_1_1SettingsType" kindref="compound">SettingsType</ref>{</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35" refid="structnifty_1_1graph_1_1optimization_1_1common_1_1WatershedProposalGenerator_1_1SettingsType_1a84c0b4d1de8e24d987a774aee87c3e97" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1optimization_1_1common_1_1WatershedProposalGenerator_1_1SettingsType_1a84c0b4d1de8e24d987a774aee87c3e97" kindref="member">SeedingStrategie</ref>{</highlight></codeline>
+<codeline lineno="36" refid="structnifty_1_1graph_1_1optimization_1_1common_1_1WatershedProposalGenerator_1_1SettingsType_1a84c0b4d1de8e24d987a774aee87c3e97a126371099cd238765c4cc73c5e9d47ea" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structnifty_1_1graph_1_1optimization_1_1common_1_1WatershedProposalGenerator_1_1SettingsType_1a84c0b4d1de8e24d987a774aee87c3e97a126371099cd238765c4cc73c5e9d47ea" kindref="member">SEED_FROM_NEGATIVE</ref>,</highlight></codeline>
+<codeline lineno="37" refid="structnifty_1_1graph_1_1optimization_1_1common_1_1WatershedProposalGenerator_1_1SettingsType_1a84c0b4d1de8e24d987a774aee87c3e97aba6a6fe4af4520194d8935ef727e1f0e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structnifty_1_1graph_1_1optimization_1_1common_1_1WatershedProposalGenerator_1_1SettingsType_1a84c0b4d1de8e24d987a774aee87c3e97aba6a6fe4af4520194d8935ef727e1f0e" kindref="member">SEED_FROM_ALL</ref></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40" refid="structnifty_1_1graph_1_1optimization_1_1common_1_1WatershedProposalGenerator_1_1SettingsType_1a78297dece4f18a625b737244f96ed96c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structnifty_1_1graph_1_1optimization_1_1common_1_1WatershedProposalGenerator_1_1SettingsType_1a84c0b4d1de8e24d987a774aee87c3e97" kindref="member">SeedingStrategie</ref><sp/><ref refid="structnifty_1_1graph_1_1optimization_1_1common_1_1WatershedProposalGenerator_1_1SettingsType_1a78297dece4f18a625b737244f96ed96c" kindref="member">seedingStrategie</ref>{<ref refid="structnifty_1_1graph_1_1optimization_1_1common_1_1WatershedProposalGenerator_1_1SettingsType_1a84c0b4d1de8e24d987a774aee87c3e97a126371099cd238765c4cc73c5e9d47ea" kindref="member">SEED_FROM_NEGATIVE</ref>};</highlight></codeline>
+<codeline lineno="41" refid="structnifty_1_1graph_1_1optimization_1_1common_1_1WatershedProposalGenerator_1_1SettingsType_1a0b4d05d3a9ac297009811b4744c0d947" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1optimization_1_1common_1_1WatershedProposalGenerator_1_1SettingsType_1a0b4d05d3a9ac297009811b4744c0d947" kindref="member">sigma</ref>{1.0};</highlight></codeline>
+<codeline lineno="42" refid="structnifty_1_1graph_1_1optimization_1_1common_1_1WatershedProposalGenerator_1_1SettingsType_1a3338af8695481fe196d0790e7420431e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1optimization_1_1common_1_1WatershedProposalGenerator_1_1SettingsType_1a3338af8695481fe196d0790e7420431e" kindref="member">numberOfSeeds</ref>{0.1};</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1WatershedProposalGenerator_1abdfe8bbd8c43ec05c65e9a14c525d8d8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1WatershedProposalGenerator_1abdfe8bbd8c43ec05c65e9a14c525d8d8" kindref="member">WatershedProposalGenerator</ref>(</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ObjectiveType<sp/>&amp;<sp/>objective,<sp/></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>numberOfThreads,</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1optimization_1_1common_1_1WatershedProposalGenerator_1_1SettingsType" kindref="compound">SettingsType</ref><sp/>&amp;<sp/>settings<sp/><sp/>=<sp/><ref refid="structnifty_1_1graph_1_1optimization_1_1common_1_1WatershedProposalGenerator_1_1SettingsType" kindref="compound">SettingsType</ref>()</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/><sp/><sp/>objective_(objective),</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>numberOfThreads_(numberOfThreads),</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>settings_(settings),</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>negativeEdges_(),</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>seeds_(objective.graph()),</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>noisyEdgeWeights_(objective.graph()),</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>gens_(numberOfThreads_),</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dist_(0.0,<sp/>settings.sigma),</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>intDist_()</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>use<sp/>thread<sp/>index<sp/>as<sp/>seed</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>i=0;<sp/>i&lt;numberOfThreads_;<sp/>++i)</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>gens_[i]<sp/>=<sp/>std::mt19937(i);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1WatershedProposalGenerator_1abf4b3f5ca30d3b05cf6f6d50ac3d7de7" kindref="member">reset</ref>();</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1WatershedProposalGenerator_1abf4b3f5ca30d3b05cf6f6d50ac3d7de7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1WatershedProposalGenerator_1abf4b3f5ca30d3b05cf6f6d50ac3d7de7" kindref="member">reset</ref>(){</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>&amp;<sp/>weights<sp/>=<sp/>objective_.weights();</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(settings_.<ref refid="structnifty_1_1graph_1_1optimization_1_1common_1_1WatershedProposalGenerator_1_1SettingsType_1a78297dece4f18a625b737244f96ed96c" kindref="member">seedingStrategie</ref><sp/>==<sp/><ref refid="structnifty_1_1graph_1_1optimization_1_1common_1_1WatershedProposalGenerator_1_1SettingsType_1a84c0b4d1de8e24d987a774aee87c3e97a126371099cd238765c4cc73c5e9d47ea" kindref="member">SettingsType::SEED_FROM_NEGATIVE</ref>){</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>objective_.graph().forEachEdge([&amp;](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uint64_t<sp/>edge){</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(weights[edge]<sp/>&lt;<sp/>0.0){</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>negativeEdges_.push_back(edge);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>});</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!negativeEdges_.empty())</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>intDist_<sp/>=<sp/>std::uniform_int_distribution&lt;&gt;<sp/>(0,<sp/>negativeEdges_.size()-1);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>fallback<sp/>to<sp/>not<sp/>crash,<sp/>but<sp/>meaningless<sp/>since<sp/>there<sp/>are<sp/>no<sp/>negative<sp/>edges</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>intDist_<sp/>=<sp/>std::uniform_int_distribution&lt;&gt;<sp/>(0,<sp/>1);</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1WatershedProposalGenerator_1aadcf113cf5d11289a53266dca1a3225f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1WatershedProposalGenerator_1aadcf113cf5d11289a53266dca1a3225f" kindref="member">~WatershedProposalGenerator</ref>(){}</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1WatershedProposalGenerator_1a24691eed151a87476d7e5152c2f7b918" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1WatershedProposalGenerator_1a24691eed151a87476d7e5152c2f7b918" kindref="member">generateProposal</ref>(</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ProposalType<sp/>&amp;<sp/>currentBest,<sp/></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ProposalType<sp/>&amp;<sp/>proposal,<sp/></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>tid</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>){</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(negativeEdges_.empty()){</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>do<sp/>nothing</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>&amp;<sp/>graph<sp/>=<sp/>objective_.graph();</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>&amp;<sp/>gen<sp/>=<sp/>gens_[tid];</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>node:<sp/>graph.nodes()){</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>seeds_[node]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>nSeeds<sp/>=<sp/>settings_.<ref refid="structnifty_1_1graph_1_1optimization_1_1common_1_1WatershedProposalGenerator_1_1SettingsType_1a3338af8695481fe196d0790e7420431e" kindref="member">numberOfSeeds</ref><sp/>&lt;=1.0<sp/>?<sp/></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>size_t(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal">(graph.numberOfNodes())*settings_.<ref refid="structnifty_1_1graph_1_1optimization_1_1common_1_1WatershedProposalGenerator_1_1SettingsType_1a3338af8695481fe196d0790e7420431e" kindref="member">numberOfSeeds</ref>+0.5f)<sp/>:</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>size_t(settings_.<ref refid="structnifty_1_1graph_1_1optimization_1_1common_1_1WatershedProposalGenerator_1_1SettingsType_1a3338af8695481fe196d0790e7420431e" kindref="member">numberOfSeeds</ref><sp/>+<sp/>0.5);</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nSeeds<sp/>=<sp/>std::max(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">(1),nSeeds);</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nSeeds<sp/>=<sp/>std::min(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">(negativeEdges_.size()-1),<sp/>nSeeds);</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>&amp;<sp/>weights<sp/>=<sp/>objective_.weights();</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>graph.forEachEdge([&amp;](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uint64_t<sp/>edge){</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>noisyEdgeWeights_[edge]<sp/>=<sp/>weights[edge]<sp/>+<sp/>dist_(gen);</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>});</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>i=0;<sp/>i<sp/>&lt;<sp/><sp/>(nSeeds<sp/>==<sp/>1<sp/>?<sp/>1<sp/>:<sp/>nSeeds/2);<sp/>++i){</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>randIndex<sp/>=<sp/>intDist_(gen);</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>edge<sp/><sp/>=<sp/>negativeEdges_[randIndex];</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>uv<sp/>=<sp/>graph.uv(edge);</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>seeds_[uv.first]<sp/>=<sp/>(2*i)+1;</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>seeds_[uv.second]<sp/>=<sp/>(2*i+1)+1;</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacenifty_1_1graph_1a3e294171c18ca5e524f85c9341ef2f5e" kindref="member">edgeWeightedWatershedsSegmentation</ref>(graph,<sp/>noisyEdgeWeights_,<sp/>seeds_,<sp/>proposal);</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ObjectiveType<sp/>&amp;<sp/>objective_;</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>numberOfThreads_;</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SettingsType<sp/>settings_;</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;uint64_t&gt;<sp/>negativeEdges_;</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>EdgeWeights<sp/>noisyEdgeWeights_;</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ProposalType<sp/><sp/>seeds_;</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;std::mt19937&gt;<sp/>gens_;</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::normal_distribution&lt;&gt;<sp/>dist_;</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::uniform_int_distribution&lt;&gt;<sp/><sp/>intDist_;</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/>};<sp/></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph::optimization::common</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph::optimization</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="155"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal_generators/watershed_proposal_generator.hxx"/>
+  </compounddef>
+</doxygen>

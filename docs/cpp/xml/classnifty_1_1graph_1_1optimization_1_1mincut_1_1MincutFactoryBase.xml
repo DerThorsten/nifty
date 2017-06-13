@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutFactoryBase" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>nifty::graph::optimization::mincut::MincutFactoryBase</compoundname>
+    <derivedcompoundref refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutFactoryBase" prot="public" virt="non-virtual">nifty::graph::optimization::mincut::PyMincutFactoryBase&lt; OBJECTIVE &gt;</derivedcompoundref>
+    <includes refid="mincut__factory_8hxx" local="no">mincut_factory.hxx</includes>
+    <templateparamlist>
+      <param>
+        <type>class</type>
+        <declname>OBJECTIVE</declname>
+        <defname>OBJECTIVE</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutFactoryBase_1a8ee3aff3639d955ad46ddeb2836db891" prot="public" static="no">
+        <type>OBJECTIVE</type>
+        <definition>typedef OBJECTIVE nifty::graph::optimization::mincut::MincutFactoryBase&lt; OBJECTIVE &gt;::Objective</definition>
+        <argsstring></argsstring>
+        <name>Objective</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_factory.hxx" line="19" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_factory.hxx" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutFactoryBase_1a42de59d331b39b682640cc9efda199a7" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutBase" kindref="compound">MincutBase</ref>&lt; <ref refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutFactoryBase_1a8ee3aff3639d955ad46ddeb2836db891" kindref="member">Objective</ref> &gt;</type>
+        <definition>typedef MincutBase&lt;Objective&gt; nifty::graph::optimization::mincut::MincutFactoryBase&lt; OBJECTIVE &gt;::MincutBaseType</definition>
+        <argsstring></argsstring>
+        <name>MincutBaseType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_factory.hxx" line="20" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_factory.hxx" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutFactoryBase_1a24e8ea3b5ba8b421b028867d03872ba6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual nifty::graph::optimization::mincut::MincutFactoryBase&lt; OBJECTIVE &gt;::~MincutFactoryBase</definition>
+        <argsstring>()</argsstring>
+        <name>~MincutFactoryBase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_factory.hxx" line="21" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_factory.hxx" bodystart="21" bodyend="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutFactoryBase_1a10a6f7a7fffcd65b351e94387a918847" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::shared_ptr&lt; <ref refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutFactoryBase_1a42de59d331b39b682640cc9efda199a7" kindref="member">MincutBaseType</ref> &gt;</type>
+        <definition>virtual std::shared_ptr&lt;MincutBaseType&gt; nifty::graph::optimization::mincut::MincutFactoryBase&lt; OBJECTIVE &gt;::createSharedPtr</definition>
+        <argsstring>(const Objective &amp;objective)=0</argsstring>
+        <name>createSharedPtr</name>
+        <reimplementedby refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutFactoryBase_1a8bfe09d94839ce42210150f3a3e408d6">createSharedPtr</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutFactory_1a316ece1ccb671de2cf96c105da3c6a98">createSharedPtr</reimplementedby>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutFactoryBase_1a8ee3aff3639d955ad46ddeb2836db891" kindref="member">Objective</ref> &amp;</type>
+          <declname>objective</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_factory.hxx" line="22" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutFactoryBase_1a42af9931bce1f4c92e75e7bde90a0a68" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutFactoryBase_1a42de59d331b39b682640cc9efda199a7" kindref="member">MincutBaseType</ref> *</type>
+        <definition>virtual MincutBaseType* nifty::graph::optimization::mincut::MincutFactoryBase&lt; OBJECTIVE &gt;::createRawPtr</definition>
+        <argsstring>(const Objective &amp;objective)=0</argsstring>
+        <name>createRawPtr</name>
+        <reimplementedby refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutFactory_1aaabb471ba31212b6f2e4c7db2bc9336c">createRawPtr</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutFactoryBase_1a32c23aad5d0368e90c29ecc0fd257db1">createRawPtr</reimplementedby>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutFactoryBase_1a8ee3aff3639d955ad46ddeb2836db891" kindref="member">Objective</ref> &amp;</type>
+          <declname>objective</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_factory.hxx" line="23" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1383">
+        <label>nifty::graph::optimization::mincut::MincutFactoryBase&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutFactoryBase"/>
+      </node>
+      <node id="1384">
+        <label>nifty::graph::optimization::mincut::PyMincutFactoryBase&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutFactoryBase"/>
+        <childnode refid="1383" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_factory.hxx" line="17" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_factory.hxx" bodystart="17" bodyend="24"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutFactoryBase_1a42af9931bce1f4c92e75e7bde90a0a68" prot="public" virt="pure-virtual"><scope>nifty::graph::optimization::mincut::MincutFactoryBase</scope><name>createRawPtr</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutFactoryBase_1a10a6f7a7fffcd65b351e94387a918847" prot="public" virt="pure-virtual"><scope>nifty::graph::optimization::mincut::MincutFactoryBase</scope><name>createSharedPtr</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutFactoryBase_1a42de59d331b39b682640cc9efda199a7" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::mincut::MincutFactoryBase</scope><name>MincutBaseType</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutFactoryBase_1a8ee3aff3639d955ad46ddeb2836db891" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::mincut::MincutFactoryBase</scope><name>Objective</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutFactoryBase_1a24e8ea3b5ba8b421b028867d03872ba6" prot="public" virt="virtual"><scope>nifty::graph::optimization::mincut::MincutFactoryBase</scope><name>~MincutFactoryBase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

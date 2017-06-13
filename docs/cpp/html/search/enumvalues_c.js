@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['warn',['WARN',['../namespacenifty_1_1logging.html#a3385625f9a0dbb17f70c47d3fca2f64da32bd8a1db2275458673903bdb84cb277',1,'nifty::logging']]]
+  ['uniform_5fnoise',['UNIFORM_NOISE',['../classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap.html#a88d773cee3d185e28aecdc2c2707b744a181e4a0a98b06f50587b3cf7f1b28c59',1,'nifty::graph::optimization::multicut::PerturbAndMap']]]
 ];

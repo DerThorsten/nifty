@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="namespacenifty_1_1graph_1_1detail__graph" kind="namespace" language="C++">
+    <compoundname>nifty::graph::detail_graph</compoundname>
+    <innerclass refid="classnifty_1_1graph_1_1detail__graph_1_1EdgeIndicesToContiguousEdgeIndices" prot="public">nifty::graph::detail_graph::EdgeIndicesToContiguousEdgeIndices</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1detail__graph_1_1EdgeIndicesToContiguousEdgeIndicesImpl" prot="public">nifty::graph::detail_graph::EdgeIndicesToContiguousEdgeIndicesImpl</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1detail__graph_1_1EdgeIndicesToContiguousEdgeIndicesImpl_3_01GRAPH_00_01ni85a4007f22b365a25e3bd0829bce5cfc" prot="public">nifty::graph::detail_graph::EdgeIndicesToContiguousEdgeIndicesImpl&lt; GRAPH, nifty::graph::ContiguousTag &gt;</innerclass>
+    <innerclass refid="structnifty_1_1graph_1_1detail__graph_1_1FiFo" prot="public">nifty::graph::detail_graph::FiFo</innerclass>
+    <innerclass refid="structnifty_1_1graph_1_1detail__graph_1_1LiFo" prot="public">nifty::graph::detail_graph::LiFo</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1detail__graph_1_1NodeIndicesToContiguousNodeIndices" prot="public">nifty::graph::detail_graph::NodeIndicesToContiguousNodeIndices</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1detail__graph_1_1NodeIndicesToContiguousNodeIndicesImpl" prot="public">nifty::graph::detail_graph::NodeIndicesToContiguousNodeIndicesImpl</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1detail__graph_1_1NodeIndicesToContiguousNodeIndicesImpl_3_01GRAPH_00_01ni9b1f0e77953ef9967804436d9931bab9" prot="public">nifty::graph::detail_graph::NodeIndicesToContiguousNodeIndicesImpl&lt; GRAPH, nifty::graph::ContiguousTag &gt;</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1detail__graph_1_1NodeLabelsToEdgeLabelsUnaryFunction" prot="public">nifty::graph::detail_graph::NodeLabelsToEdgeLabelsUnaryFunction</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl" prot="public">nifty::graph::detail_graph::SearchImpl</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1detail__graph_1_1SimpleGraphEdgeIter" prot="public">nifty::graph::detail_graph::SimpleGraphEdgeIter</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1detail__graph_1_1SimpleGraphNodeIter" prot="public">nifty::graph::detail_graph::SimpleGraphNodeIter</innerclass>
+    <innerclass refid="structnifty_1_1graph_1_1detail__graph_1_1UndirectedGraphTypeHelper" prot="public">nifty::graph::detail_graph::UndirectedGraphTypeHelper</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1detail__graph_1_1UndirectedGridGraphIter" prot="public">nifty::graph::detail_graph::UndirectedGridGraphIter</innerclass>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespacenifty_1_1graph_1_1detail__graph_1abfe97acf5c16e1fbb32f1eb7fef344b1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class GRAPH</type>
+          </param>
+          <param>
+            <type>class NODE_MAP</type>
+          </param>
+        </templateparamlist>
+        <type>boost::transform_iterator&lt; <ref refid="classnifty_1_1graph_1_1detail__graph_1_1NodeLabelsToEdgeLabelsUnaryFunction" kindref="compound">NodeLabelsToEdgeLabelsUnaryFunction</ref>&lt; GRAPH, NODE_MAP &gt;, typename GRAPH::EdgeIter, const uint8_t &amp;, uint8_t &gt;</type>
+        <definition>boost::transform_iterator&lt; NodeLabelsToEdgeLabelsUnaryFunction&lt;GRAPH, NODE_MAP&gt; , typename GRAPH::EdgeIter, const uint8_t &amp; , uint8_t &gt; nifty::graph::detail_graph::nodeLabelsToEdgeLabelsIterBegin</definition>
+        <argsstring>(const GRAPH &amp;graph, const NODE_MAP &amp;nodeLabels)</argsstring>
+        <name>nodeLabelsToEdgeLabelsIterBegin</name>
+        <param>
+          <type>const GRAPH &amp;</type>
+          <declname>graph</declname>
+        </param>
+        <param>
+          <type>const NODE_MAP &amp;</type>
+          <declname>nodeLabels</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/detail/node_labels_to_edge_labels_iterator.hxx" line="46" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/detail/node_labels_to_edge_labels_iterator.hxx" bodystart="46" bodyend="54"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/detail/adjacency.hxx" line="6" column="1"/>
+  </compounddef>
+</doxygen>

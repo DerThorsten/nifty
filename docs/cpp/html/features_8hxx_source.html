@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Nifty
-   &#160;<span id="projectnumber">0.5.1</span>
+   &#160;<span id="projectnumber">0.19.0</span>
    </div>
   </td>
  </tr>
@@ -112,15 +112,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    </div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">template</span>&lt;T&gt;</div>
 <div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="namespacenifty_1_1cgp.html#a843b0dda23907002418edcd4765cdae1">   33</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="namespacenifty_1_1cgp.html#a843b0dda23907002418edcd4765cdae1">cell1ProbabilityPropagation2D</a>(</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <span class="keyword">const</span> nifty::marray::View&lt;T&gt; &amp;     probabilitiesIn,</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <span class="keyword">const</span> <a class="code" href="classandres_1_1View.html">nifty::marray::View&lt;T&gt;</a> &amp;     probabilitiesIn,</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="keyword">const</span> <a class="code" href="classnifty_1_1cgp_1_1CellBoundsVector.html">CellBoundsVector&lt;   2, 0&gt;</a> &amp;  cell0Bounds,</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="keyword">const</span> <a class="code" href="classnifty_1_1cgp_1_1CellBoundedByVector_3_012_00_011_01_4.html">CellBoundedByVector&lt;2, 1&gt;</a> &amp;  cell1BoundedBy,</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        nifty::marray::View&lt;T&gt; &amp;           probabilitiesOut,</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <a class="code" href="classandres_1_1View.html">nifty::marray::View&lt;T&gt;</a> &amp;           probabilitiesOut,</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">float</span>                        thresholdLow  = 0.3,</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">float</span>                        thresholdHigh = 0.5,</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">float</span>                        damping = 0.1</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    ){</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span> nEdges =  probabilitiesIn.shape(0);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span> nEdges =  probabilitiesIn.<a class="code" href="classandres_1_1View.html#a9bc3d88b3e2bdf432dd68f36ff33deb3">shape</a>(0);</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordflow">for</span>(<span class="keyword">auto</span> edgeIndex=0; edgeIndex&lt;nEdges; ++edgeIndex){</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            <span class="keyword">const</span> <span class="keyword">auto</span> pIn = probabilitiesIn(edgeIndex)0</div>
@@ -216,9 +216,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;} <span class="comment">// end namespace nifty</span></div>
 <div class="ttc" id="namespacenifty_1_1cgp_html_a843b0dda23907002418edcd4765cdae1"><div class="ttname"><a href="namespacenifty_1_1cgp.html#a843b0dda23907002418edcd4765cdae1">nifty::cgp::cell1ProbabilityPropagation2D</a></div><div class="ttdeci">void cell1ProbabilityPropagation2D(const nifty::marray::View&lt; T &gt; &amp;probabilitiesIn, const CellBoundsVector&lt; 2, 0 &gt; &amp;cell0Bounds, const CellBoundedByVector&lt; 2, 1 &gt; &amp;cell1BoundedBy, nifty::marray::View&lt; T &gt; &amp;probabilitiesOut, const float thresholdLow=0.3, const float thresholdHigh=0.5, const float damping=0.1)</div><div class="ttdoc">a handcrafted thing to hopefully close tiny gaps in edge_probos] </div><div class="ttdef"><b>Definition:</b> features.hxx:33</div></div>
 <div class="ttc" id="classnifty_1_1cgp_1_1CellBoundsVector_html"><div class="ttname"><a href="classnifty_1_1cgp_1_1CellBoundsVector.html">nifty::cgp::CellBoundsVector</a></div><div class="ttdef"><b>Definition:</b> bounds.hxx:124</div></div>
+<div class="ttc" id="classandres_1_1View_html"><div class="ttname"><a href="classandres_1_1View.html">andres::View</a></div><div class="ttdef"><b>Definition:</b> marray.hxx:113</div></div>
 <div class="ttc" id="bounds_8hxx_html"><div class="ttname"><a href="bounds_8hxx.html">bounds.hxx</a></div></div>
 <div class="ttc" id="classnifty_1_1cgp_1_1CellBoundedByVector_3_012_00_011_01_4_html"><div class="ttname"><a href="classnifty_1_1cgp_1_1CellBoundedByVector_3_012_00_011_01_4.html">nifty::cgp::CellBoundedByVector&lt; 2, 1 &gt;</a></div><div class="ttdef"><b>Definition:</b> bounds.hxx:147</div></div>
-<div class="ttc" id="namespacenifty_html"><div class="ttname"><a href="namespacenifty.html">nifty</a></div><div class="ttdef"><b>Definition:</b> arithmetic_array.hxx:10</div></div>
+<div class="ttc" id="namespacenifty_html"><div class="ttname"><a href="namespacenifty.html">nifty</a></div><div class="ttdef"><b>Definition:</b> arithmetic_array.hxx:8</div></div>
+<div class="ttc" id="classandres_1_1View_html_a9bc3d88b3e2bdf432dd68f36ff33deb3"><div class="ttname"><a href="classandres_1_1View.html#a9bc3d88b3e2bdf432dd68f36ff33deb3">andres::View::shape</a></div><div class="ttdeci">const std::size_t shape(const std::size_t) const </div><div class="ttdef"><b>Definition:</b> marray.hxx:1723</div></div>
 <div class="ttc" id="marray_8hxx_html"><div class="ttname"><a href="marray_8hxx.html">marray.hxx</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

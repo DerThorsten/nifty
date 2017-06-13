@@ -2,6 +2,7 @@
 \label{compute__grid__rag_8hxx}\index{/home/tbeier/src/nifty/include/nifty/graph/rag/detail\+\_\+rag/compute\+\_\+grid\+\_\+rag.\+hxx@{/home/tbeier/src/nifty/include/nifty/graph/rag/detail\+\_\+rag/compute\+\_\+grid\+\_\+rag.\+hxx}}
 {\ttfamily \#include $<$functional$>$}\\*
 {\ttfamily \#include $<$algorithm$>$}\\*
+{\ttfamily \#include $<$cstddef$>$}\\*
 {\ttfamily \#include \char`\"{}nifty/container/boost\+\_\+flat\+\_\+set.\+hxx\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}nifty/array/arithmetic\+\_\+array.\+hxx\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}nifty/graph/rag/grid\+\_\+rag\+\_\+labels.\+hxx\char`\"{}}\\*
@@ -9,10 +10,20 @@
 {\ttfamily \#include \char`\"{}nifty/graph/undirected\+\_\+list\+\_\+graph.\+hxx\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}nifty/parallel/threadpool.\+hxx\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}nifty/tools/for\+\_\+each\+\_\+coordinate.\+hxx\char`\"{}}\\*
-Include dependency graph for compute\+\_\+grid\+\_\+rag.\+hxx\+:
-% FIG 0
-This graph shows which files directly or indirectly include this file\+:
-% FIG 1
+Include dependency graph for compute\+\_\+grid\+\_\+rag.\+hxx\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{compute__grid__rag_8hxx__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{compute__grid__rag_8hxx__dep__incl}
+\end{center}
+\end{figure}
 \subsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
@@ -29,14 +40,3 @@ class \hyperlink{classnifty_1_1graph_1_1GridRag}{nifty\+::graph\+::\+Grid\+Rag$<
 \item 
  \hyperlink{namespacenifty_1_1graph}{nifty\+::graph}
 \end{DoxyCompactItemize}
-\subsection*{Macros}
-\begin{DoxyCompactItemize}
-\item 
-\#define \hyperlink{compute__grid__rag_8hxx_a63faf21f4bfc0801e05cc30dd003b225}{N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+R\+A\+G\+\_\+\+D\+E\+T\+A\+I\+L\+\_\+\+R\+A\+G\+\_\+\+C\+O\+M\+P\+U\+T\+E\+\_\+\+G\+R\+I\+D\+\_\+\+R\+A\+G\+\_\+\+H\+X\+X}
-\end{DoxyCompactItemize}
-
-
-\subsection{Macro Definition Documentation}
-\hypertarget{compute__grid__rag_8hxx_a63faf21f4bfc0801e05cc30dd003b225}{}\index{compute\+\_\+grid\+\_\+rag.\+hxx@{compute\+\_\+grid\+\_\+rag.\+hxx}!N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+R\+A\+G\+\_\+\+D\+E\+T\+A\+I\+L\+\_\+\+R\+A\+G\+\_\+\+C\+O\+M\+P\+U\+T\+E\+\_\+\+G\+R\+I\+D\+\_\+\+R\+A\+G\+\_\+\+H\+X\+X@{N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+R\+A\+G\+\_\+\+D\+E\+T\+A\+I\+L\+\_\+\+R\+A\+G\+\_\+\+C\+O\+M\+P\+U\+T\+E\+\_\+\+G\+R\+I\+D\+\_\+\+R\+A\+G\+\_\+\+H\+X\+X}}
-\index{N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+R\+A\+G\+\_\+\+D\+E\+T\+A\+I\+L\+\_\+\+R\+A\+G\+\_\+\+C\+O\+M\+P\+U\+T\+E\+\_\+\+G\+R\+I\+D\+\_\+\+R\+A\+G\+\_\+\+H\+X\+X@{N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+R\+A\+G\+\_\+\+D\+E\+T\+A\+I\+L\+\_\+\+R\+A\+G\+\_\+\+C\+O\+M\+P\+U\+T\+E\+\_\+\+G\+R\+I\+D\+\_\+\+R\+A\+G\+\_\+\+H\+X\+X}!compute\+\_\+grid\+\_\+rag.\+hxx@{compute\+\_\+grid\+\_\+rag.\+hxx}}
-\subsubsection[{N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+R\+A\+G\+\_\+\+D\+E\+T\+A\+I\+L\+\_\+\+R\+A\+G\+\_\+\+C\+O\+M\+P\+U\+T\+E\+\_\+\+G\+R\+I\+D\+\_\+\+R\+A\+G\+\_\+\+H\+X\+X}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+R\+A\+G\+\_\+\+D\+E\+T\+A\+I\+L\+\_\+\+R\+A\+G\+\_\+\+C\+O\+M\+P\+U\+T\+E\+\_\+\+G\+R\+I\+D\+\_\+\+R\+A\+G\+\_\+\+H\+X\+X}\label{compute__grid__rag_8hxx_a63faf21f4bfc0801e05cc30dd003b225}

@@ -1,0 +1,530 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="export__agglomerative__clustering_8hxx" kind="file" language="C++">
+    <compoundname>export_agglomerative_clustering.hxx</compoundname>
+    <includes local="no">pybind11/pybind11.h</includes>
+    <includes local="no">pybind11/numpy.h</includes>
+    <includes refid="converter_8hxx" local="yes">nifty/python/converter.hxx</includes>
+    <includes refid="python_2graph_2undirected__list__graph_8hxx" local="yes">nifty/python/graph/undirected_list_graph.hxx</includes>
+    <includes refid="agglomerative__clustering_8hxx" local="yes">nifty/graph/agglo/agglomerative_clustering.hxx</includes>
+    <incdepgraph>
+      <node id="11809">
+        <label>atomic</label>
+      </node>
+      <node id="11828">
+        <label>nifty/tools/const_iterator_range.hxx</label>
+        <link refid="const__iterator__range_8hxx"/>
+      </node>
+      <node id="11805">
+        <label>functional</label>
+      </node>
+      <node id="11812">
+        <label>queue</label>
+      </node>
+      <node id="11820">
+        <label>boost/version.hpp</label>
+      </node>
+      <node id="11793">
+        <label>limits</label>
+      </node>
+      <node id="11801">
+        <label>iterator</label>
+      </node>
+      <node id="11790">
+        <label>cstdint</label>
+      </node>
+      <node id="11817">
+        <label>nifty/python/graph/graph_name.hxx</label>
+        <link refid="graph__name_8hxx"/>
+      </node>
+      <node id="11794">
+        <label>cmath</label>
+      </node>
+      <node id="11797">
+        <label>cassert</label>
+      </node>
+      <node id="11814">
+        <label>boost/iterator/transform_iterator.hpp</label>
+      </node>
+      <node id="11791">
+        <label>stdexcept</label>
+      </node>
+      <node id="11804">
+        <label>numeric</label>
+      </node>
+      <node id="11825">
+        <label>nifty/graph/undirected_graph_base.hxx</label>
+        <link refid="undirected__graph__base_8hxx"/>
+        <childnode refid="11814" relation="include">
+        </childnode>
+        <childnode refid="11826" relation="include">
+        </childnode>
+        <childnode refid="11827" relation="include">
+        </childnode>
+        <childnode refid="11828" relation="include">
+        </childnode>
+      </node>
+      <node id="11829">
+        <label>nifty/graph/detail/adjacency.hxx</label>
+        <link refid="adjacency_8hxx"/>
+      </node>
+      <node id="11799">
+        <label>string</label>
+      </node>
+      <node id="11815">
+        <label>boost/iterator/counting_iterator.hpp</label>
+      </node>
+      <node id="11819">
+        <label>map</label>
+      </node>
+      <node id="11779">
+        <label>pybind11/numpy.h</label>
+      </node>
+      <node id="11831">
+        <label>nifty/graph/subgraph_mask.hxx</label>
+        <link refid="subgraph__mask_8hxx"/>
+      </node>
+      <node id="11830">
+        <label>nifty/graph/agglo/agglomerative_clustering.hxx</label>
+        <link refid="agglomerative__clustering_8hxx"/>
+        <childnode refid="11784" relation="include">
+        </childnode>
+        <childnode refid="11831" relation="include">
+        </childnode>
+      </node>
+      <node id="11806">
+        <label>nifty/tools/block_access.hxx</label>
+        <link refid="block__access_8hxx"/>
+        <childnode refid="11795" relation="include">
+        </childnode>
+        <childnode refid="11786" relation="include">
+        </childnode>
+        <childnode refid="11807" relation="include">
+        </childnode>
+      </node>
+      <node id="11796">
+        <label>nifty/marray/andres/marray.hxx</label>
+        <link refid="andres_2marray_8hxx"/>
+        <childnode refid="11797" relation="include">
+        </childnode>
+        <childnode refid="11798" relation="include">
+        </childnode>
+        <childnode refid="11791" relation="include">
+        </childnode>
+        <childnode refid="11793" relation="include">
+        </childnode>
+        <childnode refid="11799" relation="include">
+        </childnode>
+        <childnode refid="11792" relation="include">
+        </childnode>
+        <childnode refid="11800" relation="include">
+        </childnode>
+        <childnode refid="11801" relation="include">
+        </childnode>
+        <childnode refid="11788" relation="include">
+        </childnode>
+        <childnode refid="11802" relation="include">
+        </childnode>
+        <childnode refid="11784" relation="include">
+        </childnode>
+        <childnode refid="11803" relation="include">
+        </childnode>
+        <childnode refid="11804" relation="include">
+        </childnode>
+        <childnode refid="11805" relation="include">
+        </childnode>
+      </node>
+      <node id="11816">
+        <label>nifty/python/graph/undirected_list_graph.hxx</label>
+        <link refid="python_2graph_2undirected__list__graph_8hxx"/>
+        <childnode refid="11799" relation="include">
+        </childnode>
+        <childnode refid="11817" relation="include">
+        </childnode>
+        <childnode refid="11818" relation="include">
+        </childnode>
+      </node>
+      <node id="11777">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/agglo/export_agglomerative_clustering.hxx</label>
+        <link refid="export_agglomerative_clustering.hxx"/>
+        <childnode refid="11778" relation="include">
+        </childnode>
+        <childnode refid="11779" relation="include">
+        </childnode>
+        <childnode refid="11780" relation="include">
+        </childnode>
+        <childnode refid="11816" relation="include">
+        </childnode>
+        <childnode refid="11830" relation="include">
+        </childnode>
+      </node>
+      <node id="11813">
+        <label>condition_variable</label>
+      </node>
+      <node id="11785">
+        <label>pybind11/cast.h</label>
+      </node>
+      <node id="11821">
+        <label>boost/container/flat_set.hpp</label>
+      </node>
+      <node id="11810">
+        <label>future</label>
+      </node>
+      <node id="11822">
+        <label>nifty/container/flat_set.hxx</label>
+        <link refid="flat__set_8hxx"/>
+        <childnode refid="11798" relation="include">
+        </childnode>
+        <childnode refid="11788" relation="include">
+        </childnode>
+        <childnode refid="11823" relation="include">
+        </childnode>
+        <childnode refid="11805" relation="include">
+        </childnode>
+        <childnode refid="11824" relation="include">
+        </childnode>
+      </node>
+      <node id="11788">
+        <label>vector</label>
+      </node>
+      <node id="11826">
+        <label>nifty/graph/graph_tags.hxx</label>
+        <link refid="graph__tags_8hxx"/>
+      </node>
+      <node id="11786">
+        <label>nifty/array/arithmetic_array.hxx</label>
+        <link refid="arithmetic__array_8hxx"/>
+        <childnode refid="11787" relation="include">
+        </childnode>
+        <childnode refid="11788" relation="include">
+        </childnode>
+        <childnode refid="11789" relation="include">
+        </childnode>
+      </node>
+      <node id="11824">
+        <label>utility</label>
+      </node>
+      <node id="11787">
+        <label>array</label>
+      </node>
+      <node id="11792">
+        <label>sstream</label>
+      </node>
+      <node id="11778">
+        <label>pybind11/pybind11.h</label>
+      </node>
+      <node id="11789">
+        <label>nifty/tools/runtime_check.hxx</label>
+        <link refid="runtime__check_8hxx"/>
+        <childnode refid="11790" relation="include">
+        </childnode>
+        <childnode refid="11791" relation="include">
+        </childnode>
+        <childnode refid="11792" relation="include">
+        </childnode>
+        <childnode refid="11788" relation="include">
+        </childnode>
+        <childnode refid="11793" relation="include">
+        </childnode>
+        <childnode refid="11794" relation="include">
+        </childnode>
+      </node>
+      <node id="11781">
+        <label>cctype</label>
+      </node>
+      <node id="11827">
+        <label>nifty/graph/graph_maps.hxx</label>
+        <link refid="graph__maps_8hxx"/>
+        <childnode refid="11795" relation="include">
+        </childnode>
+      </node>
+      <node id="11784">
+        <label>iostream</label>
+      </node>
+      <node id="11798">
+        <label>cstddef</label>
+      </node>
+      <node id="11807">
+        <label>nifty/parallel/threadpool.hxx</label>
+        <link refid="threadpool_8hxx"/>
+        <childnode refid="11805" relation="include">
+        </childnode>
+        <childnode refid="11808" relation="include">
+        </childnode>
+        <childnode refid="11809" relation="include">
+        </childnode>
+        <childnode refid="11788" relation="include">
+        </childnode>
+        <childnode refid="11810" relation="include">
+        </childnode>
+        <childnode refid="11811" relation="include">
+        </childnode>
+        <childnode refid="11812" relation="include">
+        </childnode>
+        <childnode refid="11813" relation="include">
+        </childnode>
+        <childnode refid="11791" relation="include">
+        </childnode>
+        <childnode refid="11794" relation="include">
+        </childnode>
+        <childnode refid="11814" relation="include">
+        </childnode>
+        <childnode refid="11815" relation="include">
+        </childnode>
+        <childnode refid="11789" relation="include">
+        </childnode>
+      </node>
+      <node id="11811">
+        <label>mutex</label>
+      </node>
+      <node id="11818">
+        <label>nifty/graph/undirected_list_graph.hxx</label>
+        <link refid="graph_2undirected__list__graph_8hxx"/>
+        <childnode refid="11798" relation="include">
+        </childnode>
+        <childnode refid="11788" relation="include">
+        </childnode>
+        <childnode refid="11819" relation="include">
+        </childnode>
+        <childnode refid="11820" relation="include">
+        </childnode>
+        <childnode refid="11821" relation="include">
+        </childnode>
+        <childnode refid="11815" relation="include">
+        </childnode>
+        <childnode refid="11822" relation="include">
+        </childnode>
+        <childnode refid="11789" relation="include">
+        </childnode>
+        <childnode refid="11825" relation="include">
+        </childnode>
+        <childnode refid="11829" relation="include">
+        </childnode>
+        <childnode refid="11826" relation="include">
+        </childnode>
+        <childnode refid="11807" relation="include">
+        </childnode>
+      </node>
+      <node id="11795">
+        <label>nifty/marray/marray.hxx</label>
+        <link refid="marray_8hxx"/>
+        <childnode refid="11796" relation="include">
+        </childnode>
+        <childnode refid="11789" relation="include">
+        </childnode>
+      </node>
+      <node id="11808">
+        <label>thread</label>
+      </node>
+      <node id="11780">
+        <label>nifty/python/converter.hxx</label>
+        <link refid="converter_8hxx"/>
+        <childnode refid="11781" relation="include">
+        </childnode>
+        <childnode refid="11782" relation="include">
+        </childnode>
+        <childnode refid="11783" relation="include">
+        </childnode>
+        <childnode refid="11784" relation="include">
+        </childnode>
+        <childnode refid="11778" relation="include">
+        </childnode>
+        <childnode refid="11785" relation="include">
+        </childnode>
+        <childnode refid="11779" relation="include">
+        </childnode>
+        <childnode refid="11786" relation="include">
+        </childnode>
+        <childnode refid="11795" relation="include">
+        </childnode>
+        <childnode refid="11806" relation="include">
+        </childnode>
+      </node>
+      <node id="11782">
+        <label>type_traits</label>
+      </node>
+      <node id="11802">
+        <label>set</label>
+      </node>
+      <node id="11823">
+        <label>algorithm</label>
+      </node>
+      <node id="11800">
+        <label>cstring</label>
+      </node>
+      <node id="11803">
+        <label>memory</label>
+      </node>
+      <node id="11783">
+        <label>initializer_list</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="structnifty_1_1graph_1_1agglo_1_1ExportUcmFunctions" prot="public">nifty::graph::agglo::ExportUcmFunctions</innerclass>
+    <innerclass refid="structnifty_1_1graph_1_1agglo_1_1ExportUcmFunctions_3_01true_01_4" prot="public">nifty::graph::agglo::ExportUcmFunctions&lt; true &gt;</innerclass>
+    <innernamespace refid="namespacenifty">nifty</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph">nifty::graph</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph_1_1agglo">nifty::graph::agglo</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;pybind11/pybind11.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;pybind11/numpy.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="converter_8hxx" kindref="compound">nifty/python/converter.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="python_2graph_2undirected__list__graph_8hxx" kindref="compound">nifty/python/graph/undirected_list_graph.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="agglomerative__clustering_8hxx" kindref="compound">nifty/graph/agglo/agglomerative_clustering.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacepybind11" kindref="compound">py</ref><sp/>=<sp/><ref refid="namespacepybind11" kindref="compound">pybind11</ref>;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacenifty" kindref="compound">nifty</ref>{</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">graph{</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">agglo{</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//using<sp/>namespace<sp/>py;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>WITH_UCM&gt;</highlight></codeline>
+<codeline lineno="23" refid="structnifty_1_1graph_1_1agglo_1_1ExportUcmFunctions" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structnifty_1_1graph_1_1agglo_1_1ExportUcmFunctions" kindref="compound">ExportUcmFunctions</ref>{</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>AGGLO_CLUSTER_TYPE&gt;</highlight></codeline>
+<codeline lineno="25" refid="structnifty_1_1graph_1_1agglo_1_1ExportUcmFunctions_1a28f42debbf388f49df82b738783b7490" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1agglo_1_1ExportUcmFunctions_1a28f42debbf388f49df82b738783b7490" kindref="member">exportUcm</ref>(py::class_&lt;AGGLO_CLUSTER_TYPE&gt;<sp/>&amp;<sp/>aggloCls){</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;&gt;</highlight></codeline>
+<codeline lineno="31" refid="structnifty_1_1graph_1_1agglo_1_1ExportUcmFunctions_3_01true_01_4" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structnifty_1_1graph_1_1agglo_1_1ExportUcmFunctions" kindref="compound">ExportUcmFunctions</ref>&lt;true&gt;{</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>AGGLO_CLUSTER_TYPE&gt;</highlight></codeline>
+<codeline lineno="33" refid="structnifty_1_1graph_1_1agglo_1_1ExportUcmFunctions_3_01true_01_4_1ac0089063667bb8b86839ab1c1061fd74" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1agglo_1_1ExportUcmFunctions_3_01true_01_4_1ac0089063667bb8b86839ab1c1061fd74" kindref="member">exportUcm</ref>(py::class_&lt;AGGLO_CLUSTER_TYPE&gt;<sp/>&amp;<sp/>aggloCls){</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>AGGLO_CLUSTER_TYPE::GraphType<sp/>GraphType;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>GraphType::<sp/>template<sp/>EdgeMap&lt;double&gt;<sp/>EdgeMapFloat64;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>aggloCls</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(</highlight><highlight class="stringliteral">&quot;runAndGetDendrogramHeight&quot;</highlight><highlight class="normal">,<sp/>[](</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>AGGLO_CLUSTER_TYPE<sp/>*<sp/></highlight><highlight class="keyword">self</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>verbose</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>){</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>&amp;<sp/>graph<sp/>=<sp/></highlight><highlight class="keyword">self</highlight><highlight class="normal">-&gt;graph();</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1marray_1_1PyView" kindref="compound">nifty::marray::PyView&lt;double&gt;</ref><sp/>dheight(<sp/>{std::size_t(graph.edgeIdUpperBound()+1)<sp/><sp/>});</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>py::gil_scoped_release<sp/>allowThreads;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">self</highlight><highlight class="normal">-&gt;runAndGetDendrogramHeight(dheight,verbose);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>dheight;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>,</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>py::arg(</highlight><highlight class="stringliteral">&quot;verbose&quot;</highlight><highlight class="normal">)<sp/>=<sp/>false</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(</highlight><highlight class="stringliteral">&quot;ucmTransform&quot;</highlight><highlight class="normal">,<sp/>[](</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>AGGLO_CLUSTER_TYPE<sp/>*<sp/></highlight><highlight class="keyword">self</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>EdgeMapFloat64<sp/>&amp;<sp/>edgeValues</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>){</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>&amp;<sp/>graph<sp/>=<sp/></highlight><highlight class="keyword">self</highlight><highlight class="normal">-&gt;graph();</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1marray_1_1PyView" kindref="compound">nifty::marray::PyView&lt;double&gt;</ref><sp/>transformed(<sp/>{std::size_t(graph.edgeIdUpperBound()+1)<sp/><sp/>});</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>py::gil_scoped_release<sp/>allowThreads;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">self</highlight><highlight class="normal">-&gt;ucmTransform(edgeValues,<sp/>transformed);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>transformed;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>CLUSTER_POLICY&gt;</highlight></codeline>
+<codeline lineno="74" refid="namespacenifty_1_1graph_1_1agglo_1ac1f80b0263547645d7f6603e7a094bd1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespacenifty_1_1graph_1_1agglo_1ac1f80b0263547645d7f6603e7a094bd1" kindref="member">exportAgglomerativeClusteringTClusterPolicy</ref>(</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>py::module<sp/>&amp;<sp/>aggloModule,</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>&amp;<sp/>clusterPolicyBaseName</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>){</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>CLUSTER_POLICY<sp/>ClusterPolicyType;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>ClusterPolicyType::GraphType<sp/>GraphType;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering" kindref="compound">AgglomerativeClustering&lt;ClusterPolicyType&gt;</ref><sp/>AgglomerativeClusteringType;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>graphName<sp/>=<sp/><ref refid="structnifty_1_1graph_1_1GraphName" kindref="compound">GraphName&lt;GraphType&gt;::name</ref>();</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>clusterPolicyClsName<sp/>=<sp/>clusterPolicyBaseName<sp/>+<sp/>graphName;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>aggloClsName<sp/>=<sp/>std::string(</highlight><highlight class="stringliteral">&quot;AgglomerativeClustering&quot;</highlight><highlight class="normal">)<sp/>+<sp/>clusterPolicyClsName;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>cls</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>aggloCls<sp/>=<sp/>py::class_&lt;AgglomerativeClusteringType&gt;(aggloModule,<sp/>aggloClsName.c_str());</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>aggloCls</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(</highlight><highlight class="stringliteral">&quot;run&quot;</highlight><highlight class="normal">,<sp/>[](</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>AgglomerativeClusteringType<sp/>*<sp/></highlight><highlight class="keyword">self</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>verbose</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>){</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>py::gil_scoped_release<sp/>allowThreds;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">self</highlight><highlight class="normal">-&gt;run(verbose);</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>,</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>py::arg(</highlight><highlight class="stringliteral">&quot;verbose&quot;</highlight><highlight class="normal">)<sp/>=<sp/>false</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(</highlight><highlight class="stringliteral">&quot;result&quot;</highlight><highlight class="normal">,<sp/>[](</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>AgglomerativeClusteringType<sp/>*<sp/></highlight><highlight class="keyword">self</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>){</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>graph<sp/>=<sp/></highlight><highlight class="keyword">self</highlight><highlight class="normal">-&gt;graph();</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1marray_1_1PyView" kindref="compound">nifty::marray::PyView&lt;uint64_t&gt;</ref><sp/>out({size_t(graph.nodeIdUpperBound()+1)});</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>py::gil_scoped_release<sp/>allowThreds;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">self</highlight><highlight class="normal">-&gt;result(out);</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>out;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(</highlight><highlight class="stringliteral">&quot;result&quot;</highlight><highlight class="normal">,<sp/>[](</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>AgglomerativeClusteringType<sp/>*<sp/></highlight><highlight class="keyword">self</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1marray_1_1PyView" kindref="compound">nifty::marray::PyView&lt;uint64_t&gt;</ref><sp/>out<sp/></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>){</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>graph<sp/>=<sp/></highlight><highlight class="keyword">self</highlight><highlight class="normal">-&gt;graph();</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>py::gil_scoped_release<sp/>allowThreds;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">self</highlight><highlight class="normal">-&gt;result(out);</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>out;</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>},</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>py::arg(</highlight><highlight class="stringliteral">&quot;out&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>additional<sp/>functions<sp/>which<sp/>are<sp/>only<sp/>enabled<sp/>if<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>cluster<sp/>policies<sp/>enables<sp/>ucm</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1agglo_1_1ExportUcmFunctions" kindref="compound">ExportUcmFunctions&lt;AgglomerativeClusteringType::WithEdgeUfd::value&gt;</ref><sp/>UcmExporter;</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>UcmExporter::exportUcm(aggloCls);</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>factory</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>aggloModule.def(</highlight><highlight class="stringliteral">&quot;agglomerativeClustering&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[](</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ClusterPolicyType<sp/>&amp;<sp/>clusterPolicy</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>){</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>ptr<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>AgglomerativeClusteringType(clusterPolicy);</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ptr;</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>},</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>py::return_value_policy::take_ownership,</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>py::keep_alive&lt;0,1&gt;(),</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>py::arg(</highlight><highlight class="stringliteral">&quot;clusterPolicy&quot;</highlight><highlight class="normal">)<sp/></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>);</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>end<sp/>namespace<sp/>agglo</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>end<sp/>namespace<sp/>graph</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>end<sp/>namespace<sp/>nifty</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+    </programlisting>
+    <location file="/home/tbeier/src/nifty/include/nifty/python/graph/agglo/export_agglomerative_clustering.hxx"/>
+  </compounddef>
+</doxygen>

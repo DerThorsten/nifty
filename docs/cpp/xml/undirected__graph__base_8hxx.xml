@@ -1,0 +1,654 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="undirected__graph__base_8hxx" kind="file" language="C++">
+    <compoundname>undirected_graph_base.hxx</compoundname>
+    <includes local="no">boost/iterator/transform_iterator.hpp</includes>
+    <includes refid="graph__tags_8hxx" local="yes">nifty/graph/graph_tags.hxx</includes>
+    <includes refid="graph__maps_8hxx" local="yes">nifty/graph/graph_maps.hxx</includes>
+    <includes refid="const__iterator__range_8hxx" local="yes">nifty/tools/const_iterator_range.hxx</includes>
+    <includedby refid="graph_2edge__contraction__graph_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx</includedby>
+    <includedby refid="graph_2undirected__grid__graph_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/undirected_grid_graph.hxx</includedby>
+    <includedby refid="graph_2undirected__list__graph_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx</includedby>
+    <incdepgraph>
+      <node id="10885">
+        <label>nifty/tools/const_iterator_range.hxx</label>
+        <link refid="const__iterator__range_8hxx"/>
+      </node>
+      <node id="10881">
+        <label>functional</label>
+      </node>
+      <node id="10871">
+        <label>limits</label>
+      </node>
+      <node id="10875">
+        <label>iterator</label>
+      </node>
+      <node id="10883">
+        <label>cstdint</label>
+      </node>
+      <node id="10884">
+        <label>cmath</label>
+      </node>
+      <node id="10868">
+        <label>cassert</label>
+      </node>
+      <node id="10863">
+        <label>boost/iterator/transform_iterator.hpp</label>
+      </node>
+      <node id="10870">
+        <label>stdexcept</label>
+      </node>
+      <node id="10880">
+        <label>numeric</label>
+      </node>
+      <node id="10862">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/undirected_graph_base.hxx</label>
+        <link refid="undirected_graph_base.hxx"/>
+        <childnode refid="10863" relation="include">
+        </childnode>
+        <childnode refid="10864" relation="include">
+        </childnode>
+        <childnode refid="10865" relation="include">
+        </childnode>
+        <childnode refid="10885" relation="include">
+        </childnode>
+      </node>
+      <node id="10872">
+        <label>string</label>
+      </node>
+      <node id="10867">
+        <label>nifty/marray/andres/marray.hxx</label>
+        <link refid="andres_2marray_8hxx"/>
+        <childnode refid="10868" relation="include">
+        </childnode>
+        <childnode refid="10869" relation="include">
+        </childnode>
+        <childnode refid="10870" relation="include">
+        </childnode>
+        <childnode refid="10871" relation="include">
+        </childnode>
+        <childnode refid="10872" relation="include">
+        </childnode>
+        <childnode refid="10873" relation="include">
+        </childnode>
+        <childnode refid="10874" relation="include">
+        </childnode>
+        <childnode refid="10875" relation="include">
+        </childnode>
+        <childnode refid="10876" relation="include">
+        </childnode>
+        <childnode refid="10877" relation="include">
+        </childnode>
+        <childnode refid="10878" relation="include">
+        </childnode>
+        <childnode refid="10879" relation="include">
+        </childnode>
+        <childnode refid="10880" relation="include">
+        </childnode>
+        <childnode refid="10881" relation="include">
+        </childnode>
+      </node>
+      <node id="10876">
+        <label>vector</label>
+      </node>
+      <node id="10864">
+        <label>nifty/graph/graph_tags.hxx</label>
+        <link refid="graph__tags_8hxx"/>
+      </node>
+      <node id="10873">
+        <label>sstream</label>
+      </node>
+      <node id="10882">
+        <label>nifty/tools/runtime_check.hxx</label>
+        <link refid="runtime__check_8hxx"/>
+        <childnode refid="10883" relation="include">
+        </childnode>
+        <childnode refid="10870" relation="include">
+        </childnode>
+        <childnode refid="10873" relation="include">
+        </childnode>
+        <childnode refid="10876" relation="include">
+        </childnode>
+        <childnode refid="10871" relation="include">
+        </childnode>
+        <childnode refid="10884" relation="include">
+        </childnode>
+      </node>
+      <node id="10865">
+        <label>nifty/graph/graph_maps.hxx</label>
+        <link refid="graph__maps_8hxx"/>
+        <childnode refid="10866" relation="include">
+        </childnode>
+      </node>
+      <node id="10878">
+        <label>iostream</label>
+      </node>
+      <node id="10869">
+        <label>cstddef</label>
+      </node>
+      <node id="10866">
+        <label>nifty/marray/marray.hxx</label>
+        <link refid="marray_8hxx"/>
+        <childnode refid="10867" relation="include">
+        </childnode>
+        <childnode refid="10882" relation="include">
+        </childnode>
+      </node>
+      <node id="10877">
+        <label>set</label>
+      </node>
+      <node id="10874">
+        <label>cstring</label>
+      </node>
+      <node id="10879">
+        <label>memory</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="10893">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/node_and_edge_weighted_cluster_policy.hxx</label>
+        <link refid="node__and__edge__weighted__cluster__policy_8hxx"/>
+      </node>
+      <node id="10927">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_hdf5.hxx</label>
+        <link refid="grid__rag__hdf5_8hxx"/>
+      </node>
+      <node id="10896">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/cc_fusion_move_based.hxx</label>
+        <link refid="cc__fusion__move__based_8hxx"/>
+      </node>
+      <node id="10928">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_stacked_2d.hxx</label>
+        <link refid="grid__rag__stacked__2d_8hxx"/>
+        <childnode refid="10929" relation="include">
+        </childnode>
+      </node>
+      <node id="10897">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/detail/lifted_twocut_kernighan_lin.hxx</label>
+        <link refid="lifted__twocut__kernighan__lin_8hxx"/>
+        <childnode refid="10898" relation="include">
+        </childnode>
+      </node>
+      <node id="10905">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_greedy_additive.hxx</label>
+        <link refid="mincut__greedy__additive_8hxx"/>
+      </node>
+      <node id="10920">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/optimization/lifted_multicut/export_lifted_multicut_solver.hxx</label>
+        <link refid="export__lifted__multicut__solver_8hxx"/>
+      </node>
+      <node id="10907">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_greedy_additive.hxx</label>
+        <link refid="multicut__greedy__additive_8hxx"/>
+        <childnode refid="10908" relation="include">
+        </childnode>
+        <childnode refid="10909" relation="include">
+        </childnode>
+        <childnode refid="10911" relation="include">
+        </childnode>
+      </node>
+      <node id="10887">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx</label>
+        <link refid="graph_2edge__contraction__graph_8hxx"/>
+        <childnode refid="10888" relation="include">
+        </childnode>
+        <childnode refid="10889" relation="include">
+        </childnode>
+        <childnode refid="10891" relation="include">
+        </childnode>
+        <childnode refid="10892" relation="include">
+        </childnode>
+        <childnode refid="10893" relation="include">
+        </childnode>
+        <childnode refid="10894" relation="include">
+        </childnode>
+        <childnode refid="10897" relation="include">
+        </childnode>
+        <childnode refid="10900" relation="include">
+        </childnode>
+        <childnode refid="10901" relation="include">
+        </childnode>
+        <childnode refid="10902" relation="include">
+        </childnode>
+        <childnode refid="10903" relation="include">
+        </childnode>
+        <childnode refid="10898" relation="include">
+        </childnode>
+        <childnode refid="10905" relation="include">
+        </childnode>
+        <childnode refid="10906" relation="include">
+        </childnode>
+        <childnode refid="10907" relation="include">
+        </childnode>
+        <childnode refid="10912" relation="include">
+        </childnode>
+      </node>
+      <node id="10888">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/edge_weighted_cluster_policy.hxx</label>
+        <link refid="edge__weighted__cluster__policy_8hxx"/>
+      </node>
+      <node id="10904">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move.hxx</label>
+        <link refid="lifted__multicut_2fusion__move_8hxx"/>
+        <childnode refid="10900" relation="include">
+        </childnode>
+      </node>
+      <node id="10902">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_andres_kernighan_lin.hxx</label>
+        <link refid="lifted__multicut__andres__kernighan__lin_8hxx"/>
+      </node>
+      <node id="10906">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/cgc.hxx</label>
+        <link refid="cgc_8hxx"/>
+      </node>
+      <node id="10894">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/common/cc_fusion_move_based_impl.hxx</label>
+        <link refid="cc__fusion__move__based__impl_8hxx"/>
+        <childnode refid="10895" relation="include">
+        </childnode>
+        <childnode refid="10896" relation="include">
+        </childnode>
+      </node>
+      <node id="10909">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/fusion_move.hxx</label>
+        <link refid="multicut_2fusion__move_8hxx"/>
+        <childnode refid="10896" relation="include">
+        </childnode>
+        <childnode refid="10910" relation="include">
+        </childnode>
+      </node>
+      <node id="10917">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/common/cc_fusion_move_impl.hxx</label>
+        <link refid="cc__fusion__move__impl_8hxx"/>
+      </node>
+      <node id="10886">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/undirected_graph_base.hxx</label>
+        <link refid="undirected_graph_base.hxx"/>
+        <childnode refid="10887" relation="include">
+        </childnode>
+        <childnode refid="10914" relation="include">
+        </childnode>
+        <childnode refid="10916" relation="include">
+        </childnode>
+      </node>
+      <node id="10910">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/fusion_move_based.hxx</label>
+        <link refid="multicut_2fusion__move__based_8hxx"/>
+      </node>
+      <node id="10899">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_mp.hxx</label>
+        <link refid="lifted__multicut__mp_8hxx"/>
+      </node>
+      <node id="10929">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_stacked_2d_hdf5.hxx</label>
+        <link refid="grid__rag__stacked__2d__hdf5_8hxx"/>
+      </node>
+      <node id="10895">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_cc_fusion_move_based.hxx</label>
+        <link refid="mincut__cc__fusion__move__based_8hxx"/>
+      </node>
+      <node id="10903">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_greedy_additive.hxx</label>
+        <link refid="lifted__multicut__greedy__additive_8hxx"/>
+        <childnode refid="10904" relation="include">
+        </childnode>
+        <childnode refid="10899" relation="include">
+        </childnode>
+      </node>
+      <node id="10911">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/proposal_generators/greedy_additive_proposals.hxx</label>
+        <link refid="greedy__additive__proposals_8hxx"/>
+      </node>
+      <node id="10926">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_features.hxx</label>
+        <link refid="grid__rag__features_8hxx"/>
+      </node>
+      <node id="10931">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/undirected_list_graph.hxx</label>
+        <link refid="python_2graph_2undirected__list__graph_8hxx"/>
+        <childnode refid="10932" relation="include">
+        </childnode>
+        <childnode refid="10913" relation="include">
+        </childnode>
+      </node>
+      <node id="10891">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/mala_cluster_policy.hxx</label>
+        <link refid="mala__cluster__policy_8hxx"/>
+      </node>
+      <node id="10922">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_decomposer.hxx</label>
+        <link refid="multicut__decomposer_8hxx"/>
+      </node>
+      <node id="10932">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/agglo/export_agglomerative_clustering.hxx</label>
+        <link refid="export__agglomerative__clustering_8hxx"/>
+      </node>
+      <node id="10912">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/edge_contraction_graph.hxx</label>
+        <link refid="python_2graph_2edge__contraction__graph_8hxx"/>
+        <childnode refid="10913" relation="include">
+        </childnode>
+      </node>
+      <node id="10923">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/rag/detail_rag/compute_grid_rag.hxx</label>
+        <link refid="compute__grid__rag_8hxx"/>
+        <childnode refid="10924" relation="include">
+        </childnode>
+      </node>
+      <node id="10925">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_accumulate.hxx</label>
+        <link refid="grid__rag__accumulate_8hxx"/>
+      </node>
+      <node id="10915">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/undirected_grid_graph.hxx</label>
+        <link refid="python_2graph_2undirected__grid__graph_8hxx"/>
+      </node>
+      <node id="10900">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx</label>
+        <link refid="lifted__multicut_2fusion__move__based_8hxx"/>
+      </node>
+      <node id="10921">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_cc_fusion_move.hxx</label>
+        <link refid="mincut__cc__fusion__move_8hxx"/>
+        <childnode refid="10895" relation="include">
+        </childnode>
+      </node>
+      <node id="10889">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx</label>
+        <link refid="lifted__graph__edge__weighted__cluster__policy_8hxx"/>
+        <childnode refid="10890" relation="include">
+        </childnode>
+      </node>
+      <node id="10924">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag.hxx</label>
+        <link refid="grid__rag_8hxx"/>
+        <childnode refid="10925" relation="include">
+        </childnode>
+        <childnode refid="10926" relation="include">
+        </childnode>
+        <childnode refid="10927" relation="include">
+        </childnode>
+        <childnode refid="10928" relation="include">
+        </childnode>
+      </node>
+      <node id="10913">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/optimization/common/export_solver_factory.hxx</label>
+        <link refid="export__solver__factory_8hxx"/>
+      </node>
+      <node id="10901">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_andres_greedy_additive.hxx</label>
+        <link refid="lifted__multicut__andres__greedy__additive_8hxx"/>
+      </node>
+      <node id="10914">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/undirected_grid_graph.hxx</label>
+        <link refid="graph_2undirected__grid__graph_8hxx"/>
+        <childnode refid="10915" relation="include">
+        </childnode>
+      </node>
+      <node id="10918">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_objective.hxx</label>
+        <link refid="graph_2optimization_2lifted__multicut_2lifted__multicut__objective_8hxx"/>
+        <childnode refid="10904" relation="include">
+        </childnode>
+        <childnode refid="10899" relation="include">
+        </childnode>
+        <childnode refid="10919" relation="include">
+        </childnode>
+      </node>
+      <node id="10898">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_kernighan_lin.hxx</label>
+        <link refid="lifted__multicut__kernighan__lin_8hxx"/>
+        <childnode refid="10899" relation="include">
+        </childnode>
+      </node>
+      <node id="10916">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx</label>
+        <link refid="graph_2undirected__list__graph_8hxx"/>
+        <childnode refid="10917" relation="include">
+        </childnode>
+        <childnode refid="10904" relation="include">
+        </childnode>
+        <childnode refid="10918" relation="include">
+        </childnode>
+        <childnode refid="10921" relation="include">
+        </childnode>
+        <childnode refid="10906" relation="include">
+        </childnode>
+        <childnode refid="10909" relation="include">
+        </childnode>
+        <childnode refid="10922" relation="include">
+        </childnode>
+        <childnode refid="10923" relation="include">
+        </childnode>
+        <childnode refid="10930" relation="include">
+        </childnode>
+        <childnode refid="10924" relation="include">
+        </childnode>
+        <childnode refid="10931" relation="include">
+        </childnode>
+      </node>
+      <node id="10930">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/rag/detail_rag/compute_grid_rag_hdf5.hxx</label>
+        <link refid="compute__grid__rag__hdf5_8hxx"/>
+        <childnode refid="10927" relation="include">
+        </childnode>
+        <childnode refid="10929" relation="include">
+        </childnode>
+      </node>
+      <node id="10892">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/minimum_node_size_cluster_policy.hxx</label>
+        <link refid="minimum__node__size__cluster__policy_8hxx"/>
+      </node>
+      <node id="10890">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_graph_features.hxx</label>
+        <link refid="lifted__graph__features_8hxx"/>
+      </node>
+      <node id="10908">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx</label>
+        <link refid="greedy__additive__multicut__proposal__generator_8hxx"/>
+      </node>
+      <node id="10919">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/optimization/lifted_multicut/lifted_multicut_objective.hxx</label>
+        <link refid="python_2graph_2optimization_2lifted__multicut_2lifted__multicut__objective_8hxx"/>
+        <childnode refid="10920" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classnifty_1_1graph_1_1UndirectedGraphBase" prot="public">nifty::graph::UndirectedGraphBase</innerclass>
+    <innerclass refid="structnifty_1_1graph_1_1UndirectedGraphBase_1_1NodeMap" prot="public">nifty::graph::UndirectedGraphBase::NodeMap</innerclass>
+    <innerclass refid="structnifty_1_1graph_1_1UndirectedGraphBase_1_1EdgeMap" prot="public">nifty::graph::UndirectedGraphBase::EdgeMap</innerclass>
+    <innerclass refid="structnifty_1_1graph_1_1UndirectedGraphBase_1_1NodeIterRange" prot="public">nifty::graph::UndirectedGraphBase::NodeIterRange</innerclass>
+    <innerclass refid="structnifty_1_1graph_1_1UndirectedGraphBase_1_1EdgeIterRange" prot="public">nifty::graph::UndirectedGraphBase::EdgeIterRange</innerclass>
+    <innerclass refid="structnifty_1_1graph_1_1UndirectedGraphBase_1_1AdjacencyIterRange" prot="public">nifty::graph::UndirectedGraphBase::AdjacencyIterRange</innerclass>
+    <innernamespace refid="namespacenifty">nifty</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph">nifty::graph</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;boost/iterator/transform_iterator.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="graph__tags_8hxx" kindref="compound">nifty/graph/graph_tags.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="graph__maps_8hxx" kindref="compound">nifty/graph/graph_maps.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="const__iterator__range_8hxx" kindref="compound">nifty/tools/const_iterator_range.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacenifty" kindref="compound">nifty</ref>{</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">graph{</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//<sp/>\cond<sp/>SUPPRESS_DOXYGEN</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">detail_undirected_graph_base{</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>GRAPH,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>TAG&gt;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">GraphItemGeneralization;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>GRAPH&gt;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">GraphItemGeneralization&lt;GRAPH,<sp/>EdgeTag&gt;{</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>GRAPH::ChildGraph<sp/>ChildGraph;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>GRAPH::<sp/>template<sp/>EdgeIterRange&lt;ChildGraph&gt;<sp/>type;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>type<sp/>items(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ChildGraph<sp/>&amp;<sp/>g){</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>g.edges();</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>uint64_t<sp/>numberOfItems(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ChildGraph<sp/>&amp;<sp/>g){</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>g.numberOfEdges();</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>GRAPH&gt;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">GraphItemGeneralization&lt;GRAPH,<sp/>NodeTag&gt;{</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>GRAPH::ChildGraph<sp/>ChildGraph;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>GRAPH::<sp/>template<sp/>NodeIterRange&lt;ChildGraph&gt;<sp/>type;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>type<sp/>items(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ChildGraph<sp/>&amp;<sp/>g){</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>g.nodes();</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>uint64_t<sp/>numberOfItems(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ChildGraph<sp/>&amp;<sp/>g){</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>g.numberOfNodes();</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="51"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>end<sp/>namespace<sp/>detail_undirected_graph_base</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="comment">//<sp/>\endcond</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">CHILD_GRAPH,</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">NODE_ITER,</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">EDGE_ITER,</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">ADJACENCY_ITER</highlight></codeline>
+<codeline lineno="61"><highlight class="normal">&gt;</highlight></codeline>
+<codeline lineno="62" refid="classnifty_1_1graph_1_1UndirectedGraphBase" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnifty_1_1graph_1_1UndirectedGraphBase" kindref="compound">UndirectedGraphBase</ref>{</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66" refid="classnifty_1_1graph_1_1UndirectedGraphBase_1af2541cf9fb91440ff0a7b56dd5a6be29" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>CHILD_GRAPH<sp/><ref refid="classnifty_1_1graph_1_1UndirectedGraphBase_1af2541cf9fb91440ff0a7b56dd5a6be29" kindref="member">ChildGraph</ref>;</highlight></codeline>
+<codeline lineno="67" refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a3a637f240a8d05794be99e5f290a71b9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1UndirectedGraphBase" kindref="compound">UndirectedGraphBase&lt;ChildGraph, NODE_ITER, EDGE_ITER, ADJACENCY_ITER&gt;</ref><sp/><ref refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a3a637f240a8d05794be99e5f290a71b9" kindref="member">Self</ref>;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
+<codeline lineno="72" refid="structnifty_1_1graph_1_1UndirectedGraphBase_1_1NodeMap" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structnifty_1_1graph_1_1UndirectedGraphBase_1_1NodeMap" kindref="compound">NodeMap</ref><sp/>:<sp/><ref refid="structnifty_1_1graph_1_1graph__maps_1_1NodeMap" kindref="compound">graph_maps::NodeMap</ref>&lt;ChildGraph,T&gt;<sp/>{</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1graph__maps_1_1NodeMap" kindref="compound">graph_maps::NodeMap&lt;ChildGraph,T&gt;::NodeMap</ref>;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
+<codeline lineno="76" refid="structnifty_1_1graph_1_1UndirectedGraphBase_1_1EdgeMap" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structnifty_1_1graph_1_1UndirectedGraphBase_1_1EdgeMap" kindref="compound">EdgeMap</ref><sp/>:<sp/><ref refid="structnifty_1_1graph_1_1graph__maps_1_1EdgeMap" kindref="compound">graph_maps::EdgeMap</ref>&lt;ChildGraph,T&gt;<sp/>{</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1graph__maps_1_1EdgeMap" kindref="compound">graph_maps::EdgeMap&lt;ChildGraph,T&gt;::EdgeMap</ref>;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>_CHILD_GRAPH&gt;</highlight></codeline>
+<codeline lineno="81" refid="structnifty_1_1graph_1_1UndirectedGraphBase_1_1NodeIterRange" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structnifty_1_1graph_1_1UndirectedGraphBase_1_1NodeIterRange" kindref="compound">NodeIterRange</ref><sp/>:<sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1tools_1_1ConstIteratorRange" kindref="compound">tools::ConstIteratorRange</ref>&lt;typename<sp/>_CHILD_GRAPH::NodeIter&gt;{</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1tools_1_1ConstIteratorRange" kindref="compound">tools::ConstIteratorRange&lt;typename _CHILD_GRAPH::NodeIter&gt;::ConstIteratorRange</ref>;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>_CHILD_GRAPH&gt;</highlight></codeline>
+<codeline lineno="86" refid="structnifty_1_1graph_1_1UndirectedGraphBase_1_1EdgeIterRange" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structnifty_1_1graph_1_1UndirectedGraphBase_1_1EdgeIterRange" kindref="compound">EdgeIterRange</ref><sp/>:<sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1tools_1_1ConstIteratorRange" kindref="compound">tools::ConstIteratorRange</ref>&lt;typename<sp/>_CHILD_GRAPH::EdgeIter&gt;{</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1tools_1_1ConstIteratorRange" kindref="compound">tools::ConstIteratorRange&lt;typename _CHILD_GRAPH::EdgeIter&gt;::ConstIteratorRange</ref>;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>_CHILD_GRAPH&gt;</highlight></codeline>
+<codeline lineno="91" refid="structnifty_1_1graph_1_1UndirectedGraphBase_1_1AdjacencyIterRange" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structnifty_1_1graph_1_1UndirectedGraphBase_1_1AdjacencyIterRange" kindref="compound">AdjacencyIterRange</ref><sp/>:<sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1tools_1_1ConstIteratorRange" kindref="compound">tools::ConstIteratorRange</ref>&lt;typename<sp/>_CHILD_GRAPH::AdjacencyIter&gt;{</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1tools_1_1ConstIteratorRange" kindref="compound">tools::ConstIteratorRange&lt;typename _CHILD_GRAPH::AdjacencyIter&gt;::ConstIteratorRange</ref>;</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>For<sp/>range<sp/>based<sp/>loops<sp/>over<sp/>all<sp/>nodes</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96" refid="classnifty_1_1graph_1_1UndirectedGraphBase_1ae143a4dc03467aad4b89a627ae6fdfc7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>NodeIterRange&lt;ChildGraph<sp/>&gt;<sp/><ref refid="classnifty_1_1graph_1_1UndirectedGraphBase_1ae143a4dc03467aad4b89a627ae6fdfc7" kindref="member">nodes</ref>()</highlight><highlight class="keyword"><sp/>const</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>NodeIterRange&lt;ChildGraph&gt;(_child().nodesBegin(),_child().nodesEnd());</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>For<sp/>range<sp/>based<sp/>loops<sp/>over<sp/>all<sp/>edges</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101" refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a45e69adbc55f3841a414a886b97d9672" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>EdgeIterRange&lt;ChildGraph<sp/>&gt;<sp/><ref refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a45e69adbc55f3841a414a886b97d9672" kindref="member">edges</ref>()</highlight><highlight class="keyword"><sp/>const</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>EdgeIterRange&lt;ChildGraph&gt;(_child().edgesBegin(),_child().edgesEnd());</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>TAG&gt;</highlight></codeline>
+<codeline lineno="106" refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a40f5b095eec6297939d5ec7ffa785c13" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>detail_undirected_graph_base::GraphItemGeneralization&lt;Self,TAG&gt;::type<sp/><ref refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a40f5b095eec6297939d5ec7ffa785c13" kindref="member">items</ref>()</highlight><highlight class="keyword">const</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>detail_undirected_graph_base::GraphItemGeneralization&lt;Self,TAG&gt;::items(_child());</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>For<sp/>range<sp/>based<sp/>loops<sp/>over<sp/>adjacency<sp/>for<sp/>one<sp/>node</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111" refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a7077e010ade064cd0e5f7bbca55120b7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>AdjacencyIterRange&lt;ChildGraph<sp/>&gt;<sp/><ref refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a7077e010ade064cd0e5f7bbca55120b7" kindref="member">adjacency</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>int64_t<sp/>node)</highlight><highlight class="keyword"><sp/>const</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>AdjacencyIterRange&lt;ChildGraph&gt;(_child().adjacencyBegin(node),_child().adjacencyEnd(node));</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="114" refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a6ed7fbd6938aad8f6520eb3298bbe24e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>AdjacencyIterRange&lt;ChildGraph<sp/>&gt;<sp/><ref refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a6ed7fbd6938aad8f6520eb3298bbe24e" kindref="member">adjacencyIn</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>int64_t<sp/>node)</highlight><highlight class="keyword"><sp/>const</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_child().adjacency(node);</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="117" refid="classnifty_1_1graph_1_1UndirectedGraphBase_1af23538c8549cdce616df93f6a0d0f229" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>AdjacencyIterRange&lt;ChildGraph<sp/>&gt;<sp/><ref refid="classnifty_1_1graph_1_1UndirectedGraphBase_1af23538c8549cdce616df93f6a0d0f229" kindref="member">adjacencyOut</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>int64_t<sp/>node)</highlight><highlight class="keyword"><sp/>const</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_child().adjacency(node);</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="120" refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a5cf3ab2489af9ab2c93ee5f27ab317ef" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>ADJACENCY_ITER<sp/><ref refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a5cf3ab2489af9ab2c93ee5f27ab317ef" kindref="member">adjacencyOutBegin</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>int64_t<sp/>node)</highlight><highlight class="keyword">const</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_child().adjacencyBegin(node);</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="123" refid="classnifty_1_1graph_1_1UndirectedGraphBase_1ae4b6e4c05d4a6cdefaa74e4d320763bd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>ADJACENCY_ITER<sp/><ref refid="classnifty_1_1graph_1_1UndirectedGraphBase_1ae4b6e4c05d4a6cdefaa74e4d320763bd" kindref="member">adjacencyOutEnd</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>int64_t<sp/>node)</highlight><highlight class="keyword">const</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_child().adjacencyEnd(node);</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight></codeline>
+<codeline lineno="127" refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a7afa033e4b12fcf61b51cd64d80c3c5a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>ADJACENCY_ITER<sp/><ref refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a7afa033e4b12fcf61b51cd64d80c3c5a" kindref="member">adjacencyInBegin</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>int64_t<sp/>node)</highlight><highlight class="keyword">const</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_child().adjacencyBegin(node);</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="130" refid="classnifty_1_1graph_1_1UndirectedGraphBase_1ab07e2c9932aefe659b1b378462941ac3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>ADJACENCY_ITER<sp/><ref refid="classnifty_1_1graph_1_1UndirectedGraphBase_1ab07e2c9932aefe659b1b378462941ac3" kindref="member">adjacencyInEnd</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>int64_t<sp/>node)</highlight><highlight class="keyword">const</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_child().adjacencyEnd(node);</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight></codeline>
+<codeline lineno="134" refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a06f985778f273042431f8389e471b4a5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::pair&lt;int64_t,int64_t&gt;<sp/><ref refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a06f985778f273042431f8389e471b4a5" kindref="member">uv</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>int64_t<sp/>edge)</highlight><highlight class="keyword">const</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>u<sp/>=<sp/>_child().u(edge);</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>v<sp/>=<sp/>_child().v(edge);</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::pair&lt;int64_t,<sp/>int64_t&gt;(u,<sp/>v);</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>NODE_LABELS,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>EDGE_LABELS&gt;</highlight></codeline>
+<codeline lineno="141" refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a4b3cb925bbce09bea0ceeede5c04c4a1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a4b3cb925bbce09bea0ceeede5c04c4a1" kindref="member">nodeLabelsToEdgeLabels</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>NODE_LABELS<sp/>&amp;<sp/>nodeLabels,<sp/>EDGE_LABELS<sp/>&amp;<sp/>edgeLabels){</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_child().forEachEdge([&amp;](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>int64_t<sp/>edge){</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a06f985778f273042431f8389e471b4a5" kindref="member">uv</ref><sp/>=<sp/>_child().uv(edge);</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>edgeLabels[edge]<sp/>=<sp/>nodeLabels[<ref refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a06f985778f273042431f8389e471b4a5" kindref="member">uv</ref>.first]<sp/>!=<sp/>nodeLabels[<ref refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a06f985778f273042431f8389e471b4a5" kindref="member">uv</ref>.second]<sp/>?<sp/>1<sp/>:<sp/>0;</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>});</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>F&gt;</highlight></codeline>
+<codeline lineno="150" refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a6387a4da71c29ae1b61b9a78c00ba375" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a6387a4da71c29ae1b61b9a78c00ba375" kindref="member">forEachEdge</ref>(F<sp/>&amp;&amp;<sp/>f)</highlight><highlight class="keyword">const</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>edge<sp/>:<sp/>_child().<ref refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a45e69adbc55f3841a414a886b97d9672" kindref="member">edges</ref>()){</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>f(edge);</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>F&gt;</highlight></codeline>
+<codeline lineno="157" refid="classnifty_1_1graph_1_1UndirectedGraphBase_1aee15f36b1966ca1dfb8f5a674e8fe7cc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1UndirectedGraphBase_1aee15f36b1966ca1dfb8f5a674e8fe7cc" kindref="member">forEachNode</ref>(F<sp/>&amp;&amp;<sp/>f)</highlight><highlight class="keyword">const</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>node<sp/>:<sp/>_child().<ref refid="classnifty_1_1graph_1_1UndirectedGraphBase_1ae143a4dc03467aad4b89a627ae6fdfc7" kindref="member">nodes</ref>()){</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>f(node);</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>F,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>TAG&gt;</highlight></codeline>
+<codeline lineno="164" refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a07dfaf6d9511301e6c8fcdc05a6ec358" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a07dfaf6d9511301e6c8fcdc05a6ec358" kindref="member">forEachItem</ref>(F<sp/>&amp;&amp;<sp/>f)</highlight><highlight class="keyword">const</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>item<sp/>:<sp/>_child().<sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/><sp/>items&lt;TAG&gt;()){</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>f(item);</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/>ChildGraph<sp/>&amp;<sp/>_child(){</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal">ChildGraph<sp/>*</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(</highlight><highlight class="keyword">this</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ChildGraph<sp/>&amp;<sp/>_child()</highlight><highlight class="keyword">const</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keyword">const<sp/></highlight><highlight class="normal">ChildGraph<sp/>*</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(</highlight><highlight class="keyword">this</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="177"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"></highlight></codeline>
+<codeline lineno="179"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="180"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/></highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_graph_base.hxx"/>
+  </compounddef>
+</doxygen>

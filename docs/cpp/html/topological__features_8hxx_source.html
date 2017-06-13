@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Nifty
-   &#160;<span id="projectnumber">0.5.1</span>
+   &#160;<span id="projectnumber">0.19.0</span>
    </div>
   </td>
  </tr>
@@ -119,80 +119,99 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            <span class="keywordflow">return</span> 6;</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        }</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="classnifty_1_1cgp_1_1Cell1BasicTopologicalFeatures.html#a1a4258f15fc13907751006b6aae69342">   29</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classnifty_1_1cgp_1_1Cell1BasicTopologicalFeatures.html#a1a4258f15fc13907751006b6aae69342">operator()</a>(</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            <span class="keyword">const</span> <a class="code" href="classnifty_1_1cgp_1_1CellBoundsVector.html">CellBoundsVector&lt;2,0&gt;</a>     &amp; cell0BoundsVector,</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            <span class="keyword">const</span> <a class="code" href="classnifty_1_1cgp_1_1CellBoundsVector.html">CellBoundsVector&lt;2,1&gt;</a>     &amp; cell1BoundsVector,</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            <span class="keyword">const</span> <a class="code" href="classnifty_1_1cgp_1_1CellBoundedByVector_3_012_00_011_01_4.html">CellBoundedByVector&lt;2,1&gt;</a>  &amp; cell1BoundedByVector,</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            <span class="keyword">const</span> <a class="code" href="classnifty_1_1cgp_1_1CellBoundedByVector_3_012_00_012_01_4.html">CellBoundedByVector&lt;2,2&gt;</a>  &amp; cell2BoundedByVector,</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            nifty::marray::View&lt;T&gt; &amp; features</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        )<span class="keyword">const</span>{  </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            <span class="keyword">using namespace </span><a class="code" href="namespacenifty_1_1math.html">nifty::math</a>;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            <span class="keywordflow">for</span>(<span class="keyword">auto</span> cell1Index=0; cell1Index&lt;cell1BoundsVector.size(); ++cell1Index){</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                <span class="keyword">const</span> <span class="keyword">auto</span> &amp; cell1Bounds = cell1BoundsVector[cell1Index];</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                <span class="keyword">const</span> <span class="keyword">auto</span> cell2UIndex = cell1Bounds[0]-1;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                <span class="keyword">const</span> <span class="keyword">auto</span> cell2VIndex = cell1Bounds[1]-1;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                <span class="keyword">auto</span> fIndex = 0;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                <span class="keyword">auto</span> cell2ToCell1Features = [&amp;](<span class="keyword">const</span> <span class="keywordtype">float</span> uVal, <span class="keyword">const</span> <span class="keywordtype">float</span> vVal){</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                    features(cell1Index, fIndex++) = std::min(uVal, vVal);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                    features(cell1Index, fIndex++) = std::max(uVal, vVal);</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                    features(cell1Index, fIndex++) = uVal + vVal;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                    features(cell1Index, fIndex++) = std::abs(uVal-vVal);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                };</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                <span class="comment">// number of 0-cells bounding this 1-cell</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                <span class="comment">// aka how many junctions has this edge (0,1 or 2)</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                <span class="keyword">const</span> <span class="keyword">auto</span> boundedBySize = cell1BoundedByVector[cell1Index].size();</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                <span class="keyword">auto</span> nCells0 = 0 ;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                <span class="keywordflow">for</span>(<span class="keyword">auto</span> i=0; i&lt;boundedBySize; ++i){</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                    <span class="keyword">const</span> <span class="keyword">auto</span> cell0Index = cell1BoundedByVector[cell1Index][i];</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                    nCells0 += cell0BoundsVector[cell0Index].size();</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                }</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                features(cell1Index, fIndex++) = boundedBySize;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                features(cell1Index, fIndex++) = nCells0;</div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="classnifty_1_1cgp_1_1Cell1BasicTopologicalFeatures.html#a84002abd81f8620a17caa3b472b6d87b">   27</a></span>&#160;        std::vector&lt;std::string&gt; <a class="code" href="classnifty_1_1cgp_1_1Cell1BasicTopologicalFeatures.html#a84002abd81f8620a17caa3b472b6d87b">names</a>()<span class="keyword">const</span>{</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            std::vector&lt;std::string&gt; res;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            <span class="keyword">const</span> <span class="keyword">auto</span> baseName = std::string(<span class="stringliteral">&quot;BasicTopologicalFeatures&quot;</span>);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            <span class="keyword">auto</span> insertUVFeat = [&amp;](<span class="keyword">const</span> std::string &amp; name){</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                res.push_back(baseName+name+std::string(<span class="stringliteral">&quot;UV-Min&quot;</span>));</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                res.push_back(baseName+name+std::string(<span class="stringliteral">&quot;UV-Max&quot;</span>));</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                res.push_back(baseName+name+std::string(<span class="stringliteral">&quot;UV-Sum&quot;</span>));</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;                res.push_back(baseName+name+std::string(<span class="stringliteral">&quot;UV-AbsDiff&quot;</span>));</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            };</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            res.push_back(baseName+std::string(<span class="stringliteral">&quot;Cell1BoundedBySize&quot;</span>));</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            res.push_back(baseName+std::string(<span class="stringliteral">&quot;Cell1NeighbourEdges&quot;</span>));</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            insertUVFeat(<span class="stringliteral">&quot;Cell2Degree&quot;</span>);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            <span class="keywordflow">return</span> res;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        }</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="classnifty_1_1cgp_1_1Cell1BasicTopologicalFeatures.html#a1a4258f15fc13907751006b6aae69342">   49</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classnifty_1_1cgp_1_1Cell1BasicTopologicalFeatures.html#a1a4258f15fc13907751006b6aae69342">operator()</a>(</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            <span class="keyword">const</span> <a class="code" href="classnifty_1_1cgp_1_1CellBoundsVector.html">CellBoundsVector&lt;2,0&gt;</a>     &amp; cell0BoundsVector,</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            <span class="keyword">const</span> <a class="code" href="classnifty_1_1cgp_1_1CellBoundsVector.html">CellBoundsVector&lt;2,1&gt;</a>     &amp; cell1BoundsVector,</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            <span class="keyword">const</span> <a class="code" href="classnifty_1_1cgp_1_1CellBoundedByVector_3_012_00_011_01_4.html">CellBoundedByVector&lt;2,1&gt;</a>  &amp; cell1BoundedByVector,</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            <span class="keyword">const</span> <a class="code" href="classnifty_1_1cgp_1_1CellBoundedByVector_3_012_00_012_01_4.html">CellBoundedByVector&lt;2,2&gt;</a>  &amp; cell2BoundedByVector,</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            <a class="code" href="classandres_1_1View.html">nifty::marray::View&lt;T&gt;</a> &amp; features</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        )<span class="keyword">const</span>{  </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            <span class="keyword">using namespace </span><a class="code" href="namespacenifty_1_1math.html">nifty::math</a>;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            <span class="keywordflow">for</span>(<span class="keyword">auto</span> cell1Index=0; cell1Index&lt;cell1BoundsVector.size(); ++cell1Index){</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                <span class="keyword">const</span> <span class="keyword">auto</span> &amp; cell1Bounds = cell1BoundsVector[cell1Index];</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                <span class="keyword">const</span> <span class="keyword">auto</span> cell2UIndex = cell1Bounds[0]-1;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                <span class="keyword">const</span> <span class="keyword">auto</span> cell2VIndex = cell1Bounds[1]-1;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                <span class="keyword">auto</span> fIndex = 0;</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                <span class="comment">// number of cells 1 which are bounding cell 2</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                <span class="comment">// aka the degree of a nodes in ordinary graph</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                cell2ToCell1Features(cell2BoundedByVector[cell2UIndex].size(), </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                                     cell2BoundedByVector[cell2VIndex].size());</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                <span class="keyword">auto</span> cell2ToCell1Features = [&amp;](<span class="keyword">const</span> <span class="keywordtype">float</span> uVal, <span class="keyword">const</span> <span class="keywordtype">float</span> vVal){</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                    features(cell1Index, fIndex++) = std::min(uVal, vVal);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                    features(cell1Index, fIndex++) = std::max(uVal, vVal);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                    features(cell1Index, fIndex++) = uVal + vVal;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                    features(cell1Index, fIndex++) = std::abs(uVal-vVal);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                };</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            }</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        </div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        }</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        std::vector&lt;size_t&gt; dists_;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    };</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                <span class="comment">// number of 0-cells bounding this 1-cell</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                <span class="comment">// aka how many junctions has this edge (0,1 or 2)</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                <span class="keyword">const</span> <span class="keyword">auto</span> boundedBySize = cell1BoundedByVector[cell1Index].size();</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                <span class="keyword">auto</span> nCells1 = 0 ;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                <span class="keywordflow">for</span>(<span class="keyword">auto</span> i=0; i&lt;boundedBySize; ++i){</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                    <span class="keyword">const</span> <span class="keyword">auto</span> cell0Index = cell1BoundedByVector[cell1Index][i];</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                    nCells1 += cell0BoundsVector[cell0Index].size();</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                }</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                features(cell1Index, fIndex++) = boundedBySize;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                features(cell1Index, fIndex++) = nCells1;</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;}</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;}</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                <span class="comment">// number of cells 1 which are bounding cell 2</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;                <span class="comment">// aka the degree of a nodes in ordinary graph</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                cell2ToCell1Features(cell2BoundedByVector[cell2UIndex].size(), </div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                                     cell2BoundedByVector[cell2VIndex].size());</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            }</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        </div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        }</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        std::vector&lt;size_t&gt; dists_;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    };</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;}</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;}</div>
 <div class="ttc" id="classnifty_1_1cgp_1_1Cell1BasicTopologicalFeatures_html"><div class="ttname"><a href="classnifty_1_1cgp_1_1Cell1BasicTopologicalFeatures.html">nifty::cgp::Cell1BasicTopologicalFeatures</a></div><div class="ttdef"><b>Definition:</b> topological_features.hxx:18</div></div>
 <div class="ttc" id="classnifty_1_1cgp_1_1CellBoundsVector_html"><div class="ttname"><a href="classnifty_1_1cgp_1_1CellBoundsVector.html">nifty::cgp::CellBoundsVector</a></div><div class="ttdef"><b>Definition:</b> bounds.hxx:124</div></div>
 <div class="ttc" id="classnifty_1_1cgp_1_1CellBoundedByVector_3_012_00_012_01_4_html"><div class="ttname"><a href="classnifty_1_1cgp_1_1CellBoundedByVector_3_012_00_012_01_4.html">nifty::cgp::CellBoundedByVector&lt; 2, 2 &gt;</a></div><div class="ttdef"><b>Definition:</b> bounds.hxx:172</div></div>
 <div class="ttc" id="classnifty_1_1cgp_1_1Cell1BasicTopologicalFeatures_html_acf309275f4b84d463dee9bea89cd5108"><div class="ttname"><a href="classnifty_1_1cgp_1_1Cell1BasicTopologicalFeatures.html#acf309275f4b84d463dee9bea89cd5108">nifty::cgp::Cell1BasicTopologicalFeatures::Cell1BasicTopologicalFeatures</a></div><div class="ttdeci">Cell1BasicTopologicalFeatures()</div><div class="ttdef"><b>Definition:</b> topological_features.hxx:20</div></div>
 <div class="ttc" id="histogram_8hxx_html"><div class="ttname"><a href="histogram_8hxx.html">histogram.hxx</a></div></div>
 <div class="ttc" id="namespacenifty_1_1math_html"><div class="ttname"><a href="namespacenifty_1_1math.html">nifty::math</a></div><div class="ttdef"><b>Definition:</b> math.hxx:11</div></div>
+<div class="ttc" id="classnifty_1_1cgp_1_1Cell1BasicTopologicalFeatures_html_a84002abd81f8620a17caa3b472b6d87b"><div class="ttname"><a href="classnifty_1_1cgp_1_1Cell1BasicTopologicalFeatures.html#a84002abd81f8620a17caa3b472b6d87b">nifty::cgp::Cell1BasicTopologicalFeatures::names</a></div><div class="ttdeci">std::vector&lt; std::string &gt; names() const </div><div class="ttdef"><b>Definition:</b> topological_features.hxx:27</div></div>
 <div class="ttc" id="classnifty_1_1cgp_1_1Cell1BasicTopologicalFeatures_html_a56a29c126efbbd38b10dce2b5ba387cb"><div class="ttname"><a href="classnifty_1_1cgp_1_1Cell1BasicTopologicalFeatures.html#a56a29c126efbbd38b10dce2b5ba387cb">nifty::cgp::Cell1BasicTopologicalFeatures::numberOfFeatures</a></div><div class="ttdeci">size_t numberOfFeatures() const </div><div class="ttdef"><b>Definition:</b> topological_features.hxx:23</div></div>
 <div class="ttc" id="accumulated__features_8hxx_html"><div class="ttname"><a href="accumulated__features_8hxx.html">accumulated_features.hxx</a></div></div>
 <div class="ttc" id="math_8hxx_html"><div class="ttname"><a href="math_8hxx.html">math.hxx</a></div></div>
-<div class="ttc" id="classnifty_1_1cgp_1_1Cell1BasicTopologicalFeatures_html_a1a4258f15fc13907751006b6aae69342"><div class="ttname"><a href="classnifty_1_1cgp_1_1Cell1BasicTopologicalFeatures.html#a1a4258f15fc13907751006b6aae69342">nifty::cgp::Cell1BasicTopologicalFeatures::operator()</a></div><div class="ttdeci">void operator()(const CellBoundsVector&lt; 2, 0 &gt; &amp;cell0BoundsVector, const CellBoundsVector&lt; 2, 1 &gt; &amp;cell1BoundsVector, const CellBoundedByVector&lt; 2, 1 &gt; &amp;cell1BoundedByVector, const CellBoundedByVector&lt; 2, 2 &gt; &amp;cell2BoundedByVector, nifty::marray::View&lt; T &gt; &amp;features) const </div><div class="ttdef"><b>Definition:</b> topological_features.hxx:29</div></div>
+<div class="ttc" id="classnifty_1_1cgp_1_1Cell1BasicTopologicalFeatures_html_a1a4258f15fc13907751006b6aae69342"><div class="ttname"><a href="classnifty_1_1cgp_1_1Cell1BasicTopologicalFeatures.html#a1a4258f15fc13907751006b6aae69342">nifty::cgp::Cell1BasicTopologicalFeatures::operator()</a></div><div class="ttdeci">void operator()(const CellBoundsVector&lt; 2, 0 &gt; &amp;cell0BoundsVector, const CellBoundsVector&lt; 2, 1 &gt; &amp;cell1BoundsVector, const CellBoundedByVector&lt; 2, 1 &gt; &amp;cell1BoundedByVector, const CellBoundedByVector&lt; 2, 2 &gt; &amp;cell2BoundedByVector, nifty::marray::View&lt; T &gt; &amp;features) const </div><div class="ttdef"><b>Definition:</b> topological_features.hxx:49</div></div>
+<div class="ttc" id="classandres_1_1View_html"><div class="ttname"><a href="classandres_1_1View.html">andres::View</a></div><div class="ttdef"><b>Definition:</b> marray.hxx:113</div></div>
 <div class="ttc" id="bounds_8hxx_html"><div class="ttname"><a href="bounds_8hxx.html">bounds.hxx</a></div></div>
 <div class="ttc" id="classnifty_1_1cgp_1_1CellBoundedByVector_3_012_00_011_01_4_html"><div class="ttname"><a href="classnifty_1_1cgp_1_1CellBoundedByVector_3_012_00_011_01_4.html">nifty::cgp::CellBoundedByVector&lt; 2, 1 &gt;</a></div><div class="ttdef"><b>Definition:</b> bounds.hxx:147</div></div>
-<div class="ttc" id="namespacenifty_html"><div class="ttname"><a href="namespacenifty.html">nifty</a></div><div class="ttdef"><b>Definition:</b> arithmetic_array.hxx:10</div></div>
+<div class="ttc" id="namespacenifty_html"><div class="ttname"><a href="namespacenifty.html">nifty</a></div><div class="ttdef"><b>Definition:</b> arithmetic_array.hxx:8</div></div>
 <div class="ttc" id="marray_8hxx_html"><div class="ttname"><a href="marray_8hxx.html">marray.hxx</a></div></div>
 <div class="ttc" id="gaussian__curvature_8hxx_html"><div class="ttname"><a href="gaussian__curvature_8hxx.html">gaussian_curvature.hxx</a></div></div>
 <div class="ttc" id="geometry_8hxx_html"><div class="ttname"><a href="geometry_8hxx.html">geometry.hxx</a></div></div>

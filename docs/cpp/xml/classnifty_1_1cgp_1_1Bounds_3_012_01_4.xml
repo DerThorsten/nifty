@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="classnifty_1_1cgp_1_1Bounds_3_012_01_4" kind="class" language="C++" prot="public">
+    <compoundname>nifty::cgp::Bounds&lt; 2 &gt;</compoundname>
+    <includes refid="bounds_8hxx" local="no">bounds.hxx</includes>
+    <templateparamlist>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1cgp_1_1Bounds_3_012_01_4_1aa7c3be371d84aea05e916a30d859d7ff" prot="public" static="no">
+        <type><ref refid="namespacenifty_1_1array_1a683f151f19c851754e0c6d55ed16a0c2" kindref="member">array::StaticArray</ref>&lt; uint32_t, 2 &gt;</type>
+        <definition>typedef array::StaticArray&lt;uint32_t, 2&gt; nifty::cgp::Bounds&lt; 2 &gt;::CoordinateType</definition>
+        <argsstring></argsstring>
+        <name>CoordinateType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/cgp/bounds.hxx" line="203" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/cgp/bounds.hxx" bodystart="203" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1cgp_1_1Bounds_3_012_01_4_1aa2abaddff55015fc8a158881f4e90571" prot="public" static="no">
+        <type><ref refid="namespacenifty_1_1array_1a683f151f19c851754e0c6d55ed16a0c2" kindref="member">array::StaticArray</ref>&lt; int64_t, 2 &gt;</type>
+        <definition>typedef array::StaticArray&lt;int64_t, 2&gt; nifty::cgp::Bounds&lt; 2 &gt;::SignedCoordinateType</definition>
+        <argsstring></argsstring>
+        <name>SignedCoordinateType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/cgp/bounds.hxx" line="204" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/cgp/bounds.hxx" bodystart="204" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1cgp_1_1Bounds_3_012_01_4_1a97f375ade92ba9870b7a31da87626337" prot="public" static="no">
+        <type><ref refid="classnifty_1_1cgp_1_1TopologicalGrid" kindref="compound">TopologicalGrid</ref>&lt; 2 &gt;</type>
+        <definition>typedef TopologicalGrid&lt;2&gt; nifty::cgp::Bounds&lt; 2 &gt;::TopologicalGridType</definition>
+        <argsstring></argsstring>
+        <name>TopologicalGridType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/cgp/bounds.hxx" line="206" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/cgp/bounds.hxx" bodystart="206" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classnifty_1_1cgp_1_1Bounds_3_012_01_4_1afa08f36988671018e0a8d14dd5811137" prot="private" static="no" mutable="no">
+        <type>std::tuple&lt; <ref refid="classnifty_1_1cgp_1_1CellBoundsVector" kindref="compound">CellBoundsVector</ref>&lt; 2, 0 &gt;, <ref refid="classnifty_1_1cgp_1_1CellBoundsVector" kindref="compound">CellBoundsVector</ref>&lt; 2, 1 &gt; &gt;</type>
+        <definition>std::tuple&lt; CellBoundsVector&lt;2, 0&gt;, CellBoundsVector&lt;2, 1&gt; &gt; nifty::cgp::Bounds&lt; 2 &gt;::bounds_</definition>
+        <argsstring></argsstring>
+        <name>bounds_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/cgp/bounds.hxx" line="221" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/cgp/bounds.hxx" bodystart="221" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1cgp_1_1Bounds_3_012_01_4_1aadcad33a9b3fa58464bae7aae61f3f5d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>nifty::cgp::Bounds&lt; 2 &gt;::Bounds</definition>
+        <argsstring>(const TopologicalGridType &amp;tGrid)</argsstring>
+        <name>Bounds</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1cgp_1_1Bounds_3_012_01_4_1a97f375ade92ba9870b7a31da87626337" kindref="member">TopologicalGridType</ref> &amp;</type>
+          <declname>tGrid</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/cgp/bounds.hxx" line="208" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/cgp/bounds.hxx" bodystart="226" bodyend="282"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1cgp_1_1Bounds_3_012_01_4_1a543c85c3c2a0bab5202423907ebcffa1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>size_t</type>
+            <declname>CELL_TYPE</declname>
+            <defname>CELL_TYPE</defname>
+          </param>
+        </templateparamlist>
+        <type>const <ref refid="classnifty_1_1cgp_1_1CellBoundsVector" kindref="compound">CellBoundsVector</ref>&lt; 2, CELL_TYPE &gt; &amp;</type>
+        <definition>const CellBoundsVector&lt;2, CELL_TYPE&gt;&amp; nifty::cgp::Bounds&lt; 2 &gt;::bounds</definition>
+        <argsstring>() const </argsstring>
+        <name>bounds</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/cgp/bounds.hxx" line="212" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/cgp/bounds.hxx" bodystart="212" bodyend="214"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/cgp/bounds.hxx" line="200" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/cgp/bounds.hxx" bodystart="200" bodyend="222"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1cgp_1_1Bounds_3_012_01_4_1aadcad33a9b3fa58464bae7aae61f3f5d" prot="public" virt="non-virtual"><scope>nifty::cgp::Bounds&lt; 2 &gt;</scope><name>Bounds</name></member>
+      <member refid="classnifty_1_1cgp_1_1Bounds_3_012_01_4_1a543c85c3c2a0bab5202423907ebcffa1" prot="public" virt="non-virtual"><scope>nifty::cgp::Bounds&lt; 2 &gt;</scope><name>bounds</name></member>
+      <member refid="classnifty_1_1cgp_1_1Bounds_3_012_01_4_1afa08f36988671018e0a8d14dd5811137" prot="private" virt="non-virtual"><scope>nifty::cgp::Bounds&lt; 2 &gt;</scope><name>bounds_</name></member>
+      <member refid="classnifty_1_1cgp_1_1Bounds_3_012_01_4_1aa7c3be371d84aea05e916a30d859d7ff" prot="public" virt="non-virtual"><scope>nifty::cgp::Bounds&lt; 2 &gt;</scope><name>CoordinateType</name></member>
+      <member refid="classnifty_1_1cgp_1_1Bounds_3_012_01_4_1aa2abaddff55015fc8a158881f4e90571" prot="public" virt="non-virtual"><scope>nifty::cgp::Bounds&lt; 2 &gt;</scope><name>SignedCoordinateType</name></member>
+      <member refid="classnifty_1_1cgp_1_1Bounds_3_012_01_4_1a97f375ade92ba9870b7a31da87626337" prot="public" virt="non-virtual"><scope>nifty::cgp::Bounds&lt; 2 &gt;</scope><name>TopologicalGridType</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

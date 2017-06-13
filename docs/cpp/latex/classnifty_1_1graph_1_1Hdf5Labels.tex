@@ -22,7 +22,7 @@ uint64\+\_\+t \hyperlink{classnifty_1_1graph_1_1Hdf5Labels_ad4161df4c665904650b8
 \item 
 const \hyperlink{namespacenifty_1_1array_a683f151f19c851754e0c6d55ed16a0c2}{array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+I\+M $>$ \& \hyperlink{classnifty_1_1graph_1_1Hdf5Labels_a11341fbb53d6b96ac4b88ebf24a34629}{shape} () const 
 \item 
-{\footnotesize template$<$class R\+O\+I\+\_\+\+B\+E\+G\+I\+N\+\_\+\+C\+O\+O\+R\+D , class R\+O\+I\+\_\+\+E\+N\+D\+\_\+\+C\+O\+O\+R\+D $>$ }\\void \hyperlink{classnifty_1_1graph_1_1Hdf5Labels_ae540ccb62e91c55c9e9a163418795956}{read\+Subarray} (const R\+O\+I\+\_\+\+B\+E\+G\+I\+N\+\_\+\+C\+O\+O\+R\+D \&roi\+Begin\+Coord, const R\+O\+I\+\_\+\+E\+N\+D\+\_\+\+C\+O\+O\+R\+D \&roi\+End\+Coord, marray\+::\+View$<$ L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E $>$ \&out\+Array) const 
+{\footnotesize template$<$class R\+O\+I\+\_\+\+B\+E\+G\+I\+N\+\_\+\+C\+O\+O\+R\+D , class R\+O\+I\+\_\+\+E\+N\+D\+\_\+\+C\+O\+O\+R\+D $>$ }\\void \hyperlink{classnifty_1_1graph_1_1Hdf5Labels_ae540ccb62e91c55c9e9a163418795956}{read\+Subarray} (const R\+O\+I\+\_\+\+B\+E\+G\+I\+N\+\_\+\+C\+O\+O\+R\+D \&roi\+Begin\+Coord, const R\+O\+I\+\_\+\+E\+N\+D\+\_\+\+C\+O\+O\+R\+D \&roi\+End\+Coord, \hyperlink{classandres_1_1View}{marray\+::\+View}$<$ L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E $>$ \&out\+Array) const 
 \item 
 const hdf5\+::\+Hdf5\+Array$<$ L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E $>$ \& \hyperlink{classnifty_1_1graph_1_1Hdf5Labels_a1423d8d5bcadf2251c54260d64fafcd6}{hdf5\+Array} () const 
 \end{DoxyCompactItemize}
@@ -31,19 +31,19 @@ const hdf5\+::\+Hdf5\+Array$<$ L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E $>$ \& \hyperlink
 \subsection{Member Typedef Documentation}
 \hypertarget{classnifty_1_1graph_1_1Hdf5Labels_abfffba953f16947d3907634b3aabdcad}{}\index{nifty\+::graph\+::\+Hdf5\+Labels@{nifty\+::graph\+::\+Hdf5\+Labels}!Block\+Storage\+Type@{Block\+Storage\+Type}}
 \index{Block\+Storage\+Type@{Block\+Storage\+Type}!nifty\+::graph\+::\+Hdf5\+Labels@{nifty\+::graph\+::\+Hdf5\+Labels}}
-\subsubsection[{Block\+Storage\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$size\+\_\+t D\+I\+M, class L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E$>$ typedef {\bf tools\+::\+Block\+Storage}$<$ L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E$>$ {\bf nifty\+::graph\+::\+Hdf5\+Labels}$<$ D\+I\+M, L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E $>$\+::{\bf Block\+Storage\+Type}}\label{classnifty_1_1graph_1_1Hdf5Labels_abfffba953f16947d3907634b3aabdcad}
+\subsubsection[{Block\+Storage\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$std\+::size\+\_\+t D\+I\+M, class L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E$>$ typedef {\bf tools\+::\+Block\+Storage}$<$ L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E$>$ {\bf nifty\+::graph\+::\+Hdf5\+Labels}$<$ D\+I\+M, L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E $>$\+::{\bf Block\+Storage\+Type}}\label{classnifty_1_1graph_1_1Hdf5Labels_abfffba953f16947d3907634b3aabdcad}
 \hypertarget{classnifty_1_1graph_1_1Hdf5Labels_a2cfeca010fa78ee8fdfa1767ae0fbe4a}{}\index{nifty\+::graph\+::\+Hdf5\+Labels@{nifty\+::graph\+::\+Hdf5\+Labels}!Hdf5\+Array\+Type@{Hdf5\+Array\+Type}}
 \index{Hdf5\+Array\+Type@{Hdf5\+Array\+Type}!nifty\+::graph\+::\+Hdf5\+Labels@{nifty\+::graph\+::\+Hdf5\+Labels}}
-\subsubsection[{Hdf5\+Array\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$size\+\_\+t D\+I\+M, class L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E$>$ typedef const hdf5\+::\+Hdf5\+Array$<$L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E$>$ {\bf nifty\+::graph\+::\+Hdf5\+Labels}$<$ D\+I\+M, L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E $>$\+::{\bf Hdf5\+Array\+Type}}\label{classnifty_1_1graph_1_1Hdf5Labels_a2cfeca010fa78ee8fdfa1767ae0fbe4a}
+\subsubsection[{Hdf5\+Array\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$std\+::size\+\_\+t D\+I\+M, class L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E$>$ typedef const hdf5\+::\+Hdf5\+Array$<$L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E$>$ {\bf nifty\+::graph\+::\+Hdf5\+Labels}$<$ D\+I\+M, L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E $>$\+::{\bf Hdf5\+Array\+Type}}\label{classnifty_1_1graph_1_1Hdf5Labels_a2cfeca010fa78ee8fdfa1767ae0fbe4a}
 \hypertarget{classnifty_1_1graph_1_1Hdf5Labels_a478cbee39d8a05949fe2fe4f9dd4f382}{}\index{nifty\+::graph\+::\+Hdf5\+Labels@{nifty\+::graph\+::\+Hdf5\+Labels}!Label\+Type@{Label\+Type}}
 \index{Label\+Type@{Label\+Type}!nifty\+::graph\+::\+Hdf5\+Labels@{nifty\+::graph\+::\+Hdf5\+Labels}}
-\subsubsection[{Label\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$size\+\_\+t D\+I\+M, class L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E$>$ typedef L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E {\bf nifty\+::graph\+::\+Hdf5\+Labels}$<$ D\+I\+M, L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E $>$\+::{\bf Label\+Type}}\label{classnifty_1_1graph_1_1Hdf5Labels_a478cbee39d8a05949fe2fe4f9dd4f382}
+\subsubsection[{Label\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$std\+::size\+\_\+t D\+I\+M, class L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E$>$ typedef L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E {\bf nifty\+::graph\+::\+Hdf5\+Labels}$<$ D\+I\+M, L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E $>$\+::{\bf Label\+Type}}\label{classnifty_1_1graph_1_1Hdf5Labels_a478cbee39d8a05949fe2fe4f9dd4f382}
 
 
 \subsection{Constructor \& Destructor Documentation}
 \hypertarget{classnifty_1_1graph_1_1Hdf5Labels_aeaa1ed4dc0066a4c0ee0d176a55c3dd3}{}\index{nifty\+::graph\+::\+Hdf5\+Labels@{nifty\+::graph\+::\+Hdf5\+Labels}!Hdf5\+Labels@{Hdf5\+Labels}}
 \index{Hdf5\+Labels@{Hdf5\+Labels}!nifty\+::graph\+::\+Hdf5\+Labels@{nifty\+::graph\+::\+Hdf5\+Labels}}
-\subsubsection[{Hdf5\+Labels(const Hdf5\+Array\+Type \&labels, const uint64\+\_\+t number\+Of\+Labels)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$size\+\_\+t D\+I\+M, class L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E$>$ {\bf nifty\+::graph\+::\+Hdf5\+Labels}$<$ D\+I\+M, L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E $>$\+::{\bf Hdf5\+Labels} (
+\subsubsection[{Hdf5\+Labels(const Hdf5\+Array\+Type \&labels, const uint64\+\_\+t number\+Of\+Labels)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$std\+::size\+\_\+t D\+I\+M, class L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E$>$ {\bf nifty\+::graph\+::\+Hdf5\+Labels}$<$ D\+I\+M, L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E $>$\+::{\bf Hdf5\+Labels} (
 \begin{DoxyParamCaption}
 \item[{const {\bf Hdf5\+Array\+Type} \&}]{labels, }
 \item[{const uint64\+\_\+t}]{number\+Of\+Labels}
@@ -54,30 +54,30 @@ const hdf5\+::\+Hdf5\+Array$<$ L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E $>$ \& \hyperlink
 \subsection{Member Function Documentation}
 \hypertarget{classnifty_1_1graph_1_1Hdf5Labels_a1423d8d5bcadf2251c54260d64fafcd6}{}\index{nifty\+::graph\+::\+Hdf5\+Labels@{nifty\+::graph\+::\+Hdf5\+Labels}!hdf5\+Array@{hdf5\+Array}}
 \index{hdf5\+Array@{hdf5\+Array}!nifty\+::graph\+::\+Hdf5\+Labels@{nifty\+::graph\+::\+Hdf5\+Labels}}
-\subsubsection[{hdf5\+Array() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$size\+\_\+t D\+I\+M, class L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E$>$ const hdf5\+::\+Hdf5\+Array$<$L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E$>$\& {\bf nifty\+::graph\+::\+Hdf5\+Labels}$<$ D\+I\+M, L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E $>$\+::hdf5\+Array (
+\subsubsection[{hdf5\+Array() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$std\+::size\+\_\+t D\+I\+M, class L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E$>$ const hdf5\+::\+Hdf5\+Array$<$L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E$>$\& {\bf nifty\+::graph\+::\+Hdf5\+Labels}$<$ D\+I\+M, L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E $>$\+::hdf5\+Array (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 ) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1Hdf5Labels_a1423d8d5bcadf2251c54260d64fafcd6}
 \hypertarget{classnifty_1_1graph_1_1Hdf5Labels_ad4161df4c665904650b8db47c11bf0b9}{}\index{nifty\+::graph\+::\+Hdf5\+Labels@{nifty\+::graph\+::\+Hdf5\+Labels}!number\+Of\+Labels@{number\+Of\+Labels}}
 \index{number\+Of\+Labels@{number\+Of\+Labels}!nifty\+::graph\+::\+Hdf5\+Labels@{nifty\+::graph\+::\+Hdf5\+Labels}}
-\subsubsection[{number\+Of\+Labels() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$size\+\_\+t D\+I\+M, class L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E$>$ uint64\+\_\+t {\bf nifty\+::graph\+::\+Hdf5\+Labels}$<$ D\+I\+M, L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E $>$\+::number\+Of\+Labels (
+\subsubsection[{number\+Of\+Labels() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$std\+::size\+\_\+t D\+I\+M, class L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E$>$ uint64\+\_\+t {\bf nifty\+::graph\+::\+Hdf5\+Labels}$<$ D\+I\+M, L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E $>$\+::number\+Of\+Labels (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 ) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1Hdf5Labels_ad4161df4c665904650b8db47c11bf0b9}
 \hypertarget{classnifty_1_1graph_1_1Hdf5Labels_ae540ccb62e91c55c9e9a163418795956}{}\index{nifty\+::graph\+::\+Hdf5\+Labels@{nifty\+::graph\+::\+Hdf5\+Labels}!read\+Subarray@{read\+Subarray}}
 \index{read\+Subarray@{read\+Subarray}!nifty\+::graph\+::\+Hdf5\+Labels@{nifty\+::graph\+::\+Hdf5\+Labels}}
-\subsubsection[{read\+Subarray(const R\+O\+I\+\_\+\+B\+E\+G\+I\+N\+\_\+\+C\+O\+O\+R\+D \&roi\+Begin\+Coord, const R\+O\+I\+\_\+\+E\+N\+D\+\_\+\+C\+O\+O\+R\+D \&roi\+End\+Coord, marray\+::\+View$<$ L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E $>$ \&out\+Array) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$size\+\_\+t D\+I\+M, class L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E$>$ template$<$class R\+O\+I\+\_\+\+B\+E\+G\+I\+N\+\_\+\+C\+O\+O\+R\+D , class R\+O\+I\+\_\+\+E\+N\+D\+\_\+\+C\+O\+O\+R\+D $>$ void {\bf nifty\+::graph\+::\+Hdf5\+Labels}$<$ D\+I\+M, L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E $>$\+::read\+Subarray (
+\subsubsection[{read\+Subarray(const R\+O\+I\+\_\+\+B\+E\+G\+I\+N\+\_\+\+C\+O\+O\+R\+D \&roi\+Begin\+Coord, const R\+O\+I\+\_\+\+E\+N\+D\+\_\+\+C\+O\+O\+R\+D \&roi\+End\+Coord, marray\+::\+View$<$ L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E $>$ \&out\+Array) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$std\+::size\+\_\+t D\+I\+M, class L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E$>$ template$<$class R\+O\+I\+\_\+\+B\+E\+G\+I\+N\+\_\+\+C\+O\+O\+R\+D , class R\+O\+I\+\_\+\+E\+N\+D\+\_\+\+C\+O\+O\+R\+D $>$ void {\bf nifty\+::graph\+::\+Hdf5\+Labels}$<$ D\+I\+M, L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E $>$\+::read\+Subarray (
 \begin{DoxyParamCaption}
 \item[{const R\+O\+I\+\_\+\+B\+E\+G\+I\+N\+\_\+\+C\+O\+O\+R\+D \&}]{roi\+Begin\+Coord, }
 \item[{const R\+O\+I\+\_\+\+E\+N\+D\+\_\+\+C\+O\+O\+R\+D \&}]{roi\+End\+Coord, }
-\item[{marray\+::\+View$<$ L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E $>$ \&}]{out\+Array}
+\item[{{\bf marray\+::\+View}$<$ L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E $>$ \&}]{out\+Array}
 \end{DoxyParamCaption}
 ) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1Hdf5Labels_ae540ccb62e91c55c9e9a163418795956}
 \hypertarget{classnifty_1_1graph_1_1Hdf5Labels_a11341fbb53d6b96ac4b88ebf24a34629}{}\index{nifty\+::graph\+::\+Hdf5\+Labels@{nifty\+::graph\+::\+Hdf5\+Labels}!shape@{shape}}
 \index{shape@{shape}!nifty\+::graph\+::\+Hdf5\+Labels@{nifty\+::graph\+::\+Hdf5\+Labels}}
-\subsubsection[{shape() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$size\+\_\+t D\+I\+M, class L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E$>$ const {\bf array\+::\+Static\+Array}$<$int64\+\_\+t, D\+I\+M$>$\& {\bf nifty\+::graph\+::\+Hdf5\+Labels}$<$ D\+I\+M, L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E $>$\+::shape (
+\subsubsection[{shape() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$std\+::size\+\_\+t D\+I\+M, class L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E$>$ const {\bf array\+::\+Static\+Array}$<$int64\+\_\+t, D\+I\+M$>$\& {\bf nifty\+::graph\+::\+Hdf5\+Labels}$<$ D\+I\+M, L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E $>$\+::shape (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}

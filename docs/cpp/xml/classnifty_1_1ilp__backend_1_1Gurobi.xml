@@ -1,0 +1,309 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="classnifty_1_1ilp__backend_1_1Gurobi" kind="class" language="C++" prot="public">
+    <compoundname>nifty::ilp_backend::Gurobi</compoundname>
+    <includes refid="gurobi_8hxx" local="no">gurobi.hxx</includes>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1ilp__backend_1_1Gurobi_1a452f0f9dbcdf6bf9741607e9561fa3c5" prot="public" static="no">
+        <type><ref refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings" kindref="compound">IlpBackendSettings</ref></type>
+        <definition>typedef IlpBackendSettings nifty::ilp_backend::Gurobi::SettingsType</definition>
+        <argsstring></argsstring>
+        <name>SettingsType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ilp_backend/gurobi.hxx" line="17" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ilp_backend/gurobi.hxx" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classnifty_1_1ilp__backend_1_1Gurobi_1a076241c774e5ef68a870ebfa07fb5558" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1ilp__backend_1_1Gurobi_1a452f0f9dbcdf6bf9741607e9561fa3c5" kindref="member">SettingsType</ref></type>
+        <definition>SettingsType nifty::ilp_backend::Gurobi::settings_</definition>
+        <argsstring></argsstring>
+        <name>settings_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ilp_backend/gurobi.hxx" line="47" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ilp_backend/gurobi.hxx" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1ilp__backend_1_1Gurobi_1a20d01212bbc0140059ca39001f867909" prot="private" static="no" mutable="no">
+        <type>GRBEnv</type>
+        <definition>GRBEnv nifty::ilp_backend::Gurobi::gurobiEnvironment_</definition>
+        <argsstring></argsstring>
+        <name>gurobiEnvironment_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ilp_backend/gurobi.hxx" line="48" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ilp_backend/gurobi.hxx" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1ilp__backend_1_1Gurobi_1adbd7a32e4f71c0d9c1371b10666c1a6c" prot="private" static="no" mutable="no">
+        <type>GRBModel *</type>
+        <definition>GRBModel* nifty::ilp_backend::Gurobi::gurobiModel_</definition>
+        <argsstring></argsstring>
+        <name>gurobiModel_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ilp_backend/gurobi.hxx" line="49" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ilp_backend/gurobi.hxx" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1ilp__backend_1_1Gurobi_1a8d75b450613f02b2fa053d9916405f7f" prot="private" static="no" mutable="no">
+        <type>GRBVar *</type>
+        <definition>GRBVar* nifty::ilp_backend::Gurobi::gurobiVariables_</definition>
+        <argsstring></argsstring>
+        <name>gurobiVariables_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ilp_backend/gurobi.hxx" line="50" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ilp_backend/gurobi.hxx" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1ilp__backend_1_1Gurobi_1a92cc939bd4a9ea415254af017622fc46" prot="private" static="no" mutable="no">
+        <type>GRBLinExpr</type>
+        <definition>GRBLinExpr nifty::ilp_backend::Gurobi::gurobiObjective_</definition>
+        <argsstring></argsstring>
+        <name>gurobiObjective_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ilp_backend/gurobi.hxx" line="51" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ilp_backend/gurobi.hxx" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1ilp__backend_1_1Gurobi_1af55a246061c65faa06a530ea1254a866" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t nifty::ilp_backend::Gurobi::nVariables_</definition>
+        <argsstring></argsstring>
+        <name>nVariables_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ilp_backend/gurobi.hxx" line="52" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ilp_backend/gurobi.hxx" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1ilp__backend_1_1Gurobi_1ad1fe3b5d2314c16f2a334d13e7abda8f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>nifty::ilp_backend::Gurobi::Gurobi</definition>
+        <argsstring>(const SettingsType &amp;settings=SettingsType())</argsstring>
+        <name>Gurobi</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1ilp__backend_1_1Gurobi_1a452f0f9dbcdf6bf9741607e9561fa3c5" kindref="member">SettingsType</ref> &amp;</type>
+          <declname>settings</declname>
+          <defval><ref refid="classnifty_1_1ilp__backend_1_1Gurobi_1a452f0f9dbcdf6bf9741607e9561fa3c5" kindref="member">SettingsType</ref>()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ilp_backend/gurobi.hxx" line="19" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ilp_backend/gurobi.hxx" bodystart="55" bodyend="64"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1ilp__backend_1_1Gurobi_1ab8e373ce16adba177e9341a2d0e55157" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>nifty::ilp_backend::Gurobi::~Gurobi</definition>
+        <argsstring>()</argsstring>
+        <name>~Gurobi</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ilp_backend/gurobi.hxx" line="20" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ilp_backend/gurobi.hxx" bodystart="67" bodyend="73"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1ilp__backend_1_1Gurobi_1ac4ee3e8981df207094a6580f07f2685d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::ilp_backend::Gurobi::initModel</definition>
+        <argsstring>(const size_t, const double *)</argsstring>
+        <name>initModel</name>
+        <param>
+          <type>const size_t</type>
+          <defname>numberOfVariables</defname>
+        </param>
+        <param>
+          <type>const double *</type>
+          <defname>coefficients</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ilp_backend/gurobi.hxx" line="22" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ilp_backend/gurobi.hxx" bodystart="78" bodyend="157"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1ilp__backend_1_1Gurobi_1a0875ce6a8a39917a496ec650c68da6a0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Iterator</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::ilp_backend::Gurobi::setStart</definition>
+        <argsstring>(Iterator)</argsstring>
+        <name>setStart</name>
+        <param>
+          <type>Iterator</type>
+          <defname>valueIterator</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ilp_backend/gurobi.hxx" line="25" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ilp_backend/gurobi.hxx" bodystart="204" bodyend="210"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1ilp__backend_1_1Gurobi_1ad4e3fa2d4f5fe726a46d40857c36a918" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class VariableIndexIterator</type>
+          </param>
+          <param>
+            <type>class CoefficientIterator</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::ilp_backend::Gurobi::addConstraint</definition>
+        <argsstring>(VariableIndexIterator, VariableIndexIterator, CoefficientIterator, const double, const double)</argsstring>
+        <name>addConstraint</name>
+        <param>
+          <type>VariableIndexIterator</type>
+          <defname>viBegin</defname>
+        </param>
+        <param>
+          <type>VariableIndexIterator</type>
+          <defname>viEnd</defname>
+        </param>
+        <param>
+          <type>CoefficientIterator</type>
+          <defname>coefficient</defname>
+        </param>
+        <param>
+          <type>const double</type>
+          <defname>lowerBound</defname>
+        </param>
+        <param>
+          <type>const double</type>
+          <defname>upperBound</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ilp_backend/gurobi.hxx" line="28" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ilp_backend/gurobi.hxx" bodystart="175" bodyend="200"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1ilp__backend_1_1Gurobi_1a2521e51c0cdfb1e029d332ab7f203021" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::ilp_backend::Gurobi::optimize</definition>
+        <argsstring>()</argsstring>
+        <name>optimize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ilp_backend/gurobi.hxx" line="30" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ilp_backend/gurobi.hxx" bodystart="160" bodyend="162"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1ilp__backend_1_1Gurobi_1afbdf38456bb7ce8110168dd3aa7f691f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double nifty::ilp_backend::Gurobi::label</definition>
+        <argsstring>(const size_t) const </argsstring>
+        <name>label</name>
+        <param>
+          <type>const size_t</type>
+          <defname>variableIndex</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ilp_backend/gurobi.hxx" line="32" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ilp_backend/gurobi.hxx" bodystart="165" bodyend="169"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1ilp__backend_1_1Gurobi_1a138de39ce46740b4728b9d2e7f8bd27b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class OBJECTIVE_ITERATOR</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::ilp_backend::Gurobi::changeObjective</definition>
+        <argsstring>(OBJECTIVE_ITERATOR objectiveIter)</argsstring>
+        <name>changeObjective</name>
+        <param>
+          <type>OBJECTIVE_ITERATOR</type>
+          <declname>objectiveIter</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ilp_backend/gurobi.hxx" line="39" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ilp_backend/gurobi.hxx" bodystart="39" bodyend="44"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classnifty_1_1ilp__backend_1_1Gurobi_1a3c80f9769e9f33482397305e234b0aa7" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>static std::string nifty::ilp_backend::Gurobi::name</definition>
+        <argsstring>()</argsstring>
+        <name>name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ilp_backend/gurobi.hxx" line="34" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ilp_backend/gurobi.hxx" bodystart="34" bodyend="36"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/ilp_backend/gurobi.hxx" line="14" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ilp_backend/gurobi.hxx" bodystart="14" bodyend="53"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1ilp__backend_1_1Gurobi_1ad4e3fa2d4f5fe726a46d40857c36a918" prot="public" virt="non-virtual"><scope>nifty::ilp_backend::Gurobi</scope><name>addConstraint</name></member>
+      <member refid="classnifty_1_1ilp__backend_1_1Gurobi_1a138de39ce46740b4728b9d2e7f8bd27b" prot="public" virt="non-virtual"><scope>nifty::ilp_backend::Gurobi</scope><name>changeObjective</name></member>
+      <member refid="classnifty_1_1ilp__backend_1_1Gurobi_1ad1fe3b5d2314c16f2a334d13e7abda8f" prot="public" virt="non-virtual"><scope>nifty::ilp_backend::Gurobi</scope><name>Gurobi</name></member>
+      <member refid="classnifty_1_1ilp__backend_1_1Gurobi_1a20d01212bbc0140059ca39001f867909" prot="private" virt="non-virtual"><scope>nifty::ilp_backend::Gurobi</scope><name>gurobiEnvironment_</name></member>
+      <member refid="classnifty_1_1ilp__backend_1_1Gurobi_1adbd7a32e4f71c0d9c1371b10666c1a6c" prot="private" virt="non-virtual"><scope>nifty::ilp_backend::Gurobi</scope><name>gurobiModel_</name></member>
+      <member refid="classnifty_1_1ilp__backend_1_1Gurobi_1a92cc939bd4a9ea415254af017622fc46" prot="private" virt="non-virtual"><scope>nifty::ilp_backend::Gurobi</scope><name>gurobiObjective_</name></member>
+      <member refid="classnifty_1_1ilp__backend_1_1Gurobi_1a8d75b450613f02b2fa053d9916405f7f" prot="private" virt="non-virtual"><scope>nifty::ilp_backend::Gurobi</scope><name>gurobiVariables_</name></member>
+      <member refid="classnifty_1_1ilp__backend_1_1Gurobi_1ac4ee3e8981df207094a6580f07f2685d" prot="public" virt="non-virtual"><scope>nifty::ilp_backend::Gurobi</scope><name>initModel</name></member>
+      <member refid="classnifty_1_1ilp__backend_1_1Gurobi_1afbdf38456bb7ce8110168dd3aa7f691f" prot="public" virt="non-virtual"><scope>nifty::ilp_backend::Gurobi</scope><name>label</name></member>
+      <member refid="classnifty_1_1ilp__backend_1_1Gurobi_1a3c80f9769e9f33482397305e234b0aa7" prot="public" virt="non-virtual"><scope>nifty::ilp_backend::Gurobi</scope><name>name</name></member>
+      <member refid="classnifty_1_1ilp__backend_1_1Gurobi_1af55a246061c65faa06a530ea1254a866" prot="private" virt="non-virtual"><scope>nifty::ilp_backend::Gurobi</scope><name>nVariables_</name></member>
+      <member refid="classnifty_1_1ilp__backend_1_1Gurobi_1a2521e51c0cdfb1e029d332ab7f203021" prot="public" virt="non-virtual"><scope>nifty::ilp_backend::Gurobi</scope><name>optimize</name></member>
+      <member refid="classnifty_1_1ilp__backend_1_1Gurobi_1a0875ce6a8a39917a496ec650c68da6a0" prot="public" virt="non-virtual"><scope>nifty::ilp_backend::Gurobi</scope><name>setStart</name></member>
+      <member refid="classnifty_1_1ilp__backend_1_1Gurobi_1a076241c774e5ef68a870ebfa07fb5558" prot="private" virt="non-virtual"><scope>nifty::ilp_backend::Gurobi</scope><name>settings_</name></member>
+      <member refid="classnifty_1_1ilp__backend_1_1Gurobi_1a452f0f9dbcdf6bf9741607e9561fa3c5" prot="public" virt="non-virtual"><scope>nifty::ilp_backend::Gurobi</scope><name>SettingsType</name></member>
+      <member refid="classnifty_1_1ilp__backend_1_1Gurobi_1ab8e373ce16adba177e9341a2d0e55157" prot="public" virt="non-virtual"><scope>nifty::ilp_backend::Gurobi</scope><name>~Gurobi</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

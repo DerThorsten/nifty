@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="learnable__lifted__multicut__objective_8hxx" kind="file" language="C++">
+    <compoundname>learnable_lifted_multicut_objective.hxx</compoundname>
+    <includes local="yes">nifty/graph/optimization/lifted_multicut/learnable_lifted_multicut_objective.hxx</includes>
+    <includes refid="graph__name_8hxx" local="yes">nifty/python/graph/graph_name.hxx</includes>
+    <incdepgraph>
+      <node id="12034">
+        <label>nifty/python/graph/graph_name.hxx</label>
+        <link refid="graph__name_8hxx"/>
+      </node>
+      <node id="12033">
+        <label>nifty/graph/optimization/lifted_multicut/learnable_lifted_multicut_objective.hxx</label>
+      </node>
+      <node id="12032">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/optimization/lifted_multicut/learnable_lifted_multicut_objective.hxx</label>
+        <link refid="learnable_lifted_multicut_objective.hxx"/>
+        <childnode refid="12033" relation="include">
+        </childnode>
+        <childnode refid="12034" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <innerclass refid="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutObjectiveName" prot="public">nifty::graph::optimization::lifted_multicut::LiftedMulticutObjectiveName</innerclass>
+    <innerclass refid="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutObjectiveName_3_01Leara8d2df610bda1b7105525110a645f4ce" prot="public">nifty::graph::optimization::lifted_multicut::LiftedMulticutObjectiveName&lt; LearnableLiftedMulticutObjective&lt; GRAPH, T &gt; &gt;</innerclass>
+    <innernamespace refid="namespacenifty">nifty</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph">nifty::graph</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph_1_1optimization">nifty::graph::optimization</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph_1_1optimization_1_1lifted__multicut">nifty::graph::optimization::lifted_multicut</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;nifty/graph/optimization/lifted_multicut/learnable_lifted_multicut_objective.hxx&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="graph__name_8hxx" kindref="compound">nifty/python/graph/graph_name.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacenifty" kindref="compound">nifty</ref>{</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">graph{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">optimization{</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">lifted_multicut{</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
+<codeline lineno="13" refid="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutObjectiveName" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutObjectiveName" kindref="compound">LiftedMulticutObjectiveName</ref>;</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>GRAPH,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
+<codeline lineno="20" refid="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutObjectiveName_3_01Leara8d2df610bda1b7105525110a645f4ce" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutObjectiveName" kindref="compound">LiftedMulticutObjectiveName</ref>&lt;LearnableLiftedMulticutObjective&lt;GRAPH,<sp/>T&gt;<sp/>&gt;{</highlight></codeline>
+<codeline lineno="21" refid="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutObjectiveName_3_01Leara8d2df610bda1b7105525110a645f4ce_1a9afff3978fc117c31ccca28f206e79b3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::string<sp/><ref refid="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutObjectiveName_3_01Leara8d2df610bda1b7105525110a645f4ce_1a9afff3978fc117c31ccca28f206e79b3" kindref="member">name</ref>(){</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::string(</highlight><highlight class="stringliteral">&quot;LearnableLiftedMulticutObjective&quot;</highlight><highlight class="normal">)<sp/>+<sp/><ref refid="structnifty_1_1graph_1_1GraphName" kindref="compound">GraphName&lt;GRAPH&gt;::name</ref>();</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="27"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>optimization</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="29"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/tbeier/src/nifty/include/nifty/python/graph/optimization/lifted_multicut/learnable_lifted_multicut_objective.hxx"/>
+  </compounddef>
+</doxygen>

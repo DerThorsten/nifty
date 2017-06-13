@@ -1,0 +1,511 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="topological__features_8hxx" kind="file" language="C++">
+    <compoundname>topological_features.hxx</compoundname>
+    <includes local="no">vector</includes>
+    <includes refid="math_8hxx" local="yes">nifty/math/math.hxx</includes>
+    <includes refid="histogram_8hxx" local="yes">nifty/histogram/histogram.hxx</includes>
+    <includes refid="geometry_8hxx" local="yes">nifty/cgp/geometry.hxx</includes>
+    <includes refid="bounds_8hxx" local="yes">nifty/cgp/bounds.hxx</includes>
+    <includes refid="marray_8hxx" local="yes">nifty/marray/marray.hxx</includes>
+    <includes refid="gaussian__curvature_8hxx" local="yes">nifty/filters/gaussian_curvature.hxx</includes>
+    <includes refid="accumulated__features_8hxx" local="yes">nifty/features/accumulated_features.hxx</includes>
+    <incdepgraph>
+      <node id="6691">
+        <label>atomic</label>
+      </node>
+      <node id="6683">
+        <label>functional</label>
+      </node>
+      <node id="6694">
+        <label>queue</label>
+      </node>
+      <node id="6660">
+        <label>limits</label>
+      </node>
+      <node id="6709">
+        <label>boost/accumulators/statistics/tail_quantile.hpp</label>
+      </node>
+      <node id="6678">
+        <label>iterator</label>
+      </node>
+      <node id="6665">
+        <label>cstdint</label>
+      </node>
+      <node id="6669">
+        <label>nifty/histogram/histogram.hxx</label>
+        <link refid="histogram_8hxx"/>
+        <childnode refid="6656" relation="include">
+        </childnode>
+        <childnode refid="6658" relation="include">
+        </childnode>
+      </node>
+      <node id="6687">
+        <label>nifty/tools/for_each_coordinate.hxx</label>
+        <link refid="for__each__coordinate_8hxx"/>
+        <childnode refid="6667" relation="include">
+        </childnode>
+        <childnode refid="6688" relation="include">
+        </childnode>
+        <childnode refid="6658" relation="include">
+        </childnode>
+        <childnode refid="6689" relation="include">
+        </childnode>
+        <childnode refid="6663" relation="include">
+        </childnode>
+      </node>
+      <node id="6668">
+        <label>cmath</label>
+      </node>
+      <node id="6674">
+        <label>cassert</label>
+      </node>
+      <node id="6696">
+        <label>boost/iterator/transform_iterator.hpp</label>
+      </node>
+      <node id="6666">
+        <label>stdexcept</label>
+      </node>
+      <node id="6682">
+        <label>numeric</label>
+      </node>
+      <node id="6676">
+        <label>string</label>
+      </node>
+      <node id="6697">
+        <label>boost/iterator/counting_iterator.hpp</label>
+      </node>
+      <node id="6704">
+        <label>nifty/features/accumulated_features.hxx</label>
+        <link refid="accumulated__features_8hxx"/>
+        <childnode refid="6705" relation="include">
+        </childnode>
+        <childnode refid="6706" relation="include">
+        </childnode>
+        <childnode refid="6707" relation="include">
+        </childnode>
+        <childnode refid="6708" relation="include">
+        </childnode>
+        <childnode refid="6709" relation="include">
+        </childnode>
+        <childnode refid="6710" relation="include">
+        </childnode>
+      </node>
+      <node id="6686">
+        <label>map</label>
+      </node>
+      <node id="6708">
+        <label>boost/accumulators/statistics/moment.hpp</label>
+      </node>
+      <node id="6655">
+        <label>/home/tbeier/src/nifty/include/nifty/cgp/features/topological_features.hxx</label>
+        <link refid="topological_features.hxx"/>
+        <childnode refid="6656" relation="include">
+        </childnode>
+        <childnode refid="6657" relation="include">
+        </childnode>
+        <childnode refid="6669" relation="include">
+        </childnode>
+        <childnode refid="6670" relation="include">
+        </childnode>
+        <childnode refid="6702" relation="include">
+        </childnode>
+        <childnode refid="6672" relation="include">
+        </childnode>
+        <childnode refid="6703" relation="include">
+        </childnode>
+        <childnode refid="6704" relation="include">
+        </childnode>
+      </node>
+      <node id="6661">
+        <label>vigra/numerictraits.hxx</label>
+      </node>
+      <node id="6701">
+        <label>nifty/tools/timer.hxx</label>
+        <link refid="timer_8hxx"/>
+        <childnode refid="6667" relation="include">
+        </childnode>
+        <childnode refid="6688" relation="include">
+        </childnode>
+        <childnode refid="6676" relation="include">
+        </childnode>
+      </node>
+      <node id="6662">
+        <label>nifty/array/static_array.hxx</label>
+        <link refid="static__array_8hxx"/>
+        <childnode refid="6663" relation="include">
+        </childnode>
+      </node>
+      <node id="6703">
+        <label>nifty/filters/gaussian_curvature.hxx</label>
+        <link refid="gaussian__curvature_8hxx"/>
+        <childnode refid="6659" relation="include">
+        </childnode>
+        <childnode refid="6672" relation="include">
+        </childnode>
+        <childnode refid="6663" relation="include">
+        </childnode>
+        <childnode refid="6687" relation="include">
+        </childnode>
+      </node>
+      <node id="6673">
+        <label>nifty/marray/andres/marray.hxx</label>
+        <link refid="andres_2marray_8hxx"/>
+        <childnode refid="6674" relation="include">
+        </childnode>
+        <childnode refid="6675" relation="include">
+        </childnode>
+        <childnode refid="6666" relation="include">
+        </childnode>
+        <childnode refid="6660" relation="include">
+        </childnode>
+        <childnode refid="6676" relation="include">
+        </childnode>
+        <childnode refid="6667" relation="include">
+        </childnode>
+        <childnode refid="6677" relation="include">
+        </childnode>
+        <childnode refid="6678" relation="include">
+        </childnode>
+        <childnode refid="6656" relation="include">
+        </childnode>
+        <childnode refid="6679" relation="include">
+        </childnode>
+        <childnode refid="6680" relation="include">
+        </childnode>
+        <childnode refid="6681" relation="include">
+        </childnode>
+        <childnode refid="6682" relation="include">
+        </childnode>
+        <childnode refid="6683" relation="include">
+        </childnode>
+      </node>
+      <node id="6707">
+        <label>boost/accumulators/statistics/mean.hpp</label>
+      </node>
+      <node id="6695">
+        <label>condition_variable</label>
+      </node>
+      <node id="6700">
+        <label>nifty/ufd/ufd.hxx</label>
+        <link refid="ufd_8hxx"/>
+        <childnode refid="6675" relation="include">
+        </childnode>
+        <childnode refid="6656" relation="include">
+        </childnode>
+        <childnode refid="6686" relation="include">
+        </childnode>
+      </node>
+      <node id="6699">
+        <label>boost/container/flat_set.hpp</label>
+      </node>
+      <node id="6692">
+        <label>future</label>
+      </node>
+      <node id="6659">
+        <label>nifty/math/numerics.hxx</label>
+        <link refid="numerics_8hxx"/>
+        <childnode refid="6660" relation="include">
+        </childnode>
+        <childnode refid="6661" relation="include">
+        </childnode>
+      </node>
+      <node id="6710">
+        <label>boost/accumulators/statistics.hpp</label>
+      </node>
+      <node id="6702">
+        <label>nifty/cgp/bounds.hxx</label>
+        <link refid="bounds_8hxx"/>
+        <childnode refid="6656" relation="include">
+        </childnode>
+        <childnode refid="6672" relation="include">
+        </childnode>
+        <childnode refid="6684" relation="include">
+        </childnode>
+        <childnode refid="6663" relation="include">
+        </childnode>
+        <childnode refid="6698" relation="include">
+        </childnode>
+      </node>
+      <node id="6656">
+        <label>vector</label>
+      </node>
+      <node id="6705">
+        <label>boost/accumulators/accumulators.hpp</label>
+      </node>
+      <node id="6698">
+        <label>nifty/container/boost_flat_set.hxx</label>
+        <link refid="boost__flat__set_8hxx"/>
+        <childnode refid="6699" relation="include">
+        </childnode>
+      </node>
+      <node id="6663">
+        <label>arithmetic_array.hxx</label>
+        <link refid="arithmetic__array_8hxx"/>
+        <childnode refid="6658" relation="include">
+        </childnode>
+        <childnode refid="6656" relation="include">
+        </childnode>
+        <childnode refid="6664" relation="include">
+        </childnode>
+      </node>
+      <node id="6658">
+        <label>array</label>
+      </node>
+      <node id="6667">
+        <label>sstream</label>
+      </node>
+      <node id="6664">
+        <label>nifty/tools/runtime_check.hxx</label>
+        <link refid="runtime__check_8hxx"/>
+        <childnode refid="6665" relation="include">
+        </childnode>
+        <childnode refid="6666" relation="include">
+        </childnode>
+        <childnode refid="6667" relation="include">
+        </childnode>
+        <childnode refid="6656" relation="include">
+        </childnode>
+        <childnode refid="6660" relation="include">
+        </childnode>
+        <childnode refid="6668" relation="include">
+        </childnode>
+      </node>
+      <node id="6680">
+        <label>iostream</label>
+      </node>
+      <node id="6675">
+        <label>cstddef</label>
+      </node>
+      <node id="6671">
+        <label>deque</label>
+      </node>
+      <node id="6685">
+        <label>unordered_map</label>
+      </node>
+      <node id="6689">
+        <label>nifty/parallel/threadpool.hxx</label>
+        <link refid="threadpool_8hxx"/>
+        <childnode refid="6683" relation="include">
+        </childnode>
+        <childnode refid="6690" relation="include">
+        </childnode>
+        <childnode refid="6691" relation="include">
+        </childnode>
+        <childnode refid="6656" relation="include">
+        </childnode>
+        <childnode refid="6692" relation="include">
+        </childnode>
+        <childnode refid="6693" relation="include">
+        </childnode>
+        <childnode refid="6694" relation="include">
+        </childnode>
+        <childnode refid="6695" relation="include">
+        </childnode>
+        <childnode refid="6666" relation="include">
+        </childnode>
+        <childnode refid="6668" relation="include">
+        </childnode>
+        <childnode refid="6696" relation="include">
+        </childnode>
+        <childnode refid="6697" relation="include">
+        </childnode>
+        <childnode refid="6664" relation="include">
+        </childnode>
+      </node>
+      <node id="6684">
+        <label>nifty/cgp/topological_grid.hxx</label>
+        <link refid="topological__grid_8hxx"/>
+        <childnode refid="6656" relation="include">
+        </childnode>
+        <childnode refid="6685" relation="include">
+        </childnode>
+        <childnode refid="6686" relation="include">
+        </childnode>
+        <childnode refid="6672" relation="include">
+        </childnode>
+        <childnode refid="6663" relation="include">
+        </childnode>
+        <childnode refid="6687" relation="include">
+        </childnode>
+        <childnode refid="6698" relation="include">
+        </childnode>
+        <childnode refid="6700" relation="include">
+        </childnode>
+        <childnode refid="6701" relation="include">
+        </childnode>
+      </node>
+      <node id="6693">
+        <label>mutex</label>
+      </node>
+      <node id="6688">
+        <label>chrono</label>
+      </node>
+      <node id="6672">
+        <label>nifty/marray/marray.hxx</label>
+        <link refid="marray_8hxx"/>
+        <childnode refid="6673" relation="include">
+        </childnode>
+        <childnode refid="6664" relation="include">
+        </childnode>
+      </node>
+      <node id="6670">
+        <label>nifty/cgp/geometry.hxx</label>
+        <link refid="geometry_8hxx"/>
+        <childnode refid="6656" relation="include">
+        </childnode>
+        <childnode refid="6671" relation="include">
+        </childnode>
+        <childnode refid="6672" relation="include">
+        </childnode>
+        <childnode refid="6684" relation="include">
+        </childnode>
+        <childnode refid="6663" relation="include">
+        </childnode>
+        <childnode refid="6698" relation="include">
+        </childnode>
+      </node>
+      <node id="6706">
+        <label>boost/accumulators/statistics/stats.hpp</label>
+      </node>
+      <node id="6690">
+        <label>thread</label>
+      </node>
+      <node id="6679">
+        <label>set</label>
+      </node>
+      <node id="6677">
+        <label>cstring</label>
+      </node>
+      <node id="6657">
+        <label>nifty/math/math.hxx</label>
+        <link refid="math_8hxx"/>
+        <childnode refid="6658" relation="include">
+        </childnode>
+        <childnode refid="6656" relation="include">
+        </childnode>
+        <childnode refid="6659" relation="include">
+        </childnode>
+        <childnode refid="6662" relation="include">
+        </childnode>
+      </node>
+      <node id="6681">
+        <label>memory</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classnifty_1_1cgp_1_1Cell1BasicTopologicalFeatures" prot="public">nifty::cgp::Cell1BasicTopologicalFeatures</innerclass>
+    <innernamespace refid="namespacenifty">nifty</innernamespace>
+    <innernamespace refid="namespacenifty_1_1cgp">nifty::cgp</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="math_8hxx" kindref="compound">nifty/math/math.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="histogram_8hxx" kindref="compound">nifty/histogram/histogram.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="geometry_8hxx" kindref="compound">nifty/cgp/geometry.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="bounds_8hxx" kindref="compound">nifty/cgp/bounds.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="marray_8hxx" kindref="compound">nifty/marray/marray.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="gaussian__curvature_8hxx" kindref="compound">nifty/filters/gaussian_curvature.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="accumulated__features_8hxx" kindref="compound">nifty/features/accumulated_features.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacenifty" kindref="compound">nifty</ref>{</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">cgp{</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18" refid="classnifty_1_1cgp_1_1Cell1BasicTopologicalFeatures" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnifty_1_1cgp_1_1Cell1BasicTopologicalFeatures" kindref="compound">Cell1BasicTopologicalFeatures</ref>{</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="20" refid="classnifty_1_1cgp_1_1Cell1BasicTopologicalFeatures_1acf309275f4b84d463dee9bea89cd5108" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1cgp_1_1Cell1BasicTopologicalFeatures_1acf309275f4b84d463dee9bea89cd5108" kindref="member">Cell1BasicTopologicalFeatures</ref>(){</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23" refid="classnifty_1_1cgp_1_1Cell1BasicTopologicalFeatures_1a56a29c126efbbd38b10dce2b5ba387cb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1cgp_1_1Cell1BasicTopologicalFeatures_1a56a29c126efbbd38b10dce2b5ba387cb" kindref="member">numberOfFeatures</ref>()</highlight><highlight class="keyword">const</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>6;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="27" refid="classnifty_1_1cgp_1_1Cell1BasicTopologicalFeatures_1a84002abd81f8620a17caa3b472b6d87b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;std::string&gt;<sp/><ref refid="classnifty_1_1cgp_1_1Cell1BasicTopologicalFeatures_1a84002abd81f8620a17caa3b472b6d87b" kindref="member">names</ref>()</highlight><highlight class="keyword">const</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;std::string&gt;<sp/>res;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>baseName<sp/>=<sp/>std::string(</highlight><highlight class="stringliteral">&quot;BasicTopologicalFeatures&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>insertUVFeat<sp/>=<sp/>[&amp;](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>&amp;<sp/>name){</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>res.push_back(baseName+name+std::string(</highlight><highlight class="stringliteral">&quot;UV-Min&quot;</highlight><highlight class="normal">));</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>res.push_back(baseName+name+std::string(</highlight><highlight class="stringliteral">&quot;UV-Max&quot;</highlight><highlight class="normal">));</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>res.push_back(baseName+name+std::string(</highlight><highlight class="stringliteral">&quot;UV-Sum&quot;</highlight><highlight class="normal">));</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>res.push_back(baseName+name+std::string(</highlight><highlight class="stringliteral">&quot;UV-AbsDiff&quot;</highlight><highlight class="normal">));</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>res.push_back(baseName+std::string(</highlight><highlight class="stringliteral">&quot;Cell1BoundedBySize&quot;</highlight><highlight class="normal">));</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>res.push_back(baseName+std::string(</highlight><highlight class="stringliteral">&quot;Cell1NeighbourEdges&quot;</highlight><highlight class="normal">));</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>insertUVFeat(</highlight><highlight class="stringliteral">&quot;Cell2Degree&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>res;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
+<codeline lineno="49" refid="classnifty_1_1cgp_1_1Cell1BasicTopologicalFeatures_1a1a4258f15fc13907751006b6aae69342" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1cgp_1_1Cell1BasicTopologicalFeatures_1a1a4258f15fc13907751006b6aae69342" kindref="member">operator()</ref>(</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1cgp_1_1CellBoundsVector" kindref="compound">CellBoundsVector&lt;2,0&gt;</ref><sp/><sp/><sp/><sp/><sp/>&amp;<sp/>cell0BoundsVector,</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1cgp_1_1CellBoundsVector" kindref="compound">CellBoundsVector&lt;2,1&gt;</ref><sp/><sp/><sp/><sp/><sp/>&amp;<sp/>cell1BoundsVector,</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1cgp_1_1CellBoundedByVector_3_012_00_011_01_4" kindref="compound">CellBoundedByVector&lt;2,1&gt;</ref><sp/><sp/>&amp;<sp/>cell1BoundedByVector,</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1cgp_1_1CellBoundedByVector_3_012_00_012_01_4" kindref="compound">CellBoundedByVector&lt;2,2&gt;</ref><sp/><sp/>&amp;<sp/>cell2BoundedByVector,</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classandres_1_1View" kindref="compound">nifty::marray::View&lt;T&gt;</ref><sp/>&amp;<sp/>features</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight><highlight class="keyword">const</highlight><highlight class="normal">{<sp/><sp/></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal"><ref refid="namespacenifty_1_1math" kindref="compound">nifty::math</ref>;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>cell1Index=0;<sp/>cell1Index&lt;cell1BoundsVector.size();<sp/>++cell1Index){</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>&amp;<sp/>cell1Bounds<sp/>=<sp/>cell1BoundsVector[cell1Index];</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>cell2UIndex<sp/>=<sp/>cell1Bounds[0]-1;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>cell2VIndex<sp/>=<sp/>cell1Bounds[1]-1;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>fIndex<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>cell2ToCell1Features<sp/>=<sp/>[&amp;](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>uVal,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>vVal){</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>features(cell1Index,<sp/>fIndex++)<sp/>=<sp/>std::min(uVal,<sp/>vVal);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>features(cell1Index,<sp/>fIndex++)<sp/>=<sp/>std::max(uVal,<sp/>vVal);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>features(cell1Index,<sp/>fIndex++)<sp/>=<sp/>uVal<sp/>+<sp/>vVal;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>features(cell1Index,<sp/>fIndex++)<sp/>=<sp/>std::abs(uVal-vVal);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>number<sp/>of<sp/>0-cells<sp/>bounding<sp/>this<sp/>1-cell</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>aka<sp/>how<sp/>many<sp/>junctions<sp/>has<sp/>this<sp/>edge<sp/>(0,1<sp/>or<sp/>2)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>boundedBySize<sp/>=<sp/>cell1BoundedByVector[cell1Index].size();</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>nCells1<sp/>=<sp/>0<sp/>;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>i=0;<sp/>i&lt;boundedBySize;<sp/>++i){</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>cell0Index<sp/>=<sp/>cell1BoundedByVector[cell1Index][i];</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nCells1<sp/>+=<sp/>cell0BoundsVector[cell0Index].size();</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>features(cell1Index,<sp/>fIndex++)<sp/>=<sp/>boundedBySize;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>features(cell1Index,<sp/>fIndex++)<sp/>=<sp/>nCells1;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>number<sp/>of<sp/>cells<sp/>1<sp/>which<sp/>are<sp/>bounding<sp/>cell<sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>aka<sp/>the<sp/>degree<sp/>of<sp/>a<sp/>nodes<sp/>in<sp/>ordinary<sp/>graph</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cell2ToCell1Features(cell2BoundedByVector[cell2UIndex].size(),<sp/></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cell2BoundedByVector[cell2VIndex].size());</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;size_t&gt;<sp/>dists_;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="104"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/home/tbeier/src/nifty/include/nifty/cgp/features/topological_features.hxx"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="structnifty_1_1graph_1_1UndirectedGraphBase_1_1EdgeMap" kind="struct" language="C++" prot="public">
+    <compoundname>nifty::graph::UndirectedGraphBase::EdgeMap</compoundname>
+    <basecompoundref refid="structnifty_1_1graph_1_1graph__maps_1_1EdgeMap" prot="public" virt="non-virtual">nifty::graph::graph_maps::EdgeMap&lt; ChildGraph, T &gt;</basecompoundref>
+    <includes refid="undirected__graph__base_8hxx" local="no">undirected_graph_base.hxx</includes>
+    <templateparamlist>
+      <param>
+        <type>class T</type>
+      </param>
+    </templateparamlist>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1170">
+        <label>std::vector&lt; T &gt;</label>
+      </node>
+      <node id="1168">
+        <label>nifty::graph::UndirectedGraphBase&lt; CHILD_GRAPH, NODE_ITER, EDGE_ITER, ADJACENCY_ITER &gt;::EdgeMap&lt; T &gt;</label>
+        <link refid="structnifty_1_1graph_1_1UndirectedGraphBase_1_1EdgeMap"/>
+        <childnode refid="1169" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1169">
+        <label>nifty::graph::graph_maps::EdgeMap&lt; ChildGraph, T &gt;</label>
+        <link refid="structnifty_1_1graph_1_1graph__maps_1_1EdgeMap"/>
+        <childnode refid="1170" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1173">
+        <label>std::vector&lt; T &gt;</label>
+      </node>
+      <node id="1171">
+        <label>nifty::graph::UndirectedGraphBase&lt; CHILD_GRAPH, NODE_ITER, EDGE_ITER, ADJACENCY_ITER &gt;::EdgeMap&lt; T &gt;</label>
+        <link refid="structnifty_1_1graph_1_1UndirectedGraphBase_1_1EdgeMap"/>
+        <childnode refid="1172" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1172">
+        <label>nifty::graph::graph_maps::EdgeMap&lt; ChildGraph, T &gt;</label>
+        <link refid="structnifty_1_1graph_1_1graph__maps_1_1EdgeMap"/>
+        <childnode refid="1173" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_graph_base.hxx" line="76" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_graph_base.hxx" bodystart="76" bodyend="78"/>
+    <listofallmembers>
+      <member refid="structnifty_1_1graph_1_1graph__maps_1_1EdgeMap_1a76af091031717407e07ffb154f74e653" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraphBase::EdgeMap</scope><name>EdgeMap</name></member>
+      <member refid="structnifty_1_1graph_1_1graph__maps_1_1EdgeMap_1a5100202d40822e8cf98aea0ee90ee01e" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraphBase::EdgeMap</scope><name>EdgeMap</name></member>
+      <member refid="structnifty_1_1graph_1_1graph__maps_1_1EdgeMap_1adfef359098c94982e5a8f6355d068878" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraphBase::EdgeMap</scope><name>EdgeMap</name></member>
+      <member refid="structnifty_1_1graph_1_1graph__maps_1_1EdgeMap_1aa658ff2e5952fce8342349a159425bbd" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraphBase::EdgeMap</scope><name>insertedEdges</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

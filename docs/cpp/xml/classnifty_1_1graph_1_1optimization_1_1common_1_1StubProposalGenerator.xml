@@ -1,0 +1,212 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="classnifty_1_1graph_1_1optimization_1_1common_1_1StubProposalGenerator" kind="class" language="C++" prot="public">
+    <compoundname>nifty::graph::optimization::common::StubProposalGenerator</compoundname>
+    <basecompoundref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorBase" prot="public" virt="non-virtual">nifty::graph::optimization::common::ProposalGeneratorBase&lt; OBJECTIVE &gt;</basecompoundref>
+    <includes refid="stub__proposal__generator_8hxx" local="no">stub_proposal_generator.hxx</includes>
+    <innerclass refid="structnifty_1_1graph_1_1optimization_1_1common_1_1StubProposalGenerator_1_1SettingsType" prot="public">nifty::graph::optimization::common::StubProposalGenerator::SettingsType</innerclass>
+    <templateparamlist>
+      <param>
+        <type>class OBJECTIVE</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1common_1_1StubProposalGenerator_1ae7d0ffc1c09e62f40d0dbee2ae7ae5d7" prot="public" static="no">
+        <type>OBJECTIVE</type>
+        <definition>typedef OBJECTIVE nifty::graph::optimization::common::StubProposalGenerator&lt; OBJECTIVE &gt;::ObjectiveType</definition>
+        <argsstring></argsstring>
+        <name>ObjectiveType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal_generators/stub_proposal_generator.hxx" line="27" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal_generators/stub_proposal_generator.hxx" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1common_1_1StubProposalGenerator_1ad5d7c98b50ccddc5ce4fbd83b2ca3214" prot="public" static="no">
+        <type>ObjectiveType::GraphType</type>
+        <definition>typedef ObjectiveType::GraphType nifty::graph::optimization::common::StubProposalGenerator&lt; OBJECTIVE &gt;::GraphType</definition>
+        <argsstring></argsstring>
+        <name>GraphType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal_generators/stub_proposal_generator.hxx" line="28" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal_generators/stub_proposal_generator.hxx" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1common_1_1StubProposalGenerator_1a1be02f6d87cf6bf34ee078b367d40538" prot="public" static="no">
+        <type>GraphType::template NodeMap&lt; uint64_t &gt;</type>
+        <definition>typedef GraphType:: template NodeMap&lt;uint64_t&gt; nifty::graph::optimization::common::StubProposalGenerator&lt; OBJECTIVE &gt;::ProposalType</definition>
+        <argsstring></argsstring>
+        <name>ProposalType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal_generators/stub_proposal_generator.hxx" line="29" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal_generators/stub_proposal_generator.hxx" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1optimization_1_1common_1_1StubProposalGenerator_1abe668aaea1be9cf9049e0bcd1155a1c8" prot="private" static="no" mutable="no">
+        <type>const <ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1StubProposalGenerator_1ae7d0ffc1c09e62f40d0dbee2ae7ae5d7" kindref="member">ObjectiveType</ref> &amp;</type>
+        <definition>const ObjectiveType&amp; nifty::graph::optimization::common::StubProposalGenerator&lt; OBJECTIVE &gt;::objective_</definition>
+        <argsstring></argsstring>
+        <name>objective_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal_generators/stub_proposal_generator.hxx" line="59" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal_generators/stub_proposal_generator.hxx" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1optimization_1_1common_1_1StubProposalGenerator_1aa124cd63a38f2779f50ead0a591545f5" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t nifty::graph::optimization::common::StubProposalGenerator&lt; OBJECTIVE &gt;::numberOfThreads_</definition>
+        <argsstring></argsstring>
+        <name>numberOfThreads_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal_generators/stub_proposal_generator.hxx" line="60" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal_generators/stub_proposal_generator.hxx" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1optimization_1_1common_1_1StubProposalGenerator_1a7b1661add270724ae91bd3f0a5414f01" prot="private" static="no" mutable="no">
+        <type><ref refid="structnifty_1_1graph_1_1optimization_1_1common_1_1StubProposalGenerator_1_1SettingsType" kindref="compound">SettingsType</ref></type>
+        <definition>SettingsType nifty::graph::optimization::common::StubProposalGenerator&lt; OBJECTIVE &gt;::settings_</definition>
+        <argsstring></argsstring>
+        <name>settings_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal_generators/stub_proposal_generator.hxx" line="61" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal_generators/stub_proposal_generator.hxx" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1common_1_1StubProposalGenerator_1a6ff51f0c779c17b8ed27c3381b3609c9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>nifty::graph::optimization::common::StubProposalGenerator&lt; OBJECTIVE &gt;::StubProposalGenerator</definition>
+        <argsstring>(const ObjectiveType &amp;objective, const size_t numberOfThreads, const SettingsType &amp;settings=SettingsType())</argsstring>
+        <name>StubProposalGenerator</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1StubProposalGenerator_1ae7d0ffc1c09e62f40d0dbee2ae7ae5d7" kindref="member">ObjectiveType</ref> &amp;</type>
+          <declname>objective</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>numberOfThreads</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structnifty_1_1graph_1_1optimization_1_1common_1_1StubProposalGenerator_1_1SettingsType" kindref="compound">SettingsType</ref> &amp;</type>
+          <declname>settings</declname>
+          <defval><ref refid="structnifty_1_1graph_1_1optimization_1_1common_1_1StubProposalGenerator_1_1SettingsType" kindref="compound">SettingsType</ref>()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal_generators/stub_proposal_generator.hxx" line="35" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal_generators/stub_proposal_generator.hxx" bodystart="35" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1common_1_1StubProposalGenerator_1abe642679e1bc368912c451bcac8bfe80" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual nifty::graph::optimization::common::StubProposalGenerator&lt; OBJECTIVE &gt;::~StubProposalGenerator</definition>
+        <argsstring>()</argsstring>
+        <name>~StubProposalGenerator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal_generators/stub_proposal_generator.hxx" line="49" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal_generators/stub_proposal_generator.hxx" bodystart="49" bodyend="49"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1common_1_1StubProposalGenerator_1ab8e44457d2c33326221b2291e4ff0246" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void nifty::graph::optimization::common::StubProposalGenerator&lt; OBJECTIVE &gt;::generateProposal</definition>
+        <argsstring>(const ProposalType &amp;currentBest, ProposalType &amp;proposal, const size_t tid)</argsstring>
+        <name>generateProposal</name>
+        <reimplements refid="classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorBase_1a5751b664edd5f19a0232b3d6527a4135">generateProposal</reimplements>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorBase_1a4700eb43beb708a77c5c34612039c715" kindref="member">ProposalType</ref> &amp;</type>
+          <declname>currentBest</declname>
+        </param>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorBase_1a4700eb43beb708a77c5c34612039c715" kindref="member">ProposalType</ref> &amp;</type>
+          <declname>proposal</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>tid</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal_generators/stub_proposal_generator.hxx" line="51" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal_generators/stub_proposal_generator.hxx" bodystart="51" bodyend="57"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Stub for proposal generator. </para>    </briefdescription>
+    <detaileddescription>
+<para>good staring point for a proposal generator</para><para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>OBJECTIVE</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>[description] </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="1830">
+        <label>nifty::graph::optimization::common::ProposalGeneratorBase&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorBase"/>
+      </node>
+      <node id="1829">
+        <label>nifty::graph::optimization::common::StubProposalGenerator&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1optimization_1_1common_1_1StubProposalGenerator"/>
+        <childnode refid="1830" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1832">
+        <label>nifty::graph::optimization::common::ProposalGeneratorBase&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorBase"/>
+      </node>
+      <node id="1831">
+        <label>nifty::graph::optimization::common::StubProposalGenerator&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1optimization_1_1common_1_1StubProposalGenerator"/>
+        <childnode refid="1832" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal_generators/stub_proposal_generator.hxx" line="25" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal_generators/stub_proposal_generator.hxx" bodystart="24" bodyend="62"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1common_1_1StubProposalGenerator_1ab8e44457d2c33326221b2291e4ff0246" prot="public" virt="virtual"><scope>nifty::graph::optimization::common::StubProposalGenerator</scope><name>generateProposal</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1common_1_1StubProposalGenerator_1ad5d7c98b50ccddc5ce4fbd83b2ca3214" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::common::StubProposalGenerator</scope><name>GraphType</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1common_1_1StubProposalGenerator_1aa124cd63a38f2779f50ead0a591545f5" prot="private" virt="non-virtual"><scope>nifty::graph::optimization::common::StubProposalGenerator</scope><name>numberOfThreads_</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1common_1_1StubProposalGenerator_1abe668aaea1be9cf9049e0bcd1155a1c8" prot="private" virt="non-virtual"><scope>nifty::graph::optimization::common::StubProposalGenerator</scope><name>objective_</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1common_1_1StubProposalGenerator_1ae7d0ffc1c09e62f40d0dbee2ae7ae5d7" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::common::StubProposalGenerator</scope><name>ObjectiveType</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1common_1_1StubProposalGenerator_1a1be02f6d87cf6bf34ee078b367d40538" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::common::StubProposalGenerator</scope><name>ProposalType</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1common_1_1StubProposalGenerator_1a7b1661add270724ae91bd3f0a5414f01" prot="private" virt="non-virtual"><scope>nifty::graph::optimization::common::StubProposalGenerator</scope><name>settings_</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1common_1_1StubProposalGenerator_1a6ff51f0c779c17b8ed27c3381b3609c9" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::common::StubProposalGenerator</scope><name>StubProposalGenerator</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorBase_1a4c5363ab4380df824d4c7a6371e2a23c" prot="public" virt="virtual"><scope>nifty::graph::optimization::common::StubProposalGenerator</scope><name>~ProposalGeneratorBase</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1common_1_1StubProposalGenerator_1abe642679e1bc368912c451bcac8bfe80" prot="public" virt="virtual"><scope>nifty::graph::optimization::common::StubProposalGenerator</scope><name>~StubProposalGenerator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

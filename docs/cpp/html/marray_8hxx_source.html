@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Nifty
-   &#160;<span id="projectnumber">0.5.1</span>
+   &#160;<span id="projectnumber">0.19.0</span>
    </div>
   </td>
  </tr>
@@ -94,104 +94,107 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <a href="marray_8hxx.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#ifndef NIFTY_MARRAY_MARRAY_HXX</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno"><a class="line" href="marray_8hxx.html#afacd5a5e9488c2d1f8dce605b3bb8f37">    3</a></span>&#160;<span class="preprocessor">#define NIFTY_MARRAY_MARRAY_HXX</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;</div>
-<div class="line"><a name="l00005"></a><span class="lineno"><a class="line" href="marray_8hxx.html#ae9e4ae4c6e1e73d3875597a1df844950">    5</a></span>&#160;<span class="preprocessor">#define HAVE_CPP11_INITIALIZER_LISTS</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno"><a class="line" href="marray_8hxx.html#a511e7c363d6aa59955bec6d5fbbe8b08">    6</a></span>&#160;<span class="preprocessor">#define HAVE_CPP11_STD_ARRAY</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;andres/marray.hxx&gt;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="runtime__check_8hxx.html">nifty/tools/runtime_check.hxx</a>&quot;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacenifty.html">nifty</a>{</div>
-<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="namespacenifty_1_1marray.html">   13</a></span>&#160;<span class="keyword">namespace </span>marray{</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keyword">using namespace </span><a class="code" href="namespaceandres.html">andres</a>;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;}</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;</div>
+<div class="line"><a name="l00003"></a><span class="lineno"><a class="line" href="marray_8hxx.html#ae9e4ae4c6e1e73d3875597a1df844950">    3</a></span>&#160;<span class="preprocessor">#define HAVE_CPP11_INITIALIZER_LISTS</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno"><a class="line" href="marray_8hxx.html#a511e7c363d6aa59955bec6d5fbbe8b08">    4</a></span>&#160;<span class="preprocessor">#define HAVE_CPP11_STD_ARRAY</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="andres_2marray_8hxx.html">nifty/marray/andres/marray.hxx</a>&quot;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="runtime__check_8hxx.html">nifty/tools/runtime_check.hxx</a>&quot;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacenifty.html">nifty</a>{</div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="namespacenifty_1_1marray.html">   11</a></span>&#160;<span class="keyword">namespace </span>marray{</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keyword">using namespace </span><a class="code" href="namespaceandres.html">andres</a>;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;}</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">namespace </span>tools{</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">namespace </span>tools{</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">class</span> T, <span class="keyword">class</span> COORD&gt;</div>
-<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="namespacenifty_1_1tools.html#ab1a49786aa1d421ff8801c6659ada142">   20</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="namespacenifty_1_1tools.html#ab1a49786aa1d421ff8801c6659ada142">readSubarray</a>(</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <span class="keyword">const</span> marray::View&lt;T&gt; array,</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keyword">const</span> COORD &amp; beginCoord,</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <span class="keyword">const</span> COORD &amp; endCoord,</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        marray::View&lt;T&gt; &amp; subarray</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    ){</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span> dim = array.dimension();</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        std::vector&lt;int64_t&gt; subShape(array.dimension());</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keywordflow">for</span>(<span class="keyword">auto</span> d = 0 ; d&lt;dim; ++d){</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            subShape[d] = beginCoord[d] - endCoord[d];</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        }</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        subarray = array.view(beginCoord.begin(), subShape.begin());</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    }</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">class</span> T, <span class="keyword">class</span> COORD&gt;</div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="namespacenifty_1_1tools.html#ace36c8be6273f83864c4b1b261eb25d3">   36</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="namespacenifty_1_1tools.html#ace36c8be6273f83864c4b1b261eb25d3">writeSubarray</a>(</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        marray::View&lt;T&gt; array,</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="keyword">const</span> COORD &amp; beginCoord,</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keyword">const</span> COORD &amp; endCoord,</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keyword">const</span> marray::View&lt;T&gt; &amp; data</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    ){</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span> dim = array.dimension();</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        </div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        COORD subShape;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keywordflow">for</span>(<span class="keyword">auto</span> d = 0 ; d&lt;dim; ++d){</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            subShape[d] = endCoord[d] - beginCoord[d];</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        }</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> d = 0; d &lt; dim; ++d )</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            <a class="code" href="runtime__check_8hxx.html#a7fdb092c4b634ea3958b7d7aa2f801eb">NIFTY_CHECK_OP</a>(subShape[d],==,data.shape(d),<span class="stringliteral">&quot;Shapes don&#39;t match!&quot;</span>)</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="keyword">auto</span> subarray = array.view(beginCoord.begin(), subShape.begin());</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        </div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="comment">// for dim &lt; 4 we can use forEachCoordinate (this only works if COORD is nifty::array::StaticArray)</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keywordflow">if</span>(dim &lt;= 4) {</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            <a class="code" href="namespacenifty_1_1tools.html#a81df2669bba7acc0ad9a253669a28ba4">forEachCoordinate</a>(subShape, [&amp;](<span class="keyword">const</span> COORD &amp; coord){</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                subarray(coord.asStdArray()) = data(coord.asStdArray());</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            });</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        }</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="keywordflow">else</span> { <span class="comment">// otherwise use iterators</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            <span class="keyword">auto</span> itArray = subarray.begin();</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            <span class="keyword">auto</span> itData  = data.begin();</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            <span class="keywordflow">for</span>(; itArray != subarray.end(); ++itArray, ++itData)</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                *itArray = *itData;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        }</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    }</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    </div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="comment">// dummy function, because we don&#39;t lock for marrays</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">class</span> T, <span class="keyword">class</span> COORD&gt;</div>
-<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="namespacenifty_1_1tools.html#ad9c06ed1bf5a27481583971a28bf9142">   68</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="namespacenifty_1_1tools.html#ad9c06ed1bf5a27481583971a28bf9142">readSubarrayLocked</a>(</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keyword">const</span> marray::View&lt;T&gt; array,</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keyword">const</span> COORD &amp; beginCoord,</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="keyword">const</span> COORD &amp; endCoord,</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        marray::View&lt;T&gt; &amp; subarray</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    ){</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <a class="code" href="namespacenifty_1_1tools.html#ab1a49786aa1d421ff8801c6659ada142">readSubarray</a>(array,beginCoord,endCoord,subarray);</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    }</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    </div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">class</span> T, <span class="keyword">class</span> COORD&gt;</div>
-<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="namespacenifty_1_1tools.html#a0d4355b32819ca638b88af283797bc92">   78</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="namespacenifty_1_1tools.html#a0d4355b32819ca638b88af283797bc92">writeSubarrayLocked</a>(</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        marray::View&lt;T&gt; array,</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="keyword">const</span> COORD &amp; beginCoord,</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="keyword">const</span> COORD &amp; endCoord,</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <span class="keyword">const</span> marray::View&lt;T&gt; &amp; data</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    ){</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <a class="code" href="namespacenifty_1_1tools.html#ace36c8be6273f83864c4b1b261eb25d3">writeSubarray</a>(array,beginCoord,endCoord,data);</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    }</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">class</span> T, <span class="keyword">class</span> COORD&gt;</div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="namespacenifty_1_1tools.html#ab1a49786aa1d421ff8801c6659ada142">   18</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="namespacenifty_1_1tools.html#ab1a49786aa1d421ff8801c6659ada142">readSubarray</a>(</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <span class="keyword">const</span> <a class="code" href="classandres_1_1View.html">marray::View&lt;T&gt;</a> array,</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <span class="keyword">const</span> COORD &amp; beginCoord,</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <span class="keyword">const</span> COORD &amp; endCoord,</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <a class="code" href="classandres_1_1View.html">marray::View&lt;T&gt;</a> &amp; subarray</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    ){</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span> dim = array.<a class="code" href="classandres_1_1View.html#a36308e1cf6bb6b17e8b0df6537c1ec39">dimension</a>();</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        std::vector&lt;int64_t&gt; subShape(array.<a class="code" href="classandres_1_1View.html#a36308e1cf6bb6b17e8b0df6537c1ec39">dimension</a>());</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <span class="keywordflow">for</span>(<span class="keyword">auto</span> d = 0 ; d&lt;dim; ++d){</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            subShape[d] = beginCoord[d] - endCoord[d];</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        }</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        subarray = array.<a class="code" href="classandres_1_1View.html#a190ebba7d686129ac18075e7650e0341">view</a>(beginCoord.begin(), subShape.begin());</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    }</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">class</span> T, <span class="keyword">class</span> COORD&gt;</div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="namespacenifty_1_1tools.html#ace36c8be6273f83864c4b1b261eb25d3">   34</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="namespacenifty_1_1tools.html#ace36c8be6273f83864c4b1b261eb25d3">writeSubarray</a>(</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <a class="code" href="classandres_1_1View.html">marray::View&lt;T&gt;</a> array,</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="keyword">const</span> COORD &amp; beginCoord,</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="keyword">const</span> COORD &amp; endCoord,</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="keyword">const</span> <a class="code" href="classandres_1_1View.html">marray::View&lt;T&gt;</a> &amp; data</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    ){</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span> dim = array.<a class="code" href="classandres_1_1View.html#a36308e1cf6bb6b17e8b0df6537c1ec39">dimension</a>();</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        COORD subShape;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordflow">for</span>(<span class="keyword">auto</span> d = 0 ; d&lt;dim; ++d){</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            subShape[d] = endCoord[d] - beginCoord[d];</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        }</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> d = 0; d &lt; dim; ++d )</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            <a class="code" href="runtime__check_8hxx.html#a7fdb092c4b634ea3958b7d7aa2f801eb">NIFTY_CHECK_OP</a>(subShape[d],==,data.<a class="code" href="classandres_1_1View.html#a9bc3d88b3e2bdf432dd68f36ff33deb3">shape</a>(d),<span class="stringliteral">&quot;Shapes don&#39;t match!&quot;</span>)</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="keyword">auto</span> subarray = array.<a class="code" href="classandres_1_1View.html#a190ebba7d686129ac18075e7650e0341">view</a>(beginCoord.begin(), subShape.begin());</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="comment">// for dim &lt; 4 we can use forEachCoordinate (this only works if COORD is nifty::array::StaticArray)</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="keywordflow">if</span>(dim &lt;= 4) {</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            <a class="code" href="namespacenifty_1_1tools.html#a81df2669bba7acc0ad9a253669a28ba4">forEachCoordinate</a>(subShape, [&amp;](<span class="keyword">const</span> COORD &amp; coord){</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                subarray(coord.asStdArray()) = data(coord.asStdArray());</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            });</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        }</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordflow">else</span> { <span class="comment">// otherwise use iterators</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            <span class="keyword">auto</span> itArray = subarray.begin();</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            <span class="keyword">auto</span> itData  = data.<a class="code" href="classandres_1_1View.html#acd1f71e27ea01d536e1539877afedfa9">begin</a>();</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            <span class="keywordflow">for</span>(; itArray != subarray.end(); ++itArray, ++itData)</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                *itArray = *itData;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        }</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    }</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="comment">// dummy function, because we don&#39;t lock for marrays</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">class</span> T, <span class="keyword">class</span> COORD&gt;</div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="namespacenifty_1_1tools.html#ad9c06ed1bf5a27481583971a28bf9142">   66</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="namespacenifty_1_1tools.html#ad9c06ed1bf5a27481583971a28bf9142">readSubarrayLocked</a>(</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keyword">const</span> <a class="code" href="classandres_1_1View.html">marray::View&lt;T&gt;</a> array,</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keyword">const</span> COORD &amp; beginCoord,</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keyword">const</span> COORD &amp; endCoord,</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <a class="code" href="classandres_1_1View.html">marray::View&lt;T&gt;</a> &amp; subarray</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    ){</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <a class="code" href="namespacenifty_1_1tools.html#ab1a49786aa1d421ff8801c6659ada142">readSubarray</a>(array,beginCoord,endCoord,subarray);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    }</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">class</span> T, <span class="keyword">class</span> COORD&gt;</div>
+<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="namespacenifty_1_1tools.html#a0d4355b32819ca638b88af283797bc92">   76</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="namespacenifty_1_1tools.html#a0d4355b32819ca638b88af283797bc92">writeSubarrayLocked</a>(</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <a class="code" href="classandres_1_1View.html">marray::View&lt;T&gt;</a> array,</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keyword">const</span> COORD &amp; beginCoord,</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <span class="keyword">const</span> COORD &amp; endCoord,</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="keyword">const</span> <a class="code" href="classandres_1_1View.html">marray::View&lt;T&gt;</a> &amp; data</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    ){</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <a class="code" href="namespacenifty_1_1tools.html#ace36c8be6273f83864c4b1b261eb25d3">writeSubarray</a>(array,beginCoord,endCoord,data);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    }</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;}</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;}</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;}</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="namespacenifty_1_1tools_html_ace36c8be6273f83864c4b1b261eb25d3"><div class="ttname"><a href="namespacenifty_1_1tools.html#ace36c8be6273f83864c4b1b261eb25d3">nifty::tools::writeSubarray</a></div><div class="ttdeci">void writeSubarray(marray::View&lt; T &gt; array, const COORD &amp;beginCoord, const COORD &amp;endCoord, const marray::View&lt; T &gt; &amp;data)</div><div class="ttdef"><b>Definition:</b> marray.hxx:36</div></div>
-<div class="ttc" id="namespacenifty_1_1tools_html_a0d4355b32819ca638b88af283797bc92"><div class="ttname"><a href="namespacenifty_1_1tools.html#a0d4355b32819ca638b88af283797bc92">nifty::tools::writeSubarrayLocked</a></div><div class="ttdeci">void writeSubarrayLocked(marray::View&lt; T &gt; array, const COORD &amp;beginCoord, const COORD &amp;endCoord, const marray::View&lt; T &gt; &amp;data)</div><div class="ttdef"><b>Definition:</b> marray.hxx:78</div></div>
-<div class="ttc" id="namespaceandres_html"><div class="ttname"><a href="namespaceandres.html">andres</a></div></div>
-<div class="ttc" id="namespacenifty_1_1tools_html_ab1a49786aa1d421ff8801c6659ada142"><div class="ttname"><a href="namespacenifty_1_1tools.html#ab1a49786aa1d421ff8801c6659ada142">nifty::tools::readSubarray</a></div><div class="ttdeci">void readSubarray(const marray::View&lt; T &gt; array, const COORD &amp;beginCoord, const COORD &amp;endCoord, marray::View&lt; T &gt; &amp;subarray)</div><div class="ttdef"><b>Definition:</b> marray.hxx:20</div></div>
-<div class="ttc" id="namespacenifty_1_1tools_html_ad9c06ed1bf5a27481583971a28bf9142"><div class="ttname"><a href="namespacenifty_1_1tools.html#ad9c06ed1bf5a27481583971a28bf9142">nifty::tools::readSubarrayLocked</a></div><div class="ttdeci">void readSubarrayLocked(const marray::View&lt; T &gt; array, const COORD &amp;beginCoord, const COORD &amp;endCoord, marray::View&lt; T &gt; &amp;subarray)</div><div class="ttdef"><b>Definition:</b> marray.hxx:68</div></div>
-<div class="ttc" id="namespacenifty_1_1tools_html_a81df2669bba7acc0ad9a253669a28ba4"><div class="ttname"><a href="namespacenifty_1_1tools.html#a81df2669bba7acc0ad9a253669a28ba4">nifty::tools::forEachCoordinate</a></div><div class="ttdeci">void forEachCoordinate(const array::StaticArray&lt; SHAPE_T, DIMENSIONS &gt; &amp;shape, F &amp;&amp;f, bool firstCoordinateMajorOrder=true)</div><div class="ttdef"><b>Definition:</b> for_each_coordinate.hxx:188</div></div>
-<div class="ttc" id="runtime__check_8hxx_html_a7fdb092c4b634ea3958b7d7aa2f801eb"><div class="ttname"><a href="runtime__check_8hxx.html#a7fdb092c4b634ea3958b7d7aa2f801eb">NIFTY_CHECK_OP</a></div><div class="ttdeci">#define NIFTY_CHECK_OP(a, op, b, message)</div><div class="ttdoc">macro for runtime checks </div><div class="ttdef"><b>Definition:</b> runtime_check.hxx:34</div></div>
-<div class="ttc" id="namespacenifty_html"><div class="ttname"><a href="namespacenifty.html">nifty</a></div><div class="ttdef"><b>Definition:</b> arithmetic_array.hxx:10</div></div>
+<div class="ttc" id="namespacenifty_1_1tools_html_ace36c8be6273f83864c4b1b261eb25d3"><div class="ttname"><a href="namespacenifty_1_1tools.html#ace36c8be6273f83864c4b1b261eb25d3">nifty::tools::writeSubarray</a></div><div class="ttdeci">void writeSubarray(marray::View&lt; T &gt; array, const COORD &amp;beginCoord, const COORD &amp;endCoord, const marray::View&lt; T &gt; &amp;data)</div><div class="ttdef"><b>Definition:</b> marray.hxx:34</div></div>
+<div class="ttc" id="namespacenifty_1_1tools_html_a0d4355b32819ca638b88af283797bc92"><div class="ttname"><a href="namespacenifty_1_1tools.html#a0d4355b32819ca638b88af283797bc92">nifty::tools::writeSubarrayLocked</a></div><div class="ttdeci">void writeSubarrayLocked(marray::View&lt; T &gt; array, const COORD &amp;beginCoord, const COORD &amp;endCoord, const marray::View&lt; T &gt; &amp;data)</div><div class="ttdef"><b>Definition:</b> marray.hxx:76</div></div>
+<div class="ttc" id="namespaceandres_html"><div class="ttname"><a href="namespaceandres.html">andres</a></div><div class="ttdoc">The public API. </div><div class="ttdef"><b>Definition:</b> marray-fftw.hxx:14</div></div>
+<div class="ttc" id="namespacenifty_1_1tools_html_ab1a49786aa1d421ff8801c6659ada142"><div class="ttname"><a href="namespacenifty_1_1tools.html#ab1a49786aa1d421ff8801c6659ada142">nifty::tools::readSubarray</a></div><div class="ttdeci">void readSubarray(const marray::View&lt; T &gt; array, const COORD &amp;beginCoord, const COORD &amp;endCoord, marray::View&lt; T &gt; &amp;subarray)</div><div class="ttdef"><b>Definition:</b> marray.hxx:18</div></div>
+<div class="ttc" id="namespacenifty_1_1tools_html_ad9c06ed1bf5a27481583971a28bf9142"><div class="ttname"><a href="namespacenifty_1_1tools.html#ad9c06ed1bf5a27481583971a28bf9142">nifty::tools::readSubarrayLocked</a></div><div class="ttdeci">void readSubarrayLocked(const marray::View&lt; T &gt; array, const COORD &amp;beginCoord, const COORD &amp;endCoord, marray::View&lt; T &gt; &amp;subarray)</div><div class="ttdef"><b>Definition:</b> marray.hxx:66</div></div>
+<div class="ttc" id="namespacenifty_1_1tools_html_a81df2669bba7acc0ad9a253669a28ba4"><div class="ttname"><a href="namespacenifty_1_1tools.html#a81df2669bba7acc0ad9a253669a28ba4">nifty::tools::forEachCoordinate</a></div><div class="ttdeci">void forEachCoordinate(const array::StaticArray&lt; SHAPE_T, DIMENSIONS &gt; &amp;shape, F &amp;&amp;f, bool firstCoordinateMajorOrder=true)</div><div class="ttdef"><b>Definition:</b> for_each_coordinate.hxx:186</div></div>
+<div class="ttc" id="classandres_1_1View_html_a190ebba7d686129ac18075e7650e0341"><div class="ttname"><a href="classandres_1_1View.html#a190ebba7d686129ac18075e7650e0341">andres::View::view</a></div><div class="ttdeci">void view(BaseIterator, ShapeIterator, View&lt; T, isConst, A &gt; &amp;) const </div><div class="ttdef"><b>Definition:</b> marray.hxx:1985</div></div>
+<div class="ttc" id="andres_2marray_8hxx_html"><div class="ttname"><a href="andres_2marray_8hxx.html">marray.hxx</a></div></div>
+<div class="ttc" id="runtime__check_8hxx_html_a7fdb092c4b634ea3958b7d7aa2f801eb"><div class="ttname"><a href="runtime__check_8hxx.html#a7fdb092c4b634ea3958b7d7aa2f801eb">NIFTY_CHECK_OP</a></div><div class="ttdeci">#define NIFTY_CHECK_OP(a, op, b, message)</div><div class="ttdoc">macro for runtime checks </div><div class="ttdef"><b>Definition:</b> runtime_check.hxx:32</div></div>
+<div class="ttc" id="classandres_1_1View_html"><div class="ttname"><a href="classandres_1_1View.html">andres::View</a></div><div class="ttdef"><b>Definition:</b> marray.hxx:113</div></div>
+<div class="ttc" id="classandres_1_1View_html_acd1f71e27ea01d536e1539877afedfa9"><div class="ttname"><a href="classandres_1_1View.html#acd1f71e27ea01d536e1539877afedfa9">andres::View::begin</a></div><div class="ttdeci">iterator begin()</div><div class="ttdef"><b>Definition:</b> marray.hxx:2712</div></div>
+<div class="ttc" id="namespacenifty_html"><div class="ttname"><a href="namespacenifty.html">nifty</a></div><div class="ttdef"><b>Definition:</b> arithmetic_array.hxx:8</div></div>
+<div class="ttc" id="classandres_1_1View_html_a9bc3d88b3e2bdf432dd68f36ff33deb3"><div class="ttname"><a href="classandres_1_1View.html#a9bc3d88b3e2bdf432dd68f36ff33deb3">andres::View::shape</a></div><div class="ttdeci">const std::size_t shape(const std::size_t) const </div><div class="ttdef"><b>Definition:</b> marray.hxx:1723</div></div>
 <div class="ttc" id="runtime__check_8hxx_html"><div class="ttname"><a href="runtime__check_8hxx.html">runtime_check.hxx</a></div></div>
+<div class="ttc" id="classandres_1_1View_html_a36308e1cf6bb6b17e8b0df6537c1ec39"><div class="ttname"><a href="classandres_1_1View.html#a36308e1cf6bb6b17e8b0df6537c1ec39">andres::View::dimension</a></div><div class="ttdeci">const std::size_t dimension() const </div><div class="ttdef"><b>Definition:</b> marray.hxx:1709</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

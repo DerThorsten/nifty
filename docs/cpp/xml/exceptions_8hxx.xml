@@ -1,0 +1,431 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="exceptions_8hxx" kind="file" language="C++">
+    <compoundname>exceptions.hxx</compoundname>
+    <includes local="no">stdexcept</includes>
+    <includedby refid="solver__base_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/common/solver_base.hxx</includedby>
+    <includedby refid="lifted__multicut__base_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_base.hxx</includedby>
+    <includedby refid="glpk_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/ilp_backend/glpk.hxx</includedby>
+    <includedby refid="gurobi_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/ilp_backend/gurobi.hxx</includedby>
+    <incdepgraph>
+      <node id="6919">
+        <label>stdexcept</label>
+      </node>
+      <node id="6918">
+        <label>/home/tbeier/src/nifty/include/nifty/exceptions/exceptions.hxx</label>
+        <link refid="exceptions.hxx"/>
+        <childnode refid="6919" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="6968">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/optimization/common/py_solver_visitor_base.hxx</label>
+        <link refid="py__solver__visitor__base_8hxx"/>
+      </node>
+      <node id="6960">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_mp.hxx</label>
+        <link refid="multicut__mp_8hxx"/>
+      </node>
+      <node id="6933">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/proposal_generators/proposal_generator_factory.hxx</label>
+        <link refid="lifted__multicut_2proposal__generators_2proposal__generator__factory_8hxx"/>
+        <childnode refid="6927" relation="include">
+        </childnode>
+      </node>
+      <node id="6965">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/perturb_and_map.hxx</label>
+        <link refid="perturb__and__map_8hxx"/>
+      </node>
+      <node id="6943">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/cc_fusion_move_based.hxx</label>
+        <link refid="cc__fusion__move__based_8hxx"/>
+      </node>
+      <node id="6934">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/proposal_generators/proposal_generator_factory_base.hxx</label>
+        <link refid="lifted__multicut_2proposal__generators_2proposal__generator__factory__base_8hxx"/>
+        <childnode refid="6927" relation="include">
+        </childnode>
+        <childnode refid="6935" relation="include">
+        </childnode>
+      </node>
+      <node id="6923">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/detail/lifted_twocut_kernighan_lin.hxx</label>
+        <link refid="lifted__twocut__kernighan__lin_8hxx"/>
+        <childnode refid="6924" relation="include">
+        </childnode>
+      </node>
+      <node id="6947">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_qpbo.hxx</label>
+        <link refid="mincut__qpbo_8hxx"/>
+      </node>
+      <node id="6935">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/optimization/lifted_multicut/py_proposal_generator_factory_base.hxx</label>
+        <link refid="lifted__multicut_2py__proposal__generator__factory__base_8hxx"/>
+      </node>
+      <node id="6922">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_base.hxx</label>
+        <link refid="lifted__multicut__base_8hxx"/>
+        <childnode refid="6923" relation="include">
+        </childnode>
+        <childnode refid="6926" relation="include">
+        </childnode>
+        <childnode refid="6927" relation="include">
+        </childnode>
+        <childnode refid="6928" relation="include">
+        </childnode>
+        <childnode refid="6929" relation="include">
+        </childnode>
+        <childnode refid="6930" relation="include">
+        </childnode>
+        <childnode refid="6931" relation="include">
+        </childnode>
+        <childnode refid="6924" relation="include">
+        </childnode>
+        <childnode refid="6925" relation="include">
+        </childnode>
+        <childnode refid="6932" relation="include">
+        </childnode>
+        <childnode refid="6936" relation="include">
+        </childnode>
+        <childnode refid="6937" relation="include">
+        </childnode>
+        <childnode refid="6939" relation="include">
+        </childnode>
+      </node>
+      <node id="6946">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_greedy_additive.hxx</label>
+        <link refid="mincut__greedy__additive_8hxx"/>
+      </node>
+      <node id="6938">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/optimization/lifted_multicut/export_lifted_multicut_solver.hxx</label>
+        <link refid="export__lifted__multicut__solver_8hxx"/>
+      </node>
+      <node id="6966">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/proposal_generators/watershed_proposals.hxx</label>
+        <link refid="watershed__proposals_8hxx"/>
+      </node>
+      <node id="6962">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_greedy_additive.hxx</label>
+        <link refid="multicut__greedy__additive_8hxx"/>
+        <childnode refid="6953" relation="include">
+        </childnode>
+        <childnode refid="6956" relation="include">
+        </childnode>
+        <childnode refid="6963" relation="include">
+        </childnode>
+      </node>
+      <node id="6958">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/kernighan_lin.hxx</label>
+        <link refid="kernighan__lin_8hxx"/>
+      </node>
+      <node id="6929">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_andres_kernighan_lin.hxx</label>
+        <link refid="lifted__multicut__andres__kernighan__lin_8hxx"/>
+      </node>
+      <node id="6926">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move.hxx</label>
+        <link refid="lifted__multicut_2fusion__move_8hxx"/>
+        <childnode refid="6927" relation="include">
+        </childnode>
+      </node>
+      <node id="6948">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/cgc.hxx</label>
+        <link refid="cgc_8hxx"/>
+      </node>
+      <node id="6941">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/common/cc_fusion_move_based_impl.hxx</label>
+        <link refid="cc__fusion__move__based__impl_8hxx"/>
+        <childnode refid="6942" relation="include">
+        </childnode>
+        <childnode refid="6943" relation="include">
+        </childnode>
+      </node>
+      <node id="6956">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/fusion_move.hxx</label>
+        <link refid="multicut_2fusion__move_8hxx"/>
+        <childnode refid="6943" relation="include">
+        </childnode>
+        <childnode refid="6957" relation="include">
+        </childnode>
+      </node>
+      <node id="6944">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/common/cc_fusion_move_impl.hxx</label>
+        <link refid="cc__fusion__move__impl_8hxx"/>
+      </node>
+      <node id="6952">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_base.hxx</label>
+        <link refid="multicut__base_8hxx"/>
+        <childnode refid="6953" relation="include">
+        </childnode>
+        <childnode refid="6954" relation="include">
+        </childnode>
+        <childnode refid="6943" relation="include">
+        </childnode>
+        <childnode refid="6948" relation="include">
+        </childnode>
+        <childnode refid="6955" relation="include">
+        </childnode>
+        <childnode refid="6956" relation="include">
+        </childnode>
+        <childnode refid="6957" relation="include">
+        </childnode>
+        <childnode refid="6958" relation="include">
+        </childnode>
+        <childnode refid="6959" relation="include">
+        </childnode>
+        <childnode refid="6961" relation="include">
+        </childnode>
+        <childnode refid="6962" relation="include">
+        </childnode>
+        <childnode refid="6964" relation="include">
+        </childnode>
+        <childnode refid="6960" relation="include">
+        </childnode>
+        <childnode refid="6965" relation="include">
+        </childnode>
+        <childnode refid="6963" relation="include">
+        </childnode>
+        <childnode refid="6966" relation="include">
+        </childnode>
+        <childnode refid="6967" relation="include">
+        </childnode>
+        <childnode refid="6968" relation="include">
+        </childnode>
+        <childnode refid="6969" relation="include">
+        </childnode>
+        <childnode refid="6971" relation="include">
+        </childnode>
+      </node>
+      <node id="6921">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/common/solver_base.hxx</label>
+        <link refid="solver__base_8hxx"/>
+        <childnode refid="6921" relation="include">
+        </childnode>
+        <childnode refid="6922" relation="include">
+        </childnode>
+        <childnode refid="6940" relation="include">
+        </childnode>
+        <childnode refid="6952" relation="include">
+        </childnode>
+      </node>
+      <node id="6957">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/fusion_move_based.hxx</label>
+        <link refid="multicut_2fusion__move__based_8hxx"/>
+      </node>
+      <node id="6950">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/optimization/mincut/export_mincut_solver.hxx</label>
+        <link refid="export__mincut__solver_8hxx"/>
+      </node>
+      <node id="6920">
+        <label>/home/tbeier/src/nifty/include/nifty/exceptions/exceptions.hxx</label>
+        <link refid="exceptions.hxx"/>
+        <childnode refid="6921" relation="include">
+        </childnode>
+        <childnode refid="6922" relation="include">
+        </childnode>
+        <childnode refid="6972" relation="include">
+        </childnode>
+        <childnode refid="6973" relation="include">
+        </childnode>
+      </node>
+      <node id="6969">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/optimization/multicut/py_multicut_base.hxx</label>
+        <link refid="py__multicut__base_8hxx"/>
+        <childnode refid="6970" relation="include">
+        </childnode>
+      </node>
+      <node id="6925">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_mp.hxx</label>
+        <link refid="lifted__multicut__mp_8hxx"/>
+      </node>
+      <node id="6971">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/optimization/multicut/py_multicut_visitor_base.hxx</label>
+        <link refid="py__multicut__visitor__base_8hxx"/>
+      </node>
+      <node id="6942">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_cc_fusion_move_based.hxx</label>
+        <link refid="mincut__cc__fusion__move__based_8hxx"/>
+      </node>
+      <node id="6930">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_greedy_additive.hxx</label>
+        <link refid="lifted__multicut__greedy__additive_8hxx"/>
+        <childnode refid="6926" relation="include">
+        </childnode>
+        <childnode refid="6925" relation="include">
+        </childnode>
+      </node>
+      <node id="6939">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/optimization/lifted_multicut/py_lifted_multicut_visitor_base.hxx</label>
+        <link refid="py__lifted__multicut__visitor__base_8hxx"/>
+      </node>
+      <node id="6940">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_base.hxx</label>
+        <link refid="mincut__base_8hxx"/>
+        <childnode refid="6941" relation="include">
+        </childnode>
+        <childnode refid="6944" relation="include">
+        </childnode>
+        <childnode refid="6945" relation="include">
+        </childnode>
+        <childnode refid="6942" relation="include">
+        </childnode>
+        <childnode refid="6946" relation="include">
+        </childnode>
+        <childnode refid="6947" relation="include">
+        </childnode>
+        <childnode refid="6948" relation="include">
+        </childnode>
+        <childnode refid="6949" relation="include">
+        </childnode>
+        <childnode refid="6951" relation="include">
+        </childnode>
+      </node>
+      <node id="6963">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/proposal_generators/greedy_additive_proposals.hxx</label>
+        <link refid="greedy__additive__proposals_8hxx"/>
+      </node>
+      <node id="6973">
+        <label>/home/tbeier/src/nifty/include/nifty/ilp_backend/gurobi.hxx</label>
+        <link refid="gurobi_8hxx"/>
+      </node>
+      <node id="6967">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/optimization/common/py_solver_base.hxx</label>
+        <link refid="py__solver__base_8hxx"/>
+      </node>
+      <node id="6949">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/optimization/mincut/py_mincut_base.hxx</label>
+        <link refid="py__mincut__base_8hxx"/>
+        <childnode refid="6950" relation="include">
+        </childnode>
+      </node>
+      <node id="6964">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_ilp.hxx</label>
+        <link refid="multicut__ilp_8hxx"/>
+      </node>
+      <node id="6961">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_decomposer.hxx</label>
+        <link refid="multicut__decomposer_8hxx"/>
+      </node>
+      <node id="6959">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_andres.hxx</label>
+        <link refid="multicut__andres_8hxx"/>
+        <childnode refid="6960" relation="include">
+        </childnode>
+      </node>
+      <node id="6955">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/chained_solvers.hxx</label>
+        <link refid="chained__solvers_8hxx"/>
+      </node>
+      <node id="6954">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/block_multicut.hxx</label>
+        <link refid="block__multicut_8hxx"/>
+      </node>
+      <node id="6937">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/optimization/lifted_multicut/py_lifted_multicut_base.hxx</label>
+        <link refid="py__lifted__multicut__base_8hxx"/>
+        <childnode refid="6938" relation="include">
+        </childnode>
+      </node>
+      <node id="6927">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx</label>
+        <link refid="lifted__multicut_2fusion__move__based_8hxx"/>
+      </node>
+      <node id="6945">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_cc_fusion_move.hxx</label>
+        <link refid="mincut__cc__fusion__move_8hxx"/>
+        <childnode refid="6942" relation="include">
+        </childnode>
+      </node>
+      <node id="6932">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/proposal_generators/proposal_generator_base.hxx</label>
+        <link refid="lifted__multicut_2proposal__generators_2proposal__generator__base_8hxx"/>
+        <childnode refid="6927" relation="include">
+        </childnode>
+        <childnode refid="6933" relation="include">
+        </childnode>
+        <childnode refid="6934" relation="include">
+        </childnode>
+      </node>
+      <node id="6928">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_andres_greedy_additive.hxx</label>
+        <link refid="lifted__multicut__andres__greedy__additive_8hxx"/>
+      </node>
+      <node id="6924">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_kernighan_lin.hxx</label>
+        <link refid="lifted__multicut__kernighan__lin_8hxx"/>
+        <childnode refid="6925" relation="include">
+        </childnode>
+      </node>
+      <node id="6931">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_ilp.hxx</label>
+        <link refid="lifted__multicut__ilp_8hxx"/>
+      </node>
+      <node id="6972">
+        <label>/home/tbeier/src/nifty/include/nifty/ilp_backend/glpk.hxx</label>
+        <link refid="glpk_8hxx"/>
+      </node>
+      <node id="6970">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/optimization/multicut/export_multicut_solver.hxx</label>
+        <link refid="export__multicut__solver_8hxx"/>
+      </node>
+      <node id="6936">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/proposal_generators/watershed_proposal_generator.hxx</label>
+        <link refid="lifted__multicut_2proposal__generators_2watershed__proposal__generator_8hxx"/>
+        <childnode refid="6927" relation="include">
+        </childnode>
+      </node>
+      <node id="6953">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx</label>
+        <link refid="greedy__additive__multicut__proposal__generator_8hxx"/>
+      </node>
+      <node id="6951">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/optimization/mincut/py_mincut_visitor_base.hxx</label>
+        <link refid="py__mincut__visitor__base_8hxx"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classnifty_1_1exceptions_1_1WeightsChangedNotSupported" prot="public">nifty::exceptions::WeightsChangedNotSupported</innerclass>
+    <innerclass refid="classnifty_1_1exceptions_1_1ResetNotSupported" prot="public">nifty::exceptions::ResetNotSupported</innerclass>
+    <innernamespace refid="namespacenifty">nifty</innernamespace>
+    <innernamespace refid="namespacenifty_1_1exceptions">nifty::exceptions</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdexcept&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacenifty" kindref="compound">nifty</ref>{</highlight></codeline>
+<codeline lineno="6" refid="namespacenifty_1_1exceptions" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">exceptions{</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9" refid="classnifty_1_1exceptions_1_1WeightsChangedNotSupported" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnifty_1_1exceptions_1_1WeightsChangedNotSupported" kindref="compound">WeightsChangedNotSupported</ref></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>std::runtime_error{</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="12" refid="classnifty_1_1exceptions_1_1WeightsChangedNotSupported_1ab90bbdd61bd2472ac5a73b3f60d01661" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1exceptions_1_1WeightsChangedNotSupported_1ab90bbdd61bd2472ac5a73b3f60d01661" kindref="member">WeightsChangedNotSupported</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>msg<sp/>=<sp/>std::string())</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>std::runtime_error(msg){</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="classnifty_1_1exceptions_1_1ResetNotSupported" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnifty_1_1exceptions_1_1ResetNotSupported" kindref="compound">ResetNotSupported</ref></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>std::runtime_error{</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="22" refid="classnifty_1_1exceptions_1_1ResetNotSupported_1aa6fd9fcec97eae36223a45533664f9a9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1exceptions_1_1ResetNotSupported_1aa6fd9fcec97eae36223a45533664f9a9" kindref="member">ResetNotSupported</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>msg<sp/>=<sp/>std::string())</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>std::runtime_error(msg){</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="31"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/tbeier/src/nifty/include/nifty/exceptions/exceptions.hxx"/>
+  </compounddef>
+</doxygen>

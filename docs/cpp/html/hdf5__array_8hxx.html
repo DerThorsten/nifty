@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Nifty
-   &#160;<span id="projectnumber">0.5.1</span>
+   &#160;<span id="projectnumber">0.19.0</span>
    </div>
   </td>
  </tr>
@@ -92,13 +92,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#namespaces">Namespaces</a> &#124;
-<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">hdf5_array.hxx File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;string&gt;</code><br />
+<div class="textblock"><code>#include &lt;cstddef&gt;</code><br />
+<code>#include &lt;string&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
 <code>#include &lt;mutex&gt;</code><br />
 <code>#include &quot;<a class="el" href="block__access_8hxx_source.html">nifty/tools/block_access.hxx</a>&quot;</code><br />
@@ -108,13 +108,27 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 Include dependency graph for hdf5_array.hxx:</div>
 <div class="dyncontent">
 <div class="center"><img src="hdf5__array_8hxx__incl.png" border="0" usemap="#_2home_2tbeier_2src_2nifty_2include_2nifty_2hdf5_2hdf5__array_8hxx" alt=""/></div>
-<!-- MAP 0 -->
+<map name="_2home_2tbeier_2src_2nifty_2include_2nifty_2hdf5_2hdf5__array_8hxx" id="_2home_2tbeier_2src_2nifty_2include_2nifty_2hdf5_2hdf5__array_8hxx">
+<area shape="rect" id="node6" href="block__access_8hxx.html" title="nifty/tools/block_access.hxx" alt="" coords="829,117,1017,143"/>
+<area shape="rect" id="node20" href="runtime__check_8hxx.html" title="nifty/tools/runtime\l_check.hxx" alt="" coords="732,288,859,329"/>
+<area shape="rect" id="node33" href="marray__hdf5_8hxx.html" title="nifty/marray/marray\l_hdf5.hxx" alt="" coords="548,109,683,151"/>
+<area shape="rect" id="node7" href="marray_8hxx.html" title="nifty/marray/marray.hxx" alt="" coords="594,206,754,233"/>
+<area shape="rect" id="node23" href="arithmetic__array_8hxx.html" title="nifty/array/arithmetic\l_array.hxx" alt="" coords="843,199,985,240"/>
+<area shape="rect" id="node25" href="threadpool_8hxx.html" title="nifty/parallel/threadpool.hxx" alt="" coords="1447,206,1629,233"/>
+<area shape="rect" id="node8" href="andres_2marray_8hxx.html" title="nifty/marray/andres\l/marray.hxx" alt="" coords="489,288,624,329"/>
+<area shape="rect" id="node34" href="marray-hdf5_8hxx.html" title="nifty/marray/andres\l/marray&#45;hdf5.hxx" alt="" coords="348,199,483,240"/>
+</map>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="hdf5__array_8hxx__dep__incl.png" border="0" usemap="#_2home_2tbeier_2src_2nifty_2include_2nifty_2hdf5_2hdf5__array_8hxxdep" alt=""/></div>
-<!-- MAP 1 -->
+<map name="_2home_2tbeier_2src_2nifty_2include_2nifty_2hdf5_2hdf5__array_8hxxdep" id="_2home_2tbeier_2src_2nifty_2include_2nifty_2hdf5_2hdf5__array_8hxxdep">
+<area shape="rect" id="node2" href="grid__rag__labels__hdf5_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/rag\l/grid_rag_labels_hdf5.hxx" alt="" coords="108,109,279,165"/>
+<area shape="rect" id="node3" href="compute__grid__rag__hdf5_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/rag\l/detail_rag/compute_grid\l_rag_hdf5.hxx" alt="" coords="111,213,275,284"/>
+<area shape="rect" id="node4" href="grid__rag__hdf5_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/rag\l/grid_rag_hdf5.hxx" alt="" coords="5,332,160,388"/>
+<area shape="rect" id="node5" href="grid__rag__stacked__2d__hdf5_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/rag\l/grid_rag_stacked_2d_hdf5.hxx" alt="" coords="203,332,405,388"/>
+</map>
 </div>
 </div>
 <p><a href="hdf5__array_8hxx_source.html">Go to the source code of this file.</a></p>
@@ -139,11 +153,6 @@ Namespaces</h2></td></tr>
 <tr class="memitem:namespacenifty_1_1tools"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenifty_1_1tools.html">nifty::tools</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
-Macros</h2></td></tr>
-<tr class="memitem:a942cde8178964713111d251faaf3d260"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hdf5__array_8hxx.html#a942cde8178964713111d251faaf3d260">NIFTY_HDF5_HDF5_ARRAY</a></td></tr>
-<tr class="separator:a942cde8178964713111d251faaf3d260"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a8b0e46da1e0ed94de12c1ea0b89a07d9"><td class="memTemplParams" colspan="2">template&lt;class T , class COORD &gt; </td></tr>
@@ -159,19 +168,6 @@ Functions</h2></td></tr>
 <tr class="memitem:a102fca55b5880c5b398205f0b438fbfe"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacenifty_1_1tools.html#a102fca55b5880c5b398205f0b438fbfe">nifty::tools::writeSubarrayLocked</a> (hdf5::Hdf5Array&lt; T &gt; &amp;array, const COORD &amp;beginCoord, const COORD &amp;endCoord, const marray::View&lt; T &gt; &amp;subarray)</td></tr>
 <tr class="separator:a102fca55b5880c5b398205f0b438fbfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Macro Definition Documentation</h2>
-<a class="anchor" id="a942cde8178964713111d251faaf3d260"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define NIFTY_HDF5_HDF5_ARRAY</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

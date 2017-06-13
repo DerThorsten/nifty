@@ -1,0 +1,520 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="classnifty_1_1hdf5_1_1Hdf5Array" kind="class" language="C++" prot="public">
+    <compoundname>nifty::hdf5::Hdf5Array</compoundname>
+    <includes refid="hdf5__array_8hxx" local="no">hdf5_array.hxx</includes>
+    <templateparamlist>
+      <param>
+        <type>class</type>
+        <declname>T</declname>
+        <defname>T</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classnifty_1_1hdf5_1_1Hdf5Array_1a6ff7916cfd0e56c1549299d4a065a278" prot="private" static="no" mutable="no">
+        <type>hid_t</type>
+        <definition>hid_t nifty::hdf5::Hdf5Array&lt; T &gt;::groupHandle_</definition>
+        <argsstring></argsstring>
+        <name>groupHandle_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5_array.hxx" line="416" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5_array.hxx" bodystart="416" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1hdf5_1_1Hdf5Array_1a7d1831410707d570a00545bf7c5f6990" prot="private" static="no" mutable="no">
+        <type>hid_t</type>
+        <definition>hid_t nifty::hdf5::Hdf5Array&lt; T &gt;::dataset_</definition>
+        <argsstring></argsstring>
+        <name>dataset_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5_array.hxx" line="417" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5_array.hxx" bodystart="417" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1hdf5_1_1Hdf5Array_1a8f56cf5b401dae18777495921cccbc1a" prot="private" static="no" mutable="no">
+        <type>hid_t</type>
+        <definition>hid_t nifty::hdf5::Hdf5Array&lt; T &gt;::datatype_</definition>
+        <argsstring></argsstring>
+        <name>datatype_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5_array.hxx" line="418" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5_array.hxx" bodystart="418" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1hdf5_1_1Hdf5Array_1a87376166551d22f4aa741e7143064091" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; uint64_t &gt;</type>
+        <definition>std::vector&lt;uint64_t&gt; nifty::hdf5::Hdf5Array&lt; T &gt;::shape_</definition>
+        <argsstring></argsstring>
+        <name>shape_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5_array.hxx" line="419" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5_array.hxx" bodystart="419" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1hdf5_1_1Hdf5Array_1ab470d0a8ca64e3e91ea0aaf04b89cc2b" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; uint64_t &gt;</type>
+        <definition>std::vector&lt;uint64_t&gt; nifty::hdf5::Hdf5Array&lt; T &gt;::chunkShape_</definition>
+        <argsstring></argsstring>
+        <name>chunkShape_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5_array.hxx" line="420" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5_array.hxx" bodystart="420" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1hdf5_1_1Hdf5Array_1a8704a13b17696e295fd34b3a4d2c2160" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool nifty::hdf5::Hdf5Array&lt; T &gt;::isChunked_</definition>
+        <argsstring></argsstring>
+        <name>isChunked_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5_array.hxx" line="421" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5_array.hxx" bodystart="421" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1hdf5_1_1Hdf5Array_1af164b10a52ab55e3f5a72004b6f6e278" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class SHAPE_ITER</type>
+          </param>
+          <param>
+            <type>class CHUNK_SHAPE_ITER</type>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>nifty::hdf5::Hdf5Array&lt; T &gt;::Hdf5Array</definition>
+        <argsstring>(const hid_t &amp;groupHandle, const std::string &amp;datasetName, SHAPE_ITER shapeBegin, SHAPE_ITER shapeEnd, CHUNK_SHAPE_ITER chunkShapeBegin, const int compression=-1)</argsstring>
+        <name>Hdf5Array</name>
+        <param>
+          <type>const hid_t &amp;</type>
+          <declname>groupHandle</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>datasetName</declname>
+        </param>
+        <param>
+          <type>SHAPE_ITER</type>
+          <declname>shapeBegin</declname>
+        </param>
+        <param>
+          <type>SHAPE_ITER</type>
+          <declname>shapeEnd</declname>
+        </param>
+        <param>
+          <type>CHUNK_SHAPE_ITER</type>
+          <declname>chunkShapeBegin</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>compression</declname>
+          <defval>-1</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5_array.hxx" line="23" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5_array.hxx" bodystart="23" bodyend="83"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1hdf5_1_1Hdf5Array_1a8ce039a0d357f3c20a30fa5f6d595cb5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>nifty::hdf5::Hdf5Array&lt; T &gt;::Hdf5Array</definition>
+        <argsstring>(const hid_t &amp;groupHandle, const std::string &amp;datasetName)</argsstring>
+        <name>Hdf5Array</name>
+        <param>
+          <type>const hid_t &amp;</type>
+          <declname>groupHandle</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>datasetName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5_array.hxx" line="85" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5_array.hxx" bodystart="85" bodyend="111"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1hdf5_1_1Hdf5Array_1a59e94ddc29dd4ba7e85a11c68960ea77" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int nifty::hdf5::Hdf5Array&lt; T &gt;::setCache</definition>
+        <argsstring>()</argsstring>
+        <name>setCache</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5_array.hxx" line="113" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5_array.hxx" bodystart="113" bodyend="115"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1hdf5_1_1Hdf5Array_1a6f02962174e64b4c893b287f735cd30d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>nifty::hdf5::Hdf5Array&lt; T &gt;::~Hdf5Array</definition>
+        <argsstring>()</argsstring>
+        <name>~Hdf5Array</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5_array.hxx" line="117" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5_array.hxx" bodystart="117" bodyend="120"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1hdf5_1_1Hdf5Array_1a31ff7ce3b1524babd925a2013c590665" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint64_t</type>
+        <definition>uint64_t nifty::hdf5::Hdf5Array&lt; T &gt;::dimension</definition>
+        <argsstring>() const </argsstring>
+        <name>dimension</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5_array.hxx" line="122" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5_array.hxx" bodystart="122" bodyend="124"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1hdf5_1_1Hdf5Array_1a6b118d13cc01f9adf6548115474b64ff" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint64_t</type>
+        <definition>uint64_t nifty::hdf5::Hdf5Array&lt; T &gt;::shape</definition>
+        <argsstring>(const std::size_t d) const </argsstring>
+        <name>shape</name>
+        <param>
+          <type>const std::size_t</type>
+          <declname>d</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5_array.hxx" line="125" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5_array.hxx" bodystart="125" bodyend="127"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1hdf5_1_1Hdf5Array_1af749bd9be409404fb41fa614dcdd3c45" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const std::vector&lt; uint64_t &gt; &amp;</type>
+        <definition>const std::vector&lt;uint64_t&gt;&amp; nifty::hdf5::Hdf5Array&lt; T &gt;::shape</definition>
+        <argsstring>() const </argsstring>
+        <name>shape</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5_array.hxx" line="128" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5_array.hxx" bodystart="128" bodyend="130"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1hdf5_1_1Hdf5Array_1ade286b273c05f5ce3b3e0b5df3836d00" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint64_t</type>
+        <definition>uint64_t nifty::hdf5::Hdf5Array&lt; T &gt;::chunkShape</definition>
+        <argsstring>(const std::size_t d) const </argsstring>
+        <name>chunkShape</name>
+        <param>
+          <type>const std::size_t</type>
+          <declname>d</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5_array.hxx" line="131" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5_array.hxx" bodystart="131" bodyend="133"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1hdf5_1_1Hdf5Array_1a5e0e489414e1bef413cdf6f9b33aae66" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const std::vector&lt; uint64_t &gt; &amp;</type>
+        <definition>const std::vector&lt;uint64_t&gt;&amp; nifty::hdf5::Hdf5Array&lt; T &gt;::chunkShape</definition>
+        <argsstring>() const </argsstring>
+        <name>chunkShape</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5_array.hxx" line="134" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5_array.hxx" bodystart="134" bodyend="136"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1hdf5_1_1Hdf5Array_1a4f528ec226501c76d88d66933e5bed81" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool nifty::hdf5::Hdf5Array&lt; T &gt;::isChunked</definition>
+        <argsstring>() const </argsstring>
+        <name>isChunked</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5_array.hxx" line="138" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5_array.hxx" bodystart="138" bodyend="140"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1hdf5_1_1Hdf5Array_1a09f2804eb2d92a53c3123df6f4970414" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class ITER</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::hdf5::Hdf5Array&lt; T &gt;::readSubarray</definition>
+        <argsstring>(ITER roiBeginIter, marray::View&lt; T &gt; &amp;out) const </argsstring>
+        <name>readSubarray</name>
+        <param>
+          <type>ITER</type>
+          <declname>roiBeginIter</declname>
+        </param>
+        <param>
+          <type><ref refid="classandres_1_1View" kindref="compound">marray::View</ref>&lt; T &gt; &amp;</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5_array.hxx" line="143" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5_array.hxx" bodystart="143" bodyend="152"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1hdf5_1_1Hdf5Array_1a098888418cf243be746971ebdbb06754" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class ITER</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::hdf5::Hdf5Array&lt; T &gt;::readSubarrayLocked</definition>
+        <argsstring>(ITER roiBeginIter, marray::View&lt; T &gt; &amp;out) const </argsstring>
+        <name>readSubarrayLocked</name>
+        <param>
+          <type>ITER</type>
+          <declname>roiBeginIter</declname>
+        </param>
+        <param>
+          <type><ref refid="classandres_1_1View" kindref="compound">marray::View</ref>&lt; T &gt; &amp;</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5_array.hxx" line="155" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5_array.hxx" bodystart="155" bodyend="163"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1hdf5_1_1Hdf5Array_1af6773c766d8f098f715e74de486df0af" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class ITER</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::hdf5::Hdf5Array&lt; T &gt;::writeSubarray</definition>
+        <argsstring>(ITER roiBeginIter, const marray::View&lt; T &gt; &amp;in)</argsstring>
+        <name>writeSubarray</name>
+        <param>
+          <type>ITER</type>
+          <declname>roiBeginIter</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classandres_1_1View" kindref="compound">marray::View</ref>&lt; T &gt; &amp;</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5_array.hxx" line="166" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5_array.hxx" bodystart="166" bodyend="175"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1hdf5_1_1Hdf5Array_1aaa52559f3b3baf61a0e3f4fed81dbb9c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class ITER</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::hdf5::Hdf5Array&lt; T &gt;::writeSubarrayLocked</definition>
+        <argsstring>(ITER roiBeginIter, const marray::View&lt; T &gt; &amp;in) const </argsstring>
+        <name>writeSubarrayLocked</name>
+        <param>
+          <type>ITER</type>
+          <declname>roiBeginIter</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classandres_1_1View" kindref="compound">marray::View</ref>&lt; T &gt; &amp;</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5_array.hxx" line="178" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5_array.hxx" bodystart="178" bodyend="186"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classnifty_1_1hdf5_1_1Hdf5Array_1a13d1fc29326a9986c0e86ed21517944d" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class BaseIterator</type>
+          </param>
+          <param>
+            <type>class ShapeIterator</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::hdf5::Hdf5Array&lt; T &gt;::loadHyperslab</definition>
+        <argsstring>(BaseIterator baseBegin, BaseIterator baseEnd, ShapeIterator shapeBegin, marray::View&lt; T &gt; &amp;out) const </argsstring>
+        <name>loadHyperslab</name>
+        <param>
+          <type>BaseIterator</type>
+          <declname>baseBegin</declname>
+        </param>
+        <param>
+          <type>BaseIterator</type>
+          <declname>baseEnd</declname>
+        </param>
+        <param>
+          <type>ShapeIterator</type>
+          <declname>shapeBegin</declname>
+        </param>
+        <param>
+          <type><ref refid="classandres_1_1View" kindref="compound">marray::View</ref>&lt; T &gt; &amp;</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5_array.hxx" line="190" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5_array.hxx" bodystart="190" bodyend="283"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1hdf5_1_1Hdf5Array_1ae93687c583cd26600f98443201b835f1" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class BaseIterator</type>
+          </param>
+          <param>
+            <type>class ShapeIterator</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::hdf5::Hdf5Array&lt; T &gt;::saveHyperslab</definition>
+        <argsstring>(BaseIterator baseBegin, BaseIterator baseEnd, ShapeIterator shapeBegin, const marray::View&lt; T &gt; &amp;in)</argsstring>
+        <name>saveHyperslab</name>
+        <param>
+          <type>BaseIterator</type>
+          <declname>baseBegin</declname>
+        </param>
+        <param>
+          <type>BaseIterator</type>
+          <declname>baseEnd</declname>
+        </param>
+        <param>
+          <type>ShapeIterator</type>
+          <declname>shapeBegin</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classandres_1_1View" kindref="compound">marray::View</ref>&lt; T &gt; &amp;</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5_array.hxx" line="287" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5_array.hxx" bodystart="287" bodyend="352"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1hdf5_1_1Hdf5Array_1ae4eaad1d58f7ffc0085ee5c514dc07fa" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::hdf5::Hdf5Array&lt; T &gt;::loadShape</definition>
+        <argsstring>(std::vector&lt; uint64_t &gt; &amp;shapeVec)</argsstring>
+        <name>loadShape</name>
+        <param>
+          <type>std::vector&lt; uint64_t &gt; &amp;</type>
+          <declname>shapeVec</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5_array.hxx" line="354" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5_array.hxx" bodystart="354" bodyend="382"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1hdf5_1_1Hdf5Array_1a2abe85a69500002108577ece01368b00" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::hdf5::Hdf5Array&lt; T &gt;::loadChunkShape</definition>
+        <argsstring>(std::vector&lt; uint64_t &gt; &amp;chunkShape)</argsstring>
+        <name>loadChunkShape</name>
+        <param>
+          <type>std::vector&lt; uint64_t &gt; &amp;</type>
+          <declname>chunkShape</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5_array.hxx" line="384" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5_array.hxx" bodystart="384" bodyend="414"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5_array.hxx" line="20" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5_array.hxx" bodystart="20" bodyend="422"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1hdf5_1_1Hdf5Array_1ade286b273c05f5ce3b3e0b5df3836d00" prot="public" virt="non-virtual"><scope>nifty::hdf5::Hdf5Array</scope><name>chunkShape</name></member>
+      <member refid="classnifty_1_1hdf5_1_1Hdf5Array_1a5e0e489414e1bef413cdf6f9b33aae66" prot="public" virt="non-virtual"><scope>nifty::hdf5::Hdf5Array</scope><name>chunkShape</name></member>
+      <member refid="classnifty_1_1hdf5_1_1Hdf5Array_1ab470d0a8ca64e3e91ea0aaf04b89cc2b" prot="private" virt="non-virtual"><scope>nifty::hdf5::Hdf5Array</scope><name>chunkShape_</name></member>
+      <member refid="classnifty_1_1hdf5_1_1Hdf5Array_1a7d1831410707d570a00545bf7c5f6990" prot="private" virt="non-virtual"><scope>nifty::hdf5::Hdf5Array</scope><name>dataset_</name></member>
+      <member refid="classnifty_1_1hdf5_1_1Hdf5Array_1a8f56cf5b401dae18777495921cccbc1a" prot="private" virt="non-virtual"><scope>nifty::hdf5::Hdf5Array</scope><name>datatype_</name></member>
+      <member refid="classnifty_1_1hdf5_1_1Hdf5Array_1a31ff7ce3b1524babd925a2013c590665" prot="public" virt="non-virtual"><scope>nifty::hdf5::Hdf5Array</scope><name>dimension</name></member>
+      <member refid="classnifty_1_1hdf5_1_1Hdf5Array_1a6ff7916cfd0e56c1549299d4a065a278" prot="private" virt="non-virtual"><scope>nifty::hdf5::Hdf5Array</scope><name>groupHandle_</name></member>
+      <member refid="classnifty_1_1hdf5_1_1Hdf5Array_1af164b10a52ab55e3f5a72004b6f6e278" prot="public" virt="non-virtual"><scope>nifty::hdf5::Hdf5Array</scope><name>Hdf5Array</name></member>
+      <member refid="classnifty_1_1hdf5_1_1Hdf5Array_1a8ce039a0d357f3c20a30fa5f6d595cb5" prot="public" virt="non-virtual"><scope>nifty::hdf5::Hdf5Array</scope><name>Hdf5Array</name></member>
+      <member refid="classnifty_1_1hdf5_1_1Hdf5Array_1a4f528ec226501c76d88d66933e5bed81" prot="public" virt="non-virtual"><scope>nifty::hdf5::Hdf5Array</scope><name>isChunked</name></member>
+      <member refid="classnifty_1_1hdf5_1_1Hdf5Array_1a8704a13b17696e295fd34b3a4d2c2160" prot="private" virt="non-virtual"><scope>nifty::hdf5::Hdf5Array</scope><name>isChunked_</name></member>
+      <member refid="classnifty_1_1hdf5_1_1Hdf5Array_1a2abe85a69500002108577ece01368b00" prot="private" virt="non-virtual"><scope>nifty::hdf5::Hdf5Array</scope><name>loadChunkShape</name></member>
+      <member refid="classnifty_1_1hdf5_1_1Hdf5Array_1a13d1fc29326a9986c0e86ed21517944d" prot="private" virt="non-virtual"><scope>nifty::hdf5::Hdf5Array</scope><name>loadHyperslab</name></member>
+      <member refid="classnifty_1_1hdf5_1_1Hdf5Array_1ae4eaad1d58f7ffc0085ee5c514dc07fa" prot="private" virt="non-virtual"><scope>nifty::hdf5::Hdf5Array</scope><name>loadShape</name></member>
+      <member refid="classnifty_1_1hdf5_1_1Hdf5Array_1a09f2804eb2d92a53c3123df6f4970414" prot="public" virt="non-virtual"><scope>nifty::hdf5::Hdf5Array</scope><name>readSubarray</name></member>
+      <member refid="classnifty_1_1hdf5_1_1Hdf5Array_1a098888418cf243be746971ebdbb06754" prot="public" virt="non-virtual"><scope>nifty::hdf5::Hdf5Array</scope><name>readSubarrayLocked</name></member>
+      <member refid="classnifty_1_1hdf5_1_1Hdf5Array_1ae93687c583cd26600f98443201b835f1" prot="private" virt="non-virtual"><scope>nifty::hdf5::Hdf5Array</scope><name>saveHyperslab</name></member>
+      <member refid="classnifty_1_1hdf5_1_1Hdf5Array_1a59e94ddc29dd4ba7e85a11c68960ea77" prot="public" virt="non-virtual"><scope>nifty::hdf5::Hdf5Array</scope><name>setCache</name></member>
+      <member refid="classnifty_1_1hdf5_1_1Hdf5Array_1a6b118d13cc01f9adf6548115474b64ff" prot="public" virt="non-virtual"><scope>nifty::hdf5::Hdf5Array</scope><name>shape</name></member>
+      <member refid="classnifty_1_1hdf5_1_1Hdf5Array_1af749bd9be409404fb41fa614dcdd3c45" prot="public" virt="non-virtual"><scope>nifty::hdf5::Hdf5Array</scope><name>shape</name></member>
+      <member refid="classnifty_1_1hdf5_1_1Hdf5Array_1a87376166551d22f4aa741e7143064091" prot="private" virt="non-virtual"><scope>nifty::hdf5::Hdf5Array</scope><name>shape_</name></member>
+      <member refid="classnifty_1_1hdf5_1_1Hdf5Array_1af6773c766d8f098f715e74de486df0af" prot="public" virt="non-virtual"><scope>nifty::hdf5::Hdf5Array</scope><name>writeSubarray</name></member>
+      <member refid="classnifty_1_1hdf5_1_1Hdf5Array_1aaa52559f3b3baf61a0e3f4fed81dbb9c" prot="public" virt="non-virtual"><scope>nifty::hdf5::Hdf5Array</scope><name>writeSubarrayLocked</name></member>
+      <member refid="classnifty_1_1hdf5_1_1Hdf5Array_1a6f02962174e64b4c893b287f735cd30d" prot="public" virt="non-virtual"><scope>nifty::hdf5::Hdf5Array</scope><name>~Hdf5Array</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

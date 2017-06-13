@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="structnifty_1_1graph_1_1agglo_1_1MalaClusterPolicy_1_1Settings" kind="struct" language="C++" prot="public">
+    <compoundname>nifty::graph::agglo::MalaClusterPolicy::Settings</compoundname>
+    <basecompoundref refid="structnifty_1_1graph_1_1agglo_1_1EdgeWeightedClusterPolicySettings" prot="public" virt="non-virtual">nifty::graph::agglo::EdgeWeightedClusterPolicySettings</basecompoundref>
+    <includes refid="mala__cluster__policy_8hxx" local="no">mala_cluster_policy.hxx</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structnifty_1_1graph_1_1agglo_1_1MalaClusterPolicy_1_1Settings_1a481d8fd0a487b71ad67d1ea1f1ce51a0" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float nifty::graph::agglo::MalaClusterPolicy&lt; GRAPH, ENABLE_UCM &gt;::Settings::threshold</definition>
+        <argsstring></argsstring>
+        <name>threshold</name>
+        <initializer>{0.5}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/mala_cluster_policy.hxx" line="46" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/mala_cluster_policy.hxx" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structnifty_1_1graph_1_1agglo_1_1MalaClusterPolicy_1_1Settings_1ab892447b233b3e89473ad3fee83a305e" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool nifty::graph::agglo::MalaClusterPolicy&lt; GRAPH, ENABLE_UCM &gt;::Settings::verbose</definition>
+        <argsstring></argsstring>
+        <name>verbose</name>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/mala_cluster_policy.hxx" line="47" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/mala_cluster_policy.hxx" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1702">
+        <label>nifty::graph::agglo::MalaClusterPolicy&lt; GRAPH, ENABLE_UCM &gt;::Settings</label>
+        <link refid="structnifty_1_1graph_1_1agglo_1_1MalaClusterPolicy_1_1Settings"/>
+        <childnode refid="1703" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1703">
+        <label>nifty::graph::agglo::EdgeWeightedClusterPolicySettings</label>
+        <link refid="structnifty_1_1graph_1_1agglo_1_1EdgeWeightedClusterPolicySettings"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1704">
+        <label>nifty::graph::agglo::MalaClusterPolicy&lt; GRAPH, ENABLE_UCM &gt;::Settings</label>
+        <link refid="structnifty_1_1graph_1_1agglo_1_1MalaClusterPolicy_1_1Settings"/>
+        <childnode refid="1705" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1705">
+        <label>nifty::graph::agglo::EdgeWeightedClusterPolicySettings</label>
+        <link refid="structnifty_1_1graph_1_1agglo_1_1EdgeWeightedClusterPolicySettings"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/mala_cluster_policy.hxx" line="44" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/mala_cluster_policy.hxx" bodystart="43" bodyend="48"/>
+    <listofallmembers>
+      <member refid="structnifty_1_1graph_1_1agglo_1_1EdgeWeightedClusterPolicySettings_1a34f45712a326b7e635a6ec6419bfe42b" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::MalaClusterPolicy::Settings</scope><name>numberOfEdgesStop</name></member>
+      <member refid="structnifty_1_1graph_1_1agglo_1_1EdgeWeightedClusterPolicySettings_1a09a8f5ef7a4a14304439367054bf64cc" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::MalaClusterPolicy::Settings</scope><name>numberOfNodesStop</name></member>
+      <member refid="structnifty_1_1graph_1_1agglo_1_1EdgeWeightedClusterPolicySettings_1a16830167af377ff60fd7831c4ca30074" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::MalaClusterPolicy::Settings</scope><name>sizeRegularizer</name></member>
+      <member refid="structnifty_1_1graph_1_1agglo_1_1MalaClusterPolicy_1_1Settings_1a481d8fd0a487b71ad67d1ea1f1ce51a0" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::MalaClusterPolicy::Settings</scope><name>threshold</name></member>
+      <member refid="structnifty_1_1graph_1_1agglo_1_1MalaClusterPolicy_1_1Settings_1ab892447b233b3e89473ad3fee83a305e" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::MalaClusterPolicy::Settings</scope><name>verbose</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

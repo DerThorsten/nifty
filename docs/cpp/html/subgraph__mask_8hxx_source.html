@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Nifty
-   &#160;<span id="projectnumber">0.5.1</span>
+   &#160;<span id="projectnumber">0.19.0</span>
    </div>
   </td>
  </tr>
@@ -94,33 +94,30 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <a href="subgraph__mask_8hxx.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#ifndef NIFTY_GRAPH_SUBGRAPH_MASK_HXX</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno"><a class="line" href="subgraph__mask_8hxx.html#a8514745e959290ee34b82eacedc8879c">    3</a></span>&#160;<span class="preprocessor">#define NIFTY_GRAPH_SUBGRAPH_MASK_HXX</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacenifty.html">nifty</a>{</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">namespace </span>graph{</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">class</span> G&gt;</div>
-<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="structnifty_1_1graph_1_1DefaultSubgraphMask.html">   11</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structnifty_1_1graph_1_1DefaultSubgraphMask.html">DefaultSubgraphMask</a>{</div>
-<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="structnifty_1_1graph_1_1DefaultSubgraphMask.html#a2e18317966dd9042d860b94286c85513">   12</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="structnifty_1_1graph_1_1DefaultSubgraphMask.html#a2e18317966dd9042d860b94286c85513">useEdge</a>(<span class="keyword">const</span> uint64_t)<span class="keyword">const</span>{</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        }</div>
-<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="structnifty_1_1graph_1_1DefaultSubgraphMask.html#af81e63f27fdd413b187ff4ec21c6d276">   15</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="structnifty_1_1graph_1_1DefaultSubgraphMask.html#af81e63f27fdd413b187ff4ec21c6d276">useNode</a>(<span class="keyword">const</span> uint64_t)<span class="keyword">const</span>{</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        }</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    };</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;} <span class="comment">// namespace nifty::graph</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;} <span class="comment">// namespace nifty</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#endif  // NIFTY_GRAPH_SUBGRAPH_MASK_HXX</span></div>
-<div class="ttc" id="structnifty_1_1graph_1_1DefaultSubgraphMask_html"><div class="ttname"><a href="structnifty_1_1graph_1_1DefaultSubgraphMask.html">nifty::graph::DefaultSubgraphMask</a></div><div class="ttdef"><b>Definition:</b> subgraph_mask.hxx:11</div></div>
-<div class="ttc" id="structnifty_1_1graph_1_1DefaultSubgraphMask_html_a2e18317966dd9042d860b94286c85513"><div class="ttname"><a href="structnifty_1_1graph_1_1DefaultSubgraphMask.html#a2e18317966dd9042d860b94286c85513">nifty::graph::DefaultSubgraphMask::useEdge</a></div><div class="ttdeci">bool useEdge(const uint64_t) const </div><div class="ttdef"><b>Definition:</b> subgraph_mask.hxx:12</div></div>
-<div class="ttc" id="structnifty_1_1graph_1_1DefaultSubgraphMask_html_af81e63f27fdd413b187ff4ec21c6d276"><div class="ttname"><a href="structnifty_1_1graph_1_1DefaultSubgraphMask.html#af81e63f27fdd413b187ff4ec21c6d276">nifty::graph::DefaultSubgraphMask::useNode</a></div><div class="ttdeci">bool useNode(const uint64_t) const </div><div class="ttdef"><b>Definition:</b> subgraph_mask.hxx:15</div></div>
-<div class="ttc" id="namespacenifty_html"><div class="ttname"><a href="namespacenifty.html">nifty</a></div><div class="ttdef"><b>Definition:</b> arithmetic_array.hxx:10</div></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;</div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacenifty.html">nifty</a>{</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">namespace </span>graph{</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">class</span> G&gt;</div>
+<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="structnifty_1_1graph_1_1DefaultSubgraphMask.html">    9</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structnifty_1_1graph_1_1DefaultSubgraphMask.html">DefaultSubgraphMask</a>{</div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="structnifty_1_1graph_1_1DefaultSubgraphMask.html#a2e18317966dd9042d860b94286c85513">   10</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="structnifty_1_1graph_1_1DefaultSubgraphMask.html#a2e18317966dd9042d860b94286c85513">useEdge</a>(<span class="keyword">const</span> uint64_t)<span class="keyword">const</span>{</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        }</div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="structnifty_1_1graph_1_1DefaultSubgraphMask.html#af81e63f27fdd413b187ff4ec21c6d276">   13</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="structnifty_1_1graph_1_1DefaultSubgraphMask.html#af81e63f27fdd413b187ff4ec21c6d276">useNode</a>(<span class="keyword">const</span> uint64_t)<span class="keyword">const</span>{</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        }</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    };</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;} <span class="comment">// namespace nifty::graph</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;} <span class="comment">// namespace nifty</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
+<div class="ttc" id="structnifty_1_1graph_1_1DefaultSubgraphMask_html"><div class="ttname"><a href="structnifty_1_1graph_1_1DefaultSubgraphMask.html">nifty::graph::DefaultSubgraphMask</a></div><div class="ttdef"><b>Definition:</b> subgraph_mask.hxx:9</div></div>
+<div class="ttc" id="structnifty_1_1graph_1_1DefaultSubgraphMask_html_a2e18317966dd9042d860b94286c85513"><div class="ttname"><a href="structnifty_1_1graph_1_1DefaultSubgraphMask.html#a2e18317966dd9042d860b94286c85513">nifty::graph::DefaultSubgraphMask::useEdge</a></div><div class="ttdeci">bool useEdge(const uint64_t) const </div><div class="ttdef"><b>Definition:</b> subgraph_mask.hxx:10</div></div>
+<div class="ttc" id="structnifty_1_1graph_1_1DefaultSubgraphMask_html_af81e63f27fdd413b187ff4ec21c6d276"><div class="ttname"><a href="structnifty_1_1graph_1_1DefaultSubgraphMask.html#af81e63f27fdd413b187ff4ec21c6d276">nifty::graph::DefaultSubgraphMask::useNode</a></div><div class="ttdeci">bool useNode(const uint64_t) const </div><div class="ttdef"><b>Definition:</b> subgraph_mask.hxx:13</div></div>
+<div class="ttc" id="namespacenifty_html"><div class="ttname"><a href="namespacenifty.html">nifty</a></div><div class="ttdef"><b>Definition:</b> arithmetic_array.hxx:8</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

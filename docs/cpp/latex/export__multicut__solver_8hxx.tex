@@ -1,31 +1,30 @@
 \hypertarget{export__multicut__solver_8hxx}{}\section{/home/tbeier/src/nifty/include/nifty/python/graph/optimization/multicut/export\+\_\+multicut\+\_\+solver.hxx File Reference}
 \label{export__multicut__solver_8hxx}\index{/home/tbeier/src/nifty/include/nifty/python/graph/optimization/multicut/export\+\_\+multicut\+\_\+solver.\+hxx@{/home/tbeier/src/nifty/include/nifty/python/graph/optimization/multicut/export\+\_\+multicut\+\_\+solver.\+hxx}}
 {\ttfamily \#include $<$pybind11/pybind11.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}nifty/python/graph/optimization/solver\+\_\+docstring.\+hxx\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}nifty/python/graph/optimization/multicut/multicut\+\_\+objective.\+hxx\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}py\+\_\+multicut\+\_\+factory.\+hxx\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}nifty/graph/optimization/common/solver\+\_\+factory.\+hxx\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}py\+\_\+multicut\+\_\+base.\+hxx\char`\"{}}\\*
-Include dependency graph for export\+\_\+multicut\+\_\+solver.\+hxx\+:
-% FIG 0
+Include dependency graph for export\+\_\+multicut\+\_\+solver.\+hxx\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{export__multicut__solver_8hxx__incl}
+\end{center}
+\end{figure}
 \subsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
  \hyperlink{namespacenifty}{nifty}
 \item 
  \hyperlink{namespacenifty_1_1graph}{nifty\+::graph}
-\end{DoxyCompactItemize}
-\subsection*{Macros}
-\begin{DoxyCompactItemize}
 \item 
-\#define \hyperlink{export__multicut__solver_8hxx_ac73d4d66b2d86ba67bf1147034219cbc}{N\+I\+F\+T\+Y\+\_\+\+P\+Y\+T\+H\+O\+N\+\_\+\+G\+R\+A\+P\+H\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+E\+X\+P\+O\+R\+T\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+S\+O\+L\+V\+E\+R\+\_\+\+H\+X\+X}
+ \hyperlink{namespacenifty_1_1graph_1_1optimization}{nifty\+::graph\+::optimization}
+\item 
+ \hyperlink{namespacenifty_1_1graph_1_1optimization_1_1multicut}{nifty\+::graph\+::optimization\+::multicut}
 \end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-{\footnotesize template$<$class S\+O\+L\+V\+E\+R $>$ }\\py\+::class\+\_\+$<$ typename S\+O\+L\+V\+E\+R\+::\+Settings $>$ \hyperlink{namespacenifty_1_1graph_a26bca8c08ab4a4deb3b53b511c166919}{nifty\+::graph\+::export\+Multicut\+Solver} (py\+::module \&multicut\+Module, const std\+::string \&solver\+Name)
+{\footnotesize template$<$class S\+O\+L\+V\+E\+R $>$ }\\py\+::class\+\_\+$<$ typename S\+O\+L\+V\+E\+R\+::\+Settings\+Type $>$ \hyperlink{namespacenifty_1_1graph_1_1optimization_1_1multicut_a4062f92131cfdad241fdbf60f3dd2fed}{nifty\+::graph\+::optimization\+::multicut\+::export\+Multicut\+Solver} (py\+::module \&multicut\+Module, const std\+::string \&solver\+Name, \hyperlink{classnifty_1_1graph_1_1optimization_1_1SolverDocstringHelper}{nifty\+::graph\+::optimization\+::\+Solver\+Docstring\+Helper} doc\+Helper=\hyperlink{classnifty_1_1graph_1_1optimization_1_1SolverDocstringHelper}{nifty\+::graph\+::optimization\+::\+Solver\+Docstring\+Helper}())
 \end{DoxyCompactItemize}
-
-
-\subsection{Macro Definition Documentation}
-\hypertarget{export__multicut__solver_8hxx_ac73d4d66b2d86ba67bf1147034219cbc}{}\index{export\+\_\+multicut\+\_\+solver.\+hxx@{export\+\_\+multicut\+\_\+solver.\+hxx}!N\+I\+F\+T\+Y\+\_\+\+P\+Y\+T\+H\+O\+N\+\_\+\+G\+R\+A\+P\+H\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+E\+X\+P\+O\+R\+T\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+S\+O\+L\+V\+E\+R\+\_\+\+H\+X\+X@{N\+I\+F\+T\+Y\+\_\+\+P\+Y\+T\+H\+O\+N\+\_\+\+G\+R\+A\+P\+H\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+E\+X\+P\+O\+R\+T\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+S\+O\+L\+V\+E\+R\+\_\+\+H\+X\+X}}
-\index{N\+I\+F\+T\+Y\+\_\+\+P\+Y\+T\+H\+O\+N\+\_\+\+G\+R\+A\+P\+H\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+E\+X\+P\+O\+R\+T\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+S\+O\+L\+V\+E\+R\+\_\+\+H\+X\+X@{N\+I\+F\+T\+Y\+\_\+\+P\+Y\+T\+H\+O\+N\+\_\+\+G\+R\+A\+P\+H\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+E\+X\+P\+O\+R\+T\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+S\+O\+L\+V\+E\+R\+\_\+\+H\+X\+X}!export\+\_\+multicut\+\_\+solver.\+hxx@{export\+\_\+multicut\+\_\+solver.\+hxx}}
-\subsubsection[{N\+I\+F\+T\+Y\+\_\+\+P\+Y\+T\+H\+O\+N\+\_\+\+G\+R\+A\+P\+H\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+E\+X\+P\+O\+R\+T\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+S\+O\+L\+V\+E\+R\+\_\+\+H\+X\+X}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+I\+F\+T\+Y\+\_\+\+P\+Y\+T\+H\+O\+N\+\_\+\+G\+R\+A\+P\+H\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+E\+X\+P\+O\+R\+T\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+S\+O\+L\+V\+E\+R\+\_\+\+H\+X\+X}\label{export__multicut__solver_8hxx_ac73d4d66b2d86ba67bf1147034219cbc}

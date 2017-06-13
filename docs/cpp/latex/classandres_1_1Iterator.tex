@@ -1,0 +1,369 @@
+\hypertarget{classandres_1_1Iterator}{}\section{andres\+:\+:Iterator$<$ T, is\+Const, A $>$ Class Template Reference}
+\label{classandres_1_1Iterator}\index{andres\+::\+Iterator$<$ T, is\+Const, A $>$@{andres\+::\+Iterator$<$ T, is\+Const, A $>$}}
+
+
+{\ttfamily \#include $<$marray.\+hxx$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef std\+::random\+\_\+access\+\_\+iterator\+\_\+tag \hyperlink{classandres_1_1Iterator_a36e37107724fb0c9265f8d3f41f93309}{iterator\+\_\+category}
+\item 
+typedef T \hyperlink{classandres_1_1Iterator_a3fd8a072268f4ad5c55963a6ea6d7a65}{value\+\_\+type}
+\item 
+typedef ptrdiff\+\_\+t \hyperlink{classandres_1_1Iterator_a10f8053d87b6b597d9fe011f66a240ca}{difference\+\_\+type}
+\item 
+typedef marray\+\_\+detail\+::\+If\+Bool$<$ is\+Const, const T $\ast$, T $\ast$ $>$\+::type \hyperlink{classandres_1_1Iterator_adf2ba3f1a3cc9c98bff9c544afdb22f9}{pointer}
+\item 
+typedef marray\+\_\+detail\+::\+If\+Bool$<$ is\+Const, const T \&, T \& $>$\+::type \hyperlink{classandres_1_1Iterator_a9805f26813688f04c33e798f7999e5f7}{reference}
+\item 
+typedef marray\+\_\+detail\+::\+If\+Bool$<$ is\+Const, const \hyperlink{classandres_1_1View}{View}$<$ T, true, A $>$ $\ast$, \hyperlink{classandres_1_1View}{View}$<$ T, false, A $>$ $\ast$ $>$\+::type \hyperlink{classandres_1_1Iterator_a937adfd36b5e7b01be53d16bd823af12}{view\+\_\+pointer}
+\item 
+typedef marray\+\_\+detail\+::\+If\+Bool$<$ is\+Const, const \hyperlink{classandres_1_1View}{View}$<$ T, true, A $>$ \&, \hyperlink{classandres_1_1View}{View}$<$ T, false, A $>$ \& $>$\+::type \hyperlink{classandres_1_1Iterator_aba3b6dd25a055f0aaa7a931657f86a89}{view\+\_\+reference}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classandres_1_1Iterator_a6a97994e2999c992ed829b3da6c748bf}{Iterator} ()
+\begin{DoxyCompactList}\small\item\em Empty constructor. \end{DoxyCompactList}\item 
+\hyperlink{classandres_1_1Iterator_a7b3a9873e6c06df90bd70a0262c90de1}{Iterator} (const \hyperlink{classandres_1_1View}{View}$<$ T, false, A $>$ \&, const std\+::size\+\_\+t=0)
+\item 
+\hyperlink{classandres_1_1Iterator_a182a2080c203da0d9a92045e12c0ac9d}{Iterator} (\hyperlink{classandres_1_1View}{View}$<$ T, false, A $>$ \&, const std\+::size\+\_\+t=0)
+\item 
+\hyperlink{classandres_1_1Iterator_aba0cdb5062a14318d9c45c6c71646285}{Iterator} (const \hyperlink{classandres_1_1View}{View}$<$ T, true, A $>$ \&, const std\+::size\+\_\+t=0)
+\item 
+\hyperlink{classandres_1_1Iterator_a6c650c1a0c2ae10324cb33cb22336172}{Iterator} (const \hyperlink{classandres_1_1Iterator}{Iterator}$<$ T, false, A $>$ \&)
+\item 
+\hyperlink{classandres_1_1Iterator_a9805f26813688f04c33e798f7999e5f7}{reference} \hyperlink{classandres_1_1Iterator_a2ea1f1bf8a9d61241f6ab9e68d051663}{operator$\ast$} () const 
+\item 
+\hyperlink{classandres_1_1Iterator_adf2ba3f1a3cc9c98bff9c544afdb22f9}{pointer} \hyperlink{classandres_1_1Iterator_a41397c945f86104d4553e264f360862b}{operator-\/$>$} () const 
+\item 
+\hyperlink{classandres_1_1Iterator_a9805f26813688f04c33e798f7999e5f7}{reference} \hyperlink{classandres_1_1Iterator_a3dda3a1f02423997143ed405766ed26d}{operator\mbox{[}$\,$\mbox{]}} (const std\+::size\+\_\+t) const 
+\item 
+\hyperlink{classandres_1_1Iterator}{Iterator}$<$ T, is\+Const, A $>$ \& \hyperlink{classandres_1_1Iterator_ad35d9bf0e2f5079c444353292f5def0c}{operator+=} (const \hyperlink{classandres_1_1Iterator_a10f8053d87b6b597d9fe011f66a240ca}{difference\+\_\+type} \&)
+\item 
+\hyperlink{classandres_1_1Iterator}{Iterator}$<$ T, is\+Const, A $>$ \& \hyperlink{classandres_1_1Iterator_a2d9d6f6b6b9c3e1843f00b3162f9dfeb}{operator-\/=} (const \hyperlink{classandres_1_1Iterator_a10f8053d87b6b597d9fe011f66a240ca}{difference\+\_\+type} \&)
+\item 
+\hyperlink{classandres_1_1Iterator}{Iterator}$<$ T, is\+Const, A $>$ \& \hyperlink{classandres_1_1Iterator_aa25f91324c261608591f0d072afa8ac2}{operator++} ()
+\item 
+\hyperlink{classandres_1_1Iterator}{Iterator}$<$ T, is\+Const, A $>$ \& \hyperlink{classandres_1_1Iterator_a2e7a4ffd36e64600b7a785dd5fcf9920}{operator-\/-\/} ()
+\item 
+\hyperlink{classandres_1_1Iterator}{Iterator}$<$ T, is\+Const, A $>$ \hyperlink{classandres_1_1Iterator_a3f16288a75cc46f0f597da32d4af4cc8}{operator++} (int)
+\item 
+\hyperlink{classandres_1_1Iterator}{Iterator}$<$ T, is\+Const, A $>$ \hyperlink{classandres_1_1Iterator_acfde3bc208623f9105a8ea0d5103aec3}{operator-\/-\/} (int)
+\item 
+\hyperlink{classandres_1_1Iterator}{Iterator}$<$ T, is\+Const, A $>$ \hyperlink{classandres_1_1Iterator_ac11e0481263bcc5b0d9b6d85d5d35cee}{operator+} (const \hyperlink{classandres_1_1Iterator_a10f8053d87b6b597d9fe011f66a240ca}{difference\+\_\+type} \&) const 
+\item 
+\hyperlink{classandres_1_1Iterator}{Iterator}$<$ T, is\+Const, A $>$ \hyperlink{classandres_1_1Iterator_a397e725017a0c85f3625c4cca9c78f19}{operator-\/} (const \hyperlink{classandres_1_1Iterator_a10f8053d87b6b597d9fe011f66a240ca}{difference\+\_\+type} \&) const 
+\item 
+{\footnotesize template$<$bool is\+Const\+Local$>$ }\\\hyperlink{classandres_1_1Iterator_a10f8053d87b6b597d9fe011f66a240ca}{difference\+\_\+type} \hyperlink{classandres_1_1Iterator_a76bf815f78f5f151987ddabaa711d3c4}{operator-\/} (const \hyperlink{classandres_1_1Iterator}{Iterator}$<$ T, is\+Const\+Local, A $>$ \&) const 
+\item 
+{\footnotesize template$<$bool is\+Const\+Local$>$ }\\bool \hyperlink{classandres_1_1Iterator_ad5ffd4771bc3865c3d97943a0eddf96c}{operator==} (const \hyperlink{classandres_1_1Iterator}{Iterator}$<$ T, is\+Const\+Local, A $>$ \&) const 
+\item 
+{\footnotesize template$<$bool is\+Const\+Local$>$ }\\bool \hyperlink{classandres_1_1Iterator_ad0006aa63862a839230521e571642b9e}{operator!=} (const \hyperlink{classandres_1_1Iterator}{Iterator}$<$ T, is\+Const\+Local, A $>$ \&) const 
+\item 
+{\footnotesize template$<$bool is\+Const\+Local$>$ }\\bool \hyperlink{classandres_1_1Iterator_ac8c047ae76cffe6f91e0d45bea1fb94c}{operator$<$} (const \hyperlink{classandres_1_1Iterator}{Iterator}$<$ T, is\+Const\+Local, A $>$ \&) const 
+\item 
+{\footnotesize template$<$bool is\+Const\+Local$>$ }\\bool \hyperlink{classandres_1_1Iterator_a0ddb701b0ac1b721eee2348e016050fc}{operator$>$} (const \hyperlink{classandres_1_1Iterator}{Iterator}$<$ T, is\+Const\+Local, A $>$ \&) const 
+\item 
+{\footnotesize template$<$bool is\+Const\+Local$>$ }\\bool \hyperlink{classandres_1_1Iterator_a303fe7634819191eff8e2bb676083f9c}{operator$<$=} (const \hyperlink{classandres_1_1Iterator}{Iterator}$<$ T, is\+Const\+Local, A $>$ \&) const 
+\item 
+{\footnotesize template$<$bool is\+Const\+Local$>$ }\\bool \hyperlink{classandres_1_1Iterator_a8ab389dea14eeceb8bbee9a9d7d6a04a}{operator$>$=} (const \hyperlink{classandres_1_1Iterator}{Iterator}$<$ T, is\+Const\+Local, A $>$ \&) const 
+\item 
+bool \hyperlink{classandres_1_1Iterator_aa00e98e48b060ec6de7593d473643ef7}{has\+More} () const 
+\item 
+std\+::size\+\_\+t \hyperlink{classandres_1_1Iterator_a2f5bd43ca080a25450423d5f874b3cdd}{index} () const 
+\item 
+{\footnotesize template$<$class Coordinate\+Iterator $>$ }\\void \hyperlink{classandres_1_1Iterator_a6b0076e5b74f548e820cbfa6fb7681d7}{coordinate} (Coordinate\+Iterator) const 
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classandres_1_1Iterator_ad7bf464de20a2e1bbc38644d8615fba8}{Marray$<$ T, A $>$}
+\item 
+class \hyperlink{classandres_1_1Iterator_a3a5905d3e8cc40712f6a818a92e94c3b}{Iterator$<$ T,!is\+Const, A $>$}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class T, bool is\+Const, class A$>$class andres\+::\+Iterator$<$ T, is\+Const, A $>$}
+
+S\+T\+L-\/compliant random access iterator for \hyperlink{classandres_1_1View}{View} and \hyperlink{classandres_1_1Marray}{Marray}.
+
+In addition to the S\+T\+L iterator interface, the member functions \hyperlink{classandres_1_1Iterator_aa00e98e48b060ec6de7593d473643ef7}{has\+More()}, \hyperlink{classandres_1_1Iterator_a2f5bd43ca080a25450423d5f874b3cdd}{index()}, and \hyperlink{classandres_1_1Iterator_a6b0076e5b74f548e820cbfa6fb7681d7}{coordinate()} are defined. 
+
+\subsection{Member Typedef Documentation}
+\hypertarget{classandres_1_1Iterator_a10f8053d87b6b597d9fe011f66a240ca}{}\index{andres\+::\+Iterator@{andres\+::\+Iterator}!difference\+\_\+type@{difference\+\_\+type}}
+\index{difference\+\_\+type@{difference\+\_\+type}!andres\+::\+Iterator@{andres\+::\+Iterator}}
+\subsubsection[{difference\+\_\+type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T, bool is\+Const, class A$>$ typedef ptrdiff\+\_\+t {\bf andres\+::\+Iterator}$<$ T, is\+Const, A $>$\+::{\bf difference\+\_\+type}}\label{classandres_1_1Iterator_a10f8053d87b6b597d9fe011f66a240ca}
+\hypertarget{classandres_1_1Iterator_a36e37107724fb0c9265f8d3f41f93309}{}\index{andres\+::\+Iterator@{andres\+::\+Iterator}!iterator\+\_\+category@{iterator\+\_\+category}}
+\index{iterator\+\_\+category@{iterator\+\_\+category}!andres\+::\+Iterator@{andres\+::\+Iterator}}
+\subsubsection[{iterator\+\_\+category}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T, bool is\+Const, class A$>$ typedef std\+::random\+\_\+access\+\_\+iterator\+\_\+tag {\bf andres\+::\+Iterator}$<$ T, is\+Const, A $>$\+::{\bf iterator\+\_\+category}}\label{classandres_1_1Iterator_a36e37107724fb0c9265f8d3f41f93309}
+\hypertarget{classandres_1_1Iterator_adf2ba3f1a3cc9c98bff9c544afdb22f9}{}\index{andres\+::\+Iterator@{andres\+::\+Iterator}!pointer@{pointer}}
+\index{pointer@{pointer}!andres\+::\+Iterator@{andres\+::\+Iterator}}
+\subsubsection[{pointer}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T, bool is\+Const, class A$>$ typedef marray\+\_\+detail\+::\+If\+Bool$<$is\+Const, const T$\ast$, T$\ast$$>$\+::type {\bf andres\+::\+Iterator}$<$ T, is\+Const, A $>$\+::{\bf pointer}}\label{classandres_1_1Iterator_adf2ba3f1a3cc9c98bff9c544afdb22f9}
+\hypertarget{classandres_1_1Iterator_a9805f26813688f04c33e798f7999e5f7}{}\index{andres\+::\+Iterator@{andres\+::\+Iterator}!reference@{reference}}
+\index{reference@{reference}!andres\+::\+Iterator@{andres\+::\+Iterator}}
+\subsubsection[{reference}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T, bool is\+Const, class A$>$ typedef marray\+\_\+detail\+::\+If\+Bool$<$is\+Const, const T\&, T\&$>$\+::type {\bf andres\+::\+Iterator}$<$ T, is\+Const, A $>$\+::{\bf reference}}\label{classandres_1_1Iterator_a9805f26813688f04c33e798f7999e5f7}
+\hypertarget{classandres_1_1Iterator_a3fd8a072268f4ad5c55963a6ea6d7a65}{}\index{andres\+::\+Iterator@{andres\+::\+Iterator}!value\+\_\+type@{value\+\_\+type}}
+\index{value\+\_\+type@{value\+\_\+type}!andres\+::\+Iterator@{andres\+::\+Iterator}}
+\subsubsection[{value\+\_\+type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T, bool is\+Const, class A$>$ typedef T {\bf andres\+::\+Iterator}$<$ T, is\+Const, A $>$\+::{\bf value\+\_\+type}}\label{classandres_1_1Iterator_a3fd8a072268f4ad5c55963a6ea6d7a65}
+\hypertarget{classandres_1_1Iterator_a937adfd36b5e7b01be53d16bd823af12}{}\index{andres\+::\+Iterator@{andres\+::\+Iterator}!view\+\_\+pointer@{view\+\_\+pointer}}
+\index{view\+\_\+pointer@{view\+\_\+pointer}!andres\+::\+Iterator@{andres\+::\+Iterator}}
+\subsubsection[{view\+\_\+pointer}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T, bool is\+Const, class A$>$ typedef marray\+\_\+detail\+::\+If\+Bool$<$is\+Const, const {\bf View}$<$T, true, A$>$$\ast$, {\bf View}$<$T, false, A$>$$\ast$$>$\+::type {\bf andres\+::\+Iterator}$<$ T, is\+Const, A $>$\+::{\bf view\+\_\+pointer}}\label{classandres_1_1Iterator_a937adfd36b5e7b01be53d16bd823af12}
+\hypertarget{classandres_1_1Iterator_aba3b6dd25a055f0aaa7a931657f86a89}{}\index{andres\+::\+Iterator@{andres\+::\+Iterator}!view\+\_\+reference@{view\+\_\+reference}}
+\index{view\+\_\+reference@{view\+\_\+reference}!andres\+::\+Iterator@{andres\+::\+Iterator}}
+\subsubsection[{view\+\_\+reference}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T, bool is\+Const, class A$>$ typedef marray\+\_\+detail\+::\+If\+Bool$<$is\+Const, const {\bf View}$<$T, true, A$>$\&, {\bf View}$<$T, false, A$>$\&$>$\+::type {\bf andres\+::\+Iterator}$<$ T, is\+Const, A $>$\+::{\bf view\+\_\+reference}}\label{classandres_1_1Iterator_aba3b6dd25a055f0aaa7a931657f86a89}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classandres_1_1Iterator_a6a97994e2999c992ed829b3da6c748bf}{}\index{andres\+::\+Iterator@{andres\+::\+Iterator}!Iterator@{Iterator}}
+\index{Iterator@{Iterator}!andres\+::\+Iterator@{andres\+::\+Iterator}}
+\subsubsection[{Iterator()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , bool is\+Const, class A $>$ {\bf andres\+::\+Iterator}$<$ T, is\+Const, A $>$\+::{\bf Iterator} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classandres_1_1Iterator_a6a97994e2999c992ed829b3da6c748bf}
+
+
+Empty constructor. 
+
+\hypertarget{classandres_1_1Iterator_a7b3a9873e6c06df90bd70a0262c90de1}{}\index{andres\+::\+Iterator@{andres\+::\+Iterator}!Iterator@{Iterator}}
+\index{Iterator@{Iterator}!andres\+::\+Iterator@{andres\+::\+Iterator}}
+\subsubsection[{Iterator(const View$<$ T, false, A $>$ \&, const std\+::size\+\_\+t=0)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T, bool is\+Const, class A$>$ {\bf andres\+::\+Iterator}$<$ T, is\+Const, A $>$\+::{\bf Iterator} (
+\begin{DoxyParamCaption}
+\item[{const {\bf View}$<$ T, false, A $>$ \&}]{view, }
+\item[{const std\+::size\+\_\+t}]{index = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classandres_1_1Iterator_a7b3a9873e6c06df90bd70a0262c90de1}
+Construct from \hyperlink{classandres_1_1View}{View} on mutable data.
+
+
+\begin{DoxyParams}{Parameters}
+{\em view} & \hyperlink{classandres_1_1View}{View} \\
+\hline
+{\em index} & Index into the \hyperlink{classandres_1_1View}{View}. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classandres_1_1Iterator_a182a2080c203da0d9a92045e12c0ac9d}{}\index{andres\+::\+Iterator@{andres\+::\+Iterator}!Iterator@{Iterator}}
+\index{Iterator@{Iterator}!andres\+::\+Iterator@{andres\+::\+Iterator}}
+\subsubsection[{Iterator(\+View$<$ T, false, A $>$ \&, const std\+::size\+\_\+t=0)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T, bool is\+Const, class A$>$ {\bf andres\+::\+Iterator}$<$ T, is\+Const, A $>$\+::{\bf Iterator} (
+\begin{DoxyParamCaption}
+\item[{{\bf View}$<$ T, false, A $>$ \&}]{view, }
+\item[{const std\+::size\+\_\+t}]{index = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classandres_1_1Iterator_a182a2080c203da0d9a92045e12c0ac9d}
+Construct from \hyperlink{classandres_1_1View}{View} on mutable data.
+
+
+\begin{DoxyParams}{Parameters}
+{\em view} & \hyperlink{classandres_1_1View}{View} \\
+\hline
+{\em index} & Index into the \hyperlink{classandres_1_1View}{View}. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classandres_1_1Iterator_aba0cdb5062a14318d9c45c6c71646285}{}\index{andres\+::\+Iterator@{andres\+::\+Iterator}!Iterator@{Iterator}}
+\index{Iterator@{Iterator}!andres\+::\+Iterator@{andres\+::\+Iterator}}
+\subsubsection[{Iterator(const View$<$ T, true, A $>$ \&, const std\+::size\+\_\+t=0)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T, bool is\+Const, class A$>$ {\bf andres\+::\+Iterator}$<$ T, is\+Const, A $>$\+::{\bf Iterator} (
+\begin{DoxyParamCaption}
+\item[{const {\bf View}$<$ T, true, A $>$ \&}]{view, }
+\item[{const std\+::size\+\_\+t}]{index = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classandres_1_1Iterator_aba0cdb5062a14318d9c45c6c71646285}
+Construct from \hyperlink{classandres_1_1View}{View} on constant data.
+
+
+\begin{DoxyParams}{Parameters}
+{\em view} & \hyperlink{classandres_1_1View}{View} \\
+\hline
+{\em index} & Index into the \hyperlink{classandres_1_1View}{View}. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classandres_1_1Iterator_a6c650c1a0c2ae10324cb33cb22336172}{}\index{andres\+::\+Iterator@{andres\+::\+Iterator}!Iterator@{Iterator}}
+\index{Iterator@{Iterator}!andres\+::\+Iterator@{andres\+::\+Iterator}}
+\subsubsection[{Iterator(const Iterator$<$ T, false, A $>$ \&)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T, bool is\+Const, class A$>$ {\bf andres\+::\+Iterator}$<$ T, is\+Const, A $>$\+::{\bf Iterator} (
+\begin{DoxyParamCaption}
+\item[{const {\bf Iterator}$<$ T, false, A $>$ \&}]{in}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classandres_1_1Iterator_a6c650c1a0c2ae10324cb33cb22336172}
+Copy constructor or conversion from an \hyperlink{classandres_1_1Iterator}{Iterator} on mutable data. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classandres_1_1Iterator_a6b0076e5b74f548e820cbfa6fb7681d7}{}\index{andres\+::\+Iterator@{andres\+::\+Iterator}!coordinate@{coordinate}}
+\index{coordinate@{coordinate}!andres\+::\+Iterator@{andres\+::\+Iterator}}
+\subsubsection[{coordinate(\+Coordinate\+Iterator) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , bool is\+Const, class A $>$ template$<$class Coordinate\+Iterator $>$ void {\bf andres\+::\+Iterator}$<$ T, is\+Const, A $>$\+::coordinate (
+\begin{DoxyParamCaption}
+\item[{Coordinate\+Iterator$<$ T, is\+Const, A $>$}]{it}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classandres_1_1Iterator_a6b0076e5b74f548e820cbfa6fb7681d7}
+Get the corresponding coordinate sequence in the \hyperlink{classandres_1_1View}{View}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em it} & \hyperlink{classandres_1_1Iterator}{Iterator} into a container starting from which the coordinate sequence is to be written (output). \\
+\hline
+\end{DoxyParams}
+\hypertarget{classandres_1_1Iterator_aa00e98e48b060ec6de7593d473643ef7}{}\index{andres\+::\+Iterator@{andres\+::\+Iterator}!has\+More@{has\+More}}
+\index{has\+More@{has\+More}!andres\+::\+Iterator@{andres\+::\+Iterator}}
+\subsubsection[{has\+More() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , bool is\+Const, class A $>$ bool {\bf andres\+::\+Iterator}$<$ T, is\+Const, A $>$\+::has\+More (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classandres_1_1Iterator_aa00e98e48b060ec6de7593d473643ef7}
+Fast alternative to comparing with the end iterator.
+
+\begin{DoxyReturn}{Returns}
+Boolean indicator. 
+\end{DoxyReturn}
+\hypertarget{classandres_1_1Iterator_a2f5bd43ca080a25450423d5f874b3cdd}{}\index{andres\+::\+Iterator@{andres\+::\+Iterator}!index@{index}}
+\index{index@{index}!andres\+::\+Iterator@{andres\+::\+Iterator}}
+\subsubsection[{index() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , bool is\+Const, class A $>$ std\+::size\+\_\+t {\bf andres\+::\+Iterator}$<$ T, is\+Const, A $>$\+::index (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classandres_1_1Iterator_a2f5bd43ca080a25450423d5f874b3cdd}
+Get the corresponding index in the \hyperlink{classandres_1_1View}{View}.
+
+\begin{DoxyReturn}{Returns}
+index Index. 
+\end{DoxyReturn}
+\hypertarget{classandres_1_1Iterator_ad0006aa63862a839230521e571642b9e}{}\index{andres\+::\+Iterator@{andres\+::\+Iterator}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!andres\+::\+Iterator@{andres\+::\+Iterator}}
+\subsubsection[{operator"!=(const Iterator$<$ T, is\+Const\+Local, A $>$ \&) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T, bool is\+Const, class A$>$ template$<$bool is\+Const\+Local$>$ bool {\bf andres\+::\+Iterator}$<$ T, is\+Const, A $>$\+::operator!= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Iterator}$<$ T, is\+Const\+Local, A $>$ \&}]{it}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classandres_1_1Iterator_ad0006aa63862a839230521e571642b9e}
+\hypertarget{classandres_1_1Iterator_a2ea1f1bf8a9d61241f6ab9e68d051663}{}\index{andres\+::\+Iterator@{andres\+::\+Iterator}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!andres\+::\+Iterator@{andres\+::\+Iterator}}
+\subsubsection[{operator$\ast$() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , bool is\+Const, class A $>$ {\bf Iterator}$<$ T, is\+Const, A $>$\+::{\bf reference} {\bf andres\+::\+Iterator}$<$ T, is\+Const, A $>$\+::operator$\ast$ (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classandres_1_1Iterator_a2ea1f1bf8a9d61241f6ab9e68d051663}
+De-\/reference. \hypertarget{classandres_1_1Iterator_ac11e0481263bcc5b0d9b6d85d5d35cee}{}\index{andres\+::\+Iterator@{andres\+::\+Iterator}!operator+@{operator+}}
+\index{operator+@{operator+}!andres\+::\+Iterator@{andres\+::\+Iterator}}
+\subsubsection[{operator+(const difference\+\_\+type \&) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , bool is\+Const, class A $>$ {\bf Iterator}$<$ T, is\+Const, A $>$ {\bf andres\+::\+Iterator}$<$ T, is\+Const, A $>$\+::operator+ (
+\begin{DoxyParamCaption}
+\item[{const {\bf difference\+\_\+type} \&}]{x}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classandres_1_1Iterator_ac11e0481263bcc5b0d9b6d85d5d35cee}
+\hypertarget{classandres_1_1Iterator_aa25f91324c261608591f0d072afa8ac2}{}\index{andres\+::\+Iterator@{andres\+::\+Iterator}!operator++@{operator++}}
+\index{operator++@{operator++}!andres\+::\+Iterator@{andres\+::\+Iterator}}
+\subsubsection[{operator++()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , bool is\+Const, class A $>$ {\bf Iterator}$<$ T, is\+Const, A $>$ \& {\bf andres\+::\+Iterator}$<$ T, is\+Const, A $>$\+::operator++ (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classandres_1_1Iterator_aa25f91324c261608591f0d072afa8ac2}
+Prefix increment. \hypertarget{classandres_1_1Iterator_a3f16288a75cc46f0f597da32d4af4cc8}{}\index{andres\+::\+Iterator@{andres\+::\+Iterator}!operator++@{operator++}}
+\index{operator++@{operator++}!andres\+::\+Iterator@{andres\+::\+Iterator}}
+\subsubsection[{operator++(int)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , bool is\+Const, class A $>$ {\bf Iterator}$<$ T, is\+Const, A $>$ {\bf andres\+::\+Iterator}$<$ T, is\+Const, A $>$\+::operator++ (
+\begin{DoxyParamCaption}
+\item[{int}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classandres_1_1Iterator_a3f16288a75cc46f0f597da32d4af4cc8}
+Postfix increment. \hypertarget{classandres_1_1Iterator_ad35d9bf0e2f5079c444353292f5def0c}{}\index{andres\+::\+Iterator@{andres\+::\+Iterator}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!andres\+::\+Iterator@{andres\+::\+Iterator}}
+\subsubsection[{operator+=(const difference\+\_\+type \&)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , bool is\+Const, class A $>$ {\bf Iterator}$<$ T, is\+Const, A $>$ \& {\bf andres\+::\+Iterator}$<$ T, is\+Const, A $>$\+::operator+= (
+\begin{DoxyParamCaption}
+\item[{const {\bf difference\+\_\+type} \&}]{x}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classandres_1_1Iterator_ad35d9bf0e2f5079c444353292f5def0c}
+\hypertarget{classandres_1_1Iterator_a397e725017a0c85f3625c4cca9c78f19}{}\index{andres\+::\+Iterator@{andres\+::\+Iterator}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!andres\+::\+Iterator@{andres\+::\+Iterator}}
+\subsubsection[{operator-\/(const difference\+\_\+type \&) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , bool is\+Const, class A $>$ {\bf Iterator}$<$ T, is\+Const, A $>$ {\bf andres\+::\+Iterator}$<$ T, is\+Const, A $>$\+::operator-\/ (
+\begin{DoxyParamCaption}
+\item[{const {\bf difference\+\_\+type} \&}]{x}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classandres_1_1Iterator_a397e725017a0c85f3625c4cca9c78f19}
+\hypertarget{classandres_1_1Iterator_a76bf815f78f5f151987ddabaa711d3c4}{}\index{andres\+::\+Iterator@{andres\+::\+Iterator}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!andres\+::\+Iterator@{andres\+::\+Iterator}}
+\subsubsection[{operator-\/(const Iterator$<$ T, is\+Const\+Local, A $>$ \&) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T, bool is\+Const, class A$>$ template$<$bool is\+Const\+Local$>$ {\bf Iterator}$<$ T, is\+Const, A $>$\+::{\bf difference\+\_\+type} {\bf andres\+::\+Iterator}$<$ T, is\+Const, A $>$\+::operator-\/ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Iterator}$<$ T, is\+Const\+Local, A $>$ \&}]{it}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classandres_1_1Iterator_a76bf815f78f5f151987ddabaa711d3c4}
+\hypertarget{classandres_1_1Iterator_a2e7a4ffd36e64600b7a785dd5fcf9920}{}\index{andres\+::\+Iterator@{andres\+::\+Iterator}!operator-\/-\/@{operator-\/-\/}}
+\index{operator-\/-\/@{operator-\/-\/}!andres\+::\+Iterator@{andres\+::\+Iterator}}
+\subsubsection[{operator-\/-\/()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , bool is\+Const, class A $>$ {\bf Iterator}$<$ T, is\+Const, A $>$ \& {\bf andres\+::\+Iterator}$<$ T, is\+Const, A $>$\+::operator-\/-\/ (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classandres_1_1Iterator_a2e7a4ffd36e64600b7a785dd5fcf9920}
+Prefix decrement. \hypertarget{classandres_1_1Iterator_acfde3bc208623f9105a8ea0d5103aec3}{}\index{andres\+::\+Iterator@{andres\+::\+Iterator}!operator-\/-\/@{operator-\/-\/}}
+\index{operator-\/-\/@{operator-\/-\/}!andres\+::\+Iterator@{andres\+::\+Iterator}}
+\subsubsection[{operator-\/-\/(int)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , bool is\+Const, class A $>$ {\bf Iterator}$<$ T, is\+Const, A $>$ {\bf andres\+::\+Iterator}$<$ T, is\+Const, A $>$\+::operator-\/-\/ (
+\begin{DoxyParamCaption}
+\item[{int}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classandres_1_1Iterator_acfde3bc208623f9105a8ea0d5103aec3}
+Postfix decrement. \hypertarget{classandres_1_1Iterator_a2d9d6f6b6b9c3e1843f00b3162f9dfeb}{}\index{andres\+::\+Iterator@{andres\+::\+Iterator}!operator-\/=@{operator-\/=}}
+\index{operator-\/=@{operator-\/=}!andres\+::\+Iterator@{andres\+::\+Iterator}}
+\subsubsection[{operator-\/=(const difference\+\_\+type \&)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , bool is\+Const, class A $>$ {\bf Iterator}$<$ T, is\+Const, A $>$ \& {\bf andres\+::\+Iterator}$<$ T, is\+Const, A $>$\+::operator-\/= (
+\begin{DoxyParamCaption}
+\item[{const {\bf difference\+\_\+type} \&}]{x}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classandres_1_1Iterator_a2d9d6f6b6b9c3e1843f00b3162f9dfeb}
+\hypertarget{classandres_1_1Iterator_a41397c945f86104d4553e264f360862b}{}\index{andres\+::\+Iterator@{andres\+::\+Iterator}!operator-\/$>$@{operator-\/$>$}}
+\index{operator-\/$>$@{operator-\/$>$}!andres\+::\+Iterator@{andres\+::\+Iterator}}
+\subsubsection[{operator-\/$>$() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , bool is\+Const, class A $>$ {\bf Iterator}$<$ T, is\+Const, A $>$\+::{\bf pointer} {\bf andres\+::\+Iterator}$<$ T, is\+Const, A $>$\+::operator-\/$>$ (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classandres_1_1Iterator_a41397c945f86104d4553e264f360862b}
+Pointer. \hypertarget{classandres_1_1Iterator_ac8c047ae76cffe6f91e0d45bea1fb94c}{}\index{andres\+::\+Iterator@{andres\+::\+Iterator}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!andres\+::\+Iterator@{andres\+::\+Iterator}}
+\subsubsection[{operator$<$(const Iterator$<$ T, is\+Const\+Local, A $>$ \&) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T, bool is\+Const, class A$>$ template$<$bool is\+Const\+Local$>$ bool {\bf andres\+::\+Iterator}$<$ T, is\+Const, A $>$\+::operator$<$ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Iterator}$<$ T, is\+Const\+Local, A $>$ \&}]{it}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classandres_1_1Iterator_ac8c047ae76cffe6f91e0d45bea1fb94c}
+\hypertarget{classandres_1_1Iterator_a303fe7634819191eff8e2bb676083f9c}{}\index{andres\+::\+Iterator@{andres\+::\+Iterator}!operator$<$=@{operator$<$=}}
+\index{operator$<$=@{operator$<$=}!andres\+::\+Iterator@{andres\+::\+Iterator}}
+\subsubsection[{operator$<$=(const Iterator$<$ T, is\+Const\+Local, A $>$ \&) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T, bool is\+Const, class A$>$ template$<$bool is\+Const\+Local$>$ bool {\bf andres\+::\+Iterator}$<$ T, is\+Const, A $>$\+::operator$<$= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Iterator}$<$ T, is\+Const\+Local, A $>$ \&}]{it}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classandres_1_1Iterator_a303fe7634819191eff8e2bb676083f9c}
+\hypertarget{classandres_1_1Iterator_ad5ffd4771bc3865c3d97943a0eddf96c}{}\index{andres\+::\+Iterator@{andres\+::\+Iterator}!operator==@{operator==}}
+\index{operator==@{operator==}!andres\+::\+Iterator@{andres\+::\+Iterator}}
+\subsubsection[{operator==(const Iterator$<$ T, is\+Const\+Local, A $>$ \&) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T, bool is\+Const, class A$>$ template$<$bool is\+Const\+Local$>$ bool {\bf andres\+::\+Iterator}$<$ T, is\+Const, A $>$\+::operator== (
+\begin{DoxyParamCaption}
+\item[{const {\bf Iterator}$<$ T, is\+Const\+Local, A $>$ \&}]{it}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classandres_1_1Iterator_ad5ffd4771bc3865c3d97943a0eddf96c}
+\hypertarget{classandres_1_1Iterator_a0ddb701b0ac1b721eee2348e016050fc}{}\index{andres\+::\+Iterator@{andres\+::\+Iterator}!operator$>$@{operator$>$}}
+\index{operator$>$@{operator$>$}!andres\+::\+Iterator@{andres\+::\+Iterator}}
+\subsubsection[{operator$>$(const Iterator$<$ T, is\+Const\+Local, A $>$ \&) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T, bool is\+Const, class A$>$ template$<$bool is\+Const\+Local$>$ bool {\bf andres\+::\+Iterator}$<$ T, is\+Const, A $>$\+::operator$>$ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Iterator}$<$ T, is\+Const\+Local, A $>$ \&}]{it}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classandres_1_1Iterator_a0ddb701b0ac1b721eee2348e016050fc}
+\hypertarget{classandres_1_1Iterator_a8ab389dea14eeceb8bbee9a9d7d6a04a}{}\index{andres\+::\+Iterator@{andres\+::\+Iterator}!operator$>$=@{operator$>$=}}
+\index{operator$>$=@{operator$>$=}!andres\+::\+Iterator@{andres\+::\+Iterator}}
+\subsubsection[{operator$>$=(const Iterator$<$ T, is\+Const\+Local, A $>$ \&) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T, bool is\+Const, class A$>$ template$<$bool is\+Const\+Local$>$ bool {\bf andres\+::\+Iterator}$<$ T, is\+Const, A $>$\+::operator$>$= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Iterator}$<$ T, is\+Const\+Local, A $>$ \&}]{it}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classandres_1_1Iterator_a8ab389dea14eeceb8bbee9a9d7d6a04a}
+\hypertarget{classandres_1_1Iterator_a3dda3a1f02423997143ed405766ed26d}{}\index{andres\+::\+Iterator@{andres\+::\+Iterator}!operator\mbox{[}$\,$\mbox{]}@{operator[]}}
+\index{operator\mbox{[}$\,$\mbox{]}@{operator[]}!andres\+::\+Iterator@{andres\+::\+Iterator}}
+\subsubsection[{operator[](const std\+::size\+\_\+t) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , bool is\+Const, class A $>$ {\bf Iterator}$<$ T, is\+Const, A $>$\+::{\bf reference} {\bf andres\+::\+Iterator}$<$ T, is\+Const, A $>$\+::operator\mbox{[}$\,$\mbox{]} (
+\begin{DoxyParamCaption}
+\item[{const std\+::size\+\_\+t}]{x}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classandres_1_1Iterator_a3dda3a1f02423997143ed405766ed26d}
+Element access. 
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{classandres_1_1Iterator_a3a5905d3e8cc40712f6a818a92e94c3b}{}\index{andres\+::\+Iterator@{andres\+::\+Iterator}!Iterator$<$ T,"!is\+Const, A $>$@{Iterator$<$ T,"!is\+Const, A $>$}}
+\index{Iterator$<$ T,"!is\+Const, A $>$@{Iterator$<$ T,"!is\+Const, A $>$}!andres\+::\+Iterator@{andres\+::\+Iterator}}
+\subsubsection[{Iterator$<$ T,"!is\+Const, A $>$}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T, bool is\+Const, class A$>$ friend class {\bf Iterator}$<$ T,!is\+Const, A $>$\hspace{0.3cm}{\ttfamily [friend]}}\label{classandres_1_1Iterator_a3a5905d3e8cc40712f6a818a92e94c3b}
+\hypertarget{classandres_1_1Iterator_ad7bf464de20a2e1bbc38644d8615fba8}{}\index{andres\+::\+Iterator@{andres\+::\+Iterator}!Marray$<$ T, A $>$@{Marray$<$ T, A $>$}}
+\index{Marray$<$ T, A $>$@{Marray$<$ T, A $>$}!andres\+::\+Iterator@{andres\+::\+Iterator}}
+\subsubsection[{Marray$<$ T, A $>$}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T, bool is\+Const, class A$>$ friend class {\bf Marray}$<$ T, A $>$\hspace{0.3cm}{\ttfamily [friend]}}\label{classandres_1_1Iterator_ad7bf464de20a2e1bbc38644d8615fba8}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/tbeier/src/nifty/include/nifty/marray/andres/\hyperlink{andres_2marray_8hxx}{marray.\+hxx}\end{DoxyCompactItemize}

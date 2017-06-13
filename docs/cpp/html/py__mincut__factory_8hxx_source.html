@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Nifty
-   &#160;<span id="projectnumber">0.5.1</span>
+   &#160;<span id="projectnumber">0.16.1</span>
    </div>
   </td>
  </tr>
@@ -94,76 +94,74 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <a href="py__mincut__factory_8hxx.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#ifndef NIFTY_PYTHON_GRAPH_MULTICUT_PY_MULTICUT_FACTORY_HXX</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno"><a class="line" href="py__mincut__factory_8hxx.html#aca5d6f651361029afb09108810bbe014">    3</a></span>&#160;<span class="preprocessor">#define NIFTY_PYTHON_GRAPH_MULTICUT_PY_MULTICUT_FACTORY_HXX</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="mincut__base_8hxx.html">nifty/graph/optimization/mincut/mincut_base.hxx</a>&quot;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="mincut__factory_8hxx.html">nifty/graph/optimization/mincut/mincut_factory.hxx</a>&quot;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacenifty.html">nifty</a> {</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">namespace </span>graph {</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;</div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="mincut__base_8hxx.html">nifty/graph/optimization/mincut/mincut_base.hxx</a>&quot;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="mincut__factory_8hxx.html">nifty/graph/optimization/mincut/mincut_factory.hxx</a>&quot;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacenifty.html">nifty</a> {</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">namespace </span>graph {</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">namespace </span>optimization{</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">namespace </span>mincut{</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">    template&lt;class MODEL&gt;</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">    class MincutFactoryBase{</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">    public:</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">        typedef MODEL Model;</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">        typedef MincutBase&lt;Model&gt; MincutBaseType;</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">        virtual ~MincutFactoryBase(){}</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">        virtual std::shared_ptr&lt;MincutBaseType&gt; create(const Model &amp; model) = 0;</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment">    };</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment">*/</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">    template&lt;class MODEL&gt;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">    class MincutFactoryBase{</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">    public:</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">        typedef MODEL Model;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">        typedef MincutBase&lt;Model&gt; MincutBaseType;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">        virtual ~MincutFactoryBase(){}</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">        virtual std::shared_ptr&lt;MincutBaseType&gt; create(const Model &amp; model) = 0;</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">    };</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">*/</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">class</span> OBJECTIVE&gt;</div>
-<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="classnifty_1_1graph_1_1PyMincutFactoryBase.html">   32</a></span>&#160;<span class="keyword">class </span><a class="code" href="classnifty_1_1graph_1_1PyMincutFactoryBase.html">PyMincutFactoryBase</a> : <span class="keyword">public</span> <a class="code" href="classnifty_1_1graph_1_1MincutFactoryBase.html">MincutFactoryBase</a>&lt;OBJECTIVE&gt; {</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="comment">/* Inherit the constructors */</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="comment">// using MincutFactory&lt;Objective&gt;::MincutFactory;</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classnifty_1_1graph_1_1PyMincutFactoryBase.html#a3d2645038a14a843583a6bad59bf2ee3">   36</a></span>&#160;    <span class="keyword">typedef</span> OBJECTIVE <a class="code" href="classnifty_1_1graph_1_1PyMincutFactoryBase.html#a3d2645038a14a843583a6bad59bf2ee3">Objective</a>;</div>
-<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="classnifty_1_1graph_1_1PyMincutFactoryBase.html#a95bc60ccbb5a666677f3af0950adcdb7">   37</a></span>&#160;    <span class="keyword">typedef</span> <a class="code" href="classnifty_1_1graph_1_1MincutBase.html">MincutBase&lt;Objective&gt;</a> <a class="code" href="classnifty_1_1graph_1_1PyMincutFactoryBase.html#a95bc60ccbb5a666677f3af0950adcdb7">MincutBaseType</a>;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="comment">/* Trampoline (need one for each virtual function) */</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="classnifty_1_1graph_1_1PyMincutFactoryBase.html#a31454e9a663456f9b39363eb8f6aea71">   39</a></span>&#160;    std::shared_ptr&lt;MincutBaseType&gt; <a class="code" href="classnifty_1_1graph_1_1PyMincutFactoryBase.html#a31454e9a663456f9b39363eb8f6aea71">createSharedPtr</a>(<span class="keyword">const</span> Objective &amp; objective) {</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        PYBIND11_OVERLOAD_PURE(</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            std::shared_ptr&lt;MincutBaseType&gt;, <span class="comment">/* Return type */</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            <a class="code" href="classnifty_1_1graph_1_1MincutFactoryBase.html">MincutFactoryBase&lt;Objective&gt;</a>,    <span class="comment">/* Parent class */</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            <a class="code" href="classnifty_1_1graph_1_1PyMincutFactoryBase.html#a31454e9a663456f9b39363eb8f6aea71">createSharedPtr</a>,                   <span class="comment">/* Name of function */</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            objective                          <span class="comment">/* Argument(s) */</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        );</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    }</div>
-<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="classnifty_1_1graph_1_1PyMincutFactoryBase.html#a0679258eb880c6abd374a65d1696e14b">   47</a></span>&#160;    MincutBaseType * <a class="code" href="classnifty_1_1graph_1_1PyMincutFactoryBase.html#a0679258eb880c6abd374a65d1696e14b">createRawPtr</a>(<span class="keyword">const</span> Objective &amp; objective) {</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        PYBIND11_OVERLOAD_PURE(</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            MincutBaseType* ,                <span class="comment">/* Return type */</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            <a class="code" href="classnifty_1_1graph_1_1MincutFactoryBase.html">MincutFactoryBase&lt;Objective&gt;</a>,    <span class="comment">/* Parent class */</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            <a class="code" href="classnifty_1_1graph_1_1PyMincutFactoryBase.html#a0679258eb880c6abd374a65d1696e14b">createRawPtr</a>,                            <span class="comment">/* Name of function */</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            objective                          <span class="comment">/* Argument(s) */</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        );</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    }</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;};</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;} <span class="comment">// namespace graph</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;} <span class="comment">// namespace nifty</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* NIFTY_PYTHON_GRAPH_MULTICUT_PY_MULTICUT_FACTORY_HXX */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">class</span> OBJECTIVE&gt;</div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutFactoryBase.html">   30</a></span>&#160;<span class="keyword">class </span><a class="code" href="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutFactoryBase.html">PyMincutFactoryBase</a> : <span class="keyword">public</span> <a class="code" href="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutFactoryBase.html">MincutFactoryBase</a>&lt;OBJECTIVE&gt; {</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="comment">/* Inherit the constructors */</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="comment">// using MincutFactory&lt;Objective&gt;::MincutFactory;</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutFactoryBase.html#a5d3166bb3c9c2330cce56c2a6273ffce">   34</a></span>&#160;    <span class="keyword">typedef</span> OBJECTIVE <a class="code" href="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutFactoryBase.html#a5d3166bb3c9c2330cce56c2a6273ffce">Objective</a>;</div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutFactoryBase.html#a701ed7a4f135e2435ad01f7d27a9fe5b">   35</a></span>&#160;    <span class="keyword">typedef</span> <a class="code" href="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutBase.html">MincutBase&lt;Objective&gt;</a> <a class="code" href="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutFactoryBase.html#a701ed7a4f135e2435ad01f7d27a9fe5b">MincutBaseType</a>;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="comment">/* Trampoline (need one for each virtual function) */</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutFactoryBase.html#a8bfe09d94839ce42210150f3a3e408d6">   37</a></span>&#160;    std::shared_ptr&lt;MincutBaseType&gt; <a class="code" href="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutFactoryBase.html#a8bfe09d94839ce42210150f3a3e408d6">createSharedPtr</a>(<span class="keyword">const</span> Objective &amp; objective) {</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        PYBIND11_OVERLOAD_PURE(</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            std::shared_ptr&lt;MincutBaseType&gt;, <span class="comment">/* Return type */</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            <a class="code" href="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutFactoryBase.html">MincutFactoryBase&lt;Objective&gt;</a>,    <span class="comment">/* Parent class */</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            <a class="code" href="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutFactoryBase.html#a8bfe09d94839ce42210150f3a3e408d6">createSharedPtr</a>,                   <span class="comment">/* Name of function */</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            objective                          <span class="comment">/* Argument(s) */</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        );</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    }</div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutFactoryBase.html#a32c23aad5d0368e90c29ecc0fd257db1">   45</a></span>&#160;    MincutBaseType * <a class="code" href="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutFactoryBase.html#a32c23aad5d0368e90c29ecc0fd257db1">createRawPtr</a>(<span class="keyword">const</span> Objective &amp; objective) {</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        PYBIND11_OVERLOAD_PURE(</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            MincutBaseType* ,                <span class="comment">/* Return type */</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            <a class="code" href="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutFactoryBase.html">MincutFactoryBase&lt;Objective&gt;</a>,    <span class="comment">/* Parent class */</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            <a class="code" href="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutFactoryBase.html#a32c23aad5d0368e90c29ecc0fd257db1">createRawPtr</a>,                            <span class="comment">/* Name of function */</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            objective                          <span class="comment">/* Argument(s) */</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        );</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    }</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;};</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;} <span class="comment">// namespace mincut</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;} <span class="comment">// namespace optimization</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;} <span class="comment">// namespace graph</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;} <span class="comment">// namespace nifty</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
+<div class="ttc" id="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutFactoryBase_html_a5d3166bb3c9c2330cce56c2a6273ffce"><div class="ttname"><a href="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutFactoryBase.html#a5d3166bb3c9c2330cce56c2a6273ffce">nifty::graph::optimization::mincut::PyMincutFactoryBase::Objective</a></div><div class="ttdeci">OBJECTIVE Objective</div><div class="ttdef"><b>Definition:</b> py_mincut_factory.hxx:34</div></div>
 <div class="ttc" id="mincut__factory_8hxx_html"><div class="ttname"><a href="mincut__factory_8hxx.html">mincut_factory.hxx</a></div></div>
-<div class="ttc" id="classnifty_1_1graph_1_1PyMincutFactoryBase_html"><div class="ttname"><a href="classnifty_1_1graph_1_1PyMincutFactoryBase.html">nifty::graph::PyMincutFactoryBase</a></div><div class="ttdef"><b>Definition:</b> py_mincut_factory.hxx:32</div></div>
-<div class="ttc" id="classnifty_1_1graph_1_1PyMincutFactoryBase_html_a95bc60ccbb5a666677f3af0950adcdb7"><div class="ttname"><a href="classnifty_1_1graph_1_1PyMincutFactoryBase.html#a95bc60ccbb5a666677f3af0950adcdb7">nifty::graph::PyMincutFactoryBase::MincutBaseType</a></div><div class="ttdeci">MincutBase&lt; Objective &gt; MincutBaseType</div><div class="ttdef"><b>Definition:</b> py_mincut_factory.hxx:37</div></div>
-<div class="ttc" id="classnifty_1_1graph_1_1PyMincutFactoryBase_html_a0679258eb880c6abd374a65d1696e14b"><div class="ttname"><a href="classnifty_1_1graph_1_1PyMincutFactoryBase.html#a0679258eb880c6abd374a65d1696e14b">nifty::graph::PyMincutFactoryBase::createRawPtr</a></div><div class="ttdeci">MincutBaseType * createRawPtr(const Objective &amp;objective)</div><div class="ttdef"><b>Definition:</b> py_mincut_factory.hxx:47</div></div>
-<div class="ttc" id="classnifty_1_1graph_1_1PyMincutFactoryBase_html_a31454e9a663456f9b39363eb8f6aea71"><div class="ttname"><a href="classnifty_1_1graph_1_1PyMincutFactoryBase.html#a31454e9a663456f9b39363eb8f6aea71">nifty::graph::PyMincutFactoryBase::createSharedPtr</a></div><div class="ttdeci">std::shared_ptr&lt; MincutBaseType &gt; createSharedPtr(const Objective &amp;objective)</div><div class="ttdef"><b>Definition:</b> py_mincut_factory.hxx:39</div></div>
-<div class="ttc" id="classnifty_1_1graph_1_1MincutFactoryBase_html"><div class="ttname"><a href="classnifty_1_1graph_1_1MincutFactoryBase.html">nifty::graph::MincutFactoryBase</a></div><div class="ttdef"><b>Definition:</b> mincut_factory.hxx:15</div></div>
+<div class="ttc" id="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutFactoryBase_html"><div class="ttname"><a href="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutFactoryBase.html">nifty::graph::optimization::mincut::MincutFactoryBase</a></div><div class="ttdef"><b>Definition:</b> mincut_factory.hxx:17</div></div>
+<div class="ttc" id="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutFactoryBase_html_a8bfe09d94839ce42210150f3a3e408d6"><div class="ttname"><a href="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutFactoryBase.html#a8bfe09d94839ce42210150f3a3e408d6">nifty::graph::optimization::mincut::PyMincutFactoryBase::createSharedPtr</a></div><div class="ttdeci">std::shared_ptr&lt; MincutBaseType &gt; createSharedPtr(const Objective &amp;objective)</div><div class="ttdef"><b>Definition:</b> py_mincut_factory.hxx:37</div></div>
+<div class="ttc" id="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutFactoryBase_html_a701ed7a4f135e2435ad01f7d27a9fe5b"><div class="ttname"><a href="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutFactoryBase.html#a701ed7a4f135e2435ad01f7d27a9fe5b">nifty::graph::optimization::mincut::PyMincutFactoryBase::MincutBaseType</a></div><div class="ttdeci">MincutBase&lt; Objective &gt; MincutBaseType</div><div class="ttdef"><b>Definition:</b> py_mincut_factory.hxx:35</div></div>
+<div class="ttc" id="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutBase_html"><div class="ttname"><a href="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutBase.html">nifty::graph::optimization::mincut::MincutBase</a></div><div class="ttdef"><b>Definition:</b> mincut_base.hxx:18</div></div>
+<div class="ttc" id="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutFactoryBase_html_a32c23aad5d0368e90c29ecc0fd257db1"><div class="ttname"><a href="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutFactoryBase.html#a32c23aad5d0368e90c29ecc0fd257db1">nifty::graph::optimization::mincut::PyMincutFactoryBase::createRawPtr</a></div><div class="ttdeci">MincutBaseType * createRawPtr(const Objective &amp;objective)</div><div class="ttdef"><b>Definition:</b> py_mincut_factory.hxx:45</div></div>
 <div class="ttc" id="mincut__base_8hxx_html"><div class="ttname"><a href="mincut__base_8hxx.html">mincut_base.hxx</a></div></div>
-<div class="ttc" id="namespacenifty_html"><div class="ttname"><a href="namespacenifty.html">nifty</a></div><div class="ttdef"><b>Definition:</b> arithmetic_array.hxx:10</div></div>
-<div class="ttc" id="classnifty_1_1graph_1_1MincutBase_html"><div class="ttname"><a href="classnifty_1_1graph_1_1MincutBase.html">nifty::graph::MincutBase</a></div><div class="ttdef"><b>Definition:</b> mincut_base.hxx:17</div></div>
-<div class="ttc" id="classnifty_1_1graph_1_1PyMincutFactoryBase_html_a3d2645038a14a843583a6bad59bf2ee3"><div class="ttname"><a href="classnifty_1_1graph_1_1PyMincutFactoryBase.html#a3d2645038a14a843583a6bad59bf2ee3">nifty::graph::PyMincutFactoryBase::Objective</a></div><div class="ttdeci">OBJECTIVE Objective</div><div class="ttdef"><b>Definition:</b> py_mincut_factory.hxx:36</div></div>
+<div class="ttc" id="namespacenifty_html"><div class="ttname"><a href="namespacenifty.html">nifty</a></div><div class="ttdef"><b>Definition:</b> arithmetic_array.hxx:8</div></div>
+<div class="ttc" id="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutFactoryBase_html"><div class="ttname"><a href="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutFactoryBase.html">nifty::graph::optimization::mincut::PyMincutFactoryBase</a></div><div class="ttdef"><b>Definition:</b> py_mincut_factory.hxx:30</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

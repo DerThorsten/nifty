@@ -1,0 +1,301 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="simple__directed__graph_8hxx" kind="file" language="C++">
+    <compoundname>simple_directed_graph.hxx</compoundname>
+    <includes local="no">vector</includes>
+    <includes local="no">set</includes>
+    <includes local="no">boost/iterator/counting_iterator.hpp</includes>
+    <includes refid="directed__graph__base_8hxx" local="yes">nifty/graph/directed_graph_base.hxx</includes>
+    <includes refid="adjacency_8hxx" local="yes">nifty/graph/detail/adjacency.hxx</includes>
+    <includes refid="runtime__check_8hxx" local="yes">nifty/tools/runtime_check.hxx</includes>
+    <includes refid="graph__tags_8hxx" local="yes">nifty/graph/graph_tags.hxx</includes>
+    <incdepgraph>
+      <node id="10798">
+        <label>nifty/tools/const_iterator_range.hxx</label>
+        <link refid="const__iterator__range_8hxx"/>
+      </node>
+      <node id="10794">
+        <label>functional</label>
+      </node>
+      <node id="10786">
+        <label>limits</label>
+      </node>
+      <node id="10790">
+        <label>iterator</label>
+      </node>
+      <node id="10796">
+        <label>cstdint</label>
+      </node>
+      <node id="10778">
+        <label>nifty/graph/directed_graph_base.hxx</label>
+        <link refid="directed__graph__base_8hxx"/>
+        <childnode refid="10779" relation="include">
+        </childnode>
+        <childnode refid="10780" relation="include">
+        </childnode>
+        <childnode refid="10798" relation="include">
+        </childnode>
+      </node>
+      <node id="10797">
+        <label>cmath</label>
+      </node>
+      <node id="10783">
+        <label>cassert</label>
+      </node>
+      <node id="10779">
+        <label>boost/iterator/transform_iterator.hpp</label>
+      </node>
+      <node id="10785">
+        <label>stdexcept</label>
+      </node>
+      <node id="10793">
+        <label>numeric</label>
+      </node>
+      <node id="10799">
+        <label>nifty/graph/detail/adjacency.hxx</label>
+        <link refid="adjacency_8hxx"/>
+      </node>
+      <node id="10787">
+        <label>string</label>
+      </node>
+      <node id="10777">
+        <label>boost/iterator/counting_iterator.hpp</label>
+      </node>
+      <node id="10782">
+        <label>nifty/marray/andres/marray.hxx</label>
+        <link refid="andres_2marray_8hxx"/>
+        <childnode refid="10783" relation="include">
+        </childnode>
+        <childnode refid="10784" relation="include">
+        </childnode>
+        <childnode refid="10785" relation="include">
+        </childnode>
+        <childnode refid="10786" relation="include">
+        </childnode>
+        <childnode refid="10787" relation="include">
+        </childnode>
+        <childnode refid="10788" relation="include">
+        </childnode>
+        <childnode refid="10789" relation="include">
+        </childnode>
+        <childnode refid="10790" relation="include">
+        </childnode>
+        <childnode refid="10775" relation="include">
+        </childnode>
+        <childnode refid="10776" relation="include">
+        </childnode>
+        <childnode refid="10791" relation="include">
+        </childnode>
+        <childnode refid="10792" relation="include">
+        </childnode>
+        <childnode refid="10793" relation="include">
+        </childnode>
+        <childnode refid="10794" relation="include">
+        </childnode>
+      </node>
+      <node id="10775">
+        <label>vector</label>
+      </node>
+      <node id="10800">
+        <label>nifty/graph/graph_tags.hxx</label>
+        <link refid="graph__tags_8hxx"/>
+      </node>
+      <node id="10788">
+        <label>sstream</label>
+      </node>
+      <node id="10795">
+        <label>nifty/tools/runtime_check.hxx</label>
+        <link refid="runtime__check_8hxx"/>
+        <childnode refid="10796" relation="include">
+        </childnode>
+        <childnode refid="10785" relation="include">
+        </childnode>
+        <childnode refid="10788" relation="include">
+        </childnode>
+        <childnode refid="10775" relation="include">
+        </childnode>
+        <childnode refid="10786" relation="include">
+        </childnode>
+        <childnode refid="10797" relation="include">
+        </childnode>
+      </node>
+      <node id="10780">
+        <label>nifty/graph/graph_maps.hxx</label>
+        <link refid="graph__maps_8hxx"/>
+        <childnode refid="10781" relation="include">
+        </childnode>
+      </node>
+      <node id="10791">
+        <label>iostream</label>
+      </node>
+      <node id="10784">
+        <label>cstddef</label>
+      </node>
+      <node id="10781">
+        <label>nifty/marray/marray.hxx</label>
+        <link refid="marray_8hxx"/>
+        <childnode refid="10782" relation="include">
+        </childnode>
+        <childnode refid="10795" relation="include">
+        </childnode>
+      </node>
+      <node id="10774">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx</label>
+        <link refid="simple_directed_graph.hxx"/>
+        <childnode refid="10775" relation="include">
+        </childnode>
+        <childnode refid="10776" relation="include">
+        </childnode>
+        <childnode refid="10777" relation="include">
+        </childnode>
+        <childnode refid="10778" relation="include">
+        </childnode>
+        <childnode refid="10799" relation="include">
+        </childnode>
+        <childnode refid="10795" relation="include">
+        </childnode>
+        <childnode refid="10800" relation="include">
+        </childnode>
+      </node>
+      <node id="10776">
+        <label>set</label>
+      </node>
+      <node id="10789">
+        <label>cstring</label>
+      </node>
+      <node id="10792">
+        <label>memory</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classnifty_1_1graph_1_1SimpleDirectedGraph" prot="public">nifty::graph::SimpleDirectedGraph</innerclass>
+    <innernamespace refid="namespacenifty">nifty</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph">nifty::graph</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;set&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;boost/iterator/counting_iterator.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="directed__graph__base_8hxx" kindref="compound">nifty/graph/directed_graph_base.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="adjacency_8hxx" kindref="compound">nifty/graph/detail/adjacency.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="runtime__check_8hxx" kindref="compound">nifty/tools/runtime_check.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="graph__tags_8hxx" kindref="compound">nifty/graph/graph_tags.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacenifty" kindref="compound">nifty</ref>{</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">graph{</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">ARC_INTERANL_TYPE<sp/>=<sp/>int64_t,<sp/></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">NODE_INTERNAL_TYPE<sp/>=<sp/>int64_t&gt;</highlight></codeline>
+<codeline lineno="19" refid="classnifty_1_1graph_1_1SimpleDirectedGraph" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnifty_1_1graph_1_1SimpleDirectedGraph" kindref="compound">SimpleDirectedGraph</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1DirectedGraphBase" kindref="compound">DirectedGraphBase</ref>&lt;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>SimpleDirectedGraph&lt;ARC_INTERANL_TYPE,<sp/>NODE_INTERNAL_TYPE&gt;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal">&gt;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>ARC_INTERANL_TYPE<sp/>ArcInternalType;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>NODE_INTERNAL_TYPE<sp/>NodeInteralType;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>detail_graph::DirectedAdjacency&lt;int64_t,int64_t,NodeInteralType,ArcInternalType&gt;<sp/>NodeAdjacency;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>std::set&lt;NodeAdjacency<sp/>&gt;<sp/>DirectedNodeStorage;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>std::pair&lt;DirectedNodeStorage,<sp/>DirectedNodeStorage&gt;<sp/>NodeStorage;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>std::pair&lt;NodeInteralType,NodeInteralType&gt;<sp/>ArcStorage;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="31" refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a50b05474da6846da32398e01be9e3d30" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>boost::counting_iterator&lt;int64_t&gt;<sp/><ref refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a50b05474da6846da32398e01be9e3d30" kindref="member">NodeIter</ref>;</highlight></codeline>
+<codeline lineno="32" refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1ad555ff3a9746915c60858cd7d55ae342" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>boost::counting_iterator&lt;int64_t&gt;<sp/><ref refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1ad555ff3a9746915c60858cd7d55ae342" kindref="member">ArcIter</ref>;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34" refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1aaf7f58391a2b6e0db7983462dbd6a542" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>DirectedNodeStorage::const_iterator<sp/><ref refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1aaf7f58391a2b6e0db7983462dbd6a542" kindref="member">AdjacencyInIter</ref>;</highlight></codeline>
+<codeline lineno="35" refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a5af7a4eb6bbc44b805a44bb131786dd0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>DirectedNodeStorage::const_iterator<sp/><ref refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a5af7a4eb6bbc44b805a44bb131786dd0" kindref="member">AdjacencyOutIter</ref>;</highlight></codeline>
+<codeline lineno="36" refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a0e61985b1487d018ab09fcefb2302c99" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1ContiguousTag" kindref="compound">ContiguousTag</ref><sp/><ref refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a0e61985b1487d018ab09fcefb2302c99" kindref="member">ArcIdTag</ref>;</highlight></codeline>
+<codeline lineno="37" refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1ad0523e96e29a6feae5c9c003c2dc9e37" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1ContiguousTag" kindref="compound">ContiguousTag</ref><sp/><ref refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1ad0523e96e29a6feae5c9c003c2dc9e37" kindref="member">EdgeIdTag</ref>;</highlight></codeline>
+<codeline lineno="38" refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a32f9f0f4beaa2cada708f8a51189a96b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1ContiguousTag" kindref="compound">ContiguousTag</ref><sp/><ref refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a32f9f0f4beaa2cada708f8a51189a96b" kindref="member">NodeIdTag</ref>;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>constructors</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40" refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a81190fff5233f90e9fb5cbb29fc46bda" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a81190fff5233f90e9fb5cbb29fc46bda" kindref="member">SimpleDirectedGraph</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uint64_t<sp/><ref refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a757bddbe78af1c5587a8aa213a924e3f" kindref="member">numberOfNodes</ref><sp/>=<sp/>0,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uint64_t<sp/>reserveNumberOfArcs<sp/>=<sp/>0)</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/><sp/><sp/>nodes_(<ref refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a757bddbe78af1c5587a8aa213a924e3f" kindref="member">numberOfNodes</ref>),</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>arcs_()</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>arcs_.reserve(reserveNumberOfArcs);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47" refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1aec4eeda3468d8678b1ccab285b9cb9e5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>int64_t<sp/><ref refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1aec4eeda3468d8678b1ccab285b9cb9e5" kindref="member">insertArc</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>int64_t<sp/>s,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>int64_t<sp/>t){</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>from<sp/>s<sp/>to<sp/>t</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>&amp;<sp/>sOut<sp/>=<sp/>nodes_[s].first;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>&amp;<sp/>tIn<sp/><sp/>=<sp/>nodes_[t].second;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>fRes<sp/>=<sp/>sOut.find(NodeAdjacency(t));</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(fRes<sp/>==<sp/>sOut.end()){</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>arc<sp/>=<sp/>arcs_.size();</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sOut.insert(NodeAdjacency(t,arc));</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tIn.insert(NodeAdjacency(s,arc));</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>arcs_.push_back(ArcStorage(s,t));</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>arc;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>fRes-&gt;arc();</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>MUST<sp/>IMPL<sp/>INTERFACE</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65" refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a7f485c4f446b1b95c4211c8fa4c87784" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>int64_t<sp/><ref refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a7f485c4f446b1b95c4211c8fa4c87784" kindref="member">source</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>int64_t<sp/>a)</highlight><highlight class="keyword">const</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="runtime__check_8hxx_1a1ae39644615984f31785d52a0b624277" kindref="member">NIFTY_ASSERT_OP</ref>(a,&lt;,<ref refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a949760c5493c469e1280e4334a9f434e" kindref="member">numberOfArcs</ref>());</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>arcs_[a].first;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="69" refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1ad38492560a573e2f1f4de14a1d315271" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>int64_t<sp/><ref refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1ad38492560a573e2f1f4de14a1d315271" kindref="member">target</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>int64_t<sp/>a)</highlight><highlight class="keyword">const</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="runtime__check_8hxx_1a1ae39644615984f31785d52a0b624277" kindref="member">NIFTY_ASSERT_OP</ref>(a,&lt;,<ref refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a949760c5493c469e1280e4334a9f434e" kindref="member">numberOfArcs</ref>());</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>arcs_[a].second;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76" refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1aad6e2efc56adee1f93dcb7a7c1528851" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>int64_t<sp/><ref refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1aad6e2efc56adee1f93dcb7a7c1528851" kindref="member">findArc</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>int64_t<sp/>s,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>int64_t<sp/>t){</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>&amp;<sp/>sOut<sp/>=<sp/>nodes_[s].first;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>&amp;<sp/>tIn<sp/><sp/>=<sp/>nodes_[t].second;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>fRes<sp/>=<sp/>sOut.find(NodeAdjacency(t));</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>fRes<sp/>==<sp/>sOut.end()<sp/>?<sp/>-1<sp/>:<sp/>fRes-&gt;arc();</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83" refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a49962369af71f9768ab556c65ae84460" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>int64_t<sp/><ref refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a49962369af71f9768ab556c65ae84460" kindref="member">nodeIdUpperBound</ref>()</highlight><highlight class="keyword"><sp/>const</highlight><highlight class="normal">{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a757bddbe78af1c5587a8aa213a924e3f" kindref="member">numberOfNodes</ref>()<sp/>==<sp/>0<sp/>?<sp/>-1<sp/>:<sp/><ref refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a757bddbe78af1c5587a8aa213a924e3f" kindref="member">numberOfNodes</ref>()-1;}</highlight></codeline>
+<codeline lineno="84" refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a959805e538eafd5158bab87eeefd3ea5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>int64_t<sp/><ref refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a959805e538eafd5158bab87eeefd3ea5" kindref="member">maxArcId</ref>()</highlight><highlight class="keyword"><sp/>const</highlight><highlight class="normal">{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a949760c5493c469e1280e4334a9f434e" kindref="member">numberOfArcs</ref>()<sp/>==<sp/>0<sp/>?<sp/>-1<sp/>:<sp/><ref refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a949760c5493c469e1280e4334a9f434e" kindref="member">numberOfArcs</ref>()-1;}</highlight></codeline>
+<codeline lineno="85" refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a949760c5493c469e1280e4334a9f434e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>int64_t<sp/><ref refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a949760c5493c469e1280e4334a9f434e" kindref="member">numberOfArcs</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>arcs_.size();}</highlight></codeline>
+<codeline lineno="86" refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a757bddbe78af1c5587a8aa213a924e3f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>int64_t<sp/><ref refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a757bddbe78af1c5587a8aa213a924e3f" kindref="member">numberOfNodes</ref>()</highlight><highlight class="keyword"><sp/>const</highlight><highlight class="normal">{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>nodes_.size();}</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89" refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a63f52c25a7cd332b1144077e8317e0fc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>NodeIter<sp/><ref refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a63f52c25a7cd332b1144077e8317e0fc" kindref="member">nodesBegin</ref>()</highlight><highlight class="keyword">const</highlight><highlight class="normal">{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a50b05474da6846da32398e01be9e3d30" kindref="member">NodeIter</ref>(0);}</highlight></codeline>
+<codeline lineno="90" refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a4b78d46edd4a3144405ac07b46c4353f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>NodeIter<sp/><ref refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a4b78d46edd4a3144405ac07b46c4353f" kindref="member">nodesEnd</ref>()</highlight><highlight class="keyword">const</highlight><highlight class="normal">{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a50b05474da6846da32398e01be9e3d30" kindref="member">NodeIter</ref>(this-&gt;<ref refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a757bddbe78af1c5587a8aa213a924e3f" kindref="member">numberOfNodes</ref>());}</highlight></codeline>
+<codeline lineno="91" refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1af40cd92a29a3edda8299c681595c8f97" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>ArcIter<sp/><ref refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1af40cd92a29a3edda8299c681595c8f97" kindref="member">arcsBegin</ref>()</highlight><highlight class="keyword">const</highlight><highlight class="normal">{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1ad555ff3a9746915c60858cd7d55ae342" kindref="member">ArcIter</ref>(0);}</highlight></codeline>
+<codeline lineno="92" refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1aaea9d1ee2612ce1dd24464583b27ccd1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>ArcIter<sp/><ref refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1aaea9d1ee2612ce1dd24464583b27ccd1" kindref="member">arcsEnd</ref>()</highlight><highlight class="keyword">const</highlight><highlight class="normal">{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1ad555ff3a9746915c60858cd7d55ae342" kindref="member">ArcIter</ref>(this-&gt;<ref refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a949760c5493c469e1280e4334a9f434e" kindref="member">numberOfArcs</ref>());}</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94" refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a192481eeb7c7f00e424b5394e9bd0817" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>AdjacencyOutIter<sp/><ref refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a192481eeb7c7f00e424b5394e9bd0817" kindref="member">adjacencyOutBegin</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>int64_t<sp/>node)</highlight><highlight class="keyword">const</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="runtime__check_8hxx_1a1ae39644615984f31785d52a0b624277" kindref="member">NIFTY_ASSERT_OP</ref>(node,&lt;,<ref refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a757bddbe78af1c5587a8aa213a924e3f" kindref="member">numberOfNodes</ref>());</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>nodes_[node].first.begin();</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="98" refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1ab8a11a50925097bc5a1461c0fb4b5e71" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>AdjacencyOutIter<sp/><ref refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1ab8a11a50925097bc5a1461c0fb4b5e71" kindref="member">adjacencyOutEnd</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>int64_t<sp/>node)</highlight><highlight class="keyword">const</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="runtime__check_8hxx_1a1ae39644615984f31785d52a0b624277" kindref="member">NIFTY_ASSERT_OP</ref>(node,&lt;,<ref refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a757bddbe78af1c5587a8aa213a924e3f" kindref="member">numberOfNodes</ref>());</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>nodes_[node].first.end();</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103" refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a9586d07efd7e65d8e0fd133ee2184af4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>AdjacencyInIter<sp/><ref refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a9586d07efd7e65d8e0fd133ee2184af4" kindref="member">adjacencyInBegin</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>int64_t<sp/>node)</highlight><highlight class="keyword">const</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="runtime__check_8hxx_1a1ae39644615984f31785d52a0b624277" kindref="member">NIFTY_ASSERT_OP</ref>(node,&lt;,<ref refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a757bddbe78af1c5587a8aa213a924e3f" kindref="member">numberOfNodes</ref>());</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>nodes_[node].second.begin();</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="107" refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a3340106e7d4de3ca6f4e7bf8a4b6c279" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>AdjacencyInIter<sp/><ref refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a3340106e7d4de3ca6f4e7bf8a4b6c279" kindref="member">adjacencyInEnd</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>int64_t<sp/>node)</highlight><highlight class="keyword">const</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="runtime__check_8hxx_1a1ae39644615984f31785d52a0b624277" kindref="member">NIFTY_ASSERT_OP</ref>(node,&lt;,<ref refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a757bddbe78af1c5587a8aa213a924e3f" kindref="member">numberOfNodes</ref>());</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>nodes_[node].second.end();</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;NodeStorage&gt;<sp/>nodes_;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;ArcStorage&gt;<sp/>arcs_;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx"/>
+  </compounddef>
+</doxygen>

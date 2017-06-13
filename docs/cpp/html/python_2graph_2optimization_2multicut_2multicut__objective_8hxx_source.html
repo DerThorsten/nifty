@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Nifty
-   &#160;<span id="projectnumber">0.5.1</span>
+   &#160;<span id="projectnumber">0.19.0</span>
    </div>
   </td>
  </tr>
@@ -94,42 +94,41 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <a href="python_2graph_2optimization_2multicut_2multicut__objective_8hxx.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#ifndef NIFTY_PYTHON_GRAPH_MULTICUT_OBJECTIVE_NAME_HXX</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno"><a class="line" href="python_2graph_2optimization_2multicut_2multicut__objective_8hxx.html#a9d3413e092ebc5200c2c2c7ae7188b78">    3</a></span>&#160;<span class="preprocessor">#define NIFTY_PYTHON_GRAPH_MULTICUT_OBJECTIVE_NAME_HXX</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="graph_2optimization_2multicut_2multicut__objective_8hxx.html">nifty/graph/optimization/multicut/multicut_objective.hxx</a>&quot;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="graph__name_8hxx.html">nifty/python/graph/graph_name.hxx</a>&quot;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacenifty.html">nifty</a>{</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">namespace </span>graph{</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;</div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="graph_2optimization_2multicut_2multicut__objective_8hxx.html">nifty/graph/optimization/multicut/multicut_objective.hxx</a>&quot;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="graph__name_8hxx.html">nifty/python/graph/graph_name.hxx</a>&quot;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacenifty.html">nifty</a>{</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">namespace </span>graph{</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">namespace </span>optimization{</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">namespace </span>multicut{</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">class</span> OBJECTIVE&gt;</div>
-<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="structnifty_1_1graph_1_1MulticutObjectiveName.html">   14</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structnifty_1_1graph_1_1MulticutObjectiveName.html">MulticutObjectiveName</a>;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">class</span> GRAPH&gt;</div>
-<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="namespacenifty_1_1graph.html#af3761eb48c25055911bbb9d073dccbf4">   18</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="classnifty_1_1graph_1_1MulticutObjective.html">PyDefaultMulticutObjective</a> = <a class="code" href="classnifty_1_1graph_1_1MulticutObjective.html">MulticutObjective&lt;GRAPH, double&gt;</a>;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">class</span> GRAPH&gt;</div>
-<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="structnifty_1_1graph_1_1MulticutObjectiveName_3_01PyDefaultMulticutObjective_3_01GRAPH_01_4_01_4.html">   21</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structnifty_1_1graph_1_1MulticutObjectiveName.html">MulticutObjectiveName</a>&lt;<a class="code" href="classnifty_1_1graph_1_1MulticutObjective.html">PyDefaultMulticutObjective</a>&lt;GRAPH&gt; &gt;{</div>
-<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="structnifty_1_1graph_1_1MulticutObjectiveName_3_01PyDefaultMulticutObjective_3_01GRAPH_01_4_01_4.html#ab892f485742bbb0202823ac9ad0db39a">   22</a></span>&#160;        <span class="keyword">static</span> std::string <a class="code" href="structnifty_1_1graph_1_1MulticutObjectiveName_3_01PyDefaultMulticutObjective_3_01GRAPH_01_4_01_4.html#ab892f485742bbb0202823ac9ad0db39a">name</a>(){</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            <span class="keywordflow">return</span> std::string(<span class="stringliteral">&quot;MulticutObjective&quot;</span>) + <a class="code" href="structnifty_1_1graph_1_1GraphName.html">GraphName&lt;GRAPH&gt;::name</a>();</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        }</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    };</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">class</span> OBJECTIVE&gt;</div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="structnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutObjectiveName.html">   12</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutObjectiveName.html">MulticutObjectiveName</a>;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">class</span> GRAPH&gt;</div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="namespacenifty_1_1graph_1_1optimization_1_1multicut.html#a042a3be071d462ac11c49605edba1700">   16</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutObjective.html">PyDefaultMulticutObjective</a> = <a class="code" href="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutObjective.html">MulticutObjective&lt;GRAPH, double&gt;</a>;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">class</span> GRAPH&gt;</div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="structnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutObjectiveName_3_01PyDefaultMulticutObjective_3_01GRAPH_01_4_01_4.html">   19</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutObjectiveName.html">MulticutObjectiveName</a>&lt;<a class="code" href="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutObjective.html">PyDefaultMulticutObjective</a>&lt;GRAPH&gt; &gt;{</div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="structnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutObjectiveName_3_01PyDefaultMulticutObjective_3_01GRAPH_01_4_01_4.html#aa07312c8bed49034064f20743fbccd4c">   20</a></span>&#160;        <span class="keyword">static</span> std::string <a class="code" href="structnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutObjectiveName_3_01PyDefaultMulticutObjective_3_01GRAPH_01_4_01_4.html#aa07312c8bed49034064f20743fbccd4c">name</a>(){</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;            <span class="keywordflow">return</span> std::string(<span class="stringliteral">&quot;MulticutObjective&quot;</span>) + <a class="code" href="structnifty_1_1graph_1_1GraphName.html">GraphName&lt;GRAPH&gt;::name</a>();</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        }</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    };</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;} <span class="comment">// namespace multicut </span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;} <span class="comment">// namespace optimization   </span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;}</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;}</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* NIFTY_PYTHON_GRAPH_MULTICUT_OBJECTIVE_NAME_HXX */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="structnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutObjectiveName_3_01PyDefaultMulticutObjective_3_01GRAPH_01_4_01_4_html_aa07312c8bed49034064f20743fbccd4c"><div class="ttname"><a href="structnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutObjectiveName_3_01PyDefaultMulticutObjective_3_01GRAPH_01_4_01_4.html#aa07312c8bed49034064f20743fbccd4c">nifty::graph::optimization::multicut::MulticutObjectiveName&lt; PyDefaultMulticutObjective&lt; GRAPH &gt; &gt;::name</a></div><div class="ttdeci">static std::string name()</div><div class="ttdef"><b>Definition:</b> multicut_objective.hxx:20</div></div>
 <div class="ttc" id="graph__name_8hxx_html"><div class="ttname"><a href="graph__name_8hxx.html">graph_name.hxx</a></div></div>
-<div class="ttc" id="structnifty_1_1graph_1_1MulticutObjectiveName_html"><div class="ttname"><a href="structnifty_1_1graph_1_1MulticutObjectiveName.html">nifty::graph::MulticutObjectiveName</a></div><div class="ttdef"><b>Definition:</b> multicut_objective.hxx:14</div></div>
-<div class="ttc" id="structnifty_1_1graph_1_1GraphName_html"><div class="ttname"><a href="structnifty_1_1graph_1_1GraphName.html">nifty::graph::GraphName</a></div><div class="ttdef"><b>Definition:</b> graph_name.hxx:9</div></div>
-<div class="ttc" id="classnifty_1_1graph_1_1MulticutObjective_html"><div class="ttname"><a href="classnifty_1_1graph_1_1MulticutObjective.html">nifty::graph::MulticutObjective</a></div><div class="ttdef"><b>Definition:</b> multicut_objective.hxx:46</div></div>
+<div class="ttc" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutObjective_html"><div class="ttname"><a href="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutObjective.html">nifty::graph::optimization::multicut::MulticutObjective</a></div><div class="ttdef"><b>Definition:</b> multicut_objective.hxx:45</div></div>
+<div class="ttc" id="structnifty_1_1graph_1_1GraphName_html"><div class="ttname"><a href="structnifty_1_1graph_1_1GraphName.html">nifty::graph::GraphName</a></div><div class="ttdef"><b>Definition:</b> graph_name.hxx:7</div></div>
 <div class="ttc" id="graph_2optimization_2multicut_2multicut__objective_8hxx_html"><div class="ttname"><a href="graph_2optimization_2multicut_2multicut__objective_8hxx.html">multicut_objective.hxx</a></div></div>
-<div class="ttc" id="structnifty_1_1graph_1_1MulticutObjectiveName_3_01PyDefaultMulticutObjective_3_01GRAPH_01_4_01_4_html_ab892f485742bbb0202823ac9ad0db39a"><div class="ttname"><a href="structnifty_1_1graph_1_1MulticutObjectiveName_3_01PyDefaultMulticutObjective_3_01GRAPH_01_4_01_4.html#ab892f485742bbb0202823ac9ad0db39a">nifty::graph::MulticutObjectiveName&lt; PyDefaultMulticutObjective&lt; GRAPH &gt; &gt;::name</a></div><div class="ttdeci">static std::string name()</div><div class="ttdef"><b>Definition:</b> multicut_objective.hxx:22</div></div>
-<div class="ttc" id="namespacenifty_html"><div class="ttname"><a href="namespacenifty.html">nifty</a></div><div class="ttdef"><b>Definition:</b> arithmetic_array.hxx:10</div></div>
+<div class="ttc" id="namespacenifty_html"><div class="ttname"><a href="namespacenifty.html">nifty</a></div><div class="ttdef"><b>Definition:</b> arithmetic_array.hxx:8</div></div>
+<div class="ttc" id="structnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutObjectiveName_html"><div class="ttname"><a href="structnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutObjectiveName.html">nifty::graph::optimization::multicut::MulticutObjectiveName</a></div><div class="ttdef"><b>Definition:</b> multicut_objective.hxx:12</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

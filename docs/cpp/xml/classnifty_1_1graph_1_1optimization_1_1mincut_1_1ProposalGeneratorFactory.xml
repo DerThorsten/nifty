@@ -1,0 +1,200 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="classnifty_1_1graph_1_1optimization_1_1mincut_1_1ProposalGeneratorFactory" kind="class" language="C++" prot="public">
+    <compoundname>nifty::graph::optimization::mincut::ProposalGeneratorFactory</compoundname>
+    <basecompoundref refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1ProposalGeneratorFactoryBase" prot="public" virt="non-virtual">nifty::graph::optimization::mincut::ProposalGeneratorFactoryBase&lt; PROPOSAL_GENERATOR::ObjectiveType &gt;</basecompoundref>
+    <includes refid="mincut_2proposal__generators_2proposal__generator__factory_8hxx" local="no">proposal_generator_factory.hxx</includes>
+    <templateparamlist>
+      <param>
+        <type>class PROPOSAL_GENERATOR</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1mincut_1_1ProposalGeneratorFactory_1a4662ad3b9b151b14ad3ae678e899d3fb" prot="public" static="no">
+        <type>PROPOSAL_GENERATOR</type>
+        <definition>typedef PROPOSAL_GENERATOR nifty::graph::optimization::mincut::ProposalGeneratorFactory&lt; PROPOSAL_GENERATOR &gt;::ProposalGeneratorType</definition>
+        <argsstring></argsstring>
+        <name>ProposalGeneratorType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/proposal_generators/proposal_generator_factory.hxx" line="19" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/proposal_generators/proposal_generator_factory.hxx" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1mincut_1_1ProposalGeneratorFactory_1aafd6ebdab0a03213075a261853a3a020" prot="public" static="no">
+        <type>ProposalGeneratorType::SettingsType</type>
+        <definition>typedef ProposalGeneratorType::SettingsType nifty::graph::optimization::mincut::ProposalGeneratorFactory&lt; PROPOSAL_GENERATOR &gt;::SettingsType</definition>
+        <argsstring></argsstring>
+        <name>SettingsType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/proposal_generators/proposal_generator_factory.hxx" line="20" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/proposal_generators/proposal_generator_factory.hxx" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1mincut_1_1ProposalGeneratorFactory_1a88fa2b0b968a0e2a029731a03c1b8c62" prot="public" static="no">
+        <type>ProposalGeneratorType::ObjectiveType</type>
+        <definition>typedef ProposalGeneratorType::ObjectiveType nifty::graph::optimization::mincut::ProposalGeneratorFactory&lt; PROPOSAL_GENERATOR &gt;::ObjectiveType</definition>
+        <argsstring></argsstring>
+        <name>ObjectiveType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/proposal_generators/proposal_generator_factory.hxx" line="21" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/proposal_generators/proposal_generator_factory.hxx" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1mincut_1_1ProposalGeneratorFactory_1a98fc5fb02caf742f89f4803ca0460be8" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1ProposalGeneratorBase" kindref="compound">ProposalGeneratorBase</ref>&lt; <ref refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1ProposalGeneratorFactory_1a88fa2b0b968a0e2a029731a03c1b8c62" kindref="member">ObjectiveType</ref> &gt;</type>
+        <definition>typedef ProposalGeneratorBase&lt;ObjectiveType&gt; nifty::graph::optimization::mincut::ProposalGeneratorFactory&lt; PROPOSAL_GENERATOR &gt;::ProposalGeneratorBaseType</definition>
+        <argsstring></argsstring>
+        <name>ProposalGeneratorBaseType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/proposal_generators/proposal_generator_factory.hxx" line="22" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/proposal_generators/proposal_generator_factory.hxx" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1optimization_1_1mincut_1_1ProposalGeneratorFactory_1ac38b1f4c19a6f9ee016d1e6170c81b20" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1ProposalGeneratorFactory_1aafd6ebdab0a03213075a261853a3a020" kindref="member">SettingsType</ref></type>
+        <definition>SettingsType nifty::graph::optimization::mincut::ProposalGeneratorFactory&lt; PROPOSAL_GENERATOR &gt;::settings_</definition>
+        <argsstring></argsstring>
+        <name>settings_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/proposal_generators/proposal_generator_factory.hxx" line="38" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/proposal_generators/proposal_generator_factory.hxx" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1mincut_1_1ProposalGeneratorFactory_1a159751e778314bc68792bf1d45f07a19" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>nifty::graph::optimization::mincut::ProposalGeneratorFactory&lt; PROPOSAL_GENERATOR &gt;::ProposalGeneratorFactory</definition>
+        <argsstring>(const SettingsType &amp;settings=SettingsType())</argsstring>
+        <name>ProposalGeneratorFactory</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1ProposalGeneratorFactory_1aafd6ebdab0a03213075a261853a3a020" kindref="member">SettingsType</ref> &amp;</type>
+          <declname>settings</declname>
+          <defval><ref refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1ProposalGeneratorFactory_1aafd6ebdab0a03213075a261853a3a020" kindref="member">SettingsType</ref>()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/proposal_generators/proposal_generator_factory.hxx" line="24" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/proposal_generators/proposal_generator_factory.hxx" bodystart="24" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1mincut_1_1ProposalGeneratorFactory_1a820ded05d544c960e0a64962e9cc6de4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual nifty::graph::optimization::mincut::ProposalGeneratorFactory&lt; PROPOSAL_GENERATOR &gt;::~ProposalGeneratorFactory</definition>
+        <argsstring>()</argsstring>
+        <name>~ProposalGeneratorFactory</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/proposal_generators/proposal_generator_factory.hxx" line="29" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/proposal_generators/proposal_generator_factory.hxx" bodystart="29" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1mincut_1_1ProposalGeneratorFactory_1a2234456a20f5e8e09eed6054213ee7af" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>std::shared_ptr&lt; <ref refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1ProposalGeneratorFactory_1a98fc5fb02caf742f89f4803ca0460be8" kindref="member">ProposalGeneratorBaseType</ref> &gt;</type>
+        <definition>virtual std::shared_ptr&lt;ProposalGeneratorBaseType&gt; nifty::graph::optimization::mincut::ProposalGeneratorFactory&lt; PROPOSAL_GENERATOR &gt;::createShared</definition>
+        <argsstring>(const ObjectiveType &amp;objective, const size_t numberOfThreads)</argsstring>
+        <name>createShared</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1ProposalGeneratorFactory_1a88fa2b0b968a0e2a029731a03c1b8c62" kindref="member">ObjectiveType</ref> &amp;</type>
+          <declname>objective</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>numberOfThreads</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/proposal_generators/proposal_generator_factory.hxx" line="31" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/proposal_generators/proposal_generator_factory.hxx" bodystart="31" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1mincut_1_1ProposalGeneratorFactory_1ac241e556f5b3635c79fa25a63494fc7c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1ProposalGeneratorFactory_1a98fc5fb02caf742f89f4803ca0460be8" kindref="member">ProposalGeneratorBaseType</ref> *</type>
+        <definition>virtual ProposalGeneratorBaseType* nifty::graph::optimization::mincut::ProposalGeneratorFactory&lt; PROPOSAL_GENERATOR &gt;::create</definition>
+        <argsstring>(const ObjectiveType &amp;objective, const size_t numberOfThreads)</argsstring>
+        <name>create</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1ProposalGeneratorFactory_1a88fa2b0b968a0e2a029731a03c1b8c62" kindref="member">ObjectiveType</ref> &amp;</type>
+          <declname>objective</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>numberOfThreads</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/proposal_generators/proposal_generator_factory.hxx" line="34" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/proposal_generators/proposal_generator_factory.hxx" bodystart="34" bodyend="36"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1620">
+        <label>nifty::graph::optimization::mincut::ProposalGeneratorFactoryBase&lt; PROPOSAL_GENERATOR::ObjectiveType &gt;</label>
+        <link refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1ProposalGeneratorFactoryBase"/>
+      </node>
+      <node id="1619">
+        <label>nifty::graph::optimization::mincut::ProposalGeneratorFactory&lt; PROPOSAL_GENERATOR &gt;</label>
+        <link refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1ProposalGeneratorFactory"/>
+        <childnode refid="1620" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1622">
+        <label>nifty::graph::optimization::mincut::ProposalGeneratorFactoryBase&lt; PROPOSAL_GENERATOR::ObjectiveType &gt;</label>
+        <link refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1ProposalGeneratorFactoryBase"/>
+      </node>
+      <node id="1621">
+        <label>nifty::graph::optimization::mincut::ProposalGeneratorFactory&lt; PROPOSAL_GENERATOR &gt;</label>
+        <link refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1ProposalGeneratorFactory"/>
+        <childnode refid="1622" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/proposal_generators/proposal_generator_factory.hxx" line="17" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/proposal_generators/proposal_generator_factory.hxx" bodystart="17" bodyend="39"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1ProposalGeneratorFactory_1ac241e556f5b3635c79fa25a63494fc7c" prot="public" virt="virtual"><scope>nifty::graph::optimization::mincut::ProposalGeneratorFactory</scope><name>create</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1ProposalGeneratorFactoryBase_1a928ccf9ed10296dcd1e4105216c9b324" prot="public" virt="pure-virtual" ambiguityscope="ProposalGeneratorFactoryBase&lt; PROPOSAL_GENERATOR::ObjectiveType &gt;::"><scope>nifty::graph::optimization::mincut::ProposalGeneratorFactory</scope><name>create</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1ProposalGeneratorFactory_1a2234456a20f5e8e09eed6054213ee7af" prot="public" virt="virtual"><scope>nifty::graph::optimization::mincut::ProposalGeneratorFactory</scope><name>createShared</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1ProposalGeneratorFactoryBase_1af2337535335b38d7df35ef93bbff4d3c" prot="public" virt="pure-virtual" ambiguityscope="ProposalGeneratorFactoryBase&lt; PROPOSAL_GENERATOR::ObjectiveType &gt;::"><scope>nifty::graph::optimization::mincut::ProposalGeneratorFactory</scope><name>createShared</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1ProposalGeneratorFactory_1a88fa2b0b968a0e2a029731a03c1b8c62" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::mincut::ProposalGeneratorFactory</scope><name>ObjectiveType</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1ProposalGeneratorFactory_1a98fc5fb02caf742f89f4803ca0460be8" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::mincut::ProposalGeneratorFactory</scope><name>ProposalGeneratorBaseType</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1ProposalGeneratorFactory_1a159751e778314bc68792bf1d45f07a19" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::mincut::ProposalGeneratorFactory</scope><name>ProposalGeneratorFactory</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1ProposalGeneratorFactory_1a4662ad3b9b151b14ad3ae678e899d3fb" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::mincut::ProposalGeneratorFactory</scope><name>ProposalGeneratorType</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1ProposalGeneratorFactory_1ac38b1f4c19a6f9ee016d1e6170c81b20" prot="private" virt="non-virtual"><scope>nifty::graph::optimization::mincut::ProposalGeneratorFactory</scope><name>settings_</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1ProposalGeneratorFactory_1aafd6ebdab0a03213075a261853a3a020" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::mincut::ProposalGeneratorFactory</scope><name>SettingsType</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1ProposalGeneratorFactory_1a820ded05d544c960e0a64962e9cc6de4" prot="public" virt="virtual"><scope>nifty::graph::optimization::mincut::ProposalGeneratorFactory</scope><name>~ProposalGeneratorFactory</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1ProposalGeneratorFactoryBase_1affe6439534db95c95e7fdddc1d2dbb9e" prot="public" virt="virtual"><scope>nifty::graph::optimization::mincut::ProposalGeneratorFactory</scope><name>~ProposalGeneratorFactoryBase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

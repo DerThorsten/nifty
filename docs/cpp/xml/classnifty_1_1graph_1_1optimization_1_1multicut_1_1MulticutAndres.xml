@@ -1,0 +1,372 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres" kind="class" language="C++" prot="public">
+    <compoundname>nifty::graph::optimization::multicut::MulticutAndres</compoundname>
+    <basecompoundref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutBase" prot="public" virt="non-virtual">nifty::graph::optimization::multicut::MulticutBase&lt; OBJECTIVE &gt;</basecompoundref>
+    <derivedcompoundref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresGreedyAdditive" prot="public" virt="non-virtual">nifty::graph::optimization::multicut::MulticutAndresGreedyAdditive&lt; OBJECTIVE &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresKernighanLin" prot="public" virt="non-virtual">nifty::graph::optimization::multicut::MulticutAndresKernighanLin&lt; OBJECTIVE &gt;</derivedcompoundref>
+    <includes refid="multicut__andres_8hxx" local="no">multicut_andres.hxx</includes>
+    <templateparamlist>
+      <param>
+        <type>class OBJECTIVE</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1ac2d2044ef4dc45dbacdb3f34b001760f" prot="public" static="no">
+        <type>OBJECTIVE</type>
+        <definition>typedef OBJECTIVE nifty::graph::optimization::multicut::MulticutAndres&lt; OBJECTIVE &gt;::Objective</definition>
+        <argsstring></argsstring>
+        <name>Objective</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_andres.hxx" line="20" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_andres.hxx" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1a075b7a01930fbfb2fa2834157c78bf89" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutBase" kindref="compound">MulticutBase</ref>&lt; OBJECTIVE &gt;</type>
+        <definition>typedef MulticutBase&lt;OBJECTIVE&gt; nifty::graph::optimization::multicut::MulticutAndres&lt; OBJECTIVE &gt;::BaseType</definition>
+        <argsstring></argsstring>
+        <name>BaseType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_andres.hxx" line="21" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_andres.hxx" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1a2d78bb58be29b7d46e9c653489a6d1de" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_1a5a14d64c70a9cc0eebc7d71d2b089f9b" kindref="member">BaseType::VisitorBaseType</ref></type>
+        <definition>typedef BaseType::VisitorBaseType nifty::graph::optimization::multicut::MulticutAndres&lt; OBJECTIVE &gt;::VisitorBaseType</definition>
+        <argsstring></argsstring>
+        <name>VisitorBaseType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_andres.hxx" line="22" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_andres.hxx" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1aa9bb57168c3d0c6cba6610d6a27f5b4e" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_1a58913ea9ab9232ff72608b710c1012d0" kindref="member">BaseType::VisitorProxyType</ref></type>
+        <definition>typedef BaseType::VisitorProxyType nifty::graph::optimization::multicut::MulticutAndres&lt; OBJECTIVE &gt;::VisitorProxyType</definition>
+        <argsstring></argsstring>
+        <name>VisitorProxyType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_andres.hxx" line="23" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_andres.hxx" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1aebe9bae6ca2760f72e19ec62504de209" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_1a6e4e465f3b6e039882669fcfb9714818" kindref="member">BaseType::NodeLabelsType</ref></type>
+        <definition>typedef BaseType::NodeLabelsType nifty::graph::optimization::multicut::MulticutAndres&lt; OBJECTIVE &gt;::NodeLabelsType</definition>
+        <argsstring></argsstring>
+        <name>NodeLabelsType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_andres.hxx" line="24" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_andres.hxx" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1a975ce8ae05d1ef2a988656c5906616bb" prot="public" static="no">
+        <type>andres::graph::Graph</type>
+        <definition>typedef andres::graph::Graph nifty::graph::optimization::multicut::MulticutAndres&lt; OBJECTIVE &gt;::Graph</definition>
+        <argsstring></argsstring>
+        <name>Graph</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_andres.hxx" line="25" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_andres.hxx" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1ac5ff8ecc2f1b750d063b1deee34db9be" prot="protected" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1aebe9bae6ca2760f72e19ec62504de209" kindref="member">NodeLabelsType</ref> *</type>
+        <definition>NodeLabelsType* nifty::graph::optimization::multicut::MulticutAndres&lt; OBJECTIVE &gt;::currentBest_</definition>
+        <argsstring></argsstring>
+        <name>currentBest_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_andres.hxx" line="38" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_andres.hxx" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1a80f20b9e88a4d6460729ca5b16bd2a0a" prot="protected" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1a975ce8ae05d1ef2a988656c5906616bb" kindref="member">Graph</ref></type>
+        <definition>Graph nifty::graph::optimization::multicut::MulticutAndres&lt; OBJECTIVE &gt;::graph_</definition>
+        <argsstring></argsstring>
+        <name>graph_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_andres.hxx" line="39" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_andres.hxx" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1aff2116931bc53bac74c2b6878da29e07" prot="private" static="no" mutable="no">
+        <type>const <ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1ac2d2044ef4dc45dbacdb3f34b001760f" kindref="member">Objective</ref> &amp;</type>
+        <definition>const Objective&amp; nifty::graph::optimization::multicut::MulticutAndres&lt; OBJECTIVE &gt;::objective_</definition>
+        <argsstring></argsstring>
+        <name>objective_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_andres.hxx" line="43" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_andres.hxx" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1a56d579dceab47602ecc7e97ab8066d42" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1ufd_1_1Ufd" kindref="compound">ufd::Ufd</ref>&lt; uint64_t &gt;</type>
+        <definition>ufd::Ufd&lt;uint64_t&gt; nifty::graph::optimization::multicut::MulticutAndres&lt; OBJECTIVE &gt;::ufd_</definition>
+        <argsstring></argsstring>
+        <name>ufd_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_andres.hxx" line="44" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_andres.hxx" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1ae6d72673d50afe1faa2c3dc99ba92210" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>nifty::graph::optimization::multicut::MulticutAndres&lt; OBJECTIVE &gt;::MulticutAndres</definition>
+        <argsstring>(const Objective &amp;objective)</argsstring>
+        <name>MulticutAndres</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1ac2d2044ef4dc45dbacdb3f34b001760f" kindref="member">Objective</ref> &amp;</type>
+          <declname>objective</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_andres.hxx" line="27" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_andres.hxx" bodystart="49" bodyend="57"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1a476f4451db459f72c3f007387a65da8f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void nifty::graph::optimization::multicut::MulticutAndres&lt; OBJECTIVE &gt;::optimize</definition>
+        <argsstring>(NodeLabelsType &amp;nodelabels, VisitorBaseType *visitor)</argsstring>
+        <name>optimize</name>
+        <reimplements refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_1a1c08eb1ff2b3cca5366c3aab161ba040">optimize</reimplements>
+        <reimplementedby refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresGreedyAdditive_1ac7fe8288460dba66d9f570edb47dc82d">optimize</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresKernighanLin_1ad5ae9a56d69e579953b0e5e209694a46">optimize</reimplementedby>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1aebe9bae6ca2760f72e19ec62504de209" kindref="member">NodeLabelsType</ref> &amp;</type>
+          <declname>nodelabels</declname>
+        </param>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1a2d78bb58be29b7d46e9c653489a6d1de" kindref="member">VisitorBaseType</ref> *</type>
+          <declname>visitor</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_andres.hxx" line="29" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_andres.hxx" bodystart="29" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1a7498ff1c88845f4f181e2fd558b6ce50" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>const <ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1ac2d2044ef4dc45dbacdb3f34b001760f" kindref="member">Objective</ref> &amp;</type>
+        <definition>virtual const Objective&amp; nifty::graph::optimization::multicut::MulticutAndres&lt; OBJECTIVE &gt;::objective</definition>
+        <argsstring>() const </argsstring>
+        <name>objective</name>
+        <reimplements refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_1ae7d36a7485b12a25979f75771f52e397">objective</reimplements>
+        <reimplementedby refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresGreedyAdditive_1a0ee62e21648900255e50b34155bf9443">objective</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresKernighanLin_1a8ffe27b83b0561e7765ad435dd44aa56">objective</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_andres.hxx" line="31" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_andres.hxx" bodystart="31" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1a61b22d0ac4f49d902d0be6ef63d25228" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>const <ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1aebe9bae6ca2760f72e19ec62504de209" kindref="member">NodeLabelsType</ref> &amp;</type>
+        <definition>virtual const NodeLabelsType&amp; nifty::graph::optimization::multicut::MulticutAndres&lt; OBJECTIVE &gt;::currentBestNodeLabels</definition>
+        <argsstring>()</argsstring>
+        <name>currentBestNodeLabels</name>
+        <reimplements refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_1a3634ba645adbb7a668500e807608bcca">currentBestNodeLabels</reimplements>
+        <reimplementedby refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresGreedyAdditive_1af04a57e6d7ede3bcaaffe8c44fb8d0e5">currentBestNodeLabels</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresKernighanLin_1a30e3c0ccfb14a5c01514cc6ca90078c8">currentBestNodeLabels</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_andres.hxx" line="32" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_andres.hxx" bodystart="32" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1abb278afaf07df93712033694ca13f846" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>std::string</type>
+        <definition>virtual std::string nifty::graph::optimization::multicut::MulticutAndres&lt; OBJECTIVE &gt;::name</definition>
+        <argsstring>() const </argsstring>
+        <name>name</name>
+        <reimplements refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_1abc9685a3d63748ac470afccb2813be7e">name</reimplements>
+        <reimplementedby refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresGreedyAdditive_1aa65b043b96d8a11cdd7ac5e83a6cc0aa">name</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresKernighanLin_1ad5fe999b7c1cad0c2ed964941944190d">name</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_andres.hxx" line="33" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_andres.hxx" bodystart="33" bodyend="33"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1acb3a9d513a465e8109b4700d4465086c" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::optimization::multicut::MulticutAndres&lt; OBJECTIVE &gt;::nodeLabelsToEdgeLabels</definition>
+        <argsstring>(std::vector&lt; char &gt; &amp;edgeLabels)</argsstring>
+        <name>nodeLabelsToEdgeLabels</name>
+        <param>
+          <type>std::vector&lt; char &gt; &amp;</type>
+          <declname>edgeLabels</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_andres.hxx" line="36" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_andres.hxx" bodystart="71" bodyend="78"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1a8a7666fececb09d893acac9975713b25" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::optimization::multicut::MulticutAndres&lt; OBJECTIVE &gt;::edgeLabelsToNodeLabels</definition>
+        <argsstring>(const std::vector&lt; char &gt; &amp;edgeLabels)</argsstring>
+        <name>edgeLabelsToNodeLabels</name>
+        <param>
+          <type>const std::vector&lt; char &gt; &amp;</type>
+          <declname>edgeLabels</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_andres.hxx" line="37" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_andres.hxx" bodystart="82" bodyend="89"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1a496a559a4fd117931399bc8c99812e19" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::optimization::multicut::MulticutAndres&lt; OBJECTIVE &gt;::initGraph</definition>
+        <argsstring>()</argsstring>
+        <name>initGraph</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_andres.hxx" line="42" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_andres.hxx" bodystart="61" bodyend="67"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1461">
+        <label>nifty::graph::optimization::multicut::MulticutAndresGreedyAdditive&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresGreedyAdditive"/>
+        <childnode refid="1458" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1462">
+        <label>nifty::graph::optimization::multicut::MulticutAndresKernighanLin&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresKernighanLin"/>
+        <childnode refid="1458" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1459">
+        <label>nifty::graph::optimization::multicut::MulticutBase&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutBase"/>
+        <childnode refid="1460" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1460">
+        <label>nifty::graph::optimization::common::SolverBase&lt; OBJECTIVE, MulticutBase&lt; OBJECTIVE &gt; &gt;</label>
+        <link refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase"/>
+      </node>
+      <node id="1458">
+        <label>nifty::graph::optimization::multicut::MulticutAndres&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres"/>
+        <childnode refid="1459" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1464">
+        <label>nifty::graph::optimization::multicut::MulticutBase&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutBase"/>
+        <childnode refid="1465" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1465">
+        <label>nifty::graph::optimization::common::SolverBase&lt; OBJECTIVE, MulticutBase&lt; OBJECTIVE &gt; &gt;</label>
+        <link refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase"/>
+      </node>
+      <node id="1463">
+        <label>nifty::graph::optimization::multicut::MulticutAndres&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres"/>
+        <childnode refid="1464" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_andres.hxx" line="18" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_andres.hxx" bodystart="17" bodyend="45"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1a075b7a01930fbfb2fa2834157c78bf89" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::multicut::MulticutAndres</scope><name>BaseType</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1ac5ff8ecc2f1b750d063b1deee34db9be" prot="protected" virt="non-virtual"><scope>nifty::graph::optimization::multicut::MulticutAndres</scope><name>currentBest_</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_1ae6f6d9779398689c84984a7b6083604a" prot="public" virt="virtual"><scope>nifty::graph::optimization::multicut::MulticutAndres</scope><name>currentBestEnergy</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1a61b22d0ac4f49d902d0be6ef63d25228" prot="public" virt="virtual"><scope>nifty::graph::optimization::multicut::MulticutAndres</scope><name>currentBestNodeLabels</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1a8a7666fececb09d893acac9975713b25" prot="protected" virt="non-virtual"><scope>nifty::graph::optimization::multicut::MulticutAndres</scope><name>edgeLabelsToNodeLabels</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1a975ce8ae05d1ef2a988656c5906616bb" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::multicut::MulticutAndres</scope><name>Graph</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1a80f20b9e88a4d6460729ca5b16bd2a0a" prot="protected" virt="non-virtual"><scope>nifty::graph::optimization::multicut::MulticutAndres</scope><name>graph_</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_1a5b93d8c567c27949a944e908f59f8933" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::multicut::MulticutAndres</scope><name>GraphType</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1a496a559a4fd117931399bc8c99812e19" prot="private" virt="non-virtual"><scope>nifty::graph::optimization::multicut::MulticutAndres</scope><name>initGraph</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1ae6d72673d50afe1faa2c3dc99ba92210" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::multicut::MulticutAndres</scope><name>MulticutAndres</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1abb278afaf07df93712033694ca13f846" prot="public" virt="virtual"><scope>nifty::graph::optimization::multicut::MulticutAndres</scope><name>name</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1acb3a9d513a465e8109b4700d4465086c" prot="protected" virt="non-virtual"><scope>nifty::graph::optimization::multicut::MulticutAndres</scope><name>nodeLabelsToEdgeLabels</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1aebe9bae6ca2760f72e19ec62504de209" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::multicut::MulticutAndres</scope><name>NodeLabelsType</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1ac2d2044ef4dc45dbacdb3f34b001760f" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::multicut::MulticutAndres</scope><name>Objective</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1a7498ff1c88845f4f181e2fd558b6ce50" prot="public" virt="virtual"><scope>nifty::graph::optimization::multicut::MulticutAndres</scope><name>objective</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1aff2116931bc53bac74c2b6878da29e07" prot="private" virt="non-virtual"><scope>nifty::graph::optimization::multicut::MulticutAndres</scope><name>objective_</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_1a28e77903302d3c14fa9fddb5d0a6214d" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::multicut::MulticutAndres</scope><name>ObjectiveType</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1a476f4451db459f72c3f007387a65da8f" prot="public" virt="virtual"><scope>nifty::graph::optimization::multicut::MulticutAndres</scope><name>optimize</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_1ae445fe93efdb410186debfa5a248dfad" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::multicut::MulticutAndres</scope><name>SelfType</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1a56d579dceab47602ecc7e97ab8066d42" prot="private" virt="non-virtual"><scope>nifty::graph::optimization::multicut::MulticutAndres</scope><name>ufd_</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1a2d78bb58be29b7d46e9c653489a6d1de" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::multicut::MulticutAndres</scope><name>VisitorBaseType</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1aa9bb57168c3d0c6cba6610d6a27f5b4e" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::multicut::MulticutAndres</scope><name>VisitorProxyType</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_1a8ab38d61068370e24cca475ef1b5d8b1" prot="public" virt="virtual"><scope>nifty::graph::optimization::multicut::MulticutAndres</scope><name>weightsChanged</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_1a9442c4193dab19dbcc37c8f927b6de94" prot="public" virt="virtual"><scope>nifty::graph::optimization::multicut::MulticutAndres</scope><name>~SolverBase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

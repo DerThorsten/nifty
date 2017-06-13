@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Nifty
-   &#160;<span id="projectnumber">0.5.1</span>
+   &#160;<span id="projectnumber">0.19.0</span>
    </div>
   </td>
  </tr>
@@ -94,121 +94,118 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <a href="grid__rag__stacked__2d_8hxx.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#ifndef NIFTY_GRAPH_RAG_GRID_RAG_STACKED_2D_HXX</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno"><a class="line" href="grid__rag__stacked__2d_8hxx.html#a7a08729773c49c2ff421e82bc1bde2e2">    3</a></span>&#160;<span class="preprocessor">#define NIFTY_GRAPH_RAG_GRID_RAG_STACKED_2D_HXX</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="arithmetic__array_8hxx.html">nifty/array/arithmetic_array.hxx</a>&quot;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="grid__rag_8hxx.html">nifty/graph/rag/grid_rag.hxx</a>&quot;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacenifty.html">nifty</a>{</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">namespace </span>graph{</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;</div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="arithmetic__array_8hxx.html">nifty/array/arithmetic_array.hxx</a>&quot;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="grid__rag_8hxx.html">nifty/graph/rag/grid_rag.hxx</a>&quot;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacenifty.html">nifty</a>{</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">namespace </span>graph{</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">class</span> LABEL_PROXY&gt;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">class </span>GridRagStacked2D</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;: <span class="keyword">public</span> GridRag&lt;3, LABEL_PROXY &gt;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;{</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keyword">typedef</span> LABEL_PROXY LabelsProxyType;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">typedef</span> GridRag&lt;3, LABEL_PROXY &gt; BaseType;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">typedef</span> GridRagStacked2D&lt; LABEL_PROXY &gt; SelfType;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keyword">typedef</span> <span class="keyword">typename</span> LabelsProxyType::LabelType LabelType;</div>
-<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="classnifty_1_1graph_1_1GridRagStacked2D.html#abafcbd3543961eb6e4ee794aa6a62d66">   23</a></span>&#160;    <span class="keyword">friend</span> <span class="keyword">class </span>detail_rag::ComputeRag&lt; SelfType &gt;;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">struct </span>PerSliceData{</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        PerSliceData(<span class="keyword">const</span> LabelType numberOfLabels)</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        :   <a class="code" href="classnifty_1_1graph_1_1GridRagStacked2D.html#a646bcd62254f454d3ac2e584b1b07428">numberOfInSliceEdges</a>(0),</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            numberOfToNextSliceEdges(0),</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            <a class="code" href="classnifty_1_1graph_1_1GridRagStacked2D.html#a111282918d5ef7ef97e4328d575b7089">inSliceEdgeOffset</a>(0),</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            toNextSliceEdgeOffset(0),</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            minInSliceNode(numberOfLabels),</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            maxInSliceNode(0){</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        }</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        uint64_t <a class="code" href="classnifty_1_1graph_1_1GridRagStacked2D.html#a646bcd62254f454d3ac2e584b1b07428">numberOfInSliceEdges</a>;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        uint64_t numberOfToNextSliceEdges;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        uint64_t <a class="code" href="classnifty_1_1graph_1_1GridRagStacked2D.html#a111282918d5ef7ef97e4328d575b7089">inSliceEdgeOffset</a>;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        uint64_t toNextSliceEdgeOffset;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        LabelType minInSliceNode;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        LabelType maxInSliceNode;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    };</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="classnifty_1_1graph_1_1GridRagStacked2D.html#a09b44c819b97274a1025dc68cb6b3dc9">   43</a></span>&#160;    <span class="keyword">typedef</span> <span class="keyword">typename</span> <a class="code" href="classnifty_1_1graph_1_1GridRag.html#ad3146f72301da4f45b51e3b692776cf1">BaseType::LabelsProxy</a> <a class="code" href="classnifty_1_1graph_1_1GridRagStacked2D.html#a09b44c819b97274a1025dc68cb6b3dc9">LabelsProxy</a>;</div>
-<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="classnifty_1_1graph_1_1GridRagStacked2D.html#a7b0a5b8d3cb7ac39213e5306fd42aa27">   44</a></span>&#160;    <span class="keyword">typedef</span> <span class="keyword">typename</span> BaseType::Settings <a class="code" href="classnifty_1_1graph_1_1GridRagStacked2D.html#a7b0a5b8d3cb7ac39213e5306fd42aa27">Settings</a>;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    </div>
-<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="classnifty_1_1graph_1_1GridRagStacked2D.html#ad6b23b6d315c94ce484b220ef34ba1ca">   46</a></span>&#160;    <a class="code" href="classnifty_1_1graph_1_1GridRagStacked2D.html#ad6b23b6d315c94ce484b220ef34ba1ca">GridRagStacked2D</a>(<span class="keyword">const</span> LabelsProxy &amp; <a class="code" href="classnifty_1_1graph_1_1GridRag.html#a9a9b20451bd5ea8ce3ee11af4018c995">labelsProxy</a>, <span class="keyword">const</span> Settings &amp; settings = <a class="code" href="classnifty_1_1graph_1_1GridRagStacked2D.html#a7b0a5b8d3cb7ac39213e5306fd42aa27">Settings</a>())</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    :   BaseType(labelsProxy, settings, typename BaseType::DontComputeRag()),</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        perSliceDataVec_(</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            labelsProxy.<a class="code" href="classnifty_1_1graph_1_1GridRag.html#adfc9dfed7d49642925311229e47a5cd2">shape</a>()[0], </div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            PerSliceData(labelsProxy.numberOfLabels()) </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        ),</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        numberOfInSliceEdges_(0),</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        numberOfInBetweenSliceEdges_(0)</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    {</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        detail_rag::ComputeRag&lt; SelfType &gt;::computeRag(*<span class="keyword">this</span>, this-&gt;<a class="code" href="classnifty_1_1graph_1_1GridRag.html#af18452ee8060f7bb0fa527da6c2fc3a5">settings_</a>);</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    }</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">class</span> LABEL_PROXY&gt;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">class </span>GridRagStacked2D</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;: <span class="keyword">public</span> GridRag&lt;3, LABEL_PROXY &gt;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;{</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keyword">typedef</span> LABEL_PROXY LabelsProxyType;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keyword">typedef</span> GridRag&lt;3, LABEL_PROXY &gt; BaseType;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keyword">typedef</span> GridRagStacked2D&lt; LABEL_PROXY &gt; SelfType;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">typedef</span> <span class="keyword">typename</span> LabelsProxyType::LabelType LabelType;</div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="classnifty_1_1graph_1_1GridRagStacked2D.html#abafcbd3543961eb6e4ee794aa6a62d66">   21</a></span>&#160;    <span class="keyword">friend</span> <span class="keyword">class </span>detail_rag::ComputeRag&lt; SelfType &gt;;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keyword">struct </span>PerSliceData{</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        PerSliceData(<span class="keyword">const</span> LabelType numberOfLabels)</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        :   <a class="code" href="classnifty_1_1graph_1_1GridRagStacked2D.html#a646bcd62254f454d3ac2e584b1b07428">numberOfInSliceEdges</a>(0),</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            numberOfToNextSliceEdges(0),</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            <a class="code" href="classnifty_1_1graph_1_1GridRagStacked2D.html#a111282918d5ef7ef97e4328d575b7089">inSliceEdgeOffset</a>(0),</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            toNextSliceEdgeOffset(0),</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            minInSliceNode(numberOfLabels),</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            maxInSliceNode(0){</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        }</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        uint64_t <a class="code" href="classnifty_1_1graph_1_1GridRagStacked2D.html#a646bcd62254f454d3ac2e584b1b07428">numberOfInSliceEdges</a>;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        uint64_t numberOfToNextSliceEdges;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        uint64_t <a class="code" href="classnifty_1_1graph_1_1GridRagStacked2D.html#a111282918d5ef7ef97e4328d575b7089">inSliceEdgeOffset</a>;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        uint64_t toNextSliceEdgeOffset;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        LabelType minInSliceNode;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        LabelType maxInSliceNode;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    };</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classnifty_1_1graph_1_1GridRagStacked2D.html#a09b44c819b97274a1025dc68cb6b3dc9">   41</a></span>&#160;    <span class="keyword">typedef</span> <span class="keyword">typename</span> <a class="code" href="classnifty_1_1graph_1_1GridRag.html#ad3146f72301da4f45b51e3b692776cf1">BaseType::LabelsProxy</a> <a class="code" href="classnifty_1_1graph_1_1GridRagStacked2D.html#a09b44c819b97274a1025dc68cb6b3dc9">LabelsProxy</a>;</div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="classnifty_1_1graph_1_1GridRagStacked2D.html#abc778dc9bd7c20bacba215c1fc64ffb5">   42</a></span>&#160;    <span class="keyword">typedef</span> <span class="keyword">typename</span> BaseType::SettingsType <a class="code" href="classnifty_1_1graph_1_1GridRagStacked2D.html#abc778dc9bd7c20bacba215c1fc64ffb5">SettingsType</a>;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    </div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="classnifty_1_1graph_1_1GridRagStacked2D.html#a7dda5d4d4c9d873a6a52ae28b0bea026">   44</a></span>&#160;    <a class="code" href="classnifty_1_1graph_1_1GridRagStacked2D.html#a7dda5d4d4c9d873a6a52ae28b0bea026">GridRagStacked2D</a>(<span class="keyword">const</span> LabelsProxy &amp; <a class="code" href="classnifty_1_1graph_1_1GridRag.html#a9a9b20451bd5ea8ce3ee11af4018c995">labelsProxy</a>, <span class="keyword">const</span> SettingsType &amp; settings = <a class="code" href="classnifty_1_1graph_1_1GridRagStacked2D.html#abc778dc9bd7c20bacba215c1fc64ffb5">SettingsType</a>())</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    :   BaseType(labelsProxy, settings, typename BaseType::DontComputeRag()),</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        perSliceDataVec_(</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            labelsProxy.<a class="code" href="classnifty_1_1graph_1_1GridRag.html#adfc9dfed7d49642925311229e47a5cd2">shape</a>()[0], </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            PerSliceData(labelsProxy.numberOfLabels()) </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        ),</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        numberOfInSliceEdges_(0),</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        numberOfInBetweenSliceEdges_(0)</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    {</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        detail_rag::ComputeRag&lt; SelfType &gt;::computeRag(*<span class="keyword">this</span>, this-&gt;<a class="code" href="classnifty_1_1graph_1_1GridRag.html#af4610f430b2ed52e5a4ea54c1eddcaf1">settings_</a>);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    }</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keyword">using</span> <a class="code" href="classnifty_1_1graph_1_1UndirectedGraph.html#a6c6acc627c6a90269c06fb34a8c1973d">BaseType::numberOfNodes</a>;</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keyword">using</span> <a class="code" href="classnifty_1_1graph_1_1UndirectedGraph.html#a6c6acc627c6a90269c06fb34a8c1973d">BaseType::numberOfNodes</a>;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="comment">// additional api</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="classnifty_1_1graph_1_1GridRagStacked2D.html#ae7abe343f431f1a1ca953f3f9dd5e659">   61</a></span>&#160;    std::pair&lt;uint64_t, uint64_t&gt; <a class="code" href="classnifty_1_1graph_1_1GridRagStacked2D.html#ae7abe343f431f1a1ca953f3f9dd5e659">minMaxNode</a>(<span class="keyword">const</span> uint64_t sliceIndex)<span class="keyword"> const</span>{</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span> &amp; sliceData = perSliceDataVec_[sliceIndex];</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="keywordflow">return</span> std::pair&lt;uint64_t, uint64_t&gt;(sliceData.minInSliceNode, sliceData.maxInSliceNode);</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    }</div>
-<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="classnifty_1_1graph_1_1GridRagStacked2D.html#aa87c188ce0a2d246e1461bac64cf3a8a">   65</a></span>&#160;    uint64_t <a class="code" href="classnifty_1_1graph_1_1GridRagStacked2D.html#aa87c188ce0a2d246e1461bac64cf3a8a">numberOfNodes</a>(<span class="keyword">const</span> uint64_t sliceIndex)<span class="keyword"> const</span>{</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span> &amp; sliceData = perSliceDataVec_[sliceIndex];</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keywordflow">return</span> (sliceData.maxInSliceNode-sliceData.minInSliceNode) + 1;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    }</div>
-<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="classnifty_1_1graph_1_1GridRagStacked2D.html#a646bcd62254f454d3ac2e584b1b07428">   69</a></span>&#160;    uint64_t <a class="code" href="classnifty_1_1graph_1_1GridRagStacked2D.html#a646bcd62254f454d3ac2e584b1b07428">numberOfInSliceEdges</a>(<span class="keyword">const</span> uint64_t sliceIndex)<span class="keyword"> const</span>{</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span> &amp; sliceData = perSliceDataVec_[sliceIndex];</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="keywordflow">return</span> sliceData.numberOfInSliceEdges;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    }</div>
-<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="classnifty_1_1graph_1_1GridRagStacked2D.html#acfdac0e16539e96d36fdc1615e3e4ee1">   73</a></span>&#160;    uint64_t <a class="code" href="classnifty_1_1graph_1_1GridRagStacked2D.html#acfdac0e16539e96d36fdc1615e3e4ee1">numberOfInBetweenSliceEdges</a>(<span class="keyword">const</span> uint64_t sliceIndex)<span class="keyword"> const</span>{</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span> &amp; sliceData = perSliceDataVec_[sliceIndex];</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keywordflow">return</span> sliceData.numberOfToNextSliceEdges;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    }</div>
-<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="classnifty_1_1graph_1_1GridRagStacked2D.html#a111282918d5ef7ef97e4328d575b7089">   77</a></span>&#160;    uint64_t <a class="code" href="classnifty_1_1graph_1_1GridRagStacked2D.html#a111282918d5ef7ef97e4328d575b7089">inSliceEdgeOffset</a>(<span class="keyword">const</span> uint64_t sliceIndex)<span class="keyword"> const</span>{</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span> &amp; sliceData = perSliceDataVec_[sliceIndex];</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <span class="keywordflow">return</span> sliceData.inSliceEdgeOffset;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    }</div>
-<div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="classnifty_1_1graph_1_1GridRagStacked2D.html#aa55f6424ed3ba64fe5cfc42b69876f8e">   81</a></span>&#160;    uint64_t <a class="code" href="classnifty_1_1graph_1_1GridRagStacked2D.html#aa55f6424ed3ba64fe5cfc42b69876f8e">betweenSliceEdgeOffset</a>(<span class="keyword">const</span> uint64_t sliceIndex)<span class="keyword"> const</span>{</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span> &amp; sliceData = perSliceDataVec_[sliceIndex];</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="keywordflow">return</span> sliceData.toNextSliceEdgeOffset;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    }</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    std::vector&lt;PerSliceData&gt; perSliceDataVec_;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    uint64_t numberOfInSliceEdges_;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    uint64_t numberOfInBetweenSliceEdges_;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;};</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="comment">// additional api</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="classnifty_1_1graph_1_1GridRagStacked2D.html#ae7abe343f431f1a1ca953f3f9dd5e659">   59</a></span>&#160;    std::pair&lt;uint64_t, uint64_t&gt; <a class="code" href="classnifty_1_1graph_1_1GridRagStacked2D.html#ae7abe343f431f1a1ca953f3f9dd5e659">minMaxNode</a>(<span class="keyword">const</span> uint64_t sliceIndex)<span class="keyword"> const</span>{</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span> &amp; sliceData = perSliceDataVec_[sliceIndex];</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="keywordflow">return</span> std::pair&lt;uint64_t, uint64_t&gt;(sliceData.minInSliceNode, sliceData.maxInSliceNode);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    }</div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="classnifty_1_1graph_1_1GridRagStacked2D.html#aa87c188ce0a2d246e1461bac64cf3a8a">   63</a></span>&#160;    uint64_t <a class="code" href="classnifty_1_1graph_1_1GridRagStacked2D.html#aa87c188ce0a2d246e1461bac64cf3a8a">numberOfNodes</a>(<span class="keyword">const</span> uint64_t sliceIndex)<span class="keyword"> const</span>{</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span> &amp; sliceData = perSliceDataVec_[sliceIndex];</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keywordflow">return</span> (sliceData.maxInSliceNode-sliceData.minInSliceNode) + 1;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    }</div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="classnifty_1_1graph_1_1GridRagStacked2D.html#a646bcd62254f454d3ac2e584b1b07428">   67</a></span>&#160;    uint64_t <a class="code" href="classnifty_1_1graph_1_1GridRagStacked2D.html#a646bcd62254f454d3ac2e584b1b07428">numberOfInSliceEdges</a>(<span class="keyword">const</span> uint64_t sliceIndex)<span class="keyword"> const</span>{</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span> &amp; sliceData = perSliceDataVec_[sliceIndex];</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keywordflow">return</span> sliceData.numberOfInSliceEdges;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    }</div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="classnifty_1_1graph_1_1GridRagStacked2D.html#acfdac0e16539e96d36fdc1615e3e4ee1">   71</a></span>&#160;    uint64_t <a class="code" href="classnifty_1_1graph_1_1GridRagStacked2D.html#acfdac0e16539e96d36fdc1615e3e4ee1">numberOfInBetweenSliceEdges</a>(<span class="keyword">const</span> uint64_t sliceIndex)<span class="keyword"> const</span>{</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span> &amp; sliceData = perSliceDataVec_[sliceIndex];</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keywordflow">return</span> sliceData.numberOfToNextSliceEdges;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    }</div>
+<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="classnifty_1_1graph_1_1GridRagStacked2D.html#a111282918d5ef7ef97e4328d575b7089">   75</a></span>&#160;    uint64_t <a class="code" href="classnifty_1_1graph_1_1GridRagStacked2D.html#a111282918d5ef7ef97e4328d575b7089">inSliceEdgeOffset</a>(<span class="keyword">const</span> uint64_t sliceIndex)<span class="keyword"> const</span>{</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span> &amp; sliceData = perSliceDataVec_[sliceIndex];</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keywordflow">return</span> sliceData.inSliceEdgeOffset;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    }</div>
+<div class="line"><a name="l00079"></a><span class="lineno"><a class="line" href="classnifty_1_1graph_1_1GridRagStacked2D.html#aa55f6424ed3ba64fe5cfc42b69876f8e">   79</a></span>&#160;    uint64_t <a class="code" href="classnifty_1_1graph_1_1GridRagStacked2D.html#aa55f6424ed3ba64fe5cfc42b69876f8e">betweenSliceEdgeOffset</a>(<span class="keyword">const</span> uint64_t sliceIndex)<span class="keyword"> const</span>{</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span> &amp; sliceData = perSliceDataVec_[sliceIndex];</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="keywordflow">return</span> sliceData.toNextSliceEdgeOffset;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    }</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    std::vector&lt;PerSliceData&gt; perSliceDataVec_;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    uint64_t numberOfInSliceEdges_;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    uint64_t numberOfInBetweenSliceEdges_;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;};</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;} <span class="comment">// end namespace graph</span></div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;} <span class="comment">// end namespace nifty</span></div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* NIFTY_GRAPH_RAG_GRID_RAG_STACKED_2D_HXX */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="classnifty_1_1graph_1_1GridRag_html_a9a9b20451bd5ea8ce3ee11af4018c995"><div class="ttname"><a href="classnifty_1_1graph_1_1GridRag.html#a9a9b20451bd5ea8ce3ee11af4018c995">nifty::graph::GridRag&lt; 3, LABEL_PROXY &gt;::labelsProxy</a></div><div class="ttdeci">const LabelsProxy &amp; labelsProxy() const</div><div class="ttdef"><b>Definition:</b> grid_rag.hxx:94</div></div>
-<div class="ttc" id="classnifty_1_1graph_1_1GridRagStacked2D_html_aa55f6424ed3ba64fe5cfc42b69876f8e"><div class="ttname"><a href="classnifty_1_1graph_1_1GridRagStacked2D.html#aa55f6424ed3ba64fe5cfc42b69876f8e">nifty::graph::GridRagStacked2D::betweenSliceEdgeOffset</a></div><div class="ttdeci">uint64_t betweenSliceEdgeOffset(const uint64_t sliceIndex) const </div><div class="ttdef"><b>Definition:</b> grid_rag_stacked_2d.hxx:81</div></div>
-<div class="ttc" id="classnifty_1_1graph_1_1GridRagStacked2D_html_a646bcd62254f454d3ac2e584b1b07428"><div class="ttname"><a href="classnifty_1_1graph_1_1GridRagStacked2D.html#a646bcd62254f454d3ac2e584b1b07428">nifty::graph::GridRagStacked2D::numberOfInSliceEdges</a></div><div class="ttdeci">uint64_t numberOfInSliceEdges(const uint64_t sliceIndex) const </div><div class="ttdef"><b>Definition:</b> grid_rag_stacked_2d.hxx:69</div></div>
-<div class="ttc" id="classnifty_1_1graph_1_1GridRagStacked2D_html_acfdac0e16539e96d36fdc1615e3e4ee1"><div class="ttname"><a href="classnifty_1_1graph_1_1GridRagStacked2D.html#acfdac0e16539e96d36fdc1615e3e4ee1">nifty::graph::GridRagStacked2D::numberOfInBetweenSliceEdges</a></div><div class="ttdeci">uint64_t numberOfInBetweenSliceEdges(const uint64_t sliceIndex) const </div><div class="ttdef"><b>Definition:</b> grid_rag_stacked_2d.hxx:73</div></div>
-<div class="ttc" id="classnifty_1_1graph_1_1GridRag_html_adfc9dfed7d49642925311229e47a5cd2"><div class="ttname"><a href="classnifty_1_1graph_1_1GridRag.html#adfc9dfed7d49642925311229e47a5cd2">nifty::graph::GridRag&lt; 3, LABEL_PROXY &gt;::shape</a></div><div class="ttdeci">const ShapeType &amp; shape() const</div><div class="ttdef"><b>Definition:</b> grid_rag.hxx:98</div></div>
-<div class="ttc" id="classnifty_1_1graph_1_1GridRagStacked2D_html_a09b44c819b97274a1025dc68cb6b3dc9"><div class="ttname"><a href="classnifty_1_1graph_1_1GridRagStacked2D.html#a09b44c819b97274a1025dc68cb6b3dc9">nifty::graph::GridRagStacked2D::LabelsProxy</a></div><div class="ttdeci">BaseType::LabelsProxy LabelsProxy</div><div class="ttdef"><b>Definition:</b> grid_rag_stacked_2d.hxx:43</div></div>
-<div class="ttc" id="classnifty_1_1graph_1_1GridRagStacked2D_html_ad6b23b6d315c94ce484b220ef34ba1ca"><div class="ttname"><a href="classnifty_1_1graph_1_1GridRagStacked2D.html#ad6b23b6d315c94ce484b220ef34ba1ca">nifty::graph::GridRagStacked2D::GridRagStacked2D</a></div><div class="ttdeci">GridRagStacked2D(const LabelsProxy &amp;labelsProxy, const Settings &amp;settings=Settings())</div><div class="ttdef"><b>Definition:</b> grid_rag_stacked_2d.hxx:46</div></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;} <span class="comment">// end namespace graph</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;} <span class="comment">// end namespace nifty</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
+<div class="ttc" id="classnifty_1_1graph_1_1GridRag_html_a9a9b20451bd5ea8ce3ee11af4018c995"><div class="ttname"><a href="classnifty_1_1graph_1_1GridRag.html#a9a9b20451bd5ea8ce3ee11af4018c995">nifty::graph::GridRag&lt; 3, LABEL_PROXY &gt;::labelsProxy</a></div><div class="ttdeci">const LabelsProxy &amp; labelsProxy() const</div><div class="ttdef"><b>Definition:</b> grid_rag.hxx:92</div></div>
+<div class="ttc" id="classnifty_1_1graph_1_1GridRagStacked2D_html_aa55f6424ed3ba64fe5cfc42b69876f8e"><div class="ttname"><a href="classnifty_1_1graph_1_1GridRagStacked2D.html#aa55f6424ed3ba64fe5cfc42b69876f8e">nifty::graph::GridRagStacked2D::betweenSliceEdgeOffset</a></div><div class="ttdeci">uint64_t betweenSliceEdgeOffset(const uint64_t sliceIndex) const </div><div class="ttdef"><b>Definition:</b> grid_rag_stacked_2d.hxx:79</div></div>
+<div class="ttc" id="classnifty_1_1graph_1_1GridRagStacked2D_html_abc778dc9bd7c20bacba215c1fc64ffb5"><div class="ttname"><a href="classnifty_1_1graph_1_1GridRagStacked2D.html#abc778dc9bd7c20bacba215c1fc64ffb5">nifty::graph::GridRagStacked2D::SettingsType</a></div><div class="ttdeci">BaseType::SettingsType SettingsType</div><div class="ttdef"><b>Definition:</b> grid_rag_stacked_2d.hxx:42</div></div>
+<div class="ttc" id="classnifty_1_1graph_1_1GridRagStacked2D_html_a646bcd62254f454d3ac2e584b1b07428"><div class="ttname"><a href="classnifty_1_1graph_1_1GridRagStacked2D.html#a646bcd62254f454d3ac2e584b1b07428">nifty::graph::GridRagStacked2D::numberOfInSliceEdges</a></div><div class="ttdeci">uint64_t numberOfInSliceEdges(const uint64_t sliceIndex) const </div><div class="ttdef"><b>Definition:</b> grid_rag_stacked_2d.hxx:67</div></div>
+<div class="ttc" id="classnifty_1_1graph_1_1GridRagStacked2D_html_acfdac0e16539e96d36fdc1615e3e4ee1"><div class="ttname"><a href="classnifty_1_1graph_1_1GridRagStacked2D.html#acfdac0e16539e96d36fdc1615e3e4ee1">nifty::graph::GridRagStacked2D::numberOfInBetweenSliceEdges</a></div><div class="ttdeci">uint64_t numberOfInBetweenSliceEdges(const uint64_t sliceIndex) const </div><div class="ttdef"><b>Definition:</b> grid_rag_stacked_2d.hxx:71</div></div>
+<div class="ttc" id="classnifty_1_1graph_1_1GridRag_html_adfc9dfed7d49642925311229e47a5cd2"><div class="ttname"><a href="classnifty_1_1graph_1_1GridRag.html#adfc9dfed7d49642925311229e47a5cd2">nifty::graph::GridRag&lt; 3, LABEL_PROXY &gt;::shape</a></div><div class="ttdeci">const ShapeType &amp; shape() const</div><div class="ttdef"><b>Definition:</b> grid_rag.hxx:96</div></div>
+<div class="ttc" id="classnifty_1_1graph_1_1GridRag_html_af4610f430b2ed52e5a4ea54c1eddcaf1"><div class="ttname"><a href="classnifty_1_1graph_1_1GridRag.html#af4610f430b2ed52e5a4ea54c1eddcaf1">nifty::graph::GridRag&lt; 3, LABEL_PROXY &gt;::settings_</a></div><div class="ttdeci">SettingsType settings_</div><div class="ttdef"><b>Definition:</b> grid_rag.hxx:107</div></div>
+<div class="ttc" id="classnifty_1_1graph_1_1GridRagStacked2D_html_a09b44c819b97274a1025dc68cb6b3dc9"><div class="ttname"><a href="classnifty_1_1graph_1_1GridRagStacked2D.html#a09b44c819b97274a1025dc68cb6b3dc9">nifty::graph::GridRagStacked2D::LabelsProxy</a></div><div class="ttdeci">BaseType::LabelsProxy LabelsProxy</div><div class="ttdef"><b>Definition:</b> grid_rag_stacked_2d.hxx:41</div></div>
 <div class="ttc" id="classnifty_1_1graph_1_1UndirectedGraph_html_a6c6acc627c6a90269c06fb34a8c1973d"><div class="ttname"><a href="classnifty_1_1graph_1_1UndirectedGraph.html#a6c6acc627c6a90269c06fb34a8c1973d">nifty::graph::UndirectedGraph&lt;&gt;::numberOfNodes</a></div><div class="ttdeci">uint64_t numberOfNodes() const</div></div>
-<div class="ttc" id="classnifty_1_1graph_1_1GridRag_html_ad3146f72301da4f45b51e3b692776cf1"><div class="ttname"><a href="classnifty_1_1graph_1_1GridRag.html#ad3146f72301da4f45b51e3b692776cf1">nifty::graph::GridRag&lt; 3, LABEL_PROXY &gt;::LabelsProxy</a></div><div class="ttdeci">LABEL_PROXY LabelsProxy</div><div class="ttdef"><b>Definition:</b> grid_rag.hxx:56</div></div>
-<div class="ttc" id="classnifty_1_1graph_1_1GridRag_html_af18452ee8060f7bb0fa527da6c2fc3a5"><div class="ttname"><a href="classnifty_1_1graph_1_1GridRag.html#af18452ee8060f7bb0fa527da6c2fc3a5">nifty::graph::GridRag&lt; 3, LABEL_PROXY &gt;::settings_</a></div><div class="ttdeci">Settings settings_</div><div class="ttdef"><b>Definition:</b> grid_rag.hxx:109</div></div>
+<div class="ttc" id="classnifty_1_1graph_1_1GridRagStacked2D_html_a7dda5d4d4c9d873a6a52ae28b0bea026"><div class="ttname"><a href="classnifty_1_1graph_1_1GridRagStacked2D.html#a7dda5d4d4c9d873a6a52ae28b0bea026">nifty::graph::GridRagStacked2D::GridRagStacked2D</a></div><div class="ttdeci">GridRagStacked2D(const LabelsProxy &amp;labelsProxy, const SettingsType &amp;settings=SettingsType())</div><div class="ttdef"><b>Definition:</b> grid_rag_stacked_2d.hxx:44</div></div>
+<div class="ttc" id="classnifty_1_1graph_1_1GridRag_html_ad3146f72301da4f45b51e3b692776cf1"><div class="ttname"><a href="classnifty_1_1graph_1_1GridRag.html#ad3146f72301da4f45b51e3b692776cf1">nifty::graph::GridRag&lt; 3, LABEL_PROXY &gt;::LabelsProxy</a></div><div class="ttdeci">LABEL_PROXY LabelsProxy</div><div class="ttdef"><b>Definition:</b> grid_rag.hxx:54</div></div>
 <div class="ttc" id="arithmetic__array_8hxx_html"><div class="ttname"><a href="arithmetic__array_8hxx.html">arithmetic_array.hxx</a></div></div>
 <div class="ttc" id="grid__rag_8hxx_html"><div class="ttname"><a href="grid__rag_8hxx.html">grid_rag.hxx</a></div></div>
-<div class="ttc" id="classnifty_1_1graph_1_1GridRagStacked2D_html_a7b0a5b8d3cb7ac39213e5306fd42aa27"><div class="ttname"><a href="classnifty_1_1graph_1_1GridRagStacked2D.html#a7b0a5b8d3cb7ac39213e5306fd42aa27">nifty::graph::GridRagStacked2D::Settings</a></div><div class="ttdeci">BaseType::Settings Settings</div><div class="ttdef"><b>Definition:</b> grid_rag_stacked_2d.hxx:44</div></div>
-<div class="ttc" id="namespacenifty_html"><div class="ttname"><a href="namespacenifty.html">nifty</a></div><div class="ttdef"><b>Definition:</b> arithmetic_array.hxx:10</div></div>
-<div class="ttc" id="classnifty_1_1graph_1_1GridRagStacked2D_html_ae7abe343f431f1a1ca953f3f9dd5e659"><div class="ttname"><a href="classnifty_1_1graph_1_1GridRagStacked2D.html#ae7abe343f431f1a1ca953f3f9dd5e659">nifty::graph::GridRagStacked2D::minMaxNode</a></div><div class="ttdeci">std::pair&lt; uint64_t, uint64_t &gt; minMaxNode(const uint64_t sliceIndex) const </div><div class="ttdef"><b>Definition:</b> grid_rag_stacked_2d.hxx:61</div></div>
-<div class="ttc" id="classnifty_1_1graph_1_1GridRagStacked2D_html_aa87c188ce0a2d246e1461bac64cf3a8a"><div class="ttname"><a href="classnifty_1_1graph_1_1GridRagStacked2D.html#aa87c188ce0a2d246e1461bac64cf3a8a">nifty::graph::GridRagStacked2D::numberOfNodes</a></div><div class="ttdeci">uint64_t numberOfNodes(const uint64_t sliceIndex) const </div><div class="ttdef"><b>Definition:</b> grid_rag_stacked_2d.hxx:65</div></div>
-<div class="ttc" id="classnifty_1_1graph_1_1GridRagStacked2D_html_a111282918d5ef7ef97e4328d575b7089"><div class="ttname"><a href="classnifty_1_1graph_1_1GridRagStacked2D.html#a111282918d5ef7ef97e4328d575b7089">nifty::graph::GridRagStacked2D::inSliceEdgeOffset</a></div><div class="ttdeci">uint64_t inSliceEdgeOffset(const uint64_t sliceIndex) const </div><div class="ttdef"><b>Definition:</b> grid_rag_stacked_2d.hxx:77</div></div>
+<div class="ttc" id="namespacenifty_html"><div class="ttname"><a href="namespacenifty.html">nifty</a></div><div class="ttdef"><b>Definition:</b> arithmetic_array.hxx:8</div></div>
+<div class="ttc" id="classnifty_1_1graph_1_1GridRagStacked2D_html_ae7abe343f431f1a1ca953f3f9dd5e659"><div class="ttname"><a href="classnifty_1_1graph_1_1GridRagStacked2D.html#ae7abe343f431f1a1ca953f3f9dd5e659">nifty::graph::GridRagStacked2D::minMaxNode</a></div><div class="ttdeci">std::pair&lt; uint64_t, uint64_t &gt; minMaxNode(const uint64_t sliceIndex) const </div><div class="ttdef"><b>Definition:</b> grid_rag_stacked_2d.hxx:59</div></div>
+<div class="ttc" id="classnifty_1_1graph_1_1GridRagStacked2D_html_aa87c188ce0a2d246e1461bac64cf3a8a"><div class="ttname"><a href="classnifty_1_1graph_1_1GridRagStacked2D.html#aa87c188ce0a2d246e1461bac64cf3a8a">nifty::graph::GridRagStacked2D::numberOfNodes</a></div><div class="ttdeci">uint64_t numberOfNodes(const uint64_t sliceIndex) const </div><div class="ttdef"><b>Definition:</b> grid_rag_stacked_2d.hxx:63</div></div>
+<div class="ttc" id="classnifty_1_1graph_1_1GridRagStacked2D_html_a111282918d5ef7ef97e4328d575b7089"><div class="ttname"><a href="classnifty_1_1graph_1_1GridRagStacked2D.html#a111282918d5ef7ef97e4328d575b7089">nifty::graph::GridRagStacked2D::inSliceEdgeOffset</a></div><div class="ttdeci">uint64_t inSliceEdgeOffset(const uint64_t sliceIndex) const </div><div class="ttdef"><b>Definition:</b> grid_rag_stacked_2d.hxx:75</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

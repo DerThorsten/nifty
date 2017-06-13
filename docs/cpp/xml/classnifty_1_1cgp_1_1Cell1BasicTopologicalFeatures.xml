@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="classnifty_1_1cgp_1_1Cell1BasicTopologicalFeatures" kind="class" language="C++" prot="public">
+    <compoundname>nifty::cgp::Cell1BasicTopologicalFeatures</compoundname>
+    <includes refid="topological__features_8hxx" local="no">topological_features.hxx</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classnifty_1_1cgp_1_1Cell1BasicTopologicalFeatures_1acc07fd45ceb74701457b76248a29e282" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; size_t &gt;</type>
+        <definition>std::vector&lt;size_t&gt; nifty::cgp::Cell1BasicTopologicalFeatures::dists_</definition>
+        <argsstring></argsstring>
+        <name>dists_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/cgp/features/topological_features.hxx" line="98" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/cgp/features/topological_features.hxx" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1cgp_1_1Cell1BasicTopologicalFeatures_1acf309275f4b84d463dee9bea89cd5108" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>nifty::cgp::Cell1BasicTopologicalFeatures::Cell1BasicTopologicalFeatures</definition>
+        <argsstring>()</argsstring>
+        <name>Cell1BasicTopologicalFeatures</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/cgp/features/topological_features.hxx" line="20" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/cgp/features/topological_features.hxx" bodystart="20" bodyend="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1cgp_1_1Cell1BasicTopologicalFeatures_1a56a29c126efbbd38b10dce2b5ba387cb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t nifty::cgp::Cell1BasicTopologicalFeatures::numberOfFeatures</definition>
+        <argsstring>() const </argsstring>
+        <name>numberOfFeatures</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/cgp/features/topological_features.hxx" line="23" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/cgp/features/topological_features.hxx" bodystart="23" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1cgp_1_1Cell1BasicTopologicalFeatures_1a84002abd81f8620a17caa3b472b6d87b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt;std::string&gt; nifty::cgp::Cell1BasicTopologicalFeatures::names</definition>
+        <argsstring>() const </argsstring>
+        <name>names</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/cgp/features/topological_features.hxx" line="27" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/cgp/features/topological_features.hxx" bodystart="27" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1cgp_1_1Cell1BasicTopologicalFeatures_1a1a4258f15fc13907751006b6aae69342" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::cgp::Cell1BasicTopologicalFeatures::operator()</definition>
+        <argsstring>(const CellBoundsVector&lt; 2, 0 &gt; &amp;cell0BoundsVector, const CellBoundsVector&lt; 2, 1 &gt; &amp;cell1BoundsVector, const CellBoundedByVector&lt; 2, 1 &gt; &amp;cell1BoundedByVector, const CellBoundedByVector&lt; 2, 2 &gt; &amp;cell2BoundedByVector, nifty::marray::View&lt; T &gt; &amp;features) const </argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1cgp_1_1CellBoundsVector" kindref="compound">CellBoundsVector</ref>&lt; 2, 0 &gt; &amp;</type>
+          <declname>cell0BoundsVector</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classnifty_1_1cgp_1_1CellBoundsVector" kindref="compound">CellBoundsVector</ref>&lt; 2, 1 &gt; &amp;</type>
+          <declname>cell1BoundsVector</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classnifty_1_1cgp_1_1CellBoundedByVector" kindref="compound">CellBoundedByVector</ref>&lt; 2, 1 &gt; &amp;</type>
+          <declname>cell1BoundedByVector</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classnifty_1_1cgp_1_1CellBoundedByVector" kindref="compound">CellBoundedByVector</ref>&lt; 2, 2 &gt; &amp;</type>
+          <declname>cell2BoundedByVector</declname>
+        </param>
+        <param>
+          <type><ref refid="classandres_1_1View" kindref="compound">nifty::marray::View</ref>&lt; T &gt; &amp;</type>
+          <declname>features</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/cgp/features/topological_features.hxx" line="49" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/cgp/features/topological_features.hxx" bodystart="49" bodyend="96"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/cgp/features/topological_features.hxx" line="18" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/cgp/features/topological_features.hxx" bodystart="18" bodyend="99"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1cgp_1_1Cell1BasicTopologicalFeatures_1acf309275f4b84d463dee9bea89cd5108" prot="public" virt="non-virtual"><scope>nifty::cgp::Cell1BasicTopologicalFeatures</scope><name>Cell1BasicTopologicalFeatures</name></member>
+      <member refid="classnifty_1_1cgp_1_1Cell1BasicTopologicalFeatures_1acc07fd45ceb74701457b76248a29e282" prot="private" virt="non-virtual"><scope>nifty::cgp::Cell1BasicTopologicalFeatures</scope><name>dists_</name></member>
+      <member refid="classnifty_1_1cgp_1_1Cell1BasicTopologicalFeatures_1a84002abd81f8620a17caa3b472b6d87b" prot="public" virt="non-virtual"><scope>nifty::cgp::Cell1BasicTopologicalFeatures</scope><name>names</name></member>
+      <member refid="classnifty_1_1cgp_1_1Cell1BasicTopologicalFeatures_1a56a29c126efbbd38b10dce2b5ba387cb" prot="public" virt="non-virtual"><scope>nifty::cgp::Cell1BasicTopologicalFeatures</scope><name>numberOfFeatures</name></member>
+      <member refid="classnifty_1_1cgp_1_1Cell1BasicTopologicalFeatures_1a1a4258f15fc13907751006b6aae69342" prot="public" virt="non-virtual"><scope>nifty::cgp::Cell1BasicTopologicalFeatures</scope><name>operator()</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

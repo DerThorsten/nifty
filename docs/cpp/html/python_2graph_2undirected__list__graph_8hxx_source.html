@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Nifty
-   &#160;<span id="projectnumber">0.5.1</span>
+   &#160;<span id="projectnumber">0.19.0</span>
    </div>
   </td>
  </tr>
@@ -94,44 +94,45 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <a href="python_2graph_2undirected__list__graph_8hxx.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#ifndef NIFTY_PYTHON_GRAPH_SIMPLE_GRAPH_HXX</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno"><a class="line" href="python_2graph_2undirected__list__graph_8hxx.html#a4bfee05ff0afa8a8f160ab7701a0a797">    3</a></span>&#160;<span class="preprocessor">#define NIFTY_PYTHON_GRAPH_SIMPLE_GRAPH_HXX</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;</div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="graph__name_8hxx.html">nifty/python/graph/graph_name.hxx</a>&quot;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="graph_2undirected__list__graph_8hxx.html">nifty/graph/undirected_list_graph.hxx</a>&quot;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacenifty.html">nifty</a>{</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">namespace </span>graph{</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="graph__name_8hxx.html">nifty/python/graph/graph_name.hxx</a>&quot;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="graph_2undirected__list__graph_8hxx.html">nifty/graph/undirected_list_graph.hxx</a>&quot;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacenifty.html">nifty</a>{</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">namespace </span>graph{</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="namespacenifty_1_1graph.html#a62ff5304d118f627910196adc6ab7aab">   12</a></span>&#160;    <span class="keyword">typedef</span> <a class="code" href="classnifty_1_1graph_1_1UndirectedGraph.html">UndirectedGraph&lt;&gt;</a> <a class="code" href="namespacenifty_1_1graph.html#a62ff5304d118f627910196adc6ab7aab">PyUndirectedGraph</a>;</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
-<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="namespacenifty_1_1graph.html#a62ff5304d118f627910196adc6ab7aab">   14</a></span>&#160;    <span class="keyword">typedef</span> <a class="code" href="classnifty_1_1graph_1_1UndirectedGraph.html">UndirectedGraph&lt;&gt;</a> <a class="code" href="namespacenifty_1_1graph.html#a62ff5304d118f627910196adc6ab7aab">PyUndirectedGraph</a>;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keyword">template</span>&lt;&gt;</div>
-<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="structnifty_1_1graph_1_1GraphName_3_01PyUndirectedGraph_01_4.html">   17</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structnifty_1_1graph_1_1GraphName.html">GraphName</a>&lt;PyUndirectedGraph&gt;{</div>
-<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="structnifty_1_1graph_1_1GraphName_3_01PyUndirectedGraph_01_4.html#a36e0e5cf6d601ab8e63d65180dc4162a">   18</a></span>&#160;        <span class="keyword">static</span> std::string <a class="code" href="structnifty_1_1graph_1_1GraphName_3_01PyUndirectedGraph_01_4.html#a36e0e5cf6d601ab8e63d65180dc4162a">name</a>(){</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;            <span class="keywordflow">return</span> std::string(<span class="stringliteral">&quot;UndirectedGraph&quot;</span>);</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        }</div>
-<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="structnifty_1_1graph_1_1GraphName_3_01PyUndirectedGraph_01_4.html#aec70e4ad4be73906f4b2fd6723c33a1d">   21</a></span>&#160;        <span class="keyword">static</span> std::string <a class="code" href="structnifty_1_1graph_1_1GraphName_3_01PyUndirectedGraph_01_4.html#aec70e4ad4be73906f4b2fd6723c33a1d">usageExample</a>(){</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            <span class="keywordflow">return</span> std::string(</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;                <span class="stringliteral">&quot;import nifty\n&quot;</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            );</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        }</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    };</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;}</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keyword">template</span>&lt;&gt;</div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="structnifty_1_1graph_1_1GraphName_3_01PyUndirectedGraph_01_4.html">   15</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structnifty_1_1graph_1_1GraphName.html">GraphName</a>&lt;PyUndirectedGraph&gt;{</div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="structnifty_1_1graph_1_1GraphName_3_01PyUndirectedGraph_01_4.html#a36e0e5cf6d601ab8e63d65180dc4162a">   16</a></span>&#160;        <span class="keyword">static</span> std::string <a class="code" href="structnifty_1_1graph_1_1GraphName_3_01PyUndirectedGraph_01_4.html#a36e0e5cf6d601ab8e63d65180dc4162a">name</a>(){</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;            <span class="keywordflow">return</span> std::string(<span class="stringliteral">&quot;UndirectedGraph&quot;</span>);</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        }</div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="structnifty_1_1graph_1_1GraphName_3_01PyUndirectedGraph_01_4.html#ac62155ccd2721d709ee743039e42be0b">   19</a></span>&#160;        <span class="keyword">static</span> std::string <a class="code" href="structnifty_1_1graph_1_1GraphName_3_01PyUndirectedGraph_01_4.html#ac62155ccd2721d709ee743039e42be0b">moduleName</a>(){</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            <span class="keywordflow">return</span> std::string(<span class="stringliteral">&quot;nifty.graph&quot;</span>);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        }</div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="structnifty_1_1graph_1_1GraphName_3_01PyUndirectedGraph_01_4.html#aec70e4ad4be73906f4b2fd6723c33a1d">   22</a></span>&#160;        <span class="keyword">static</span> std::string <a class="code" href="structnifty_1_1graph_1_1GraphName_3_01PyUndirectedGraph_01_4.html#aec70e4ad4be73906f4b2fd6723c33a1d">usageExample</a>(){</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            <span class="keywordflow">return</span> std::string(</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                <span class="stringliteral">&quot;import nifty\n&quot;</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            );</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        }</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    };</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;}</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#endif // NIFTY_PYTHON_GRAPH_SIMPLE_GRAPH_HXX</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;}</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
 <div class="ttc" id="graph__name_8hxx_html"><div class="ttname"><a href="graph__name_8hxx.html">graph_name.hxx</a></div></div>
-<div class="ttc" id="structnifty_1_1graph_1_1GraphName_3_01PyUndirectedGraph_01_4_html_a36e0e5cf6d601ab8e63d65180dc4162a"><div class="ttname"><a href="structnifty_1_1graph_1_1GraphName_3_01PyUndirectedGraph_01_4.html#a36e0e5cf6d601ab8e63d65180dc4162a">nifty::graph::GraphName&lt; PyUndirectedGraph &gt;::name</a></div><div class="ttdeci">static std::string name()</div><div class="ttdef"><b>Definition:</b> undirected_list_graph.hxx:18</div></div>
+<div class="ttc" id="structnifty_1_1graph_1_1GraphName_3_01PyUndirectedGraph_01_4_html_a36e0e5cf6d601ab8e63d65180dc4162a"><div class="ttname"><a href="structnifty_1_1graph_1_1GraphName_3_01PyUndirectedGraph_01_4.html#a36e0e5cf6d601ab8e63d65180dc4162a">nifty::graph::GraphName&lt; PyUndirectedGraph &gt;::name</a></div><div class="ttdeci">static std::string name()</div><div class="ttdef"><b>Definition:</b> undirected_list_graph.hxx:16</div></div>
 <div class="ttc" id="classnifty_1_1graph_1_1UndirectedGraph_html"><div class="ttname"><a href="classnifty_1_1graph_1_1UndirectedGraph.html">nifty::graph::UndirectedGraph&lt;&gt;</a></div></div>
-<div class="ttc" id="structnifty_1_1graph_1_1GraphName_html"><div class="ttname"><a href="structnifty_1_1graph_1_1GraphName.html">nifty::graph::GraphName</a></div><div class="ttdef"><b>Definition:</b> graph_name.hxx:9</div></div>
+<div class="ttc" id="structnifty_1_1graph_1_1GraphName_3_01PyUndirectedGraph_01_4_html_ac62155ccd2721d709ee743039e42be0b"><div class="ttname"><a href="structnifty_1_1graph_1_1GraphName_3_01PyUndirectedGraph_01_4.html#ac62155ccd2721d709ee743039e42be0b">nifty::graph::GraphName&lt; PyUndirectedGraph &gt;::moduleName</a></div><div class="ttdeci">static std::string moduleName()</div><div class="ttdef"><b>Definition:</b> undirected_list_graph.hxx:19</div></div>
+<div class="ttc" id="structnifty_1_1graph_1_1GraphName_html"><div class="ttname"><a href="structnifty_1_1graph_1_1GraphName.html">nifty::graph::GraphName</a></div><div class="ttdef"><b>Definition:</b> graph_name.hxx:7</div></div>
 <div class="ttc" id="graph_2undirected__list__graph_8hxx_html"><div class="ttname"><a href="graph_2undirected__list__graph_8hxx.html">undirected_list_graph.hxx</a></div></div>
-<div class="ttc" id="namespacenifty_html"><div class="ttname"><a href="namespacenifty.html">nifty</a></div><div class="ttdef"><b>Definition:</b> arithmetic_array.hxx:10</div></div>
-<div class="ttc" id="namespacenifty_1_1graph_html_a62ff5304d118f627910196adc6ab7aab"><div class="ttname"><a href="namespacenifty_1_1graph.html#a62ff5304d118f627910196adc6ab7aab">nifty::graph::PyUndirectedGraph</a></div><div class="ttdeci">UndirectedGraph PyUndirectedGraph</div><div class="ttdef"><b>Definition:</b> undirected_list_graph.hxx:14</div></div>
-<div class="ttc" id="structnifty_1_1graph_1_1GraphName_3_01PyUndirectedGraph_01_4_html_aec70e4ad4be73906f4b2fd6723c33a1d"><div class="ttname"><a href="structnifty_1_1graph_1_1GraphName_3_01PyUndirectedGraph_01_4.html#aec70e4ad4be73906f4b2fd6723c33a1d">nifty::graph::GraphName&lt; PyUndirectedGraph &gt;::usageExample</a></div><div class="ttdeci">static std::string usageExample()</div><div class="ttdef"><b>Definition:</b> undirected_list_graph.hxx:21</div></div>
+<div class="ttc" id="namespacenifty_html"><div class="ttname"><a href="namespacenifty.html">nifty</a></div><div class="ttdef"><b>Definition:</b> arithmetic_array.hxx:8</div></div>
+<div class="ttc" id="namespacenifty_1_1graph_html_a62ff5304d118f627910196adc6ab7aab"><div class="ttname"><a href="namespacenifty_1_1graph.html#a62ff5304d118f627910196adc6ab7aab">nifty::graph::PyUndirectedGraph</a></div><div class="ttdeci">UndirectedGraph PyUndirectedGraph</div><div class="ttdef"><b>Definition:</b> undirected_list_graph.hxx:12</div></div>
+<div class="ttc" id="structnifty_1_1graph_1_1GraphName_3_01PyUndirectedGraph_01_4_html_aec70e4ad4be73906f4b2fd6723c33a1d"><div class="ttname"><a href="structnifty_1_1graph_1_1GraphName_3_01PyUndirectedGraph_01_4.html#aec70e4ad4be73906f4b2fd6723c33a1d">nifty::graph::GraphName&lt; PyUndirectedGraph &gt;::usageExample</a></div><div class="ttdeci">static std::string usageExample()</div><div class="ttdef"><b>Definition:</b> undirected_list_graph.hxx:22</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

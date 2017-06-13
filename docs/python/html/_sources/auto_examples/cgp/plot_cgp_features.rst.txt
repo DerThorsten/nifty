@@ -19,7 +19,8 @@ Compute features for 1-cells
 
  Out::
 
-    (3520, 158)
+    (3512, 42) 42
+    (3512, 114)
 
 
 
@@ -75,12 +76,12 @@ Compute features for 1-cells
 
 
     # compute features
-    cell1Features = ncgp.cell1Features(tgrid=tgrid, geometry=geometry,
+    cell1Features, cell1FeatureNames = ncgp.cell1Features(tgrid=tgrid, geometry=geometry,
         bounds=bounds, boundedBy=boundedBy)
 
 
     print(cell1Features.shape)
-**Total running time of the script:** ( 0 minutes  1.643 seconds)
+**Total running time of the script:** ( 0 minutes  1.343 seconds)
 
 
 

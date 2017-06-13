@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Nifty
-   &#160;<span id="projectnumber">0.5.1</span>
+   &#160;<span id="projectnumber">0.19.0</span>
    </div>
   </td>
  </tr>
@@ -146,12 +146,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">class</span> T0, <span class="keyword">class</span> T1&gt;</div>
 <div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="classnifty_1_1filters_1_1GaussianCurvature2D.html#a1d72ae55d7c0621a3fcdb869c6e7134a">   53</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classnifty_1_1filters_1_1GaussianCurvature2D.html#a1d72ae55d7c0621a3fcdb869c6e7134a">operator()</a>(</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="keyword">const</span> nifty::marray::View&lt; T0 &gt; &amp; coordinates,</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        nifty::marray::View&lt; T1 &gt; &amp; out,</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="keyword">const</span> <a class="code" href="classandres_1_1View.html">nifty::marray::View&lt; T0 &gt;</a> &amp; coordinates,</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <a class="code" href="classandres_1_1View.html">nifty::marray::View&lt; T1 &gt;</a> &amp; out,</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">bool</span> closedLine</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    )<span class="keyword"> const </span>{</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="keyword">struct </span>CoordAdaptor{</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            CoordAdaptor(<span class="keyword">const</span> nifty::marray::View&lt; T0 &gt; &amp; _coordinates)</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            CoordAdaptor(<span class="keyword">const</span> <a class="code" href="classandres_1_1View.html">nifty::marray::View&lt; T0 &gt;</a> &amp; _coordinates)</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            : coordinates_(_coordinates){</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            }</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            <span class="comment">//</span></div>
@@ -161,19 +161,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                ret[1] = coordinates_(i, 1);</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                <span class="keywordflow">return</span> ret;</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            }</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            <span class="keyword">const</span> nifty::marray::View&lt; T0 &gt; &amp; coordinates_;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            <span class="keyword">const</span> <a class="code" href="classandres_1_1View.html">nifty::marray::View&lt; T0 &gt;</a> &amp; coordinates_;</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        };</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="keyword">struct </span>OutAdaptor{</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            OutAdaptor(<span class="keyword">const</span> nifty::marray::View&lt; T1 &gt; &amp; _out)</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            OutAdaptor(<span class="keyword">const</span> <a class="code" href="classandres_1_1View.html">nifty::marray::View&lt; T1 &gt;</a> &amp; _out)</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            : out_(_out){</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            }</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            T0 &amp; operator[](<span class="keyword">const</span> <span class="keywordtype">size_t</span> i)<span class="keyword">const</span>{</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                <span class="keywordflow">return</span> out_(i);</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            }</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            <span class="keyword">const</span> nifty::marray::View&lt; T0 &gt; &amp; out_;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            <span class="keyword">const</span> <a class="code" href="classandres_1_1View.html">nifty::marray::View&lt; T0 &gt;</a> &amp; out_;</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        };</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        this-&gt;impl(CoordAdaptor(coordinates),OutAdaptor(out),</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                    coordinates.shape(0), closedLine);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                    coordinates.<a class="code" href="classandres_1_1View.html#a9bc3d88b3e2bdf432dd68f36ff33deb3">shape</a>(0), closedLine);</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    }</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">class</span> COORD_ITER, <span class="keyword">class</span> OUT_ITER&gt;</div>
@@ -314,8 +314,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;</div>
 <div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">class</span> T0, <span class="keyword">class</span> T1&gt;</div>
 <div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    <span class="keywordtype">void</span> operator()(</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;        <span class="keyword">const</span> nifty::marray::View&lt; T0 &gt; &amp; coordinates,</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;        nifty::marray::View&lt; T1 &gt; &amp; out</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;        <span class="keyword">const</span> <a class="code" href="classandres_1_1View.html">nifty::marray::View&lt; T0 &gt;</a> &amp; coordinates,</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;        <a class="code" href="classandres_1_1View.html">nifty::marray::View&lt; T1 &gt;</a> &amp; out</div>
 <div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;    )<span class="keyword"> const </span>{</div>
 <div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;        <span class="keywordtype">int</span> step  = step_;</div>
 <div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;        std::vector&lt; double &gt; vecCurvature( vecContourPoints.size() );</div>
@@ -375,8 +375,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;    std::vector&lt;ValueType&gt; kdx_;</div>
 <div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;    std::vector&lt;ValueType&gt; kdxx_;</div>
 <div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;};</div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;</div>
 <div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;</div>
 <div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;</div>
@@ -394,9 +394,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="classnifty_1_1filters_1_1GaussianCurvature2D_html_a7405c5ba396d45a1f3e68db31835149e"><div class="ttname"><a href="classnifty_1_1filters_1_1GaussianCurvature2D.html#a7405c5ba396d45a1f3e68db31835149e">nifty::filters::GaussianCurvature2D::GaussianCurvature2D</a></div><div class="ttdeci">GaussianCurvature2D(const ValueType sigma, int r=-1, const ValueType windowRatio=3.5)</div><div class="ttdef"><b>Definition:</b> gaussian_curvature.hxx:21</div></div>
 <div class="ttc" id="classnifty_1_1filters_1_1GaussianCurvature2D_html_a23a814f0b1b488d27cbdca14874f396d"><div class="ttname"><a href="classnifty_1_1filters_1_1GaussianCurvature2D.html#a23a814f0b1b488d27cbdca14874f396d">nifty::filters::GaussianCurvature2D::radius</a></div><div class="ttdeci">int radius() const </div><div class="ttdef"><b>Definition:</b> gaussian_curvature.hxx:97</div></div>
 <div class="ttc" id="classnifty_1_1filters_1_1GaussianCurvature2D_html_affdbbda626530a7cd63878ca62f3682b"><div class="ttname"><a href="classnifty_1_1filters_1_1GaussianCurvature2D.html#affdbbda626530a7cd63878ca62f3682b">nifty::filters::GaussianCurvature2D::value_type</a></div><div class="ttdeci">ValueType value_type</div><div class="ttdef"><b>Definition:</b> gaussian_curvature.hxx:19</div></div>
+<div class="ttc" id="classandres_1_1View_html"><div class="ttname"><a href="classandres_1_1View.html">andres::View</a></div><div class="ttdef"><b>Definition:</b> marray.hxx:113</div></div>
 <div class="ttc" id="arithmetic__array_8hxx_html"><div class="ttname"><a href="arithmetic__array_8hxx.html">arithmetic_array.hxx</a></div></div>
 <div class="ttc" id="classnifty_1_1filters_1_1GaussianCurvature2D_html"><div class="ttname"><a href="classnifty_1_1filters_1_1GaussianCurvature2D.html">nifty::filters::GaussianCurvature2D</a></div><div class="ttdef"><b>Definition:</b> gaussian_curvature.hxx:15</div></div>
-<div class="ttc" id="namespacenifty_html"><div class="ttname"><a href="namespacenifty.html">nifty</a></div><div class="ttdef"><b>Definition:</b> arithmetic_array.hxx:10</div></div>
+<div class="ttc" id="namespacenifty_html"><div class="ttname"><a href="namespacenifty.html">nifty</a></div><div class="ttdef"><b>Definition:</b> arithmetic_array.hxx:8</div></div>
+<div class="ttc" id="classandres_1_1View_html_a9bc3d88b3e2bdf432dd68f36ff33deb3"><div class="ttname"><a href="classandres_1_1View.html#a9bc3d88b3e2bdf432dd68f36ff33deb3">andres::View::shape</a></div><div class="ttdeci">const std::size_t shape(const std::size_t) const </div><div class="ttdef"><b>Definition:</b> marray.hxx:1723</div></div>
 <div class="ttc" id="marray_8hxx_html"><div class="ttname"><a href="marray_8hxx.html">marray.hxx</a></div></div>
 <div class="ttc" id="structnifty_1_1math_1_1NumericTraits_html"><div class="ttname"><a href="structnifty_1_1math_1_1NumericTraits.html">nifty::math::NumericTraits</a></div><div class="ttdef"><b>Definition:</b> numerics.hxx:17</div></div>
 <div class="ttc" id="classnifty_1_1filters_1_1GaussianCurvature2D_html_af2739080c97506f5e72ebd4e69652311"><div class="ttname"><a href="classnifty_1_1filters_1_1GaussianCurvature2D.html#af2739080c97506f5e72ebd4e69652311">nifty::filters::GaussianCurvature2D::ValueType</a></div><div class="ttdeci">nifty::math::NumericTraits&lt; T &gt;::RealPromote ValueType</div><div class="ttdef"><b>Definition:</b> gaussian_curvature.hxx:18</div></div>

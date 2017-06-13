@@ -1,0 +1,531 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="grid__rag__hdf5_8hxx" kind="file" language="C++">
+    <compoundname>grid_rag_hdf5.hxx</compoundname>
+    <includes refid="grid__rag_8hxx" local="yes">nifty/graph/rag/grid_rag.hxx</includes>
+    <includes refid="grid__rag__labels__hdf5_8hxx" local="yes">nifty/graph/rag/grid_rag_labels_hdf5.hxx</includes>
+    <includes refid="compute__grid__rag__hdf5_8hxx" local="yes">nifty/graph/rag/detail_rag/compute_grid_rag_hdf5.hxx</includes>
+    <incdepgraph>
+      <node id="10493">
+        <label>atomic</label>
+      </node>
+      <node id="10511">
+        <label>nifty/tools/const_iterator_range.hxx</label>
+        <link refid="const__iterator__range_8hxx"/>
+      </node>
+      <node id="10461">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_hdf5.hxx</label>
+        <link refid="grid_rag_hdf5.hxx"/>
+        <childnode refid="10462" relation="include">
+        </childnode>
+        <childnode refid="10516" relation="include">
+        </childnode>
+        <childnode refid="10522" relation="include">
+        </childnode>
+      </node>
+      <node id="10464">
+        <label>functional</label>
+      </node>
+      <node id="10496">
+        <label>queue</label>
+      </node>
+      <node id="10505">
+        <label>boost/version.hpp</label>
+      </node>
+      <node id="10476">
+        <label>limits</label>
+      </node>
+      <node id="10485">
+        <label>iterator</label>
+      </node>
+      <node id="10473">
+        <label>cstdint</label>
+      </node>
+      <node id="10513">
+        <label>nifty/tools/for_each_coordinate.hxx</label>
+        <link refid="for__each__coordinate_8hxx"/>
+        <childnode refid="10475" relation="include">
+        </childnode>
+        <childnode refid="10514" relation="include">
+        </childnode>
+        <childnode refid="10470" relation="include">
+        </childnode>
+        <childnode refid="10491" relation="include">
+        </childnode>
+        <childnode refid="10469" relation="include">
+        </childnode>
+      </node>
+      <node id="10478">
+        <label>nifty/graph/rag/grid_rag_labels.hxx</label>
+        <link refid="grid__rag__labels_8hxx"/>
+        <childnode refid="10467" relation="include">
+        </childnode>
+        <childnode refid="10479" relation="include">
+        </childnode>
+        <childnode refid="10469" relation="include">
+        </childnode>
+        <childnode refid="10480" relation="include">
+        </childnode>
+        <childnode refid="10472" relation="include">
+        </childnode>
+        <childnode refid="10490" relation="include">
+        </childnode>
+      </node>
+      <node id="10477">
+        <label>cmath</label>
+      </node>
+      <node id="10517">
+        <label>nifty/hdf5/hdf5_array.hxx</label>
+        <link refid="hdf5__array_8hxx"/>
+        <childnode refid="10479" relation="include">
+        </childnode>
+        <childnode refid="10483" relation="include">
+        </childnode>
+        <childnode refid="10471" relation="include">
+        </childnode>
+        <childnode refid="10495" relation="include">
+        </childnode>
+        <childnode refid="10490" relation="include">
+        </childnode>
+        <childnode refid="10472" relation="include">
+        </childnode>
+        <childnode refid="10518" relation="include">
+        </childnode>
+      </node>
+      <node id="10482">
+        <label>cassert</label>
+      </node>
+      <node id="10498">
+        <label>boost/iterator/transform_iterator.hpp</label>
+      </node>
+      <node id="10474">
+        <label>stdexcept</label>
+      </node>
+      <node id="10489">
+        <label>numeric</label>
+      </node>
+      <node id="10508">
+        <label>nifty/graph/undirected_graph_base.hxx</label>
+        <link refid="undirected__graph__base_8hxx"/>
+        <childnode refid="10498" relation="include">
+        </childnode>
+        <childnode refid="10509" relation="include">
+        </childnode>
+        <childnode refid="10510" relation="include">
+        </childnode>
+        <childnode refid="10511" relation="include">
+        </childnode>
+      </node>
+      <node id="10512">
+        <label>nifty/graph/detail/adjacency.hxx</label>
+        <link refid="adjacency_8hxx"/>
+      </node>
+      <node id="10483">
+        <label>string</label>
+      </node>
+      <node id="10499">
+        <label>boost/iterator/counting_iterator.hpp</label>
+      </node>
+      <node id="10504">
+        <label>map</label>
+      </node>
+      <node id="10468">
+        <label>unordered_set</label>
+      </node>
+      <node id="10515">
+        <label>nifty/tools/timer.hxx</label>
+        <link refid="timer_8hxx"/>
+        <childnode refid="10475" relation="include">
+        </childnode>
+        <childnode refid="10514" relation="include">
+        </childnode>
+        <childnode refid="10483" relation="include">
+        </childnode>
+      </node>
+      <node id="10490">
+        <label>nifty/tools/block_access.hxx</label>
+        <link refid="block__access_8hxx"/>
+        <childnode refid="10480" relation="include">
+        </childnode>
+        <childnode refid="10469" relation="include">
+        </childnode>
+        <childnode refid="10491" relation="include">
+        </childnode>
+      </node>
+      <node id="10481">
+        <label>nifty/marray/andres/marray.hxx</label>
+        <link refid="andres_2marray_8hxx"/>
+        <childnode refid="10482" relation="include">
+        </childnode>
+        <childnode refid="10479" relation="include">
+        </childnode>
+        <childnode refid="10474" relation="include">
+        </childnode>
+        <childnode refid="10476" relation="include">
+        </childnode>
+        <childnode refid="10483" relation="include">
+        </childnode>
+        <childnode refid="10475" relation="include">
+        </childnode>
+        <childnode refid="10484" relation="include">
+        </childnode>
+        <childnode refid="10485" relation="include">
+        </childnode>
+        <childnode refid="10471" relation="include">
+        </childnode>
+        <childnode refid="10486" relation="include">
+        </childnode>
+        <childnode refid="10487" relation="include">
+        </childnode>
+        <childnode refid="10488" relation="include">
+        </childnode>
+        <childnode refid="10489" relation="include">
+        </childnode>
+        <childnode refid="10464" relation="include">
+        </childnode>
+      </node>
+      <node id="10516">
+        <label>nifty/graph/rag/grid_rag_labels_hdf5.hxx</label>
+        <link refid="grid__rag__labels__hdf5_8hxx"/>
+        <childnode refid="10467" relation="include">
+        </childnode>
+        <childnode refid="10479" relation="include">
+        </childnode>
+        <childnode refid="10480" relation="include">
+        </childnode>
+        <childnode refid="10472" relation="include">
+        </childnode>
+        <childnode refid="10490" relation="include">
+        </childnode>
+        <childnode refid="10517" relation="include">
+        </childnode>
+      </node>
+      <node id="10463">
+        <label>random</label>
+      </node>
+      <node id="10497">
+        <label>condition_variable</label>
+      </node>
+      <node id="10500">
+        <label>nifty/graph/rag/detail_rag/compute_grid_rag.hxx</label>
+        <link refid="compute__grid__rag_8hxx"/>
+        <childnode refid="10464" relation="include">
+        </childnode>
+        <childnode refid="10467" relation="include">
+        </childnode>
+        <childnode refid="10479" relation="include">
+        </childnode>
+        <childnode refid="10501" relation="include">
+        </childnode>
+        <childnode refid="10469" relation="include">
+        </childnode>
+        <childnode refid="10478" relation="include">
+        </childnode>
+        <childnode refid="10480" relation="include">
+        </childnode>
+        <childnode refid="10503" relation="include">
+        </childnode>
+        <childnode refid="10491" relation="include">
+        </childnode>
+        <childnode refid="10513" relation="include">
+        </childnode>
+      </node>
+      <node id="10502">
+        <label>boost/container/flat_set.hpp</label>
+      </node>
+      <node id="10494">
+        <label>future</label>
+      </node>
+      <node id="10506">
+        <label>nifty/container/flat_set.hxx</label>
+        <link refid="flat__set_8hxx"/>
+        <childnode refid="10479" relation="include">
+        </childnode>
+        <childnode refid="10471" relation="include">
+        </childnode>
+        <childnode refid="10467" relation="include">
+        </childnode>
+        <childnode refid="10464" relation="include">
+        </childnode>
+        <childnode refid="10507" relation="include">
+        </childnode>
+      </node>
+      <node id="10465">
+        <label>ctime</label>
+      </node>
+      <node id="10471">
+        <label>vector</label>
+      </node>
+      <node id="10466">
+        <label>stack</label>
+      </node>
+      <node id="10509">
+        <label>nifty/graph/graph_tags.hxx</label>
+        <link refid="graph__tags_8hxx"/>
+      </node>
+      <node id="10519">
+        <label>nifty/marray/andres/marray-hdf5.hxx</label>
+        <link refid="marray-hdf5_8hxx"/>
+        <childnode refid="10520" relation="include">
+        </childnode>
+        <childnode refid="10479" relation="include">
+        </childnode>
+        <childnode refid="10484" relation="include">
+        </childnode>
+        <childnode refid="10481" relation="include">
+        </childnode>
+        <childnode refid="10521" relation="include">
+        </childnode>
+      </node>
+      <node id="10501">
+        <label>nifty/container/boost_flat_set.hxx</label>
+        <link refid="boost__flat__set_8hxx"/>
+        <childnode refid="10502" relation="include">
+        </childnode>
+      </node>
+      <node id="10469">
+        <label>nifty/array/arithmetic_array.hxx</label>
+        <link refid="arithmetic__array_8hxx"/>
+        <childnode refid="10470" relation="include">
+        </childnode>
+        <childnode refid="10471" relation="include">
+        </childnode>
+        <childnode refid="10472" relation="include">
+        </childnode>
+      </node>
+      <node id="10507">
+        <label>utility</label>
+      </node>
+      <node id="10470">
+        <label>array</label>
+      </node>
+      <node id="10475">
+        <label>sstream</label>
+      </node>
+      <node id="10472">
+        <label>nifty/tools/runtime_check.hxx</label>
+        <link refid="runtime__check_8hxx"/>
+        <childnode refid="10473" relation="include">
+        </childnode>
+        <childnode refid="10474" relation="include">
+        </childnode>
+        <childnode refid="10475" relation="include">
+        </childnode>
+        <childnode refid="10471" relation="include">
+        </childnode>
+        <childnode refid="10476" relation="include">
+        </childnode>
+        <childnode refid="10477" relation="include">
+        </childnode>
+      </node>
+      <node id="10521">
+        <label>hdf5.h</label>
+      </node>
+      <node id="10462">
+        <label>nifty/graph/rag/grid_rag.hxx</label>
+        <link refid="grid__rag_8hxx"/>
+        <childnode refid="10463" relation="include">
+        </childnode>
+        <childnode refid="10464" relation="include">
+        </childnode>
+        <childnode refid="10465" relation="include">
+        </childnode>
+        <childnode refid="10466" relation="include">
+        </childnode>
+        <childnode refid="10467" relation="include">
+        </childnode>
+        <childnode refid="10468" relation="include">
+        </childnode>
+        <childnode refid="10469" relation="include">
+        </childnode>
+        <childnode refid="10478" relation="include">
+        </childnode>
+        <childnode refid="10500" relation="include">
+        </childnode>
+        <childnode refid="10480" relation="include">
+        </childnode>
+        <childnode refid="10503" relation="include">
+        </childnode>
+        <childnode refid="10491" relation="include">
+        </childnode>
+        <childnode refid="10515" relation="include">
+        </childnode>
+      </node>
+      <node id="10510">
+        <label>nifty/graph/graph_maps.hxx</label>
+        <link refid="graph__maps_8hxx"/>
+        <childnode refid="10480" relation="include">
+        </childnode>
+      </node>
+      <node id="10487">
+        <label>iostream</label>
+      </node>
+      <node id="10479">
+        <label>cstddef</label>
+      </node>
+      <node id="10491">
+        <label>nifty/parallel/threadpool.hxx</label>
+        <link refid="threadpool_8hxx"/>
+        <childnode refid="10464" relation="include">
+        </childnode>
+        <childnode refid="10492" relation="include">
+        </childnode>
+        <childnode refid="10493" relation="include">
+        </childnode>
+        <childnode refid="10471" relation="include">
+        </childnode>
+        <childnode refid="10494" relation="include">
+        </childnode>
+        <childnode refid="10495" relation="include">
+        </childnode>
+        <childnode refid="10496" relation="include">
+        </childnode>
+        <childnode refid="10497" relation="include">
+        </childnode>
+        <childnode refid="10474" relation="include">
+        </childnode>
+        <childnode refid="10477" relation="include">
+        </childnode>
+        <childnode refid="10498" relation="include">
+        </childnode>
+        <childnode refid="10499" relation="include">
+        </childnode>
+        <childnode refid="10472" relation="include">
+        </childnode>
+      </node>
+      <node id="10518">
+        <label>nifty/marray/marray_hdf5.hxx</label>
+        <link refid="marray__hdf5_8hxx"/>
+        <childnode refid="10480" relation="include">
+        </childnode>
+        <childnode refid="10519" relation="include">
+        </childnode>
+        <childnode refid="10481" relation="include">
+        </childnode>
+      </node>
+      <node id="10520">
+        <label>H5version.h</label>
+      </node>
+      <node id="10495">
+        <label>mutex</label>
+      </node>
+      <node id="10523">
+        <label>nifty/tools/for_each_block.hxx</label>
+        <link refid="for__each__block_8hxx"/>
+        <childnode refid="10475" relation="include">
+        </childnode>
+        <childnode refid="10514" relation="include">
+        </childnode>
+        <childnode refid="10470" relation="include">
+        </childnode>
+        <childnode refid="10469" relation="include">
+        </childnode>
+        <childnode refid="10513" relation="include">
+        </childnode>
+      </node>
+      <node id="10514">
+        <label>chrono</label>
+      </node>
+      <node id="10503">
+        <label>nifty/graph/undirected_list_graph.hxx</label>
+        <link refid="graph_2undirected__list__graph_8hxx"/>
+        <childnode refid="10479" relation="include">
+        </childnode>
+        <childnode refid="10471" relation="include">
+        </childnode>
+        <childnode refid="10504" relation="include">
+        </childnode>
+        <childnode refid="10505" relation="include">
+        </childnode>
+        <childnode refid="10502" relation="include">
+        </childnode>
+        <childnode refid="10499" relation="include">
+        </childnode>
+        <childnode refid="10506" relation="include">
+        </childnode>
+        <childnode refid="10472" relation="include">
+        </childnode>
+        <childnode refid="10508" relation="include">
+        </childnode>
+        <childnode refid="10512" relation="include">
+        </childnode>
+        <childnode refid="10509" relation="include">
+        </childnode>
+        <childnode refid="10491" relation="include">
+        </childnode>
+      </node>
+      <node id="10480">
+        <label>nifty/marray/marray.hxx</label>
+        <link refid="marray_8hxx"/>
+        <childnode refid="10481" relation="include">
+        </childnode>
+        <childnode refid="10472" relation="include">
+        </childnode>
+      </node>
+      <node id="10492">
+        <label>thread</label>
+      </node>
+      <node id="10522">
+        <label>nifty/graph/rag/detail_rag/compute_grid_rag_hdf5.hxx</label>
+        <link refid="compute__grid__rag__hdf5_8hxx"/>
+        <childnode refid="10479" relation="include">
+        </childnode>
+        <childnode refid="10471" relation="include">
+        </childnode>
+        <childnode refid="10501" relation="include">
+        </childnode>
+        <childnode refid="10469" relation="include">
+        </childnode>
+        <childnode refid="10516" relation="include">
+        </childnode>
+        <childnode refid="10480" relation="include">
+        </childnode>
+        <childnode refid="10503" relation="include">
+        </childnode>
+        <childnode refid="10491" relation="include">
+        </childnode>
+        <childnode refid="10515" relation="include">
+        </childnode>
+        <childnode refid="10513" relation="include">
+        </childnode>
+        <childnode refid="10523" relation="include">
+        </childnode>
+      </node>
+      <node id="10486">
+        <label>set</label>
+      </node>
+      <node id="10467">
+        <label>algorithm</label>
+      </node>
+      <node id="10484">
+        <label>cstring</label>
+      </node>
+      <node id="10488">
+        <label>memory</label>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespacenifty">nifty</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph">nifty::graph</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="grid__rag_8hxx" kindref="compound">nifty/graph/rag/grid_rag.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="grid__rag__labels__hdf5_8hxx" kindref="compound">nifty/graph/rag/grid_rag_labels_hdf5.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="compute__grid__rag__hdf5_8hxx" kindref="compound">nifty/graph/rag/detail_rag/compute_grid_rag_hdf5.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacenifty" kindref="compound">nifty</ref>{</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">graph{</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>end<sp/>namespace<sp/>graph</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>end<sp/>namespace<sp/>nifty</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_hdf5.hxx"/>
+  </compounddef>
+</doxygen>

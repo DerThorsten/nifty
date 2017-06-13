@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="structnifty_1_1features_1_1HessianOfGaussianEigenvalues" kind="struct" language="C++" prot="public">
+    <compoundname>nifty::features::HessianOfGaussianEigenvalues</compoundname>
+    <basecompoundref refid="structnifty_1_1features_1_1FilterBase" prot="public" virt="non-virtual">nifty::features::FilterBase</basecompoundref>
+    <includes refid="fastfilters__wrapper_8hxx" local="no">fastfilters_wrapper.hxx</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structnifty_1_1features_1_1HessianOfGaussianEigenvalues_1aceb6fd7d3f60b00eb2463035863cc017" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void nifty::features::HessianOfGaussianEigenvalues::operator()</definition>
+        <argsstring>(const fastfilters_array2d_t &amp;ff, marray::View&lt; float &gt; &amp;out, const double sigma) const </argsstring>
+        <name>operator()</name>
+        <reimplements refid="structnifty_1_1features_1_1FilterBase_1ab362e4142a783ce298a477557bcd9436">operator()</reimplements>
+        <param>
+          <type>const fastfilters_array2d_t &amp;</type>
+          <declname>ff</declname>
+        </param>
+        <param>
+          <type><ref refid="classandres_1_1View" kindref="compound">marray::View</ref>&lt; float &gt; &amp;</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>sigma</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" line="181" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" bodystart="181" bodyend="201"/>
+      </memberdef>
+      <memberdef kind="function" id="structnifty_1_1features_1_1HessianOfGaussianEigenvalues_1a4ec617b8af83d1d43c9bc2d3381319e2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void nifty::features::HessianOfGaussianEigenvalues::operator()</definition>
+        <argsstring>(const fastfilters_array3d_t &amp;ff, marray::View&lt; float &gt; &amp;out, const double sigma) const </argsstring>
+        <name>operator()</name>
+        <reimplements refid="structnifty_1_1features_1_1FilterBase_1ab7d7de20b106e80ccfd65a818e1b6eef">operator()</reimplements>
+        <param>
+          <type>const fastfilters_array3d_t &amp;</type>
+          <declname>ff</declname>
+        </param>
+        <param>
+          <type><ref refid="classandres_1_1View" kindref="compound">marray::View</ref>&lt; float &gt; &amp;</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>sigma</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" line="203" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" bodystart="203" bodyend="229"/>
+      </memberdef>
+      <memberdef kind="function" id="structnifty_1_1features_1_1HessianOfGaussianEigenvalues_1ab107bd91f72c9567346fce3664e1139c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>bool nifty::features::HessianOfGaussianEigenvalues::isMultiChannel</definition>
+        <argsstring>() const </argsstring>
+        <name>isMultiChannel</name>
+        <reimplements refid="structnifty_1_1features_1_1FilterBase_1a01fbc04537c69b997079a98a845c5ab3">isMultiChannel</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" line="231" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" bodystart="231" bodyend="233"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1303">
+        <label>nifty::features::HessianOfGaussianEigenvalues</label>
+        <link refid="structnifty_1_1features_1_1HessianOfGaussianEigenvalues"/>
+        <childnode refid="1304" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1304">
+        <label>nifty::features::FilterBase</label>
+        <link refid="structnifty_1_1features_1_1FilterBase"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1305">
+        <label>nifty::features::HessianOfGaussianEigenvalues</label>
+        <link refid="structnifty_1_1features_1_1HessianOfGaussianEigenvalues"/>
+        <childnode refid="1306" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1306">
+        <label>nifty::features::FilterBase</label>
+        <link refid="structnifty_1_1features_1_1FilterBase"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" line="179" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" bodystart="179" bodyend="235"/>
+    <listofallmembers>
+      <member refid="structnifty_1_1features_1_1FilterBase_1ac10b9d69df645dd2feb7ce555e544502" prot="public" virt="non-virtual"><scope>nifty::features::HessianOfGaussianEigenvalues</scope><name>FilterBase</name></member>
+      <member refid="structnifty_1_1features_1_1HessianOfGaussianEigenvalues_1ab107bd91f72c9567346fce3664e1139c" prot="public" virt="virtual"><scope>nifty::features::HessianOfGaussianEigenvalues</scope><name>isMultiChannel</name></member>
+      <member refid="structnifty_1_1features_1_1HessianOfGaussianEigenvalues_1aceb6fd7d3f60b00eb2463035863cc017" prot="public" virt="virtual"><scope>nifty::features::HessianOfGaussianEigenvalues</scope><name>operator()</name></member>
+      <member refid="structnifty_1_1features_1_1HessianOfGaussianEigenvalues_1a4ec617b8af83d1d43c9bc2d3381319e2" prot="public" virt="virtual"><scope>nifty::features::HessianOfGaussianEigenvalues</scope><name>operator()</name></member>
+      <member refid="structnifty_1_1features_1_1FilterBase_1a4bd3a5f88a4c061e80f0b0c4a1074c8c" prot="protected" virt="non-virtual"><scope>nifty::features::HessianOfGaussianEigenvalues</scope><name>opt_</name></member>
+      <member refid="structnifty_1_1features_1_1FilterBase_1ab59d743ba07608b8aaa37e59f049431e" prot="public" virt="non-virtual"><scope>nifty::features::HessianOfGaussianEigenvalues</scope><name>set_window_ratio</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

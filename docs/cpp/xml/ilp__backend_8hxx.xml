@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="ilp__backend_8hxx" kind="file" language="C++">
+    <compoundname>ilp_backend.hxx</compoundname>
+    <includes local="no">limits</includes>
+    <includedby refid="lifted__multicut__ilp_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_ilp.hxx</includedby>
+    <includedby refid="multicut__ilp_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_ilp.hxx</includedby>
+    <includedby refid="cplex_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/ilp_backend/cplex.hxx</includedby>
+    <includedby refid="glpk_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/ilp_backend/glpk.hxx</includedby>
+    <includedby refid="gurobi_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/ilp_backend/gurobi.hxx</includedby>
+    <incdepgraph>
+      <node id="11344">
+        <label>limits</label>
+      </node>
+      <node id="11343">
+        <label>/home/tbeier/src/nifty/include/nifty/ilp_backend/ilp_backend.hxx</label>
+        <link refid="ilp_backend.hxx"/>
+        <childnode refid="11344" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="11350">
+        <label>/home/tbeier/src/nifty/include/nifty/ilp_backend/gurobi.hxx</label>
+        <link refid="gurobi_8hxx"/>
+      </node>
+      <node id="11347">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_ilp.hxx</label>
+        <link refid="multicut__ilp_8hxx"/>
+      </node>
+      <node id="11346">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_ilp.hxx</label>
+        <link refid="lifted__multicut__ilp_8hxx"/>
+      </node>
+      <node id="11349">
+        <label>/home/tbeier/src/nifty/include/nifty/ilp_backend/glpk.hxx</label>
+        <link refid="glpk_8hxx"/>
+      </node>
+      <node id="11348">
+        <label>/home/tbeier/src/nifty/include/nifty/ilp_backend/cplex.hxx</label>
+        <link refid="cplex_8hxx"/>
+      </node>
+      <node id="11345">
+        <label>/home/tbeier/src/nifty/include/nifty/ilp_backend/ilp_backend.hxx</label>
+        <link refid="ilp_backend.hxx"/>
+        <childnode refid="11346" relation="include">
+        </childnode>
+        <childnode refid="11347" relation="include">
+        </childnode>
+        <childnode refid="11348" relation="include">
+        </childnode>
+        <childnode refid="11349" relation="include">
+        </childnode>
+        <childnode refid="11350" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings" prot="public">nifty::ilp_backend::IlpBackendSettings</innerclass>
+    <innernamespace refid="namespacenifty">nifty</innernamespace>
+    <innernamespace refid="namespacenifty_1_1ilp__backend">nifty::ilp_backend</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;limits&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacenifty" kindref="compound">nifty</ref><sp/>{</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">ilp_backend{</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8" refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings" kindref="compound">IlpBackendSettings</ref>{</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="10" refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1ad16c71cc049dcb37c07f2abdda69dab4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1ad16c71cc049dcb37c07f2abdda69dab4" kindref="member">PreSolver</ref><sp/>{</highlight></codeline>
+<codeline lineno="11" refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1ad16c71cc049dcb37c07f2abdda69dab4a2d2186dcdaa22ae42023acbc03922c48" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1ad16c71cc049dcb37c07f2abdda69dab4a2d2186dcdaa22ae42023acbc03922c48" kindref="member">PRE_SOLVER_AUTO</ref>,<sp/></highlight></codeline>
+<codeline lineno="12" refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1ad16c71cc049dcb37c07f2abdda69dab4a0b937d225c3ee4733bff63397c614b78" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1ad16c71cc049dcb37c07f2abdda69dab4a0b937d225c3ee4733bff63397c614b78" kindref="member">PRE_SOLVER_PRIMAL</ref>,</highlight></codeline>
+<codeline lineno="13" refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1ad16c71cc049dcb37c07f2abdda69dab4a53cbe16a2893471008b7f3c00c5c040f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1ad16c71cc049dcb37c07f2abdda69dab4a53cbe16a2893471008b7f3c00c5c040f" kindref="member">PRE_SOLVER_DUAL</ref>,<sp/></highlight></codeline>
+<codeline lineno="14" refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1ad16c71cc049dcb37c07f2abdda69dab4ad0065467805a6fba8d8d9e7293e4bfc2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1ad16c71cc049dcb37c07f2abdda69dab4ad0065467805a6fba8d8d9e7293e4bfc2" kindref="member">PRE_SOLVER_NONE</ref>,</highlight></codeline>
+<codeline lineno="15" refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1ad16c71cc049dcb37c07f2abdda69dab4a45adcc6c0d30422e0c0a674b2fe92a37" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1ad16c71cc049dcb37c07f2abdda69dab4a45adcc6c0d30422e0c0a674b2fe92a37" kindref="member">PRE_SOLVER_DEFAULT</ref></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18" refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1a4b3fd0d313a8d95f9f6a3ba64802e204" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1a4b3fd0d313a8d95f9f6a3ba64802e204" kindref="member">LPSolver</ref><sp/>{</highlight></codeline>
+<codeline lineno="19" refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1a4b3fd0d313a8d95f9f6a3ba64802e204a02afc6e85659e3fda7c48df74d3e3934" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1a4b3fd0d313a8d95f9f6a3ba64802e204a02afc6e85659e3fda7c48df74d3e3934" kindref="member">LP_SOLVER_PRIMAL_SIMPLEX</ref>,<sp/></highlight></codeline>
+<codeline lineno="20" refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1a4b3fd0d313a8d95f9f6a3ba64802e204aadd4ba29f78f9104467f136c05d6e354" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1a4b3fd0d313a8d95f9f6a3ba64802e204aadd4ba29f78f9104467f136c05d6e354" kindref="member">LP_SOLVER_DUAL_SIMPLEX</ref>,<sp/></highlight></codeline>
+<codeline lineno="21" refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1a4b3fd0d313a8d95f9f6a3ba64802e204afbfc81377d73d1c59b31be26a8bf8fb2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1a4b3fd0d313a8d95f9f6a3ba64802e204afbfc81377d73d1c59b31be26a8bf8fb2" kindref="member">LP_SOLVER_BARRIER</ref>,<sp/></highlight></codeline>
+<codeline lineno="22" refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1a4b3fd0d313a8d95f9f6a3ba64802e204ac6de1eff7352159f0db89583e569f86e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1a4b3fd0d313a8d95f9f6a3ba64802e204ac6de1eff7352159f0db89583e569f86e" kindref="member">LP_SOLVER_SIFTING</ref>,</highlight></codeline>
+<codeline lineno="23" refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1a4b3fd0d313a8d95f9f6a3ba64802e204a24fa810f69bf55c40d68082a2e3653f8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1a4b3fd0d313a8d95f9f6a3ba64802e204a24fa810f69bf55c40d68082a2e3653f8" kindref="member">LP_SOLVER_DEFAULT</ref></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26" refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1a5f20f85b5528859b4ef8000a29fb1453" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1a5f20f85b5528859b4ef8000a29fb1453" kindref="member">memLimit</ref><sp/>=<sp/>{-1.0};</highlight></codeline>
+<codeline lineno="27" refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1a8eed72b9ddbbc94a89197dde0d76d144" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1a8eed72b9ddbbc94a89197dde0d76d144" kindref="member">relativeGap</ref>{0.0};</highlight></codeline>
+<codeline lineno="28" refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1a8bc98f418844336847d868dd88e620f2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1a8bc98f418844336847d868dd88e620f2" kindref="member">absoluteGap</ref>{0.0};</highlight></codeline>
+<codeline lineno="29" refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1a0bd7c55efdd7c642687b17e378da2e08" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1a0bd7c55efdd7c642687b17e378da2e08" kindref="member">cutUp</ref>{1.0e+75};</highlight></codeline>
+<codeline lineno="30" refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1a87cbc1618cd7cd2d88de2da14ff8c2d3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1a87cbc1618cd7cd2d88de2da14ff8c2d3" kindref="member">prePasses</ref>{-1};</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32" refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1af1e71695a4bd0dd0921ba2db7c0208c6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1ad16c71cc049dcb37c07f2abdda69dab4" kindref="member">PreSolver</ref><sp/><ref refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1af1e71695a4bd0dd0921ba2db7c0208c6" kindref="member">preSolver</ref>{<ref refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1ad16c71cc049dcb37c07f2abdda69dab4a45adcc6c0d30422e0c0a674b2fe92a37" kindref="member">PRE_SOLVER_DEFAULT</ref>};</highlight></codeline>
+<codeline lineno="33" refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1aa0940a3d1d8399b9ed10f7e43d61e8cc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1a4b3fd0d313a8d95f9f6a3ba64802e204" kindref="member">LPSolver</ref><sp/><sp/><ref refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1aa0940a3d1d8399b9ed10f7e43d61e8cc" kindref="member">lpSolver</ref>{<ref refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1a4b3fd0d313a8d95f9f6a3ba64802e204a24fa810f69bf55c40d68082a2e3653f8" kindref="member">LP_SOLVER_DEFAULT</ref>};</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35" refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1ae9852b9ee86048c11366c7248ca8dbfd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1ae9852b9ee86048c11366c7248ca8dbfd" kindref="member">numberOfThreads</ref>{1};</highlight></codeline>
+<codeline lineno="36" refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1aecafa6adf4695088d0396f232bbe88ba" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1aecafa6adf4695088d0396f232bbe88ba" kindref="member">verbosity</ref>{0};</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>};<sp/><sp/></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>ilp_backend</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/tbeier/src/nifty/include/nifty/ilp_backend/ilp_backend.hxx"/>
+  </compounddef>
+</doxygen>

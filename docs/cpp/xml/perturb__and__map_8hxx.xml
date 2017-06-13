@@ -1,0 +1,603 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="perturb__and__map_8hxx" kind="file" language="C++">
+    <compoundname>perturb_and_map.hxx</compoundname>
+    <includes local="no">iostream</includes>
+    <includes local="no">string</includes>
+    <includes local="no">random</includes>
+    <includes local="no">mutex</includes>
+    <includes refid="threadpool_8hxx" local="yes">nifty/parallel/threadpool.hxx</includes>
+    <includes refid="multicut__base_8hxx" local="yes">nifty/graph/optimization/multicut/multicut_base.hxx</includes>
+    <includes refid="multicut__visitor__base_8hxx" local="yes">nifty/graph/optimization/multicut/multicut_visitor_base.hxx</includes>
+    <includes refid="solver__factory_8hxx" local="yes">nifty/graph/optimization/common/solver_factory.hxx</includes>
+    <includes refid="graph_2optimization_2multicut_2multicut__objective_8hxx" local="yes">nifty/graph/optimization/multicut/multicut_objective.hxx</includes>
+    <incdepgraph>
+      <node id="10048">
+        <label>atomic</label>
+      </node>
+      <node id="10046">
+        <label>functional</label>
+      </node>
+      <node id="10051">
+        <label>queue</label>
+      </node>
+      <node id="10040">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/perturb_and_map.hxx</label>
+        <link refid="perturb_and_map.hxx"/>
+        <childnode refid="10041" relation="include">
+        </childnode>
+        <childnode refid="10042" relation="include">
+        </childnode>
+        <childnode refid="10043" relation="include">
+        </childnode>
+        <childnode refid="10044" relation="include">
+        </childnode>
+        <childnode refid="10045" relation="include">
+        </childnode>
+        <childnode refid="10061" relation="include">
+        </childnode>
+        <childnode refid="10070" relation="include">
+        </childnode>
+        <childnode refid="10071" relation="include">
+        </childnode>
+        <childnode refid="10073" relation="include">
+        </childnode>
+      </node>
+      <node id="10060">
+        <label>limits</label>
+      </node>
+      <node id="10080">
+        <label>iterator</label>
+      </node>
+      <node id="10058">
+        <label>cstdint</label>
+      </node>
+      <node id="10069">
+        <label>nifty/tools/logging.hxx</label>
+        <link refid="logging_8hxx"/>
+        <childnode refid="10042" relation="include">
+        </childnode>
+      </node>
+      <node id="10054">
+        <label>cmath</label>
+      </node>
+      <node id="10078">
+        <label>cassert</label>
+      </node>
+      <node id="10061">
+        <label>nifty/graph/optimization/multicut/multicut_base.hxx</label>
+        <link refid="multicut__base_8hxx"/>
+        <childnode refid="10042" relation="include">
+        </childnode>
+        <childnode refid="10062" relation="include">
+        </childnode>
+        <childnode refid="10059" relation="include">
+        </childnode>
+        <childnode refid="10063" relation="include">
+        </childnode>
+        <childnode refid="10070" relation="include">
+        </childnode>
+      </node>
+      <node id="10055">
+        <label>boost/iterator/transform_iterator.hpp</label>
+      </node>
+      <node id="10053">
+        <label>stdexcept</label>
+      </node>
+      <node id="10083">
+        <label>numeric</label>
+      </node>
+      <node id="10063">
+        <label>nifty/graph/optimization/common/solver_base.hxx</label>
+        <link refid="solver__base_8hxx"/>
+        <childnode refid="10042" relation="include">
+        </childnode>
+        <childnode refid="10062" relation="include">
+        </childnode>
+        <childnode refid="10059" relation="include">
+        </childnode>
+        <childnode refid="10053" relation="include">
+        </childnode>
+        <childnode refid="10064" relation="include">
+        </childnode>
+        <childnode refid="10063" relation="include">
+        </childnode>
+        <childnode refid="10065" relation="include">
+        </childnode>
+      </node>
+      <node id="10042">
+        <label>string</label>
+      </node>
+      <node id="10056">
+        <label>boost/iterator/counting_iterator.hpp</label>
+      </node>
+      <node id="10064">
+        <label>nifty/exceptions/exceptions.hxx</label>
+        <link refid="exceptions_8hxx"/>
+        <childnode refid="10053" relation="include">
+        </childnode>
+      </node>
+      <node id="10072">
+        <label>nifty/graph/optimization/common/solver_factory_base.hxx</label>
+        <link refid="solver__factory__base_8hxx"/>
+      </node>
+      <node id="10073">
+        <label>nifty/graph/optimization/multicut/multicut_objective.hxx</label>
+        <link refid="graph_2optimization_2multicut_2multicut__objective_8hxx"/>
+        <childnode refid="10057" relation="include">
+        </childnode>
+        <childnode refid="10074" relation="include">
+        </childnode>
+        <childnode refid="10075" relation="include">
+        </childnode>
+      </node>
+      <node id="10068">
+        <label>nifty/tools/timer.hxx</label>
+        <link refid="timer_8hxx"/>
+        <childnode refid="10059" relation="include">
+        </childnode>
+        <childnode refid="10067" relation="include">
+        </childnode>
+        <childnode refid="10042" relation="include">
+        </childnode>
+      </node>
+      <node id="10074">
+        <label>nifty/graph/subgraph_mask.hxx</label>
+        <link refid="subgraph__mask_8hxx"/>
+      </node>
+      <node id="10077">
+        <label>nifty/marray/andres/marray.hxx</label>
+        <link refid="andres_2marray_8hxx"/>
+        <childnode refid="10078" relation="include">
+        </childnode>
+        <childnode refid="10066" relation="include">
+        </childnode>
+        <childnode refid="10053" relation="include">
+        </childnode>
+        <childnode refid="10060" relation="include">
+        </childnode>
+        <childnode refid="10042" relation="include">
+        </childnode>
+        <childnode refid="10059" relation="include">
+        </childnode>
+        <childnode refid="10079" relation="include">
+        </childnode>
+        <childnode refid="10080" relation="include">
+        </childnode>
+        <childnode refid="10049" relation="include">
+        </childnode>
+        <childnode refid="10081" relation="include">
+        </childnode>
+        <childnode refid="10041" relation="include">
+        </childnode>
+        <childnode refid="10082" relation="include">
+        </childnode>
+        <childnode refid="10083" relation="include">
+        </childnode>
+        <childnode refid="10046" relation="include">
+        </childnode>
+      </node>
+      <node id="10071">
+        <label>nifty/graph/optimization/common/solver_factory.hxx</label>
+        <link refid="solver__factory_8hxx"/>
+        <childnode refid="10072" relation="include">
+        </childnode>
+      </node>
+      <node id="10043">
+        <label>random</label>
+      </node>
+      <node id="10052">
+        <label>condition_variable</label>
+      </node>
+      <node id="10050">
+        <label>future</label>
+      </node>
+      <node id="10049">
+        <label>vector</label>
+      </node>
+      <node id="10065">
+        <label>nifty/graph/optimization/common/visitor_base.hxx</label>
+        <link refid="visitor__base_8hxx"/>
+        <childnode refid="10066" relation="include">
+        </childnode>
+        <childnode refid="10042" relation="include">
+        </childnode>
+        <childnode refid="10062" relation="include">
+        </childnode>
+        <childnode refid="10059" relation="include">
+        </childnode>
+        <childnode refid="10041" relation="include">
+        </childnode>
+        <childnode refid="10067" relation="include">
+        </childnode>
+        <childnode refid="10068" relation="include">
+        </childnode>
+        <childnode refid="10069" relation="include">
+        </childnode>
+      </node>
+      <node id="10059">
+        <label>sstream</label>
+      </node>
+      <node id="10057">
+        <label>nifty/tools/runtime_check.hxx</label>
+        <link refid="runtime__check_8hxx"/>
+        <childnode refid="10058" relation="include">
+        </childnode>
+        <childnode refid="10053" relation="include">
+        </childnode>
+        <childnode refid="10059" relation="include">
+        </childnode>
+        <childnode refid="10049" relation="include">
+        </childnode>
+        <childnode refid="10060" relation="include">
+        </childnode>
+        <childnode refid="10054" relation="include">
+        </childnode>
+      </node>
+      <node id="10075">
+        <label>nifty/graph/graph_maps.hxx</label>
+        <link refid="graph__maps_8hxx"/>
+        <childnode refid="10076" relation="include">
+        </childnode>
+      </node>
+      <node id="10041">
+        <label>iostream</label>
+      </node>
+      <node id="10066">
+        <label>cstddef</label>
+      </node>
+      <node id="10045">
+        <label>nifty/parallel/threadpool.hxx</label>
+        <link refid="threadpool_8hxx"/>
+        <childnode refid="10046" relation="include">
+        </childnode>
+        <childnode refid="10047" relation="include">
+        </childnode>
+        <childnode refid="10048" relation="include">
+        </childnode>
+        <childnode refid="10049" relation="include">
+        </childnode>
+        <childnode refid="10050" relation="include">
+        </childnode>
+        <childnode refid="10044" relation="include">
+        </childnode>
+        <childnode refid="10051" relation="include">
+        </childnode>
+        <childnode refid="10052" relation="include">
+        </childnode>
+        <childnode refid="10053" relation="include">
+        </childnode>
+        <childnode refid="10054" relation="include">
+        </childnode>
+        <childnode refid="10055" relation="include">
+        </childnode>
+        <childnode refid="10056" relation="include">
+        </childnode>
+        <childnode refid="10057" relation="include">
+        </childnode>
+      </node>
+      <node id="10044">
+        <label>mutex</label>
+      </node>
+      <node id="10067">
+        <label>chrono</label>
+      </node>
+      <node id="10076">
+        <label>nifty/marray/marray.hxx</label>
+        <link refid="marray_8hxx"/>
+        <childnode refid="10077" relation="include">
+        </childnode>
+        <childnode refid="10057" relation="include">
+        </childnode>
+      </node>
+      <node id="10047">
+        <label>thread</label>
+      </node>
+      <node id="10081">
+        <label>set</label>
+      </node>
+      <node id="10070">
+        <label>nifty/graph/optimization/multicut/multicut_visitor_base.hxx</label>
+        <link refid="multicut__visitor__base_8hxx"/>
+        <childnode refid="10042" relation="include">
+        </childnode>
+        <childnode refid="10062" relation="include">
+        </childnode>
+        <childnode refid="10059" relation="include">
+        </childnode>
+        <childnode refid="10065" relation="include">
+        </childnode>
+      </node>
+      <node id="10079">
+        <label>cstring</label>
+      </node>
+      <node id="10082">
+        <label>memory</label>
+      </node>
+      <node id="10062">
+        <label>initializer_list</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap" prot="public">nifty::graph::optimization::multicut::PerturbAndMap</innerclass>
+    <innerclass refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1_1SettingsType" prot="public">nifty::graph::optimization::multicut::PerturbAndMap::SettingsType</innerclass>
+    <innerclass refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1_1ThreadData" prot="private">nifty::graph::optimization::multicut::PerturbAndMap::ThreadData</innerclass>
+    <innernamespace refid="namespacenifty">nifty</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph">nifty::graph</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph_1_1optimization">nifty::graph::optimization</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph_1_1optimization_1_1multicut">nifty::graph::optimization::multicut</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;random&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;mutex&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="threadpool_8hxx" kindref="compound">nifty/parallel/threadpool.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="multicut__base_8hxx" kindref="compound">nifty/graph/optimization/multicut/multicut_base.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="multicut__visitor__base_8hxx" kindref="compound">nifty/graph/optimization/multicut/multicut_visitor_base.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="solver__factory_8hxx" kindref="compound">nifty/graph/optimization/common/solver_factory.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="graph_2optimization_2multicut_2multicut__objective_8hxx" kindref="compound">nifty/graph/optimization/multicut/multicut_objective.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacenifty" kindref="compound">nifty</ref><sp/>{</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">graph<sp/>{</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">optimization{</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">multicut{</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
+<codeline lineno="20" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap" kindref="compound">PerturbAndMap</ref>{</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="22" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a2048cdfa7924f3638cbf678021514bdd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>OBJECTIVE<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a2048cdfa7924f3638cbf678021514bdd" kindref="member">Objective</ref>;</highlight></codeline>
+<codeline lineno="23" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a97e092acc69aeaa88390baf080709c1e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><sp/>Objective::Graph<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a97e092acc69aeaa88390baf080709c1e" kindref="member">Graph</ref>;</highlight></codeline>
+<codeline lineno="24" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a132b5f0c3378a51f721ee841c7f1d369" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutObjective" kindref="compound">MulticutObjective&lt;Graph, double&gt;</ref><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a132b5f0c3378a51f721ee841c7f1d369" kindref="member">InternalObjective</ref>;</highlight></codeline>
+<codeline lineno="25" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a46831cc073623314c4d077f4e51bbeb5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutBase" kindref="compound">MulticutBase&lt;Objective&gt;</ref><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a46831cc073623314c4d077f4e51bbeb5" kindref="member">MulticutBaseType</ref>;</highlight></codeline>
+<codeline lineno="26" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a7fc461eff81908dda41de81d703bc895" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutBase" kindref="compound">MulticutBase&lt;InternalObjective&gt;</ref><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a7fc461eff81908dda41de81d703bc895" kindref="member">IternalMulticutBaseType</ref>;</highlight></codeline>
+<codeline lineno="27" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a42f3a2bcecf1f101347aa5f82be67594" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase" kindref="compound">nifty::graph::optimization::common::SolverFactoryBase&lt;IternalMulticutBaseType&gt;</ref><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a42f3a2bcecf1f101347aa5f82be67594" kindref="member">InternalMcFactoryBase</ref>;</highlight></codeline>
+<codeline lineno="28" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a693ef4c90566732057ce860c6215d100" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Graph::<sp/>template<sp/>NodeMap&lt;uint64_t&gt;<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a693ef4c90566732057ce860c6215d100" kindref="member">NodeLabels</ref>;</highlight></codeline>
+<codeline lineno="29" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a3ae495ccf80fcc76720dcd7c762eb678" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Graph::<sp/>template<sp/>EdgeMap&lt;double&gt;<sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a3ae495ccf80fcc76720dcd7c762eb678" kindref="member">EdgeState</ref>;</highlight></codeline>
+<codeline lineno="30" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a71ef6212402b9a6fef9e6f29cd0ba658" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;InternalMcFactoryBase&gt;<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a71ef6212402b9a6fef9e6f29cd0ba658" kindref="member">FactorySmartPtr</ref>;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a88d773cee3d185e28aecdc2c2707b744" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a88d773cee3d185e28aecdc2c2707b744" kindref="member">NoiseType</ref>{</highlight></codeline>
+<codeline lineno="35" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a88d773cee3d185e28aecdc2c2707b744a181e4a0a98b06f50587b3cf7f1b28c59" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a88d773cee3d185e28aecdc2c2707b744a181e4a0a98b06f50587b3cf7f1b28c59" kindref="member">UNIFORM_NOISE</ref>,</highlight></codeline>
+<codeline lineno="36" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a88d773cee3d185e28aecdc2c2707b744aacbcee87d9d0ebaac36ca287c948ddc9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a88d773cee3d185e28aecdc2c2707b744aacbcee87d9d0ebaac36ca287c948ddc9" kindref="member">NORMAL_NOISE</ref>,</highlight></codeline>
+<codeline lineno="37" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a88d773cee3d185e28aecdc2c2707b744a2cb2a7701e9f7486014039cb6a907218" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a88d773cee3d185e28aecdc2c2707b744a2cb2a7701e9f7486014039cb6a907218" kindref="member">MAKE_LESS_CERTAIN</ref></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41" refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1_1SettingsType" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1_1SettingsType" kindref="compound">SettingsType</ref>{</highlight></codeline>
+<codeline lineno="42" refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1_1SettingsType_1a743374ab25d92d15248f4568b8a054f4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>FactorySmartPtr<sp/><ref refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1_1SettingsType_1a743374ab25d92d15248f4568b8a054f4" kindref="member">mcFactory</ref>;</highlight></codeline>
+<codeline lineno="43" refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1_1SettingsType_1a8bcb22e736648143ad5b433223f78984" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1_1SettingsType_1a8bcb22e736648143ad5b433223f78984" kindref="member">numberOfIterations</ref>{100};</highlight></codeline>
+<codeline lineno="44" refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1_1SettingsType_1a9578f7286a2afc2a0ec8183980f7e883" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1_1SettingsType_1a9578f7286a2afc2a0ec8183980f7e883" kindref="member">numberOfThreads</ref>{-1};</highlight></codeline>
+<codeline lineno="45" refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1_1SettingsType_1a307c01ac19d277e4dc8ef0ac9ed8f53b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1_1SettingsType_1a307c01ac19d277e4dc8ef0ac9ed8f53b" kindref="member">verbose</ref><sp/>=<sp/>2;</highlight></codeline>
+<codeline lineno="46" refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1_1SettingsType_1a36d5a3f29c0562248c28b0b488109cf4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1_1SettingsType_1a36d5a3f29c0562248c28b0b488109cf4" kindref="member">seed</ref><sp/>=<sp/>42;</highlight></codeline>
+<codeline lineno="47" refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1_1SettingsType_1a7d7ac2fce909dba39d477dec00da75d3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a88d773cee3d185e28aecdc2c2707b744" kindref="member">NoiseType</ref><sp/><ref refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1_1SettingsType_1a7d7ac2fce909dba39d477dec00da75d3" kindref="member">noiseType</ref>{<ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a88d773cee3d185e28aecdc2c2707b744a181e4a0a98b06f50587b3cf7f1b28c59" kindref="member">UNIFORM_NOISE</ref>};</highlight></codeline>
+<codeline lineno="48" refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1_1SettingsType_1aa284530e736b92fec50298c21df350f3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1_1SettingsType_1aa284530e736b92fec50298c21df350f3" kindref="member">noiseMagnitude</ref>{1.0};</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1af77e360449ea24d7db93fe455e90f0d8" kindref="member">PerturbAndMap</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Objective<sp/>&amp;<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1aefc4823a4564e9318610eb99f44bdc36" kindref="member">objective</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>SettingsType<sp/>settings<sp/>=<sp/>SettingsType());</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1aa29860cf9adb51ff66228307ae0f9e26" kindref="member">~PerturbAndMap</ref>();</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Objective<sp/>&amp;<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1aefc4823a4564e9318610eb99f44bdc36" kindref="member">objective</ref>()</highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Graph<sp/>&amp;<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a5523b26b3ed90c445ccd86fa94994ba8" kindref="member">graph</ref>()</highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1aec44f0ae8d966b94b6fa11faee1ca6b6" kindref="member">optimize</ref>(EdgeState<sp/>&amp;<sp/>edgeState);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1aec44f0ae8d966b94b6fa11faee1ca6b6" kindref="member">optimize</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>NodeLabels<sp/>&amp;<sp/>startingPoint,<sp/>EdgeState<sp/>&amp;<sp/>edgeState);</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">ThreadData{</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ThreadData(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>threadId,</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>seed,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Graph<sp/>&amp;<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a5523b26b3ed90c445ccd86fa94994ba8" kindref="member">graph</ref>)</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/><sp/><sp/>objective_(graph),</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>solver_(nullptr),</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>gen_(threadId+seed),</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>distUniform01_(0,1),</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>distNormal_(0,1){</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>InternalObjective<sp/><sp/>objective_;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>MulticutBaseType<sp/>*<sp/>solver_;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::mt19937<sp/>gen_;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::uniform_real_distribution&lt;&gt;<sp/>distUniform01_;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::normal_distribution&lt;&gt;<sp/>distNormal_;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>WEIGHTS&gt;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>perturbWeights(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>threadId,<sp/>WEIGHTS<sp/>&amp;<sp/>perturbedWeights);</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Objective<sp/>&amp;<sp/>objective_;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Graph<sp/>&amp;<sp/>graph_;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SettingsType<sp/>settings_;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;ThreadData*&gt;<sp/>threadDataVec_;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1af77e360449ea24d7db93fe455e90f0d8" kindref="member">PerturbAndMap&lt;OBJECTIVE&gt;::</ref></highlight></codeline>
+<codeline lineno="99" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1af77e360449ea24d7db93fe455e90f0d8" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1af77e360449ea24d7db93fe455e90f0d8" kindref="member">    PerturbAndMap</ref>(</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Objective<sp/>&amp;<sp/>objective,<sp/></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1_1SettingsType" kindref="compound">SettingsType</ref><sp/>settings</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/><sp/><sp/>objective_(objective),</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>graph_(objective.graph()),</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>settings_(settings),</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>threadDataVec_(){</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1parallel_1_1ParallelOptions" kindref="compound">nifty::parallel::ParallelOptions</ref><sp/>popt(settings_.<ref refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1_1SettingsType_1a9578f7286a2afc2a0ec8183980f7e883" kindref="member">numberOfThreads</ref>);</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>threadDataVec_.resize(popt.<ref refid="classnifty_1_1parallel_1_1ParallelOptions_1a7dc7ea2f236660f51bb2e5497a5fefbf" kindref="member">getActualNumThreads</ref>(),</highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="runtime__check_8hxx_1a003e065ee36ca7e6b022bbfbd68afaca" kindref="member">NIFTY_CHECK</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal">(settings_.<ref refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1_1SettingsType_1a743374ab25d92d15248f4568b8a054f4" kindref="member">mcFactory</ref>),</highlight><highlight class="stringliteral">&quot;factory<sp/>must<sp/>not<sp/>be<sp/>empty&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>nthreads</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>nThreads<sp/>=<sp/>threadDataVec_.size();</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>&amp;<sp/>weightsOriginal<sp/>=<sp/>objective_.weights();</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="group__ParallelProcessing_1ga505ac3d12ecde87341bce7b6f1027c88" kindref="member">nifty::parallel::parallel_foreach</ref>(settings_.<ref refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1_1SettingsType_1a9578f7286a2afc2a0ec8183980f7e883" kindref="member">numberOfThreads</ref>,</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>popt.<ref refid="classnifty_1_1parallel_1_1ParallelOptions_1a7dc7ea2f236660f51bb2e5497a5fefbf" kindref="member">getActualNumThreads</ref>(),</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[&amp;](</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>threadId,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>tid){</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>&amp;<sp/>threadDataPtr<sp/>=<sp/>threadDataVec_[tid];</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>threadDataPtr<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>ThreadData(tid,<sp/>settings_.<ref refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1_1SettingsType_1a36d5a3f29c0562248c28b0b488109cf4" kindref="member">seed</ref>,<sp/>graph_);</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>copy<sp/>weights</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>&amp;<sp/>weightsCopy<sp/>=<sp/>threadDataVec_[tid]-&gt;objective_.weights();</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>edge<sp/>:<sp/>this-&gt;<ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a5523b26b3ed90c445ccd86fa94994ba8" kindref="member">graph</ref>().edges())</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>weightsCopy[edge]<sp/>=<sp/>weightsOriginal[edge];</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>allocate<sp/>solver</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>threadDataPtr-&gt;solver_<sp/>=<sp/>settings_.<ref refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1_1SettingsType_1a743374ab25d92d15248f4568b8a054f4" kindref="member">mcFactory</ref>-&gt;create(threadDataPtr-&gt;objective_);</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>);</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1aa29860cf9adb51ff66228307ae0f9e26" kindref="member">PerturbAndMap&lt;OBJECTIVE&gt;::</ref></highlight></codeline>
+<codeline lineno="137" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1aa29860cf9adb51ff66228307ae0f9e26" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1aa29860cf9adb51ff66228307ae0f9e26" kindref="member">    ~PerturbAndMap</ref>(){</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>i=0;<sp/>i&lt;threadDataVec_.size();<sp/>++i){</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal"><sp/>threadDataVec_[i]-&gt;solver_;</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal"><sp/>threadDataVec_[i];</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a2048cdfa7924f3638cbf678021514bdd" kindref="member">PerturbAndMap&lt;OBJECTIVE&gt;::Objective</ref><sp/>&amp;<sp/></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1aefc4823a4564e9318610eb99f44bdc36" kindref="member">PerturbAndMap&lt;OBJECTIVE&gt;::</ref></highlight></codeline>
+<codeline lineno="147" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1aefc4823a4564e9318610eb99f44bdc36" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1aefc4823a4564e9318610eb99f44bdc36" kindref="member">    objective</ref>()</highlight><highlight class="keyword">const</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>objective_;</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a97e092acc69aeaa88390baf080709c1e" kindref="member">PerturbAndMap&lt;OBJECTIVE&gt;::Graph</ref><sp/>&amp;<sp/></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a5523b26b3ed90c445ccd86fa94994ba8" kindref="member">PerturbAndMap&lt;OBJECTIVE&gt;::</ref></highlight></codeline>
+<codeline lineno="154" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a5523b26b3ed90c445ccd86fa94994ba8" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a5523b26b3ed90c445ccd86fa94994ba8" kindref="member">    graph</ref>()</highlight><highlight class="keyword">const</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>objective_.graph();</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1aec44f0ae8d966b94b6fa11faee1ca6b6" kindref="member">PerturbAndMap&lt;OBJECTIVE&gt;::</ref></highlight></codeline>
+<codeline lineno="160" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1aec44f0ae8d966b94b6fa11faee1ca6b6" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1aec44f0ae8d966b94b6fa11faee1ca6b6" kindref="member">    optimize</ref>(</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>EdgeState<sp/>&amp;<sp/>edgeState</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/>){</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>NodeLabels<sp/>startingPoint(this-&gt;graph());</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;optimize(startingPoint,<sp/>edgeState);</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"></highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1aec44f0ae8d966b94b6fa11faee1ca6b6" kindref="member">PerturbAndMap&lt;OBJECTIVE&gt;::</ref></highlight></codeline>
+<codeline lineno="169" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a4bcc0199fbeee6e26f4ccf4fb2e458a4" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1aec44f0ae8d966b94b6fa11faee1ca6b6" kindref="member">    optimize</ref>(</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>NodeLabels<sp/>&amp;<sp/>startingPoint,<sp/></highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>EdgeState<sp/>&amp;<sp/>edgeState</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/>){</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"></highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//std::cout&lt;&lt;&quot;optimize<sp/>\n&quot;;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::mutex<sp/>mtx;</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>nFinished<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"></highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Graph::<sp/>template<sp/>EdgeMap&lt;uint64_t&gt;<sp/>EdgeCutCounter;</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>EdgeCutCounter<sp/>edgeCutCounter(graph_,<sp/>0);</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="group__ParallelProcessing_1ga505ac3d12ecde87341bce7b6f1027c88" kindref="member">nifty::parallel::parallel_foreach</ref>(settings_.numberOfThreads,</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>settings_.numberOfIterations,</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[&amp;](</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>threadId,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>items){</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>auto<sp/>&amp;<sp/>threadData<sp/>=<sp/>*threadDataVec_[threadId];</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>auto<sp/>&amp;<sp/>obj<sp/>=<sp/>threadData.objective_;</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>auto<sp/>solver<sp/>=<sp/>threadData.solver_;</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"></highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//std::cout&lt;&lt;&quot;perturb<sp/>\n&quot;;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;perturbWeights(threadId,<sp/>obj.weights());</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//std::cout&lt;&lt;&quot;propergate<sp/>weight<sp/>change<sp/>\n&quot;;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>solver-&gt;weightsChanged();</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"></highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//std::cout&lt;&lt;&quot;set<sp/>sp<sp/>\n&quot;;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>NodeLabels<sp/>arg(graph_);</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>for(const<sp/>auto<sp/>node<sp/>:<sp/>graph_.nodes())</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>arg[node]<sp/>=<sp/>startingPoint[node];</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"></highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//std::cout&lt;&lt;&quot;optimize<sp/>\n&quot;;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>MulticutVerboseVisitor&lt;Objective&gt;<sp/>v;</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>solver-&gt;optimize(arg,<sp/>nullptr);</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"></highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//std::cout&lt;&lt;&quot;write<sp/>res<sp/>\n&quot;;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mtx.lock();</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>for(const<sp/>auto<sp/>edge<sp/>:<sp/>graph_.edges()){</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>auto<sp/>uv<sp/>=<sp/>graph_.uv(edge);</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if(arg[uv.first]<sp/>!=<sp/>arg[uv.second])</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>++edgeCutCounter[edge];</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>++nFinished;</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(settings_.verbose<sp/>&gt;=<sp/>1){</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::cout&lt;&lt;nFinished&lt;&lt;</highlight><highlight class="stringliteral">&quot;<sp/>/<sp/>&quot;</highlight><highlight class="normal">&lt;&lt;settings_.numberOfIterations&lt;&lt;</highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mtx.unlock();</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//std::cout&lt;&lt;&quot;done\n&quot;;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>);</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>edge<sp/>:<sp/>graph_.edges()){</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>edgeState[edge]<sp/>=<sp/>double(edgeCutCounter[edge])/double(settings_.numberOfIterations);</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"></highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>WEIGHTS&gt;</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>PerturbAndMap&lt;OBJECTIVE&gt;::</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/>perturbWeights(<sp/></highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>threadId,</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>WEIGHTS<sp/>&amp;<sp/>perturbedWeights</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/>){</highlight></codeline>
+<codeline lineno="230"><highlight class="normal"></highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>&amp;<sp/>td<sp/>=<sp/>*threadDataVec_[threadId];</highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>&amp;<sp/>gen<sp/>=<sp/>td.gen_;</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>noiseMag<sp/>=<sp/>settings_.noiseMagnitude;</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>originalWeights<sp/>=<sp/>objective_.weights();</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"></highlight></codeline>
+<codeline lineno="236"><highlight class="normal"></highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(settings_.noiseType<sp/>==<sp/>UNIFORM_NOISE){</highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>&amp;<sp/>d<sp/>=<sp/>td.distUniform01_;</highlight></codeline>
+<codeline lineno="239"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>edge<sp/>:<sp/>graph_.edges()){</highlight></codeline>
+<codeline lineno="240"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>perturbedWeights[edge]<sp/>=<sp/>originalWeights[edge]<sp/>+<sp/>(d(gen)-0.5)*2.0*noiseMag;</highlight></codeline>
+<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="242"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="243"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(settings_.noiseType<sp/>==<sp/>NORMAL_NOISE){</highlight></codeline>
+<codeline lineno="244"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>&amp;<sp/>d<sp/>=<sp/>td.distNormal_;</highlight></codeline>
+<codeline lineno="245"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>edge<sp/>:<sp/>graph_.edges()){</highlight></codeline>
+<codeline lineno="246"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>perturbedWeights[edge]<sp/>=<sp/>originalWeights[edge]<sp/>+<sp/>d(gen)*noiseMag;</highlight></codeline>
+<codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(settings_.noiseType<sp/>==<sp/>MAKE_LESS_CERTAIN){</highlight></codeline>
+<codeline lineno="250"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>&amp;<sp/>d<sp/>=<sp/>td.distUniform01_;</highlight></codeline>
+<codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>edge<sp/>:<sp/>graph_.edges()){</highlight></codeline>
+<codeline lineno="252"><highlight class="normal"></highlight></codeline>
+<codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>ow<sp/>=<sp/>originalWeights[edge];</highlight></codeline>
+<codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>sgn<sp/>=<sp/>ow<sp/>&lt;<sp/>0.0<sp/>?<sp/>-1.0<sp/>:<sp/>1.0;</highlight></codeline>
+<codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>rawNoise<sp/>=<sp/>d(gen);</highlight></codeline>
+<codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>noise<sp/>=<sp/>std::abs(ow)*-1.0*rawNoise*sgn*noiseMag;</highlight></codeline>
+<codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//std::cout&lt;&lt;&quot;ow<sp/>&quot;&lt;&lt;ow&lt;&lt;&quot;<sp/>noise<sp/>&quot;&lt;&lt;noise&lt;&lt;&quot;\n&quot;;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>perturbedWeights[edge]<sp/>=<sp/>originalWeights[edge]<sp/>+<sp/>noise;</highlight></codeline>
+<codeline lineno="259"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="262"><highlight class="normal"></highlight></codeline>
+<codeline lineno="263"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph::optimization::multicut</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="264"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph::optimization</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="265"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>graph</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="266"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="267"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/perturb_and_map.hxx"/>
+  </compounddef>
+</doxygen>

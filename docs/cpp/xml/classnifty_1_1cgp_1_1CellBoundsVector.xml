@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="classnifty_1_1cgp_1_1CellBoundsVector" kind="class" language="C++" prot="public">
+    <compoundname>nifty::cgp::CellBoundsVector</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">std::vector&lt; CellBounds&lt; DIM, CELL_TYPE &gt; &gt;</basecompoundref>
+    <includes refid="bounds_8hxx" local="no">bounds.hxx</includes>
+    <templateparamlist>
+      <param>
+        <type>size_t</type>
+        <declname>DIM</declname>
+        <defname>DIM</defname>
+      </param>
+      <param>
+        <type>size_t</type>
+        <declname>CELL_TYPE</declname>
+        <defname>CELL_TYPE</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1cgp_1_1CellBoundsVector_1a4db6e267b7ec9e9bfd2db914354c49f9" prot="public" static="no">
+        <type><ref refid="namespacenifty_1_1array_1a683f151f19c851754e0c6d55ed16a0c2" kindref="member">array::StaticArray</ref>&lt; uint32_t, DIM+1 &gt;</type>
+        <definition>typedef array::StaticArray&lt;uint32_t, DIM +1 &gt; nifty::cgp::CellBoundsVector&lt; DIM, CELL_TYPE &gt;::NumberOfCellsType</definition>
+        <argsstring></argsstring>
+        <name>NumberOfCellsType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/cgp/bounds.hxx" line="129" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/cgp/bounds.hxx" bodystart="129" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1cgp_1_1CellBoundsVector_1ae9467b3782214101f6ca95a0219bbbb6" prot="public" static="no">
+        <type>std::vector&lt; <ref refid="classnifty_1_1cgp_1_1CellBounds" kindref="compound">CellBounds</ref>&lt; DIM, CELL_TYPE &gt; &gt;</type>
+        <definition>typedef std::vector&lt;CellBounds&lt;DIM, CELL_TYPE&gt; &gt; nifty::cgp::CellBoundsVector&lt; DIM, CELL_TYPE &gt;::BaseType</definition>
+        <argsstring></argsstring>
+        <name>BaseType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/cgp/bounds.hxx" line="130" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/cgp/bounds.hxx" bodystart="130" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="classnifty_1_1cgp_1_1CellBoundsVector_1a88cb0f4daae12ff33da3c2a17786cd08" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class Bounds&lt; DIM &gt;</definition>
+        <argsstring></argsstring>
+        <name>Bounds&lt; DIM &gt;</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/cgp/bounds.hxx" line="119" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/cgp/bounds.hxx" bodystart="127" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classnifty_1_1cgp_1_1CellBoundsVector_1a1e12cafd511a731d9d88f15ce902bfe0" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1cgp_1_1CellBoundsVector_1a4db6e267b7ec9e9bfd2db914354c49f9" kindref="member">NumberOfCellsType</ref></type>
+        <definition>NumberOfCellsType nifty::cgp::CellBoundsVector&lt; DIM, CELL_TYPE &gt;::numberOfCells_</definition>
+        <argsstring></argsstring>
+        <name>numberOfCells_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/cgp/bounds.hxx" line="137" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/cgp/bounds.hxx" bodystart="137" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1cgp_1_1CellBoundsVector_1a8ee7d5fa77d9e2c0239f37834e459937" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classnifty_1_1cgp_1_1CellBoundsVector_1a4db6e267b7ec9e9bfd2db914354c49f9" kindref="member">NumberOfCellsType</ref> &amp;</type>
+        <definition>const NumberOfCellsType&amp; nifty::cgp::CellBoundsVector&lt; DIM, CELL_TYPE &gt;::numberOfCells</definition>
+        <argsstring>() const </argsstring>
+        <name>numberOfCells</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/cgp/bounds.hxx" line="133" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/cgp/bounds.hxx" bodystart="133" bodyend="135"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1064">
+        <label>nifty::cgp::CellBoundsVector&lt; DIM, CELL_TYPE &gt;</label>
+        <link refid="classnifty_1_1cgp_1_1CellBoundsVector"/>
+        <childnode refid="1065" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1065">
+        <label>std::vector&lt; CellBounds&lt; DIM, CELL_TYPE &gt; &gt;</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1066">
+        <label>nifty::cgp::CellBoundsVector&lt; DIM, CELL_TYPE &gt;</label>
+        <link refid="classnifty_1_1cgp_1_1CellBoundsVector"/>
+        <childnode refid="1067" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1067">
+        <label>std::vector&lt; CellBounds&lt; DIM, CELL_TYPE &gt; &gt;</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/tbeier/src/nifty/include/nifty/cgp/bounds.hxx" line="124" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/cgp/bounds.hxx" bodystart="124" bodyend="138"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1cgp_1_1CellBoundsVector_1ae9467b3782214101f6ca95a0219bbbb6" prot="public" virt="non-virtual"><scope>nifty::cgp::CellBoundsVector</scope><name>BaseType</name></member>
+      <member refid="classnifty_1_1cgp_1_1CellBoundsVector_1a88cb0f4daae12ff33da3c2a17786cd08" prot="public" virt="non-virtual"><scope>nifty::cgp::CellBoundsVector</scope><name>Bounds&lt; DIM &gt;</name></member>
+      <member refid="classnifty_1_1cgp_1_1CellBoundsVector_1a8ee7d5fa77d9e2c0239f37834e459937" prot="public" virt="non-virtual"><scope>nifty::cgp::CellBoundsVector</scope><name>numberOfCells</name></member>
+      <member refid="classnifty_1_1cgp_1_1CellBoundsVector_1a1e12cafd511a731d9d88f15ce902bfe0" prot="private" virt="non-virtual"><scope>nifty::cgp::CellBoundsVector</scope><name>numberOfCells_</name></member>
+      <member refid="classnifty_1_1cgp_1_1CellBoundsVector_1a4db6e267b7ec9e9bfd2db914354c49f9" prot="public" virt="non-virtual"><scope>nifty::cgp::CellBoundsVector</scope><name>NumberOfCellsType</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

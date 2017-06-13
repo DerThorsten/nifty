@@ -6,8 +6,8 @@ var searchData=
   ['adjacencyoutiter',['AdjacencyOutIter',['../classnifty_1_1graph_1_1SimpleDirectedGraph.html#a5af7a4eb6bbc44b805a44bb131786dd0',1,'nifty::graph::SimpleDirectedGraph']]],
   ['agridgraph',['AGridGraph',['../classnifty_1_1graph_1_1detail__graph_1_1UndirectedGridGraphIter.html#a562bd40c2ea973c15b828062247ddd1f',1,'nifty::graph::detail_graph::UndirectedGridGraphIter']]],
   ['agridgraphadjacencyiter',['AGridGraphAdjacencyIter',['../classnifty_1_1graph_1_1detail__graph_1_1UndirectedGridGraphIter.html#a824924927d819949af2370aa628af595',1,'nifty::graph::detail_graph::UndirectedGridGraphIter']]],
-  ['allocator_5ftype',['allocator_type',['../classnifty_1_1container_1_1FlatSet.html#aafc00d7d957c81f01ee8cd5dcabb4c78',1,'nifty::container::FlatSet']]],
+  ['allocator_5ftype',['allocator_type',['../classnifty_1_1container_1_1FlatSet.html#aafc00d7d957c81f01ee8cd5dcabb4c78',1,'nifty::container::FlatSet::allocator_type()'],['../classandres_1_1View.html#a175e5862a7133a937e7901e5894c2e10',1,'andres::View::allocator_type()'],['../classandres_1_1Marray.html#a1e38873cb38bd8568be81bfb804deefd',1,'andres::Marray::allocator_type()']]],
   ['arcidtag',['ArcIdTag',['../classnifty_1_1graph_1_1SimpleDirectedGraph.html#a0e61985b1487d018ab09fcefb2302c99',1,'nifty::graph::SimpleDirectedGraph']]],
   ['arciter',['ArcIter',['../classnifty_1_1graph_1_1SimpleDirectedGraph.html#ad555ff3a9746915c60858cd7d55ae342',1,'nifty::graph::SimpleDirectedGraph']]],
-  ['arraytype',['ArrayType',['../classnifty_1_1tools_1_1BlockStorage.html#aadae8d95280c9262f19ea9237a0c3f9b',1,'nifty::tools::BlockStorage']]]
+  ['arraytype',['ArrayType',['../classnifty_1_1tools_1_1BlockStorage.html#af39a2936478b64389c56a5c6ef5aab7d',1,'nifty::tools::BlockStorage']]]
 ];

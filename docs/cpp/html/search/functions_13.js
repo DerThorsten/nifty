@@ -11,6 +11,8 @@ var searchData=
   ['topologicalgridshape',['topologicalGridShape',['../classnifty_1_1cgp_1_1FilledTopologicalGrid_3_012_01_4.html#afd3218d481d3e9cb1ecf606435a89c2c',1,'nifty::cgp::FilledTopologicalGrid&lt; 2 &gt;::topologicalGridShape()'],['../classnifty_1_1cgp_1_1TopologicalGrid_3_012_01_4.html#a865eb87e808b65cc9aed40730b87f0f9',1,'nifty::cgp::TopologicalGrid&lt; 2 &gt;::topologicalGridShape()']]],
   ['toppriority',['topPriority',['../classnifty_1_1tools_1_1ChangeablePriorityQueue.html#aa0f5e1ac67eb42e45ee6470483646b31',1,'nifty::tools::ChangeablePriorityQueue']]],
   ['tostring',['toString',['../classnifty_1_1tools_1_1Timer.html#a877631a1c97b6fad48908489df6efe13',1,'nifty::tools::Timer']]],
+  ['transpose',['transpose',['../classandres_1_1View.html#a3a837dd20fda8c536f9c76894a1f5944',1,'andres::View::transpose(const std::size_t, const std::size_t)'],['../classandres_1_1View.html#ad7acad354a5be4086b9b21ab88b18d82',1,'andres::View::transpose()']]],
+  ['transposedview',['transposedView',['../classandres_1_1View.html#a08fc7f17dd64241adeefac7493f39f3a',1,'andres::View::transposedView(const std::size_t, const std::size_t) const '],['../classandres_1_1View.html#a2045868486d978f41125dd59c4834fa2',1,'andres::View::transposedView() const ']]],
   ['truecuts',['trueCuts',['../classnifty_1_1ground__truth_1_1RandError.html#abe7c1cda41bbea6f7f4d72038123651a',1,'nifty::ground_truth::RandError']]],
   ['truejoins',['trueJoins',['../classnifty_1_1ground__truth_1_1RandError.html#a65b8b7555186291fdc99e0bd633cc450',1,'nifty::ground_truth::RandError']]]
 ];

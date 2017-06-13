@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>nifty::graph::optimization::common::SolverFactoryBase</compoundname>
+    <derivedcompoundref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1PySolverFactoryBase" prot="public" virt="non-virtual">nifty::graph::optimization::common::PySolverFactoryBase&lt; SOLVER_BASE &gt;</derivedcompoundref>
+    <includes refid="solver__factory__base_8hxx" local="no">solver_factory_base.hxx</includes>
+    <templateparamlist>
+      <param>
+        <type>class</type>
+        <declname>SOLVER_BASE</declname>
+        <defname>SOLVER_BASE</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase_1a32303ac07d31050bd56939ba09332a8c" prot="public" static="no">
+        <type>SOLVER_BASE</type>
+        <definition>typedef SOLVER_BASE nifty::graph::optimization::common::SolverFactoryBase&lt; SOLVER_BASE &gt;::SolverBaseType</definition>
+        <argsstring></argsstring>
+        <name>SolverBaseType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/common/solver_factory_base.hxx" line="15" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/common/solver_factory_base.hxx" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase_1addf5fe831de3b6d9e3473eee67490a5c" prot="public" static="no">
+        <type>SolverBaseType::ObjectiveType</type>
+        <definition>typedef SolverBaseType::ObjectiveType nifty::graph::optimization::common::SolverFactoryBase&lt; SOLVER_BASE &gt;::ObjectiveType</definition>
+        <argsstring></argsstring>
+        <name>ObjectiveType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/common/solver_factory_base.hxx" line="16" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/common/solver_factory_base.hxx" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase_1a939801ccfeb621ed967a5638ad726719" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual nifty::graph::optimization::common::SolverFactoryBase&lt; SOLVER_BASE &gt;::~SolverFactoryBase</definition>
+        <argsstring>()</argsstring>
+        <name>~SolverFactoryBase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/common/solver_factory_base.hxx" line="17" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/common/solver_factory_base.hxx" bodystart="17" bodyend="17"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase_1ad8946541bdc12fcd340c3049662d8f59" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::shared_ptr&lt; <ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase_1a32303ac07d31050bd56939ba09332a8c" kindref="member">SolverBaseType</ref> &gt;</type>
+        <definition>virtual std::shared_ptr&lt;SolverBaseType&gt; nifty::graph::optimization::common::SolverFactoryBase&lt; SOLVER_BASE &gt;::createShared</definition>
+        <argsstring>(const ObjectiveType &amp;objective)=0</argsstring>
+        <name>createShared</name>
+        <reimplementedby refid="classnifty_1_1graph_1_1optimization_1_1common_1_1PySolverFactoryBase_1a737b0611c65673f2791dc764f6a9088c">createShared</reimplementedby>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase_1addf5fe831de3b6d9e3473eee67490a5c" kindref="member">ObjectiveType</ref> &amp;</type>
+          <declname>objective</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/common/solver_factory_base.hxx" line="18" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase_1a192c772512ac9da7e4164d9ca5cc5d95" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase_1a32303ac07d31050bd56939ba09332a8c" kindref="member">SolverBaseType</ref> *</type>
+        <definition>virtual SolverBaseType* nifty::graph::optimization::common::SolverFactoryBase&lt; SOLVER_BASE &gt;::create</definition>
+        <argsstring>(const ObjectiveType &amp;objective)=0</argsstring>
+        <name>create</name>
+        <reimplementedby refid="classnifty_1_1graph_1_1optimization_1_1common_1_1PySolverFactoryBase_1a2e409e2315c71e286e03d27f6004782b">create</reimplementedby>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase_1addf5fe831de3b6d9e3473eee67490a5c" kindref="member">ObjectiveType</ref> &amp;</type>
+          <declname>objective</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/common/solver_factory_base.hxx" line="19" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1814">
+        <label>nifty::graph::optimization::common::SolverFactoryBase&lt; SOLVER_BASE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase"/>
+      </node>
+      <node id="1815">
+        <label>nifty::graph::optimization::common::PySolverFactoryBase&lt; SOLVER_BASE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1optimization_1_1common_1_1PySolverFactoryBase"/>
+        <childnode refid="1814" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/common/solver_factory_base.hxx" line="12" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/common/solver_factory_base.hxx" bodystart="12" bodyend="20"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase_1a192c772512ac9da7e4164d9ca5cc5d95" prot="public" virt="pure-virtual"><scope>nifty::graph::optimization::common::SolverFactoryBase</scope><name>create</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase_1ad8946541bdc12fcd340c3049662d8f59" prot="public" virt="pure-virtual"><scope>nifty::graph::optimization::common::SolverFactoryBase</scope><name>createShared</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase_1addf5fe831de3b6d9e3473eee67490a5c" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::common::SolverFactoryBase</scope><name>ObjectiveType</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase_1a32303ac07d31050bd56939ba09332a8c" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::common::SolverFactoryBase</scope><name>SolverBaseType</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase_1a939801ccfeb621ed967a5638ad726719" prot="public" virt="virtual"><scope>nifty::graph::optimization::common::SolverFactoryBase</scope><name>~SolverFactoryBase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

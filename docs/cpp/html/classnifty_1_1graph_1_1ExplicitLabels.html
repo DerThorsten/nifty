@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Nifty
-   &#160;<span id="projectnumber">0.5.1</span>
+   &#160;<span id="projectnumber">0.19.0</span>
    </div>
   </td>
  </tr>
@@ -108,19 +108,19 @@ Public Types</h2></td></tr>
 <tr class="separator:a896653b58048ec52d8e00800279d9b53"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3defd2851b5e7071f23a0fdea7aafff0"><td class="memItemLeft" align="right" valign="top">typedef LABEL_TYPE&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnifty_1_1graph_1_1ExplicitLabels.html#a3defd2851b5e7071f23a0fdea7aafff0">LabelType</a></td></tr>
 <tr class="separator:a3defd2851b5e7071f23a0fdea7aafff0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae07fe2aed8059beb43b043e8a3becdb7"><td class="memItemLeft" align="right" valign="top">typedef marray::Marray&lt; LABEL_TYPE &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnifty_1_1graph_1_1ExplicitLabels.html#ae07fe2aed8059beb43b043e8a3becdb7">SubarrayViewType</a></td></tr>
+<tr class="memitem:ae07fe2aed8059beb43b043e8a3becdb7"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="classandres_1_1Marray.html">marray::Marray</a>&lt; LABEL_TYPE &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnifty_1_1graph_1_1ExplicitLabels.html#ae07fe2aed8059beb43b043e8a3becdb7">SubarrayViewType</a></td></tr>
 <tr class="separator:ae07fe2aed8059beb43b043e8a3becdb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaab98314403b95503bf0c32e65fd1884"><td class="memItemLeft" align="right" valign="top">typedef nifty::marray::View&lt; LABEL_TYPE &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnifty_1_1graph_1_1ExplicitLabels.html#aaab98314403b95503bf0c32e65fd1884">ViewType</a></td></tr>
+<tr class="memitem:aaab98314403b95503bf0c32e65fd1884"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="classandres_1_1View.html">nifty::marray::View</a>&lt; LABEL_TYPE &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnifty_1_1graph_1_1ExplicitLabels.html#aaab98314403b95503bf0c32e65fd1884">ViewType</a></td></tr>
 <tr class="separator:aaab98314403b95503bf0c32e65fd1884"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ae503c70604d75e48d73622f8941cfa34"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnifty_1_1graph_1_1ExplicitLabels.html#ae503c70604d75e48d73622f8941cfa34">ExplicitLabels</a> (const nifty::marray::View&lt; LABEL_TYPE, false &gt; &amp;<a class="el" href="classnifty_1_1graph_1_1ExplicitLabels.html#a791af26bb936452324bf9e0b35521382">labels</a>=nifty::marray::View&lt; LABEL_TYPE, false &gt;())</td></tr>
+<tr class="memitem:ae503c70604d75e48d73622f8941cfa34"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnifty_1_1graph_1_1ExplicitLabels.html#ae503c70604d75e48d73622f8941cfa34">ExplicitLabels</a> (const <a class="el" href="classandres_1_1View.html">nifty::marray::View</a>&lt; LABEL_TYPE, false &gt; &amp;<a class="el" href="classnifty_1_1graph_1_1ExplicitLabels.html#a791af26bb936452324bf9e0b35521382">labels</a>=<a class="el" href="classandres_1_1View.html">nifty::marray::View</a>&lt; LABEL_TYPE, false &gt;())</td></tr>
 <tr class="separator:ae503c70604d75e48d73622f8941cfa34"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac60baa565d760fbd0685b51440f0cae0"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnifty_1_1graph_1_1ExplicitLabels.html#ac60baa565d760fbd0685b51440f0cae0">numberOfLabels</a> () const </td></tr>
 <tr class="separator:ac60baa565d760fbd0685b51440f0cae0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a546bc09065e24792dce4ae415dc04727"><td class="memTemplParams" colspan="2">template&lt;class ROI_BEGIN_COORD , class ROI_END_COORD &gt; </td></tr>
-<tr class="memitem:a546bc09065e24792dce4ae415dc04727"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classnifty_1_1graph_1_1ExplicitLabels.html#a546bc09065e24792dce4ae415dc04727">readSubarray</a> (const ROI_BEGIN_COORD &amp;roiBeginCoord, const ROI_END_COORD &amp;roiEndCoord, marray::View&lt; LABEL_TYPE &gt; &amp;outArray) const </td></tr>
+<tr class="memitem:a546bc09065e24792dce4ae415dc04727"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classnifty_1_1graph_1_1ExplicitLabels.html#a546bc09065e24792dce4ae415dc04727">readSubarray</a> (const ROI_BEGIN_COORD &amp;roiBeginCoord, const ROI_END_COORD &amp;roiEndCoord, <a class="el" href="classandres_1_1View.html">marray::View</a>&lt; LABEL_TYPE &gt; &amp;outArray) const </td></tr>
 <tr class="separator:a546bc09065e24792dce4ae415dc04727"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a791af26bb936452324bf9e0b35521382"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classnifty_1_1graph_1_1ExplicitLabels.html#aaab98314403b95503bf0c32e65fd1884">ViewType</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnifty_1_1graph_1_1ExplicitLabels.html#a791af26bb936452324bf9e0b35521382">labels</a> () const </td></tr>
 <tr class="separator:a791af26bb936452324bf9e0b35521382"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -132,7 +132,7 @@ Public Member Functions</h2></td></tr>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;size_t DIM, class LABEL_TYPE&gt; </div>
+template&lt;std::size_t DIM, class LABEL_TYPE&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">typedef <a class="el" href="classnifty_1_1tools_1_1BlockView.html">tools::BlockView</a>&lt; LABEL_TYPE&gt; <a class="el" href="classnifty_1_1graph_1_1ExplicitLabels.html">nifty::graph::ExplicitLabels</a>&lt; DIM, LABEL_TYPE &gt;::<a class="el" href="classnifty_1_1graph_1_1ExplicitLabels.html#a896653b58048ec52d8e00800279d9b53">BlockStorageType</a></td>
@@ -146,7 +146,7 @@ template&lt;size_t DIM, class LABEL_TYPE&gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;size_t DIM, class LABEL_TYPE&gt; </div>
+template&lt;std::size_t DIM, class LABEL_TYPE&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">typedef LABEL_TYPE <a class="el" href="classnifty_1_1graph_1_1ExplicitLabels.html">nifty::graph::ExplicitLabels</a>&lt; DIM, LABEL_TYPE &gt;::<a class="el" href="classnifty_1_1graph_1_1ExplicitLabels.html#a3defd2851b5e7071f23a0fdea7aafff0">LabelType</a></td>
@@ -160,10 +160,10 @@ template&lt;size_t DIM, class LABEL_TYPE&gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;size_t DIM, class LABEL_TYPE&gt; </div>
+template&lt;std::size_t DIM, class LABEL_TYPE&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef marray::Marray&lt;LABEL_TYPE&gt; <a class="el" href="classnifty_1_1graph_1_1ExplicitLabels.html">nifty::graph::ExplicitLabels</a>&lt; DIM, LABEL_TYPE &gt;::<a class="el" href="classnifty_1_1graph_1_1ExplicitLabels.html#ae07fe2aed8059beb43b043e8a3becdb7">SubarrayViewType</a></td>
+          <td class="memname">typedef <a class="el" href="classandres_1_1Marray.html">marray::Marray</a>&lt;LABEL_TYPE&gt; <a class="el" href="classnifty_1_1graph_1_1ExplicitLabels.html">nifty::graph::ExplicitLabels</a>&lt; DIM, LABEL_TYPE &gt;::<a class="el" href="classnifty_1_1graph_1_1ExplicitLabels.html#ae07fe2aed8059beb43b043e8a3becdb7">SubarrayViewType</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -174,10 +174,10 @@ template&lt;size_t DIM, class LABEL_TYPE&gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;size_t DIM, class LABEL_TYPE&gt; </div>
+template&lt;std::size_t DIM, class LABEL_TYPE&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef nifty::marray::View&lt;LABEL_TYPE&gt; <a class="el" href="classnifty_1_1graph_1_1ExplicitLabels.html">nifty::graph::ExplicitLabels</a>&lt; DIM, LABEL_TYPE &gt;::<a class="el" href="classnifty_1_1graph_1_1ExplicitLabels.html#aaab98314403b95503bf0c32e65fd1884">ViewType</a></td>
+          <td class="memname">typedef <a class="el" href="classandres_1_1View.html">nifty::marray::View</a>&lt;LABEL_TYPE&gt; <a class="el" href="classnifty_1_1graph_1_1ExplicitLabels.html">nifty::graph::ExplicitLabels</a>&lt; DIM, LABEL_TYPE &gt;::<a class="el" href="classnifty_1_1graph_1_1ExplicitLabels.html#aaab98314403b95503bf0c32e65fd1884">ViewType</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -189,7 +189,7 @@ template&lt;size_t DIM, class LABEL_TYPE&gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;size_t DIM, class LABEL_TYPE&gt; </div>
+template&lt;std::size_t DIM, class LABEL_TYPE&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -197,8 +197,8 @@ template&lt;size_t DIM, class LABEL_TYPE&gt; </div>
         <tr>
           <td class="memname"><a class="el" href="classnifty_1_1graph_1_1ExplicitLabels.html">nifty::graph::ExplicitLabels</a>&lt; DIM, LABEL_TYPE &gt;::<a class="el" href="classnifty_1_1graph_1_1ExplicitLabels.html">ExplicitLabels</a> </td>
           <td>(</td>
-          <td class="paramtype">const nifty::marray::View&lt; LABEL_TYPE, false &gt; &amp;&#160;</td>
-          <td class="paramname"><em>labels</em> = <code>nifty::marray::View&lt;LABEL_TYPE,&#160;false&gt;()</code></td><td>)</td>
+          <td class="paramtype">const <a class="el" href="classandres_1_1View.html">nifty::marray::View</a>&lt; LABEL_TYPE, false &gt; &amp;&#160;</td>
+          <td class="paramname"><em>labels</em> = <code><a class="el" href="classandres_1_1View.html">nifty::marray::View</a>&lt;LABEL_TYPE,&#160;false&gt;()</code></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -216,7 +216,7 @@ template&lt;size_t DIM, class LABEL_TYPE&gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;size_t DIM, class LABEL_TYPE&gt; </div>
+template&lt;std::size_t DIM, class LABEL_TYPE&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -241,7 +241,7 @@ template&lt;size_t DIM, class LABEL_TYPE&gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;size_t DIM, class LABEL_TYPE&gt; </div>
+template&lt;std::size_t DIM, class LABEL_TYPE&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -266,7 +266,7 @@ template&lt;size_t DIM, class LABEL_TYPE&gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;size_t DIM, class LABEL_TYPE&gt; </div>
+template&lt;std::size_t DIM, class LABEL_TYPE&gt; </div>
 <div class="memtemplate">
 template&lt;class ROI_BEGIN_COORD , class ROI_END_COORD &gt; </div>
 <table class="mlabels">
@@ -288,7 +288,7 @@ template&lt;class ROI_BEGIN_COORD , class ROI_END_COORD &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">marray::View&lt; LABEL_TYPE &gt; &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="classandres_1_1View.html">marray::View</a>&lt; LABEL_TYPE &gt; &amp;&#160;</td>
           <td class="paramname"><em>outArray</em>&#160;</td>
         </tr>
         <tr>
@@ -310,7 +310,7 @@ template&lt;class ROI_BEGIN_COORD , class ROI_END_COORD &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;size_t DIM, class LABEL_TYPE&gt; </div>
+template&lt;std::size_t DIM, class LABEL_TYPE&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">

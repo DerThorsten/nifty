@@ -4,7 +4,7 @@ var searchData=
   ['bidirectionalbreadthfirstsearch_3c_20graph_20_3e',['BidirectionalBreadthFirstSearch&lt; Graph &gt;',['../classnifty_1_1graph_1_1BidirectionalBreadthFirstSearch.html',1,'nifty::graph']]],
   ['block',['Block',['../classnifty_1_1tools_1_1Block.html',1,'nifty::tools']]],
   ['blocking',['Blocking',['../classnifty_1_1tools_1_1Blocking.html',1,'nifty::tools']]],
-  ['blockmulticut',['BlockMulticut',['../classnifty_1_1graph_1_1BlockMulticut.html',1,'nifty::graph']]],
+  ['blockmulticut',['BlockMulticut',['../classnifty_1_1graph_1_1optimization_1_1multicut_1_1BlockMulticut.html',1,'nifty::graph::optimization::multicut']]],
   ['blockstorage',['BlockStorage',['../classnifty_1_1tools_1_1BlockStorage.html',1,'nifty::tools']]],
   ['blockstorageselector',['BlockStorageSelector',['../structnifty_1_1tools_1_1BlockStorageSelector.html',1,'nifty::tools']]],
   ['blockstorageselector_3c_20hdf5_3a_3ahdf5array_3c_20t_20_3e_20_3e',['BlockStorageSelector&lt; hdf5::Hdf5Array&lt; T &gt; &gt;',['../structnifty_1_1tools_1_1BlockStorageSelector_3_01hdf5_1_1Hdf5Array_3_01T_01_4_01_4.html',1,'nifty::tools']]],

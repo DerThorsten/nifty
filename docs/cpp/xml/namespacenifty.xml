@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="namespacenifty" kind="namespace" language="C++">
+    <compoundname>nifty</compoundname>
+    <innernamespace refid="namespacenifty_1_1array">nifty::array</innernamespace>
+    <innernamespace refid="namespacenifty_1_1cgp">nifty::cgp</innernamespace>
+    <innernamespace refid="namespacenifty_1_1container">nifty::container</innernamespace>
+    <innernamespace refid="namespacenifty_1_1exceptions">nifty::exceptions</innernamespace>
+    <innernamespace refid="namespacenifty_1_1features">nifty::features</innernamespace>
+    <innernamespace refid="namespacenifty_1_1filters">nifty::filters</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph">nifty::graph</innernamespace>
+    <innernamespace refid="namespacenifty_1_1ground__truth">nifty::ground_truth</innernamespace>
+    <innernamespace refid="namespacenifty_1_1hdf5">nifty::hdf5</innernamespace>
+    <innernamespace refid="namespacenifty_1_1histogram">nifty::histogram</innernamespace>
+    <innernamespace refid="namespacenifty_1_1ilp__backend">nifty::ilp_backend</innernamespace>
+    <innernamespace refid="namespacenifty_1_1logging">nifty::logging</innernamespace>
+    <innernamespace refid="namespacenifty_1_1marray">nifty::marray</innernamespace>
+    <innernamespace refid="namespacenifty_1_1math">nifty::math</innernamespace>
+    <innernamespace refid="namespacenifty_1_1meta">nifty::meta</innernamespace>
+    <innernamespace refid="namespacenifty_1_1parallel">nifty::parallel</innernamespace>
+    <innernamespace refid="namespacenifty_1_1tools">nifty::tools</innernamespace>
+    <innernamespace refid="namespacenifty_1_1ufd">nifty::ufd</innernamespace>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespacenifty_1af89b6a59b4fc8d4224d6a73f745d52f9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string nifty::lowerFirst</definition>
+        <argsstring>(const std::string &amp;name)</argsstring>
+        <name>lowerFirst</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/converter.hxx" line="24" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/converter.hxx" bodystart="24" bodyend="28"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacenifty_1a0b15288d0f31e0356269a1af3a12de5f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename VALUE_TYPE</type>
+          </param>
+          <param>
+            <type>size_t</type>
+            <declname>DIM</declname>
+            <defname>DIM</defname>
+          </param>
+          <param>
+            <type>bool</type>
+            <declname>AUTO_CAST_TYPE</declname>
+            <defname>AUTO_CAST_TYPE</defname>
+          </param>
+        </templateparamlist>
+        <type>std::ostream &amp;</type>
+        <definition>std::ostream&amp; nifty::operator&lt;&lt;</definition>
+        <argsstring>(std::ostream &amp;os, const nifty::marray::PyView&lt; VALUE_TYPE, DIM, AUTO_CAST_TYPE &gt; &amp;obj)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classnifty_1_1marray_1_1PyView" kindref="compound">nifty::marray::PyView</ref>&lt; VALUE_TYPE, DIM, AUTO_CAST_TYPE &gt; &amp;</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/converter.hxx" line="311" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/converter.hxx" bodystart="311" bodyend="318"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/array/arithmetic_array.hxx" line="8" column="1"/>
+  </compounddef>
+</doxygen>

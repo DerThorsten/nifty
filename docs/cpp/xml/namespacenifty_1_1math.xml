@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="namespacenifty_1_1math" kind="namespace" language="C++">
+    <compoundname>nifty::math</compoundname>
+    <innerclass refid="classnifty_1_1math_1_1Numerics" prot="public">nifty::math::Numerics</innerclass>
+    <innerclass refid="classnifty_1_1math_1_1NumericsImplDispatch" prot="public">nifty::math::NumericsImplDispatch</innerclass>
+    <innerclass refid="classnifty_1_1math_1_1NumericsImplDispatch_3_01T_00_01true_01_4" prot="public">nifty::math::NumericsImplDispatch&lt; T, true &gt;</innerclass>
+    <innerclass refid="structnifty_1_1math_1_1NumericTraits" prot="public">nifty::math::NumericTraits</innerclass>
+    <innerclass refid="structnifty_1_1math_1_1PromoteTraits" prot="public">nifty::math::PromoteTraits</innerclass>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespacenifty_1_1math_1a6abaaeb54bfe7300d2f3ae9186fe3ab0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T0</type>
+          </param>
+          <param>
+            <type>class T1</type>
+          </param>
+          <param>
+            <type>size_t</type>
+            <declname>N</declname>
+            <defname>N</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="structnifty_1_1math_1_1PromoteTraits" kindref="compound">nifty::math::PromoteTraits</ref>&lt; T0, T1 &gt;::RealPromoteType</type>
+        <definition>nifty::math::PromoteTraits&lt;T0,T1&gt;::RealPromoteType nifty::math::euclideanDistance</definition>
+        <argsstring>(const nifty::array::StaticArray&lt; T0, N &gt; &amp;a, const nifty::array::StaticArray&lt; T1, N &gt; &amp;b)</argsstring>
+        <name>euclideanDistance</name>
+        <param>
+          <type>const <ref refid="namespacenifty_1_1array_1a683f151f19c851754e0c6d55ed16a0c2" kindref="member">nifty::array::StaticArray</ref>&lt; T0, N &gt; &amp;</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespacenifty_1_1array_1a683f151f19c851754e0c6d55ed16a0c2" kindref="member">nifty::array::StaticArray</ref>&lt; T1, N &gt; &amp;</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/math/math.hxx" line="15" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/math/math.hxx" bodystart="15" bodyend="29"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/math/math.hxx" line="11" column="1"/>
+  </compounddef>
+</doxygen>

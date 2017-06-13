@@ -1,0 +1,214 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutObjective" kind="class" language="C++" prot="public">
+    <compoundname>nifty::graph::optimization::mincut::MincutObjective</compoundname>
+    <basecompoundref refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutObjectiveBase" prot="public" virt="non-virtual">nifty::graph::optimization::mincut::MincutObjectiveBase&lt; MincutObjective&lt; GRAPH, WEIGHT_TYPE &gt;, GRAPH, WEIGHT_TYPE &gt;</basecompoundref>
+    <includes refid="graph_2optimization_2mincut_2mincut__objective_8hxx" local="no">mincut_objective.hxx</includes>
+    <templateparamlist>
+      <param>
+        <type>class GRAPH</type>
+      </param>
+      <param>
+        <type>class WEIGHT_TYPE</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutObjective_1a14651256f6659a97c452e9469b1df0c7" prot="public" static="no">
+        <type>GRAPH</type>
+        <definition>typedef GRAPH nifty::graph::optimization::mincut::MincutObjective&lt; GRAPH, WEIGHT_TYPE &gt;::Graph</definition>
+        <argsstring></argsstring>
+        <name>Graph</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_objective.hxx" line="51" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_objective.hxx" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutObjective_1a67e2a1dba7b35b0ead06ce8b74152215" prot="public" static="no">
+        <type>GRAPH</type>
+        <definition>typedef GRAPH nifty::graph::optimization::mincut::MincutObjective&lt; GRAPH, WEIGHT_TYPE &gt;::GraphType</definition>
+        <argsstring></argsstring>
+        <name>GraphType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_objective.hxx" line="52" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_objective.hxx" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutObjective_1acbc5ba581d4e1677cee62a26001786a8" prot="public" static="no">
+        <type>WEIGHT_TYPE</type>
+        <definition>typedef WEIGHT_TYPE nifty::graph::optimization::mincut::MincutObjective&lt; GRAPH, WEIGHT_TYPE &gt;::WeightType</definition>
+        <argsstring></argsstring>
+        <name>WeightType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_objective.hxx" line="53" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_objective.hxx" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutObjective_1ad4674bd22bb638b7d83a3cf31059e4ed" prot="public" static="no">
+        <type><ref refid="structnifty_1_1graph_1_1graph__maps_1_1EdgeMap" kindref="compound">graph_maps::EdgeMap</ref>&lt; <ref refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutObjective_1a14651256f6659a97c452e9469b1df0c7" kindref="member">Graph</ref>, <ref refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutObjective_1acbc5ba581d4e1677cee62a26001786a8" kindref="member">WeightType</ref> &gt;</type>
+        <definition>typedef graph_maps::EdgeMap&lt;Graph, WeightType&gt; nifty::graph::optimization::mincut::MincutObjective&lt; GRAPH, WEIGHT_TYPE &gt;::WeightsMap</definition>
+        <argsstring></argsstring>
+        <name>WeightsMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_objective.hxx" line="54" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_objective.hxx" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutObjective_1aae8f1cd3353a96dfe22a0ba35f3f4ac3" prot="public" static="no">
+        <type>GraphType::template NodeMap&lt; uint64_t &gt;</type>
+        <definition>typedef GraphType:: template NodeMap&lt;uint64_t&gt; nifty::graph::optimization::mincut::MincutObjective&lt; GRAPH, WEIGHT_TYPE &gt;::NodeLabelsType</definition>
+        <argsstring></argsstring>
+        <name>NodeLabelsType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_objective.hxx" line="55" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_objective.hxx" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutObjective_1a71cc13ed5df98002870c9f1b26b22759" prot="private" static="no" mutable="no">
+        <type>const <ref refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutObjective_1a14651256f6659a97c452e9469b1df0c7" kindref="member">Graph</ref> &amp;</type>
+        <definition>const Graph&amp; nifty::graph::optimization::mincut::MincutObjective&lt; GRAPH, WEIGHT_TYPE &gt;::graph_</definition>
+        <argsstring></argsstring>
+        <name>graph_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_objective.hxx" line="74" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_objective.hxx" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutObjective_1abca150ec7ea747c7aaa706f6beef4c30" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutObjective_1ad4674bd22bb638b7d83a3cf31059e4ed" kindref="member">WeightsMap</ref></type>
+        <definition>WeightsMap nifty::graph::optimization::mincut::MincutObjective&lt; GRAPH, WEIGHT_TYPE &gt;::weights_</definition>
+        <argsstring></argsstring>
+        <name>weights_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_objective.hxx" line="75" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_objective.hxx" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutObjective_1ad3e8f453068825c86f09706e159e44fb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>nifty::graph::optimization::mincut::MincutObjective&lt; GRAPH, WEIGHT_TYPE &gt;::MincutObjective</definition>
+        <argsstring>(const Graph &amp;g)</argsstring>
+        <name>MincutObjective</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutObjective_1a14651256f6659a97c452e9469b1df0c7" kindref="member">Graph</ref> &amp;</type>
+          <declname>g</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_objective.hxx" line="56" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_objective.hxx" bodystart="56" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutObjective_1a0962678c9517b7b3299c05f5b772d4c0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutObjective_1ad4674bd22bb638b7d83a3cf31059e4ed" kindref="member">WeightsMap</ref> &amp;</type>
+        <definition>WeightsMap&amp; nifty::graph::optimization::mincut::MincutObjective&lt; GRAPH, WEIGHT_TYPE &gt;::weights</definition>
+        <argsstring>()</argsstring>
+        <name>weights</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_objective.hxx" line="62" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_objective.hxx" bodystart="62" bodyend="64"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutObjective_1a4a16c0bf0365692e5b213ee29938a1b6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutObjective_1a14651256f6659a97c452e9469b1df0c7" kindref="member">Graph</ref> &amp;</type>
+        <definition>const Graph&amp; nifty::graph::optimization::mincut::MincutObjective&lt; GRAPH, WEIGHT_TYPE &gt;::graph</definition>
+        <argsstring>() const </argsstring>
+        <name>graph</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_objective.hxx" line="67" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_objective.hxx" bodystart="67" bodyend="69"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutObjective_1af47bf444d6fdd670bf68022b88214f7a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutObjective_1ad4674bd22bb638b7d83a3cf31059e4ed" kindref="member">WeightsMap</ref> &amp;</type>
+        <definition>const WeightsMap&amp; nifty::graph::optimization::mincut::MincutObjective&lt; GRAPH, WEIGHT_TYPE &gt;::weights</definition>
+        <argsstring>() const </argsstring>
+        <name>weights</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_objective.hxx" line="70" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_objective.hxx" bodystart="70" bodyend="72"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1437">
+        <label>nifty::graph::optimization::mincut::MincutObjectiveBase&lt; MincutObjective&lt; GRAPH, WEIGHT_TYPE &gt;, GRAPH, WEIGHT_TYPE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutObjectiveBase"/>
+      </node>
+      <node id="1436">
+        <label>nifty::graph::optimization::mincut::MincutObjective&lt; GRAPH, WEIGHT_TYPE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutObjective"/>
+        <childnode refid="1437" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1439">
+        <label>nifty::graph::optimization::mincut::MincutObjectiveBase&lt; MincutObjective&lt; GRAPH, WEIGHT_TYPE &gt;, GRAPH, WEIGHT_TYPE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutObjectiveBase"/>
+      </node>
+      <node id="1438">
+        <label>nifty::graph::optimization::mincut::MincutObjective&lt; GRAPH, WEIGHT_TYPE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutObjective"/>
+        <childnode refid="1439" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_objective.hxx" line="49" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_objective.hxx" bodystart="45" bodyend="76"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutObjectiveBase_1a6943abac42bd9b021bb69094dc3c42c1" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::mincut::MincutObjective</scope><name>ChildObjective</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutObjectiveBase_1a5908b8124c57c6965427a43ee9e02658" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::mincut::MincutObjective</scope><name>evalNodeLabels</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutObjective_1a14651256f6659a97c452e9469b1df0c7" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::mincut::MincutObjective</scope><name>Graph</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutObjective_1a4a16c0bf0365692e5b213ee29938a1b6" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::mincut::MincutObjective</scope><name>graph</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutObjective_1a71cc13ed5df98002870c9f1b26b22759" prot="private" virt="non-virtual"><scope>nifty::graph::optimization::mincut::MincutObjective</scope><name>graph_</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutObjective_1a67e2a1dba7b35b0ead06ce8b74152215" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::mincut::MincutObjective</scope><name>GraphType</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutObjective_1ad3e8f453068825c86f09706e159e44fb" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::mincut::MincutObjective</scope><name>MincutObjective</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutObjective_1aae8f1cd3353a96dfe22a0ba35f3f4ac3" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::mincut::MincutObjective</scope><name>NodeLabelsType</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutObjectiveBase_1a6711b53c0f9ff2db5f3e0ab9e35a11ac" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::mincut::MincutObjective</scope><name>Self</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutObjective_1a0962678c9517b7b3299c05f5b772d4c0" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::mincut::MincutObjective</scope><name>weights</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutObjective_1af47bf444d6fdd670bf68022b88214f7a" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::mincut::MincutObjective</scope><name>weights</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutObjective_1abca150ec7ea747c7aaa706f6beef4c30" prot="private" virt="non-virtual"><scope>nifty::graph::optimization::mincut::MincutObjective</scope><name>weights_</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutObjective_1ad4674bd22bb638b7d83a3cf31059e4ed" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::mincut::MincutObjective</scope><name>WeightsMap</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutObjective_1acbc5ba581d4e1677cee62a26001786a8" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::mincut::MincutObjective</scope><name>WeightType</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

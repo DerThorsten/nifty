@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="classnifty_1_1graph_1_1detail__graph_1_1UndirectedGridGraphIter" kind="class" language="C++" prot="public">
+    <compoundname>nifty::graph::detail_graph::UndirectedGridGraphIter</compoundname>
+    <includes refid="graph_2undirected__grid__graph_8hxx" local="no">undirected_grid_graph.hxx</includes>
+    <innerclass refid="classnifty_1_1graph_1_1detail__graph_1_1UndirectedGridGraphIter_1_1AdjacencyIter" prot="public">nifty::graph::detail_graph::UndirectedGridGraphIter::AdjacencyIter</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1detail__graph_1_1UndirectedGridGraphIter_1_1EdgeIter" prot="public">nifty::graph::detail_graph::UndirectedGridGraphIter::EdgeIter</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1detail__graph_1_1UndirectedGridGraphIter_1_1NodeIter" prot="public">nifty::graph::detail_graph::UndirectedGridGraphIter::NodeIter</innerclass>
+    <innerclass refid="structnifty_1_1graph_1_1detail__graph_1_1UndirectedGridGraphIter_1_1UnaryFunction" prot="public">nifty::graph::detail_graph::UndirectedGridGraphIter::UnaryFunction</innerclass>
+    <templateparamlist>
+      <param>
+        <type>std::size_t</type>
+        <declname>DIM</declname>
+        <defname>DIM</defname>
+      </param>
+      <param>
+        <type>bool</type>
+        <declname>SIMPLE_NH</declname>
+        <defname>SIMPLE_NH</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1detail__graph_1_1UndirectedGridGraphIter_1a562bd40c2ea973c15b828062247ddd1f" prot="public" static="no">
+        <type>andres::graph::GridGraph&lt; DIM &gt;</type>
+        <definition>typedef andres::graph::GridGraph&lt;DIM&gt; nifty::graph::detail_graph::UndirectedGridGraphIter&lt; DIM, SIMPLE_NH &gt;::AGridGraph</definition>
+        <argsstring></argsstring>
+        <name>AGridGraph</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_grid_graph.hxx" line="45" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_grid_graph.hxx" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1detail__graph_1_1UndirectedGridGraphIter_1a824924927d819949af2370aa628af595" prot="public" static="no">
+        <type>AGridGraph::AdjacencyIterator</type>
+        <definition>typedef AGridGraph::AdjacencyIterator nifty::graph::detail_graph::UndirectedGridGraphIter&lt; DIM, SIMPLE_NH &gt;::AGridGraphAdjacencyIter</definition>
+        <argsstring></argsstring>
+        <name>AGridGraphAdjacencyIter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_grid_graph.hxx" line="46" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_grid_graph.hxx" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1detail__graph_1_1UndirectedGridGraphIter_1ab102d464df39aae71f7482baa37d8966" prot="public" static="no">
+        <type>UndirectedAdjacency&lt; int64_t, int64_t, int64_t, int64_t &gt;</type>
+        <definition>typedef UndirectedAdjacency&lt;int64_t,int64_t,int64_t,int64_t&gt; nifty::graph::detail_graph::UndirectedGridGraphIter&lt; DIM, SIMPLE_NH &gt;::NodeAdjacency</definition>
+        <argsstring></argsstring>
+        <name>NodeAdjacency</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_grid_graph.hxx" line="47" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_grid_graph.hxx" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1detail__graph_1_1UndirectedGridGraphIter_1a0b2569d896d215175b54ed1f439ad5a5" prot="public" static="no">
+        <type>boost::transform_iterator&lt; <ref refid="structnifty_1_1graph_1_1detail__graph_1_1UndirectedGridGraphIter_1_1UnaryFunction" kindref="compound">UnaryFunction</ref>, typename AGridGraph::AdjacencyIterator, <ref refid="classnifty_1_1graph_1_1detail__graph_1_1UndirectedGridGraphIter_1ab102d464df39aae71f7482baa37d8966" kindref="member">NodeAdjacency</ref>, <ref refid="classnifty_1_1graph_1_1detail__graph_1_1UndirectedGridGraphIter_1ab102d464df39aae71f7482baa37d8966" kindref="member">NodeAdjacency</ref> &gt;</type>
+        <definition>typedef boost::transform_iterator&lt; UnaryFunction, typename AGridGraph::AdjacencyIterator, NodeAdjacency, NodeAdjacency &gt; nifty::graph::detail_graph::UndirectedGridGraphIter&lt; DIM, SIMPLE_NH &gt;::OldAdjacencyIter</definition>
+        <argsstring></argsstring>
+        <name>OldAdjacencyIter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_grid_graph.hxx" line="62" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_grid_graph.hxx" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_grid_graph.hxx" line="43" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_grid_graph.hxx" bodystart="43" bodyend="113"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1graph_1_1detail__graph_1_1UndirectedGridGraphIter_1a562bd40c2ea973c15b828062247ddd1f" prot="public" virt="non-virtual"><scope>nifty::graph::detail_graph::UndirectedGridGraphIter</scope><name>AGridGraph</name></member>
+      <member refid="classnifty_1_1graph_1_1detail__graph_1_1UndirectedGridGraphIter_1a824924927d819949af2370aa628af595" prot="public" virt="non-virtual"><scope>nifty::graph::detail_graph::UndirectedGridGraphIter</scope><name>AGridGraphAdjacencyIter</name></member>
+      <member refid="classnifty_1_1graph_1_1detail__graph_1_1UndirectedGridGraphIter_1ab102d464df39aae71f7482baa37d8966" prot="public" virt="non-virtual"><scope>nifty::graph::detail_graph::UndirectedGridGraphIter</scope><name>NodeAdjacency</name></member>
+      <member refid="classnifty_1_1graph_1_1detail__graph_1_1UndirectedGridGraphIter_1a0b2569d896d215175b54ed1f439ad5a5" prot="public" virt="non-virtual"><scope>nifty::graph::detail_graph::UndirectedGridGraphIter</scope><name>OldAdjacencyIter</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

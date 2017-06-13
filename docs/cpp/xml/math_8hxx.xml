@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="math_8hxx" kind="file" language="C++">
+    <compoundname>math.hxx</compoundname>
+    <includes local="no">array</includes>
+    <includes local="no">vector</includes>
+    <includes refid="numerics_8hxx" local="yes">nifty/math/numerics.hxx</includes>
+    <includes refid="static__array_8hxx" local="yes">nifty/array/static_array.hxx</includes>
+    <includedby refid="geometric__features_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/cgp/features/geometric_features.hxx</includedby>
+    <includedby refid="topological__features_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/cgp/features/topological_features.hxx</includedby>
+    <incdepgraph>
+      <node id="11638">
+        <label>limits</label>
+      </node>
+      <node id="11643">
+        <label>cstdint</label>
+      </node>
+      <node id="11646">
+        <label>cmath</label>
+      </node>
+      <node id="11644">
+        <label>stdexcept</label>
+      </node>
+      <node id="11639">
+        <label>vigra/numerictraits.hxx</label>
+      </node>
+      <node id="11640">
+        <label>nifty/array/static_array.hxx</label>
+        <link refid="static__array_8hxx"/>
+        <childnode refid="11641" relation="include">
+        </childnode>
+      </node>
+      <node id="11637">
+        <label>nifty/math/numerics.hxx</label>
+        <link refid="numerics_8hxx"/>
+        <childnode refid="11638" relation="include">
+        </childnode>
+        <childnode refid="11639" relation="include">
+        </childnode>
+      </node>
+      <node id="11636">
+        <label>vector</label>
+      </node>
+      <node id="11641">
+        <label>arithmetic_array.hxx</label>
+        <link refid="arithmetic__array_8hxx"/>
+        <childnode refid="11635" relation="include">
+        </childnode>
+        <childnode refid="11636" relation="include">
+        </childnode>
+        <childnode refid="11642" relation="include">
+        </childnode>
+      </node>
+      <node id="11635">
+        <label>array</label>
+      </node>
+      <node id="11645">
+        <label>sstream</label>
+      </node>
+      <node id="11642">
+        <label>nifty/tools/runtime_check.hxx</label>
+        <link refid="runtime__check_8hxx"/>
+        <childnode refid="11643" relation="include">
+        </childnode>
+        <childnode refid="11644" relation="include">
+        </childnode>
+        <childnode refid="11645" relation="include">
+        </childnode>
+        <childnode refid="11636" relation="include">
+        </childnode>
+        <childnode refid="11638" relation="include">
+        </childnode>
+        <childnode refid="11646" relation="include">
+        </childnode>
+      </node>
+      <node id="11634">
+        <label>/home/tbeier/src/nifty/include/nifty/math/math.hxx</label>
+        <link refid="math.hxx"/>
+        <childnode refid="11635" relation="include">
+        </childnode>
+        <childnode refid="11636" relation="include">
+        </childnode>
+        <childnode refid="11637" relation="include">
+        </childnode>
+        <childnode refid="11640" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="11648">
+        <label>/home/tbeier/src/nifty/include/nifty/cgp/features/geometric_features.hxx</label>
+        <link refid="geometric__features_8hxx"/>
+      </node>
+      <node id="11649">
+        <label>/home/tbeier/src/nifty/include/nifty/cgp/features/topological_features.hxx</label>
+        <link refid="topological__features_8hxx"/>
+      </node>
+      <node id="11647">
+        <label>/home/tbeier/src/nifty/include/nifty/math/math.hxx</label>
+        <link refid="math.hxx"/>
+        <childnode refid="11648" relation="include">
+        </childnode>
+        <childnode refid="11649" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innernamespace refid="namespacenifty">nifty</innernamespace>
+    <innernamespace refid="namespacenifty_1_1math">nifty::math</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;array&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="numerics_8hxx" kindref="compound">nifty/math/numerics.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="static__array_8hxx" kindref="compound">nifty/array/static_array.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacenifty" kindref="compound">nifty</ref>{</highlight></codeline>
+<codeline lineno="11" refid="namespacenifty_1_1math" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">math{</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>T0,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>T1,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>N&gt;</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1math_1_1PromoteTraits_1a21f91936d2b9aff18c220bc86529df98" kindref="member">nifty::math::PromoteTraits&lt;T0,T1&gt;::RealPromoteType</ref><sp/></highlight></codeline>
+<codeline lineno="15" refid="namespacenifty_1_1math_1a6abaaeb54bfe7300d2f3ae9186fe3ab0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacenifty_1_1math_1a6abaaeb54bfe7300d2f3ae9186fe3ab0" kindref="member">euclideanDistance</ref>(</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1array_1_1ArrayExtender" kindref="compound">nifty::array::StaticArray&lt;T0, N&gt;</ref><sp/>&amp;<sp/>a,</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1array_1_1ArrayExtender" kindref="compound">nifty::array::StaticArray&lt;T1, N&gt;</ref><sp/>&amp;<sp/>b</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>){</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1math_1_1PromoteTraits_1abcfa7e97456339d61654b607fd8b03f2" kindref="member">nifty::math::PromoteTraits&lt;T0,T1&gt;::PromoteType</ref><sp/><sp/>T0T1;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>d<sp/>=<sp/><ref refid="classnifty_1_1math_1_1Numerics" kindref="compound">Numerics&lt;T0T1&gt;::zero</ref>();</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>i=0;<sp/>i&lt;N;<sp/>++i){</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>dist<sp/>=<sp/>T0T1(a[i])-T0T1(b[i]);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>d<sp/>+=<sp/>dist*dist;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::sqrt(d);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="33"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/home/tbeier/src/nifty/include/nifty/math/math.hxx"/>
+  </compounddef>
+</doxygen>

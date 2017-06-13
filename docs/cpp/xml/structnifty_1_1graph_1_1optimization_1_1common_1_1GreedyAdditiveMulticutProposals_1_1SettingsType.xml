@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="structnifty_1_1graph_1_1optimization_1_1common_1_1GreedyAdditiveMulticutProposals_1_1SettingsType" kind="struct" language="C++" prot="public">
+    <compoundname>nifty::graph::optimization::common::GreedyAdditiveMulticutProposals::SettingsType</compoundname>
+    <includes refid="greedy__additive__multicut__proposal__generator_8hxx" local="no">greedy_additive_multicut_proposal_generator.hxx</includes>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="structnifty_1_1graph_1_1optimization_1_1common_1_1GreedyAdditiveMulticutProposals_1_1SettingsType_1a786cca58f307f93acb43d427201599b4" prot="public" static="no">
+        <name>SeedingStrategie</name>
+        <enumvalue id="structnifty_1_1graph_1_1optimization_1_1common_1_1GreedyAdditiveMulticutProposals_1_1SettingsType_1a786cca58f307f93acb43d427201599b4a43fd0d8797771082333f84c4494a1019" prot="public">
+          <name>SEED_FROM_NEGATIVE</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structnifty_1_1graph_1_1optimization_1_1common_1_1GreedyAdditiveMulticutProposals_1_1SettingsType_1a786cca58f307f93acb43d427201599b4abeecc18ee23661c80bec9dbb9517b8b9" prot="public">
+          <name>SEED_FROM_ALL</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" line="51" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" bodystart="51" bodyend="54"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structnifty_1_1graph_1_1optimization_1_1common_1_1GreedyAdditiveMulticutProposals_1_1SettingsType_1a5672f3adddbeb1bda8dc316ace61f346" prot="public" static="no" mutable="no">
+        <type><ref refid="structnifty_1_1graph_1_1optimization_1_1common_1_1GreedyAdditiveMulticutProposals_1_1SettingsType_1a786cca58f307f93acb43d427201599b4" kindref="member">SeedingStrategie</ref></type>
+        <definition>SeedingStrategie nifty::graph::optimization::common::GreedyAdditiveMulticutProposals&lt; OBJECTIVE &gt;::SettingsType::seedingStrategie</definition>
+        <argsstring></argsstring>
+        <name>seedingStrategie</name>
+        <initializer>{<ref refid="structnifty_1_1graph_1_1optimization_1_1common_1_1GreedyAdditiveMulticutProposals_1_1SettingsType_1a786cca58f307f93acb43d427201599b4a43fd0d8797771082333f84c4494a1019" kindref="member">SEED_FROM_NEGATIVE</ref>}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" line="56" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structnifty_1_1graph_1_1optimization_1_1common_1_1GreedyAdditiveMulticutProposals_1_1SettingsType_1a0a886927304d58dbebc4cafa5eeb5ff0" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double nifty::graph::optimization::common::GreedyAdditiveMulticutProposals&lt; OBJECTIVE &gt;::SettingsType::sigma</definition>
+        <argsstring></argsstring>
+        <name>sigma</name>
+        <initializer>{1.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" line="57" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structnifty_1_1graph_1_1optimization_1_1common_1_1GreedyAdditiveMulticutProposals_1_1SettingsType_1a1a41d8c2e2aaf35d30b0722a26820e45" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double nifty::graph::optimization::common::GreedyAdditiveMulticutProposals&lt; OBJECTIVE &gt;::SettingsType::numberOfSeeds</definition>
+        <argsstring></argsstring>
+        <name>numberOfSeeds</name>
+        <initializer>{0.1}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" line="58" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" line="48" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" bodystart="48" bodyend="59"/>
+    <listofallmembers>
+      <member refid="structnifty_1_1graph_1_1optimization_1_1common_1_1GreedyAdditiveMulticutProposals_1_1SettingsType_1a1a41d8c2e2aaf35d30b0722a26820e45" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::common::GreedyAdditiveMulticutProposals::SettingsType</scope><name>numberOfSeeds</name></member>
+      <member refid="structnifty_1_1graph_1_1optimization_1_1common_1_1GreedyAdditiveMulticutProposals_1_1SettingsType_1a786cca58f307f93acb43d427201599b4abeecc18ee23661c80bec9dbb9517b8b9" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::common::GreedyAdditiveMulticutProposals::SettingsType</scope><name>SEED_FROM_ALL</name></member>
+      <member refid="structnifty_1_1graph_1_1optimization_1_1common_1_1GreedyAdditiveMulticutProposals_1_1SettingsType_1a786cca58f307f93acb43d427201599b4a43fd0d8797771082333f84c4494a1019" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::common::GreedyAdditiveMulticutProposals::SettingsType</scope><name>SEED_FROM_NEGATIVE</name></member>
+      <member refid="structnifty_1_1graph_1_1optimization_1_1common_1_1GreedyAdditiveMulticutProposals_1_1SettingsType_1a5672f3adddbeb1bda8dc316ace61f346" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::common::GreedyAdditiveMulticutProposals::SettingsType</scope><name>seedingStrategie</name></member>
+      <member refid="structnifty_1_1graph_1_1optimization_1_1common_1_1GreedyAdditiveMulticutProposals_1_1SettingsType_1a786cca58f307f93acb43d427201599b4" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::common::GreedyAdditiveMulticutProposals::SettingsType</scope><name>SeedingStrategie</name></member>
+      <member refid="structnifty_1_1graph_1_1optimization_1_1common_1_1GreedyAdditiveMulticutProposals_1_1SettingsType_1a0a886927304d58dbebc4cafa5eeb5ff0" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::common::GreedyAdditiveMulticutProposals::SettingsType</scope><name>sigma</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

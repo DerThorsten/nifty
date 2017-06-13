@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="structnifty_1_1graph_1_1graph__maps_1_1NodeMap" kind="struct" language="C++" prot="public">
+    <compoundname>nifty::graph::graph_maps::NodeMap</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">std::vector&lt; T &gt;</basecompoundref>
+    <includes refid="graph__maps_8hxx" local="no">graph_maps.hxx</includes>
+    <templateparamlist>
+      <param>
+        <type>class</type>
+        <declname>G</declname>
+        <defname>G</defname>
+      </param>
+      <param>
+        <type>class</type>
+        <declname>T</declname>
+        <defname>T</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structnifty_1_1graph_1_1graph__maps_1_1NodeMap_1a0580548b98c3e769227111e081c0b7a6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>nifty::graph::graph_maps::NodeMap&lt; G, T &gt;::NodeMap</definition>
+        <argsstring>(const G &amp;g, const T &amp;val)</argsstring>
+        <name>NodeMap</name>
+        <param>
+          <type>const G &amp;</type>
+          <declname>g</declname>
+        </param>
+        <param>
+          <type>const T &amp;</type>
+          <declname>val</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/graph_maps.hxx" line="14" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/graph_maps.hxx" bodystart="14" bodyend="16"/>
+      </memberdef>
+      <memberdef kind="function" id="structnifty_1_1graph_1_1graph__maps_1_1NodeMap_1a759dd195fba1b36d638635e10677e759" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>nifty::graph::graph_maps::NodeMap&lt; G, T &gt;::NodeMap</definition>
+        <argsstring>(const G &amp;g)</argsstring>
+        <name>NodeMap</name>
+        <param>
+          <type>const G &amp;</type>
+          <declname>g</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/graph_maps.hxx" line="17" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/graph_maps.hxx" bodystart="17" bodyend="19"/>
+      </memberdef>
+      <memberdef kind="function" id="structnifty_1_1graph_1_1graph__maps_1_1NodeMap_1ac56649d6162ce84c37ffa6c096954bea" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>nifty::graph::graph_maps::NodeMap&lt; G, T &gt;::NodeMap</definition>
+        <argsstring>()</argsstring>
+        <name>NodeMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/graph_maps.hxx" line="20" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/graph_maps.hxx" bodystart="20" bodyend="22"/>
+      </memberdef>
+      <memberdef kind="function" id="structnifty_1_1graph_1_1graph__maps_1_1NodeMap_1a63aea0a762e0ec912e8c9ef357268d09" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::graph_maps::NodeMap&lt; G, T &gt;::insertedNodes</definition>
+        <argsstring>(const uint64_t nodeId, const T &amp;insertValue=T())</argsstring>
+        <name>insertedNodes</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>nodeId</declname>
+        </param>
+        <param>
+          <type>const T &amp;</type>
+          <declname>insertValue</declname>
+          <defval>T()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/graph_maps.hxx" line="25" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/graph_maps.hxx" bodystart="25" bodyend="32"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1563">
+        <label>std::vector&lt; T &gt;</label>
+      </node>
+      <node id="1562">
+        <label>nifty::graph::graph_maps::NodeMap&lt; G, T &gt;</label>
+        <link refid="structnifty_1_1graph_1_1graph__maps_1_1NodeMap"/>
+        <childnode refid="1563" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1565">
+        <label>std::vector&lt; T &gt;</label>
+      </node>
+      <node id="1564">
+        <label>nifty::graph::graph_maps::NodeMap&lt; G, T &gt;</label>
+        <link refid="structnifty_1_1graph_1_1graph__maps_1_1NodeMap"/>
+        <childnode refid="1565" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/graph_maps.hxx" line="13" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/graph_maps.hxx" bodystart="13" bodyend="33"/>
+    <listofallmembers>
+      <member refid="structnifty_1_1graph_1_1graph__maps_1_1NodeMap_1a63aea0a762e0ec912e8c9ef357268d09" prot="public" virt="non-virtual"><scope>nifty::graph::graph_maps::NodeMap</scope><name>insertedNodes</name></member>
+      <member refid="structnifty_1_1graph_1_1graph__maps_1_1NodeMap_1a0580548b98c3e769227111e081c0b7a6" prot="public" virt="non-virtual"><scope>nifty::graph::graph_maps::NodeMap</scope><name>NodeMap</name></member>
+      <member refid="structnifty_1_1graph_1_1graph__maps_1_1NodeMap_1a759dd195fba1b36d638635e10677e759" prot="public" virt="non-virtual"><scope>nifty::graph::graph_maps::NodeMap</scope><name>NodeMap</name></member>
+      <member refid="structnifty_1_1graph_1_1graph__maps_1_1NodeMap_1ac56649d6162ce84c37ffa6c096954bea" prot="public" virt="non-virtual"><scope>nifty::graph::graph_maps::NodeMap</scope><name>NodeMap</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

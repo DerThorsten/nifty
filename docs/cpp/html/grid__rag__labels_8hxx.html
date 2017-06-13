@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Nifty
-   &#160;<span id="projectnumber">0.5.1</span>
+   &#160;<span id="projectnumber">0.19.0</span>
    </div>
   </td>
  </tr>
@@ -92,13 +92,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#namespaces">Namespaces</a> &#124;
-<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">grid_rag_labels.hxx File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;algorithm&gt;</code><br />
+<code>#include &lt;cstddef&gt;</code><br />
 <code>#include &quot;<a class="el" href="arithmetic__array_8hxx_source.html">nifty/array/arithmetic_array.hxx</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="marray_8hxx_source.html">nifty/marray/marray.hxx</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="runtime__check_8hxx_source.html">nifty/tools/runtime_check.hxx</a>&quot;</code><br />
@@ -107,13 +107,28 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 Include dependency graph for grid_rag_labels.hxx:</div>
 <div class="dyncontent">
 <div class="center"><img src="grid__rag__labels_8hxx__incl.png" border="0" usemap="#_2home_2tbeier_2src_2nifty_2include_2nifty_2graph_2rag_2grid__rag__labels_8hxx" alt=""/></div>
-<!-- MAP 0 -->
+<map name="_2home_2tbeier_2src_2nifty_2include_2nifty_2graph_2rag_2grid__rag__labels_8hxx" id="_2home_2tbeier_2src_2nifty_2include_2nifty_2graph_2rag_2grid__rag__labels_8hxx">
+<area shape="rect" id="node4" href="arithmetic__array_8hxx.html" title="nifty/array/arithmetic\l_array.hxx" alt="" coords="1570,184,1711,225"/>
+<area shape="rect" id="node7" href="runtime__check_8hxx.html" title="nifty/tools/runtime\l_check.hxx" alt="" coords="1577,273,1704,315"/>
+<area shape="rect" id="node13" href="marray_8hxx.html" title="nifty/marray/marray.hxx" alt="" coords="799,191,959,218"/>
+<area shape="rect" id="node24" href="block__access_8hxx.html" title="nifty/tools/block_access.hxx" alt="" coords="964,109,1152,136"/>
+<area shape="rect" id="node14" href="andres_2marray_8hxx.html" title="nifty/marray/andres\l/marray.hxx" alt="" coords="396,273,531,315"/>
+<area shape="rect" id="node25" href="threadpool_8hxx.html" title="nifty/parallel/threadpool.hxx" alt="" coords="983,191,1165,218"/>
+</map>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="grid__rag__labels_8hxx__dep__incl.png" border="0" usemap="#_2home_2tbeier_2src_2nifty_2include_2nifty_2graph_2rag_2grid__rag__labels_8hxxdep" alt=""/></div>
-<!-- MAP 1 -->
+<map name="_2home_2tbeier_2src_2nifty_2include_2nifty_2graph_2rag_2grid__rag__labels_8hxxdep" id="_2home_2tbeier_2src_2nifty_2include_2nifty_2graph_2rag_2grid__rag__labels_8hxxdep">
+<area shape="rect" id="node2" href="compute__grid__rag_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/rag\l/detail_rag/compute_grid\l_rag.hxx" alt="" coords="225,109,389,180"/>
+<area shape="rect" id="node3" href="grid__rag_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/rag\l/grid_rag.hxx" alt="" coords="289,228,444,284"/>
+<area shape="rect" id="node4" href="grid__rag__accumulate_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/rag\l/grid_rag_accumulate.hxx" alt="" coords="5,332,176,388"/>
+<area shape="rect" id="node5" href="grid__rag__features_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/rag\l/grid_rag_features.hxx" alt="" coords="200,332,355,388"/>
+<area shape="rect" id="node6" href="grid__rag__hdf5_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/rag\l/grid_rag_hdf5.hxx" alt="" coords="379,332,533,388"/>
+<area shape="rect" id="node7" href="grid__rag__stacked__2d_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/rag\l/grid_rag_stacked_2d.hxx" alt="" coords="557,332,728,388"/>
+<area shape="rect" id="node8" href="grid__rag__stacked__2d__hdf5_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/rag\l/grid_rag_stacked_2d_hdf5.hxx" alt="" coords="541,436,744,492"/>
+</map>
 </div>
 </div>
 <p><a href="grid__rag__labels_8hxx_source.html">Go to the source code of this file.</a></p>
@@ -132,30 +147,12 @@ Namespaces</h2></td></tr>
 <tr class="memitem:namespacenifty_1_1tools"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenifty_1_1tools.html">nifty::tools</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
-Macros</h2></td></tr>
-<tr class="memitem:a3f5a420cffa9b1cd3b7ebb945c430fb2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grid__rag__labels_8hxx.html#a3f5a420cffa9b1cd3b7ebb945c430fb2">NIFTY_GRAPH_RAG_GRID_RAG_LABELS_HXX</a></td></tr>
-<tr class="separator:a3f5a420cffa9b1cd3b7ebb945c430fb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a5d64102d01cdba610156da964f4b2581"><td class="memTemplParams" colspan="2">template&lt;class LABEL_TYPE , size_t DIM, class COORD &gt; </td></tr>
+<tr class="memitem:a5d64102d01cdba610156da964f4b2581"><td class="memTemplParams" colspan="2">template&lt;class LABEL_TYPE , std::size_t DIM, class COORD &gt; </td></tr>
 <tr class="memitem:a5d64102d01cdba610156da964f4b2581"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacenifty_1_1tools.html#a5d64102d01cdba610156da964f4b2581">nifty::tools::readSubarray</a> (const graph::ExplicitLabels&lt; DIM, LABEL_TYPE &gt; &amp;labels, const COORD &amp;beginCoord, const COORD &amp;endCoord, marray::View&lt; LABEL_TYPE &gt; &amp;subarray)</td></tr>
 <tr class="separator:a5d64102d01cdba610156da964f4b2581"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Macro Definition Documentation</h2>
-<a class="anchor" id="a3f5a420cffa9b1cd3b7ebb945c430fb2"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define NIFTY_GRAPH_RAG_GRID_RAG_LABELS_HXX</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

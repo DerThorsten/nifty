@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>ISBI 2012 Simple 2D Multicut Pipeline &#8212; Nifty 0.15.0 documentation</title>
+    <title>ISBI 2012 Simple 2D Multicut Pipeline &#8212; Nifty 0.19.0 documentation</title>
     
     <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -15,7 +15,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '0.15.0',
+        VERSION:     '0.19.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -28,8 +28,8 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Nifty API Reference" href="../../reference.html" />
-    <link rel="prev" title="Multicut Logging Visitor" href="../graph/plot_toy_multicut.html" /> 
+    <link rel="next" title="FAQ (Frequently Asked Questions)" href="../../sections/faq.html" />
+    <link rel="prev" title="Union-Find Data Structure" href="../misc/plot_ufd.html" /> 
   </head>
   <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
@@ -42,13 +42,14 @@
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="../../reference.html" title="Nifty API Reference"
+          <a href="../../sections/faq.html" title="FAQ (Frequently Asked Questions)"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="../graph/plot_toy_multicut.html" title="Multicut Logging Visitor"
+          <a href="../misc/plot_ufd.html" title="Union-Find Data Structure"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">Nifty 0.15.0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Gallery of Examples</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">Nifty 0.19.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../examples.html" >Nifty Examples Gallery</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" accesskey="U">Gallery of Examples</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -66,11 +67,11 @@
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="../graph/plot_toy_multicut.html"
-                        title="previous chapter">Multicut Logging Visitor</a></p>
+  <p class="topless"><a href="../misc/plot_ufd.html"
+                        title="previous chapter">Union-Find Data Structure</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="../../reference.html"
-                        title="next chapter">Nifty API Reference</a></p>
+  <p class="topless"><a href="../../sections/faq.html"
+                        title="next chapter">FAQ (Frequently Asked Questions)</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../search.html" method="get">
@@ -186,7 +187,7 @@ and the ground-truth for the train set</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">computeFeatures</span><span class="p">(</span><span class="n">raw</span><span class="p">,</span> <span class="n">pmap</span><span class="p">,</span> <span class="n">rag</span><span class="p">):</span>
 
     <span class="n">uv</span> <span class="o">=</span> <span class="n">rag</span><span class="o">.</span><span class="n">uvIds</span><span class="p">()</span>
-    <span class="n">nrag</span> <span class="o">=</span> <a href="../../gen_modules/nifty.graph.rag.html#nifty.graph.rag" title="View documentation for nifty.graph.rag"><span class="n">nifty</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">rag</span></a>
+    <span class="n">nrag</span> <span class="o">=</span> <a href="../../sections/gen_modules/nifty.graph.rag.html#nifty.graph.rag" title="View documentation for nifty.graph.rag"><span class="n">nifty</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">rag</span></a>
 
     <span class="c1"># list of all edge features we fill</span>
     <span class="n">feats</span> <span class="o">=</span> <span class="p">[]</span>
@@ -258,12 +259,12 @@ and the ground-truth for the train set</p>
 
 
         <span class="c1"># oversementation</span>
-        <span class="n">overseg</span> <span class="o">=</span> <span class="n">nifty</span><span class="o">.</span><span class="n">segmentation</span><span class="o">.</span><span class="n">distanceTransformWatersheds</span><span class="p">(</span><span class="n">pmap</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+        <span class="n">overseg</span> <span class="o">=</span> <a href="../../sections/gen_modules/nifty.segmentation.html#nifty.segmentation.distanceTransformWatersheds" title="View documentation for nifty.segmentation.distanceTransformWatersheds"><span class="n">nifty</span><span class="o">.</span><span class="n">segmentation</span><span class="o">.</span><span class="n">distanceTransformWatersheds</span></a><span class="p">(</span><span class="n">pmap</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
         <span class="n">overseg</span> <span class="o">-=</span> <span class="mi">1</span>
         <span class="n">data</span><span class="p">[</span><span class="s1">&#39;overseg&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">overseg</span>
 
         <span class="c1"># region adjacency graph</span>
-        <span class="n">rag</span> <span class="o">=</span> <a href="../../gen_modules/nifty.graph.rag.html#nifty.graph.rag.gridRag" title="View documentation for nifty.graph.rag.gridRag"><span class="n">nifty</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">rag</span><span class="o">.</span><span class="n">gridRag</span></a><span class="p">(</span><span class="n">overseg</span><span class="p">)</span>
+        <span class="n">rag</span> <span class="o">=</span> <a href="../../sections/gen_modules/nifty.graph.rag.html#nifty.graph.rag.gridRag" title="View documentation for nifty.graph.rag.gridRag"><span class="n">nifty</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">rag</span><span class="o">.</span><span class="n">gridRag</span></a><span class="p">(</span><span class="n">overseg</span><span class="p">)</span>
         <span class="n">data</span><span class="p">[</span><span class="s1">&#39;rag&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">rag</span>
 
         <span class="c1"># compute features</span>
@@ -280,16 +281,16 @@ and the ground-truth for the train set</p>
             <span class="n">gtImage</span> <span class="o">=</span> <span class="n">gtDset</span><span class="p">[</span><span class="n">z</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
 
             <span class="c1"># local maxima seeds</span>
-            <span class="n">seeds</span> <span class="o">=</span> <span class="n">nifty</span><span class="o">.</span><span class="n">segmentation</span><span class="o">.</span><span class="n">localMaximaSeeds</span><span class="p">(</span><span class="n">gtImage</span><span class="p">)</span>
+            <span class="n">seeds</span> <span class="o">=</span> <a href="../../sections/gen_modules/nifty.segmentation.html#nifty.segmentation.localMaximaSeeds" title="View documentation for nifty.segmentation.localMaximaSeeds"><span class="n">nifty</span><span class="o">.</span><span class="n">segmentation</span><span class="o">.</span><span class="n">localMaximaSeeds</span></a><span class="p">(</span><span class="n">gtImage</span><span class="p">)</span>
 
             <span class="c1"># growing map</span>
             <span class="n">growMap</span> <span class="o">=</span> <span class="n">nifty</span><span class="o">.</span><span class="n">filters</span><span class="o">.</span><span class="n">gaussianSmoothing</span><span class="p">(</span><span class="mf">1.0</span><span class="o">-</span><span class="n">gtImage</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
             <span class="n">growMap</span> <span class="o">+=</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">nifty</span><span class="o">.</span><span class="n">filters</span><span class="o">.</span><span class="n">gaussianSmoothing</span><span class="p">(</span><span class="mf">1.0</span><span class="o">-</span><span class="n">gtImage</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">)</span>
-            <span class="n">gt</span> <span class="o">=</span> <a href="../../gen_modules/nifty.segmentation.html#nifty.segmentation.seededWatersheds" title="View documentation for nifty.segmentation.seededWatersheds"><span class="n">nifty</span><span class="o">.</span><span class="n">segmentation</span><span class="o">.</span><span class="n">seededWatersheds</span></a><span class="p">(</span><span class="n">growMap</span><span class="p">,</span> <span class="n">seeds</span><span class="o">=</span><span class="n">seeds</span><span class="p">)</span>
+            <span class="n">gt</span> <span class="o">=</span> <a href="../../sections/gen_modules/nifty.segmentation.html#nifty.segmentation.seededWatersheds" title="View documentation for nifty.segmentation.seededWatersheds"><span class="n">nifty</span><span class="o">.</span><span class="n">segmentation</span><span class="o">.</span><span class="n">seededWatersheds</span></a><span class="p">(</span><span class="n">growMap</span><span class="p">,</span> <span class="n">seeds</span><span class="o">=</span><span class="n">seeds</span><span class="p">)</span>
 
 
             <span class="c1"># map the gt to the edges</span>
-            <span class="n">overlap</span> <span class="o">=</span> <span class="n">nifty</span><span class="o">.</span><span class="n">ground_truth</span><span class="o">.</span><span class="n">overlap</span><span class="p">(</span><span class="n">segmentation</span><span class="o">=</span><span class="n">overseg</span><span class="p">,</span>
+            <span class="n">overlap</span> <span class="o">=</span> <a href="../../sections/gen_modules/nifty.ground_truth.html#nifty.ground_truth.overlap" title="View documentation for nifty.ground_truth.overlap"><span class="n">nifty</span><span class="o">.</span><span class="n">ground_truth</span><span class="o">.</span><span class="n">overlap</span></a><span class="p">(</span><span class="n">segmentation</span><span class="o">=</span><span class="n">overseg</span><span class="p">,</span>
                                        <span class="n">groundTruth</span><span class="o">=</span><span class="n">gt</span><span class="p">)</span>
 
             <span class="c1"># edge gt</span>
@@ -315,15 +316,15 @@ and the ground-truth for the train set</p>
 
 
                 <span class="n">figure</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-                <span class="n">pylab</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">nifty</span><span class="o">.</span><span class="n">segmentation</span><span class="o">.</span><span class="n">segmentOverlay</span><span class="p">(</span><span class="n">raw</span><span class="p">,</span> <span class="n">overseg</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">thin</span><span class="o">=</span><span class="bp">False</span><span class="p">))</span>
+                <span class="n">pylab</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><a href="../../sections/gen_modules/nifty.segmentation.html#nifty.segmentation.segmentOverlay" title="View documentation for nifty.segmentation.segmentOverlay"><span class="n">nifty</span><span class="o">.</span><span class="n">segmentation</span><span class="o">.</span><span class="n">segmentOverlay</span></a><span class="p">(</span><span class="n">raw</span><span class="p">,</span> <span class="n">overseg</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">thin</span><span class="o">=</span><span class="bp">False</span><span class="p">))</span>
                 <span class="n">pylab</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Superpixels </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">ds</span><span class="p">))</span>
 
                 <span class="n">figure</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-                <span class="n">pylab</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">seeds</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><a href="../../gen_modules/nifty.segmentation.html#nifty.segmentation.randomColormap" title="View documentation for nifty.segmentation.randomColormap"><span class="n">nifty</span><span class="o">.</span><span class="n">segmentation</span><span class="o">.</span><span class="n">randomColormap</span></a><span class="p">(</span><span class="n">zeroToZero</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
+                <span class="n">pylab</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">seeds</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><a href="../../sections/gen_modules/nifty.segmentation.html#nifty.segmentation.randomColormap" title="View documentation for nifty.segmentation.randomColormap"><span class="n">nifty</span><span class="o">.</span><span class="n">segmentation</span><span class="o">.</span><span class="n">randomColormap</span></a><span class="p">(</span><span class="n">zeroToZero</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
                 <span class="n">pylab</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Partial ground truth </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">ds</span><span class="p">))</span>
 
                 <span class="n">figure</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-                <span class="n">pylab</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">nifty</span><span class="o">.</span><span class="n">segmentation</span><span class="o">.</span><span class="n">segmentOverlay</span><span class="p">(</span><span class="n">raw</span><span class="p">,</span> <span class="n">gt</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">thin</span><span class="o">=</span><span class="bp">False</span><span class="p">))</span>
+                <span class="n">pylab</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><a href="../../sections/gen_modules/nifty.segmentation.html#nifty.segmentation.segmentOverlay" title="View documentation for nifty.segmentation.segmentOverlay"><span class="n">nifty</span><span class="o">.</span><span class="n">segmentation</span><span class="o">.</span><span class="n">segmentOverlay</span></a><span class="p">(</span><span class="n">raw</span><span class="p">,</span> <span class="n">gt</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">thin</span><span class="o">=</span><span class="bp">False</span><span class="p">))</span>
                 <span class="n">pylab</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Dense ground truth </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">ds</span><span class="p">))</span>
                 <span class="n">pylab</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
                 <span class="n">pylab</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -386,7 +387,7 @@ and the ground-truth for the train set</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-default"><div class="highlight"><pre><span></span><span class="n">OOB</span> <span class="n">SCORE</span> <span class="mf">0.98234459566</span>
+<div class="sphx-glr-script-out highlight-default"><div class="highlight"><pre><span></span><span class="n">OOB</span> <span class="n">SCORE</span> <span class="mf">0.981714045505</span>
 </pre></div>
 </div>
 </div>
@@ -432,18 +433,18 @@ with an ILP solver (if available).</p>
         <span class="n">objective</span> <span class="o">=</span> <span class="n">MulticutObjective</span><span class="p">(</span><span class="n">rag</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
 
         <span class="c1"># do multicut obtimization</span>
-        <span class="k">if</span> <a href="../../gen_modules/nifty.html#nifty.Configuration.WITH_CPLEX" title="View documentation for nifty.Configuration.WITH_CPLEX"><span class="n">nifty</span><span class="o">.</span><span class="n">Configuration</span><span class="o">.</span><span class="n">WITH_CPLEX</span></a><span class="p">:</span>
+        <span class="k">if</span> <a href="../../sections/gen_modules/nifty.html#nifty.Configuration.WITH_CPLEX" title="View documentation for nifty.Configuration.WITH_CPLEX"><span class="n">nifty</span><span class="o">.</span><span class="n">Configuration</span><span class="o">.</span><span class="n">WITH_CPLEX</span></a><span class="p">:</span>
             <span class="n">solver</span> <span class="o">=</span> <span class="n">MulticutObjective</span><span class="o">.</span><span class="n">multicutIlpCplexFactory</span><span class="p">()</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">objective</span><span class="p">)</span>
-        <span class="k">elif</span> <a href="../../gen_modules/nifty.html#nifty.Configuration.WITH_GLPK" title="View documentation for nifty.Configuration.WITH_GLPK"><span class="n">nifty</span><span class="o">.</span><span class="n">Configuration</span><span class="o">.</span><span class="n">WITH_GLPK</span></a><span class="p">:</span>
+        <span class="k">elif</span> <a href="../../sections/gen_modules/nifty.html#nifty.Configuration.WITH_GLPK" title="View documentation for nifty.Configuration.WITH_GLPK"><span class="n">nifty</span><span class="o">.</span><span class="n">Configuration</span><span class="o">.</span><span class="n">WITH_GLPK</span></a><span class="p">:</span>
             <span class="n">solver</span> <span class="o">=</span> <span class="n">MulticutObjective</span><span class="o">.</span><span class="n">multicutIlpGurobiFactory</span><span class="p">()</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">objective</span><span class="p">)</span>
-        <span class="k">elif</span> <a href="../../gen_modules/nifty.html#nifty.Configuration.WITH_GLPK" title="View documentation for nifty.Configuration.WITH_GLPK"><span class="n">nifty</span><span class="o">.</span><span class="n">Configuration</span><span class="o">.</span><span class="n">WITH_GLPK</span></a><span class="p">:</span>
+        <span class="k">elif</span> <a href="../../sections/gen_modules/nifty.html#nifty.Configuration.WITH_GLPK" title="View documentation for nifty.Configuration.WITH_GLPK"><span class="n">nifty</span><span class="o">.</span><span class="n">Configuration</span><span class="o">.</span><span class="n">WITH_GLPK</span></a><span class="p">:</span>
             <span class="n">solver</span> <span class="o">=</span> <span class="n">MulticutObjective</span><span class="o">.</span><span class="n">multicutIlpGlpkFactory</span><span class="p">()</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">objective</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">solver</span> <span class="o">=</span> <span class="n">MulticutObjective</span><span class="o">.</span><span class="n">fusionMoveBasedFactory</span><span class="p">()</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">objective</span><span class="p">)</span>
 
 
         <span class="n">arg</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">visitor</span><span class="o">=</span><span class="n">MulticutObjective</span><span class="o">.</span><span class="n">verboseVisitor</span><span class="p">())</span>
-        <span class="n">result</span> <span class="o">=</span> <a href="../../gen_modules/nifty.graph.rag.html#nifty.graph.rag.projectScalarNodeDataToPixels" title="View documentation for nifty.graph.rag.projectScalarNodeDataToPixels"><span class="n">nifty</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">rag</span><span class="o">.</span><span class="n">projectScalarNodeDataToPixels</span></a><span class="p">(</span><span class="n">rag</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <a href="../../sections/gen_modules/nifty.graph.rag.html#nifty.graph.rag.projectScalarNodeDataToPixels" title="View documentation for nifty.graph.rag.projectScalarNodeDataToPixels"><span class="n">nifty</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">rag</span><span class="o">.</span><span class="n">projectScalarNodeDataToPixels</span></a><span class="p">(</span><span class="n">rag</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span>
 
 
         <span class="c1"># plot for each 14th slice</span>
@@ -465,15 +466,15 @@ with an ILP solver (if available).</p>
 
 
             <span class="n">figure</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-            <span class="n">pylab</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">nifty</span><span class="o">.</span><span class="n">segmentation</span><span class="o">.</span><span class="n">segmentOverlay</span><span class="p">(</span><span class="n">raw</span><span class="p">,</span> <span class="n">overseg</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">thin</span><span class="o">=</span><span class="bp">False</span><span class="p">))</span>
+            <span class="n">pylab</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><a href="../../sections/gen_modules/nifty.segmentation.html#nifty.segmentation.segmentOverlay" title="View documentation for nifty.segmentation.segmentOverlay"><span class="n">nifty</span><span class="o">.</span><span class="n">segmentation</span><span class="o">.</span><span class="n">segmentOverlay</span></a><span class="p">(</span><span class="n">raw</span><span class="p">,</span> <span class="n">overseg</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">thin</span><span class="o">=</span><span class="bp">False</span><span class="p">))</span>
             <span class="n">pylab</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Superpixels </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">ds</span><span class="p">))</span>
 
             <span class="n">figure</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-            <span class="n">pylab</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><a href="../../gen_modules/nifty.segmentation.html#nifty.segmentation.randomColormap" title="View documentation for nifty.segmentation.randomColormap"><span class="n">nifty</span><span class="o">.</span><span class="n">segmentation</span><span class="o">.</span><span class="n">randomColormap</span></a><span class="p">())</span>
+            <span class="n">pylab</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><a href="../../sections/gen_modules/nifty.segmentation.html#nifty.segmentation.randomColormap" title="View documentation for nifty.segmentation.randomColormap"><span class="n">nifty</span><span class="o">.</span><span class="n">segmentation</span><span class="o">.</span><span class="n">randomColormap</span></a><span class="p">())</span>
             <span class="n">pylab</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Result seg. </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">ds</span><span class="p">))</span>
 
             <span class="n">figure</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-            <span class="n">pylab</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">nifty</span><span class="o">.</span><span class="n">segmentation</span><span class="o">.</span><span class="n">segmentOverlay</span><span class="p">(</span><span class="n">raw</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">thin</span><span class="o">=</span><span class="bp">False</span><span class="p">))</span>
+            <span class="n">pylab</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><a href="../../sections/gen_modules/nifty.segmentation.html#nifty.segmentation.segmentOverlay" title="View documentation for nifty.segmentation.segmentOverlay"><span class="n">nifty</span><span class="o">.</span><span class="n">segmentation</span><span class="o">.</span><span class="n">segmentOverlay</span></a><span class="p">(</span><span class="n">raw</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">thin</span><span class="o">=</span><span class="bp">False</span><span class="p">))</span>
             <span class="n">pylab</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Result seg. </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">ds</span><span class="p">))</span>
             <span class="n">pylab</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
             <span class="n">pylab</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -487,7 +488,7 @@ with an ILP solver (if available).</p>
 <li><a class="first reference internal image-reference" href="../../_images/sphx_glr_plot_isbi_2012_multicut_2D_simple_006.png"><img alt="../../_images/sphx_glr_plot_isbi_2012_multicut_2D_simple_006.png" src="../../_images/sphx_glr_plot_isbi_2012_multicut_2D_simple_006.png" style="width: 869.5px; height: 493.5px;" /></a>
 </li>
 </ul>
-<p><strong>Total running time of the script:</strong> ( 1 minutes  37.011 seconds)</p>
+<p><strong>Total running time of the script:</strong> ( 1 minutes  44.179 seconds)</p>
 <div class="sphx-glr-footer docutils container">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" href="../../_downloads/plot_isbi_2012_multicut_2D_simple.py" download=""><code class="xref download docutils literal"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_isbi_2012_multicut_2D_simple.py</span></code></a></div>
@@ -513,13 +514,14 @@ with an ILP solver (if available).</p>
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="../../reference.html" title="Nifty API Reference"
+          <a href="../../sections/faq.html" title="FAQ (Frequently Asked Questions)"
              >next</a> |</li>
         <li class="right" >
-          <a href="../graph/plot_toy_multicut.html" title="Multicut Logging Visitor"
+          <a href="../misc/plot_ufd.html" title="Union-Find Data Structure"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">Nifty 0.15.0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" >Gallery of Examples</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">Nifty 0.19.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../examples.html" >Nifty Examples Gallery</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" >Gallery of Examples</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

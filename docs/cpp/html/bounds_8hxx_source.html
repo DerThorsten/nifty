@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Nifty
-   &#160;<span id="projectnumber">0.5.1</span>
+   &#160;<span id="projectnumber">0.19.0</span>
    </div>
   </td>
  </tr>
@@ -334,61 +334,55 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;            <span class="keyword">auto</span> even0 = tCoord[0] % 2 == 0 ;</div>
 <div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;            <span class="keyword">auto</span> even1 = tCoord[1] % 2 == 0 ;</div>
 <div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;            <span class="comment">//std::cout&lt;&lt;&quot;tCoord &quot;&lt;&lt;tCoord[0]&lt;&lt;&quot; &quot;&lt;&lt;tCoord[1]&lt;&lt;&quot;\n&quot;;</span></div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;            <span class="keywordflow">if</span>(!even0 &amp;&amp; !even1){</div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;                <span class="keyword">const</span> <span class="keyword">auto</span> cell0Label = tGrid(tCoord);</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;                <span class="keywordflow">if</span>(cell0Label){</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;            <span class="keywordflow">if</span>(!even0 &amp;&amp; !even1){</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;                <span class="keyword">const</span> <span class="keyword">auto</span> cell0Label = tGrid(tCoord);</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;                <span class="keywordflow">if</span>(cell0Label){</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;</div>
 <div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;</div>
 <div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;</div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;                    std::get&lt;0&gt;(bounds_)[cell0Label-1] = <a class="code" href="classnifty_1_1cgp_1_1CellBounds_3_012_00_010_01_4.html">CellBounds&lt;2,0&gt;</a>(</div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;                       tGrid(tCoord[0]-1, tCoord[1]),</div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;                       tGrid(tCoord[0]+1, tCoord[1]),</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;                       tGrid(tCoord[0]  , tCoord[1]+1),</div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;                       tGrid(tCoord[0]  , tCoord[1]-1)</div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;                    );</div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;                }</div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;            }</div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(!(even0 &amp;&amp; even1)){</div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;                <span class="keyword">const</span> <span class="keyword">auto</span> cell1Label = tGrid(tCoord);</div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;                <span class="keywordflow">if</span>(cell1Label){</div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;</div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;                    <span class="keyword">const</span> <span class="keyword">auto</span> tCoord_ = <a class="code" href="classnifty_1_1array_1_1ArrayExtender.html">CoordinateType</a>({tCoord[0],tCoord[1]});</div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;                    uint32_t cell2LabelA, cell2LabelB;</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;                    <span class="keywordflow">if</span>(!even0){</div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;                        cell2LabelA=tGrid( tCoord[0]-1, tCoord[1] );</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;                        cell2LabelB=tGrid( tCoord[0]+1, tCoord[1] );</div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;                    }</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;                    <span class="keywordflow">else</span>{</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;                        cell2LabelA=tGrid( tCoord[0], tCoord[1]-1);</div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;                        cell2LabelB=tGrid( tCoord[0], tCoord[1]+1);</div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;                    } </div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;                    <span class="comment">//std::cout&lt;&lt;&quot;cell1Label &quot;&lt;&lt;cell1Label&lt;&lt;&quot;\n&quot;;</span></div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;                    <span class="comment">//std::cout&lt;&lt;&quot;size &quot;&lt;&lt;std::get&lt;1&gt;(bounds_).size()&lt;&lt;&quot;\n&quot;;</span></div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;</div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;                    std::get&lt;1&gt;(bounds_)[cell1Label-1] = <a class="code" href="classnifty_1_1cgp_1_1CellBounds_3_012_00_011_01_4.html">CellBounds&lt;2,1&gt;</a>(cell2LabelA,cell2LabelB);</div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;                }</div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;            }</div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;        });</div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;    }</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;                    std::get&lt;0&gt;(bounds_)[cell0Label-1] = <a class="code" href="classnifty_1_1cgp_1_1CellBounds_3_012_00_010_01_4.html">CellBounds&lt;2,0&gt;</a>(</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;                       tGrid(tCoord[0]-1, tCoord[1]),</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;                       tGrid(tCoord[0]+1, tCoord[1]),</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;                       tGrid(tCoord[0]  , tCoord[1]+1),</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;                       tGrid(tCoord[0]  , tCoord[1]-1)</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;                    );</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;                }</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;            }</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(!(even0 &amp;&amp; even1)){</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;                <span class="keyword">const</span> <span class="keyword">auto</span> cell1Label = tGrid(tCoord);</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;                <span class="keywordflow">if</span>(cell1Label){</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;                    <span class="keyword">const</span> <span class="keyword">auto</span> tCoord_ = <a class="code" href="classnifty_1_1array_1_1ArrayExtender.html">CoordinateType</a>({tCoord[0],tCoord[1]});</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;                    uint32_t cell2LabelA, cell2LabelB;</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;                    <span class="keywordflow">if</span>(!even0){</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;                        cell2LabelA=tGrid( tCoord[0]-1, tCoord[1] );</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;                        cell2LabelB=tGrid( tCoord[0]+1, tCoord[1] );</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;                    }</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;                    <span class="keywordflow">else</span>{</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;                        cell2LabelA=tGrid( tCoord[0], tCoord[1]-1);</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;                        cell2LabelB=tGrid( tCoord[0], tCoord[1]+1);</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;                    } </div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;                    std::get&lt;1&gt;(bounds_)[cell1Label-1] = <a class="code" href="classnifty_1_1cgp_1_1CellBounds_3_012_00_011_01_4.html">CellBounds&lt;2,1&gt;</a>(cell2LabelA,cell2LabelB);</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;                }</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;            }</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;        });</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;        <span class="comment">// sort the bounded by relation of 2 cells</span></div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;        <span class="comment">// such that one can iterate over them in order??</span></div>
 <div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;</div>
 <div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;</div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;    }</div>
 <div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;</div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;</div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;} <span class="comment">// namespace nifty::cgp</span></div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;} <span class="comment">// namespace nifty</span></div>
 <div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;</div>
 <div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;</div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;</div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;</div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;} <span class="comment">// namespace nifty::cgp</span></div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;} <span class="comment">// namespace nifty</span></div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;</div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;</div>
 <div class="ttc" id="classnifty_1_1cgp_1_1CellBoundedBy_3_012_00_012_01_4_html_a1a0bbe867a4d5959bd2dba49c9f61b51"><div class="ttname"><a href="classnifty_1_1cgp_1_1CellBoundedBy_3_012_00_012_01_4.html#a1a0bbe867a4d5959bd2dba49c9f61b51">nifty::cgp::CellBoundedBy&lt; 2, 2 &gt;::CellBoundedBy</a></div><div class="ttdeci">CellBoundedBy()</div><div class="ttdef"><b>Definition:</b> bounds.hxx:109</div></div>
 <div class="ttc" id="classnifty_1_1cgp_1_1CellBounds_3_012_00_010_01_4_html_a7deca1e34b15a0a7c916065bcf418b5f"><div class="ttname"><a href="classnifty_1_1cgp_1_1CellBounds_3_012_00_010_01_4.html#a7deca1e34b15a0a7c916065bcf418b5f">nifty::cgp::CellBounds&lt; 2, 0 &gt;::operator[]</a></div><div class="ttdeci">const uint32_t &amp; operator[](const unsigned int i) const </div><div class="ttdef"><b>Definition:</b> bounds.hxx:49</div></div>
-<div class="ttc" id="namespacenifty_1_1container_html_ad9f6bbba60eac29f50d418e4c09d5c7b"><div class="ttname"><a href="namespacenifty_1_1container.html#ad9f6bbba60eac29f50d418e4c09d5c7b">nifty::container::BoostFlatSet</a></div><div class="ttdeci">__nifty_setimpl__&lt; T &gt; BoostFlatSet</div><div class="ttdef"><b>Definition:</b> boost_flat_set.hxx:19</div></div>
+<div class="ttc" id="namespacenifty_1_1container_html_ad9f6bbba60eac29f50d418e4c09d5c7b"><div class="ttname"><a href="namespacenifty_1_1container.html#ad9f6bbba60eac29f50d418e4c09d5c7b">nifty::container::BoostFlatSet</a></div><div class="ttdeci">__nifty_setimpl__&lt; T &gt; BoostFlatSet</div><div class="ttdef"><b>Definition:</b> boost_flat_set.hxx:17</div></div>
 <div class="ttc" id="classnifty_1_1cgp_1_1CellBoundedBy_html"><div class="ttname"><a href="classnifty_1_1cgp_1_1CellBoundedBy.html">nifty::cgp::CellBoundedBy</a></div><div class="ttdef"><b>Definition:</b> bounds.hxx:74</div></div>
 <div class="ttc" id="classnifty_1_1cgp_1_1CellBoundsVector_html"><div class="ttname"><a href="classnifty_1_1cgp_1_1CellBoundsVector.html">nifty::cgp::CellBoundsVector</a></div><div class="ttdef"><b>Definition:</b> bounds.hxx:124</div></div>
 <div class="ttc" id="classnifty_1_1cgp_1_1CellBounds_3_012_00_010_01_4_html_ad09d74d0a8967d45487dd590cced23fc"><div class="ttname"><a href="classnifty_1_1cgp_1_1CellBounds_3_012_00_010_01_4.html#ad09d74d0a8967d45487dd590cced23fc">nifty::cgp::CellBounds&lt; 2, 0 &gt;::size</a></div><div class="ttdeci">uint32_t size() const </div><div class="ttdef"><b>Definition:</b> bounds.hxx:46</div></div>
@@ -408,9 +402,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="classnifty_1_1cgp_1_1CellBounds_html"><div class="ttname"><a href="classnifty_1_1cgp_1_1CellBounds.html">nifty::cgp::CellBounds</a></div><div class="ttdef"><b>Definition:</b> bounds.hxx:22</div></div>
 <div class="ttc" id="classnifty_1_1cgp_1_1Bounds_3_012_01_4_html_a543c85c3c2a0bab5202423907ebcffa1"><div class="ttname"><a href="classnifty_1_1cgp_1_1Bounds_3_012_01_4.html#a543c85c3c2a0bab5202423907ebcffa1">nifty::cgp::Bounds&lt; 2 &gt;::bounds</a></div><div class="ttdeci">const CellBoundsVector&lt; 2, CELL_TYPE &gt; &amp; bounds() const </div><div class="ttdef"><b>Definition:</b> bounds.hxx:212</div></div>
 <div class="ttc" id="classnifty_1_1cgp_1_1CellBoundedBy_3_012_00_011_01_4_html_ad22d7f083d1f1ac4b379d19281b63986"><div class="ttname"><a href="classnifty_1_1cgp_1_1CellBoundedBy_3_012_00_011_01_4.html#ad22d7f083d1f1ac4b379d19281b63986">nifty::cgp::CellBoundedBy&lt; 2, 1 &gt;::CellBoundedBy</a></div><div class="ttdeci">CellBoundedBy()</div><div class="ttdef"><b>Definition:</b> bounds.hxx:82</div></div>
-<div class="ttc" id="classnifty_1_1array_1_1ArrayExtender_html"><div class="ttname"><a href="classnifty_1_1array_1_1ArrayExtender.html">nifty::array::ArrayExtender</a></div><div class="ttdef"><b>Definition:</b> arithmetic_array.hxx:15</div></div>
+<div class="ttc" id="classnifty_1_1array_1_1ArrayExtender_html"><div class="ttname"><a href="classnifty_1_1array_1_1ArrayExtender.html">nifty::array::ArrayExtender</a></div><div class="ttdef"><b>Definition:</b> arithmetic_array.hxx:13</div></div>
 <div class="ttc" id="classnifty_1_1cgp_1_1CellBounds_3_012_00_011_01_4_html_a6a562932e154f461651c3bfb111ddd11"><div class="ttname"><a href="classnifty_1_1cgp_1_1CellBounds_3_012_00_011_01_4.html#a6a562932e154f461651c3bfb111ddd11">nifty::cgp::CellBounds&lt; 2, 1 &gt;::CellBounds</a></div><div class="ttdeci">CellBounds(const uint32_t a=0, const uint32_t b=0)</div><div class="ttdef"><b>Definition:</b> bounds.hxx:59</div></div>
-<div class="ttc" id="namespacenifty_1_1tools_html_a81df2669bba7acc0ad9a253669a28ba4"><div class="ttname"><a href="namespacenifty_1_1tools.html#a81df2669bba7acc0ad9a253669a28ba4">nifty::tools::forEachCoordinate</a></div><div class="ttdeci">void forEachCoordinate(const array::StaticArray&lt; SHAPE_T, DIMENSIONS &gt; &amp;shape, F &amp;&amp;f, bool firstCoordinateMajorOrder=true)</div><div class="ttdef"><b>Definition:</b> for_each_coordinate.hxx:188</div></div>
+<div class="ttc" id="namespacenifty_1_1tools_html_a81df2669bba7acc0ad9a253669a28ba4"><div class="ttname"><a href="namespacenifty_1_1tools.html#a81df2669bba7acc0ad9a253669a28ba4">nifty::tools::forEachCoordinate</a></div><div class="ttdeci">void forEachCoordinate(const array::StaticArray&lt; SHAPE_T, DIMENSIONS &gt; &amp;shape, F &amp;&amp;f, bool firstCoordinateMajorOrder=true)</div><div class="ttdef"><b>Definition:</b> for_each_coordinate.hxx:186</div></div>
 <div class="ttc" id="classnifty_1_1cgp_1_1CellBounds_3_012_00_010_01_4_html_a974e66625691a8938bc5731f85b7b107"><div class="ttname"><a href="classnifty_1_1cgp_1_1CellBounds_3_012_00_010_01_4.html#a974e66625691a8938bc5731f85b7b107">nifty::cgp::CellBounds&lt; 2, 0 &gt;::CellBounds</a></div><div class="ttdeci">CellBounds(const uint32_t a=0, const uint32_t b=0, const uint32_t c=0, const uint32_t d=0)</div><div class="ttdef"><b>Definition:</b> bounds.hxx:27</div></div>
 <div class="ttc" id="classnifty_1_1cgp_1_1TopologicalGrid_3_012_01_4_html_a865eb87e808b65cc9aed40730b87f0f9"><div class="ttname"><a href="classnifty_1_1cgp_1_1TopologicalGrid_3_012_01_4.html#a865eb87e808b65cc9aed40730b87f0f9">nifty::cgp::TopologicalGrid&lt; 2 &gt;::topologicalGridShape</a></div><div class="ttdeci">const CoordinateType &amp; topologicalGridShape() const </div><div class="ttdef"><b>Definition:</b> topological_grid.hxx:65</div></div>
 <div class="ttc" id="classnifty_1_1cgp_1_1Bounds_3_012_01_4_html_a97f375ade92ba9870b7a31da87626337"><div class="ttname"><a href="classnifty_1_1cgp_1_1Bounds_3_012_01_4.html#a97f375ade92ba9870b7a31da87626337">nifty::cgp::Bounds&lt; 2 &gt;::TopologicalGridType</a></div><div class="ttdeci">TopologicalGrid&lt; 2 &gt; TopologicalGridType</div><div class="ttdef"><b>Definition:</b> bounds.hxx:206</div></div>
@@ -419,7 +413,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="arithmetic__array_8hxx_html"><div class="ttname"><a href="arithmetic__array_8hxx.html">arithmetic_array.hxx</a></div></div>
 <div class="ttc" id="classnifty_1_1cgp_1_1Bounds_3_012_01_4_html_aa2abaddff55015fc8a158881f4e90571"><div class="ttname"><a href="classnifty_1_1cgp_1_1Bounds_3_012_01_4.html#aa2abaddff55015fc8a158881f4e90571">nifty::cgp::Bounds&lt; 2 &gt;::SignedCoordinateType</a></div><div class="ttdeci">array::StaticArray&lt; int64_t, 2 &gt; SignedCoordinateType</div><div class="ttdef"><b>Definition:</b> bounds.hxx:204</div></div>
 <div class="ttc" id="boost__flat__set_8hxx_html"><div class="ttname"><a href="boost__flat__set_8hxx.html">boost_flat_set.hxx</a></div></div>
-<div class="ttc" id="namespacenifty_html"><div class="ttname"><a href="namespacenifty.html">nifty</a></div><div class="ttdef"><b>Definition:</b> arithmetic_array.hxx:10</div></div>
+<div class="ttc" id="namespacenifty_html"><div class="ttname"><a href="namespacenifty.html">nifty</a></div><div class="ttdef"><b>Definition:</b> arithmetic_array.hxx:8</div></div>
 <div class="ttc" id="classnifty_1_1cgp_1_1CellBoundsVector_html_ae9467b3782214101f6ca95a0219bbbb6"><div class="ttname"><a href="classnifty_1_1cgp_1_1CellBoundsVector.html#ae9467b3782214101f6ca95a0219bbbb6">nifty::cgp::CellBoundsVector::BaseType</a></div><div class="ttdeci">std::vector&lt; CellBounds&lt; DIM, CELL_TYPE &gt; &gt; BaseType</div><div class="ttdef"><b>Definition:</b> bounds.hxx:130</div></div>
 <div class="ttc" id="marray_8hxx_html"><div class="ttname"><a href="marray_8hxx.html">marray.hxx</a></div></div>
 <div class="ttc" id="classnifty_1_1cgp_1_1CellBoundedBy_3_012_00_012_01_4_html_ab6e16339e9e0729de75c447d19b04228"><div class="ttname"><a href="classnifty_1_1cgp_1_1CellBoundedBy_3_012_00_012_01_4.html#ab6e16339e9e0729de75c447d19b04228">nifty::cgp::CellBoundedBy&lt; 2, 2 &gt;::size</a></div><div class="ttdeci">uint32_t size() const </div><div class="ttdef"><b>Definition:</b> bounds.hxx:112</div></div>

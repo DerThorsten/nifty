@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Edge Contraction Graph &#8212; Nifty 0.15.0 documentation</title>
+    <title>Edge Contraction Graph &#8212; Nifty 0.19.0 documentation</title>
     
     <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -15,7 +15,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '0.15.0',
+        VERSION:     '0.19.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -47,8 +47,9 @@
         <li class="right" >
           <a href="plot_grid_graph_agglomerative_clustering.html" title="Agglomerative clustering on grid graph"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">Nifty 0.15.0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Gallery of Examples</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">Nifty 0.19.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../examples.html" >Nifty Examples Gallery</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" accesskey="U">Gallery of Examples</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -155,7 +156,7 @@ are merged</p>
 <span class="k">def</span> <span class="nf">generateGrid</span><span class="p">(</span><span class="n">gridSize</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">nid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">x</span><span class="o">*</span><span class="n">gridSize</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">y</span>
-    <span class="n">G</span> <span class="o">=</span> <a href="../../gen_modules/nifty.graph.html#nifty.graph.UndirectedGraph" title="View documentation for nifty.graph.UndirectedGraph"><span class="n">nifty</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">UndirectedGraph</span></a>
+    <span class="n">G</span> <span class="o">=</span> <a href="../../sections/gen_modules/nifty.graph.html#nifty.graph.UndirectedGraph" title="View documentation for nifty.graph.UndirectedGraph"><span class="n">nifty</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">UndirectedGraph</span></a>
     <span class="n">g</span> <span class="o">=</span>  <span class="n">G</span><span class="p">(</span><span class="n">gridSize</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">gridSize</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
     <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">gridSize</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
         <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">gridSize</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
@@ -174,7 +175,7 @@ are merged</p>
     <span class="k">return</span> <span class="n">g</span>
 
 
-<span class="k">class</span> <span class="nc">MyCallback</span><span class="p">(</span><a href="../../gen_modules/nifty.graph.html#nifty.graph.EdgeContractionGraphCallback" title="View documentation for nifty.graph.EdgeContractionGraphCallback"><span class="n">nifty</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">EdgeContractionGraphCallback</span></a><span class="p">):</span>
+<span class="k">class</span> <span class="nc">MyCallback</span><span class="p">(</span><a href="../../sections/gen_modules/nifty.graph.html#nifty.graph.EdgeContractionGraphCallback" title="View documentation for nifty.graph.EdgeContractionGraphCallback"><span class="n">nifty</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">EdgeContractionGraphCallback</span></a><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">MyCallback</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
 
@@ -198,14 +199,14 @@ are merged</p>
 <span class="n">callback</span> <span class="o">=</span> <span class="n">MyCallback</span><span class="p">()</span>
 
 <span class="c1"># the edge contraction graph</span>
-<span class="n">cg</span> <span class="o">=</span> <a href="../../gen_modules/nifty.graph.html#nifty.graph.edgeContractionGraph" title="View documentation for nifty.graph.edgeContractionGraph"><span class="n">nifty</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">edgeContractionGraph</span></a><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="n">callback</span><span class="p">)</span>
+<span class="n">cg</span> <span class="o">=</span> <a href="../../sections/gen_modules/nifty.graph.html#nifty.graph.edgeContractionGraph" title="View documentation for nifty.graph.edgeContractionGraph"><span class="n">nifty</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">edgeContractionGraph</span></a><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="n">callback</span><span class="p">)</span>
 
 
 
 <span class="c1"># plot the graph</span>
 <span class="n">pylab</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">pylab</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;graph&#39;</span><span class="p">)</span>
-<a href="../../gen_modules/nifty.graph.html#nifty.graph.drawGraph" title="View documentation for nifty.graph.drawGraph"><span class="n">nifty</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">drawGraph</span></a><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+<a href="../../sections/gen_modules/nifty.graph.html#nifty.graph.drawGraph" title="View documentation for nifty.graph.drawGraph"><span class="n">nifty</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">drawGraph</span></a><span class="p">(</span><span class="n">g</span><span class="p">)</span>
 <span class="n">pylab</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
 <span class="c1"># - here we just contract all edges of the original graph</span>
@@ -237,7 +238,7 @@ are merged</p>
         <span class="c1"># plot the graph</span>
         <span class="n">pylab</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
         <span class="n">pylab</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;after contracting </span><span class="si">%d</span><span class="s1"> -- </span><span class="si">%d</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">cu</span><span class="p">,</span> <span class="n">cv</span><span class="p">))</span>
-        <a href="../../gen_modules/nifty.graph.html#nifty.graph.drawGraph" title="View documentation for nifty.graph.drawGraph"><span class="n">nifty</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">drawGraph</span></a><span class="p">(</span><span class="n">cg</span><span class="p">)</span>
+        <a href="../../sections/gen_modules/nifty.graph.html#nifty.graph.drawGraph" title="View documentation for nifty.graph.drawGraph"><span class="n">nifty</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">drawGraph</span></a><span class="p">(</span><span class="n">cg</span><span class="p">)</span>
         <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="n">pylab</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
@@ -248,7 +249,7 @@ are merged</p>
         <span class="k">assert</span> <span class="n">tmp</span> <span class="o">==</span> <span class="n">cv</span>
 </pre></div>
 </div>
-<p><strong>Total running time of the script:</strong> ( 0 minutes  0.447 seconds)</p>
+<p><strong>Total running time of the script:</strong> ( 0 minutes  0.449 seconds)</p>
 <div class="sphx-glr-footer docutils container">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" href="../../_downloads/plot_edge_contraction_graph.py" download=""><code class="xref download docutils literal"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_edge_contraction_graph.py</span></code></a></div>
@@ -279,8 +280,9 @@ are merged</p>
         <li class="right" >
           <a href="plot_grid_graph_agglomerative_clustering.html" title="Agglomerative clustering on grid graph"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">Nifty 0.15.0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" >Gallery of Examples</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">Nifty 0.19.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../examples.html" >Nifty Examples Gallery</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" >Gallery of Examples</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

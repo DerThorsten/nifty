@@ -1,0 +1,193 @@
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin}{}\section{nifty\+:\+:graph\+:\+:optimization\+:\+:multicut\+:\+:Kernighan\+Lin$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$ Class Template Reference}
+\label{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin}\index{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$@{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}}
+
+
+{\ttfamily \#include $<$kernighan\+\_\+lin.\+hxx$>$}
+
+
+
+Inheritance diagram for nifty\+:\+:graph\+:\+:optimization\+:\+:multicut\+:\+:Kernighan\+Lin$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for nifty\+:\+:graph\+:\+:optimization\+:\+:multicut\+:\+:Kernighan\+Lin$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_1_1SettingsType}{Settings\+Type}
+\end{DoxyCompactItemize}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef O\+B\+J\+E\+C\+T\+I\+V\+E \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_abf00a316ed89c91b44806040d63757fd}{Objective}
+\item 
+typedef O\+B\+J\+E\+C\+T\+I\+V\+E \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_abef51ef3e7e72953f476ed3de3cf2d09}{Objective\+Type}
+\item 
+typedef Objective\+Type\+::\+Weight\+Type \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_af857f94087fd9ab85ceda670e1676ad6}{Weight\+Type}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutBase}{Multicut\+Base}$<$ \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_abef51ef3e7e72953f476ed3de3cf2d09}{Objective\+Type} $>$ \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_ab6d19e937f045f7b69767fc14a77b75a}{Base\+Type}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_a5a14d64c70a9cc0eebc7d71d2b089f9b}{Base\+Type\+::\+Visitor\+Base\+Type} \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_af81a8d0ada4683cfb667a2ed2b47a2c1}{Visitor\+Base\+Type}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_a58913ea9ab9232ff72608b710c1012d0}{Base\+Type\+::\+Visitor\+Proxy\+Type} \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_a633a30d53d3f5fa12742d9ba5a8d0326}{Visitor\+Proxy\+Type}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_a6e4e465f3b6e039882669fcfb9714818}{Base\+Type\+::\+Node\+Labels\+Type} \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_a40cce2b5f9facb3e70c3bc6c6616ba6e}{Node\+Labels\+Type}
+\item 
+typedef Objective\+Type\+::\+Graph \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_addadbdf5ec72ed5a560ddf3ddd00247d}{Graph}
+\item 
+typedef Objective\+Type\+::\+Graph\+Type \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_a73f825f093cf1738ca9c57f3fd2eb71d}{Graph\+Type}
+\item 
+typedef Objective\+Type\+::\+Weights\+Map \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_a5652d538fb3fd926ae5c514aadd48529}{Weights\+Map}
+\item 
+typedef Graph\+Type\+::template Edge\+Map$<$ uint8\+\_\+t $>$ \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_a1e754b856f021f4cc312c03d833fb90f}{Is\+Dirty\+Edge}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_a7454bf26658b182e5b35cc4d0bca6e1d}{$\sim$\+Kernighan\+Lin} ()
+\item 
+\hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_a00a1144833887f9873f437cee0cc46f3}{Kernighan\+Lin} (const \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_abf00a316ed89c91b44806040d63757fd}{Objective} \&\hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_a0e95867e88bf83f79801a488229051ca}{objective}, const \hyperlink{structnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_1_1SettingsType}{Settings\+Type} \&settings=\hyperlink{structnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_1_1SettingsType}{Settings\+Type}())
+\item 
+virtual void \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_ae80dbdb84f5691feb0ae18f27cf25263}{optimize} (\hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_a40cce2b5f9facb3e70c3bc6c6616ba6e}{Node\+Labels\+Type} \&node\+Labels, \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_af81a8d0ada4683cfb667a2ed2b47a2c1}{Visitor\+Base\+Type} $\ast$visitor)
+\item 
+virtual const \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_abf00a316ed89c91b44806040d63757fd}{Objective} \& \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_a0e95867e88bf83f79801a488229051ca}{objective} () const 
+\item 
+virtual const \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_a40cce2b5f9facb3e70c3bc6c6616ba6e}{Node\+Labels\+Type} \& \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_ac2970f65a52da1fbfd0ecdd905efa8c5}{current\+Best\+Node\+Labels} ()
+\item 
+virtual std\+::string \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_adc35484926c8a62679ce6b1a7f0c17d6}{name} () const 
+\item 
+virtual void \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_a4766290e8d3ef44b73a97357367624f4}{weights\+Changed} ()
+\begin{DoxyCompactList}\small\item\em Inform solver about a change of weights. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_ab6d19e937f045f7b69767fc14a77b75a}{}\index{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin@{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin}!Base\+Type@{Base\+Type}}
+\index{Base\+Type@{Base\+Type}!nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin@{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin}}
+\subsubsection[{Base\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ typedef {\bf Multicut\+Base}$<${\bf Objective\+Type}$>$ {\bf nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Base\+Type}}\label{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_ab6d19e937f045f7b69767fc14a77b75a}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_addadbdf5ec72ed5a560ddf3ddd00247d}{}\index{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin@{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin}!Graph@{Graph}}
+\index{Graph@{Graph}!nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin@{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin}}
+\subsubsection[{Graph}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ typedef Objective\+Type\+::\+Graph {\bf nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Graph}}\label{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_addadbdf5ec72ed5a560ddf3ddd00247d}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_a73f825f093cf1738ca9c57f3fd2eb71d}{}\index{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin@{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin}!Graph\+Type@{Graph\+Type}}
+\index{Graph\+Type@{Graph\+Type}!nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin@{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin}}
+\subsubsection[{Graph\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ typedef Objective\+Type\+::\+Graph\+Type {\bf nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Graph\+Type}}\label{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_a73f825f093cf1738ca9c57f3fd2eb71d}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_a1e754b856f021f4cc312c03d833fb90f}{}\index{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin@{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin}!Is\+Dirty\+Edge@{Is\+Dirty\+Edge}}
+\index{Is\+Dirty\+Edge@{Is\+Dirty\+Edge}!nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin@{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin}}
+\subsubsection[{Is\+Dirty\+Edge}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ typedef Graph\+Type\+:: template Edge\+Map$<$uint8\+\_\+t$>$ {\bf nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Is\+Dirty\+Edge}}\label{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_a1e754b856f021f4cc312c03d833fb90f}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_a40cce2b5f9facb3e70c3bc6c6616ba6e}{}\index{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin@{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin}!Node\+Labels\+Type@{Node\+Labels\+Type}}
+\index{Node\+Labels\+Type@{Node\+Labels\+Type}!nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin@{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin}}
+\subsubsection[{Node\+Labels\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ typedef {\bf Base\+Type\+::\+Node\+Labels\+Type} {\bf nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Node\+Labels\+Type}}\label{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_a40cce2b5f9facb3e70c3bc6c6616ba6e}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_abf00a316ed89c91b44806040d63757fd}{}\index{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin@{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin}!Objective@{Objective}}
+\index{Objective@{Objective}!nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin@{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin}}
+\subsubsection[{Objective}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ typedef O\+B\+J\+E\+C\+T\+I\+V\+E {\bf nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Objective}}\label{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_abf00a316ed89c91b44806040d63757fd}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_abef51ef3e7e72953f476ed3de3cf2d09}{}\index{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin@{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin}!Objective\+Type@{Objective\+Type}}
+\index{Objective\+Type@{Objective\+Type}!nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin@{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin}}
+\subsubsection[{Objective\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ typedef O\+B\+J\+E\+C\+T\+I\+V\+E {\bf nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Objective\+Type}}\label{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_abef51ef3e7e72953f476ed3de3cf2d09}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_af81a8d0ada4683cfb667a2ed2b47a2c1}{}\index{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin@{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin}!Visitor\+Base\+Type@{Visitor\+Base\+Type}}
+\index{Visitor\+Base\+Type@{Visitor\+Base\+Type}!nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin@{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin}}
+\subsubsection[{Visitor\+Base\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ typedef {\bf Base\+Type\+::\+Visitor\+Base\+Type} {\bf nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Visitor\+Base\+Type}}\label{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_af81a8d0ada4683cfb667a2ed2b47a2c1}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_a633a30d53d3f5fa12742d9ba5a8d0326}{}\index{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin@{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin}!Visitor\+Proxy\+Type@{Visitor\+Proxy\+Type}}
+\index{Visitor\+Proxy\+Type@{Visitor\+Proxy\+Type}!nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin@{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin}}
+\subsubsection[{Visitor\+Proxy\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ typedef {\bf Base\+Type\+::\+Visitor\+Proxy\+Type} {\bf nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Visitor\+Proxy\+Type}}\label{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_a633a30d53d3f5fa12742d9ba5a8d0326}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_a5652d538fb3fd926ae5c514aadd48529}{}\index{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin@{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin}!Weights\+Map@{Weights\+Map}}
+\index{Weights\+Map@{Weights\+Map}!nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin@{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin}}
+\subsubsection[{Weights\+Map}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ typedef Objective\+Type\+::\+Weights\+Map {\bf nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Weights\+Map}}\label{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_a5652d538fb3fd926ae5c514aadd48529}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_af857f94087fd9ab85ceda670e1676ad6}{}\index{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin@{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin}!Weight\+Type@{Weight\+Type}}
+\index{Weight\+Type@{Weight\+Type}!nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin@{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin}}
+\subsubsection[{Weight\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ typedef Objective\+Type\+::\+Weight\+Type {\bf nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Weight\+Type}}\label{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_af857f94087fd9ab85ceda670e1676ad6}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_a7454bf26658b182e5b35cc4d0bca6e1d}{}\index{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin@{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin}!````~Kernighan\+Lin@{$\sim$\+Kernighan\+Lin}}
+\index{````~Kernighan\+Lin@{$\sim$\+Kernighan\+Lin}!nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin@{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin}}
+\subsubsection[{$\sim$\+Kernighan\+Lin()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ virtual {\bf nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::$\sim${\bf Kernighan\+Lin} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_a7454bf26658b182e5b35cc4d0bca6e1d}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_a00a1144833887f9873f437cee0cc46f3}{}\index{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin@{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin}!Kernighan\+Lin@{Kernighan\+Lin}}
+\index{Kernighan\+Lin@{Kernighan\+Lin}!nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin@{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin}}
+\subsubsection[{Kernighan\+Lin(const Objective \&objective, const Settings\+Type \&settings=\+Settings\+Type())}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ {\bf nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Kernighan\+Lin} (
+\begin{DoxyParamCaption}
+\item[{const {\bf Objective} \&}]{objective, }
+\item[{const {\bf Settings\+Type} \&}]{settings = {\ttfamily {\bf Settings\+Type}()}}
+\end{DoxyParamCaption}
+)}\label{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_a00a1144833887f9873f437cee0cc46f3}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_ac2970f65a52da1fbfd0ecdd905efa8c5}{}\index{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin@{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin}!current\+Best\+Node\+Labels@{current\+Best\+Node\+Labels}}
+\index{current\+Best\+Node\+Labels@{current\+Best\+Node\+Labels}!nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin@{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin}}
+\subsubsection[{current\+Best\+Node\+Labels()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ virtual const {\bf Node\+Labels\+Type}\& {\bf nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::current\+Best\+Node\+Labels (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_ac2970f65a52da1fbfd0ecdd905efa8c5}
+
+
+Implements \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_a3634ba645adbb7a668500e807608bcca}{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base$<$ O\+B\+J\+E\+C\+T\+I\+V\+E, Multicut\+Base$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$ $>$}.
+
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_adc35484926c8a62679ce6b1a7f0c17d6}{}\index{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin@{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin}!name@{name}}
+\index{name@{name}!nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin@{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin}}
+\subsubsection[{name() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ virtual std\+::string {\bf nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::name (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_adc35484926c8a62679ce6b1a7f0c17d6}
+
+
+Implements \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_abc9685a3d63748ac470afccb2813be7e}{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base$<$ O\+B\+J\+E\+C\+T\+I\+V\+E, Multicut\+Base$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$ $>$}.
+
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_a0e95867e88bf83f79801a488229051ca}{}\index{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin@{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin}!objective@{objective}}
+\index{objective@{objective}!nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin@{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin}}
+\subsubsection[{objective() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ const {\bf Kernighan\+Lin}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Objective} \& {\bf nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::objective (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}\label{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_a0e95867e88bf83f79801a488229051ca}
+
+
+Implements \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_ae7d36a7485b12a25979f75771f52e397}{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base$<$ O\+B\+J\+E\+C\+T\+I\+V\+E, Multicut\+Base$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$ $>$}.
+
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_ae80dbdb84f5691feb0ae18f27cf25263}{}\index{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin@{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin}!optimize@{optimize}}
+\index{optimize@{optimize}!nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin@{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin}}
+\subsubsection[{optimize(\+Node\+Labels\+Type \&node\+Labels, Visitor\+Base\+Type $\ast$visitor)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ void {\bf nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::optimize (
+\begin{DoxyParamCaption}
+\item[{{\bf Node\+Labels\+Type} \&}]{node\+Labels, }
+\item[{{\bf Visitor\+Base\+Type} $\ast$}]{visitor}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_ae80dbdb84f5691feb0ae18f27cf25263}
+
+
+Implements \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_a1c08eb1ff2b3cca5366c3aab161ba040}{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base$<$ O\+B\+J\+E\+C\+T\+I\+V\+E, Multicut\+Base$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$ $>$}.
+
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_a4766290e8d3ef44b73a97357367624f4}{}\index{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin@{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin}!weights\+Changed@{weights\+Changed}}
+\index{weights\+Changed@{weights\+Changed}!nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin@{nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin}}
+\subsubsection[{weights\+Changed()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ virtual void {\bf nifty\+::graph\+::optimization\+::multicut\+::\+Kernighan\+Lin}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::weights\+Changed (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin_a4766290e8d3ef44b73a97357367624f4}
+
+
+Inform solver about a change of weights. 
+
+Inform solver that all weights could have changed. If a particular solver does not overload this function, an Weights\+Changed\+Not\+Supported exception is thrown. After a call of this function it is save to run optimize again, therefore it resets the solver 
+
+Reimplemented from \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_a8ab38d61068370e24cca475ef1b5d8b1}{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base$<$ O\+B\+J\+E\+C\+T\+I\+V\+E, Multicut\+Base$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$ $>$}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/\hyperlink{kernighan__lin_8hxx}{kernighan\+\_\+lin.\+hxx}\end{DoxyCompactItemize}

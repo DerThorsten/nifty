@@ -1,0 +1,163 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="classnifty_1_1ground__truth_1_1VariationOfInformation" kind="class" language="C++" prot="public">
+    <compoundname>nifty::ground_truth::VariationOfInformation</compoundname>
+    <includes refid="partition__comparison_8hxx" local="no">partition_comparison.hxx</includes>
+    <templateparamlist>
+      <param>
+        <type>class T</type>
+        <defval>double</defval>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1ground__truth_1_1VariationOfInformation_1ad0f4a205d57087c7641664b76410e40c" prot="public" static="no">
+        <type>T</type>
+        <definition>typedef T nifty::ground_truth::VariationOfInformation&lt; T &gt;::value_type</definition>
+        <argsstring></argsstring>
+        <name>value_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" line="154" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" bodystart="154" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classnifty_1_1ground__truth_1_1VariationOfInformation_1a9fd96b30c79b771410b189a13ffc0ed5" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1ground__truth_1_1VariationOfInformation_1ad0f4a205d57087c7641664b76410e40c" kindref="member">value_type</ref></type>
+        <definition>value_type nifty::ground_truth::VariationOfInformation&lt; T &gt;::value_</definition>
+        <argsstring></argsstring>
+        <name>value_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" line="246" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" bodystart="246" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1ground__truth_1_1VariationOfInformation_1a397bdcbf815026a818f6f75b39331a4e" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1ground__truth_1_1VariationOfInformation_1ad0f4a205d57087c7641664b76410e40c" kindref="member">value_type</ref></type>
+        <definition>value_type nifty::ground_truth::VariationOfInformation&lt; T &gt;::precision_</definition>
+        <argsstring></argsstring>
+        <name>precision_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" line="247" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" bodystart="247" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1ground__truth_1_1VariationOfInformation_1a5b550482c77638f2d1773c92b348dcfe" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1ground__truth_1_1VariationOfInformation_1ad0f4a205d57087c7641664b76410e40c" kindref="member">value_type</ref></type>
+        <definition>value_type nifty::ground_truth::VariationOfInformation&lt; T &gt;::recall_</definition>
+        <argsstring></argsstring>
+        <name>recall_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" line="248" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" bodystart="248" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1ground__truth_1_1VariationOfInformation_1a3b6f86e4d5d3d98fe0dacb5ec2a1c2df" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class ITERATOR_TRUTH</type>
+          </param>
+          <param>
+            <type>class ITERATOR_PRED</type>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>nifty::ground_truth::VariationOfInformation&lt; T &gt;::VariationOfInformation</definition>
+        <argsstring>(ITERATOR_TRUTH begin0, ITERATOR_TRUTH end0, ITERATOR_PRED begin1, bool ignoreDefaultLabel=false)</argsstring>
+        <name>VariationOfInformation</name>
+        <param>
+          <type>ITERATOR_TRUTH</type>
+          <declname>begin0</declname>
+        </param>
+        <param>
+          <type>ITERATOR_TRUTH</type>
+          <declname>end0</declname>
+        </param>
+        <param>
+          <type>ITERATOR_PRED</type>
+          <declname>begin1</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>ignoreDefaultLabel</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" line="157" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" bodystart="157" bodyend="228"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1ground__truth_1_1VariationOfInformation_1a1db34d44fab8a175aa7391125c58b523" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classnifty_1_1ground__truth_1_1VariationOfInformation_1ad0f4a205d57087c7641664b76410e40c" kindref="member">value_type</ref></type>
+        <definition>value_type nifty::ground_truth::VariationOfInformation&lt; T &gt;::value</definition>
+        <argsstring>() const </argsstring>
+        <name>value</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" line="230" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" bodystart="230" bodyend="233"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1ground__truth_1_1VariationOfInformation_1a82640ee618c754cd75b73ba190766108" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classnifty_1_1ground__truth_1_1VariationOfInformation_1ad0f4a205d57087c7641664b76410e40c" kindref="member">value_type</ref></type>
+        <definition>value_type nifty::ground_truth::VariationOfInformation&lt; T &gt;::valueFalseCut</definition>
+        <argsstring>() const </argsstring>
+        <name>valueFalseCut</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" line="235" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" bodystart="235" bodyend="238"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1ground__truth_1_1VariationOfInformation_1adf55a3b83b9906b4f1c4dbd1a081ecc9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classnifty_1_1ground__truth_1_1VariationOfInformation_1ad0f4a205d57087c7641664b76410e40c" kindref="member">value_type</ref></type>
+        <definition>value_type nifty::ground_truth::VariationOfInformation&lt; T &gt;::valueFalseJoin</definition>
+        <argsstring>() const </argsstring>
+        <name>valueFalseJoin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" line="240" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" bodystart="240" bodyend="243"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" line="152" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" bodystart="152" bodyend="249"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1ground__truth_1_1VariationOfInformation_1a397bdcbf815026a818f6f75b39331a4e" prot="private" virt="non-virtual"><scope>nifty::ground_truth::VariationOfInformation</scope><name>precision_</name></member>
+      <member refid="classnifty_1_1ground__truth_1_1VariationOfInformation_1a5b550482c77638f2d1773c92b348dcfe" prot="private" virt="non-virtual"><scope>nifty::ground_truth::VariationOfInformation</scope><name>recall_</name></member>
+      <member refid="classnifty_1_1ground__truth_1_1VariationOfInformation_1a1db34d44fab8a175aa7391125c58b523" prot="public" virt="non-virtual"><scope>nifty::ground_truth::VariationOfInformation</scope><name>value</name></member>
+      <member refid="classnifty_1_1ground__truth_1_1VariationOfInformation_1a9fd96b30c79b771410b189a13ffc0ed5" prot="private" virt="non-virtual"><scope>nifty::ground_truth::VariationOfInformation</scope><name>value_</name></member>
+      <member refid="classnifty_1_1ground__truth_1_1VariationOfInformation_1ad0f4a205d57087c7641664b76410e40c" prot="public" virt="non-virtual"><scope>nifty::ground_truth::VariationOfInformation</scope><name>value_type</name></member>
+      <member refid="classnifty_1_1ground__truth_1_1VariationOfInformation_1a82640ee618c754cd75b73ba190766108" prot="public" virt="non-virtual"><scope>nifty::ground_truth::VariationOfInformation</scope><name>valueFalseCut</name></member>
+      <member refid="classnifty_1_1ground__truth_1_1VariationOfInformation_1adf55a3b83b9906b4f1c4dbd1a081ecc9" prot="public" virt="non-virtual"><scope>nifty::ground_truth::VariationOfInformation</scope><name>valueFalseJoin</name></member>
+      <member refid="classnifty_1_1ground__truth_1_1VariationOfInformation_1a3b6f86e4d5d3d98fe0dacb5ec2a1c2df" prot="public" virt="non-virtual"><scope>nifty::ground_truth::VariationOfInformation</scope><name>VariationOfInformation</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

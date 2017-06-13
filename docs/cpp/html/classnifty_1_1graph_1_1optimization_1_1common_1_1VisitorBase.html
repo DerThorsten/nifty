@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Nifty
-   &#160;<span id="projectnumber">0.5.1</span>
+   &#160;<span id="projectnumber">0.19.0</span>
    </div>
   </td>
  </tr>
@@ -105,7 +105,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 Inheritance diagram for nifty::graph::optimization::common::VisitorBase&lt; SOLVER &gt;:</div>
 <div class="dyncontent">
 <div class="center"><img src="classnifty_1_1graph_1_1optimization_1_1common_1_1VisitorBase__inherit__graph.png" border="0" usemap="#nifty_1_1graph_1_1optimization_1_1common_1_1VisitorBase_3_01SOLVER_01_4_inherit__map" alt="Inheritance graph"/></div>
-<!-- MAP 0 -->
+<map name="nifty_1_1graph_1_1optimization_1_1common_1_1VisitorBase_3_01SOLVER_01_4_inherit__map" id="nifty_1_1graph_1_1optimization_1_1common_1_1VisitorBase_3_01SOLVER_01_4_inherit__map">
+<area shape="rect" id="node2" href="classnifty_1_1graph_1_1optimization_1_1common_1_1EmptyVisitor.html" title="nifty::graph::optimization\l::common::EmptyVisitor\&lt;\l SOLVER \&gt;" alt="" coords="308,5,479,61"/>
+<area shape="rect" id="node3" href="classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor.html" title="nifty::graph::optimization\l::common::LoggingVisitor\l\&lt; SOLVER \&gt;" alt="" coords="308,85,479,141"/>
+<area shape="rect" id="node4" href="classnifty_1_1graph_1_1optimization_1_1common_1_1VerboseVisitor.html" title="nifty::graph::optimization\l::common::VerboseVisitor\l\&lt; SOLVER \&gt;" alt="" coords="307,165,480,221"/>
+<area shape="rect" id="node5" href="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1PyLiftedMulticutVisitorBase.html" title="nifty::graph::optimization\l::lifted_multicut::PyLiftedMulticut\lVisitorBase\&lt; OBJECTIVE \&gt;" alt="" coords="287,245,500,301"/>
+<area shape="rect" id="node6" href="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutVisitorBase.html" title="nifty::graph::optimization\l::mincut::PyMincutVisitorBase\l\&lt; OBJECTIVE \&gt;" alt="" coords="294,325,493,381"/>
+<area shape="rect" id="node7" href="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutVisitorBase.html" title="nifty::graph::optimization\l::multicut::PyMulticutVisitorBase\l\&lt; OBJECTIVE \&gt;" alt="" coords="287,405,500,461"/>
+</map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
@@ -125,8 +132,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a0f7bfb9cc07cc4bc1c0b6d0ef1fd8e7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a73804c5f23d41036e8d83df9ff89f313"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnifty_1_1graph_1_1optimization_1_1common_1_1VisitorBase.html#a73804c5f23d41036e8d83df9ff89f313">addLogNames</a> (std::initializer_list&lt; std::string &gt; logNames)</td></tr>
 <tr class="separator:a73804c5f23d41036e8d83df9ff89f313"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2a086bb79dfe9b59ec6d1dd4f9a7e138"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnifty_1_1graph_1_1optimization_1_1common_1_1VisitorBase.html#a2a086bb79dfe9b59ec6d1dd4f9a7e138">setLogValue</a> (const size_t logIndex, double logValue)</td></tr>
-<tr class="separator:a2a086bb79dfe9b59ec6d1dd4f9a7e138"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9acdf4339af149937378e289a26c546f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnifty_1_1graph_1_1optimization_1_1common_1_1VisitorBase.html#a9acdf4339af149937378e289a26c546f">setLogValue</a> (const std::size_t logIndex, double logValue)</td></tr>
+<tr class="separator:a9acdf4339af149937378e289a26c546f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abc345e20d2aa73df274b6f8a001bc296"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnifty_1_1graph_1_1optimization_1_1common_1_1VisitorBase.html#abc345e20d2aa73df274b6f8a001bc296">printLog</a> (const <a class="el" href="namespacenifty_1_1logging.html#a3385625f9a0dbb17f70c47d3fca2f64d">nifty::logging::LogLevel</a> logLevel, const std::string &amp;logString)</td></tr>
 <tr class="separator:abc345e20d2aa73df274b6f8a001bc296"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -170,7 +177,7 @@ template&lt;class SOLVER &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Reimplemented in <a class="el" href="classnifty_1_1graph_1_1optimization_1_1common_1_1VerboseVisitor.html#a3044bf767bf95e72ac2d1b4bf80d1071">nifty::graph::optimization::common::VerboseVisitor&lt; SOLVER &gt;</a>, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor.html#a937aea0724cef965a33c13f80600e5d3">nifty::graph::optimization::common::LoggingVisitor&lt; SOLVER &gt;</a>, <a class="el" href="classnifty_1_1graph_1_1ChainedSolvers_1_1NoBeginEndVisitor.html#a283634aac1a554877312ab47f71fbc00">nifty::graph::ChainedSolvers&lt; OBJECTIVE &gt;::NoBeginEndVisitor</a>, <a class="el" href="classnifty_1_1graph_1_1lifted__multicut_1_1PyLiftedMulticutVisitorBase.html#a9259b55d9859a8c92adf2363195eb489">nifty::graph::lifted_multicut::PyLiftedMulticutVisitorBase&lt; OBJECTIVE &gt;</a>, <a class="el" href="classnifty_1_1graph_1_1PyMincutVisitorBase.html#ac55097eba5d5871a506d50ab892d1ea5">nifty::graph::PyMincutVisitorBase&lt; OBJECTIVE &gt;</a>, and <a class="el" href="classnifty_1_1graph_1_1PyMulticutVisitorBase.html#a29e7117920077215a6bdd97c6a8824a0">nifty::graph::PyMulticutVisitorBase&lt; OBJECTIVE &gt;</a>.</p>
+<p>Reimplemented in <a class="el" href="classnifty_1_1graph_1_1optimization_1_1common_1_1VerboseVisitor.html#a3044bf767bf95e72ac2d1b4bf80d1071">nifty::graph::optimization::common::VerboseVisitor&lt; SOLVER &gt;</a>, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor.html#a937aea0724cef965a33c13f80600e5d3">nifty::graph::optimization::common::LoggingVisitor&lt; SOLVER &gt;</a>, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1PyLiftedMulticutVisitorBase.html#a4eca50c278dd46b7065aeecbdb345613">nifty::graph::optimization::lifted_multicut::PyLiftedMulticutVisitorBase&lt; OBJECTIVE &gt;</a>, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutVisitorBase.html#afaca2ac7c2c4c2492435350a66df4c33">nifty::graph::optimization::multicut::PyMulticutVisitorBase&lt; OBJECTIVE &gt;</a>, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutVisitorBase.html#ac8911aa341b2e5d7920ff7a86de21f35">nifty::graph::optimization::mincut::PyMincutVisitorBase&lt; OBJECTIVE &gt;</a>, and <a class="el" href="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutVisitorBase.html#afaca2ac7c2c4c2492435350a66df4c33">nifty::graph::optimization::multicut::PyMulticutVisitorBase&lt; OBJECTIVE &gt;</a>.</p>
 
 </div>
 </div>
@@ -225,7 +232,7 @@ template&lt;class SOLVER &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Reimplemented in <a class="el" href="classnifty_1_1graph_1_1optimization_1_1common_1_1VerboseVisitor.html#aba50a70681868f56b5939fa9fd86c264">nifty::graph::optimization::common::VerboseVisitor&lt; SOLVER &gt;</a>, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor.html#ab0c92d5a637a2f4184bc8b3616b7c1d7">nifty::graph::optimization::common::LoggingVisitor&lt; SOLVER &gt;</a>, and <a class="el" href="classnifty_1_1graph_1_1ChainedSolvers_1_1NoBeginEndVisitor.html#a017575c11860cd9b61c3091bb416768c">nifty::graph::ChainedSolvers&lt; OBJECTIVE &gt;::NoBeginEndVisitor</a>.</p>
+<p>Reimplemented in <a class="el" href="classnifty_1_1graph_1_1optimization_1_1common_1_1VerboseVisitor.html#aba50a70681868f56b5939fa9fd86c264">nifty::graph::optimization::common::VerboseVisitor&lt; SOLVER &gt;</a>, and <a class="el" href="classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor.html#ab0c92d5a637a2f4184bc8b3616b7c1d7">nifty::graph::optimization::common::LoggingVisitor&lt; SOLVER &gt;</a>.</p>
 
 </div>
 </div>
@@ -253,7 +260,7 @@ template&lt;class SOLVER &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="classnifty_1_1graph_1_1optimization_1_1common_1_1EmptyVisitor.html#abb1ba16f53683fcc1a60c4bf94fbcfc2">nifty::graph::optimization::common::EmptyVisitor&lt; SOLVER &gt;</a>, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1common_1_1VerboseVisitor.html#ae1478e83980c915326ec605273fbb2d1">nifty::graph::optimization::common::VerboseVisitor&lt; SOLVER &gt;</a>, and <a class="el" href="classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor.html#ab5e361c429ce734f000be8396b2b08d8">nifty::graph::optimization::common::LoggingVisitor&lt; SOLVER &gt;</a>.</p>
+<p>Implemented in <a class="el" href="classnifty_1_1graph_1_1optimization_1_1common_1_1EmptyVisitor.html#abb1ba16f53683fcc1a60c4bf94fbcfc2">nifty::graph::optimization::common::EmptyVisitor&lt; SOLVER &gt;</a>, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1common_1_1VerboseVisitor.html#ae1478e83980c915326ec605273fbb2d1">nifty::graph::optimization::common::VerboseVisitor&lt; SOLVER &gt;</a>, and <a class="el" href="classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor.html#a2d4504dd47356f50e59a79e13e826e64">nifty::graph::optimization::common::LoggingVisitor&lt; SOLVER &gt;</a>.</p>
 
 </div>
 </div>
@@ -291,11 +298,11 @@ template&lt;class SOLVER &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Reimplemented in <a class="el" href="classnifty_1_1graph_1_1optimization_1_1common_1_1VerboseVisitor.html#a93095c23297c621c346768045896e541">nifty::graph::optimization::common::VerboseVisitor&lt; SOLVER &gt;</a>, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor.html#adb75d5a267ca5465a9d01a88fd160e74">nifty::graph::optimization::common::LoggingVisitor&lt; SOLVER &gt;</a>, and <a class="el" href="classnifty_1_1graph_1_1ChainedSolvers_1_1NoBeginEndVisitor.html#a3967b78d88b8b9769ef4e70357d05598">nifty::graph::ChainedSolvers&lt; OBJECTIVE &gt;::NoBeginEndVisitor</a>.</p>
+<p>Reimplemented in <a class="el" href="classnifty_1_1graph_1_1optimization_1_1common_1_1VerboseVisitor.html#a93095c23297c621c346768045896e541">nifty::graph::optimization::common::VerboseVisitor&lt; SOLVER &gt;</a>, and <a class="el" href="classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor.html#adb75d5a267ca5465a9d01a88fd160e74">nifty::graph::optimization::common::LoggingVisitor&lt; SOLVER &gt;</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a2a086bb79dfe9b59ec6d1dd4f9a7e138"></a>
+<a class="anchor" id="a9acdf4339af149937378e289a26c546f"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -307,7 +314,7 @@ template&lt;class SOLVER &gt; </div>
         <tr>
           <td class="memname">virtual void <a class="el" href="classnifty_1_1graph_1_1optimization_1_1common_1_1VisitorBase.html">nifty::graph::optimization::common::VisitorBase</a>&lt; SOLVER &gt;::setLogValue </td>
           <td>(</td>
-          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramtype">const std::size_t&#160;</td>
           <td class="paramname"><em>logIndex</em>, </td>
         </tr>
         <tr>
@@ -329,7 +336,7 @@ template&lt;class SOLVER &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Reimplemented in <a class="el" href="classnifty_1_1graph_1_1optimization_1_1common_1_1VerboseVisitor.html#a2ad4cd20c228dced737e7cc66047aeec">nifty::graph::optimization::common::VerboseVisitor&lt; SOLVER &gt;</a>, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor.html#aa4d1b29f58c61e836488869f2171bbe1">nifty::graph::optimization::common::LoggingVisitor&lt; SOLVER &gt;</a>, <a class="el" href="classnifty_1_1graph_1_1ChainedSolvers_1_1NoBeginEndVisitor.html#a464dd2c0fafcba73e7213d6de7bf1d75">nifty::graph::ChainedSolvers&lt; OBJECTIVE &gt;::NoBeginEndVisitor</a>, <a class="el" href="classnifty_1_1graph_1_1lifted__multicut_1_1PyLiftedMulticutVisitorBase.html#a81c0a1c16416714b693e53b6dafa3e3f">nifty::graph::lifted_multicut::PyLiftedMulticutVisitorBase&lt; OBJECTIVE &gt;</a>, <a class="el" href="classnifty_1_1graph_1_1PyMincutVisitorBase.html#aa3d0831f15b710dc3e9dfac71b2eef6f">nifty::graph::PyMincutVisitorBase&lt; OBJECTIVE &gt;</a>, and <a class="el" href="classnifty_1_1graph_1_1PyMulticutVisitorBase.html#ada6635b8dcb8a1b024a930807a6f25fa">nifty::graph::PyMulticutVisitorBase&lt; OBJECTIVE &gt;</a>.</p>
+<p>Reimplemented in <a class="el" href="classnifty_1_1graph_1_1optimization_1_1common_1_1VerboseVisitor.html#aa8ae685cd1451988fa5afb95402d0087">nifty::graph::optimization::common::VerboseVisitor&lt; SOLVER &gt;</a>, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor.html#aa690344d8a8a88da98a2f27d2f1a8f1f">nifty::graph::optimization::common::LoggingVisitor&lt; SOLVER &gt;</a>, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1PyLiftedMulticutVisitorBase.html#a48962511731dbaf8d36f5aab5a2b6dea">nifty::graph::optimization::lifted_multicut::PyLiftedMulticutVisitorBase&lt; OBJECTIVE &gt;</a>, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutVisitorBase.html#a4709749618f92f43c7efb4280e773075">nifty::graph::optimization::multicut::PyMulticutVisitorBase&lt; OBJECTIVE &gt;</a>, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutVisitorBase.html#a08ad6e45f4bf5f0129a5943f35eafe2d">nifty::graph::optimization::mincut::PyMincutVisitorBase&lt; OBJECTIVE &gt;</a>, and <a class="el" href="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutVisitorBase.html#a4709749618f92f43c7efb4280e773075">nifty::graph::optimization::multicut::PyMulticutVisitorBase&lt; OBJECTIVE &gt;</a>.</p>
 
 </div>
 </div>

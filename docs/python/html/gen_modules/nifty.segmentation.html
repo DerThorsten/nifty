@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>nifty.segmentation &#8212; Nifty 0.15.0 documentation</title>
+    <title>nifty.segmentation &#8212; Nifty 0.16.1 documentation</title>
     
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -15,7 +15,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '0.15.0',
+        VERSION:     '0.16.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -27,9 +27,7 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="nifty.ground_truth" href="nifty.ground_truth.html" />
-    <link rel="prev" title="nifty.graph.optimization.mincut" href="nifty.graph.optimization.mincut.html" /> 
+    <link rel="search" title="Search" href="../search.html" /> 
   </head>
   <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
@@ -41,14 +39,7 @@
         <li class="right" >
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="right" >
-          <a href="nifty.ground_truth.html" title="nifty.ground_truth"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="nifty.graph.optimization.mincut.html" title="nifty.graph.optimization.mincut"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Nifty 0.15.0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../reference.html" accesskey="U">Nifty API Reference</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">Nifty 0.16.1 documentation</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -57,21 +48,18 @@
   <ul>
 <li><a class="reference internal" href="#">nifty.segmentation</a><ul>
 <li><a class="reference internal" href="#functions">Functions</a><ul>
+<li><a class="reference internal" href="#examples-using-nifty-segmentation-distancetransformwatersheds">Examples using <code class="docutils literal"><span class="pre">nifty.segmentation.distanceTransformWatersheds</span></code></a></li>
+<li><a class="reference internal" href="#examples-using-nifty-segmentation-localmaximaseeds">Examples using <code class="docutils literal"><span class="pre">nifty.segmentation.localMaximaSeeds</span></code></a></li>
 <li><a class="reference internal" href="#examples-using-nifty-segmentation-markboundaries">Examples using <code class="docutils literal"><span class="pre">nifty.segmentation.markBoundaries</span></code></a></li>
 <li><a class="reference internal" href="#examples-using-nifty-segmentation-randomcolormap">Examples using <code class="docutils literal"><span class="pre">nifty.segmentation.randomColormap</span></code></a></li>
 <li><a class="reference internal" href="#examples-using-nifty-segmentation-seededwatersheds">Examples using <code class="docutils literal"><span class="pre">nifty.segmentation.seededWatersheds</span></code></a></li>
+<li><a class="reference internal" href="#examples-using-nifty-segmentation-segmentoverlay">Examples using <code class="docutils literal"><span class="pre">nifty.segmentation.segmentOverlay</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="nifty.graph.optimization.mincut.html"
-                        title="previous chapter">nifty.graph.optimization.mincut</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="nifty.ground_truth.html"
-                        title="next chapter">nifty.ground_truth</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
@@ -102,7 +90,7 @@
 a 4-neighborhood .
 This is a high level wrapper for</p>
 <blockquote>
-<div><a class="reference internal" href="nifty.graph.html#nifty.graph.connectedComponentsFromNodeLabels" title="nifty.graph.connectedComponentsFromNodeLabels"><code class="xref py py-func docutils literal"><span class="pre">nifty.graph.connectedComponentsFromNodeLabels()</span></code></a></div></blockquote>
+<div><a class="reference internal" href="../sections/gen_modules/nifty.graph.html#nifty.graph.connectedComponentsFromNodeLabels" title="nifty.graph.connectedComponentsFromNodeLabels"><code class="xref py py-func docutils literal"><span class="pre">nifty.graph.connectedComponentsFromNodeLabels()</span></code></a></div></blockquote>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -123,6 +111,42 @@ This is a high level wrapper for</p>
 </dd></dl>
 
 <div style='clear:both'></div><dl class="function">
+<dt id="nifty.segmentation.distanceTransformWatersheds">
+<code class="descclassname">nifty.segmentation.</code><code class="descname">distanceTransformWatersheds</code><span class="sig-paren">(</span><em>pmap</em>, <em>preBinarizationMedianRadius=1</em>, <em>threshold=0.5</em>, <em>preSeedSigma=0.75</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.segmentation.distanceTransformWatersheds" title="Permalink to this definition">¶</a></dt>
+<dd><p>Superpixels for neuro data as in <a class="reference external" href="http://brainiac2.mit.edu/isbi_challenge/">http://brainiac2.mit.edu/isbi_challenge/</a></p>
+<p>Use raw data and membrane probability maps to
+generate a over-segmentation suitable for neuro data</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>pmap</strong> (<em>numpy.ndarray</em>) &#8211; Membrane probability in [0,1].</li>
+<li><strong>preBinarizationMedianRadius</strong> (<em>int</em>) &#8211; Radius of
+diskMedian filter applied to the probability map
+before binarization. (default:{1})</li>
+<li><strong>threshold</strong> (<em>float</em>) &#8211; threshold to binarize
+probability map  before applying
+the distance transform (default: {0.5})</li>
+<li><strong>preSeedSigma</strong> (<em>float</em>) &#8211; smooth the distance
+transform image before getting the seeds.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><code class="xref py py-exc docutils literal"><span class="pre">RuntimeError</span></code> &#8211; if applied to data with wrong dimensionality</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<div class="section" id="examples-using-nifty-segmentation-distancetransformwatersheds">
+<h3>Examples using <code class="docutils literal"><span class="pre">nifty.segmentation.distanceTransformWatersheds</span></code><a class="headerlink" href="#examples-using-nifty-segmentation-distancetransformwatersheds" title="Permalink to this headline">¶</a></h3>
+<div class="sphx-glr-thumbcontainer" tooltip="Here we segment neuro data as in  :cite:`beier_17_multicut`. In fact, this is a simplified vers..."><div class="figure" id="id3">
+<img alt="../_images/sphx_glr_plot_isbi_2012_multicut_2D_simple_thumb.png" src="../_images/sphx_glr_plot_isbi_2012_multicut_2D_simple_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="../auto_examples/multicut/plot_isbi_2012_multicut_2D_simple.html#sphx-glr-auto-examples-multicut-plot-isbi-2012-multicut-2d-simple-py"><span class="std std-ref">ISBI 2012 Simple 2D Multicut Pipeline</span></a></span></p>
+</div>
+</div><div style='clear:both'></div><dl class="function">
 <dt id="nifty.segmentation.localMaxima">
 <code class="descclassname">nifty.segmentation.</code><code class="descname">localMaxima</code><span class="sig-paren">(</span><em>image</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.segmentation.localMaxima" title="Permalink to this definition">¶</a></dt>
 <dd><p>get the local maxima of an image</p>
@@ -144,6 +168,37 @@ as maximum pixel.</p>
 </dd></dl>
 
 <div style='clear:both'></div><dl class="function">
+<dt id="nifty.segmentation.localMaximaSeeds">
+<code class="descclassname">nifty.segmentation.</code><code class="descname">localMaximaSeeds</code><span class="sig-paren">(</span><em>image</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.segmentation.localMaximaSeeds" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get seed from local maxima</p>
+<p>Get seeds by running connected components
+on the local maxima.
+This is a high level wrapper around
+<a class="reference internal" href="../sections/gen_modules/nifty.segmentation.html#nifty.segmentation.localMinima" title="nifty.segmentation.localMinima"><code class="xref py py-func docutils literal"><span class="pre">nifty.segmentation.localMinima()</span></code></a>
+and <a class="reference internal" href="../sections/gen_modules/nifty.segmentation.html#nifty.segmentation.connectedComponents" title="nifty.segmentation.connectedComponents"><code class="xref py py-func docutils literal"><span class="pre">nifty.segmentation.connectedComponents()</span></code></a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>image</strong> &#8211; [description]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">[description]
+[type]</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal"><span class="pre">RuntimeError</span></code> &#8211; [description]</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="examples-using-nifty-segmentation-localmaximaseeds">
+<h3>Examples using <code class="docutils literal"><span class="pre">nifty.segmentation.localMaximaSeeds</span></code><a class="headerlink" href="#examples-using-nifty-segmentation-localmaximaseeds" title="Permalink to this headline">¶</a></h3>
+<div class="sphx-glr-thumbcontainer" tooltip="Here we segment neuro data as in  :cite:`beier_17_multicut`. In fact, this is a simplified vers..."><div class="figure" id="id4">
+<img alt="../_images/sphx_glr_plot_isbi_2012_multicut_2D_simple_thumb.png" src="../_images/sphx_glr_plot_isbi_2012_multicut_2D_simple_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="../auto_examples/multicut/plot_isbi_2012_multicut_2D_simple.html#sphx-glr-auto-examples-multicut-plot-isbi-2012-multicut-2d-simple-py"><span class="std std-ref">ISBI 2012 Simple 2D Multicut Pipeline</span></a></span></p>
+</div>
+</div><div style='clear:both'></div><dl class="function">
 <dt id="nifty.segmentation.localMinima">
 <code class="descclassname">nifty.segmentation.</code><code class="descname">localMinima</code><span class="sig-paren">(</span><em>image</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.segmentation.localMinima" title="Permalink to this definition">¶</a></dt>
 <dd><p>get the local minima of an image</p>
@@ -171,8 +226,8 @@ as minimum pixel.</p>
 <p>Get seeds by running connected components
 on the local minima.
 This is a high level wrapper around
-<a class="reference internal" href="#nifty.segmentation.localMinima" title="nifty.segmentation.localMinima"><code class="xref py py-func docutils literal"><span class="pre">nifty.segmentation.localMinima()</span></code></a>
-and <a class="reference internal" href="#nifty.segmentation.connectedComponents" title="nifty.segmentation.connectedComponents"><code class="xref py py-func docutils literal"><span class="pre">nifty.segmentation.connectedComponents()</span></code></a></p>
+<a class="reference internal" href="../sections/gen_modules/nifty.segmentation.html#nifty.segmentation.localMinima" title="nifty.segmentation.localMinima"><code class="xref py py-func docutils literal"><span class="pre">nifty.segmentation.localMinima()</span></code></a>
+and <a class="reference internal" href="../sections/gen_modules/nifty.segmentation.html#nifty.segmentation.connectedComponents" title="nifty.segmentation.connectedComponents"><code class="xref py py-func docutils literal"><span class="pre">nifty.segmentation.connectedComponents()</span></code></a></p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -227,9 +282,10 @@ image. This will make the output twice as large.</li>
 </table>
 </dd></dl>
 
+</div>
 <div class="section" id="examples-using-nifty-segmentation-markboundaries">
 <h3>Examples using <code class="docutils literal"><span class="pre">nifty.segmentation.markBoundaries</span></code><a class="headerlink" href="#examples-using-nifty-segmentation-markboundaries" title="Permalink to this headline">¶</a></h3>
-<div class="sphx-glr-thumbcontainer" tooltip="Compute features for 1-cells "><div class="figure" id="id3">
+<div class="sphx-glr-thumbcontainer" tooltip="Compute features for 1-cells "><div class="figure" id="id5">
 <img alt="../_images/sphx_glr_plot_cgp_features_thumb.png" src="../_images/sphx_glr_plot_cgp_features_thumb.png" />
 <p class="caption"><span class="caption-text"><a class="reference internal" href="../auto_examples/cgp/plot_cgp_features.html#sphx-glr-auto-examples-cgp-plot-cgp-features-py"><span class="std std-ref">Cell 1 Features</span></a></span></p>
 </div>
@@ -241,11 +297,11 @@ image. This will make the output twice as large.</li>
 </div>
 <div class="section" id="examples-using-nifty-segmentation-randomcolormap">
 <h3>Examples using <code class="docutils literal"><span class="pre">nifty.segmentation.randomColormap</span></code><a class="headerlink" href="#examples-using-nifty-segmentation-randomcolormap" title="Permalink to this headline">¶</a></h3>
-<div class="sphx-glr-thumbcontainer" tooltip="Compute features for 1-cells "><div class="figure" id="id4">
+<div class="sphx-glr-thumbcontainer" tooltip="Compute features for 1-cells "><div class="figure" id="id6">
 <img alt="../_images/sphx_glr_plot_cgp_features_thumb.png" src="../_images/sphx_glr_plot_cgp_features_thumb.png" />
 <p class="caption"><span class="caption-text"><a class="reference internal" href="../auto_examples/cgp/plot_cgp_features.html#sphx-glr-auto-examples-cgp-plot-cgp-features-py"><span class="std std-ref">Cell 1 Features</span></a></span></p>
 </div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Here we segment neuro data as in  :cite:`beier_17_multicut`. In fact, this is a simplified vers..."><div class="figure" id="id5">
+</div><div class="sphx-glr-thumbcontainer" tooltip="Here we segment neuro data as in  :cite:`beier_17_multicut`. In fact, this is a simplified vers..."><div class="figure" id="id7">
 <img alt="../_images/sphx_glr_plot_isbi_2012_multicut_2D_simple_thumb.png" src="../_images/sphx_glr_plot_isbi_2012_multicut_2D_simple_thumb.png" />
 <p class="caption"><span class="caption-text"><a class="reference internal" href="../auto_examples/multicut/plot_isbi_2012_multicut_2D_simple.html#sphx-glr-auto-examples-multicut-plot-isbi-2012-multicut-2d-simple-py"><span class="std std-ref">ISBI 2012 Simple 2D Multicut Pipeline</span></a></span></p>
 </div>
@@ -255,8 +311,8 @@ image. This will make the output twice as large.</li>
 <dd><p>Seeded watersheds segmentation</p>
 <p>Get a segmentation via seeded watersheds.
 This is a high level wrapper around
-<a class="reference internal" href="nifty.graph.html#nifty.graph.nodeWeightedWatershedsSegmentation" title="nifty.graph.nodeWeightedWatershedsSegmentation"><code class="xref py py-func docutils literal"><span class="pre">nifty.graph.nodeWeightedWatershedsSegmentation()</span></code></a>
-and <a class="reference internal" href="nifty.graph.html#nifty.graph.nodeWeightedWatershedsSegmentation" title="nifty.graph.nodeWeightedWatershedsSegmentation"><code class="xref py py-func docutils literal"><span class="pre">nifty.graph.nodeWeightedWatershedsSegmentation()</span></code></a>.</p>
+<a class="reference internal" href="../sections/gen_modules/nifty.graph.html#nifty.graph.nodeWeightedWatershedsSegmentation" title="nifty.graph.nodeWeightedWatershedsSegmentation"><code class="xref py py-func docutils literal"><span class="pre">nifty.graph.nodeWeightedWatershedsSegmentation()</span></code></a>
+and <a class="reference internal" href="../sections/gen_modules/nifty.graph.html#nifty.graph.nodeWeightedWatershedsSegmentation" title="nifty.graph.nodeWeightedWatershedsSegmentation"><code class="xref py py-func docutils literal"><span class="pre">nifty.graph.nodeWeightedWatershedsSegmentation()</span></code></a>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -306,15 +362,33 @@ To do this the image is resampled to have shape :math: <a href="#id1"><span clas
 </div>
 <div class="section" id="examples-using-nifty-segmentation-seededwatersheds">
 <h3>Examples using <code class="docutils literal"><span class="pre">nifty.segmentation.seededWatersheds</span></code><a class="headerlink" href="#examples-using-nifty-segmentation-seededwatersheds" title="Permalink to this headline">¶</a></h3>
-<div class="sphx-glr-thumbcontainer" tooltip="Compute features for 1-cells "><div class="figure" id="id6">
+<div class="sphx-glr-thumbcontainer" tooltip="Compute features for 1-cells "><div class="figure" id="id8">
 <img alt="../_images/sphx_glr_plot_cgp_features_thumb.png" src="../_images/sphx_glr_plot_cgp_features_thumb.png" />
 <p class="caption"><span class="caption-text"><a class="reference internal" href="../auto_examples/cgp/plot_cgp_features.html#sphx-glr-auto-examples-cgp-plot-cgp-features-py"><span class="std std-ref">Cell 1 Features</span></a></span></p>
 </div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Here we segment neuro data as in  :cite:`beier_17_multicut`. In fact, this is a simplified vers..."><div class="figure" id="id7">
+</div><div class="sphx-glr-thumbcontainer" tooltip="Here we segment neuro data as in  :cite:`beier_17_multicut`. In fact, this is a simplified vers..."><div class="figure" id="id9">
 <img alt="../_images/sphx_glr_plot_isbi_2012_multicut_2D_simple_thumb.png" src="../_images/sphx_glr_plot_isbi_2012_multicut_2D_simple_thumb.png" />
 <p class="caption"><span class="caption-text"><a class="reference internal" href="../auto_examples/multicut/plot_isbi_2012_multicut_2D_simple.html#sphx-glr-auto-examples-multicut-plot-isbi-2012-multicut-2d-simple-py"><span class="std std-ref">ISBI 2012 Simple 2D Multicut Pipeline</span></a></span></p>
 </div>
-</div><div style='clear:both'></div></div>
+</div><div style='clear:both'></div><dl class="function">
+<dt id="nifty.segmentation.segmentOverlay">
+<code class="descclassname">nifty.segmentation.</code><code class="descname">segmentOverlay</code><span class="sig-paren">(</span><em>image</em>, <em>segmentation</em>, <em>beta=0.5</em>, <em>zeroToZero=False</em>, <em>showBoundaries=True</em>, <em>color=None</em>, <em>thin=True</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.segmentation.segmentOverlay" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="examples-using-nifty-segmentation-segmentoverlay">
+<h3>Examples using <code class="docutils literal"><span class="pre">nifty.segmentation.segmentOverlay</span></code><a class="headerlink" href="#examples-using-nifty-segmentation-segmentoverlay" title="Permalink to this headline">¶</a></h3>
+<div class="sphx-glr-thumbcontainer" tooltip="Here we segment neuro data as in  :cite:`beier_17_multicut`. In fact, this is a simplified vers..."><div class="figure" id="id10">
+<img alt="../_images/sphx_glr_plot_isbi_2012_multicut_2D_simple_thumb.png" src="../_images/sphx_glr_plot_isbi_2012_multicut_2D_simple_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="../auto_examples/multicut/plot_isbi_2012_multicut_2D_simple.html#sphx-glr-auto-examples-multicut-plot-isbi-2012-multicut-2d-simple-py"><span class="std std-ref">ISBI 2012 Simple 2D Multicut Pipeline</span></a></span></p>
+</div>
+</div><div style='clear:both'></div><dl class="function">
+<dt id="nifty.segmentation.slic">
+<code class="descclassname">nifty.segmentation.</code><code class="descname">slic</code><span class="sig-paren">(</span><em>image</em>, <em>nSegments</em>, <em>components</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.segmentation.slic" title="Permalink to this definition">¶</a></dt>
+<dd><p>same as skimage.segmentation.slic</p>
+</dd></dl>
+
+<div style='clear:both'></div></div>
 </div>
 </div>
 
@@ -333,14 +407,7 @@ To do this the image is resampled to have shape :math: <a href="#id1"><span clas
         <li class="right" >
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="right" >
-          <a href="nifty.ground_truth.html" title="nifty.ground_truth"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="nifty.graph.optimization.mincut.html" title="nifty.graph.optimization.mincut"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Nifty 0.15.0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../reference.html" >Nifty API Reference</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">Nifty 0.16.1 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

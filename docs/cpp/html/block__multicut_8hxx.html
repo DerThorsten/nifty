@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Nifty
-   &#160;<span id="projectnumber">0.5.1</span>
+   &#160;<span id="projectnumber">0.19.0</span>
    </div>
   </td>
  </tr>
@@ -98,22 +98,36 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="runtime__check_8hxx_source.html">nifty/tools/runtime_check.hxx</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="multicut__base_8hxx_source.html">nifty/graph/optimization/multicut/multicut_base.hxx</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="multicut__factory_8hxx_source.html">nifty/graph/optimization/multicut/multicut_factory.hxx</a>&quot;</code><br />
+<code>#include &quot;nifty/graph/optimization/multicut/multicut_factory.hxx&quot;</code><br />
 <code>#include &quot;<a class="el" href="graph_2optimization_2multicut_2multicut__objective_8hxx_source.html">nifty/graph/optimization/multicut/multicut_objective.hxx</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for block_multicut.hxx:</div>
 <div class="dyncontent">
 <div class="center"><img src="block__multicut_8hxx__incl.png" border="0" usemap="#_2home_2tbeier_2src_2nifty_2include_2nifty_2graph_2optimization_2multicut_2block__multicut_8hxx" alt=""/></div>
-<!-- MAP 0 -->
+<map name="_2home_2tbeier_2src_2nifty_2include_2nifty_2graph_2optimization_2multicut_2block__multicut_8hxx" id="_2home_2tbeier_2src_2nifty_2include_2nifty_2graph_2optimization_2multicut_2block__multicut_8hxx">
+<area shape="rect" id="node2" href="runtime__check_8hxx.html" title="nifty/tools/runtime\l_check.hxx" alt="" coords="219,392,346,433"/>
+<area shape="rect" id="node9" href="multicut__base_8hxx.html" title="nifty/graph/optimization\l/multicut/multicut_base.hxx" alt="" coords="950,109,1133,151"/>
+<area shape="rect" id="node22" href="graph_2optimization_2multicut_2multicut__objective_8hxx.html" title="nifty/graph/optimization\l/multicut/multicut_objective.hxx" alt="" coords="402,109,609,151"/>
+<area shape="rect" id="node12" href="solver__base_8hxx.html" title="nifty/graph/optimization\l/common/solver_base.hxx" alt="" coords="954,206,1129,247"/>
+<area shape="rect" id="node20" href="multicut__visitor__base_8hxx.html" title="nifty/graph/optimization\l/multicut/multicut_visitor\l_base.hxx" alt="" coords="1286,199,1450,255"/>
+<area shape="rect" id="node13" href="exceptions_8hxx.html" title="nifty/exceptions/exceptions.hxx" alt="" coords="745,310,951,337"/>
+<area shape="rect" id="node14" href="visitor__base_8hxx.html" title="nifty/graph/optimization\l/common/visitor_base.hxx" alt="" coords="1281,303,1455,344"/>
+<area shape="rect" id="node18" href="timer_8hxx.html" title="nifty/tools/timer.hxx" alt="" coords="1454,399,1591,426"/>
+<area shape="rect" id="node19" href="logging_8hxx.html" title="nifty/tools/logging.hxx" alt="" coords="1667,399,1816,426"/>
+<area shape="rect" id="node23" href="subgraph__mask_8hxx.html" title="nifty/graph/subgraph\l_mask.hxx" alt="" coords="529,206,669,247"/>
+<area shape="rect" id="node24" href="graph__maps_8hxx.html" title="nifty/graph/graph_maps.hxx" alt="" coords="322,213,505,240"/>
+<area shape="rect" id="node25" href="marray_8hxx.html" title="nifty/marray/marray.hxx" alt="" coords="333,310,493,337"/>
+<area shape="rect" id="node26" href="andres_2marray_8hxx.html" title="nifty/marray/andres\l/marray.hxx" alt="" coords="558,392,693,433"/>
+</map>
 </div>
 </div>
 <p><a href="block__multicut_8hxx_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnifty_1_1graph_1_1BlockMulticut.html">nifty::graph::BlockMulticut&lt; OBJECTIVE &gt;</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnifty_1_1graph_1_1optimization_1_1multicut_1_1BlockMulticut.html">nifty::graph::optimization::multicut::BlockMulticut&lt; OBJECTIVE &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnifty_1_1graph_1_1BlockMulticut_1_1Settings.html">nifty::graph::BlockMulticut&lt; OBJECTIVE &gt;::Settings</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnifty_1_1graph_1_1optimization_1_1multicut_1_1BlockMulticut_1_1SettingsType.html">nifty::graph::optimization::multicut::BlockMulticut&lt; OBJECTIVE &gt;::SettingsType</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
@@ -121,6 +135,10 @@ Namespaces</h2></td></tr>
 <tr class="memitem:namespacenifty"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenifty.html">nifty</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespacenifty_1_1graph"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenifty_1_1graph.html">nifty::graph</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespacenifty_1_1graph_1_1optimization"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenifty_1_1graph_1_1optimization.html">nifty::graph::optimization</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespacenifty_1_1graph_1_1optimization_1_1multicut"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenifty_1_1graph_1_1optimization_1_1multicut.html">nifty::graph::optimization::multicut</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->

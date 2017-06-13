@@ -1,0 +1,1349 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="runtime__check_8hxx" kind="file" language="C++">
+    <compoundname>runtime_check.hxx</compoundname>
+    <includes local="no">cstdint</includes>
+    <includes local="no">stdexcept</includes>
+    <includes local="no">sstream</includes>
+    <includes local="no">vector</includes>
+    <includes local="no">limits</includes>
+    <includes local="no">cmath</includes>
+    <includedby refid="arithmetic__array_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/array/arithmetic_array.hxx</includedby>
+    <includedby refid="graph_2edge__contraction__graph_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx</includedby>
+    <includedby refid="cc__fusion__move__based__impl_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/common/cc_fusion_move_based_impl.hxx</includedby>
+    <includedby refid="cc__fusion__move__impl_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/common/cc_fusion_move_impl.hxx</includedby>
+    <includedby refid="lifted__twocut__kernighan__lin_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/detail/lifted_twocut_kernighan_lin.hxx</includedby>
+    <includedby refid="lifted__multicut_2fusion__move_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move.hxx</includedby>
+    <includedby refid="lifted__multicut_2fusion__move__based_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx</includedby>
+    <includedby refid="lifted__multicut__andres__greedy__additive_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_andres_greedy_additive.hxx</includedby>
+    <includedby refid="lifted__multicut__andres__kernighan__lin_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_andres_kernighan_lin.hxx</includedby>
+    <includedby refid="lifted__multicut__greedy__additive_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_greedy_additive.hxx</includedby>
+    <includedby refid="lifted__multicut__ilp_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_ilp.hxx</includedby>
+    <includedby refid="lifted__multicut__kernighan__lin_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_kernighan_lin.hxx</includedby>
+    <includedby refid="graph_2optimization_2lifted__multicut_2lifted__multicut__objective_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_objective.hxx</includedby>
+    <includedby refid="mincut__cc__fusion__move_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_cc_fusion_move.hxx</includedby>
+    <includedby refid="mincut__cc__fusion__move__based_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_cc_fusion_move_based.hxx</includedby>
+    <includedby refid="mincut__greedy__additive_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_greedy_additive.hxx</includedby>
+    <includedby refid="graph_2optimization_2mincut_2mincut__objective_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_objective.hxx</includedby>
+    <includedby refid="mincut__qpbo_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_qpbo.hxx</includedby>
+    <includedby refid="block__multicut_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/block_multicut.hxx</includedby>
+    <includedby refid="cc__fusion__move__based_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/cc_fusion_move_based.hxx</includedby>
+    <includedby refid="cgc_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/cgc.hxx</includedby>
+    <includedby refid="chained__solvers_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/chained_solvers.hxx</includedby>
+    <includedby refid="multicut_2fusion__move_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/fusion_move.hxx</includedby>
+    <includedby refid="multicut_2fusion__move__based_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/fusion_move_based.hxx</includedby>
+    <includedby refid="kernighan__lin_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/kernighan_lin.hxx</includedby>
+    <includedby refid="multicut__decomposer_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_decomposer.hxx</includedby>
+    <includedby refid="multicut__greedy__additive_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_greedy_additive.hxx</includedby>
+    <includedby refid="multicut__ilp_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_ilp.hxx</includedby>
+    <includedby refid="multicut__mp_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_mp.hxx</includedby>
+    <includedby refid="graph_2optimization_2multicut_2multicut__objective_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_objective.hxx</includedby>
+    <includedby refid="greedy__additive__proposals_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/proposal_generators/greedy_additive_proposals.hxx</includedby>
+    <includedby refid="watershed__proposals_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/proposal_generators/watershed_proposals.hxx</includedby>
+    <includedby refid="grid__rag__labels_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels.hxx</includedby>
+    <includedby refid="grid__rag__labels__hdf5_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels_hdf5.hxx</includedby>
+    <includedby refid="simple__directed__graph_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx</includedby>
+    <includedby refid="graph_2undirected__grid__graph_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/undirected_grid_graph.hxx</includedby>
+    <includedby refid="graph_2undirected__list__graph_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx</includedby>
+    <includedby refid="hdf5_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/hdf5/hdf5.hxx</includedby>
+    <includedby refid="hdf5__array_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/hdf5/hdf5_array.hxx</includedby>
+    <includedby refid="marray_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/marray/marray.hxx</includedby>
+    <includedby refid="threadpool_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx</includedby>
+    <incdepgraph>
+      <node id="12541">
+        <label>limits</label>
+      </node>
+      <node id="12537">
+        <label>cstdint</label>
+      </node>
+      <node id="12542">
+        <label>cmath</label>
+      </node>
+      <node id="12538">
+        <label>stdexcept</label>
+      </node>
+      <node id="12540">
+        <label>vector</label>
+      </node>
+      <node id="12539">
+        <label>sstream</label>
+      </node>
+      <node id="12536">
+        <label>/home/tbeier/src/nifty/include/nifty/tools/runtime_check.hxx</label>
+        <link refid="runtime_check.hxx"/>
+        <childnode refid="12537" relation="include">
+        </childnode>
+        <childnode refid="12538" relation="include">
+        </childnode>
+        <childnode refid="12539" relation="include">
+        </childnode>
+        <childnode refid="12540" relation="include">
+        </childnode>
+        <childnode refid="12541" relation="include">
+        </childnode>
+        <childnode refid="12542" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="12590">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/node_and_edge_weighted_cluster_policy.hxx</label>
+        <link refid="node__and__edge__weighted__cluster__policy_8hxx"/>
+      </node>
+      <node id="12628">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/optimization/multicut/multicut_objective.hxx</label>
+        <link refid="python_2graph_2optimization_2multicut_2multicut__objective_8hxx"/>
+        <childnode refid="12629" relation="include">
+        </childnode>
+      </node>
+      <node id="12563">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_hdf5.hxx</label>
+        <link refid="grid__rag__hdf5_8hxx"/>
+      </node>
+      <node id="12625">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_mp.hxx</label>
+        <link refid="multicut__mp_8hxx"/>
+      </node>
+      <node id="12627">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/perturb_and_map.hxx</label>
+        <link refid="perturb__and__map_8hxx"/>
+      </node>
+      <node id="12593">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/cc_fusion_move_based.hxx</label>
+        <link refid="cc__fusion__move__based_8hxx"/>
+      </node>
+      <node id="12547">
+        <label>/home/tbeier/src/nifty/include/nifty/cgp/features/geometric_features.hxx</label>
+        <link refid="geometric__features_8hxx"/>
+      </node>
+      <node id="12564">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_stacked_2d.hxx</label>
+        <link refid="grid__rag__stacked__2d_8hxx"/>
+        <childnode refid="12565" relation="include">
+        </childnode>
+      </node>
+      <node id="12594">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/detail/lifted_twocut_kernighan_lin.hxx</label>
+        <link refid="lifted__twocut__kernighan__lin_8hxx"/>
+        <childnode refid="12595" relation="include">
+        </childnode>
+      </node>
+      <node id="12619">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_qpbo.hxx</label>
+        <link refid="mincut__qpbo_8hxx"/>
+      </node>
+      <node id="12602">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_greedy_additive.hxx</label>
+        <link refid="mincut__greedy__additive_8hxx"/>
+      </node>
+      <node id="12551">
+        <label>/home/tbeier/src/nifty/include/nifty/cgp/features.hxx</label>
+        <link refid="features_8hxx"/>
+      </node>
+      <node id="12614">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/optimization/lifted_multicut/export_lifted_multicut_solver.hxx</label>
+        <link refid="export__lifted__multicut__solver_8hxx"/>
+      </node>
+      <node id="12630">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/proposal_generators/watershed_proposals.hxx</label>
+        <link refid="watershed__proposals_8hxx"/>
+      </node>
+      <node id="12604">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_greedy_additive.hxx</label>
+        <link refid="multicut__greedy__additive_8hxx"/>
+        <childnode refid="12605" relation="include">
+        </childnode>
+        <childnode refid="12606" relation="include">
+        </childnode>
+        <childnode refid="12608" relation="include">
+        </childnode>
+      </node>
+      <node id="12584">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx</label>
+        <link refid="graph_2edge__contraction__graph_8hxx"/>
+        <childnode refid="12585" relation="include">
+        </childnode>
+        <childnode refid="12586" relation="include">
+        </childnode>
+        <childnode refid="12588" relation="include">
+        </childnode>
+        <childnode refid="12589" relation="include">
+        </childnode>
+        <childnode refid="12590" relation="include">
+        </childnode>
+        <childnode refid="12591" relation="include">
+        </childnode>
+        <childnode refid="12594" relation="include">
+        </childnode>
+        <childnode refid="12597" relation="include">
+        </childnode>
+        <childnode refid="12598" relation="include">
+        </childnode>
+        <childnode refid="12599" relation="include">
+        </childnode>
+        <childnode refid="12600" relation="include">
+        </childnode>
+        <childnode refid="12595" relation="include">
+        </childnode>
+        <childnode refid="12602" relation="include">
+        </childnode>
+        <childnode refid="12603" relation="include">
+        </childnode>
+        <childnode refid="12604" relation="include">
+        </childnode>
+        <childnode refid="12609" relation="include">
+        </childnode>
+      </node>
+      <node id="12622">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/kernighan_lin.hxx</label>
+        <link refid="kernighan__lin_8hxx"/>
+      </node>
+      <node id="12585">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/edge_weighted_cluster_policy.hxx</label>
+        <link refid="edge__weighted__cluster__policy_8hxx"/>
+      </node>
+      <node id="12601">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move.hxx</label>
+        <link refid="lifted__multicut_2fusion__move_8hxx"/>
+        <childnode refid="12597" relation="include">
+        </childnode>
+      </node>
+      <node id="12599">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_andres_kernighan_lin.hxx</label>
+        <link refid="lifted__multicut__andres__kernighan__lin_8hxx"/>
+      </node>
+      <node id="12581">
+        <label>/home/tbeier/src/nifty/include/nifty/tools/for_each_coordinate.hxx</label>
+        <link refid="for__each__coordinate_8hxx"/>
+        <childnode refid="12553" relation="include">
+        </childnode>
+        <childnode refid="12555" relation="include">
+        </childnode>
+        <childnode refid="12557" relation="include">
+        </childnode>
+        <childnode refid="12558" relation="include">
+        </childnode>
+        <childnode refid="12559" relation="include">
+        </childnode>
+        <childnode refid="12566" relation="include">
+        </childnode>
+        <childnode refid="12562" relation="include">
+        </childnode>
+        <childnode refid="12568" relation="include">
+        </childnode>
+        <childnode refid="12571" relation="include">
+        </childnode>
+        <childnode refid="12582" relation="include">
+        </childnode>
+        <childnode refid="12583" relation="include">
+        </childnode>
+        <childnode refid="12580" relation="include">
+        </childnode>
+      </node>
+      <node id="12603">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/cgc.hxx</label>
+        <link refid="cgc_8hxx"/>
+      </node>
+      <node id="12591">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/common/cc_fusion_move_based_impl.hxx</label>
+        <link refid="cc__fusion__move__based__impl_8hxx"/>
+        <childnode refid="12592" relation="include">
+        </childnode>
+        <childnode refid="12593" relation="include">
+        </childnode>
+      </node>
+      <node id="12636">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/directed_graph_base.hxx</label>
+        <link refid="directed__graph__base_8hxx"/>
+        <childnode refid="12637" relation="include">
+        </childnode>
+        <childnode refid="12631" relation="include">
+        </childnode>
+      </node>
+      <node id="12606">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/fusion_move.hxx</label>
+        <link refid="multicut_2fusion__move_8hxx"/>
+        <childnode refid="12593" relation="include">
+        </childnode>
+        <childnode refid="12607" relation="include">
+        </childnode>
+      </node>
+      <node id="12571">
+        <label>/home/tbeier/src/nifty/include/nifty/ground_truth/overlap.hxx</label>
+        <link refid="overlap_8hxx"/>
+      </node>
+      <node id="12567">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels.hxx</label>
+        <link refid="grid__rag__labels_8hxx"/>
+        <childnode refid="12559" relation="include">
+        </childnode>
+        <childnode refid="12560" relation="include">
+        </childnode>
+      </node>
+      <node id="12553">
+        <label>/home/tbeier/src/nifty/include/nifty/cgp/filled_topological_grid.hxx</label>
+        <link refid="filled__topological__grid_8hxx"/>
+      </node>
+      <node id="12578">
+        <label>/home/tbeier/src/nifty/include/nifty/hdf5/hdf5_array.hxx</label>
+        <link refid="hdf5__array_8hxx"/>
+        <childnode refid="12576" relation="include">
+        </childnode>
+      </node>
+      <node id="12610">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/common/cc_fusion_move_impl.hxx</label>
+        <link refid="cc__fusion__move__impl_8hxx"/>
+      </node>
+      <node id="12638">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/undirected_graph_base.hxx</label>
+        <link refid="undirected__graph__base_8hxx"/>
+        <childnode refid="12584" relation="include">
+        </childnode>
+        <childnode refid="12569" relation="include">
+        </childnode>
+        <childnode refid="12632" relation="include">
+        </childnode>
+      </node>
+      <node id="12607">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/fusion_move_based.hxx</label>
+        <link refid="multicut_2fusion__move__based_8hxx"/>
+      </node>
+      <node id="12618">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/optimization/mincut/export_mincut_solver.hxx</label>
+        <link refid="export__mincut__solver_8hxx"/>
+      </node>
+      <node id="12582">
+        <label>/home/tbeier/src/nifty/include/nifty/ground_truth/seg_to_edges.hxx</label>
+        <link refid="seg__to__edges_8hxx"/>
+      </node>
+      <node id="12596">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_mp.hxx</label>
+        <link refid="lifted__multicut__mp_8hxx"/>
+      </node>
+      <node id="12548">
+        <label>/home/tbeier/src/nifty/include/nifty/cgp/features/topological_features.hxx</label>
+        <link refid="topological__features_8hxx"/>
+      </node>
+      <node id="12626">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_objective.hxx</label>
+        <link refid="graph_2optimization_2multicut_2multicut__objective_8hxx"/>
+        <childnode refid="12612" relation="include">
+        </childnode>
+        <childnode refid="12620" relation="include">
+        </childnode>
+        <childnode refid="12603" relation="include">
+        </childnode>
+        <childnode refid="12621" relation="include">
+        </childnode>
+        <childnode refid="12606" relation="include">
+        </childnode>
+        <childnode refid="12622" relation="include">
+        </childnode>
+        <childnode refid="12623" relation="include">
+        </childnode>
+        <childnode refid="12627" relation="include">
+        </childnode>
+        <childnode refid="12628" relation="include">
+        </childnode>
+      </node>
+      <node id="12565">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_stacked_2d_hdf5.hxx</label>
+        <link refid="grid__rag__stacked__2d__hdf5_8hxx"/>
+      </node>
+      <node id="12545">
+        <label>/home/tbeier/src/nifty/include/nifty/array/static_array.hxx</label>
+        <link refid="static__array_8hxx"/>
+        <childnode refid="12546" relation="include">
+        </childnode>
+      </node>
+      <node id="12592">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_cc_fusion_move_based.hxx</label>
+        <link refid="mincut__cc__fusion__move__based_8hxx"/>
+      </node>
+      <node id="12600">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_greedy_additive.hxx</label>
+        <link refid="lifted__multicut__greedy__additive_8hxx"/>
+        <childnode refid="12601" relation="include">
+        </childnode>
+        <childnode refid="12596" relation="include">
+        </childnode>
+      </node>
+      <node id="12558">
+        <label>/home/tbeier/src/nifty/include/nifty/filters/gaussian_curvature.hxx</label>
+        <link refid="gaussian__curvature_8hxx"/>
+        <childnode refid="12547" relation="include">
+        </childnode>
+        <childnode refid="12548" relation="include">
+        </childnode>
+      </node>
+      <node id="12608">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/proposal_generators/greedy_additive_proposals.hxx</label>
+        <link refid="greedy__additive__proposals_8hxx"/>
+      </node>
+      <node id="12575">
+        <label>/home/tbeier/src/nifty/include/nifty/tools/block_access.hxx</label>
+        <link refid="block__access_8hxx"/>
+        <childnode refid="12567" relation="include">
+        </childnode>
+        <childnode refid="12576" relation="include">
+        </childnode>
+        <childnode refid="12577" relation="include">
+        </childnode>
+        <childnode refid="12578" relation="include">
+        </childnode>
+        <childnode refid="12572" relation="include">
+        </childnode>
+      </node>
+      <node id="12562">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_features.hxx</label>
+        <link refid="grid__rag__features_8hxx"/>
+      </node>
+      <node id="12624">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_ilp.hxx</label>
+        <link refid="multicut__ilp_8hxx"/>
+      </node>
+      <node id="12633">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/undirected_list_graph.hxx</label>
+        <link refid="python_2graph_2undirected__list__graph_8hxx"/>
+        <childnode refid="12573" relation="include">
+        </childnode>
+        <childnode refid="12574" relation="include">
+        </childnode>
+      </node>
+      <node id="12588">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/mala_cluster_policy.hxx</label>
+        <link refid="mala__cluster__policy_8hxx"/>
+      </node>
+      <node id="12623">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_decomposer.hxx</label>
+        <link refid="multicut__decomposer_8hxx"/>
+      </node>
+      <node id="12573">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/agglo/export_agglomerative_clustering.hxx</label>
+        <link refid="export__agglomerative__clustering_8hxx"/>
+      </node>
+      <node id="12609">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/edge_contraction_graph.hxx</label>
+        <link refid="python_2graph_2edge__contraction__graph_8hxx"/>
+        <childnode refid="12574" relation="include">
+        </childnode>
+      </node>
+      <node id="12576">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels_hdf5.hxx</label>
+        <link refid="grid__rag__labels__hdf5_8hxx"/>
+        <childnode refid="12566" relation="include">
+        </childnode>
+        <childnode refid="12563" relation="include">
+        </childnode>
+        <childnode refid="12565" relation="include">
+        </childnode>
+      </node>
+      <node id="12559">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/rag/detail_rag/compute_grid_rag.hxx</label>
+        <link refid="compute__grid__rag_8hxx"/>
+        <childnode refid="12560" relation="include">
+        </childnode>
+      </node>
+      <node id="12621">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/chained_solvers.hxx</label>
+        <link refid="chained__solvers_8hxx"/>
+      </node>
+      <node id="12583">
+        <label>/home/tbeier/src/nifty/include/nifty/ground_truth/seg_to_lifted_edges.hxx</label>
+        <link refid="seg__to__lifted__edges_8hxx"/>
+      </node>
+      <node id="12637">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/directed_graph_view.hxx</label>
+        <link refid="directed__graph__view_8hxx"/>
+      </node>
+      <node id="12568">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/rag/project_to_pixels.hxx</label>
+        <link refid="project__to__pixels_8hxx"/>
+      </node>
+      <node id="12561">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_accumulate.hxx</label>
+        <link refid="grid__rag__accumulate_8hxx"/>
+      </node>
+      <node id="12570">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/undirected_grid_graph.hxx</label>
+        <link refid="python_2graph_2undirected__grid__graph_8hxx"/>
+      </node>
+      <node id="12620">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/block_multicut.hxx</label>
+        <link refid="block__multicut_8hxx"/>
+      </node>
+      <node id="12550">
+        <label>/home/tbeier/src/nifty/include/nifty/cgp/bounds.hxx</label>
+        <link refid="bounds_8hxx"/>
+        <childnode refid="12547" relation="include">
+        </childnode>
+        <childnode refid="12548" relation="include">
+        </childnode>
+        <childnode refid="12551" relation="include">
+        </childnode>
+      </node>
+      <node id="12552">
+        <label>/home/tbeier/src/nifty/include/nifty/cgp/cgp.hxx</label>
+        <link refid="cgp_8hxx"/>
+      </node>
+      <node id="12597">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx</label>
+        <link refid="lifted__multicut_2fusion__move__based_8hxx"/>
+      </node>
+      <node id="12556">
+        <label>/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx</label>
+        <link refid="fastfilters__wrapper_8hxx"/>
+      </node>
+      <node id="12549">
+        <label>/home/tbeier/src/nifty/include/nifty/array/vector.hxx</label>
+        <link refid="vector_8hxx"/>
+      </node>
+      <node id="12544">
+        <label>/home/tbeier/src/nifty/include/nifty/array/arithmetic_array.hxx</label>
+        <link refid="arithmetic__array_8hxx"/>
+        <childnode refid="12545" relation="include">
+        </childnode>
+        <childnode refid="12549" relation="include">
+        </childnode>
+        <childnode refid="12550" relation="include">
+        </childnode>
+        <childnode refid="12552" relation="include">
+        </childnode>
+        <childnode refid="12553" relation="include">
+        </childnode>
+        <childnode refid="12554" relation="include">
+        </childnode>
+        <childnode refid="12555" relation="include">
+        </childnode>
+        <childnode refid="12556" relation="include">
+        </childnode>
+        <childnode refid="12557" relation="include">
+        </childnode>
+        <childnode refid="12558" relation="include">
+        </childnode>
+        <childnode refid="12559" relation="include">
+        </childnode>
+        <childnode refid="12566" relation="include">
+        </childnode>
+        <childnode refid="12560" relation="include">
+        </childnode>
+        <childnode refid="12567" relation="include">
+        </childnode>
+        <childnode refid="12564" relation="include">
+        </childnode>
+        <childnode refid="12568" relation="include">
+        </childnode>
+        <childnode refid="12569" relation="include">
+        </childnode>
+        <childnode refid="12571" relation="include">
+        </childnode>
+        <childnode refid="12572" relation="include">
+        </childnode>
+        <childnode refid="12575" relation="include">
+        </childnode>
+        <childnode refid="12579" relation="include">
+        </childnode>
+        <childnode refid="12580" relation="include">
+        </childnode>
+        <childnode refid="12581" relation="include">
+        </childnode>
+      </node>
+      <node id="12543">
+        <label>/home/tbeier/src/nifty/include/nifty/tools/runtime_check.hxx</label>
+        <link refid="runtime_check.hxx"/>
+        <childnode refid="12544" relation="include">
+        </childnode>
+        <childnode refid="12584" relation="include">
+        </childnode>
+        <childnode refid="12591" relation="include">
+        </childnode>
+        <childnode refid="12610" relation="include">
+        </childnode>
+        <childnode refid="12594" relation="include">
+        </childnode>
+        <childnode refid="12601" relation="include">
+        </childnode>
+        <childnode refid="12597" relation="include">
+        </childnode>
+        <childnode refid="12598" relation="include">
+        </childnode>
+        <childnode refid="12599" relation="include">
+        </childnode>
+        <childnode refid="12600" relation="include">
+        </childnode>
+        <childnode refid="12611" relation="include">
+        </childnode>
+        <childnode refid="12595" relation="include">
+        </childnode>
+        <childnode refid="12612" relation="include">
+        </childnode>
+        <childnode refid="12615" relation="include">
+        </childnode>
+        <childnode refid="12592" relation="include">
+        </childnode>
+        <childnode refid="12602" relation="include">
+        </childnode>
+        <childnode refid="12616" relation="include">
+        </childnode>
+        <childnode refid="12619" relation="include">
+        </childnode>
+        <childnode refid="12620" relation="include">
+        </childnode>
+        <childnode refid="12593" relation="include">
+        </childnode>
+        <childnode refid="12603" relation="include">
+        </childnode>
+        <childnode refid="12621" relation="include">
+        </childnode>
+        <childnode refid="12606" relation="include">
+        </childnode>
+        <childnode refid="12607" relation="include">
+        </childnode>
+        <childnode refid="12622" relation="include">
+        </childnode>
+        <childnode refid="12623" relation="include">
+        </childnode>
+        <childnode refid="12604" relation="include">
+        </childnode>
+        <childnode refid="12624" relation="include">
+        </childnode>
+        <childnode refid="12625" relation="include">
+        </childnode>
+        <childnode refid="12626" relation="include">
+        </childnode>
+        <childnode refid="12608" relation="include">
+        </childnode>
+        <childnode refid="12630" relation="include">
+        </childnode>
+        <childnode refid="12567" relation="include">
+        </childnode>
+        <childnode refid="12576" relation="include">
+        </childnode>
+        <childnode refid="12631" relation="include">
+        </childnode>
+        <childnode refid="12569" relation="include">
+        </childnode>
+        <childnode refid="12632" relation="include">
+        </childnode>
+        <childnode refid="12577" relation="include">
+        </childnode>
+        <childnode refid="12578" relation="include">
+        </childnode>
+        <childnode refid="12634" relation="include">
+        </childnode>
+        <childnode refid="12641" relation="include">
+        </childnode>
+      </node>
+      <node id="12617">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/optimization/mincut/mincut_objective.hxx</label>
+        <link refid="python_2graph_2optimization_2mincut_2mincut__objective_8hxx"/>
+        <childnode refid="12618" relation="include">
+        </childnode>
+      </node>
+      <node id="12615">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_cc_fusion_move.hxx</label>
+        <link refid="mincut__cc__fusion__move_8hxx"/>
+        <childnode refid="12592" relation="include">
+        </childnode>
+      </node>
+      <node id="12586">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx</label>
+        <link refid="lifted__graph__edge__weighted__cluster__policy_8hxx"/>
+        <childnode refid="12587" relation="include">
+        </childnode>
+      </node>
+      <node id="12560">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag.hxx</label>
+        <link refid="grid__rag_8hxx"/>
+        <childnode refid="12561" relation="include">
+        </childnode>
+        <childnode refid="12562" relation="include">
+        </childnode>
+        <childnode refid="12563" relation="include">
+        </childnode>
+        <childnode refid="12564" relation="include">
+        </childnode>
+      </node>
+      <node id="12574">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/optimization/common/export_solver_factory.hxx</label>
+        <link refid="export__solver__factory_8hxx"/>
+      </node>
+      <node id="12598">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_andres_greedy_additive.hxx</label>
+        <link refid="lifted__multicut__andres__greedy__additive_8hxx"/>
+      </node>
+      <node id="12569">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/undirected_grid_graph.hxx</label>
+        <link refid="graph_2undirected__grid__graph_8hxx"/>
+        <childnode refid="12570" relation="include">
+        </childnode>
+      </node>
+      <node id="12635">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/graph_maps.hxx</label>
+        <link refid="graph__maps_8hxx"/>
+        <childnode refid="12590" relation="include">
+        </childnode>
+        <childnode refid="12636" relation="include">
+        </childnode>
+        <childnode refid="12612" relation="include">
+        </childnode>
+        <childnode refid="12616" relation="include">
+        </childnode>
+        <childnode refid="12626" relation="include">
+        </childnode>
+        <childnode refid="12638" relation="include">
+        </childnode>
+      </node>
+      <node id="12612">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_objective.hxx</label>
+        <link refid="graph_2optimization_2lifted__multicut_2lifted__multicut__objective_8hxx"/>
+        <childnode refid="12601" relation="include">
+        </childnode>
+        <childnode refid="12596" relation="include">
+        </childnode>
+        <childnode refid="12613" relation="include">
+        </childnode>
+      </node>
+      <node id="12595">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_kernighan_lin.hxx</label>
+        <link refid="lifted__multicut__kernighan__lin_8hxx"/>
+        <childnode refid="12596" relation="include">
+        </childnode>
+      </node>
+      <node id="12579">
+        <label>/home/tbeier/src/nifty/include/nifty/tools/blocking.hxx</label>
+        <link refid="blocking_8hxx"/>
+      </node>
+      <node id="12611">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_ilp.hxx</label>
+        <link refid="lifted__multicut__ilp_8hxx"/>
+      </node>
+      <node id="12641">
+        <label>/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx</label>
+        <link refid="threadpool_8hxx"/>
+        <childnode refid="12556" relation="include">
+        </childnode>
+        <childnode refid="12591" relation="include">
+        </childnode>
+        <childnode refid="12597" relation="include">
+        </childnode>
+        <childnode refid="12612" relation="include">
+        </childnode>
+        <childnode refid="12607" relation="include">
+        </childnode>
+        <childnode refid="12627" relation="include">
+        </childnode>
+        <childnode refid="12559" relation="include">
+        </childnode>
+        <childnode refid="12566" relation="include">
+        </childnode>
+        <childnode refid="12560" relation="include">
+        </childnode>
+        <childnode refid="12561" relation="include">
+        </childnode>
+        <childnode refid="12569" relation="include">
+        </childnode>
+        <childnode refid="12632" relation="include">
+        </childnode>
+        <childnode refid="12575" relation="include">
+        </childnode>
+        <childnode refid="12581" relation="include">
+        </childnode>
+        <childnode refid="12640" relation="include">
+        </childnode>
+      </node>
+      <node id="12639">
+        <label>/home/tbeier/src/nifty/include/nifty/marray/marray_hdf5.hxx</label>
+        <link refid="marray__hdf5_8hxx"/>
+        <childnode refid="12577" relation="include">
+        </childnode>
+        <childnode refid="12578" relation="include">
+        </childnode>
+      </node>
+      <node id="12616">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_objective.hxx</label>
+        <link refid="graph_2optimization_2mincut_2mincut__objective_8hxx"/>
+        <childnode refid="12610" relation="include">
+        </childnode>
+        <childnode refid="12615" relation="include">
+        </childnode>
+        <childnode refid="12603" relation="include">
+        </childnode>
+        <childnode refid="12617" relation="include">
+        </childnode>
+      </node>
+      <node id="12555">
+        <label>/home/tbeier/src/nifty/include/nifty/cgp/topological_grid.hxx</label>
+        <link refid="topological__grid_8hxx"/>
+        <childnode refid="12550" relation="include">
+        </childnode>
+        <childnode refid="12552" relation="include">
+        </childnode>
+        <childnode refid="12553" relation="include">
+        </childnode>
+        <childnode refid="12554" relation="include">
+        </childnode>
+      </node>
+      <node id="12580">
+        <label>/home/tbeier/src/nifty/include/nifty/tools/for_each_block.hxx</label>
+        <link refid="for__each__block_8hxx"/>
+        <childnode refid="12566" relation="include">
+        </childnode>
+        <childnode refid="12561" relation="include">
+        </childnode>
+      </node>
+      <node id="12634">
+        <label>/home/tbeier/src/nifty/include/nifty/marray/marray.hxx</label>
+        <link refid="marray_8hxx"/>
+        <childnode refid="12550" relation="include">
+        </childnode>
+        <childnode refid="12552" relation="include">
+        </childnode>
+        <childnode refid="12547" relation="include">
+        </childnode>
+        <childnode refid="12548" relation="include">
+        </childnode>
+        <childnode refid="12551" relation="include">
+        </childnode>
+        <childnode refid="12553" relation="include">
+        </childnode>
+        <childnode refid="12554" relation="include">
+        </childnode>
+        <childnode refid="12555" relation="include">
+        </childnode>
+        <childnode refid="12556" relation="include">
+        </childnode>
+        <childnode refid="12557" relation="include">
+        </childnode>
+        <childnode refid="12558" relation="include">
+        </childnode>
+        <childnode refid="12635" relation="include">
+        </childnode>
+        <childnode refid="12559" relation="include">
+        </childnode>
+        <childnode refid="12566" relation="include">
+        </childnode>
+        <childnode refid="12560" relation="include">
+        </childnode>
+        <childnode refid="12561" relation="include">
+        </childnode>
+        <childnode refid="12562" relation="include">
+        </childnode>
+        <childnode refid="12567" relation="include">
+        </childnode>
+        <childnode refid="12576" relation="include">
+        </childnode>
+        <childnode refid="12568" relation="include">
+        </childnode>
+        <childnode refid="12571" relation="include">
+        </childnode>
+        <childnode refid="12582" relation="include">
+        </childnode>
+        <childnode refid="12583" relation="include">
+        </childnode>
+        <childnode refid="12639" relation="include">
+        </childnode>
+        <childnode refid="12572" relation="include">
+        </childnode>
+        <childnode refid="12575" relation="include">
+        </childnode>
+        <childnode refid="12640" relation="include">
+        </childnode>
+      </node>
+      <node id="12632">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx</label>
+        <link refid="graph_2undirected__list__graph_8hxx"/>
+        <childnode refid="12610" relation="include">
+        </childnode>
+        <childnode refid="12601" relation="include">
+        </childnode>
+        <childnode refid="12612" relation="include">
+        </childnode>
+        <childnode refid="12615" relation="include">
+        </childnode>
+        <childnode refid="12603" relation="include">
+        </childnode>
+        <childnode refid="12606" relation="include">
+        </childnode>
+        <childnode refid="12623" relation="include">
+        </childnode>
+        <childnode refid="12559" relation="include">
+        </childnode>
+        <childnode refid="12566" relation="include">
+        </childnode>
+        <childnode refid="12560" relation="include">
+        </childnode>
+        <childnode refid="12633" relation="include">
+        </childnode>
+      </node>
+      <node id="12629">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/optimization/multicut/export_multicut_solver.hxx</label>
+        <link refid="export__multicut__solver_8hxx"/>
+      </node>
+      <node id="12554">
+        <label>/home/tbeier/src/nifty/include/nifty/cgp/geometry.hxx</label>
+        <link refid="geometry_8hxx"/>
+        <childnode refid="12547" relation="include">
+        </childnode>
+        <childnode refid="12548" relation="include">
+        </childnode>
+      </node>
+      <node id="12631">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx</label>
+        <link refid="simple__directed__graph_8hxx"/>
+      </node>
+      <node id="12566">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/rag/detail_rag/compute_grid_rag_hdf5.hxx</label>
+        <link refid="compute__grid__rag__hdf5_8hxx"/>
+        <childnode refid="12563" relation="include">
+        </childnode>
+        <childnode refid="12565" relation="include">
+        </childnode>
+      </node>
+      <node id="12572">
+        <label>/home/tbeier/src/nifty/include/nifty/python/converter.hxx</label>
+        <link refid="converter_8hxx"/>
+        <childnode refid="12573" relation="include">
+        </childnode>
+        <childnode refid="12574" relation="include">
+        </childnode>
+      </node>
+      <node id="12589">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/minimum_node_size_cluster_policy.hxx</label>
+        <link refid="minimum__node__size__cluster__policy_8hxx"/>
+      </node>
+      <node id="12557">
+        <label>/home/tbeier/src/nifty/include/nifty/filters/affinities.hxx</label>
+        <link refid="affinities_8hxx"/>
+      </node>
+      <node id="12587">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_graph_features.hxx</label>
+        <link refid="lifted__graph__features_8hxx"/>
+      </node>
+      <node id="12605">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx</label>
+        <link refid="greedy__additive__multicut__proposal__generator_8hxx"/>
+      </node>
+      <node id="12546">
+        <label>/home/tbeier/src/nifty/include/nifty/math/math.hxx</label>
+        <link refid="math_8hxx"/>
+        <childnode refid="12547" relation="include">
+        </childnode>
+        <childnode refid="12548" relation="include">
+        </childnode>
+      </node>
+      <node id="12577">
+        <label>/home/tbeier/src/nifty/include/nifty/hdf5/hdf5.hxx</label>
+        <link refid="hdf5_8hxx"/>
+      </node>
+      <node id="12640">
+        <label>/home/tbeier/src/nifty/include/nifty/tools/make_dense.hxx</label>
+        <link refid="make__dense_8hxx"/>
+      </node>
+      <node id="12613">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/optimization/lifted_multicut/lifted_multicut_objective.hxx</label>
+        <link refid="python_2graph_2optimization_2lifted__multicut_2lifted__multicut__objective_8hxx"/>
+        <childnode refid="12614" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="runtime__check_8hxx_1a7fdb092c4b634ea3958b7d7aa2f801eb" prot="public" static="no">
+        <name>NIFTY_CHECK_OP</name>
+        <param><defname>a</defname></param>
+        <param><defname>op</defname></param>
+        <param><defname>b</defname></param>
+        <param><defname>message</defname></param>
+        <initializer>if(!  static_cast&lt;bool&gt;( a op b )   ) { \
+       std::stringstream s; \
+       s &lt;&lt; &quot;Nifty Error: &quot;&lt;&lt; message &lt;&lt;&quot;\n&quot;;\
+       s &lt;&lt; &quot;Nifty check :  &quot; &lt;&lt; #a &lt;&lt;#op &lt;&lt;#b&lt;&lt; &quot;  failed:\n&quot;; \
+       s &lt;&lt; #a &quot; = &quot;&lt;&lt;a&lt;&lt;&quot;\n&quot;; \
+       s &lt;&lt; #b &quot; = &quot;&lt;&lt;b&lt;&lt;&quot;\n&quot;; \
+       s &lt;&lt; &quot;in file &quot; &lt;&lt; __FILE__ &lt;&lt; &quot;, line &quot; &lt;&lt; __LINE__ &lt;&lt; &quot;\n&quot;; \
+       throw std::runtime_error(s.str()); \
+    }</initializer>
+        <briefdescription>
+<para>macro for runtime checks </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="warning"><para>The check is done <bold> even in Release mode </bold> (therefore if NDEBUG <bold>is</bold> defined)</para></simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>: first argument (like a number ) </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>op</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>: operator (== ) </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>: second argument (like a number ) </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>message</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>: error message (as &quot;my error&quot;)</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<bold>Usage:</bold> <programlisting><codeline><highlight class="normal">int<sp/>a<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal">NIFTY_CHECK_OP(a,<sp/>==,<sp/>1,<sp/>&quot;this<sp/>should<sp/>never<sp/>fail&quot;)</highlight></codeline>
+<codeline><highlight class="normal">NIFTY_CHECK_OP(a,<sp/>&gt;=,<sp/>2,<sp/>&quot;this<sp/>should<sp/>fail&quot;)</highlight></codeline>
+</programlisting> </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/tools/runtime_check.hxx" line="32" column="9" bodyfile="/home/tbeier/src/nifty/include/nifty/tools/runtime_check.hxx" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="runtime__check_8hxx_1a003e065ee36ca7e6b022bbfbd68afaca" prot="public" static="no">
+        <name>NIFTY_CHECK</name>
+        <param><defname>expression</defname></param>
+        <param><defname>message</defname></param>
+        <initializer>if(!(expression)) { \
+   std::stringstream s; \
+   s &lt;&lt; message &lt;&lt;&quot;\n&quot;;\
+   s &lt;&lt; &quot;Nifty assertion &quot; &lt;&lt; #expression \
+   &lt;&lt; &quot; failed in file &quot; &lt;&lt; __FILE__ \
+   &lt;&lt; &quot;, line &quot; &lt;&lt; __LINE__ &lt;&lt; std::endl; \
+   throw std::runtime_error(s.str()); \
+ }</initializer>
+        <briefdescription>
+<para>macro for runtime checks </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="warning"><para>The check is done <bold> even in Release mode </bold> (therefore if NDEBUG <bold>is</bold> defined)</para></simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>expression</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>: expression which can evaluate to bool </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>message</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>: error message (as &quot;my error&quot;)</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<bold>Usage:</bold> <programlisting><codeline><highlight class="normal">int<sp/>a<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal">NIFTY_CHECK_OP(a==1,<sp/>&quot;this<sp/>should<sp/>never<sp/>fail&quot;)</highlight></codeline>
+<codeline><highlight class="normal">NIFTY_CHECK_OP(a&gt;=2,<sp/>&quot;this<sp/>should<sp/>fail&quot;)</highlight></codeline>
+</programlisting> </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/tools/runtime_check.hxx" line="60" column="9" bodyfile="/home/tbeier/src/nifty/include/nifty/tools/runtime_check.hxx" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="runtime__check_8hxx_1a32db00cbb481903d7e4cec8fa9a6bd17" prot="public" static="no">
+        <name>NIFTY_TEST</name>
+        <param><defname>expression</defname></param>
+        <initializer><ref refid="runtime__check_8hxx_1a003e065ee36ca7e6b022bbfbd68afaca" kindref="member">NIFTY_CHECK</ref>(expression,&quot;&quot;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/tools/runtime_check.hxx" line="70" column="9" bodyfile="/home/tbeier/src/nifty/include/nifty/tools/runtime_check.hxx" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="runtime__check_8hxx_1ac539d7793f817e718c9fb6659e948860" prot="public" static="no">
+        <name>NIFTY_TEST_OP</name>
+        <param><defname>a</defname></param>
+        <param><defname>op</defname></param>
+        <param><defname>b</defname></param>
+        <initializer><ref refid="runtime__check_8hxx_1a7fdb092c4b634ea3958b7d7aa2f801eb" kindref="member">NIFTY_CHECK_OP</ref>(a,op,b,&quot;&quot;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/tools/runtime_check.hxx" line="72" column="9" bodyfile="/home/tbeier/src/nifty/include/nifty/tools/runtime_check.hxx" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="runtime__check_8hxx_1a19bb428a7488f65c42bf92c5e9a280e8" prot="public" static="no">
+        <name>NIFTY_CHECK_EQ_TOL</name>
+        <param><defname>a</defname></param>
+        <param><defname>b</defname></param>
+        <param><defname>tol</defname></param>
+        <initializer>if( std::abs(a-b) &gt; tol){ \
+        std::stringstream s; \
+        s&lt;&lt;&quot;Nifty assertion &quot;; \
+        s&lt;&lt;&quot;\&quot;&quot;; \
+        s&lt;&lt;&quot; | &quot;&lt;&lt; #a &lt;&lt;&quot; - &quot;&lt;&lt;#b&lt;&lt;&quot;| &lt; &quot; #tol &lt;&lt;&quot;\&quot; &quot;; \
+        s&lt;&lt;&quot;  failed with:\n&quot;; \
+        s&lt;&lt;#a&lt;&lt;&quot; = &quot;&lt;&lt;a&lt;&lt;&quot;\n&quot;;\
+        s&lt;&lt;#b&lt;&lt;&quot; = &quot;&lt;&lt;b&lt;&lt;&quot;\n&quot;;\
+        s&lt;&lt;#tol&lt;&lt;&quot; = &quot;&lt;&lt;tol&lt;&lt;&quot;\n&quot;;\
+        throw std::runtime_error(s.str()); \
+    }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/tools/runtime_check.hxx" line="74" column="9" bodyfile="/home/tbeier/src/nifty/include/nifty/tools/runtime_check.hxx" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="runtime__check_8hxx_1abc1b4a48bb9eeaf0f9da90aeac68975f" prot="public" static="no">
+        <name>NIFTY_TEST_EQ_TOL</name>
+        <param><defname>a</defname></param>
+        <param><defname>b</defname></param>
+        <param><defname>tol</defname></param>
+        <initializer><ref refid="runtime__check_8hxx_1a19bb428a7488f65c42bf92c5e9a280e8" kindref="member">NIFTY_CHECK_EQ_TOL</ref>(a,b,tol)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/tools/runtime_check.hxx" line="87" column="9" bodyfile="/home/tbeier/src/nifty/include/nifty/tools/runtime_check.hxx" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="runtime__check_8hxx_1acc61e5e15ebac005c224c5c5e2205ffc" prot="public" static="no">
+        <name>NIFTY_CHECK_NUMBER</name>
+        <param><defname>number</defname></param>
+        <initializer>{ \
+   std::stringstream s; \
+   s &lt;&lt; &quot;Nifty assertion failed in file &quot; &lt;&lt; __FILE__ \
+   &lt;&lt; &quot;, line &quot; &lt;&lt; __LINE__ &lt;&lt; std::endl; \
+    if(std::isnan(number))\
+        throw std::runtime_error(s.str()+&quot; number is nan&quot;); \
+    if(std::isinf(number))\
+        throw std::runtime_error(s.str()+&quot;number is inf&quot;);\
+    }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/tools/runtime_check.hxx" line="89" column="9" bodyfile="/home/tbeier/src/nifty/include/nifty/tools/runtime_check.hxx" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="runtime__check_8hxx_1a1ae39644615984f31785d52a0b624277" prot="public" static="no">
+        <name>NIFTY_ASSERT_OP</name>
+        <param><defname>a</defname></param>
+        <param><defname>op</defname></param>
+        <param><defname>b</defname></param>
+        <initializer>if(!  static_cast&lt;bool&gt;( a op b )   ) { \
+      std::stringstream s; \
+      s &lt;&lt; &quot;Nifty assertion :  &quot; &lt;&lt; #a &lt;&lt;#op &lt;&lt;#b&lt;&lt; &quot;  failed:\n&quot;; \
+      s &lt;&lt; #a &quot; = &quot;&lt;&lt;a&lt;&lt;&quot;\n&quot;; \
+      s &lt;&lt; #b &quot; = &quot;&lt;&lt;b&lt;&lt;&quot;\n&quot;; \
+      s &lt;&lt; &quot;in file &quot; &lt;&lt; __FILE__ &lt;&lt; &quot;, line &quot; &lt;&lt; __LINE__ &lt;&lt; &quot;\n&quot;; \
+      throw std::runtime_error(s.str()); \
+   }</initializer>
+        <briefdescription>
+<para>macro for runtime checks </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="warning"><para>The check is <bold>only</bold> done in in Debug mode (therefore if NDEBUG is <bold>not</bold> defined)</para></simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>: first argument (like a number ) </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>op</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>: operator (== ) </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>: second argument (like a number ) </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>message</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>: error message (as &quot;my error&quot;)</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<bold>Usage:</bold> <programlisting><codeline><highlight class="normal">int<sp/>a<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal">NIFTY_ASSERT_OP(a,<sp/>==,<sp/>1)<sp/>//<sp/>will<sp/>not<sp/>fail<sp/>here</highlight></codeline>
+<codeline><highlight class="normal">NIFTY_ASSERT_OP(a,<sp/>&gt;=,<sp/>2)<sp/>//<sp/>will<sp/>fail<sp/>here</highlight></codeline>
+</programlisting> </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/tools/runtime_check.hxx" line="144" column="13" bodyfile="/home/tbeier/src/nifty/include/nifty/tools/runtime_check.hxx" bodystart="144" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="runtime__check_8hxx_1af91d00e1319a132b73765ba661a64b73" prot="public" static="no">
+        <name>NIFTY_ASSERT</name>
+        <param><defname>expression</defname></param>
+        <initializer>if(!(expression)) { \
+         std::stringstream s; \
+         s &lt;&lt; &quot;Nifty assertion &quot; &lt;&lt; #expression \
+         &lt;&lt; &quot; failed in file &quot; &lt;&lt; __FILE__ \
+         &lt;&lt; &quot;, line &quot; &lt;&lt; __LINE__ &lt;&lt; std::endl; \
+         throw std::runtime_error(s.str()); \
+      }</initializer>
+        <briefdescription>
+<para>macro for runtime checks </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="warning"><para>The check is <bold>only</bold> done in in Debug mode (therefore if NDEBUG is <bold>not</bold> defined)</para></simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>expression</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>: expression which can evaluate to bool</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<bold>Usage:</bold> <programlisting><codeline><highlight class="normal">int<sp/>a<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal">NIFTY_ASSERT(a<sp/>==<sp/>1)<sp/>//<sp/>will<sp/>not<sp/>fail<sp/>here<sp/></highlight></codeline>
+<codeline><highlight class="normal">NIFTY_ASSERT(a<sp/>&gt;=<sp/>2)<sp/>//<sp/>will<sp/>fail<sp/>here</highlight></codeline>
+</programlisting> </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/tools/runtime_check.hxx" line="183" column="16" bodyfile="/home/tbeier/src/nifty/include/nifty/tools/runtime_check.hxx" bodystart="183" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cstdint&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdexcept&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;sstream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;limits&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cmath&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32" refid="runtime__check_8hxx_1a7fdb092c4b634ea3958b7d7aa2f801eb" refkind="member"><highlight class="preprocessor">#define<sp/>NIFTY_CHECK_OP(a,op,b,message)<sp/>\</highlight></codeline>
+<codeline lineno="33"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>if(!<sp/><sp/>static_cast&lt;bool&gt;(<sp/>a<sp/>op<sp/>b<sp/>)<sp/><sp/><sp/>)<sp/>{<sp/>\</highlight></codeline>
+<codeline lineno="34"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::stringstream<sp/>s;<sp/>\</highlight></codeline>
+<codeline lineno="35"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s<sp/>&lt;&lt;<sp/>&quot;Nifty<sp/>Error:<sp/>&quot;&lt;&lt;<sp/>message<sp/>&lt;&lt;&quot;\n&quot;;\</highlight></codeline>
+<codeline lineno="36"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s<sp/>&lt;&lt;<sp/>&quot;Nifty<sp/>check<sp/>:<sp/><sp/>&quot;<sp/>&lt;&lt;<sp/>#a<sp/>&lt;&lt;#op<sp/>&lt;&lt;#b&lt;&lt;<sp/>&quot;<sp/><sp/>failed:\n&quot;;<sp/>\</highlight></codeline>
+<codeline lineno="37"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s<sp/>&lt;&lt;<sp/>#a<sp/>&quot;<sp/>=<sp/>&quot;&lt;&lt;a&lt;&lt;&quot;\n&quot;;<sp/>\</highlight></codeline>
+<codeline lineno="38"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s<sp/>&lt;&lt;<sp/>#b<sp/>&quot;<sp/>=<sp/>&quot;&lt;&lt;b&lt;&lt;&quot;\n&quot;;<sp/>\</highlight></codeline>
+<codeline lineno="39"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s<sp/>&lt;&lt;<sp/>&quot;in<sp/>file<sp/>&quot;<sp/>&lt;&lt;<sp/>__FILE__<sp/>&lt;&lt;<sp/>&quot;,<sp/>line<sp/>&quot;<sp/>&lt;&lt;<sp/>__LINE__<sp/>&lt;&lt;<sp/>&quot;\n&quot;;<sp/>\</highlight></codeline>
+<codeline lineno="40"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>throw<sp/>std::runtime_error(s.str());<sp/>\</highlight></codeline>
+<codeline lineno="41"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60" refid="runtime__check_8hxx_1a003e065ee36ca7e6b022bbfbd68afaca" refkind="member"><highlight class="preprocessor">#define<sp/>NIFTY_CHECK(expression,<sp/>message)<sp/>if(!(expression))<sp/>{<sp/>\</highlight></codeline>
+<codeline lineno="61"><highlight class="preprocessor"><sp/><sp/><sp/>std::stringstream<sp/>s;<sp/>\</highlight></codeline>
+<codeline lineno="62"><highlight class="preprocessor"><sp/><sp/><sp/>s<sp/>&lt;&lt;<sp/>message<sp/>&lt;&lt;&quot;\n&quot;;\</highlight></codeline>
+<codeline lineno="63"><highlight class="preprocessor"><sp/><sp/><sp/>s<sp/>&lt;&lt;<sp/>&quot;Nifty<sp/>assertion<sp/>&quot;<sp/>&lt;&lt;<sp/>#expression<sp/>\</highlight></codeline>
+<codeline lineno="64"><highlight class="preprocessor"><sp/><sp/><sp/>&lt;&lt;<sp/>&quot;<sp/>failed<sp/>in<sp/>file<sp/>&quot;<sp/>&lt;&lt;<sp/>__FILE__<sp/>\</highlight></codeline>
+<codeline lineno="65"><highlight class="preprocessor"><sp/><sp/><sp/>&lt;&lt;<sp/>&quot;,<sp/>line<sp/>&quot;<sp/>&lt;&lt;<sp/>__LINE__<sp/>&lt;&lt;<sp/>std::endl;<sp/>\</highlight></codeline>
+<codeline lineno="66"><highlight class="preprocessor"><sp/><sp/><sp/>throw<sp/>std::runtime_error(s.str());<sp/>\</highlight></codeline>
+<codeline lineno="67"><highlight class="preprocessor"><sp/>}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70" refid="runtime__check_8hxx_1a32db00cbb481903d7e4cec8fa9a6bd17" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NIFTY_TEST(expression)<sp/>NIFTY_CHECK(expression,&quot;&quot;)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72" refid="runtime__check_8hxx_1ac539d7793f817e718c9fb6659e948860" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NIFTY_TEST_OP(a,op,b)<sp/>NIFTY_CHECK_OP(a,op,b,&quot;&quot;)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74" refid="runtime__check_8hxx_1a19bb428a7488f65c42bf92c5e9a280e8" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NIFTY_CHECK_EQ_TOL(a,b,tol)<sp/>\</highlight></codeline>
+<codeline lineno="75"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>if(<sp/>std::abs(a-b)<sp/>&gt;<sp/>tol){<sp/>\</highlight></codeline>
+<codeline lineno="76"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::stringstream<sp/>s;<sp/>\</highlight></codeline>
+<codeline lineno="77"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s&lt;&lt;&quot;Nifty<sp/>assertion<sp/>&quot;;<sp/>\</highlight></codeline>
+<codeline lineno="78"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s&lt;&lt;&quot;\&quot;&quot;;<sp/>\</highlight></codeline>
+<codeline lineno="79"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s&lt;&lt;&quot;<sp/>|<sp/>&quot;&lt;&lt;<sp/>#a<sp/>&lt;&lt;&quot;<sp/>-<sp/>&quot;&lt;&lt;#b&lt;&lt;&quot;|<sp/>&lt;<sp/>&quot;<sp/>#tol<sp/>&lt;&lt;&quot;\&quot;<sp/>&quot;;<sp/>\</highlight></codeline>
+<codeline lineno="80"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s&lt;&lt;&quot;<sp/><sp/>failed<sp/>with:\n&quot;;<sp/>\</highlight></codeline>
+<codeline lineno="81"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s&lt;&lt;#a&lt;&lt;&quot;<sp/>=<sp/>&quot;&lt;&lt;a&lt;&lt;&quot;\n&quot;;\</highlight></codeline>
+<codeline lineno="82"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s&lt;&lt;#b&lt;&lt;&quot;<sp/>=<sp/>&quot;&lt;&lt;b&lt;&lt;&quot;\n&quot;;\</highlight></codeline>
+<codeline lineno="83"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s&lt;&lt;#tol&lt;&lt;&quot;<sp/>=<sp/>&quot;&lt;&lt;tol&lt;&lt;&quot;\n&quot;;\</highlight></codeline>
+<codeline lineno="84"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>throw<sp/>std::runtime_error(s.str());<sp/>\</highlight></codeline>
+<codeline lineno="85"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87" refid="runtime__check_8hxx_1abc1b4a48bb9eeaf0f9da90aeac68975f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NIFTY_TEST_EQ_TOL(a,b,tol)<sp/>NIFTY_CHECK_EQ_TOL(a,b,tol)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89" refid="runtime__check_8hxx_1acc61e5e15ebac005c224c5c5e2205ffc" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NIFTY_CHECK_NUMBER(number)<sp/>\</highlight></codeline>
+<codeline lineno="90"><highlight class="preprocessor"><sp/><sp/><sp/>{<sp/>\</highlight></codeline>
+<codeline lineno="91"><highlight class="preprocessor"><sp/><sp/><sp/>std::stringstream<sp/>s;<sp/>\</highlight></codeline>
+<codeline lineno="92"><highlight class="preprocessor"><sp/><sp/><sp/>s<sp/>&lt;&lt;<sp/>&quot;Nifty<sp/>assertion<sp/>failed<sp/>in<sp/>file<sp/>&quot;<sp/>&lt;&lt;<sp/>__FILE__<sp/>\</highlight></codeline>
+<codeline lineno="93"><highlight class="preprocessor"><sp/><sp/><sp/>&lt;&lt;<sp/>&quot;,<sp/>line<sp/>&quot;<sp/>&lt;&lt;<sp/>__LINE__<sp/>&lt;&lt;<sp/>std::endl;<sp/>\</highlight></codeline>
+<codeline lineno="94"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>if(std::isnan(number))\</highlight></codeline>
+<codeline lineno="95"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>throw<sp/>std::runtime_error(s.str()+&quot;<sp/>number<sp/>is<sp/>nan&quot;);<sp/>\</highlight></codeline>
+<codeline lineno="96"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>if(std::isinf(number))\</highlight></codeline>
+<codeline lineno="97"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>throw<sp/>std::runtime_error(s.str()+&quot;number<sp/>is<sp/>inf&quot;);\</highlight></codeline>
+<codeline lineno="98"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>NDEBUG</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#ifdef<sp/>NIFTY_DEBUG<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#define<sp/>NIFTY_DO_DEBUG</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#ifdef<sp/>NIFTY_DEBUG<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#define<sp/>NIFTY_DO_DEBUG</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="preprocessor">#ifdef<sp/>NDEBUG</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/>#ifndef<sp/>NIFTY_DEBUG<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/>#define<sp/>NIFTY_ASSERT_OP(a,op,b)<sp/>{<sp/>}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/>#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/>#define<sp/>NIFTY_ASSERT_OP(a,op,b)<sp/>\</highlight></codeline>
+<codeline lineno="134"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/>if(!<sp/><sp/>static_cast&lt;bool&gt;(<sp/>a<sp/>op<sp/>b<sp/>)<sp/><sp/><sp/>)<sp/>{<sp/>\</highlight></codeline>
+<codeline lineno="135"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::stringstream<sp/>s;<sp/>\</highlight></codeline>
+<codeline lineno="136"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s<sp/>&lt;&lt;<sp/>&quot;Nifty<sp/>assertion<sp/>:<sp/><sp/>&quot;<sp/>&lt;&lt;<sp/>#a<sp/>&lt;&lt;#op<sp/>&lt;&lt;#b&lt;&lt;<sp/>&quot;<sp/><sp/>failed:\n&quot;;<sp/>\</highlight></codeline>
+<codeline lineno="137"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s<sp/>&lt;&lt;<sp/>#a<sp/>&quot;<sp/>=<sp/>&quot;&lt;&lt;a&lt;&lt;&quot;\n&quot;;<sp/>\</highlight></codeline>
+<codeline lineno="138"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s<sp/>&lt;&lt;<sp/>#b<sp/>&quot;<sp/>=<sp/>&quot;&lt;&lt;b&lt;&lt;&quot;\n&quot;;<sp/>\</highlight></codeline>
+<codeline lineno="139"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s<sp/>&lt;&lt;<sp/>&quot;in<sp/>file<sp/>&quot;<sp/>&lt;&lt;<sp/>__FILE__<sp/>&lt;&lt;<sp/>&quot;,<sp/>line<sp/>&quot;<sp/>&lt;&lt;<sp/>__LINE__<sp/>&lt;&lt;<sp/>&quot;\n&quot;;<sp/>\</highlight></codeline>
+<codeline lineno="140"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>throw<sp/>std::runtime_error(s.str());<sp/>\</highlight></codeline>
+<codeline lineno="141"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/>#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="144" refid="runtime__check_8hxx_1a1ae39644615984f31785d52a0b624277" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/>#define<sp/>NIFTY_ASSERT_OP(a,op,b)<sp/>\</highlight></codeline>
+<codeline lineno="145"><highlight class="preprocessor"><sp/><sp/><sp/>if(!<sp/><sp/>static_cast&lt;bool&gt;(<sp/>a<sp/>op<sp/>b<sp/>)<sp/><sp/><sp/>)<sp/>{<sp/>\</highlight></codeline>
+<codeline lineno="146"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/>std::stringstream<sp/>s;<sp/>\</highlight></codeline>
+<codeline lineno="147"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/>s<sp/>&lt;&lt;<sp/>&quot;Nifty<sp/>assertion<sp/>:<sp/><sp/>&quot;<sp/>&lt;&lt;<sp/>#a<sp/>&lt;&lt;#op<sp/>&lt;&lt;#b&lt;&lt;<sp/>&quot;<sp/><sp/>failed:\n&quot;;<sp/>\</highlight></codeline>
+<codeline lineno="148"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/>s<sp/>&lt;&lt;<sp/>#a<sp/>&quot;<sp/>=<sp/>&quot;&lt;&lt;a&lt;&lt;&quot;\n&quot;;<sp/>\</highlight></codeline>
+<codeline lineno="149"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/>s<sp/>&lt;&lt;<sp/>#b<sp/>&quot;<sp/>=<sp/>&quot;&lt;&lt;b&lt;&lt;&quot;\n&quot;;<sp/>\</highlight></codeline>
+<codeline lineno="150"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/>s<sp/>&lt;&lt;<sp/>&quot;in<sp/>file<sp/>&quot;<sp/>&lt;&lt;<sp/>__FILE__<sp/>&lt;&lt;<sp/>&quot;,<sp/>line<sp/>&quot;<sp/>&lt;&lt;<sp/>__LINE__<sp/>&lt;&lt;<sp/>&quot;\n&quot;;<sp/>\</highlight></codeline>
+<codeline lineno="151"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/>throw<sp/>std::runtime_error(s.str());<sp/>\</highlight></codeline>
+<codeline lineno="152"><highlight class="preprocessor"><sp/><sp/><sp/>}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="preprocessor">#ifdef<sp/>NDEBUG</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="171"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/>#ifndef<sp/>NIFTY_DEBUG</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/>#define<sp/>NIFTY_ASSERT(expression)<sp/>{}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="173"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/>#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="174"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/>#define<sp/>NIFTY_ASSERT(expression)<sp/>if(!(expression))<sp/>{<sp/>\</highlight></codeline>
+<codeline lineno="175"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::stringstream<sp/>s;<sp/>\</highlight></codeline>
+<codeline lineno="176"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s<sp/>&lt;&lt;<sp/>&quot;Nifty<sp/>assertion<sp/>&quot;<sp/>&lt;&lt;<sp/>#expression<sp/>\</highlight></codeline>
+<codeline lineno="177"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/>&quot;<sp/>failed<sp/>in<sp/>file<sp/>&quot;<sp/>&lt;&lt;<sp/>__FILE__<sp/>\</highlight></codeline>
+<codeline lineno="178"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/>&quot;,<sp/>line<sp/>&quot;<sp/>&lt;&lt;<sp/>__LINE__<sp/>&lt;&lt;<sp/>std::endl;<sp/>\</highlight></codeline>
+<codeline lineno="179"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>throw<sp/>std::runtime_error(s.str());<sp/>\</highlight></codeline>
+<codeline lineno="180"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/>#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="182"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="183" refid="runtime__check_8hxx_1af91d00e1319a132b73765ba661a64b73" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/>#define<sp/>NIFTY_ASSERT(expression)<sp/>if(!(expression))<sp/>{<sp/>\</highlight></codeline>
+<codeline lineno="184"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::stringstream<sp/>s;<sp/>\</highlight></codeline>
+<codeline lineno="185"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s<sp/>&lt;&lt;<sp/>&quot;Nifty<sp/>assertion<sp/>&quot;<sp/>&lt;&lt;<sp/>#expression<sp/>\</highlight></codeline>
+<codeline lineno="186"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/>&quot;<sp/>failed<sp/>in<sp/>file<sp/>&quot;<sp/>&lt;&lt;<sp/>__FILE__<sp/>\</highlight></codeline>
+<codeline lineno="187"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/>&quot;,<sp/>line<sp/>&quot;<sp/>&lt;&lt;<sp/>__LINE__<sp/>&lt;&lt;<sp/>std::endl;<sp/>\</highlight></codeline>
+<codeline lineno="188"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>throw<sp/>std::runtime_error(s.str());<sp/>\</highlight></codeline>
+<codeline lineno="189"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="190"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="191"><highlight class="normal"></highlight></codeline>
+<codeline lineno="192"><highlight class="normal"></highlight></codeline>
+<codeline lineno="193"><highlight class="normal"></highlight></codeline>
+<codeline lineno="194"><highlight class="normal"></highlight></codeline>
+<codeline lineno="195"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/tbeier/src/nifty/include/nifty/tools/runtime_check.hxx"/>
+  </compounddef>
+</doxygen>

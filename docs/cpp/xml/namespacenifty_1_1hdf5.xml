@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="namespacenifty_1_1hdf5" kind="namespace" language="C++">
+    <compoundname>nifty::hdf5</compoundname>
+    <innerclass refid="structnifty_1_1hdf5_1_1CacheSettings" prot="public">nifty::hdf5::CacheSettings</innerclass>
+    <innerclass refid="classnifty_1_1hdf5_1_1Hdf5Array" prot="public">nifty::hdf5::Hdf5Array</innerclass>
+    <innernamespace refid="namespacenifty_1_1hdf5_1_1tools">nifty::hdf5::tools</innernamespace>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespacenifty_1_1hdf5_1a75c90b819349001bc1cf9e4bbe519462" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>hid_t</type>
+        <definition>hid_t nifty::hdf5::createFile</definition>
+        <argsstring>(const std::string &amp;filename, const CacheSettings &amp;cacheSettings, HDF5Version hdf5version=DEFAULT_HDF5_VERSION)</argsstring>
+        <name>createFile</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>filename</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structnifty_1_1hdf5_1_1CacheSettings" kindref="compound">CacheSettings</ref> &amp;</type>
+          <declname>cacheSettings</declname>
+        </param>
+        <param>
+          <type>HDF5Version</type>
+          <declname>hdf5version</declname>
+          <defval>DEFAULT_HDF5_VERSION</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5.hxx" line="36" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5.hxx" bodystart="37" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacenifty_1_1hdf5_1a1a87959670d984301cfc2c780099673e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>hid_t</type>
+        <definition>hid_t nifty::hdf5::openFile</definition>
+        <argsstring>(const std::string &amp;filename, const CacheSettings &amp;cacheSettings, FileAccessMode fileAccessMode=READ_ONLY, HDF5Version hdf5version=DEFAULT_HDF5_VERSION)</argsstring>
+        <name>openFile</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>filename</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structnifty_1_1hdf5_1_1CacheSettings" kindref="compound">CacheSettings</ref> &amp;</type>
+          <declname>cacheSettings</declname>
+        </param>
+        <param>
+          <type>FileAccessMode</type>
+          <declname>fileAccessMode</declname>
+          <defval>READ_ONLY</defval>
+        </param>
+        <param>
+          <type>HDF5Version</type>
+          <declname>hdf5version</declname>
+          <defval>DEFAULT_HDF5_VERSION</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Open an HDF5 file.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of the file. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>fileAccessMode</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>File access mode. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hdf5version</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>HDF5 version tag.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>HDF5 handle</para></simplesect>
+<simplesect kind="see"><para><ref refid="namespaceandres_1_1hdf5_1afa6545825e5557eecf6ac1e8fc68bb56" kindref="member">closeFile()</ref>, <ref refid="namespacenifty_1_1hdf5_1a75c90b819349001bc1cf9e4bbe519462" kindref="member">createFile()</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5.hxx" line="69" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5.hxx" bodystart="70" bodyend="96"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/hdf5/hdf5.hxx" line="11" column="1"/>
+  </compounddef>
+</doxygen>

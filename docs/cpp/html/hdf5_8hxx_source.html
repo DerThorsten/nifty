@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Nifty
-   &#160;<span id="projectnumber">0.5.1</span>
+   &#160;<span id="projectnumber">0.19.0</span>
    </div>
   </td>
  </tr>
@@ -94,93 +94,93 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <a href="hdf5_8hxx.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#ifndef NIFTY_HDF5_HDF5</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno"><a class="line" href="hdf5_8hxx.html#a3e4b684798541ab14d6391cf5a5a5b01">    3</a></span>&#160;<span class="preprocessor">#define NIFTY_HDF5_HDF5</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="block__access_8hxx.html">nifty/tools/block_access.hxx</a>&quot;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="runtime__check_8hxx.html">nifty/tools/runtime_check.hxx</a>&quot;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="marray__hdf5_8hxx.html">nifty/marray/marray_hdf5.hxx</a>&quot;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacenifty.html">nifty</a>{</div>
-<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="namespacenifty_1_1hdf5.html">   13</a></span>&#160;<span class="keyword">namespace </span>hdf5{</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keyword">using namespace </span><a class="code" href="namespacemarray_1_1hdf5.html">marray::hdf5</a>;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;</div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="block__access_8hxx.html">nifty/tools/block_access.hxx</a>&quot;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="runtime__check_8hxx.html">nifty/tools/runtime_check.hxx</a>&quot;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="marray__hdf5_8hxx.html">nifty/marray/marray_hdf5.hxx</a>&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacenifty.html">nifty</a>{</div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="namespacenifty_1_1hdf5.html">   11</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceandres_1_1hdf5.html">hdf5</a>{</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    </div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keyword">using namespace </span><a class="code" href="namespacemarray_1_1hdf5.html">marray::hdf5</a>;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="structnifty_1_1hdf5_1_1CacheSettings.html">   16</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structnifty_1_1hdf5_1_1CacheSettings.html">CacheSettings</a>{</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
-<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="structnifty_1_1hdf5_1_1CacheSettings.html">   18</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structnifty_1_1hdf5_1_1CacheSettings.html">CacheSettings</a>{</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
-<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="structnifty_1_1hdf5_1_1CacheSettings.html#aec0f428279a22300e530e134fa2b3947">   20</a></span>&#160;        <a class="code" href="structnifty_1_1hdf5_1_1CacheSettings.html#aec0f428279a22300e530e134fa2b3947">CacheSettings</a>( </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;            <span class="keyword">const</span> <span class="keywordtype">int</span>   hashTabelSize_ = 977,</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            <span class="keyword">const</span> <span class="keywordtype">int</span>   nBytes_ = 36000000,</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            <span class="keyword">const</span> <span class="keywordtype">float</span> rddc_ = 1.0</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        )</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        : </div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        hashTabelSize( hashTabelSize_),</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        nBytes( nBytes_),</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        rddc( rddc_){</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        }</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="structnifty_1_1hdf5_1_1CacheSettings.html#ae99c704f44afa6ac669943633d859670">   31</a></span>&#160;        <span class="keywordtype">int</span> <a class="code" href="structnifty_1_1hdf5_1_1CacheSettings.html#ae99c704f44afa6ac669943633d859670">hashTabelSize</a>;</div>
-<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="structnifty_1_1hdf5_1_1CacheSettings.html#a95ec4250fd35413350f8a0bdbb78beed">   32</a></span>&#160;        <span class="keywordtype">int</span> <a class="code" href="structnifty_1_1hdf5_1_1CacheSettings.html#a95ec4250fd35413350f8a0bdbb78beed">nBytes</a>;</div>
-<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="structnifty_1_1hdf5_1_1CacheSettings.html#abdcd0cbeacf12d8fa7ea533213e4366a">   33</a></span>&#160;        <span class="keywordtype">float</span> <a class="code" href="structnifty_1_1hdf5_1_1CacheSettings.html#abdcd0cbeacf12d8fa7ea533213e4366a">rddc</a>;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    };</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keyword">inline</span> hid_t</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <a class="code" href="namespacenifty_1_1hdf5.html#a75c90b819349001bc1cf9e4bbe519462">createFile</a></div>
-<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="namespacenifty_1_1hdf5.html#a75c90b819349001bc1cf9e4bbe519462">   39</a></span>&#160;    (</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keyword">const</span> std::string&amp; filename,</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keyword">const</span> <a class="code" href="structnifty_1_1hdf5_1_1CacheSettings.html">CacheSettings</a> &amp; cacheSettings,</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        HDF5Version hdf5version = DEFAULT_HDF5_VERSION</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    )</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    {</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keyword">auto</span> plist = H5Pcreate(H5P_FILE_ACCESS);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keywordflow">if</span>(hdf5version == LATEST_HDF5_VERSION) {</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            H5Pset_libver_bounds(plist, H5F_LIBVER_LATEST, H5F_LIBVER_LATEST);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        }</div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="structnifty_1_1hdf5_1_1CacheSettings.html#aec0f428279a22300e530e134fa2b3947">   18</a></span>&#160;        <a class="code" href="structnifty_1_1hdf5_1_1CacheSettings.html#aec0f428279a22300e530e134fa2b3947">CacheSettings</a>( </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;            <span class="keyword">const</span> <span class="keywordtype">int</span>   hashTabelSize_ = 977,</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            <span class="keyword">const</span> <span class="keywordtype">int</span>   nBytes_ = 36000000,</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;            <span class="keyword">const</span> <span class="keywordtype">float</span> rddc_ = 1.0</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        )</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        : </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        hashTabelSize( hashTabelSize_),</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        nBytes( nBytes_),</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        rddc( rddc_){</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        }</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="structnifty_1_1hdf5_1_1CacheSettings.html#ae99c704f44afa6ac669943633d859670">   29</a></span>&#160;        <span class="keywordtype">int</span> <a class="code" href="structnifty_1_1hdf5_1_1CacheSettings.html#ae99c704f44afa6ac669943633d859670">hashTabelSize</a>;</div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="structnifty_1_1hdf5_1_1CacheSettings.html#a95ec4250fd35413350f8a0bdbb78beed">   30</a></span>&#160;        <span class="keywordtype">int</span> <a class="code" href="structnifty_1_1hdf5_1_1CacheSettings.html#a95ec4250fd35413350f8a0bdbb78beed">nBytes</a>;</div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="structnifty_1_1hdf5_1_1CacheSettings.html#abdcd0cbeacf12d8fa7ea533213e4366a">   31</a></span>&#160;        <span class="keywordtype">float</span> <a class="code" href="structnifty_1_1hdf5_1_1CacheSettings.html#abdcd0cbeacf12d8fa7ea533213e4366a">rddc</a>;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    };</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keyword">inline</span> hid_t</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <a class="code" href="namespacenifty_1_1hdf5.html#a75c90b819349001bc1cf9e4bbe519462">createFile</a></div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="namespacenifty_1_1hdf5.html#a75c90b819349001bc1cf9e4bbe519462">   37</a></span>&#160;    (</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="keyword">const</span> std::string&amp; filename,</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keyword">const</span> <a class="code" href="structnifty_1_1hdf5_1_1CacheSettings.html">CacheSettings</a> &amp; cacheSettings,</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <a class="code" href="namespaceandres_1_1hdf5.html#ad5194a7b8773d3776e8dfc068f58f41b">HDF5Version</a> hdf5version = <a class="code" href="namespaceandres_1_1hdf5.html#ad5194a7b8773d3776e8dfc068f58f41baf4fdc18c306e5d07105ad62a1cf6fa93">DEFAULT_HDF5_VERSION</a></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    )</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    {</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keyword">auto</span> plist = H5Pcreate(H5P_FILE_ACCESS);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keywordflow">if</span>(hdf5version == <a class="code" href="namespaceandres_1_1hdf5.html#ad5194a7b8773d3776e8dfc068f58f41ba29da3f0202bdf4ea2b036678ae7aa717">LATEST_HDF5_VERSION</a>) {</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            H5Pset_libver_bounds(plist, H5F_LIBVER_LATEST, H5F_LIBVER_LATEST);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        }</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="keyword">auto</span> ret = H5Pset_cache(plist, 0.0, cacheSettings.<a class="code" href="structnifty_1_1hdf5_1_1CacheSettings.html#ae99c704f44afa6ac669943633d859670">hashTabelSize</a>,  cacheSettings.<a class="code" href="structnifty_1_1hdf5_1_1CacheSettings.html#a95ec4250fd35413350f8a0bdbb78beed">nBytes</a>, cacheSettings.<a class="code" href="structnifty_1_1hdf5_1_1CacheSettings.html#abdcd0cbeacf12d8fa7ea533213e4366a">rddc</a>);</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="keyword">auto</span> ret = H5Pset_cache(plist, 0.0, cacheSettings.<a class="code" href="structnifty_1_1hdf5_1_1CacheSettings.html#ae99c704f44afa6ac669943633d859670">hashTabelSize</a>,  cacheSettings.<a class="code" href="structnifty_1_1hdf5_1_1CacheSettings.html#a95ec4250fd35413350f8a0bdbb78beed">nBytes</a>, cacheSettings.<a class="code" href="structnifty_1_1hdf5_1_1CacheSettings.html#abdcd0cbeacf12d8fa7ea533213e4366a">rddc</a>);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        hid_t fileHandle = H5Fcreate(filename.c_str(), H5F_ACC_TRUNC, H5P_DEFAULT, plist);</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keywordflow">if</span>(fileHandle &lt; 0) {</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Could not create HDF5 file: &quot;</span> + filename);</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        }</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keywordflow">return</span> fileHandle;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    }</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keyword">inline</span> hid_t</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <a class="code" href="namespacenifty_1_1hdf5.html#a1a87959670d984301cfc2c780099673e">openFile</a></div>
-<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="namespacenifty_1_1hdf5.html#a1a87959670d984301cfc2c780099673e">   72</a></span>&#160;    (</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keyword">const</span> std::string&amp; filename,</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keyword">const</span> <a class="code" href="structnifty_1_1hdf5_1_1CacheSettings.html">CacheSettings</a> &amp; cacheSettings,</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        FileAccessMode fileAccessMode = READ_ONLY,</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        HDF5Version hdf5version = DEFAULT_HDF5_VERSION</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    )</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    {</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        hid_t access = H5F_ACC_RDONLY;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="keywordflow">if</span>(fileAccessMode == READ_WRITE) {</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            access = H5F_ACC_RDWR;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        }</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <span class="keyword">auto</span> plist = H5Pcreate(H5P_FILE_ACCESS);</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <span class="keywordflow">if</span>(hdf5version == LATEST_HDF5_VERSION) {</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            H5Pset_libver_bounds(plist, H5F_LIBVER_LATEST, H5F_LIBVER_LATEST);</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        }</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        hid_t fileHandle = H5Fcreate(filename.c_str(), H5F_ACC_TRUNC, H5P_DEFAULT, plist);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="keywordflow">if</span>(fileHandle &lt; 0) {</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Could not create HDF5 file: &quot;</span> + filename);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        }</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keywordflow">return</span> fileHandle;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    }</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keyword">inline</span> hid_t</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <a class="code" href="namespacenifty_1_1hdf5.html#a1a87959670d984301cfc2c780099673e">openFile</a></div>
+<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="namespacenifty_1_1hdf5.html#a1a87959670d984301cfc2c780099673e">   70</a></span>&#160;    (</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="keyword">const</span> std::string&amp; filename,</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keyword">const</span> <a class="code" href="structnifty_1_1hdf5_1_1CacheSettings.html">CacheSettings</a> &amp; cacheSettings,</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <a class="code" href="namespaceandres_1_1hdf5.html#a08660935c7de0e1e76e007fc972933b9">FileAccessMode</a> fileAccessMode = <a class="code" href="namespaceandres_1_1hdf5.html#a08660935c7de0e1e76e007fc972933b9af05cb745b770e55c64efe88162f7e9fb">READ_ONLY</a>,</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <a class="code" href="namespaceandres_1_1hdf5.html#ad5194a7b8773d3776e8dfc068f58f41b">HDF5Version</a> hdf5version = <a class="code" href="namespaceandres_1_1hdf5.html#ad5194a7b8773d3776e8dfc068f58f41baf4fdc18c306e5d07105ad62a1cf6fa93">DEFAULT_HDF5_VERSION</a></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    )</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    {</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        hid_t access = H5F_ACC_RDONLY;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordflow">if</span>(fileAccessMode == <a class="code" href="namespaceandres_1_1hdf5.html#a08660935c7de0e1e76e007fc972933b9af215ccdde9335c237c14b7c1d35766d4">READ_WRITE</a>) {</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            access = H5F_ACC_RDWR;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        }</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="keyword">auto</span> plist = H5Pcreate(H5P_FILE_ACCESS);</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="keywordflow">if</span>(hdf5version == <a class="code" href="namespaceandres_1_1hdf5.html#ad5194a7b8773d3776e8dfc068f58f41ba29da3f0202bdf4ea2b036678ae7aa717">LATEST_HDF5_VERSION</a>) {</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            H5Pset_libver_bounds(plist, H5F_LIBVER_LATEST, H5F_LIBVER_LATEST);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        }</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <span class="keyword">auto</span> ret = H5Pset_cache(plist, 0.0, cacheSettings.<a class="code" href="structnifty_1_1hdf5_1_1CacheSettings.html#ae99c704f44afa6ac669943633d859670">hashTabelSize</a>,  cacheSettings.<a class="code" href="structnifty_1_1hdf5_1_1CacheSettings.html#a95ec4250fd35413350f8a0bdbb78beed">nBytes</a>, cacheSettings.<a class="code" href="structnifty_1_1hdf5_1_1CacheSettings.html#abdcd0cbeacf12d8fa7ea533213e4366a">rddc</a>);</div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <span class="keyword">auto</span> ret = H5Pset_cache(plist, 0.0, cacheSettings.<a class="code" href="structnifty_1_1hdf5_1_1CacheSettings.html#ae99c704f44afa6ac669943633d859670">hashTabelSize</a>,  cacheSettings.<a class="code" href="structnifty_1_1hdf5_1_1CacheSettings.html#a95ec4250fd35413350f8a0bdbb78beed">nBytes</a>, cacheSettings.<a class="code" href="structnifty_1_1hdf5_1_1CacheSettings.html#abdcd0cbeacf12d8fa7ea533213e4366a">rddc</a>);</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        hid_t fileHandle = H5Fopen(filename.c_str(), access, plist);</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <span class="keywordflow">if</span>(fileHandle &lt; 0) {</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Could not open HDF5 file: &quot;</span> + filename);</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        }</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        <span class="keywordflow">return</span> fileHandle;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    }</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        hid_t fileHandle = H5Fopen(filename.c_str(), access, plist);</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <span class="keywordflow">if</span>(fileHandle &lt; 0) {</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Could not open HDF5 file: &quot;</span> + filename);</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        }</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <span class="keywordflow">return</span> fileHandle;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    }</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
@@ -188,24 +188,28 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;} <span class="comment">// namespace nifty::hdf5</span></div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;} <span class="comment">// namespace nifty</span></div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="preprocessor">#endif  // NIFTY_HDF5_HDF5</span></div>
-<div class="ttc" id="namespacenifty_1_1hdf5_html_a75c90b819349001bc1cf9e4bbe519462"><div class="ttname"><a href="namespacenifty_1_1hdf5.html#a75c90b819349001bc1cf9e4bbe519462">nifty::hdf5::createFile</a></div><div class="ttdeci">hid_t createFile(const std::string &amp;filename, const CacheSettings &amp;cacheSettings, HDF5Version hdf5version=DEFAULT_HDF5_VERSION)</div><div class="ttdef"><b>Definition:</b> hdf5.hxx:39</div></div>
-<div class="ttc" id="namespacenifty_1_1hdf5_html_a1a87959670d984301cfc2c780099673e"><div class="ttname"><a href="namespacenifty_1_1hdf5.html#a1a87959670d984301cfc2c780099673e">nifty::hdf5::openFile</a></div><div class="ttdeci">hid_t openFile(const std::string &amp;filename, const CacheSettings &amp;cacheSettings, FileAccessMode fileAccessMode=READ_ONLY, HDF5Version hdf5version=DEFAULT_HDF5_VERSION)</div><div class="ttdef"><b>Definition:</b> hdf5.hxx:72</div></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;} <span class="comment">// namespace nifty::hdf5</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;} <span class="comment">// namespace nifty</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;</div>
+<div class="ttc" id="namespaceandres_1_1hdf5_html_ad5194a7b8773d3776e8dfc068f58f41baf4fdc18c306e5d07105ad62a1cf6fa93"><div class="ttname"><a href="namespaceandres_1_1hdf5.html#ad5194a7b8773d3776e8dfc068f58f41baf4fdc18c306e5d07105ad62a1cf6fa93">andres::hdf5::DEFAULT_HDF5_VERSION</a></div><div class="ttdef"><b>Definition:</b> marray-hdf5.hxx:87</div></div>
+<div class="ttc" id="namespacenifty_1_1hdf5_html_a75c90b819349001bc1cf9e4bbe519462"><div class="ttname"><a href="namespacenifty_1_1hdf5.html#a75c90b819349001bc1cf9e4bbe519462">nifty::hdf5::createFile</a></div><div class="ttdeci">hid_t createFile(const std::string &amp;filename, const CacheSettings &amp;cacheSettings, HDF5Version hdf5version=DEFAULT_HDF5_VERSION)</div><div class="ttdef"><b>Definition:</b> hdf5.hxx:37</div></div>
+<div class="ttc" id="namespaceandres_1_1hdf5_html_a08660935c7de0e1e76e007fc972933b9af05cb745b770e55c64efe88162f7e9fb"><div class="ttname"><a href="namespaceandres_1_1hdf5.html#a08660935c7de0e1e76e007fc972933b9af05cb745b770e55c64efe88162f7e9fb">andres::hdf5::READ_ONLY</a></div><div class="ttdef"><b>Definition:</b> marray-hdf5.hxx:86</div></div>
+<div class="ttc" id="namespacenifty_1_1hdf5_html_a1a87959670d984301cfc2c780099673e"><div class="ttname"><a href="namespacenifty_1_1hdf5.html#a1a87959670d984301cfc2c780099673e">nifty::hdf5::openFile</a></div><div class="ttdeci">hid_t openFile(const std::string &amp;filename, const CacheSettings &amp;cacheSettings, FileAccessMode fileAccessMode=READ_ONLY, HDF5Version hdf5version=DEFAULT_HDF5_VERSION)</div><div class="ttdef"><b>Definition:</b> hdf5.hxx:70</div></div>
+<div class="ttc" id="namespaceandres_1_1hdf5_html_ad5194a7b8773d3776e8dfc068f58f41ba29da3f0202bdf4ea2b036678ae7aa717"><div class="ttname"><a href="namespaceandres_1_1hdf5.html#ad5194a7b8773d3776e8dfc068f58f41ba29da3f0202bdf4ea2b036678ae7aa717">andres::hdf5::LATEST_HDF5_VERSION</a></div><div class="ttdef"><b>Definition:</b> marray-hdf5.hxx:87</div></div>
+<div class="ttc" id="namespaceandres_1_1hdf5_html_a08660935c7de0e1e76e007fc972933b9af215ccdde9335c237c14b7c1d35766d4"><div class="ttname"><a href="namespaceandres_1_1hdf5.html#a08660935c7de0e1e76e007fc972933b9af215ccdde9335c237c14b7c1d35766d4">andres::hdf5::READ_WRITE</a></div><div class="ttdef"><b>Definition:</b> marray-hdf5.hxx:86</div></div>
 <div class="ttc" id="namespacemarray_1_1hdf5_html"><div class="ttname"><a href="namespacemarray_1_1hdf5.html">hdf5</a></div></div>
-<div class="ttc" id="structnifty_1_1hdf5_1_1CacheSettings_html_abdcd0cbeacf12d8fa7ea533213e4366a"><div class="ttname"><a href="structnifty_1_1hdf5_1_1CacheSettings.html#abdcd0cbeacf12d8fa7ea533213e4366a">nifty::hdf5::CacheSettings::rddc</a></div><div class="ttdeci">float rddc</div><div class="ttdef"><b>Definition:</b> hdf5.hxx:33</div></div>
-<div class="ttc" id="structnifty_1_1hdf5_1_1CacheSettings_html_ae99c704f44afa6ac669943633d859670"><div class="ttname"><a href="structnifty_1_1hdf5_1_1CacheSettings.html#ae99c704f44afa6ac669943633d859670">nifty::hdf5::CacheSettings::hashTabelSize</a></div><div class="ttdeci">int hashTabelSize</div><div class="ttdef"><b>Definition:</b> hdf5.hxx:31</div></div>
-<div class="ttc" id="structnifty_1_1hdf5_1_1CacheSettings_html"><div class="ttname"><a href="structnifty_1_1hdf5_1_1CacheSettings.html">nifty::hdf5::CacheSettings</a></div><div class="ttdef"><b>Definition:</b> hdf5.hxx:18</div></div>
-<div class="ttc" id="namespacenifty_html"><div class="ttname"><a href="namespacenifty.html">nifty</a></div><div class="ttdef"><b>Definition:</b> arithmetic_array.hxx:10</div></div>
+<div class="ttc" id="namespaceandres_1_1hdf5_html"><div class="ttname"><a href="namespaceandres_1_1hdf5.html">andres::hdf5</a></div><div class="ttdoc">HDF5 import/export support. </div><div class="ttdef"><b>Definition:</b> marray-hdf5.hxx:59</div></div>
+<div class="ttc" id="namespaceandres_1_1hdf5_html_a08660935c7de0e1e76e007fc972933b9"><div class="ttname"><a href="namespaceandres_1_1hdf5.html#a08660935c7de0e1e76e007fc972933b9">andres::hdf5::FileAccessMode</a></div><div class="ttdeci">FileAccessMode</div><div class="ttdef"><b>Definition:</b> marray-hdf5.hxx:86</div></div>
+<div class="ttc" id="structnifty_1_1hdf5_1_1CacheSettings_html_abdcd0cbeacf12d8fa7ea533213e4366a"><div class="ttname"><a href="structnifty_1_1hdf5_1_1CacheSettings.html#abdcd0cbeacf12d8fa7ea533213e4366a">nifty::hdf5::CacheSettings::rddc</a></div><div class="ttdeci">float rddc</div><div class="ttdef"><b>Definition:</b> hdf5.hxx:31</div></div>
+<div class="ttc" id="structnifty_1_1hdf5_1_1CacheSettings_html_ae99c704f44afa6ac669943633d859670"><div class="ttname"><a href="structnifty_1_1hdf5_1_1CacheSettings.html#ae99c704f44afa6ac669943633d859670">nifty::hdf5::CacheSettings::hashTabelSize</a></div><div class="ttdeci">int hashTabelSize</div><div class="ttdef"><b>Definition:</b> hdf5.hxx:29</div></div>
+<div class="ttc" id="structnifty_1_1hdf5_1_1CacheSettings_html"><div class="ttname"><a href="structnifty_1_1hdf5_1_1CacheSettings.html">nifty::hdf5::CacheSettings</a></div><div class="ttdef"><b>Definition:</b> hdf5.hxx:16</div></div>
+<div class="ttc" id="namespacenifty_html"><div class="ttname"><a href="namespacenifty.html">nifty</a></div><div class="ttdef"><b>Definition:</b> arithmetic_array.hxx:8</div></div>
 <div class="ttc" id="marray__hdf5_8hxx_html"><div class="ttname"><a href="marray__hdf5_8hxx.html">marray_hdf5.hxx</a></div></div>
 <div class="ttc" id="runtime__check_8hxx_html"><div class="ttname"><a href="runtime__check_8hxx.html">runtime_check.hxx</a></div></div>
-<div class="ttc" id="structnifty_1_1hdf5_1_1CacheSettings_html_aec0f428279a22300e530e134fa2b3947"><div class="ttname"><a href="structnifty_1_1hdf5_1_1CacheSettings.html#aec0f428279a22300e530e134fa2b3947">nifty::hdf5::CacheSettings::CacheSettings</a></div><div class="ttdeci">CacheSettings(const int hashTabelSize_=977, const int nBytes_=36000000, const float rddc_=1.0)</div><div class="ttdef"><b>Definition:</b> hdf5.hxx:20</div></div>
+<div class="ttc" id="namespaceandres_1_1hdf5_html_ad5194a7b8773d3776e8dfc068f58f41b"><div class="ttname"><a href="namespaceandres_1_1hdf5.html#ad5194a7b8773d3776e8dfc068f58f41b">andres::hdf5::HDF5Version</a></div><div class="ttdeci">HDF5Version</div><div class="ttdef"><b>Definition:</b> marray-hdf5.hxx:87</div></div>
+<div class="ttc" id="structnifty_1_1hdf5_1_1CacheSettings_html_aec0f428279a22300e530e134fa2b3947"><div class="ttname"><a href="structnifty_1_1hdf5_1_1CacheSettings.html#aec0f428279a22300e530e134fa2b3947">nifty::hdf5::CacheSettings::CacheSettings</a></div><div class="ttdeci">CacheSettings(const int hashTabelSize_=977, const int nBytes_=36000000, const float rddc_=1.0)</div><div class="ttdef"><b>Definition:</b> hdf5.hxx:18</div></div>
 <div class="ttc" id="block__access_8hxx_html"><div class="ttname"><a href="block__access_8hxx.html">block_access.hxx</a></div></div>
-<div class="ttc" id="structnifty_1_1hdf5_1_1CacheSettings_html_a95ec4250fd35413350f8a0bdbb78beed"><div class="ttname"><a href="structnifty_1_1hdf5_1_1CacheSettings.html#a95ec4250fd35413350f8a0bdbb78beed">nifty::hdf5::CacheSettings::nBytes</a></div><div class="ttdeci">int nBytes</div><div class="ttdef"><b>Definition:</b> hdf5.hxx:32</div></div>
+<div class="ttc" id="structnifty_1_1hdf5_1_1CacheSettings_html_a95ec4250fd35413350f8a0bdbb78beed"><div class="ttname"><a href="structnifty_1_1hdf5_1_1CacheSettings.html#a95ec4250fd35413350f8a0bdbb78beed">nifty::hdf5::CacheSettings::nBytes</a></div><div class="ttdeci">int nBytes</div><div class="ttdef"><b>Definition:</b> hdf5.hxx:30</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

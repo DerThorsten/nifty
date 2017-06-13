@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Nifty
-   &#160;<span id="projectnumber">0.5.1</span>
+   &#160;<span id="projectnumber">0.19.0</span>
    </div>
   </td>
  </tr>
@@ -94,31 +94,28 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <a href="boost__flat__set_8hxx.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#ifndef NIFTY_CONTAINER_BOOST_FLAT_SET_hXX</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno"><a class="line" href="boost__flat__set_8hxx.html#a571d9c5dfc1590fc97bf5caba0c38cef">    3</a></span>&#160;<span class="preprocessor">#define NIFTY_CONTAINER_BOOST_FLAT_SET_hXX</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;</div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#ifdef WITHIN_TRAVIS</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="flat__set_8hxx.html">nifty/container/flat_set.hxx</a>&quot;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define __nifty_setimpl__ nifty::container::FlatSet</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;boost/container/flat_set.hpp&gt;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="boost__flat__set_8hxx.html#a6b7afcb706c8e2ecfc2e7c25c7291148">   12</a></span>&#160;<span class="preprocessor">#define __nifty_setimpl__ boost::container::flat_set</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacenifty.html">nifty</a> {</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">namespace </span>container{</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="namespacenifty_1_1container.html#ad9f6bbba60eac29f50d418e4c09d5c7b">   19</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="namespacenifty_1_1container.html#ad9f6bbba60eac29f50d418e4c09d5c7b">BoostFlatSet</a> = __nifty_setimpl__&lt;T&gt;;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;} <span class="comment">// container</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;} <span class="comment">// namespace nifty</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;  </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* NIFTY_CONTAINER_BOOST_FLAT_SET_hXX */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="namespacenifty_1_1container_html_ad9f6bbba60eac29f50d418e4c09d5c7b"><div class="ttname"><a href="namespacenifty_1_1container.html#ad9f6bbba60eac29f50d418e4c09d5c7b">nifty::container::BoostFlatSet</a></div><div class="ttdeci">__nifty_setimpl__&lt; T &gt; BoostFlatSet</div><div class="ttdef"><b>Definition:</b> boost_flat_set.hxx:19</div></div>
-<div class="ttc" id="namespacenifty_html"><div class="ttname"><a href="namespacenifty.html">nifty</a></div><div class="ttdef"><b>Definition:</b> arithmetic_array.hxx:10</div></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#ifdef WITHIN_TRAVIS</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="flat__set_8hxx.html">nifty/container/flat_set.hxx</a>&quot;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#define __nifty_setimpl__ nifty::container::FlatSet</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;boost/container/flat_set.hpp&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="boost__flat__set_8hxx.html#a6b7afcb706c8e2ecfc2e7c25c7291148">   10</a></span>&#160;<span class="preprocessor">#define __nifty_setimpl__ boost::container::flat_set</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacenifty.html">nifty</a> {</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">namespace </span>container{</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="namespacenifty_1_1container.html#ad9f6bbba60eac29f50d418e4c09d5c7b">   17</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="namespacenifty_1_1container.html#ad9f6bbba60eac29f50d418e4c09d5c7b">BoostFlatSet</a> = __nifty_setimpl__&lt;T&gt;;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;} <span class="comment">// container</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;} <span class="comment">// namespace nifty</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;  </div>
+<div class="ttc" id="namespacenifty_1_1container_html_ad9f6bbba60eac29f50d418e4c09d5c7b"><div class="ttname"><a href="namespacenifty_1_1container.html#ad9f6bbba60eac29f50d418e4c09d5c7b">nifty::container::BoostFlatSet</a></div><div class="ttdeci">__nifty_setimpl__&lt; T &gt; BoostFlatSet</div><div class="ttdef"><b>Definition:</b> boost_flat_set.hxx:17</div></div>
+<div class="ttc" id="namespacenifty_html"><div class="ttname"><a href="namespacenifty.html">nifty</a></div><div class="ttdef"><b>Definition:</b> arithmetic_array.hxx:8</div></div>
 <div class="ttc" id="flat__set_8hxx_html"><div class="ttname"><a href="flat__set_8hxx.html">flat_set.hxx</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

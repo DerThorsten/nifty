@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="namespacenifty_1_1cgp" kind="namespace" language="C++">
+    <compoundname>nifty::cgp</compoundname>
+    <innerclass refid="classnifty_1_1cgp_1_1Bounds" prot="public">nifty::cgp::Bounds</innerclass>
+    <innerclass refid="classnifty_1_1cgp_1_1Bounds_3_012_01_4" prot="public">nifty::cgp::Bounds&lt; 2 &gt;</innerclass>
+    <innerclass refid="classnifty_1_1cgp_1_1Cell1BasicGeometricFeatures2D" prot="public">nifty::cgp::Cell1BasicGeometricFeatures2D</innerclass>
+    <innerclass refid="classnifty_1_1cgp_1_1Cell1BasicTopologicalFeatures" prot="public">nifty::cgp::Cell1BasicTopologicalFeatures</innerclass>
+    <innerclass refid="classnifty_1_1cgp_1_1Cell1CurvatureFeatures2D" prot="public">nifty::cgp::Cell1CurvatureFeatures2D</innerclass>
+    <innerclass refid="classnifty_1_1cgp_1_1Cell1LineSegmentDist2D" prot="public">nifty::cgp::Cell1LineSegmentDist2D</innerclass>
+    <innerclass refid="classnifty_1_1cgp_1_1CellBoundedBy" prot="public">nifty::cgp::CellBoundedBy</innerclass>
+    <innerclass refid="classnifty_1_1cgp_1_1CellBoundedBy_3_012_00_011_01_4" prot="public">nifty::cgp::CellBoundedBy&lt; 2, 1 &gt;</innerclass>
+    <innerclass refid="classnifty_1_1cgp_1_1CellBoundedBy_3_012_00_012_01_4" prot="public">nifty::cgp::CellBoundedBy&lt; 2, 2 &gt;</innerclass>
+    <innerclass refid="classnifty_1_1cgp_1_1CellBoundedByVector" prot="public">nifty::cgp::CellBoundedByVector</innerclass>
+    <innerclass refid="classnifty_1_1cgp_1_1CellBoundedByVector_3_012_00_011_01_4" prot="public">nifty::cgp::CellBoundedByVector&lt; 2, 1 &gt;</innerclass>
+    <innerclass refid="classnifty_1_1cgp_1_1CellBoundedByVector_3_012_00_012_01_4" prot="public">nifty::cgp::CellBoundedByVector&lt; 2, 2 &gt;</innerclass>
+    <innerclass refid="classnifty_1_1cgp_1_1CellBounds" prot="public">nifty::cgp::CellBounds</innerclass>
+    <innerclass refid="classnifty_1_1cgp_1_1CellBounds_3_012_00_010_01_4" prot="public">nifty::cgp::CellBounds&lt; 2, 0 &gt;</innerclass>
+    <innerclass refid="classnifty_1_1cgp_1_1CellBounds_3_012_00_011_01_4" prot="public">nifty::cgp::CellBounds&lt; 2, 1 &gt;</innerclass>
+    <innerclass refid="classnifty_1_1cgp_1_1CellBoundsVector" prot="public">nifty::cgp::CellBoundsVector</innerclass>
+    <innerclass refid="classnifty_1_1cgp_1_1CellGeometry" prot="public">nifty::cgp::CellGeometry</innerclass>
+    <innerclass refid="classnifty_1_1cgp_1_1CellGeometry_3_012_00_011_01_4" prot="public">nifty::cgp::CellGeometry&lt; 2, 1 &gt;</innerclass>
+    <innerclass refid="classnifty_1_1cgp_1_1CellGeometry_3_01DIM_00_010_01_4" prot="public">nifty::cgp::CellGeometry&lt; DIM, 0 &gt;</innerclass>
+    <innerclass refid="classnifty_1_1cgp_1_1CellGeometryVector" prot="public">nifty::cgp::CellGeometryVector</innerclass>
+    <innerclass refid="classnifty_1_1cgp_1_1CellVector" prot="public">nifty::cgp::CellVector</innerclass>
+    <innerclass refid="classnifty_1_1cgp_1_1FilledTopologicalGrid" prot="public">nifty::cgp::FilledTopologicalGrid</innerclass>
+    <innerclass refid="classnifty_1_1cgp_1_1FilledTopologicalGrid_3_012_01_4" prot="public">nifty::cgp::FilledTopologicalGrid&lt; 2 &gt;</innerclass>
+    <innerclass refid="classnifty_1_1cgp_1_1Geometry" prot="public">nifty::cgp::Geometry</innerclass>
+    <innerclass refid="classnifty_1_1cgp_1_1Geometry_3_012_01_4" prot="public">nifty::cgp::Geometry&lt; 2 &gt;</innerclass>
+    <innerclass refid="classnifty_1_1cgp_1_1TopologicalGrid" prot="public">nifty::cgp::TopologicalGrid</innerclass>
+    <innerclass refid="classnifty_1_1cgp_1_1TopologicalGrid_3_012_01_4" prot="public">nifty::cgp::TopologicalGrid&lt; 2 &gt;</innerclass>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespacenifty_1_1cgp_1a843b0dda23907002418edcd4765cdae1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>T</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::cgp::cell1ProbabilityPropagation2D</definition>
+        <argsstring>(const nifty::marray::View&lt; T &gt; &amp;probabilitiesIn, const CellBoundsVector&lt; 2, 0 &gt; &amp;cell0Bounds, const CellBoundedByVector&lt; 2, 1 &gt; &amp;cell1BoundedBy, nifty::marray::View&lt; T &gt; &amp;probabilitiesOut, const float thresholdLow=0.3, const float thresholdHigh=0.5, const float damping=0.1)</argsstring>
+        <name>cell1ProbabilityPropagation2D</name>
+        <param>
+          <type>const <ref refid="classandres_1_1View" kindref="compound">nifty::marray::View</ref>&lt; T &gt; &amp;</type>
+          <declname>probabilitiesIn</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classnifty_1_1cgp_1_1CellBoundsVector" kindref="compound">CellBoundsVector</ref>&lt; 2, 0 &gt; &amp;</type>
+          <declname>cell0Bounds</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classnifty_1_1cgp_1_1CellBoundedByVector" kindref="compound">CellBoundedByVector</ref>&lt; 2, 1 &gt; &amp;</type>
+          <declname>cell1BoundedBy</declname>
+        </param>
+        <param>
+          <type><ref refid="classandres_1_1View" kindref="compound">nifty::marray::View</ref>&lt; T &gt; &amp;</type>
+          <declname>probabilitiesOut</declname>
+        </param>
+        <param>
+          <type>const float</type>
+          <declname>thresholdLow</declname>
+          <defval>0.3</defval>
+        </param>
+        <param>
+          <type>const float</type>
+          <declname>thresholdHigh</declname>
+          <defval>0.5</defval>
+        </param>
+        <param>
+          <type>const float</type>
+          <declname>damping</declname>
+          <defval>0.1</defval>
+        </param>
+        <briefdescription>
+<para>a handcrafted thing to hopefully close tiny gaps in edge_probos] </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">probabilitiesIn</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The probabilities in </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">cell0Bounds</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The cell 0 bounds </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">cell1BoundedBy</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The cell 1 bounded by </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">probabilitiesOut</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The probabilities out </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">thresholdLow</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The threshold low </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">thresholdHigh</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The threshold high </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">damping</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The damping</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>float or double </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/cgp/features.hxx" line="33" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/cgp/features.hxx" bodystart="33" bodyend="131"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/cgp/bounds.hxx" line="12" column="1"/>
+  </compounddef>
+</doxygen>

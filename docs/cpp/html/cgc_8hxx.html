@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Nifty
-   &#160;<span id="projectnumber">0.5.1</span>
+   &#160;<span id="projectnumber">0.19.0</span>
    </div>
   </td>
  </tr>
@@ -98,24 +98,52 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <div class="textblock"><code>#include &lt;queue&gt;</code><br />
 <code>#include &quot;boost/format.hpp&quot;</code><br />
-<code>#include &quot;vigra/priority_queue.hxx&quot;</code><br />
+<code>#include &quot;<a class="el" href="changable__priority__queue_8hxx_source.html">nifty/tools/changable_priority_queue.hxx</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="runtime__check_8hxx_source.html">nifty/tools/runtime_check.hxx</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="components_8hxx_source.html">nifty/graph/components.hxx</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="multicut__base_8hxx_source.html">nifty/graph/optimization/multicut/multicut_base.hxx</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="multicut__factory_8hxx_source.html">nifty/graph/optimization/multicut/multicut_factory.hxx</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="solver__factory_8hxx_source.html">nifty/graph/optimization/common/solver_factory.hxx</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="graph_2optimization_2multicut_2multicut__objective_8hxx_source.html">nifty/graph/optimization/multicut/multicut_objective.hxx</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="graph_2undirected__list__graph_8hxx_source.html">nifty/graph/undirected_list_graph.hxx</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="ufd_8hxx_source.html">nifty/ufd/ufd.hxx</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="graph_2edge__contraction__graph_8hxx_source.html">nifty/graph/edge_contraction_graph.hxx</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="mincut__visitor__base_8hxx_source.html">nifty/graph/optimization/mincut/mincut_visitor_base.hxx</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="mincut__base_8hxx_source.html">nifty/graph/optimization/mincut/mincut_base.hxx</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="mincut__factory_8hxx_source.html">nifty/graph/optimization/mincut/mincut_factory.hxx</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="graph_2optimization_2mincut_2mincut__objective_8hxx_source.html">nifty/graph/optimization/mincut/mincut_objective.hxx</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for cgc.hxx:</div>
 <div class="dyncontent">
 <div class="center"><img src="cgc_8hxx__incl.png" border="0" usemap="#_2home_2tbeier_2src_2nifty_2include_2nifty_2graph_2optimization_2multicut_2cgc_8hxx" alt=""/></div>
-<!-- MAP 0 -->
+<map name="_2home_2tbeier_2src_2nifty_2include_2nifty_2graph_2optimization_2multicut_2cgc_8hxx" id="_2home_2tbeier_2src_2nifty_2include_2nifty_2graph_2optimization_2multicut_2cgc_8hxx">
+<area shape="rect" id="node4" href="changable__priority__queue_8hxx.html" title="nifty/tools/changable\l_priority_queue.hxx" alt="" coords="187,109,329,151"/>
+<area shape="rect" id="node5" href="runtime__check_8hxx.html" title="nifty/tools/runtime\l_check.hxx" alt="" coords="1292,496,1419,537"/>
+<area shape="rect" id="node12" href="components_8hxx.html" title="nifty/graph/components.hxx" alt="" coords="353,117,536,143"/>
+<area shape="rect" id="node17" href="ufd_8hxx.html" title="nifty/ufd/ufd.hxx" alt="" coords="1520,213,1636,240"/>
+<area shape="rect" id="node20" href="multicut__base_8hxx.html" title="nifty/graph/optimization\l/multicut/multicut_base.hxx" alt="" coords="2933,303,3116,344"/>
+<area shape="rect" id="node27" href="solver__factory_8hxx.html" title="nifty/graph/optimization\l/common/solver_factory.hxx" alt="" coords="561,109,747,151"/>
+<area shape="rect" id="node29" href="graph_2optimization_2multicut_2multicut__objective_8hxx.html" title="nifty/graph/optimization\l/multicut/multicut_objective.hxx" alt="" coords="720,206,927,247"/>
+<area shape="rect" id="node32" href="graph_2undirected__list__graph_8hxx.html" title="nifty/graph/undirected\l_list_graph.hxx" alt="" coords="1601,109,1747,151"/>
+<area shape="rect" id="node46" href="graph_2edge__contraction__graph_8hxx.html" title="nifty/graph/edge_contraction\l_graph.hxx" alt="" coords="2151,109,2338,151"/>
+<area shape="rect" id="node48" href="mincut__visitor__base_8hxx.html" title="nifty/graph/optimization\l/mincut/mincut_visitor\l_base.hxx" alt="" coords="2737,392,2894,448"/>
+<area shape="rect" id="node49" href="mincut__base_8hxx.html" title="nifty/graph/optimization\l/mincut/mincut_base.hxx" alt="" coords="2706,303,2874,344"/>
+<area shape="rect" id="node50" href="graph_2optimization_2mincut_2mincut__objective_8hxx.html" title="nifty/graph/optimization\l/mincut/mincut_objective.hxx" alt="" coords="951,206,1143,247"/>
+<area shape="rect" id="node14" href="subgraph__mask_8hxx.html" title="nifty/graph/subgraph\l_mask.hxx" alt="" coords="375,399,515,441"/>
+<area shape="rect" id="node15" href="breadth__first__search_8hxx.html" title="nifty/graph/breadth\l_first_search.hxx" alt="" coords="277,206,407,247"/>
+<area shape="rect" id="node16" href="search__impl_8hxx.html" title="nifty/graph/detail\l/search_impl.hxx" alt="" coords="235,303,356,344"/>
+<area shape="rect" id="node23" href="solver__base_8hxx.html" title="nifty/graph/optimization\l/common/solver_base.hxx" alt="" coords="2463,399,2637,441"/>
+<area shape="rect" id="node26" href="multicut__visitor__base_8hxx.html" title="nifty/graph/optimization\l/multicut/multicut_visitor\l_base.hxx" alt="" coords="2980,392,3144,448"/>
+<area shape="rect" id="node24" href="exceptions_8hxx.html" title="nifty/exceptions/exceptions.hxx" alt="" coords="1748,503,1955,530"/>
+<area shape="rect" id="node25" href="visitor__base_8hxx.html" title="nifty/graph/optimization\l/common/visitor_base.hxx" alt="" coords="2665,496,2840,537"/>
+<area shape="rect" id="node28" href="solver__factory__base_8hxx.html" title="nifty/graph/optimization\l/common/solver_factory\l_base.hxx" alt="" coords="482,199,645,255"/>
+<area shape="rect" id="node30" href="graph__maps_8hxx.html" title="nifty/graph/graph_maps.hxx" alt="" coords="960,310,1143,337"/>
+<area shape="rect" id="node31" href="marray_8hxx.html" title="nifty/marray/marray.hxx" alt="" coords="977,407,1137,433"/>
+<area shape="rect" id="node36" href="flat__set_8hxx.html" title="nifty/container/flat\l_set.hxx" alt="" coords="2309,303,2436,344"/>
+<area shape="rect" id="node40" href="undirected__graph__base_8hxx.html" title="nifty/graph/undirected\l_graph_base.hxx" alt="" coords="1762,206,1909,247"/>
+<area shape="rect" id="node42" href="graph__tags_8hxx.html" title="nifty/graph/graph_tags.hxx" alt="" coords="1711,310,1887,337"/>
+<area shape="rect" id="node44" href="adjacency_8hxx.html" title="nifty/graph/detail\l/adjacency.hxx" alt="" coords="2035,206,2153,247"/>
+<area shape="rect" id="node45" href="threadpool_8hxx.html" title="nifty/parallel/threadpool.hxx" alt="" coords="1282,310,1463,337"/>
+<area shape="rect" id="node43" href="const__iterator__range_8hxx.html" title="nifty/tools/const_iterator\l_range.hxx" alt="" coords="1962,303,2125,344"/>
+</map>
 </div>
 </div>
 <p><a href="cgc_8hxx_source.html">Go to the source code of this file.</a></p>
@@ -124,7 +152,7 @@ Include dependency graph for cgc.hxx:</div>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnifty_1_1graph_1_1optimization_1_1multicut_1_1Cgc.html">nifty::graph::optimization::multicut::Cgc&lt; OBJECTIVE &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnifty_1_1graph_1_1optimization_1_1multicut_1_1Cgc_1_1Settings.html">nifty::graph::optimization::multicut::Cgc&lt; OBJECTIVE &gt;::Settings</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnifty_1_1graph_1_1optimization_1_1multicut_1_1Cgc_1_1SettingsType.html">nifty::graph::optimization::multicut::Cgc&lt; OBJECTIVE &gt;::SettingsType</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>

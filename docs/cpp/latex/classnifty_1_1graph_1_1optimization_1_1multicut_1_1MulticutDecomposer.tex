@@ -1,0 +1,208 @@
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer}{}\section{nifty\+:\+:graph\+:\+:optimization\+:\+:multicut\+:\+:Multicut\+Decomposer$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$ Class Template Reference}
+\label{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer}\index{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$@{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}}
+
+
+{\ttfamily \#include $<$multicut\+\_\+decomposer.\+hxx$>$}
+
+
+
+Inheritance diagram for nifty\+:\+:graph\+:\+:optimization\+:\+:multicut\+:\+:Multicut\+Decomposer$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for nifty\+:\+:graph\+:\+:optimization\+:\+:multicut\+:\+:Multicut\+Decomposer$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_1_1SettingsType}{Settings\+Type}
+\end{DoxyCompactItemize}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef O\+B\+J\+E\+C\+T\+I\+V\+E \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_ac952e35144b62e74a0ab4e08a4fbb123}{Objective}
+\item 
+typedef Objective\+::\+Weight\+Type \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_a53574e582133a64729724c47244450b1}{Weight\+Type}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutBase}{Multicut\+Base}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$ \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_acc1a1f33f65811d3be3ae2b819d8470d}{Base\+Type}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_a5a14d64c70a9cc0eebc7d71d2b089f9b}{Base\+Type\+::\+Visitor\+Base\+Type} \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_ad1f4a09f99e9fa5ba8ae1bf3227c18f3}{Visitor\+Base\+Type}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_a58913ea9ab9232ff72608b710c1012d0}{Base\+Type\+::\+Visitor\+Proxy\+Type} \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_a53a9d7161f78a1857add8e82d05fbd70}{Visitor\+Proxy\+Type}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_a6e4e465f3b6e039882669fcfb9714818}{Base\+Type\+::\+Node\+Labels\+Type} \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_a393f1194615c399b2bbb591c764d036f}{Node\+Labels\+Type}
+\item 
+typedef Objective\+::\+Graph \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_aff933499d0ad72cbb45f308ac7cd054d}{Graph}
+\item 
+typedef Objective\+::\+Weights\+Map \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_a057405459f7f484d39c46c4a58fb34df}{Weights\+Map}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase}{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Factory\+Base}$<$ \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_acc1a1f33f65811d3be3ae2b819d8470d}{Base\+Type} $>$ \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_abe39b7b32f6d3b6f01d24e0d298f759a}{Factory\+Base}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1UndirectedGraph}{Undirected\+Graph} \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_a86839f636f1cc36c14165549418495cd}{Submodel\+Graph}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutObjective}{Multicut\+Objective}$<$ \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_a86839f636f1cc36c14165549418495cd}{Submodel\+Graph}, \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_a53574e582133a64729724c47244450b1}{Weight\+Type} $>$ \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_ae2ec7761d50f6ba9f50b6593ad6b4f22}{Submodel\+Objective}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutBase}{Multicut\+Base}$<$ \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_ae2ec7761d50f6ba9f50b6593ad6b4f22}{Submodel\+Objective} $>$ \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_a6e9d36ca06aabf1ffa68e511ea9f34ec}{Submodel\+Multicut\+Base\+Type}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase}{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Factory\+Base}$<$ \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_a6e9d36ca06aabf1ffa68e511ea9f34ec}{Submodel\+Multicut\+Base\+Type} $>$ \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_ad0cfefa227a0ab22508cda89dd3a4320}{Submodel\+Factory\+Base}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_a6e4e465f3b6e039882669fcfb9714818}{Submodel\+Multicut\+Base\+Type\+::\+Node\+Labels\+Type} \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_a21832b392d9987edc34295434ec8ebb2}{Submodel\+Node\+Labels}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_a6f2b07b8ca7cb1e5c4982e9b9e342670}{$\sim$\+Multicut\+Decomposer} ()
+\item 
+\hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_a1e2f73d7be672c9361e474db5d8df6f9}{Multicut\+Decomposer} (const \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_ac952e35144b62e74a0ab4e08a4fbb123}{Objective} \&\hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_ac2726619b7a262f230b48dd543a6b72d}{objective}, const \hyperlink{structnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_1_1SettingsType}{Settings\+Type} \&settings=\hyperlink{structnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_1_1SettingsType}{Settings\+Type}())
+\item 
+virtual void \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_af27684dc6a90544177d9c528e007703f}{optimize} (\hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_a393f1194615c399b2bbb591c764d036f}{Node\+Labels\+Type} \&node\+Labels, \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_ad1f4a09f99e9fa5ba8ae1bf3227c18f3}{Visitor\+Base\+Type} $\ast$visitor)
+\item 
+virtual const \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_ac952e35144b62e74a0ab4e08a4fbb123}{Objective} \& \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_ac2726619b7a262f230b48dd543a6b72d}{objective} () const 
+\item 
+virtual const \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_a393f1194615c399b2bbb591c764d036f}{Node\+Labels\+Type} \& \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_a7afafbe468cb6bdd0e7a7a977ab538b0}{current\+Best\+Node\+Labels} ()
+\item 
+virtual std\+::string \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_a3648245ab3ec1d06b2db9db4b5502cc8}{name} () const 
+\item 
+virtual void \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_abadeeec8cacce02560f7e1522f537f0e}{weights\+Changed} ()
+\begin{DoxyCompactList}\small\item\em Inform solver about a change of weights. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_acc1a1f33f65811d3be3ae2b819d8470d}{}\index{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer@{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}!Base\+Type@{Base\+Type}}
+\index{Base\+Type@{Base\+Type}!nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer@{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}}
+\subsubsection[{Base\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E$>$ typedef {\bf Multicut\+Base}$<$O\+B\+J\+E\+C\+T\+I\+V\+E$>$ {\bf nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Base\+Type}}\label{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_acc1a1f33f65811d3be3ae2b819d8470d}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_abe39b7b32f6d3b6f01d24e0d298f759a}{}\index{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer@{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}!Factory\+Base@{Factory\+Base}}
+\index{Factory\+Base@{Factory\+Base}!nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer@{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}}
+\subsubsection[{Factory\+Base}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E$>$ typedef {\bf nifty\+::graph\+::optimization\+::common\+::\+Solver\+Factory\+Base}$<${\bf Base\+Type}$>$ {\bf nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Factory\+Base}}\label{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_abe39b7b32f6d3b6f01d24e0d298f759a}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_aff933499d0ad72cbb45f308ac7cd054d}{}\index{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer@{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}!Graph@{Graph}}
+\index{Graph@{Graph}!nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer@{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}}
+\subsubsection[{Graph}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E$>$ typedef Objective\+::\+Graph {\bf nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Graph}}\label{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_aff933499d0ad72cbb45f308ac7cd054d}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_a393f1194615c399b2bbb591c764d036f}{}\index{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer@{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}!Node\+Labels\+Type@{Node\+Labels\+Type}}
+\index{Node\+Labels\+Type@{Node\+Labels\+Type}!nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer@{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}}
+\subsubsection[{Node\+Labels\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E$>$ typedef {\bf Base\+Type\+::\+Node\+Labels\+Type} {\bf nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Node\+Labels\+Type}}\label{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_a393f1194615c399b2bbb591c764d036f}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_ac952e35144b62e74a0ab4e08a4fbb123}{}\index{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer@{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}!Objective@{Objective}}
+\index{Objective@{Objective}!nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer@{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}}
+\subsubsection[{Objective}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E$>$ typedef O\+B\+J\+E\+C\+T\+I\+V\+E {\bf nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Objective}}\label{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_ac952e35144b62e74a0ab4e08a4fbb123}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_ad0cfefa227a0ab22508cda89dd3a4320}{}\index{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer@{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}!Submodel\+Factory\+Base@{Submodel\+Factory\+Base}}
+\index{Submodel\+Factory\+Base@{Submodel\+Factory\+Base}!nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer@{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}}
+\subsubsection[{Submodel\+Factory\+Base}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E$>$ typedef {\bf nifty\+::graph\+::optimization\+::common\+::\+Solver\+Factory\+Base}$<${\bf Submodel\+Multicut\+Base\+Type}$>$ {\bf nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Submodel\+Factory\+Base}}\label{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_ad0cfefa227a0ab22508cda89dd3a4320}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_a86839f636f1cc36c14165549418495cd}{}\index{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer@{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}!Submodel\+Graph@{Submodel\+Graph}}
+\index{Submodel\+Graph@{Submodel\+Graph}!nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer@{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}}
+\subsubsection[{Submodel\+Graph}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E$>$ typedef {\bf Undirected\+Graph} {\bf nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Submodel\+Graph}}\label{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_a86839f636f1cc36c14165549418495cd}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_a6e9d36ca06aabf1ffa68e511ea9f34ec}{}\index{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer@{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}!Submodel\+Multicut\+Base\+Type@{Submodel\+Multicut\+Base\+Type}}
+\index{Submodel\+Multicut\+Base\+Type@{Submodel\+Multicut\+Base\+Type}!nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer@{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}}
+\subsubsection[{Submodel\+Multicut\+Base\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E$>$ typedef {\bf Multicut\+Base}$<${\bf Submodel\+Objective}$>$ {\bf nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Submodel\+Multicut\+Base\+Type}}\label{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_a6e9d36ca06aabf1ffa68e511ea9f34ec}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_a21832b392d9987edc34295434ec8ebb2}{}\index{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer@{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}!Submodel\+Node\+Labels@{Submodel\+Node\+Labels}}
+\index{Submodel\+Node\+Labels@{Submodel\+Node\+Labels}!nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer@{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}}
+\subsubsection[{Submodel\+Node\+Labels}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E$>$ typedef {\bf Submodel\+Multicut\+Base\+Type\+::\+Node\+Labels\+Type} {\bf nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Submodel\+Node\+Labels}}\label{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_a21832b392d9987edc34295434ec8ebb2}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_ae2ec7761d50f6ba9f50b6593ad6b4f22}{}\index{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer@{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}!Submodel\+Objective@{Submodel\+Objective}}
+\index{Submodel\+Objective@{Submodel\+Objective}!nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer@{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}}
+\subsubsection[{Submodel\+Objective}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E$>$ typedef {\bf Multicut\+Objective}$<${\bf Submodel\+Graph}, {\bf Weight\+Type}$>$ {\bf nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Submodel\+Objective}}\label{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_ae2ec7761d50f6ba9f50b6593ad6b4f22}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_ad1f4a09f99e9fa5ba8ae1bf3227c18f3}{}\index{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer@{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}!Visitor\+Base\+Type@{Visitor\+Base\+Type}}
+\index{Visitor\+Base\+Type@{Visitor\+Base\+Type}!nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer@{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}}
+\subsubsection[{Visitor\+Base\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E$>$ typedef {\bf Base\+Type\+::\+Visitor\+Base\+Type} {\bf nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Visitor\+Base\+Type}}\label{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_ad1f4a09f99e9fa5ba8ae1bf3227c18f3}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_a53a9d7161f78a1857add8e82d05fbd70}{}\index{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer@{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}!Visitor\+Proxy\+Type@{Visitor\+Proxy\+Type}}
+\index{Visitor\+Proxy\+Type@{Visitor\+Proxy\+Type}!nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer@{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}}
+\subsubsection[{Visitor\+Proxy\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E$>$ typedef {\bf Base\+Type\+::\+Visitor\+Proxy\+Type} {\bf nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Visitor\+Proxy\+Type}}\label{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_a53a9d7161f78a1857add8e82d05fbd70}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_a057405459f7f484d39c46c4a58fb34df}{}\index{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer@{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}!Weights\+Map@{Weights\+Map}}
+\index{Weights\+Map@{Weights\+Map}!nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer@{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}}
+\subsubsection[{Weights\+Map}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E$>$ typedef Objective\+::\+Weights\+Map {\bf nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Weights\+Map}}\label{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_a057405459f7f484d39c46c4a58fb34df}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_a53574e582133a64729724c47244450b1}{}\index{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer@{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}!Weight\+Type@{Weight\+Type}}
+\index{Weight\+Type@{Weight\+Type}!nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer@{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}}
+\subsubsection[{Weight\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E$>$ typedef Objective\+::\+Weight\+Type {\bf nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Weight\+Type}}\label{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_a53574e582133a64729724c47244450b1}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_a6f2b07b8ca7cb1e5c4982e9b9e342670}{}\index{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer@{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}!````~Multicut\+Decomposer@{$\sim$\+Multicut\+Decomposer}}
+\index{````~Multicut\+Decomposer@{$\sim$\+Multicut\+Decomposer}!nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer@{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}}
+\subsubsection[{$\sim$\+Multicut\+Decomposer()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E$>$ virtual {\bf nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::$\sim${\bf Multicut\+Decomposer} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_a6f2b07b8ca7cb1e5c4982e9b9e342670}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_a1e2f73d7be672c9361e474db5d8df6f9}{}\index{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer@{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}!Multicut\+Decomposer@{Multicut\+Decomposer}}
+\index{Multicut\+Decomposer@{Multicut\+Decomposer}!nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer@{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}}
+\subsubsection[{Multicut\+Decomposer(const Objective \&objective, const Settings\+Type \&settings=\+Settings\+Type())}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ {\bf nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Multicut\+Decomposer} (
+\begin{DoxyParamCaption}
+\item[{const {\bf Objective} \&}]{objective, }
+\item[{const {\bf Settings\+Type} \&}]{settings = {\ttfamily {\bf Settings\+Type}()}}
+\end{DoxyParamCaption}
+)}\label{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_a1e2f73d7be672c9361e474db5d8df6f9}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_a7afafbe468cb6bdd0e7a7a977ab538b0}{}\index{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer@{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}!current\+Best\+Node\+Labels@{current\+Best\+Node\+Labels}}
+\index{current\+Best\+Node\+Labels@{current\+Best\+Node\+Labels}!nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer@{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}}
+\subsubsection[{current\+Best\+Node\+Labels()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E$>$ virtual const {\bf Node\+Labels\+Type}\& {\bf nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::current\+Best\+Node\+Labels (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_a7afafbe468cb6bdd0e7a7a977ab538b0}
+
+
+Implements \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_a3634ba645adbb7a668500e807608bcca}{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base$<$ O\+B\+J\+E\+C\+T\+I\+V\+E, Multicut\+Base$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$ $>$}.
+
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_a3648245ab3ec1d06b2db9db4b5502cc8}{}\index{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer@{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}!name@{name}}
+\index{name@{name}!nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer@{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}}
+\subsubsection[{name() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E$>$ virtual std\+::string {\bf nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::name (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_a3648245ab3ec1d06b2db9db4b5502cc8}
+
+
+Implements \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_abc9685a3d63748ac470afccb2813be7e}{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base$<$ O\+B\+J\+E\+C\+T\+I\+V\+E, Multicut\+Base$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$ $>$}.
+
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_ac2726619b7a262f230b48dd543a6b72d}{}\index{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer@{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}!objective@{objective}}
+\index{objective@{objective}!nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer@{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}}
+\subsubsection[{objective() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ const {\bf Multicut\+Decomposer}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Objective} \& {\bf nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::objective (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}\label{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_ac2726619b7a262f230b48dd543a6b72d}
+
+
+Implements \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_ae7d36a7485b12a25979f75771f52e397}{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base$<$ O\+B\+J\+E\+C\+T\+I\+V\+E, Multicut\+Base$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$ $>$}.
+
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_af27684dc6a90544177d9c528e007703f}{}\index{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer@{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}!optimize@{optimize}}
+\index{optimize@{optimize}!nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer@{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}}
+\subsubsection[{optimize(\+Node\+Labels\+Type \&node\+Labels, Visitor\+Base\+Type $\ast$visitor)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ void {\bf nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::optimize (
+\begin{DoxyParamCaption}
+\item[{{\bf Node\+Labels\+Type} \&}]{node\+Labels, }
+\item[{{\bf Visitor\+Base\+Type} $\ast$}]{visitor}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_af27684dc6a90544177d9c528e007703f}
+
+
+Implements \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_a1c08eb1ff2b3cca5366c3aab161ba040}{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base$<$ O\+B\+J\+E\+C\+T\+I\+V\+E, Multicut\+Base$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$ $>$}.
+
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_abadeeec8cacce02560f7e1522f537f0e}{}\index{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer@{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}!weights\+Changed@{weights\+Changed}}
+\index{weights\+Changed@{weights\+Changed}!nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer@{nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}}
+\subsubsection[{weights\+Changed()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E$>$ virtual void {\bf nifty\+::graph\+::optimization\+::multicut\+::\+Multicut\+Decomposer}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::weights\+Changed (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer_abadeeec8cacce02560f7e1522f537f0e}
+
+
+Inform solver about a change of weights. 
+
+Inform solver that all weights could have changed. If a particular solver does not overload this function, an Weights\+Changed\+Not\+Supported exception is thrown. After a call of this function it is save to run optimize again, therefore it resets the solver 
+
+Reimplemented from \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_a8ab38d61068370e24cca475ef1b5d8b1}{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Base$<$ O\+B\+J\+E\+C\+T\+I\+V\+E, Multicut\+Base$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$ $>$}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/\hyperlink{multicut__decomposer_8hxx}{multicut\+\_\+decomposer.\+hxx}\end{DoxyCompactItemize}

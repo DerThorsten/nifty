@@ -1,0 +1,404 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase" kind="class" language="C++" prot="public">
+    <compoundname>nifty::graph::optimization::multicut::PyMulticutBase</compoundname>
+    <basecompoundref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutBase" prot="public" virt="non-virtual">nifty::graph::optimization::multicut::MulticutBase&lt; OBJECTIVE &gt;</basecompoundref>
+    <basecompoundref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutBase" prot="public" virt="non-virtual">nifty::graph::optimization::multicut::MulticutBase&lt; OBJECTIVE &gt;</basecompoundref>
+    <includes refid="py__solver__base_8hxx" local="no">py_solver_base.hxx</includes>
+    <templateparamlist>
+      <param>
+        <type>class OBJECTIVE</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase_1a5cfc50491fd6d59375e8109cf77d832a" prot="public" static="no">
+        <type>OBJECTIVE</type>
+        <definition>typedef OBJECTIVE nifty::graph::optimization::multicut::PyMulticutBase&lt; OBJECTIVE &gt;::Objective</definition>
+        <argsstring></argsstring>
+        <name>Objective</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/graph/optimization/common/py_solver_base.hxx" line="21" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/graph/optimization/common/py_solver_base.hxx" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase_1a284145d7e67237c95dde085070a89818" prot="public" static="no">
+        <type><ref refid="namespacenifty_1_1graph_1_1optimization_1_1multicut_1ac347ba5e0f64a15fd2ad835dfc727b2b" kindref="member">MulticutVisitorBase</ref>&lt; OBJECTIVE &gt;</type>
+        <definition>typedef MulticutVisitorBase&lt;OBJECTIVE&gt; nifty::graph::optimization::multicut::PyMulticutBase&lt; OBJECTIVE &gt;::VisitorBaseType</definition>
+        <argsstring></argsstring>
+        <name>VisitorBaseType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/graph/optimization/common/py_solver_base.hxx" line="22" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/graph/optimization/common/py_solver_base.hxx" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase_1a775b6ff9bccc9e60c99fc6b42e7dd82f" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutBase" kindref="compound">MulticutBase</ref>&lt; <ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase_1a5cfc50491fd6d59375e8109cf77d832a" kindref="member">Objective</ref> &gt;</type>
+        <definition>typedef MulticutBase&lt;Objective&gt; nifty::graph::optimization::multicut::PyMulticutBase&lt; OBJECTIVE &gt;::McBase</definition>
+        <argsstring></argsstring>
+        <name>McBase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/graph/optimization/common/py_solver_base.hxx" line="23" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/graph/optimization/common/py_solver_base.hxx" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase_1a215eb2e3f8b280cebd5b3e78a9cbc490" prot="public" static="no">
+        <type>Objective::Graph</type>
+        <definition>typedef Objective::Graph nifty::graph::optimization::multicut::PyMulticutBase&lt; OBJECTIVE &gt;::Graph</definition>
+        <argsstring></argsstring>
+        <name>Graph</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/graph/optimization/common/py_solver_base.hxx" line="24" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/graph/optimization/common/py_solver_base.hxx" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase_1a2d5a888ced0b0d9a6e474a775fa23ddc" prot="public" static="no">
+        <type>Graph::template EdgeMap&lt; uint8_t &gt;</type>
+        <definition>typedef Graph:: template EdgeMap&lt;uint8_t&gt; nifty::graph::optimization::multicut::PyMulticutBase&lt; OBJECTIVE &gt;::EdgeLabels</definition>
+        <argsstring></argsstring>
+        <name>EdgeLabels</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/graph/optimization/common/py_solver_base.hxx" line="25" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/graph/optimization/common/py_solver_base.hxx" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase_1a3fa8b01c434939d8187dc7b1515f4d81" prot="public" static="no">
+        <type>Graph::template NodeMap&lt; uint64_t &gt;</type>
+        <definition>typedef Graph:: template NodeMap&lt;uint64_t&gt; nifty::graph::optimization::multicut::PyMulticutBase&lt; OBJECTIVE &gt;::NodeLabelsType</definition>
+        <argsstring></argsstring>
+        <name>NodeLabelsType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/graph/optimization/common/py_solver_base.hxx" line="26" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/graph/optimization/common/py_solver_base.hxx" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase_1a5cfc50491fd6d59375e8109cf77d832a" prot="public" static="no">
+        <type>OBJECTIVE</type>
+        <definition>typedef OBJECTIVE nifty::graph::optimization::multicut::PyMulticutBase&lt; OBJECTIVE &gt;::Objective</definition>
+        <argsstring></argsstring>
+        <name>Objective</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/graph/optimization/multicut/py_multicut_base.hxx" line="21" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/graph/optimization/multicut/py_multicut_base.hxx" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase_1a284145d7e67237c95dde085070a89818" prot="public" static="no">
+        <type><ref refid="namespacenifty_1_1graph_1_1optimization_1_1multicut_1ac347ba5e0f64a15fd2ad835dfc727b2b" kindref="member">MulticutVisitorBase</ref>&lt; OBJECTIVE &gt;</type>
+        <definition>typedef MulticutVisitorBase&lt;OBJECTIVE&gt; nifty::graph::optimization::multicut::PyMulticutBase&lt; OBJECTIVE &gt;::VisitorBaseType</definition>
+        <argsstring></argsstring>
+        <name>VisitorBaseType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/graph/optimization/multicut/py_multicut_base.hxx" line="22" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/graph/optimization/multicut/py_multicut_base.hxx" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase_1a775b6ff9bccc9e60c99fc6b42e7dd82f" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutBase" kindref="compound">MulticutBase</ref>&lt; <ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase_1a5cfc50491fd6d59375e8109cf77d832a" kindref="member">Objective</ref> &gt;</type>
+        <definition>typedef MulticutBase&lt;Objective&gt; nifty::graph::optimization::multicut::PyMulticutBase&lt; OBJECTIVE &gt;::McBase</definition>
+        <argsstring></argsstring>
+        <name>McBase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/graph/optimization/multicut/py_multicut_base.hxx" line="23" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/graph/optimization/multicut/py_multicut_base.hxx" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase_1a215eb2e3f8b280cebd5b3e78a9cbc490" prot="public" static="no">
+        <type>Objective::Graph</type>
+        <definition>typedef Objective::Graph nifty::graph::optimization::multicut::PyMulticutBase&lt; OBJECTIVE &gt;::Graph</definition>
+        <argsstring></argsstring>
+        <name>Graph</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/graph/optimization/multicut/py_multicut_base.hxx" line="24" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/graph/optimization/multicut/py_multicut_base.hxx" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase_1a2d5a888ced0b0d9a6e474a775fa23ddc" prot="public" static="no">
+        <type>Graph::template EdgeMap&lt; uint8_t &gt;</type>
+        <definition>typedef Graph:: template EdgeMap&lt;uint8_t&gt; nifty::graph::optimization::multicut::PyMulticutBase&lt; OBJECTIVE &gt;::EdgeLabels</definition>
+        <argsstring></argsstring>
+        <name>EdgeLabels</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/graph/optimization/multicut/py_multicut_base.hxx" line="25" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/graph/optimization/multicut/py_multicut_base.hxx" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase_1a3fa8b01c434939d8187dc7b1515f4d81" prot="public" static="no">
+        <type>Graph::template NodeMap&lt; uint64_t &gt;</type>
+        <definition>typedef Graph:: template NodeMap&lt;uint64_t&gt; nifty::graph::optimization::multicut::PyMulticutBase&lt; OBJECTIVE &gt;::NodeLabelsType</definition>
+        <argsstring></argsstring>
+        <name>NodeLabelsType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/graph/optimization/multicut/py_multicut_base.hxx" line="26" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/graph/optimization/multicut/py_multicut_base.hxx" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase_1a342edbbfcdb37d0d2df7dc5e8e6799ad" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::optimization::multicut::PyMulticutBase&lt; OBJECTIVE &gt;::optimize</definition>
+        <argsstring>(NodeLabelsType &amp;nodeLabels, VisitorBaseType *visitor)</argsstring>
+        <name>optimize</name>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase_1a3fa8b01c434939d8187dc7b1515f4d81" kindref="member">NodeLabelsType</ref> &amp;</type>
+          <declname>nodeLabels</declname>
+        </param>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase_1a284145d7e67237c95dde085070a89818" kindref="member">VisitorBaseType</ref> *</type>
+          <declname>visitor</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/graph/optimization/common/py_solver_base.hxx" line="30" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/graph/optimization/common/py_solver_base.hxx" bodystart="30" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase_1a49fc6ba7b5b8d907ca2d0108d4b682e0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>const <ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase_1a3fa8b01c434939d8187dc7b1515f4d81" kindref="member">NodeLabelsType</ref> &amp;</type>
+        <definition>const NodeLabelsType&amp; nifty::graph::optimization::multicut::PyMulticutBase&lt; OBJECTIVE &gt;::currentBestNodeLabels</definition>
+        <argsstring>()</argsstring>
+        <name>currentBestNodeLabels</name>
+        <reimplements refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_1a3634ba645adbb7a668500e807608bcca">currentBestNodeLabels</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/graph/optimization/common/py_solver_base.hxx" line="39" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/graph/optimization/common/py_solver_base.hxx" bodystart="39" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase_1a92481d042e42104f42d8fc453b5eb03d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>double</type>
+        <definition>double nifty::graph::optimization::multicut::PyMulticutBase&lt; OBJECTIVE &gt;::currentBestEnergy</definition>
+        <argsstring>()</argsstring>
+        <name>currentBestEnergy</name>
+        <reimplements refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_1ae6f6d9779398689c84984a7b6083604a">currentBestEnergy</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/graph/optimization/common/py_solver_base.hxx" line="47" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/graph/optimization/common/py_solver_base.hxx" bodystart="47" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase_1afc5494da2138a47506ebddb6e17c9a91" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>const <ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase_1a5cfc50491fd6d59375e8109cf77d832a" kindref="member">Objective</ref> &amp;</type>
+        <definition>const Objective&amp; nifty::graph::optimization::multicut::PyMulticutBase&lt; OBJECTIVE &gt;::objective</definition>
+        <argsstring>() const </argsstring>
+        <name>objective</name>
+        <reimplements refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_1ae7d36a7485b12a25979f75771f52e397">objective</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/graph/optimization/common/py_solver_base.hxx" line="55" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/graph/optimization/common/py_solver_base.hxx" bodystart="55" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase_1ab84606e4d7799ee1b0dc3deacf4b72e6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>std::string</type>
+        <definition>std::string nifty::graph::optimization::multicut::PyMulticutBase&lt; OBJECTIVE &gt;::name</definition>
+        <argsstring>() const </argsstring>
+        <name>name</name>
+        <reimplements refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_1abc9685a3d63748ac470afccb2813be7e">name</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/graph/optimization/common/py_solver_base.hxx" line="63" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/graph/optimization/common/py_solver_base.hxx" bodystart="63" bodyend="69"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase_1a342edbbfcdb37d0d2df7dc5e8e6799ad" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::optimization::multicut::PyMulticutBase&lt; OBJECTIVE &gt;::optimize</definition>
+        <argsstring>(NodeLabelsType &amp;nodeLabels, VisitorBaseType *visitor)</argsstring>
+        <name>optimize</name>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase_1a3fa8b01c434939d8187dc7b1515f4d81" kindref="member">NodeLabelsType</ref> &amp;</type>
+          <declname>nodeLabels</declname>
+        </param>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase_1a284145d7e67237c95dde085070a89818" kindref="member">VisitorBaseType</ref> *</type>
+          <declname>visitor</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/graph/optimization/multicut/py_multicut_base.hxx" line="30" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/graph/optimization/multicut/py_multicut_base.hxx" bodystart="30" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase_1a49fc6ba7b5b8d907ca2d0108d4b682e0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>const <ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase_1a3fa8b01c434939d8187dc7b1515f4d81" kindref="member">NodeLabelsType</ref> &amp;</type>
+        <definition>const NodeLabelsType&amp; nifty::graph::optimization::multicut::PyMulticutBase&lt; OBJECTIVE &gt;::currentBestNodeLabels</definition>
+        <argsstring>()</argsstring>
+        <name>currentBestNodeLabels</name>
+        <reimplements refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_1a3634ba645adbb7a668500e807608bcca">currentBestNodeLabels</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/graph/optimization/multicut/py_multicut_base.hxx" line="39" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/graph/optimization/multicut/py_multicut_base.hxx" bodystart="39" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase_1a92481d042e42104f42d8fc453b5eb03d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>double</type>
+        <definition>double nifty::graph::optimization::multicut::PyMulticutBase&lt; OBJECTIVE &gt;::currentBestEnergy</definition>
+        <argsstring>()</argsstring>
+        <name>currentBestEnergy</name>
+        <reimplements refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_1ae6f6d9779398689c84984a7b6083604a">currentBestEnergy</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/graph/optimization/multicut/py_multicut_base.hxx" line="47" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/graph/optimization/multicut/py_multicut_base.hxx" bodystart="47" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase_1afc5494da2138a47506ebddb6e17c9a91" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>const <ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase_1a5cfc50491fd6d59375e8109cf77d832a" kindref="member">Objective</ref> &amp;</type>
+        <definition>const Objective&amp; nifty::graph::optimization::multicut::PyMulticutBase&lt; OBJECTIVE &gt;::objective</definition>
+        <argsstring>() const </argsstring>
+        <name>objective</name>
+        <reimplements refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_1ae7d36a7485b12a25979f75771f52e397">objective</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/graph/optimization/multicut/py_multicut_base.hxx" line="55" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/graph/optimization/multicut/py_multicut_base.hxx" bodystart="55" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase_1ab84606e4d7799ee1b0dc3deacf4b72e6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>std::string</type>
+        <definition>std::string nifty::graph::optimization::multicut::PyMulticutBase&lt; OBJECTIVE &gt;::name</definition>
+        <argsstring>() const </argsstring>
+        <name>name</name>
+        <reimplements refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_1abc9685a3d63748ac470afccb2813be7e">name</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/graph/optimization/multicut/py_multicut_base.hxx" line="63" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/graph/optimization/multicut/py_multicut_base.hxx" bodystart="63" bodyend="69"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1664">
+        <label>nifty::graph::optimization::multicut::MulticutBase&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutBase"/>
+        <childnode refid="1665" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1665">
+        <label>nifty::graph::optimization::common::SolverBase&lt; OBJECTIVE, MulticutBase&lt; OBJECTIVE &gt; &gt;</label>
+        <link refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase"/>
+      </node>
+      <node id="1663">
+        <label>nifty::graph::optimization::multicut::PyMulticutBase&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase"/>
+        <childnode refid="1664" relation="public-inheritance">
+        </childnode>
+        <childnode refid="1664" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1667">
+        <label>nifty::graph::optimization::multicut::MulticutBase&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutBase"/>
+        <childnode refid="1668" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1668">
+        <label>nifty::graph::optimization::common::SolverBase&lt; OBJECTIVE, MulticutBase&lt; OBJECTIVE &gt; &gt;</label>
+        <link refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase"/>
+      </node>
+      <node id="1666">
+        <label>nifty::graph::optimization::multicut::PyMulticutBase&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase"/>
+        <childnode refid="1667" relation="public-inheritance">
+        </childnode>
+        <childnode refid="1667" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/tbeier/src/nifty/include/nifty/python/graph/optimization/common/py_solver_base.hxx" line="16" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/graph/optimization/common/py_solver_base.hxx" bodystart="16" bodyend="70"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase_1a92481d042e42104f42d8fc453b5eb03d" prot="public" virt="virtual"><scope>nifty::graph::optimization::multicut::PyMulticutBase</scope><name>currentBestEnergy</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase_1a92481d042e42104f42d8fc453b5eb03d" prot="public" virt="virtual"><scope>nifty::graph::optimization::multicut::PyMulticutBase</scope><name>currentBestEnergy</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase_1a49fc6ba7b5b8d907ca2d0108d4b682e0" prot="public" virt="virtual"><scope>nifty::graph::optimization::multicut::PyMulticutBase</scope><name>currentBestNodeLabels</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase_1a49fc6ba7b5b8d907ca2d0108d4b682e0" prot="public" virt="virtual"><scope>nifty::graph::optimization::multicut::PyMulticutBase</scope><name>currentBestNodeLabels</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase_1a2d5a888ced0b0d9a6e474a775fa23ddc" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::multicut::PyMulticutBase</scope><name>EdgeLabels</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase_1a2d5a888ced0b0d9a6e474a775fa23ddc" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::multicut::PyMulticutBase</scope><name>EdgeLabels</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase_1a215eb2e3f8b280cebd5b3e78a9cbc490" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::multicut::PyMulticutBase</scope><name>Graph</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase_1a215eb2e3f8b280cebd5b3e78a9cbc490" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::multicut::PyMulticutBase</scope><name>Graph</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_1a5b93d8c567c27949a944e908f59f8933" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::multicut::PyMulticutBase</scope><name>GraphType</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase_1a775b6ff9bccc9e60c99fc6b42e7dd82f" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::multicut::PyMulticutBase</scope><name>McBase</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase_1a775b6ff9bccc9e60c99fc6b42e7dd82f" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::multicut::PyMulticutBase</scope><name>McBase</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase_1ab84606e4d7799ee1b0dc3deacf4b72e6" prot="public" virt="virtual"><scope>nifty::graph::optimization::multicut::PyMulticutBase</scope><name>name</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase_1ab84606e4d7799ee1b0dc3deacf4b72e6" prot="public" virt="virtual"><scope>nifty::graph::optimization::multicut::PyMulticutBase</scope><name>name</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase_1a3fa8b01c434939d8187dc7b1515f4d81" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::multicut::PyMulticutBase</scope><name>NodeLabelsType</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase_1a3fa8b01c434939d8187dc7b1515f4d81" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::multicut::PyMulticutBase</scope><name>NodeLabelsType</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase_1afc5494da2138a47506ebddb6e17c9a91" prot="public" virt="virtual"><scope>nifty::graph::optimization::multicut::PyMulticutBase</scope><name>objective</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase_1afc5494da2138a47506ebddb6e17c9a91" prot="public" virt="virtual"><scope>nifty::graph::optimization::multicut::PyMulticutBase</scope><name>objective</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase_1a5cfc50491fd6d59375e8109cf77d832a" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::multicut::PyMulticutBase</scope><name>Objective</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase_1a5cfc50491fd6d59375e8109cf77d832a" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::multicut::PyMulticutBase</scope><name>Objective</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_1a28e77903302d3c14fa9fddb5d0a6214d" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::multicut::PyMulticutBase</scope><name>ObjectiveType</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase_1a342edbbfcdb37d0d2df7dc5e8e6799ad" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::multicut::PyMulticutBase</scope><name>optimize</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase_1a342edbbfcdb37d0d2df7dc5e8e6799ad" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::multicut::PyMulticutBase</scope><name>optimize</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_1a1c08eb1ff2b3cca5366c3aab161ba040" prot="public" virt="pure-virtual" ambiguityscope="nifty::graph::optimization::multicut::MulticutBase::"><scope>nifty::graph::optimization::multicut::PyMulticutBase</scope><name>optimize</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_1ae445fe93efdb410186debfa5a248dfad" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::multicut::PyMulticutBase</scope><name>SelfType</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase_1a284145d7e67237c95dde085070a89818" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::multicut::PyMulticutBase</scope><name>VisitorBaseType</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase_1a284145d7e67237c95dde085070a89818" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::multicut::PyMulticutBase</scope><name>VisitorBaseType</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_1a58913ea9ab9232ff72608b710c1012d0" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::multicut::PyMulticutBase</scope><name>VisitorProxyType</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_1a8ab38d61068370e24cca475ef1b5d8b1" prot="public" virt="virtual"><scope>nifty::graph::optimization::multicut::PyMulticutBase</scope><name>weightsChanged</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_1a9442c4193dab19dbcc37c8f927b6de94" prot="public" virt="virtual"><scope>nifty::graph::optimization::multicut::PyMulticutBase</scope><name>~SolverBase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

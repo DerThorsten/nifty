@@ -1,0 +1,1012 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="namespaceandres_1_1hdf5" kind="namespace" language="C++">
+    <compoundname>andres::hdf5</compoundname>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="namespaceandres_1_1hdf5_1a08660935c7de0e1e76e007fc972933b9" prot="public" static="no">
+        <name>FileAccessMode</name>
+        <enumvalue id="namespaceandres_1_1hdf5_1a08660935c7de0e1e76e007fc972933b9af05cb745b770e55c64efe88162f7e9fb" prot="public">
+          <name>READ_ONLY</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespaceandres_1_1hdf5_1a08660935c7de0e1e76e007fc972933b9af215ccdde9335c237c14b7c1d35766d4" prot="public">
+          <name>READ_WRITE</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-hdf5.hxx" line="86" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-hdf5.hxx" bodystart="86" bodyend="86"/>
+      </memberdef>
+      <memberdef kind="enum" id="namespaceandres_1_1hdf5_1ad5194a7b8773d3776e8dfc068f58f41b" prot="public" static="no">
+        <name>HDF5Version</name>
+        <enumvalue id="namespaceandres_1_1hdf5_1ad5194a7b8773d3776e8dfc068f58f41baf4fdc18c306e5d07105ad62a1cf6fa93" prot="public">
+          <name>DEFAULT_HDF5_VERSION</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespaceandres_1_1hdf5_1ad5194a7b8773d3776e8dfc068f58f41ba29da3f0202bdf4ea2b036678ae7aa717" prot="public">
+          <name>LATEST_HDF5_VERSION</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-hdf5.hxx" line="87" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-hdf5.hxx" bodystart="87" bodyend="87"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="namespaceandres_1_1hdf5_1acf79cfe1ea0769086a46970fd58188a7" prot="public" static="no" mutable="no">
+        <type>const char</type>
+        <definition>const char andres::hdf5::reverseShapeAttributeName[14]</definition>
+        <argsstring>[14]</argsstring>
+        <name>reverseShapeAttributeName</name>
+        <initializer>= &quot;reverse-shape&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-hdf5.hxx" line="82" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-hdf5.hxx" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespaceandres_1_1hdf5_1a1f779b6e42349512d5227fbb6dcf92cd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>hid_t</type>
+        <definition>hid_t andres::hdf5::createFile</definition>
+        <argsstring>(const std::string &amp;, HDF5Version=DEFAULT_HDF5_VERSION)</argsstring>
+        <name>createFile</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <defname>filename</defname>
+        </param>
+        <param>
+          <type><ref refid="namespaceandres_1_1hdf5_1ad5194a7b8773d3776e8dfc068f58f41b" kindref="member">HDF5Version</ref></type>
+          <defname>hdf5version</defname>
+          <defval><ref refid="namespaceandres_1_1hdf5_1ad5194a7b8773d3776e8dfc068f58f41baf4fdc18c306e5d07105ad62a1cf6fa93" kindref="member">DEFAULT_HDF5_VERSION</ref></defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create an HDF5 file.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of the file. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hdf5version</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>HDF5 version tag.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>HDF5 handle</para></simplesect>
+<simplesect kind="see"><para><ref refid="namespaceandres_1_1hdf5_1a3645de3466468274059f8475066ff820" kindref="member">openFile()</ref>, <ref refid="namespaceandres_1_1hdf5_1afa6545825e5557eecf6ac1e8fc68bb56" kindref="member">closeFile()</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-hdf5.hxx" line="89" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-hdf5.hxx" bodystart="875" bodyend="892"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceandres_1_1hdf5_1a3645de3466468274059f8475066ff820" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>hid_t</type>
+        <definition>hid_t andres::hdf5::openFile</definition>
+        <argsstring>(const std::string &amp;, FileAccessMode=READ_ONLY, HDF5Version=DEFAULT_HDF5_VERSION)</argsstring>
+        <name>openFile</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <defname>filename</defname>
+        </param>
+        <param>
+          <type><ref refid="namespaceandres_1_1hdf5_1a08660935c7de0e1e76e007fc972933b9" kindref="member">FileAccessMode</ref></type>
+          <defname>fileAccessMode</defname>
+          <defval><ref refid="namespaceandres_1_1hdf5_1a08660935c7de0e1e76e007fc972933b9af05cb745b770e55c64efe88162f7e9fb" kindref="member">READ_ONLY</ref></defval>
+        </param>
+        <param>
+          <type><ref refid="namespaceandres_1_1hdf5_1ad5194a7b8773d3776e8dfc068f58f41b" kindref="member">HDF5Version</ref></type>
+          <defname>hdf5version</defname>
+          <defval><ref refid="namespaceandres_1_1hdf5_1ad5194a7b8773d3776e8dfc068f58f41baf4fdc18c306e5d07105ad62a1cf6fa93" kindref="member">DEFAULT_HDF5_VERSION</ref></defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Open an HDF5 file.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of the file. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>fileAccessMode</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>File access mode. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hdf5version</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>HDF5 version tag.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>HDF5 handle</para></simplesect>
+<simplesect kind="see"><para><ref refid="namespaceandres_1_1hdf5_1afa6545825e5557eecf6ac1e8fc68bb56" kindref="member">closeFile()</ref>, <ref refid="namespaceandres_1_1hdf5_1a1f779b6e42349512d5227fbb6dcf92cd" kindref="member">createFile()</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-hdf5.hxx" line="90" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-hdf5.hxx" bodystart="906" bodyend="929"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceandres_1_1hdf5_1afa6545825e5557eecf6ac1e8fc68bb56" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void andres::hdf5::closeFile</definition>
+        <argsstring>(const hid_t &amp;)</argsstring>
+        <name>closeFile</name>
+        <param>
+          <type>const hid_t &amp;</type>
+          <defname>handle</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Close an HDF5 file</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>handle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Handle to the HDF5 file.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="namespaceandres_1_1hdf5_1a3645de3466468274059f8475066ff820" kindref="member">openFile()</ref>, <ref refid="namespaceandres_1_1hdf5_1a1f779b6e42349512d5227fbb6dcf92cd" kindref="member">createFile()</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-hdf5.hxx" line="91" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-hdf5.hxx" bodystart="938" bodyend="943"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceandres_1_1hdf5_1ac03dd5212231c5335a0a02edb3c0d879" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>hid_t</type>
+        <definition>hid_t andres::hdf5::createGroup</definition>
+        <argsstring>(const hid_t &amp;, const std::string &amp;)</argsstring>
+        <name>createGroup</name>
+        <param>
+          <type>const hid_t &amp;</type>
+          <defname>parentHandle</defname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <defname>groupName</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create an HDF5 group.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>parentHandle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>HDF5 handle on the parent group or file. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>groupName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of the group. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>HDF5 handle on the created group</para></simplesect>
+<simplesect kind="see"><para><ref refid="namespaceandres_1_1hdf5_1a3d7159f65f86576c9142409b08afcfc9" kindref="member">openGroup()</ref>, <ref refid="namespaceandres_1_1hdf5_1a1aaf506863ec820cdcc827c7997d4ba3" kindref="member">closeGroup()</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-hdf5.hxx" line="93" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-hdf5.hxx" bodystart="955" bodyend="966"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceandres_1_1hdf5_1a3d7159f65f86576c9142409b08afcfc9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>hid_t</type>
+        <definition>hid_t andres::hdf5::openGroup</definition>
+        <argsstring>(const hid_t &amp;, const std::string &amp;)</argsstring>
+        <name>openGroup</name>
+        <param>
+          <type>const hid_t &amp;</type>
+          <defname>parentHandle</defname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <defname>groupName</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Open an HDF5 group.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>parentHandle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>HDF5 handle on the parent group or file. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>groupName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of the group. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>HDF5 handle on the opened group.</para></simplesect>
+<simplesect kind="see"><para><ref refid="namespaceandres_1_1hdf5_1ac03dd5212231c5335a0a02edb3c0d879" kindref="member">createGroup()</ref>, <ref refid="namespaceandres_1_1hdf5_1a1aaf506863ec820cdcc827c7997d4ba3" kindref="member">closeGroup()</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-hdf5.hxx" line="94" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-hdf5.hxx" bodystart="978" bodyend="988"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceandres_1_1hdf5_1a1aaf506863ec820cdcc827c7997d4ba3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void andres::hdf5::closeGroup</definition>
+        <argsstring>(const hid_t &amp;)</argsstring>
+        <name>closeGroup</name>
+        <param>
+          <type>const hid_t &amp;</type>
+          <defname>handle</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Close an HDF5 group.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>handle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>HDF5 handle on group to close.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="namespaceandres_1_1hdf5_1a3d7159f65f86576c9142409b08afcfc9" kindref="member">openGroup()</ref>, <ref refid="namespaceandres_1_1hdf5_1ac03dd5212231c5335a0a02edb3c0d879" kindref="member">createGroup()</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-hdf5.hxx" line="95" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-hdf5.hxx" bodystart="997" bodyend="1001"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceandres_1_1hdf5_1a0bc471ab828dcfdedd90dc6f991b509e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void andres::hdf5::save</definition>
+        <argsstring>(const hid_t &amp;, const std::string &amp;, const Marray&lt; T &gt; &amp;)</argsstring>
+        <name>save</name>
+        <param>
+          <type>const hid_t &amp;</type>
+          <defname>groupHandle</defname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <defname>datasetName</defname>
+        </param>
+        <param>
+          <type>const <ref refid="classandres_1_1Marray" kindref="compound">Marray</ref>&lt; T &gt; &amp;</type>
+          <defname>in</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Save an <ref refid="classandres_1_1Marray" kindref="compound">Marray</ref> as an HDF5 dataset.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>groupHandle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Handle of the parent HDF5 file or group. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>datasetName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of the HDF5 dataset. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classandres_1_1Marray" kindref="compound">Marray</ref>.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="namespaceandres_1_1hdf5_1a8b3c6fd3570f7452b1507bf5cf48dfc5" kindref="member">saveHyperslab()</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-hdf5.hxx" line="98" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-hdf5.hxx" bodystart="322" bodyend="402"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceandres_1_1hdf5_1ac6995803b0ec6079698d61563b5de104" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T</type>
+          </param>
+          <param>
+            <type>bool</type>
+            <declname>isConst</declname>
+            <defname>isConst</defname>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void andres::hdf5::save</definition>
+        <argsstring>(const hid_t &amp;, const std::string &amp;, const View&lt; T, isConst &gt; &amp;)</argsstring>
+        <name>save</name>
+        <param>
+          <type>const hid_t &amp;</type>
+          <defname>groupHandle</defname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <defname>datasetName</defname>
+        </param>
+        <param>
+          <type>const <ref refid="classandres_1_1View" kindref="compound">View</ref>&lt; T, isConst &gt; &amp;</type>
+          <defname>in</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Save a <ref refid="classandres_1_1View" kindref="compound">View</ref> as an HDF5 dataset.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>groupHandle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Handle of the parent HDF5 file or group. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>datasetName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of the HDF5 dataset. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classandres_1_1View" kindref="compound">View</ref>.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="namespaceandres_1_1hdf5_1a8b3c6fd3570f7452b1507bf5cf48dfc5" kindref="member">saveHyperslab()</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-hdf5.hxx" line="100" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-hdf5.hxx" bodystart="413" bodyend="420"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceandres_1_1hdf5_1a541f5c1613746f236ecc7e0035fa8919" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void andres::hdf5::save</definition>
+        <argsstring>(const hid_t &amp;, const std::string &amp;, const std::vector&lt; T &gt; &amp;)</argsstring>
+        <name>save</name>
+        <param>
+          <type>const hid_t &amp;</type>
+          <defname>groupHandle</defname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <defname>datasetName</defname>
+        </param>
+        <param>
+          <type>const std::vector&lt; T &gt; &amp;</type>
+          <defname>in</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Save an std::vector as an HDF5 dataset.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>groupHandle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Handle of the parent HDF5 file or group. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>datasetName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of the HDF5 dataset. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>std::vector.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="namespaceandres_1_1hdf5_1a8b3c6fd3570f7452b1507bf5cf48dfc5" kindref="member">saveHyperslab()</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-hdf5.hxx" line="102" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-hdf5.hxx" bodystart="431" bodyend="443"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceandres_1_1hdf5_1a8b3c6fd3570f7452b1507bf5cf48dfc5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T</type>
+          </param>
+          <param>
+            <type>class BaseIterator</type>
+          </param>
+          <param>
+            <type>class ShapeIterator</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void andres::hdf5::saveHyperslab</definition>
+        <argsstring>(const hid_t &amp;, const std::string &amp;, BaseIterator, BaseIterator, ShapeIterator, const Marray&lt; T &gt; &amp;)</argsstring>
+        <name>saveHyperslab</name>
+        <param>
+          <type>const hid_t &amp;</type>
+          <defname>groupHandle</defname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <defname>datasetName</defname>
+        </param>
+        <param>
+          <type>BaseIterator</type>
+          <defname>baseBegin</defname>
+        </param>
+        <param>
+          <type>BaseIterator</type>
+          <defname>baseEnd</defname>
+        </param>
+        <param>
+          <type>ShapeIterator</type>
+          <defname>shapeBegin</defname>
+        </param>
+        <param>
+          <type>const <ref refid="classandres_1_1Marray" kindref="compound">Marray</ref>&lt; T &gt; &amp;</type>
+          <defname>in</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Save an <ref refid="classandres_1_1Marray" kindref="compound">Marray</ref> as a hyperslab into an HDF5 dataset.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>groupHandle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Handle of the parent HDF5 file or group. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>datasetName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of the HDF5 dataset. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>baseBegin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref> to the beginning of the sequence that determines the first coordinate of the hyperslab. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>baseEnd</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref> to the end of the sequence that determines the first coordinate of the hyperslab. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>shapeBegin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref> to the beginning of the sequence that determines the shape of the hyperslab. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classandres_1_1Marray" kindref="compound">Marray</ref>.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="namespaceandres_1_1hdf5_1ab031fffd5429859c7f914d8f883a6224" kindref="member">loadHyperslab()</ref>, <ref refid="namespaceandres_1_1hdf5_1ad266faeb7371428b1bf018d4ddfec60d" kindref="member">create()</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-hdf5.hxx" line="104" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-hdf5.hxx" bodystart="769" bodyend="862"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceandres_1_1hdf5_1ad266faeb7371428b1bf018d4ddfec60d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T</type>
+          </param>
+          <param>
+            <type>class ShapeIterator</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void andres::hdf5::create</definition>
+        <argsstring>(const hid_t &amp;, const std::string &amp;, ShapeIterator, ShapeIterator, CoordinateOrder)</argsstring>
+        <name>create</name>
+        <param>
+          <type>const hid_t &amp;</type>
+          <defname>groupHandle</defname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <defname>datasetName</defname>
+        </param>
+        <param>
+          <type>ShapeIterator</type>
+          <defname>begin</defname>
+        </param>
+        <param>
+          <type>ShapeIterator</type>
+          <defname>end</defname>
+        </param>
+        <param>
+          <type><ref refid="namespaceandres_1a2ac8b7aa89d44e8188a7c0ba50f4306b" kindref="member">CoordinateOrder</ref></type>
+          <defname>coordinateOrder</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create and close an HDF5 dataset to store <ref refid="classandres_1_1Marray" kindref="compound">Marray</ref> data.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>groupHandle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Handle of the parent HDF5 file or group. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>datasetName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of the HDF5 dataset. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>begin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref> to the beginning of a sequence that determines the shape of the dataset. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>end</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref> to the end of a sequence that determines the shape of the dataset. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>coordinateOrder</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Coordinate order of the <ref refid="classandres_1_1Marray" kindref="compound">Marray</ref>.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="namespaceandres_1_1hdf5_1a0bc471ab828dcfdedd90dc6f991b509e" kindref="member">save()</ref>, <ref refid="namespaceandres_1_1hdf5_1a8b3c6fd3570f7452b1507bf5cf48dfc5" kindref="member">saveHyperslab()</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-hdf5.hxx" line="107" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-hdf5.hxx" bodystart="231" bodyend="311"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceandres_1_1hdf5_1ad5975e294df6102c312f69cd69e43d60" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void andres::hdf5::load</definition>
+        <argsstring>(const hid_t &amp;, const std::string &amp;, Marray&lt; T &gt; &amp;)</argsstring>
+        <name>load</name>
+        <param>
+          <type>const hid_t &amp;</type>
+          <defname>groupHandle</defname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <defname>datasetName</defname>
+        </param>
+        <param>
+          <type><ref refid="classandres_1_1Marray" kindref="compound">Marray</ref>&lt; T &gt; &amp;</type>
+          <defname>out</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Load an <ref refid="classandres_1_1Marray" kindref="compound">Marray</ref> from an HDF5 dataset.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>groupHandle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Handle of the parent HDF5 file or group. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>datasetName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of the HDF5 dataset. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classandres_1_1Marray" kindref="compound">Marray</ref>.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="namespaceandres_1_1hdf5_1ab031fffd5429859c7f914d8f883a6224" kindref="member">loadHyperslab()</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-hdf5.hxx" line="111" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-hdf5.hxx" bodystart="524" bodyend="587"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceandres_1_1hdf5_1a2ada1d6f4dc33d14090bad2a90d4d1a6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void andres::hdf5::load</definition>
+        <argsstring>(const hid_t &amp;, const std::string &amp;, std::vector&lt; T &gt; &amp;)</argsstring>
+        <name>load</name>
+        <param>
+          <type>const hid_t &amp;</type>
+          <defname>groupHandle</defname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <defname>datasetName</defname>
+        </param>
+        <param>
+          <type>std::vector&lt; T &gt; &amp;</type>
+          <defname>out</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Load an std::vector from an HDF5 dataset.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>groupHandle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Handle of the parent HDF5 file or group. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>datasetName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of the HDF5 dataset. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>std::vector.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="namespaceandres_1_1hdf5_1ad5975e294df6102c312f69cd69e43d60" kindref="member">load()</ref>, <ref refid="namespaceandres_1_1hdf5_1ab031fffd5429859c7f914d8f883a6224" kindref="member">loadHyperslab()</ref></para></simplesect>
+TODO: write a unit test for this function </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-hdf5.hxx" line="119" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-hdf5.hxx" bodystart="502" bodyend="513"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceandres_1_1hdf5_1aecef33e8f815adf3e28bb387e246ebc8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void andres::hdf5::load</definition>
+        <argsstring>(const std::string &amp;, const std::string &amp;, Marray&lt; T &gt; &amp;, HDF5Version=DEFAULT_HDF5_VERSION)</argsstring>
+        <name>load</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <defname>filename</defname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <defname>datasetName</defname>
+        </param>
+        <param>
+          <type><ref refid="classandres_1_1Marray" kindref="compound">Marray</ref>&lt; T &gt; &amp;</type>
+          <defname>out</defname>
+        </param>
+        <param>
+          <type><ref refid="namespaceandres_1_1hdf5_1ad5194a7b8773d3776e8dfc068f58f41b" kindref="member">HDF5Version</ref></type>
+          <defname>hdf5version</defname>
+          <defval><ref refid="namespaceandres_1_1hdf5_1ad5194a7b8773d3776e8dfc068f58f41baf4fdc18c306e5d07105ad62a1cf6fa93" kindref="member">DEFAULT_HDF5_VERSION</ref></defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Open an HDF5 file (read only), load an <ref refid="classandres_1_1Marray" kindref="compound">Marray</ref> from an HDF5 dataset, and close the file.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of the file. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>datasetName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of the HDF5 dataset. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classandres_1_1Marray" kindref="compound">Marray</ref>. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hdf5version</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>HDF5 version tag.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="namespaceandres_1_1hdf5_1ad5975e294df6102c312f69cd69e43d60" kindref="member">load()</ref>, <ref refid="namespaceandres_1_1hdf5_1ab031fffd5429859c7f914d8f883a6224" kindref="member">loadHyperslab()</ref></para></simplesect>
+TODO: write a unit test for this function </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-hdf5.hxx" line="122" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-hdf5.hxx" bodystart="457" bodyend="466"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceandres_1_1hdf5_1a1efbca2cf84e0a2076dd02b98a96b65b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void andres::hdf5::load</definition>
+        <argsstring>(const std::string &amp;, const std::string &amp;, std::vector&lt; T &gt; &amp;, HDF5Version=DEFAULT_HDF5_VERSION)</argsstring>
+        <name>load</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <defname>filename</defname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <defname>datasetName</defname>
+        </param>
+        <param>
+          <type>std::vector&lt; T &gt; &amp;</type>
+          <defname>out</defname>
+        </param>
+        <param>
+          <type><ref refid="namespaceandres_1_1hdf5_1ad5194a7b8773d3776e8dfc068f58f41b" kindref="member">HDF5Version</ref></type>
+          <defname>hdf5version</defname>
+          <defval><ref refid="namespaceandres_1_1hdf5_1ad5194a7b8773d3776e8dfc068f58f41baf4fdc18c306e5d07105ad62a1cf6fa93" kindref="member">DEFAULT_HDF5_VERSION</ref></defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Open an HDF5 file (read only), load an std::vector from an HDF5 dataset, and close the file.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of the file. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>datasetName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of the HDF5 dataset. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>std::vector. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hdf5version</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>HDF5 version tag.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="namespaceandres_1_1hdf5_1ad5975e294df6102c312f69cd69e43d60" kindref="member">load()</ref>, <ref refid="namespaceandres_1_1hdf5_1ab031fffd5429859c7f914d8f883a6224" kindref="member">loadHyperslab()</ref></para></simplesect>
+TODO: write a unit test for this function </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-hdf5.hxx" line="130" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-hdf5.hxx" bodystart="480" bodyend="489"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceandres_1_1hdf5_1a9ce6bf731e79264846d466fd92eee01f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void andres::hdf5::loadShape</definition>
+        <argsstring>(const hid_t &amp;, const std::string &amp;, std::vector&lt; T &gt; &amp;)</argsstring>
+        <name>loadShape</name>
+        <param>
+          <type>const hid_t &amp;</type>
+          <defname>groupHandle</defname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <defname>datasetName</defname>
+        </param>
+        <param>
+          <type>std::vector&lt; T &gt; &amp;</type>
+          <defname>out</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Load the shape of an HDF5 dataset.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>groupHandle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Handle of the parent HDF5 file or group. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>datasetName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of the HDF5 dataset. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Shape.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="namespaceandres_1_1hdf5_1ad5975e294df6102c312f69cd69e43d60" kindref="member">load()</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-hdf5.hxx" line="133" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-hdf5.hxx" bodystart="598" bodyend="640"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceandres_1_1hdf5_1ab031fffd5429859c7f914d8f883a6224" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T</type>
+          </param>
+          <param>
+            <type>class BaseIterator</type>
+          </param>
+          <param>
+            <type>class ShapeIterator</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void andres::hdf5::loadHyperslab</definition>
+        <argsstring>(const hid_t &amp;, const std::string &amp;, BaseIterator, BaseIterator, ShapeIterator, Marray&lt; T &gt; &amp;)</argsstring>
+        <name>loadHyperslab</name>
+        <param>
+          <type>const hid_t &amp;</type>
+          <defname>groupHandle</defname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <defname>datasetName</defname>
+        </param>
+        <param>
+          <type>BaseIterator</type>
+          <defname>baseBegin</defname>
+        </param>
+        <param>
+          <type>BaseIterator</type>
+          <defname>baseEnd</defname>
+        </param>
+        <param>
+          <type>ShapeIterator</type>
+          <defname>shapeBegin</defname>
+        </param>
+        <param>
+          <type><ref refid="classandres_1_1Marray" kindref="compound">Marray</ref>&lt; T &gt; &amp;</type>
+          <defname>out</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Load a hyperslab from an HDF5 dataset into an <ref refid="classandres_1_1Marray" kindref="compound">Marray</ref>.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>groupHandle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Handle of the parent HDF5 file or group. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>datasetName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of the HDF5 dataset. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>baseBegin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref> to the beginning of the sequence that determines the first coordinate of the hyperslab. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>baseEnd</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref> to the end of the sequence that determines the first coordinate of the hyperslab. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>shapeBegin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref> to the beginning of the sequence that determines the shape of the hyperslab. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classandres_1_1Marray" kindref="compound">Marray</ref>.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="namespaceandres_1_1hdf5_1a8b3c6fd3570f7452b1507bf5cf48dfc5" kindref="member">saveHyperslab()</ref>, <ref refid="namespaceandres_1_1hdf5_1ad266faeb7371428b1bf018d4ddfec60d" kindref="member">create()</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-hdf5.hxx" line="135" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-hdf5.hxx" bodystart="654" bodyend="754"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>HDF5 import/export support. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-hdf5.hxx" line="59" column="1"/>
+  </compounddef>
+</doxygen>

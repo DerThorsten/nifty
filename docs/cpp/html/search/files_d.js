@@ -1,27 +1,4 @@
 var searchData=
 [
-  ['partition_5fcomparison_2ehxx',['partition_comparison.hxx',['../partition__comparison_8hxx.html',1,'']]],
-  ['paths_2ehxx',['paths.hxx',['../paths_8hxx.html',1,'']]],
-  ['perturb_5fand_5fmap_2ehxx',['perturb_and_map.hxx',['../perturb__and__map_8hxx.html',1,'']]],
-  ['project_5fto_5fpixels_2ehxx',['project_to_pixels.hxx',['../project__to__pixels_8hxx.html',1,'']]],
-  ['proposal_5fgenerator_5fbase_2ehxx',['proposal_generator_base.hxx',['../common_2proposal__generators_2proposal__generator__base_8hxx.html',1,'']]],
-  ['proposal_5fgenerator_5fbase_2ehxx',['proposal_generator_base.hxx',['../lifted__multicut_2proposal__generators_2proposal__generator__base_8hxx.html',1,'']]],
-  ['proposal_5fgenerator_5fbase_2ehxx',['proposal_generator_base.hxx',['../mincut_2proposal__generators_2proposal__generator__base_8hxx.html',1,'']]],
-  ['proposal_5fgenerator_5ffactory_2ehxx',['proposal_generator_factory.hxx',['../common_2proposal__generators_2proposal__generator__factory_8hxx.html',1,'']]],
-  ['proposal_5fgenerator_5ffactory_2ehxx',['proposal_generator_factory.hxx',['../lifted__multicut_2proposal__generators_2proposal__generator__factory_8hxx.html',1,'']]],
-  ['proposal_5fgenerator_5ffactory_2ehxx',['proposal_generator_factory.hxx',['../mincut_2proposal__generators_2proposal__generator__factory_8hxx.html',1,'']]],
-  ['proposal_5fgenerator_5ffactory_5fbase_2ehxx',['proposal_generator_factory_base.hxx',['../lifted__multicut_2proposal__generators_2proposal__generator__factory__base_8hxx.html',1,'']]],
-  ['proposal_5fgenerator_5ffactory_5fbase_2ehxx',['proposal_generator_factory_base.hxx',['../mincut_2proposal__generators_2proposal__generator__factory__base_8hxx.html',1,'']]],
-  ['proposal_5fgenerator_5ffactory_5fbase_2ehxx',['proposal_generator_factory_base.hxx',['../common_2proposal__generators_2proposal__generator__factory__base_8hxx.html',1,'']]],
-  ['py_5flifted_5fmulticut_5fbase_2ehxx',['py_lifted_multicut_base.hxx',['../py__lifted__multicut__base_8hxx.html',1,'']]],
-  ['py_5flifted_5fmulticut_5ffactory_2ehxx',['py_lifted_multicut_factory.hxx',['../py__lifted__multicut__factory_8hxx.html',1,'']]],
-  ['py_5flifted_5fmulticut_5fvisitor_5fbase_2ehxx',['py_lifted_multicut_visitor_base.hxx',['../py__lifted__multicut__visitor__base_8hxx.html',1,'']]],
-  ['py_5fmincut_5fbase_2ehxx',['py_mincut_base.hxx',['../py__mincut__base_8hxx.html',1,'']]],
-  ['py_5fmincut_5ffactory_2ehxx',['py_mincut_factory.hxx',['../py__mincut__factory_8hxx.html',1,'']]],
-  ['py_5fmincut_5fvisitor_5fbase_2ehxx',['py_mincut_visitor_base.hxx',['../py__mincut__visitor__base_8hxx.html',1,'']]],
-  ['py_5fmulticut_5fbase_2ehxx',['py_multicut_base.hxx',['../py__multicut__base_8hxx.html',1,'']]],
-  ['py_5fmulticut_5ffactory_2ehxx',['py_multicut_factory.hxx',['../py__multicut__factory_8hxx.html',1,'']]],
-  ['py_5fmulticut_5fvisitor_5fbase_2ehxx',['py_multicut_visitor_base.hxx',['../py__multicut__visitor__base_8hxx.html',1,'']]],
-  ['py_5fproposal_5fgenerator_5ffactory_5fbase_2ehxx',['py_proposal_generator_factory_base.hxx',['../lifted__multicut_2py__proposal__generator__factory__base_8hxx.html',1,'']]],
-  ['py_5fproposal_5fgenerator_5ffactory_5fbase_2ehxx',['py_proposal_generator_factory_base.hxx',['../common_2py__proposal__generator__factory__base_8hxx.html',1,'']]]
+  ['overlap_2ehxx',['overlap.hxx',['../overlap_8hxx.html',1,'']]]
 ];

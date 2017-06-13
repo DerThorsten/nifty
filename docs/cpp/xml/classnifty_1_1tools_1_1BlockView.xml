@@ -1,0 +1,140 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="classnifty_1_1tools_1_1BlockView" kind="class" language="C++" prot="public">
+    <compoundname>nifty::tools::BlockView</compoundname>
+    <includes refid="block__access_8hxx" local="no">block_access.hxx</includes>
+    <templateparamlist>
+      <param>
+        <type>class T</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1tools_1_1BlockView_1acaadee9e8a7dc696acf1ebad24bd431d" prot="public" static="no">
+        <type><ref refid="classandres_1_1View" kindref="compound">nifty::marray::View</ref>&lt; T &gt;</type>
+        <definition>typedef nifty::marray::View&lt;T&gt; nifty::tools::BlockView&lt; T &gt;::ViewType</definition>
+        <argsstring></argsstring>
+        <name>ViewType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/tools/block_access.hxx" line="51" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/tools/block_access.hxx" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1tools_1_1BlockView_1a1b591e8f45f3bed139be4e0c3389120b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class SHAPE</type>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>nifty::tools::BlockView&lt; T &gt;::BlockView</definition>
+        <argsstring>(const SHAPE &amp;maxShape, const std::size_t numberOfBlocks)</argsstring>
+        <name>BlockView</name>
+        <param>
+          <type>const SHAPE &amp;</type>
+          <declname>maxShape</declname>
+        </param>
+        <param>
+          <type>const std::size_t</type>
+          <declname>numberOfBlocks</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/tools/block_access.hxx" line="55" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/tools/block_access.hxx" bodystart="55" bodyend="60"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1tools_1_1BlockView_1abb51114af3076842c35284562c13ca72" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class SHAPE</type>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>nifty::tools::BlockView&lt; T &gt;::BlockView</definition>
+        <argsstring>(nifty::parallel::ThreadPool &amp;threadpool, const SHAPE &amp;maxShape, const std::size_t numberOfBlocks)</argsstring>
+        <name>BlockView</name>
+        <param>
+          <type><ref refid="classnifty_1_1parallel_1_1ThreadPool" kindref="compound">nifty::parallel::ThreadPool</ref> &amp;</type>
+          <declname>threadpool</declname>
+        </param>
+        <param>
+          <type>const SHAPE &amp;</type>
+          <declname>maxShape</declname>
+        </param>
+        <param>
+          <type>const std::size_t</type>
+          <declname>numberOfBlocks</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/tools/block_access.hxx" line="63" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/tools/block_access.hxx" bodystart="63" bodyend="69"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1tools_1_1BlockView_1abbd30baab53cb89ded00f37214b6056d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classnifty_1_1tools_1_1BlockView_1acaadee9e8a7dc696acf1ebad24bd431d" kindref="member">ViewType</ref></type>
+        <definition>ViewType nifty::tools::BlockView&lt; T &gt;::getView</definition>
+        <argsstring>(const std::size_t blockIndex)</argsstring>
+        <name>getView</name>
+        <param>
+          <type>const std::size_t</type>
+          <declname>blockIndex</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/tools/block_access.hxx" line="72" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/tools/block_access.hxx" bodystart="72" bodyend="74"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1tools_1_1BlockView_1aa5844a6a85c4747084f64e44f1456fe7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class SHAPE</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classnifty_1_1tools_1_1BlockView_1acaadee9e8a7dc696acf1ebad24bd431d" kindref="member">ViewType</ref></type>
+        <definition>ViewType nifty::tools::BlockView&lt; T &gt;::getView</definition>
+        <argsstring>(const SHAPE &amp;shape, const std::size_t blockIndex)</argsstring>
+        <name>getView</name>
+        <param>
+          <type>const SHAPE &amp;</type>
+          <declname>shape</declname>
+        </param>
+        <param>
+          <type>const std::size_t</type>
+          <declname>blockIndex</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/tools/block_access.hxx" line="77" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/tools/block_access.hxx" bodystart="77" bodyend="79"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/tools/block_access.hxx" line="49" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/tools/block_access.hxx" bodystart="49" bodyend="83"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1tools_1_1BlockView_1a1b591e8f45f3bed139be4e0c3389120b" prot="public" virt="non-virtual"><scope>nifty::tools::BlockView</scope><name>BlockView</name></member>
+      <member refid="classnifty_1_1tools_1_1BlockView_1abb51114af3076842c35284562c13ca72" prot="public" virt="non-virtual"><scope>nifty::tools::BlockView</scope><name>BlockView</name></member>
+      <member refid="classnifty_1_1tools_1_1BlockView_1abbd30baab53cb89ded00f37214b6056d" prot="public" virt="non-virtual"><scope>nifty::tools::BlockView</scope><name>getView</name></member>
+      <member refid="classnifty_1_1tools_1_1BlockView_1aa5844a6a85c4747084f64e44f1456fe7" prot="public" virt="non-virtual"><scope>nifty::tools::BlockView</scope><name>getView</name></member>
+      <member refid="classnifty_1_1tools_1_1BlockView_1acaadee9e8a7dc696acf1ebad24bd431d" prot="public" virt="non-virtual"><scope>nifty::tools::BlockView</scope><name>ViewType</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

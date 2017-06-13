@@ -1,0 +1,618 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="arithmetic__array_8hxx" kind="file" language="C++">
+    <compoundname>arithmetic_array.hxx</compoundname>
+    <includes local="no">array</includes>
+    <includes local="no">vector</includes>
+    <includes refid="runtime__check_8hxx" local="yes">nifty/tools/runtime_check.hxx</includes>
+    <includedby refid="static__array_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/array/static_array.hxx</includedby>
+    <includedby refid="vector_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/array/vector.hxx</includedby>
+    <includedby refid="bounds_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/cgp/bounds.hxx</includedby>
+    <includedby refid="cgp_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/cgp/cgp.hxx</includedby>
+    <includedby refid="filled__topological__grid_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/cgp/filled_topological_grid.hxx</includedby>
+    <includedby refid="geometry_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/cgp/geometry.hxx</includedby>
+    <includedby refid="topological__grid_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/cgp/topological_grid.hxx</includedby>
+    <includedby refid="fastfilters__wrapper_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx</includedby>
+    <includedby refid="affinities_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/filters/affinities.hxx</includedby>
+    <includedby refid="gaussian__curvature_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/filters/gaussian_curvature.hxx</includedby>
+    <includedby refid="compute__grid__rag_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/rag/detail_rag/compute_grid_rag.hxx</includedby>
+    <includedby refid="compute__grid__rag__hdf5_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/rag/detail_rag/compute_grid_rag_hdf5.hxx</includedby>
+    <includedby refid="grid__rag_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag.hxx</includedby>
+    <includedby refid="grid__rag__labels_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels.hxx</includedby>
+    <includedby refid="grid__rag__stacked__2d_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_stacked_2d.hxx</includedby>
+    <includedby refid="project__to__pixels_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/rag/project_to_pixels.hxx</includedby>
+    <includedby refid="graph_2undirected__grid__graph_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/undirected_grid_graph.hxx</includedby>
+    <includedby refid="overlap_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/ground_truth/overlap.hxx</includedby>
+    <includedby refid="converter_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/python/converter.hxx</includedby>
+    <includedby refid="block__access_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/tools/block_access.hxx</includedby>
+    <includedby refid="blocking_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/tools/blocking.hxx</includedby>
+    <includedby refid="for__each__block_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/tools/for_each_block.hxx</includedby>
+    <includedby refid="for__each__coordinate_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/tools/for_each_coordinate.hxx</includedby>
+    <incdepgraph>
+      <node id="6399">
+        <label>limits</label>
+      </node>
+      <node id="6396">
+        <label>cstdint</label>
+      </node>
+      <node id="6400">
+        <label>cmath</label>
+      </node>
+      <node id="6397">
+        <label>stdexcept</label>
+      </node>
+      <node id="6394">
+        <label>vector</label>
+      </node>
+      <node id="6392">
+        <label>/home/tbeier/src/nifty/include/nifty/array/arithmetic_array.hxx</label>
+        <link refid="arithmetic_array.hxx"/>
+        <childnode refid="6393" relation="include">
+        </childnode>
+        <childnode refid="6394" relation="include">
+        </childnode>
+        <childnode refid="6395" relation="include">
+        </childnode>
+      </node>
+      <node id="6393">
+        <label>array</label>
+      </node>
+      <node id="6398">
+        <label>sstream</label>
+      </node>
+      <node id="6395">
+        <label>nifty/tools/runtime_check.hxx</label>
+        <link refid="runtime__check_8hxx"/>
+        <childnode refid="6396" relation="include">
+        </childnode>
+        <childnode refid="6397" relation="include">
+        </childnode>
+        <childnode refid="6398" relation="include">
+        </childnode>
+        <childnode refid="6394" relation="include">
+        </childnode>
+        <childnode refid="6399" relation="include">
+        </childnode>
+        <childnode refid="6400" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="6420">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_hdf5.hxx</label>
+        <link refid="grid__rag__hdf5_8hxx"/>
+      </node>
+      <node id="6404">
+        <label>/home/tbeier/src/nifty/include/nifty/cgp/features/geometric_features.hxx</label>
+        <link refid="geometric__features_8hxx"/>
+      </node>
+      <node id="6421">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_stacked_2d.hxx</label>
+        <link refid="grid__rag__stacked__2d_8hxx"/>
+        <childnode refid="6422" relation="include">
+        </childnode>
+      </node>
+      <node id="6408">
+        <label>/home/tbeier/src/nifty/include/nifty/cgp/features.hxx</label>
+        <link refid="features_8hxx"/>
+      </node>
+      <node id="6438">
+        <label>/home/tbeier/src/nifty/include/nifty/tools/for_each_coordinate.hxx</label>
+        <link refid="for__each__coordinate_8hxx"/>
+        <childnode refid="6410" relation="include">
+        </childnode>
+        <childnode refid="6412" relation="include">
+        </childnode>
+        <childnode refid="6414" relation="include">
+        </childnode>
+        <childnode refid="6415" relation="include">
+        </childnode>
+        <childnode refid="6416" relation="include">
+        </childnode>
+        <childnode refid="6423" relation="include">
+        </childnode>
+        <childnode refid="6419" relation="include">
+        </childnode>
+        <childnode refid="6425" relation="include">
+        </childnode>
+        <childnode refid="6428" relation="include">
+        </childnode>
+        <childnode refid="6439" relation="include">
+        </childnode>
+        <childnode refid="6440" relation="include">
+        </childnode>
+        <childnode refid="6437" relation="include">
+        </childnode>
+      </node>
+      <node id="6428">
+        <label>/home/tbeier/src/nifty/include/nifty/ground_truth/overlap.hxx</label>
+        <link refid="overlap_8hxx"/>
+      </node>
+      <node id="6424">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels.hxx</label>
+        <link refid="grid__rag__labels_8hxx"/>
+        <childnode refid="6416" relation="include">
+        </childnode>
+        <childnode refid="6417" relation="include">
+        </childnode>
+      </node>
+      <node id="6410">
+        <label>/home/tbeier/src/nifty/include/nifty/cgp/filled_topological_grid.hxx</label>
+        <link refid="filled__topological__grid_8hxx"/>
+      </node>
+      <node id="6435">
+        <label>/home/tbeier/src/nifty/include/nifty/hdf5/hdf5_array.hxx</label>
+        <link refid="hdf5__array_8hxx"/>
+        <childnode refid="6433" relation="include">
+        </childnode>
+      </node>
+      <node id="6439">
+        <label>/home/tbeier/src/nifty/include/nifty/ground_truth/seg_to_edges.hxx</label>
+        <link refid="seg__to__edges_8hxx"/>
+      </node>
+      <node id="6405">
+        <label>/home/tbeier/src/nifty/include/nifty/cgp/features/topological_features.hxx</label>
+        <link refid="topological__features_8hxx"/>
+      </node>
+      <node id="6422">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_stacked_2d_hdf5.hxx</label>
+        <link refid="grid__rag__stacked__2d__hdf5_8hxx"/>
+      </node>
+      <node id="6402">
+        <label>/home/tbeier/src/nifty/include/nifty/array/static_array.hxx</label>
+        <link refid="static__array_8hxx"/>
+        <childnode refid="6403" relation="include">
+        </childnode>
+      </node>
+      <node id="6415">
+        <label>/home/tbeier/src/nifty/include/nifty/filters/gaussian_curvature.hxx</label>
+        <link refid="gaussian__curvature_8hxx"/>
+        <childnode refid="6404" relation="include">
+        </childnode>
+        <childnode refid="6405" relation="include">
+        </childnode>
+      </node>
+      <node id="6432">
+        <label>/home/tbeier/src/nifty/include/nifty/tools/block_access.hxx</label>
+        <link refid="block__access_8hxx"/>
+        <childnode refid="6424" relation="include">
+        </childnode>
+        <childnode refid="6433" relation="include">
+        </childnode>
+        <childnode refid="6434" relation="include">
+        </childnode>
+        <childnode refid="6435" relation="include">
+        </childnode>
+        <childnode refid="6429" relation="include">
+        </childnode>
+      </node>
+      <node id="6419">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_features.hxx</label>
+        <link refid="grid__rag__features_8hxx"/>
+      </node>
+      <node id="6430">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/agglo/export_agglomerative_clustering.hxx</label>
+        <link refid="export__agglomerative__clustering_8hxx"/>
+      </node>
+      <node id="6433">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels_hdf5.hxx</label>
+        <link refid="grid__rag__labels__hdf5_8hxx"/>
+        <childnode refid="6423" relation="include">
+        </childnode>
+        <childnode refid="6420" relation="include">
+        </childnode>
+        <childnode refid="6422" relation="include">
+        </childnode>
+      </node>
+      <node id="6416">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/rag/detail_rag/compute_grid_rag.hxx</label>
+        <link refid="compute__grid__rag_8hxx"/>
+        <childnode refid="6417" relation="include">
+        </childnode>
+      </node>
+      <node id="6440">
+        <label>/home/tbeier/src/nifty/include/nifty/ground_truth/seg_to_lifted_edges.hxx</label>
+        <link refid="seg__to__lifted__edges_8hxx"/>
+      </node>
+      <node id="6425">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/rag/project_to_pixels.hxx</label>
+        <link refid="project__to__pixels_8hxx"/>
+      </node>
+      <node id="6418">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_accumulate.hxx</label>
+        <link refid="grid__rag__accumulate_8hxx"/>
+      </node>
+      <node id="6427">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/undirected_grid_graph.hxx</label>
+        <link refid="python_2graph_2undirected__grid__graph_8hxx"/>
+      </node>
+      <node id="6407">
+        <label>/home/tbeier/src/nifty/include/nifty/cgp/bounds.hxx</label>
+        <link refid="bounds_8hxx"/>
+        <childnode refid="6404" relation="include">
+        </childnode>
+        <childnode refid="6405" relation="include">
+        </childnode>
+        <childnode refid="6408" relation="include">
+        </childnode>
+      </node>
+      <node id="6409">
+        <label>/home/tbeier/src/nifty/include/nifty/cgp/cgp.hxx</label>
+        <link refid="cgp_8hxx"/>
+      </node>
+      <node id="6413">
+        <label>/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx</label>
+        <link refid="fastfilters__wrapper_8hxx"/>
+      </node>
+      <node id="6406">
+        <label>/home/tbeier/src/nifty/include/nifty/array/vector.hxx</label>
+        <link refid="vector_8hxx"/>
+      </node>
+      <node id="6401">
+        <label>/home/tbeier/src/nifty/include/nifty/array/arithmetic_array.hxx</label>
+        <link refid="arithmetic_array.hxx"/>
+        <childnode refid="6402" relation="include">
+        </childnode>
+        <childnode refid="6406" relation="include">
+        </childnode>
+        <childnode refid="6407" relation="include">
+        </childnode>
+        <childnode refid="6409" relation="include">
+        </childnode>
+        <childnode refid="6410" relation="include">
+        </childnode>
+        <childnode refid="6411" relation="include">
+        </childnode>
+        <childnode refid="6412" relation="include">
+        </childnode>
+        <childnode refid="6413" relation="include">
+        </childnode>
+        <childnode refid="6414" relation="include">
+        </childnode>
+        <childnode refid="6415" relation="include">
+        </childnode>
+        <childnode refid="6416" relation="include">
+        </childnode>
+        <childnode refid="6423" relation="include">
+        </childnode>
+        <childnode refid="6417" relation="include">
+        </childnode>
+        <childnode refid="6424" relation="include">
+        </childnode>
+        <childnode refid="6421" relation="include">
+        </childnode>
+        <childnode refid="6425" relation="include">
+        </childnode>
+        <childnode refid="6426" relation="include">
+        </childnode>
+        <childnode refid="6428" relation="include">
+        </childnode>
+        <childnode refid="6429" relation="include">
+        </childnode>
+        <childnode refid="6432" relation="include">
+        </childnode>
+        <childnode refid="6436" relation="include">
+        </childnode>
+        <childnode refid="6437" relation="include">
+        </childnode>
+        <childnode refid="6438" relation="include">
+        </childnode>
+      </node>
+      <node id="6417">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag.hxx</label>
+        <link refid="grid__rag_8hxx"/>
+        <childnode refid="6418" relation="include">
+        </childnode>
+        <childnode refid="6419" relation="include">
+        </childnode>
+        <childnode refid="6420" relation="include">
+        </childnode>
+        <childnode refid="6421" relation="include">
+        </childnode>
+      </node>
+      <node id="6431">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/optimization/common/export_solver_factory.hxx</label>
+        <link refid="export__solver__factory_8hxx"/>
+      </node>
+      <node id="6426">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/undirected_grid_graph.hxx</label>
+        <link refid="graph_2undirected__grid__graph_8hxx"/>
+        <childnode refid="6427" relation="include">
+        </childnode>
+      </node>
+      <node id="6436">
+        <label>/home/tbeier/src/nifty/include/nifty/tools/blocking.hxx</label>
+        <link refid="blocking_8hxx"/>
+      </node>
+      <node id="6412">
+        <label>/home/tbeier/src/nifty/include/nifty/cgp/topological_grid.hxx</label>
+        <link refid="topological__grid_8hxx"/>
+        <childnode refid="6407" relation="include">
+        </childnode>
+        <childnode refid="6409" relation="include">
+        </childnode>
+        <childnode refid="6410" relation="include">
+        </childnode>
+        <childnode refid="6411" relation="include">
+        </childnode>
+      </node>
+      <node id="6437">
+        <label>/home/tbeier/src/nifty/include/nifty/tools/for_each_block.hxx</label>
+        <link refid="for__each__block_8hxx"/>
+        <childnode refid="6423" relation="include">
+        </childnode>
+        <childnode refid="6418" relation="include">
+        </childnode>
+      </node>
+      <node id="6411">
+        <label>/home/tbeier/src/nifty/include/nifty/cgp/geometry.hxx</label>
+        <link refid="geometry_8hxx"/>
+        <childnode refid="6404" relation="include">
+        </childnode>
+        <childnode refid="6405" relation="include">
+        </childnode>
+      </node>
+      <node id="6423">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/rag/detail_rag/compute_grid_rag_hdf5.hxx</label>
+        <link refid="compute__grid__rag__hdf5_8hxx"/>
+        <childnode refid="6420" relation="include">
+        </childnode>
+        <childnode refid="6422" relation="include">
+        </childnode>
+      </node>
+      <node id="6429">
+        <label>/home/tbeier/src/nifty/include/nifty/python/converter.hxx</label>
+        <link refid="converter_8hxx"/>
+        <childnode refid="6430" relation="include">
+        </childnode>
+        <childnode refid="6431" relation="include">
+        </childnode>
+      </node>
+      <node id="6414">
+        <label>/home/tbeier/src/nifty/include/nifty/filters/affinities.hxx</label>
+        <link refid="affinities_8hxx"/>
+      </node>
+      <node id="6403">
+        <label>/home/tbeier/src/nifty/include/nifty/math/math.hxx</label>
+        <link refid="math_8hxx"/>
+        <childnode refid="6404" relation="include">
+        </childnode>
+        <childnode refid="6405" relation="include">
+        </childnode>
+      </node>
+      <node id="6434">
+        <label>/home/tbeier/src/nifty/include/nifty/hdf5/hdf5.hxx</label>
+        <link refid="hdf5_8hxx"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classnifty_1_1array_1_1ArrayExtender" prot="public">nifty::array::ArrayExtender</innerclass>
+    <innerclass refid="classnifty_1_1array_1_1StaticArrayBase" prot="public">nifty::array::StaticArrayBase</innerclass>
+    <innernamespace refid="namespacenifty">nifty</innernamespace>
+    <innernamespace refid="namespacenifty_1_1array">nifty::array</innernamespace>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="arithmetic__array_8hxx_1a3a1e92a61ad3fc1aba486e3ccb01c136" prot="public" static="no">
+        <name>NIFTY_MACRO_BINARY_OP_INPLACE</name>
+        <param><defname>operatorSymbol</defname></param>
+        <initializer>template&lt;class ARRAY_CLASS&gt; \
+    ArrayExtender&lt;ARRAY_CLASS&gt; &amp; operator operatorSymbol ( \
+        ArrayExtender&lt;ARRAY_CLASS&gt; &amp; a, \
+        const ArrayExtender&lt;ARRAY_CLASS&gt; &amp; b \
+    ){ \
+        <ref refid="runtime__check_8hxx_1a1ae39644615984f31785d52a0b624277" kindref="member">NIFTY_ASSERT_OP</ref>( a.size(),==,b.size()); \
+        for(auto i=0; i&lt;a.size(); ++i){ \
+            a[i] operatorSymbol b[i]; \
+        } \
+        return a; \
+    } \
+    template&lt;class ARRAY_CLASS&gt; \
+    ArrayExtender&lt;ARRAY_CLASS&gt; &amp; operator operatorSymbol ( \
+        ArrayExtender&lt;ARRAY_CLASS&gt; &amp; a, \
+        typename ArrayExtender&lt;ARRAY_CLASS&gt;::const_reference  b \
+    ){ \
+        for(auto i=0; i&lt;a.size(); ++i){ \
+            a[i] operatorSymbol b; \
+        } \
+        return a; \
+    }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/array/arithmetic_array.hxx" line="41" column="13" bodyfile="/home/tbeier/src/nifty/include/nifty/array/arithmetic_array.hxx" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="arithmetic__array_8hxx_1afb71e5578bd9dad8cbfbd556100d9933" prot="public" static="no">
+        <name>NIFTY_MACRO_BINARY_OP</name>
+        <param><defname>operatorSymbol</defname></param>
+        <param><defname>inplaceSymbol</defname></param>
+        <initializer>template&lt;class ARRAY_CLASS&gt; \
+    ArrayExtender&lt;ARRAY_CLASS&gt;  operator operatorSymbol ( \
+        const ArrayExtender&lt;ARRAY_CLASS&gt; &amp; a, \
+        const ArrayExtender&lt;ARRAY_CLASS&gt; &amp; b \
+    ){ \
+        <ref refid="runtime__check_8hxx_1a1ae39644615984f31785d52a0b624277" kindref="member">NIFTY_ASSERT_OP</ref>( a.size(),==,b.size()); \
+        auto res = a; \
+        res inplaceSymbol b; \
+        return res; \
+    } \
+    template&lt;class ARRAY_CLASS&gt; \
+    ArrayExtender&lt;ARRAY_CLASS&gt;  operator operatorSymbol ( \
+        const ArrayExtender&lt;ARRAY_CLASS&gt; &amp; a, \
+        const typename ArrayExtender&lt;ARRAY_CLASS&gt;::const_reference &amp; b \
+    ){ \
+        auto res = a; \
+        for(auto i=0; i&lt;a.size(); ++i){ \
+            res[i] inplaceSymbol b; \
+        } \
+        return res; \
+    } \</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/array/arithmetic_array.hxx" line="73" column="13" bodyfile="/home/tbeier/src/nifty/include/nifty/array/arithmetic_array.hxx" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;array&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="runtime__check_8hxx" kindref="compound">nifty/tools/runtime_check.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8" refid="namespacenifty" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacenifty" kindref="compound">nifty</ref>{</highlight></codeline>
+<codeline lineno="9" refid="namespacenifty_1_1array" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">array{</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>ARRAY_CLASS&gt;</highlight></codeline>
+<codeline lineno="13" refid="classnifty_1_1array_1_1ArrayExtender" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnifty_1_1array_1_1ArrayExtender" kindref="compound">ArrayExtender</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>ARRAY_CLASS</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>ARRAY_CLASS::ARRAY_CLASS;</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>STREAM,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>ARRAY_CLASS&gt;</highlight></codeline>
+<codeline lineno="23" refid="namespacenifty_1_1array_1ae3d01c9b4b4259a31ac35ce0a6cf3b48" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>STREAM&amp;<sp/>operator<sp/>&lt;&lt;<sp/>(STREAM<sp/>&amp;out,<sp/>const<sp/>ArrayExtender&lt;ARRAY_CLASS&gt;<sp/>&amp;<sp/>array){</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>out&lt;&lt;</highlight><highlight class="stringliteral">&quot;[&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>first<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>&amp;<sp/>val<sp/>:<sp/>array){</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(first){</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>first<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>out&lt;&lt;</highlight><highlight class="stringliteral">&quot;<sp/>&quot;</highlight><highlight class="normal">&lt;&lt;val;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>out&lt;&lt;</highlight><highlight class="stringliteral">&quot;,<sp/>&quot;</highlight><highlight class="normal">&lt;&lt;val;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>out&lt;&lt;</highlight><highlight class="stringliteral">&quot;<sp/>]&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>out;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41" refid="arithmetic__array_8hxx_1a3a1e92a61ad3fc1aba486e3ccb01c136" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>NIFTY_MACRO_BINARY_OP_INPLACE(operatorSymbol)<sp/>\</highlight></codeline>
+<codeline lineno="42"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>template&lt;class<sp/>ARRAY_CLASS&gt;<sp/>\</highlight></codeline>
+<codeline lineno="43"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>ArrayExtender&lt;ARRAY_CLASS&gt;<sp/>&amp;<sp/>operator<sp/>operatorSymbol<sp/>(<sp/>\</highlight></codeline>
+<codeline lineno="44"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ArrayExtender&lt;ARRAY_CLASS&gt;<sp/>&amp;<sp/>a,<sp/>\</highlight></codeline>
+<codeline lineno="45"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>ArrayExtender&lt;ARRAY_CLASS&gt;<sp/>&amp;<sp/>b<sp/>\</highlight></codeline>
+<codeline lineno="46"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>){<sp/>\</highlight></codeline>
+<codeline lineno="47"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>NIFTY_ASSERT_OP(<sp/>a.size(),==,b.size());<sp/>\</highlight></codeline>
+<codeline lineno="48"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>for(auto<sp/>i=0;<sp/>i&lt;a.size();<sp/>++i){<sp/>\</highlight></codeline>
+<codeline lineno="49"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>a[i]<sp/>operatorSymbol<sp/>b[i];<sp/>\</highlight></codeline>
+<codeline lineno="50"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/>\</highlight></codeline>
+<codeline lineno="51"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>a;<sp/>\</highlight></codeline>
+<codeline lineno="52"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>}<sp/>\</highlight></codeline>
+<codeline lineno="53"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>template&lt;class<sp/>ARRAY_CLASS&gt;<sp/>\</highlight></codeline>
+<codeline lineno="54"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>ArrayExtender&lt;ARRAY_CLASS&gt;<sp/>&amp;<sp/>operator<sp/>operatorSymbol<sp/>(<sp/>\</highlight></codeline>
+<codeline lineno="55"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ArrayExtender&lt;ARRAY_CLASS&gt;<sp/>&amp;<sp/>a,<sp/>\</highlight></codeline>
+<codeline lineno="56"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typename<sp/>ArrayExtender&lt;ARRAY_CLASS&gt;::const_reference<sp/><sp/>b<sp/>\</highlight></codeline>
+<codeline lineno="57"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>){<sp/>\</highlight></codeline>
+<codeline lineno="58"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>for(auto<sp/>i=0;<sp/>i&lt;a.size();<sp/>++i){<sp/>\</highlight></codeline>
+<codeline lineno="59"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>a[i]<sp/>operatorSymbol<sp/>b;<sp/>\</highlight></codeline>
+<codeline lineno="60"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/>\</highlight></codeline>
+<codeline lineno="61"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>a;<sp/>\</highlight></codeline>
+<codeline lineno="62"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacenifty_1_1array_1a9cfe55e7ae08c0c0a43a6f27d18929d4" kindref="member">NIFTY_MACRO_BINARY_OP_INPLACE</ref>(+=);</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacenifty_1_1array_1a9cfe55e7ae08c0c0a43a6f27d18929d4" kindref="member">NIFTY_MACRO_BINARY_OP_INPLACE</ref>(-=);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacenifty_1_1array_1a9cfe55e7ae08c0c0a43a6f27d18929d4" kindref="member">NIFTY_MACRO_BINARY_OP_INPLACE</ref>(*=);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacenifty_1_1array_1a9cfe55e7ae08c0c0a43a6f27d18929d4" kindref="member">NIFTY_MACRO_BINARY_OP_INPLACE</ref>(/=);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacenifty_1_1array_1a9cfe55e7ae08c0c0a43a6f27d18929d4" kindref="member">NIFTY_MACRO_BINARY_OP_INPLACE</ref>(&amp;=);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacenifty_1_1array_1a9cfe55e7ae08c0c0a43a6f27d18929d4" kindref="member">NIFTY_MACRO_BINARY_OP_INPLACE</ref>(|=);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#undef<sp/>NIFTY_MACRO_BINARY_OP_INPLACE</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73" refid="arithmetic__array_8hxx_1afb71e5578bd9dad8cbfbd556100d9933" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>NIFTY_MACRO_BINARY_OP(operatorSymbol,<sp/>inplaceSymbol)<sp/>\</highlight></codeline>
+<codeline lineno="74"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>template&lt;class<sp/>ARRAY_CLASS&gt;<sp/>\</highlight></codeline>
+<codeline lineno="75"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>ArrayExtender&lt;ARRAY_CLASS&gt;<sp/><sp/>operator<sp/>operatorSymbol<sp/>(<sp/>\</highlight></codeline>
+<codeline lineno="76"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>ArrayExtender&lt;ARRAY_CLASS&gt;<sp/>&amp;<sp/>a,<sp/>\</highlight></codeline>
+<codeline lineno="77"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>ArrayExtender&lt;ARRAY_CLASS&gt;<sp/>&amp;<sp/>b<sp/>\</highlight></codeline>
+<codeline lineno="78"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>){<sp/>\</highlight></codeline>
+<codeline lineno="79"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>NIFTY_ASSERT_OP(<sp/>a.size(),==,b.size());<sp/>\</highlight></codeline>
+<codeline lineno="80"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>auto<sp/>res<sp/>=<sp/>a;<sp/>\</highlight></codeline>
+<codeline lineno="81"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>res<sp/>inplaceSymbol<sp/>b;<sp/>\</highlight></codeline>
+<codeline lineno="82"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>res;<sp/>\</highlight></codeline>
+<codeline lineno="83"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>}<sp/>\</highlight></codeline>
+<codeline lineno="84"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>template&lt;class<sp/>ARRAY_CLASS&gt;<sp/>\</highlight></codeline>
+<codeline lineno="85"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>ArrayExtender&lt;ARRAY_CLASS&gt;<sp/><sp/>operator<sp/>operatorSymbol<sp/>(<sp/>\</highlight></codeline>
+<codeline lineno="86"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>ArrayExtender&lt;ARRAY_CLASS&gt;<sp/>&amp;<sp/>a,<sp/>\</highlight></codeline>
+<codeline lineno="87"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>typename<sp/>ArrayExtender&lt;ARRAY_CLASS&gt;::const_reference<sp/>&amp;<sp/>b<sp/>\</highlight></codeline>
+<codeline lineno="88"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>){<sp/>\</highlight></codeline>
+<codeline lineno="89"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>auto<sp/>res<sp/>=<sp/>a;<sp/>\</highlight></codeline>
+<codeline lineno="90"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>for(auto<sp/>i=0;<sp/>i&lt;a.size();<sp/>++i){<sp/>\</highlight></codeline>
+<codeline lineno="91"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>res[i]<sp/>inplaceSymbol<sp/>b;<sp/>\</highlight></codeline>
+<codeline lineno="92"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/>\</highlight></codeline>
+<codeline lineno="93"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>res;<sp/>\</highlight></codeline>
+<codeline lineno="94"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>}<sp/>\</highlight></codeline>
+<codeline lineno="95"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacenifty_1_1array_1adacdae329fa7ea377154bbc41717f86f" kindref="member">NIFTY_MACRO_BINARY_OP</ref>(+,<sp/>+=);</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacenifty_1_1array_1adacdae329fa7ea377154bbc41717f86f" kindref="member">NIFTY_MACRO_BINARY_OP</ref>(-,<sp/>-=);</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacenifty_1_1array_1adacdae329fa7ea377154bbc41717f86f" kindref="member">NIFTY_MACRO_BINARY_OP</ref>(*,<sp/>*=);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacenifty_1_1array_1adacdae329fa7ea377154bbc41717f86f" kindref="member">NIFTY_MACRO_BINARY_OP</ref>(/,<sp/>/=);</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacenifty_1_1array_1adacdae329fa7ea377154bbc41717f86f" kindref="member">NIFTY_MACRO_BINARY_OP</ref>(&amp;,<sp/>&amp;=);</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacenifty_1_1array_1adacdae329fa7ea377154bbc41717f86f" kindref="member">NIFTY_MACRO_BINARY_OP</ref>(|,<sp/>|=);</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#undef<sp/>NIFTY_MACRO_BINARY_OP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>to<sp/>give<sp/>std::array<sp/>a<sp/>proper<sp/>constructor</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>since<sp/>it<sp/>is<sp/>an<sp/>aggregate<sp/>we<sp/>need</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>to<sp/>impl.<sp/>this<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>=&gt;<sp/>we<sp/>are<sp/>giving<sp/>up<sp/>the<sp/>aggregate<sp/>status</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>T,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>DIM&gt;</highlight></codeline>
+<codeline lineno="111" refid="classnifty_1_1array_1_1StaticArrayBase" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnifty_1_1array_1_1StaticArrayBase" kindref="compound">StaticArrayBase</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>std::array&lt;T,DIM&gt;{</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="113" refid="classnifty_1_1array_1_1StaticArrayBase_1a3f376d2a24fad3a47021c36657494759" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><sp/>std::array&lt;T,DIM&gt;<sp/><ref refid="classnifty_1_1array_1_1StaticArrayBase_1a3f376d2a24fad3a47021c36657494759" kindref="member">BaseType</ref>;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//using<sp/>std::array&lt;T,DIM&gt;::array;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="115" refid="classnifty_1_1array_1_1StaticArrayBase_1ab15a9b2d0259a54795ffc5aac8d62e50" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1array_1_1StaticArrayBase_1ab15a9b2d0259a54795ffc5aac8d62e50" kindref="member">StaticArrayBase</ref>()</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/><sp/><sp/>std::array&lt;T,DIM&gt;(){}</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118" refid="classnifty_1_1array_1_1StaticArrayBase_1aa798253fef388d6c0d0fd3d436784e79" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1array_1_1StaticArrayBase_1aa798253fef388d6c0d0fd3d436784e79" kindref="member">StaticArrayBase</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>T<sp/>&amp;<sp/>value)</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/><sp/><sp/>std::array&lt;T,DIM&gt;(){</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::fill(this-&gt;begin(),<sp/>this-&gt;end(),<sp/>value);</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>INIT_T&gt;</highlight></codeline>
+<codeline lineno="124" refid="classnifty_1_1array_1_1StaticArrayBase_1a6d8d83f91ab1ba26d94d9a5915f98bb0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1array_1_1StaticArrayBase_1a6d8d83f91ab1ba26d94d9a5915f98bb0" kindref="member">StaticArrayBase</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::initializer_list&lt;INIT_T&gt;<sp/>&amp;<sp/>list){</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::copy(list.begin(),<sp/>list.end(),<sp/>this-&gt;begin());</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//template<sp/>&lt;typename...<sp/>Args&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//StaticArrayBase(Args<sp/>&amp;&amp;...<sp/>args)<sp/>:<sp/>std::array&lt;T,DIM&gt;({std::forward&lt;Args&gt;(args)...})<sp/>{</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight></codeline>
+<codeline lineno="133" refid="classnifty_1_1array_1_1StaticArrayBase_1ad4a33e73ab03d344489c81af7108773d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>BaseType<sp/>&amp;<sp/><ref refid="classnifty_1_1array_1_1StaticArrayBase_1ad4a33e73ab03d344489c81af7108773d" kindref="member">asStdArray</ref>()</highlight><highlight class="keyword">const</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const<sp/></highlight><highlight class="normal">BaseType<sp/>&amp;<sp/></highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(*this);</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="136" refid="classnifty_1_1array_1_1StaticArrayBase_1a205328f2e3ad922e007afe0f9f3e819b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>BaseType<sp/>&amp;<sp/><ref refid="classnifty_1_1array_1_1StaticArrayBase_1a205328f2e3ad922e007afe0f9f3e819b" kindref="member">asStdArray</ref>(){</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal"><sp/>BaseType<sp/>&amp;<sp/></highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(*this);</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>T,</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>SIZE&gt;</highlight></codeline>
+<codeline lineno="143" refid="namespacenifty_1_1array_1a683f151f19c851754e0c6d55ed16a0c2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1array_1_1ArrayExtender" kindref="compound">StaticArray</ref><sp/>=<sp/><ref refid="classnifty_1_1array_1_1ArrayExtender" kindref="compound">ArrayExtender&lt; StaticArrayBase&lt;T,SIZE&gt;</ref><sp/>&gt;;<sp/></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>template&lt;class<sp/>T,<sp/>class<sp/>ALLOCATOR<sp/>=<sp/>std::allocator&lt;T&gt;<sp/>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>using<sp/>Vector<sp/>=<sp/>ArrayExtender&lt;<sp/>std::vector&lt;T,ALLOCATOR&gt;<sp/>&gt;;<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="150"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/tbeier/src/nifty/include/nifty/array/arithmetic_array.hxx"/>
+  </compounddef>
+</doxygen>

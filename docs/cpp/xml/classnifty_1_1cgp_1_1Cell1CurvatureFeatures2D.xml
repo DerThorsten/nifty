@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="classnifty_1_1cgp_1_1Cell1CurvatureFeatures2D" kind="class" language="C++" prot="public">
+    <compoundname>nifty::cgp::Cell1CurvatureFeatures2D</compoundname>
+    <includes refid="geometric__features_8hxx" local="no">geometric_features.hxx</includes>
+      <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="classnifty_1_1cgp_1_1Cell1CurvatureFeatures2D_1a3811635ae23d0d3252702e55e4951a6d" prot="private" static="no">
+        <type><ref refid="classnifty_1_1features_1_1DefaultAccumulatedStatistics" kindref="compound">nifty::features::DefaultAccumulatedStatistics</ref>&lt; float &gt;</type>
+        <definition>typedef nifty::features::DefaultAccumulatedStatistics&lt;float&gt; nifty::cgp::Cell1CurvatureFeatures2D::AccType</definition>
+        <argsstring></argsstring>
+        <name>AccType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/cgp/features/geometric_features.hxx" line="23" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/cgp/features/geometric_features.hxx" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classnifty_1_1cgp_1_1Cell1CurvatureFeatures2D_1a5effec47c35ba69f9daf0a07a8fa35b9" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; float &gt;</type>
+        <definition>std::vector&lt;float&gt; nifty::cgp::Cell1CurvatureFeatures2D::sigmas_</definition>
+        <argsstring></argsstring>
+        <name>sigmas_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/cgp/features/geometric_features.hxx" line="136" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/cgp/features/geometric_features.hxx" bodystart="136" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1cgp_1_1Cell1CurvatureFeatures2D_1af6e4ca198685673a68f2252ae140927c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>nifty::cgp::Cell1CurvatureFeatures2D::Cell1CurvatureFeatures2D</definition>
+        <argsstring>(const std::vector&lt; float &gt; &amp;sigmas=std::vector&lt; float &gt;({1.0f, 2.0f, 4.0f}))</argsstring>
+        <name>Cell1CurvatureFeatures2D</name>
+        <param>
+          <type>const std::vector&lt; float &gt; &amp;</type>
+          <declname>sigmas</declname>
+          <defval>std::vector&lt; float &gt;({1.0f, 2.0f, 4.0f})</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/cgp/features/geometric_features.hxx" line="25" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/cgp/features/geometric_features.hxx" bodystart="25" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1cgp_1_1Cell1CurvatureFeatures2D_1a51a8d50734cb749a97f8444b152ded06" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t nifty::cgp::Cell1CurvatureFeatures2D::numberOfFeatures</definition>
+        <argsstring>() const </argsstring>
+        <name>numberOfFeatures</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/cgp/features/geometric_features.hxx" line="33" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/cgp/features/geometric_features.hxx" bodystart="33" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1cgp_1_1Cell1CurvatureFeatures2D_1afdec5436850e78f2a70edb4033488f19" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt;std::string&gt; nifty::cgp::Cell1CurvatureFeatures2D::names</definition>
+        <argsstring>() const </argsstring>
+        <name>names</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/cgp/features/geometric_features.hxx" line="38" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/cgp/features/geometric_features.hxx" bodystart="38" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1cgp_1_1Cell1CurvatureFeatures2D_1a01e82615ad4742e8d6c8b74771eb2f9f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::cgp::Cell1CurvatureFeatures2D::operator()</definition>
+        <argsstring>(const CellGeometryVector&lt; 2, 1 &gt; &amp;cell1GeometryVector, const CellBoundedByVector&lt; 2, 1 &gt; &amp;cell1BoundedByVector, nifty::marray::View&lt; T &gt; &amp;features) const </argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1cgp_1_1CellGeometryVector" kindref="compound">CellGeometryVector</ref>&lt; 2, 1 &gt; &amp;</type>
+          <declname>cell1GeometryVector</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classnifty_1_1cgp_1_1CellBoundedByVector" kindref="compound">CellBoundedByVector</ref>&lt; 2, 1 &gt; &amp;</type>
+          <declname>cell1BoundedByVector</declname>
+        </param>
+        <param>
+          <type><ref refid="classandres_1_1View" kindref="compound">nifty::marray::View</ref>&lt; T &gt; &amp;</type>
+          <declname>features</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/cgp/features/geometric_features.hxx" line="66" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/cgp/features/geometric_features.hxx" bodystart="66" bodyend="134"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/cgp/features/geometric_features.hxx" line="21" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/cgp/features/geometric_features.hxx" bodystart="21" bodyend="137"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1cgp_1_1Cell1CurvatureFeatures2D_1a3811635ae23d0d3252702e55e4951a6d" prot="private" virt="non-virtual"><scope>nifty::cgp::Cell1CurvatureFeatures2D</scope><name>AccType</name></member>
+      <member refid="classnifty_1_1cgp_1_1Cell1CurvatureFeatures2D_1af6e4ca198685673a68f2252ae140927c" prot="public" virt="non-virtual"><scope>nifty::cgp::Cell1CurvatureFeatures2D</scope><name>Cell1CurvatureFeatures2D</name></member>
+      <member refid="classnifty_1_1cgp_1_1Cell1CurvatureFeatures2D_1afdec5436850e78f2a70edb4033488f19" prot="public" virt="non-virtual"><scope>nifty::cgp::Cell1CurvatureFeatures2D</scope><name>names</name></member>
+      <member refid="classnifty_1_1cgp_1_1Cell1CurvatureFeatures2D_1a51a8d50734cb749a97f8444b152ded06" prot="public" virt="non-virtual"><scope>nifty::cgp::Cell1CurvatureFeatures2D</scope><name>numberOfFeatures</name></member>
+      <member refid="classnifty_1_1cgp_1_1Cell1CurvatureFeatures2D_1a01e82615ad4742e8d6c8b74771eb2f9f" prot="public" virt="non-virtual"><scope>nifty::cgp::Cell1CurvatureFeatures2D</scope><name>operator()</name></member>
+      <member refid="classnifty_1_1cgp_1_1Cell1CurvatureFeatures2D_1a5effec47c35ba69f9daf0a07a8fa35b9" prot="private" virt="non-virtual"><scope>nifty::cgp::Cell1CurvatureFeatures2D</scope><name>sigmas_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

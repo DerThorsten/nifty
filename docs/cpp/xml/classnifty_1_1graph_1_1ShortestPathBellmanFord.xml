@@ -1,0 +1,345 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="classnifty_1_1graph_1_1ShortestPathBellmanFord" kind="class" language="C++" prot="public">
+    <compoundname>nifty::graph::ShortestPathBellmanFord</compoundname>
+    <includes refid="shortest__path__bellman__ford_8hxx" local="no">shortest_path_bellman_ford.hxx</includes>
+    <templateparamlist>
+      <param>
+        <type>class GRAPH</type>
+      </param>
+      <param>
+        <type>class WEIGHT_TYPE</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1ShortestPathBellmanFord_1affd61ff19b32441c605a63759511cfdc" prot="public" static="no">
+        <type>GRAPH</type>
+        <definition>typedef GRAPH nifty::graph::ShortestPathBellmanFord&lt; GRAPH, WEIGHT_TYPE &gt;::Graph</definition>
+        <argsstring></argsstring>
+        <name>Graph</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/shortest_path_bellman_ford.hxx" line="20" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/shortest_path_bellman_ford.hxx" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1ShortestPathBellmanFord_1a0455c814a964983fe8b43278bb7528e8" prot="public" static="no">
+        <type>WEIGHT_TYPE</type>
+        <definition>typedef WEIGHT_TYPE nifty::graph::ShortestPathBellmanFord&lt; GRAPH, WEIGHT_TYPE &gt;::WeightType</definition>
+        <argsstring></argsstring>
+        <name>WeightType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/shortest_path_bellman_ford.hxx" line="21" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/shortest_path_bellman_ford.hxx" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1ShortestPathBellmanFord_1a871bb54c135ad8324dfff2d4a694372d" prot="public" static="no">
+        <type>Graph::template NodeMap&lt; int64_t &gt;</type>
+        <definition>typedef Graph:: template NodeMap&lt;int64_t&gt; nifty::graph::ShortestPathBellmanFord&lt; GRAPH, WEIGHT_TYPE &gt;::PredecessorsMap</definition>
+        <argsstring></argsstring>
+        <name>PredecessorsMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/shortest_path_bellman_ford.hxx" line="23" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/shortest_path_bellman_ford.hxx" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1ShortestPathBellmanFord_1afb719c11ba9422051fa5650115735e46" prot="public" static="no">
+        <type>Graph::template NodeMap&lt; <ref refid="classnifty_1_1graph_1_1ShortestPathBellmanFord_1a0455c814a964983fe8b43278bb7528e8" kindref="member">WeightType</ref> &gt;</type>
+        <definition>typedef Graph:: template NodeMap&lt;WeightType&gt; nifty::graph::ShortestPathBellmanFord&lt; GRAPH, WEIGHT_TYPE &gt;::DistanceMap</definition>
+        <argsstring></argsstring>
+        <name>DistanceMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/shortest_path_bellman_ford.hxx" line="24" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/shortest_path_bellman_ford.hxx" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1ShortestPathBellmanFord_1a7aa63fbd441f26e23d13be1218924b1e" prot="private" static="no" mutable="no">
+        <type>const GRAPH &amp;</type>
+        <definition>const GRAPH&amp; nifty::graph::ShortestPathBellmanFord&lt; GRAPH, WEIGHT_TYPE &gt;::g_</definition>
+        <argsstring></argsstring>
+        <name>g_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/shortest_path_bellman_ford.hxx" line="150" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/shortest_path_bellman_ford.hxx" bodystart="150" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1ShortestPathBellmanFord_1a8aa5cc287323927767452c7861021d10" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1ShortestPathBellmanFord_1a871bb54c135ad8324dfff2d4a694372d" kindref="member">PredecessorsMap</ref></type>
+        <definition>PredecessorsMap nifty::graph::ShortestPathBellmanFord&lt; GRAPH, WEIGHT_TYPE &gt;::predMap_</definition>
+        <argsstring></argsstring>
+        <name>predMap_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/shortest_path_bellman_ford.hxx" line="151" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/shortest_path_bellman_ford.hxx" bodystart="151" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1ShortestPathBellmanFord_1ae23df5b48d34b46fadebeb4f973af09d" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1ShortestPathBellmanFord_1afb719c11ba9422051fa5650115735e46" kindref="member">DistanceMap</ref></type>
+        <definition>DistanceMap nifty::graph::ShortestPathBellmanFord&lt; GRAPH, WEIGHT_TYPE &gt;::distMap_</definition>
+        <argsstring></argsstring>
+        <name>distMap_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/shortest_path_bellman_ford.hxx" line="152" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/shortest_path_bellman_ford.hxx" bodystart="152" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1ShortestPathBellmanFord_1a7c47cefb1d6ff0335a32d5c7f991afaf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>nifty::graph::ShortestPathBellmanFord&lt; GRAPH, WEIGHT_TYPE &gt;::ShortestPathBellmanFord</definition>
+        <argsstring>(const Graph &amp;g)</argsstring>
+        <name>ShortestPathBellmanFord</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1ShortestPathBellmanFord_1affd61ff19b32441c605a63759511cfdc" kindref="member">Graph</ref> &amp;</type>
+          <declname>g</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/shortest_path_bellman_ford.hxx" line="27" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/shortest_path_bellman_ford.hxx" bodystart="27" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1ShortestPathBellmanFord_1a0b0ac675dcade4a09ac4c54a55ffb322" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class ArcWeights</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::graph::ShortestPathBellmanFord&lt; GRAPH, WEIGHT_TYPE &gt;::runSingleSourceSingleTarget</definition>
+        <argsstring>(ArcWeights arcWeights, const int64_t source, const int64_t target=-1)</argsstring>
+        <name>runSingleSourceSingleTarget</name>
+        <param>
+          <type>ArcWeights</type>
+          <declname>arcWeights</declname>
+        </param>
+        <param>
+          <type>const int64_t</type>
+          <declname>source</declname>
+        </param>
+        <param>
+          <type>const int64_t</type>
+          <declname>target</declname>
+          <defval>-1</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/shortest_path_bellman_ford.hxx" line="36" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/shortest_path_bellman_ford.hxx" bodystart="36" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1ShortestPathBellmanFord_1a2a400586a2b42f61751668b9e4539b62" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class ArcWeights</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::graph::ShortestPathBellmanFord&lt; GRAPH, WEIGHT_TYPE &gt;::runSingleSource</definition>
+        <argsstring>(ArcWeights arcWeights, const int64_t source)</argsstring>
+        <name>runSingleSource</name>
+        <param>
+          <type>ArcWeights</type>
+          <declname>arcWeights</declname>
+        </param>
+        <param>
+          <type>const int64_t</type>
+          <declname>source</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/shortest_path_bellman_ford.hxx" line="60" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/shortest_path_bellman_ford.hxx" bodystart="60" bodyend="76"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1ShortestPathBellmanFord_1ac70ef6c0b842b0ff7b7046d73e79a08c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class ArcWeights</type>
+          </param>
+          <param>
+            <type>class SOURCE_ITER</type>
+          </param>
+          <param>
+            <type>class SUBGRAPH_MASK</type>
+          </param>
+          <param>
+            <type>class VISITOR</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::graph::ShortestPathBellmanFord&lt; GRAPH, WEIGHT_TYPE &gt;::run</definition>
+        <argsstring>(ArcWeights arcWeights, SOURCE_ITER sourceBegin, SOURCE_ITER sourceEnd, const SUBGRAPH_MASK &amp;subgraphMask, VISITOR &amp;&amp;visitor)</argsstring>
+        <name>run</name>
+        <param>
+          <type>ArcWeights</type>
+          <declname>arcWeights</declname>
+        </param>
+        <param>
+          <type>SOURCE_ITER</type>
+          <declname>sourceBegin</declname>
+        </param>
+        <param>
+          <type>SOURCE_ITER</type>
+          <declname>sourceEnd</declname>
+        </param>
+        <param>
+          <type>const SUBGRAPH_MASK &amp;</type>
+          <declname>subgraphMask</declname>
+        </param>
+        <param>
+          <type>VISITOR &amp;&amp;</type>
+          <declname>visitor</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/shortest_path_bellman_ford.hxx" line="79" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/shortest_path_bellman_ford.hxx" bodystart="79" bodyend="88"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1ShortestPathBellmanFord_1a1f37d719386f1cc0611aa8a0cd82836c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classnifty_1_1graph_1_1ShortestPathBellmanFord_1afb719c11ba9422051fa5650115735e46" kindref="member">DistanceMap</ref> &amp;</type>
+        <definition>const DistanceMap&amp; nifty::graph::ShortestPathBellmanFord&lt; GRAPH, WEIGHT_TYPE &gt;::distances</definition>
+        <argsstring>() const </argsstring>
+        <name>distances</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/shortest_path_bellman_ford.hxx" line="90" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/shortest_path_bellman_ford.hxx" bodystart="90" bodyend="92"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1ShortestPathBellmanFord_1aa09feff89e12a09097c49c3552c298cf" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classnifty_1_1graph_1_1ShortestPathBellmanFord_1a871bb54c135ad8324dfff2d4a694372d" kindref="member">PredecessorsMap</ref></type>
+        <definition>const PredecessorsMap nifty::graph::ShortestPathBellmanFord&lt; GRAPH, WEIGHT_TYPE &gt;::predecessors</definition>
+        <argsstring>() const </argsstring>
+        <name>predecessors</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/shortest_path_bellman_ford.hxx" line="93" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/shortest_path_bellman_ford.hxx" bodystart="93" bodyend="95"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1ShortestPathBellmanFord_1a7c15e1b7e988f24fd9fd5c6b806a1f9a" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class ArcWeights</type>
+          </param>
+          <param>
+            <type>class SUBGRAPH_MASK</type>
+          </param>
+          <param>
+            <type>class VISITOR</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::graph::ShortestPathBellmanFord&lt; GRAPH, WEIGHT_TYPE &gt;::runImpl</definition>
+        <argsstring>(ArcWeights arcWeights, const SUBGRAPH_MASK &amp;subgraphMask, VISITOR &amp;&amp;visitor)</argsstring>
+        <name>runImpl</name>
+        <param>
+          <type>ArcWeights</type>
+          <declname>arcWeights</declname>
+        </param>
+        <param>
+          <type>const SUBGRAPH_MASK &amp;</type>
+          <declname>subgraphMask</declname>
+        </param>
+        <param>
+          <type>VISITOR &amp;&amp;</type>
+          <declname>visitor</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/shortest_path_bellman_ford.hxx" line="103" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/shortest_path_bellman_ford.hxx" bodystart="103" bodyend="130"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1ShortestPathBellmanFord_1aab5793482ece828a538245d54259e730" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class SOURCE_ITER</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::graph::ShortestPathBellmanFord&lt; GRAPH, WEIGHT_TYPE &gt;::initializeMaps</definition>
+        <argsstring>(SOURCE_ITER sourceBegin, SOURCE_ITER sourceEnd)</argsstring>
+        <name>initializeMaps</name>
+        <param>
+          <type>SOURCE_ITER</type>
+          <declname>sourceBegin</declname>
+        </param>
+        <param>
+          <type>SOURCE_ITER</type>
+          <declname>sourceEnd</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/shortest_path_bellman_ford.hxx" line="134" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/shortest_path_bellman_ford.hxx" bodystart="134" bodyend="146"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/shortest_path_bellman_ford.hxx" line="17" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/shortest_path_bellman_ford.hxx" bodystart="17" bodyend="153"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1graph_1_1ShortestPathBellmanFord_1afb719c11ba9422051fa5650115735e46" prot="public" virt="non-virtual"><scope>nifty::graph::ShortestPathBellmanFord</scope><name>DistanceMap</name></member>
+      <member refid="classnifty_1_1graph_1_1ShortestPathBellmanFord_1a1f37d719386f1cc0611aa8a0cd82836c" prot="public" virt="non-virtual"><scope>nifty::graph::ShortestPathBellmanFord</scope><name>distances</name></member>
+      <member refid="classnifty_1_1graph_1_1ShortestPathBellmanFord_1ae23df5b48d34b46fadebeb4f973af09d" prot="private" virt="non-virtual"><scope>nifty::graph::ShortestPathBellmanFord</scope><name>distMap_</name></member>
+      <member refid="classnifty_1_1graph_1_1ShortestPathBellmanFord_1a7aa63fbd441f26e23d13be1218924b1e" prot="private" virt="non-virtual"><scope>nifty::graph::ShortestPathBellmanFord</scope><name>g_</name></member>
+      <member refid="classnifty_1_1graph_1_1ShortestPathBellmanFord_1affd61ff19b32441c605a63759511cfdc" prot="public" virt="non-virtual"><scope>nifty::graph::ShortestPathBellmanFord</scope><name>Graph</name></member>
+      <member refid="classnifty_1_1graph_1_1ShortestPathBellmanFord_1aab5793482ece828a538245d54259e730" prot="private" virt="non-virtual"><scope>nifty::graph::ShortestPathBellmanFord</scope><name>initializeMaps</name></member>
+      <member refid="classnifty_1_1graph_1_1ShortestPathBellmanFord_1aa09feff89e12a09097c49c3552c298cf" prot="public" virt="non-virtual"><scope>nifty::graph::ShortestPathBellmanFord</scope><name>predecessors</name></member>
+      <member refid="classnifty_1_1graph_1_1ShortestPathBellmanFord_1a871bb54c135ad8324dfff2d4a694372d" prot="public" virt="non-virtual"><scope>nifty::graph::ShortestPathBellmanFord</scope><name>PredecessorsMap</name></member>
+      <member refid="classnifty_1_1graph_1_1ShortestPathBellmanFord_1a8aa5cc287323927767452c7861021d10" prot="private" virt="non-virtual"><scope>nifty::graph::ShortestPathBellmanFord</scope><name>predMap_</name></member>
+      <member refid="classnifty_1_1graph_1_1ShortestPathBellmanFord_1ac70ef6c0b842b0ff7b7046d73e79a08c" prot="public" virt="non-virtual"><scope>nifty::graph::ShortestPathBellmanFord</scope><name>run</name></member>
+      <member refid="classnifty_1_1graph_1_1ShortestPathBellmanFord_1a7c15e1b7e988f24fd9fd5c6b806a1f9a" prot="private" virt="non-virtual"><scope>nifty::graph::ShortestPathBellmanFord</scope><name>runImpl</name></member>
+      <member refid="classnifty_1_1graph_1_1ShortestPathBellmanFord_1a2a400586a2b42f61751668b9e4539b62" prot="public" virt="non-virtual"><scope>nifty::graph::ShortestPathBellmanFord</scope><name>runSingleSource</name></member>
+      <member refid="classnifty_1_1graph_1_1ShortestPathBellmanFord_1a0b0ac675dcade4a09ac4c54a55ffb322" prot="public" virt="non-virtual"><scope>nifty::graph::ShortestPathBellmanFord</scope><name>runSingleSourceSingleTarget</name></member>
+      <member refid="classnifty_1_1graph_1_1ShortestPathBellmanFord_1a7c47cefb1d6ff0335a32d5c7f991afaf" prot="public" virt="non-virtual"><scope>nifty::graph::ShortestPathBellmanFord</scope><name>ShortestPathBellmanFord</name></member>
+      <member refid="classnifty_1_1graph_1_1ShortestPathBellmanFord_1a0455c814a964983fe8b43278bb7528e8" prot="public" virt="non-virtual"><scope>nifty::graph::ShortestPathBellmanFord</scope><name>WeightType</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

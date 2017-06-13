@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="structnifty_1_1features_1_1GaussianSmoothing" kind="struct" language="C++" prot="public">
+    <compoundname>nifty::features::GaussianSmoothing</compoundname>
+    <basecompoundref refid="structnifty_1_1features_1_1FilterBase" prot="public" virt="non-virtual">nifty::features::FilterBase</basecompoundref>
+    <includes refid="fastfilters__wrapper_8hxx" local="no">fastfilters_wrapper.hxx</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structnifty_1_1features_1_1GaussianSmoothing_1a670a26946515c1493170fdc2d74d195c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void nifty::features::GaussianSmoothing::operator()</definition>
+        <argsstring>(const fastfilters_array2d_t &amp;ff, marray::View&lt; float &gt; &amp;out, const double sigma) const </argsstring>
+        <name>operator()</name>
+        <reimplements refid="structnifty_1_1features_1_1FilterBase_1ab362e4142a783ce298a477557bcd9436">operator()</reimplements>
+        <param>
+          <type>const fastfilters_array2d_t &amp;</type>
+          <declname>ff</declname>
+        </param>
+        <param>
+          <type><ref refid="classandres_1_1View" kindref="compound">marray::View</ref>&lt; float &gt; &amp;</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>sigma</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" line="113" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" bodystart="113" bodyend="118"/>
+      </memberdef>
+      <memberdef kind="function" id="structnifty_1_1features_1_1GaussianSmoothing_1a33943d63b7580ee180bda1e4b379773b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void nifty::features::GaussianSmoothing::operator()</definition>
+        <argsstring>(const fastfilters_array3d_t &amp;ff, marray::View&lt; float &gt; &amp;out, const double sigma) const </argsstring>
+        <name>operator()</name>
+        <reimplements refid="structnifty_1_1features_1_1FilterBase_1ab7d7de20b106e80ccfd65a818e1b6eef">operator()</reimplements>
+        <param>
+          <type>const fastfilters_array3d_t &amp;</type>
+          <declname>ff</declname>
+        </param>
+        <param>
+          <type><ref refid="classandres_1_1View" kindref="compound">marray::View</ref>&lt; float &gt; &amp;</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>sigma</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" line="120" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" bodystart="120" bodyend="125"/>
+      </memberdef>
+      <memberdef kind="function" id="structnifty_1_1features_1_1GaussianSmoothing_1a6b759af61a2d8914140565c7bf418f0b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>bool nifty::features::GaussianSmoothing::isMultiChannel</definition>
+        <argsstring>() const </argsstring>
+        <name>isMultiChannel</name>
+        <reimplements refid="structnifty_1_1features_1_1FilterBase_1a01fbc04537c69b997079a98a845c5ab3">isMultiChannel</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" line="127" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" bodystart="127" bodyend="129"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1244">
+        <label>nifty::features::GaussianSmoothing</label>
+        <link refid="structnifty_1_1features_1_1GaussianSmoothing"/>
+        <childnode refid="1245" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1245">
+        <label>nifty::features::FilterBase</label>
+        <link refid="structnifty_1_1features_1_1FilterBase"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1246">
+        <label>nifty::features::GaussianSmoothing</label>
+        <link refid="structnifty_1_1features_1_1GaussianSmoothing"/>
+        <childnode refid="1247" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1247">
+        <label>nifty::features::FilterBase</label>
+        <link refid="structnifty_1_1features_1_1FilterBase"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" line="111" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" bodystart="111" bodyend="131"/>
+    <listofallmembers>
+      <member refid="structnifty_1_1features_1_1FilterBase_1ac10b9d69df645dd2feb7ce555e544502" prot="public" virt="non-virtual"><scope>nifty::features::GaussianSmoothing</scope><name>FilterBase</name></member>
+      <member refid="structnifty_1_1features_1_1GaussianSmoothing_1a6b759af61a2d8914140565c7bf418f0b" prot="public" virt="virtual"><scope>nifty::features::GaussianSmoothing</scope><name>isMultiChannel</name></member>
+      <member refid="structnifty_1_1features_1_1GaussianSmoothing_1a670a26946515c1493170fdc2d74d195c" prot="public" virt="virtual"><scope>nifty::features::GaussianSmoothing</scope><name>operator()</name></member>
+      <member refid="structnifty_1_1features_1_1GaussianSmoothing_1a33943d63b7580ee180bda1e4b379773b" prot="public" virt="virtual"><scope>nifty::features::GaussianSmoothing</scope><name>operator()</name></member>
+      <member refid="structnifty_1_1features_1_1FilterBase_1a4bd3a5f88a4c061e80f0b0c4a1074c8c" prot="protected" virt="non-virtual"><scope>nifty::features::GaussianSmoothing</scope><name>opt_</name></member>
+      <member refid="structnifty_1_1features_1_1FilterBase_1ab59d743ba07608b8aaa37e59f049431e" prot="public" virt="non-virtual"><scope>nifty::features::GaussianSmoothing</scope><name>set_window_ratio</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

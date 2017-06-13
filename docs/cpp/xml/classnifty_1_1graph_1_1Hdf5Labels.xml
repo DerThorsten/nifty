@@ -1,0 +1,214 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="classnifty_1_1graph_1_1Hdf5Labels" kind="class" language="C++" prot="public">
+    <compoundname>nifty::graph::Hdf5Labels</compoundname>
+    <includes refid="compute__grid__rag__hdf5_8hxx" local="no">compute_grid_rag_hdf5.hxx</includes>
+    <templateparamlist>
+      <param>
+        <type>std::size_t</type>
+        <declname>DIM</declname>
+        <defname>DIM</defname>
+      </param>
+      <param>
+        <type>class</type>
+        <declname>LABEL_TYPE</declname>
+        <defname>LABEL_TYPE</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1Hdf5Labels_1abfffba953f16947d3907634b3aabdcad" prot="public" static="no">
+        <type><ref refid="classnifty_1_1tools_1_1BlockStorage" kindref="compound">tools::BlockStorage</ref>&lt; LABEL_TYPE &gt;</type>
+        <definition>typedef tools::BlockStorage&lt; LABEL_TYPE&gt; nifty::graph::Hdf5Labels&lt; DIM, LABEL_TYPE &gt;::BlockStorageType</definition>
+        <argsstring></argsstring>
+        <name>BlockStorageType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels_hdf5.hxx" line="18" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels_hdf5.hxx" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1Hdf5Labels_1a478cbee39d8a05949fe2fe4f9dd4f382" prot="public" static="no">
+        <type>LABEL_TYPE</type>
+        <definition>typedef LABEL_TYPE nifty::graph::Hdf5Labels&lt; DIM, LABEL_TYPE &gt;::LabelType</definition>
+        <argsstring></argsstring>
+        <name>LabelType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels_hdf5.hxx" line="19" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels_hdf5.hxx" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1Hdf5Labels_1a2cfeca010fa78ee8fdfa1767ae0fbe4a" prot="public" static="no">
+        <type>const hdf5::Hdf5Array&lt; LABEL_TYPE &gt;</type>
+        <definition>typedef const hdf5::Hdf5Array&lt;LABEL_TYPE&gt; nifty::graph::Hdf5Labels&lt; DIM, LABEL_TYPE &gt;::Hdf5ArrayType</definition>
+        <argsstring></argsstring>
+        <name>Hdf5ArrayType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels_hdf5.hxx" line="20" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels_hdf5.hxx" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1Hdf5Labels_1a3ee9ab387473ed9fa120bc72b8c87451" prot="private" static="no" mutable="no">
+        <type><ref refid="namespacenifty_1_1array_1a683f151f19c851754e0c6d55ed16a0c2" kindref="member">array::StaticArray</ref>&lt; int64_t, DIM &gt;</type>
+        <definition>array::StaticArray&lt;int64_t, DIM&gt; nifty::graph::Hdf5Labels&lt; DIM, LABEL_TYPE &gt;::shape_</definition>
+        <argsstring></argsstring>
+        <name>shape_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels_hdf5.hxx" line="63" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels_hdf5.hxx" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1Hdf5Labels_1a1ce1da6fe400410ab0dff191a04e1e34" prot="private" static="no" mutable="no">
+        <type>const hdf5::Hdf5Array&lt; LABEL_TYPE &gt; &amp;</type>
+        <definition>const hdf5::Hdf5Array&lt;LABEL_TYPE&gt;&amp; nifty::graph::Hdf5Labels&lt; DIM, LABEL_TYPE &gt;::labels_</definition>
+        <argsstring></argsstring>
+        <name>labels_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels_hdf5.hxx" line="64" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels_hdf5.hxx" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1Hdf5Labels_1a01b50f0a25b6ac6d9a3e0e6ee62e6ca0" prot="private" static="no" mutable="no">
+        <type>int64_t</type>
+        <definition>int64_t nifty::graph::Hdf5Labels&lt; DIM, LABEL_TYPE &gt;::numberOfLabels_</definition>
+        <argsstring></argsstring>
+        <name>numberOfLabels_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels_hdf5.hxx" line="65" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels_hdf5.hxx" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1Hdf5Labels_1aeaa1ed4dc0066a4c0ee0d176a55c3dd3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>nifty::graph::Hdf5Labels&lt; DIM, LABEL_TYPE &gt;::Hdf5Labels</definition>
+        <argsstring>(const Hdf5ArrayType &amp;labels, const uint64_t numberOfLabels)</argsstring>
+        <name>Hdf5Labels</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1Hdf5Labels_1a2cfeca010fa78ee8fdfa1767ae0fbe4a" kindref="member">Hdf5ArrayType</ref> &amp;</type>
+          <declname>labels</declname>
+        </param>
+        <param>
+          <type>const uint64_t</type>
+          <declname>numberOfLabels</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels_hdf5.hxx" line="22" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels_hdf5.hxx" bodystart="22" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1Hdf5Labels_1ad4161df4c665904650b8db47c11bf0b9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint64_t</type>
+        <definition>uint64_t nifty::graph::Hdf5Labels&lt; DIM, LABEL_TYPE &gt;::numberOfLabels</definition>
+        <argsstring>() const </argsstring>
+        <name>numberOfLabels</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels_hdf5.hxx" line="33" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels_hdf5.hxx" bodystart="33" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1Hdf5Labels_1a11341fbb53d6b96ac4b88ebf24a34629" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="namespacenifty_1_1array_1a683f151f19c851754e0c6d55ed16a0c2" kindref="member">array::StaticArray</ref>&lt; int64_t, DIM &gt; &amp;</type>
+        <definition>const array::StaticArray&lt;int64_t, DIM&gt;&amp; nifty::graph::Hdf5Labels&lt; DIM, LABEL_TYPE &gt;::shape</definition>
+        <argsstring>() const </argsstring>
+        <name>shape</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels_hdf5.hxx" line="36" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels_hdf5.hxx" bodystart="36" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1Hdf5Labels_1ae540ccb62e91c55c9e9a163418795956" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class ROI_BEGIN_COORD</type>
+          </param>
+          <param>
+            <type>class ROI_END_COORD</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::graph::Hdf5Labels&lt; DIM, LABEL_TYPE &gt;::readSubarray</definition>
+        <argsstring>(const ROI_BEGIN_COORD &amp;roiBeginCoord, const ROI_END_COORD &amp;roiEndCoord, marray::View&lt; LABEL_TYPE &gt; &amp;outArray) const </argsstring>
+        <name>readSubarray</name>
+        <param>
+          <type>const ROI_BEGIN_COORD &amp;</type>
+          <declname>roiBeginCoord</declname>
+        </param>
+        <param>
+          <type>const ROI_END_COORD &amp;</type>
+          <declname>roiEndCoord</declname>
+        </param>
+        <param>
+          <type><ref refid="classandres_1_1View" kindref="compound">marray::View</ref>&lt; LABEL_TYPE &gt; &amp;</type>
+          <declname>outArray</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels_hdf5.hxx" line="44" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels_hdf5.hxx" bodystart="44" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1Hdf5Labels_1a1423d8d5bcadf2251c54260d64fafcd6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const hdf5::Hdf5Array&lt; LABEL_TYPE &gt; &amp;</type>
+        <definition>const hdf5::Hdf5Array&lt;LABEL_TYPE&gt;&amp; nifty::graph::Hdf5Labels&lt; DIM, LABEL_TYPE &gt;::hdf5Array</definition>
+        <argsstring>() const </argsstring>
+        <name>hdf5Array</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels_hdf5.hxx" line="58" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels_hdf5.hxx" bodystart="58" bodyend="60"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/rag/detail_rag/compute_grid_rag_hdf5.hxx" line="23" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/rag/detail_rag/compute_grid_rag_hdf5.hxx" bodystart="23" bodyend="-1"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1graph_1_1Hdf5Labels_1abfffba953f16947d3907634b3aabdcad" prot="public" virt="non-virtual"><scope>nifty::graph::Hdf5Labels</scope><name>BlockStorageType</name></member>
+      <member refid="classnifty_1_1graph_1_1Hdf5Labels_1a1423d8d5bcadf2251c54260d64fafcd6" prot="public" virt="non-virtual"><scope>nifty::graph::Hdf5Labels</scope><name>hdf5Array</name></member>
+      <member refid="classnifty_1_1graph_1_1Hdf5Labels_1a2cfeca010fa78ee8fdfa1767ae0fbe4a" prot="public" virt="non-virtual"><scope>nifty::graph::Hdf5Labels</scope><name>Hdf5ArrayType</name></member>
+      <member refid="classnifty_1_1graph_1_1Hdf5Labels_1aeaa1ed4dc0066a4c0ee0d176a55c3dd3" prot="public" virt="non-virtual"><scope>nifty::graph::Hdf5Labels</scope><name>Hdf5Labels</name></member>
+      <member refid="classnifty_1_1graph_1_1Hdf5Labels_1a1ce1da6fe400410ab0dff191a04e1e34" prot="private" virt="non-virtual"><scope>nifty::graph::Hdf5Labels</scope><name>labels_</name></member>
+      <member refid="classnifty_1_1graph_1_1Hdf5Labels_1a478cbee39d8a05949fe2fe4f9dd4f382" prot="public" virt="non-virtual"><scope>nifty::graph::Hdf5Labels</scope><name>LabelType</name></member>
+      <member refid="classnifty_1_1graph_1_1Hdf5Labels_1ad4161df4c665904650b8db47c11bf0b9" prot="public" virt="non-virtual"><scope>nifty::graph::Hdf5Labels</scope><name>numberOfLabels</name></member>
+      <member refid="classnifty_1_1graph_1_1Hdf5Labels_1a01b50f0a25b6ac6d9a3e0e6ee62e6ca0" prot="private" virt="non-virtual"><scope>nifty::graph::Hdf5Labels</scope><name>numberOfLabels_</name></member>
+      <member refid="classnifty_1_1graph_1_1Hdf5Labels_1ae540ccb62e91c55c9e9a163418795956" prot="public" virt="non-virtual"><scope>nifty::graph::Hdf5Labels</scope><name>readSubarray</name></member>
+      <member refid="classnifty_1_1graph_1_1Hdf5Labels_1a11341fbb53d6b96ac4b88ebf24a34629" prot="public" virt="non-virtual"><scope>nifty::graph::Hdf5Labels</scope><name>shape</name></member>
+      <member refid="classnifty_1_1graph_1_1Hdf5Labels_1a3ee9ab387473ed9fa120bc72b8c87451" prot="private" virt="non-virtual"><scope>nifty::graph::Hdf5Labels</scope><name>shape_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

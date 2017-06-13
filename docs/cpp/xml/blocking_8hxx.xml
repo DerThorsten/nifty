@@ -1,0 +1,313 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="blocking_8hxx" kind="file" language="C++">
+    <compoundname>blocking.hxx</compoundname>
+    <includes refid="arithmetic__array_8hxx" local="yes">nifty/array/arithmetic_array.hxx</includes>
+    <incdepgraph>
+      <node id="12281">
+        <label>limits</label>
+      </node>
+      <node id="12278">
+        <label>cstdint</label>
+      </node>
+      <node id="12282">
+        <label>cmath</label>
+      </node>
+      <node id="12279">
+        <label>stdexcept</label>
+      </node>
+      <node id="12276">
+        <label>vector</label>
+      </node>
+      <node id="12274">
+        <label>nifty/array/arithmetic_array.hxx</label>
+        <link refid="arithmetic__array_8hxx"/>
+        <childnode refid="12275" relation="include">
+        </childnode>
+        <childnode refid="12276" relation="include">
+        </childnode>
+        <childnode refid="12277" relation="include">
+        </childnode>
+      </node>
+      <node id="12275">
+        <label>array</label>
+      </node>
+      <node id="12280">
+        <label>sstream</label>
+      </node>
+      <node id="12277">
+        <label>nifty/tools/runtime_check.hxx</label>
+        <link refid="runtime__check_8hxx"/>
+        <childnode refid="12278" relation="include">
+        </childnode>
+        <childnode refid="12279" relation="include">
+        </childnode>
+        <childnode refid="12280" relation="include">
+        </childnode>
+        <childnode refid="12276" relation="include">
+        </childnode>
+        <childnode refid="12281" relation="include">
+        </childnode>
+        <childnode refid="12282" relation="include">
+        </childnode>
+      </node>
+      <node id="12273">
+        <label>/home/tbeier/src/nifty/include/nifty/tools/blocking.hxx</label>
+        <link refid="blocking.hxx"/>
+        <childnode refid="12274" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classnifty_1_1tools_1_1Block" prot="public">nifty::tools::Block</innerclass>
+    <innerclass refid="classnifty_1_1tools_1_1BlockWithHalo" prot="public">nifty::tools::BlockWithHalo</innerclass>
+    <innerclass refid="classnifty_1_1tools_1_1Blocking" prot="public">nifty::tools::Blocking</innerclass>
+    <innernamespace refid="namespacenifty">nifty</innernamespace>
+    <innernamespace refid="namespacenifty_1_1tools">nifty::tools</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="arithmetic__array_8hxx" kindref="compound">nifty/array/arithmetic_array.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacenifty" kindref="compound">nifty</ref>{</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">tools{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;std::</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>DIM,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>T<sp/>=<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">64_t&gt;</highlight></codeline>
+<codeline lineno="11" refid="classnifty_1_1tools_1_1Block" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnifty_1_1tools_1_1Block" kindref="compound">Block</ref>{</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="13" refid="classnifty_1_1tools_1_1Block_1a3e77342701a32fcc670d398f1b9bc6d4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>T<sp/><ref refid="classnifty_1_1tools_1_1Block_1a3e77342701a32fcc670d398f1b9bc6d4" kindref="member">ValueType</ref>;</highlight></codeline>
+<codeline lineno="15" refid="classnifty_1_1tools_1_1Block_1accbed9defe9a82425025d9182c41e0a6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>ValueType<sp/><ref refid="classnifty_1_1tools_1_1Block_1accbed9defe9a82425025d9182c41e0a6" kindref="member">value_type</ref>;</highlight></codeline>
+<codeline lineno="16" refid="classnifty_1_1tools_1_1Block_1aa077b4ebbf3e4e9b679d1957ca10ba32" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1array_1_1ArrayExtender" kindref="compound">nifty::array::StaticArray&lt;ValueType, DIM&gt;</ref><sp/><ref refid="classnifty_1_1tools_1_1Block_1aa077b4ebbf3e4e9b679d1957ca10ba32" kindref="member">VectorType</ref>;</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18" refid="classnifty_1_1tools_1_1Block_1ab4fe7e24f2d3cd64b75a4e58b314170e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1tools_1_1Block_1ab4fe7e24f2d3cd64b75a4e58b314170e" kindref="member">Block</ref>(</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorType<sp/>&amp;<sp/><ref refid="classnifty_1_1tools_1_1Block_1ae11f59f462304ae59886bc7991fecef1" kindref="member">begin</ref><sp/>=<sp/><ref refid="classnifty_1_1tools_1_1Block_1aa077b4ebbf3e4e9b679d1957ca10ba32" kindref="member">VectorType</ref>(0),</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorType<sp/>&amp;<sp/><ref refid="classnifty_1_1tools_1_1Block_1a2b6bb43b03ea8c4d7f31f01d0143d60a" kindref="member">end</ref><sp/>=<sp/><ref refid="classnifty_1_1tools_1_1Block_1aa077b4ebbf3e4e9b679d1957ca10ba32" kindref="member">VectorType</ref>(0)</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/><sp/><sp/>begin_(<ref refid="classnifty_1_1tools_1_1Block_1ae11f59f462304ae59886bc7991fecef1" kindref="member">begin</ref>),</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>end_(<ref refid="classnifty_1_1tools_1_1Block_1a2b6bb43b03ea8c4d7f31f01d0143d60a" kindref="member">end</ref>){</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26" refid="classnifty_1_1tools_1_1Block_1ae11f59f462304ae59886bc7991fecef1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorType<sp/>&amp;<sp/><ref refid="classnifty_1_1tools_1_1Block_1ae11f59f462304ae59886bc7991fecef1" kindref="member">begin</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>begin_;<sp/><sp/></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30" refid="classnifty_1_1tools_1_1Block_1a2b6bb43b03ea8c4d7f31f01d0143d60a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorType<sp/>&amp;<sp/><ref refid="classnifty_1_1tools_1_1Block_1a2b6bb43b03ea8c4d7f31f01d0143d60a" kindref="member">end</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>end_;<sp/><sp/></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34" refid="classnifty_1_1tools_1_1Block_1a2a7c4eb08521c7624f27a096f0c915db" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VectorType<sp/><ref refid="classnifty_1_1tools_1_1Block_1a2a7c4eb08521c7624f27a096f0c915db" kindref="member">shape</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>end_<sp/>-<sp/>begin_;<sp/><sp/></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VectorType<sp/>begin_;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VectorType<sp/>end_;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;std::</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>DIM,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>T<sp/>=<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">64_t&gt;</highlight></codeline>
+<codeline lineno="46" refid="classnifty_1_1tools_1_1BlockWithHalo" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnifty_1_1tools_1_1BlockWithHalo" kindref="compound">BlockWithHalo</ref>{</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="48" refid="classnifty_1_1tools_1_1BlockWithHalo_1a98d2c04518f8902ab6d985feba605987" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1tools_1_1Block" kindref="compound">Block&lt;DIM, T&gt;</ref><sp/><ref refid="classnifty_1_1tools_1_1BlockWithHalo_1a98d2c04518f8902ab6d985feba605987" kindref="member">BlockType</ref>;</highlight></codeline>
+<codeline lineno="49" refid="classnifty_1_1tools_1_1BlockWithHalo_1a65d120db84dfca7586ae5ab30f26f01b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1tools_1_1Block_1a3e77342701a32fcc670d398f1b9bc6d4" kindref="member">BlockType::ValueType</ref><sp/><ref refid="classnifty_1_1tools_1_1BlockWithHalo_1a65d120db84dfca7586ae5ab30f26f01b" kindref="member">ValueType</ref>;</highlight></codeline>
+<codeline lineno="50" refid="classnifty_1_1tools_1_1BlockWithHalo_1a2b9bb6388ec694b2e1f13399be84356d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1tools_1_1Block_1a3e77342701a32fcc670d398f1b9bc6d4" kindref="member">BlockType::ValueType</ref><sp/><ref refid="classnifty_1_1tools_1_1BlockWithHalo_1a2b9bb6388ec694b2e1f13399be84356d" kindref="member">value_type</ref>;</highlight></codeline>
+<codeline lineno="51" refid="classnifty_1_1tools_1_1BlockWithHalo_1a040d8a654eb42791c6e5fbd4dfd51b9f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1array_1_1ArrayExtender" kindref="compound">BlockType::VectorType</ref><sp/><ref refid="classnifty_1_1tools_1_1BlockWithHalo_1a040d8a654eb42791c6e5fbd4dfd51b9f" kindref="member">VectorType</ref>;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54" refid="classnifty_1_1tools_1_1BlockWithHalo_1ad80f17f6eea4c3d40e61eda04134ffe6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1tools_1_1BlockWithHalo_1ad80f17f6eea4c3d40e61eda04134ffe6" kindref="member">BlockWithHalo</ref>(</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>BlockType<sp/>&amp;<sp/><ref refid="classnifty_1_1tools_1_1BlockWithHalo_1afe04c6b2c1ceee1ee4e3784c20caa810" kindref="member">outerBlock</ref><sp/>=<sp/><ref refid="classnifty_1_1tools_1_1BlockWithHalo_1a98d2c04518f8902ab6d985feba605987" kindref="member">BlockType</ref>(),</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>BlockType<sp/>&amp;<sp/><ref refid="classnifty_1_1tools_1_1BlockWithHalo_1a6c2322921fb9211a959a049b3f52136f" kindref="member">innerBlock</ref><sp/>=<sp/><ref refid="classnifty_1_1tools_1_1BlockWithHalo_1a98d2c04518f8902ab6d985feba605987" kindref="member">BlockType</ref>()</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/><sp/><sp/>outerBlock_(<ref refid="classnifty_1_1tools_1_1BlockWithHalo_1afe04c6b2c1ceee1ee4e3784c20caa810" kindref="member">outerBlock</ref>),</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>innerBlock_(<ref refid="classnifty_1_1tools_1_1BlockWithHalo_1a6c2322921fb9211a959a049b3f52136f" kindref="member">innerBlock</ref>),</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>innerBlockLocal_(){</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>lBegin<sp/>=<sp/><ref refid="classnifty_1_1tools_1_1BlockWithHalo_1a6c2322921fb9211a959a049b3f52136f" kindref="member">innerBlock</ref>.<ref refid="classnifty_1_1tools_1_1Block_1ae11f59f462304ae59886bc7991fecef1" kindref="member">begin</ref>()<sp/><sp/>-<sp/><ref refid="classnifty_1_1tools_1_1BlockWithHalo_1afe04c6b2c1ceee1ee4e3784c20caa810" kindref="member">outerBlock</ref>.<ref refid="classnifty_1_1tools_1_1Block_1ae11f59f462304ae59886bc7991fecef1" kindref="member">begin</ref>();</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>lEnd<sp/>=<sp/>lBegin<sp/><sp/>+<sp/>innerBlock_.<ref refid="classnifty_1_1tools_1_1Block_1a2a7c4eb08521c7624f27a096f0c915db" kindref="member">shape</ref>();</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>innerBlockLocal_<sp/>=<sp/><ref refid="classnifty_1_1tools_1_1BlockWithHalo_1a98d2c04518f8902ab6d985feba605987" kindref="member">BlockType</ref>(lBegin,<sp/>lEnd);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68" refid="classnifty_1_1tools_1_1BlockWithHalo_1afe04c6b2c1ceee1ee4e3784c20caa810" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>BlockType<sp/>&amp;<sp/><ref refid="classnifty_1_1tools_1_1BlockWithHalo_1afe04c6b2c1ceee1ee4e3784c20caa810" kindref="member">outerBlock</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>outerBlock_;<sp/><sp/></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72" refid="classnifty_1_1tools_1_1BlockWithHalo_1a6c2322921fb9211a959a049b3f52136f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>BlockType<sp/>&amp;<sp/><ref refid="classnifty_1_1tools_1_1BlockWithHalo_1a6c2322921fb9211a959a049b3f52136f" kindref="member">innerBlock</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>innerBlock_;<sp/><sp/></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76" refid="classnifty_1_1tools_1_1BlockWithHalo_1abb0b495619f8f8633a5e383f7ad2885f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>BlockType<sp/>&amp;<sp/><ref refid="classnifty_1_1tools_1_1BlockWithHalo_1abb0b495619f8f8633a5e383f7ad2885f" kindref="member">innerBlockLocal</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>innerBlockLocal_;<sp/><sp/></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>BlockType<sp/>outerBlock_;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>BlockType<sp/>innerBlock_;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>BlockType<sp/>innerBlockLocal_;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;std::</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>DIM,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>T<sp/>=<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">64_t&gt;</highlight></codeline>
+<codeline lineno="91" refid="classnifty_1_1tools_1_1Blocking" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnifty_1_1tools_1_1Blocking" kindref="compound">Blocking</ref>{</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="93" refid="classnifty_1_1tools_1_1Blocking_1abebd9361d89cc399bc495861fa4e331d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1tools_1_1BlockWithHalo" kindref="compound">BlockWithHalo&lt;DIM, T&gt;</ref><sp/><ref refid="classnifty_1_1tools_1_1Blocking_1abebd9361d89cc399bc495861fa4e331d" kindref="member">BlockWithHaloType</ref>;</highlight></codeline>
+<codeline lineno="94" refid="classnifty_1_1tools_1_1Blocking_1a597e0d4186d2d40ccb96698cc16775c6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1tools_1_1Block" kindref="compound">BlockWithHaloType::BlockType</ref><sp/><ref refid="classnifty_1_1tools_1_1Blocking_1a597e0d4186d2d40ccb96698cc16775c6" kindref="member">BlockType</ref>;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96" refid="classnifty_1_1tools_1_1Blocking_1ae04f69cd6e67bbde26eee3f38e0257f7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1tools_1_1BlockWithHalo_1a65d120db84dfca7586ae5ab30f26f01b" kindref="member">BlockWithHaloType::ValueType</ref><sp/><ref refid="classnifty_1_1tools_1_1Blocking_1ae04f69cd6e67bbde26eee3f38e0257f7" kindref="member">ValueType</ref>;</highlight></codeline>
+<codeline lineno="97" refid="classnifty_1_1tools_1_1Blocking_1a4ea21e967d25e621a000176dc994c85e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1tools_1_1BlockWithHalo_1a65d120db84dfca7586ae5ab30f26f01b" kindref="member">BlockWithHaloType::ValueType</ref><sp/><ref refid="classnifty_1_1tools_1_1Blocking_1a4ea21e967d25e621a000176dc994c85e" kindref="member">value_type</ref>;</highlight></codeline>
+<codeline lineno="98" refid="classnifty_1_1tools_1_1Blocking_1a5f8df3d4cdf09803217d729a04018fb3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1array_1_1ArrayExtender" kindref="compound">BlockWithHaloType::VectorType</ref><sp/><ref refid="classnifty_1_1tools_1_1Blocking_1a5f8df3d4cdf09803217d729a04018fb3" kindref="member">VectorType</ref>;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="100" refid="classnifty_1_1tools_1_1Blocking_1a72c8db4f834fd774f6a50e03ef4b30c2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1tools_1_1Blocking_1a72c8db4f834fd774f6a50e03ef4b30c2" kindref="member">Blocking</ref>(</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorType<sp/>&amp;<sp/><ref refid="classnifty_1_1tools_1_1Blocking_1a75ee7d62178b93c523a0837420c71895" kindref="member">roiBegin</ref><sp/>,</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorType<sp/>&amp;<sp/><ref refid="classnifty_1_1tools_1_1Blocking_1a00f640413cd3c041bb364f8a951b57a9" kindref="member">roiEnd</ref>,</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorType<sp/>&amp;<sp/><ref refid="classnifty_1_1tools_1_1Blocking_1a55d8a6beaa2a62592e3d0901ebad179b" kindref="member">blockShape</ref>,</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorType<sp/>&amp;<sp/><ref refid="classnifty_1_1tools_1_1Blocking_1a5a7d530f0939a37698d96f9d846e5d4d" kindref="member">blockShift</ref><sp/>=<sp/><ref refid="classnifty_1_1tools_1_1Blocking_1a5f8df3d4cdf09803217d729a04018fb3" kindref="member">VectorType</ref>(0)</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/><sp/><sp/>roiBegin_(roiBegin),</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>roiEnd_(roiEnd),</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>blockShape_(blockShape),</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>blockShift_(<ref refid="classnifty_1_1tools_1_1Blocking_1a5a7d530f0939a37698d96f9d846e5d4d" kindref="member">blockShift</ref>),</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>blocksPerAxis_(),</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>blocksPerAxisStrides_(),</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>numberOfBlocks_(1){</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>d=0;<sp/>d&lt;DIM;<sp/>++d){</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>dimSize<sp/>=<sp/>roiEnd_[d]<sp/>-<sp/>(roiBegin_[d]<sp/>-<sp/>blockShift_[d]);</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>bs<sp/>=<sp/>blockShape_[d];</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>bpa<sp/>=<sp/><sp/>dimSize<sp/>/<sp/>bs<sp/>+<sp/>int((dimSize<sp/>%<sp/>bs)<sp/>!=<sp/>0);</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>blocksPerAxis_[d]<sp/>=<sp/>bpa;</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>numberOfBlocks_<sp/>*=<sp/>bpa;</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>blocksPerAxisStrides_[DIM<sp/>-<sp/>1]<sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(int64_t<sp/>d<sp/>=<sp/>DIM-2;<sp/>d&gt;=0;<sp/>--d){</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>blocksPerAxisStrides_[d]<sp/>=<sp/>blocksPerAxisStrides_[d+1]<sp/>*<sp/>blocksPerAxis_[d+1];</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight></codeline>
+<codeline lineno="128" refid="classnifty_1_1tools_1_1Blocking_1a75ee7d62178b93c523a0837420c71895" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorType<sp/>&amp;<sp/><ref refid="classnifty_1_1tools_1_1Blocking_1a75ee7d62178b93c523a0837420c71895" kindref="member">roiBegin</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>roiBegin_;<sp/><sp/></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132" refid="classnifty_1_1tools_1_1Blocking_1a00f640413cd3c041bb364f8a951b57a9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorType<sp/>&amp;<sp/><ref refid="classnifty_1_1tools_1_1Blocking_1a00f640413cd3c041bb364f8a951b57a9" kindref="member">roiEnd</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>roiEnd_;<sp/><sp/></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"></highlight></codeline>
+<codeline lineno="136" refid="classnifty_1_1tools_1_1Blocking_1a55d8a6beaa2a62592e3d0901ebad179b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorType<sp/>&amp;<sp/><ref refid="classnifty_1_1tools_1_1Blocking_1a55d8a6beaa2a62592e3d0901ebad179b" kindref="member">blockShape</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>blockShape_;<sp/><sp/></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight></codeline>
+<codeline lineno="140" refid="classnifty_1_1tools_1_1Blocking_1a5a7d530f0939a37698d96f9d846e5d4d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorType<sp/>&amp;<sp/><ref refid="classnifty_1_1tools_1_1Blocking_1a5a7d530f0939a37698d96f9d846e5d4d" kindref="member">blockShift</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>blockShift_;<sp/><sp/></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight></codeline>
+<codeline lineno="144" refid="classnifty_1_1tools_1_1Blocking_1a4763abb276fd7f75d6e7fdb08b93247e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorType<sp/>&amp;<sp/><ref refid="classnifty_1_1tools_1_1Blocking_1a4763abb276fd7f75d6e7fdb08b93247e" kindref="member">blocksPerAxis</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>blocksPerAxis_;<sp/><sp/></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="148" refid="classnifty_1_1tools_1_1Blocking_1af52a753b4284b016de2de931427a0314" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1tools_1_1Blocking_1af52a753b4284b016de2de931427a0314" kindref="member">numberOfBlocks</ref>()</highlight><highlight class="keyword">const</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>numberOfBlocks_;</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight></codeline>
+<codeline lineno="153" refid="classnifty_1_1tools_1_1Blocking_1ac73c329e83e247c73698ea88d52ad8a4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>BlockType<sp/><ref refid="classnifty_1_1tools_1_1Blocking_1ac73c329e83e247c73698ea88d52ad8a4" kindref="member">getBlock</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uint64_t<sp/>blockIndex)</highlight><highlight class="keyword">const</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>convert<sp/>blockindex<sp/>to<sp/>coordinate</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint64_t<sp/>index<sp/>=<sp/>blockIndex;</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VectorType<sp/>beginCoord,<sp/>endCoord;</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>d=0;<sp/>d&lt;DIM;<sp/>++d){</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>int64_t<sp/>blockCoordAtD<sp/>=<sp/>index<sp/>/<sp/>blocksPerAxisStrides_[d];</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>index<sp/>-=<sp/>blockCoordAtD*blocksPerAxisStrides_[d];</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"></highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>int64_t<sp/>beginCoordAtD<sp/>=<sp/>(roiBegin_[d]<sp/>-<sp/>blockShift_[d])<sp/>+<sp/>blockCoordAtD*blockShape_[d];</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>endCoord[d]<sp/><sp/><sp/>=<sp/><sp/>std::min(beginCoordAtD<sp/>+<sp/>blockShape_[d],<sp/>roiEnd_[d]);</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>beginCoord[d]<sp/>=<sp/><sp/>std::max(beginCoordAtD,<sp/>roiBegin_[d]);</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"></highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1tools_1_1Blocking_1a597e0d4186d2d40ccb96698cc16775c6" kindref="member">BlockType</ref>(beginCoord,<sp/>endCoord);</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="171"><highlight class="normal"></highlight></codeline>
+<codeline lineno="172" refid="classnifty_1_1tools_1_1Blocking_1a314e368a33595f0ffe72cfcdc12d102f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>BlockWithHaloType<sp/><ref refid="classnifty_1_1tools_1_1Blocking_1a314e368a33595f0ffe72cfcdc12d102f" kindref="member">getBlockWithHalo</ref>(</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uint64_t<sp/>blockIndex,<sp/></highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorType<sp/>&amp;<sp/>haloBegin,</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorType<sp/>&amp;<sp/>haloEnd</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight><highlight class="keyword">const</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>BlockType<sp/>innerBlock<sp/>=<sp/><ref refid="classnifty_1_1tools_1_1Blocking_1ac73c329e83e247c73698ea88d52ad8a4" kindref="member">getBlock</ref>(blockIndex);</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"></highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VectorType<sp/>outerBegin,outerEnd;</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>d=0;<sp/>d&lt;DIM;<sp/>++d){</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>outerBegin[d]<sp/>=<sp/>std::max(innerBlock.<ref refid="classnifty_1_1tools_1_1Block_1ae11f59f462304ae59886bc7991fecef1" kindref="member">begin</ref>()[d]<sp/>-<sp/>haloBegin[d],<sp/>roiBegin_[d]);</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>outerEnd[d]<sp/><sp/><sp/>=<sp/>std::min(innerBlock.<ref refid="classnifty_1_1tools_1_1Block_1a2b6bb43b03ea8c4d7f31f01d0143d60a" kindref="member">end</ref>()[d]<sp/><sp/><sp/>+<sp/>haloEnd[d],<sp/>roiEnd_[d]);</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><sp/><ref refid="classnifty_1_1tools_1_1Blocking_1abebd9361d89cc399bc495861fa4e331d" kindref="member">BlockWithHaloType</ref>(<ref refid="classnifty_1_1tools_1_1Blocking_1a597e0d4186d2d40ccb96698cc16775c6" kindref="member">BlockType</ref>(outerBegin,<sp/>outerEnd),<sp/>innerBlock);</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"></highlight></codeline>
+<codeline lineno="188" refid="classnifty_1_1tools_1_1Blocking_1aed0cce73bd05265b57bac992a3de37a0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>BlockWithHaloType<sp/><ref refid="classnifty_1_1tools_1_1Blocking_1aed0cce73bd05265b57bac992a3de37a0" kindref="member">getBlockWithHalo</ref>(</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uint64_t<sp/>blockIndex,<sp/></highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorType<sp/>&amp;<sp/>halo</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight><highlight class="keyword">const</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="classnifty_1_1tools_1_1Blocking_1a314e368a33595f0ffe72cfcdc12d102f" kindref="member">getBlockWithHalo</ref>(blockIndex,<sp/>halo,<sp/>halo);</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight></codeline>
+<codeline lineno="194"><highlight class="normal"></highlight></codeline>
+<codeline lineno="195"><highlight class="normal"></highlight></codeline>
+<codeline lineno="196"><highlight class="normal"></highlight></codeline>
+<codeline lineno="197"><highlight class="normal"></highlight></codeline>
+<codeline lineno="198" refid="classnifty_1_1tools_1_1Blocking_1adfe3586bcaa6db42913304e929a120ac" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>BlockWithHaloType<sp/><ref refid="classnifty_1_1tools_1_1Blocking_1adfe3586bcaa6db42913304e929a120ac" kindref="member">addHalo</ref>(</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>BlockType<sp/>innerBlock,<sp/></highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorType<sp/>&amp;<sp/>haloBegin,</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorType<sp/>&amp;<sp/>haloEnd</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight><highlight class="keyword">const</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"></highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VectorType<sp/>outerBegin,outerEnd;</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"></highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>d=0;<sp/>d&lt;DIM;<sp/>++d){</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>outerBegin[d]<sp/>=<sp/>std::max(innerBlock.<ref refid="classnifty_1_1tools_1_1Block_1ae11f59f462304ae59886bc7991fecef1" kindref="member">begin</ref>()[d]<sp/>-<sp/>haloBegin[d],<sp/>roiBegin_[d]);</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>outerEnd[d]<sp/><sp/><sp/>=<sp/>std::min(innerBlock.<ref refid="classnifty_1_1tools_1_1Block_1a2b6bb43b03ea8c4d7f31f01d0143d60a" kindref="member">end</ref>()[d]<sp/><sp/><sp/>+<sp/>haloEnd[d],<sp/>roiEnd_[d]);</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><sp/><ref refid="classnifty_1_1tools_1_1Blocking_1abebd9361d89cc399bc495861fa4e331d" kindref="member">BlockWithHaloType</ref>(<ref refid="classnifty_1_1tools_1_1Blocking_1a597e0d4186d2d40ccb96698cc16775c6" kindref="member">BlockType</ref>(outerBegin,<sp/>outerEnd),<sp/>innerBlock);</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"></highlight></codeline>
+<codeline lineno="213"><highlight class="normal"></highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="215" refid="classnifty_1_1tools_1_1Blocking_1a6baa908875fc3e55c698ffa96cc7b57c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>BlockWithHaloType<sp/><ref refid="classnifty_1_1tools_1_1Blocking_1a6baa908875fc3e55c698ffa96cc7b57c" kindref="member">addHalo</ref>(</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>BlockType<sp/>innerBlock,<sp/><sp/></highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorType<sp/>&amp;<sp/>halo</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight><highlight class="keyword">const</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="classnifty_1_1tools_1_1Blocking_1adfe3586bcaa6db42913304e929a120ac" kindref="member">addHalo</ref>(innerBlock,<sp/>halo,<sp/>halo);</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"></highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>given<sp/>from<sp/>user</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VectorType<sp/>roiBegin_;</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VectorType<sp/>roiEnd_;</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VectorType<sp/>blockShape_;</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VectorType<sp/>blockShift_;</highlight></codeline>
+<codeline lineno="230"><highlight class="normal"></highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VectorType<sp/>blocksPerAxis_;</highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VectorType<sp/>blocksPerAxisStrides_;</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>numberOfBlocks_;</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"></highlight></codeline>
+<codeline lineno="236"><highlight class="normal"></highlight></codeline>
+<codeline lineno="237"><highlight class="normal"></highlight></codeline>
+<codeline lineno="238"><highlight class="normal"></highlight></codeline>
+<codeline lineno="239"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="240"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/home/tbeier/src/nifty/include/nifty/tools/blocking.hxx"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,140 @@
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator}{}\section{nifty\+:\+:graph\+:\+:optimization\+:\+:lifted\+\_\+multicut\+:\+:Watershed\+Proposal\+Generator$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$ Class Template Reference}
+\label{classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator}\index{nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::\+Watershed\+Proposal\+Generator$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$@{nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::\+Watershed\+Proposal\+Generator$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}}
+
+
+Watershed proposal generator for \hyperlink{classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased}{lifted\+\_\+multicut\+::\+Fusion\+Move\+Based}.  
+
+
+
+
+{\ttfamily \#include $<$watershed\+\_\+proposal\+\_\+generator.\+hxx$>$}
+
+
+
+Inheritance diagram for nifty\+:\+:graph\+:\+:optimization\+:\+:lifted\+\_\+multicut\+:\+:Watershed\+Proposal\+Generator$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=255pt]{classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for nifty\+:\+:graph\+:\+:optimization\+:\+:lifted\+\_\+multicut\+:\+:Watershed\+Proposal\+Generator$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=255pt]{classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_1_1SettingsType}{Settings\+Type}
+\end{DoxyCompactItemize}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef O\+B\+J\+E\+C\+T\+I\+V\+E \hyperlink{classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_a6d15e32fd68f785c92ee9ee909e84a4d}{Objective\+Type}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutBase}{Lifted\+Multicut\+Base}$<$ \hyperlink{classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_a6d15e32fd68f785c92ee9ee909e84a4d}{Objective\+Type} $>$ \hyperlink{classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_a8bc07006f85d4302673522c0cfc07e3e}{Lifted\+Multicut\+Base\+Type}
+\item 
+typedef Objective\+Type\+::\+Graph\+Type \hyperlink{classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_a4ead35b918fb664a16c37f19e2831bd9}{Graph\+Type}
+\item 
+typedef Objective\+Type\+::\+Lifted\+Graph\+Type \hyperlink{classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_ab426f6e7d5adb0ddeb47ec815c247609}{Lifted\+Graph\+Type}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_a6e4e465f3b6e039882669fcfb9714818}{Lifted\+Multicut\+Base\+Type\+::\+Node\+Labels\+Type} \hyperlink{classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_a9b84800a88ae0384cf729f345d7834da}{Node\+Labels\+Type}
+\item 
+typedef Graph\+Type\+::template Edge\+Map$<$ float $>$ \hyperlink{classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_ad31d23bf9c7d159ddb3f447d763764a8}{Edge\+Weights}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_aebed03b660b6d552bd93248d3d11669f}{Watershed\+Proposal\+Generator} (const \hyperlink{classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_a6d15e32fd68f785c92ee9ee909e84a4d}{Objective\+Type} \&objective, const size\+\_\+t number\+Of\+Threads, const \hyperlink{structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_1_1SettingsType}{Settings\+Type} \&settings=\hyperlink{structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_1_1SettingsType}{Settings\+Type}())
+\item 
+void \hyperlink{classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_a35f7d2b7fd5385895150f8e65d966174}{reset} ()
+\item 
+virtual \hyperlink{classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_ad22a9876293b2bf9f5aff08b759842b7}{$\sim$\+Watershed\+Proposal\+Generator} ()
+\item 
+virtual void \hyperlink{classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_aca5443091b98cb7fcee4dcc2785a63cf}{generate\+Proposal} (const \hyperlink{classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1ProposalGeneratorBase_a908a9320edb8af8735bc68481224b75e}{Node\+Labels\+Type} \&current\+Best, \hyperlink{classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1ProposalGeneratorBase_a908a9320edb8af8735bc68481224b75e}{Node\+Labels\+Type} \&proposal, const size\+\_\+t tid)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E$>$class nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::\+Watershed\+Proposal\+Generator$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}
+
+Watershed proposal generator for \hyperlink{classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased}{lifted\+\_\+multicut\+::\+Fusion\+Move\+Based}. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em O\+B\+J\+E\+C\+T\+I\+V\+E} & \{ description \} \\
+\hline
+\end{DoxyTemplParams}
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_ad31d23bf9c7d159ddb3f447d763764a8}{}\index{nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::\+Watershed\+Proposal\+Generator@{nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::\+Watershed\+Proposal\+Generator}!Edge\+Weights@{Edge\+Weights}}
+\index{Edge\+Weights@{Edge\+Weights}!nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::\+Watershed\+Proposal\+Generator@{nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::\+Watershed\+Proposal\+Generator}}
+\subsubsection[{Edge\+Weights}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ typedef Graph\+Type\+:: template Edge\+Map$<$float$>$ {\bf nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::\+Watershed\+Proposal\+Generator}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Edge\+Weights}}\label{classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_ad31d23bf9c7d159ddb3f447d763764a8}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_a4ead35b918fb664a16c37f19e2831bd9}{}\index{nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::\+Watershed\+Proposal\+Generator@{nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::\+Watershed\+Proposal\+Generator}!Graph\+Type@{Graph\+Type}}
+\index{Graph\+Type@{Graph\+Type}!nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::\+Watershed\+Proposal\+Generator@{nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::\+Watershed\+Proposal\+Generator}}
+\subsubsection[{Graph\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ typedef Objective\+Type\+::\+Graph\+Type {\bf nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::\+Watershed\+Proposal\+Generator}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Graph\+Type}}\label{classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_a4ead35b918fb664a16c37f19e2831bd9}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_ab426f6e7d5adb0ddeb47ec815c247609}{}\index{nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::\+Watershed\+Proposal\+Generator@{nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::\+Watershed\+Proposal\+Generator}!Lifted\+Graph\+Type@{Lifted\+Graph\+Type}}
+\index{Lifted\+Graph\+Type@{Lifted\+Graph\+Type}!nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::\+Watershed\+Proposal\+Generator@{nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::\+Watershed\+Proposal\+Generator}}
+\subsubsection[{Lifted\+Graph\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ typedef Objective\+Type\+::\+Lifted\+Graph\+Type {\bf nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::\+Watershed\+Proposal\+Generator}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Lifted\+Graph\+Type}}\label{classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_ab426f6e7d5adb0ddeb47ec815c247609}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_a8bc07006f85d4302673522c0cfc07e3e}{}\index{nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::\+Watershed\+Proposal\+Generator@{nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::\+Watershed\+Proposal\+Generator}!Lifted\+Multicut\+Base\+Type@{Lifted\+Multicut\+Base\+Type}}
+\index{Lifted\+Multicut\+Base\+Type@{Lifted\+Multicut\+Base\+Type}!nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::\+Watershed\+Proposal\+Generator@{nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::\+Watershed\+Proposal\+Generator}}
+\subsubsection[{Lifted\+Multicut\+Base\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ typedef {\bf Lifted\+Multicut\+Base}$<${\bf Objective\+Type}$>$ {\bf nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::\+Watershed\+Proposal\+Generator}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Lifted\+Multicut\+Base\+Type}}\label{classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_a8bc07006f85d4302673522c0cfc07e3e}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_a9b84800a88ae0384cf729f345d7834da}{}\index{nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::\+Watershed\+Proposal\+Generator@{nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::\+Watershed\+Proposal\+Generator}!Node\+Labels\+Type@{Node\+Labels\+Type}}
+\index{Node\+Labels\+Type@{Node\+Labels\+Type}!nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::\+Watershed\+Proposal\+Generator@{nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::\+Watershed\+Proposal\+Generator}}
+\subsubsection[{Node\+Labels\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ typedef {\bf Lifted\+Multicut\+Base\+Type\+::\+Node\+Labels\+Type} {\bf nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::\+Watershed\+Proposal\+Generator}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Node\+Labels\+Type}}\label{classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_a9b84800a88ae0384cf729f345d7834da}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_a6d15e32fd68f785c92ee9ee909e84a4d}{}\index{nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::\+Watershed\+Proposal\+Generator@{nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::\+Watershed\+Proposal\+Generator}!Objective\+Type@{Objective\+Type}}
+\index{Objective\+Type@{Objective\+Type}!nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::\+Watershed\+Proposal\+Generator@{nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::\+Watershed\+Proposal\+Generator}}
+\subsubsection[{Objective\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ typedef O\+B\+J\+E\+C\+T\+I\+V\+E {\bf nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::\+Watershed\+Proposal\+Generator}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Objective\+Type}}\label{classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_a6d15e32fd68f785c92ee9ee909e84a4d}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_aebed03b660b6d552bd93248d3d11669f}{}\index{nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::\+Watershed\+Proposal\+Generator@{nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::\+Watershed\+Proposal\+Generator}!Watershed\+Proposal\+Generator@{Watershed\+Proposal\+Generator}}
+\index{Watershed\+Proposal\+Generator@{Watershed\+Proposal\+Generator}!nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::\+Watershed\+Proposal\+Generator@{nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::\+Watershed\+Proposal\+Generator}}
+\subsubsection[{Watershed\+Proposal\+Generator(const Objective\+Type \&objective, const size\+\_\+t number\+Of\+Threads, const Settings\+Type \&settings=\+Settings\+Type())}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ {\bf nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::\+Watershed\+Proposal\+Generator}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::{\bf Watershed\+Proposal\+Generator} (
+\begin{DoxyParamCaption}
+\item[{const {\bf Objective\+Type} \&}]{objective, }
+\item[{const size\+\_\+t}]{number\+Of\+Threads, }
+\item[{const {\bf Settings\+Type} \&}]{settings = {\ttfamily {\bf Settings\+Type}()}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_aebed03b660b6d552bd93248d3d11669f}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_ad22a9876293b2bf9f5aff08b759842b7}{}\index{nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::\+Watershed\+Proposal\+Generator@{nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::\+Watershed\+Proposal\+Generator}!````~Watershed\+Proposal\+Generator@{$\sim$\+Watershed\+Proposal\+Generator}}
+\index{````~Watershed\+Proposal\+Generator@{$\sim$\+Watershed\+Proposal\+Generator}!nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::\+Watershed\+Proposal\+Generator@{nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::\+Watershed\+Proposal\+Generator}}
+\subsubsection[{$\sim$\+Watershed\+Proposal\+Generator()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ virtual {\bf nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::\+Watershed\+Proposal\+Generator}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::$\sim${\bf Watershed\+Proposal\+Generator} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_ad22a9876293b2bf9f5aff08b759842b7}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_aca5443091b98cb7fcee4dcc2785a63cf}{}\index{nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::\+Watershed\+Proposal\+Generator@{nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::\+Watershed\+Proposal\+Generator}!generate\+Proposal@{generate\+Proposal}}
+\index{generate\+Proposal@{generate\+Proposal}!nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::\+Watershed\+Proposal\+Generator@{nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::\+Watershed\+Proposal\+Generator}}
+\subsubsection[{generate\+Proposal(const Node\+Labels\+Type \&current\+Best, Node\+Labels\+Type \&proposal, const size\+\_\+t tid)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ virtual void {\bf nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::\+Watershed\+Proposal\+Generator}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::generate\+Proposal (
+\begin{DoxyParamCaption}
+\item[{const {\bf Node\+Labels\+Type} \&}]{current\+Best, }
+\item[{{\bf Node\+Labels\+Type} \&}]{proposal, }
+\item[{const size\+\_\+t}]{tid}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_aca5443091b98cb7fcee4dcc2785a63cf}
+
+
+Implements \hyperlink{classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1ProposalGeneratorBase_af3134cfd7988a1758c4a714e8a5300b1}{nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::\+Proposal\+Generator\+Base$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}.
+
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_a35f7d2b7fd5385895150f8e65d966174}{}\index{nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::\+Watershed\+Proposal\+Generator@{nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::\+Watershed\+Proposal\+Generator}!reset@{reset}}
+\index{reset@{reset}!nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::\+Watershed\+Proposal\+Generator@{nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::\+Watershed\+Proposal\+Generator}}
+\subsubsection[{reset()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ void {\bf nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::\+Watershed\+Proposal\+Generator}$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::reset (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_a35f7d2b7fd5385895150f8e65d966174}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted\+\_\+multicut/proposal\+\_\+generators/\hyperlink{lifted__multicut_2proposal__generators_2watershed__proposal__generator_8hxx}{watershed\+\_\+proposal\+\_\+generator.\+hxx}\end{DoxyCompactItemize}

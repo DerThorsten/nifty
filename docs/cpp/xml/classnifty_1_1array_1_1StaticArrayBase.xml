@@ -1,0 +1,148 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="classnifty_1_1array_1_1StaticArrayBase" kind="class" language="C++" prot="public">
+    <compoundname>nifty::array::StaticArrayBase</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">std::array&lt; T, DIM &gt;</basecompoundref>
+    <includes refid="arithmetic__array_8hxx" local="no">arithmetic_array.hxx</includes>
+    <templateparamlist>
+      <param>
+        <type>class T</type>
+      </param>
+      <param>
+        <type>size_t</type>
+        <declname>DIM</declname>
+        <defname>DIM</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1array_1_1StaticArrayBase_1a3f376d2a24fad3a47021c36657494759" prot="public" static="no">
+        <type>std::array&lt; T, DIM &gt;</type>
+        <definition>typedef std::array&lt;T,DIM&gt; nifty::array::StaticArrayBase&lt; T, DIM &gt;::BaseType</definition>
+        <argsstring></argsstring>
+        <name>BaseType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/array/arithmetic_array.hxx" line="113" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/array/arithmetic_array.hxx" bodystart="113" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1array_1_1StaticArrayBase_1ab15a9b2d0259a54795ffc5aac8d62e50" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>nifty::array::StaticArrayBase&lt; T, DIM &gt;::StaticArrayBase</definition>
+        <argsstring>()</argsstring>
+        <name>StaticArrayBase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/array/arithmetic_array.hxx" line="115" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/array/arithmetic_array.hxx" bodystart="115" bodyend="116"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1array_1_1StaticArrayBase_1aa798253fef388d6c0d0fd3d436784e79" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>nifty::array::StaticArrayBase&lt; T, DIM &gt;::StaticArrayBase</definition>
+        <argsstring>(const T &amp;value)</argsstring>
+        <name>StaticArrayBase</name>
+        <param>
+          <type>const T &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/array/arithmetic_array.hxx" line="118" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/array/arithmetic_array.hxx" bodystart="118" bodyend="121"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1array_1_1StaticArrayBase_1a6d8d83f91ab1ba26d94d9a5915f98bb0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class INIT_T</type>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>nifty::array::StaticArrayBase&lt; T, DIM &gt;::StaticArrayBase</definition>
+        <argsstring>(const std::initializer_list&lt; INIT_T &gt; &amp;list)</argsstring>
+        <name>StaticArrayBase</name>
+        <param>
+          <type>const std::initializer_list&lt; INIT_T &gt; &amp;</type>
+          <declname>list</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/array/arithmetic_array.hxx" line="124" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/array/arithmetic_array.hxx" bodystart="124" bodyend="126"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1array_1_1StaticArrayBase_1ad4a33e73ab03d344489c81af7108773d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classnifty_1_1array_1_1StaticArrayBase_1a3f376d2a24fad3a47021c36657494759" kindref="member">BaseType</ref> &amp;</type>
+        <definition>const BaseType&amp; nifty::array::StaticArrayBase&lt; T, DIM &gt;::asStdArray</definition>
+        <argsstring>() const </argsstring>
+        <name>asStdArray</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/array/arithmetic_array.hxx" line="133" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/array/arithmetic_array.hxx" bodystart="133" bodyend="135"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1array_1_1StaticArrayBase_1a205328f2e3ad922e007afe0f9f3e819b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classnifty_1_1array_1_1StaticArrayBase_1a3f376d2a24fad3a47021c36657494759" kindref="member">BaseType</ref> &amp;</type>
+        <definition>BaseType&amp; nifty::array::StaticArrayBase&lt; T, DIM &gt;::asStdArray</definition>
+        <argsstring>()</argsstring>
+        <name>asStdArray</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/array/arithmetic_array.hxx" line="136" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/array/arithmetic_array.hxx" bodystart="136" bodyend="138"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1822">
+        <label>std::array&lt; T, DIM &gt;</label>
+      </node>
+      <node id="1821">
+        <label>nifty::array::StaticArrayBase&lt; T, DIM &gt;</label>
+        <link refid="classnifty_1_1array_1_1StaticArrayBase"/>
+        <childnode refid="1822" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1824">
+        <label>std::array&lt; T, DIM &gt;</label>
+      </node>
+      <node id="1823">
+        <label>nifty::array::StaticArrayBase&lt; T, DIM &gt;</label>
+        <link refid="classnifty_1_1array_1_1StaticArrayBase"/>
+        <childnode refid="1824" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/tbeier/src/nifty/include/nifty/array/arithmetic_array.hxx" line="111" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/array/arithmetic_array.hxx" bodystart="111" bodyend="139"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1array_1_1StaticArrayBase_1ad4a33e73ab03d344489c81af7108773d" prot="public" virt="non-virtual"><scope>nifty::array::StaticArrayBase</scope><name>asStdArray</name></member>
+      <member refid="classnifty_1_1array_1_1StaticArrayBase_1a205328f2e3ad922e007afe0f9f3e819b" prot="public" virt="non-virtual"><scope>nifty::array::StaticArrayBase</scope><name>asStdArray</name></member>
+      <member refid="classnifty_1_1array_1_1StaticArrayBase_1a3f376d2a24fad3a47021c36657494759" prot="public" virt="non-virtual"><scope>nifty::array::StaticArrayBase</scope><name>BaseType</name></member>
+      <member refid="classnifty_1_1array_1_1StaticArrayBase_1ab15a9b2d0259a54795ffc5aac8d62e50" prot="public" virt="non-virtual"><scope>nifty::array::StaticArrayBase</scope><name>StaticArrayBase</name></member>
+      <member refid="classnifty_1_1array_1_1StaticArrayBase_1aa798253fef388d6c0d0fd3d436784e79" prot="public" virt="non-virtual"><scope>nifty::array::StaticArrayBase</scope><name>StaticArrayBase</name></member>
+      <member refid="classnifty_1_1array_1_1StaticArrayBase_1a6d8d83f91ab1ba26d94d9a5915f98bb0" prot="public" virt="non-virtual"><scope>nifty::array::StaticArrayBase</scope><name>StaticArrayBase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

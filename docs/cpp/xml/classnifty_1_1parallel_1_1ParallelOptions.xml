@@ -1,0 +1,157 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="classnifty_1_1parallel_1_1ParallelOptions" kind="class" language="C++" prot="public">
+    <compoundname>nifty::parallel::ParallelOptions</compoundname>
+    <includes refid="threadpool_8hxx" local="no">threadpool.hxx</includes>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="classnifty_1_1parallel_1_1ParallelOptions_1a7a945e8bd698883de4af0f906b2aa88a" prot="public" static="no">
+        <name>@0</name>
+        <enumvalue id="classnifty_1_1parallel_1_1ParallelOptions_1a7a945e8bd698883de4af0f906b2aa88aa0bd8f9fd00d78fcfdcb6ee1575f43fd6" prot="public">
+          <name>Auto</name>
+          <initializer>= -1</initializer>
+          <briefdescription>
+<para>Determine number of threads automatically (from <computeroutput>std::thread::hardware_concurrency()</computeroutput>) </para>          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classnifty_1_1parallel_1_1ParallelOptions_1a7a945e8bd698883de4af0f906b2aa88aad7df42230112f42413aa5fc2b3671651" prot="public">
+          <name>Nice</name>
+          <initializer>= -2</initializer>
+          <briefdescription>
+<para>Use half as many threads as <computeroutput>Auto</computeroutput> would. </para>          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classnifty_1_1parallel_1_1ParallelOptions_1a7a945e8bd698883de4af0f906b2aa88aaf7f33aa5c75f955eb0e6f6ca380f7349" prot="public">
+          <name>NoThreads</name>
+          <initializer>=  0</initializer>
+          <briefdescription>
+<para>Switch off multi-threading (i.e. execute tasks sequentially) </para>          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Constants for special settings. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" line="37" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" bodystart="37" bodyend="41"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classnifty_1_1parallel_1_1ParallelOptions_1a4f3342bfc78b546fb3d7e0d03b74d169" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int nifty::parallel::ParallelOptions::numThreads_</definition>
+        <argsstring></argsstring>
+        <name>numThreads_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" line="103" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" bodystart="103" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1parallel_1_1ParallelOptions_1ae1b1ff787e99e1f4ea75a2d8cb7e3d43" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>nifty::parallel::ParallelOptions::ParallelOptions</definition>
+        <argsstring>(int nT=Auto)</argsstring>
+        <name>ParallelOptions</name>
+        <param>
+          <type>int</type>
+          <declname>nT</declname>
+          <defval><ref refid="classnifty_1_1parallel_1_1ParallelOptions_1a7a945e8bd698883de4af0f906b2aa88aa0bd8f9fd00d78fcfdcb6ee1575f43fd6" kindref="member">Auto</ref></defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" line="43" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" bodystart="43" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1parallel_1_1ParallelOptions_1ab4f8893bc656a86116db578ea8e634ff" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int nifty::parallel::ParallelOptions::getNumThreads</definition>
+        <argsstring>() const </argsstring>
+        <name>getNumThreads</name>
+        <briefdescription>
+<para>Get desired number of threads. </para>        </briefdescription>
+        <detaileddescription>
+<para><bold>Note:</bold> This function may return 0, which means that multi-threading shall be switched off entirely. If an algorithm receives this value, it should revert to a sequential implementation. In contrast, if <computeroutput>numThread() == 1</computeroutput>, the parallel algorithm version shall be executed with a single thread. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" line="55" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" bodystart="55" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1parallel_1_1ParallelOptions_1a7dc7ea2f236660f51bb2e5497a5fefbf" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int nifty::parallel::ParallelOptions::getActualNumThreads</definition>
+        <argsstring>() const </argsstring>
+        <name>getActualNumThreads</name>
+        <briefdescription>
+<para>Get desired number of threads. </para>        </briefdescription>
+        <detaileddescription>
+<para>In contrast to <computeroutput>numThread()</computeroutput>, this will always return a value <computeroutput>&gt;=1</computeroutput>. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" line="64" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" bodystart="64" bodyend="67"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1parallel_1_1ParallelOptions_1a50e3d373c07fb36be7b3b39bf6886b9b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classnifty_1_1parallel_1_1ParallelOptions" kindref="compound">ParallelOptions</ref> &amp;</type>
+        <definition>ParallelOptions&amp; nifty::parallel::ParallelOptions::numThreads</definition>
+        <argsstring>(const int n)</argsstring>
+        <name>numThreads</name>
+        <param>
+          <type>const int</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+<para>Set the number of threads or one of the constants <computeroutput>Auto</computeroutput>, <computeroutput>Nice</computeroutput> and <computeroutput>NoThreads</computeroutput>. </para>        </briefdescription>
+        <detaileddescription>
+<para>Default: <computeroutput><ref refid="classnifty_1_1parallel_1_1ParallelOptions_1a7a945e8bd698883de4af0f906b2aa88aa0bd8f9fd00d78fcfdcb6ee1575f43fd6" kindref="member">ParallelOptions::Auto</ref></computeroutput> (use system default)</para><para>This setting is ignored if the preprocessor flag <computeroutput>NIFTY_NO_PARALLELISM</computeroutput> is defined. Then, the number of threads is set to 0 and all tasks revert to sequential algorithm implementations. The same can be achieved at runtime by passing <computeroutput>n = 0</computeroutput> to this function. In contrast, passing <computeroutput>n = 1</computeroutput> causes the parallel algorithm versions to be executed with a single thread. Both possibilities are mainly useful for debugging. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" line="81" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" bodystart="81" bodyend="85"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="classnifty_1_1parallel_1_1ParallelOptions_1a4c6a759be16cdf8ad1d42e9af2d94148" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>static size_t nifty::parallel::ParallelOptions::actualNumThreads</definition>
+        <argsstring>(const int userNThreads)</argsstring>
+        <name>actualNumThreads</name>
+        <param>
+          <type>const int</type>
+          <declname>userNThreads</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" line="90" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" bodystart="90" bodyend="101"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Option base class for parallel algorithms. </para>    </briefdescription>
+    <detaileddescription>
+<para><bold>#include</bold> &lt;<ref refid="threadpool_8hxx" kindref="compound">nifty/parallel/threadpool.hxx</ref>&gt;<linebreak/>
+ Namespace: <ref refid="namespacenifty_1_1parallel" kindref="compound">nifty::parallel</ref> </para>    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" line="32" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" bodystart="31" bodyend="104"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1parallel_1_1ParallelOptions_1a4c6a759be16cdf8ad1d42e9af2d94148" prot="private" virt="non-virtual"><scope>nifty::parallel::ParallelOptions</scope><name>actualNumThreads</name></member>
+      <member refid="classnifty_1_1parallel_1_1ParallelOptions_1a7a945e8bd698883de4af0f906b2aa88aa0bd8f9fd00d78fcfdcb6ee1575f43fd6" prot="public" virt="non-virtual"><scope>nifty::parallel::ParallelOptions</scope><name>Auto</name></member>
+      <member refid="classnifty_1_1parallel_1_1ParallelOptions_1a7dc7ea2f236660f51bb2e5497a5fefbf" prot="public" virt="non-virtual"><scope>nifty::parallel::ParallelOptions</scope><name>getActualNumThreads</name></member>
+      <member refid="classnifty_1_1parallel_1_1ParallelOptions_1ab4f8893bc656a86116db578ea8e634ff" prot="public" virt="non-virtual"><scope>nifty::parallel::ParallelOptions</scope><name>getNumThreads</name></member>
+      <member refid="classnifty_1_1parallel_1_1ParallelOptions_1a7a945e8bd698883de4af0f906b2aa88aad7df42230112f42413aa5fc2b3671651" prot="public" virt="non-virtual"><scope>nifty::parallel::ParallelOptions</scope><name>Nice</name></member>
+      <member refid="classnifty_1_1parallel_1_1ParallelOptions_1a7a945e8bd698883de4af0f906b2aa88aaf7f33aa5c75f955eb0e6f6ca380f7349" prot="public" virt="non-virtual"><scope>nifty::parallel::ParallelOptions</scope><name>NoThreads</name></member>
+      <member refid="classnifty_1_1parallel_1_1ParallelOptions_1a50e3d373c07fb36be7b3b39bf6886b9b" prot="public" virt="non-virtual"><scope>nifty::parallel::ParallelOptions</scope><name>numThreads</name></member>
+      <member refid="classnifty_1_1parallel_1_1ParallelOptions_1a4f3342bfc78b546fb3d7e0d03b74d169" prot="private" virt="non-virtual"><scope>nifty::parallel::ParallelOptions</scope><name>numThreads_</name></member>
+      <member refid="classnifty_1_1parallel_1_1ParallelOptions_1ae1b1ff787e99e1f4ea75a2d8cb7e3d43" prot="public" virt="non-virtual"><scope>nifty::parallel::ParallelOptions</scope><name>ParallelOptions</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

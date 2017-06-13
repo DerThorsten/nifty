@@ -1,0 +1,603 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="namespaceandres" kind="namespace" language="C++">
+    <compoundname>andres</compoundname>
+    <innerclass refid="classandres_1_1FFT" prot="public">andres::FFT</innerclass>
+    <innerclass refid="classandres_1_1IFFT" prot="public">andres::IFFT</innerclass>
+    <innerclass refid="structandres_1_1InitializationSkipping" prot="public">andres::InitializationSkipping</innerclass>
+    <innerclass refid="classandres_1_1Iterator" prot="public">andres::Iterator</innerclass>
+    <innerclass refid="classandres_1_1Marray" prot="public">andres::Marray</innerclass>
+    <innerclass refid="classandres_1_1View" prot="public">andres::View</innerclass>
+    <innerclass refid="classandres_1_1ViewExpression" prot="public">andres::ViewExpression</innerclass>
+    <innernamespace refid="namespaceandres_1_1hdf5">andres::hdf5</innernamespace>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="namespaceandres_1a69f07c437d156c7028c7d619e566281f" prot="public" static="no">
+        <name>StringStyle</name>
+        <enumvalue id="namespaceandres_1a69f07c437d156c7028c7d619e566281fa162a419d5299010966e7cc6a74e7b014" prot="public">
+          <name>TableStyle</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespaceandres_1a69f07c437d156c7028c7d619e566281fa8b1efd8fc40539ba5b5255b46440eeaf" prot="public">
+          <name>MatrixStyle</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="91" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="91" bodyend="91"/>
+      </memberdef>
+      <memberdef kind="enum" id="namespaceandres_1a2ac8b7aa89d44e8188a7c0ba50f4306b" prot="public" static="no">
+        <name>CoordinateOrder</name>
+        <enumvalue id="namespaceandres_1a2ac8b7aa89d44e8188a7c0ba50f4306ba88e74e8570fc8b1bee29f708f391fe69" prot="public">
+          <name>FirstMajorOrder</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespaceandres_1a2ac8b7aa89d44e8188a7c0ba50f4306ba586bd03d7519be47cac8605d4833b7ae" prot="public">
+          <name>LastMajorOrder</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="92" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="92" bodyend="92"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="namespaceandres_1a7d42da82420a3295ba7365b35ef89a1c" prot="public" static="yes" mutable="no">
+        <type>const bool</type>
+        <definition>const bool andres::Const</definition>
+        <argsstring></argsstring>
+        <name>Const</name>
+        <initializer>= true</initializer>
+        <briefdescription>
+<para>Flag to be used with the template parameter isConst of <ref refid="classandres_1_1View" kindref="compound">View</ref> and <ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="95" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespaceandres_1a24205ab362375a0487fffadb5d325445" prot="public" static="yes" mutable="no">
+        <type>const bool</type>
+        <definition>const bool andres::Mutable</definition>
+        <argsstring></argsstring>
+        <name>Mutable</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>Flag to be used with the template parameter isConst of <ref refid="classandres_1_1View" kindref="compound">View</ref> and <ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="96" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespaceandres_1a00678ef59ea041f3f0cfdeb8227c62fa" prot="public" static="yes" mutable="no">
+        <type>const <ref refid="namespaceandres_1a2ac8b7aa89d44e8188a7c0ba50f4306b" kindref="member">CoordinateOrder</ref></type>
+        <definition>const CoordinateOrder andres::defaultOrder</definition>
+        <argsstring></argsstring>
+        <name>defaultOrder</name>
+        <initializer>= <ref refid="namespaceandres_1a2ac8b7aa89d44e8188a7c0ba50f4306ba88e74e8570fc8b1bee29f708f391fe69" kindref="member">FirstMajorOrder</ref></initializer>
+        <briefdescription>
+<para>Default order of coordinate tuples. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="97" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="97" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespaceandres_1a1706a997cdeeef30a42c155d98d42af8" prot="public" static="yes" mutable="no">
+        <type>const <ref refid="structandres_1_1InitializationSkipping" kindref="compound">InitializationSkipping</ref></type>
+        <definition>const InitializationSkipping andres::SkipInitialization</definition>
+        <argsstring></argsstring>
+        <name>SkipInitialization</name>
+        <initializer>= <ref refid="structandres_1_1InitializationSkipping" kindref="compound">InitializationSkipping</ref>()</initializer>
+        <briefdescription>
+<para>Flag to indicate initialization skipping. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="98" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespaceandres_1a4395d84bff8c1a3065b317402f2cc634" prot="public" static="yes" mutable="no">
+        <type>const bool</type>
+        <definition>const bool andres::MARRAY_NO_DEBUG</definition>
+        <argsstring></argsstring>
+        <name>MARRAY_NO_DEBUG</name>
+        <initializer>= true</initializer>
+        <briefdescription>
+<para>General assertion testing disabled. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="123" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="123" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespaceandres_1adefd6ce7d20b5e1ac70fcfaf61fd583d" prot="public" static="yes" mutable="no">
+        <type>const bool</type>
+        <definition>const bool andres::MARRAY_NO_ARG_TEST</definition>
+        <argsstring></argsstring>
+        <name>MARRAY_NO_ARG_TEST</name>
+        <initializer>= true</initializer>
+        <briefdescription>
+<para>Argument testing disabled. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="124" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="124" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespaceandres_1a8336b0a095fea76e6b28903e7c9dbe94" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T1</type>
+          </param>
+          <param>
+            <type>class T2</type>
+          </param>
+          <param>
+            <type>bool</type>
+            <declname>isConst</declname>
+            <defname>isConst</defname>
+          </param>
+          <param>
+            <type>class A</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classandres_1_1View" kindref="compound">View</ref>&lt; T1, false, A &gt; &amp;</type>
+        <definition>View&lt;T1, false, A&gt;&amp; andres::operator+=</definition>
+        <argsstring>(View&lt; T1, false, A &gt; &amp;v, const View&lt; T2, isConst, A &gt; &amp;w)</argsstring>
+        <name>operator+=</name>
+        <param>
+          <type><ref refid="classandres_1_1View" kindref="compound">View</ref>&lt; T1, false, A &gt; &amp;</type>
+          <declname>v</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classandres_1_1View" kindref="compound">View</ref>&lt; T2, isConst, A &gt; &amp;</type>
+          <declname>w</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="3069" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="3070" bodyend="3077"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceandres_1af4cbe438bddc157789f80c8528dce4ff" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T</type>
+          </param>
+          <param>
+            <type>class A</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classandres_1_1View" kindref="compound">View</ref>&lt; T, false, A &gt; &amp;</type>
+        <definition>View&lt;T, false, A&gt;&amp; andres::operator++</definition>
+        <argsstring>(View&lt; T, false, A &gt; &amp;v)</argsstring>
+        <name>operator++</name>
+        <param>
+          <type><ref refid="classandres_1_1View" kindref="compound">View</ref>&lt; T, false, A &gt; &amp;</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="3082" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="3083" bodyend="3089"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceandres_1a4f00ee1858164a9f62899872f38c8f64" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T</type>
+          </param>
+          <param>
+            <type>class A</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classandres_1_1Marray" kindref="compound">Marray</ref>&lt; T, A &gt;</type>
+        <definition>Marray&lt;T, A&gt; andres::operator++</definition>
+        <argsstring>(Marray&lt; T, A &gt; &amp;in, int dummy)</argsstring>
+        <name>operator++</name>
+        <param>
+          <type><ref refid="classandres_1_1Marray" kindref="compound">Marray</ref>&lt; T, A &gt; &amp;</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>dummy</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="3094" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="3095" bodyend="3103"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceandres_1a10a01738bed4f67459b210de091d3ea2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T1</type>
+          </param>
+          <param>
+            <type>class T2</type>
+          </param>
+          <param>
+            <type>bool</type>
+            <declname>isConst</declname>
+            <defname>isConst</defname>
+          </param>
+          <param>
+            <type>class A</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classandres_1_1View" kindref="compound">View</ref>&lt; T1, false, A &gt; &amp;</type>
+        <definition>View&lt;T1, false, A&gt;&amp; andres::operator-=</definition>
+        <argsstring>(View&lt; T1, false, A &gt; &amp;v, const View&lt; T2, isConst, A &gt; &amp;w)</argsstring>
+        <name>operator-=</name>
+        <param>
+          <type><ref refid="classandres_1_1View" kindref="compound">View</ref>&lt; T1, false, A &gt; &amp;</type>
+          <declname>v</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classandres_1_1View" kindref="compound">View</ref>&lt; T2, isConst, A &gt; &amp;</type>
+          <declname>w</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="3107" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="3108" bodyend="3115"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceandres_1a162f7a3e5e4ec9d773d17843cbfadd55" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T</type>
+          </param>
+          <param>
+            <type>class A</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classandres_1_1View" kindref="compound">View</ref>&lt; T, false, A &gt; &amp;</type>
+        <definition>View&lt;T, false, A&gt;&amp; andres::operator--</definition>
+        <argsstring>(View&lt; T, false, A &gt; &amp;v)</argsstring>
+        <name>operator--</name>
+        <param>
+          <type><ref refid="classandres_1_1View" kindref="compound">View</ref>&lt; T, false, A &gt; &amp;</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="3120" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="3121" bodyend="3127"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceandres_1a446cb1c63e0aa91200e79a0a762cdb9b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T</type>
+          </param>
+          <param>
+            <type>class A</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classandres_1_1Marray" kindref="compound">Marray</ref>&lt; T, A &gt;</type>
+        <definition>Marray&lt;T, A&gt; andres::operator--</definition>
+        <argsstring>(Marray&lt; T, A &gt; &amp;in, int dummy)</argsstring>
+        <name>operator--</name>
+        <param>
+          <type><ref refid="classandres_1_1Marray" kindref="compound">Marray</ref>&lt; T, A &gt; &amp;</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>dummy</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="3132" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="3133" bodyend="3141"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceandres_1a766484f5dd8163c93e833b6438a49f1e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T1</type>
+          </param>
+          <param>
+            <type>class T2</type>
+          </param>
+          <param>
+            <type>bool</type>
+            <declname>isConst</declname>
+            <defname>isConst</defname>
+          </param>
+          <param>
+            <type>class A</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classandres_1_1View" kindref="compound">View</ref>&lt; T1, false, A &gt; &amp;</type>
+        <definition>View&lt;T1, false, A&gt;&amp; andres::operator*=</definition>
+        <argsstring>(View&lt; T1, false, A &gt; &amp;v, const View&lt; T2, isConst, A &gt; &amp;w)</argsstring>
+        <name>operator*=</name>
+        <param>
+          <type><ref refid="classandres_1_1View" kindref="compound">View</ref>&lt; T1, false, A &gt; &amp;</type>
+          <declname>v</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classandres_1_1View" kindref="compound">View</ref>&lt; T2, isConst, A &gt; &amp;</type>
+          <declname>w</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="3145" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="3146" bodyend="3153"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceandres_1af7defe3aacf03796d2490277f8446aa7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T1</type>
+          </param>
+          <param>
+            <type>class T2</type>
+          </param>
+          <param>
+            <type>bool</type>
+            <declname>isConst</declname>
+            <defname>isConst</defname>
+          </param>
+          <param>
+            <type>class A</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classandres_1_1View" kindref="compound">View</ref>&lt; T1, false, A &gt; &amp;</type>
+        <definition>View&lt;T1, false, A&gt;&amp; andres::operator/=</definition>
+        <argsstring>(View&lt; T1, false, A &gt; &amp;v, const View&lt; T2, isConst, A &gt; &amp;w)</argsstring>
+        <name>operator/=</name>
+        <param>
+          <type><ref refid="classandres_1_1View" kindref="compound">View</ref>&lt; T1, false, A &gt; &amp;</type>
+          <declname>v</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classandres_1_1View" kindref="compound">View</ref>&lt; T2, isConst, A &gt; &amp;</type>
+          <declname>w</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="3157" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="3158" bodyend="3165"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceandres_1a43eb4a16a1f776bc81a7f58fa93a0c71" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class E1</type>
+          </param>
+          <param>
+            <type>class T1</type>
+          </param>
+          <param>
+            <type>class E2</type>
+          </param>
+          <param>
+            <type>class T2</type>
+          </param>
+        </templateparamlist>
+        <type>const BinaryViewExpression&lt; E1, T1, E2, T2, marray_detail::Plus&lt; T1, T2, typename marray_detail::PromoteType&lt; T1, T2 &gt;::type &gt; &gt;</type>
+        <definition>const BinaryViewExpression&lt;E1, T1, E2, T2, marray_detail::Plus&lt;T1, T2, typename marray_detail::PromoteType&lt;T1, T2&gt;::type&gt; &gt; andres::operator+</definition>
+        <argsstring>(const ViewExpression&lt; E1, T1 &gt; &amp;expression1, const ViewExpression&lt; E2, T2 &gt; &amp;expression2)</argsstring>
+        <name>operator+</name>
+        <param>
+          <type>const <ref refid="classandres_1_1ViewExpression" kindref="compound">ViewExpression</ref>&lt; E1, T1 &gt; &amp;</type>
+          <declname>expression1</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classandres_1_1ViewExpression" kindref="compound">ViewExpression</ref>&lt; E2, T2 &gt; &amp;</type>
+          <declname>expression2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="3169" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="3170" bodyend="3179"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceandres_1af0a5caf93e8476b870c5f3ec31d0174d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class E</type>
+          </param>
+          <param>
+            <type>class T</type>
+          </param>
+        </templateparamlist>
+        <type>const <ref refid="classandres_1_1ViewExpression" kindref="compound">ViewExpression</ref>&lt; E, T &gt; &amp;</type>
+        <definition>const ViewExpression&lt;E,T&gt;&amp; andres::operator+</definition>
+        <argsstring>(const ViewExpression&lt; E, T &gt; &amp;expression)</argsstring>
+        <name>operator+</name>
+        <param>
+          <type>const <ref refid="classandres_1_1ViewExpression" kindref="compound">ViewExpression</ref>&lt; E, T &gt; &amp;</type>
+          <declname>expression</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="3183" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="3184" bodyend="3189"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceandres_1a30eb13a41805ae01b38c7ebf35179743" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class E1</type>
+          </param>
+          <param>
+            <type>class T1</type>
+          </param>
+          <param>
+            <type>class E2</type>
+          </param>
+          <param>
+            <type>class T2</type>
+          </param>
+        </templateparamlist>
+        <type>const BinaryViewExpression&lt; E1, T1, E2, T2, marray_detail::Minus&lt; T1, T2, typename marray_detail::PromoteType&lt; T1, T2 &gt;::type &gt; &gt;</type>
+        <definition>const BinaryViewExpression&lt;E1, T1, E2, T2, marray_detail::Minus&lt;T1, T2, typename marray_detail::PromoteType&lt;T1, T2&gt;::type&gt; &gt; andres::operator-</definition>
+        <argsstring>(const ViewExpression&lt; E1, T1 &gt; &amp;expression1, const ViewExpression&lt; E2, T2 &gt; &amp;expression2)</argsstring>
+        <name>operator-</name>
+        <param>
+          <type>const <ref refid="classandres_1_1ViewExpression" kindref="compound">ViewExpression</ref>&lt; E1, T1 &gt; &amp;</type>
+          <declname>expression1</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classandres_1_1ViewExpression" kindref="compound">ViewExpression</ref>&lt; E2, T2 &gt; &amp;</type>
+          <declname>expression2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="3225" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="3226" bodyend="3235"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceandres_1a35120fff610c97905d02a9e358b14150" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class E</type>
+          </param>
+          <param>
+            <type>class T</type>
+          </param>
+        </templateparamlist>
+        <type>const UnaryViewExpression&lt; E, T, marray_detail::Negate&lt; T &gt; &gt;</type>
+        <definition>const UnaryViewExpression&lt;E,T,marray_detail::Negate&lt;T&gt; &gt; andres::operator-</definition>
+        <argsstring>(const ViewExpression&lt; E, T &gt; &amp;expression)</argsstring>
+        <name>operator-</name>
+        <param>
+          <type>const <ref refid="classandres_1_1ViewExpression" kindref="compound">ViewExpression</ref>&lt; E, T &gt; &amp;</type>
+          <declname>expression</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="3239" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="3240" bodyend="3246"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceandres_1a37613f54e69908e108526ff99ad8b4ab" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class E1</type>
+          </param>
+          <param>
+            <type>class T1</type>
+          </param>
+          <param>
+            <type>class E2</type>
+          </param>
+          <param>
+            <type>class T2</type>
+          </param>
+        </templateparamlist>
+        <type>const BinaryViewExpression&lt; E1, T1, E2, T2, marray_detail::Times&lt; T1, T2, typename marray_detail::PromoteType&lt; T1, T2 &gt;::type &gt; &gt;</type>
+        <definition>const BinaryViewExpression&lt;E1, T1, E2, T2, marray_detail::Times&lt;T1, T2, typename marray_detail::PromoteType&lt;T1, T2&gt;::type&gt; &gt; andres::operator*</definition>
+        <argsstring>(const ViewExpression&lt; E1, T1 &gt; &amp;expression1, const ViewExpression&lt; E2, T2 &gt; &amp;expression2)</argsstring>
+        <name>operator*</name>
+        <param>
+          <type>const <ref refid="classandres_1_1ViewExpression" kindref="compound">ViewExpression</ref>&lt; E1, T1 &gt; &amp;</type>
+          <declname>expression1</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classandres_1_1ViewExpression" kindref="compound">ViewExpression</ref>&lt; E2, T2 &gt; &amp;</type>
+          <declname>expression2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="3251" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="3252" bodyend="3261"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceandres_1ae804c627d02a5db6e2e16f020dfd1683" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class E1</type>
+          </param>
+          <param>
+            <type>class T1</type>
+          </param>
+          <param>
+            <type>class E2</type>
+          </param>
+          <param>
+            <type>class T2</type>
+          </param>
+        </templateparamlist>
+        <type>const BinaryViewExpression&lt; E1, T1, E2, T2, marray_detail::DividedBy&lt; T1, T2, typename marray_detail::PromoteType&lt; T1, T2 &gt;::type &gt; &gt;</type>
+        <definition>const BinaryViewExpression&lt;E1, T1, E2, T2, marray_detail::DividedBy&lt;T1, T2, typename marray_detail::PromoteType&lt;T1, T2&gt;::type&gt; &gt; andres::operator/</definition>
+        <argsstring>(const ViewExpression&lt; E1, T1 &gt; &amp;expression1, const ViewExpression&lt; E2, T2 &gt; &amp;expression2)</argsstring>
+        <name>operator/</name>
+        <param>
+          <type>const <ref refid="classandres_1_1ViewExpression" kindref="compound">ViewExpression</ref>&lt; E1, T1 &gt; &amp;</type>
+          <declname>expression1</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classandres_1_1ViewExpression" kindref="compound">ViewExpression</ref>&lt; E2, T2 &gt; &amp;</type>
+          <declname>expression2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="3266" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="3267" bodyend="3276"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>The public API. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-fftw.hxx" line="14" column="1"/>
+  </compounddef>
+</doxygen>

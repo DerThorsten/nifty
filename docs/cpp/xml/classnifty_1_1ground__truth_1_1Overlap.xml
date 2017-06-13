@@ -1,0 +1,392 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="classnifty_1_1ground__truth_1_1Overlap" kind="class" language="C++" prot="public">
+    <compoundname>nifty::ground_truth::Overlap</compoundname>
+    <includes refid="overlap_8hxx" local="no">overlap.hxx</includes>
+    <templateparamlist>
+      <param>
+        <type>class LABEL_TYPE</type>
+        <defval>uint64_t</defval>
+      </param>
+      <param>
+        <type>class COUNT_TYPE</type>
+        <defval>uint64_t</defval>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1ground__truth_1_1Overlap_1af14b9a872d3736d3115231866bc71612" prot="public" static="no">
+        <type>LABEL_TYPE</type>
+        <definition>typedef LABEL_TYPE nifty::ground_truth::Overlap&lt; LABEL_TYPE, COUNT_TYPE &gt;::LabelType</definition>
+        <argsstring></argsstring>
+        <name>LabelType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/overlap.hxx" line="16" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/overlap.hxx" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1ground__truth_1_1Overlap_1ab8f82b8fef890dc3d7b69da0cc768c76" prot="public" static="no">
+        <type>COUNT_TYPE</type>
+        <definition>typedef COUNT_TYPE nifty::ground_truth::Overlap&lt; LABEL_TYPE, COUNT_TYPE &gt;::CountType</definition>
+        <argsstring></argsstring>
+        <name>CountType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/overlap.hxx" line="17" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/overlap.hxx" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1ground__truth_1_1Overlap_1a6866ee8c988dd21d3fbd6ee5c2e836bf" prot="public" static="no">
+        <type>std::unordered_map&lt; <ref refid="classnifty_1_1ground__truth_1_1Overlap_1af14b9a872d3736d3115231866bc71612" kindref="member">LabelType</ref>, <ref refid="classnifty_1_1ground__truth_1_1Overlap_1ab8f82b8fef890dc3d7b69da0cc768c76" kindref="member">CountType</ref> &gt;</type>
+        <definition>typedef std::unordered_map&lt;LabelType, CountType&gt; nifty::ground_truth::Overlap&lt; LABEL_TYPE, COUNT_TYPE &gt;::MapType</definition>
+        <argsstring></argsstring>
+        <name>MapType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/overlap.hxx" line="18" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/overlap.hxx" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classnifty_1_1ground__truth_1_1Overlap_1a5e6dc565b0f0243ce1b8de44794a3920" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="classnifty_1_1ground__truth_1_1Overlap_1ab8f82b8fef890dc3d7b69da0cc768c76" kindref="member">CountType</ref> &gt;</type>
+        <definition>std::vector&lt;CountType&gt; nifty::ground_truth::Overlap&lt; LABEL_TYPE, COUNT_TYPE &gt;::counts_</definition>
+        <argsstring></argsstring>
+        <name>counts_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/overlap.hxx" line="219" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/overlap.hxx" bodystart="219" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1ground__truth_1_1Overlap_1a38fe8173ee492f1f1ad3e6769bda4c6c" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="classnifty_1_1ground__truth_1_1Overlap_1a6866ee8c988dd21d3fbd6ee5c2e836bf" kindref="member">MapType</ref> &gt;</type>
+        <definition>std::vector&lt;MapType&gt; nifty::ground_truth::Overlap&lt; LABEL_TYPE, COUNT_TYPE &gt;::overlaps_</definition>
+        <argsstring></argsstring>
+        <name>overlaps_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/overlap.hxx" line="220" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/overlap.hxx" bodystart="220" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1ground__truth_1_1Overlap_1aedaa9af95b736f17f2dbfe0eff4c09bf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class SET_A_ITER</type>
+          </param>
+          <param>
+            <type>class SET_B_ITER</type>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>nifty::ground_truth::Overlap&lt; LABEL_TYPE, COUNT_TYPE &gt;::Overlap</definition>
+        <argsstring>(const uint64_t maxLabelSetA, SET_A_ITER aBegin, SET_A_ITER aEnd, SET_B_ITER bBegin)</argsstring>
+        <name>Overlap</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>maxLabelSetA</declname>
+        </param>
+        <param>
+          <type>SET_A_ITER</type>
+          <declname>aBegin</declname>
+        </param>
+        <param>
+          <type>SET_A_ITER</type>
+          <declname>aEnd</declname>
+        </param>
+        <param>
+          <type>SET_B_ITER</type>
+          <declname>bBegin</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/overlap.hxx" line="21" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/overlap.hxx" bodystart="21" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1ground__truth_1_1Overlap_1a0a40f259581e8a4d9e594fd1db23170a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class LABEL_A</type>
+          </param>
+          <param>
+            <type>class LABEL_B</type>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>nifty::ground_truth::Overlap&lt; LABEL_TYPE, COUNT_TYPE &gt;::Overlap</definition>
+        <argsstring>(const uint64_t maxLabelSetA, const marray::View&lt; LABEL_A &gt; arrayA, const marray::View&lt; LABEL_B &gt; arrayB)</argsstring>
+        <name>Overlap</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>maxLabelSetA</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classandres_1_1View" kindref="compound">marray::View</ref>&lt; LABEL_A &gt;</type>
+          <declname>arrayA</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classandres_1_1View" kindref="compound">marray::View</ref>&lt; LABEL_B &gt;</type>
+          <declname>arrayB</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/overlap.hxx" line="34" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/overlap.hxx" bodystart="34" bodyend="69"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1ground__truth_1_1Overlap_1adfacb68ed0047e88cbe3524ad664f02f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double nifty::ground_truth::Overlap&lt; LABEL_TYPE, COUNT_TYPE &gt;::differentOverlap</definition>
+        <argsstring>(const LabelType u, const LabelType v) const </argsstring>
+        <name>differentOverlap</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1ground__truth_1_1Overlap_1af14b9a872d3736d3115231866bc71612" kindref="member">LabelType</ref></type>
+          <declname>u</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classnifty_1_1ground__truth_1_1Overlap_1af14b9a872d3736d3115231866bc71612" kindref="member">LabelType</ref></type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/overlap.hxx" line="75" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/overlap.hxx" bodystart="75" bodyend="95"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1ground__truth_1_1Overlap_1ad4518e3941b75c18091cefa145a7ce2b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double nifty::ground_truth::Overlap&lt; LABEL_TYPE, COUNT_TYPE &gt;::bleeding</definition>
+        <argsstring>(const LabelType u) const </argsstring>
+        <name>bleeding</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1ground__truth_1_1Overlap_1af14b9a872d3736d3115231866bc71612" kindref="member">LabelType</ref></type>
+          <declname>u</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/overlap.hxx" line="97" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/overlap.hxx" bodystart="97" bodyend="112"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1ground__truth_1_1Overlap_1a5c530575bb3d2657948424263dfcc3a9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const std::vector&lt; <ref refid="classnifty_1_1ground__truth_1_1Overlap_1ab8f82b8fef890dc3d7b69da0cc768c76" kindref="member">CountType</ref> &gt; &amp;</type>
+        <definition>const std::vector&lt;CountType&gt;&amp; nifty::ground_truth::Overlap&lt; LABEL_TYPE, COUNT_TYPE &gt;::counts</definition>
+        <argsstring>() const </argsstring>
+        <name>counts</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/overlap.hxx" line="113" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/overlap.hxx" bodystart="113" bodyend="115"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1ground__truth_1_1Overlap_1aa2bacf84117795f844bccbd698afada2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const std::vector&lt; <ref refid="classnifty_1_1ground__truth_1_1Overlap_1a6866ee8c988dd21d3fbd6ee5c2e836bf" kindref="member">MapType</ref> &gt; &amp;</type>
+        <definition>const std::vector&lt;MapType&gt;&amp; nifty::ground_truth::Overlap&lt; LABEL_TYPE, COUNT_TYPE &gt;::overlaps</definition>
+        <argsstring>() const </argsstring>
+        <name>overlaps</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/overlap.hxx" line="116" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/overlap.hxx" bodystart="116" bodyend="118"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1ground__truth_1_1Overlap_1a0e7d6a73dae11d4a87e379add45a9a4f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classnifty_1_1ground__truth_1_1Overlap_1af14b9a872d3736d3115231866bc71612" kindref="member">LabelType</ref></type>
+        <definition>LabelType nifty::ground_truth::Overlap&lt; LABEL_TYPE, COUNT_TYPE &gt;::maxOverlappingLabel</definition>
+        <argsstring>(const LabelType u) const </argsstring>
+        <name>maxOverlappingLabel</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1ground__truth_1_1Overlap_1af14b9a872d3736d3115231866bc71612" kindref="member">LabelType</ref></type>
+          <declname>u</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/overlap.hxx" line="121" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/overlap.hxx" bodystart="121" bodyend="132"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1ground__truth_1_1Overlap_1a6829df43d57809ad890da852e1c0fcdb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classnifty_1_1ground__truth_1_1Overlap_1af14b9a872d3736d3115231866bc71612" kindref="member">LabelType</ref></type>
+        <definition>LabelType nifty::ground_truth::Overlap&lt; LABEL_TYPE, COUNT_TYPE &gt;::maxOverlappingLabelDownvoteZeros</definition>
+        <argsstring>(const LabelType u) const </argsstring>
+        <name>maxOverlappingLabelDownvoteZeros</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1ground__truth_1_1Overlap_1af14b9a872d3736d3115231866bc71612" kindref="member">LabelType</ref></type>
+          <declname>u</declname>
+        </param>
+        <briefdescription>
+<para>find the maximum overlapping label and ignore zeros, except if zero is the only overlap. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">u</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>query label</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>maximum overlapping label </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/overlap.hxx" line="141" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/overlap.hxx" bodystart="141" bodyend="157"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1ground__truth_1_1Overlap_1ae62c3db2c94307a1a36c16603269cd20" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::pair&lt; <ref refid="classnifty_1_1ground__truth_1_1Overlap_1af14b9a872d3736d3115231866bc71612" kindref="member">LabelType</ref>, bool &gt;</type>
+        <definition>std::pair&lt;LabelType,bool&gt; nifty::ground_truth::Overlap&lt; LABEL_TYPE, COUNT_TYPE &gt;::maxOverlappingNonZeroLabel</definition>
+        <argsstring>(const LabelType u) const </argsstring>
+        <name>maxOverlappingNonZeroLabel</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1ground__truth_1_1Overlap_1af14b9a872d3736d3115231866bc71612" kindref="member">LabelType</ref></type>
+          <declname>u</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/overlap.hxx" line="158" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/overlap.hxx" bodystart="158" bodyend="171"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1ground__truth_1_1Overlap_1abb25bb8664462dd27ac19a56fe9b9e9c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool nifty::ground_truth::Overlap&lt; LABEL_TYPE, COUNT_TYPE &gt;::isOverlappingWithZero</definition>
+        <argsstring>(const LabelType u) const </argsstring>
+        <name>isOverlappingWithZero</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1ground__truth_1_1Overlap_1af14b9a872d3736d3115231866bc71612" kindref="member">LabelType</ref></type>
+          <declname>u</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/overlap.hxx" line="173" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/overlap.hxx" bodystart="173" bodyend="176"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classnifty_1_1ground__truth_1_1Overlap_1a5e782a24cc5b91d3d10a9428b9dae23c" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class SET_A_ITER</type>
+          </param>
+          <param>
+            <type>class SET_B_ITER</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::ground_truth::Overlap&lt; LABEL_TYPE, COUNT_TYPE &gt;::fill</definition>
+        <argsstring>(SET_A_ITER aBegin, SET_A_ITER aEnd, SET_B_ITER bBegin)</argsstring>
+        <name>fill</name>
+        <param>
+          <type>SET_A_ITER</type>
+          <declname>aBegin</declname>
+        </param>
+        <param>
+          <type>SET_A_ITER</type>
+          <declname>aEnd</declname>
+        </param>
+        <param>
+          <type>SET_B_ITER</type>
+          <declname>bBegin</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/overlap.hxx" line="183" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/overlap.hxx" bodystart="183" bodyend="199"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1ground__truth_1_1Overlap_1ab8712f7ba918d71297f7960b17c685fb" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>size_t</type>
+            <declname>DIM</declname>
+            <defname>DIM</defname>
+          </param>
+          <param>
+            <type>class LABEL_A</type>
+          </param>
+          <param>
+            <type>class LABEL_B</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::ground_truth::Overlap&lt; LABEL_TYPE, COUNT_TYPE &gt;::fill</definition>
+        <argsstring>(const marray::View&lt; LABEL_A &gt; arrayA, const marray::View&lt; LABEL_B &gt; arrayB)</argsstring>
+        <name>fill</name>
+        <param>
+          <type>const <ref refid="classandres_1_1View" kindref="compound">marray::View</ref>&lt; LABEL_A &gt;</type>
+          <declname>arrayA</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classandres_1_1View" kindref="compound">marray::View</ref>&lt; LABEL_B &gt;</type>
+          <declname>arrayB</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/overlap.hxx" line="203" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/overlap.hxx" bodystart="203" bodyend="218"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/overlap.hxx" line="13" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/overlap.hxx" bodystart="13" bodyend="221"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1ground__truth_1_1Overlap_1ad4518e3941b75c18091cefa145a7ce2b" prot="public" virt="non-virtual"><scope>nifty::ground_truth::Overlap</scope><name>bleeding</name></member>
+      <member refid="classnifty_1_1ground__truth_1_1Overlap_1a5c530575bb3d2657948424263dfcc3a9" prot="public" virt="non-virtual"><scope>nifty::ground_truth::Overlap</scope><name>counts</name></member>
+      <member refid="classnifty_1_1ground__truth_1_1Overlap_1a5e6dc565b0f0243ce1b8de44794a3920" prot="private" virt="non-virtual"><scope>nifty::ground_truth::Overlap</scope><name>counts_</name></member>
+      <member refid="classnifty_1_1ground__truth_1_1Overlap_1ab8f82b8fef890dc3d7b69da0cc768c76" prot="public" virt="non-virtual"><scope>nifty::ground_truth::Overlap</scope><name>CountType</name></member>
+      <member refid="classnifty_1_1ground__truth_1_1Overlap_1adfacb68ed0047e88cbe3524ad664f02f" prot="public" virt="non-virtual"><scope>nifty::ground_truth::Overlap</scope><name>differentOverlap</name></member>
+      <member refid="classnifty_1_1ground__truth_1_1Overlap_1a5e782a24cc5b91d3d10a9428b9dae23c" prot="private" virt="non-virtual"><scope>nifty::ground_truth::Overlap</scope><name>fill</name></member>
+      <member refid="classnifty_1_1ground__truth_1_1Overlap_1ab8712f7ba918d71297f7960b17c685fb" prot="private" virt="non-virtual"><scope>nifty::ground_truth::Overlap</scope><name>fill</name></member>
+      <member refid="classnifty_1_1ground__truth_1_1Overlap_1abb25bb8664462dd27ac19a56fe9b9e9c" prot="public" virt="non-virtual"><scope>nifty::ground_truth::Overlap</scope><name>isOverlappingWithZero</name></member>
+      <member refid="classnifty_1_1ground__truth_1_1Overlap_1af14b9a872d3736d3115231866bc71612" prot="public" virt="non-virtual"><scope>nifty::ground_truth::Overlap</scope><name>LabelType</name></member>
+      <member refid="classnifty_1_1ground__truth_1_1Overlap_1a6866ee8c988dd21d3fbd6ee5c2e836bf" prot="public" virt="non-virtual"><scope>nifty::ground_truth::Overlap</scope><name>MapType</name></member>
+      <member refid="classnifty_1_1ground__truth_1_1Overlap_1a0e7d6a73dae11d4a87e379add45a9a4f" prot="public" virt="non-virtual"><scope>nifty::ground_truth::Overlap</scope><name>maxOverlappingLabel</name></member>
+      <member refid="classnifty_1_1ground__truth_1_1Overlap_1a6829df43d57809ad890da852e1c0fcdb" prot="public" virt="non-virtual"><scope>nifty::ground_truth::Overlap</scope><name>maxOverlappingLabelDownvoteZeros</name></member>
+      <member refid="classnifty_1_1ground__truth_1_1Overlap_1ae62c3db2c94307a1a36c16603269cd20" prot="public" virt="non-virtual"><scope>nifty::ground_truth::Overlap</scope><name>maxOverlappingNonZeroLabel</name></member>
+      <member refid="classnifty_1_1ground__truth_1_1Overlap_1aedaa9af95b736f17f2dbfe0eff4c09bf" prot="public" virt="non-virtual"><scope>nifty::ground_truth::Overlap</scope><name>Overlap</name></member>
+      <member refid="classnifty_1_1ground__truth_1_1Overlap_1a0a40f259581e8a4d9e594fd1db23170a" prot="public" virt="non-virtual"><scope>nifty::ground_truth::Overlap</scope><name>Overlap</name></member>
+      <member refid="classnifty_1_1ground__truth_1_1Overlap_1aa2bacf84117795f844bccbd698afada2" prot="public" virt="non-virtual"><scope>nifty::ground_truth::Overlap</scope><name>overlaps</name></member>
+      <member refid="classnifty_1_1ground__truth_1_1Overlap_1a38fe8173ee492f1f1ad3e6769bda4c6c" prot="private" virt="non-virtual"><scope>nifty::ground_truth::Overlap</scope><name>overlaps_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

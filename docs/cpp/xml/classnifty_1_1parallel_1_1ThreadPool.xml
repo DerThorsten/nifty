@@ -1,0 +1,279 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="classnifty_1_1parallel_1_1ThreadPool" kind="class" language="C++" prot="public">
+    <compoundname>nifty::parallel::ThreadPool</compoundname>
+    <includes refid="threadpool_8hxx" local="no">threadpool.hxx</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classnifty_1_1parallel_1_1ThreadPool_1a7e912ee2eb9739db881a95f0e27c0b26" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::thread &gt;</type>
+        <definition>std::vector&lt;std::thread&gt; nifty::parallel::ThreadPool::workers</definition>
+        <argsstring></argsstring>
+        <name>workers</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" line="196" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" bodystart="196" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1parallel_1_1ThreadPool_1a4495cfa79557741925fa649575e41a12" prot="private" static="no" mutable="no">
+        <type>std::queue&lt; std::function&lt; void(int)&gt; &gt;</type>
+        <definition>std::queue&lt;std::function&lt;void(int)&gt; &gt; nifty::parallel::ThreadPool::tasks</definition>
+        <argsstring></argsstring>
+        <name>tasks</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" line="199" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" bodystart="199" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1parallel_1_1ThreadPool_1ac5893a89c9eec3a53e4b2fea72df9e25" prot="private" static="no" mutable="no">
+        <type>std::mutex</type>
+        <definition>std::mutex nifty::parallel::ThreadPool::queue_mutex</definition>
+        <argsstring></argsstring>
+        <name>queue_mutex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" line="202" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" bodystart="202" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1parallel_1_1ThreadPool_1a08e9236ca02d1fd5b037673c9b260047" prot="private" static="no" mutable="no">
+        <type>std::condition_variable</type>
+        <definition>std::condition_variable nifty::parallel::ThreadPool::worker_condition</definition>
+        <argsstring></argsstring>
+        <name>worker_condition</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" line="203" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" bodystart="203" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1parallel_1_1ThreadPool_1a9785552e05661facd8a868e0013bc77e" prot="private" static="no" mutable="no">
+        <type>std::condition_variable</type>
+        <definition>std::condition_variable nifty::parallel::ThreadPool::finish_condition</definition>
+        <argsstring></argsstring>
+        <name>finish_condition</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" line="204" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" bodystart="204" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1parallel_1_1ThreadPool_1af5522add9d432ac12c5ce1c96f5b7730" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool nifty::parallel::ThreadPool::stop</definition>
+        <argsstring></argsstring>
+        <name>stop</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" line="205" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" bodystart="205" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1parallel_1_1ThreadPool_1a8a95b98aa4a65cb17c0835d6a8b294cc" prot="private" static="no" mutable="no">
+        <type>std::atomic&lt; unsigned int &gt;</type>
+        <definition>std::atomic&lt;unsigned int&gt; nifty::parallel::ThreadPool::busy</definition>
+        <argsstring></argsstring>
+        <name>busy</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" line="206" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" bodystart="206" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1parallel_1_1ThreadPool_1aeb95e53635559a320ab8f9f9a36308f8" prot="private" static="no" mutable="no">
+        <type>std::atomic&lt; unsigned int &gt;</type>
+        <definition>std::atomic&lt;unsigned int&gt; nifty::parallel::ThreadPool::processed</definition>
+        <argsstring></argsstring>
+        <name>processed</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" line="206" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" bodystart="206" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1parallel_1_1ThreadPool_1a43dcc819b5ac947b6f68a774d6fc40e7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>nifty::parallel::ThreadPool::ThreadPool</definition>
+        <argsstring>(const ParallelOptions &amp;options)</argsstring>
+        <name>ThreadPool</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1parallel_1_1ParallelOptions" kindref="compound">ParallelOptions</ref> &amp;</type>
+          <declname>options</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create a thread pool from <ref refid="classnifty_1_1parallel_1_1ParallelOptions" kindref="compound">ParallelOptions</ref>. The constructor just launches the desired number of workers. If the number of threads is zero, no workers are started, and all tasks will be executed in synchronously in the present thread. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" line="126" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" bodystart="126" bodyend="132"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1parallel_1_1ThreadPool_1ac6ddbc44375bf1ae46b73707c7eabf85" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>nifty::parallel::ThreadPool::ThreadPool</definition>
+        <argsstring>(const int n)</argsstring>
+        <name>ThreadPool</name>
+        <param>
+          <type>const int</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create a thread pool with n threads. The constructor just launches the desired number of workers. If <itemizedlist>
+<listitem><para>n is <computeroutput><ref refid="classnifty_1_1parallel_1_1ParallelOptions_1a7a945e8bd698883de4af0f906b2aa88aa0bd8f9fd00d78fcfdcb6ee1575f43fd6" kindref="member">ParallelOptions::Auto</ref></computeroutput>, the number of threads is determined by <computeroutput>std::thread::hardware_concurrency()</computeroutput>. <computeroutput><ref refid="classnifty_1_1parallel_1_1ParallelOptions_1a7a945e8bd698883de4af0f906b2aa88aad7df42230112f42413aa5fc2b3671651" kindref="member">ParallelOptions::Nice</ref></computeroutput> will create half as many threads. If <computeroutput>n = 0</computeroutput>, no workers are started, and all tasks will be executed synchronously in the present thread. If the preprocessor flag <computeroutput>NIFTY_NO_PARALLELISM</computeroutput> is defined, the number of threads is always set to zero (i.e. synchronous execution), regardless of the value of </para></listitem>
+<listitem><para>n. This is useful for debugging. </para></listitem>
+</itemizedlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" line="144" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" bodystart="144" bodyend="150"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ParallelProcessing_1ga77c519ec32559623c64d61f532c570b8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>nifty::parallel::ThreadPool::~ThreadPool</definition>
+        <argsstring>()</argsstring>
+        <name>~ThreadPool</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The destructor joins all threads. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" line="155" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" bodystart="251" bodyend="260"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ParallelProcessing_1ga5ffeb64ca8f60c37ad2db97bf80b05af" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class F</type>
+          </param>
+        </templateparamlist>
+        <type>std::future&lt; typename std::result_of&lt; F(int)&gt;::type &gt;</type>
+        <definition>std::future&lt; typename std::result_of&lt; F(int)&gt;::type &gt; nifty::parallel::ThreadPool::enqueueReturning</definition>
+        <argsstring>(F &amp;&amp;f)</argsstring>
+        <name>enqueueReturning</name>
+        <param>
+          <type>F &amp;&amp;</type>
+          <declname>f</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enqueue a task that will be executed by the thread pool. The task result can be obtained using the get() function of the returned future. If the task throws an exception, it will be raised on the call to get(). </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" line="163" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" bodystart="264" bodyend="294"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ParallelProcessing_1ga030f79847ecd6a609877dd5f997ac875" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class F</type>
+          </param>
+        </templateparamlist>
+        <type>std::future&lt; void &gt;</type>
+        <definition>std::future&lt; void &gt; nifty::parallel::ThreadPool::enqueue</definition>
+        <argsstring>(F &amp;&amp;f)</argsstring>
+        <name>enqueue</name>
+        <param>
+          <type>F &amp;&amp;</type>
+          <declname>f</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enqueue function for tasks without return value. This is a special case of the enqueueReturning template function, but some compilers fail on <computeroutput>std::result_of&lt;F(int)&gt;::type</computeroutput> for void(int) functions. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" line="171" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" bodystart="298" bodyend="325"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1parallel_1_1ThreadPool_1a72bcedd7dfdb99fe347ee9da0a80cabd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::parallel::ThreadPool::waitFinished</definition>
+        <argsstring>()</argsstring>
+        <name>waitFinished</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Block until all tasks are finished. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" line="176" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" bodystart="176" bodyend="180"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1parallel_1_1ThreadPool_1abebd5767549c0d0e07d0a8379df8dac0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t nifty::parallel::ThreadPool::nThreads</definition>
+        <argsstring>() const </argsstring>
+        <name>nThreads</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Return the number of worker threads. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" line="185" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" bodystart="185" bodyend="188"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="group__ParallelProcessing_1ga458b0746b2991443d31bdb24e93810aa" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::parallel::ThreadPool::init</definition>
+        <argsstring>(const ParallelOptions &amp;options)</argsstring>
+        <name>init</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1parallel_1_1ParallelOptions" kindref="compound">ParallelOptions</ref> &amp;</type>
+          <declname>options</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" line="193" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" bodystart="209" bodyend="249"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Thread pool class to manage a set of parallel workers. </para>    </briefdescription>
+    <detaileddescription>
+<para><bold>#include</bold> &lt;<ref refid="threadpool_8hxx" kindref="compound">nifty/parallel/threadpool.hxx</ref>&gt;<linebreak/>
+ Namespace: <ref refid="namespacenifty_1_1parallel" kindref="compound">nifty::parallel</ref> </para>    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" line="118" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" bodystart="117" bodyend="207"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1parallel_1_1ThreadPool_1a8a95b98aa4a65cb17c0835d6a8b294cc" prot="private" virt="non-virtual"><scope>nifty::parallel::ThreadPool</scope><name>busy</name></member>
+      <member refid="group__ParallelProcessing_1ga030f79847ecd6a609877dd5f997ac875" prot="public" virt="non-virtual"><scope>nifty::parallel::ThreadPool</scope><name>enqueue</name></member>
+      <member refid="group__ParallelProcessing_1ga5ffeb64ca8f60c37ad2db97bf80b05af" prot="public" virt="non-virtual"><scope>nifty::parallel::ThreadPool</scope><name>enqueueReturning</name></member>
+      <member refid="classnifty_1_1parallel_1_1ThreadPool_1a9785552e05661facd8a868e0013bc77e" prot="private" virt="non-virtual"><scope>nifty::parallel::ThreadPool</scope><name>finish_condition</name></member>
+      <member refid="group__ParallelProcessing_1ga458b0746b2991443d31bdb24e93810aa" prot="private" virt="non-virtual"><scope>nifty::parallel::ThreadPool</scope><name>init</name></member>
+      <member refid="classnifty_1_1parallel_1_1ThreadPool_1abebd5767549c0d0e07d0a8379df8dac0" prot="public" virt="non-virtual"><scope>nifty::parallel::ThreadPool</scope><name>nThreads</name></member>
+      <member refid="classnifty_1_1parallel_1_1ThreadPool_1aeb95e53635559a320ab8f9f9a36308f8" prot="private" virt="non-virtual"><scope>nifty::parallel::ThreadPool</scope><name>processed</name></member>
+      <member refid="classnifty_1_1parallel_1_1ThreadPool_1ac5893a89c9eec3a53e4b2fea72df9e25" prot="private" virt="non-virtual"><scope>nifty::parallel::ThreadPool</scope><name>queue_mutex</name></member>
+      <member refid="classnifty_1_1parallel_1_1ThreadPool_1af5522add9d432ac12c5ce1c96f5b7730" prot="private" virt="non-virtual"><scope>nifty::parallel::ThreadPool</scope><name>stop</name></member>
+      <member refid="classnifty_1_1parallel_1_1ThreadPool_1a4495cfa79557741925fa649575e41a12" prot="private" virt="non-virtual"><scope>nifty::parallel::ThreadPool</scope><name>tasks</name></member>
+      <member refid="classnifty_1_1parallel_1_1ThreadPool_1a43dcc819b5ac947b6f68a774d6fc40e7" prot="public" virt="non-virtual"><scope>nifty::parallel::ThreadPool</scope><name>ThreadPool</name></member>
+      <member refid="classnifty_1_1parallel_1_1ThreadPool_1ac6ddbc44375bf1ae46b73707c7eabf85" prot="public" virt="non-virtual"><scope>nifty::parallel::ThreadPool</scope><name>ThreadPool</name></member>
+      <member refid="classnifty_1_1parallel_1_1ThreadPool_1a72bcedd7dfdb99fe347ee9da0a80cabd" prot="public" virt="non-virtual"><scope>nifty::parallel::ThreadPool</scope><name>waitFinished</name></member>
+      <member refid="classnifty_1_1parallel_1_1ThreadPool_1a08e9236ca02d1fd5b037673c9b260047" prot="private" virt="non-virtual"><scope>nifty::parallel::ThreadPool</scope><name>worker_condition</name></member>
+      <member refid="classnifty_1_1parallel_1_1ThreadPool_1a7e912ee2eb9739db881a95f0e27c0b26" prot="private" virt="non-virtual"><scope>nifty::parallel::ThreadPool</scope><name>workers</name></member>
+      <member refid="group__ParallelProcessing_1ga77c519ec32559623c64d61f532c570b8" prot="public" virt="non-virtual"><scope>nifty::parallel::ThreadPool</scope><name>~ThreadPool</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

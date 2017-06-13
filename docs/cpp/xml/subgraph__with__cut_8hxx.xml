@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="subgraph__with__cut_8hxx" kind="file" language="C++">
+    <compoundname>subgraph_with_cut.hxx</compoundname>
+    <includedby refid="lifted__multicut__kernighan__lin_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_kernighan_lin.hxx</includedby>
+    <invincdepgraph>
+      <node id="10849">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/subgraph_masks/subgraph_with_cut.hxx</label>
+        <link refid="subgraph_with_cut.hxx"/>
+        <childnode refid="10850" relation="include">
+        </childnode>
+      </node>
+      <node id="10851">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_mp.hxx</label>
+        <link refid="lifted__multicut__mp_8hxx"/>
+      </node>
+      <node id="10850">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_kernighan_lin.hxx</label>
+        <link refid="lifted__multicut__kernighan__lin_8hxx"/>
+        <childnode refid="10851" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structnifty_1_1graph_1_1subgraph__masks_1_1SubgraphWithCutFromNodeLabels" prot="public">nifty::graph::subgraph_masks::SubgraphWithCutFromNodeLabels</innerclass>
+    <innernamespace refid="namespacenifty">nifty</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph">nifty::graph</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph_1_1subgraph__masks">nifty::graph::subgraph_masks</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacenifty" kindref="compound">nifty</ref>{</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">graph{</highlight></codeline>
+<codeline lineno="6" refid="namespacenifty_1_1graph_1_1subgraph__masks" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">subgraph_masks{</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>GRAPH,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>NODE_LABELS&gt;</highlight></codeline>
+<codeline lineno="10" refid="structnifty_1_1graph_1_1subgraph__masks_1_1SubgraphWithCutFromNodeLabels" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structnifty_1_1graph_1_1subgraph__masks_1_1SubgraphWithCutFromNodeLabels" kindref="compound">SubgraphWithCutFromNodeLabels</ref><sp/>{</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12" refid="structnifty_1_1graph_1_1subgraph__masks_1_1SubgraphWithCutFromNodeLabels_1adc4d7dd452a818984b5afc989cc55a19" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>GRAPH<sp/><ref refid="structnifty_1_1graph_1_1subgraph__masks_1_1SubgraphWithCutFromNodeLabels_1adc4d7dd452a818984b5afc989cc55a19" kindref="member">GraphType</ref>;</highlight></codeline>
+<codeline lineno="13" refid="structnifty_1_1graph_1_1subgraph__masks_1_1SubgraphWithCutFromNodeLabels_1aab0ef05152a0058c18c020c8220ad30f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>NODE_LABELS<sp/><ref refid="structnifty_1_1graph_1_1subgraph__masks_1_1SubgraphWithCutFromNodeLabels_1aab0ef05152a0058c18c020c8220ad30f" kindref="member">NodeLabelsType</ref>;</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15" refid="structnifty_1_1graph_1_1subgraph__masks_1_1SubgraphWithCutFromNodeLabels_1abc60999bc3d3ba367572a5141062b031" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structnifty_1_1graph_1_1subgraph__masks_1_1SubgraphWithCutFromNodeLabels_1abc60999bc3d3ba367572a5141062b031" kindref="member">SubgraphWithCutFromNodeLabels</ref>(</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GraphType<sp/>&amp;<sp/>graph,</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>NodeLabelsType<sp/>&amp;<sp/>nodeLabels</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/><sp/><sp/><ref refid="structnifty_1_1graph_1_1subgraph__masks_1_1SubgraphWithCutFromNodeLabels_1a1c05f51c94a45c331bfc87c01c14945f" kindref="member">graph_</ref>(graph),</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structnifty_1_1graph_1_1subgraph__masks_1_1SubgraphWithCutFromNodeLabels_1ad5ab9c0ccfb9b5e654f60f1389df11af" kindref="member">nodeLabels_</ref>(nodeLabels){</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23" refid="structnifty_1_1graph_1_1subgraph__masks_1_1SubgraphWithCutFromNodeLabels_1a31ea73ac998792f602c5668bc758ebb8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1subgraph__masks_1_1SubgraphWithCutFromNodeLabels_1a31ea73ac998792f602c5668bc758ebb8" kindref="member">useNode</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uint64_t<sp/>v)</highlight><highlight class="keyword"><sp/>const</highlight><highlight class="normal">{<sp/></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;<sp/></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="26" refid="structnifty_1_1graph_1_1subgraph__masks_1_1SubgraphWithCutFromNodeLabels_1a584976af564b8aafdf38391efe68022e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1subgraph__masks_1_1SubgraphWithCutFromNodeLabels_1a584976af564b8aafdf38391efe68022e" kindref="member">useEdge</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uint64_t<sp/>graphEdge)</highlight><highlight class="keyword">const</highlight><highlight class="normal">{<sp/></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>uv<sp/>=<sp/><ref refid="structnifty_1_1graph_1_1subgraph__masks_1_1SubgraphWithCutFromNodeLabels_1a1c05f51c94a45c331bfc87c01c14945f" kindref="member">graph_</ref>.uv(graphEdge);</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1subgraph__masks_1_1SubgraphWithCutFromNodeLabels_1ad5ab9c0ccfb9b5e654f60f1389df11af" kindref="member">nodeLabels_</ref>[uv.first]<sp/>==<sp/><ref refid="structnifty_1_1graph_1_1subgraph__masks_1_1SubgraphWithCutFromNodeLabels_1ad5ab9c0ccfb9b5e654f60f1389df11af" kindref="member">nodeLabels_</ref>[uv.second];</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="30" refid="structnifty_1_1graph_1_1subgraph__masks_1_1SubgraphWithCutFromNodeLabels_1a1c05f51c94a45c331bfc87c01c14945f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GraphType<sp/>&amp;<sp/><ref refid="structnifty_1_1graph_1_1subgraph__masks_1_1SubgraphWithCutFromNodeLabels_1a1c05f51c94a45c331bfc87c01c14945f" kindref="member">graph_</ref>;</highlight></codeline>
+<codeline lineno="31" refid="structnifty_1_1graph_1_1subgraph__masks_1_1SubgraphWithCutFromNodeLabels_1ad5ab9c0ccfb9b5e654f60f1389df11af" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>NodeLabelsType<sp/>&amp;<sp/><ref refid="structnifty_1_1graph_1_1subgraph__masks_1_1SubgraphWithCutFromNodeLabels_1ad5ab9c0ccfb9b5e654f60f1389df11af" kindref="member">nodeLabels_</ref>;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="35"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="36"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/subgraph_masks/subgraph_with_cut.hxx"/>
+  </compounddef>
+</doxygen>

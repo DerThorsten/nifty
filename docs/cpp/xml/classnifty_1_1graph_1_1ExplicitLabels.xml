@@ -1,0 +1,211 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="classnifty_1_1graph_1_1ExplicitLabels" kind="class" language="C++" prot="public">
+    <compoundname>nifty::graph::ExplicitLabels</compoundname>
+    <includes refid="compute__grid__rag_8hxx" local="no">compute_grid_rag.hxx</includes>
+    <templateparamlist>
+      <param>
+        <type>std::size_t</type>
+        <declname>DIM</declname>
+        <defname>DIM</defname>
+      </param>
+      <param>
+        <type>class</type>
+        <declname>LABEL_TYPE</declname>
+        <defname>LABEL_TYPE</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1ExplicitLabels_1a896653b58048ec52d8e00800279d9b53" prot="public" static="no">
+        <type><ref refid="classnifty_1_1tools_1_1BlockView" kindref="compound">tools::BlockView</ref>&lt; LABEL_TYPE &gt;</type>
+        <definition>typedef tools::BlockView&lt; LABEL_TYPE&gt; nifty::graph::ExplicitLabels&lt; DIM, LABEL_TYPE &gt;::BlockStorageType</definition>
+        <argsstring></argsstring>
+        <name>BlockStorageType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels.hxx" line="20" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels.hxx" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1ExplicitLabels_1a3defd2851b5e7071f23a0fdea7aafff0" prot="public" static="no">
+        <type>LABEL_TYPE</type>
+        <definition>typedef LABEL_TYPE nifty::graph::ExplicitLabels&lt; DIM, LABEL_TYPE &gt;::LabelType</definition>
+        <argsstring></argsstring>
+        <name>LabelType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels.hxx" line="21" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels.hxx" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1ExplicitLabels_1ae07fe2aed8059beb43b043e8a3becdb7" prot="public" static="no">
+        <type><ref refid="classandres_1_1Marray" kindref="compound">marray::Marray</ref>&lt; LABEL_TYPE &gt;</type>
+        <definition>typedef marray::Marray&lt;LABEL_TYPE&gt; nifty::graph::ExplicitLabels&lt; DIM, LABEL_TYPE &gt;::SubarrayViewType</definition>
+        <argsstring></argsstring>
+        <name>SubarrayViewType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels.hxx" line="22" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels.hxx" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1ExplicitLabels_1aaab98314403b95503bf0c32e65fd1884" prot="public" static="no">
+        <type><ref refid="classandres_1_1View" kindref="compound">nifty::marray::View</ref>&lt; LABEL_TYPE &gt;</type>
+        <definition>typedef nifty::marray::View&lt;LABEL_TYPE&gt; nifty::graph::ExplicitLabels&lt; DIM, LABEL_TYPE &gt;::ViewType</definition>
+        <argsstring></argsstring>
+        <name>ViewType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels.hxx" line="25" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels.hxx" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1ExplicitLabels_1a8fb133f22b32651ffd794f21e6a41920" prot="private" static="no" mutable="no">
+        <type><ref refid="classandres_1_1View" kindref="compound">nifty::marray::View</ref>&lt; LABEL_TYPE &gt;</type>
+        <definition>nifty::marray::View&lt;LABEL_TYPE&gt; nifty::graph::ExplicitLabels&lt; DIM, LABEL_TYPE &gt;::labels_</definition>
+        <argsstring></argsstring>
+        <name>labels_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels.hxx" line="84" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels.hxx" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1ExplicitLabels_1a9042dbf58b2aa34c4e77bfb6415f6f6b" prot="private" static="no" mutable="no">
+        <type><ref refid="namespacenifty_1_1array_1a683f151f19c851754e0c6d55ed16a0c2" kindref="member">array::StaticArray</ref>&lt; int64_t, DIM &gt;</type>
+        <definition>array::StaticArray&lt;int64_t, DIM&gt; nifty::graph::ExplicitLabels&lt; DIM, LABEL_TYPE &gt;::shape_</definition>
+        <argsstring></argsstring>
+        <name>shape_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels.hxx" line="85" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels.hxx" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1ExplicitLabels_1ae503c70604d75e48d73622f8941cfa34" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>nifty::graph::ExplicitLabels&lt; DIM, LABEL_TYPE &gt;::ExplicitLabels</definition>
+        <argsstring>(const nifty::marray::View&lt; LABEL_TYPE, false &gt; &amp;labels=nifty::marray::View&lt; LABEL_TYPE, false &gt;())</argsstring>
+        <name>ExplicitLabels</name>
+        <param>
+          <type>const <ref refid="classandres_1_1View" kindref="compound">nifty::marray::View</ref>&lt; LABEL_TYPE, false &gt; &amp;</type>
+          <declname>labels</declname>
+          <defval><ref refid="classandres_1_1View" kindref="compound">nifty::marray::View</ref>&lt; LABEL_TYPE, false &gt;()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels.hxx" line="27" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels.hxx" bodystart="27" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1ExplicitLabels_1ac60baa565d760fbd0685b51440f0cae0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint64_t</type>
+        <definition>uint64_t nifty::graph::ExplicitLabels&lt; DIM, LABEL_TYPE &gt;::numberOfLabels</definition>
+        <argsstring>() const </argsstring>
+        <name>numberOfLabels</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels.hxx" line="37" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels.hxx" bodystart="37" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1ExplicitLabels_1a546bc09065e24792dce4ae415dc04727" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class ROI_BEGIN_COORD</type>
+          </param>
+          <param>
+            <type>class ROI_END_COORD</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::graph::ExplicitLabels&lt; DIM, LABEL_TYPE &gt;::readSubarray</definition>
+        <argsstring>(const ROI_BEGIN_COORD &amp;roiBeginCoord, const ROI_END_COORD &amp;roiEndCoord, marray::View&lt; LABEL_TYPE &gt; &amp;outArray) const </argsstring>
+        <name>readSubarray</name>
+        <param>
+          <type>const ROI_BEGIN_COORD &amp;</type>
+          <declname>roiBeginCoord</declname>
+        </param>
+        <param>
+          <type>const ROI_END_COORD &amp;</type>
+          <declname>roiEndCoord</declname>
+        </param>
+        <param>
+          <type><ref refid="classandres_1_1View" kindref="compound">marray::View</ref>&lt; LABEL_TYPE &gt; &amp;</type>
+          <declname>outArray</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels.hxx" line="62" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels.hxx" bodystart="62" bodyend="72"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1ExplicitLabels_1a791af26bb936452324bf9e0b35521382" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classnifty_1_1graph_1_1ExplicitLabels_1aaab98314403b95503bf0c32e65fd1884" kindref="member">ViewType</ref> &amp;</type>
+        <definition>const ViewType&amp; nifty::graph::ExplicitLabels&lt; DIM, LABEL_TYPE &gt;::labels</definition>
+        <argsstring>() const </argsstring>
+        <name>labels</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels.hxx" line="75" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels.hxx" bodystart="75" bodyend="77"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1ExplicitLabels_1a92c40e0451004610fa03feee065dd316" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="namespacenifty_1_1array_1a683f151f19c851754e0c6d55ed16a0c2" kindref="member">array::StaticArray</ref>&lt; int64_t, DIM &gt; &amp;</type>
+        <definition>const array::StaticArray&lt;int64_t, DIM&gt;&amp; nifty::graph::ExplicitLabels&lt; DIM, LABEL_TYPE &gt;::shape</definition>
+        <argsstring>() const </argsstring>
+        <name>shape</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels.hxx" line="79" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels.hxx" bodystart="79" bodyend="81"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/rag/detail_rag/compute_grid_rag.hxx" line="21" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/rag/detail_rag/compute_grid_rag.hxx" bodystart="21" bodyend="-1"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1graph_1_1ExplicitLabels_1a896653b58048ec52d8e00800279d9b53" prot="public" virt="non-virtual"><scope>nifty::graph::ExplicitLabels</scope><name>BlockStorageType</name></member>
+      <member refid="classnifty_1_1graph_1_1ExplicitLabels_1ae503c70604d75e48d73622f8941cfa34" prot="public" virt="non-virtual"><scope>nifty::graph::ExplicitLabels</scope><name>ExplicitLabels</name></member>
+      <member refid="classnifty_1_1graph_1_1ExplicitLabels_1a791af26bb936452324bf9e0b35521382" prot="public" virt="non-virtual"><scope>nifty::graph::ExplicitLabels</scope><name>labels</name></member>
+      <member refid="classnifty_1_1graph_1_1ExplicitLabels_1a8fb133f22b32651ffd794f21e6a41920" prot="private" virt="non-virtual"><scope>nifty::graph::ExplicitLabels</scope><name>labels_</name></member>
+      <member refid="classnifty_1_1graph_1_1ExplicitLabels_1a3defd2851b5e7071f23a0fdea7aafff0" prot="public" virt="non-virtual"><scope>nifty::graph::ExplicitLabels</scope><name>LabelType</name></member>
+      <member refid="classnifty_1_1graph_1_1ExplicitLabels_1ac60baa565d760fbd0685b51440f0cae0" prot="public" virt="non-virtual"><scope>nifty::graph::ExplicitLabels</scope><name>numberOfLabels</name></member>
+      <member refid="classnifty_1_1graph_1_1ExplicitLabels_1a546bc09065e24792dce4ae415dc04727" prot="public" virt="non-virtual"><scope>nifty::graph::ExplicitLabels</scope><name>readSubarray</name></member>
+      <member refid="classnifty_1_1graph_1_1ExplicitLabels_1a92c40e0451004610fa03feee065dd316" prot="public" virt="non-virtual"><scope>nifty::graph::ExplicitLabels</scope><name>shape</name></member>
+      <member refid="classnifty_1_1graph_1_1ExplicitLabels_1a9042dbf58b2aa34c4e77bfb6415f6f6b" prot="private" virt="non-virtual"><scope>nifty::graph::ExplicitLabels</scope><name>shape_</name></member>
+      <member refid="classnifty_1_1graph_1_1ExplicitLabels_1ae07fe2aed8059beb43b043e8a3becdb7" prot="public" virt="non-virtual"><scope>nifty::graph::ExplicitLabels</scope><name>SubarrayViewType</name></member>
+      <member refid="classnifty_1_1graph_1_1ExplicitLabels_1aaab98314403b95503bf0c32e65fd1884" prot="public" virt="non-virtual"><scope>nifty::graph::ExplicitLabels</scope><name>ViewType</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="structnifty_1_1graph_1_1optimization_1_1multicut_1_1Cgc_1_1Settings" kind="struct" language="C++" prot="public">
+    <compoundname>nifty::graph::optimization::multicut::Cgc::Settings</compoundname>
+    <includes refid="cgc_8hxx" local="no">cgc.hxx</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structnifty_1_1graph_1_1optimization_1_1multicut_1_1Cgc_1_1Settings_1a6548eeee6ce416e6d9c55304617f4a7a" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double nifty::graph::optimization::multicut::Cgc&lt; OBJECTIVE &gt;::Settings::nodeNumStopCond</definition>
+        <argsstring></argsstring>
+        <name>nodeNumStopCond</name>
+        <initializer>{0.1}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/cgc.hxx" line="594" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/cgc.hxx" bodystart="594" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structnifty_1_1graph_1_1optimization_1_1multicut_1_1Cgc_1_1Settings_1afdadff9816d3e4ea88dc64b035380bc6" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double nifty::graph::optimization::multicut::Cgc&lt; OBJECTIVE &gt;::Settings::sizeRegularizer</definition>
+        <argsstring></argsstring>
+        <name>sizeRegularizer</name>
+        <initializer>{1.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/cgc.hxx" line="595" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/cgc.hxx" bodystart="595" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structnifty_1_1graph_1_1optimization_1_1multicut_1_1Cgc_1_1Settings_1a8a31328292f57b82bcc239ce2d59b5aa" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool nifty::graph::optimization::multicut::Cgc&lt; OBJECTIVE &gt;::Settings::doCutPhase</definition>
+        <argsstring></argsstring>
+        <name>doCutPhase</name>
+        <initializer>{true}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/cgc.hxx" line="596" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/cgc.hxx" bodystart="596" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structnifty_1_1graph_1_1optimization_1_1multicut_1_1Cgc_1_1Settings_1ac7ad840411e8c31aef71822a0edf1803" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool nifty::graph::optimization::multicut::Cgc&lt; OBJECTIVE &gt;::Settings::doBetterCutPhase</definition>
+        <argsstring></argsstring>
+        <name>doBetterCutPhase</name>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/cgc.hxx" line="597" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/cgc.hxx" bodystart="597" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structnifty_1_1graph_1_1optimization_1_1multicut_1_1Cgc_1_1Settings_1aefc9e01a0efcbcde3492a21b5fc4b33d" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool nifty::graph::optimization::multicut::Cgc&lt; OBJECTIVE &gt;::Settings::doGlueAndCutPhase</definition>
+        <argsstring></argsstring>
+        <name>doGlueAndCutPhase</name>
+        <initializer>{true}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/cgc.hxx" line="598" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/cgc.hxx" bodystart="598" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structnifty_1_1graph_1_1optimization_1_1multicut_1_1Cgc_1_1Settings_1a6738ad90cb7fce9545fd571dd2db3397" prot="public" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1Cgc_1ac1c5595cf075e7850bb42a4909dd74c2" kindref="member">MincutSubMcFactoryBase</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;MincutSubMcFactoryBase&gt; nifty::graph::optimization::multicut::Cgc&lt; OBJECTIVE &gt;::Settings::mincutFactory</definition>
+        <argsstring></argsstring>
+        <name>mincutFactory</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/cgc.hxx" line="600" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/cgc.hxx" bodystart="600" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structnifty_1_1graph_1_1optimization_1_1multicut_1_1Cgc_1_1Settings_1a9f195bc5037accb73cd9d975c1b222f5" prot="public" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1Cgc_1a6d51da2980311e5646e75fc433b4f8fb" kindref="member">MulticutSubMcFactoryBase</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;MulticutSubMcFactoryBase&gt; nifty::graph::optimization::multicut::Cgc&lt; OBJECTIVE &gt;::Settings::multicutFactory</definition>
+        <argsstring></argsstring>
+        <name>multicutFactory</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/cgc.hxx" line="601" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/cgc.hxx" bodystart="601" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/cgc.hxx" line="593" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/cgc.hxx" bodystart="593" bodyend="602"/>
+    <listofallmembers>
+      <member refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1Cgc_1_1Settings_1ac7ad840411e8c31aef71822a0edf1803" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::multicut::Cgc::Settings</scope><name>doBetterCutPhase</name></member>
+      <member refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1Cgc_1_1Settings_1a8a31328292f57b82bcc239ce2d59b5aa" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::multicut::Cgc::Settings</scope><name>doCutPhase</name></member>
+      <member refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1Cgc_1_1Settings_1aefc9e01a0efcbcde3492a21b5fc4b33d" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::multicut::Cgc::Settings</scope><name>doGlueAndCutPhase</name></member>
+      <member refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1Cgc_1_1Settings_1a6738ad90cb7fce9545fd571dd2db3397" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::multicut::Cgc::Settings</scope><name>mincutFactory</name></member>
+      <member refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1Cgc_1_1Settings_1a9f195bc5037accb73cd9d975c1b222f5" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::multicut::Cgc::Settings</scope><name>multicutFactory</name></member>
+      <member refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1Cgc_1_1Settings_1a6548eeee6ce416e6d9c55304617f4a7a" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::multicut::Cgc::Settings</scope><name>nodeNumStopCond</name></member>
+      <member refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1Cgc_1_1Settings_1afdadff9816d3e4ea88dc64b035380bc6" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::multicut::Cgc::Settings</scope><name>sizeRegularizer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

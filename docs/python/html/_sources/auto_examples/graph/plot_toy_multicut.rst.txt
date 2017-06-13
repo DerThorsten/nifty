@@ -126,8 +126,8 @@ and log the runtime / energies.
     pylab.rcParams['figure.figsize'] = 1.5*a, 1.5*b
 
     for key in results.keys():
-        (runtimes,energies) = results[key]
-        pylab.semilogx(energies, runtimes, label=key, marker='o')
+        (energies, runtimes) = results[key]
+        pylab.semilogx(runtimes, energies, label=key, marker='o')
 
     pylab.title('Multicut Solver Comparison on Toy Graph')
     pylab.xlabel('Runtime [s]')
@@ -137,7 +137,7 @@ and log the runtime / energies.
 
 
 
-**Total running time of the script:** ( 0 minutes  0.278 seconds)
+**Total running time of the script:** ( 0 minutes  0.084 seconds)
 
 
 

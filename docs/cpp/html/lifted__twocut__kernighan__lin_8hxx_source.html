@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Nifty
-   &#160;<span id="projectnumber">0.5.1</span>
+   &#160;<span id="projectnumber">0.19.0</span>
    </div>
   </td>
  </tr>
@@ -97,28 +97,28 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// https://github.com/bjoern-andres/graph</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#ifndef NIFTY_GRAPH_OPTIMIZATION_LIFTED_MULTICUT_DETAIL_LIFTED_TWOCUT_KERNIGHAN_LIN_HXX</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno"><a class="line" href="lifted__twocut__kernighan__lin_8hxx.html#a5b626d4e81b45e357e6597aeccc4c222">    6</a></span>&#160;<span class="preprocessor">#define NIFTY_GRAPH_OPTIMIZATION_LIFTED_MULTICUT_DETAIL_LIFTED_TWOCUT_KERNIGHAN_LIN_HXX</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno"><a class="line" href="lifted__twocut__kernighan__lin_8hxx.html#a5b626d4e81b45e357e6597aeccc4c222">    5</a></span>&#160;<span class="preprocessor">#define NIFTY_GRAPH_OPTIMIZATION_LIFTED_MULTICUT_DETAIL_LIFTED_TWOCUT_KERNIGHAN_LIN_HXX</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;iomanip&gt;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;algorithm&gt;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;unordered_set&gt;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;stack&gt;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;vigra/priority_queue.hxx&quot;</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="runtime__check_8hxx.html">nifty/tools/runtime_check.hxx</a>&quot;</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ufd_8hxx.html">nifty/ufd/ufd.hxx</a>&quot;</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="adjacency_8hxx.html">nifty/graph/detail/adjacency.hxx</a>&quot;</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="lifted__multicut__base_8hxx.html">nifty/graph/optimization/lifted_multicut/lifted_multicut_base.hxx</a>&quot;</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="graph_2edge__contraction__graph_8hxx.html">nifty/graph/edge_contraction_graph.hxx</a>&quot;</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="components_8hxx.html">nifty/graph/components.hxx</a>&quot;</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacenifty.html">nifty</a>{</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">namespace </span>graph{</div>
-<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="namespacenifty_1_1graph_1_1lifted__multicut.html">   26</a></span>&#160;<span class="keyword">namespace </span>lifted_multicut{</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;iomanip&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;algorithm&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;unordered_set&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;stack&gt;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="changable__priority__queue_8hxx.html">nifty/tools/changable_priority_queue.hxx</a>&quot;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="runtime__check_8hxx.html">nifty/tools/runtime_check.hxx</a>&quot;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ufd_8hxx.html">nifty/ufd/ufd.hxx</a>&quot;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="adjacency_8hxx.html">nifty/graph/detail/adjacency.hxx</a>&quot;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="lifted__multicut__base_8hxx.html">nifty/graph/optimization/lifted_multicut/lifted_multicut_base.hxx</a>&quot;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="graph_2edge__contraction__graph_8hxx.html">nifty/graph/edge_contraction_graph.hxx</a>&quot;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="components_8hxx.html">nifty/graph/components.hxx</a>&quot;</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacenifty.html">nifty</a>{</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">namespace </span>graph{</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">namespace </span>optimization{</div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="namespacenifty_1_1graph_1_1optimization_1_1lifted__multicut.html">   26</a></span>&#160;<span class="keyword">namespace </span>lifted_multicut{</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment">// \cond SUPPRESS_DOXYGEN</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">namespace </span>detail_kernighang_lin{</div>
@@ -152,14 +152,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keyword">class </span>TwoCut{</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keyword">public</span>:</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="keyword">typedef</span> OBJECTIVE ObjectiveType;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keyword">typedef</span> <a class="code" href="classnifty_1_1graph_1_1lifted__multicut_1_1LiftedMulticutBase.html">LiftedMulticutBase&lt;ObjectiveType&gt;</a> BaseType;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keyword">typedef</span> <a class="code" href="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutBase.html">LiftedMulticutBase&lt;ObjectiveType&gt;</a> BaseType;</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="keyword">typedef</span> <span class="keyword">typename</span> ObjectiveType::GraphType GraphType;</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keyword">typedef</span> <span class="keyword">typename</span> ObjectiveType::WeightsMap WeightsMap;</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="keyword">typedef</span> <span class="keyword">typename</span> ObjectiveType::LiftedGraphType LiftedGraphType;</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keyword">struct </span>Settings {</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keyword">struct </span>SettingsType {</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            std::size_t numberOfIterations { std::numeric_limits&lt;std::size_t&gt;::max() };</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            <span class="keywordtype">double</span> epsilon { 1e-9 };</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        };</div>
@@ -180,7 +180,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        TwoCut(</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            <span class="keyword">const</span> ObjectiveType &amp; objective,</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            <span class="keyword">const</span> Settings &amp; settings = Settings()</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            <span class="keyword">const</span> SettingsType &amp; settings = SettingsType()</div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        )</div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        :   objective_(objective),</div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            settings_(settings),</div>
@@ -421,7 +421,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;</div>
 <div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;    <span class="keyword">private</span>:</div>
 <div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;        <span class="keyword">const</span> ObjectiveType &amp; objective_;</div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;        Settings settings_;</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;        SettingsType settings_;</div>
 <div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;        <span class="keyword">const</span> GraphType &amp; graph_;</div>
 <div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;        <span class="keyword">const</span> LiftedGraphType &amp; liftedGraph_;</div>
 <div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;        <span class="keyword">const</span> WeightsMap &amp; weights_;</div>
@@ -435,18 +435,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;<span class="comment">// \endcond</span></div>
 <div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;</div>
 <div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;} <span class="comment">// lifted_multicut</span></div>
-<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;} <span class="comment">// namespace nifty::graph</span></div>
-<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;} <span class="comment">// namespace nifty</span></div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;</div>
-<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;<span class="preprocessor">#endif  // NIFTY_GRAPH_OPTIMIZATION_LIFTED_MULTICUT_DETAIL_LIFTED_TWOCUT_KERNIGHAN_LIN_HXX</span></div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;} <span class="comment">// namespace nifty::graph::optimization</span></div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;} <span class="comment">// namespace nifty::graph</span></div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;} <span class="comment">// namespace nifty</span></div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;</div>
 <div class="ttc" id="lifted__multicut__base_8hxx_html"><div class="ttname"><a href="lifted__multicut__base_8hxx.html">lifted_multicut_base.hxx</a></div></div>
+<div class="ttc" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutBase_html"><div class="ttname"><a href="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutBase.html">nifty::graph::optimization::lifted_multicut::LiftedMulticutBase</a></div><div class="ttdef"><b>Definition:</b> lifted_multicut_base.hxx:20</div></div>
 <div class="ttc" id="graph_2edge__contraction__graph_8hxx_html"><div class="ttname"><a href="graph_2edge__contraction__graph_8hxx.html">edge_contraction_graph.hxx</a></div></div>
 <div class="ttc" id="components_8hxx_html"><div class="ttname"><a href="components_8hxx.html">components.hxx</a></div></div>
 <div class="ttc" id="ufd_8hxx_html"><div class="ttname"><a href="ufd_8hxx.html">ufd.hxx</a></div></div>
+<div class="ttc" id="changable__priority__queue_8hxx_html"><div class="ttname"><a href="changable__priority__queue_8hxx.html">changable_priority_queue.hxx</a></div></div>
 <div class="ttc" id="adjacency_8hxx_html"><div class="ttname"><a href="adjacency_8hxx.html">adjacency.hxx</a></div></div>
-<div class="ttc" id="namespacenifty_html"><div class="ttname"><a href="namespacenifty.html">nifty</a></div><div class="ttdef"><b>Definition:</b> arithmetic_array.hxx:10</div></div>
+<div class="ttc" id="namespacenifty_html"><div class="ttname"><a href="namespacenifty.html">nifty</a></div><div class="ttdef"><b>Definition:</b> arithmetic_array.hxx:8</div></div>
 <div class="ttc" id="runtime__check_8hxx_html"><div class="ttname"><a href="runtime__check_8hxx.html">runtime_check.hxx</a></div></div>
-<div class="ttc" id="classnifty_1_1graph_1_1lifted__multicut_1_1LiftedMulticutBase_html"><div class="ttname"><a href="classnifty_1_1graph_1_1lifted__multicut_1_1LiftedMulticutBase.html">nifty::graph::lifted_multicut::LiftedMulticutBase</a></div><div class="ttdef"><b>Definition:</b> lifted_multicut_base.hxx:19</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Nifty
-   &#160;<span id="projectnumber">0.5.1</span>
+   &#160;<span id="projectnumber">0.19.0</span>
    </div>
   </td>
  </tr>
@@ -105,16 +105,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 Inheritance diagram for nifty::features::FilterBase:</div>
 <div class="dyncontent">
 <div class="center"><img src="structnifty_1_1features_1_1FilterBase__inherit__graph.png" border="0" usemap="#nifty_1_1features_1_1FilterBase_inherit__map" alt="Inheritance graph"/></div>
-<!-- MAP 0 -->
+<map name="nifty_1_1features_1_1FilterBase_inherit__map" id="nifty_1_1features_1_1FilterBase_inherit__map">
+<area shape="rect" id="node2" href="structnifty_1_1features_1_1GaussianGradientMagnitude.html" title="nifty::features::Gaussian\lGradientMagnitude" alt="" coords="223,5,388,47"/>
+<area shape="rect" id="node3" href="structnifty_1_1features_1_1GaussianSmoothing.html" title="nifty::features::Gaussian\lSmoothing" alt="" coords="223,71,388,112"/>
+<area shape="rect" id="node4" href="structnifty_1_1features_1_1HessianOfGaussianEigenvalues.html" title="nifty::features::Hessian\lOfGaussianEigenvalues" alt="" coords="224,136,387,177"/>
+<area shape="rect" id="node5" href="structnifty_1_1features_1_1LaplacianOfGaussian.html" title="nifty::features::Laplacian\lOfGaussian" alt="" coords="223,201,388,243"/>
+<area shape="rect" id="node6" href="structnifty_1_1features_1_1StructureTensorEigenvalues.html" title="nifty::features::Structure\lTensorEigenvalues" alt="" coords="224,267,387,308"/>
+</map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ac10b9d69df645dd2feb7ce555e544502"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnifty_1_1features_1_1FilterBase.html#ac10b9d69df645dd2feb7ce555e544502">FilterBase</a> ()</td></tr>
 <tr class="separator:ac10b9d69df645dd2feb7ce555e544502"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab362e4142a783ce298a477557bcd9436"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnifty_1_1features_1_1FilterBase.html#ab362e4142a783ce298a477557bcd9436">operator()</a> (const fastfilters_array2d_t &amp;, marray::View&lt; float &gt; &amp;, const double) const  =0</td></tr>
+<tr class="memitem:ab362e4142a783ce298a477557bcd9436"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnifty_1_1features_1_1FilterBase.html#ab362e4142a783ce298a477557bcd9436">operator()</a> (const fastfilters_array2d_t &amp;, <a class="el" href="classandres_1_1View.html">marray::View</a>&lt; float &gt; &amp;, const double) const  =0</td></tr>
 <tr class="separator:ab362e4142a783ce298a477557bcd9436"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab7d7de20b106e80ccfd65a818e1b6eef"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnifty_1_1features_1_1FilterBase.html#ab7d7de20b106e80ccfd65a818e1b6eef">operator()</a> (const fastfilters_array3d_t &amp;, marray::View&lt; float &gt; &amp;, const double) const  =0</td></tr>
+<tr class="memitem:ab7d7de20b106e80ccfd65a818e1b6eef"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnifty_1_1features_1_1FilterBase.html#ab7d7de20b106e80ccfd65a818e1b6eef">operator()</a> (const fastfilters_array3d_t &amp;, <a class="el" href="classandres_1_1View.html">marray::View</a>&lt; float &gt; &amp;, const double) const  =0</td></tr>
 <tr class="separator:ab7d7de20b106e80ccfd65a818e1b6eef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a01fbc04537c69b997079a98a845c5ab3"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnifty_1_1features_1_1FilterBase.html#a01fbc04537c69b997079a98a845c5ab3">isMultiChannel</a> () const  =0</td></tr>
 <tr class="separator:a01fbc04537c69b997079a98a845c5ab3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -192,7 +198,7 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">marray::View&lt; float &gt; &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="classandres_1_1View.html">marray::View</a>&lt; float &gt; &amp;&#160;</td>
           <td class="paramname">, </td>
         </tr>
         <tr>
@@ -234,7 +240,7 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">marray::View&lt; float &gt; &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="classandres_1_1View.html">marray::View</a>&lt; float &gt; &amp;&#160;</td>
           <td class="paramname">, </td>
         </tr>
         <tr>

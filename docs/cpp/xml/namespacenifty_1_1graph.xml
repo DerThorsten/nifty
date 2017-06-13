@@ -1,0 +1,1522 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="namespacenifty_1_1graph" kind="namespace" language="C++">
+    <compoundname>nifty::graph</compoundname>
+    <innerclass refid="structnifty_1_1graph_1_1AccOptions" prot="public">nifty::graph::AccOptions</innerclass>
+    <innerclass refid="structnifty_1_1graph_1_1AdjacencyTag" prot="public">nifty::graph::AdjacencyTag</innerclass>
+    <innerclass refid="structnifty_1_1graph_1_1ArcTag" prot="public">nifty::graph::ArcTag</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1BidirectionalBreadthFirstSearch" prot="public">nifty::graph::BidirectionalBreadthFirstSearch</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1ComponentsBfs" prot="public">nifty::graph::ComponentsBfs</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1ComponentsUfd" prot="public">nifty::graph::ComponentsUfd</innerclass>
+    <innerclass refid="structnifty_1_1graph_1_1ContiguousTag" prot="public">nifty::graph::ContiguousTag</innerclass>
+    <innerclass refid="structnifty_1_1graph_1_1CycleWithNegativeWeightsDetectedError" prot="public">nifty::graph::CycleWithNegativeWeightsDetectedError</innerclass>
+    <innerclass refid="structnifty_1_1graph_1_1DefaultSubgraphMask" prot="public">nifty::graph::DefaultSubgraphMask</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1DirectedGraphBase" prot="public">nifty::graph::DirectedGraphBase</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1DirectedGraphView" prot="public">nifty::graph::DirectedGraphView</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1EdgeContractionGraph" prot="public">nifty::graph::EdgeContractionGraph</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets" prot="public">nifty::graph::EdgeContractionGraphWithSets</innerclass>
+    <innerclass refid="structnifty_1_1graph_1_1EdgeContractionGraphWithSetsHelper" prot="public">nifty::graph::EdgeContractionGraphWithSetsHelper</innerclass>
+    <innerclass refid="structnifty_1_1graph_1_1EdgeTag" prot="public">nifty::graph::EdgeTag</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1ExplicitLabels" prot="public">nifty::graph::ExplicitLabels</innerclass>
+    <innerclass refid="structnifty_1_1graph_1_1FlexibleCallback" prot="public">nifty::graph::FlexibleCallback</innerclass>
+    <innerclass refid="structnifty_1_1graph_1_1GraphName" prot="public">nifty::graph::GraphName</innerclass>
+    <innerclass refid="structnifty_1_1graph_1_1GraphName_3_01PyContractionGraph_3_01BASE__GRAPH_01_4_01_4" prot="public">nifty::graph::GraphName&lt; PyContractionGraph&lt; BASE_GRAPH &gt; &gt;</innerclass>
+    <innerclass refid="structnifty_1_1graph_1_1GraphName_3_01PyUndirectedGraph_01_4" prot="public">nifty::graph::GraphName&lt; PyUndirectedGraph &gt;</innerclass>
+    <innerclass refid="structnifty_1_1graph_1_1GraphName_3_01UndirectedGridGraph_3_01DIM_00_01SIMPLE__NH_01_4_01_4" prot="public">nifty::graph::GraphName&lt; UndirectedGridGraph&lt; DIM, SIMPLE_NH &gt; &gt;</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1GridRag" prot="public">nifty::graph::GridRag</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1GridRag3DStacked2D" prot="public">nifty::graph::GridRag3DStacked2D</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1GridRagStacked2D" prot="public">nifty::graph::GridRagStacked2D</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1Hdf5Labels" prot="public">nifty::graph::Hdf5Labels</innerclass>
+    <innerclass refid="structnifty_1_1graph_1_1NodeTag" prot="public">nifty::graph::NodeTag</innerclass>
+    <innerclass refid="structnifty_1_1graph_1_1RefHelper" prot="public">nifty::graph::RefHelper</innerclass>
+    <innerclass refid="structnifty_1_1graph_1_1RefHelper_3_01ExplicitLabels_3_01DIM_00_01LABEL__TYPE_01_4_01_4" prot="public">nifty::graph::RefHelper&lt; ExplicitLabels&lt; DIM, LABEL_TYPE &gt; &gt;</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1ShortestPathBellmanFord" prot="public">nifty::graph::ShortestPathBellmanFord</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1ShortestPathDijkstra" prot="public">nifty::graph::ShortestPathDijkstra</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1SimpleDirectedGraph" prot="public">nifty::graph::SimpleDirectedGraph</innerclass>
+    <innerclass refid="structnifty_1_1graph_1_1SortedTag" prot="public">nifty::graph::SortedTag</innerclass>
+    <innerclass refid="structnifty_1_1graph_1_1SparseTag" prot="public">nifty::graph::SparseTag</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1UndirectedGraph" prot="public">nifty::graph::UndirectedGraph</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1UndirectedGraphBase" prot="public">nifty::graph::UndirectedGraphBase</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1UndirectedGridGraph" prot="public">nifty::graph::UndirectedGridGraph</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1UndirectedGridGraph_3_01DIM_00_01true_01_4" prot="public">nifty::graph::UndirectedGridGraph&lt; DIM, true &gt;</innerclass>
+    <innerclass refid="structnifty_1_1graph_1_1UnsortedTag" prot="public">nifty::graph::UnsortedTag</innerclass>
+    <innernamespace refid="namespacenifty_1_1graph_1_1agglo">nifty::graph::agglo</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph_1_1detail__graph">nifty::graph::detail_graph</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph_1_1graph__maps">nifty::graph::graph_maps</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph_1_1optimization">nifty::graph::optimization</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph_1_1subgraph__masks">nifty::graph::subgraph_masks</innernamespace>
+      <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="namespacenifty_1_1graph_1a5cdea7eb940a178738d5f7ba11b92a15" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl" kindref="compound">detail_graph::SearchImpl</ref>&lt; GRAPH, <ref refid="structnifty_1_1graph_1_1detail__graph_1_1FiFo" kindref="compound">detail_graph::FiFo</ref>&lt; int64_t &gt; &gt;</type>
+        <definition>using nifty::graph::BreadthFirstSearch = typedef detail_graph::SearchImpl&lt;GRAPH, detail_graph::FiFo&lt;int64_t&gt; &gt;</definition>
+        <argsstring></argsstring>
+        <name>BreadthFirstSearch</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/breadth_first_search.hxx" line="10" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/breadth_first_search.hxx" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="namespacenifty_1_1graph_1a3d6d4a5216a5d0a11785373bc7537085" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl" kindref="compound">detail_graph::SearchImpl</ref>&lt; GRAPH, <ref refid="structnifty_1_1graph_1_1detail__graph_1_1LiFo" kindref="compound">detail_graph::LiFo</ref>&lt; int64_t &gt; &gt;</type>
+        <definition>using nifty::graph::DepthFirstSearch = typedef detail_graph::SearchImpl&lt;GRAPH, detail_graph::LiFo&lt;int64_t&gt; &gt;</definition>
+        <argsstring></argsstring>
+        <name>DepthFirstSearch</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/depth_first_search.hxx" line="10" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/depth_first_search.hxx" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="namespacenifty_1_1graph_1a45cca2dcd061996d13ec8e6bb8afb200" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1GridRag" kindref="compound">GridRag</ref>&lt; DIM, <ref refid="classnifty_1_1graph_1_1ExplicitLabels" kindref="compound">ExplicitLabels</ref>&lt; DIM, LABEL_TYPE &gt; &gt;</type>
+        <definition>using nifty::graph::ExplicitLabelsGridRag = typedef GridRag&lt;DIM, ExplicitLabels&lt;DIM, LABEL_TYPE&gt; &gt;</definition>
+        <argsstring></argsstring>
+        <name>ExplicitLabelsGridRag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag.hxx" line="118" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag.hxx" bodystart="118" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="namespacenifty_1_1graph_1aa9ab054f2ea0df09d60d6adf1c7ee6b3" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets" kindref="compound">EdgeContractionGraphWithSets</ref>&lt; BASE_GRAPH, <ref refid="structnifty_1_1graph_1_1FlexibleCallback" kindref="compound">FlexibleCallback</ref>, std::set&lt; uint64_t &gt; &gt;</type>
+        <definition>using nifty::graph::PyContractionGraph = typedef EdgeContractionGraphWithSets&lt; BASE_GRAPH, FlexibleCallback, std::set&lt;uint64_t&gt; &gt;</definition>
+        <argsstring></argsstring>
+        <name>PyContractionGraph</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/graph/edge_contraction_graph.hxx" line="14" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/graph/edge_contraction_graph.hxx" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="namespacenifty_1_1graph_1a62ff5304d118f627910196adc6ab7aab" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1UndirectedGraph" kindref="compound">UndirectedGraph</ref></type>
+        <definition>typedef UndirectedGraph nifty::graph::PyUndirectedGraph</definition>
+        <argsstring></argsstring>
+        <name>PyUndirectedGraph</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/graph/undirected_list_graph.hxx" line="12" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/graph/undirected_list_graph.hxx" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespacenifty_1_1graph_1a3e294171c18ca5e524f85c9341ef2f5e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class GRAPH</type>
+          </param>
+          <param>
+            <type>class EDGE_WEIGHTS</type>
+          </param>
+          <param>
+            <type>class SEEDS</type>
+          </param>
+          <param>
+            <type>class LABELS</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::graph::edgeWeightedWatershedsSegmentation</definition>
+        <argsstring>(const GRAPH &amp;g, const EDGE_WEIGHTS &amp;edgeWeights, const SEEDS &amp;seeds, LABELS &amp;labels)</argsstring>
+        <name>edgeWeightedWatershedsSegmentation</name>
+        <param>
+          <type>const GRAPH &amp;</type>
+          <declname>g</declname>
+        </param>
+        <param>
+          <type>const EDGE_WEIGHTS &amp;</type>
+          <declname>edgeWeights</declname>
+        </param>
+        <param>
+          <type>const SEEDS &amp;</type>
+          <declname>seeds</declname>
+        </param>
+        <param>
+          <type>LABELS &amp;</type>
+          <declname>labels</declname>
+        </param>
+        <briefdescription>
+<para>edge weighted watersheds Segmentataion </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>g</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>input graph </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>edgeWeights</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>: edge weights / edge indicator </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>seeds</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>: seed must be non empty! </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">labels</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>: resulting nodeLabeling (not necessarily dense) </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_weighted_watersheds.hxx" line="221" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_weighted_watersheds.hxx" bodystart="221" bodyend="232"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacenifty_1_1graph_1a428250605a1a1f6fc93fd6aac965b931" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class GRAPH</type>
+          </param>
+          <param>
+            <type>class EDGE_WEIGHTS</type>
+          </param>
+          <param>
+            <type>class SEEDS</type>
+          </param>
+          <param>
+            <type>class LABELS</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::graph::carvingSegmentation</definition>
+        <argsstring>(const GRAPH &amp;g, const EDGE_WEIGHTS &amp;edgeWeights, const SEEDS &amp;seeds, const typename LABELS::value_type backgroundLabel, const typename EDGE_WEIGHTS::value_type backgroundBias, const typename EDGE_WEIGHTS::value_type noPriorBelow, LABELS &amp;labels)</argsstring>
+        <name>carvingSegmentation</name>
+        <param>
+          <type>const GRAPH &amp;</type>
+          <declname>g</declname>
+        </param>
+        <param>
+          <type>const EDGE_WEIGHTS &amp;</type>
+          <declname>edgeWeights</declname>
+        </param>
+        <param>
+          <type>const SEEDS &amp;</type>
+          <declname>seeds</declname>
+        </param>
+        <param>
+          <type>const typename LABELS::value_type</type>
+          <declname>backgroundLabel</declname>
+        </param>
+        <param>
+          <type>const typename EDGE_WEIGHTS::value_type</type>
+          <declname>backgroundBias</declname>
+        </param>
+        <param>
+          <type>const typename EDGE_WEIGHTS::value_type</type>
+          <declname>noPriorBelow</declname>
+        </param>
+        <param>
+          <type>LABELS &amp;</type>
+          <declname>labels</declname>
+        </param>
+        <briefdescription>
+<para>edge weighted watersheds Segmentataion </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>g</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>input graph </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>edgeWeights</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>: edge weights / edge indicator </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>seeds</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>: seed must be non empty! </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>backgroundLabel</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>: which label is background </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>backgroundBias</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>: bias for background </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>noPriorBelow</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>: don&apos;t bias the background if edge indicator is below this value </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">labels</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>: resulting nodeLabeling (not necessarily dense) </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_weighted_watersheds.hxx" line="245" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_weighted_watersheds.hxx" bodystart="245" bodyend="258"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacenifty_1_1graph_1a5f2f2483c8ff3c80f1597b4d206a65b2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class GRAPH</type>
+          </param>
+          <param>
+            <type>class NODE_WEIGHTS</type>
+          </param>
+          <param>
+            <type>class SEEDS</type>
+          </param>
+          <param>
+            <type>class LABELS</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::graph::nodeWeightedWatershedsSegmentation</definition>
+        <argsstring>(const GRAPH &amp;g, const NODE_WEIGHTS &amp;nodeWeights, const SEEDS &amp;seeds, LABELS &amp;labels)</argsstring>
+        <name>nodeWeightedWatershedsSegmentation</name>
+        <param>
+          <type>const GRAPH &amp;</type>
+          <declname>g</declname>
+        </param>
+        <param>
+          <type>const NODE_WEIGHTS &amp;</type>
+          <declname>nodeWeights</declname>
+        </param>
+        <param>
+          <type>const SEEDS &amp;</type>
+          <declname>seeds</declname>
+        </param>
+        <param>
+          <type>LABELS &amp;</type>
+          <declname>labels</declname>
+        </param>
+        <briefdescription>
+<para>edge weighted watersheds Segmentataion </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>g</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>input graph </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nodeWeights</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>: node weights / node height </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>seeds</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>: seed must be non empty! </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">labels</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>: resulting nodeLabeling (not necessarily dense) </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/node_weighted_watersheds.hxx" line="117" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/node_weighted_watersheds.hxx" bodystart="117" bodyend="126"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacenifty_1_1graph_1a5efcd6025d7a1aa6ec3e9826f05d73f1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class GRAPH</type>
+          </param>
+          <param>
+            <type>class ITERATOR</type>
+          </param>
+        </templateparamlist>
+        <type>int64_t</type>
+        <definition>int64_t nifty::graph::findChord</definition>
+        <argsstring>(const GRAPH &amp;graph, ITERATOR begin, ITERATOR end, const bool ignoreEdgeBetweenFirstAndLast=false)</argsstring>
+        <name>findChord</name>
+        <param>
+          <type>const GRAPH &amp;</type>
+          <declname>graph</declname>
+        </param>
+        <param>
+          <type>ITERATOR</type>
+          <declname>begin</declname>
+        </param>
+        <param>
+          <type>ITERATOR</type>
+          <declname>end</declname>
+        </param>
+        <param>
+          <type>const bool</type>
+          <declname>ignoreEdgeBetweenFirstAndLast</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Search a path for a chord.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>graph</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Graph. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>begin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Iterator to the beginning of the sequence of nodes on the path. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>end</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Iterator to the end of the sequence of nodes on the path. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ignoreEdgeBetweenFirstAndLast</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Flag. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/paths.hxx" line="21" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/paths.hxx" bodystart="21" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacenifty_1_1graph_1aa3515c9d13aba223fd3f7771db67af53" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class GRAPH</type>
+          </param>
+          <param>
+            <type>class SUBGRAPH_MASK</type>
+          </param>
+          <param>
+            <type>class ITERATOR</type>
+          </param>
+        </templateparamlist>
+        <type>int64_t</type>
+        <definition>int64_t nifty::graph::findChord</definition>
+        <argsstring>(const GRAPH &amp;graph, const SUBGRAPH_MASK &amp;mask, ITERATOR begin, ITERATOR end, const bool ignoreEdgeBetweenFirstAndLast=false)</argsstring>
+        <name>findChord</name>
+        <param>
+          <type>const GRAPH &amp;</type>
+          <declname>graph</declname>
+        </param>
+        <param>
+          <type>const SUBGRAPH_MASK &amp;</type>
+          <declname>mask</declname>
+        </param>
+        <param>
+          <type>ITERATOR</type>
+          <declname>begin</declname>
+        </param>
+        <param>
+          <type>ITERATOR</type>
+          <declname>end</declname>
+        </param>
+        <param>
+          <type>const bool</type>
+          <declname>ignoreEdgeBetweenFirstAndLast</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Search a path for a chord.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>graph</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Graph. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>mask</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A subgraph mask such as <ref refid="structnifty_1_1graph_1_1DefaultSubgraphMask" kindref="compound">DefaultSubgraphMask</ref>. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>begin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Iterator to the beginning of the sequence of nodes on the path. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>end</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Iterator to the end of the sequence of nodes on the path. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ignoreEdgeBetweenFirstAndLast</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Flag. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/paths.hxx" line="43" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/paths.hxx" bodystart="43" bodyend="67"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacenifty_1_1graph_1ad5fff1c63a572469a352e1645f9d3d0c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class PREDECESSORS_MAP</type>
+          </param>
+          <param>
+            <type>class OUT_ITER</type>
+          </param>
+        </templateparamlist>
+        <type>size_t</type>
+        <definition>size_t nifty::graph::buildPathInLargeEnoughBuffer</definition>
+        <argsstring>(const uint64_t source, const uint64_t target, const PREDECESSORS_MAP &amp;predecessorMap, OUT_ITER largeEnoughBufferBegin)</argsstring>
+        <name>buildPathInLargeEnoughBuffer</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>source</declname>
+        </param>
+        <param>
+          <type>const uint64_t</type>
+          <declname>target</declname>
+        </param>
+        <param>
+          <type>const PREDECESSORS_MAP &amp;</type>
+          <declname>predecessorMap</declname>
+        </param>
+        <param>
+          <type>OUT_ITER</type>
+          <declname>largeEnoughBufferBegin</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/paths.hxx" line="71" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/paths.hxx" bodystart="71" bodyend="88"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacenifty_1_1graph_1aca62625e3c61b810e2f6cda338de2c26" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class COORD</type>
+          </param>
+        </templateparamlist>
+        <type>COORD</type>
+        <definition>COORD nifty::graph::makeCoord2</definition>
+        <argsstring>(const COORD &amp;coord, const size_t axis)</argsstring>
+        <name>makeCoord2</name>
+        <param>
+          <type>const COORD &amp;</type>
+          <declname>coord</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>axis</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag.hxx" line="28" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag.hxx" bodystart="28" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacenifty_1_1graph_1a511023b23336eb0591905cc2034b00a5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T</type>
+          </param>
+          <param>
+            <type>class U</type>
+          </param>
+        </templateparamlist>
+        <type>T</type>
+        <definition>T nifty::graph::replaceIfNotFinite</definition>
+        <argsstring>(const T &amp;val, const U &amp;replaceVal)</argsstring>
+        <name>replaceIfNotFinite</name>
+        <param>
+          <type>const T &amp;</type>
+          <declname>val</declname>
+        </param>
+        <param>
+          <type>const U &amp;</type>
+          <declname>replaceVal</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_accumulate.hxx" line="41" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_accumulate.hxx" bodystart="41" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacenifty_1_1graph_1a367cdb1cc5ac050b60098dc22effd452" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class EDGE_ACC_CHAIN</type>
+          </param>
+          <param>
+            <type>std::size_t</type>
+            <declname>DIM</declname>
+            <defname>DIM</defname>
+          </param>
+          <param>
+            <type>class LABELS_PROXY</type>
+          </param>
+          <param>
+            <type>class DATA</type>
+          </param>
+          <param>
+            <type>class F</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::graph::accumulateEdgeFeaturesWithAccChain</definition>
+        <argsstring>(const GridRag&lt; DIM, LABELS_PROXY &gt; &amp;rag, const DATA &amp;data, const array::StaticArray&lt; int64_t, DIM &gt; &amp;blockShape, const parallel::ParallelOptions &amp;pOpts, parallel::ThreadPool &amp;threadpool, F &amp;&amp;f, const AccOptions &amp;accOptions=AccOptions())</argsstring>
+        <name>accumulateEdgeFeaturesWithAccChain</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1GridRag" kindref="compound">GridRag</ref>&lt; DIM, LABELS_PROXY &gt; &amp;</type>
+          <declname>rag</declname>
+        </param>
+        <param>
+          <type>const DATA &amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespacenifty_1_1array_1a683f151f19c851754e0c6d55ed16a0c2" kindref="member">array::StaticArray</ref>&lt; int64_t, DIM &gt; &amp;</type>
+          <declname>blockShape</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classnifty_1_1parallel_1_1ParallelOptions" kindref="compound">parallel::ParallelOptions</ref> &amp;</type>
+          <declname>pOpts</declname>
+        </param>
+        <param>
+          <type><ref refid="classnifty_1_1parallel_1_1ThreadPool" kindref="compound">parallel::ThreadPool</ref> &amp;</type>
+          <declname>threadpool</declname>
+        </param>
+        <param>
+          <type>F &amp;&amp;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structnifty_1_1graph_1_1AccOptions" kindref="compound">AccOptions</ref> &amp;</type>
+          <declname>accOptions</declname>
+          <defval><ref refid="structnifty_1_1graph_1_1AccOptions" kindref="compound">AccOptions</ref>()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_accumulate.hxx" line="52" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_accumulate.hxx" bodystart="52" bodyend="185"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacenifty_1_1graph_1a8bba7bf00968cb611c2b01bddfe6f2fd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class EDGE_ACC_CHAIN</type>
+          </param>
+          <param>
+            <type>class NODE_ACC_CHAIN</type>
+          </param>
+          <param>
+            <type>std::size_t</type>
+            <declname>DIM</declname>
+            <defname>DIM</defname>
+          </param>
+          <param>
+            <type>class LABELS_PROXY</type>
+          </param>
+          <param>
+            <type>class DATA</type>
+          </param>
+          <param>
+            <type>class F</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::graph::accumulateEdgeAndNodeFeaturesWithAccChainSaveMemory</definition>
+        <argsstring>(const GridRag&lt; DIM, LABELS_PROXY &gt; &amp;rag, const DATA &amp;data, const array::StaticArray&lt; int64_t, DIM &gt; &amp;blockShape, const parallel::ParallelOptions &amp;pOpts, parallel::ThreadPool &amp;threadpool, F &amp;&amp;f, const AccOptions &amp;accOptions=AccOptions())</argsstring>
+        <name>accumulateEdgeAndNodeFeaturesWithAccChainSaveMemory</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1GridRag" kindref="compound">GridRag</ref>&lt; DIM, LABELS_PROXY &gt; &amp;</type>
+          <declname>rag</declname>
+        </param>
+        <param>
+          <type>const DATA &amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespacenifty_1_1array_1a683f151f19c851754e0c6d55ed16a0c2" kindref="member">array::StaticArray</ref>&lt; int64_t, DIM &gt; &amp;</type>
+          <declname>blockShape</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classnifty_1_1parallel_1_1ParallelOptions" kindref="compound">parallel::ParallelOptions</ref> &amp;</type>
+          <declname>pOpts</declname>
+        </param>
+        <param>
+          <type><ref refid="classnifty_1_1parallel_1_1ThreadPool" kindref="compound">parallel::ThreadPool</ref> &amp;</type>
+          <declname>threadpool</declname>
+        </param>
+        <param>
+          <type>F &amp;&amp;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structnifty_1_1graph_1_1AccOptions" kindref="compound">AccOptions</ref> &amp;</type>
+          <declname>accOptions</declname>
+          <defval><ref refid="structnifty_1_1graph_1_1AccOptions" kindref="compound">AccOptions</ref>()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_accumulate.hxx" line="189" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_accumulate.hxx" bodystart="189" bodyend="360"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacenifty_1_1graph_1a8f3282d2d63b3f644bf2176ed21d3082" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class EDGE_ACC_CHAIN</type>
+          </param>
+          <param>
+            <type>class NODE_ACC_CHAIN</type>
+          </param>
+          <param>
+            <type>std::size_t</type>
+            <declname>DIM</declname>
+            <defname>DIM</defname>
+          </param>
+          <param>
+            <type>class LABELS_PROXY</type>
+          </param>
+          <param>
+            <type>class DATA</type>
+          </param>
+          <param>
+            <type>class F</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::graph::accumulateEdgeAndNodeFeaturesWithAccChain</definition>
+        <argsstring>(const GridRag&lt; DIM, LABELS_PROXY &gt; &amp;rag, const DATA &amp;data, const array::StaticArray&lt; int64_t, DIM &gt; &amp;blockShape, const parallel::ParallelOptions &amp;pOpts, parallel::ThreadPool &amp;threadpool, F &amp;&amp;f, const AccOptions &amp;accOptions=AccOptions())</argsstring>
+        <name>accumulateEdgeAndNodeFeaturesWithAccChain</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1GridRag" kindref="compound">GridRag</ref>&lt; DIM, LABELS_PROXY &gt; &amp;</type>
+          <declname>rag</declname>
+        </param>
+        <param>
+          <type>const DATA &amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespacenifty_1_1array_1a683f151f19c851754e0c6d55ed16a0c2" kindref="member">array::StaticArray</ref>&lt; int64_t, DIM &gt; &amp;</type>
+          <declname>blockShape</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classnifty_1_1parallel_1_1ParallelOptions" kindref="compound">parallel::ParallelOptions</ref> &amp;</type>
+          <declname>pOpts</declname>
+        </param>
+        <param>
+          <type><ref refid="classnifty_1_1parallel_1_1ThreadPool" kindref="compound">parallel::ThreadPool</ref> &amp;</type>
+          <declname>threadpool</declname>
+        </param>
+        <param>
+          <type>F &amp;&amp;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structnifty_1_1graph_1_1AccOptions" kindref="compound">AccOptions</ref> &amp;</type>
+          <declname>accOptions</declname>
+          <defval><ref refid="structnifty_1_1graph_1_1AccOptions" kindref="compound">AccOptions</ref>()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_accumulate.hxx" line="365" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_accumulate.hxx" bodystart="365" bodyend="550"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacenifty_1_1graph_1a5e388756ae7e421f92ef5f78494b94d7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class EDGE_ACC_CHAIN</type>
+          </param>
+          <param>
+            <type>class NODE_ACC_CHAIN</type>
+          </param>
+          <param>
+            <type>std::size_t</type>
+            <declname>DIM</declname>
+            <defname>DIM</defname>
+          </param>
+          <param>
+            <type>class LABELS_PROXY</type>
+          </param>
+          <param>
+            <type>class F</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::graph::accumulateEdgeAndNodeFeaturesWithAccChain</definition>
+        <argsstring>(const GridRag&lt; DIM, LABELS_PROXY &gt; &amp;rag, const array::StaticArray&lt; int64_t, DIM &gt; &amp;blockShape, const parallel::ParallelOptions &amp;pOpts, parallel::ThreadPool &amp;threadpool, F &amp;&amp;f)</argsstring>
+        <name>accumulateEdgeAndNodeFeaturesWithAccChain</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1GridRag" kindref="compound">GridRag</ref>&lt; DIM, LABELS_PROXY &gt; &amp;</type>
+          <declname>rag</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespacenifty_1_1array_1a683f151f19c851754e0c6d55ed16a0c2" kindref="member">array::StaticArray</ref>&lt; int64_t, DIM &gt; &amp;</type>
+          <declname>blockShape</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classnifty_1_1parallel_1_1ParallelOptions" kindref="compound">parallel::ParallelOptions</ref> &amp;</type>
+          <declname>pOpts</declname>
+        </param>
+        <param>
+          <type><ref refid="classnifty_1_1parallel_1_1ThreadPool" kindref="compound">parallel::ThreadPool</ref> &amp;</type>
+          <declname>threadpool</declname>
+        </param>
+        <param>
+          <type>F &amp;&amp;</type>
+          <declname>f</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_accumulate.hxx" line="554" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_accumulate.hxx" bodystart="554" bodyend="695"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacenifty_1_1graph_1a2cfa949da8b5193deb5fb6d898154e23" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class NODE_ACC_CHAIN</type>
+          </param>
+          <param>
+            <type>std::size_t</type>
+            <declname>DIM</declname>
+            <defname>DIM</defname>
+          </param>
+          <param>
+            <type>class LABELS_PROXY</type>
+          </param>
+          <param>
+            <type>class DATA</type>
+          </param>
+          <param>
+            <type>class F</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::graph::accumulateNodeFeaturesWithAccChain</definition>
+        <argsstring>(const GridRag&lt; DIM, LABELS_PROXY &gt; &amp;rag, const DATA &amp;data, const array::StaticArray&lt; int64_t, DIM &gt; &amp;blockShape, const parallel::ParallelOptions &amp;pOpts, parallel::ThreadPool &amp;threadpool, F &amp;&amp;f, const AccOptions &amp;accOptions=AccOptions())</argsstring>
+        <name>accumulateNodeFeaturesWithAccChain</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1GridRag" kindref="compound">GridRag</ref>&lt; DIM, LABELS_PROXY &gt; &amp;</type>
+          <declname>rag</declname>
+        </param>
+        <param>
+          <type>const DATA &amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespacenifty_1_1array_1a683f151f19c851754e0c6d55ed16a0c2" kindref="member">array::StaticArray</ref>&lt; int64_t, DIM &gt; &amp;</type>
+          <declname>blockShape</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classnifty_1_1parallel_1_1ParallelOptions" kindref="compound">parallel::ParallelOptions</ref> &amp;</type>
+          <declname>pOpts</declname>
+        </param>
+        <param>
+          <type><ref refid="classnifty_1_1parallel_1_1ThreadPool" kindref="compound">parallel::ThreadPool</ref> &amp;</type>
+          <declname>threadpool</declname>
+        </param>
+        <param>
+          <type>F &amp;&amp;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structnifty_1_1graph_1_1AccOptions" kindref="compound">AccOptions</ref> &amp;</type>
+          <declname>accOptions</declname>
+          <defval><ref refid="structnifty_1_1graph_1_1AccOptions" kindref="compound">AccOptions</ref>()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_accumulate.hxx" line="700" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_accumulate.hxx" bodystart="700" bodyend="813"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacenifty_1_1graph_1a1464a1e4da963bdaf932c41c042f734e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class NODE_ACC_CHAIN</type>
+          </param>
+          <param>
+            <type>std::size_t</type>
+            <declname>DIM</declname>
+            <defname>DIM</defname>
+          </param>
+          <param>
+            <type>class LABELS_PROXY</type>
+          </param>
+          <param>
+            <type>class F</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::graph::accumulateNodeFeaturesWithAccChain</definition>
+        <argsstring>(const GridRag&lt; DIM, LABELS_PROXY &gt; &amp;rag, const array::StaticArray&lt; int64_t, DIM &gt; &amp;blockShape, const parallel::ParallelOptions &amp;pOpts, parallel::ThreadPool &amp;threadpool, F &amp;&amp;f)</argsstring>
+        <name>accumulateNodeFeaturesWithAccChain</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1GridRag" kindref="compound">GridRag</ref>&lt; DIM, LABELS_PROXY &gt; &amp;</type>
+          <declname>rag</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespacenifty_1_1array_1a683f151f19c851754e0c6d55ed16a0c2" kindref="member">array::StaticArray</ref>&lt; int64_t, DIM &gt; &amp;</type>
+          <declname>blockShape</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classnifty_1_1parallel_1_1ParallelOptions" kindref="compound">parallel::ParallelOptions</ref> &amp;</type>
+          <declname>pOpts</declname>
+        </param>
+        <param>
+          <type><ref refid="classnifty_1_1parallel_1_1ThreadPool" kindref="compound">parallel::ThreadPool</ref> &amp;</type>
+          <declname>threadpool</declname>
+        </param>
+        <param>
+          <type>F &amp;&amp;</type>
+          <declname>f</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_accumulate.hxx" line="818" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_accumulate.hxx" bodystart="818" bodyend="915"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacenifty_1_1graph_1afa27dafc0727ab9fb2d7e5e5fa23996b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>std::size_t</type>
+            <declname>DIM</declname>
+            <defname>DIM</defname>
+          </param>
+          <param>
+            <type>class LABELS_PROXY</type>
+          </param>
+          <param>
+            <type>class DATA</type>
+          </param>
+          <param>
+            <type>class FEATURE_TYPE</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::graph::accumulateMeanAndLength</definition>
+        <argsstring>(const GridRag&lt; DIM, LABELS_PROXY &gt; &amp;rag, const DATA &amp;data, const array::StaticArray&lt; int64_t, DIM &gt; &amp;blockShape, marray::View&lt; FEATURE_TYPE &gt; &amp;edgeFeaturesOut, marray::View&lt; FEATURE_TYPE &gt; &amp;nodeFeaturesOut, const int numberOfThreads=-1, const bool saveMemory=false)</argsstring>
+        <name>accumulateMeanAndLength</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1GridRag" kindref="compound">GridRag</ref>&lt; DIM, LABELS_PROXY &gt; &amp;</type>
+          <declname>rag</declname>
+        </param>
+        <param>
+          <type>const DATA &amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespacenifty_1_1array_1a683f151f19c851754e0c6d55ed16a0c2" kindref="member">array::StaticArray</ref>&lt; int64_t, DIM &gt; &amp;</type>
+          <declname>blockShape</declname>
+        </param>
+        <param>
+          <type><ref refid="classandres_1_1View" kindref="compound">marray::View</ref>&lt; FEATURE_TYPE &gt; &amp;</type>
+          <declname>edgeFeaturesOut</declname>
+        </param>
+        <param>
+          <type><ref refid="classandres_1_1View" kindref="compound">marray::View</ref>&lt; FEATURE_TYPE &gt; &amp;</type>
+          <declname>nodeFeaturesOut</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>numberOfThreads</declname>
+          <defval>-1</defval>
+        </param>
+        <param>
+          <type>const bool</type>
+          <declname>saveMemory</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_accumulate.hxx" line="919" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_accumulate.hxx" bodystart="919" bodyend="962"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacenifty_1_1graph_1a44f9d32c6516b8a8fad328a7bffff8fe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>std::size_t</type>
+            <declname>DIM</declname>
+            <defname>DIM</defname>
+          </param>
+          <param>
+            <type>class LABELS_PROXY</type>
+          </param>
+          <param>
+            <type>class DATA</type>
+          </param>
+          <param>
+            <type>class FEATURE_TYPE</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::graph::accumulateEdgeMeanAndLength</definition>
+        <argsstring>(const GridRag&lt; DIM, LABELS_PROXY &gt; &amp;rag, const DATA &amp;data, const array::StaticArray&lt; int64_t, DIM &gt; &amp;blockShape, marray::View&lt; FEATURE_TYPE &gt; &amp;out, const int numberOfThreads=-1)</argsstring>
+        <name>accumulateEdgeMeanAndLength</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1GridRag" kindref="compound">GridRag</ref>&lt; DIM, LABELS_PROXY &gt; &amp;</type>
+          <declname>rag</declname>
+        </param>
+        <param>
+          <type>const DATA &amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespacenifty_1_1array_1a683f151f19c851754e0c6d55ed16a0c2" kindref="member">array::StaticArray</ref>&lt; int64_t, DIM &gt; &amp;</type>
+          <declname>blockShape</declname>
+        </param>
+        <param>
+          <type><ref refid="classandres_1_1View" kindref="compound">marray::View</ref>&lt; FEATURE_TYPE &gt; &amp;</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>numberOfThreads</declname>
+          <defval>-1</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_accumulate.hxx" line="968" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_accumulate.hxx" bodystart="968" bodyend="1000"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacenifty_1_1graph_1a42c0895aee417f8a18d643aad2591c8b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>std::size_t</type>
+            <declname>DIM</declname>
+            <defname>DIM</defname>
+          </param>
+          <param>
+            <type>class LABELS_PROXY</type>
+          </param>
+          <param>
+            <type>class DATA</type>
+          </param>
+          <param>
+            <type>class FEATURE_TYPE</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::graph::accumulateStandartFeatures</definition>
+        <argsstring>(const GridRag&lt; DIM, LABELS_PROXY &gt; &amp;rag, const DATA &amp;data, const double minVal, const double maxVal, const array::StaticArray&lt; int64_t, DIM &gt; &amp;blockShape, marray::View&lt; FEATURE_TYPE &gt; &amp;edgeFeaturesOut, marray::View&lt; FEATURE_TYPE &gt; &amp;nodeFeaturesOut, const int numberOfThreads=-1)</argsstring>
+        <name>accumulateStandartFeatures</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1GridRag" kindref="compound">GridRag</ref>&lt; DIM, LABELS_PROXY &gt; &amp;</type>
+          <declname>rag</declname>
+        </param>
+        <param>
+          <type>const DATA &amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>minVal</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>maxVal</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespacenifty_1_1array_1a683f151f19c851754e0c6d55ed16a0c2" kindref="member">array::StaticArray</ref>&lt; int64_t, DIM &gt; &amp;</type>
+          <declname>blockShape</declname>
+        </param>
+        <param>
+          <type><ref refid="classandres_1_1View" kindref="compound">marray::View</ref>&lt; FEATURE_TYPE &gt; &amp;</type>
+          <declname>edgeFeaturesOut</declname>
+        </param>
+        <param>
+          <type><ref refid="classandres_1_1View" kindref="compound">marray::View</ref>&lt; FEATURE_TYPE &gt; &amp;</type>
+          <declname>nodeFeaturesOut</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>numberOfThreads</declname>
+          <defval>-1</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_accumulate.hxx" line="1005" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_accumulate.hxx" bodystart="1005" bodyend="1083"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacenifty_1_1graph_1a418009772088e19eb7c14b46e6a01eb5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>std::size_t</type>
+            <declname>DIM</declname>
+            <defname>DIM</defname>
+          </param>
+          <param>
+            <type>class LABELS_PROXY</type>
+          </param>
+          <param>
+            <type>class DATA</type>
+          </param>
+          <param>
+            <type>class FEATURE_TYPE</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::graph::accumulateEdgeStandartFeatures</definition>
+        <argsstring>(const GridRag&lt; DIM, LABELS_PROXY &gt; &amp;rag, const DATA &amp;data, const double minVal, const double maxVal, const array::StaticArray&lt; int64_t, DIM &gt; &amp;blockShape, marray::View&lt; FEATURE_TYPE &gt; &amp;edgeFeaturesOut, const int numberOfThreads=-1)</argsstring>
+        <name>accumulateEdgeStandartFeatures</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1GridRag" kindref="compound">GridRag</ref>&lt; DIM, LABELS_PROXY &gt; &amp;</type>
+          <declname>rag</declname>
+        </param>
+        <param>
+          <type>const DATA &amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>minVal</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>maxVal</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespacenifty_1_1array_1a683f151f19c851754e0c6d55ed16a0c2" kindref="member">array::StaticArray</ref>&lt; int64_t, DIM &gt; &amp;</type>
+          <declname>blockShape</declname>
+        </param>
+        <param>
+          <type><ref refid="classandres_1_1View" kindref="compound">marray::View</ref>&lt; FEATURE_TYPE &gt; &amp;</type>
+          <declname>edgeFeaturesOut</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>numberOfThreads</declname>
+          <defval>-1</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_accumulate.hxx" line="1088" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_accumulate.hxx" bodystart="1088" bodyend="1148"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacenifty_1_1graph_1ad7d29a3cfced104a7af73df235b91238" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>std::size_t</type>
+            <declname>DIM</declname>
+            <defname>DIM</defname>
+          </param>
+          <param>
+            <type>class LABELS_PROXY</type>
+          </param>
+          <param>
+            <type>class DATA</type>
+          </param>
+          <param>
+            <type>class FEATURE_TYPE</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::graph::accumulateNodeStandartFeatures</definition>
+        <argsstring>(const GridRag&lt; DIM, LABELS_PROXY &gt; &amp;rag, const DATA &amp;data, const double minVal, const double maxVal, const array::StaticArray&lt; int64_t, DIM &gt; &amp;blockShape, marray::View&lt; FEATURE_TYPE &gt; &amp;nodeFeaturesOut, const int numberOfThreads=-1)</argsstring>
+        <name>accumulateNodeStandartFeatures</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1GridRag" kindref="compound">GridRag</ref>&lt; DIM, LABELS_PROXY &gt; &amp;</type>
+          <declname>rag</declname>
+        </param>
+        <param>
+          <type>const DATA &amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>minVal</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>maxVal</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespacenifty_1_1array_1a683f151f19c851754e0c6d55ed16a0c2" kindref="member">array::StaticArray</ref>&lt; int64_t, DIM &gt; &amp;</type>
+          <declname>blockShape</declname>
+        </param>
+        <param>
+          <type><ref refid="classandres_1_1View" kindref="compound">marray::View</ref>&lt; FEATURE_TYPE &gt; &amp;</type>
+          <declname>nodeFeaturesOut</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>numberOfThreads</declname>
+          <defval>-1</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_accumulate.hxx" line="1152" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_accumulate.hxx" bodystart="1152" bodyend="1215"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacenifty_1_1graph_1a11bcf8795f57d9e5200fa52c1fb3a883" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>std::size_t</type>
+            <declname>DIM</declname>
+            <defname>DIM</defname>
+          </param>
+          <param>
+            <type>class LABELS_PROXY</type>
+          </param>
+          <param>
+            <type>class FEATURE_TYPE</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::graph::accumulateGeometricNodeFeatures</definition>
+        <argsstring>(const GridRag&lt; DIM, LABELS_PROXY &gt; &amp;rag, const array::StaticArray&lt; int64_t, DIM &gt; &amp;blockShape, marray::View&lt; FEATURE_TYPE &gt; &amp;nodeFeaturesOut, const int numberOfThreads=-1)</argsstring>
+        <name>accumulateGeometricNodeFeatures</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1GridRag" kindref="compound">GridRag</ref>&lt; DIM, LABELS_PROXY &gt; &amp;</type>
+          <declname>rag</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespacenifty_1_1array_1a683f151f19c851754e0c6d55ed16a0c2" kindref="member">array::StaticArray</ref>&lt; int64_t, DIM &gt; &amp;</type>
+          <declname>blockShape</declname>
+        </param>
+        <param>
+          <type><ref refid="classandres_1_1View" kindref="compound">marray::View</ref>&lt; FEATURE_TYPE &gt; &amp;</type>
+          <declname>nodeFeaturesOut</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>numberOfThreads</declname>
+          <defval>-1</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_accumulate.hxx" line="1219" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_accumulate.hxx" bodystart="1219" bodyend="1279"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacenifty_1_1graph_1a152a70f798b787b7fe72acfa1927e098" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>std::size_t</type>
+            <declname>DIM</declname>
+            <defname>DIM</defname>
+          </param>
+          <param>
+            <type>class LABELS_PROXY</type>
+          </param>
+          <param>
+            <type>class FEATURE_TYPE</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::graph::accumulateGeometricEdgeFeatures</definition>
+        <argsstring>(const GridRag&lt; DIM, LABELS_PROXY &gt; &amp;rag, const array::StaticArray&lt; int64_t, DIM &gt; &amp;blockShape, marray::View&lt; FEATURE_TYPE &gt; &amp;edgeFeaturesOut, const int numberOfThreads=-1)</argsstring>
+        <name>accumulateGeometricEdgeFeatures</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1GridRag" kindref="compound">GridRag</ref>&lt; DIM, LABELS_PROXY &gt; &amp;</type>
+          <declname>rag</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespacenifty_1_1array_1a683f151f19c851754e0c6d55ed16a0c2" kindref="member">array::StaticArray</ref>&lt; int64_t, DIM &gt; &amp;</type>
+          <declname>blockShape</declname>
+        </param>
+        <param>
+          <type><ref refid="classandres_1_1View" kindref="compound">marray::View</ref>&lt; FEATURE_TYPE &gt; &amp;</type>
+          <declname>edgeFeaturesOut</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>numberOfThreads</declname>
+          <defval>-1</defval>
+        </param>
+        <briefdescription>
+<para>accumulate geometric features </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">rag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The rag </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">blockShape</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The block shape </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>edgeFeaturesOut</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The edge features out </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">numberOfThreads</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of threads</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>DIM</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Dimension of the rag </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>LABELS_PROXY</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Label Proxy type of the rag </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>FEATURE_TYPE</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>OutType of the features</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para><para>feature 0 : mean edge length </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_accumulate.hxx" line="1301" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_accumulate.hxx" bodystart="1301" bodyend="1434"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacenifty_1_1graph_1a079406a55f43b7ea55616943a3bc6fff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>size_t</type>
+            <declname>DIM</declname>
+            <defname>DIM</defname>
+          </param>
+          <param>
+            <type>class LABELS_TYPE</type>
+          </param>
+          <param>
+            <type>class LABELS</type>
+          </param>
+          <param>
+            <type>class NODE_MAP</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::graph::gridRagAccumulateLabels</definition>
+        <argsstring>(const ExplicitLabelsGridRag&lt; DIM, LABELS_TYPE &gt; &amp;graph, nifty::marray::View&lt; LABELS &gt; data, NODE_MAP &amp;nodeMap)</argsstring>
+        <name>gridRagAccumulateLabels</name>
+        <param>
+          <type>const <ref refid="namespacenifty_1_1graph_1a45cca2dcd061996d13ec8e6bb8afb200" kindref="member">ExplicitLabelsGridRag</ref>&lt; DIM, LABELS_TYPE &gt; &amp;</type>
+          <declname>graph</declname>
+        </param>
+        <param>
+          <type><ref refid="classandres_1_1View" kindref="compound">nifty::marray::View</ref>&lt; LABELS &gt;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>NODE_MAP &amp;</type>
+          <declname>nodeMap</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_features.hxx" line="14" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_features.hxx" bodystart="14" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacenifty_1_1graph_1a6b3a3f0cacf4a06ba0b45afc3fb9bc08" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>size_t</type>
+            <declname>DIM</declname>
+            <defname>DIM</defname>
+          </param>
+          <param>
+            <type>class LABELS_TYPE</type>
+          </param>
+          <param>
+            <type>class PIXEL_ARRAY</type>
+          </param>
+          <param>
+            <type>class NODE_MAP</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::graph::projectScalarNodeDataToPixels</definition>
+        <argsstring>(const ExplicitLabelsGridRag&lt; DIM, LABELS_TYPE &gt; &amp;graph, NODE_MAP &amp;nodeData, PIXEL_ARRAY &amp;pixelData, const int numberOfThreads=-1)</argsstring>
+        <name>projectScalarNodeDataToPixels</name>
+        <param>
+          <type>const <ref refid="namespacenifty_1_1graph_1a45cca2dcd061996d13ec8e6bb8afb200" kindref="member">ExplicitLabelsGridRag</ref>&lt; DIM, LABELS_TYPE &gt; &amp;</type>
+          <declname>graph</declname>
+        </param>
+        <param>
+          <type>NODE_MAP &amp;</type>
+          <declname>nodeData</declname>
+        </param>
+        <param>
+          <type>PIXEL_ARRAY &amp;</type>
+          <declname>pixelData</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>numberOfThreads</declname>
+          <defval>-1</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/rag/project_to_pixels.hxx" line="24" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/rag/project_to_pixels.hxx" bodystart="24" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacenifty_1_1graph_1a2ae7ba3bc963090781fd1cafd70ac800" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class GRAPH</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::graph::findThreeCyclesEdges</definition>
+        <argsstring>(const GRAPH &amp;graph, std::vector&lt; std::array&lt; uint64_t, 3 &gt; &gt; &amp;threeCycles)</argsstring>
+        <name>findThreeCyclesEdges</name>
+        <param>
+          <type>const GRAPH &amp;</type>
+          <declname>graph</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; std::array&lt; uint64_t, 3 &gt; &gt; &amp;</type>
+          <declname>threeCycles</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/three_cycles.hxx" line="14" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/three_cycles.hxx" bodystart="14" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacenifty_1_1graph_1ad3135898f4d621d7b498e65c7b5f38c1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class GRAPH</type>
+          </param>
+        </templateparamlist>
+        <type>std::vector&lt; std::array&lt; uint64_t, 3 &gt; &gt;</type>
+        <definition>std::vector&lt; std::array&lt;uint64_t, 3 &gt; &gt; nifty::graph::findThreeCyclesEdges</definition>
+        <argsstring>(const GRAPH &amp;graph)</argsstring>
+        <name>findThreeCyclesEdges</name>
+        <param>
+          <type>const GRAPH &amp;</type>
+          <declname>graph</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/three_cycles.hxx" line="51" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/three_cycles.hxx" bodystart="51" bodyend="57"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/agglomerative_clustering.hxx" line="7" column="1"/>
+  </compounddef>
+</doxygen>

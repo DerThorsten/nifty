@@ -1,0 +1,528 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased" kind="class" language="C++" prot="public">
+    <compoundname>nifty::graph::optimization::lifted_multicut::FusionMoveBased</compoundname>
+    <basecompoundref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutBase" prot="public" virt="non-virtual">nifty::graph::optimization::lifted_multicut::LiftedMulticutBase&lt; OBJECTIVE &gt;</basecompoundref>
+    <includes refid="lifted__multicut_2fusion__move__based_8hxx" local="no">fusion_move_based.hxx</includes>
+    <innerclass refid="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1_1SettingsType" prot="public">nifty::graph::optimization::lifted_multicut::FusionMoveBased::SettingsType</innerclass>
+    <templateparamlist>
+      <param>
+        <type>class OBJECTIVE</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1ae74c42b0c469bda3b83c183d0909de12" prot="public" static="no">
+        <type>OBJECTIVE</type>
+        <definition>typedef OBJECTIVE nifty::graph::optimization::lifted_multicut::FusionMoveBased&lt; OBJECTIVE &gt;::ObjectiveType</definition>
+        <argsstring></argsstring>
+        <name>ObjectiveType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" line="51" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1a68e68d1414cc0c6db4a25bd8ae23c8da" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutBase" kindref="compound">LiftedMulticutBase</ref>&lt; <ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1ae74c42b0c469bda3b83c183d0909de12" kindref="member">ObjectiveType</ref> &gt;</type>
+        <definition>typedef LiftedMulticutBase&lt;ObjectiveType&gt; nifty::graph::optimization::lifted_multicut::FusionMoveBased&lt; OBJECTIVE &gt;::BaseType</definition>
+        <argsstring></argsstring>
+        <name>BaseType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" line="52" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1af57635ef29d2ba2bb3b3494d1d5f9960" prot="public" static="no">
+        <type>ObjectiveType::GraphType</type>
+        <definition>typedef ObjectiveType::GraphType nifty::graph::optimization::lifted_multicut::FusionMoveBased&lt; OBJECTIVE &gt;::GraphType</definition>
+        <argsstring></argsstring>
+        <name>GraphType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" line="53" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1af98a1abab06fbea50cdabe7013ea0413" prot="public" static="no">
+        <type>ObjectiveType::LiftedGraphType</type>
+        <definition>typedef ObjectiveType::LiftedGraphType nifty::graph::optimization::lifted_multicut::FusionMoveBased&lt; OBJECTIVE &gt;::LiftedGraphType</definition>
+        <argsstring></argsstring>
+        <name>LiftedGraphType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" line="54" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1ab99f9c64149f5748cb98d37b97e1eb4e" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_1a5a14d64c70a9cc0eebc7d71d2b089f9b" kindref="member">BaseType::VisitorBaseType</ref></type>
+        <definition>typedef BaseType::VisitorBaseType nifty::graph::optimization::lifted_multicut::FusionMoveBased&lt; OBJECTIVE &gt;::VisitorBaseType</definition>
+        <argsstring></argsstring>
+        <name>VisitorBaseType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" line="56" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1a90007609e3d57ad1fb9bea79930db60a" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_1a58913ea9ab9232ff72608b710c1012d0" kindref="member">BaseType::VisitorProxyType</ref></type>
+        <definition>typedef BaseType::VisitorProxyType nifty::graph::optimization::lifted_multicut::FusionMoveBased&lt; OBJECTIVE &gt;::VisitorProxyType</definition>
+        <argsstring></argsstring>
+        <name>VisitorProxyType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" line="57" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1a6b7b611ab56b831717bd43c1feda92d6" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_1a6e4e465f3b6e039882669fcfb9714818" kindref="member">BaseType::NodeLabelsType</ref></type>
+        <definition>typedef BaseType::NodeLabelsType nifty::graph::optimization::lifted_multicut::FusionMoveBased&lt; OBJECTIVE &gt;::NodeLabelsType</definition>
+        <argsstring></argsstring>
+        <name>NodeLabelsType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" line="58" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1a3057b3a4379e2aed391c7bab3b97e517" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1ProposalGeneratorBase" kindref="compound">ProposalGeneratorBase</ref>&lt; <ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1ae74c42b0c469bda3b83c183d0909de12" kindref="member">ObjectiveType</ref> &gt;</type>
+        <definition>typedef ProposalGeneratorBase&lt;ObjectiveType&gt; nifty::graph::optimization::lifted_multicut::FusionMoveBased&lt; OBJECTIVE &gt;::ProposalGeneratorBaseType</definition>
+        <argsstring></argsstring>
+        <name>ProposalGeneratorBaseType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" line="60" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1a7ce904e15086b0dffc73d1fc35a1f7ac" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1ProposalGeneratorFactoryBase" kindref="compound">ProposalGeneratorFactoryBase</ref>&lt; <ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1ae74c42b0c469bda3b83c183d0909de12" kindref="member">ObjectiveType</ref> &gt;</type>
+        <definition>typedef ProposalGeneratorFactoryBase&lt;ObjectiveType&gt; nifty::graph::optimization::lifted_multicut::FusionMoveBased&lt; OBJECTIVE &gt;::ProposalGeneratorFactoryBaseType</definition>
+        <argsstring></argsstring>
+        <name>ProposalGeneratorFactoryBaseType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" line="61" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1ad26cd7774a1de503680faae6fdf0bc1f" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator" kindref="compound">WatershedProposalGenerator</ref>&lt; <ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1ae74c42b0c469bda3b83c183d0909de12" kindref="member">ObjectiveType</ref> &gt;</type>
+        <definition>typedef WatershedProposalGenerator&lt;ObjectiveType&gt; nifty::graph::optimization::lifted_multicut::FusionMoveBased&lt; OBJECTIVE &gt;::DefaultProposalGeneratorType</definition>
+        <argsstring></argsstring>
+        <name>DefaultProposalGeneratorType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" line="63" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1abf6ee046e4b736c29bcec411b6d71aaa" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1ProposalGeneratorFactory" kindref="compound">ProposalGeneratorFactory</ref>&lt; <ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1ad26cd7774a1de503680faae6fdf0bc1f" kindref="member">DefaultProposalGeneratorType</ref> &gt;</type>
+        <definition>typedef ProposalGeneratorFactory&lt;DefaultProposalGeneratorType&gt; nifty::graph::optimization::lifted_multicut::FusionMoveBased&lt; OBJECTIVE &gt;::DefaultProposalGeneratorFactoryType</definition>
+        <argsstring></argsstring>
+        <name>DefaultProposalGeneratorFactoryType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" line="64" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1aad9fe514ed441d51f58eb20e974af997" prot="private" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMove" kindref="compound">FusionMove</ref>&lt; <ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1ae74c42b0c469bda3b83c183d0909de12" kindref="member">ObjectiveType</ref> &gt;</type>
+        <definition>typedef FusionMove&lt;ObjectiveType&gt; nifty::graph::optimization::lifted_multicut::FusionMoveBased&lt; OBJECTIVE &gt;::FusionMoveType</definition>
+        <argsstring></argsstring>
+        <name>FusionMoveType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" line="67" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1a602b0dbeef03594c25e0230977a899a5" prot="private" static="no" mutable="no">
+        <type>const <ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1ae74c42b0c469bda3b83c183d0909de12" kindref="member">ObjectiveType</ref> &amp;</type>
+        <definition>const ObjectiveType&amp; nifty::graph::optimization::lifted_multicut::FusionMoveBased&lt; OBJECTIVE &gt;::objective_</definition>
+        <argsstring></argsstring>
+        <name>objective_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" line="108" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" bodystart="108" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1a4c37788d978009cfda1a40279fb97360" prot="private" static="no" mutable="no">
+        <type><ref refid="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1_1SettingsType" kindref="compound">SettingsType</ref></type>
+        <definition>SettingsType nifty::graph::optimization::lifted_multicut::FusionMoveBased&lt; OBJECTIVE &gt;::settings_</definition>
+        <argsstring></argsstring>
+        <name>settings_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" line="109" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" bodystart="109" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1abf3d84b8ac26a8cf8b59717cef25d977" prot="private" static="no" mutable="no">
+        <type>const <ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1af57635ef29d2ba2bb3b3494d1d5f9960" kindref="member">GraphType</ref> &amp;</type>
+        <definition>const GraphType&amp; nifty::graph::optimization::lifted_multicut::FusionMoveBased&lt; OBJECTIVE &gt;::graph_</definition>
+        <argsstring></argsstring>
+        <name>graph_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" line="110" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" bodystart="110" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1a0a9e7a9b4e36ea37a922ce456d72a5ca" prot="private" static="no" mutable="no">
+        <type>const <ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1af98a1abab06fbea50cdabe7013ea0413" kindref="member">LiftedGraphType</ref> &amp;</type>
+        <definition>const LiftedGraphType&amp; nifty::graph::optimization::lifted_multicut::FusionMoveBased&lt; OBJECTIVE &gt;::liftedGraph_</definition>
+        <argsstring></argsstring>
+        <name>liftedGraph_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" line="111" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" bodystart="111" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1afc02bc87bce9a2d47d1819fae904d53d" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1a6b7b611ab56b831717bd43c1feda92d6" kindref="member">NodeLabelsType</ref> *</type>
+        <definition>NodeLabelsType* nifty::graph::optimization::lifted_multicut::FusionMoveBased&lt; OBJECTIVE &gt;::currentBest_</definition>
+        <argsstring></argsstring>
+        <name>currentBest_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" line="112" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" bodystart="112" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1a21b38f34a3b11128b201ff11ad228ea9" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double nifty::graph::optimization::lifted_multicut::FusionMoveBased&lt; OBJECTIVE &gt;::currentBestEnergy_</definition>
+        <argsstring></argsstring>
+        <name>currentBestEnergy_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" line="113" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" bodystart="113" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1ade938033a64fa7086b94e5174ff561a1" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1parallel_1_1ParallelOptions" kindref="compound">nifty::parallel::ParallelOptions</ref></type>
+        <definition>nifty::parallel::ParallelOptions nifty::graph::optimization::lifted_multicut::FusionMoveBased&lt; OBJECTIVE &gt;::parallelOptions_</definition>
+        <argsstring></argsstring>
+        <name>parallelOptions_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" line="115" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" bodystart="115" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1a42e0b74c26504f66c672ee85968df6ea" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1parallel_1_1ThreadPool" kindref="compound">nifty::parallel::ThreadPool</ref></type>
+        <definition>nifty::parallel::ThreadPool nifty::graph::optimization::lifted_multicut::FusionMoveBased&lt; OBJECTIVE &gt;::threadPool_</definition>
+        <argsstring></argsstring>
+        <name>threadPool_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" line="116" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" bodystart="116" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1a86e2bf68e4d1d2927089ba4fa3b8ad26" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1a3057b3a4379e2aed391c7bab3b97e517" kindref="member">ProposalGeneratorBaseType</ref> *</type>
+        <definition>ProposalGeneratorBaseType* nifty::graph::optimization::lifted_multicut::FusionMoveBased&lt; OBJECTIVE &gt;::proposalGenerator_</definition>
+        <argsstring></argsstring>
+        <name>proposalGenerator_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" line="117" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" bodystart="117" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1aad38560101702f6e1cfeffcea4ebc600" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMove" kindref="compound">FusionMoveType</ref> * &gt;</type>
+        <definition>std::vector&lt;FusionMoveType *&gt; nifty::graph::optimization::lifted_multicut::FusionMoveBased&lt; OBJECTIVE &gt;::fusionMoves_</definition>
+        <argsstring></argsstring>
+        <name>fusionMoves_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" line="119" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" bodystart="119" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1af02f771ad742d224f9d06dcddfaadbc4" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>nifty::graph::optimization::lifted_multicut::FusionMoveBased&lt; OBJECTIVE &gt;::~FusionMoveBased</definition>
+        <argsstring>()</argsstring>
+        <name>~FusionMoveBased</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" line="82" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" bodystart="164" bodyend="174"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1ae31d0bedb2cd4d11fed5f2bda45473e2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>nifty::graph::optimization::lifted_multicut::FusionMoveBased&lt; OBJECTIVE &gt;::FusionMoveBased</definition>
+        <argsstring>(const ObjectiveType &amp;objective, const SettingsType &amp;settings=SettingsType())</argsstring>
+        <name>FusionMoveBased</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1ae74c42b0c469bda3b83c183d0909de12" kindref="member">ObjectiveType</ref> &amp;</type>
+          <declname>objective</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1_1SettingsType" kindref="compound">SettingsType</ref> &amp;</type>
+          <declname>settings</declname>
+          <defval><ref refid="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1_1SettingsType" kindref="compound">SettingsType</ref>()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" line="83" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" bodystart="125" bodyend="159"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1aef5a2997aedcb771902732d5e85e0728" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void nifty::graph::optimization::lifted_multicut::FusionMoveBased&lt; OBJECTIVE &gt;::optimize</definition>
+        <argsstring>(NodeLabelsType &amp;nodeLabels, VisitorBaseType *visitor)</argsstring>
+        <name>optimize</name>
+        <reimplements refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_1a1c08eb1ff2b3cca5366c3aab161ba040">optimize</reimplements>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1a6b7b611ab56b831717bd43c1feda92d6" kindref="member">NodeLabelsType</ref> &amp;</type>
+          <declname>nodeLabels</declname>
+        </param>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1ab99f9c64149f5748cb98d37b97e1eb4e" kindref="member">VisitorBaseType</ref> *</type>
+          <declname>visitor</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" line="84" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" bodystart="178" bodyend="201"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1aa2636ea1d650e627a637b6b8e9753659" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>const <ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1ae74c42b0c469bda3b83c183d0909de12" kindref="member">ObjectiveType</ref> &amp;</type>
+        <definition>const FusionMoveBased&lt; OBJECTIVE &gt;::ObjectiveType &amp; nifty::graph::optimization::lifted_multicut::FusionMoveBased&lt; OBJECTIVE &gt;::objective</definition>
+        <argsstring>() const </argsstring>
+        <name>objective</name>
+        <reimplements refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_1ae7d36a7485b12a25979f75771f52e397">objective</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" line="85" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" bodystart="262" bodyend="264"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1af9d76f21526c383cf8cd9e41c184e615" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>const <ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1a6b7b611ab56b831717bd43c1feda92d6" kindref="member">NodeLabelsType</ref> &amp;</type>
+        <definition>virtual const NodeLabelsType&amp; nifty::graph::optimization::lifted_multicut::FusionMoveBased&lt; OBJECTIVE &gt;::currentBestNodeLabels</definition>
+        <argsstring>()</argsstring>
+        <name>currentBestNodeLabels</name>
+        <reimplements refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_1a3634ba645adbb7a668500e807608bcca">currentBestNodeLabels</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" line="94" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" bodystart="94" bodyend="96"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1adeeb420508b179506547caaa35b67c04" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>std::string</type>
+        <definition>virtual std::string nifty::graph::optimization::lifted_multicut::FusionMoveBased&lt; OBJECTIVE &gt;::name</definition>
+        <argsstring>() const </argsstring>
+        <name>name</name>
+        <reimplements refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_1abc9685a3d63748ac470afccb2813be7e">name</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" line="98" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" bodystart="98" bodyend="100"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1a17c542e17c9fbd87d12c467b093ca52c" prot="private" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void nifty::graph::optimization::lifted_multicut::FusionMoveBased&lt; OBJECTIVE &gt;::optimizeSingleThread</definition>
+        <argsstring>(VisitorProxyType &amp;visitorProxy)</argsstring>
+        <name>optimizeSingleThread</name>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1a90007609e3d57ad1fb9bea79930db60a" kindref="member">VisitorProxyType</ref> &amp;</type>
+          <declname>visitorProxy</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" line="104" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" bodystart="205" bodyend="249"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1ac29e49984aa38c8efe1ea35035969db3" prot="private" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void nifty::graph::optimization::lifted_multicut::FusionMoveBased&lt; OBJECTIVE &gt;::optimizeMultiThread</definition>
+        <argsstring>(VisitorProxyType &amp;visitorProxy)</argsstring>
+        <name>optimizeMultiThread</name>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1a90007609e3d57ad1fb9bea79930db60a" kindref="member">VisitorProxyType</ref> &amp;</type>
+          <declname>visitorProxy</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" line="105" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" bodystart="253" bodyend="257"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class for fusion move based inference for the lifted multicut objective An implementation of beier_efficient_2016. </para>    </briefdescription>
+    <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>OBJECTIVE</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>{ description } </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="1234">
+        <label>nifty::graph::optimization::common::SolverBase&lt; OBJECTIVE, LiftedMulticutBase&lt; OBJECTIVE &gt; &gt;</label>
+        <link refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase"/>
+      </node>
+      <node id="1232">
+        <label>nifty::graph::optimization::lifted_multicut::FusionMoveBased&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased"/>
+        <childnode refid="1233" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1233">
+        <label>nifty::graph::optimization::lifted_multicut::LiftedMulticutBase&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutBase"/>
+        <childnode refid="1234" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1237">
+        <label>nifty::graph::optimization::common::SolverBase&lt; OBJECTIVE, LiftedMulticutBase&lt; OBJECTIVE &gt; &gt;</label>
+        <link refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase"/>
+      </node>
+      <node id="1235">
+        <label>nifty::graph::optimization::lifted_multicut::FusionMoveBased&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased"/>
+        <childnode refid="1236" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1236">
+        <label>nifty::graph::optimization::lifted_multicut::LiftedMulticutBase&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutBase"/>
+        <childnode refid="1237" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" line="48" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx" bodystart="47" bodyend="120"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1a68e68d1414cc0c6db4a25bd8ae23c8da" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::FusionMoveBased</scope><name>BaseType</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1afc02bc87bce9a2d47d1819fae904d53d" prot="private" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::FusionMoveBased</scope><name>currentBest_</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_1ae6f6d9779398689c84984a7b6083604a" prot="public" virt="virtual"><scope>nifty::graph::optimization::lifted_multicut::FusionMoveBased</scope><name>currentBestEnergy</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1a21b38f34a3b11128b201ff11ad228ea9" prot="private" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::FusionMoveBased</scope><name>currentBestEnergy_</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1af9d76f21526c383cf8cd9e41c184e615" prot="public" virt="virtual"><scope>nifty::graph::optimization::lifted_multicut::FusionMoveBased</scope><name>currentBestNodeLabels</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1abf6ee046e4b736c29bcec411b6d71aaa" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::FusionMoveBased</scope><name>DefaultProposalGeneratorFactoryType</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1ad26cd7774a1de503680faae6fdf0bc1f" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::FusionMoveBased</scope><name>DefaultProposalGeneratorType</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1ae31d0bedb2cd4d11fed5f2bda45473e2" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::FusionMoveBased</scope><name>FusionMoveBased</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1aad38560101702f6e1cfeffcea4ebc600" prot="private" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::FusionMoveBased</scope><name>fusionMoves_</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1aad9fe514ed441d51f58eb20e974af997" prot="private" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::FusionMoveBased</scope><name>FusionMoveType</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1abf3d84b8ac26a8cf8b59717cef25d977" prot="private" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::FusionMoveBased</scope><name>graph_</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1af57635ef29d2ba2bb3b3494d1d5f9960" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::FusionMoveBased</scope><name>GraphType</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1a0a9e7a9b4e36ea37a922ce456d72a5ca" prot="private" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::FusionMoveBased</scope><name>liftedGraph_</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1af98a1abab06fbea50cdabe7013ea0413" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::FusionMoveBased</scope><name>LiftedGraphType</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1adeeb420508b179506547caaa35b67c04" prot="public" virt="virtual"><scope>nifty::graph::optimization::lifted_multicut::FusionMoveBased</scope><name>name</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1a6b7b611ab56b831717bd43c1feda92d6" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::FusionMoveBased</scope><name>NodeLabelsType</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1aa2636ea1d650e627a637b6b8e9753659" prot="public" virt="virtual"><scope>nifty::graph::optimization::lifted_multicut::FusionMoveBased</scope><name>objective</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1a602b0dbeef03594c25e0230977a899a5" prot="private" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::FusionMoveBased</scope><name>objective_</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1ae74c42b0c469bda3b83c183d0909de12" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::FusionMoveBased</scope><name>ObjectiveType</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1aef5a2997aedcb771902732d5e85e0728" prot="public" virt="virtual"><scope>nifty::graph::optimization::lifted_multicut::FusionMoveBased</scope><name>optimize</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1ac29e49984aa38c8efe1ea35035969db3" prot="private" virt="virtual"><scope>nifty::graph::optimization::lifted_multicut::FusionMoveBased</scope><name>optimizeMultiThread</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1a17c542e17c9fbd87d12c467b093ca52c" prot="private" virt="virtual"><scope>nifty::graph::optimization::lifted_multicut::FusionMoveBased</scope><name>optimizeSingleThread</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1ade938033a64fa7086b94e5174ff561a1" prot="private" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::FusionMoveBased</scope><name>parallelOptions_</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1a86e2bf68e4d1d2927089ba4fa3b8ad26" prot="private" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::FusionMoveBased</scope><name>proposalGenerator_</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1a3057b3a4379e2aed391c7bab3b97e517" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::FusionMoveBased</scope><name>ProposalGeneratorBaseType</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1a7ce904e15086b0dffc73d1fc35a1f7ac" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::FusionMoveBased</scope><name>ProposalGeneratorFactoryBaseType</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_1ae445fe93efdb410186debfa5a248dfad" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::FusionMoveBased</scope><name>SelfType</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1a4c37788d978009cfda1a40279fb97360" prot="private" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::FusionMoveBased</scope><name>settings_</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1a42e0b74c26504f66c672ee85968df6ea" prot="private" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::FusionMoveBased</scope><name>threadPool_</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1ab99f9c64149f5748cb98d37b97e1eb4e" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::FusionMoveBased</scope><name>VisitorBaseType</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1a90007609e3d57ad1fb9bea79930db60a" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::FusionMoveBased</scope><name>VisitorProxyType</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_1a8ab38d61068370e24cca475ef1b5d8b1" prot="public" virt="virtual"><scope>nifty::graph::optimization::lifted_multicut::FusionMoveBased</scope><name>weightsChanged</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased_1af02f771ad742d224f9d06dcddfaadbc4" prot="public" virt="virtual"><scope>nifty::graph::optimization::lifted_multicut::FusionMoveBased</scope><name>~FusionMoveBased</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_1a9442c4193dab19dbcc37c8f927b6de94" prot="public" virt="virtual"><scope>nifty::graph::optimization::lifted_multicut::FusionMoveBased</scope><name>~SolverBase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,184 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="namespacenifty_1_1ground__truth" kind="namespace" language="C++">
+    <compoundname>nifty::ground_truth</compoundname>
+    <innerclass refid="classnifty_1_1ground__truth_1_1Overlap" prot="public">nifty::ground_truth::Overlap</innerclass>
+    <innerclass refid="classnifty_1_1ground__truth_1_1RandError" prot="public">nifty::ground_truth::RandError</innerclass>
+    <innerclass refid="classnifty_1_1ground__truth_1_1VariationOfInformation" prot="public">nifty::ground_truth::VariationOfInformation</innerclass>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespacenifty_1_1ground__truth_1af49d3596b8aaf59bd7dcf3163e99d08f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T</type>
+          </param>
+          <param>
+            <type>class U</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::ground_truth::segToEdges2D</definition>
+        <argsstring>(const marray::View&lt; T &gt; &amp;segmentation, marray::View&lt; U &gt; &amp;edges)</argsstring>
+        <name>segToEdges2D</name>
+        <param>
+          <type>const <ref refid="classandres_1_1View" kindref="compound">marray::View</ref>&lt; T &gt; &amp;</type>
+          <declname>segmentation</declname>
+        </param>
+        <param>
+          <type><ref refid="classandres_1_1View" kindref="compound">marray::View</ref>&lt; U &gt; &amp;</type>
+          <declname>edges</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/seg_to_edges.hxx" line="17" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/seg_to_edges.hxx" bodystart="17" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacenifty_1_1ground__truth_1af4ff3155dceef94452c198adb989d21e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T_SEG</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::ground_truth::seg2dToLiftedEdges</definition>
+        <argsstring>(const marray::View&lt; T_SEG &gt; &amp;segmentation, std::vector&lt; std::array&lt; int32_t, 2 &gt; &gt; &amp;edges, marray::View&lt; uint8_t &gt; &amp;liftedEdgesState)</argsstring>
+        <name>seg2dToLiftedEdges</name>
+        <param>
+          <type>const <ref refid="classandres_1_1View" kindref="compound">marray::View</ref>&lt; T_SEG &gt; &amp;</type>
+          <declname>segmentation</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; std::array&lt; int32_t, 2 &gt; &gt; &amp;</type>
+          <declname>edges</declname>
+        </param>
+        <param>
+          <type><ref refid="classandres_1_1View" kindref="compound">marray::View</ref>&lt; uint8_t &gt; &amp;</type>
+          <declname>liftedEdgesState</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/seg_to_lifted_edges.hxx" line="11" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/seg_to_lifted_edges.hxx" bodystart="11" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacenifty_1_1ground__truth_1a6d7ab1dca0ac9229967b736100609112" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T_SEG</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::ground_truth::seg3dToLiftedEdges</definition>
+        <argsstring>(const marray::View&lt; T_SEG &gt; &amp;segmentation, std::vector&lt; std::array&lt; int32_t, 3 &gt; &gt; &amp;edges, const int32_t z, marray::View&lt; uint8_t &gt; &amp;liftedEdgesState)</argsstring>
+        <name>seg3dToLiftedEdges</name>
+        <param>
+          <type>const <ref refid="classandres_1_1View" kindref="compound">marray::View</ref>&lt; T_SEG &gt; &amp;</type>
+          <declname>segmentation</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; std::array&lt; int32_t, 3 &gt; &gt; &amp;</type>
+          <declname>edges</declname>
+        </param>
+        <param>
+          <type>const int32_t</type>
+          <declname>z</declname>
+        </param>
+        <param>
+          <type><ref refid="classandres_1_1View" kindref="compound">marray::View</ref>&lt; uint8_t &gt; &amp;</type>
+          <declname>liftedEdgesState</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/seg_to_lifted_edges.hxx" line="46" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/seg_to_lifted_edges.hxx" bodystart="46" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacenifty_1_1ground__truth_1a9db1e8161597359400b066deab0f7dfb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T_SEG</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::ground_truth::seg3dToCremiZ5Edges</definition>
+        <argsstring>(const marray::View&lt; T_SEG &gt; &amp;segmentation, std::vector&lt; std::array&lt; int32_t, 4 &gt; &gt; &amp;edges, marray::View&lt; uint8_t &gt; &amp;liftedEdgesState)</argsstring>
+        <name>seg3dToCremiZ5Edges</name>
+        <param>
+          <type>const <ref refid="classandres_1_1View" kindref="compound">marray::View</ref>&lt; T_SEG &gt; &amp;</type>
+          <declname>segmentation</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; std::array&lt; int32_t, 4 &gt; &gt; &amp;</type>
+          <declname>edges</declname>
+        </param>
+        <param>
+          <type><ref refid="classandres_1_1View" kindref="compound">marray::View</ref>&lt; uint8_t &gt; &amp;</type>
+          <declname>liftedEdgesState</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/seg_to_lifted_edges.hxx" line="86" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/seg_to_lifted_edges.hxx" bodystart="86" bodyend="127"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacenifty_1_1ground__truth_1a4feb2d90b357085dcc776da2e24a4f64" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T_SEG</type>
+          </param>
+          <param>
+            <type>class T_DT</type>
+          </param>
+          <param>
+            <type>class T_OUT</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::ground_truth::thinSegFilter</definition>
+        <argsstring>(const marray::View&lt; T_SEG &gt; &amp;segmentation, const marray::View&lt; T_DT &gt; &amp;dt, marray::View&lt; T_OUT &gt; &amp;out, const float sigma, int radius=0)</argsstring>
+        <name>thinSegFilter</name>
+        <param>
+          <type>const <ref refid="classandres_1_1View" kindref="compound">marray::View</ref>&lt; T_SEG &gt; &amp;</type>
+          <declname>segmentation</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classandres_1_1View" kindref="compound">marray::View</ref>&lt; T_DT &gt; &amp;</type>
+          <declname>dt</declname>
+        </param>
+        <param>
+          <type><ref refid="classandres_1_1View" kindref="compound">marray::View</ref>&lt; T_OUT &gt; &amp;</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>const float</type>
+          <declname>sigma</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>radius</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/seg_to_lifted_edges.hxx" line="132" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/seg_to_lifted_edges.hxx" bodystart="132" bodyend="195"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/overlap.hxx" line="10" column="1"/>
+  </compounddef>
+</doxygen>

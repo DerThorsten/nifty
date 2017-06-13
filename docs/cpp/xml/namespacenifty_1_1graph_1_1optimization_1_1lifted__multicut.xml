@@ -1,0 +1,232 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="namespacenifty_1_1graph_1_1optimization_1_1lifted__multicut" kind="namespace" language="C++">
+    <compoundname>nifty::graph::optimization::lifted_multicut</compoundname>
+    <innerclass refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMove" prot="public">nifty::graph::optimization::lifted_multicut::FusionMove</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased" prot="public">nifty::graph::optimization::lifted_multicut::FusionMoveBased</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutAndresGreedyAdditive" prot="public">nifty::graph::optimization::lifted_multicut::LiftedMulticutAndresGreedyAdditive</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin" prot="public">nifty::graph::optimization::lifted_multicut::LiftedMulticutAndresKernighanLin</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutBase" prot="public">nifty::graph::optimization::lifted_multicut::LiftedMulticutBase</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutGreedyAdditive" prot="public">nifty::graph::optimization::lifted_multicut::LiftedMulticutGreedyAdditive</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutIlp" prot="public">nifty::graph::optimization::lifted_multicut::LiftedMulticutIlp</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin" prot="public">nifty::graph::optimization::lifted_multicut::LiftedMulticutKernighanLin</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutMp" prot="public">nifty::graph::optimization::lifted_multicut::LiftedMulticutMp</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutObjective" prot="public">nifty::graph::optimization::lifted_multicut::LiftedMulticutObjective</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutObjectiveBase" prot="public">nifty::graph::optimization::lifted_multicut::LiftedMulticutObjectiveBase</innerclass>
+    <innerclass refid="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutObjectiveName" prot="public">nifty::graph::optimization::lifted_multicut::LiftedMulticutObjectiveName</innerclass>
+    <innerclass refid="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutObjectiveName_3_01Leara8d2df610bda1b7105525110a645f4ce" prot="public">nifty::graph::optimization::lifted_multicut::LiftedMulticutObjectiveName&lt; LearnableLiftedMulticutObjective&lt; GRAPH, T &gt; &gt;</innerclass>
+    <innerclass refid="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutObjectiveName_3_01PyDe355903af316bd27192e064a422e0c831" prot="public">nifty::graph::optimization::lifted_multicut::LiftedMulticutObjectiveName&lt; PyDefaultMulticutObjective&lt; GRAPH &gt; &gt;</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1ProposalGeneratorBase" prot="public">nifty::graph::optimization::lifted_multicut::ProposalGeneratorBase</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1ProposalGeneratorFactory" prot="public">nifty::graph::optimization::lifted_multicut::ProposalGeneratorFactory</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1ProposalGeneratorFactoryBase" prot="public">nifty::graph::optimization::lifted_multicut::ProposalGeneratorFactoryBase</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1PyLiftedMulticutBase" prot="public">nifty::graph::optimization::lifted_multicut::PyLiftedMulticutBase</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1PyLiftedMulticutVisitorBase" prot="public">nifty::graph::optimization::lifted_multicut::PyLiftedMulticutVisitorBase</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1PyProposalGeneratorFactoryBase" prot="public">nifty::graph::optimization::lifted_multicut::PyProposalGeneratorFactoryBase</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator" prot="public">nifty::graph::optimization::lifted_multicut::WatershedProposalGenerator</innerclass>
+      <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="namespacenifty_1_1graph_1_1optimization_1_1lifted__multicut_1a7fba9b4f2086d28c7448955f4af4a0de" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1VisitorBase" kindref="compound">nifty::graph::optimization::common::VisitorBase</ref>&lt; <ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutBase" kindref="compound">LiftedMulticutBase</ref>&lt; OBJECTIVE &gt; &gt;</type>
+        <definition>using nifty::graph::optimization::lifted_multicut::LiftedMulticutVisitorBase = typedef nifty::graph::optimization::common::VisitorBase&lt; LiftedMulticutBase&lt;OBJECTIVE&gt; &gt;</definition>
+        <argsstring></argsstring>
+        <name>LiftedMulticutVisitorBase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_visitor_base.hxx" line="19" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_visitor_base.hxx" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="namespacenifty_1_1graph_1_1optimization_1_1lifted__multicut_1a5bff2c59860c848ec87e90add5a70d47" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1VerboseVisitor" kindref="compound">nifty::graph::optimization::common::VerboseVisitor</ref>&lt; <ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutBase" kindref="compound">LiftedMulticutBase</ref>&lt; OBJECTIVE &gt; &gt;</type>
+        <definition>using nifty::graph::optimization::lifted_multicut::LiftedMulticutVerboseVisitor = typedef nifty::graph::optimization::common::VerboseVisitor&lt; LiftedMulticutBase&lt;OBJECTIVE&gt; &gt;</definition>
+        <argsstring></argsstring>
+        <name>LiftedMulticutVerboseVisitor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_visitor_base.hxx" line="22" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_visitor_base.hxx" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="namespacenifty_1_1graph_1_1optimization_1_1lifted__multicut_1a344995f0dd906c91911dcf3bc4b53397" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1EmptyVisitor" kindref="compound">nifty::graph::optimization::common::EmptyVisitor</ref>&lt; <ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutBase" kindref="compound">LiftedMulticutBase</ref>&lt; OBJECTIVE &gt; &gt;</type>
+        <definition>using nifty::graph::optimization::lifted_multicut::LiftedMulticutEmptyVisitor = typedef nifty::graph::optimization::common::EmptyVisitor&lt; LiftedMulticutBase&lt;OBJECTIVE&gt; &gt;</definition>
+        <argsstring></argsstring>
+        <name>LiftedMulticutEmptyVisitor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_visitor_base.hxx" line="25" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_visitor_base.hxx" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="namespacenifty_1_1graph_1_1optimization_1_1lifted__multicut_1a9dd0bd3a8572b292340fd5914c7ce0f4" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1VisitorProxy" kindref="compound">nifty::graph::optimization::common::VisitorProxy</ref>&lt; <ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutBase" kindref="compound">LiftedMulticutBase</ref>&lt; OBJECTIVE &gt; &gt;</type>
+        <definition>using nifty::graph::optimization::lifted_multicut::LiftedMulticutVisitorProxy = typedef nifty::graph::optimization::common::VisitorProxy&lt; LiftedMulticutBase&lt;OBJECTIVE&gt; &gt;</definition>
+        <argsstring></argsstring>
+        <name>LiftedMulticutVisitorProxy</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_visitor_base.hxx" line="28" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_visitor_base.hxx" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="namespacenifty_1_1graph_1_1optimization_1_1lifted__multicut_1a462aa786d8b2342b9d580f19f184f5eb" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutObjective" kindref="compound">LiftedMulticutObjective</ref>&lt; GRAPH, double &gt;</type>
+        <definition>using nifty::graph::optimization::lifted_multicut::PyDefaultMulticutObjective = typedef LiftedMulticutObjective&lt;GRAPH, double&gt;</definition>
+        <argsstring></argsstring>
+        <name>PyDefaultMulticutObjective</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/graph/optimization/lifted_multicut/lifted_multicut_objective.hxx" line="17" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/graph/optimization/lifted_multicut/lifted_multicut_objective.hxx" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespacenifty_1_1graph_1_1optimization_1_1lifted__multicut_1a1b3c26702144eea575aeec046471c4df" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class LIFTED_MULTICUT_OBJECTIVE</type>
+          </param>
+          <param>
+            <type>class EDGE_INDICATORS</type>
+          </param>
+          <param>
+            <type>class EDGE_SIZES</type>
+          </param>
+          <param>
+            <type>class NODE_SIZES</type>
+          </param>
+          <param>
+            <type>class OUT</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::graph::optimization::lifted_multicut::liftedUcmFeatures</definition>
+        <argsstring>(const LIFTED_MULTICUT_OBJECTIVE &amp;objective, const EDGE_INDICATORS &amp;edgeIndicators, const EDGE_SIZES &amp;edgeSizes, const NODE_SIZES &amp;nodeSizes, std::vector&lt; double &gt; sizeRegularizers, OUT &amp;out)</argsstring>
+        <name>liftedUcmFeatures</name>
+        <param>
+          <type>const LIFTED_MULTICUT_OBJECTIVE &amp;</type>
+          <declname>objective</declname>
+        </param>
+        <param>
+          <type>const EDGE_INDICATORS &amp;</type>
+          <declname>edgeIndicators</declname>
+        </param>
+        <param>
+          <type>const EDGE_SIZES &amp;</type>
+          <declname>edgeSizes</declname>
+        </param>
+        <param>
+          <type>const NODE_SIZES &amp;</type>
+          <declname>nodeSizes</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; double &gt;</type>
+          <declname>sizeRegularizers</declname>
+        </param>
+        <param>
+          <type>OUT &amp;</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_graph_features.hxx" line="27" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_graph_features.hxx" bodystart="27" bodyend="116"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacenifty_1_1graph_1_1optimization_1_1lifted__multicut_1aa93e330f76d91d2c5ddeeb9d972d809d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class LIFTED_MULTICUT_OBJECTIVE</type>
+          </param>
+          <param>
+            <type>class EDGE_INDICATORS</type>
+          </param>
+          <param>
+            <type>class EDGE_SIZES</type>
+          </param>
+          <param>
+            <type>class NODE_SIZES</type>
+          </param>
+          <param>
+            <type>class OUT</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::graph::optimization::lifted_multicut::liftedShortedPathFeatures</definition>
+        <argsstring>(const LIFTED_MULTICUT_OBJECTIVE &amp;objective, const EDGE_INDICATORS &amp;edgeIndicators, std::vector&lt; double &gt; offsets, OUT &amp;out, const int nThreads=-1)</argsstring>
+        <name>liftedShortedPathFeatures</name>
+        <param>
+          <type>const LIFTED_MULTICUT_OBJECTIVE &amp;</type>
+          <declname>objective</declname>
+        </param>
+        <param>
+          <type>const EDGE_INDICATORS &amp;</type>
+          <declname>edgeIndicators</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; double &gt;</type>
+          <declname>offsets</declname>
+        </param>
+        <param>
+          <type>OUT &amp;</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>nThreads</declname>
+          <defval>-1</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_graph_features.hxx" line="127" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_graph_features.hxx" bodystart="127" bodyend="198"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacenifty_1_1graph_1_1optimization_1_1lifted__multicut_1a1295e6511368a32684e70efd7bcff118" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class SOLVER</type>
+          </param>
+        </templateparamlist>
+        <type>py::class_&lt; typename SOLVER::SettingsType &gt;</type>
+        <definition>py::class_&lt;typename SOLVER::SettingsType&gt; nifty::graph::optimization::lifted_multicut::exportLiftedMulticutSolver</definition>
+        <argsstring>(py::module &amp;liftedMulticutModule, const std::string &amp;solverName)</argsstring>
+        <name>exportLiftedMulticutSolver</name>
+        <param>
+          <type>py::module &amp;</type>
+          <declname>liftedMulticutModule</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>solverName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/graph/optimization/lifted_multicut/export_lifted_multicut_solver.hxx" line="24" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/graph/optimization/lifted_multicut/export_lifted_multicut_solver.hxx" bodystart="24" bodyend="68"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/detail/lifted_twocut_kernighan_lin.hxx" line="26" column="1"/>
+  </compounddef>
+</doxygen>

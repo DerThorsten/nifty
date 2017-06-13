@@ -1,0 +1,511 @@
+\hypertarget{namespaceandres_1_1hdf5}{}\section{andres\+:\+:hdf5 Namespace Reference}
+\label{namespaceandres_1_1hdf5}\index{andres\+::hdf5@{andres\+::hdf5}}
+
+
+H\+D\+F5 import/export support.  
+
+
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{namespaceandres_1_1hdf5_a08660935c7de0e1e76e007fc972933b9}{File\+Access\+Mode} \{ \hyperlink{namespaceandres_1_1hdf5_a08660935c7de0e1e76e007fc972933b9af05cb745b770e55c64efe88162f7e9fb}{R\+E\+A\+D\+\_\+\+O\+N\+L\+Y}, 
+\hyperlink{namespaceandres_1_1hdf5_a08660935c7de0e1e76e007fc972933b9af215ccdde9335c237c14b7c1d35766d4}{R\+E\+A\+D\+\_\+\+W\+R\+I\+T\+E}
+ \}
+\item 
+enum \hyperlink{namespaceandres_1_1hdf5_ad5194a7b8773d3776e8dfc068f58f41b}{H\+D\+F5\+Version} \{ \hyperlink{namespaceandres_1_1hdf5_ad5194a7b8773d3776e8dfc068f58f41baf4fdc18c306e5d07105ad62a1cf6fa93}{D\+E\+F\+A\+U\+L\+T\+\_\+\+H\+D\+F5\+\_\+\+V\+E\+R\+S\+I\+O\+N}, 
+\hyperlink{namespaceandres_1_1hdf5_ad5194a7b8773d3776e8dfc068f58f41ba29da3f0202bdf4ea2b036678ae7aa717}{L\+A\+T\+E\+S\+T\+\_\+\+H\+D\+F5\+\_\+\+V\+E\+R\+S\+I\+O\+N}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+hid\+\_\+t \hyperlink{namespaceandres_1_1hdf5_a1f779b6e42349512d5227fbb6dcf92cd}{create\+File} (const std\+::string \&, \hyperlink{namespaceandres_1_1hdf5_ad5194a7b8773d3776e8dfc068f58f41b}{H\+D\+F5\+Version}=\hyperlink{namespaceandres_1_1hdf5_ad5194a7b8773d3776e8dfc068f58f41baf4fdc18c306e5d07105ad62a1cf6fa93}{D\+E\+F\+A\+U\+L\+T\+\_\+\+H\+D\+F5\+\_\+\+V\+E\+R\+S\+I\+O\+N})
+\item 
+hid\+\_\+t \hyperlink{namespaceandres_1_1hdf5_a3645de3466468274059f8475066ff820}{open\+File} (const std\+::string \&, \hyperlink{namespaceandres_1_1hdf5_a08660935c7de0e1e76e007fc972933b9}{File\+Access\+Mode}=\hyperlink{namespaceandres_1_1hdf5_a08660935c7de0e1e76e007fc972933b9af05cb745b770e55c64efe88162f7e9fb}{R\+E\+A\+D\+\_\+\+O\+N\+L\+Y}, \hyperlink{namespaceandres_1_1hdf5_ad5194a7b8773d3776e8dfc068f58f41b}{H\+D\+F5\+Version}=\hyperlink{namespaceandres_1_1hdf5_ad5194a7b8773d3776e8dfc068f58f41baf4fdc18c306e5d07105ad62a1cf6fa93}{D\+E\+F\+A\+U\+L\+T\+\_\+\+H\+D\+F5\+\_\+\+V\+E\+R\+S\+I\+O\+N})
+\item 
+void \hyperlink{namespaceandres_1_1hdf5_afa6545825e5557eecf6ac1e8fc68bb56}{close\+File} (const hid\+\_\+t \&)
+\item 
+hid\+\_\+t \hyperlink{namespaceandres_1_1hdf5_ac03dd5212231c5335a0a02edb3c0d879}{create\+Group} (const hid\+\_\+t \&, const std\+::string \&)
+\item 
+hid\+\_\+t \hyperlink{namespaceandres_1_1hdf5_a3d7159f65f86576c9142409b08afcfc9}{open\+Group} (const hid\+\_\+t \&, const std\+::string \&)
+\item 
+void \hyperlink{namespaceandres_1_1hdf5_a1aaf506863ec820cdcc827c7997d4ba3}{close\+Group} (const hid\+\_\+t \&)
+\item 
+{\footnotesize template$<$class T $>$ }\\void \hyperlink{namespaceandres_1_1hdf5_a0bc471ab828dcfdedd90dc6f991b509e}{save} (const hid\+\_\+t \&, const std\+::string \&, const \hyperlink{classandres_1_1Marray}{Marray}$<$ T $>$ \&)
+\item 
+{\footnotesize template$<$class T , bool is\+Const$>$ }\\void \hyperlink{namespaceandres_1_1hdf5_ac6995803b0ec6079698d61563b5de104}{save} (const hid\+\_\+t \&, const std\+::string \&, const \hyperlink{classandres_1_1View}{View}$<$ T, is\+Const $>$ \&)
+\item 
+{\footnotesize template$<$class T $>$ }\\void \hyperlink{namespaceandres_1_1hdf5_a541f5c1613746f236ecc7e0035fa8919}{save} (const hid\+\_\+t \&, const std\+::string \&, const std\+::vector$<$ T $>$ \&)
+\item 
+{\footnotesize template$<$class T , class Base\+Iterator , class Shape\+Iterator $>$ }\\void \hyperlink{namespaceandres_1_1hdf5_a8b3c6fd3570f7452b1507bf5cf48dfc5}{save\+Hyperslab} (const hid\+\_\+t \&, const std\+::string \&, Base\+Iterator, Base\+Iterator, Shape\+Iterator, const \hyperlink{classandres_1_1Marray}{Marray}$<$ T $>$ \&)
+\item 
+{\footnotesize template$<$class T , class Shape\+Iterator $>$ }\\void \hyperlink{namespaceandres_1_1hdf5_ad266faeb7371428b1bf018d4ddfec60d}{create} (const hid\+\_\+t \&, const std\+::string \&, Shape\+Iterator, Shape\+Iterator, \hyperlink{namespaceandres_a2ac8b7aa89d44e8188a7c0ba50f4306b}{Coordinate\+Order})
+\item 
+{\footnotesize template$<$class T $>$ }\\void \hyperlink{namespaceandres_1_1hdf5_ad5975e294df6102c312f69cd69e43d60}{load} (const hid\+\_\+t \&, const std\+::string \&, \hyperlink{classandres_1_1Marray}{Marray}$<$ T $>$ \&)
+\item 
+{\footnotesize template$<$class T $>$ }\\void \hyperlink{namespaceandres_1_1hdf5_a2ada1d6f4dc33d14090bad2a90d4d1a6}{load} (const hid\+\_\+t \&, const std\+::string \&, std\+::vector$<$ T $>$ \&)
+\item 
+{\footnotesize template$<$class T $>$ }\\void \hyperlink{namespaceandres_1_1hdf5_aecef33e8f815adf3e28bb387e246ebc8}{load} (const std\+::string \&, const std\+::string \&, \hyperlink{classandres_1_1Marray}{Marray}$<$ T $>$ \&, \hyperlink{namespaceandres_1_1hdf5_ad5194a7b8773d3776e8dfc068f58f41b}{H\+D\+F5\+Version}=\hyperlink{namespaceandres_1_1hdf5_ad5194a7b8773d3776e8dfc068f58f41baf4fdc18c306e5d07105ad62a1cf6fa93}{D\+E\+F\+A\+U\+L\+T\+\_\+\+H\+D\+F5\+\_\+\+V\+E\+R\+S\+I\+O\+N})
+\item 
+{\footnotesize template$<$class T $>$ }\\void \hyperlink{namespaceandres_1_1hdf5_a1efbca2cf84e0a2076dd02b98a96b65b}{load} (const std\+::string \&, const std\+::string \&, std\+::vector$<$ T $>$ \&, \hyperlink{namespaceandres_1_1hdf5_ad5194a7b8773d3776e8dfc068f58f41b}{H\+D\+F5\+Version}=\hyperlink{namespaceandres_1_1hdf5_ad5194a7b8773d3776e8dfc068f58f41baf4fdc18c306e5d07105ad62a1cf6fa93}{D\+E\+F\+A\+U\+L\+T\+\_\+\+H\+D\+F5\+\_\+\+V\+E\+R\+S\+I\+O\+N})
+\item 
+{\footnotesize template$<$class T $>$ }\\void \hyperlink{namespaceandres_1_1hdf5_a9ce6bf731e79264846d466fd92eee01f}{load\+Shape} (const hid\+\_\+t \&, const std\+::string \&, std\+::vector$<$ T $>$ \&)
+\item 
+{\footnotesize template$<$class T , class Base\+Iterator , class Shape\+Iterator $>$ }\\void \hyperlink{namespaceandres_1_1hdf5_ab031fffd5429859c7f914d8f883a6224}{load\+Hyperslab} (const hid\+\_\+t \&, const std\+::string \&, Base\+Iterator, Base\+Iterator, Shape\+Iterator, \hyperlink{classandres_1_1Marray}{Marray}$<$ T $>$ \&)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const char \hyperlink{namespaceandres_1_1hdf5_acf79cfe1ea0769086a46970fd58188a7}{reverse\+Shape\+Attribute\+Name} \mbox{[}14\mbox{]} = \char`\"{}reverse-\/shape\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+H\+D\+F5 import/export support. 
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{namespaceandres_1_1hdf5_a08660935c7de0e1e76e007fc972933b9}{}\index{andres\+::hdf5@{andres\+::hdf5}!File\+Access\+Mode@{File\+Access\+Mode}}
+\index{File\+Access\+Mode@{File\+Access\+Mode}!andres\+::hdf5@{andres\+::hdf5}}
+\subsubsection[{File\+Access\+Mode}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf andres\+::hdf5\+::\+File\+Access\+Mode}}\label{namespaceandres_1_1hdf5_a08660935c7de0e1e76e007fc972933b9}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{R\+E\+A\+D\+\_\+\+O\+N\+L\+Y@{R\+E\+A\+D\+\_\+\+O\+N\+L\+Y}!andres\+::hdf5@{andres\+::hdf5}}\index{andres\+::hdf5@{andres\+::hdf5}!R\+E\+A\+D\+\_\+\+O\+N\+L\+Y@{R\+E\+A\+D\+\_\+\+O\+N\+L\+Y}}\item[{\em 
+\hypertarget{namespaceandres_1_1hdf5_a08660935c7de0e1e76e007fc972933b9af05cb745b770e55c64efe88162f7e9fb}{}R\+E\+A\+D\+\_\+\+O\+N\+L\+Y\label{namespaceandres_1_1hdf5_a08660935c7de0e1e76e007fc972933b9af05cb745b770e55c64efe88162f7e9fb}
+}]\index{R\+E\+A\+D\+\_\+\+W\+R\+I\+T\+E@{R\+E\+A\+D\+\_\+\+W\+R\+I\+T\+E}!andres\+::hdf5@{andres\+::hdf5}}\index{andres\+::hdf5@{andres\+::hdf5}!R\+E\+A\+D\+\_\+\+W\+R\+I\+T\+E@{R\+E\+A\+D\+\_\+\+W\+R\+I\+T\+E}}\item[{\em 
+\hypertarget{namespaceandres_1_1hdf5_a08660935c7de0e1e76e007fc972933b9af215ccdde9335c237c14b7c1d35766d4}{}R\+E\+A\+D\+\_\+\+W\+R\+I\+T\+E\label{namespaceandres_1_1hdf5_a08660935c7de0e1e76e007fc972933b9af215ccdde9335c237c14b7c1d35766d4}
+}]\end{description}
+\end{Desc}
+\hypertarget{namespaceandres_1_1hdf5_ad5194a7b8773d3776e8dfc068f58f41b}{}\index{andres\+::hdf5@{andres\+::hdf5}!H\+D\+F5\+Version@{H\+D\+F5\+Version}}
+\index{H\+D\+F5\+Version@{H\+D\+F5\+Version}!andres\+::hdf5@{andres\+::hdf5}}
+\subsubsection[{H\+D\+F5\+Version}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf andres\+::hdf5\+::\+H\+D\+F5\+Version}}\label{namespaceandres_1_1hdf5_ad5194a7b8773d3776e8dfc068f58f41b}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{D\+E\+F\+A\+U\+L\+T\+\_\+\+H\+D\+F5\+\_\+\+V\+E\+R\+S\+I\+O\+N@{D\+E\+F\+A\+U\+L\+T\+\_\+\+H\+D\+F5\+\_\+\+V\+E\+R\+S\+I\+O\+N}!andres\+::hdf5@{andres\+::hdf5}}\index{andres\+::hdf5@{andres\+::hdf5}!D\+E\+F\+A\+U\+L\+T\+\_\+\+H\+D\+F5\+\_\+\+V\+E\+R\+S\+I\+O\+N@{D\+E\+F\+A\+U\+L\+T\+\_\+\+H\+D\+F5\+\_\+\+V\+E\+R\+S\+I\+O\+N}}\item[{\em 
+\hypertarget{namespaceandres_1_1hdf5_ad5194a7b8773d3776e8dfc068f58f41baf4fdc18c306e5d07105ad62a1cf6fa93}{}D\+E\+F\+A\+U\+L\+T\+\_\+\+H\+D\+F5\+\_\+\+V\+E\+R\+S\+I\+O\+N\label{namespaceandres_1_1hdf5_ad5194a7b8773d3776e8dfc068f58f41baf4fdc18c306e5d07105ad62a1cf6fa93}
+}]\index{L\+A\+T\+E\+S\+T\+\_\+\+H\+D\+F5\+\_\+\+V\+E\+R\+S\+I\+O\+N@{L\+A\+T\+E\+S\+T\+\_\+\+H\+D\+F5\+\_\+\+V\+E\+R\+S\+I\+O\+N}!andres\+::hdf5@{andres\+::hdf5}}\index{andres\+::hdf5@{andres\+::hdf5}!L\+A\+T\+E\+S\+T\+\_\+\+H\+D\+F5\+\_\+\+V\+E\+R\+S\+I\+O\+N@{L\+A\+T\+E\+S\+T\+\_\+\+H\+D\+F5\+\_\+\+V\+E\+R\+S\+I\+O\+N}}\item[{\em 
+\hypertarget{namespaceandres_1_1hdf5_ad5194a7b8773d3776e8dfc068f58f41ba29da3f0202bdf4ea2b036678ae7aa717}{}L\+A\+T\+E\+S\+T\+\_\+\+H\+D\+F5\+\_\+\+V\+E\+R\+S\+I\+O\+N\label{namespaceandres_1_1hdf5_ad5194a7b8773d3776e8dfc068f58f41ba29da3f0202bdf4ea2b036678ae7aa717}
+}]\end{description}
+\end{Desc}
+
+
+\subsection{Function Documentation}
+\hypertarget{namespaceandres_1_1hdf5_afa6545825e5557eecf6ac1e8fc68bb56}{}\index{andres\+::hdf5@{andres\+::hdf5}!close\+File@{close\+File}}
+\index{close\+File@{close\+File}!andres\+::hdf5@{andres\+::hdf5}}
+\subsubsection[{close\+File(const hid\+\_\+t \&)}]{\setlength{\rightskip}{0pt plus 5cm}void andres\+::hdf5\+::close\+File (
+\begin{DoxyParamCaption}
+\item[{const hid\+\_\+t \&}]{handle}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{namespaceandres_1_1hdf5_afa6545825e5557eecf6ac1e8fc68bb56}
+Close an H\+D\+F5 file
+
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & Handle to the H\+D\+F5 file.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{namespaceandres_1_1hdf5_a3645de3466468274059f8475066ff820}{open\+File()}, \hyperlink{namespaceandres_1_1hdf5_a1f779b6e42349512d5227fbb6dcf92cd}{create\+File()} 
+\end{DoxySeeAlso}
+\hypertarget{namespaceandres_1_1hdf5_a1aaf506863ec820cdcc827c7997d4ba3}{}\index{andres\+::hdf5@{andres\+::hdf5}!close\+Group@{close\+Group}}
+\index{close\+Group@{close\+Group}!andres\+::hdf5@{andres\+::hdf5}}
+\subsubsection[{close\+Group(const hid\+\_\+t \&)}]{\setlength{\rightskip}{0pt plus 5cm}void andres\+::hdf5\+::close\+Group (
+\begin{DoxyParamCaption}
+\item[{const hid\+\_\+t \&}]{handle}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{namespaceandres_1_1hdf5_a1aaf506863ec820cdcc827c7997d4ba3}
+Close an H\+D\+F5 group.
+
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & H\+D\+F5 handle on group to close.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{namespaceandres_1_1hdf5_a3d7159f65f86576c9142409b08afcfc9}{open\+Group()}, \hyperlink{namespaceandres_1_1hdf5_ac03dd5212231c5335a0a02edb3c0d879}{create\+Group()} 
+\end{DoxySeeAlso}
+\hypertarget{namespaceandres_1_1hdf5_ad266faeb7371428b1bf018d4ddfec60d}{}\index{andres\+::hdf5@{andres\+::hdf5}!create@{create}}
+\index{create@{create}!andres\+::hdf5@{andres\+::hdf5}}
+\subsubsection[{create(const hid\+\_\+t \&, const std\+::string \&, Shape\+Iterator, Shape\+Iterator, Coordinate\+Order)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , class Shape\+Iterator $>$ void andres\+::hdf5\+::create (
+\begin{DoxyParamCaption}
+\item[{const hid\+\_\+t \&}]{group\+Handle, }
+\item[{const std\+::string \&}]{dataset\+Name, }
+\item[{Shape\+Iterator}]{begin, }
+\item[{Shape\+Iterator}]{end, }
+\item[{{\bf Coordinate\+Order}}]{coordinate\+Order}
+\end{DoxyParamCaption}
+)}\label{namespaceandres_1_1hdf5_ad266faeb7371428b1bf018d4ddfec60d}
+Create and close an H\+D\+F5 dataset to store \hyperlink{classandres_1_1Marray}{Marray} data.
+
+
+\begin{DoxyParams}{Parameters}
+{\em group\+Handle} & Handle of the parent H\+D\+F5 file or group. \\
+\hline
+{\em dataset\+Name} & Name of the H\+D\+F5 dataset. \\
+\hline
+{\em begin} & \hyperlink{classandres_1_1Iterator}{Iterator} to the beginning of a sequence that determines the shape of the dataset. \\
+\hline
+{\em end} & \hyperlink{classandres_1_1Iterator}{Iterator} to the end of a sequence that determines the shape of the dataset. \\
+\hline
+{\em coordinate\+Order} & Coordinate order of the \hyperlink{classandres_1_1Marray}{Marray}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{namespaceandres_1_1hdf5_a0bc471ab828dcfdedd90dc6f991b509e}{save()}, \hyperlink{namespaceandres_1_1hdf5_a8b3c6fd3570f7452b1507bf5cf48dfc5}{save\+Hyperslab()} 
+\end{DoxySeeAlso}
+\hypertarget{namespaceandres_1_1hdf5_a1f779b6e42349512d5227fbb6dcf92cd}{}\index{andres\+::hdf5@{andres\+::hdf5}!create\+File@{create\+File}}
+\index{create\+File@{create\+File}!andres\+::hdf5@{andres\+::hdf5}}
+\subsubsection[{create\+File(const std\+::string \&, H\+D\+F5\+Version=\+D\+E\+F\+A\+U\+L\+T\+\_\+\+H\+D\+F5\+\_\+\+V\+E\+R\+S\+I\+O\+N)}]{\setlength{\rightskip}{0pt plus 5cm}hid\+\_\+t andres\+::hdf5\+::create\+File (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{filename, }
+\item[{{\bf H\+D\+F5\+Version}}]{hdf5version}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{namespaceandres_1_1hdf5_a1f779b6e42349512d5227fbb6dcf92cd}
+Create an H\+D\+F5 file.
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & Name of the file. \\
+\hline
+{\em hdf5version} & H\+D\+F5 version tag.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+H\+D\+F5 handle
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{namespaceandres_1_1hdf5_a3645de3466468274059f8475066ff820}{open\+File()}, \hyperlink{namespaceandres_1_1hdf5_afa6545825e5557eecf6ac1e8fc68bb56}{close\+File()} 
+\end{DoxySeeAlso}
+\hypertarget{namespaceandres_1_1hdf5_ac03dd5212231c5335a0a02edb3c0d879}{}\index{andres\+::hdf5@{andres\+::hdf5}!create\+Group@{create\+Group}}
+\index{create\+Group@{create\+Group}!andres\+::hdf5@{andres\+::hdf5}}
+\subsubsection[{create\+Group(const hid\+\_\+t \&, const std\+::string \&)}]{\setlength{\rightskip}{0pt plus 5cm}hid\+\_\+t andres\+::hdf5\+::create\+Group (
+\begin{DoxyParamCaption}
+\item[{const hid\+\_\+t \&}]{parent\+Handle, }
+\item[{const std\+::string \&}]{group\+Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{namespaceandres_1_1hdf5_ac03dd5212231c5335a0a02edb3c0d879}
+Create an H\+D\+F5 group.
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent\+Handle} & H\+D\+F5 handle on the parent group or file. \\
+\hline
+{\em group\+Name} & Name of the group. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+H\+D\+F5 handle on the created group
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{namespaceandres_1_1hdf5_a3d7159f65f86576c9142409b08afcfc9}{open\+Group()}, \hyperlink{namespaceandres_1_1hdf5_a1aaf506863ec820cdcc827c7997d4ba3}{close\+Group()} 
+\end{DoxySeeAlso}
+\hypertarget{namespaceandres_1_1hdf5_ad5975e294df6102c312f69cd69e43d60}{}\index{andres\+::hdf5@{andres\+::hdf5}!load@{load}}
+\index{load@{load}!andres\+::hdf5@{andres\+::hdf5}}
+\subsubsection[{load(const hid\+\_\+t \&, const std\+::string \&, Marray$<$ T $>$ \&)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ void andres\+::hdf5\+::load (
+\begin{DoxyParamCaption}
+\item[{const hid\+\_\+t \&}]{group\+Handle, }
+\item[{const std\+::string \&}]{dataset\+Name, }
+\item[{{\bf Marray}$<$ T $>$ \&}]{out}
+\end{DoxyParamCaption}
+)}\label{namespaceandres_1_1hdf5_ad5975e294df6102c312f69cd69e43d60}
+Load an \hyperlink{classandres_1_1Marray}{Marray} from an H\+D\+F5 dataset.
+
+
+\begin{DoxyParams}{Parameters}
+{\em group\+Handle} & Handle of the parent H\+D\+F5 file or group. \\
+\hline
+{\em dataset\+Name} & Name of the H\+D\+F5 dataset. \\
+\hline
+{\em out} & \hyperlink{classandres_1_1Marray}{Marray}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{namespaceandres_1_1hdf5_ab031fffd5429859c7f914d8f883a6224}{load\+Hyperslab()} 
+\end{DoxySeeAlso}
+\hypertarget{namespaceandres_1_1hdf5_a2ada1d6f4dc33d14090bad2a90d4d1a6}{}\index{andres\+::hdf5@{andres\+::hdf5}!load@{load}}
+\index{load@{load}!andres\+::hdf5@{andres\+::hdf5}}
+\subsubsection[{load(const hid\+\_\+t \&, const std\+::string \&, std\+::vector$<$ T $>$ \&)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ void andres\+::hdf5\+::load (
+\begin{DoxyParamCaption}
+\item[{const hid\+\_\+t \&}]{group\+Handle, }
+\item[{const std\+::string \&}]{dataset\+Name, }
+\item[{std\+::vector$<$ T $>$ \&}]{out}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{namespaceandres_1_1hdf5_a2ada1d6f4dc33d14090bad2a90d4d1a6}
+Load an std\+::vector from an H\+D\+F5 dataset.
+
+
+\begin{DoxyParams}{Parameters}
+{\em group\+Handle} & Handle of the parent H\+D\+F5 file or group. \\
+\hline
+{\em dataset\+Name} & Name of the H\+D\+F5 dataset. \\
+\hline
+{\em out} & std\+::vector.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{namespaceandres_1_1hdf5_ad5975e294df6102c312f69cd69e43d60}{load()}, \hyperlink{namespaceandres_1_1hdf5_ab031fffd5429859c7f914d8f883a6224}{load\+Hyperslab()}
+\end{DoxySeeAlso}
+T\+O\+D\+O\+: write a unit test for this function \hypertarget{namespaceandres_1_1hdf5_aecef33e8f815adf3e28bb387e246ebc8}{}\index{andres\+::hdf5@{andres\+::hdf5}!load@{load}}
+\index{load@{load}!andres\+::hdf5@{andres\+::hdf5}}
+\subsubsection[{load(const std\+::string \&, const std\+::string \&, Marray$<$ T $>$ \&, H\+D\+F5\+Version=\+D\+E\+F\+A\+U\+L\+T\+\_\+\+H\+D\+F5\+\_\+\+V\+E\+R\+S\+I\+O\+N)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ void andres\+::hdf5\+::load (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{filename, }
+\item[{const std\+::string \&}]{dataset\+Name, }
+\item[{{\bf Marray}$<$ T $>$ \&}]{out, }
+\item[{{\bf H\+D\+F5\+Version}}]{hdf5version}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{namespaceandres_1_1hdf5_aecef33e8f815adf3e28bb387e246ebc8}
+Open an H\+D\+F5 file (read only), load an \hyperlink{classandres_1_1Marray}{Marray} from an H\+D\+F5 dataset, and close the file.
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & Name of the file. \\
+\hline
+{\em dataset\+Name} & Name of the H\+D\+F5 dataset. \\
+\hline
+{\em out} & \hyperlink{classandres_1_1Marray}{Marray}. \\
+\hline
+{\em hdf5version} & H\+D\+F5 version tag.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{namespaceandres_1_1hdf5_ad5975e294df6102c312f69cd69e43d60}{load()}, \hyperlink{namespaceandres_1_1hdf5_ab031fffd5429859c7f914d8f883a6224}{load\+Hyperslab()}
+\end{DoxySeeAlso}
+T\+O\+D\+O\+: write a unit test for this function \hypertarget{namespaceandres_1_1hdf5_a1efbca2cf84e0a2076dd02b98a96b65b}{}\index{andres\+::hdf5@{andres\+::hdf5}!load@{load}}
+\index{load@{load}!andres\+::hdf5@{andres\+::hdf5}}
+\subsubsection[{load(const std\+::string \&, const std\+::string \&, std\+::vector$<$ T $>$ \&, H\+D\+F5\+Version=\+D\+E\+F\+A\+U\+L\+T\+\_\+\+H\+D\+F5\+\_\+\+V\+E\+R\+S\+I\+O\+N)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ void andres\+::hdf5\+::load (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{filename, }
+\item[{const std\+::string \&}]{dataset\+Name, }
+\item[{std\+::vector$<$ T $>$ \&}]{out, }
+\item[{{\bf H\+D\+F5\+Version}}]{hdf5version}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{namespaceandres_1_1hdf5_a1efbca2cf84e0a2076dd02b98a96b65b}
+Open an H\+D\+F5 file (read only), load an std\+::vector from an H\+D\+F5 dataset, and close the file.
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & Name of the file. \\
+\hline
+{\em dataset\+Name} & Name of the H\+D\+F5 dataset. \\
+\hline
+{\em out} & std\+::vector. \\
+\hline
+{\em hdf5version} & H\+D\+F5 version tag.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{namespaceandres_1_1hdf5_ad5975e294df6102c312f69cd69e43d60}{load()}, \hyperlink{namespaceandres_1_1hdf5_ab031fffd5429859c7f914d8f883a6224}{load\+Hyperslab()}
+\end{DoxySeeAlso}
+T\+O\+D\+O\+: write a unit test for this function \hypertarget{namespaceandres_1_1hdf5_ab031fffd5429859c7f914d8f883a6224}{}\index{andres\+::hdf5@{andres\+::hdf5}!load\+Hyperslab@{load\+Hyperslab}}
+\index{load\+Hyperslab@{load\+Hyperslab}!andres\+::hdf5@{andres\+::hdf5}}
+\subsubsection[{load\+Hyperslab(const hid\+\_\+t \&, const std\+::string \&, Base\+Iterator, Base\+Iterator, Shape\+Iterator, Marray$<$ T $>$ \&)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , class Base\+Iterator , class Shape\+Iterator $>$ void andres\+::hdf5\+::load\+Hyperslab (
+\begin{DoxyParamCaption}
+\item[{const hid\+\_\+t \&}]{group\+Handle, }
+\item[{const std\+::string \&}]{dataset\+Name, }
+\item[{Base\+Iterator}]{base\+Begin, }
+\item[{Base\+Iterator}]{base\+End, }
+\item[{Shape\+Iterator}]{shape\+Begin, }
+\item[{{\bf Marray}$<$ T $>$ \&}]{out}
+\end{DoxyParamCaption}
+)}\label{namespaceandres_1_1hdf5_ab031fffd5429859c7f914d8f883a6224}
+Load a hyperslab from an H\+D\+F5 dataset into an \hyperlink{classandres_1_1Marray}{Marray}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em group\+Handle} & Handle of the parent H\+D\+F5 file or group. \\
+\hline
+{\em dataset\+Name} & Name of the H\+D\+F5 dataset. \\
+\hline
+{\em base\+Begin} & \hyperlink{classandres_1_1Iterator}{Iterator} to the beginning of the sequence that determines the first coordinate of the hyperslab. \\
+\hline
+{\em base\+End} & \hyperlink{classandres_1_1Iterator}{Iterator} to the end of the sequence that determines the first coordinate of the hyperslab. \\
+\hline
+{\em shape\+Begin} & \hyperlink{classandres_1_1Iterator}{Iterator} to the beginning of the sequence that determines the shape of the hyperslab. \\
+\hline
+{\em out} & \hyperlink{classandres_1_1Marray}{Marray}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{namespaceandres_1_1hdf5_a8b3c6fd3570f7452b1507bf5cf48dfc5}{save\+Hyperslab()}, \hyperlink{namespaceandres_1_1hdf5_ad266faeb7371428b1bf018d4ddfec60d}{create()} 
+\end{DoxySeeAlso}
+\hypertarget{namespaceandres_1_1hdf5_a9ce6bf731e79264846d466fd92eee01f}{}\index{andres\+::hdf5@{andres\+::hdf5}!load\+Shape@{load\+Shape}}
+\index{load\+Shape@{load\+Shape}!andres\+::hdf5@{andres\+::hdf5}}
+\subsubsection[{load\+Shape(const hid\+\_\+t \&, const std\+::string \&, std\+::vector$<$ T $>$ \&)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ void andres\+::hdf5\+::load\+Shape (
+\begin{DoxyParamCaption}
+\item[{const hid\+\_\+t \&}]{group\+Handle, }
+\item[{const std\+::string \&}]{dataset\+Name, }
+\item[{std\+::vector$<$ T $>$ \&}]{out}
+\end{DoxyParamCaption}
+)}\label{namespaceandres_1_1hdf5_a9ce6bf731e79264846d466fd92eee01f}
+Load the shape of an H\+D\+F5 dataset.
+
+
+\begin{DoxyParams}{Parameters}
+{\em group\+Handle} & Handle of the parent H\+D\+F5 file or group. \\
+\hline
+{\em dataset\+Name} & Name of the H\+D\+F5 dataset. \\
+\hline
+{\em out} & Shape.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{namespaceandres_1_1hdf5_ad5975e294df6102c312f69cd69e43d60}{load()} 
+\end{DoxySeeAlso}
+\hypertarget{namespaceandres_1_1hdf5_a3645de3466468274059f8475066ff820}{}\index{andres\+::hdf5@{andres\+::hdf5}!open\+File@{open\+File}}
+\index{open\+File@{open\+File}!andres\+::hdf5@{andres\+::hdf5}}
+\subsubsection[{open\+File(const std\+::string \&, File\+Access\+Mode=\+R\+E\+A\+D\+\_\+\+O\+N\+L\+Y, H\+D\+F5\+Version=\+D\+E\+F\+A\+U\+L\+T\+\_\+\+H\+D\+F5\+\_\+\+V\+E\+R\+S\+I\+O\+N)}]{\setlength{\rightskip}{0pt plus 5cm}hid\+\_\+t andres\+::hdf5\+::open\+File (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{filename, }
+\item[{{\bf File\+Access\+Mode}}]{file\+Access\+Mode, }
+\item[{{\bf H\+D\+F5\+Version}}]{hdf5version}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{namespaceandres_1_1hdf5_a3645de3466468274059f8475066ff820}
+Open an H\+D\+F5 file.
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & Name of the file. \\
+\hline
+{\em file\+Access\+Mode} & File access mode. \\
+\hline
+{\em hdf5version} & H\+D\+F5 version tag.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+H\+D\+F5 handle
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{namespaceandres_1_1hdf5_afa6545825e5557eecf6ac1e8fc68bb56}{close\+File()}, \hyperlink{namespaceandres_1_1hdf5_a1f779b6e42349512d5227fbb6dcf92cd}{create\+File()} 
+\end{DoxySeeAlso}
+\hypertarget{namespaceandres_1_1hdf5_a3d7159f65f86576c9142409b08afcfc9}{}\index{andres\+::hdf5@{andres\+::hdf5}!open\+Group@{open\+Group}}
+\index{open\+Group@{open\+Group}!andres\+::hdf5@{andres\+::hdf5}}
+\subsubsection[{open\+Group(const hid\+\_\+t \&, const std\+::string \&)}]{\setlength{\rightskip}{0pt plus 5cm}hid\+\_\+t andres\+::hdf5\+::open\+Group (
+\begin{DoxyParamCaption}
+\item[{const hid\+\_\+t \&}]{parent\+Handle, }
+\item[{const std\+::string \&}]{group\+Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{namespaceandres_1_1hdf5_a3d7159f65f86576c9142409b08afcfc9}
+Open an H\+D\+F5 group.
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent\+Handle} & H\+D\+F5 handle on the parent group or file. \\
+\hline
+{\em group\+Name} & Name of the group. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+H\+D\+F5 handle on the opened group.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{namespaceandres_1_1hdf5_ac03dd5212231c5335a0a02edb3c0d879}{create\+Group()}, \hyperlink{namespaceandres_1_1hdf5_a1aaf506863ec820cdcc827c7997d4ba3}{close\+Group()} 
+\end{DoxySeeAlso}
+\hypertarget{namespaceandres_1_1hdf5_a0bc471ab828dcfdedd90dc6f991b509e}{}\index{andres\+::hdf5@{andres\+::hdf5}!save@{save}}
+\index{save@{save}!andres\+::hdf5@{andres\+::hdf5}}
+\subsubsection[{save(const hid\+\_\+t \&, const std\+::string \&, const Marray$<$ T $>$ \&)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ void andres\+::hdf5\+::save (
+\begin{DoxyParamCaption}
+\item[{const hid\+\_\+t \&}]{group\+Handle, }
+\item[{const std\+::string \&}]{dataset\+Name, }
+\item[{const {\bf Marray}$<$ T $>$ \&}]{in}
+\end{DoxyParamCaption}
+)}\label{namespaceandres_1_1hdf5_a0bc471ab828dcfdedd90dc6f991b509e}
+Save an \hyperlink{classandres_1_1Marray}{Marray} as an H\+D\+F5 dataset.
+
+
+\begin{DoxyParams}{Parameters}
+{\em group\+Handle} & Handle of the parent H\+D\+F5 file or group. \\
+\hline
+{\em dataset\+Name} & Name of the H\+D\+F5 dataset. \\
+\hline
+{\em in} & \hyperlink{classandres_1_1Marray}{Marray}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{namespaceandres_1_1hdf5_a8b3c6fd3570f7452b1507bf5cf48dfc5}{save\+Hyperslab()} 
+\end{DoxySeeAlso}
+\hypertarget{namespaceandres_1_1hdf5_ac6995803b0ec6079698d61563b5de104}{}\index{andres\+::hdf5@{andres\+::hdf5}!save@{save}}
+\index{save@{save}!andres\+::hdf5@{andres\+::hdf5}}
+\subsubsection[{save(const hid\+\_\+t \&, const std\+::string \&, const View$<$ T, is\+Const $>$ \&)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , bool is\+Const$>$ void andres\+::hdf5\+::save (
+\begin{DoxyParamCaption}
+\item[{const hid\+\_\+t \&}]{group\+Handle, }
+\item[{const std\+::string \&}]{dataset\+Name, }
+\item[{const {\bf View}$<$ T, is\+Const $>$ \&}]{in}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{namespaceandres_1_1hdf5_ac6995803b0ec6079698d61563b5de104}
+Save a \hyperlink{classandres_1_1View}{View} as an H\+D\+F5 dataset.
+
+
+\begin{DoxyParams}{Parameters}
+{\em group\+Handle} & Handle of the parent H\+D\+F5 file or group. \\
+\hline
+{\em dataset\+Name} & Name of the H\+D\+F5 dataset. \\
+\hline
+{\em in} & \hyperlink{classandres_1_1View}{View}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{namespaceandres_1_1hdf5_a8b3c6fd3570f7452b1507bf5cf48dfc5}{save\+Hyperslab()} 
+\end{DoxySeeAlso}
+\hypertarget{namespaceandres_1_1hdf5_a541f5c1613746f236ecc7e0035fa8919}{}\index{andres\+::hdf5@{andres\+::hdf5}!save@{save}}
+\index{save@{save}!andres\+::hdf5@{andres\+::hdf5}}
+\subsubsection[{save(const hid\+\_\+t \&, const std\+::string \&, const std\+::vector$<$ T $>$ \&)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ void andres\+::hdf5\+::save (
+\begin{DoxyParamCaption}
+\item[{const hid\+\_\+t \&}]{group\+Handle, }
+\item[{const std\+::string \&}]{dataset\+Name, }
+\item[{const std\+::vector$<$ T $>$ \&}]{in}
+\end{DoxyParamCaption}
+)}\label{namespaceandres_1_1hdf5_a541f5c1613746f236ecc7e0035fa8919}
+Save an std\+::vector as an H\+D\+F5 dataset.
+
+
+\begin{DoxyParams}{Parameters}
+{\em group\+Handle} & Handle of the parent H\+D\+F5 file or group. \\
+\hline
+{\em dataset\+Name} & Name of the H\+D\+F5 dataset. \\
+\hline
+{\em in} & std\+::vector.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{namespaceandres_1_1hdf5_a8b3c6fd3570f7452b1507bf5cf48dfc5}{save\+Hyperslab()} 
+\end{DoxySeeAlso}
+\hypertarget{namespaceandres_1_1hdf5_a8b3c6fd3570f7452b1507bf5cf48dfc5}{}\index{andres\+::hdf5@{andres\+::hdf5}!save\+Hyperslab@{save\+Hyperslab}}
+\index{save\+Hyperslab@{save\+Hyperslab}!andres\+::hdf5@{andres\+::hdf5}}
+\subsubsection[{save\+Hyperslab(const hid\+\_\+t \&, const std\+::string \&, Base\+Iterator, Base\+Iterator, Shape\+Iterator, const Marray$<$ T $>$ \&)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , class Base\+Iterator , class Shape\+Iterator $>$ void andres\+::hdf5\+::save\+Hyperslab (
+\begin{DoxyParamCaption}
+\item[{const hid\+\_\+t \&}]{group\+Handle, }
+\item[{const std\+::string \&}]{dataset\+Name, }
+\item[{Base\+Iterator}]{base\+Begin, }
+\item[{Base\+Iterator}]{base\+End, }
+\item[{Shape\+Iterator}]{shape\+Begin, }
+\item[{const {\bf Marray}$<$ T $>$ \&}]{in}
+\end{DoxyParamCaption}
+)}\label{namespaceandres_1_1hdf5_a8b3c6fd3570f7452b1507bf5cf48dfc5}
+Save an \hyperlink{classandres_1_1Marray}{Marray} as a hyperslab into an H\+D\+F5 dataset.
+
+
+\begin{DoxyParams}{Parameters}
+{\em group\+Handle} & Handle of the parent H\+D\+F5 file or group. \\
+\hline
+{\em dataset\+Name} & Name of the H\+D\+F5 dataset. \\
+\hline
+{\em base\+Begin} & \hyperlink{classandres_1_1Iterator}{Iterator} to the beginning of the sequence that determines the first coordinate of the hyperslab. \\
+\hline
+{\em base\+End} & \hyperlink{classandres_1_1Iterator}{Iterator} to the end of the sequence that determines the first coordinate of the hyperslab. \\
+\hline
+{\em shape\+Begin} & \hyperlink{classandres_1_1Iterator}{Iterator} to the beginning of the sequence that determines the shape of the hyperslab. \\
+\hline
+{\em in} & \hyperlink{classandres_1_1Marray}{Marray}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{namespaceandres_1_1hdf5_ab031fffd5429859c7f914d8f883a6224}{load\+Hyperslab()}, \hyperlink{namespaceandres_1_1hdf5_ad266faeb7371428b1bf018d4ddfec60d}{create()} 
+\end{DoxySeeAlso}
+
+
+\subsection{Variable Documentation}
+\hypertarget{namespaceandres_1_1hdf5_acf79cfe1ea0769086a46970fd58188a7}{}\index{andres\+::hdf5@{andres\+::hdf5}!reverse\+Shape\+Attribute\+Name@{reverse\+Shape\+Attribute\+Name}}
+\index{reverse\+Shape\+Attribute\+Name@{reverse\+Shape\+Attribute\+Name}!andres\+::hdf5@{andres\+::hdf5}}
+\subsubsection[{reverse\+Shape\+Attribute\+Name}]{\setlength{\rightskip}{0pt plus 5cm}const char andres\+::hdf5\+::reverse\+Shape\+Attribute\+Name\mbox{[}14\mbox{]} = \char`\"{}reverse-\/shape\char`\"{}}\label{namespaceandres_1_1hdf5_acf79cfe1ea0769086a46970fd58188a7}

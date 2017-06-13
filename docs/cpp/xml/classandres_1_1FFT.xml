@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="classandres_1_1FFT" kind="class" language="C++" prot="public">
+    <compoundname>andres::FFT</compoundname>
+    <includes refid="marray-fftw_8hxx" local="no">marray-fftw.hxx</includes>
+    <templateparamlist>
+      <param>
+        <type>class S</type>
+        <defval>std::size_t</defval>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classandres_1_1FFT_1a22b9513914905e90538e45d02c5e3601" prot="public" static="no">
+        <type>S</type>
+        <definition>typedef S andres::FFT&lt; S &gt;::size_type</definition>
+        <argsstring></argsstring>
+        <name>size_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-fftw.hxx" line="19" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-fftw.hxx" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classandres_1_1FFT_1a3161aff4b34d1bac2cd58727adcb85f0" prot="private" static="no" mutable="no">
+        <type>fftw_plan</type>
+        <definition>fftw_plan andres::FFT&lt; S &gt;::plan_</definition>
+        <argsstring></argsstring>
+        <name>plan_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-fftw.hxx" line="26" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-fftw.hxx" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classandres_1_1FFT_1a0163fa67e3b12c454ebfd688e54f7859" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>andres::FFT&lt; S &gt;::FFT</definition>
+        <argsstring>(const andres::Marray&lt; double &gt; &amp;, andres::Marray&lt; std::complex&lt; double &gt; &gt; &amp;)</argsstring>
+        <name>FFT</name>
+        <param>
+          <type>const <ref refid="classandres_1_1Marray" kindref="compound">andres::Marray</ref>&lt; double &gt; &amp;</type>
+          <defname>in</defname>
+        </param>
+        <param>
+          <type><ref refid="classandres_1_1Marray" kindref="compound">andres::Marray</ref>&lt; std::complex&lt; double &gt; &gt; &amp;</type>
+          <defname>out</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-fftw.hxx" line="21" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-fftw.hxx" bodystart="44" bodyend="80"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1FFT_1a11656c721a5b073be01fbdd71793ee1e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>andres::FFT&lt; S &gt;::~FFT</definition>
+        <argsstring>()</argsstring>
+        <name>~FFT</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-fftw.hxx" line="22" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-fftw.hxx" bodystart="84" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1FFT_1aa73174ae3df430476d768eab0ad0e283" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void andres::FFT&lt; S &gt;::execute</definition>
+        <argsstring>()</argsstring>
+        <name>execute</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-fftw.hxx" line="23" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-fftw.hxx" bodystart="91" bodyend="93"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-fftw.hxx" line="17" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-fftw.hxx" bodystart="17" bodyend="27"/>
+    <listofallmembers>
+      <member refid="classandres_1_1FFT_1aa73174ae3df430476d768eab0ad0e283" prot="public" virt="non-virtual"><scope>andres::FFT</scope><name>execute</name></member>
+      <member refid="classandres_1_1FFT_1a0163fa67e3b12c454ebfd688e54f7859" prot="public" virt="non-virtual"><scope>andres::FFT</scope><name>FFT</name></member>
+      <member refid="classandres_1_1FFT_1a3161aff4b34d1bac2cd58727adcb85f0" prot="private" virt="non-virtual"><scope>andres::FFT</scope><name>plan_</name></member>
+      <member refid="classandres_1_1FFT_1a22b9513914905e90538e45d02c5e3601" prot="public" virt="non-virtual"><scope>andres::FFT</scope><name>size_type</name></member>
+      <member refid="classandres_1_1FFT_1a11656c721a5b073be01fbdd71793ee1e" prot="public" virt="non-virtual"><scope>andres::FFT</scope><name>~FFT</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="boost__flat__map_8hxx" kind="file" language="C++">
+    <compoundname>boost_flat_map.hxx</compoundname>
+    <includes local="no">boost/container/flat_map.hpp</includes>
+    <incdepgraph>
+      <node id="6844">
+        <label>/home/tbeier/src/nifty/include/nifty/container/boost_flat_map.hxx</label>
+        <link refid="boost_flat_map.hxx"/>
+        <childnode refid="6845" relation="include">
+        </childnode>
+      </node>
+      <node id="6845">
+        <label>boost/container/flat_map.hpp</label>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespacenifty">nifty</innernamespace>
+    <innernamespace refid="namespacenifty_1_1container">nifty::container</innernamespace>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="boost__flat__map_8hxx_1a5e8f06e6da8064e1b54cb72c7bf87b80" prot="public" static="no">
+        <name>__nifty_mapimpl__</name>
+        <initializer>boost::container::flat_map</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/container/boost_flat_map.hxx" line="8" column="11" bodyfile="/home/tbeier/src/nifty/include/nifty/container/boost_flat_map.hxx" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>WITHIN_TRAVIS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;unordered_map&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__nifty_mapimpl__<sp/>std::unordered_map</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;boost/container/flat_map.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8" refid="boost__flat__map_8hxx_1a5e8f06e6da8064e1b54cb72c7bf87b80" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__nifty_mapimpl__<sp/>boost::container::flat_map</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacenifty" kindref="compound">nifty</ref><sp/>{</highlight></codeline>
+<codeline lineno="12" refid="namespacenifty_1_1container" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">container{</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>KEY,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>VALUE&gt;</highlight></codeline>
+<codeline lineno="15" refid="namespacenifty_1_1container_1a8abdd6362500b879a071a7403f6f199a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="namespacenifty_1_1container_1a8abdd6362500b879a071a7403f6f199a" kindref="member">BoostFlatMap</ref><sp/>=<sp/>__nifty_mapimpl__&lt;KEY,<sp/>VALUE&gt;;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>container</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/tbeier/src/nifty/include/nifty/container/boost_flat_map.hxx"/>
+  </compounddef>
+</doxygen>

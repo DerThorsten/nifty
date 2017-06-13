@@ -1,0 +1,216 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutMp_1_1LiftedRounder" kind="struct" language="C++" prot="public">
+    <compoundname>nifty::graph::optimization::lifted_multicut::LiftedMulticutMp::LiftedRounder</compoundname>
+    <includes refid="lifted__multicut__mp_8hxx" local="no">lifted_multicut_mp.hxx</includes>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutMp_1_1LiftedRounder_1a91c69552853fcb3f4b4016f364f5a391" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1UndirectedGraph" kindref="compound">UndirectedGraph</ref></type>
+        <definition>typedef UndirectedGraph nifty::graph::optimization::lifted_multicut::LiftedMulticutMp&lt; OBJECTIVE &gt;::LiftedRounder::GraphType</definition>
+        <argsstring></argsstring>
+        <name>GraphType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_mp.hxx" line="43" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_mp.hxx" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutMp_1_1LiftedRounder_1a2676a2df5550e5055a8f7fb4e69905b6" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutObjective" kindref="compound">LiftedMulticutObjective</ref>&lt; <ref refid="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutMp_1_1LiftedRounder_1a91c69552853fcb3f4b4016f364f5a391" kindref="member">GraphType</ref>, typename ObjectiveType::WeightType &gt;</type>
+        <definition>typedef LiftedMulticutObjective&lt;GraphType, typename ObjectiveType::WeightType&gt; nifty::graph::optimization::lifted_multicut::LiftedMulticutMp&lt; OBJECTIVE &gt;::LiftedRounder::PrimalRounderObjectiveType</definition>
+        <argsstring></argsstring>
+        <name>PrimalRounderObjectiveType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_mp.hxx" line="44" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_mp.hxx" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutMp_1_1LiftedRounder_1a7f92b00ba49fda7c3b29a374246b9624" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutBase" kindref="compound">LiftedMulticutBase</ref>&lt; <ref refid="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutMp_1_1LiftedRounder_1a2676a2df5550e5055a8f7fb4e69905b6" kindref="member">PrimalRounderObjectiveType</ref> &gt;</type>
+        <definition>typedef LiftedMulticutBase&lt;PrimalRounderObjectiveType&gt; nifty::graph::optimization::lifted_multicut::LiftedMulticutMp&lt; OBJECTIVE &gt;::LiftedRounder::PrimalRounderBaseType</definition>
+        <argsstring></argsstring>
+        <name>PrimalRounderBaseType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_mp.hxx" line="45" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_mp.hxx" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutMp_1_1LiftedRounder_1a50c015dc6966b849a329b52feec65d06" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutObjective_1ad1dc4e746ffabb0ad64821f7259e2d75" kindref="member">PrimalRounderObjectiveType::LiftedGraphType</ref></type>
+        <definition>typedef PrimalRounderObjectiveType::LiftedGraphType nifty::graph::optimization::lifted_multicut::LiftedMulticutMp&lt; OBJECTIVE &gt;::LiftedRounder::PrimalRounderLiftedGraphType</definition>
+        <argsstring></argsstring>
+        <name>PrimalRounderLiftedGraphType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_mp.hxx" line="46" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_mp.hxx" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutMp_1_1LiftedRounder_1afafd9d2bbeba494f83aa354ac9b2cfe1" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_1a6e4e465f3b6e039882669fcfb9714818" kindref="member">PrimalRounderBaseType::NodeLabelsType</ref></type>
+        <definition>typedef PrimalRounderBaseType::NodeLabelsType nifty::graph::optimization::lifted_multicut::LiftedMulticutMp&lt; OBJECTIVE &gt;::LiftedRounder::PrimalRounderNodeLabels</definition>
+        <argsstring></argsstring>
+        <name>PrimalRounderNodeLabels</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_mp.hxx" line="47" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_mp.hxx" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutMp_1_1LiftedRounder_1a2a73fd52a53cab7edd1d8f516f02a5ae" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase" kindref="compound">nifty::graph::optimization::common::SolverFactoryBase</ref>&lt; <ref refid="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutMp_1_1LiftedRounder_1a7f92b00ba49fda7c3b29a374246b9624" kindref="member">PrimalRounderBaseType</ref> &gt;</type>
+        <definition>typedef nifty::graph::optimization::common::SolverFactoryBase&lt;PrimalRounderBaseType&gt; nifty::graph::optimization::lifted_multicut::LiftedMulticutMp&lt; OBJECTIVE &gt;::LiftedRounder::PrimalRounderLmcFactoryBase</definition>
+        <argsstring></argsstring>
+        <name>PrimalRounderLmcFactoryBase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_mp.hxx" line="48" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_mp.hxx" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutMp_1_1LiftedRounder_1addb0225ab165c15b846860755e2ded41" prot="private" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutMp_1_1LiftedRounder_1a2a73fd52a53cab7edd1d8f516f02a5ae" kindref="member">PrimalRounderLmcFactoryBase</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;PrimalRounderLmcFactoryBase&gt; nifty::graph::optimization::lifted_multicut::LiftedMulticutMp&lt; OBJECTIVE &gt;::LiftedRounder::factory_</definition>
+        <argsstring></argsstring>
+        <name>factory_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_mp.hxx" line="114" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_mp.hxx" bodystart="114" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutMp_1_1LiftedRounder_1a113826955e821f931f01c55120d79916" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool nifty::graph::optimization::lifted_multicut::LiftedMulticutMp&lt; OBJECTIVE &gt;::LiftedRounder::greedyWarmstart_</definition>
+        <argsstring></argsstring>
+        <name>greedyWarmstart_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_mp.hxx" line="115" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_mp.hxx" bodystart="115" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutMp_1_1LiftedRounder_1a72b7e5f7d920c4d9802f3dc14080726b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>nifty::graph::optimization::lifted_multicut::LiftedMulticutMp&lt; OBJECTIVE &gt;::LiftedRounder::LiftedRounder</definition>
+        <argsstring>(std::shared_ptr&lt; PrimalRounderLmcFactoryBase &gt; factory, const bool greedyWarmstart)</argsstring>
+        <name>LiftedRounder</name>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutMp_1_1LiftedRounder_1a2a73fd52a53cab7edd1d8f516f02a5ae" kindref="member">PrimalRounderLmcFactoryBase</ref> &gt;</type>
+          <declname>factory</declname>
+        </param>
+        <param>
+          <type>const bool</type>
+          <declname>greedyWarmstart</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_mp.hxx" line="50" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_mp.hxx" bodystart="50" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutMp_1_1LiftedRounder_1a195d1448ff9824601d6d574ccfe8fb77" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::vector&lt; char &gt;</type>
+        <definition>std::vector&lt;char&gt; nifty::graph::optimization::lifted_multicut::LiftedMulticutMp&lt; OBJECTIVE &gt;::LiftedRounder::operator()</definition>
+        <argsstring>(GraphType &amp;&amp;originalGraph, PrimalRounderLiftedGraphType &amp;&amp;liftedGraph, std::vector&lt; double &gt; &amp;&amp;edgeValues)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type><ref refid="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutMp_1_1LiftedRounder_1a91c69552853fcb3f4b4016f364f5a391" kindref="member">GraphType</ref> &amp;&amp;</type>
+          <declname>originalGraph</declname>
+        </param>
+        <param>
+          <type><ref refid="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutMp_1_1LiftedRounder_1a50c015dc6966b849a329b52feec65d06" kindref="member">PrimalRounderLiftedGraphType</ref> &amp;&amp;</type>
+          <declname>liftedGraph</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; double &gt; &amp;&amp;</type>
+          <declname>edgeValues</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_mp.hxx" line="56" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_mp.hxx" bodystart="56" bodyend="100"/>
+      </memberdef>
+      <memberdef kind="function" id="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutMp_1_1LiftedRounder_1a0954e859a605ad2db495f780c3c93e6f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::vector&lt; char &gt;</type>
+        <definition>std::vector&lt;char&gt; nifty::graph::optimization::lifted_multicut::LiftedMulticutMp&lt; OBJECTIVE &gt;::LiftedRounder::operator()</definition>
+        <argsstring>(GraphType &amp;&amp;, std::vector&lt; double &gt; &amp;&amp;)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type><ref refid="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutMp_1_1LiftedRounder_1a91c69552853fcb3f4b4016f364f5a391" kindref="member">GraphType</ref> &amp;&amp;</type>
+        </param>
+        <param>
+          <type>std::vector&lt; double &gt; &amp;&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_mp.hxx" line="103" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_mp.hxx" bodystart="103" bodyend="107"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutMp_1_1LiftedRounder_1ac13fae083f1af2f3070439d54c26373f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>static std::string nifty::graph::optimization::lifted_multicut::LiftedMulticutMp&lt; OBJECTIVE &gt;::LiftedRounder::name</definition>
+        <argsstring>()</argsstring>
+        <name>name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_mp.hxx" line="109" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_mp.hxx" bodystart="109" bodyend="111"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_mp.hxx" line="41" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_mp.hxx" bodystart="41" bodyend="117"/>
+    <listofallmembers>
+      <member refid="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutMp_1_1LiftedRounder_1addb0225ab165c15b846860755e2ded41" prot="private" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::LiftedMulticutMp::LiftedRounder</scope><name>factory_</name></member>
+      <member refid="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutMp_1_1LiftedRounder_1a91c69552853fcb3f4b4016f364f5a391" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::LiftedMulticutMp::LiftedRounder</scope><name>GraphType</name></member>
+      <member refid="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutMp_1_1LiftedRounder_1a113826955e821f931f01c55120d79916" prot="private" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::LiftedMulticutMp::LiftedRounder</scope><name>greedyWarmstart_</name></member>
+      <member refid="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutMp_1_1LiftedRounder_1a72b7e5f7d920c4d9802f3dc14080726b" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::LiftedMulticutMp::LiftedRounder</scope><name>LiftedRounder</name></member>
+      <member refid="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutMp_1_1LiftedRounder_1ac13fae083f1af2f3070439d54c26373f" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::LiftedMulticutMp::LiftedRounder</scope><name>name</name></member>
+      <member refid="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutMp_1_1LiftedRounder_1a195d1448ff9824601d6d574ccfe8fb77" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::LiftedMulticutMp::LiftedRounder</scope><name>operator()</name></member>
+      <member refid="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutMp_1_1LiftedRounder_1a0954e859a605ad2db495f780c3c93e6f" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::LiftedMulticutMp::LiftedRounder</scope><name>operator()</name></member>
+      <member refid="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutMp_1_1LiftedRounder_1a7f92b00ba49fda7c3b29a374246b9624" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::LiftedMulticutMp::LiftedRounder</scope><name>PrimalRounderBaseType</name></member>
+      <member refid="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutMp_1_1LiftedRounder_1a50c015dc6966b849a329b52feec65d06" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::LiftedMulticutMp::LiftedRounder</scope><name>PrimalRounderLiftedGraphType</name></member>
+      <member refid="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutMp_1_1LiftedRounder_1a2a73fd52a53cab7edd1d8f516f02a5ae" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::LiftedMulticutMp::LiftedRounder</scope><name>PrimalRounderLmcFactoryBase</name></member>
+      <member refid="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutMp_1_1LiftedRounder_1afafd9d2bbeba494f83aa354ac9b2cfe1" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::LiftedMulticutMp::LiftedRounder</scope><name>PrimalRounderNodeLabels</name></member>
+      <member refid="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutMp_1_1LiftedRounder_1a2676a2df5550e5055a8f7fb4e69905b6" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::LiftedMulticutMp::LiftedRounder</scope><name>PrimalRounderObjectiveType</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

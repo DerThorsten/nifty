@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Nifty
-   &#160;<span id="projectnumber">0.5.1</span>
+   &#160;<span id="projectnumber">0.19.0</span>
    </div>
   </td>
  </tr>
@@ -91,7 +91,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#namespaces">Namespaces</a> &#124;
-<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">paths.hxx File Reference</div>  </div>
@@ -105,13 +104,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 Include dependency graph for paths.hxx:</div>
 <div class="dyncontent">
 <div class="center"><img src="paths_8hxx__incl.png" border="0" usemap="#_2home_2tbeier_2src_2nifty_2include_2nifty_2graph_2paths_8hxx" alt=""/></div>
-<!-- MAP 0 -->
+<map name="_2home_2tbeier_2src_2nifty_2include_2nifty_2graph_2paths_8hxx" id="_2home_2tbeier_2src_2nifty_2include_2nifty_2graph_2paths_8hxx">
+<area shape="rect" id="node5" href="subgraph__mask_8hxx.html" title="nifty/graph/subgraph\l_mask.hxx" alt="" coords="255,95,395,136"/>
+</map>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="paths_8hxx__dep__incl.png" border="0" usemap="#_2home_2tbeier_2src_2nifty_2include_2nifty_2graph_2paths_8hxxdep" alt=""/></div>
-<!-- MAP 1 -->
+<map name="_2home_2tbeier_2src_2nifty_2include_2nifty_2graph_2paths_8hxxdep" id="_2home_2tbeier_2src_2nifty_2include_2nifty_2graph_2paths_8hxxdep">
+<area shape="rect" id="node2" href="lifted__multicut__ilp_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/lifted_multicut/lifted_multicut_ilp.hxx" alt="" coords="5,102,243,158"/>
+<area shape="rect" id="node3" href="mincut__cc__fusion__move__based_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/mincut/mincut_cc_fusion_move\l_based.hxx" alt="" coords="267,95,477,165"/>
+<area shape="rect" id="node4" href="mincut__qpbo_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/mincut/mincut_qpbo.hxx" alt="" coords="502,102,709,158"/>
+<area shape="rect" id="node5" href="cc__fusion__move__based_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/multicut/cc_fusion_move_based.hxx" alt="" coords="733,102,971,158"/>
+<area shape="rect" id="node6" href="multicut__ilp_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/multicut/multicut_ilp.hxx" alt="" coords="995,102,1202,158"/>
+</map>
 </div>
 </div>
 <p><a href="paths_8hxx_source.html">Go to the source code of this file.</a></p>
@@ -122,11 +129,6 @@ Namespaces</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespacenifty_1_1graph"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenifty_1_1graph.html">nifty::graph</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
-Macros</h2></td></tr>
-<tr class="memitem:a40a4b8daaa32ace67af3b660a8eee854"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="paths_8hxx.html#a40a4b8daaa32ace67af3b660a8eee854">NIFTY_GRAPH_PATHS_HXX</a></td></tr>
-<tr class="separator:a40a4b8daaa32ace67af3b660a8eee854"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -140,19 +142,6 @@ Functions</h2></td></tr>
 <tr class="memitem:ad5fff1c63a572469a352e1645f9d3d0c"><td class="memTemplItemLeft" align="right" valign="top">size_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacenifty_1_1graph.html#ad5fff1c63a572469a352e1645f9d3d0c">nifty::graph::buildPathInLargeEnoughBuffer</a> (const uint64_t source, const uint64_t target, const PREDECESSORS_MAP &amp;predecessorMap, OUT_ITER largeEnoughBufferBegin)</td></tr>
 <tr class="separator:ad5fff1c63a572469a352e1645f9d3d0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Macro Definition Documentation</h2>
-<a class="anchor" id="a40a4b8daaa32ace67af3b660a8eee854"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define NIFTY_GRAPH_PATHS_HXX</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

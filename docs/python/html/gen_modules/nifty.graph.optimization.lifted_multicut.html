@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>nifty.graph.optimization.lifted_multicut &#8212; Nifty 0.15.0 documentation</title>
+    <title>nifty.graph.optimization.lifted_multicut &#8212; Nifty 0.16.1 documentation</title>
     
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -15,7 +15,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '0.15.0',
+        VERSION:     '0.16.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -27,9 +27,7 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="nifty.graph.optimization.mincut" href="nifty.graph.optimization.mincut.html" />
-    <link rel="prev" title="nifty.graph.optimization.multicut" href="nifty.graph.optimization.multicut.html" /> 
+    <link rel="search" title="Search" href="../search.html" /> 
   </head>
   <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
@@ -41,14 +39,7 @@
         <li class="right" >
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="right" >
-          <a href="nifty.graph.optimization.mincut.html" title="nifty.graph.optimization.mincut"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="nifty.graph.optimization.multicut.html" title="nifty.graph.optimization.multicut"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Nifty 0.15.0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../reference.html" accesskey="U">Nifty API Reference</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">Nifty 0.16.1 documentation</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -64,12 +55,6 @@
 </li>
 </ul>
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="nifty.graph.optimization.multicut.html"
-                        title="previous chapter">nifty.graph.optimization.multicut</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="nifty.graph.optimization.mincut.html"
-                        title="next chapter">nifty.graph.optimization.mincut</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
@@ -123,23 +108,13 @@ a value smaller as zero indicates no limit  (default: {-1.0})</li>
 
 <div style='clear:both'></div><dl class="function">
 <dt id="nifty.graph.optimization.lifted_multicut.liftedMulticutObjective">
-<code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">liftedMulticutObjective</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.liftedMulticutObjective" title="Permalink to this definition">¶</a></dt>
-<dd><p>Overloaded function.</p>
-<ol class="arabic simple">
-<li>liftedMulticutObjective(graph: nifty.graph._graph.UndirectedGraph) -&gt; nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutObjectiveUndirectedGraph</li>
-<li>liftedMulticutObjective(graph: nifty.graph._graph.UndirectedGridGraph2DSimpleNh) -&gt; nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh</li>
-</ol>
-</dd></dl>
+<code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">liftedMulticutObjective</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.liftedMulticutObjective" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <div style='clear:both'></div><dl class="function">
 <dt id="nifty.graph.optimization.lifted_multicut.liftedUcmFeatures">
-<code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">liftedUcmFeatures</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.liftedUcmFeatures" title="Permalink to this definition">¶</a></dt>
-<dd><p>Overloaded function.</p>
-<ol class="arabic simple">
-<li>liftedUcmFeatures(objective: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutObjectiveUndirectedGraph, edgeIndicators: array&lt;float&gt;, edgeSizes: array&lt;float&gt;, nodeSizes: array&lt;float&gt;, sizeRegularizers: List[float]) -&gt; array&lt;float&gt;</li>
-<li>liftedUcmFeatures(objective: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh, edgeIndicators: array&lt;float&gt;, edgeSizes: array&lt;float&gt;, nodeSizes: array&lt;float&gt;, sizeRegularizers: List[float]) -&gt; array&lt;float&gt;</li>
-</ol>
-</dd></dl>
+<code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">liftedUcmFeatures</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.liftedUcmFeatures" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <div style='clear:both'></div><div class="section" id="classes">
 <h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h3>
@@ -285,15 +260,8 @@ Of the nifty python bindings</p>
 <em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">LiftedMulticutBaseLiftedMulticutObjectiveUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutBaseLiftedMulticutObjectiveUndirectedGraph" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="method">
 <dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutBaseLiftedMulticutObjectiveUndirectedGraph.optimize">
-<code class="descname">optimize</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutBaseLiftedMulticutObjectiveUndirectedGraph.optimize" title="Permalink to this definition">¶</a></dt>
-<dd><p>Overloaded function.</p>
-<ol class="arabic simple">
-<li>optimize(self: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutBaseLiftedMulticutObjectiveUndirectedGraph) -&gt; array&lt;int&gt;</li>
-<li>optimize(self: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutBaseLiftedMulticutObjectiveUndirectedGraph, visitor: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutVisitorBaseLiftedMulticutObjectiveUndirectedGraph) -&gt; array&lt;int&gt;</li>
-<li>optimize(self: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutBaseLiftedMulticutObjectiveUndirectedGraph, nodeLabels: array&lt;int&gt;) -&gt; array&lt;int&gt;</li>
-<li>optimize(self: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutBaseLiftedMulticutObjectiveUndirectedGraph, visitor: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutVisitorBaseLiftedMulticutObjectiveUndirectedGraph, nodeLabels: array&lt;int&gt;) -&gt; array&lt;int&gt;</li>
-</ol>
-</dd></dl>
+<code class="descname">optimize</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutBaseLiftedMulticutObjectiveUndirectedGraph.optimize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -302,15 +270,8 @@ Of the nifty python bindings</p>
 <em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">LiftedMulticutBaseLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutBaseLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="method">
 <dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutBaseLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.optimize">
-<code class="descname">optimize</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutBaseLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.optimize" title="Permalink to this definition">¶</a></dt>
-<dd><p>Overloaded function.</p>
-<ol class="arabic simple">
-<li>optimize(self: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutBaseLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh) -&gt; array&lt;int&gt;</li>
-<li>optimize(self: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutBaseLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh, visitor: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutVisitorBaseLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh) -&gt; array&lt;int&gt;</li>
-<li>optimize(self: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutBaseLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh, nodeLabels: array&lt;int&gt;) -&gt; array&lt;int&gt;</li>
-<li>optimize(self: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutBaseLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh, visitor: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutVisitorBaseLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh, nodeLabels: array&lt;int&gt;) -&gt; array&lt;int&gt;</li>
-</ol>
-</dd></dl>
+<code class="descname">optimize</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutBaseLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.optimize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -319,7 +280,7 @@ Of the nifty python bindings</p>
 <em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">LiftedMulticutFactoryBaseLiftedMulticutObjectiveUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutFactoryBaseLiftedMulticutObjectiveUndirectedGraph" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="method">
 <dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutFactoryBaseLiftedMulticutObjectiveUndirectedGraph.create">
-<code class="descname">create</code><span class="sig-paren">(</span><em>self: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutFactoryBaseLiftedMulticutObjectiveUndirectedGraph</em>, <em>arg0: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutObjectiveUndirectedGraph</em><span class="sig-paren">)</span> &#x2192; nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutBaseLiftedMulticutObjectiveUndirectedGraph<a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutFactoryBaseLiftedMulticutObjectiveUndirectedGraph.create" title="Permalink to this definition">¶</a></dt>
+<code class="descname">create</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutFactoryBaseLiftedMulticutObjectiveUndirectedGraph.create" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -329,7 +290,7 @@ Of the nifty python bindings</p>
 <em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">LiftedMulticutFactoryBaseLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutFactoryBaseLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="method">
 <dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutFactoryBaseLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.create">
-<code class="descname">create</code><span class="sig-paren">(</span><em>self: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutFactoryBaseLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh</em>, <em>arg0: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh</em><span class="sig-paren">)</span> &#x2192; nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutBaseLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh<a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutFactoryBaseLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.create" title="Permalink to this definition">¶</a></dt>
+<code class="descname">create</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutFactoryBaseLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.create" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -859,7 +820,7 @@ Of the nifty python bindings</p>
 <em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">LiftedMulticutObjectiveUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="method">
 <dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.evalNodeLabels">
-<code class="descname">evalNodeLabels</code><span class="sig-paren">(</span><em>self: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutObjectiveUndirectedGraph</em>, <em>arg0: array&lt;int&gt;</em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.evalNodeLabels" title="Permalink to this definition">¶</a></dt>
+<code class="descname">evalNodeLabels</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.evalNodeLabels" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="staticmethod">
@@ -953,7 +914,7 @@ Of the nifty python bindings</p>
 
 <dl class="method">
 <dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.liftedUvIds">
-<code class="descname">liftedUvIds</code><span class="sig-paren">(</span><em>self: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutObjectiveUndirectedGraph</em><span class="sig-paren">)</span> &#x2192; array&lt;int&gt;<a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.liftedUvIds" title="Permalink to this definition">¶</a></dt>
+<code class="descname">liftedUvIds</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.liftedUvIds" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -963,22 +924,22 @@ Of the nifty python bindings</p>
 
 <dl class="method">
 <dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.setCost">
-<code class="descname">setCost</code><span class="sig-paren">(</span><em>self: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutObjectiveUndirectedGraph</em>, <em>u: int</em>, <em>v: int</em>, <em>weight: float</em>, <em>overwrite: bool=False</em><span class="sig-paren">)</span> &#x2192; Tuple[bool, int]<a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.setCost" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setCost</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.setCost" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.setCosts">
-<code class="descname">setCosts</code><span class="sig-paren">(</span><em>self: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutObjectiveUndirectedGraph</em>, <em>uv: array&lt;int&gt;</em>, <em>weight: array&lt;float&gt;</em>, <em>overwrite: bool=False</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.setCosts" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setCosts</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.setCosts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.setGraphEdgesCosts">
-<code class="descname">setGraphEdgesCosts</code><span class="sig-paren">(</span><em>self: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutObjectiveUndirectedGraph</em>, <em>weights: array&lt;float&gt;</em>, <em>overwrite: bool=False</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.setGraphEdgesCosts" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setGraphEdgesCosts</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.setGraphEdgesCosts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.setLiftedEdgesCosts">
-<code class="descname">setLiftedEdgesCosts</code><span class="sig-paren">(</span><em>self: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutObjectiveUndirectedGraph</em>, <em>weights: array&lt;float&gt;</em>, <em>overwrite: bool=False</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.setLiftedEdgesCosts" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setLiftedEdgesCosts</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGraph.setLiftedEdgesCosts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="staticmethod">
@@ -1035,7 +996,7 @@ the number of nodes (default 0.1)</li>
 <em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="method">
 <dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.evalNodeLabels">
-<code class="descname">evalNodeLabels</code><span class="sig-paren">(</span><em>self: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh</em>, <em>arg0: array&lt;int&gt;</em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.evalNodeLabels" title="Permalink to this definition">¶</a></dt>
+<code class="descname">evalNodeLabels</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.evalNodeLabels" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="staticmethod">
@@ -1129,7 +1090,7 @@ the number of nodes (default 0.1)</li>
 
 <dl class="method">
 <dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.liftedUvIds">
-<code class="descname">liftedUvIds</code><span class="sig-paren">(</span><em>self: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh</em><span class="sig-paren">)</span> &#x2192; array&lt;int&gt;<a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.liftedUvIds" title="Permalink to this definition">¶</a></dt>
+<code class="descname">liftedUvIds</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.liftedUvIds" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -1139,22 +1100,22 @@ the number of nodes (default 0.1)</li>
 
 <dl class="method">
 <dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.setCost">
-<code class="descname">setCost</code><span class="sig-paren">(</span><em>self: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh</em>, <em>u: int</em>, <em>v: int</em>, <em>weight: float</em>, <em>overwrite: bool=False</em><span class="sig-paren">)</span> &#x2192; Tuple[bool, int]<a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.setCost" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setCost</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.setCost" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.setCosts">
-<code class="descname">setCosts</code><span class="sig-paren">(</span><em>self: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh</em>, <em>uv: array&lt;int&gt;</em>, <em>weight: array&lt;float&gt;</em>, <em>overwrite: bool=False</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.setCosts" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setCosts</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.setCosts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.setGraphEdgesCosts">
-<code class="descname">setGraphEdgesCosts</code><span class="sig-paren">(</span><em>self: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh</em>, <em>weights: array&lt;float&gt;</em>, <em>overwrite: bool=False</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.setGraphEdgesCosts" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setGraphEdgesCosts</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.setGraphEdgesCosts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.setLiftedEdgesCosts">
-<code class="descname">setLiftedEdgesCosts</code><span class="sig-paren">(</span><em>self: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh</em>, <em>weights: array&lt;float&gt;</em>, <em>overwrite: bool=False</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.setLiftedEdgesCosts" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setLiftedEdgesCosts</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.setLiftedEdgesCosts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="staticmethod">
@@ -1211,7 +1172,7 @@ the number of nodes (default 0.1)</li>
 <em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">LiftedMulticutVerboseVisitorLiftedMulticutObjectiveUndirectedGraph</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutVerboseVisitorLiftedMulticutObjectiveUndirectedGraph" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="method">
 <dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutVerboseVisitorLiftedMulticutObjectiveUndirectedGraph.stopOptimize">
-<code class="descname">stopOptimize</code><span class="sig-paren">(</span><em>self: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutVerboseVisitorLiftedMulticutObjectiveUndirectedGraph</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutVerboseVisitorLiftedMulticutObjectiveUndirectedGraph.stopOptimize" title="Permalink to this definition">¶</a></dt>
+<code class="descname">stopOptimize</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutVerboseVisitorLiftedMulticutObjectiveUndirectedGraph.stopOptimize" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1221,7 +1182,7 @@ the number of nodes (default 0.1)</li>
 <em class="property">class </em><code class="descclassname">nifty.graph.optimization.lifted_multicut.</code><code class="descname">LiftedMulticutVerboseVisitorLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh</code><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutVerboseVisitorLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="method">
 <dt id="nifty.graph.optimization.lifted_multicut.LiftedMulticutVerboseVisitorLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.stopOptimize">
-<code class="descname">stopOptimize</code><span class="sig-paren">(</span><em>self: nifty.graph.optimization.lifted_multicut._lifted_multicut.LiftedMulticutVerboseVisitorLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutVerboseVisitorLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.stopOptimize" title="Permalink to this definition">¶</a></dt>
+<code class="descname">stopOptimize</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.optimization.lifted_multicut.LiftedMulticutVerboseVisitorLiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh.stopOptimize" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1380,14 +1341,7 @@ of the given arguments and keywords.</p>
         <li class="right" >
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="right" >
-          <a href="nifty.graph.optimization.mincut.html" title="nifty.graph.optimization.mincut"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="nifty.graph.optimization.multicut.html" title="nifty.graph.optimization.multicut"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Nifty 0.15.0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../reference.html" >Nifty API Reference</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">Nifty 0.16.1 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

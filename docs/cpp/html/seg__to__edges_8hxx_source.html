@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Nifty
-   &#160;<span id="projectnumber">0.5.1</span>
+   &#160;<span id="projectnumber">0.19.0</span>
    </div>
   </td>
  </tr>
@@ -110,8 +110,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <span class="keyword">class </span>U</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    &gt;</div>
 <div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="namespacenifty_1_1ground__truth.html#af49d3596b8aaf59bd7dcf3163e99d08f">   17</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="namespacenifty_1_1ground__truth.html#af49d3596b8aaf59bd7dcf3163e99d08f">segToEdges2D</a>(</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <span class="keyword">const</span> marray::View&lt;T&gt;   &amp; segmentation,</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        marray::View&lt;U&gt;   &amp; edges</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <span class="keyword">const</span> <a class="code" href="classandres_1_1View.html">marray::View&lt;T&gt;</a>   &amp; segmentation,</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <a class="code" href="classandres_1_1View.html">marray::View&lt;U&gt;</a>   &amp; edges</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    ){</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        edges = U(0);</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keyword">typedef</span> <a class="code" href="classnifty_1_1array_1_1ArrayExtender.html">array::StaticArray&lt;int64_t, 2&gt;</a> CoordType;</div>
@@ -120,7 +120,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        CoordType shape;</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">size_t</span> i=0; i&lt;2; ++i){</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            shape[i] = segmentation.shape(i);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            shape[i] = segmentation.<a class="code" href="classandres_1_1View.html#a9bc3d88b3e2bdf432dd68f36ff33deb3">shape</a>(i);</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        }   </div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
@@ -150,11 +150,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;}</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;}</div>
 <div class="ttc" id="for__each__coordinate_8hxx_html"><div class="ttname"><a href="for__each__coordinate_8hxx.html">for_each_coordinate.hxx</a></div></div>
-<div class="ttc" id="classnifty_1_1array_1_1ArrayExtender_html"><div class="ttname"><a href="classnifty_1_1array_1_1ArrayExtender.html">nifty::array::ArrayExtender</a></div><div class="ttdef"><b>Definition:</b> arithmetic_array.hxx:15</div></div>
-<div class="ttc" id="namespacenifty_1_1tools_html_a81df2669bba7acc0ad9a253669a28ba4"><div class="ttname"><a href="namespacenifty_1_1tools.html#a81df2669bba7acc0ad9a253669a28ba4">nifty::tools::forEachCoordinate</a></div><div class="ttdeci">void forEachCoordinate(const array::StaticArray&lt; SHAPE_T, DIMENSIONS &gt; &amp;shape, F &amp;&amp;f, bool firstCoordinateMajorOrder=true)</div><div class="ttdef"><b>Definition:</b> for_each_coordinate.hxx:188</div></div>
+<div class="ttc" id="classnifty_1_1array_1_1ArrayExtender_html"><div class="ttname"><a href="classnifty_1_1array_1_1ArrayExtender.html">nifty::array::ArrayExtender</a></div><div class="ttdef"><b>Definition:</b> arithmetic_array.hxx:13</div></div>
+<div class="ttc" id="namespacenifty_1_1tools_html_a81df2669bba7acc0ad9a253669a28ba4"><div class="ttname"><a href="namespacenifty_1_1tools.html#a81df2669bba7acc0ad9a253669a28ba4">nifty::tools::forEachCoordinate</a></div><div class="ttdeci">void forEachCoordinate(const array::StaticArray&lt; SHAPE_T, DIMENSIONS &gt; &amp;shape, F &amp;&amp;f, bool firstCoordinateMajorOrder=true)</div><div class="ttdef"><b>Definition:</b> for_each_coordinate.hxx:186</div></div>
+<div class="ttc" id="classandres_1_1View_html"><div class="ttname"><a href="classandres_1_1View.html">andres::View</a></div><div class="ttdef"><b>Definition:</b> marray.hxx:113</div></div>
 <div class="ttc" id="namespacenifty_1_1ground__truth_html_af49d3596b8aaf59bd7dcf3163e99d08f"><div class="ttname"><a href="namespacenifty_1_1ground__truth.html#af49d3596b8aaf59bd7dcf3163e99d08f">nifty::ground_truth::segToEdges2D</a></div><div class="ttdeci">void segToEdges2D(const marray::View&lt; T &gt; &amp;segmentation, marray::View&lt; U &gt; &amp;edges)</div><div class="ttdef"><b>Definition:</b> seg_to_edges.hxx:17</div></div>
 <div class="ttc" id="timer_8hxx_html"><div class="ttname"><a href="timer_8hxx.html">timer.hxx</a></div></div>
-<div class="ttc" id="namespacenifty_html"><div class="ttname"><a href="namespacenifty.html">nifty</a></div><div class="ttdef"><b>Definition:</b> arithmetic_array.hxx:10</div></div>
+<div class="ttc" id="namespacenifty_html"><div class="ttname"><a href="namespacenifty.html">nifty</a></div><div class="ttdef"><b>Definition:</b> arithmetic_array.hxx:8</div></div>
+<div class="ttc" id="classandres_1_1View_html_a9bc3d88b3e2bdf432dd68f36ff33deb3"><div class="ttname"><a href="classandres_1_1View.html#a9bc3d88b3e2bdf432dd68f36ff33deb3">andres::View::shape</a></div><div class="ttdeci">const std::size_t shape(const std::size_t) const </div><div class="ttdef"><b>Definition:</b> marray.hxx:1723</div></div>
 <div class="ttc" id="marray_8hxx_html"><div class="ttname"><a href="marray_8hxx.html">marray.hxx</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

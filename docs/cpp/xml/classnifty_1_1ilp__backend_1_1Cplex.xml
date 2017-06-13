@@ -1,0 +1,351 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="classnifty_1_1ilp__backend_1_1Cplex" kind="class" language="C++" prot="public">
+    <compoundname>nifty::ilp_backend::Cplex</compoundname>
+    <includes refid="cplex_8hxx" local="no">cplex.hxx</includes>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1ilp__backend_1_1Cplex_1a55f68efdbd0060526e09b037be4e6a49" prot="public" static="no">
+        <type><ref refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings" kindref="compound">IlpBackendSettings</ref></type>
+        <definition>typedef IlpBackendSettings nifty::ilp_backend::Cplex::SettingsType</definition>
+        <argsstring></argsstring>
+        <name>SettingsType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ilp_backend/cplex.hxx" line="17" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ilp_backend/cplex.hxx" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classnifty_1_1ilp__backend_1_1Cplex_1a08e5da64b4c47fadb57d82ac36deb375" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1ilp__backend_1_1Cplex_1a55f68efdbd0060526e09b037be4e6a49" kindref="member">SettingsType</ref></type>
+        <definition>SettingsType nifty::ilp_backend::Cplex::settings_</definition>
+        <argsstring></argsstring>
+        <name>settings_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ilp_backend/cplex.hxx" line="66" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ilp_backend/cplex.hxx" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1ilp__backend_1_1Cplex_1a4e071dd0b2657d77f2bc4b91287ab19d" prot="private" static="no" mutable="no">
+        <type>uint64_t</type>
+        <definition>uint64_t nifty::ilp_backend::Cplex::nVariables_</definition>
+        <argsstring></argsstring>
+        <name>nVariables_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ilp_backend/cplex.hxx" line="67" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ilp_backend/cplex.hxx" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1ilp__backend_1_1Cplex_1ae8a7a36d94b419b7e43bd455ff9dd844" prot="private" static="no" mutable="no">
+        <type>IloEnv</type>
+        <definition>IloEnv nifty::ilp_backend::Cplex::env_</definition>
+        <argsstring></argsstring>
+        <name>env_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ilp_backend/cplex.hxx" line="68" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ilp_backend/cplex.hxx" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1ilp__backend_1_1Cplex_1a6847251c9c83a1818f88cfdbe03f2c52" prot="private" static="no" mutable="no">
+        <type>IloModel</type>
+        <definition>IloModel nifty::ilp_backend::Cplex::model_</definition>
+        <argsstring></argsstring>
+        <name>model_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ilp_backend/cplex.hxx" line="69" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ilp_backend/cplex.hxx" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1ilp__backend_1_1Cplex_1a0e58cef6acdbb30b016eb5e65097eafa" prot="private" static="no" mutable="no">
+        <type>IloNumVarArray</type>
+        <definition>IloNumVarArray nifty::ilp_backend::Cplex::x_</definition>
+        <argsstring></argsstring>
+        <name>x_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ilp_backend/cplex.hxx" line="70" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ilp_backend/cplex.hxx" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1ilp__backend_1_1Cplex_1a3cb8c3f6c5a6fc8b4f2e10e3787e2cfe" prot="private" static="no" mutable="no">
+        <type>IloRangeArray</type>
+        <definition>IloRangeArray nifty::ilp_backend::Cplex::c_</definition>
+        <argsstring></argsstring>
+        <name>c_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ilp_backend/cplex.hxx" line="71" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ilp_backend/cplex.hxx" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1ilp__backend_1_1Cplex_1a56b376beb4490459d9d682723d980619" prot="private" static="no" mutable="no">
+        <type>IloObjective</type>
+        <definition>IloObjective nifty::ilp_backend::Cplex::obj_</definition>
+        <argsstring></argsstring>
+        <name>obj_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ilp_backend/cplex.hxx" line="72" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ilp_backend/cplex.hxx" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1ilp__backend_1_1Cplex_1a27ee6b372635d4f4eae21c98103241ac" prot="private" static="no" mutable="no">
+        <type>IloNumArray</type>
+        <definition>IloNumArray nifty::ilp_backend::Cplex::sol_</definition>
+        <argsstring></argsstring>
+        <name>sol_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ilp_backend/cplex.hxx" line="73" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ilp_backend/cplex.hxx" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1ilp__backend_1_1Cplex_1a2017564463433dcbfe51fbb986a02e9a" prot="private" static="no" mutable="no">
+        <type>IloCplex</type>
+        <definition>IloCplex nifty::ilp_backend::Cplex::cplex_</definition>
+        <argsstring></argsstring>
+        <name>cplex_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ilp_backend/cplex.hxx" line="74" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ilp_backend/cplex.hxx" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1ilp__backend_1_1Cplex_1ab9abc60e704f82a5b7d480e4fab2e39f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>nifty::ilp_backend::Cplex::Cplex</definition>
+        <argsstring>(const SettingsType &amp;settings=SettingsType())</argsstring>
+        <name>Cplex</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1ilp__backend_1_1Cplex_1a55f68efdbd0060526e09b037be4e6a49" kindref="member">SettingsType</ref> &amp;</type>
+          <declname>settings</declname>
+          <defval><ref refid="classnifty_1_1ilp__backend_1_1Cplex_1a55f68efdbd0060526e09b037be4e6a49" kindref="member">SettingsType</ref>()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ilp_backend/cplex.hxx" line="19" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ilp_backend/cplex.hxx" bodystart="77" bodyend="89"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1ilp__backend_1_1Cplex_1a5bebd6813a2fbb17fa2b5532c3d21000" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>nifty::ilp_backend::Cplex::~Cplex</definition>
+        <argsstring>()</argsstring>
+        <name>~Cplex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ilp_backend/cplex.hxx" line="20" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ilp_backend/cplex.hxx" bodystart="20" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1ilp__backend_1_1Cplex_1a52a0ed3e137e56d17daaaf4542d3290c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::ilp_backend::Cplex::initModel</definition>
+        <argsstring>(const size_t, const double *)</argsstring>
+        <name>initModel</name>
+        <param>
+          <type>const size_t</type>
+          <defname>numberOfVariables</defname>
+        </param>
+        <param>
+          <type>const double *</type>
+          <defname>coefficients</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ilp_backend/cplex.hxx" line="27" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ilp_backend/cplex.hxx" bodystart="95" bodyend="182"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1ilp__backend_1_1Cplex_1a1c773d38cf7a0434247a87ee96531c57" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Iterator</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::ilp_backend::Cplex::setStart</definition>
+        <argsstring>(Iterator)</argsstring>
+        <name>setStart</name>
+        <param>
+          <type>Iterator</type>
+          <defname>valueIterator</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ilp_backend/cplex.hxx" line="30" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ilp_backend/cplex.hxx" bodystart="262" bodyend="287"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1ilp__backend_1_1Cplex_1ac1aca9700667959bb0d99c55ffec16ed" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class VariableIndexIterator</type>
+          </param>
+          <param>
+            <type>class CoefficientIterator</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::ilp_backend::Cplex::addConstraint</definition>
+        <argsstring>(VariableIndexIterator, VariableIndexIterator, CoefficientIterator, const double, const double)</argsstring>
+        <name>addConstraint</name>
+        <param>
+          <type>VariableIndexIterator</type>
+          <defname>viBegin</defname>
+        </param>
+        <param>
+          <type>VariableIndexIterator</type>
+          <defname>viEnd</defname>
+        </param>
+        <param>
+          <type>CoefficientIterator</type>
+          <defname>coefficient</defname>
+        </param>
+        <param>
+          <type>const double</type>
+          <defname>lowerBound</defname>
+        </param>
+        <param>
+          <type>const double</type>
+          <defname>upperBound</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ilp_backend/cplex.hxx" line="33" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ilp_backend/cplex.hxx" bodystart="240" bodyend="258"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1ilp__backend_1_1Cplex_1aa0055358a4aef6b8b660c14422500b23" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::ilp_backend::Cplex::optimize</definition>
+        <argsstring>()</argsstring>
+        <name>optimize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ilp_backend/cplex.hxx" line="34" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ilp_backend/cplex.hxx" bodystart="185" bodyend="224"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1ilp__backend_1_1Cplex_1aded72f7962341ae66e4a72c2ef463015" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double nifty::ilp_backend::Cplex::label</definition>
+        <argsstring>(const size_t) const </argsstring>
+        <name>label</name>
+        <param>
+          <type>const size_t</type>
+          <defname>variableIndex</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ilp_backend/cplex.hxx" line="35" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ilp_backend/cplex.hxx" bodystart="227" bodyend="236"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1ilp__backend_1_1Cplex_1a38bae82b8a54d28471ceb44514bfba18" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class OBJECTIVE_ITERATOR</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::ilp_backend::Cplex::changeObjective</definition>
+        <argsstring>(OBJECTIVE_ITERATOR objectiveIter)</argsstring>
+        <name>changeObjective</name>
+        <param>
+          <type>OBJECTIVE_ITERATOR</type>
+          <declname>objectiveIter</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ilp_backend/cplex.hxx" line="42" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ilp_backend/cplex.hxx" bodystart="42" bodyend="63"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classnifty_1_1ilp__backend_1_1Cplex_1a35cb51113bf3b858d470f9c742884cdc" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>static std::string nifty::ilp_backend::Cplex::name</definition>
+        <argsstring>()</argsstring>
+        <name>name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ilp_backend/cplex.hxx" line="37" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ilp_backend/cplex.hxx" bodystart="37" bodyend="39"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/ilp_backend/cplex.hxx" line="15" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ilp_backend/cplex.hxx" bodystart="15" bodyend="75"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1ilp__backend_1_1Cplex_1ac1aca9700667959bb0d99c55ffec16ed" prot="public" virt="non-virtual"><scope>nifty::ilp_backend::Cplex</scope><name>addConstraint</name></member>
+      <member refid="classnifty_1_1ilp__backend_1_1Cplex_1a3cb8c3f6c5a6fc8b4f2e10e3787e2cfe" prot="private" virt="non-virtual"><scope>nifty::ilp_backend::Cplex</scope><name>c_</name></member>
+      <member refid="classnifty_1_1ilp__backend_1_1Cplex_1a38bae82b8a54d28471ceb44514bfba18" prot="public" virt="non-virtual"><scope>nifty::ilp_backend::Cplex</scope><name>changeObjective</name></member>
+      <member refid="classnifty_1_1ilp__backend_1_1Cplex_1ab9abc60e704f82a5b7d480e4fab2e39f" prot="public" virt="non-virtual"><scope>nifty::ilp_backend::Cplex</scope><name>Cplex</name></member>
+      <member refid="classnifty_1_1ilp__backend_1_1Cplex_1a2017564463433dcbfe51fbb986a02e9a" prot="private" virt="non-virtual"><scope>nifty::ilp_backend::Cplex</scope><name>cplex_</name></member>
+      <member refid="classnifty_1_1ilp__backend_1_1Cplex_1ae8a7a36d94b419b7e43bd455ff9dd844" prot="private" virt="non-virtual"><scope>nifty::ilp_backend::Cplex</scope><name>env_</name></member>
+      <member refid="classnifty_1_1ilp__backend_1_1Cplex_1a52a0ed3e137e56d17daaaf4542d3290c" prot="public" virt="non-virtual"><scope>nifty::ilp_backend::Cplex</scope><name>initModel</name></member>
+      <member refid="classnifty_1_1ilp__backend_1_1Cplex_1aded72f7962341ae66e4a72c2ef463015" prot="public" virt="non-virtual"><scope>nifty::ilp_backend::Cplex</scope><name>label</name></member>
+      <member refid="classnifty_1_1ilp__backend_1_1Cplex_1a6847251c9c83a1818f88cfdbe03f2c52" prot="private" virt="non-virtual"><scope>nifty::ilp_backend::Cplex</scope><name>model_</name></member>
+      <member refid="classnifty_1_1ilp__backend_1_1Cplex_1a35cb51113bf3b858d470f9c742884cdc" prot="public" virt="non-virtual"><scope>nifty::ilp_backend::Cplex</scope><name>name</name></member>
+      <member refid="classnifty_1_1ilp__backend_1_1Cplex_1a4e071dd0b2657d77f2bc4b91287ab19d" prot="private" virt="non-virtual"><scope>nifty::ilp_backend::Cplex</scope><name>nVariables_</name></member>
+      <member refid="classnifty_1_1ilp__backend_1_1Cplex_1a56b376beb4490459d9d682723d980619" prot="private" virt="non-virtual"><scope>nifty::ilp_backend::Cplex</scope><name>obj_</name></member>
+      <member refid="classnifty_1_1ilp__backend_1_1Cplex_1aa0055358a4aef6b8b660c14422500b23" prot="public" virt="non-virtual"><scope>nifty::ilp_backend::Cplex</scope><name>optimize</name></member>
+      <member refid="classnifty_1_1ilp__backend_1_1Cplex_1a1c773d38cf7a0434247a87ee96531c57" prot="public" virt="non-virtual"><scope>nifty::ilp_backend::Cplex</scope><name>setStart</name></member>
+      <member refid="classnifty_1_1ilp__backend_1_1Cplex_1a08e5da64b4c47fadb57d82ac36deb375" prot="private" virt="non-virtual"><scope>nifty::ilp_backend::Cplex</scope><name>settings_</name></member>
+      <member refid="classnifty_1_1ilp__backend_1_1Cplex_1a55f68efdbd0060526e09b037be4e6a49" prot="public" virt="non-virtual"><scope>nifty::ilp_backend::Cplex</scope><name>SettingsType</name></member>
+      <member refid="classnifty_1_1ilp__backend_1_1Cplex_1a27ee6b372635d4f4eae21c98103241ac" prot="private" virt="non-virtual"><scope>nifty::ilp_backend::Cplex</scope><name>sol_</name></member>
+      <member refid="classnifty_1_1ilp__backend_1_1Cplex_1a0e58cef6acdbb30b016eb5e65097eafa" prot="private" virt="non-virtual"><scope>nifty::ilp_backend::Cplex</scope><name>x_</name></member>
+      <member refid="classnifty_1_1ilp__backend_1_1Cplex_1a5bebd6813a2fbb17fa2b5532c3d21000" prot="public" virt="non-virtual"><scope>nifty::ilp_backend::Cplex</scope><name>~Cplex</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

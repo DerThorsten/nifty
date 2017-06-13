@@ -1,0 +1,395 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl" kind="class" language="C++" prot="public">
+    <compoundname>nifty::graph::detail_graph::SearchImpl</compoundname>
+    <includes refid="search__impl_8hxx" local="no">search_impl.hxx</includes>
+    <templateparamlist>
+      <param>
+        <type>class</type>
+        <declname>GRAPH</declname>
+        <defname>GRAPH</defname>
+      </param>
+      <param>
+        <type>class</type>
+        <declname>QUEUE</declname>
+        <defname>QUEUE</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1a8426363c518ca7ef2383b5cb1f06713d" prot="public" static="no">
+        <type>GRAPH</type>
+        <definition>typedef GRAPH nifty::graph::detail_graph::SearchImpl&lt; GRAPH, QUEUE &gt;::Graph</definition>
+        <argsstring></argsstring>
+        <name>Graph</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/detail/search_impl.hxx" line="34" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/detail/search_impl.hxx" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1ae495d858111c13b737fe264a12a273c8" prot="public" static="no">
+        <type>Graph::template NodeMap&lt; int64_t &gt;</type>
+        <definition>typedef Graph:: template NodeMap&lt;int64_t&gt; nifty::graph::detail_graph::SearchImpl&lt; GRAPH, QUEUE &gt;::PredecessorsMap</definition>
+        <argsstring></argsstring>
+        <name>PredecessorsMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/detail/search_impl.hxx" line="35" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/detail/search_impl.hxx" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1abbd31f7e73ba6851a8f955cd64d59917" prot="public" static="no">
+        <type>Graph::template NodeMap&lt; int64_t &gt;</type>
+        <definition>typedef Graph:: template NodeMap&lt;int64_t&gt; nifty::graph::detail_graph::SearchImpl&lt; GRAPH, QUEUE &gt;::DistanceMap</definition>
+        <argsstring></argsstring>
+        <name>DistanceMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/detail/search_impl.hxx" line="36" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/detail/search_impl.hxx" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1a3c1b7fa62fd51ff32393cffcb9b63d21" prot="private" static="no">
+        <type>QUEUE</type>
+        <definition>typedef QUEUE nifty::graph::detail_graph::SearchImpl&lt; GRAPH, QUEUE &gt;::Queue</definition>
+        <argsstring></argsstring>
+        <name>Queue</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/detail/search_impl.hxx" line="38" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/detail/search_impl.hxx" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1af43f4c0eaa3ac06840b926eb196649cb" prot="private" static="no" mutable="no">
+        <type>const GRAPH &amp;</type>
+        <definition>const GRAPH&amp; nifty::graph::detail_graph::SearchImpl&lt; GRAPH, QUEUE &gt;::g_</definition>
+        <argsstring></argsstring>
+        <name>g_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/detail/search_impl.hxx" line="229" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/detail/search_impl.hxx" bodystart="229" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1abe2b3e9acc9ed0ac89209e1defa7ba32" prot="private" static="no" mutable="no">
+        <type>Queue</type>
+        <definition>Queue nifty::graph::detail_graph::SearchImpl&lt; GRAPH, QUEUE &gt;::queue_</definition>
+        <argsstring></argsstring>
+        <name>queue_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/detail/search_impl.hxx" line="230" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/detail/search_impl.hxx" bodystart="230" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1a07be2cc4f245dc8bf3e1cbdd08006337" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1ae495d858111c13b737fe264a12a273c8" kindref="member">PredecessorsMap</ref></type>
+        <definition>PredecessorsMap nifty::graph::detail_graph::SearchImpl&lt; GRAPH, QUEUE &gt;::predMap_</definition>
+        <argsstring></argsstring>
+        <name>predMap_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/detail/search_impl.hxx" line="231" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/detail/search_impl.hxx" bodystart="231" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1a3ed5f51c540fe497eff3145f1d269609" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1abbd31f7e73ba6851a8f955cd64d59917" kindref="member">DistanceMap</ref></type>
+        <definition>DistanceMap nifty::graph::detail_graph::SearchImpl&lt; GRAPH, QUEUE &gt;::distMap_</definition>
+        <argsstring></argsstring>
+        <name>distMap_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/detail/search_impl.hxx" line="232" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/detail/search_impl.hxx" bodystart="232" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1ae3b7de8fe1eb6d2f56eb87e6073522ed" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>nifty::graph::detail_graph::SearchImpl&lt; GRAPH, QUEUE &gt;::SearchImpl</definition>
+        <argsstring>(const Graph &amp;g)</argsstring>
+        <name>SearchImpl</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1a8426363c518ca7ef2383b5cb1f06713d" kindref="member">Graph</ref> &amp;</type>
+          <declname>g</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/detail/search_impl.hxx" line="40" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/detail/search_impl.hxx" bodystart="40" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1a9c1d6dd401e9557df0f3a3a186ce13c1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class F</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::graph::detail_graph::SearchImpl&lt; GRAPH, QUEUE &gt;::graphNeighbourhood</definition>
+        <argsstring>(const uint64_t source, const size_t maxDistance, F &amp;&amp;f)</argsstring>
+        <name>graphNeighbourhood</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>source</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>maxDistance</declname>
+        </param>
+        <param>
+          <type>F &amp;&amp;</type>
+          <declname>f</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/detail/search_impl.hxx" line="49" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/detail/search_impl.hxx" bodystart="49" bodyend="77"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1ae8e3bf7786467e899abb8c4507fc77fe" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::detail_graph::SearchImpl&lt; GRAPH, QUEUE &gt;::runSingleSourceSingleTarget</definition>
+        <argsstring>(const int64_t source, const int64_t target=-1)</argsstring>
+        <name>runSingleSourceSingleTarget</name>
+        <param>
+          <type>const int64_t</type>
+          <declname>source</declname>
+        </param>
+        <param>
+          <type>const int64_t</type>
+          <declname>target</declname>
+          <defval>-1</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/detail/search_impl.hxx" line="84" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/detail/search_impl.hxx" bodystart="84" bodyend="106"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1ab662caa4f11668c78c516554dc6a97a1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class SUBGRAPH_MASK</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::graph::detail_graph::SearchImpl&lt; GRAPH, QUEUE &gt;::runSingleSourceSingleTarget</definition>
+        <argsstring>(const int64_t source, const int64_t target, const SUBGRAPH_MASK &amp;subgraphMask)</argsstring>
+        <name>runSingleSourceSingleTarget</name>
+        <param>
+          <type>const int64_t</type>
+          <declname>source</declname>
+        </param>
+        <param>
+          <type>const int64_t</type>
+          <declname>target</declname>
+        </param>
+        <param>
+          <type>const SUBGRAPH_MASK &amp;</type>
+          <declname>subgraphMask</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/detail/search_impl.hxx" line="109" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/detail/search_impl.hxx" bodystart="109" bodyend="131"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1af5ed3bebeeea7d64e9d4118732514fb5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::detail_graph::SearchImpl&lt; GRAPH, QUEUE &gt;::runSingleSource</definition>
+        <argsstring>(const int64_t source)</argsstring>
+        <name>runSingleSource</name>
+        <param>
+          <type>const int64_t</type>
+          <declname>source</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/detail/search_impl.hxx" line="136" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/detail/search_impl.hxx" bodystart="136" bodyend="158"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1a8210b1709b1222c575b5c3e0a591be1f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class SOURCE_ITER</type>
+          </param>
+          <param>
+            <type>class SUBGRAPH_MASK</type>
+          </param>
+          <param>
+            <type>class VISITOR</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::graph::detail_graph::SearchImpl&lt; GRAPH, QUEUE &gt;::run</definition>
+        <argsstring>(SOURCE_ITER sourceBegin, SOURCE_ITER sourceEnd, const SUBGRAPH_MASK &amp;subgraphMask, VISITOR &amp;&amp;visitor)</argsstring>
+        <name>run</name>
+        <param>
+          <type>SOURCE_ITER</type>
+          <declname>sourceBegin</declname>
+        </param>
+        <param>
+          <type>SOURCE_ITER</type>
+          <declname>sourceEnd</declname>
+        </param>
+        <param>
+          <type>const SUBGRAPH_MASK &amp;</type>
+          <declname>subgraphMask</declname>
+        </param>
+        <param>
+          <type>VISITOR &amp;&amp;</type>
+          <declname>visitor</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/detail/search_impl.hxx" line="161" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/detail/search_impl.hxx" bodystart="161" bodyend="169"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1ac6aa3c3e65115983363273fe86e25a65" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1abbd31f7e73ba6851a8f955cd64d59917" kindref="member">DistanceMap</ref> &amp;</type>
+        <definition>const DistanceMap&amp; nifty::graph::detail_graph::SearchImpl&lt; GRAPH, QUEUE &gt;::distances</definition>
+        <argsstring>() const </argsstring>
+        <name>distances</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/detail/search_impl.hxx" line="171" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/detail/search_impl.hxx" bodystart="171" bodyend="173"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1ae3a10a297cde6846106aedc9812cebc3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1ae495d858111c13b737fe264a12a273c8" kindref="member">PredecessorsMap</ref></type>
+        <definition>const PredecessorsMap nifty::graph::detail_graph::SearchImpl&lt; GRAPH, QUEUE &gt;::predecessors</definition>
+        <argsstring>() const </argsstring>
+        <name>predecessors</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/detail/search_impl.hxx" line="174" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/detail/search_impl.hxx" bodystart="174" bodyend="176"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1a0e2e5a2d8c037e4ecd015abc585fbc74" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class SUBGRAPH_MASK</type>
+          </param>
+          <param>
+            <type>class VISITOR</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::graph::detail_graph::SearchImpl&lt; GRAPH, QUEUE &gt;::runImpl</definition>
+        <argsstring>(const SUBGRAPH_MASK &amp;subgraphMask, VISITOR &amp;&amp;visitor)</argsstring>
+        <name>runImpl</name>
+        <param>
+          <type>const SUBGRAPH_MASK &amp;</type>
+          <declname>subgraphMask</declname>
+        </param>
+        <param>
+          <type>VISITOR &amp;&amp;</type>
+          <declname>visitor</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/detail/search_impl.hxx" line="183" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/detail/search_impl.hxx" bodystart="183" bodyend="211"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1a4c98af20ae2d2fc9845d8b43ad1131bf" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class SOURCE_ITER</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::graph::detail_graph::SearchImpl&lt; GRAPH, QUEUE &gt;::initializeMaps</definition>
+        <argsstring>(SOURCE_ITER sourceBegin, SOURCE_ITER sourceEnd)</argsstring>
+        <name>initializeMaps</name>
+        <param>
+          <type>SOURCE_ITER</type>
+          <declname>sourceBegin</declname>
+        </param>
+        <param>
+          <type>SOURCE_ITER</type>
+          <declname>sourceEnd</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/detail/search_impl.hxx" line="214" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/detail/search_impl.hxx" bodystart="214" bodyend="227"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/detail/search_impl.hxx" line="31" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/detail/search_impl.hxx" bodystart="31" bodyend="233"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1abbd31f7e73ba6851a8f955cd64d59917" prot="public" virt="non-virtual"><scope>nifty::graph::detail_graph::SearchImpl</scope><name>DistanceMap</name></member>
+      <member refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1ac6aa3c3e65115983363273fe86e25a65" prot="public" virt="non-virtual"><scope>nifty::graph::detail_graph::SearchImpl</scope><name>distances</name></member>
+      <member refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1a3ed5f51c540fe497eff3145f1d269609" prot="private" virt="non-virtual"><scope>nifty::graph::detail_graph::SearchImpl</scope><name>distMap_</name></member>
+      <member refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1af43f4c0eaa3ac06840b926eb196649cb" prot="private" virt="non-virtual"><scope>nifty::graph::detail_graph::SearchImpl</scope><name>g_</name></member>
+      <member refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1a8426363c518ca7ef2383b5cb1f06713d" prot="public" virt="non-virtual"><scope>nifty::graph::detail_graph::SearchImpl</scope><name>Graph</name></member>
+      <member refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1a9c1d6dd401e9557df0f3a3a186ce13c1" prot="public" virt="non-virtual"><scope>nifty::graph::detail_graph::SearchImpl</scope><name>graphNeighbourhood</name></member>
+      <member refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1a4c98af20ae2d2fc9845d8b43ad1131bf" prot="private" virt="non-virtual"><scope>nifty::graph::detail_graph::SearchImpl</scope><name>initializeMaps</name></member>
+      <member refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1ae3a10a297cde6846106aedc9812cebc3" prot="public" virt="non-virtual"><scope>nifty::graph::detail_graph::SearchImpl</scope><name>predecessors</name></member>
+      <member refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1ae495d858111c13b737fe264a12a273c8" prot="public" virt="non-virtual"><scope>nifty::graph::detail_graph::SearchImpl</scope><name>PredecessorsMap</name></member>
+      <member refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1a07be2cc4f245dc8bf3e1cbdd08006337" prot="private" virt="non-virtual"><scope>nifty::graph::detail_graph::SearchImpl</scope><name>predMap_</name></member>
+      <member refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1a3c1b7fa62fd51ff32393cffcb9b63d21" prot="private" virt="non-virtual"><scope>nifty::graph::detail_graph::SearchImpl</scope><name>Queue</name></member>
+      <member refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1abe2b3e9acc9ed0ac89209e1defa7ba32" prot="private" virt="non-virtual"><scope>nifty::graph::detail_graph::SearchImpl</scope><name>queue_</name></member>
+      <member refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1a8210b1709b1222c575b5c3e0a591be1f" prot="public" virt="non-virtual"><scope>nifty::graph::detail_graph::SearchImpl</scope><name>run</name></member>
+      <member refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1a0e2e5a2d8c037e4ecd015abc585fbc74" prot="private" virt="non-virtual"><scope>nifty::graph::detail_graph::SearchImpl</scope><name>runImpl</name></member>
+      <member refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1af5ed3bebeeea7d64e9d4118732514fb5" prot="public" virt="non-virtual"><scope>nifty::graph::detail_graph::SearchImpl</scope><name>runSingleSource</name></member>
+      <member refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1ae8e3bf7786467e899abb8c4507fc77fe" prot="public" virt="non-virtual"><scope>nifty::graph::detail_graph::SearchImpl</scope><name>runSingleSourceSingleTarget</name></member>
+      <member refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1ab662caa4f11668c78c516554dc6a97a1" prot="public" virt="non-virtual"><scope>nifty::graph::detail_graph::SearchImpl</scope><name>runSingleSourceSingleTarget</name></member>
+      <member refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1ae3b7de8fe1eb6d2f56eb87e6073522ed" prot="public" virt="non-virtual"><scope>nifty::graph::detail_graph::SearchImpl</scope><name>SearchImpl</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

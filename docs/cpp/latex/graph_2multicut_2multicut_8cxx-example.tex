@@ -40,8 +40,9 @@
 
     \textcolor{comment}{// create multicut objective}
     \textcolor{comment}{// do not add more edges to graph after creating the mc objective}
-    \textcolor{keyword}{typedef} \hyperlink{classnifty_1_1graph_1_1MulticutObjective}{nifty::graph::MulticutObjective<Graph, float>} 
-      MulticutObjective;
+    \textcolor{keyword}{typedef} 
+      \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutObjective}{nifty::graph::optimization::multicut::MulticutObjective<Graph, float>}
+       MulticutObjective;
     MulticutObjective objective(graph);
 
     \textcolor{comment}{// Set edge weights }
@@ -58,14 +59,16 @@
     \textcolor{comment}{// solve not very powerful but simple solver}
     \{  
        
-        \textcolor{keyword}{typedef} \hyperlink{classnifty_1_1graph_1_1MulticutGreedyAdditive}{nifty::graph::MulticutGreedyAdditive<MulticutObjective>}
+        \textcolor{keyword}{typedef} 
+      \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutGreedyAdditive}{nifty::graph::optimization::multicut::MulticutGreedyAdditive<MulticutObjective>}
        MulticutSolver;
-        \textcolor{keyword}{typedef} \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1VerboseVisitor}{nifty::graph::MulticutVerboseVisitor<MulticutObjective>}
-       \hyperlink{namespacenifty_1_1graph_a8b139ea9e1b9c08234fb388f35bd9e75}{MulticutVerboseVisitor};
-        \textcolor{keyword}{typedef} \textcolor{keyword}{typename} MulticutSolver::NodeLabels NodeLabels;
+        \textcolor{keyword}{typedef} 
+      \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1VerboseVisitor}{nifty::graph::optimization::multicut::MulticutVerboseVisitor<MulticutObjective>}
+       \hyperlink{namespacenifty_1_1graph_1_1optimization_1_1multicut_a071c9020e064373e9c11465fbe1870f9}{MulticutVerboseVisitor};
+        \textcolor{keyword}{typedef} \textcolor{keyword}{typename} MulticutSolver::NodeLabelsType NodeLabelsType;
         MulticutSolver solver(objective);
 
-        NodeLabels labels(graph);
+        NodeLabelsType labels(graph);
         MulticutVerboseVisitor visitor;
         solver.optimize(labels, &visitor);
 

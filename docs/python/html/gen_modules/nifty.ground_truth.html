@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>nifty.ground_truth &#8212; Nifty 0.15.0 documentation</title>
+    <title>nifty.ground_truth &#8212; Nifty 0.16.1 documentation</title>
     
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -15,7 +15,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '0.15.0',
+        VERSION:     '0.16.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -27,9 +27,7 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="nifty.hdf5" href="nifty.hdf5.html" />
-    <link rel="prev" title="nifty.segmentation" href="nifty.segmentation.html" /> 
+    <link rel="search" title="Search" href="../search.html" /> 
   </head>
   <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
@@ -41,14 +39,7 @@
         <li class="right" >
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="right" >
-          <a href="nifty.hdf5.html" title="nifty.hdf5"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="nifty.segmentation.html" title="nifty.segmentation"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Nifty 0.15.0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../reference.html" accesskey="U">Nifty API Reference</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">Nifty 0.16.1 documentation</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -57,19 +48,16 @@
   <ul>
 <li><a class="reference internal" href="#">nifty.ground_truth</a><ul>
 <li><a class="reference internal" href="#functions">Functions</a><ul>
+<li><a class="reference internal" href="#examples-using-nifty-ground-truth-overlap">Examples using <code class="docutils literal"><span class="pre">nifty.ground_truth.overlap</span></code></a><ul>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
+</li>
+</ul>
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="nifty.segmentation.html"
-                        title="previous chapter">nifty.segmentation</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="nifty.hdf5.html"
-                        title="next chapter">nifty.hdf5</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
@@ -93,23 +81,49 @@
 <div class="section" id="functions">
 <h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
-<dt id="nifty.ground_truth.seg2dToLiftedEdges">
-<code class="descclassname">nifty.ground_truth.</code><code class="descname">seg2dToLiftedEdges</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.ground_truth.seg2dToLiftedEdges" title="Permalink to this definition">¶</a></dt>
-<dd><p>Overloaded function.</p>
-<ol class="arabic simple">
-<li>seg2dToLiftedEdges(segmentation: array&lt;int&gt;, edges: array&lt;int&gt;) -&gt; array&lt;int&gt;</li>
-<li>seg2dToLiftedEdges(segmentation: array&lt;int&gt;, edges: array&lt;int&gt;, z: int) -&gt; array&lt;int&gt;</li>
-</ol>
+<dt id="nifty.ground_truth.overlap">
+<code class="descclassname">nifty.ground_truth.</code><code class="descname">overlap</code><span class="sig-paren">(</span><em>segmentation</em>, <em>groundTruth</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.ground_truth.overlap" title="Permalink to this definition">¶</a></dt>
+<dd><p>factory function for <a class="reference internal" href="../sections/gen_modules/nifty.ground_truth.html#nifty.ground_truth.Overlap" title="nifty.ground_truth.Overlap"><code class="xref py py-class docutils literal"><span class="pre">nifty.ground_truth.Overlap</span></code></a></p>
+<p>create an instance of <a class="reference internal" href="../sections/gen_modules/nifty.ground_truth.html#nifty.ground_truth.Overlap" title="nifty.ground_truth.Overlap"><code class="xref py py-class docutils literal"><span class="pre">nifty.ground_truth.Overlap</span></code></a>
+which can be used to project ground truth
+to some segmentation / over-segmentation</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>segmentation</strong> (<em>numpy.ndarray</em>) &#8211; The segmentation / over-segmentation</li>
+<li><strong>groundTruth</strong> (<em>numpy.ndarray</em>) &#8211; The ground truth as node labeling.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">[description]
+[type]</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
+
+<div class="section" id="examples-using-nifty-ground-truth-overlap">
+<h3>Examples using <code class="docutils literal"><span class="pre">nifty.ground_truth.overlap</span></code><a class="headerlink" href="#examples-using-nifty-ground-truth-overlap" title="Permalink to this headline">¶</a></h3>
+<div class="sphx-glr-thumbcontainer" tooltip="Here we segment neuro data as in  :cite:`beier_17_multicut`. In fact, this is a simplified vers..."><div class="figure" id="id1">
+<img alt="../_images/sphx_glr_plot_isbi_2012_multicut_2D_simple_thumb.png" src="../_images/sphx_glr_plot_isbi_2012_multicut_2D_simple_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="../auto_examples/multicut/plot_isbi_2012_multicut_2D_simple.html#sphx-glr-auto-examples-multicut-plot-isbi-2012-multicut-2d-simple-py"><span class="std std-ref">ISBI 2012 Simple 2D Multicut Pipeline</span></a></span></p>
+</div>
+</div><div style='clear:both'></div><dl class="function">
+<dt id="nifty.ground_truth.seg2dToLiftedEdges">
+<code class="descclassname">nifty.ground_truth.</code><code class="descname">seg2dToLiftedEdges</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.ground_truth.seg2dToLiftedEdges" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <div style='clear:both'></div><dl class="function">
 <dt id="nifty.ground_truth.seg3dToCremiZ5Edges">
-<code class="descclassname">nifty.ground_truth.</code><code class="descname">seg3dToCremiZ5Edges</code><span class="sig-paren">(</span><em>segmentation: array&lt;int&gt;</em>, <em>edges: array&lt;int&gt;</em><span class="sig-paren">)</span> &#x2192; array&lt;int&gt;<a class="headerlink" href="#nifty.ground_truth.seg3dToCremiZ5Edges" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">nifty.ground_truth.</code><code class="descname">seg3dToCremiZ5Edges</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.ground_truth.seg3dToCremiZ5Edges" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <div style='clear:both'></div><dl class="function">
 <dt id="nifty.ground_truth.segToEdges2D">
-<code class="descclassname">nifty.ground_truth.</code><code class="descname">segToEdges2D</code><span class="sig-paren">(</span><em>segmentation: array&lt;int&gt;</em><span class="sig-paren">)</span> &#x2192; array&lt;int&gt;<a class="headerlink" href="#nifty.ground_truth.segToEdges2D" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">nifty.ground_truth.</code><code class="descname">segToEdges2D</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.ground_truth.segToEdges2D" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <div style='clear:both'></div><dl class="function">
@@ -118,38 +132,33 @@
 <dd></dd></dl>
 
 <div style='clear:both'></div><div class="section" id="classes">
-<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h3>
+<h4>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h4>
 <dl class="class">
 <dt id="nifty.ground_truth.Overlap">
 <em class="property">class </em><code class="descclassname">nifty.ground_truth.</code><code class="descname">Overlap</code><a class="headerlink" href="#nifty.ground_truth.Overlap" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="method">
 <dt id="nifty.ground_truth.Overlap.bleeding">
-<code class="descname">bleeding</code><span class="sig-paren">(</span><em>self: nifty.ground_truth._ground_truth.Overlap</em>, <em>arg0: array&lt;int&gt;</em><span class="sig-paren">)</span> &#x2192; array&lt;float&gt;<a class="headerlink" href="#nifty.ground_truth.Overlap.bleeding" title="Permalink to this definition">¶</a></dt>
+<code class="descname">bleeding</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.ground_truth.Overlap.bleeding" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="nifty.ground_truth.Overlap.counts">
-<code class="descname">counts</code><span class="sig-paren">(</span><em>self: nifty.ground_truth._ground_truth.Overlap</em><span class="sig-paren">)</span> &#x2192; array&lt;int&gt;<a class="headerlink" href="#nifty.ground_truth.Overlap.counts" title="Permalink to this definition">¶</a></dt>
+<code class="descname">counts</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.ground_truth.Overlap.counts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="nifty.ground_truth.Overlap.differentOverlaps">
-<code class="descname">differentOverlaps</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.ground_truth.Overlap.differentOverlaps" title="Permalink to this definition">¶</a></dt>
-<dd><p>Overloaded function.</p>
-<ol class="arabic simple">
-<li>differentOverlaps(self: nifty.ground_truth._ground_truth.Overlap, arg0: int, arg1: int) -&gt; float</li>
-<li>differentOverlaps(self: nifty.ground_truth._ground_truth.Overlap, arg0: array&lt;int&gt;) -&gt; array&lt;float&gt;</li>
-</ol>
-</dd></dl>
+<code class="descname">differentOverlaps</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.ground_truth.Overlap.differentOverlaps" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="method">
 <dt id="nifty.ground_truth.Overlap.overlapArrays">
-<code class="descname">overlapArrays</code><span class="sig-paren">(</span><em>self: nifty.ground_truth._ground_truth.Overlap</em>, <em>index: int</em>, <em>sorted: bool=False</em><span class="sig-paren">)</span> &#x2192; Tuple[array&lt;int&gt;, array&lt;int&gt;]<a class="headerlink" href="#nifty.ground_truth.Overlap.overlapArrays" title="Permalink to this definition">¶</a></dt>
+<code class="descname">overlapArrays</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.ground_truth.Overlap.overlapArrays" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="nifty.ground_truth.Overlap.overlapArraysNormalized">
-<code class="descname">overlapArraysNormalized</code><span class="sig-paren">(</span><em>self: nifty.ground_truth._ground_truth.Overlap</em>, <em>index: int</em>, <em>sorted: bool=False</em><span class="sig-paren">)</span> &#x2192; Tuple[array&lt;int&gt;, array&lt;float&gt;]<a class="headerlink" href="#nifty.ground_truth.Overlap.overlapArraysNormalized" title="Permalink to this definition">¶</a></dt>
+<code class="descname">overlapArraysNormalized</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.ground_truth.Overlap.overlapArraysNormalized" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -252,6 +261,7 @@
 <div style='clear:both'></div></div>
 </div>
 </div>
+</div>
 
 
           </div>
@@ -268,14 +278,7 @@
         <li class="right" >
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="right" >
-          <a href="nifty.hdf5.html" title="nifty.hdf5"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="nifty.segmentation.html" title="nifty.segmentation"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Nifty 0.15.0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../reference.html" >Nifty API Reference</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">Nifty 0.16.1 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

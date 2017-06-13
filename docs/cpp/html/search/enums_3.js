@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['seedingstrategie',['SeedingStrategie',['../structnifty_1_1graph_1_1optimization_1_1common_1_1GreedyAdditiveMulticutProposals_1_1Settings.html#af521b54eb40400d1d2f209ea599308af',1,'nifty::graph::optimization::common::GreedyAdditiveMulticutProposals::Settings::SeedingStrategie()'],['../structnifty_1_1graph_1_1optimization_1_1common_1_1WatershedProposalGenerator_1_1Settings.html#ac23797b007dcba802d2de1f5219eb4fa',1,'nifty::graph::optimization::common::WatershedProposalGenerator::Settings::SeedingStrategie()'],['../structnifty_1_1graph_1_1lifted__multicut_1_1WatershedProposalGenerator_1_1Settings.html#ad9d03699a5519e3a5a0b565df61338f7',1,'nifty::graph::lifted_multicut::WatershedProposalGenerator::Settings::SeedingStrategie()'],['../structnifty_1_1graph_1_1mincut_1_1RandomProposalGenerator_1_1Settings.html#a1037544cf92e5f126732c989c24e9dd1',1,'nifty::graph::mincut::RandomProposalGenerator::Settings::SeedingStrategie()']]]
+  ['loglevel',['LogLevel',['../namespacenifty_1_1logging.html#a3385625f9a0dbb17f70c47d3fca2f64d',1,'nifty::logging']]],
+  ['lpsolver',['LPSolver',['../structnifty_1_1ilp__backend_1_1IlpBackendSettings.html#a4b3fd0d313a8d95f9f6a3ba64802e204',1,'nifty::ilp_backend::IlpBackendSettings']]]
 ];

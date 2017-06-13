@@ -1,0 +1,136 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="structnifty_1_1graph_1_1detail__graph_1_1UndirectedGraphTypeHelper" kind="struct" language="C++" prot="public">
+    <compoundname>nifty::graph::detail_graph::UndirectedGraphTypeHelper</compoundname>
+    <includes refid="graph_2undirected__list__graph_8hxx" local="no">undirected_list_graph.hxx</includes>
+    <templateparamlist>
+      <param>
+        <type>class EDGE_INTERANL_TYPE</type>
+      </param>
+      <param>
+        <type>class NODE_INTERNAL_TYPE</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="structnifty_1_1graph_1_1detail__graph_1_1UndirectedGraphTypeHelper_1ac7309a31e7a003860ce1f1a882e6813e" prot="public" static="no">
+        <type>EDGE_INTERANL_TYPE</type>
+        <definition>typedef EDGE_INTERANL_TYPE nifty::graph::detail_graph::UndirectedGraphTypeHelper&lt; EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::EdgeInternalType</definition>
+        <argsstring></argsstring>
+        <name>EdgeInternalType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="36" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="structnifty_1_1graph_1_1detail__graph_1_1UndirectedGraphTypeHelper_1a4c2041ab030e3eb561a2955a3bbfb5d7" prot="public" static="no">
+        <type>NODE_INTERNAL_TYPE</type>
+        <definition>typedef NODE_INTERNAL_TYPE nifty::graph::detail_graph::UndirectedGraphTypeHelper&lt; EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::NodeInteralType</definition>
+        <argsstring></argsstring>
+        <name>NodeInteralType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="37" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="structnifty_1_1graph_1_1detail__graph_1_1UndirectedGraphTypeHelper_1a626e3edd4cc8c7e33ec89e6a7454561a" prot="public" static="no">
+        <type>detail_graph::UndirectedAdjacency&lt; int64_t, int64_t, <ref refid="structnifty_1_1graph_1_1detail__graph_1_1UndirectedGraphTypeHelper_1a4c2041ab030e3eb561a2955a3bbfb5d7" kindref="member">NodeInteralType</ref>, <ref refid="structnifty_1_1graph_1_1detail__graph_1_1UndirectedGraphTypeHelper_1ac7309a31e7a003860ce1f1a882e6813e" kindref="member">EdgeInternalType</ref> &gt;</type>
+        <definition>typedef detail_graph::UndirectedAdjacency&lt;int64_t,int64_t,NodeInteralType,EdgeInternalType&gt; nifty::graph::detail_graph::UndirectedGraphTypeHelper&lt; EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::NodeAdjacency</definition>
+        <argsstring></argsstring>
+        <name>NodeAdjacency</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="38" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="structnifty_1_1graph_1_1detail__graph_1_1UndirectedGraphTypeHelper_1a55013bcacc1d016637b29ab2c33ac52a" prot="public" static="no">
+        <type><ref refid="classnifty_1_1container_1_1FlatSet" kindref="compound">nifty::container::FlatSet</ref>&lt; <ref refid="structnifty_1_1graph_1_1detail__graph_1_1UndirectedGraphTypeHelper_1a626e3edd4cc8c7e33ec89e6a7454561a" kindref="member">NodeAdjacency</ref> &gt;</type>
+        <definition>typedef nifty::container::FlatSet&lt;NodeAdjacency&gt; nifty::graph::detail_graph::UndirectedGraphTypeHelper&lt; EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::NodeStorage</definition>
+        <argsstring></argsstring>
+        <name>NodeStorage</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="40" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="structnifty_1_1graph_1_1detail__graph_1_1UndirectedGraphTypeHelper_1a43eb7f2cfb5036f87e9496bb6b8d064d" prot="public" static="no">
+        <type>std::pair&lt; <ref refid="structnifty_1_1graph_1_1detail__graph_1_1UndirectedGraphTypeHelper_1a4c2041ab030e3eb561a2955a3bbfb5d7" kindref="member">NodeInteralType</ref>, <ref refid="structnifty_1_1graph_1_1detail__graph_1_1UndirectedGraphTypeHelper_1a4c2041ab030e3eb561a2955a3bbfb5d7" kindref="member">NodeInteralType</ref> &gt;</type>
+        <definition>typedef std::pair&lt;NodeInteralType,NodeInteralType&gt; nifty::graph::detail_graph::UndirectedGraphTypeHelper&lt; EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::EdgeStorage</definition>
+        <argsstring></argsstring>
+        <name>EdgeStorage</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="42" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="structnifty_1_1graph_1_1detail__graph_1_1UndirectedGraphTypeHelper_1a33768d5fbeda97627a0e4a67eb50776c" prot="public" static="no">
+        <type>boost::counting_iterator&lt; int64_t &gt;</type>
+        <definition>typedef boost::counting_iterator&lt;int64_t&gt; nifty::graph::detail_graph::UndirectedGraphTypeHelper&lt; EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::NodeIter</definition>
+        <argsstring></argsstring>
+        <name>NodeIter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="43" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="structnifty_1_1graph_1_1detail__graph_1_1UndirectedGraphTypeHelper_1adcb9afc6e254d52edcb21e1be522dce7" prot="public" static="no">
+        <type>boost::counting_iterator&lt; int64_t &gt;</type>
+        <definition>typedef boost::counting_iterator&lt;int64_t&gt; nifty::graph::detail_graph::UndirectedGraphTypeHelper&lt; EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::EdgeIter</definition>
+        <argsstring></argsstring>
+        <name>EdgeIter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="44" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="structnifty_1_1graph_1_1detail__graph_1_1UndirectedGraphTypeHelper_1aae80a660c99b4e51c90a98f70496a8ea" prot="public" static="no">
+        <type><ref refid="classnifty_1_1container_1_1FlatSet_1a0f4cd26da060859b18742abfd534aa24" kindref="member">NodeStorage::const_iterator</ref></type>
+        <definition>typedef NodeStorage::const_iterator nifty::graph::detail_graph::UndirectedGraphTypeHelper&lt; EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::AdjacencyIter</definition>
+        <argsstring></argsstring>
+        <name>AdjacencyIter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="45" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="35" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="35" bodyend="46"/>
+    <listofallmembers>
+      <member refid="structnifty_1_1graph_1_1detail__graph_1_1UndirectedGraphTypeHelper_1aae80a660c99b4e51c90a98f70496a8ea" prot="public" virt="non-virtual"><scope>nifty::graph::detail_graph::UndirectedGraphTypeHelper</scope><name>AdjacencyIter</name></member>
+      <member refid="structnifty_1_1graph_1_1detail__graph_1_1UndirectedGraphTypeHelper_1ac7309a31e7a003860ce1f1a882e6813e" prot="public" virt="non-virtual"><scope>nifty::graph::detail_graph::UndirectedGraphTypeHelper</scope><name>EdgeInternalType</name></member>
+      <member refid="structnifty_1_1graph_1_1detail__graph_1_1UndirectedGraphTypeHelper_1adcb9afc6e254d52edcb21e1be522dce7" prot="public" virt="non-virtual"><scope>nifty::graph::detail_graph::UndirectedGraphTypeHelper</scope><name>EdgeIter</name></member>
+      <member refid="structnifty_1_1graph_1_1detail__graph_1_1UndirectedGraphTypeHelper_1a43eb7f2cfb5036f87e9496bb6b8d064d" prot="public" virt="non-virtual"><scope>nifty::graph::detail_graph::UndirectedGraphTypeHelper</scope><name>EdgeStorage</name></member>
+      <member refid="structnifty_1_1graph_1_1detail__graph_1_1UndirectedGraphTypeHelper_1a626e3edd4cc8c7e33ec89e6a7454561a" prot="public" virt="non-virtual"><scope>nifty::graph::detail_graph::UndirectedGraphTypeHelper</scope><name>NodeAdjacency</name></member>
+      <member refid="structnifty_1_1graph_1_1detail__graph_1_1UndirectedGraphTypeHelper_1a4c2041ab030e3eb561a2955a3bbfb5d7" prot="public" virt="non-virtual"><scope>nifty::graph::detail_graph::UndirectedGraphTypeHelper</scope><name>NodeInteralType</name></member>
+      <member refid="structnifty_1_1graph_1_1detail__graph_1_1UndirectedGraphTypeHelper_1a33768d5fbeda97627a0e4a67eb50776c" prot="public" virt="non-virtual"><scope>nifty::graph::detail_graph::UndirectedGraphTypeHelper</scope><name>NodeIter</name></member>
+      <member refid="structnifty_1_1graph_1_1detail__graph_1_1UndirectedGraphTypeHelper_1a55013bcacc1d016637b29ab2c33ac52a" prot="public" virt="non-virtual"><scope>nifty::graph::detail_graph::UndirectedGraphTypeHelper</scope><name>NodeStorage</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

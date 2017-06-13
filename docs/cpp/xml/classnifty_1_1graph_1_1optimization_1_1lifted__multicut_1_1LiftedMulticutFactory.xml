@@ -1,0 +1,178 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactory" kind="class" language="C++" prot="public">
+    <compoundname>nifty::graph::optimization::lifted_multicut::LiftedMulticutFactory</compoundname>
+    <basecompoundref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactoryBase" prot="public" virt="non-virtual">nifty::graph::optimization::lifted_multicut::LiftedMulticutFactoryBase&lt; SOLVER::ObjectiveType &gt;</basecompoundref>
+    <includes refid="lifted__multicut__factory_8hxx" local="no">lifted_multicut_factory.hxx</includes>
+    <templateparamlist>
+      <param>
+        <type>class SOLVER</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactory_1ada46abb25bb84f394d4e97d30fe24d3c" prot="public" static="no">
+        <type>SOLVER::ObjectiveType</type>
+        <definition>typedef SOLVER::ObjectiveType nifty::graph::optimization::lifted_multicut::LiftedMulticutFactory&lt; SOLVER &gt;::ObjectiveType</definition>
+        <argsstring></argsstring>
+        <name>ObjectiveType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_factory.hxx" line="29" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_factory.hxx" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactory_1a44718e3998cb1f019bad0e38832fcac0" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutBase" kindref="compound">LiftedMulticutBase</ref>&lt; <ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactory_1ada46abb25bb84f394d4e97d30fe24d3c" kindref="member">ObjectiveType</ref> &gt;</type>
+        <definition>typedef LiftedMulticutBase&lt;ObjectiveType&gt; nifty::graph::optimization::lifted_multicut::LiftedMulticutFactory&lt; SOLVER &gt;::LiftedMulticutBaseType</definition>
+        <argsstring></argsstring>
+        <name>LiftedMulticutBaseType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_factory.hxx" line="30" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_factory.hxx" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactory_1a70b6d5ca05f0323b33264230ed3956ed" prot="public" static="no">
+        <type>SOLVER</type>
+        <definition>typedef SOLVER nifty::graph::optimization::lifted_multicut::LiftedMulticutFactory&lt; SOLVER &gt;::Solver</definition>
+        <argsstring></argsstring>
+        <name>Solver</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_factory.hxx" line="31" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_factory.hxx" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactory_1ab2aea76dcf9e713d3d8a011d87eaaf77" prot="public" static="no">
+        <type>Solver::Settings</type>
+        <definition>typedef Solver::Settings nifty::graph::optimization::lifted_multicut::LiftedMulticutFactory&lt; SOLVER &gt;::Settings</definition>
+        <argsstring></argsstring>
+        <name>Settings</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_factory.hxx" line="32" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_factory.hxx" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactory_1a149fd43779892b1549e48c419e08eef3" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactory_1ab2aea76dcf9e713d3d8a011d87eaaf77" kindref="member">Settings</ref></type>
+        <definition>Settings nifty::graph::optimization::lifted_multicut::LiftedMulticutFactory&lt; SOLVER &gt;::options_</definition>
+        <argsstring></argsstring>
+        <name>options_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_factory.hxx" line="45" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_factory.hxx" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactory_1a8273089ea2f2319c18d97b3b5d85a099" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>nifty::graph::optimization::lifted_multicut::LiftedMulticutFactory&lt; SOLVER &gt;::LiftedMulticutFactory</definition>
+        <argsstring>(const Settings &amp;settings=Settings())</argsstring>
+        <name>LiftedMulticutFactory</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactory_1ab2aea76dcf9e713d3d8a011d87eaaf77" kindref="member">Settings</ref> &amp;</type>
+          <declname>settings</declname>
+          <defval><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactory_1ab2aea76dcf9e713d3d8a011d87eaaf77" kindref="member">Settings</ref>()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_factory.hxx" line="33" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_factory.hxx" bodystart="33" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactory_1ab3203e94f32ddf8cc1b46fc0088be507" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>std::shared_ptr&lt; <ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactory_1a44718e3998cb1f019bad0e38832fcac0" kindref="member">LiftedMulticutBaseType</ref> &gt;</type>
+        <definition>virtual std::shared_ptr&lt;LiftedMulticutBaseType&gt; nifty::graph::optimization::lifted_multicut::LiftedMulticutFactory&lt; SOLVER &gt;::createSharedPtr</definition>
+        <argsstring>(const ObjectiveType &amp;objective)</argsstring>
+        <name>createSharedPtr</name>
+        <reimplements refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactoryBase_1a96b3ee71a961471371c92be56d25de16">createSharedPtr</reimplements>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactory_1ada46abb25bb84f394d4e97d30fe24d3c" kindref="member">ObjectiveType</ref> &amp;</type>
+          <declname>objective</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_factory.hxx" line="37" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_factory.hxx" bodystart="37" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactory_1a5b3770af8662af43f24f02846c97581a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactory_1a44718e3998cb1f019bad0e38832fcac0" kindref="member">LiftedMulticutBaseType</ref> *</type>
+        <definition>virtual LiftedMulticutBaseType* nifty::graph::optimization::lifted_multicut::LiftedMulticutFactory&lt; SOLVER &gt;::createRawPtr</definition>
+        <argsstring>(const ObjectiveType &amp;objective)</argsstring>
+        <name>createRawPtr</name>
+        <reimplements refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactoryBase_1a1b70cc1f6187ea977e0f0bb52e1969b9">createRawPtr</reimplements>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactory_1ada46abb25bb84f394d4e97d30fe24d3c" kindref="member">ObjectiveType</ref> &amp;</type>
+          <declname>objective</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_factory.hxx" line="40" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_factory.hxx" bodystart="40" bodyend="43"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1305">
+        <label>nifty::graph::optimization::lifted_multicut::LiftedMulticutFactory&lt; SOLVER &gt;</label>
+        <link refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactory"/>
+        <childnode refid="1306" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1306">
+        <label>nifty::graph::optimization::lifted_multicut::LiftedMulticutFactoryBase&lt; SOLVER::ObjectiveType &gt;</label>
+        <link refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactoryBase"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1307">
+        <label>nifty::graph::optimization::lifted_multicut::LiftedMulticutFactory&lt; SOLVER &gt;</label>
+        <link refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactory"/>
+        <childnode refid="1308" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1308">
+        <label>nifty::graph::optimization::lifted_multicut::LiftedMulticutFactoryBase&lt; SOLVER::ObjectiveType &gt;</label>
+        <link refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactoryBase"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_factory.hxx" line="27" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_factory.hxx" bodystart="26" bodyend="46"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactory_1a5b3770af8662af43f24f02846c97581a" prot="public" virt="virtual"><scope>nifty::graph::optimization::lifted_multicut::LiftedMulticutFactory</scope><name>createRawPtr</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactory_1ab3203e94f32ddf8cc1b46fc0088be507" prot="public" virt="virtual"><scope>nifty::graph::optimization::lifted_multicut::LiftedMulticutFactory</scope><name>createSharedPtr</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactory_1a44718e3998cb1f019bad0e38832fcac0" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::LiftedMulticutFactory</scope><name>LiftedMulticutBaseType</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactory_1a8273089ea2f2319c18d97b3b5d85a099" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::LiftedMulticutFactory</scope><name>LiftedMulticutFactory</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactory_1ada46abb25bb84f394d4e97d30fe24d3c" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::LiftedMulticutFactory</scope><name>ObjectiveType</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactory_1a149fd43779892b1549e48c419e08eef3" prot="private" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::LiftedMulticutFactory</scope><name>options_</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactory_1ab2aea76dcf9e713d3d8a011d87eaaf77" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::LiftedMulticutFactory</scope><name>Settings</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactory_1a70b6d5ca05f0323b33264230ed3956ed" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::LiftedMulticutFactory</scope><name>Solver</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactoryBase_1a39b5ed3271c1891e6c959cf0d13b3a44" prot="public" virt="virtual"><scope>nifty::graph::optimization::lifted_multicut::LiftedMulticutFactory</scope><name>~LiftedMulticutFactoryBase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

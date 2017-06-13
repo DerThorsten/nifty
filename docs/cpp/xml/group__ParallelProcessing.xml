@@ -1,0 +1,476 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="group__ParallelProcessing" kind="group">
+    <compoundname>ParallelProcessing</compoundname>
+    <title>Functions and classes for parallel processing.</title>
+    <innerclass refid="classnifty_1_1parallel_1_1ParallelOptions" prot="public">nifty::parallel::ParallelOptions</innerclass>
+    <innerclass refid="classnifty_1_1parallel_1_1ThreadPool" prot="public">nifty::parallel::ThreadPool</innerclass>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__ParallelProcessing_1ga7604490d8cf7a5b53de4477c866c8b86" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class ITER</type>
+          </param>
+          <param>
+            <type>class F</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::parallel::parallel_foreach_impl</definition>
+        <argsstring>(ThreadPool &amp;pool, const std::ptrdiff_t nItems, ITER iter, ITER end, F &amp;&amp;f, std::random_access_iterator_tag)</argsstring>
+        <name>parallel_foreach_impl</name>
+        <param>
+          <type>ThreadPool &amp;</type>
+          <declname>pool</declname>
+        </param>
+        <param>
+          <type>const std::ptrdiff_t</type>
+          <declname>nItems</declname>
+        </param>
+        <param>
+          <type>ITER</type>
+          <declname>iter</declname>
+        </param>
+        <param>
+          <type>ITER</type>
+          <declname>end</declname>
+        </param>
+        <param>
+          <type>F &amp;&amp;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>std::random_access_iterator_tag</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" line="335" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" bodystart="335" bodyend="369"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ParallelProcessing_1gab81648beb53aff67df1822f993b49ad1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class ITER</type>
+          </param>
+          <param>
+            <type>class F</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::parallel::parallel_foreach_impl</definition>
+        <argsstring>(ThreadPool &amp;pool, const std::ptrdiff_t nItems, ITER iter, ITER end, F &amp;&amp;f, std::forward_iterator_tag)</argsstring>
+        <name>parallel_foreach_impl</name>
+        <param>
+          <type>ThreadPool &amp;</type>
+          <declname>pool</declname>
+        </param>
+        <param>
+          <type>const std::ptrdiff_t</type>
+          <declname>nItems</declname>
+        </param>
+        <param>
+          <type>ITER</type>
+          <declname>iter</declname>
+        </param>
+        <param>
+          <type>ITER</type>
+          <declname>end</declname>
+        </param>
+        <param>
+          <type>F &amp;&amp;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>std::forward_iterator_tag</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" line="375" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" bodystart="375" bodyend="422"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ParallelProcessing_1ga402d9e45f8edf065e6775e76a447f72e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class ITER</type>
+          </param>
+          <param>
+            <type>class F</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::parallel::parallel_foreach_impl</definition>
+        <argsstring>(ThreadPool &amp;pool, const std::ptrdiff_t nItems, ITER iter, ITER end, F &amp;&amp;f, std::input_iterator_tag)</argsstring>
+        <name>parallel_foreach_impl</name>
+        <param>
+          <type>ThreadPool &amp;</type>
+          <declname>pool</declname>
+        </param>
+        <param>
+          <type>const std::ptrdiff_t</type>
+          <declname>nItems</declname>
+        </param>
+        <param>
+          <type>ITER</type>
+          <declname>iter</declname>
+        </param>
+        <param>
+          <type>ITER</type>
+          <declname>end</declname>
+        </param>
+        <param>
+          <type>F &amp;&amp;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>std::input_iterator_tag</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" line="428" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" bodystart="428" bodyend="453"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ParallelProcessing_1ga53b7128ccb1cf52e5646440337ce4ece" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class ITER</type>
+          </param>
+          <param>
+            <type>class F</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::parallel::parallel_foreach_single_thread</definition>
+        <argsstring>(ITER begin, ITER end, F &amp;&amp;f, const std::ptrdiff_t nItems=0)</argsstring>
+        <name>parallel_foreach_single_thread</name>
+        <param>
+          <type>ITER</type>
+          <declname>begin</declname>
+        </param>
+        <param>
+          <type>ITER</type>
+          <declname>end</declname>
+        </param>
+        <param>
+          <type>F &amp;&amp;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>const std::ptrdiff_t</type>
+          <declname>nItems</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" line="458" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" bodystart="458" bodyend="471"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ParallelProcessing_1ga505ac3d12ecde87341bce7b6f1027c88" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class ITER</type>
+          </param>
+          <param>
+            <type>class F</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::parallel::parallel_foreach</definition>
+        <argsstring>(ThreadPool &amp;pool, ITER begin, ITER end, F &amp;&amp;f, const std::ptrdiff_t nItems=0)</argsstring>
+        <name>parallel_foreach</name>
+        <param>
+          <type>ThreadPool &amp;</type>
+          <declname>pool</declname>
+        </param>
+        <param>
+          <type>ITER</type>
+          <declname>begin</declname>
+        </param>
+        <param>
+          <type>ITER</type>
+          <declname>end</declname>
+        </param>
+        <param>
+          <type>F &amp;&amp;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>const std::ptrdiff_t</type>
+          <declname>nItems</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+<para>Apply a functor to all items in a range in parallel. </para>        </briefdescription>
+        <detaileddescription>
+<para>Create a thread pool (or use an existing one) to apply the functor <itemizedlist>
+<listitem><para>f to all items in the range <computeroutput>[begin, end)</computeroutput> in parallel. </para></listitem>
+<listitem><para>f must be callable with two arguments of type <computeroutput>size_t</computeroutput> and <computeroutput>T</computeroutput>, where the first argument is the thread index (starting at 0) and T is convertible from the iterator&apos;s <computeroutput>reference_type</computeroutput> (i.e. the result of <computeroutput>*begin</computeroutput>).</para></listitem>
+</itemizedlist>
+If the iterators are forward iterators (<computeroutput>std::forward_iterator_tag</computeroutput>), you can provide the optional argument <computeroutput>nItems</computeroutput> to avoid the a <computeroutput>std::distance(begin, end)</computeroutput> call to compute the range&apos;s length.</para><para>Parameter <computeroutput>nThreads</computeroutput> controls the number of threads. <computeroutput>parallel_foreach</computeroutput> will split the work into about three times as many parallel tasks. If <computeroutput>nThreads = <ref refid="classnifty_1_1parallel_1_1ParallelOptions_1a7a945e8bd698883de4af0f906b2aa88aa0bd8f9fd00d78fcfdcb6ee1575f43fd6" kindref="member">ParallelOptions::Auto</ref></computeroutput>, the number of threads is set to the machine default (<computeroutput>std::thread::hardware_concurrency()</computeroutput>).</para><para>If <computeroutput>nThreads = 0</computeroutput>, the function will not use threads, but will call the functor sequentially. This can also be enforced by setting the preprocessor flag <computeroutput>NIFTY_NO_PARALLELISM</computeroutput>, ignoring the value of <computeroutput>nThreads</computeroutput> (useful for debugging).</para><para><bold> Declarations:</bold></para><para><programlisting><codeline><highlight class="normal">namespace<sp/>nifty<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">namespace<sp/>parallel{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>pass<sp/>the<sp/>desired<sp/>number<sp/>of<sp/>threads<sp/>or<sp/>ParallelOptions::Auto</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>(creates<sp/>an<sp/>internal<sp/>thread<sp/>pool<sp/>accordingly)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template&lt;class<sp/>ITER,<sp/>class<sp/>F&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/>parallel_foreach(int64_t<sp/>nThreads,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ITER<sp/>begin,<sp/>ITER<sp/>end,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>F<sp/>&amp;&amp;<sp/>f,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>uint64_t<sp/>nItems<sp/>=<sp/>0);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>use<sp/>an<sp/>existing<sp/>thread<sp/>pool</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template&lt;class<sp/>ITER,<sp/>class<sp/>F&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/>parallel_foreach(ThreadPool<sp/>&amp;<sp/>pool,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ITER<sp/>begin,<sp/>ITER<sp/>end,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>F<sp/>&amp;&amp;<sp/>f,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>uint64_t<sp/>nItems<sp/>=<sp/>0);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>pass<sp/>the<sp/>integers<sp/>from<sp/>0<sp/>...<sp/>(nItems-1)<sp/>to<sp/>the<sp/>functor<sp/>f,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>using<sp/>the<sp/>given<sp/>number<sp/>of<sp/>threads<sp/>or<sp/>ParallelOptions::Auto</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template&lt;class<sp/>F&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/>parallel_foreach(int64_t<sp/>nThreads,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint64_t<sp/>nItems,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>F<sp/>&amp;&amp;<sp/>f);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>likewise<sp/>with<sp/>an<sp/>existing<sp/>thread<sp/>pool</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template&lt;class<sp/>F&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/>parallel_foreach(ThreadPool<sp/>&amp;<sp/>threadpool,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint64_t<sp/>nItems,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>F<sp/>&amp;&amp;<sp/>f);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para><para><bold>Usage:</bold></para><para><programlisting><codeline><highlight class="normal">#include<sp/>&lt;iostream&gt;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;algorithm&gt;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;vector&gt;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;nifty/parallel/threadpool.hxx&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">using<sp/>namespace<sp/>std;</highlight></codeline>
+<codeline><highlight class="normal">using<sp/>namespace<sp/>nifty::parallel;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">int<sp/>main()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>size_t<sp/>const<sp/>n_threads<sp/>=<sp/>4;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>size_t<sp/>const<sp/>n<sp/>=<sp/>2000;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;int&gt;<sp/>input(n);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>auto<sp/>iter<sp/>=<sp/>input.begin(),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>end<sp/><sp/>=<sp/>input.end();</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>fill<sp/>input<sp/>with<sp/>0,<sp/>1,<sp/>2,<sp/>...</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>iota(iter,<sp/>end,<sp/>0);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>compute<sp/>the<sp/>sum<sp/>of<sp/>the<sp/>elements<sp/>in<sp/>the<sp/>input<sp/>vector.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>(each<sp/>thread<sp/>computes<sp/>the<sp/>partial<sp/>sum<sp/>of<sp/>the<sp/>items<sp/>it<sp/>sees</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>and<sp/>stores<sp/>the<sp/>sum<sp/>at<sp/>the<sp/>appropriate<sp/>index<sp/>of<sp/>&apos;results&apos;)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;int&gt;<sp/>results(n_threads,<sp/>0);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>parallel_foreach(n_threads,<sp/>iter,<sp/>end,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>the<sp/>functor<sp/>to<sp/>be<sp/>executed,<sp/>defined<sp/>as<sp/>a<sp/>lambda<sp/>function</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>(first<sp/>argument:<sp/>thread<sp/>ID,<sp/>second<sp/>argument:<sp/>result<sp/>of<sp/>*iter)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[&amp;results](size_t<sp/>thread_id,<sp/>int<sp/>items)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>results[thread_id]<sp/>+=<sp/>items;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>collect<sp/>the<sp/>partial<sp/>sums<sp/>of<sp/>all<sp/>threads</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>int<sp/>sum<sp/>=<sp/>accumulate(results.begin(),<sp/>results.end(),<sp/>0);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/>&quot;The<sp/>sum<sp/>&quot;<sp/>&lt;&lt;<sp/>sum<sp/>&lt;&lt;<sp/>&quot;<sp/>should<sp/>be<sp/>equal<sp/>to<sp/>&quot;<sp/>&lt;&lt;<sp/>(n*(n-1))/2<sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" line="577" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" bodystart="577" bodyend="593"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ParallelProcessing_1gae081bc77f03a070b9fe0f97966949f58" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class ITER</type>
+          </param>
+          <param>
+            <type>class F</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::parallel::parallel_foreach</definition>
+        <argsstring>(int64_t nThreads, ITER begin, ITER end, F &amp;&amp;f, const std::ptrdiff_t nItems=0)</argsstring>
+        <name>parallel_foreach</name>
+        <param>
+          <type>int64_t</type>
+          <declname>nThreads</declname>
+        </param>
+        <param>
+          <type>ITER</type>
+          <declname>begin</declname>
+        </param>
+        <param>
+          <type>ITER</type>
+          <declname>end</declname>
+        </param>
+        <param>
+          <type>F &amp;&amp;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>const std::ptrdiff_t</type>
+          <declname>nItems</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" line="596" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" bodystart="596" bodyend="606"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ParallelProcessing_1ga900cd2b90fda714e21082d5ba897f240" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class F</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::parallel::parallel_foreach</definition>
+        <argsstring>(int64_t nThreads, std::ptrdiff_t nItems, F &amp;&amp;f)</argsstring>
+        <name>parallel_foreach</name>
+        <param>
+          <type>int64_t</type>
+          <declname>nThreads</declname>
+        </param>
+        <param>
+          <type>std::ptrdiff_t</type>
+          <declname>nItems</declname>
+        </param>
+        <param>
+          <type>F &amp;&amp;</type>
+          <declname>f</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" line="609" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" bodystart="609" bodyend="618"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ParallelProcessing_1gaf78ef995aaa44624da018033fd03beeb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class F</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::parallel::parallel_foreach</definition>
+        <argsstring>(ThreadPool &amp;threadpool, std::ptrdiff_t nItems, F &amp;&amp;f)</argsstring>
+        <name>parallel_foreach</name>
+        <param>
+          <type>ThreadPool &amp;</type>
+          <declname>threadpool</declname>
+        </param>
+        <param>
+          <type>std::ptrdiff_t</type>
+          <declname>nItems</declname>
+        </param>
+        <param>
+          <type>F &amp;&amp;</type>
+          <declname>f</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" line="622" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" bodystart="622" bodyend="632"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ParallelProcessing_1ga458b0746b2991443d31bdb24e93810aa" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::parallel::ThreadPool::init</definition>
+        <argsstring>(const ParallelOptions &amp;options)</argsstring>
+        <name>init</name>
+        <param>
+          <type>const ParallelOptions &amp;</type>
+          <declname>options</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" line="193" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" bodystart="209" bodyend="249"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ParallelProcessing_1ga77c519ec32559623c64d61f532c570b8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>nifty::parallel::ThreadPool::~ThreadPool</definition>
+        <argsstring>()</argsstring>
+        <name>~ThreadPool</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The destructor joins all threads. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" line="155" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" bodystart="251" bodyend="260"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ParallelProcessing_1ga5ffeb64ca8f60c37ad2db97bf80b05af" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class F</type>
+          </param>
+        </templateparamlist>
+        <type>std::future&lt; typename std::result_of&lt; F(int)&gt;::type &gt;</type>
+        <definition>std::future&lt; typename std::result_of&lt; F(int)&gt;::type &gt; nifty::parallel::ThreadPool::enqueueReturning</definition>
+        <argsstring>(F &amp;&amp;f)</argsstring>
+        <name>enqueueReturning</name>
+        <param>
+          <type>F &amp;&amp;</type>
+          <declname>f</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enqueue a task that will be executed by the thread pool. The task result can be obtained using the get() function of the returned future. If the task throws an exception, it will be raised on the call to get(). </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" line="163" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" bodystart="264" bodyend="294"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ParallelProcessing_1ga030f79847ecd6a609877dd5f997ac875" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class F</type>
+          </param>
+        </templateparamlist>
+        <type>std::future&lt; void &gt;</type>
+        <definition>std::future&lt; void &gt; nifty::parallel::ThreadPool::enqueue</definition>
+        <argsstring>(F &amp;&amp;f)</argsstring>
+        <name>enqueue</name>
+        <param>
+          <type>F &amp;&amp;</type>
+          <declname>f</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enqueue function for tasks without return value. This is a special case of the enqueueReturning template function, but some compilers fail on <computeroutput>std::result_of&lt;F(int)&gt;::type</computeroutput> for void(int) functions. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" line="171" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx" bodystart="298" bodyend="325"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

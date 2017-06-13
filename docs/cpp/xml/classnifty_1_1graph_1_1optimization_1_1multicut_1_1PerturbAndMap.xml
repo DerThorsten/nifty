@@ -1,0 +1,380 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap" kind="class" language="C++" prot="public">
+    <compoundname>nifty::graph::optimization::multicut::PerturbAndMap</compoundname>
+    <includes refid="perturb__and__map_8hxx" local="no">perturb_and_map.hxx</includes>
+    <innerclass refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1_1SettingsType" prot="public">nifty::graph::optimization::multicut::PerturbAndMap::SettingsType</innerclass>
+    <innerclass refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1_1ThreadData" prot="private">nifty::graph::optimization::multicut::PerturbAndMap::ThreadData</innerclass>
+    <templateparamlist>
+      <param>
+        <type>class</type>
+        <declname>OBJECTIVE</declname>
+        <defname>OBJECTIVE</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a88d773cee3d185e28aecdc2c2707b744" prot="public" static="no">
+        <name>NoiseType</name>
+        <enumvalue id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a88d773cee3d185e28aecdc2c2707b744a181e4a0a98b06f50587b3cf7f1b28c59" prot="public">
+          <name>UNIFORM_NOISE</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a88d773cee3d185e28aecdc2c2707b744aacbcee87d9d0ebaac36ca287c948ddc9" prot="public">
+          <name>NORMAL_NOISE</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a88d773cee3d185e28aecdc2c2707b744a2cb2a7701e9f7486014039cb6a907218" prot="public">
+          <name>MAKE_LESS_CERTAIN</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/perturb_and_map.hxx" line="34" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/perturb_and_map.hxx" bodystart="34" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a2048cdfa7924f3638cbf678021514bdd" prot="public" static="no">
+        <type>OBJECTIVE</type>
+        <definition>typedef OBJECTIVE nifty::graph::optimization::multicut::PerturbAndMap&lt; OBJECTIVE &gt;::Objective</definition>
+        <argsstring></argsstring>
+        <name>Objective</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/perturb_and_map.hxx" line="22" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/perturb_and_map.hxx" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a97e092acc69aeaa88390baf080709c1e" prot="public" static="no">
+        <type>Objective::Graph</type>
+        <definition>typedef Objective::Graph nifty::graph::optimization::multicut::PerturbAndMap&lt; OBJECTIVE &gt;::Graph</definition>
+        <argsstring></argsstring>
+        <name>Graph</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/perturb_and_map.hxx" line="23" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/perturb_and_map.hxx" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a132b5f0c3378a51f721ee841c7f1d369" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutObjective" kindref="compound">MulticutObjective</ref>&lt; <ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a97e092acc69aeaa88390baf080709c1e" kindref="member">Graph</ref>, double &gt;</type>
+        <definition>typedef MulticutObjective&lt;Graph, double&gt; nifty::graph::optimization::multicut::PerturbAndMap&lt; OBJECTIVE &gt;::InternalObjective</definition>
+        <argsstring></argsstring>
+        <name>InternalObjective</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/perturb_and_map.hxx" line="24" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/perturb_and_map.hxx" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a46831cc073623314c4d077f4e51bbeb5" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutBase" kindref="compound">MulticutBase</ref>&lt; <ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a2048cdfa7924f3638cbf678021514bdd" kindref="member">Objective</ref> &gt;</type>
+        <definition>typedef MulticutBase&lt;Objective&gt; nifty::graph::optimization::multicut::PerturbAndMap&lt; OBJECTIVE &gt;::MulticutBaseType</definition>
+        <argsstring></argsstring>
+        <name>MulticutBaseType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/perturb_and_map.hxx" line="25" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/perturb_and_map.hxx" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a7fc461eff81908dda41de81d703bc895" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutBase" kindref="compound">MulticutBase</ref>&lt; <ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a132b5f0c3378a51f721ee841c7f1d369" kindref="member">InternalObjective</ref> &gt;</type>
+        <definition>typedef MulticutBase&lt;InternalObjective&gt; nifty::graph::optimization::multicut::PerturbAndMap&lt; OBJECTIVE &gt;::IternalMulticutBaseType</definition>
+        <argsstring></argsstring>
+        <name>IternalMulticutBaseType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/perturb_and_map.hxx" line="26" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/perturb_and_map.hxx" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a42f3a2bcecf1f101347aa5f82be67594" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase" kindref="compound">nifty::graph::optimization::common::SolverFactoryBase</ref>&lt; <ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a7fc461eff81908dda41de81d703bc895" kindref="member">IternalMulticutBaseType</ref> &gt;</type>
+        <definition>typedef nifty::graph::optimization::common::SolverFactoryBase&lt;IternalMulticutBaseType&gt; nifty::graph::optimization::multicut::PerturbAndMap&lt; OBJECTIVE &gt;::InternalMcFactoryBase</definition>
+        <argsstring></argsstring>
+        <name>InternalMcFactoryBase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/perturb_and_map.hxx" line="27" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/perturb_and_map.hxx" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a693ef4c90566732057ce860c6215d100" prot="public" static="no">
+        <type>Graph::template NodeMap&lt; uint64_t &gt;</type>
+        <definition>typedef Graph:: template NodeMap&lt;uint64_t&gt; nifty::graph::optimization::multicut::PerturbAndMap&lt; OBJECTIVE &gt;::NodeLabels</definition>
+        <argsstring></argsstring>
+        <name>NodeLabels</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/perturb_and_map.hxx" line="28" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/perturb_and_map.hxx" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a3ae495ccf80fcc76720dcd7c762eb678" prot="public" static="no">
+        <type>Graph::template EdgeMap&lt; double &gt;</type>
+        <definition>typedef Graph:: template EdgeMap&lt;double&gt; nifty::graph::optimization::multicut::PerturbAndMap&lt; OBJECTIVE &gt;::EdgeState</definition>
+        <argsstring></argsstring>
+        <name>EdgeState</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/perturb_and_map.hxx" line="29" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/perturb_and_map.hxx" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a71ef6212402b9a6fef9e6f29cd0ba658" prot="public" static="no">
+        <type>std::shared_ptr&lt; <ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a42f3a2bcecf1f101347aa5f82be67594" kindref="member">InternalMcFactoryBase</ref> &gt;</type>
+        <definition>typedef std::shared_ptr&lt;InternalMcFactoryBase&gt; nifty::graph::optimization::multicut::PerturbAndMap&lt; OBJECTIVE &gt;::FactorySmartPtr</definition>
+        <argsstring></argsstring>
+        <name>FactorySmartPtr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/perturb_and_map.hxx" line="30" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/perturb_and_map.hxx" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a6a8dc29c934f37bccc170aebf36d158d" prot="private" static="no" mutable="no">
+        <type>const <ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a2048cdfa7924f3638cbf678021514bdd" kindref="member">Objective</ref> &amp;</type>
+        <definition>const Objective&amp; nifty::graph::optimization::multicut::PerturbAndMap&lt; OBJECTIVE &gt;::objective_</definition>
+        <argsstring></argsstring>
+        <name>objective_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/perturb_and_map.hxx" line="89" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/perturb_and_map.hxx" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1afa9d846ba3d5a635796dc8dc5966bca0" prot="private" static="no" mutable="no">
+        <type>const <ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a97e092acc69aeaa88390baf080709c1e" kindref="member">Graph</ref> &amp;</type>
+        <definition>const Graph&amp; nifty::graph::optimization::multicut::PerturbAndMap&lt; OBJECTIVE &gt;::graph_</definition>
+        <argsstring></argsstring>
+        <name>graph_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/perturb_and_map.hxx" line="90" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/perturb_and_map.hxx" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a80d9f8d47044c3d0465997fe644e0a43" prot="private" static="no" mutable="no">
+        <type><ref refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1_1SettingsType" kindref="compound">SettingsType</ref></type>
+        <definition>SettingsType nifty::graph::optimization::multicut::PerturbAndMap&lt; OBJECTIVE &gt;::settings_</definition>
+        <argsstring></argsstring>
+        <name>settings_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/perturb_and_map.hxx" line="91" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/perturb_and_map.hxx" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a287bcca2bbb1d3b372f0e353943d90a4" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; ThreadData * &gt;</type>
+        <definition>std::vector&lt;ThreadData*&gt; nifty::graph::optimization::multicut::PerturbAndMap&lt; OBJECTIVE &gt;::threadDataVec_</definition>
+        <argsstring></argsstring>
+        <name>threadDataVec_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/perturb_and_map.hxx" line="93" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/perturb_and_map.hxx" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1af77e360449ea24d7db93fe455e90f0d8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>nifty::graph::optimization::multicut::PerturbAndMap&lt; OBJECTIVE &gt;::PerturbAndMap</definition>
+        <argsstring>(const Objective &amp;objective, const SettingsType settings=SettingsType())</argsstring>
+        <name>PerturbAndMap</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a2048cdfa7924f3638cbf678021514bdd" kindref="member">Objective</ref> &amp;</type>
+          <declname>objective</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1_1SettingsType" kindref="compound">SettingsType</ref></type>
+          <declname>settings</declname>
+          <defval><ref refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1_1SettingsType" kindref="compound">SettingsType</ref>()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/perturb_and_map.hxx" line="51" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/perturb_and_map.hxx" bodystart="99" bodyend="133"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1aa29860cf9adb51ff66228307ae0f9e26" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>nifty::graph::optimization::multicut::PerturbAndMap&lt; OBJECTIVE &gt;::~PerturbAndMap</definition>
+        <argsstring>()</argsstring>
+        <name>~PerturbAndMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/perturb_and_map.hxx" line="52" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/perturb_and_map.hxx" bodystart="137" bodyend="142"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1aefc4823a4564e9318610eb99f44bdc36" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a2048cdfa7924f3638cbf678021514bdd" kindref="member">Objective</ref> &amp;</type>
+        <definition>const PerturbAndMap&lt; OBJECTIVE &gt;::Objective &amp; nifty::graph::optimization::multicut::PerturbAndMap&lt; OBJECTIVE &gt;::objective</definition>
+        <argsstring>() const </argsstring>
+        <name>objective</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/perturb_and_map.hxx" line="55" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/perturb_and_map.hxx" bodystart="147" bodyend="149"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a5523b26b3ed90c445ccd86fa94994ba8" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a97e092acc69aeaa88390baf080709c1e" kindref="member">Graph</ref> &amp;</type>
+        <definition>const PerturbAndMap&lt; OBJECTIVE &gt;::Graph &amp; nifty::graph::optimization::multicut::PerturbAndMap&lt; OBJECTIVE &gt;::graph</definition>
+        <argsstring>() const </argsstring>
+        <name>graph</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/perturb_and_map.hxx" line="56" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/perturb_and_map.hxx" bodystart="154" bodyend="156"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1aec44f0ae8d966b94b6fa11faee1ca6b6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::optimization::multicut::PerturbAndMap&lt; OBJECTIVE &gt;::optimize</definition>
+        <argsstring>(EdgeState &amp;edgeState)</argsstring>
+        <name>optimize</name>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a3ae495ccf80fcc76720dcd7c762eb678" kindref="member">EdgeState</ref> &amp;</type>
+          <declname>edgeState</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/perturb_and_map.hxx" line="58" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/perturb_and_map.hxx" bodystart="160" bodyend="165"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a4bcc0199fbeee6e26f4ccf4fb2e458a4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::optimization::multicut::PerturbAndMap&lt; OBJECTIVE &gt;::optimize</definition>
+        <argsstring>(const NodeLabels &amp;startingPoint, EdgeState &amp;edgeState)</argsstring>
+        <name>optimize</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a693ef4c90566732057ce860c6215d100" kindref="member">NodeLabels</ref> &amp;</type>
+          <declname>startingPoint</declname>
+        </param>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a3ae495ccf80fcc76720dcd7c762eb678" kindref="member">EdgeState</ref> &amp;</type>
+          <declname>edgeState</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/perturb_and_map.hxx" line="60" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/perturb_and_map.hxx" bodystart="169" bodyend="221"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a63630f942e8d7a86cee644e37b076e5b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class WEIGHTS</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::graph::optimization::multicut::PerturbAndMap&lt; OBJECTIVE &gt;::perturbWeights</definition>
+        <argsstring>(const size_t threadId, WEIGHTS &amp;perturbedWeights)</argsstring>
+        <name>perturbWeights</name>
+        <param>
+          <type>const size_t</type>
+          <declname>threadId</declname>
+        </param>
+        <param>
+          <type>WEIGHTS &amp;</type>
+          <declname>perturbedWeights</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/perturb_and_map.hxx" line="84" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/perturb_and_map.hxx" bodystart="226" bodyend="261"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/perturb_and_map.hxx" line="20" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/perturb_and_map.hxx" bodystart="20" bodyend="94"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a3ae495ccf80fcc76720dcd7c762eb678" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::multicut::PerturbAndMap</scope><name>EdgeState</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a71ef6212402b9a6fef9e6f29cd0ba658" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::multicut::PerturbAndMap</scope><name>FactorySmartPtr</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a97e092acc69aeaa88390baf080709c1e" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::multicut::PerturbAndMap</scope><name>Graph</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a5523b26b3ed90c445ccd86fa94994ba8" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::multicut::PerturbAndMap</scope><name>graph</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1afa9d846ba3d5a635796dc8dc5966bca0" prot="private" virt="non-virtual"><scope>nifty::graph::optimization::multicut::PerturbAndMap</scope><name>graph_</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a42f3a2bcecf1f101347aa5f82be67594" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::multicut::PerturbAndMap</scope><name>InternalMcFactoryBase</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a132b5f0c3378a51f721ee841c7f1d369" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::multicut::PerturbAndMap</scope><name>InternalObjective</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a7fc461eff81908dda41de81d703bc895" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::multicut::PerturbAndMap</scope><name>IternalMulticutBaseType</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a88d773cee3d185e28aecdc2c2707b744a2cb2a7701e9f7486014039cb6a907218" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::multicut::PerturbAndMap</scope><name>MAKE_LESS_CERTAIN</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a46831cc073623314c4d077f4e51bbeb5" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::multicut::PerturbAndMap</scope><name>MulticutBaseType</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a693ef4c90566732057ce860c6215d100" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::multicut::PerturbAndMap</scope><name>NodeLabels</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a88d773cee3d185e28aecdc2c2707b744" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::multicut::PerturbAndMap</scope><name>NoiseType</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a88d773cee3d185e28aecdc2c2707b744aacbcee87d9d0ebaac36ca287c948ddc9" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::multicut::PerturbAndMap</scope><name>NORMAL_NOISE</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a2048cdfa7924f3638cbf678021514bdd" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::multicut::PerturbAndMap</scope><name>Objective</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1aefc4823a4564e9318610eb99f44bdc36" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::multicut::PerturbAndMap</scope><name>objective</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a6a8dc29c934f37bccc170aebf36d158d" prot="private" virt="non-virtual"><scope>nifty::graph::optimization::multicut::PerturbAndMap</scope><name>objective_</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1aec44f0ae8d966b94b6fa11faee1ca6b6" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::multicut::PerturbAndMap</scope><name>optimize</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a4bcc0199fbeee6e26f4ccf4fb2e458a4" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::multicut::PerturbAndMap</scope><name>optimize</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1af77e360449ea24d7db93fe455e90f0d8" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::multicut::PerturbAndMap</scope><name>PerturbAndMap</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a63630f942e8d7a86cee644e37b076e5b" prot="private" virt="non-virtual"><scope>nifty::graph::optimization::multicut::PerturbAndMap</scope><name>perturbWeights</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a80d9f8d47044c3d0465997fe644e0a43" prot="private" virt="non-virtual"><scope>nifty::graph::optimization::multicut::PerturbAndMap</scope><name>settings_</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a287bcca2bbb1d3b372f0e353943d90a4" prot="private" virt="non-virtual"><scope>nifty::graph::optimization::multicut::PerturbAndMap</scope><name>threadDataVec_</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1a88d773cee3d185e28aecdc2c2707b744a181e4a0a98b06f50587b3cf7f1b28c59" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::multicut::PerturbAndMap</scope><name>UNIFORM_NOISE</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap_1aa29860cf9adb51ff66228307ae0f9e26" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::multicut::PerturbAndMap</scope><name>~PerturbAndMap</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

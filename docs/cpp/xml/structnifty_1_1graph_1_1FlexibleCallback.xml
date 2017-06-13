@@ -1,0 +1,154 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="structnifty_1_1graph_1_1FlexibleCallback" kind="struct" language="C++" prot="public">
+    <compoundname>nifty::graph::FlexibleCallback</compoundname>
+    <includes refid="graph_2edge__contraction__graph_8hxx" local="no">edge_contraction_graph.hxx</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structnifty_1_1graph_1_1FlexibleCallback_1a256c9d832090fe82b2f7fdb9f6e07920" prot="public" static="no" mutable="no">
+        <type>std::function&lt; void(uint64_t) &gt;</type>
+        <definition>std::function&lt;void(uint64_t) &gt; nifty::graph::FlexibleCallback::contractEdgeCallback</definition>
+        <argsstring></argsstring>
+        <name>contractEdgeCallback</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" line="54" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structnifty_1_1graph_1_1FlexibleCallback_1a4c4b807ea5750a1f894b7e9a6c7598fa" prot="public" static="no" mutable="no">
+        <type>std::function&lt; void(uint64_t, uint64_t) &gt;</type>
+        <definition>std::function&lt;void(uint64_t,uint64_t) &gt; nifty::graph::FlexibleCallback::mergeNodesCallback</definition>
+        <argsstring></argsstring>
+        <name>mergeNodesCallback</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" line="55" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structnifty_1_1graph_1_1FlexibleCallback_1af2693627ec37eef058bc9b4e22581e75" prot="public" static="no" mutable="no">
+        <type>std::function&lt; void(uint64_t, uint64_t) &gt;</type>
+        <definition>std::function&lt;void(uint64_t,uint64_t) &gt; nifty::graph::FlexibleCallback::mergeEdgesCallback</definition>
+        <argsstring></argsstring>
+        <name>mergeEdgesCallback</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" line="56" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structnifty_1_1graph_1_1FlexibleCallback_1a57ddb7dd27b885a94ee81526db535ea7" prot="public" static="no" mutable="no">
+        <type>std::function&lt; void(uint64_t) &gt;</type>
+        <definition>std::function&lt;void(uint64_t) &gt; nifty::graph::FlexibleCallback::contractEdgeDoneCallback</definition>
+        <argsstring></argsstring>
+        <name>contractEdgeDoneCallback</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" line="57" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structnifty_1_1graph_1_1FlexibleCallback_1add51f6940731aa31df4678f23c8ca664" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::FlexibleCallback::contractEdge</definition>
+        <argsstring>(const uint64_t edgeToContract)</argsstring>
+        <name>contractEdge</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>edgeToContract</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" line="35" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" bodystart="35" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="structnifty_1_1graph_1_1FlexibleCallback_1aac9ed0c77a9fc3a45381c31394a757ea" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::FlexibleCallback::mergeNodes</definition>
+        <argsstring>(const uint64_t aliveNode, const uint64_t deadNode)</argsstring>
+        <name>mergeNodes</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>aliveNode</declname>
+        </param>
+        <param>
+          <type>const uint64_t</type>
+          <declname>deadNode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" line="40" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" bodystart="40" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="function" id="structnifty_1_1graph_1_1FlexibleCallback_1a3431adaf5f74774a1527f1a477872b31" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::FlexibleCallback::mergeEdges</definition>
+        <argsstring>(const uint64_t aliveEdge, const uint64_t deadEdge)</argsstring>
+        <name>mergeEdges</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>aliveEdge</declname>
+        </param>
+        <param>
+          <type>const uint64_t</type>
+          <declname>deadEdge</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" line="45" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" bodystart="45" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="structnifty_1_1graph_1_1FlexibleCallback_1aee1f9369e0f2d4dafddf5fc47c45b002" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::FlexibleCallback::contractEdgeDone</definition>
+        <argsstring>(const uint64_t edgeToContract)</argsstring>
+        <name>contractEdgeDone</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>edgeToContract</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" line="50" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" bodystart="50" bodyend="53"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" line="34" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" bodystart="34" bodyend="58"/>
+    <listofallmembers>
+      <member refid="structnifty_1_1graph_1_1FlexibleCallback_1add51f6940731aa31df4678f23c8ca664" prot="public" virt="non-virtual"><scope>nifty::graph::FlexibleCallback</scope><name>contractEdge</name></member>
+      <member refid="structnifty_1_1graph_1_1FlexibleCallback_1a256c9d832090fe82b2f7fdb9f6e07920" prot="public" virt="non-virtual"><scope>nifty::graph::FlexibleCallback</scope><name>contractEdgeCallback</name></member>
+      <member refid="structnifty_1_1graph_1_1FlexibleCallback_1aee1f9369e0f2d4dafddf5fc47c45b002" prot="public" virt="non-virtual"><scope>nifty::graph::FlexibleCallback</scope><name>contractEdgeDone</name></member>
+      <member refid="structnifty_1_1graph_1_1FlexibleCallback_1a57ddb7dd27b885a94ee81526db535ea7" prot="public" virt="non-virtual"><scope>nifty::graph::FlexibleCallback</scope><name>contractEdgeDoneCallback</name></member>
+      <member refid="structnifty_1_1graph_1_1FlexibleCallback_1a3431adaf5f74774a1527f1a477872b31" prot="public" virt="non-virtual"><scope>nifty::graph::FlexibleCallback</scope><name>mergeEdges</name></member>
+      <member refid="structnifty_1_1graph_1_1FlexibleCallback_1af2693627ec37eef058bc9b4e22581e75" prot="public" virt="non-virtual"><scope>nifty::graph::FlexibleCallback</scope><name>mergeEdgesCallback</name></member>
+      <member refid="structnifty_1_1graph_1_1FlexibleCallback_1aac9ed0c77a9fc3a45381c31394a757ea" prot="public" virt="non-virtual"><scope>nifty::graph::FlexibleCallback</scope><name>mergeNodes</name></member>
+      <member refid="structnifty_1_1graph_1_1FlexibleCallback_1a4c4b807ea5750a1f894b7e9a6c7598fa" prot="public" virt="non-virtual"><scope>nifty::graph::FlexibleCallback</scope><name>mergeNodesCallback</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -4,14 +4,19 @@
 {\ttfamily \#include \char`\"{}nifty/tools/runtime\+\_\+check.\+hxx\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}nifty/graph/optimization/multicut/multicut\+\_\+base.\+hxx\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}nifty/graph/optimization/multicut/multicut\+\_\+greedy\+\_\+additive.\+hxx\char`\"{}}\\*
-Include dependency graph for greedy\+\_\+additive\+\_\+proposals.\+hxx\+:
-% FIG 0
+Include dependency graph for greedy\+\_\+additive\+\_\+proposals.\+hxx\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{greedy__additive__proposals_8hxx__incl}
+\end{center}
+\end{figure}
 \subsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-class \hyperlink{classnifty_1_1graph_1_1GreedyAdditiveProposals}{nifty\+::graph\+::\+Greedy\+Additive\+Proposals$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}
+class \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1GreedyAdditiveProposals}{nifty\+::graph\+::optimization\+::multicut\+::\+Greedy\+Additive\+Proposals$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}
 \item 
-struct \hyperlink{structnifty_1_1graph_1_1GreedyAdditiveProposals_1_1Settings}{nifty\+::graph\+::\+Greedy\+Additive\+Proposals$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::\+Settings}
+struct \hyperlink{structnifty_1_1graph_1_1optimization_1_1multicut_1_1GreedyAdditiveProposals_1_1SettingsType}{nifty\+::graph\+::optimization\+::multicut\+::\+Greedy\+Additive\+Proposals$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::\+Settings\+Type}
 \end{DoxyCompactItemize}
 \subsection*{Namespaces}
 \begin{DoxyCompactItemize}
@@ -19,15 +24,8 @@ struct \hyperlink{structnifty_1_1graph_1_1GreedyAdditiveProposals_1_1Settings}{n
  \hyperlink{namespacenifty}{nifty}
 \item 
  \hyperlink{namespacenifty_1_1graph}{nifty\+::graph}
-\end{DoxyCompactItemize}
-\subsection*{Macros}
-\begin{DoxyCompactItemize}
 \item 
-\#define \hyperlink{greedy__additive__proposals_8hxx_ac7b1abd6411277422c1f3780500af9a6}{N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+P\+R\+O\+P\+O\+S\+A\+L\+S\+\_\+\+G\+R\+E\+E\+D\+Y\+\_\+\+A\+D\+D\+I\+T\+I\+V\+E\+\_\+\+P\+R\+O\+P\+O\+S\+A\+L\+S\+\_\+\+H\+X\+X}
+ \hyperlink{namespacenifty_1_1graph_1_1optimization}{nifty\+::graph\+::optimization}
+\item 
+ \hyperlink{namespacenifty_1_1graph_1_1optimization_1_1multicut}{nifty\+::graph\+::optimization\+::multicut}
 \end{DoxyCompactItemize}
-
-
-\subsection{Macro Definition Documentation}
-\hypertarget{greedy__additive__proposals_8hxx_ac7b1abd6411277422c1f3780500af9a6}{}\index{greedy\+\_\+additive\+\_\+proposals.\+hxx@{greedy\+\_\+additive\+\_\+proposals.\+hxx}!N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+P\+R\+O\+P\+O\+S\+A\+L\+S\+\_\+\+G\+R\+E\+E\+D\+Y\+\_\+\+A\+D\+D\+I\+T\+I\+V\+E\+\_\+\+P\+R\+O\+P\+O\+S\+A\+L\+S\+\_\+\+H\+X\+X@{N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+P\+R\+O\+P\+O\+S\+A\+L\+S\+\_\+\+G\+R\+E\+E\+D\+Y\+\_\+\+A\+D\+D\+I\+T\+I\+V\+E\+\_\+\+P\+R\+O\+P\+O\+S\+A\+L\+S\+\_\+\+H\+X\+X}}
-\index{N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+P\+R\+O\+P\+O\+S\+A\+L\+S\+\_\+\+G\+R\+E\+E\+D\+Y\+\_\+\+A\+D\+D\+I\+T\+I\+V\+E\+\_\+\+P\+R\+O\+P\+O\+S\+A\+L\+S\+\_\+\+H\+X\+X@{N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+P\+R\+O\+P\+O\+S\+A\+L\+S\+\_\+\+G\+R\+E\+E\+D\+Y\+\_\+\+A\+D\+D\+I\+T\+I\+V\+E\+\_\+\+P\+R\+O\+P\+O\+S\+A\+L\+S\+\_\+\+H\+X\+X}!greedy\+\_\+additive\+\_\+proposals.\+hxx@{greedy\+\_\+additive\+\_\+proposals.\+hxx}}
-\subsubsection[{N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+P\+R\+O\+P\+O\+S\+A\+L\+S\+\_\+\+G\+R\+E\+E\+D\+Y\+\_\+\+A\+D\+D\+I\+T\+I\+V\+E\+\_\+\+P\+R\+O\+P\+O\+S\+A\+L\+S\+\_\+\+H\+X\+X}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+P\+R\+O\+P\+O\+S\+A\+L\+S\+\_\+\+G\+R\+E\+E\+D\+Y\+\_\+\+A\+D\+D\+I\+T\+I\+V\+E\+\_\+\+P\+R\+O\+P\+O\+S\+A\+L\+S\+\_\+\+H\+X\+X}\label{greedy__additive__proposals_8hxx_ac7b1abd6411277422c1f3780500af9a6}

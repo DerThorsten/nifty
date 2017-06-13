@@ -1,0 +1,255 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="structnifty_1_1ilp__backend_1_1IlpBackendSettings" kind="struct" language="C++" prot="public">
+    <compoundname>nifty::ilp_backend::IlpBackendSettings</compoundname>
+    <includes refid="ilp__backend_8hxx" local="no">ilp_backend.hxx</includes>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1ad16c71cc049dcb37c07f2abdda69dab4" prot="public" static="no">
+        <name>PreSolver</name>
+        <enumvalue id="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1ad16c71cc049dcb37c07f2abdda69dab4a2d2186dcdaa22ae42023acbc03922c48" prot="public">
+          <name>PRE_SOLVER_AUTO</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1ad16c71cc049dcb37c07f2abdda69dab4a0b937d225c3ee4733bff63397c614b78" prot="public">
+          <name>PRE_SOLVER_PRIMAL</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1ad16c71cc049dcb37c07f2abdda69dab4a53cbe16a2893471008b7f3c00c5c040f" prot="public">
+          <name>PRE_SOLVER_DUAL</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1ad16c71cc049dcb37c07f2abdda69dab4ad0065467805a6fba8d8d9e7293e4bfc2" prot="public">
+          <name>PRE_SOLVER_NONE</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1ad16c71cc049dcb37c07f2abdda69dab4a45adcc6c0d30422e0c0a674b2fe92a37" prot="public">
+          <name>PRE_SOLVER_DEFAULT</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ilp_backend/ilp_backend.hxx" line="10" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ilp_backend/ilp_backend.hxx" bodystart="10" bodyend="16"/>
+      </memberdef>
+      <memberdef kind="enum" id="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1a4b3fd0d313a8d95f9f6a3ba64802e204" prot="public" static="no">
+        <name>LPSolver</name>
+        <enumvalue id="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1a4b3fd0d313a8d95f9f6a3ba64802e204a02afc6e85659e3fda7c48df74d3e3934" prot="public">
+          <name>LP_SOLVER_PRIMAL_SIMPLEX</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1a4b3fd0d313a8d95f9f6a3ba64802e204aadd4ba29f78f9104467f136c05d6e354" prot="public">
+          <name>LP_SOLVER_DUAL_SIMPLEX</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1a4b3fd0d313a8d95f9f6a3ba64802e204afbfc81377d73d1c59b31be26a8bf8fb2" prot="public">
+          <name>LP_SOLVER_BARRIER</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1a4b3fd0d313a8d95f9f6a3ba64802e204ac6de1eff7352159f0db89583e569f86e" prot="public">
+          <name>LP_SOLVER_SIFTING</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1a4b3fd0d313a8d95f9f6a3ba64802e204a24fa810f69bf55c40d68082a2e3653f8" prot="public">
+          <name>LP_SOLVER_DEFAULT</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ilp_backend/ilp_backend.hxx" line="18" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ilp_backend/ilp_backend.hxx" bodystart="18" bodyend="24"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1a5f20f85b5528859b4ef8000a29fb1453" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double nifty::ilp_backend::IlpBackendSettings::memLimit</definition>
+        <argsstring></argsstring>
+        <name>memLimit</name>
+        <initializer>= {-1.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ilp_backend/ilp_backend.hxx" line="26" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ilp_backend/ilp_backend.hxx" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1a8eed72b9ddbbc94a89197dde0d76d144" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double nifty::ilp_backend::IlpBackendSettings::relativeGap</definition>
+        <argsstring></argsstring>
+        <name>relativeGap</name>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ilp_backend/ilp_backend.hxx" line="27" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ilp_backend/ilp_backend.hxx" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1a8bc98f418844336847d868dd88e620f2" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double nifty::ilp_backend::IlpBackendSettings::absoluteGap</definition>
+        <argsstring></argsstring>
+        <name>absoluteGap</name>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ilp_backend/ilp_backend.hxx" line="28" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ilp_backend/ilp_backend.hxx" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1a0bd7c55efdd7c642687b17e378da2e08" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double nifty::ilp_backend::IlpBackendSettings::cutUp</definition>
+        <argsstring></argsstring>
+        <name>cutUp</name>
+        <initializer>{1.0e+75}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ilp_backend/ilp_backend.hxx" line="29" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ilp_backend/ilp_backend.hxx" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1a87cbc1618cd7cd2d88de2da14ff8c2d3" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int nifty::ilp_backend::IlpBackendSettings::prePasses</definition>
+        <argsstring></argsstring>
+        <name>prePasses</name>
+        <initializer>{-1}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ilp_backend/ilp_backend.hxx" line="30" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ilp_backend/ilp_backend.hxx" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1af1e71695a4bd0dd0921ba2db7c0208c6" prot="public" static="no" mutable="no">
+        <type><ref refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1ad16c71cc049dcb37c07f2abdda69dab4" kindref="member">PreSolver</ref></type>
+        <definition>PreSolver nifty::ilp_backend::IlpBackendSettings::preSolver</definition>
+        <argsstring></argsstring>
+        <name>preSolver</name>
+        <initializer>{<ref refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1ad16c71cc049dcb37c07f2abdda69dab4a45adcc6c0d30422e0c0a674b2fe92a37" kindref="member">PRE_SOLVER_DEFAULT</ref>}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ilp_backend/ilp_backend.hxx" line="32" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ilp_backend/ilp_backend.hxx" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1aa0940a3d1d8399b9ed10f7e43d61e8cc" prot="public" static="no" mutable="no">
+        <type><ref refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1a4b3fd0d313a8d95f9f6a3ba64802e204" kindref="member">LPSolver</ref></type>
+        <definition>LPSolver nifty::ilp_backend::IlpBackendSettings::lpSolver</definition>
+        <argsstring></argsstring>
+        <name>lpSolver</name>
+        <initializer>{<ref refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1a4b3fd0d313a8d95f9f6a3ba64802e204a24fa810f69bf55c40d68082a2e3653f8" kindref="member">LP_SOLVER_DEFAULT</ref>}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ilp_backend/ilp_backend.hxx" line="33" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ilp_backend/ilp_backend.hxx" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1ae9852b9ee86048c11366c7248ca8dbfd" prot="public" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t nifty::ilp_backend::IlpBackendSettings::numberOfThreads</definition>
+        <argsstring></argsstring>
+        <name>numberOfThreads</name>
+        <initializer>{1}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ilp_backend/ilp_backend.hxx" line="35" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ilp_backend/ilp_backend.hxx" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1aecafa6adf4695088d0396f232bbe88ba" prot="public" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t nifty::ilp_backend::IlpBackendSettings::verbosity</definition>
+        <argsstring></argsstring>
+        <name>verbosity</name>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ilp_backend/ilp_backend.hxx" line="36" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ilp_backend/ilp_backend.hxx" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/ilp_backend/ilp_backend.hxx" line="8" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ilp_backend/ilp_backend.hxx" bodystart="8" bodyend="38"/>
+    <listofallmembers>
+      <member refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1a8bc98f418844336847d868dd88e620f2" prot="public" virt="non-virtual"><scope>nifty::ilp_backend::IlpBackendSettings</scope><name>absoluteGap</name></member>
+      <member refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1a0bd7c55efdd7c642687b17e378da2e08" prot="public" virt="non-virtual"><scope>nifty::ilp_backend::IlpBackendSettings</scope><name>cutUp</name></member>
+      <member refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1a4b3fd0d313a8d95f9f6a3ba64802e204afbfc81377d73d1c59b31be26a8bf8fb2" prot="public" virt="non-virtual"><scope>nifty::ilp_backend::IlpBackendSettings</scope><name>LP_SOLVER_BARRIER</name></member>
+      <member refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1a4b3fd0d313a8d95f9f6a3ba64802e204a24fa810f69bf55c40d68082a2e3653f8" prot="public" virt="non-virtual"><scope>nifty::ilp_backend::IlpBackendSettings</scope><name>LP_SOLVER_DEFAULT</name></member>
+      <member refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1a4b3fd0d313a8d95f9f6a3ba64802e204aadd4ba29f78f9104467f136c05d6e354" prot="public" virt="non-virtual"><scope>nifty::ilp_backend::IlpBackendSettings</scope><name>LP_SOLVER_DUAL_SIMPLEX</name></member>
+      <member refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1a4b3fd0d313a8d95f9f6a3ba64802e204a02afc6e85659e3fda7c48df74d3e3934" prot="public" virt="non-virtual"><scope>nifty::ilp_backend::IlpBackendSettings</scope><name>LP_SOLVER_PRIMAL_SIMPLEX</name></member>
+      <member refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1a4b3fd0d313a8d95f9f6a3ba64802e204ac6de1eff7352159f0db89583e569f86e" prot="public" virt="non-virtual"><scope>nifty::ilp_backend::IlpBackendSettings</scope><name>LP_SOLVER_SIFTING</name></member>
+      <member refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1aa0940a3d1d8399b9ed10f7e43d61e8cc" prot="public" virt="non-virtual"><scope>nifty::ilp_backend::IlpBackendSettings</scope><name>lpSolver</name></member>
+      <member refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1a4b3fd0d313a8d95f9f6a3ba64802e204" prot="public" virt="non-virtual"><scope>nifty::ilp_backend::IlpBackendSettings</scope><name>LPSolver</name></member>
+      <member refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1a5f20f85b5528859b4ef8000a29fb1453" prot="public" virt="non-virtual"><scope>nifty::ilp_backend::IlpBackendSettings</scope><name>memLimit</name></member>
+      <member refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1ae9852b9ee86048c11366c7248ca8dbfd" prot="public" virt="non-virtual"><scope>nifty::ilp_backend::IlpBackendSettings</scope><name>numberOfThreads</name></member>
+      <member refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1ad16c71cc049dcb37c07f2abdda69dab4a2d2186dcdaa22ae42023acbc03922c48" prot="public" virt="non-virtual"><scope>nifty::ilp_backend::IlpBackendSettings</scope><name>PRE_SOLVER_AUTO</name></member>
+      <member refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1ad16c71cc049dcb37c07f2abdda69dab4a45adcc6c0d30422e0c0a674b2fe92a37" prot="public" virt="non-virtual"><scope>nifty::ilp_backend::IlpBackendSettings</scope><name>PRE_SOLVER_DEFAULT</name></member>
+      <member refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1ad16c71cc049dcb37c07f2abdda69dab4a53cbe16a2893471008b7f3c00c5c040f" prot="public" virt="non-virtual"><scope>nifty::ilp_backend::IlpBackendSettings</scope><name>PRE_SOLVER_DUAL</name></member>
+      <member refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1ad16c71cc049dcb37c07f2abdda69dab4ad0065467805a6fba8d8d9e7293e4bfc2" prot="public" virt="non-virtual"><scope>nifty::ilp_backend::IlpBackendSettings</scope><name>PRE_SOLVER_NONE</name></member>
+      <member refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1ad16c71cc049dcb37c07f2abdda69dab4a0b937d225c3ee4733bff63397c614b78" prot="public" virt="non-virtual"><scope>nifty::ilp_backend::IlpBackendSettings</scope><name>PRE_SOLVER_PRIMAL</name></member>
+      <member refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1a87cbc1618cd7cd2d88de2da14ff8c2d3" prot="public" virt="non-virtual"><scope>nifty::ilp_backend::IlpBackendSettings</scope><name>prePasses</name></member>
+      <member refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1af1e71695a4bd0dd0921ba2db7c0208c6" prot="public" virt="non-virtual"><scope>nifty::ilp_backend::IlpBackendSettings</scope><name>preSolver</name></member>
+      <member refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1ad16c71cc049dcb37c07f2abdda69dab4" prot="public" virt="non-virtual"><scope>nifty::ilp_backend::IlpBackendSettings</scope><name>PreSolver</name></member>
+      <member refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1a8eed72b9ddbbc94a89197dde0d76d144" prot="public" virt="non-virtual"><scope>nifty::ilp_backend::IlpBackendSettings</scope><name>relativeGap</name></member>
+      <member refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings_1aecafa6adf4695088d0396f232bbe88ba" prot="public" virt="non-virtual"><scope>nifty::ilp_backend::IlpBackendSettings</scope><name>verbosity</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

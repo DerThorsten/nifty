@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Nifty
-   &#160;<span id="projectnumber">0.5.1</span>
+   &#160;<span id="projectnumber">0.19.0</span>
    </div>
   </td>
  </tr>
@@ -128,11 +128,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h3><a class="anchor" id="index_c"></a>- c -</h3><ul>
 <li>Callback
 : <a class="el" href="classnifty_1_1graph_1_1EdgeContractionGraph.html#a75e91e51c78d2f427a31c30dcd8996ed">nifty::graph::EdgeContractionGraph&lt; GRAPH, CALLBACK, WITH_EDGE_UFD &gt;</a>
-, <a class="el" href="classnifty_1_1graph_1_1lifted__multicut_1_1LiftedMulticutGreedyAdditive.html#a0f298ccab4ca174bb91fd3026b473b5f">nifty::graph::lifted_multicut::LiftedMulticutGreedyAdditive&lt; OBJECTIVE &gt;</a>
-, <a class="el" href="classnifty_1_1graph_1_1MulticutGreedyAdditive.html#a5079d951379543ca00c28fc14e7d73dd">nifty::graph::MulticutGreedyAdditive&lt; OBJECTIVE &gt;</a>
+, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutGreedyAdditive.html#abf11c8446b89d894ab323829ffdd9860">nifty::graph::optimization::lifted_multicut::LiftedMulticutGreedyAdditive&lt; OBJECTIVE &gt;</a>
+, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutGreedyAdditive.html#a416a5984d400e28b4274a4126f5ac362">nifty::graph::optimization::multicut::MulticutGreedyAdditive&lt; OBJECTIVE &gt;</a>
 </li>
 <li>CallbackType
-: <a class="el" href="classnifty_1_1graph_1_1mincut_1_1MincutGreedyAdditive.html#ae6b2e0ee7b987b72e961224161b68c0a">nifty::graph::mincut::MincutGreedyAdditive&lt; OBJECTIVE &gt;</a>
+: <a class="el" href="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutGreedyAdditive.html#a2a20d815b0e3c083ed85bcb4c1b60bc6">nifty::graph::optimization::mincut::MincutGreedyAdditive&lt; OBJECTIVE &gt;</a>
 </li>
 <li>CGraphType
 : <a class="el" href="structnifty_1_1graph_1_1EdgeContractionGraphWithSetsHelper.html#add695ccd6756ec7e79ce2b4e6fceb5fc">nifty::graph::EdgeContractionGraphWithSetsHelper&lt; GRAPH, OUTER_CALLBACK, SET &gt;</a>
@@ -142,29 +142,38 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 , <a class="el" href="classnifty_1_1graph_1_1UndirectedGraphBase.html#af2541cf9fb91440ff0a7b56dd5a6be29">nifty::graph::UndirectedGraphBase&lt; CHILD_GRAPH, NODE_ITER, EDGE_ITER, ADJACENCY_ITER &gt;</a>
 </li>
 <li>ChildObjective
-: <a class="el" href="classnifty_1_1graph_1_1lifted__multicut_1_1LiftedMulticutObjectiveBase.html#a72e88672e37520bf7bb8bb68a91687ae">nifty::graph::lifted_multicut::LiftedMulticutObjectiveBase&lt; CHILD_OBJECTIVE, GRAPH, LIFTED_GRAPH, WEIGHT_TYPE &gt;</a>
-, <a class="el" href="classnifty_1_1graph_1_1MincutObjectiveBase.html#ac8451d340752cd0ef2f658a35b0b0c6b">nifty::graph::MincutObjectiveBase&lt; CHILD_OBJECTIVE, GRAPH, WEIGHT_TYPE &gt;</a>
-, <a class="el" href="classnifty_1_1graph_1_1MulticutObjectiveBase.html#a7150df879f2ca2a3966d198a02c5aa87">nifty::graph::MulticutObjectiveBase&lt; CHILD_OBJECTIVE, GRAPH, WEIGHT_TYPE &gt;</a>
+: <a class="el" href="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutObjectiveBase.html#a51016bc6ef6d544846dd8e201f27c132">nifty::graph::optimization::lifted_multicut::LiftedMulticutObjectiveBase&lt; CHILD_OBJECTIVE, GRAPH, LIFTED_GRAPH, WEIGHT_TYPE &gt;</a>
+, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutObjectiveBase.html#a6943abac42bd9b021bb69094dc3c42c1">nifty::graph::optimization::mincut::MincutObjectiveBase&lt; CHILD_OBJECTIVE, GRAPH, WEIGHT_TYPE &gt;</a>
+, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutObjectiveBase.html#a256253bb4f2d9c3ebabd67a4b7941ffd">nifty::graph::optimization::multicut::MulticutObjectiveBase&lt; CHILD_OBJECTIVE, GRAPH, WEIGHT_TYPE &gt;</a>
 </li>
 <li>ClusterPolicyType
 : <a class="el" href="classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering.html#a3a678ecd37725f2c0f8ec56857768034">nifty::graph::agglo::AgglomerativeClustering&lt; CLUSTER_POLICY &gt;</a>
 </li>
 <li>const_iterator
-: <a class="el" href="classnifty_1_1container_1_1FlatSet.html#a0f4cd26da060859b18742abfd534aa24">nifty::container::FlatSet&lt; Key, Comparison, Allocator &gt;</a>
+: <a class="el" href="classandres_1_1Marray.html#a0b3be7ebc2bd3a247b59a8ed7be24102">andres::Marray&lt; T, A &gt;</a>
+, <a class="el" href="classandres_1_1View.html#a7b6f125a7b3830f30cd34887b61858a7">andres::View&lt; T, isConst, A &gt;</a>
+, <a class="el" href="classnifty_1_1container_1_1FlatSet.html#a0f4cd26da060859b18742abfd534aa24">nifty::container::FlatSet&lt; Key, Comparison, Allocator &gt;</a>
 , <a class="el" href="classnifty_1_1tools_1_1ConstIteratorRange.html#afb02141878a935f32f828810a2be648b">nifty::tools::ConstIteratorRange&lt; ITERATOR &gt;</a>
 </li>
 <li>const_pointer
-: <a class="el" href="classnifty_1_1container_1_1FlatSet.html#a87a82a407ecc181303e62a86b3132e38">nifty::container::FlatSet&lt; Key, Comparison, Allocator &gt;</a>
+: <a class="el" href="classandres_1_1Marray.html#a6e9d79616cdeed14221d96431ab5f678">andres::Marray&lt; T, A &gt;</a>
+, <a class="el" href="classandres_1_1View.html#a947d02064bced23437b804a8050e6ccb">andres::View&lt; T, isConst, A &gt;</a>
+, <a class="el" href="classnifty_1_1container_1_1FlatSet.html#a87a82a407ecc181303e62a86b3132e38">nifty::container::FlatSet&lt; Key, Comparison, Allocator &gt;</a>
 </li>
 <li>const_reference
-: <a class="el" href="classnifty_1_1container_1_1FlatSet.html#a9fc6932b53d6a86ec15830e31805f8d4">nifty::container::FlatSet&lt; Key, Comparison, Allocator &gt;</a>
+: <a class="el" href="classandres_1_1Marray.html#ae5ecc2e9f1b747ffaaff04ab15568783">andres::Marray&lt; T, A &gt;</a>
+, <a class="el" href="classandres_1_1View.html#a69e3d49e3d8242a33c03d42dd5ecc5b8">andres::View&lt; T, isConst, A &gt;</a>
+, <a class="el" href="classnifty_1_1container_1_1FlatSet.html#a9fc6932b53d6a86ec15830e31805f8d4">nifty::container::FlatSet&lt; Key, Comparison, Allocator &gt;</a>
+, <a class="el" href="structnifty_1_1graph_1_1graph__maps_1_1MultibandArrayViewNodeMap.html#a9a4da5d4bb0e9439af359184b91bc65b">nifty::graph::graph_maps::MultibandArrayViewNodeMap&lt; ARRAY &gt;</a>
 , <a class="el" href="classnifty_1_1tools_1_1ChangeablePriorityQueue.html#acb7eb23bd9ca7c52955adc06bf4816c3">nifty::tools::ChangeablePriorityQueue&lt; T, COMPARE &gt;</a>
 </li>
 <li>const_reverse_iterator
-: <a class="el" href="classnifty_1_1container_1_1FlatSet.html#ab7858d2e6eeeb311e21988d9b4a5b802">nifty::container::FlatSet&lt; Key, Comparison, Allocator &gt;</a>
+: <a class="el" href="classandres_1_1Marray.html#a03aa08b455a9fcb7c3ba9072799cad92">andres::Marray&lt; T, A &gt;</a>
+, <a class="el" href="classandres_1_1View.html#a61656971b73a48c8bf009e3200aad900">andres::View&lt; T, isConst, A &gt;</a>
+, <a class="el" href="classnifty_1_1container_1_1FlatSet.html#ab7858d2e6eeeb311e21988d9b4a5b802">nifty::container::FlatSet&lt; Key, Comparison, Allocator &gt;</a>
 </li>
 <li>ContractionGraphType
-: <a class="el" href="classnifty_1_1graph_1_1mincut_1_1MincutGreedyAdditive.html#a12888919099a9985cffc747e7f3fc1ed">nifty::graph::mincut::MincutGreedyAdditive&lt; OBJECTIVE &gt;</a>
+: <a class="el" href="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutGreedyAdditive.html#a3db08a332c5b2d05634f10afd38a472b">nifty::graph::optimization::mincut::MincutGreedyAdditive&lt; OBJECTIVE &gt;</a>
 </li>
 <li>Coord
 : <a class="el" href="structnifty_1_1features_1_1ApplyFilters.html#a0a26d161f300b3394044f1357ae5ebfd">nifty::features::ApplyFilters&lt; DIM &gt;</a>

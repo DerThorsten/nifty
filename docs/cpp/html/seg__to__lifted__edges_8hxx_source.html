@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Nifty
-   &#160;<span id="projectnumber">0.5.1</span>
+   &#160;<span id="projectnumber">0.19.0</span>
    </div>
   </td>
  </tr>
@@ -104,12 +104,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">class</span> T_SEG&gt;</div>
 <div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="namespacenifty_1_1ground__truth.html#af4ff3155dceef94452c198adb989d21e">   11</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="namespacenifty_1_1ground__truth.html#af4ff3155dceef94452c198adb989d21e">seg2dToLiftedEdges</a>(</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        <span class="keyword">const</span> marray::View&lt;T_SEG&gt;             &amp; segmentation,</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        <span class="keyword">const</span> <a class="code" href="classandres_1_1View.html">marray::View&lt;T_SEG&gt;</a>             &amp; segmentation,</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        std::vector&lt;std::array&lt;int32_t, 2&gt; &gt;  &amp; edges,</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        marray::View&lt;uint8_t&gt; &amp; liftedEdgesState</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        <a class="code" href="classandres_1_1View.html">marray::View&lt;uint8_t&gt;</a> &amp; liftedEdgesState</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    ){</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <span class="keywordflow">for</span>(int32_t s0=0; s0&lt;segmentation.shape(0); ++s0)</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <span class="keywordflow">for</span>(int32_t s1=0; s1&lt;segmentation.shape(1); ++s1){</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <span class="keywordflow">for</span>(int32_t s0=0; s0&lt;segmentation.<a class="code" href="classandres_1_1View.html#a9bc3d88b3e2bdf432dd68f36ff33deb3">shape</a>(0); ++s0)</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <span class="keywordflow">for</span>(int32_t s1=0; s1&lt;segmentation.<a class="code" href="classandres_1_1View.html#a9bc3d88b3e2bdf432dd68f36ff33deb3">shape</a>(1); ++s1){</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;            <span class="comment">// u node label</span></div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            <span class="keyword">const</span> <span class="keyword">auto</span> lu = segmentation(s0, s1);</div>
@@ -120,8 +120,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                <span class="keyword">const</span> <span class="keyword">auto</span>  ss1   = s1 + edge[1];</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                <span class="comment">// inside edge</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                <span class="keywordflow">if</span>( ss0 &gt;= int32_t(0) &amp;&amp; int32_t(ss0&lt;segmentation.shape(0)) &amp;&amp;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                    ss1 &gt;= int32_t(0) &amp;&amp; int32_t(ss1&lt;segmentation.shape(1))){</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                <span class="keywordflow">if</span>( ss0 &gt;= int32_t(0) &amp;&amp; int32_t(ss0&lt;segmentation.<a class="code" href="classandres_1_1View.html#a9bc3d88b3e2bdf432dd68f36ff33deb3">shape</a>(0)) &amp;&amp;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                    ss1 &gt;= int32_t(0) &amp;&amp; int32_t(ss1&lt;segmentation.<a class="code" href="classandres_1_1View.html#a9bc3d88b3e2bdf432dd68f36ff33deb3">shape</a>(1))){</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                    <span class="comment">// v node label</span></div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                    <span class="keyword">const</span> <span class="keyword">auto</span> lv = segmentation(ss0, ss1);</div>
@@ -139,13 +139,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">class</span> T_SEG&gt;</div>
 <div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="namespacenifty_1_1ground__truth.html#a6d7ab1dca0ac9229967b736100609112">   46</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="namespacenifty_1_1ground__truth.html#a6d7ab1dca0ac9229967b736100609112">seg3dToLiftedEdges</a>(</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="keyword">const</span> marray::View&lt;T_SEG&gt;             &amp; segmentation,</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="keyword">const</span> <a class="code" href="classandres_1_1View.html">marray::View&lt;T_SEG&gt;</a>             &amp; segmentation,</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        std::vector&lt;std::array&lt;int32_t, 3&gt; &gt;  &amp; edges,</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keyword">const</span> int32_t z,</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        marray::View&lt;uint8_t&gt; &amp; liftedEdgesState</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <a class="code" href="classandres_1_1View.html">marray::View&lt;uint8_t&gt;</a> &amp; liftedEdgesState</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    ){</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keywordflow">for</span>(int32_t s0=0; s0&lt;segmentation.shape(0); ++s0)</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keywordflow">for</span>(int32_t s1=0; s1&lt;segmentation.shape(1); ++s1)</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keywordflow">for</span>(int32_t s0=0; s0&lt;segmentation.<a class="code" href="classandres_1_1View.html#a9bc3d88b3e2bdf432dd68f36ff33deb3">shape</a>(0); ++s0)</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keywordflow">for</span>(int32_t s1=0; s1&lt;segmentation.<a class="code" href="classandres_1_1View.html#a9bc3d88b3e2bdf432dd68f36ff33deb3">shape</a>(1); ++s1)</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        {</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            <span class="comment">// u node label</span></div>
@@ -159,8 +159,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                <span class="keyword">const</span> <span class="keyword">auto</span>  ss2   = s1 + edge[2];</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                <span class="comment">// inside edge</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                <span class="keywordflow">if</span>( ss0 &gt;= int32_t(0) &amp;&amp; int32_t(ss0&lt;segmentation.shape(0)) &amp;&amp;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                    ss1 &gt;= int32_t(0) &amp;&amp; int32_t(ss1&lt;segmentation.shape(1))){</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                <span class="keywordflow">if</span>( ss0 &gt;= int32_t(0) &amp;&amp; int32_t(ss0&lt;segmentation.<a class="code" href="classandres_1_1View.html#a9bc3d88b3e2bdf432dd68f36ff33deb3">shape</a>(0)) &amp;&amp;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                    ss1 &gt;= int32_t(0) &amp;&amp; int32_t(ss1&lt;segmentation.<a class="code" href="classandres_1_1View.html#a9bc3d88b3e2bdf432dd68f36ff33deb3">shape</a>(1))){</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                    <span class="comment">// v node label</span></div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                    <span class="keyword">const</span> <span class="keyword">auto</span> lv = segmentation(ss0, ss1, ss2);</div>
@@ -179,16 +179,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">class</span> T_SEG&gt;</div>
 <div class="line"><a name="l00086"></a><span class="lineno"><a class="line" href="namespacenifty_1_1ground__truth.html#a9db1e8161597359400b066deab0f7dfb">   86</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="namespacenifty_1_1ground__truth.html#a9db1e8161597359400b066deab0f7dfb">seg3dToCremiZ5Edges</a>(</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="keyword">const</span> marray::View&lt;T_SEG&gt;             &amp; segmentation,</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="keyword">const</span> <a class="code" href="classandres_1_1View.html">marray::View&lt;T_SEG&gt;</a>             &amp; segmentation,</div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        std::vector&lt;std::array&lt;int32_t, 4&gt; &gt;  &amp; edges,</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        marray::View&lt;uint8_t&gt; &amp;               liftedEdgesState</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        <a class="code" href="classandres_1_1View.html">marray::View&lt;uint8_t&gt;</a> &amp;               liftedEdgesState</div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    ){</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <a class="code" href="runtime__check_8hxx.html#a7fdb092c4b634ea3958b7d7aa2f801eb">NIFTY_CHECK_OP</a>(segmentation.shape(2), == , 5, <span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <a class="code" href="runtime__check_8hxx.html#a7fdb092c4b634ea3958b7d7aa2f801eb">NIFTY_CHECK_OP</a>(segmentation.<a class="code" href="classandres_1_1View.html#a9bc3d88b3e2bdf432dd68f36ff33deb3">shape</a>(2), == , 5, <span class="stringliteral">&quot;&quot;</span>);</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <span class="keywordflow">for</span>(int32_t s0=0; s0&lt;segmentation.shape(0); ++s0)</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        <span class="keywordflow">for</span>(int32_t s1=0; s1&lt;segmentation.shape(1); ++s1)</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <span class="keywordflow">for</span>(int32_t s0=0; s0&lt;segmentation.<a class="code" href="classandres_1_1View.html#a9bc3d88b3e2bdf432dd68f36ff33deb3">shape</a>(0); ++s0)</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        <span class="keywordflow">for</span>(int32_t s1=0; s1&lt;segmentation.<a class="code" href="classandres_1_1View.html#a9bc3d88b3e2bdf432dd68f36ff33deb3">shape</a>(1); ++s1)</div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        {</div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;           </div>
@@ -205,8 +205,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;                <span class="keyword">const</span> <span class="keyword">auto</span> lu = segmentation(s0, s1, start_z);</div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;</div>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                <span class="comment">// inside edge</span></div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;                <span class="keywordflow">if</span>( ss0 &gt;= int32_t(0) &amp;&amp; int32_t(ss0&lt;segmentation.shape(0)) &amp;&amp;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;                    ss1 &gt;= int32_t(0) &amp;&amp; int32_t(ss1&lt;segmentation.shape(1))){</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;                <span class="keywordflow">if</span>( ss0 &gt;= int32_t(0) &amp;&amp; int32_t(ss0&lt;segmentation.<a class="code" href="classandres_1_1View.html#a9bc3d88b3e2bdf432dd68f36ff33deb3">shape</a>(0)) &amp;&amp;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;                    ss1 &gt;= int32_t(0) &amp;&amp; int32_t(ss1&lt;segmentation.<a class="code" href="classandres_1_1View.html#a9bc3d88b3e2bdf432dd68f36ff33deb3">shape</a>(1))){</div>
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;</div>
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;                    <span class="comment">// v node label</span></div>
 <div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;                    <span class="keyword">const</span> <span class="keyword">auto</span> lv = segmentation(ss0, ss1, ss2);</div>
@@ -225,9 +225,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;</div>
 <div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">class</span> T_SEG, <span class="keyword">class</span> T_DT, <span class="keyword">class</span> T_OUT&gt;</div>
 <div class="line"><a name="l00132"></a><span class="lineno"><a class="line" href="namespacenifty_1_1ground__truth.html#a4feb2d90b357085dcc776da2e24a4f64">  132</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="namespacenifty_1_1ground__truth.html#a4feb2d90b357085dcc776da2e24a4f64">thinSegFilter</a>(</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        <span class="keyword">const</span> marray::View&lt;T_SEG&gt;             &amp; segmentation,</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        <span class="keyword">const</span> marray::View&lt;T_DT&gt;              &amp; dt,</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        marray::View&lt;T_OUT&gt;             &amp; out,</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        <span class="keyword">const</span> <a class="code" href="classandres_1_1View.html">marray::View&lt;T_SEG&gt;</a>             &amp; segmentation,</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        <span class="keyword">const</span> <a class="code" href="classandres_1_1View.html">marray::View&lt;T_DT&gt;</a>              &amp; dt,</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        <a class="code" href="classandres_1_1View.html">marray::View&lt;T_OUT&gt;</a>             &amp; out,</div>
 <div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">float</span> sigma,</div>
 <div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        <span class="keywordtype">int</span> radius = 0</div>
 <div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    ){</div>
@@ -257,8 +257,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;            v /= s;</div>
 <div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        }</div>
 <div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;       </div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> x0=radius; x0&lt;dt.shape(0)-(radius); ++x0)</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> x1=radius; x1&lt;dt.shape(1)-(radius); ++x1){</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> x0=radius; x0&lt;dt.<a class="code" href="classandres_1_1View.html#a9bc3d88b3e2bdf432dd68f36ff33deb3">shape</a>(0)-(radius); ++x0)</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> x1=radius; x1&lt;dt.<a class="code" href="classandres_1_1View.html#a9bc3d88b3e2bdf432dd68f36ff33deb3">shape</a>(1)-(radius); ++x1){</div>
 <div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;            std::cout&lt;&lt;<span class="stringliteral">&quot;x0 &quot;</span>&lt;&lt;x0&lt;&lt;<span class="stringliteral">&quot; x1 &quot;</span>&lt;&lt;x1&lt;&lt;<span class="stringliteral">&quot;\n&quot;</span>;</div>
 <div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;</div>
 <div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;            <span class="keyword">auto</span> s=0.0;</div>
@@ -347,9 +347,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="namespacenifty_1_1ground__truth_html_af4ff3155dceef94452c198adb989d21e"><div class="ttname"><a href="namespacenifty_1_1ground__truth.html#af4ff3155dceef94452c198adb989d21e">nifty::ground_truth::seg2dToLiftedEdges</a></div><div class="ttdeci">void seg2dToLiftedEdges(const marray::View&lt; T_SEG &gt; &amp;segmentation, std::vector&lt; std::array&lt; int32_t, 2 &gt; &gt; &amp;edges, marray::View&lt; uint8_t &gt; &amp;liftedEdgesState)</div><div class="ttdef"><b>Definition:</b> seg_to_lifted_edges.hxx:11</div></div>
 <div class="ttc" id="for__each__coordinate_8hxx_html"><div class="ttname"><a href="for__each__coordinate_8hxx.html">for_each_coordinate.hxx</a></div></div>
 <div class="ttc" id="namespacenifty_1_1ground__truth_html_a6d7ab1dca0ac9229967b736100609112"><div class="ttname"><a href="namespacenifty_1_1ground__truth.html#a6d7ab1dca0ac9229967b736100609112">nifty::ground_truth::seg3dToLiftedEdges</a></div><div class="ttdeci">void seg3dToLiftedEdges(const marray::View&lt; T_SEG &gt; &amp;segmentation, std::vector&lt; std::array&lt; int32_t, 3 &gt; &gt; &amp;edges, const int32_t z, marray::View&lt; uint8_t &gt; &amp;liftedEdgesState)</div><div class="ttdef"><b>Definition:</b> seg_to_lifted_edges.hxx:46</div></div>
-<div class="ttc" id="runtime__check_8hxx_html_a7fdb092c4b634ea3958b7d7aa2f801eb"><div class="ttname"><a href="runtime__check_8hxx.html#a7fdb092c4b634ea3958b7d7aa2f801eb">NIFTY_CHECK_OP</a></div><div class="ttdeci">#define NIFTY_CHECK_OP(a, op, b, message)</div><div class="ttdoc">macro for runtime checks </div><div class="ttdef"><b>Definition:</b> runtime_check.hxx:34</div></div>
+<div class="ttc" id="runtime__check_8hxx_html_a7fdb092c4b634ea3958b7d7aa2f801eb"><div class="ttname"><a href="runtime__check_8hxx.html#a7fdb092c4b634ea3958b7d7aa2f801eb">NIFTY_CHECK_OP</a></div><div class="ttdeci">#define NIFTY_CHECK_OP(a, op, b, message)</div><div class="ttdoc">macro for runtime checks </div><div class="ttdef"><b>Definition:</b> runtime_check.hxx:32</div></div>
+<div class="ttc" id="classandres_1_1View_html"><div class="ttname"><a href="classandres_1_1View.html">andres::View</a></div><div class="ttdef"><b>Definition:</b> marray.hxx:113</div></div>
 <div class="ttc" id="namespacenifty_1_1ground__truth_html_a9db1e8161597359400b066deab0f7dfb"><div class="ttname"><a href="namespacenifty_1_1ground__truth.html#a9db1e8161597359400b066deab0f7dfb">nifty::ground_truth::seg3dToCremiZ5Edges</a></div><div class="ttdeci">void seg3dToCremiZ5Edges(const marray::View&lt; T_SEG &gt; &amp;segmentation, std::vector&lt; std::array&lt; int32_t, 4 &gt; &gt; &amp;edges, marray::View&lt; uint8_t &gt; &amp;liftedEdgesState)</div><div class="ttdef"><b>Definition:</b> seg_to_lifted_edges.hxx:86</div></div>
-<div class="ttc" id="namespacenifty_html"><div class="ttname"><a href="namespacenifty.html">nifty</a></div><div class="ttdef"><b>Definition:</b> arithmetic_array.hxx:10</div></div>
+<div class="ttc" id="namespacenifty_html"><div class="ttname"><a href="namespacenifty.html">nifty</a></div><div class="ttdef"><b>Definition:</b> arithmetic_array.hxx:8</div></div>
+<div class="ttc" id="classandres_1_1View_html_a9bc3d88b3e2bdf432dd68f36ff33deb3"><div class="ttname"><a href="classandres_1_1View.html#a9bc3d88b3e2bdf432dd68f36ff33deb3">andres::View::shape</a></div><div class="ttdeci">const std::size_t shape(const std::size_t) const </div><div class="ttdef"><b>Definition:</b> marray.hxx:1723</div></div>
 <div class="ttc" id="marray_8hxx_html"><div class="ttname"><a href="marray_8hxx.html">marray.hxx</a></div></div>
 <div class="ttc" id="namespacenifty_1_1ground__truth_html_a4feb2d90b357085dcc776da2e24a4f64"><div class="ttname"><a href="namespacenifty_1_1ground__truth.html#a4feb2d90b357085dcc776da2e24a4f64">nifty::ground_truth::thinSegFilter</a></div><div class="ttdeci">void thinSegFilter(const marray::View&lt; T_SEG &gt; &amp;segmentation, const marray::View&lt; T_DT &gt; &amp;dt, marray::View&lt; T_OUT &gt; &amp;out, const float sigma, int radius=0)</div><div class="ttdef"><b>Definition:</b> seg_to_lifted_edges.hxx:132</div></div>
 </div><!-- fragment --></div><!-- contents -->

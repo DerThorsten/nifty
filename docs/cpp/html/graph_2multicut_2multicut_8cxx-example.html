@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Nifty
-   &#160;<span id="projectnumber">0.5.1</span>
+   &#160;<span id="projectnumber">0.19.0</span>
    </div>
   </td>
  </tr>
@@ -120,7 +120,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"></div>
 <div class="line">    <span class="comment">// create multicut objective</span></div>
 <div class="line">    <span class="comment">// do not add more edges to graph after creating the mc objective</span></div>
-<div class="line">    <span class="keyword">typedef</span> <a name="_a1"></a><a class="code" href="classnifty_1_1graph_1_1MulticutObjective.html">nifty::graph::MulticutObjective&lt;Graph, float&gt;</a> MulticutObjective;</div>
+<div class="line">    <span class="keyword">typedef</span> <a name="_a1"></a><a class="code" href="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutObjective.html">nifty::graph::optimization::multicut::MulticutObjective&lt;Graph, float&gt;</a> MulticutObjective;</div>
 <div class="line">    MulticutObjective objective(graph);</div>
 <div class="line"></div>
 <div class="line">    <span class="comment">// Set edge weights </span></div>
@@ -137,12 +137,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line">    <span class="comment">// solve not very powerful but simple solver</span></div>
 <div class="line">    {  </div>
 <div class="line">       </div>
-<div class="line">        <span class="keyword">typedef</span> <a name="_a2"></a><a class="code" href="classnifty_1_1graph_1_1MulticutGreedyAdditive.html">nifty::graph::MulticutGreedyAdditive&lt;MulticutObjective&gt;</a> MulticutSolver;</div>
-<div class="line">        <span class="keyword">typedef</span> <a name="_a3"></a><a class="code" href="classnifty_1_1graph_1_1optimization_1_1common_1_1VerboseVisitor.html">nifty::graph::MulticutVerboseVisitor&lt;MulticutObjective&gt;</a> <a name="a4"></a><a class="code" href="namespacenifty_1_1graph.html#a8b139ea9e1b9c08234fb388f35bd9e75">MulticutVerboseVisitor</a>;</div>
-<div class="line">        <span class="keyword">typedef</span> <span class="keyword">typename</span> MulticutSolver::NodeLabels NodeLabels;</div>
+<div class="line">        <span class="keyword">typedef</span> <a name="_a2"></a><a class="code" href="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutGreedyAdditive.html">nifty::graph::optimization::multicut::MulticutGreedyAdditive&lt;MulticutObjective&gt;</a> MulticutSolver;</div>
+<div class="line">        <span class="keyword">typedef</span> <a name="_a3"></a><a class="code" href="classnifty_1_1graph_1_1optimization_1_1common_1_1VerboseVisitor.html">nifty::graph::optimization::multicut::MulticutVerboseVisitor&lt;MulticutObjective&gt;</a> <a name="a4"></a><a class="code" href="namespacenifty_1_1graph_1_1optimization_1_1multicut.html#a071c9020e064373e9c11465fbe1870f9">MulticutVerboseVisitor</a>;</div>
+<div class="line">        <span class="keyword">typedef</span> <span class="keyword">typename</span> MulticutSolver::NodeLabelsType NodeLabelsType;</div>
 <div class="line">        MulticutSolver solver(objective);</div>
 <div class="line"></div>
-<div class="line">        NodeLabels labels(graph);</div>
+<div class="line">        NodeLabelsType labels(graph);</div>
 <div class="line">        MulticutVerboseVisitor visitor;</div>
 <div class="line">        solver.optimize(labels, &amp;visitor);</div>
 <div class="line"></div>

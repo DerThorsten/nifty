@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Nifty
-   &#160;<span id="projectnumber">0.5.1</span>
+   &#160;<span id="projectnumber">0.19.0</span>
    </div>
   </td>
  </tr>
@@ -94,91 +94,88 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <a href="paths_8hxx.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#ifndef NIFTY_GRAPH_PATHS_HXX</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno"><a class="line" href="paths_8hxx.html#a40a4b8daaa32ace67af3b660a8eee854">    3</a></span>&#160;<span class="preprocessor">#define NIFTY_GRAPH_PATHS_HXX</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;cstddef&gt;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;utility&gt;</span> <span class="comment">// std::pair</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;queue&gt;</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;</div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;cstddef&gt;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;utility&gt;</span> <span class="comment">// std::pair</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;queue&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="subgraph__mask_8hxx.html">nifty/graph/subgraph_mask.hxx</a>&quot;</span> <span class="comment">// DefaultSubgraphMask</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="subgraph__mask_8hxx.html">nifty/graph/subgraph_mask.hxx</a>&quot;</span> <span class="comment">// DefaultSubgraphMask</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacenifty.html">nifty</a> {</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">namespace </span>graph {</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">class</span> GRAPH, <span class="keyword">class</span> ITERATOR&gt;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">inline</span> int64_t</div>
-<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="namespacenifty_1_1graph.html#a5efcd6025d7a1aa6ec3e9826f05d73f1">   23</a></span>&#160;<a class="code" href="namespacenifty_1_1graph.html#a5efcd6025d7a1aa6ec3e9826f05d73f1">findChord</a>(</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">const</span> GRAPH&amp; graph,</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    ITERATOR begin,</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    ITERATOR end,</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">bool</span> ignoreEdgeBetweenFirstAndLast = <span class="keyword">false</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;) {</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="namespacenifty_1_1graph.html#a5efcd6025d7a1aa6ec3e9826f05d73f1">findChord</a>(graph, <a class="code" href="structnifty_1_1graph_1_1DefaultSubgraphMask.html">DefaultSubgraphMask&lt;GRAPH&gt;</a>(), begin, end, </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        ignoreEdgeBetweenFirstAndLast);</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;}</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacenifty.html">nifty</a> {</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">namespace </span>graph {</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">class</span> GRAPH, <span class="keyword">class</span> ITERATOR&gt;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">inline</span> int64_t</div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="namespacenifty_1_1graph.html#a5efcd6025d7a1aa6ec3e9826f05d73f1">   21</a></span>&#160;<a class="code" href="namespacenifty_1_1graph.html#a5efcd6025d7a1aa6ec3e9826f05d73f1">findChord</a>(</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keyword">const</span> GRAPH&amp; graph,</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    ITERATOR begin,</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    ITERATOR end,</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">bool</span> ignoreEdgeBetweenFirstAndLast = <span class="keyword">false</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;) {</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="namespacenifty_1_1graph.html#a5efcd6025d7a1aa6ec3e9826f05d73f1">findChord</a>(graph, <a class="code" href="structnifty_1_1graph_1_1DefaultSubgraphMask.html">DefaultSubgraphMask&lt;GRAPH&gt;</a>(), begin, end, </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        ignoreEdgeBetweenFirstAndLast);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;}</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">class</span> GRAPH, <span class="keyword">class</span> SUBGRAPH_MASK, <span class="keyword">class</span> ITERATOR&gt;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keyword">inline</span> int64_t</div>
-<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="namespacenifty_1_1graph.html#aa3515c9d13aba223fd3f7771db67af53">   45</a></span>&#160;<a class="code" href="namespacenifty_1_1graph.html#a5efcd6025d7a1aa6ec3e9826f05d73f1">findChord</a>(</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keyword">const</span> GRAPH&amp; graph,</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">const</span> SUBGRAPH_MASK&amp; mask,</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    ITERATOR begin,</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    ITERATOR end,</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">bool</span> ignoreEdgeBetweenFirstAndLast = <span class="keyword">false</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;) {</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="comment">//std::cout&lt;&lt;&quot;path size &quot;&lt;&lt;std::distance(begin, end)&lt;&lt;&quot;\n&quot;;</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="comment">//std::cout&lt;&lt;&quot; * \n&quot;;</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordflow">for</span>(ITERATOR it = begin; it != end - 1; ++it){</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="comment">//std::cout&lt;&lt;&quot; *** \n&quot;;</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordflow">for</span>(ITERATOR it2 = it + 2; it2 != end; ++it2) {</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            <span class="keywordflow">if</span>(ignoreEdgeBetweenFirstAndLast &amp;&amp; it == begin &amp;&amp; it2 == end - 1) {</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                <span class="keywordflow">continue</span>;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            }</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            <span class="comment">//std::cout&lt;&lt;&quot; findEdge &quot;&lt;&lt;*it&lt;&lt;&quot; &quot;&lt;&lt;*it2&lt;&lt;&quot; \n&quot;;</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            <span class="keyword">const</span> <span class="keyword">auto</span> p = graph.findEdge(*it, *it2);</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            <span class="keywordflow">if</span>(p !=- 1 &amp;&amp; mask.useEdge(p)) {</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                <span class="keywordflow">return</span> p;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            }</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        }</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    }</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordflow">return</span> -1;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;}</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">class</span> PREDECESSORS_MAP, <span class="keyword">class</span> OUT_ITER&gt;</div>
-<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="namespacenifty_1_1graph.html#ad5fff1c63a572469a352e1645f9d3d0c">   73</a></span>&#160;<span class="keywordtype">size_t</span> <a class="code" href="namespacenifty_1_1graph.html#ad5fff1c63a572469a352e1645f9d3d0c">buildPathInLargeEnoughBuffer</a>(</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keyword">const</span> uint64_t source,</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keyword">const</span> uint64_t target,</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keyword">const</span> PREDECESSORS_MAP &amp; predecessorMap,</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    OUT_ITER  largeEnoughBufferBegin</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;){</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keyword">auto</span> current = target;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    *largeEnoughBufferBegin = current;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    ++largeEnoughBufferBegin;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    uint64_t c = 1;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordflow">while</span>(current != source){</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        current = predecessorMap[current];</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        *largeEnoughBufferBegin = current;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        ++largeEnoughBufferBegin;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        ++c;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    }</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keywordflow">return</span> c;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;}</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;} <span class="comment">// namespace graph</span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;} <span class="comment">// namespace nifty</span></div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="preprocessor">#endif // #ifndef NIFTY_GRAPH_PATHS_HXX</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">class</span> GRAPH, <span class="keyword">class</span> SUBGRAPH_MASK, <span class="keyword">class</span> ITERATOR&gt;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keyword">inline</span> int64_t</div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="namespacenifty_1_1graph.html#aa3515c9d13aba223fd3f7771db67af53">   43</a></span>&#160;<a class="code" href="namespacenifty_1_1graph.html#a5efcd6025d7a1aa6ec3e9826f05d73f1">findChord</a>(</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keyword">const</span> GRAPH&amp; graph,</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">const</span> SUBGRAPH_MASK&amp; mask,</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    ITERATOR begin,</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    ITERATOR end,</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">bool</span> ignoreEdgeBetweenFirstAndLast = <span class="keyword">false</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;) {</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="comment">//std::cout&lt;&lt;&quot;path size &quot;&lt;&lt;std::distance(begin, end)&lt;&lt;&quot;\n&quot;;</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="comment">//std::cout&lt;&lt;&quot; * \n&quot;;</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordflow">for</span>(ITERATOR it = begin; it != end - 1; ++it){</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="comment">//std::cout&lt;&lt;&quot; *** \n&quot;;</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="keywordflow">for</span>(ITERATOR it2 = it + 2; it2 != end; ++it2) {</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            <span class="keywordflow">if</span>(ignoreEdgeBetweenFirstAndLast &amp;&amp; it == begin &amp;&amp; it2 == end - 1) {</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            }</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            <span class="comment">//std::cout&lt;&lt;&quot; findEdge &quot;&lt;&lt;*it&lt;&lt;&quot; &quot;&lt;&lt;*it2&lt;&lt;&quot; \n&quot;;</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            <span class="keyword">const</span> <span class="keyword">auto</span> p = graph.findEdge(*it, *it2);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            <span class="keywordflow">if</span>(p !=- 1 &amp;&amp; mask.useEdge(p)) {</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                <span class="keywordflow">return</span> p;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            }</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        }</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    }</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordflow">return</span> -1;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;}</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">class</span> PREDECESSORS_MAP, <span class="keyword">class</span> OUT_ITER&gt;</div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="namespacenifty_1_1graph.html#ad5fff1c63a572469a352e1645f9d3d0c">   71</a></span>&#160;<span class="keywordtype">size_t</span> <a class="code" href="namespacenifty_1_1graph.html#ad5fff1c63a572469a352e1645f9d3d0c">buildPathInLargeEnoughBuffer</a>(</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keyword">const</span> uint64_t source,</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keyword">const</span> uint64_t target,</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keyword">const</span> PREDECESSORS_MAP &amp; predecessorMap,</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    OUT_ITER  largeEnoughBufferBegin</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;){</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keyword">auto</span> current = target;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    *largeEnoughBufferBegin = current;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    ++largeEnoughBufferBegin;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    uint64_t c = 1;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordflow">while</span>(current != source){</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        current = predecessorMap[current];</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        *largeEnoughBufferBegin = current;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        ++largeEnoughBufferBegin;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        ++c;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    }</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keywordflow">return</span> c;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;}</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;} <span class="comment">// namespace graph</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;} <span class="comment">// namespace nifty</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
 <div class="ttc" id="subgraph__mask_8hxx_html"><div class="ttname"><a href="subgraph__mask_8hxx.html">subgraph_mask.hxx</a></div></div>
-<div class="ttc" id="namespacenifty_1_1graph_html_ad5fff1c63a572469a352e1645f9d3d0c"><div class="ttname"><a href="namespacenifty_1_1graph.html#ad5fff1c63a572469a352e1645f9d3d0c">nifty::graph::buildPathInLargeEnoughBuffer</a></div><div class="ttdeci">size_t buildPathInLargeEnoughBuffer(const uint64_t source, const uint64_t target, const PREDECESSORS_MAP &amp;predecessorMap, OUT_ITER largeEnoughBufferBegin)</div><div class="ttdef"><b>Definition:</b> paths.hxx:73</div></div>
-<div class="ttc" id="namespacenifty_1_1graph_html_a5efcd6025d7a1aa6ec3e9826f05d73f1"><div class="ttname"><a href="namespacenifty_1_1graph.html#a5efcd6025d7a1aa6ec3e9826f05d73f1">nifty::graph::findChord</a></div><div class="ttdeci">int64_t findChord(const GRAPH &amp;graph, ITERATOR begin, ITERATOR end, const bool ignoreEdgeBetweenFirstAndLast=false)</div><div class="ttdef"><b>Definition:</b> paths.hxx:23</div></div>
-<div class="ttc" id="structnifty_1_1graph_1_1DefaultSubgraphMask_html"><div class="ttname"><a href="structnifty_1_1graph_1_1DefaultSubgraphMask.html">nifty::graph::DefaultSubgraphMask</a></div><div class="ttdef"><b>Definition:</b> subgraph_mask.hxx:11</div></div>
-<div class="ttc" id="namespacenifty_html"><div class="ttname"><a href="namespacenifty.html">nifty</a></div><div class="ttdef"><b>Definition:</b> arithmetic_array.hxx:10</div></div>
+<div class="ttc" id="namespacenifty_1_1graph_html_ad5fff1c63a572469a352e1645f9d3d0c"><div class="ttname"><a href="namespacenifty_1_1graph.html#ad5fff1c63a572469a352e1645f9d3d0c">nifty::graph::buildPathInLargeEnoughBuffer</a></div><div class="ttdeci">size_t buildPathInLargeEnoughBuffer(const uint64_t source, const uint64_t target, const PREDECESSORS_MAP &amp;predecessorMap, OUT_ITER largeEnoughBufferBegin)</div><div class="ttdef"><b>Definition:</b> paths.hxx:71</div></div>
+<div class="ttc" id="namespacenifty_1_1graph_html_a5efcd6025d7a1aa6ec3e9826f05d73f1"><div class="ttname"><a href="namespacenifty_1_1graph.html#a5efcd6025d7a1aa6ec3e9826f05d73f1">nifty::graph::findChord</a></div><div class="ttdeci">int64_t findChord(const GRAPH &amp;graph, ITERATOR begin, ITERATOR end, const bool ignoreEdgeBetweenFirstAndLast=false)</div><div class="ttdef"><b>Definition:</b> paths.hxx:21</div></div>
+<div class="ttc" id="structnifty_1_1graph_1_1DefaultSubgraphMask_html"><div class="ttname"><a href="structnifty_1_1graph_1_1DefaultSubgraphMask.html">nifty::graph::DefaultSubgraphMask</a></div><div class="ttdef"><b>Definition:</b> subgraph_mask.hxx:9</div></div>
+<div class="ttc" id="namespacenifty_html"><div class="ttname"><a href="namespacenifty.html">nifty</a></div><div class="ttdef"><b>Definition:</b> arithmetic_array.hxx:8</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

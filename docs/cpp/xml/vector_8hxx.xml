@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="vector_8hxx" kind="file" language="C++">
+    <compoundname>vector.hxx</compoundname>
+    <includes refid="arithmetic__array_8hxx" local="yes">arithmetic_array.hxx</includes>
+    <incdepgraph>
+      <node id="6463">
+        <label>limits</label>
+      </node>
+      <node id="6460">
+        <label>cstdint</label>
+      </node>
+      <node id="6464">
+        <label>cmath</label>
+      </node>
+      <node id="6461">
+        <label>stdexcept</label>
+      </node>
+      <node id="6458">
+        <label>vector</label>
+      </node>
+      <node id="6455">
+        <label>/home/tbeier/src/nifty/include/nifty/array/vector.hxx</label>
+        <link refid="vector.hxx"/>
+        <childnode refid="6456" relation="include">
+        </childnode>
+      </node>
+      <node id="6456">
+        <label>arithmetic_array.hxx</label>
+        <link refid="arithmetic__array_8hxx"/>
+        <childnode refid="6457" relation="include">
+        </childnode>
+        <childnode refid="6458" relation="include">
+        </childnode>
+        <childnode refid="6459" relation="include">
+        </childnode>
+      </node>
+      <node id="6457">
+        <label>array</label>
+      </node>
+      <node id="6462">
+        <label>sstream</label>
+      </node>
+      <node id="6459">
+        <label>nifty/tools/runtime_check.hxx</label>
+        <link refid="runtime__check_8hxx"/>
+        <childnode refid="6460" relation="include">
+        </childnode>
+        <childnode refid="6461" relation="include">
+        </childnode>
+        <childnode refid="6462" relation="include">
+        </childnode>
+        <childnode refid="6458" relation="include">
+        </childnode>
+        <childnode refid="6463" relation="include">
+        </childnode>
+        <childnode refid="6464" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespacenifty">nifty</innernamespace>
+    <innernamespace refid="namespacenifty_1_1array">nifty::array</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="arithmetic__array_8hxx" kindref="compound">arithmetic_array.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacenifty" kindref="compound">nifty</ref>{</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">array{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>T,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>ALLOCATOR<sp/>=<sp/>std::allocator&lt;T&gt;<sp/>&gt;</highlight></codeline>
+<codeline lineno="10" refid="namespacenifty_1_1array_1aa0fe9e5e97322da484fa8ffd2fe44cd5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1array_1_1ArrayExtender" kindref="compound">Vector</ref><sp/>=<sp/><ref refid="classnifty_1_1array_1_1ArrayExtender" kindref="compound">ArrayExtender&lt; std::vector&lt;T,ALLOCATOR&gt;</ref><sp/>&gt;;<sp/></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="13"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/home/tbeier/src/nifty/include/nifty/array/vector.hxx"/>
+  </compounddef>
+</doxygen>

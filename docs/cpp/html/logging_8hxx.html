@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Nifty
-   &#160;<span id="projectnumber">0.5.1</span>
+   &#160;<span id="projectnumber">0.19.0</span>
    </div>
   </td>
  </tr>
@@ -91,16 +91,73 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#namespaces">Namespaces</a> &#124;
-<a href="#enum-members">Enumerations</a>  </div>
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">logging.hxx File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><div class="dynheader">
+<div class="textblock"><code>#include &lt;string&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Include dependency graph for logging.hxx:</div>
+<div class="dyncontent">
+<div class="center"><img src="logging_8hxx__incl.png" border="0" usemap="#_2home_2tbeier_2src_2nifty_2include_2nifty_2tools_2logging_8hxx" alt=""/></div>
+</div>
+</div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="logging_8hxx__dep__incl.png" border="0" usemap="#_2home_2tbeier_2src_2nifty_2include_2nifty_2tools_2logging_8hxxdep" alt=""/></div>
-<!-- MAP 0 -->
+<map name="_2home_2tbeier_2src_2nifty_2include_2nifty_2tools_2logging_8hxxdep" id="_2home_2tbeier_2src_2nifty_2include_2nifty_2tools_2logging_8hxxdep">
+<area shape="rect" id="node2" href="logging__visitor_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/common/logging_visitor.hxx" alt="" coords="2828,199,3035,255"/>
+<area shape="rect" id="node3" href="visitor__base_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/common/visitor_base.hxx" alt="" coords="3040,95,3247,151"/>
+<area shape="rect" id="node4" href="solver__base_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/common/solver_base.hxx" alt="" coords="3111,199,3318,255"/>
+<area shape="rect" id="node48" href="lifted__multicut__visitor__base_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/lifted_multicut/lifted_multicut\l_visitor_base.hxx" alt="" coords="2423,303,2630,373"/>
+<area shape="rect" id="node49" href="mincut__visitor__base_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/mincut/mincut_visitor_base.hxx" alt="" coords="3366,199,3577,255"/>
+<area shape="rect" id="node50" href="multicut__visitor__base_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/multicut/multicut_visitor_base.hxx" alt="" coords="5293,199,5517,255"/>
+<area shape="rect" id="node5" href="lifted__multicut__base_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/lifted_multicut/lifted_multicut_base.hxx" alt="" coords="995,310,1247,366"/>
+<area shape="rect" id="node19" href="mincut__base_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/mincut/mincut_base.hxx" alt="" coords="3111,310,3318,366"/>
+<area shape="rect" id="node30" href="multicut__base_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/multicut/multicut_base.hxx" alt="" coords="5302,310,5508,366"/>
+<area shape="rect" id="node6" href="lifted__twocut__kernighan__lin_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/lifted_multicut/detail/lifted\l_twocut_kernighan_lin.hxx" alt="" coords="1491,429,1698,499"/>
+<area shape="rect" id="node7" href="lifted__multicut__kernighan__lin_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/lifted_multicut/lifted_multicut\l_kernighan_lin.hxx" alt="" coords="1491,555,1698,625"/>
+<area shape="rect" id="node8" href="lifted__multicut__mp_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/lifted_multicut/lifted_multicut_mp.hxx" alt="" coords="1070,681,1313,737"/>
+<area shape="rect" id="node9" href="lifted__multicut_2fusion__move_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/lifted_multicut/fusion_move.hxx" alt="" coords="536,562,746,618"/>
+<area shape="rect" id="node10" href="lifted__multicut_2fusion__move__based_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/lifted_multicut/fusion_move\l_based.hxx" alt="" coords="167,673,374,744"/>
+<area shape="rect" id="node11" href="lifted__multicut__andres__greedy__additive_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/lifted_multicut/lifted_multicut\l_andres_greedy_additive.hxx" alt="" coords="716,429,923,499"/>
+<area shape="rect" id="node12" href="lifted__multicut__andres__kernighan__lin_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/lifted_multicut/lifted_multicut\l_andres_kernighan_lin.hxx" alt="" coords="947,429,1154,499"/>
+<area shape="rect" id="node13" href="lifted__multicut__greedy__additive_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/lifted_multicut/lifted_multicut\l_greedy_additive.hxx" alt="" coords="486,429,692,499"/>
+<area shape="rect" id="node14" href="lifted__multicut__ilp_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/lifted_multicut/lifted_multicut_ilp.hxx" alt="" coords="1229,436,1466,492"/>
+<area shape="rect" id="node15" href="lifted__multicut_2proposal__generators_2proposal__generator__base_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/lifted_multicut/proposal_generators\l/proposal_generator_base.hxx" alt="" coords="31,555,259,625"/>
+<area shape="rect" id="node16" href="lifted__multicut_2proposal__generators_2watershed__proposal__generator_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/lifted_multicut/proposal_generators\l/watershed_proposal_generator.hxx" alt="" coords="283,555,511,625"/>
+<area shape="rect" id="node17" href="py__lifted__multicut__base_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/python\l/graph/optimization/lifted\l_multicut/py_lifted_multicut\l_base.hxx" alt="" coords="1978,421,2160,507"/>
+<area shape="rect" id="node18" href="py__lifted__multicut__visitor__base_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/python\l/graph/optimization/lifted\l_multicut/py_lifted_multicut\l_visitor_base.hxx" alt="" coords="1722,421,1904,507"/>
+<area shape="rect" id="node20" href="cc__fusion__move__based__impl_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/common/cc_fusion_move_based_impl.hxx" alt="" coords="3434,436,3707,492"/>
+<area shape="rect" id="node21" href="mincut__cc__fusion__move__based_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/mincut/mincut_cc_fusion_move\l_based.hxx" alt="" coords="2502,555,2713,625"/>
+<area shape="rect" id="node23" href="cc__fusion__move__impl_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/common/cc_fusion_move_impl.hxx" alt="" coords="2235,436,2466,492"/>
+<area shape="rect" id="node24" href="mincut__cc__fusion__move_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/mincut/mincut_cc_fusion_move.hxx" alt="" coords="2490,436,2725,492"/>
+<area shape="rect" id="node25" href="mincut__greedy__additive_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/mincut/mincut_greedy_additive.hxx" alt="" coords="2750,436,2980,492"/>
+<area shape="rect" id="node26" href="mincut__qpbo_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/mincut/mincut_qpbo.hxx" alt="" coords="3004,436,3211,492"/>
+<area shape="rect" id="node27" href="cgc_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/multicut/cgc.hxx" alt="" coords="3943,436,4150,492"/>
+<area shape="rect" id="node28" href="py__mincut__base_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/python\l/graph/optimization/mincut\l/py_mincut_base.hxx" alt="" coords="3235,429,3410,499"/>
+<area shape="rect" id="node29" href="py__mincut__visitor__base_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/python\l/graph/optimization/mincut\l/py_mincut_visitor_base.hxx" alt="" coords="3731,429,3919,499"/>
+<area shape="rect" id="node22" href="cc__fusion__move__based_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/multicut/cc_fusion_move_based.hxx" alt="" coords="4928,681,5167,737"/>
+<area shape="rect" id="node31" href="greedy__additive__multicut__proposal__generator_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/common/proposal_generators/greedy\l_additive_multicut_proposal_generator.hxx" alt="" coords="5440,555,5709,625"/>
+<area shape="rect" id="node32" href="block__multicut_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/multicut/block_multicut.hxx" alt="" coords="5187,436,5394,492"/>
+<area shape="rect" id="node33" href="chained__solvers_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/multicut/chained_solvers.hxx" alt="" coords="5418,436,5624,492"/>
+<area shape="rect" id="node34" href="multicut_2fusion__move_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/multicut/fusion_move.hxx" alt="" coords="5748,562,5955,618"/>
+<area shape="rect" id="node35" href="multicut_2fusion__move__based_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/multicut/fusion_move_based.hxx" alt="" coords="6190,681,6407,737"/>
+<area shape="rect" id="node36" href="kernighan__lin_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/multicut/kernighan_lin.hxx" alt="" coords="5970,436,6176,492"/>
+<area shape="rect" id="node37" href="multicut__andres_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/multicut/multicut_andres.hxx" alt="" coords="6252,436,6459,492"/>
+<area shape="rect" id="node38" href="multicut__mp_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/multicut/multicut_mp.hxx" alt="" coords="6182,562,6388,618"/>
+<area shape="rect" id="node39" href="multicut__decomposer_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/multicut/multicut_decomposer.hxx" alt="" coords="6483,436,6708,492"/>
+<area shape="rect" id="node40" href="multicut__greedy__additive_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/multicut/multicut_greedy_additive.hxx" alt="" coords="5649,436,5894,492"/>
+<area shape="rect" id="node41" href="greedy__additive__proposals_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/multicut/proposal_generators\l/greedy_additive_proposals.hxx" alt="" coords="5180,555,5387,625"/>
+<area shape="rect" id="node42" href="multicut__ilp_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/multicut/multicut_ilp.hxx" alt="" coords="6783,436,6990,492"/>
+<area shape="rect" id="node43" href="perturb__and__map_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/multicut/perturb_and_map.hxx" alt="" coords="7014,436,7220,492"/>
+<area shape="rect" id="node44" href="watershed__proposals_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/multicut/proposal_generators\l/watershed_proposals.hxx" alt="" coords="4174,429,4380,499"/>
+<area shape="rect" id="node45" href="py__solver__base_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/python\l/graph/optimization/common\l/py_solver_base.hxx" alt="" coords="4405,429,4592,499"/>
+<area shape="rect" id="node46" href="py__solver__visitor__base_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/python\l/graph/optimization/common\l/py_solver_visitor_base.hxx" alt="" coords="4616,429,4802,499"/>
+<area shape="rect" id="node47" href="py__multicut__base_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/python\l/graph/optimization/multicut\l/py_multicut_base.hxx" alt="" coords="4827,429,5010,499"/>
+</map>
 </div>
 </div>
 <p><a href="logging_8hxx_source.html">Go to the source code of this file.</a></p>
@@ -126,6 +183,11 @@ Enumerations</h2></td></tr>
 <br />
  }<tr class="separator:a3385625f9a0dbb17f70c47d3fca2f64d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a71e51d733eeaede804a36fd8dea1a28e"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenifty_1_1logging.html#a71e51d733eeaede804a36fd8dea1a28e">nifty::logging::logLevelName</a> (const LogLevel logLevel)</td></tr>
+<tr class="separator:a71e51d733eeaede804a36fd8dea1a28e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->

@@ -1,0 +1,564 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="classnifty_1_1graph_1_1SimpleDirectedGraph" kind="class" language="C++" prot="public">
+    <compoundname>nifty::graph::SimpleDirectedGraph</compoundname>
+    <basecompoundref refid="classnifty_1_1graph_1_1DirectedGraphBase" prot="public" virt="non-virtual">nifty::graph::DirectedGraphBase&lt; SimpleDirectedGraph&lt; ARC_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt; &gt;</basecompoundref>
+    <includes refid="simple__directed__graph_8hxx" local="no">simple_directed_graph.hxx</includes>
+    <templateparamlist>
+      <param>
+        <type>class ARC_INTERANL_TYPE</type>
+        <defval>int64_t</defval>
+      </param>
+      <param>
+        <type>class NODE_INTERNAL_TYPE</type>
+        <defval>int64_t</defval>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1SimpleDirectedGraph_1a2362cabf729f9db54066ab49a13b9cb4" prot="private" static="no">
+        <type>ARC_INTERANL_TYPE</type>
+        <definition>typedef ARC_INTERANL_TYPE nifty::graph::SimpleDirectedGraph&lt; ARC_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::ArcInternalType</definition>
+        <argsstring></argsstring>
+        <name>ArcInternalType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" line="24" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1SimpleDirectedGraph_1a98632daf3dedd69473dd483575797f4f" prot="private" static="no">
+        <type>NODE_INTERNAL_TYPE</type>
+        <definition>typedef NODE_INTERNAL_TYPE nifty::graph::SimpleDirectedGraph&lt; ARC_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::NodeInteralType</definition>
+        <argsstring></argsstring>
+        <name>NodeInteralType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" line="25" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1SimpleDirectedGraph_1abf20cb36a59eac36f2bb9d374ca27b66" prot="private" static="no">
+        <type>detail_graph::DirectedAdjacency&lt; int64_t, int64_t, NodeInteralType, ArcInternalType &gt;</type>
+        <definition>typedef detail_graph::DirectedAdjacency&lt;int64_t,int64_t,NodeInteralType,ArcInternalType&gt; nifty::graph::SimpleDirectedGraph&lt; ARC_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::NodeAdjacency</definition>
+        <argsstring></argsstring>
+        <name>NodeAdjacency</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" line="26" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1SimpleDirectedGraph_1a4b1b7e40e7ce8bc77e3f49d6e812d698" prot="private" static="no">
+        <type>std::set&lt; NodeAdjacency &gt;</type>
+        <definition>typedef std::set&lt;NodeAdjacency &gt; nifty::graph::SimpleDirectedGraph&lt; ARC_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::DirectedNodeStorage</definition>
+        <argsstring></argsstring>
+        <name>DirectedNodeStorage</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" line="27" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1SimpleDirectedGraph_1a5d5e361b23feca9fdef5cc51a25baa69" prot="private" static="no">
+        <type>std::pair&lt; DirectedNodeStorage, DirectedNodeStorage &gt;</type>
+        <definition>typedef std::pair&lt;DirectedNodeStorage, DirectedNodeStorage&gt; nifty::graph::SimpleDirectedGraph&lt; ARC_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::NodeStorage</definition>
+        <argsstring></argsstring>
+        <name>NodeStorage</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" line="28" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1SimpleDirectedGraph_1ad82ac383ad999a93641f63c36fee5db4" prot="private" static="no">
+        <type>std::pair&lt; NodeInteralType, NodeInteralType &gt;</type>
+        <definition>typedef std::pair&lt;NodeInteralType,NodeInteralType&gt; nifty::graph::SimpleDirectedGraph&lt; ARC_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::ArcStorage</definition>
+        <argsstring></argsstring>
+        <name>ArcStorage</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" line="29" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1SimpleDirectedGraph_1a50b05474da6846da32398e01be9e3d30" prot="public" static="no">
+        <type>boost::counting_iterator&lt; int64_t &gt;</type>
+        <definition>typedef boost::counting_iterator&lt;int64_t&gt; nifty::graph::SimpleDirectedGraph&lt; ARC_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::NodeIter</definition>
+        <argsstring></argsstring>
+        <name>NodeIter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" line="31" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1SimpleDirectedGraph_1ad555ff3a9746915c60858cd7d55ae342" prot="public" static="no">
+        <type>boost::counting_iterator&lt; int64_t &gt;</type>
+        <definition>typedef boost::counting_iterator&lt;int64_t&gt; nifty::graph::SimpleDirectedGraph&lt; ARC_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::ArcIter</definition>
+        <argsstring></argsstring>
+        <name>ArcIter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" line="32" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1SimpleDirectedGraph_1aaf7f58391a2b6e0db7983462dbd6a542" prot="public" static="no">
+        <type>DirectedNodeStorage::const_iterator</type>
+        <definition>typedef DirectedNodeStorage::const_iterator nifty::graph::SimpleDirectedGraph&lt; ARC_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::AdjacencyInIter</definition>
+        <argsstring></argsstring>
+        <name>AdjacencyInIter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" line="34" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1SimpleDirectedGraph_1a5af7a4eb6bbc44b805a44bb131786dd0" prot="public" static="no">
+        <type>DirectedNodeStorage::const_iterator</type>
+        <definition>typedef DirectedNodeStorage::const_iterator nifty::graph::SimpleDirectedGraph&lt; ARC_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::AdjacencyOutIter</definition>
+        <argsstring></argsstring>
+        <name>AdjacencyOutIter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" line="35" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1SimpleDirectedGraph_1a0e61985b1487d018ab09fcefb2302c99" prot="public" static="no">
+        <type><ref refid="structnifty_1_1graph_1_1ContiguousTag" kindref="compound">ContiguousTag</ref></type>
+        <definition>typedef ContiguousTag nifty::graph::SimpleDirectedGraph&lt; ARC_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::ArcIdTag</definition>
+        <argsstring></argsstring>
+        <name>ArcIdTag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" line="36" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1SimpleDirectedGraph_1ad0523e96e29a6feae5c9c003c2dc9e37" prot="public" static="no">
+        <type><ref refid="structnifty_1_1graph_1_1ContiguousTag" kindref="compound">ContiguousTag</ref></type>
+        <definition>typedef ContiguousTag nifty::graph::SimpleDirectedGraph&lt; ARC_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::EdgeIdTag</definition>
+        <argsstring></argsstring>
+        <name>EdgeIdTag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" line="37" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1SimpleDirectedGraph_1a32f9f0f4beaa2cada708f8a51189a96b" prot="public" static="no">
+        <type><ref refid="structnifty_1_1graph_1_1ContiguousTag" kindref="compound">ContiguousTag</ref></type>
+        <definition>typedef ContiguousTag nifty::graph::SimpleDirectedGraph&lt; ARC_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::NodeIdTag</definition>
+        <argsstring></argsstring>
+        <name>NodeIdTag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" line="38" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1SimpleDirectedGraph_1a06582e01973f4231c4b442b7077b1729" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; NodeStorage &gt;</type>
+        <definition>std::vector&lt;NodeStorage&gt; nifty::graph::SimpleDirectedGraph&lt; ARC_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::nodes_</definition>
+        <argsstring></argsstring>
+        <name>nodes_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" line="114" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" bodystart="114" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1SimpleDirectedGraph_1aaf5a0888f81c25c86fcff03f8e02be30" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; ArcStorage &gt;</type>
+        <definition>std::vector&lt;ArcStorage&gt; nifty::graph::SimpleDirectedGraph&lt; ARC_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::arcs_</definition>
+        <argsstring></argsstring>
+        <name>arcs_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" line="115" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" bodystart="115" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1SimpleDirectedGraph_1a81190fff5233f90e9fb5cbb29fc46bda" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>nifty::graph::SimpleDirectedGraph&lt; ARC_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::SimpleDirectedGraph</definition>
+        <argsstring>(const uint64_t numberOfNodes=0, const uint64_t reserveNumberOfArcs=0)</argsstring>
+        <name>SimpleDirectedGraph</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>numberOfNodes</declname>
+          <defval>0</defval>
+        </param>
+        <param>
+          <type>const uint64_t</type>
+          <declname>reserveNumberOfArcs</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" line="40" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" bodystart="40" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1SimpleDirectedGraph_1aec4eeda3468d8678b1ccab285b9cb9e5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int64_t</type>
+        <definition>int64_t nifty::graph::SimpleDirectedGraph&lt; ARC_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::insertArc</definition>
+        <argsstring>(const int64_t s, const int64_t t)</argsstring>
+        <name>insertArc</name>
+        <param>
+          <type>const int64_t</type>
+          <declname>s</declname>
+        </param>
+        <param>
+          <type>const int64_t</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" line="47" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" bodystart="47" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1SimpleDirectedGraph_1a7f485c4f446b1b95c4211c8fa4c87784" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int64_t</type>
+        <definition>int64_t nifty::graph::SimpleDirectedGraph&lt; ARC_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::source</definition>
+        <argsstring>(const int64_t a) const </argsstring>
+        <name>source</name>
+        <param>
+          <type>const int64_t</type>
+          <declname>a</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" line="65" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" bodystart="65" bodyend="68"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1SimpleDirectedGraph_1ad38492560a573e2f1f4de14a1d315271" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int64_t</type>
+        <definition>int64_t nifty::graph::SimpleDirectedGraph&lt; ARC_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::target</definition>
+        <argsstring>(const int64_t a) const </argsstring>
+        <name>target</name>
+        <param>
+          <type>const int64_t</type>
+          <declname>a</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" line="69" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" bodystart="69" bodyend="72"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1SimpleDirectedGraph_1aad6e2efc56adee1f93dcb7a7c1528851" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int64_t</type>
+        <definition>int64_t nifty::graph::SimpleDirectedGraph&lt; ARC_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::findArc</definition>
+        <argsstring>(const int64_t s, const int64_t t)</argsstring>
+        <name>findArc</name>
+        <param>
+          <type>const int64_t</type>
+          <declname>s</declname>
+        </param>
+        <param>
+          <type>const int64_t</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" line="76" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" bodystart="76" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1SimpleDirectedGraph_1a49962369af71f9768ab556c65ae84460" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int64_t</type>
+        <definition>int64_t nifty::graph::SimpleDirectedGraph&lt; ARC_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::nodeIdUpperBound</definition>
+        <argsstring>() const </argsstring>
+        <name>nodeIdUpperBound</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" line="83" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" bodystart="83" bodyend="83"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1SimpleDirectedGraph_1a959805e538eafd5158bab87eeefd3ea5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int64_t</type>
+        <definition>int64_t nifty::graph::SimpleDirectedGraph&lt; ARC_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::maxArcId</definition>
+        <argsstring>() const </argsstring>
+        <name>maxArcId</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" line="84" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" bodystart="84" bodyend="84"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1SimpleDirectedGraph_1a949760c5493c469e1280e4334a9f434e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int64_t</type>
+        <definition>int64_t nifty::graph::SimpleDirectedGraph&lt; ARC_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::numberOfArcs</definition>
+        <argsstring>() const </argsstring>
+        <name>numberOfArcs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" line="85" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" bodystart="85" bodyend="85"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1SimpleDirectedGraph_1a757bddbe78af1c5587a8aa213a924e3f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int64_t</type>
+        <definition>int64_t nifty::graph::SimpleDirectedGraph&lt; ARC_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::numberOfNodes</definition>
+        <argsstring>() const </argsstring>
+        <name>numberOfNodes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" line="86" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" bodystart="86" bodyend="86"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1SimpleDirectedGraph_1a63f52c25a7cd332b1144077e8317e0fc" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a50b05474da6846da32398e01be9e3d30" kindref="member">NodeIter</ref></type>
+        <definition>NodeIter nifty::graph::SimpleDirectedGraph&lt; ARC_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::nodesBegin</definition>
+        <argsstring>() const </argsstring>
+        <name>nodesBegin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" line="89" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" bodystart="89" bodyend="89"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1SimpleDirectedGraph_1a4b78d46edd4a3144405ac07b46c4353f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a50b05474da6846da32398e01be9e3d30" kindref="member">NodeIter</ref></type>
+        <definition>NodeIter nifty::graph::SimpleDirectedGraph&lt; ARC_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::nodesEnd</definition>
+        <argsstring>() const </argsstring>
+        <name>nodesEnd</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" line="90" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" bodystart="90" bodyend="90"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1SimpleDirectedGraph_1af40cd92a29a3edda8299c681595c8f97" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1ad555ff3a9746915c60858cd7d55ae342" kindref="member">ArcIter</ref></type>
+        <definition>ArcIter nifty::graph::SimpleDirectedGraph&lt; ARC_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::arcsBegin</definition>
+        <argsstring>() const </argsstring>
+        <name>arcsBegin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" line="91" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" bodystart="91" bodyend="91"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1SimpleDirectedGraph_1aaea9d1ee2612ce1dd24464583b27ccd1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1ad555ff3a9746915c60858cd7d55ae342" kindref="member">ArcIter</ref></type>
+        <definition>ArcIter nifty::graph::SimpleDirectedGraph&lt; ARC_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::arcsEnd</definition>
+        <argsstring>() const </argsstring>
+        <name>arcsEnd</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" line="92" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" bodystart="92" bodyend="92"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1SimpleDirectedGraph_1a192481eeb7c7f00e424b5394e9bd0817" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a5af7a4eb6bbc44b805a44bb131786dd0" kindref="member">AdjacencyOutIter</ref></type>
+        <definition>AdjacencyOutIter nifty::graph::SimpleDirectedGraph&lt; ARC_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::adjacencyOutBegin</definition>
+        <argsstring>(const int64_t node) const </argsstring>
+        <name>adjacencyOutBegin</name>
+        <param>
+          <type>const int64_t</type>
+          <declname>node</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" line="94" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" bodystart="94" bodyend="97"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1SimpleDirectedGraph_1ab8a11a50925097bc5a1461c0fb4b5e71" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a5af7a4eb6bbc44b805a44bb131786dd0" kindref="member">AdjacencyOutIter</ref></type>
+        <definition>AdjacencyOutIter nifty::graph::SimpleDirectedGraph&lt; ARC_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::adjacencyOutEnd</definition>
+        <argsstring>(const int64_t node) const </argsstring>
+        <name>adjacencyOutEnd</name>
+        <param>
+          <type>const int64_t</type>
+          <declname>node</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" line="98" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" bodystart="98" bodyend="101"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1SimpleDirectedGraph_1a9586d07efd7e65d8e0fd133ee2184af4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1aaf7f58391a2b6e0db7983462dbd6a542" kindref="member">AdjacencyInIter</ref></type>
+        <definition>AdjacencyInIter nifty::graph::SimpleDirectedGraph&lt; ARC_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::adjacencyInBegin</definition>
+        <argsstring>(const int64_t node) const </argsstring>
+        <name>adjacencyInBegin</name>
+        <param>
+          <type>const int64_t</type>
+          <declname>node</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" line="103" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" bodystart="103" bodyend="106"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1SimpleDirectedGraph_1a3340106e7d4de3ca6f4e7bf8a4b6c279" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1aaf7f58391a2b6e0db7983462dbd6a542" kindref="member">AdjacencyInIter</ref></type>
+        <definition>AdjacencyInIter nifty::graph::SimpleDirectedGraph&lt; ARC_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::adjacencyInEnd</definition>
+        <argsstring>(const int64_t node) const </argsstring>
+        <name>adjacencyInEnd</name>
+        <param>
+          <type>const int64_t</type>
+          <declname>node</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" line="107" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" bodystart="107" bodyend="110"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1793">
+        <label>nifty::graph::DirectedGraphBase&lt; SimpleDirectedGraph&lt; ARC_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt; &gt;</label>
+        <link refid="classnifty_1_1graph_1_1DirectedGraphBase"/>
+      </node>
+      <node id="1792">
+        <label>nifty::graph::SimpleDirectedGraph&lt; ARC_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1SimpleDirectedGraph"/>
+        <childnode refid="1793" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1795">
+        <label>nifty::graph::DirectedGraphBase&lt; SimpleDirectedGraph&lt; ARC_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt; &gt;</label>
+        <link refid="classnifty_1_1graph_1_1DirectedGraphBase"/>
+      </node>
+      <node id="1794">
+        <label>nifty::graph::SimpleDirectedGraph&lt; ARC_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1SimpleDirectedGraph"/>
+        <childnode refid="1795" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" line="22" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/simple_directed_graph.hxx" bodystart="19" bodyend="116"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1graph_1_1DirectedGraphBase_1a712c07401a2323f2c4df04e7c4a4ce7e" prot="public" virt="non-virtual"><scope>nifty::graph::SimpleDirectedGraph</scope><name>adjacency</name></member>
+      <member refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a9586d07efd7e65d8e0fd133ee2184af4" prot="public" virt="non-virtual"><scope>nifty::graph::SimpleDirectedGraph</scope><name>adjacencyInBegin</name></member>
+      <member refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a3340106e7d4de3ca6f4e7bf8a4b6c279" prot="public" virt="non-virtual"><scope>nifty::graph::SimpleDirectedGraph</scope><name>adjacencyInEnd</name></member>
+      <member refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1aaf7f58391a2b6e0db7983462dbd6a542" prot="public" virt="non-virtual"><scope>nifty::graph::SimpleDirectedGraph</scope><name>AdjacencyInIter</name></member>
+      <member refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a192481eeb7c7f00e424b5394e9bd0817" prot="public" virt="non-virtual"><scope>nifty::graph::SimpleDirectedGraph</scope><name>adjacencyOutBegin</name></member>
+      <member refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1ab8a11a50925097bc5a1461c0fb4b5e71" prot="public" virt="non-virtual"><scope>nifty::graph::SimpleDirectedGraph</scope><name>adjacencyOutEnd</name></member>
+      <member refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a5af7a4eb6bbc44b805a44bb131786dd0" prot="public" virt="non-virtual"><scope>nifty::graph::SimpleDirectedGraph</scope><name>AdjacencyOutIter</name></member>
+      <member refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a0e61985b1487d018ab09fcefb2302c99" prot="public" virt="non-virtual"><scope>nifty::graph::SimpleDirectedGraph</scope><name>ArcIdTag</name></member>
+      <member refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a2362cabf729f9db54066ab49a13b9cb4" prot="private" virt="non-virtual"><scope>nifty::graph::SimpleDirectedGraph</scope><name>ArcInternalType</name></member>
+      <member refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1ad555ff3a9746915c60858cd7d55ae342" prot="public" virt="non-virtual"><scope>nifty::graph::SimpleDirectedGraph</scope><name>ArcIter</name></member>
+      <member refid="classnifty_1_1graph_1_1DirectedGraphBase_1ad163249d1556275cd3a26be3fb149ea2" prot="public" virt="non-virtual"><scope>nifty::graph::SimpleDirectedGraph</scope><name>arcs</name></member>
+      <member refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1aaf5a0888f81c25c86fcff03f8e02be30" prot="private" virt="non-virtual"><scope>nifty::graph::SimpleDirectedGraph</scope><name>arcs_</name></member>
+      <member refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1af40cd92a29a3edda8299c681595c8f97" prot="public" virt="non-virtual"><scope>nifty::graph::SimpleDirectedGraph</scope><name>arcsBegin</name></member>
+      <member refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1aaea9d1ee2612ce1dd24464583b27ccd1" prot="public" virt="non-virtual"><scope>nifty::graph::SimpleDirectedGraph</scope><name>arcsEnd</name></member>
+      <member refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1ad82ac383ad999a93641f63c36fee5db4" prot="private" virt="non-virtual"><scope>nifty::graph::SimpleDirectedGraph</scope><name>ArcStorage</name></member>
+      <member refid="classnifty_1_1graph_1_1DirectedGraphBase_1a583e01641aec296b9bc33a346f90a216" prot="public" virt="non-virtual"><scope>nifty::graph::SimpleDirectedGraph</scope><name>ChildGraph</name></member>
+      <member refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a4b1b7e40e7ce8bc77e3f49d6e812d698" prot="private" virt="non-virtual"><scope>nifty::graph::SimpleDirectedGraph</scope><name>DirectedNodeStorage</name></member>
+      <member refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1ad0523e96e29a6feae5c9c003c2dc9e37" prot="public" virt="non-virtual"><scope>nifty::graph::SimpleDirectedGraph</scope><name>EdgeIdTag</name></member>
+      <member refid="classnifty_1_1graph_1_1DirectedGraphBase_1a51b3ede5d781b372911dad0cff2ae6f6" prot="public" virt="non-virtual"><scope>nifty::graph::SimpleDirectedGraph</scope><name>edgeIdUpperBound</name></member>
+      <member refid="classnifty_1_1graph_1_1DirectedGraphBase_1a1c7072e651f9b4cc2c7ff121d204c8cd" prot="public" virt="non-virtual"><scope>nifty::graph::SimpleDirectedGraph</scope><name>edges</name></member>
+      <member refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1aad6e2efc56adee1f93dcb7a7c1528851" prot="public" virt="non-virtual"><scope>nifty::graph::SimpleDirectedGraph</scope><name>findArc</name></member>
+      <member refid="classnifty_1_1graph_1_1DirectedGraphBase_1a49976a6e82bc84a7a2827e0e8592fc1a" prot="public" virt="non-virtual"><scope>nifty::graph::SimpleDirectedGraph</scope><name>findEdge</name></member>
+      <member refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1aec4eeda3468d8678b1ccab285b9cb9e5" prot="public" virt="non-virtual"><scope>nifty::graph::SimpleDirectedGraph</scope><name>insertArc</name></member>
+      <member refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a959805e538eafd5158bab87eeefd3ea5" prot="public" virt="non-virtual"><scope>nifty::graph::SimpleDirectedGraph</scope><name>maxArcId</name></member>
+      <member refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1abf20cb36a59eac36f2bb9d374ca27b66" prot="private" virt="non-virtual"><scope>nifty::graph::SimpleDirectedGraph</scope><name>NodeAdjacency</name></member>
+      <member refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a32f9f0f4beaa2cada708f8a51189a96b" prot="public" virt="non-virtual"><scope>nifty::graph::SimpleDirectedGraph</scope><name>NodeIdTag</name></member>
+      <member refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a49962369af71f9768ab556c65ae84460" prot="public" virt="non-virtual"><scope>nifty::graph::SimpleDirectedGraph</scope><name>nodeIdUpperBound</name></member>
+      <member refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a98632daf3dedd69473dd483575797f4f" prot="private" virt="non-virtual"><scope>nifty::graph::SimpleDirectedGraph</scope><name>NodeInteralType</name></member>
+      <member refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a50b05474da6846da32398e01be9e3d30" prot="public" virt="non-virtual"><scope>nifty::graph::SimpleDirectedGraph</scope><name>NodeIter</name></member>
+      <member refid="classnifty_1_1graph_1_1DirectedGraphBase_1af2ea4db179032139161358e1dae678bd" prot="public" virt="non-virtual"><scope>nifty::graph::SimpleDirectedGraph</scope><name>nodes</name></member>
+      <member refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a06582e01973f4231c4b442b7077b1729" prot="private" virt="non-virtual"><scope>nifty::graph::SimpleDirectedGraph</scope><name>nodes_</name></member>
+      <member refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a63f52c25a7cd332b1144077e8317e0fc" prot="public" virt="non-virtual"><scope>nifty::graph::SimpleDirectedGraph</scope><name>nodesBegin</name></member>
+      <member refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a4b78d46edd4a3144405ac07b46c4353f" prot="public" virt="non-virtual"><scope>nifty::graph::SimpleDirectedGraph</scope><name>nodesEnd</name></member>
+      <member refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a5d5e361b23feca9fdef5cc51a25baa69" prot="private" virt="non-virtual"><scope>nifty::graph::SimpleDirectedGraph</scope><name>NodeStorage</name></member>
+      <member refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a949760c5493c469e1280e4334a9f434e" prot="public" virt="non-virtual"><scope>nifty::graph::SimpleDirectedGraph</scope><name>numberOfArcs</name></member>
+      <member refid="classnifty_1_1graph_1_1DirectedGraphBase_1ad3e9b4a5e810cdfb87bdff0adf3385d4" prot="public" virt="non-virtual"><scope>nifty::graph::SimpleDirectedGraph</scope><name>numberOfEdges</name></member>
+      <member refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a757bddbe78af1c5587a8aa213a924e3f" prot="public" virt="non-virtual"><scope>nifty::graph::SimpleDirectedGraph</scope><name>numberOfNodes</name></member>
+      <member refid="classnifty_1_1graph_1_1DirectedGraphBase_1ae772bf5744b9fe1af63eb1418b7ab261" prot="public" virt="non-virtual"><scope>nifty::graph::SimpleDirectedGraph</scope><name>Self</name></member>
+      <member refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a81190fff5233f90e9fb5cbb29fc46bda" prot="public" virt="non-virtual"><scope>nifty::graph::SimpleDirectedGraph</scope><name>SimpleDirectedGraph</name></member>
+      <member refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1a7f485c4f446b1b95c4211c8fa4c87784" prot="public" virt="non-virtual"><scope>nifty::graph::SimpleDirectedGraph</scope><name>source</name></member>
+      <member refid="classnifty_1_1graph_1_1SimpleDirectedGraph_1ad38492560a573e2f1f4de14a1d315271" prot="public" virt="non-virtual"><scope>nifty::graph::SimpleDirectedGraph</scope><name>target</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

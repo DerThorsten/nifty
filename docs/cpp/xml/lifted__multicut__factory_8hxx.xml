@@ -1,0 +1,221 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="lifted__multicut__factory_8hxx" kind="file" language="C++">
+    <compoundname>lifted_multicut_factory.hxx</compoundname>
+    <includes refid="lifted__multicut__base_8hxx" local="yes">nifty/graph/optimization/lifted_multicut/lifted_multicut_base.hxx</includes>
+    <includedby refid="lifted__multicut_2fusion__move_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move.hxx</includedby>
+    <includedby refid="py__lifted__multicut__factory_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/python/graph/optimization/lifted_multicut/py_lifted_multicut_factory.hxx</includedby>
+    <includedby refid="lifted__multicut_2py__proposal__generator__factory__base_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/python/graph/optimization/lifted_multicut/py_proposal_generator_factory_base.hxx</includedby>
+    <incdepgraph>
+      <node id="8545">
+        <label>nifty/graph/optimization/lifted_multicut/lifted_multicut_base.hxx</label>
+        <link refid="lifted__multicut__base_8hxx"/>
+        <childnode refid="8546" relation="include">
+        </childnode>
+        <childnode refid="8547" relation="include">
+        </childnode>
+        <childnode refid="8548" relation="include">
+        </childnode>
+        <childnode refid="8549" relation="include">
+        </childnode>
+        <childnode refid="8550" relation="include">
+        </childnode>
+        <childnode refid="8551" relation="include">
+        </childnode>
+      </node>
+      <node id="8557">
+        <label>nifty/tools/logging.hxx</label>
+        <link refid="logging_8hxx"/>
+      </node>
+      <node id="8549">
+        <label>stdexcept</label>
+      </node>
+      <node id="8551">
+        <label>nifty/graph/optimization/common/solver_base.hxx</label>
+        <link refid="solver__base_8hxx"/>
+        <childnode refid="8546" relation="include">
+        </childnode>
+        <childnode refid="8547" relation="include">
+        </childnode>
+        <childnode refid="8548" relation="include">
+        </childnode>
+        <childnode refid="8549" relation="include">
+        </childnode>
+        <childnode refid="8550" relation="include">
+        </childnode>
+        <childnode refid="8551" relation="include">
+        </childnode>
+        <childnode refid="8552" relation="include">
+        </childnode>
+      </node>
+      <node id="8546">
+        <label>string</label>
+      </node>
+      <node id="8550">
+        <label>nifty/exceptions/exceptions.hxx</label>
+        <link refid="exceptions_8hxx"/>
+        <childnode refid="8549" relation="include">
+        </childnode>
+      </node>
+      <node id="8544">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_factory.hxx</label>
+        <link refid="lifted_multicut_factory.hxx"/>
+        <childnode refid="8545" relation="include">
+        </childnode>
+      </node>
+      <node id="8556">
+        <label>nifty/tools/timer.hxx</label>
+        <link refid="timer_8hxx"/>
+        <childnode refid="8548" relation="include">
+        </childnode>
+        <childnode refid="8555" relation="include">
+        </childnode>
+        <childnode refid="8546" relation="include">
+        </childnode>
+      </node>
+      <node id="8552">
+        <label>nifty/graph/optimization/lifted_multicut/lifted_multicut_visitor_base.hxx</label>
+        <link refid="lifted__multicut__visitor__base_8hxx"/>
+        <childnode refid="8546" relation="include">
+        </childnode>
+        <childnode refid="8547" relation="include">
+        </childnode>
+        <childnode refid="8548" relation="include">
+        </childnode>
+        <childnode refid="8553" relation="include">
+        </childnode>
+      </node>
+      <node id="8553">
+        <label>nifty/graph/optimization/common/visitor_base.hxx</label>
+        <link refid="visitor__base_8hxx"/>
+        <childnode refid="8546" relation="include">
+        </childnode>
+        <childnode refid="8547" relation="include">
+        </childnode>
+        <childnode refid="8548" relation="include">
+        </childnode>
+        <childnode refid="8554" relation="include">
+        </childnode>
+        <childnode refid="8555" relation="include">
+        </childnode>
+        <childnode refid="8556" relation="include">
+        </childnode>
+        <childnode refid="8557" relation="include">
+        </childnode>
+      </node>
+      <node id="8548">
+        <label>sstream</label>
+      </node>
+      <node id="8554">
+        <label>iostream</label>
+      </node>
+      <node id="8555">
+        <label>chrono</label>
+      </node>
+      <node id="8547">
+        <label>initializer_list</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="8563">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/optimization/lifted_multicut/py_proposal_generator_factory_base.hxx</label>
+        <link refid="lifted__multicut_2py__proposal__generator__factory__base_8hxx"/>
+      </node>
+      <node id="8562">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/optimization/lifted_multicut/export_lifted_multicut_solver.hxx</label>
+        <link refid="export__lifted__multicut__solver_8hxx"/>
+      </node>
+      <node id="8559">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move.hxx</label>
+        <link refid="lifted__multicut_2fusion__move_8hxx"/>
+        <childnode refid="8560" relation="include">
+        </childnode>
+      </node>
+      <node id="8558">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_factory.hxx</label>
+        <link refid="lifted_multicut_factory.hxx"/>
+        <childnode refid="8559" relation="include">
+        </childnode>
+        <childnode refid="8561" relation="include">
+        </childnode>
+        <childnode refid="8563" relation="include">
+        </childnode>
+      </node>
+      <node id="8560">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx</label>
+        <link refid="lifted__multicut_2fusion__move__based_8hxx"/>
+      </node>
+      <node id="8561">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/optimization/lifted_multicut/py_lifted_multicut_factory.hxx</label>
+        <link refid="py__lifted__multicut__factory_8hxx"/>
+        <childnode refid="8562" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutBase" prot="public">nifty::graph::optimization::lifted_multicut::LiftedMulticutBase</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactoryBase" prot="public">nifty::graph::optimization::lifted_multicut::LiftedMulticutFactoryBase</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactory" prot="public">nifty::graph::optimization::lifted_multicut::LiftedMulticutFactory</innerclass>
+    <innernamespace refid="namespacenifty">nifty</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph">nifty::graph</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph_1_1optimization">nifty::graph::optimization</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph_1_1optimization_1_1lifted__multicut">nifty::graph::optimization::lifted_multicut</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="lifted__multicut__base_8hxx" kindref="compound">nifty/graph/optimization/lifted_multicut/lifted_multicut_base.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacenifty" kindref="compound">nifty</ref><sp/>{</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">graph<sp/>{</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">optimization{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">lifted_multicut{</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">LiftedMulticutBase;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
+<codeline lineno="15" refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactoryBase" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactoryBase" kindref="compound">LiftedMulticutFactoryBase</ref>{</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="17" refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactoryBase_1a25e776473243feba756c4998e89c35f0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>OBJECTIVE<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactoryBase_1a25e776473243feba756c4998e89c35f0" kindref="member">ObjectiveType</ref>;</highlight></codeline>
+<codeline lineno="18" refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactoryBase_1adbe8507647f54608c03ce04b42742414" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutBase" kindref="compound">LiftedMulticutBase&lt;ObjectiveType&gt;</ref><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactoryBase_1adbe8507647f54608c03ce04b42742414" kindref="member">LiftedMulticutBaseType</ref>;</highlight></codeline>
+<codeline lineno="19" refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactoryBase_1a39b5ed3271c1891e6c959cf0d13b3a44" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactoryBase_1a39b5ed3271c1891e6c959cf0d13b3a44" kindref="member">~LiftedMulticutFactoryBase</ref>(){}</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;LiftedMulticutBaseType&gt;<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactoryBase_1a96b3ee71a961471371c92be56d25de16" kindref="member">createSharedPtr</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ObjectiveType<sp/>&amp;<sp/>objective)<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>LiftedMulticutBaseType<sp/>*<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactoryBase_1a1b70cc1f6187ea977e0f0bb52e1969b9" kindref="member">createRawPtr</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ObjectiveType<sp/>&amp;<sp/>objective)<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>SOLVER&gt;</highlight></codeline>
+<codeline lineno="26" refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactory" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactory" kindref="compound">LiftedMulticutFactory</ref><sp/>:</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactoryBase" kindref="compound">LiftedMulticutFactoryBase</ref>&lt;typename<sp/>SOLVER::ObjectiveType&gt;{</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="29" refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactory_1ada46abb25bb84f394d4e97d30fe24d3c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>SOLVER::ObjectiveType<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactory_1ada46abb25bb84f394d4e97d30fe24d3c" kindref="member">ObjectiveType</ref>;</highlight></codeline>
+<codeline lineno="30" refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactory_1a44718e3998cb1f019bad0e38832fcac0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutBase" kindref="compound">LiftedMulticutBase&lt;ObjectiveType&gt;</ref><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactory_1a44718e3998cb1f019bad0e38832fcac0" kindref="member">LiftedMulticutBaseType</ref>;</highlight></codeline>
+<codeline lineno="31" refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactory_1a70b6d5ca05f0323b33264230ed3956ed" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>SOLVER<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactory_1a70b6d5ca05f0323b33264230ed3956ed" kindref="member">Solver</ref>;</highlight></codeline>
+<codeline lineno="32" refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactory_1ab2aea76dcf9e713d3d8a011d87eaaf77" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Solver::Settings<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactory_1ab2aea76dcf9e713d3d8a011d87eaaf77" kindref="member">Settings</ref>;</highlight></codeline>
+<codeline lineno="33" refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactory_1a8273089ea2f2319c18d97b3b5d85a099" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactory_1a8273089ea2f2319c18d97b3b5d85a099" kindref="member">LiftedMulticutFactory</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Settings<sp/>&amp;<sp/>settings<sp/>=<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactory_1ab2aea76dcf9e713d3d8a011d87eaaf77" kindref="member">Settings</ref>())</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactoryBase" kindref="compound">LiftedMulticutFactoryBase</ref>&lt;ObjectiveType&gt;(),</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>options_(settings){</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="37" refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactory_1ab3203e94f32ddf8cc1b46fc0088be507" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;LiftedMulticutBaseType&gt;<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactory_1ab3203e94f32ddf8cc1b46fc0088be507" kindref="member">createSharedPtr</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ObjectiveType<sp/>&amp;<sp/>objective){</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::make_shared&lt;Solver&gt;(objective,<sp/>options_);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="40" refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactory_1a5b3770af8662af43f24f02846c97581a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>LiftedMulticutBaseType<sp/>*<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactory_1a5b3770af8662af43f24f02846c97581a" kindref="member">createRawPtr</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ObjectiveType<sp/>&amp;<sp/>objective){</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>LiftedMulticutBaseType<sp/>*<sp/><sp/>p<sp/>=<sp/><sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutFactory_1a70b6d5ca05f0323b33264230ed3956ed" kindref="member">Solver</ref>(objective,<sp/>options_);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>p;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Settings<sp/>options_;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>lifted_multicut</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph::optimization</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>graph</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_factory.hxx"/>
+  </compounddef>
+</doxygen>

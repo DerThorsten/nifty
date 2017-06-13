@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Nifty
-   &#160;<span id="projectnumber">0.5.1</span>
+   &#160;<span id="projectnumber">0.19.0</span>
    </div>
   </td>
  </tr>
@@ -117,7 +117,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aedaa9af95b736f17f2dbfe0eff4c09bf"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classnifty_1_1ground__truth_1_1Overlap.html#aedaa9af95b736f17f2dbfe0eff4c09bf">Overlap</a> (const uint64_t maxLabelSetA, SET_A_ITER aBegin, SET_A_ITER aEnd, SET_B_ITER bBegin)</td></tr>
 <tr class="separator:aedaa9af95b736f17f2dbfe0eff4c09bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0a40f259581e8a4d9e594fd1db23170a"><td class="memTemplParams" colspan="2">template&lt;class LABEL_A , class LABEL_B &gt; </td></tr>
-<tr class="memitem:a0a40f259581e8a4d9e594fd1db23170a"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classnifty_1_1ground__truth_1_1Overlap.html#a0a40f259581e8a4d9e594fd1db23170a">Overlap</a> (const uint64_t maxLabelSetA, const marray::View&lt; LABEL_A &gt; arrayA, const marray::View&lt; LABEL_B &gt; arrayB)</td></tr>
+<tr class="memitem:a0a40f259581e8a4d9e594fd1db23170a"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classnifty_1_1ground__truth_1_1Overlap.html#a0a40f259581e8a4d9e594fd1db23170a">Overlap</a> (const uint64_t maxLabelSetA, const <a class="el" href="classandres_1_1View.html">marray::View</a>&lt; LABEL_A &gt; arrayA, const <a class="el" href="classandres_1_1View.html">marray::View</a>&lt; LABEL_B &gt; arrayB)</td></tr>
 <tr class="separator:a0a40f259581e8a4d9e594fd1db23170a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adfacb68ed0047e88cbe3524ad664f02f"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnifty_1_1ground__truth_1_1Overlap.html#adfacb68ed0047e88cbe3524ad664f02f">differentOverlap</a> (const <a class="el" href="classnifty_1_1ground__truth_1_1Overlap.html#af14b9a872d3736d3115231866bc71612">LabelType</a> u, const <a class="el" href="classnifty_1_1ground__truth_1_1Overlap.html#af14b9a872d3736d3115231866bc71612">LabelType</a> v) const </td></tr>
 <tr class="separator:adfacb68ed0047e88cbe3524ad664f02f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -142,7 +142,7 @@ Public Member Functions</h2></td></tr>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class LABEL_TYPE  = uint32_t, class COUNT_TYPE  = uint32_t&gt; </div>
+template&lt;class LABEL_TYPE  = uint64_t, class COUNT_TYPE  = uint64_t&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">typedef COUNT_TYPE <a class="el" href="classnifty_1_1ground__truth_1_1Overlap.html">nifty::ground_truth::Overlap</a>&lt; LABEL_TYPE, COUNT_TYPE &gt;::<a class="el" href="classnifty_1_1ground__truth_1_1Overlap.html#ab8f82b8fef890dc3d7b69da0cc768c76">CountType</a></td>
@@ -156,7 +156,7 @@ template&lt;class LABEL_TYPE  = uint32_t, class COUNT_TYPE  = uint32_t&gt; </div
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class LABEL_TYPE  = uint32_t, class COUNT_TYPE  = uint32_t&gt; </div>
+template&lt;class LABEL_TYPE  = uint64_t, class COUNT_TYPE  = uint64_t&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">typedef LABEL_TYPE <a class="el" href="classnifty_1_1ground__truth_1_1Overlap.html">nifty::ground_truth::Overlap</a>&lt; LABEL_TYPE, COUNT_TYPE &gt;::<a class="el" href="classnifty_1_1ground__truth_1_1Overlap.html#af14b9a872d3736d3115231866bc71612">LabelType</a></td>
@@ -170,7 +170,7 @@ template&lt;class LABEL_TYPE  = uint32_t, class COUNT_TYPE  = uint32_t&gt; </div
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class LABEL_TYPE  = uint32_t, class COUNT_TYPE  = uint32_t&gt; </div>
+template&lt;class LABEL_TYPE  = uint64_t, class COUNT_TYPE  = uint64_t&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">typedef std::unordered_map&lt;<a class="el" href="classnifty_1_1ground__truth_1_1Overlap.html#af14b9a872d3736d3115231866bc71612">LabelType</a>, <a class="el" href="classnifty_1_1ground__truth_1_1Overlap.html#ab8f82b8fef890dc3d7b69da0cc768c76">CountType</a>&gt; <a class="el" href="classnifty_1_1ground__truth_1_1Overlap.html">nifty::ground_truth::Overlap</a>&lt; LABEL_TYPE, COUNT_TYPE &gt;::<a class="el" href="classnifty_1_1ground__truth_1_1Overlap.html#a6866ee8c988dd21d3fbd6ee5c2e836bf">MapType</a></td>
@@ -185,7 +185,7 @@ template&lt;class LABEL_TYPE  = uint32_t, class COUNT_TYPE  = uint32_t&gt; </div
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class LABEL_TYPE  = uint32_t, class COUNT_TYPE  = uint32_t&gt; </div>
+template&lt;class LABEL_TYPE  = uint64_t, class COUNT_TYPE  = uint64_t&gt; </div>
 <div class="memtemplate">
 template&lt;class SET_A_ITER , class SET_B_ITER &gt; </div>
 <table class="mlabels">
@@ -235,7 +235,7 @@ template&lt;class SET_A_ITER , class SET_B_ITER &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class LABEL_TYPE  = uint32_t, class COUNT_TYPE  = uint32_t&gt; </div>
+template&lt;class LABEL_TYPE  = uint64_t, class COUNT_TYPE  = uint64_t&gt; </div>
 <div class="memtemplate">
 template&lt;class LABEL_A , class LABEL_B &gt; </div>
 <table class="mlabels">
@@ -251,13 +251,13 @@ template&lt;class LABEL_A , class LABEL_B &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const marray::View&lt; LABEL_A &gt;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classandres_1_1View.html">marray::View</a>&lt; LABEL_A &gt;&#160;</td>
           <td class="paramname"><em>arrayA</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const marray::View&lt; LABEL_B &gt;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classandres_1_1View.html">marray::View</a>&lt; LABEL_B &gt;&#160;</td>
           <td class="paramname"><em>arrayB</em>&#160;</td>
         </tr>
         <tr>
@@ -280,7 +280,7 @@ template&lt;class LABEL_A , class LABEL_B &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class LABEL_TYPE  = uint32_t, class COUNT_TYPE  = uint32_t&gt; </div>
+template&lt;class LABEL_TYPE  = uint64_t, class COUNT_TYPE  = uint64_t&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -306,7 +306,7 @@ template&lt;class LABEL_TYPE  = uint32_t, class COUNT_TYPE  = uint32_t&gt; </div
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class LABEL_TYPE  = uint32_t, class COUNT_TYPE  = uint32_t&gt; </div>
+template&lt;class LABEL_TYPE  = uint64_t, class COUNT_TYPE  = uint64_t&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -331,7 +331,7 @@ template&lt;class LABEL_TYPE  = uint32_t, class COUNT_TYPE  = uint32_t&gt; </div
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class LABEL_TYPE  = uint32_t, class COUNT_TYPE  = uint32_t&gt; </div>
+template&lt;class LABEL_TYPE  = uint64_t, class COUNT_TYPE  = uint64_t&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -367,7 +367,7 @@ template&lt;class LABEL_TYPE  = uint32_t, class COUNT_TYPE  = uint32_t&gt; </div
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class LABEL_TYPE  = uint32_t, class COUNT_TYPE  = uint32_t&gt; </div>
+template&lt;class LABEL_TYPE  = uint64_t, class COUNT_TYPE  = uint64_t&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -393,7 +393,7 @@ template&lt;class LABEL_TYPE  = uint32_t, class COUNT_TYPE  = uint32_t&gt; </div
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class LABEL_TYPE  = uint32_t, class COUNT_TYPE  = uint32_t&gt; </div>
+template&lt;class LABEL_TYPE  = uint64_t, class COUNT_TYPE  = uint64_t&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -419,7 +419,7 @@ template&lt;class LABEL_TYPE  = uint32_t, class COUNT_TYPE  = uint32_t&gt; </div
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class LABEL_TYPE  = uint32_t, class COUNT_TYPE  = uint32_t&gt; </div>
+template&lt;class LABEL_TYPE  = uint64_t, class COUNT_TYPE  = uint64_t&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -454,7 +454,7 @@ template&lt;class LABEL_TYPE  = uint32_t, class COUNT_TYPE  = uint32_t&gt; </div
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class LABEL_TYPE  = uint32_t, class COUNT_TYPE  = uint32_t&gt; </div>
+template&lt;class LABEL_TYPE  = uint64_t, class COUNT_TYPE  = uint64_t&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -480,7 +480,7 @@ template&lt;class LABEL_TYPE  = uint32_t, class COUNT_TYPE  = uint32_t&gt; </div
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class LABEL_TYPE  = uint32_t, class COUNT_TYPE  = uint32_t&gt; </div>
+template&lt;class LABEL_TYPE  = uint64_t, class COUNT_TYPE  = uint64_t&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">

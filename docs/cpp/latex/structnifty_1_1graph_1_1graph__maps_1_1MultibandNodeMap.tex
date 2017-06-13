@@ -1,0 +1,96 @@
+\hypertarget{structnifty_1_1graph_1_1graph__maps_1_1MultibandNodeMap}{}\section{nifty\+:\+:graph\+:\+:graph\+\_\+maps\+:\+:Multiband\+Node\+Map$<$ G, T $>$ Struct Template Reference}
+\label{structnifty_1_1graph_1_1graph__maps_1_1MultibandNodeMap}\index{nifty\+::graph\+::graph\+\_\+maps\+::\+Multiband\+Node\+Map$<$ G, T $>$@{nifty\+::graph\+::graph\+\_\+maps\+::\+Multiband\+Node\+Map$<$ G, T $>$}}
+
+
+Multiband node map.  
+
+
+
+
+{\ttfamily \#include $<$graph\+\_\+maps.\+hxx$>$}
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classnifty_1_1graph_1_1graph__maps_1_1MultibandNodeMap_1_1ConstProxy}{Const\+Proxy}
+\item 
+class \hyperlink{classnifty_1_1graph_1_1graph__maps_1_1MultibandNodeMap_1_1Proxy}{Proxy}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structnifty_1_1graph_1_1graph__maps_1_1MultibandNodeMap_ab532c7c22bab384004e75c21960f070f}{Multiband\+Node\+Map} (const G \&g, const size\+\_\+t n\+Channels)
+\item 
+\hyperlink{structnifty_1_1graph_1_1graph__maps_1_1MultibandNodeMap_ac5f3573ff6b06c219074426c2a66e0ef}{Multiband\+Node\+Map} (const G \&g, const size\+\_\+t n\+Channels, const T \&val)
+\item 
+\hyperlink{classnifty_1_1graph_1_1graph__maps_1_1MultibandNodeMap_1_1Proxy}{Proxy} \hyperlink{structnifty_1_1graph_1_1graph__maps_1_1MultibandNodeMap_a568a4290cfbdbf50e9c62e5f64d21a2a}{operator\mbox{[}$\,$\mbox{]}} (const uint64\+\_\+t node\+Index)
+\item 
+\hyperlink{classnifty_1_1graph_1_1graph__maps_1_1MultibandNodeMap_1_1ConstProxy}{Const\+Proxy} \hyperlink{structnifty_1_1graph_1_1graph__maps_1_1MultibandNodeMap_a11310bdd64c8b9ee5ceeb405ea206cf6}{operator\mbox{[}$\,$\mbox{]}} (const uint64\+\_\+t node\+Index) const 
+\item 
+const size\+\_\+t \hyperlink{structnifty_1_1graph_1_1graph__maps_1_1MultibandNodeMap_ae06b7340608e8dd01c16d69716fd963e}{number\+Of\+Channels} () const 
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class G, class T$>$struct nifty\+::graph\+::graph\+\_\+maps\+::\+Multiband\+Node\+Map$<$ G, T $>$}
+
+Multiband node map. 
+
+Sometimes we need to hold not a single scalar, but a fixed length vector for each node. The return type of operator\mbox{[}\mbox{]} is a tiny proxy object holding the vector.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em G} & Graph\+Type4 \\
+\hline
+{\em T} & Value\+Type \\
+\hline
+\end{DoxyTemplParams}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{structnifty_1_1graph_1_1graph__maps_1_1MultibandNodeMap_ab532c7c22bab384004e75c21960f070f}{}\index{nifty\+::graph\+::graph\+\_\+maps\+::\+Multiband\+Node\+Map@{nifty\+::graph\+::graph\+\_\+maps\+::\+Multiband\+Node\+Map}!Multiband\+Node\+Map@{Multiband\+Node\+Map}}
+\index{Multiband\+Node\+Map@{Multiband\+Node\+Map}!nifty\+::graph\+::graph\+\_\+maps\+::\+Multiband\+Node\+Map@{nifty\+::graph\+::graph\+\_\+maps\+::\+Multiband\+Node\+Map}}
+\subsubsection[{Multiband\+Node\+Map(const G \&g, const size\+\_\+t n\+Channels)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G, class T$>$ {\bf nifty\+::graph\+::graph\+\_\+maps\+::\+Multiband\+Node\+Map}$<$ G, T $>$\+::{\bf Multiband\+Node\+Map} (
+\begin{DoxyParamCaption}
+\item[{const G \&}]{g, }
+\item[{const size\+\_\+t}]{n\+Channels}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{structnifty_1_1graph_1_1graph__maps_1_1MultibandNodeMap_ab532c7c22bab384004e75c21960f070f}
+\hypertarget{structnifty_1_1graph_1_1graph__maps_1_1MultibandNodeMap_ac5f3573ff6b06c219074426c2a66e0ef}{}\index{nifty\+::graph\+::graph\+\_\+maps\+::\+Multiband\+Node\+Map@{nifty\+::graph\+::graph\+\_\+maps\+::\+Multiband\+Node\+Map}!Multiband\+Node\+Map@{Multiband\+Node\+Map}}
+\index{Multiband\+Node\+Map@{Multiband\+Node\+Map}!nifty\+::graph\+::graph\+\_\+maps\+::\+Multiband\+Node\+Map@{nifty\+::graph\+::graph\+\_\+maps\+::\+Multiband\+Node\+Map}}
+\subsubsection[{Multiband\+Node\+Map(const G \&g, const size\+\_\+t n\+Channels, const T \&val)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G, class T$>$ {\bf nifty\+::graph\+::graph\+\_\+maps\+::\+Multiband\+Node\+Map}$<$ G, T $>$\+::{\bf Multiband\+Node\+Map} (
+\begin{DoxyParamCaption}
+\item[{const G \&}]{g, }
+\item[{const size\+\_\+t}]{n\+Channels, }
+\item[{const T \&}]{val}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{structnifty_1_1graph_1_1graph__maps_1_1MultibandNodeMap_ac5f3573ff6b06c219074426c2a66e0ef}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{structnifty_1_1graph_1_1graph__maps_1_1MultibandNodeMap_ae06b7340608e8dd01c16d69716fd963e}{}\index{nifty\+::graph\+::graph\+\_\+maps\+::\+Multiband\+Node\+Map@{nifty\+::graph\+::graph\+\_\+maps\+::\+Multiband\+Node\+Map}!number\+Of\+Channels@{number\+Of\+Channels}}
+\index{number\+Of\+Channels@{number\+Of\+Channels}!nifty\+::graph\+::graph\+\_\+maps\+::\+Multiband\+Node\+Map@{nifty\+::graph\+::graph\+\_\+maps\+::\+Multiband\+Node\+Map}}
+\subsubsection[{number\+Of\+Channels() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G, class T$>$ const size\+\_\+t {\bf nifty\+::graph\+::graph\+\_\+maps\+::\+Multiband\+Node\+Map}$<$ G, T $>$\+::number\+Of\+Channels (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{structnifty_1_1graph_1_1graph__maps_1_1MultibandNodeMap_ae06b7340608e8dd01c16d69716fd963e}
+\hypertarget{structnifty_1_1graph_1_1graph__maps_1_1MultibandNodeMap_a568a4290cfbdbf50e9c62e5f64d21a2a}{}\index{nifty\+::graph\+::graph\+\_\+maps\+::\+Multiband\+Node\+Map@{nifty\+::graph\+::graph\+\_\+maps\+::\+Multiband\+Node\+Map}!operator\mbox{[}$\,$\mbox{]}@{operator[]}}
+\index{operator\mbox{[}$\,$\mbox{]}@{operator[]}!nifty\+::graph\+::graph\+\_\+maps\+::\+Multiband\+Node\+Map@{nifty\+::graph\+::graph\+\_\+maps\+::\+Multiband\+Node\+Map}}
+\subsubsection[{operator[](const uint64\+\_\+t node\+Index)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G, class T$>$ {\bf Proxy} {\bf nifty\+::graph\+::graph\+\_\+maps\+::\+Multiband\+Node\+Map}$<$ G, T $>$\+::operator\mbox{[}$\,$\mbox{]} (
+\begin{DoxyParamCaption}
+\item[{const uint64\+\_\+t}]{node\+Index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{structnifty_1_1graph_1_1graph__maps_1_1MultibandNodeMap_a568a4290cfbdbf50e9c62e5f64d21a2a}
+\hypertarget{structnifty_1_1graph_1_1graph__maps_1_1MultibandNodeMap_a11310bdd64c8b9ee5ceeb405ea206cf6}{}\index{nifty\+::graph\+::graph\+\_\+maps\+::\+Multiband\+Node\+Map@{nifty\+::graph\+::graph\+\_\+maps\+::\+Multiband\+Node\+Map}!operator\mbox{[}$\,$\mbox{]}@{operator[]}}
+\index{operator\mbox{[}$\,$\mbox{]}@{operator[]}!nifty\+::graph\+::graph\+\_\+maps\+::\+Multiband\+Node\+Map@{nifty\+::graph\+::graph\+\_\+maps\+::\+Multiband\+Node\+Map}}
+\subsubsection[{operator[](const uint64\+\_\+t node\+Index) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G, class T$>$ {\bf Const\+Proxy} {\bf nifty\+::graph\+::graph\+\_\+maps\+::\+Multiband\+Node\+Map}$<$ G, T $>$\+::operator\mbox{[}$\,$\mbox{]} (
+\begin{DoxyParamCaption}
+\item[{const uint64\+\_\+t}]{node\+Index}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{structnifty_1_1graph_1_1graph__maps_1_1MultibandNodeMap_a11310bdd64c8b9ee5ceeb405ea206cf6}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/tbeier/src/nifty/include/nifty/graph/\hyperlink{graph__maps_8hxx}{graph\+\_\+maps.\+hxx}\end{DoxyCompactItemize}

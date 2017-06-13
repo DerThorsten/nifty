@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="edge__map__from__node__map_8hxx" kind="file" language="C++">
+    <compoundname>edge_map_from_node_map.hxx</compoundname>
+    <innerclass refid="classnifty_1_1graph_1_1graph__maps_1_1EdgeMapFromNodeMap" prot="public">nifty::graph::graph_maps::EdgeMapFromNodeMap</innerclass>
+    <innernamespace refid="namespacenifty">nifty</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph">nifty::graph</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph_1_1graph__maps">nifty::graph::graph_maps</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacenifty" kindref="compound">nifty</ref>{</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">graph{</highlight></codeline>
+<codeline lineno="6" refid="namespacenifty_1_1graph_1_1graph__maps" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">graph_maps{</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>GRAPH,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>NODE_MAP,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>BINARY_FUNCTOR&gt;</highlight></codeline>
+<codeline lineno="22" refid="classnifty_1_1graph_1_1graph__maps_1_1EdgeMapFromNodeMap" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnifty_1_1graph_1_1graph__maps_1_1EdgeMapFromNodeMap" kindref="compound">EdgeMapFromNodeMap</ref><sp/>{</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="24" refid="classnifty_1_1graph_1_1graph__maps_1_1EdgeMapFromNodeMap_1a551dfc3ef2c5293f5306420d129da574" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>GRAPH<sp/><ref refid="classnifty_1_1graph_1_1graph__maps_1_1EdgeMapFromNodeMap_1a551dfc3ef2c5293f5306420d129da574" kindref="member">GraphType</ref>;</highlight></codeline>
+<codeline lineno="25" refid="classnifty_1_1graph_1_1graph__maps_1_1EdgeMapFromNodeMap_1a0fbb6e9a54ecf31d27e13db4f274a6d1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>BINARY_FUNCTOR<sp/><ref refid="classnifty_1_1graph_1_1graph__maps_1_1EdgeMapFromNodeMap_1a0fbb6e9a54ecf31d27e13db4f274a6d1" kindref="member">BinaryFunctorType</ref>;</highlight></codeline>
+<codeline lineno="26" refid="classnifty_1_1graph_1_1graph__maps_1_1EdgeMapFromNodeMap_1abc24027c855755008ba3694cc49999c2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>BinaryFunctorType::value_type<sp/><ref refid="classnifty_1_1graph_1_1graph__maps_1_1EdgeMapFromNodeMap_1abc24027c855755008ba3694cc49999c2" kindref="member">value_type</ref>;</highlight></codeline>
+<codeline lineno="27" refid="classnifty_1_1graph_1_1graph__maps_1_1EdgeMapFromNodeMap_1ad2639421843e9da9afe18b0b35a7317e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>NODE_MAP<sp/><ref refid="classnifty_1_1graph_1_1graph__maps_1_1EdgeMapFromNodeMap_1ad2639421843e9da9afe18b0b35a7317e" kindref="member">NodeMapType</ref>;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36" refid="classnifty_1_1graph_1_1graph__maps_1_1EdgeMapFromNodeMap_1abf8972db1d22bc00d2afd5cf5cb0b6a3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1graph__maps_1_1EdgeMapFromNodeMap_1abf8972db1d22bc00d2afd5cf5cb0b6a3" kindref="member">EdgeMapFromNodeMap</ref>(</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GraphType<sp/>&amp;<sp/>graph,</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>NodeMapType<sp/>nodeMap,</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>BinaryFunctorType<sp/>binaryFunctor</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/><sp/><sp/>graph_(graph),</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nodeMap_(nodeMap),</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>binaryFunctor_(binaryFunctor){</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56" refid="classnifty_1_1graph_1_1graph__maps_1_1EdgeMapFromNodeMap_1add73eee13b7a6f74f0ae6eac1a7c32bf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>value_type<sp/><ref refid="classnifty_1_1graph_1_1graph__maps_1_1EdgeMapFromNodeMap_1add73eee13b7a6f74f0ae6eac1a7c32bf" kindref="member">operator[]</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uint64_t<sp/>edgeIndex)</highlight><highlight class="keyword">const</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>uv<sp/>=<sp/>graph_.uv(edgeIndex);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>u<sp/>=<sp/>uv.first;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>v<sp/>=<sp/>uv.second;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>binaryFunctor_(nodeMap_[u],<sp/>nodeMap_[v]);</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GraphType<sp/>&amp;<sp/>graph_;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>NODE_MAP<sp/>nodeMap_;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>BinaryFunctorType<sp/>binaryFunctor_;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph::graph_maps</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_map_from_node_map.hxx"/>
+  </compounddef>
+</doxygen>

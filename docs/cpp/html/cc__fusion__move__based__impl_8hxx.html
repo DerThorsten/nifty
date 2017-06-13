@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Nifty
-   &#160;<span id="projectnumber">0.5.1</span>
+   &#160;<span id="projectnumber">0.19.0</span>
    </div>
   </td>
  </tr>
@@ -96,12 +96,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">cc_fusion_move_based_impl.hxx File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;iomanip&gt;</code><br />
+<div class="textblock"><code>#include &lt;mutex&gt;</code><br />
+<code>#include &lt;iomanip&gt;</code><br />
 <code>#include &lt;algorithm&gt;</code><br />
 <code>#include &lt;unordered_set&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
 <code>#include &lt;stack&gt;</code><br />
-<code>#include &quot;vigra/priority_queue.hxx&quot;</code><br />
+<code>#include &quot;<a class="el" href="changable__priority__queue_8hxx_source.html">nifty/tools/changable_priority_queue.hxx</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="runtime__check_8hxx_source.html">nifty/tools/runtime_check.hxx</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="ufd_8hxx_source.html">nifty/ufd/ufd.hxx</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="adjacency_8hxx_source.html">nifty/graph/detail/adjacency.hxx</a>&quot;</code><br />
@@ -115,13 +116,38 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 Include dependency graph for cc_fusion_move_based_impl.hxx:</div>
 <div class="dyncontent">
 <div class="center"><img src="cc__fusion__move__based__impl_8hxx__incl.png" border="0" usemap="#_2home_2tbeier_2src_2nifty_2include_2nifty_2graph_2optimization_2common_2cc__fusion__move__based__impl_8hxx" alt=""/></div>
-<!-- MAP 0 -->
+<map name="_2home_2tbeier_2src_2nifty_2include_2nifty_2graph_2optimization_2common_2cc__fusion__move__based__impl_8hxx" id="_2home_2tbeier_2src_2nifty_2include_2nifty_2graph_2optimization_2common_2cc__fusion__move__based__impl_8hxx">
+<area shape="rect" id="node8" href="changable__priority__queue_8hxx.html" title="nifty/tools/changable\l_priority_queue.hxx" alt="" coords="1833,124,1976,165"/>
+<area shape="rect" id="node10" href="runtime__check_8hxx.html" title="nifty/tools/runtime\l_check.hxx" alt="" coords="2084,235,2211,277"/>
+<area shape="rect" id="node16" href="ufd_8hxx.html" title="nifty/ufd/ufd.hxx" alt="" coords="2961,243,3077,269"/>
+<area shape="rect" id="node19" href="adjacency_8hxx.html" title="nifty/graph/detail\l/adjacency.hxx" alt="" coords="985,235,1104,277"/>
+<area shape="rect" id="node20" href="mincut__base_8hxx.html" title="nifty/graph/optimization\l/mincut/mincut_base.hxx" alt="" coords="235,124,403,165"/>
+<area shape="rect" id="node27" href="graph_2edge__contraction__graph_8hxx.html" title="nifty/graph/edge_contraction\l_graph.hxx" alt="" coords="1571,124,1758,165"/>
+<area shape="rect" id="node38" href="components_8hxx.html" title="nifty/graph/components.hxx" alt="" coords="3076,131,3259,158"/>
+<area shape="rect" id="node42" href="threadpool_8hxx.html" title="nifty/parallel/threadpool.hxx" alt="" coords="2115,131,2297,158"/>
+<area shape="rect" id="node48" href="common_2proposal__generators_2proposal__generator__base_8hxx.html" title="nifty/graph/optimization\l/common/proposal_generators\l/proposal_generator_base.hxx" alt="" coords="3443,228,3641,284"/>
+<area shape="rect" id="node49" href="common_2proposal__generators_2proposal__generator__factory__base_8hxx.html" title="nifty/graph/optimization\l/common/proposal_generators\l/proposal_generator_factory\l_base.hxx" alt="" coords="3443,109,3641,180"/>
+<area shape="rect" id="node23" href="solver__base_8hxx.html" title="nifty/graph/optimization\l/common/solver_base.hxx" alt="" coords="328,235,503,277"/>
+<area shape="rect" id="node26" href="mincut__visitor__base_8hxx.html" title="mincut_visitor_base.hxx" alt="" coords="141,243,303,269"/>
+<area shape="rect" id="node24" href="exceptions_8hxx.html" title="nifty/exceptions/exceptions.hxx" alt="" coords="653,339,860,366"/>
+<area shape="rect" id="node25" href="visitor__base_8hxx.html" title="nifty/graph/optimization\l/common/visitor_base.hxx" alt="" coords="200,332,375,373"/>
+<area shape="rect" id="node31" href="undirected__graph__base_8hxx.html" title="nifty/graph/undirected\l_graph_base.hxx" alt="" coords="1286,235,1433,277"/>
+<area shape="rect" id="node36" href="flat__set_8hxx.html" title="nifty/container/flat\l_set.hxx" alt="" coords="1615,235,1741,277"/>
+<area shape="rect" id="node33" href="graph__tags_8hxx.html" title="nifty/graph/graph_tags.hxx" alt="" coords="885,339,1061,366"/>
+<area shape="rect" id="node34" href="graph__maps_8hxx.html" title="nifty/graph/graph_maps.hxx" alt="" coords="1085,339,1268,366"/>
+<area shape="rect" id="node35" href="const__iterator__range_8hxx.html" title="nifty/tools/const_iterator\l_range.hxx" alt="" coords="1391,332,1554,373"/>
+<area shape="rect" id="node40" href="subgraph__mask_8hxx.html" title="nifty/graph/subgraph\l_mask.hxx" alt="" coords="3148,332,3288,373"/>
+<area shape="rect" id="node41" href="breadth__first__search_8hxx.html" title="nifty/graph/breadth\l_first_search.hxx" alt="" coords="3102,235,3233,277"/>
+</map>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="cc__fusion__move__based__impl_8hxx__dep__incl.png" border="0" usemap="#_2home_2tbeier_2src_2nifty_2include_2nifty_2graph_2optimization_2common_2cc__fusion__move__based__impl_8hxxdep" alt=""/></div>
-<!-- MAP 1 -->
+<map name="_2home_2tbeier_2src_2nifty_2include_2nifty_2graph_2optimization_2common_2cc__fusion__move__based__impl_8hxxdep" id="_2home_2tbeier_2src_2nifty_2include_2nifty_2graph_2optimization_2common_2cc__fusion__move__based__impl_8hxxdep">
+<area shape="rect" id="node2" href="mincut__cc__fusion__move__based_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/mincut/mincut_cc_fusion_move\l_based.hxx" alt="" coords="5,109,216,180"/>
+<area shape="rect" id="node3" href="cc__fusion__move__based_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/optimization\l/multicut/cc_fusion_move_based.hxx" alt="" coords="241,117,479,173"/>
+</map>
 </div>
 </div>
 <p><a href="cc__fusion__move__based__impl_8hxx_source.html">Go to the source code of this file.</a></p>
@@ -130,7 +156,7 @@ This graph shows which files directly or indirectly include this file:</div>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl.html">nifty::graph::optimization::common::detail_cc_fusion::CcFusionMoveBasedImpl&lt; OBJECTIVE, SOLVER_BASE, FUSION_MOVE &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1_1Settings.html">nifty::graph::optimization::common::detail_cc_fusion::CcFusionMoveBasedImpl&lt; OBJECTIVE, SOLVER_BASE, FUSION_MOVE &gt;::Settings</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1_1SettingsType.html">nifty::graph::optimization::common::detail_cc_fusion::CcFusionMoveBasedImpl&lt; OBJECTIVE, SOLVER_BASE, FUSION_MOVE &gt;::SettingsType</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>

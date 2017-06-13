@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="classnifty_1_1cgp_1_1CellGeometry" kind="class" language="C++" prot="public">
+    <compoundname>nifty::cgp::CellGeometry</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">std::vector&lt; array::StaticArray&lt; uint32_t, DIM &gt; &gt;</basecompoundref>
+    <includes refid="geometry_8hxx" local="no">geometry.hxx</includes>
+    <templateparamlist>
+      <param>
+        <type>size_t</type>
+        <declname>DIM</declname>
+        <defname>DIM</defname>
+      </param>
+      <param>
+        <type>size_t</type>
+        <declname>CELL_TYPE</declname>
+        <defname>CELL_TYPE</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1cgp_1_1CellGeometry_1a8cc75c7033c03864e099a5d907de88d8" prot="public" static="no">
+        <type>std::integral_constant&lt; size_t, DIM &gt;</type>
+        <definition>typedef std::integral_constant&lt;size_t, DIM&gt; nifty::cgp::CellGeometry&lt; DIM, CELL_TYPE &gt;::DimensionType</definition>
+        <argsstring></argsstring>
+        <name>DimensionType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/cgp/geometry.hxx" line="85" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/cgp/geometry.hxx" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1cgp_1_1CellGeometry_1af8ae7d6b7a8f20afae6ce53e88604acf" prot="public" static="no">
+        <type><ref refid="namespacenifty_1_1array_1a683f151f19c851754e0c6d55ed16a0c2" kindref="member">nifty::array::StaticArray</ref>&lt; uint32_t, DIM &gt;</type>
+        <definition>typedef nifty::array::StaticArray&lt;uint32_t, DIM&gt; nifty::cgp::CellGeometry&lt; DIM, CELL_TYPE &gt;::CoordinateType</definition>
+        <argsstring></argsstring>
+        <name>CoordinateType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/cgp/geometry.hxx" line="86" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/cgp/geometry.hxx" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1cgp_1_1CellGeometry_1a07e98f74f6dc5cda1aab1349c7f60d5b" prot="public" static="no">
+        <type><ref refid="namespacenifty_1_1array_1a683f151f19c851754e0c6d55ed16a0c2" kindref="member">nifty::array::StaticArray</ref>&lt; float, DIM &gt;</type>
+        <definition>typedef nifty::array::StaticArray&lt;float, DIM&gt; nifty::cgp::CellGeometry&lt; DIM, CELL_TYPE &gt;::FloatCoordinateType</definition>
+        <argsstring></argsstring>
+        <name>FloatCoordinateType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/cgp/geometry.hxx" line="87" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/cgp/geometry.hxx" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1cgp_1_1CellGeometry_1ada76b5372b0e456edf3496813b9ed7f0" prot="public" static="no">
+        <type>std::vector&lt; <ref refid="classnifty_1_1cgp_1_1CellGeometry_1af8ae7d6b7a8f20afae6ce53e88604acf" kindref="member">CoordinateType</ref> &gt;</type>
+        <definition>typedef std::vector&lt;CoordinateType&gt; nifty::cgp::CellGeometry&lt; DIM, CELL_TYPE &gt;::BaseType</definition>
+        <argsstring></argsstring>
+        <name>BaseType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/cgp/geometry.hxx" line="88" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/cgp/geometry.hxx" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1cgp_1_1CellGeometry_1af51fef28bad6333d7604a160e5353188" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classnifty_1_1cgp_1_1CellGeometry_1a07e98f74f6dc5cda1aab1349c7f60d5b" kindref="member">FloatCoordinateType</ref></type>
+        <definition>FloatCoordinateType nifty::cgp::CellGeometry&lt; DIM, CELL_TYPE &gt;::centerOfMass</definition>
+        <argsstring>() const </argsstring>
+        <name>centerOfMass</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/cgp/geometry.hxx" line="91" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/cgp/geometry.hxx" bodystart="91" bodyend="100"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1069">
+        <label>std::vector&lt; array::StaticArray&lt; uint32_t, DIM &gt; &gt;</label>
+      </node>
+      <node id="1068">
+        <label>nifty::cgp::CellGeometry&lt; DIM, CELL_TYPE &gt;</label>
+        <link refid="classnifty_1_1cgp_1_1CellGeometry"/>
+        <childnode refid="1069" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1071">
+        <label>std::vector&lt; array::StaticArray&lt; uint32_t, DIM &gt; &gt;</label>
+      </node>
+      <node id="1070">
+        <label>nifty::cgp::CellGeometry&lt; DIM, CELL_TYPE &gt;</label>
+        <link refid="classnifty_1_1cgp_1_1CellGeometry"/>
+        <childnode refid="1071" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/tbeier/src/nifty/include/nifty/cgp/geometry.hxx" line="21" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/cgp/geometry.hxx" bodystart="21" bodyend="-1"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1cgp_1_1CellGeometry_1ada76b5372b0e456edf3496813b9ed7f0" prot="public" virt="non-virtual"><scope>nifty::cgp::CellGeometry</scope><name>BaseType</name></member>
+      <member refid="classnifty_1_1cgp_1_1CellGeometry_1af51fef28bad6333d7604a160e5353188" prot="public" virt="non-virtual"><scope>nifty::cgp::CellGeometry</scope><name>centerOfMass</name></member>
+      <member refid="classnifty_1_1cgp_1_1CellGeometry_1af8ae7d6b7a8f20afae6ce53e88604acf" prot="public" virt="non-virtual"><scope>nifty::cgp::CellGeometry</scope><name>CoordinateType</name></member>
+      <member refid="classnifty_1_1cgp_1_1CellGeometry_1a8cc75c7033c03864e099a5d907de88d8" prot="public" virt="non-virtual"><scope>nifty::cgp::CellGeometry</scope><name>DimensionType</name></member>
+      <member refid="classnifty_1_1cgp_1_1CellGeometry_1a07e98f74f6dc5cda1aab1349c7f60d5b" prot="public" virt="non-virtual"><scope>nifty::cgp::CellGeometry</scope><name>FloatCoordinateType</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

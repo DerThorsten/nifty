@@ -10,8 +10,12 @@
 \item 
 class \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1EmptyVisitor}{Empty\+Visitor}
 \item 
+class \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1FusionMove}{Fusion\+Move}
+\item 
 class \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1GreedyAdditiveMulticutProposals}{Greedy\+Additive\+Multicut\+Proposals}
-\begin{DoxyCompactList}\small\item\em Watershed proposal generator for \hyperlink{classnifty_1_1graph_1_1lifted__multicut_1_1FusionMoveBased}{lifted\+\_\+multicut\+::\+Fusion\+Move\+Based}. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Watershed proposal generator for \hyperlink{classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased}{lifted\+\_\+multicut\+::\+Fusion\+Move\+Based}. \end{DoxyCompactList}\item 
+class \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1InterfaceFlipperProposalGenerator}{Interface\+Flipper\+Proposal\+Generator}
+\begin{DoxyCompactList}\small\item\em Watershed proposal generator for \hyperlink{classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased}{lifted\+\_\+multicut\+::\+Fusion\+Move\+Based}. \end{DoxyCompactList}\item 
 class \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor}{Logging\+Visitor}
 \item 
 class \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorBase}{Proposal\+Generator\+Base}
@@ -22,7 +26,15 @@ class \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGenera
 \item 
 class \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1PyProposalGeneratorFactoryBase}{Py\+Proposal\+Generator\+Factory\+Base}
 \item 
+class \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1PySolverFactoryBase}{Py\+Solver\+Factory\+Base}
+\item 
+class \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1RandomNodeColorProposalGenerator}{Random\+Node\+Color\+Proposal\+Generator}
+\begin{DoxyCompactList}\small\item\em Watershed proposal generator for \hyperlink{classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased}{lifted\+\_\+multicut\+::\+Fusion\+Move\+Based}. \end{DoxyCompactList}\item 
 class \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase}{Solver\+Base}
+\item 
+class \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactory}{Solver\+Factory}
+\item 
+class \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase}{Solver\+Factory\+Base}
 \item 
 class \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1StubProposalGenerator}{Stub\+Proposal\+Generator}
 \begin{DoxyCompactList}\small\item\em Stub for proposal generator. \end{DoxyCompactList}\item 
@@ -33,26 +45,28 @@ class \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1VisitorBase}{V
 class \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1VisitorProxy}{Visitor\+Proxy}
 \item 
 class \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1WatershedProposalGenerator}{Watershed\+Proposal\+Generator}
-\begin{DoxyCompactList}\small\item\em Watershed proposal generator for \hyperlink{classnifty_1_1graph_1_1lifted__multicut_1_1FusionMoveBased}{lifted\+\_\+multicut\+::\+Fusion\+Move\+Based}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Watershed proposal generator for \hyperlink{classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased}{lifted\+\_\+multicut\+::\+Fusion\+Move\+Based}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
+{\footnotesize template$<$class S\+O\+L\+V\+E\+R\+\_\+\+B\+A\+S\+E $>$ }\\void \hyperlink{namespacenifty_1_1graph_1_1optimization_1_1common_ac0f48d09affe67d7fdf71a7aa91a9c46}{export\+Solver\+Factory} (py\+::module \&module, const std\+::string objective\+Name)
+\item 
 {\footnotesize template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ }\\void \hyperlink{namespacenifty_1_1graph_1_1optimization_1_1common_a78d8d2a3a62c60cc2117005e75609134}{export\+C\+C\+Proposal\+Generator\+Factory\+Base\+T} (pybind11\+::module \&module, const std\+::string \&obj\+Name)
 \item 
-{\footnotesize template$<$class P\+R\+O\+P\+O\+S\+A\+L\+\_\+\+G\+E\+N\+E\+R\+A\+T\+O\+R $>$ }\\py\+::class\+\_\+$<$ typename P\+R\+O\+P\+O\+S\+A\+L\+\_\+\+G\+E\+N\+E\+R\+A\+T\+O\+R\+::\+Settings $>$ \hyperlink{namespacenifty_1_1graph_1_1optimization_1_1common_aa6e39a28f5413a1dee4423fcc677b5b8}{export\+C\+C\+Proposal\+Generator} (py\+::module \&module, const std\+::string \&cls\+Name, const std\+::string \&obj\+Name)
+{\footnotesize template$<$class P\+R\+O\+P\+O\+S\+A\+L\+\_\+\+G\+E\+N\+E\+R\+A\+T\+O\+R $>$ }\\py\+::class\+\_\+$<$ typename P\+R\+O\+P\+O\+S\+A\+L\+\_\+\+G\+E\+N\+E\+R\+A\+T\+O\+R\+::\+Settings\+Type $>$ \hyperlink{namespacenifty_1_1graph_1_1optimization_1_1common_a14cf355c5a6891f49b59948e759b8a50}{export\+C\+C\+Proposal\+Generator} (py\+::module \&module, const std\+::string \&cls\+Name, const std\+::string \&obj\+Name)
 \end{DoxyCompactItemize}
 
 
 \subsection{Function Documentation}
-\hypertarget{namespacenifty_1_1graph_1_1optimization_1_1common_aa6e39a28f5413a1dee4423fcc677b5b8}{}\index{nifty\+::graph\+::optimization\+::common@{nifty\+::graph\+::optimization\+::common}!export\+C\+C\+Proposal\+Generator@{export\+C\+C\+Proposal\+Generator}}
+\hypertarget{namespacenifty_1_1graph_1_1optimization_1_1common_a14cf355c5a6891f49b59948e759b8a50}{}\index{nifty\+::graph\+::optimization\+::common@{nifty\+::graph\+::optimization\+::common}!export\+C\+C\+Proposal\+Generator@{export\+C\+C\+Proposal\+Generator}}
 \index{export\+C\+C\+Proposal\+Generator@{export\+C\+C\+Proposal\+Generator}!nifty\+::graph\+::optimization\+::common@{nifty\+::graph\+::optimization\+::common}}
-\subsubsection[{export\+C\+C\+Proposal\+Generator(py\+::module \&module, const std\+::string \&cls\+Name, const std\+::string \&obj\+Name)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class P\+R\+O\+P\+O\+S\+A\+L\+\_\+\+G\+E\+N\+E\+R\+A\+T\+O\+R $>$ py\+::class\+\_\+$<$typename P\+R\+O\+P\+O\+S\+A\+L\+\_\+\+G\+E\+N\+E\+R\+A\+T\+O\+R\+::\+Settings$>$ nifty\+::graph\+::optimization\+::common\+::export\+C\+C\+Proposal\+Generator (
+\subsubsection[{export\+C\+C\+Proposal\+Generator(py\+::module \&module, const std\+::string \&cls\+Name, const std\+::string \&obj\+Name)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class P\+R\+O\+P\+O\+S\+A\+L\+\_\+\+G\+E\+N\+E\+R\+A\+T\+O\+R $>$ py\+::class\+\_\+$<$typename P\+R\+O\+P\+O\+S\+A\+L\+\_\+\+G\+E\+N\+E\+R\+A\+T\+O\+R\+::\+Settings\+Type$>$ nifty\+::graph\+::optimization\+::common\+::export\+C\+C\+Proposal\+Generator (
 \begin{DoxyParamCaption}
 \item[{py\+::module \&}]{module, }
 \item[{const std\+::string \&}]{cls\+Name, }
 \item[{const std\+::string \&}]{obj\+Name}
 \end{DoxyParamCaption}
-)}\label{namespacenifty_1_1graph_1_1optimization_1_1common_aa6e39a28f5413a1dee4423fcc677b5b8}
+)}\label{namespacenifty_1_1graph_1_1optimization_1_1common_a14cf355c5a6891f49b59948e759b8a50}
 \hypertarget{namespacenifty_1_1graph_1_1optimization_1_1common_a78d8d2a3a62c60cc2117005e75609134}{}\index{nifty\+::graph\+::optimization\+::common@{nifty\+::graph\+::optimization\+::common}!export\+C\+C\+Proposal\+Generator\+Factory\+Base\+T@{export\+C\+C\+Proposal\+Generator\+Factory\+Base\+T}}
 \index{export\+C\+C\+Proposal\+Generator\+Factory\+Base\+T@{export\+C\+C\+Proposal\+Generator\+Factory\+Base\+T}!nifty\+::graph\+::optimization\+::common@{nifty\+::graph\+::optimization\+::common}}
 \subsubsection[{export\+C\+C\+Proposal\+Generator\+Factory\+Base\+T(pybind11\+::module \&module, const std\+::string \&obj\+Name)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class O\+B\+J\+E\+C\+T\+I\+V\+E $>$ void nifty\+::graph\+::optimization\+::common\+::export\+C\+C\+Proposal\+Generator\+Factory\+Base\+T (
@@ -61,3 +75,11 @@ class \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1WatershedPropo
 \item[{const std\+::string \&}]{obj\+Name}
 \end{DoxyParamCaption}
 )}\label{namespacenifty_1_1graph_1_1optimization_1_1common_a78d8d2a3a62c60cc2117005e75609134}
+\hypertarget{namespacenifty_1_1graph_1_1optimization_1_1common_ac0f48d09affe67d7fdf71a7aa91a9c46}{}\index{nifty\+::graph\+::optimization\+::common@{nifty\+::graph\+::optimization\+::common}!export\+Solver\+Factory@{export\+Solver\+Factory}}
+\index{export\+Solver\+Factory@{export\+Solver\+Factory}!nifty\+::graph\+::optimization\+::common@{nifty\+::graph\+::optimization\+::common}}
+\subsubsection[{export\+Solver\+Factory(py\+::module \&module, const std\+::string objective\+Name)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S\+O\+L\+V\+E\+R\+\_\+\+B\+A\+S\+E $>$ void nifty\+::graph\+::optimization\+::common\+::export\+Solver\+Factory (
+\begin{DoxyParamCaption}
+\item[{py\+::module \&}]{module, }
+\item[{const std\+::string}]{objective\+Name}
+\end{DoxyParamCaption}
+)}\label{namespacenifty_1_1graph_1_1optimization_1_1common_ac0f48d09affe67d7fdf71a7aa91a9c46}

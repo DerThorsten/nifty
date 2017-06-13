@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="structnifty_1_1features_1_1GaussianGradientMagnitude" kind="struct" language="C++" prot="public">
+    <compoundname>nifty::features::GaussianGradientMagnitude</compoundname>
+    <basecompoundref refid="structnifty_1_1features_1_1FilterBase" prot="public" virt="non-virtual">nifty::features::FilterBase</basecompoundref>
+    <includes refid="fastfilters__wrapper_8hxx" local="no">fastfilters_wrapper.hxx</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structnifty_1_1features_1_1GaussianGradientMagnitude_1a27ef99659834c0340d07e0012874d38c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void nifty::features::GaussianGradientMagnitude::operator()</definition>
+        <argsstring>(const fastfilters_array2d_t &amp;ff, marray::View&lt; float &gt; &amp;out, const double sigma) const </argsstring>
+        <name>operator()</name>
+        <reimplements refid="structnifty_1_1features_1_1FilterBase_1ab362e4142a783ce298a477557bcd9436">operator()</reimplements>
+        <param>
+          <type>const fastfilters_array2d_t &amp;</type>
+          <declname>ff</declname>
+        </param>
+        <param>
+          <type><ref refid="classandres_1_1View" kindref="compound">marray::View</ref>&lt; float &gt; &amp;</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>sigma</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" line="158" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" bodystart="158" bodyend="163"/>
+      </memberdef>
+      <memberdef kind="function" id="structnifty_1_1features_1_1GaussianGradientMagnitude_1a6990d7d773aa0223aceed88460d270db" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void nifty::features::GaussianGradientMagnitude::operator()</definition>
+        <argsstring>(const fastfilters_array3d_t &amp;ff, marray::View&lt; float &gt; &amp;out, const double sigma) const </argsstring>
+        <name>operator()</name>
+        <reimplements refid="structnifty_1_1features_1_1FilterBase_1ab7d7de20b106e80ccfd65a818e1b6eef">operator()</reimplements>
+        <param>
+          <type>const fastfilters_array3d_t &amp;</type>
+          <declname>ff</declname>
+        </param>
+        <param>
+          <type><ref refid="classandres_1_1View" kindref="compound">marray::View</ref>&lt; float &gt; &amp;</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>sigma</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" line="165" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" bodystart="165" bodyend="170"/>
+      </memberdef>
+      <memberdef kind="function" id="structnifty_1_1features_1_1GaussianGradientMagnitude_1a38cb11a99efb83ffa19eda0b74d02456" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>bool nifty::features::GaussianGradientMagnitude::isMultiChannel</definition>
+        <argsstring>() const </argsstring>
+        <name>isMultiChannel</name>
+        <reimplements refid="structnifty_1_1features_1_1FilterBase_1a01fbc04537c69b997079a98a845c5ab3">isMultiChannel</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" line="172" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" bodystart="172" bodyend="174"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1240">
+        <label>nifty::features::GaussianGradientMagnitude</label>
+        <link refid="structnifty_1_1features_1_1GaussianGradientMagnitude"/>
+        <childnode refid="1241" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1241">
+        <label>nifty::features::FilterBase</label>
+        <link refid="structnifty_1_1features_1_1FilterBase"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1242">
+        <label>nifty::features::GaussianGradientMagnitude</label>
+        <link refid="structnifty_1_1features_1_1GaussianGradientMagnitude"/>
+        <childnode refid="1243" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1243">
+        <label>nifty::features::FilterBase</label>
+        <link refid="structnifty_1_1features_1_1FilterBase"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" line="156" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" bodystart="156" bodyend="177"/>
+    <listofallmembers>
+      <member refid="structnifty_1_1features_1_1FilterBase_1ac10b9d69df645dd2feb7ce555e544502" prot="public" virt="non-virtual"><scope>nifty::features::GaussianGradientMagnitude</scope><name>FilterBase</name></member>
+      <member refid="structnifty_1_1features_1_1GaussianGradientMagnitude_1a38cb11a99efb83ffa19eda0b74d02456" prot="public" virt="virtual"><scope>nifty::features::GaussianGradientMagnitude</scope><name>isMultiChannel</name></member>
+      <member refid="structnifty_1_1features_1_1GaussianGradientMagnitude_1a27ef99659834c0340d07e0012874d38c" prot="public" virt="virtual"><scope>nifty::features::GaussianGradientMagnitude</scope><name>operator()</name></member>
+      <member refid="structnifty_1_1features_1_1GaussianGradientMagnitude_1a6990d7d773aa0223aceed88460d270db" prot="public" virt="virtual"><scope>nifty::features::GaussianGradientMagnitude</scope><name>operator()</name></member>
+      <member refid="structnifty_1_1features_1_1FilterBase_1a4bd3a5f88a4c061e80f0b0c4a1074c8c" prot="protected" virt="non-virtual"><scope>nifty::features::GaussianGradientMagnitude</scope><name>opt_</name></member>
+      <member refid="structnifty_1_1features_1_1FilterBase_1ab59d743ba07608b8aaa37e59f049431e" prot="public" virt="non-virtual"><scope>nifty::features::GaussianGradientMagnitude</scope><name>set_window_ratio</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

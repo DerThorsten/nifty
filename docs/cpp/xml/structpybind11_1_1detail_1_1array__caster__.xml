@@ -1,0 +1,179 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="structpybind11_1_1detail_1_1array__caster__" kind="struct" language="C++" prot="public">
+    <compoundname>pybind11::detail::array_caster_</compoundname>
+    <includes refid="converter_8hxx" local="no">converter.hxx</includes>
+    <templateparamlist>
+      <param>
+        <type>typename</type>
+        <declname>ArrayType</declname>
+        <defname>ArrayType</defname>
+      </param>
+      <param>
+        <type>typename</type>
+        <declname>Value</declname>
+        <defname>Value</defname>
+      </param>
+      <param>
+        <type>bool</type>
+        <declname>Resizable</declname>
+        <defname>Resizable</defname>
+      </param>
+      <param>
+        <type>size_t</type>
+        <declname>Size</declname>
+        <defname>Size</defname>
+        <defval>0</defval>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="structpybind11_1_1detail_1_1array__caster___1a39e6e57cd2c8ab3c8cc81ee85fcfbcc6" prot="public" static="no">
+        <type>make_caster&lt; Value &gt;</type>
+        <definition>using pybind11::detail::array_caster_&lt; ArrayType, Value, Resizable, Size &gt;::value_conv =  make_caster&lt;Value&gt;</definition>
+        <argsstring></argsstring>
+        <name>value_conv</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/converter.hxx" line="39" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/converter.hxx" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="structpybind11_1_1detail_1_1array__caster___1a5742863d542b1ab9dc8afafda1315fe2" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>bool</type>
+            <declname>R</declname>
+            <defname>R</defname>
+            <defval>Resizable</defval>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool pybind11::detail::array_caster_&lt; ArrayType, Value, Resizable, Size &gt;::require_size</definition>
+        <argsstring>(enable_if_t&lt; R, size_t &gt; size)</argsstring>
+        <name>require_size</name>
+        <param>
+          <type>enable_if_t&lt; R, size_t &gt;</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/converter.hxx" line="43" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/converter.hxx" bodystart="43" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="function" id="structpybind11_1_1detail_1_1array__caster___1afed851dcd78bb8e24fb50fa4745aaaa6" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>bool</type>
+            <declname>R</declname>
+            <defname>R</defname>
+            <defval>Resizable</defval>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool pybind11::detail::array_caster_&lt; ArrayType, Value, Resizable, Size &gt;::require_size</definition>
+        <argsstring>(enable_if_t&lt;!R, size_t &gt; size)</argsstring>
+        <name>require_size</name>
+        <param>
+          <type>enable_if_t&lt;!R, size_t &gt;</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/converter.hxx" line="49" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/converter.hxx" bodystart="49" bodyend="51"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structpybind11_1_1detail_1_1array__caster___1a26ad1fb7dab7c82cd832c8c3a356fead" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool pybind11::detail::array_caster_&lt; ArrayType, Value, Resizable, Size &gt;::load</definition>
+        <argsstring>(handle src, bool convert)</argsstring>
+        <name>load</name>
+        <param>
+          <type>handle</type>
+          <declname>src</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>convert</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/converter.hxx" line="54" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/converter.hxx" bodystart="54" bodyend="68"/>
+      </memberdef>
+      <memberdef kind="function" id="structpybind11_1_1detail_1_1array__caster___1a1feb38428c22749e65c159c0e63b9eb7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>pybind11::detail::array_caster_&lt; ArrayType, Value, Resizable, Size &gt;::PYBIND11_TYPE_CASTER</definition>
+        <argsstring>(ArrayType, _(&quot;List[&quot;)+value_conv::name()+_&lt; Resizable &gt;(_(&quot;&quot;), _(&quot;[&quot;)+_&lt; Size &gt;()+_(&quot;]&quot;))+_(&quot;]&quot;))</argsstring>
+        <name>PYBIND11_TYPE_CASTER</name>
+        <param>
+          <type>ArrayType</type>
+        </param>
+        <param>
+          <type>_(&quot;List[&quot;)+value_conv::name()+_&lt; Resizable &gt;(_(&quot;&quot;), _(&quot;[&quot;)+_&lt; Size &gt;()+_(&quot;]&quot;))+_(&quot;]&quot;)</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/converter.hxx" line="82" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="structpybind11_1_1detail_1_1array__caster___1a5b2accfaf6b0ca00cb250a511d7e037a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>handle</type>
+        <definition>static handle pybind11::detail::array_caster_&lt; ArrayType, Value, Resizable, Size &gt;::cast</definition>
+        <argsstring>(const ArrayType &amp;src, return_value_policy policy, handle parent)</argsstring>
+        <name>cast</name>
+        <param>
+          <type>const ArrayType &amp;</type>
+          <declname>src</declname>
+        </param>
+        <param>
+          <type>return_value_policy</type>
+          <declname>policy</declname>
+        </param>
+        <param>
+          <type>handle</type>
+          <declname>parent</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/converter.hxx" line="70" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/converter.hxx" bodystart="70" bodyend="80"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/python/converter.hxx" line="38" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/converter.hxx" bodystart="38" bodyend="83"/>
+    <listofallmembers>
+      <member refid="structpybind11_1_1detail_1_1array__caster___1a5b2accfaf6b0ca00cb250a511d7e037a" prot="public" virt="non-virtual"><scope>pybind11::detail::array_caster_</scope><name>cast</name></member>
+      <member refid="structpybind11_1_1detail_1_1array__caster___1a26ad1fb7dab7c82cd832c8c3a356fead" prot="public" virt="non-virtual"><scope>pybind11::detail::array_caster_</scope><name>load</name></member>
+      <member refid="structpybind11_1_1detail_1_1array__caster___1a1feb38428c22749e65c159c0e63b9eb7" prot="public" virt="non-virtual"><scope>pybind11::detail::array_caster_</scope><name>PYBIND11_TYPE_CASTER</name></member>
+      <member refid="structpybind11_1_1detail_1_1array__caster___1a5742863d542b1ab9dc8afafda1315fe2" prot="private" virt="non-virtual"><scope>pybind11::detail::array_caster_</scope><name>require_size</name></member>
+      <member refid="structpybind11_1_1detail_1_1array__caster___1afed851dcd78bb8e24fb50fa4745aaaa6" prot="private" virt="non-virtual"><scope>pybind11::detail::array_caster_</scope><name>require_size</name></member>
+      <member refid="structpybind11_1_1detail_1_1array__caster___1a39e6e57cd2c8ab3c8cc81ee85fcfbcc6" prot="public" virt="non-virtual"><scope>pybind11::detail::array_caster_</scope><name>value_conv</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

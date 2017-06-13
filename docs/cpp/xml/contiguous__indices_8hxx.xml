@@ -1,0 +1,193 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="contiguous__indices_8hxx" kind="file" language="C++">
+    <compoundname>contiguous_indices.hxx</compoundname>
+    <includes refid="graph__tags_8hxx" local="yes">nifty/graph/graph_tags.hxx</includes>
+    <includedby refid="lifted__multicut__ilp_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_ilp.hxx</includedby>
+    <includedby refid="mincut__cc__fusion__move__based_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_cc_fusion_move_based.hxx</includedby>
+    <includedby refid="mincut__greedy__additive_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_greedy_additive.hxx</includedby>
+    <includedby refid="mincut__qpbo_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_qpbo.hxx</includedby>
+    <includedby refid="cc__fusion__move__based_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/cc_fusion_move_based.hxx</includedby>
+    <includedby refid="multicut__ilp_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_ilp.hxx</includedby>
+    <incdepgraph>
+      <node id="7416">
+        <label>nifty/graph/graph_tags.hxx</label>
+        <link refid="graph__tags_8hxx"/>
+      </node>
+      <node id="7415">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/detail/contiguous_indices.hxx</label>
+        <link refid="contiguous_indices.hxx"/>
+        <childnode refid="7416" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="7422">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/cc_fusion_move_based.hxx</label>
+        <link refid="cc__fusion__move__based_8hxx"/>
+      </node>
+      <node id="7421">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_qpbo.hxx</label>
+        <link refid="mincut__qpbo_8hxx"/>
+      </node>
+      <node id="7420">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_greedy_additive.hxx</label>
+        <link refid="mincut__greedy__additive_8hxx"/>
+      </node>
+      <node id="7419">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_cc_fusion_move_based.hxx</label>
+        <link refid="mincut__cc__fusion__move__based_8hxx"/>
+      </node>
+      <node id="7423">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_ilp.hxx</label>
+        <link refid="multicut__ilp_8hxx"/>
+      </node>
+      <node id="7418">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_ilp.hxx</label>
+        <link refid="lifted__multicut__ilp_8hxx"/>
+      </node>
+      <node id="7417">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/detail/contiguous_indices.hxx</label>
+        <link refid="contiguous_indices.hxx"/>
+        <childnode refid="7418" relation="include">
+        </childnode>
+        <childnode refid="7419" relation="include">
+        </childnode>
+        <childnode refid="7420" relation="include">
+        </childnode>
+        <childnode refid="7421" relation="include">
+        </childnode>
+        <childnode refid="7422" relation="include">
+        </childnode>
+        <childnode refid="7423" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classnifty_1_1graph_1_1detail__graph_1_1EdgeIndicesToContiguousEdgeIndicesImpl" prot="public">nifty::graph::detail_graph::EdgeIndicesToContiguousEdgeIndicesImpl</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1detail__graph_1_1EdgeIndicesToContiguousEdgeIndicesImpl_3_01GRAPH_00_01ni85a4007f22b365a25e3bd0829bce5cfc" prot="public">nifty::graph::detail_graph::EdgeIndicesToContiguousEdgeIndicesImpl&lt; GRAPH, nifty::graph::ContiguousTag &gt;</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1detail__graph_1_1EdgeIndicesToContiguousEdgeIndices" prot="public">nifty::graph::detail_graph::EdgeIndicesToContiguousEdgeIndices</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1detail__graph_1_1NodeIndicesToContiguousNodeIndicesImpl" prot="public">nifty::graph::detail_graph::NodeIndicesToContiguousNodeIndicesImpl</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1detail__graph_1_1NodeIndicesToContiguousNodeIndicesImpl_3_01GRAPH_00_01ni9b1f0e77953ef9967804436d9931bab9" prot="public">nifty::graph::detail_graph::NodeIndicesToContiguousNodeIndicesImpl&lt; GRAPH, nifty::graph::ContiguousTag &gt;</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1detail__graph_1_1NodeIndicesToContiguousNodeIndices" prot="public">nifty::graph::detail_graph::NodeIndicesToContiguousNodeIndices</innerclass>
+    <innernamespace refid="namespacenifty">nifty</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph">nifty::graph</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph_1_1detail__graph">nifty::graph::detail_graph</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="graph__tags_8hxx" kindref="compound">nifty/graph/graph_tags.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacenifty" kindref="compound">nifty</ref>{</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">graph{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">detail_graph{</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>GRAPH,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>EDGE_ID_TAG&gt;</highlight></codeline>
+<codeline lineno="11" refid="classnifty_1_1graph_1_1detail__graph_1_1EdgeIndicesToContiguousEdgeIndicesImpl" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnifty_1_1graph_1_1detail__graph_1_1EdgeIndicesToContiguousEdgeIndicesImpl" kindref="compound">EdgeIndicesToContiguousEdgeIndicesImpl</ref>{</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="13" refid="classnifty_1_1graph_1_1detail__graph_1_1EdgeIndicesToContiguousEdgeIndicesImpl_1a0ca0aedc5cca6cdb6ec300f455c30463" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>GRAPH<sp/><ref refid="classnifty_1_1graph_1_1detail__graph_1_1EdgeIndicesToContiguousEdgeIndicesImpl_1a0ca0aedc5cca6cdb6ec300f455c30463" kindref="member">Graph</ref>;</highlight></codeline>
+<codeline lineno="14" refid="classnifty_1_1graph_1_1detail__graph_1_1EdgeIndicesToContiguousEdgeIndicesImpl_1a0427ceeeebf1d9c6d0df61a17a60f16e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1detail__graph_1_1EdgeIndicesToContiguousEdgeIndicesImpl_1a0427ceeeebf1d9c6d0df61a17a60f16e" kindref="member">EdgeIndicesToContiguousEdgeIndicesImpl</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Graph<sp/>&amp;<sp/>graph)</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>ids_(graph){</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>cid<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>edge<sp/>:<sp/>graph.edges()){</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ids_[edge]<sp/>=<sp/>cid;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>++cid;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="24" refid="classnifty_1_1graph_1_1detail__graph_1_1EdgeIndicesToContiguousEdgeIndicesImpl_1a6b61c81dbb699894e396687ae8667e15" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int64_t<sp/><ref refid="classnifty_1_1graph_1_1detail__graph_1_1EdgeIndicesToContiguousEdgeIndicesImpl_1a6b61c81dbb699894e396687ae8667e15" kindref="member">operator[]</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>int64_t<sp/>edge)</highlight><highlight class="keyword">const</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ids_[edge];</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Graph::<sp/>template<sp/>EdgeMap&lt;uint64_t&gt;<sp/><sp/>ContiguousIdStorage;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ContiguousIdStorage<sp/>ids_;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>GRAPH&gt;</highlight></codeline>
+<codeline lineno="34" refid="classnifty_1_1graph_1_1detail__graph_1_1EdgeIndicesToContiguousEdgeIndicesImpl_3_01GRAPH_00_01ni85a4007f22b365a25e3bd0829bce5cfc" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnifty_1_1graph_1_1detail__graph_1_1EdgeIndicesToContiguousEdgeIndicesImpl" kindref="compound">EdgeIndicesToContiguousEdgeIndicesImpl</ref>&lt;GRAPH,<sp/><ref refid="namespacenifty" kindref="compound">nifty</ref>::<ref refid="structnifty_1_1graph_1_1ContiguousTag" kindref="compound">graph::ContiguousTag</ref>&gt;<sp/><sp/>{</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="36" refid="classnifty_1_1graph_1_1detail__graph_1_1EdgeIndicesToContiguousEdgeIndicesImpl_3_01GRAPH_00_01ni85a4007f22b365a25e3bd0829bce5cfc_1aba2a4ae62eed35cfc1eeb20a091377fb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>GRAPH<sp/><ref refid="classnifty_1_1graph_1_1detail__graph_1_1EdgeIndicesToContiguousEdgeIndicesImpl_3_01GRAPH_00_01ni85a4007f22b365a25e3bd0829bce5cfc_1aba2a4ae62eed35cfc1eeb20a091377fb" kindref="member">Graph</ref>;</highlight></codeline>
+<codeline lineno="37" refid="classnifty_1_1graph_1_1detail__graph_1_1EdgeIndicesToContiguousEdgeIndicesImpl_3_01GRAPH_00_01ni85a4007f22b365a25e3bd0829bce5cfc_1abddc7ce6203575442f52232474c767b8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1detail__graph_1_1EdgeIndicesToContiguousEdgeIndicesImpl_3_01GRAPH_00_01ni85a4007f22b365a25e3bd0829bce5cfc_1abddc7ce6203575442f52232474c767b8" kindref="member">EdgeIndicesToContiguousEdgeIndicesImpl</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Graph<sp/>&amp;<sp/>graph){</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="39" refid="classnifty_1_1graph_1_1detail__graph_1_1EdgeIndicesToContiguousEdgeIndicesImpl_3_01GRAPH_00_01ni85a4007f22b365a25e3bd0829bce5cfc_1a4dc789952a59b23c81cd74ed2e79aa19" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int64_t<sp/><ref refid="classnifty_1_1graph_1_1detail__graph_1_1EdgeIndicesToContiguousEdgeIndicesImpl_3_01GRAPH_00_01ni85a4007f22b365a25e3bd0829bce5cfc_1a4dc789952a59b23c81cd74ed2e79aa19" kindref="member">operator[]</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>int64_t<sp/>edge)</highlight><highlight class="keyword">const</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>edge;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>GRAPH&gt;</highlight></codeline>
+<codeline lineno="47" refid="classnifty_1_1graph_1_1detail__graph_1_1EdgeIndicesToContiguousEdgeIndices" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnifty_1_1graph_1_1detail__graph_1_1EdgeIndicesToContiguousEdgeIndices" kindref="compound">EdgeIndicesToContiguousEdgeIndices</ref><sp/></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><sp/><ref refid="classnifty_1_1graph_1_1detail__graph_1_1EdgeIndicesToContiguousEdgeIndicesImpl" kindref="compound">EdgeIndicesToContiguousEdgeIndicesImpl</ref>&lt;GRAPH,<sp/>typename<sp/>GRAPH::EdgeIdTag&gt;{</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1detail__graph_1_1EdgeIndicesToContiguousEdgeIndicesImpl" kindref="compound">EdgeIndicesToContiguousEdgeIndicesImpl&lt;GRAPH, typename GRAPH::EdgeIdTag&gt;::EdgeIndicesToContiguousEdgeIndicesImpl</ref>;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>GRAPH,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>NODE_ID_TAG&gt;</highlight></codeline>
+<codeline lineno="56" refid="classnifty_1_1graph_1_1detail__graph_1_1NodeIndicesToContiguousNodeIndicesImpl" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnifty_1_1graph_1_1detail__graph_1_1NodeIndicesToContiguousNodeIndicesImpl" kindref="compound">NodeIndicesToContiguousNodeIndicesImpl</ref>{</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="58" refid="classnifty_1_1graph_1_1detail__graph_1_1NodeIndicesToContiguousNodeIndicesImpl_1a1fa4e1edf7a5385ea5a4d8311d359c43" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>GRAPH<sp/><ref refid="classnifty_1_1graph_1_1detail__graph_1_1NodeIndicesToContiguousNodeIndicesImpl_1a1fa4e1edf7a5385ea5a4d8311d359c43" kindref="member">Graph</ref>;</highlight></codeline>
+<codeline lineno="59" refid="classnifty_1_1graph_1_1detail__graph_1_1NodeIndicesToContiguousNodeIndicesImpl_1a9282de3d1e50e3f149ab2ab5793cd475" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1detail__graph_1_1NodeIndicesToContiguousNodeIndicesImpl_1a9282de3d1e50e3f149ab2ab5793cd475" kindref="member">NodeIndicesToContiguousNodeIndicesImpl</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Graph<sp/>&amp;<sp/>graph)</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>ids_(graph){</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>cid<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>node<sp/>:<sp/>graph.nodes()){</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ids_[node]<sp/>=<sp/>cid;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>++cid;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="69" refid="classnifty_1_1graph_1_1detail__graph_1_1NodeIndicesToContiguousNodeIndicesImpl_1aacb68555962ce1d56ec6eb0dca8a1b3b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int64_t<sp/><ref refid="classnifty_1_1graph_1_1detail__graph_1_1NodeIndicesToContiguousNodeIndicesImpl_1aacb68555962ce1d56ec6eb0dca8a1b3b" kindref="member">operator[]</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>int64_t<sp/>node)</highlight><highlight class="keyword">const</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ids_[node];</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Graph::<sp/>template<sp/>NodeMap&lt;uint64_t&gt;<sp/><sp/>ContiguousIdStorage;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ContiguousIdStorage<sp/>ids_;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>GRAPH&gt;</highlight></codeline>
+<codeline lineno="79" refid="classnifty_1_1graph_1_1detail__graph_1_1NodeIndicesToContiguousNodeIndicesImpl_3_01GRAPH_00_01ni9b1f0e77953ef9967804436d9931bab9" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnifty_1_1graph_1_1detail__graph_1_1NodeIndicesToContiguousNodeIndicesImpl" kindref="compound">NodeIndicesToContiguousNodeIndicesImpl</ref>&lt;GRAPH,<sp/><ref refid="namespacenifty" kindref="compound">nifty</ref>::<ref refid="structnifty_1_1graph_1_1ContiguousTag" kindref="compound">graph::ContiguousTag</ref>&gt;<sp/><sp/>{</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="81" refid="classnifty_1_1graph_1_1detail__graph_1_1NodeIndicesToContiguousNodeIndicesImpl_3_01GRAPH_00_01ni9b1f0e77953ef9967804436d9931bab9_1a5bfb9d22b775eeea19c32af5dfcd482f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>GRAPH<sp/><ref refid="classnifty_1_1graph_1_1detail__graph_1_1NodeIndicesToContiguousNodeIndicesImpl_3_01GRAPH_00_01ni9b1f0e77953ef9967804436d9931bab9_1a5bfb9d22b775eeea19c32af5dfcd482f" kindref="member">Graph</ref>;</highlight></codeline>
+<codeline lineno="82" refid="classnifty_1_1graph_1_1detail__graph_1_1NodeIndicesToContiguousNodeIndicesImpl_3_01GRAPH_00_01ni9b1f0e77953ef9967804436d9931bab9_1a4247b773e3c6b878a30246a45c935d75" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1detail__graph_1_1NodeIndicesToContiguousNodeIndicesImpl_3_01GRAPH_00_01ni9b1f0e77953ef9967804436d9931bab9_1a4247b773e3c6b878a30246a45c935d75" kindref="member">NodeIndicesToContiguousNodeIndicesImpl</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Graph<sp/>&amp;<sp/>graph){</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="84" refid="classnifty_1_1graph_1_1detail__graph_1_1NodeIndicesToContiguousNodeIndicesImpl_3_01GRAPH_00_01ni9b1f0e77953ef9967804436d9931bab9_1a30191e2b4ecf6f075fe69e53480b9ae0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int64_t<sp/><ref refid="classnifty_1_1graph_1_1detail__graph_1_1NodeIndicesToContiguousNodeIndicesImpl_3_01GRAPH_00_01ni9b1f0e77953ef9967804436d9931bab9_1a30191e2b4ecf6f075fe69e53480b9ae0" kindref="member">operator[]</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>int64_t<sp/>node)</highlight><highlight class="keyword">const</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>node;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>GRAPH&gt;</highlight></codeline>
+<codeline lineno="94" refid="classnifty_1_1graph_1_1detail__graph_1_1NodeIndicesToContiguousNodeIndices" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnifty_1_1graph_1_1detail__graph_1_1NodeIndicesToContiguousNodeIndices" kindref="compound">NodeIndicesToContiguousNodeIndices</ref><sp/></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><sp/><ref refid="classnifty_1_1graph_1_1detail__graph_1_1NodeIndicesToContiguousNodeIndicesImpl" kindref="compound">NodeIndicesToContiguousNodeIndicesImpl</ref>&lt;GRAPH,<sp/>typename<sp/>GRAPH::NodeIdTag&gt;{</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1detail__graph_1_1NodeIndicesToContiguousNodeIndicesImpl" kindref="compound">NodeIndicesToContiguousNodeIndicesImpl&lt;GRAPH, typename GRAPH::NodeIdTag&gt;::NodeIndicesToContiguousNodeIndicesImpl</ref>;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>detail_graph</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/detail/contiguous_indices.hxx"/>
+  </compounddef>
+</doxygen>

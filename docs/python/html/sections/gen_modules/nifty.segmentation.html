@@ -1,0 +1,381 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>nifty.segmentation &#8212; Nifty 0.19.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.19.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="nifty.ground_truth" href="nifty.ground_truth.html" />
+    <link rel="prev" title="nifty.graph.optimization.mincut" href="nifty.graph.optimization.mincut.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="nifty.ground_truth.html" title="nifty.ground_truth"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="nifty.graph.optimization.mincut.html" title="nifty.graph.optimization.mincut"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Nifty 0.19.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../reference.html" accesskey="U">Nifty API Reference</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">nifty.segmentation</a><ul>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="nifty.graph.optimization.mincut.html"
+                        title="previous chapter">nifty.graph.optimization.mincut</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="nifty.ground_truth.html"
+                        title="next chapter">nifty.ground_truth</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-nifty.segmentation">
+<span id="nifty-segmentation"></span><h1>nifty.segmentation<a class="headerlink" href="#module-nifty.segmentation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="nifty.segmentation.connectedComponents">
+<code class="descclassname">nifty.segmentation.</code><code class="descname">connectedComponents</code><span class="sig-paren">(</span><em>labels</em>, <em>dense=True</em>, <em>ignoreBackground=False</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.segmentation.connectedComponents" title="Permalink to this definition">¶</a></dt>
+<dd><p>get connected components of a label image</p>
+<p>Get connected components of an image w.r.t.
+a 4-neighborhood .
+This is a high level wrapper for</p>
+<blockquote>
+<div><a class="reference internal" href="nifty.graph.html#nifty.graph.connectedComponentsFromNodeLabels" title="nifty.graph.connectedComponentsFromNodeLabels"><code class="xref py py-func docutils literal"><span class="pre">nifty.graph.connectedComponentsFromNodeLabels()</span></code></a></div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>labels</strong> (<em>numpy.ndarray</em>) &#8211; </li>
+<li><strong>dense</strong> (<em>bool</em>) &#8211; should the return labeling be dense (default: {True})</li>
+<li><strong>ignoreBackground</strong> (<em>bool</em>) &#8211; should values of zero be excluded (default: {False})</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">[description]
+[type]</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<div style='clear:both'></div><dl class="function">
+<dt id="nifty.segmentation.distanceTransformWatersheds">
+<code class="descclassname">nifty.segmentation.</code><code class="descname">distanceTransformWatersheds</code><span class="sig-paren">(</span><em>pmap</em>, <em>preBinarizationMedianRadius=1</em>, <em>threshold=0.5</em>, <em>preSeedSigma=0.75</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.segmentation.distanceTransformWatersheds" title="Permalink to this definition">¶</a></dt>
+<dd><p>Superpixels for neuro data as in <a class="reference external" href="http://brainiac2.mit.edu/isbi_challenge/">http://brainiac2.mit.edu/isbi_challenge/</a></p>
+<p>Use raw data and membrane probability maps to
+generate a over-segmentation suitable for neuro data</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>pmap</strong> (<em>numpy.ndarray</em>) &#8211; Membrane probability in [0,1].</li>
+<li><strong>preBinarizationMedianRadius</strong> (<em>int</em>) &#8211; Radius of
+diskMedian filter applied to the probability map
+before binarization. (default:{1})</li>
+<li><strong>threshold</strong> (<em>float</em>) &#8211; threshold to binarize
+probability map  before applying
+the distance transform (default: {0.5})</li>
+<li><strong>preSeedSigma</strong> (<em>float</em>) &#8211; smooth the distance
+transform image before getting the seeds.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><code class="xref py py-exc docutils literal"><span class="pre">RuntimeError</span></code> &#8211; if applied to data with wrong dimensionality</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<div style='clear:both'></div><dl class="function">
+<dt id="nifty.segmentation.localMaxima">
+<code class="descclassname">nifty.segmentation.</code><code class="descname">localMaxima</code><span class="sig-paren">(</span><em>image</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.segmentation.localMaxima" title="Permalink to this definition">¶</a></dt>
+<dd><p>get the local maxima of an image</p>
+<p>Get the local maxima wrt a 4-neighborhood on an image.
+For a plateau, all pixels of this plateau are marked
+as maximum pixel.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>image</strong> (<em>numpy.ndarray</em>) &#8211; the input image</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">array which is 1 the maximum 0 elsewhere.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(numpy.ndarray)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<div style='clear:both'></div><dl class="function">
+<dt id="nifty.segmentation.localMaximaSeeds">
+<code class="descclassname">nifty.segmentation.</code><code class="descname">localMaximaSeeds</code><span class="sig-paren">(</span><em>image</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.segmentation.localMaximaSeeds" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get seed from local maxima</p>
+<p>Get seeds by running connected components
+on the local maxima.
+This is a high level wrapper around
+<a class="reference internal" href="#nifty.segmentation.localMinima" title="nifty.segmentation.localMinima"><code class="xref py py-func docutils literal"><span class="pre">nifty.segmentation.localMinima()</span></code></a>
+and <a class="reference internal" href="#nifty.segmentation.connectedComponents" title="nifty.segmentation.connectedComponents"><code class="xref py py-func docutils literal"><span class="pre">nifty.segmentation.connectedComponents()</span></code></a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>image</strong> &#8211; [description]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">[description]
+[type]</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal"><span class="pre">RuntimeError</span></code> &#8211; [description]</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<div style='clear:both'></div><dl class="function">
+<dt id="nifty.segmentation.localMinima">
+<code class="descclassname">nifty.segmentation.</code><code class="descname">localMinima</code><span class="sig-paren">(</span><em>image</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.segmentation.localMinima" title="Permalink to this definition">¶</a></dt>
+<dd><p>get the local minima of an image</p>
+<p>Get the local minima wrt a 4-neighborhood on an image.
+For a plateau, all pixels of this plateau are marked
+as minimum pixel.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>image</strong> (<em>numpy.ndarray</em>) &#8211; the input image</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">array which is 1 the minimum 0 elsewhere.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(numpy.ndarray)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<div style='clear:both'></div><dl class="function">
+<dt id="nifty.segmentation.localMinimaSeeds">
+<code class="descclassname">nifty.segmentation.</code><code class="descname">localMinimaSeeds</code><span class="sig-paren">(</span><em>image</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.segmentation.localMinimaSeeds" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get seed from local minima</p>
+<p>Get seeds by running connected components
+on the local minima.
+This is a high level wrapper around
+<a class="reference internal" href="#nifty.segmentation.localMinima" title="nifty.segmentation.localMinima"><code class="xref py py-func docutils literal"><span class="pre">nifty.segmentation.localMinima()</span></code></a>
+and <a class="reference internal" href="#nifty.segmentation.connectedComponents" title="nifty.segmentation.connectedComponents"><code class="xref py py-func docutils literal"><span class="pre">nifty.segmentation.connectedComponents()</span></code></a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>image</strong> &#8211; [description]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">[description]
+[type]</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal"><span class="pre">RuntimeError</span></code> &#8211; [description]</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<div style='clear:both'></div><dl class="function">
+<dt id="nifty.segmentation.markBoundaries">
+<code class="descclassname">nifty.segmentation.</code><code class="descname">markBoundaries</code><span class="sig-paren">(</span><em>image</em>, <em>segmentation</em>, <em>color=None</em>, <em>thin=True</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.segmentation.markBoundaries" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mark the boundaries in an image</p>
+<p>Mark boundaries in an image.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">The returned image shape is twice as large
+as the input if this is True.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>image</strong> &#8211; the input image</li>
+<li><strong>segmentation</strong> &#8211; the segmentation</li>
+<li><strong>color</strong> (<em>tuple</em>) &#8211; the edge color(default: {(0,0,0)})</li>
+<li><strong>thin</strong> (<em>bool</em>) &#8211; IF true, the image is interpolated and
+the boundaries are marked in the interpolated
+image. This will make the output twice as large.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><dl class="docutils">
+<dt>image with marked boundaries. Note that</dt>
+<dd><p class="first last">result image has twice as large shape as the input if thin is True.</p>
+</dd>
+</dl>
+</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">(numpy.ndarray)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<div style='clear:both'></div><dl class="function">
+<dt id="nifty.segmentation.randomColormap">
+<code class="descclassname">nifty.segmentation.</code><code class="descname">randomColormap</code><span class="sig-paren">(</span><em>size=10000</em>, <em>zeroToZero=False</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.segmentation.randomColormap" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<div style='clear:both'></div><dl class="function">
+<dt id="nifty.segmentation.seededWatersheds">
+<code class="descclassname">nifty.segmentation.</code><code class="descname">seededWatersheds</code><span class="sig-paren">(</span><em>heightMap</em>, <em>seeds=None</em>, <em>method='node_weighted'</em>, <em>acc='max'</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.segmentation.seededWatersheds" title="Permalink to this definition">¶</a></dt>
+<dd><p>Seeded watersheds segmentation</p>
+<p>Get a segmentation via seeded watersheds.
+This is a high level wrapper around
+<a class="reference internal" href="nifty.graph.html#nifty.graph.nodeWeightedWatershedsSegmentation" title="nifty.graph.nodeWeightedWatershedsSegmentation"><code class="xref py py-func docutils literal"><span class="pre">nifty.graph.nodeWeightedWatershedsSegmentation()</span></code></a>
+and <a class="reference internal" href="nifty.graph.html#nifty.graph.nodeWeightedWatershedsSegmentation" title="nifty.graph.nodeWeightedWatershedsSegmentation"><code class="xref py py-func docutils literal"><span class="pre">nifty.graph.nodeWeightedWatershedsSegmentation()</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>heightMap</strong> (<em>numpy.ndarray</em>) &#8211; height / evaluation map</li>
+<li><strong>seeds</strong> (<em>numpy.ndarray</em>) &#8211; Seeds as non zero elements in the array.
+(default: {nifty.segmentation.localMinimaSeeds(heightMap)})</li>
+<li><strong>method</strong> (<em>str</em>) &#8211; <p>Algorithm type can be:</p>
+<ul>
+<li>&#8220;node_weighted&#8221;: ordinary node weighted watershed</li>
+<li>&#8220;edge_weighted&#8221;: edge weighted watershed (minimum spanning tree)</li>
+</ul>
+<p>(default: {&#8220;max&#8221;})</p>
+</li>
+<li><strong>acc</strong> (<em>str</em>) &#8211; <p>If method is &#8220;edge_weighted&#8221;, one needs to specify how
+to convert the heightMap into an edgeMap.
+This parameter specificities this method.
+Allow values are:</p>
+<ul>
+<li>&#8216;min&#8217; : Take the minimum value of the endpoints of the edge</li>
+<li>&#8216;max&#8217; : Take the minimum value of the endpoints of the edge</li>
+<li>&#8216;sum&#8217; : Take the sum  of the values of the endpoints of the edge</li>
+<li>&#8216;prod&#8217; : Take the product of the values of the endpoints of the edge</li>
+<li>&#8216;interpixel&#8217; : Take the value of the image at the interpixel
+coordinate in between the two endpoints.
+To do this the image is resampled to have shape :math: <a href="#id1"><span class="problematic" id="id2">`</span></a>2 cdot shape -1 `</li>
+</ul>
+<p>(default: {&#8220;max&#8221;})</p>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the segmentation</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">numpy.ndarray</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><code class="xref py py-exc docutils literal"><span class="pre">RuntimeError</span></code> &#8211; [description]</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<div style='clear:both'></div><dl class="function">
+<dt id="nifty.segmentation.segmentOverlay">
+<code class="descclassname">nifty.segmentation.</code><code class="descname">segmentOverlay</code><span class="sig-paren">(</span><em>image</em>, <em>segmentation</em>, <em>beta=0.5</em>, <em>zeroToZero=False</em>, <em>showBoundaries=True</em>, <em>color=None</em>, <em>thin=True</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.segmentation.segmentOverlay" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<div style='clear:both'></div><dl class="function">
+<dt id="nifty.segmentation.slic">
+<code class="descclassname">nifty.segmentation.</code><code class="descname">slic</code><span class="sig-paren">(</span><em>image</em>, <em>nSegments</em>, <em>components</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.segmentation.slic" title="Permalink to this definition">¶</a></dt>
+<dd><p>same as skimage.segmentation.slic</p>
+</dd></dl>
+
+<div style='clear:both'></div></div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="nifty.ground_truth.html" title="nifty.ground_truth"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="nifty.graph.optimization.mincut.html" title="nifty.graph.optimization.mincut"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Nifty 0.19.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../reference.html" >Nifty API Reference</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,92 @@
+\hypertarget{marray-hdf5_8hxx}{}\section{/home/tbeier/src/nifty/include/nifty/marray/andres/marray-\/hdf5.hxx File Reference}
+\label{marray-hdf5_8hxx}\index{/home/tbeier/src/nifty/include/nifty/marray/andres/marray-\/hdf5.\+hxx@{/home/tbeier/src/nifty/include/nifty/marray/andres/marray-\/hdf5.\+hxx}}
+{\ttfamily \#include $<$H5version.\+h$>$}\\*
+{\ttfamily \#include $<$cstddef$>$}\\*
+{\ttfamily \#include $<$cstring$>$}\\*
+{\ttfamily \#include \char`\"{}marray.\+hxx\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}hdf5.\+h\char`\"{}}\\*
+Include dependency graph for marray-\/hdf5.hxx\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{marray-hdf5_8hxx__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{marray-hdf5_8hxx__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespaceandres}{andres}
+\begin{DoxyCompactList}\small\item\em The public A\+P\+I. \end{DoxyCompactList}\item 
+ \hyperlink{namespaceandres_1_1hdf5}{andres\+::hdf5}
+\begin{DoxyCompactList}\small\item\em H\+D\+F5 import/export support. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{marray-hdf5_8hxx_aabd36af6695d6700abdc06a2b435b735}{M\+A\+R\+R\+A\+Y\+\_\+\+H\+D\+F5\+\_\+\+H\+X\+X}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{namespaceandres_1_1hdf5_a08660935c7de0e1e76e007fc972933b9}{andres\+::hdf5\+::\+File\+Access\+Mode} \{ \hyperlink{namespaceandres_1_1hdf5_a08660935c7de0e1e76e007fc972933b9af05cb745b770e55c64efe88162f7e9fb}{andres\+::hdf5\+::\+R\+E\+A\+D\+\_\+\+O\+N\+L\+Y}, 
+\hyperlink{namespaceandres_1_1hdf5_a08660935c7de0e1e76e007fc972933b9af215ccdde9335c237c14b7c1d35766d4}{andres\+::hdf5\+::\+R\+E\+A\+D\+\_\+\+W\+R\+I\+T\+E}
+ \}
+\item 
+enum \hyperlink{namespaceandres_1_1hdf5_ad5194a7b8773d3776e8dfc068f58f41b}{andres\+::hdf5\+::\+H\+D\+F5\+Version} \{ \hyperlink{namespaceandres_1_1hdf5_ad5194a7b8773d3776e8dfc068f58f41baf4fdc18c306e5d07105ad62a1cf6fa93}{andres\+::hdf5\+::\+D\+E\+F\+A\+U\+L\+T\+\_\+\+H\+D\+F5\+\_\+\+V\+E\+R\+S\+I\+O\+N}, 
+\hyperlink{namespaceandres_1_1hdf5_ad5194a7b8773d3776e8dfc068f58f41ba29da3f0202bdf4ea2b036678ae7aa717}{andres\+::hdf5\+::\+L\+A\+T\+E\+S\+T\+\_\+\+H\+D\+F5\+\_\+\+V\+E\+R\+S\+I\+O\+N}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+hid\+\_\+t \hyperlink{namespaceandres_1_1hdf5_a1f779b6e42349512d5227fbb6dcf92cd}{andres\+::hdf5\+::create\+File} (const std\+::string \&, H\+D\+F5\+Version=D\+E\+F\+A\+U\+L\+T\+\_\+\+H\+D\+F5\+\_\+\+V\+E\+R\+S\+I\+O\+N)
+\item 
+hid\+\_\+t \hyperlink{namespaceandres_1_1hdf5_a3645de3466468274059f8475066ff820}{andres\+::hdf5\+::open\+File} (const std\+::string \&, File\+Access\+Mode=R\+E\+A\+D\+\_\+\+O\+N\+L\+Y, H\+D\+F5\+Version=D\+E\+F\+A\+U\+L\+T\+\_\+\+H\+D\+F5\+\_\+\+V\+E\+R\+S\+I\+O\+N)
+\item 
+void \hyperlink{namespaceandres_1_1hdf5_afa6545825e5557eecf6ac1e8fc68bb56}{andres\+::hdf5\+::close\+File} (const hid\+\_\+t \&)
+\item 
+hid\+\_\+t \hyperlink{namespaceandres_1_1hdf5_ac03dd5212231c5335a0a02edb3c0d879}{andres\+::hdf5\+::create\+Group} (const hid\+\_\+t \&, const std\+::string \&)
+\item 
+hid\+\_\+t \hyperlink{namespaceandres_1_1hdf5_a3d7159f65f86576c9142409b08afcfc9}{andres\+::hdf5\+::open\+Group} (const hid\+\_\+t \&, const std\+::string \&)
+\item 
+void \hyperlink{namespaceandres_1_1hdf5_a1aaf506863ec820cdcc827c7997d4ba3}{andres\+::hdf5\+::close\+Group} (const hid\+\_\+t \&)
+\item 
+{\footnotesize template$<$class T $>$ }\\void \hyperlink{namespaceandres_1_1hdf5_a0bc471ab828dcfdedd90dc6f991b509e}{andres\+::hdf5\+::save} (const hid\+\_\+t \&, const std\+::string \&, const Marray$<$ T $>$ \&)
+\item 
+{\footnotesize template$<$class T , bool is\+Const$>$ }\\void \hyperlink{namespaceandres_1_1hdf5_ac6995803b0ec6079698d61563b5de104}{andres\+::hdf5\+::save} (const hid\+\_\+t \&, const std\+::string \&, const View$<$ T, is\+Const $>$ \&)
+\item 
+{\footnotesize template$<$class T $>$ }\\void \hyperlink{namespaceandres_1_1hdf5_a541f5c1613746f236ecc7e0035fa8919}{andres\+::hdf5\+::save} (const hid\+\_\+t \&, const std\+::string \&, const std\+::vector$<$ T $>$ \&)
+\item 
+{\footnotesize template$<$class T , class Base\+Iterator , class Shape\+Iterator $>$ }\\void \hyperlink{namespaceandres_1_1hdf5_a8b3c6fd3570f7452b1507bf5cf48dfc5}{andres\+::hdf5\+::save\+Hyperslab} (const hid\+\_\+t \&, const std\+::string \&, Base\+Iterator, Base\+Iterator, Shape\+Iterator, const Marray$<$ T $>$ \&)
+\item 
+{\footnotesize template$<$class T , class Shape\+Iterator $>$ }\\void \hyperlink{namespaceandres_1_1hdf5_ad266faeb7371428b1bf018d4ddfec60d}{andres\+::hdf5\+::create} (const hid\+\_\+t \&, const std\+::string \&, Shape\+Iterator, Shape\+Iterator, Coordinate\+Order)
+\item 
+{\footnotesize template$<$class T $>$ }\\void \hyperlink{namespaceandres_1_1hdf5_ad5975e294df6102c312f69cd69e43d60}{andres\+::hdf5\+::load} (const hid\+\_\+t \&, const std\+::string \&, Marray$<$ T $>$ \&)
+\item 
+{\footnotesize template$<$class T $>$ }\\void \hyperlink{namespaceandres_1_1hdf5_a2ada1d6f4dc33d14090bad2a90d4d1a6}{andres\+::hdf5\+::load} (const hid\+\_\+t \&, const std\+::string \&, std\+::vector$<$ T $>$ \&)
+\item 
+{\footnotesize template$<$class T $>$ }\\void \hyperlink{namespaceandres_1_1hdf5_aecef33e8f815adf3e28bb387e246ebc8}{andres\+::hdf5\+::load} (const std\+::string \&, const std\+::string \&, Marray$<$ T $>$ \&, H\+D\+F5\+Version=D\+E\+F\+A\+U\+L\+T\+\_\+\+H\+D\+F5\+\_\+\+V\+E\+R\+S\+I\+O\+N)
+\item 
+{\footnotesize template$<$class T $>$ }\\void \hyperlink{namespaceandres_1_1hdf5_a1efbca2cf84e0a2076dd02b98a96b65b}{andres\+::hdf5\+::load} (const std\+::string \&, const std\+::string \&, std\+::vector$<$ T $>$ \&, H\+D\+F5\+Version=D\+E\+F\+A\+U\+L\+T\+\_\+\+H\+D\+F5\+\_\+\+V\+E\+R\+S\+I\+O\+N)
+\item 
+{\footnotesize template$<$class T $>$ }\\void \hyperlink{namespaceandres_1_1hdf5_a9ce6bf731e79264846d466fd92eee01f}{andres\+::hdf5\+::load\+Shape} (const hid\+\_\+t \&, const std\+::string \&, std\+::vector$<$ T $>$ \&)
+\item 
+{\footnotesize template$<$class T , class Base\+Iterator , class Shape\+Iterator $>$ }\\void \hyperlink{namespaceandres_1_1hdf5_ab031fffd5429859c7f914d8f883a6224}{andres\+::hdf5\+::load\+Hyperslab} (const hid\+\_\+t \&, const std\+::string \&, Base\+Iterator, Base\+Iterator, Shape\+Iterator, Marray$<$ T $>$ \&)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const char \hyperlink{namespaceandres_1_1hdf5_acf79cfe1ea0769086a46970fd58188a7}{andres\+::hdf5\+::reverse\+Shape\+Attribute\+Name} \mbox{[}14\mbox{]} = \char`\"{}reverse-\/shape\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{marray-hdf5_8hxx_aabd36af6695d6700abdc06a2b435b735}{}\index{marray-\/hdf5.\+hxx@{marray-\/hdf5.\+hxx}!M\+A\+R\+R\+A\+Y\+\_\+\+H\+D\+F5\+\_\+\+H\+X\+X@{M\+A\+R\+R\+A\+Y\+\_\+\+H\+D\+F5\+\_\+\+H\+X\+X}}
+\index{M\+A\+R\+R\+A\+Y\+\_\+\+H\+D\+F5\+\_\+\+H\+X\+X@{M\+A\+R\+R\+A\+Y\+\_\+\+H\+D\+F5\+\_\+\+H\+X\+X}!marray-\/hdf5.\+hxx@{marray-\/hdf5.\+hxx}}
+\subsubsection[{M\+A\+R\+R\+A\+Y\+\_\+\+H\+D\+F5\+\_\+\+H\+X\+X}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+A\+R\+R\+A\+Y\+\_\+\+H\+D\+F5\+\_\+\+H\+X\+X}\label{marray-hdf5_8hxx_aabd36af6695d6700abdc06a2b435b735}

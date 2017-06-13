@@ -1,0 +1,3139 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="classandres_1_1View" kind="class" language="C++" prot="public">
+    <compoundname>andres::View</compoundname>
+    <basecompoundref refid="classandres_1_1ViewExpression" prot="public" virt="non-virtual">andres::ViewExpression&lt; View&lt; T, isConst, A &gt;, T &gt;</basecompoundref>
+    <includes refid="andres_2marray_8hxx" local="no">marray.hxx</includes>
+    <templateparamlist>
+      <param>
+        <type>class</type>
+        <declname>T</declname>
+        <defname>T</defname>
+      </param>
+      <param>
+        <type>bool</type>
+        <declname>isConst</declname>
+        <defname>isConst</defname>
+      </param>
+      <param>
+        <type>class</type>
+        <declname>A</declname>
+        <defname>A</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classandres_1_1View_1aa80ab78f6e3a32ead389d657f6ec7308" prot="public" static="no">
+        <type>std::size_t</type>
+        <definition>typedef std::size_t andres::View&lt; T, isConst, A &gt;::size_type</definition>
+        <argsstring></argsstring>
+        <name>size_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="273" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="273" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classandres_1_1View_1abe3d48ac2b0d65536e54dbfad0a44929" prot="public" static="no">
+        <type>T</type>
+        <definition>typedef T andres::View&lt; T, isConst, A &gt;::value_type</definition>
+        <argsstring></argsstring>
+        <name>value_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="274" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="274" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classandres_1_1View_1a9a201594c82be89fccd0fe644ea2f09c" prot="public" static="no">
+        <type>marray_detail::IfBool&lt; isConst, const T *, T * &gt;::type</type>
+        <definition>typedef marray_detail::IfBool&lt;isConst, const T*, T*&gt;::type andres::View&lt; T, isConst, A &gt;::pointer</definition>
+        <argsstring></argsstring>
+        <name>pointer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="275" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="275" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classandres_1_1View_1a947d02064bced23437b804a8050e6ccb" prot="public" static="no">
+        <type>const T *</type>
+        <definition>typedef const T* andres::View&lt; T, isConst, A &gt;::const_pointer</definition>
+        <argsstring></argsstring>
+        <name>const_pointer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="276" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="276" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classandres_1_1View_1aebdd1f19272b743b4422ff8ba18fc11a" prot="public" static="no">
+        <type>marray_detail::IfBool&lt; isConst, const T &amp;, T &amp; &gt;::type</type>
+        <definition>typedef marray_detail::IfBool&lt;isConst, const T&amp;, T&amp;&gt;::type andres::View&lt; T, isConst, A &gt;::reference</definition>
+        <argsstring></argsstring>
+        <name>reference</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="277" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="277" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classandres_1_1View_1a69e3d49e3d8242a33c03d42dd5ecc5b8" prot="public" static="no">
+        <type>const T &amp;</type>
+        <definition>typedef const T&amp; andres::View&lt; T, isConst, A &gt;::const_reference</definition>
+        <argsstring></argsstring>
+        <name>const_reference</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="278" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="278" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classandres_1_1View_1aef54ee0a58e755b897398493d05a44df" prot="public" static="no">
+        <type><ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref>&lt; T, isConst, A &gt;</type>
+        <definition>typedef Iterator&lt;T, isConst, A&gt; andres::View&lt; T, isConst, A &gt;::iterator</definition>
+        <argsstring></argsstring>
+        <name>iterator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="279" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="279" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classandres_1_1View_1a7b6f125a7b3830f30cd34887b61858a7" prot="public" static="no">
+        <type><ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref>&lt; T, true, A &gt;</type>
+        <definition>typedef Iterator&lt;T, true, A&gt; andres::View&lt; T, isConst, A &gt;::const_iterator</definition>
+        <argsstring></argsstring>
+        <name>const_iterator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="280" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="280" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classandres_1_1View_1aab07af42756759420211d114bb705547" prot="public" static="no">
+        <type>std::reverse_iterator&lt; <ref refid="classandres_1_1View_1aef54ee0a58e755b897398493d05a44df" kindref="member">iterator</ref> &gt;</type>
+        <definition>typedef std::reverse_iterator&lt;iterator&gt; andres::View&lt; T, isConst, A &gt;::reverse_iterator</definition>
+        <argsstring></argsstring>
+        <name>reverse_iterator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="281" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="281" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classandres_1_1View_1a61656971b73a48c8bf009e3200aad900" prot="public" static="no">
+        <type>std::reverse_iterator&lt; <ref refid="classandres_1_1View_1a7b6f125a7b3830f30cd34887b61858a7" kindref="member">const_iterator</ref> &gt;</type>
+        <definition>typedef std::reverse_iterator&lt;const_iterator&gt; andres::View&lt; T, isConst, A &gt;::const_reverse_iterator</definition>
+        <argsstring></argsstring>
+        <name>const_reverse_iterator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="282" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="282" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classandres_1_1View_1ac9b2563b59f4fe1d90144bc4be2a2008" prot="public" static="no">
+        <type><ref refid="classandres_1_1ViewExpression" kindref="compound">ViewExpression</ref>&lt; <ref refid="classandres_1_1View" kindref="compound">View</ref>&lt; T, isConst, A &gt;, T &gt;</type>
+        <definition>typedef ViewExpression&lt;View&lt;T, isConst, A&gt;, T&gt; andres::View&lt; T, isConst, A &gt;::base</definition>
+        <argsstring></argsstring>
+        <name>base</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="283" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="283" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classandres_1_1View_1a175e5862a7133a937e7901e5894c2e10" prot="public" static="no">
+        <type>A::template rebind&lt; <ref refid="classandres_1_1View_1abe3d48ac2b0d65536e54dbfad0a44929" kindref="member">value_type</ref> &gt;::other</type>
+        <definition>typedef A::template rebind&lt;value_type&gt;::other andres::View&lt; T, isConst, A &gt;::allocator_type</definition>
+        <argsstring></argsstring>
+        <name>allocator_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="284" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="284" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="classandres_1_1View_1a59941f09de9b9e6d3868cc1e84591358" prot="private" static="no">
+        <type>marray_detail::Geometry&lt; A &gt;</type>
+        <definition>typedef marray_detail::Geometry&lt;A&gt; andres::View&lt; T, isConst, A &gt;::geometry_type</definition>
+        <argsstring></argsstring>
+        <name>geometry_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="543" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="543" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classandres_1_1View_1a9e52c74c06fc3aabbdda7078f1188bac" prot="private" static="no" mutable="no">
+        <type><ref refid="classandres_1_1View_1a9a201594c82be89fccd0fe644ea2f09c" kindref="member">pointer</ref></type>
+        <definition>pointer andres::View&lt; T, isConst, A &gt;::data_</definition>
+        <argsstring></argsstring>
+        <name>data_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="555" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="555" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classandres_1_1View_1a34d34ee96d05d878e0f0ad72eafde653" prot="private" static="no" mutable="no">
+        <type>geometry_type</type>
+        <definition>geometry_type andres::View&lt; T, isConst, A &gt;::geometry_</definition>
+        <argsstring></argsstring>
+        <name>geometry_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="556" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="556" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="classandres_1_1View_1a2658181be4befdf722462ab951ba8a67" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class TLocal</type>
+          </param>
+          <param>
+            <type>bool</type>
+            <declname>isConstLocal</declname>
+            <defname>isConstLocal</defname>
+          </param>
+          <param>
+            <type>class ALocal</type>
+          </param>
+        </templateparamlist>
+        <type>friend class</type>
+        <definition>friend class View</definition>
+        <argsstring></argsstring>
+        <name>View</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="559" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="559" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="friend" id="classandres_1_1View_1aa5a68966149f255e52d7902758b0e002" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class TLocal</type>
+          </param>
+          <param>
+            <type>class ALocal</type>
+          </param>
+        </templateparamlist>
+        <type>friend class</type>
+        <definition>friend class Marray</definition>
+        <argsstring></argsstring>
+        <name>Marray</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="561" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="561" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classandres_1_1View_1a4368fd5dbfc08a75115341bfa7123a87" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>andres::View&lt; T, isConst, A &gt;::View</definition>
+        <argsstring>(const allocator_type &amp;=allocator_type())</argsstring>
+        <name>View</name>
+        <param>
+          <type>const <ref refid="classandres_1_1View_1a175e5862a7133a937e7901e5894c2e10" kindref="member">allocator_type</ref> &amp;</type>
+          <defname>allocator</defname>
+          <defval><ref refid="classandres_1_1View_1a175e5862a7133a937e7901e5894c2e10" kindref="member">allocator_type</ref>()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Empty constructor.</para><para>The empty constructor sets the data pointer to 0. It does not allocate memory for a scalar.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>allocator</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Allocator. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="287" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="920" bodyend="927"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1af4519c20472df4ed36905b3b6574cc46" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>andres::View&lt; T, isConst, A &gt;::View</definition>
+        <argsstring>(pointer, const allocator_type &amp;=allocator_type())</argsstring>
+        <name>View</name>
+        <param>
+          <type><ref refid="classandres_1_1View_1a9a201594c82be89fccd0fe644ea2f09c" kindref="member">pointer</ref></type>
+          <defname>data</defname>
+        </param>
+        <param>
+          <type>const <ref refid="classandres_1_1View_1a175e5862a7133a937e7901e5894c2e10" kindref="member">allocator_type</ref> &amp;</type>
+          <defname>allocator</defname>
+          <defval><ref refid="classandres_1_1View_1a175e5862a7133a937e7901e5894c2e10" kindref="member">allocator_type</ref>()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct <ref refid="classandres_1_1View" kindref="compound">View</ref> from a scalar.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to data. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>allocator</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Allocator. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="288" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="951" bodyend="959"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1ae2969a649e8ced36cb05e79985f4656f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>andres::View&lt; T, isConst, A &gt;::View</definition>
+        <argsstring>(const View&lt; T, false, A &gt; &amp;)</argsstring>
+        <name>View</name>
+        <param>
+          <type>const <ref refid="classandres_1_1View" kindref="compound">View</ref>&lt; T, false, A &gt; &amp;</type>
+          <defname>in</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct <ref refid="classandres_1_1View" kindref="compound">View</ref> from a <ref refid="classandres_1_1View" kindref="compound">View</ref> on mutable data.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classandres_1_1View" kindref="compound">View</ref> on mutable data. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="289" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="968" bodyend="975"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1ad7ee18ef33ab6e92138ba0ded346086d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class ShapeIterator</type>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>andres::View&lt; T, isConst, A &gt;::View</definition>
+        <argsstring>(ShapeIterator, ShapeIterator, pointer, const CoordinateOrder &amp;=defaultOrder, const CoordinateOrder &amp;=defaultOrder, const allocator_type &amp;=allocator_type())</argsstring>
+        <name>View</name>
+        <param>
+          <type>ShapeIterator</type>
+          <defname>begin</defname>
+        </param>
+        <param>
+          <type>ShapeIterator</type>
+          <defname>end</defname>
+        </param>
+        <param>
+          <type><ref refid="classandres_1_1View_1a9a201594c82be89fccd0fe644ea2f09c" kindref="member">pointer</ref></type>
+          <defname>data</defname>
+        </param>
+        <param>
+          <type>const <ref refid="namespaceandres_1a2ac8b7aa89d44e8188a7c0ba50f4306b" kindref="member">CoordinateOrder</ref> &amp;</type>
+          <defname>externalCoordinateOrder</defname>
+          <defval>defaultOrder</defval>
+        </param>
+        <param>
+          <type>const <ref refid="namespaceandres_1a2ac8b7aa89d44e8188a7c0ba50f4306b" kindref="member">CoordinateOrder</ref> &amp;</type>
+          <defname>internalCoordinateOrder</defname>
+          <defval>defaultOrder</defval>
+        </param>
+        <param>
+          <type>const <ref refid="classandres_1_1View_1a175e5862a7133a937e7901e5894c2e10" kindref="member">allocator_type</ref> &amp;</type>
+          <defname>allocator</defname>
+          <defval><ref refid="classandres_1_1View_1a175e5862a7133a937e7901e5894c2e10" kindref="member">allocator_type</ref>()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct unstrided <ref refid="classandres_1_1View" kindref="compound">View</ref></para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>begin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref> to the beginning of a sequence that defines the shape. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>end</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref> to the end of this sequence. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to data. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>externalCoordinateOrder</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Flag specifying the order of coordinates based on which the strides are computed. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>internalCoordinateOrder</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Flag specifying the order of coordinates used for scalar indexing and iterators. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>allocator</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Allocator. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="291" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="994" bodyend="1007"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1a3abf83b3422d78b41560e6f87ecb542e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class ShapeIterator</type>
+          </param>
+          <param>
+            <type>class StrideIterator</type>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>andres::View&lt; T, isConst, A &gt;::View</definition>
+        <argsstring>(ShapeIterator, ShapeIterator, StrideIterator, pointer, const CoordinateOrder &amp;, const allocator_type &amp;=allocator_type())</argsstring>
+        <name>View</name>
+        <param>
+          <type>ShapeIterator</type>
+          <defname>begin</defname>
+        </param>
+        <param>
+          <type>ShapeIterator</type>
+          <defname>end</defname>
+        </param>
+        <param>
+          <type>StrideIterator</type>
+          <defname>it</defname>
+        </param>
+        <param>
+          <type><ref refid="classandres_1_1View_1a9a201594c82be89fccd0fe644ea2f09c" kindref="member">pointer</ref></type>
+          <defname>data</defname>
+        </param>
+        <param>
+          <type>const <ref refid="namespaceandres_1a2ac8b7aa89d44e8188a7c0ba50f4306b" kindref="member">CoordinateOrder</ref> &amp;</type>
+          <defname>internalCoordinateOrder</defname>
+        </param>
+        <param>
+          <type>const <ref refid="classandres_1_1View_1a175e5862a7133a937e7901e5894c2e10" kindref="member">allocator_type</ref> &amp;</type>
+          <defname>allocator</defname>
+          <defval><ref refid="classandres_1_1View_1a175e5862a7133a937e7901e5894c2e10" kindref="member">allocator_type</ref>()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct strided <ref refid="classandres_1_1View" kindref="compound">View</ref></para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>begin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref> to the beginning of a sequence that defines the shape. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>end</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref> to the end of this sequence. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>it</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref> to the beginning of a sequence that defines the strides. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to data. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>internalCoordinateOrder</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Flag specifying the order of coordinates used for scalar indexing and iterators. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>allocator</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Allocator. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="296" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="1025" bodyend="1037"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1a398b0af0619bbfca644c0a2a53b598e9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classandres_1_1View" kindref="compound">View</ref>&lt; T, isConst, A &gt; &amp;</type>
+        <definition>View&lt; T, isConst, A &gt; &amp; andres::View&lt; T, isConst, A &gt;::operator=</definition>
+        <argsstring>(const T &amp;)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const T &amp;</type>
+          <defname>value</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Assignment.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Value.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+All entries are set to value. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="310" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="1923" bodyend="1959"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1a604e4fe802e5d712a4e99ae44e496a3f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classandres_1_1View" kindref="compound">View</ref>&lt; T, isConst, A &gt; &amp;</type>
+        <definition>View&lt; T, isConst, A &gt; &amp; andres::View&lt; T, isConst, A &gt;::operator=</definition>
+        <argsstring>(const View&lt; T, true, A &gt; &amp;)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="classandres_1_1View" kindref="compound">View</ref>&lt; T, true, A &gt; &amp;</type>
+          <defname>in</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Assignment.</para><para>operator= (the assignment operator) has a non-trivial behavior. In most cases, it will work as most programmers will expect. Here&apos;s a complete description of the semantics of to.operator=(from) or equivalently, to = from.</para><para>Consider the following cases: (1) &apos;to&apos; is mutable (isConst == false) (a) &apos;from&apos; is mutable (isConst == false) (i) &apos;to&apos; is initialized (data_ != 0) (ii) &apos;to&apos; is un-initialized (data_ == 0) (b) &apos;from&apos; is constant (isConst == true) (2) &apos;to&apos; is constant (isConst == true)</para><para>(i) The operator attempts to copy the data under view &apos;b&apos; to the memory under view &apos;a&apos;. This works if both views have the same size, regardless of their dimension and shape. Equality of sizes is checked by an assertion.</para><para>(ii) Unless &amp;a == &amp;b (self-assignment), the operator copies the (data) pointer of view &apos;b&apos; to view &apos;a&apos;, without copying the data itself. In addition, all the properties of view &apos;b&apos; are copied to view &apos;a&apos;.</para><para>(b) The operator attempts to copy the data under view &apos;b&apos; to the memory under view &apos;a&apos;. This works if both views have the same size, regardless of their dimension and shape. Equality of sizes is checked by an assertion. If &apos;a&apos; is un-initialized the assertion fails (because the size of a will be zero). Unlike in (ii), the pointer is not copied in this case. Thus, a conversion from mutable to const is prevented.</para><para>(2) Unless &amp;a == &amp;b (self-assignment), the operator copies the (data) pointer of view &apos;b&apos; to view &apos;a&apos;, without copying the data itself. In addition, all the properties of view &apos;b&apos; are copied to view &apos;a&apos;. Note that changing the data under a constant view would be counter-intuitive. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="311" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="1873" bodyend="1881"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1a24aacc568e0bd3a5c69fe1d9550d03f7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classandres_1_1View" kindref="compound">View</ref>&lt; T, isConst, A &gt; &amp;</type>
+        <definition>View&lt; T, isConst, A &gt; &amp; andres::View&lt; T, isConst, A &gt;::operator=</definition>
+        <argsstring>(const View&lt; T, false, A &gt; &amp;)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="classandres_1_1View" kindref="compound">View</ref>&lt; T, false, A &gt; &amp;</type>
+          <defname>in</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Assignment. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="312" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="1888" bodyend="1896"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1a56d4233c4be9807ff750039ade3ae4d3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class TLocal</type>
+          </param>
+          <param>
+            <type>bool</type>
+            <declname>isConstLocal</declname>
+            <defname>isConstLocal</defname>
+          </param>
+          <param>
+            <type>class ALocal</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classandres_1_1View" kindref="compound">View</ref>&lt; T, isConst, A &gt; &amp;</type>
+        <definition>View&lt; T, isConst, A &gt; &amp; andres::View&lt; T, isConst, A &gt;::operator=</definition>
+        <argsstring>(const View&lt; TLocal, isConstLocal, ALocal &gt; &amp;)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="classandres_1_1View" kindref="compound">View</ref>&lt; TLocal, isConstLocal, ALocal &gt; &amp;</type>
+          <defname>in</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Assignment. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="314" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="1904" bodyend="1912"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1a719e584cdfc9bbf38417dadb8362610e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class E</type>
+          </param>
+          <param>
+            <type>class Te</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classandres_1_1View" kindref="compound">View</ref>&lt; T, isConst, A &gt; &amp;</type>
+        <definition>View&lt; T, isConst, A &gt; &amp; andres::View&lt; T, isConst, A &gt;::operator=</definition>
+        <argsstring>(const ViewExpression&lt; E, Te &gt; &amp;)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="classandres_1_1ViewExpression" kindref="compound">ViewExpression</ref>&lt; E, Te &gt; &amp;</type>
+          <defname>expression</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="317" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="1965" bodyend="1971"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1adb82f950ac02e2482376914be5c5595c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void andres::View&lt; T, isConst, A &gt;::assign</definition>
+        <argsstring>(const allocator_type &amp;=allocator_type())</argsstring>
+        <name>assign</name>
+        <param>
+          <type>const <ref refid="classandres_1_1View_1a175e5862a7133a937e7901e5894c2e10" kindref="member">allocator_type</ref> &amp;</type>
+          <defname>allocator</defname>
+          <defval><ref refid="classandres_1_1View_1a175e5862a7133a937e7901e5894c2e10" kindref="member">allocator_type</ref>()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Clear <ref refid="classandres_1_1View" kindref="compound">View</ref>.</para><para>Leaves the <ref refid="classandres_1_1View" kindref="compound">View</ref> in the same state as if the empty constructor had been called.</para><para><simplesect kind="see"><para><ref refid="classandres_1_1View_1a2658181be4befdf722462ab951ba8a67" kindref="member">View()</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="319" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="1103" bodyend="1110"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1ab227fd41b348249cbc149b5cff2cee49" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class ShapeIterator</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void andres::View&lt; T, isConst, A &gt;::assign</definition>
+        <argsstring>(ShapeIterator, ShapeIterator, pointer, const CoordinateOrder &amp;=defaultOrder, const CoordinateOrder &amp;=defaultOrder, const allocator_type &amp;=allocator_type())</argsstring>
+        <name>assign</name>
+        <param>
+          <type>ShapeIterator</type>
+          <defname>begin</defname>
+        </param>
+        <param>
+          <type>ShapeIterator</type>
+          <defname>end</defname>
+        </param>
+        <param>
+          <type><ref refid="classandres_1_1View_1a9a201594c82be89fccd0fe644ea2f09c" kindref="member">pointer</ref></type>
+          <defname>data</defname>
+        </param>
+        <param>
+          <type>const <ref refid="namespaceandres_1a2ac8b7aa89d44e8188a7c0ba50f4306b" kindref="member">CoordinateOrder</ref> &amp;</type>
+          <defname>externalCoordinateOrder</defname>
+          <defval>defaultOrder</defval>
+        </param>
+        <param>
+          <type>const <ref refid="namespaceandres_1a2ac8b7aa89d44e8188a7c0ba50f4306b" kindref="member">CoordinateOrder</ref> &amp;</type>
+          <defname>internalCoordinateOrder</defname>
+          <defval>defaultOrder</defval>
+        </param>
+        <param>
+          <type>const <ref refid="classandres_1_1View_1a175e5862a7133a937e7901e5894c2e10" kindref="member">allocator_type</ref> &amp;</type>
+          <defname>allocator</defname>
+          <defval><ref refid="classandres_1_1View_1a175e5862a7133a937e7901e5894c2e10" kindref="member">allocator_type</ref>()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Initialize unstrided <ref refid="classandres_1_1View" kindref="compound">View</ref></para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>begin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref> to the beginning of a sequence that defines the shape. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>end</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref> to the end of this sequence. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to data. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>externalCoordinateOrder</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Flag specifying the order of coordinates based on which the strides are computed. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>internalCoordinateOrder</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Flag specifying the order of coordinates used for scalar indexing and iterators. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>allocator</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Allocator. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="321" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="1128" bodyend="1144"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1a0bee9a9e389a0d9af1c8cc4bbe85aeb7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class ShapeIterator</type>
+          </param>
+          <param>
+            <type>class StrideIterator</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void andres::View&lt; T, isConst, A &gt;::assign</definition>
+        <argsstring>(ShapeIterator, ShapeIterator, StrideIterator, pointer, const CoordinateOrder &amp;, const allocator_type &amp;=allocator_type())</argsstring>
+        <name>assign</name>
+        <param>
+          <type>ShapeIterator</type>
+          <defname>begin</defname>
+        </param>
+        <param>
+          <type>ShapeIterator</type>
+          <defname>end</defname>
+        </param>
+        <param>
+          <type>StrideIterator</type>
+          <defname>it</defname>
+        </param>
+        <param>
+          <type><ref refid="classandres_1_1View_1a9a201594c82be89fccd0fe644ea2f09c" kindref="member">pointer</ref></type>
+          <defname>data</defname>
+        </param>
+        <param>
+          <type>const <ref refid="namespaceandres_1a2ac8b7aa89d44e8188a7c0ba50f4306b" kindref="member">CoordinateOrder</ref> &amp;</type>
+          <defname>internalCoordinateOrder</defname>
+        </param>
+        <param>
+          <type>const <ref refid="classandres_1_1View_1a175e5862a7133a937e7901e5894c2e10" kindref="member">allocator_type</ref> &amp;</type>
+          <defname>allocator</defname>
+          <defval><ref refid="classandres_1_1View_1a175e5862a7133a937e7901e5894c2e10" kindref="member">allocator_type</ref>()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Initialize strided <ref refid="classandres_1_1View" kindref="compound">View</ref></para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>begin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref> to the beginning of a sequence that defines the shape. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>end</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref> to the end of this sequence. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>it</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref> to the beginning of a sequence that defines the strides. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to data. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>internalCoordinateOrder</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Flag specifying the order of coordinates used for scalar indexing and iterators. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>allocator</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Allocator. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="326" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="1162" bodyend="1178"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1a36308e1cf6bb6b17e8b0df6537c1ec39" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const std::size_t</type>
+        <definition>const std::size_t andres::View&lt; T, isConst, A &gt;::dimension</definition>
+        <argsstring>() const </argsstring>
+        <name>dimension</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the dimension.</para><para>Not well-defined if the data pointer is 0.</para><para><simplesect kind="return"><para>Dimension. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="341" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="1709" bodyend="1713"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1afc9504378ae2eefd7540a71d9f227338" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const std::size_t</type>
+        <definition>const std::size_t andres::View&lt; T, isConst, A &gt;::size</definition>
+        <argsstring>() const </argsstring>
+        <name>size</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the number of data items.</para><para><simplesect kind="return"><para>Size. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="342" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="1696" bodyend="1699"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1a9bc3d88b3e2bdf432dd68f36ff33deb3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const std::size_t</type>
+        <definition>const std::size_t andres::View&lt; T, isConst, A &gt;::shape</definition>
+        <argsstring>(const std::size_t) const </argsstring>
+        <name>shape</name>
+        <param>
+          <type>const std::size_t</type>
+          <defname>dimension</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the shape in one dimension.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dimension</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Dimension </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Shape in that dimension. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="343" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="1723" bodyend="1731"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1ad43d1b74245d56970176c75746c7c88b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const std::size_t *</type>
+        <definition>const std::size_t * andres::View&lt; T, isConst, A &gt;::shapeBegin</definition>
+        <argsstring>() const </argsstring>
+        <name>shapeBegin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get a constant iterator to the beginning of the shape vector.</para><para><simplesect kind="return"><para>iterator. </para></simplesect>
+<simplesect kind="see"><para><ref refid="classandres_1_1View_1ac56e049443673fe1311b312030fadc2d" kindref="member">shapeEnd()</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="344" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="1740" bodyend="1745"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1ac56e049443673fe1311b312030fadc2d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const std::size_t *</type>
+        <definition>const std::size_t * andres::View&lt; T, isConst, A &gt;::shapeEnd</definition>
+        <argsstring>() const </argsstring>
+        <name>shapeEnd</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get a constant iterator to the end of the shape vector.</para><para><simplesect kind="return"><para>iterator. </para></simplesect>
+<simplesect kind="see"><para><ref refid="classandres_1_1View_1ad43d1b74245d56970176c75746c7c88b" kindref="member">shapeBegin()</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="345" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="1754" bodyend="1759"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1a3c4b2cee088b6cf8232289cbb50bd2b4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const std::size_t</type>
+        <definition>const std::size_t andres::View&lt; T, isConst, A &gt;::strides</definition>
+        <argsstring>(const std::size_t) const </argsstring>
+        <name>strides</name>
+        <param>
+          <type>const std::size_t</type>
+          <defname>dimension</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the strides in one dimension.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dimension</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Dimension </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Stride in that dimension. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="346" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="1769" bodyend="1777"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1a44f545270b7e66a749c2a8988a5dcd92" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const std::size_t *</type>
+        <definition>const std::size_t * andres::View&lt; T, isConst, A &gt;::stridesBegin</definition>
+        <argsstring>() const </argsstring>
+        <name>stridesBegin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get a constant iterator to the beginning of the strides vector.</para><para><simplesect kind="return"><para>iterator. </para></simplesect>
+<simplesect kind="see"><para><ref refid="classandres_1_1View_1ab4ee3379ba0903bb14645c397d2a85b6" kindref="member">stridesEnd()</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="347" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="1786" bodyend="1791"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1ab4ee3379ba0903bb14645c397d2a85b6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const std::size_t *</type>
+        <definition>const std::size_t * andres::View&lt; T, isConst, A &gt;::stridesEnd</definition>
+        <argsstring>() const </argsstring>
+        <name>stridesEnd</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get a constant iterator to the end of the strides vector.</para><para><simplesect kind="return"><para>iterator. </para></simplesect>
+<simplesect kind="see"><para><ref refid="classandres_1_1View_1a44f545270b7e66a749c2a8988a5dcd92" kindref="member">stridesBegin()</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="348" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="1800" bodyend="1805"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1a7ca5aa89f5c22d80e3c7037e55c78cdb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="namespaceandres_1a2ac8b7aa89d44e8188a7c0ba50f4306b" kindref="member">CoordinateOrder</ref> &amp;</type>
+        <definition>const CoordinateOrder &amp; andres::View&lt; T, isConst, A &gt;::coordinateOrder</definition>
+        <argsstring>() const </argsstring>
+        <name>coordinateOrder</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the coordinate order used for scalar indexing and iterators.</para><para><simplesect kind="return"><para>CoordinateOrder. enum: FirstMajorOrder, LastMajorOrder </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="349" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="1813" bodyend="1817"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1ad747c5f0d3caecaa535afd85c1e5c250" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const bool</type>
+        <definition>const bool andres::View&lt; T, isConst, A &gt;::isSimple</definition>
+        <argsstring>() const </argsstring>
+        <name>isSimple</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Determine whether the shape strides equal the strides of the <ref refid="classandres_1_1View" kindref="compound">View</ref>.</para><para><simplesect kind="return"><para>bool. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="350" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="1825" bodyend="1829"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1afa268e37459476d9ca233d741e4bc63c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class TLocal</type>
+          </param>
+          <param>
+            <type>bool</type>
+            <declname>isConstLocal</declname>
+            <defname>isConstLocal</defname>
+          </param>
+          <param>
+            <type>class ALocal</type>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool andres::View&lt; T, isConst, A &gt;::overlaps</definition>
+        <argsstring>(const View&lt; TLocal, isConstLocal, ALocal &gt; &amp;) const </argsstring>
+        <name>overlaps</name>
+        <param>
+          <type>const <ref refid="classandres_1_1View" kindref="compound">View</ref>&lt; TLocal, isConstLocal, ALocal &gt; &amp;</type>
+          <defname>v</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Check whether two Views overlap.</para><para>This function returns true if two memory intervals overlap: (1) the interval between the first and the last element of the object whose member function <ref refid="classandres_1_1View_1afa268e37459476d9ca233d741e4bc63c" kindref="member">overlaps()</ref> is called. (2) the interval between the first and the last element of v.</para><para>Note that this not necessarily implies the existence of an element that is addressed by both v and the current object. v could for instance address all odd elements in a vector while the current object addresses all even elements.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>v</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A view to compare with *this. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>bool. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="352" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="2931" bodyend="2954"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1a8c9e16f74973fefb3bacb1c7fb844441" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class U</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classandres_1_1View_1aebdd1f19272b743b4422ff8ba18fc11a" kindref="member">reference</ref></type>
+        <definition>View&lt; T, isConst, A &gt;::reference andres::View&lt; T, isConst, A &gt;::operator()</definition>
+        <argsstring>(U)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>U</type>
+          <defname>u</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Reference data.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>u</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If u is an integer type, scalar indexing is performed. Otherwise, it is assumed that u is an iterator to the beginning of a coordinate sequence. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Reference to the entry at u. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="412" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="1243" bodyend="1248"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1ae06586b90683457833c4f76ac6bc714e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class U</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classandres_1_1View_1aebdd1f19272b743b4422ff8ba18fc11a" kindref="member">reference</ref></type>
+        <definition>View&lt; T, isConst, A &gt;::reference andres::View&lt; T, isConst, A &gt;::operator()</definition>
+        <argsstring>(U) const </argsstring>
+        <name>operator()</name>
+        <param>
+          <type>U</type>
+          <defname>u</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Reference data.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>u</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If u is an integer type, scalar indexing is performed. Otherwise, it is assumed that u is an iterator to the beginning of a coordinate sequence. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Reference to the entry at u. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="413" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="1261" bodyend="1266"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1a216831a61d22edc3b74cf09df8e537f3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classandres_1_1View_1aebdd1f19272b743b4422ff8ba18fc11a" kindref="member">reference</ref></type>
+        <definition>View&lt; T, isConst, A &gt;::reference andres::View&lt; T, isConst, A &gt;::operator()</definition>
+        <argsstring>(const std::size_t, const std::size_t)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const std::size_t</type>
+          <defname>c0</defname>
+        </param>
+        <param>
+          <type>const std::size_t</type>
+          <defname>c1</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Reference data in a 2-dimensional <ref refid="classandres_1_1View" kindref="compound">View</ref> by coordinates.</para><para>This function issues a runtime error if the <ref refid="classandres_1_1View" kindref="compound">View</ref> is not 2-dimensional.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>c0</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>1st coordinate. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>c1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>2nd coordinate. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="415" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="1281" bodyend="1290"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1aea4e4eddd7cd0b1fc5ac97dee672b031" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classandres_1_1View_1aebdd1f19272b743b4422ff8ba18fc11a" kindref="member">reference</ref></type>
+        <definition>View&lt; T, isConst, A &gt;::reference andres::View&lt; T, isConst, A &gt;::operator()</definition>
+        <argsstring>(const std::size_t, const std::size_t) const </argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const std::size_t</type>
+          <defname>c0</defname>
+        </param>
+        <param>
+          <type>const std::size_t</type>
+          <defname>c1</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Reference data in a 2-dimensional <ref refid="classandres_1_1View" kindref="compound">View</ref> by coordinates.</para><para>This function issues a runtime error if the <ref refid="classandres_1_1View" kindref="compound">View</ref> is not 2-dimensional.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>c0</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>1st coordinate. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>c1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>2nd coordinate. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="416" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="1303" bodyend="1312"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1a46b12868d2aa22f89f65d604885dc1eb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classandres_1_1View_1aebdd1f19272b743b4422ff8ba18fc11a" kindref="member">reference</ref></type>
+        <definition>View&lt; T, isConst, A &gt;::reference andres::View&lt; T, isConst, A &gt;::operator()</definition>
+        <argsstring>(const std::size_t, const std::size_t, const std::size_t)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const std::size_t</type>
+          <defname>c0</defname>
+        </param>
+        <param>
+          <type>const std::size_t</type>
+          <defname>c1</defname>
+        </param>
+        <param>
+          <type>const std::size_t</type>
+          <defname>c2</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Reference data in a 3-dimensional <ref refid="classandres_1_1View" kindref="compound">View</ref> by coordinates.</para><para>This function issues a runtime error if the <ref refid="classandres_1_1View" kindref="compound">View</ref> is not 3-dimensional.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>c0</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>1st coordinate. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>c1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>2nd coordinate. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>c2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>3rd coordinate. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="417" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="1326" bodyend="1337"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1a50af7993da2ae2efad8a250ce51bb416" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classandres_1_1View_1aebdd1f19272b743b4422ff8ba18fc11a" kindref="member">reference</ref></type>
+        <definition>View&lt; T, isConst, A &gt;::reference andres::View&lt; T, isConst, A &gt;::operator()</definition>
+        <argsstring>(const std::size_t, const std::size_t, const std::size_t) const </argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const std::size_t</type>
+          <defname>c0</defname>
+        </param>
+        <param>
+          <type>const std::size_t</type>
+          <defname>c1</defname>
+        </param>
+        <param>
+          <type>const std::size_t</type>
+          <defname>c2</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Reference data in a 3-dimensional <ref refid="classandres_1_1View" kindref="compound">View</ref> by coordinates.</para><para>This function issues a runtime error if the <ref refid="classandres_1_1View" kindref="compound">View</ref> is not 3-dimensional.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>c0</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>1st coordinate. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>c1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>2nd coordinate. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>c2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>3rd coordinate. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="418" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="1351" bodyend="1362"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1acd5927bb3d8203e4811c6f17872b1c84" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classandres_1_1View_1aebdd1f19272b743b4422ff8ba18fc11a" kindref="member">reference</ref></type>
+        <definition>View&lt; T, isConst, A &gt;::reference andres::View&lt; T, isConst, A &gt;::operator()</definition>
+        <argsstring>(const std::size_t, const std::size_t, const std::size_t, const std::size_t)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const std::size_t</type>
+          <defname>c0</defname>
+        </param>
+        <param>
+          <type>const std::size_t</type>
+          <defname>c1</defname>
+        </param>
+        <param>
+          <type>const std::size_t</type>
+          <defname>c2</defname>
+        </param>
+        <param>
+          <type>const std::size_t</type>
+          <defname>c3</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Reference data in a 4-dimensional <ref refid="classandres_1_1View" kindref="compound">View</ref> by coordinates.</para><para>This function issues a runtime error if the <ref refid="classandres_1_1View" kindref="compound">View</ref> is not 4-dimensional.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>c0</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>1st coordinate. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>c1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>2nd coordinate. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>c2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>3rd coordinate. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>c3</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>4th coordinate. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="419" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="1377" bodyend="1390"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1ad7c89152e0d8d06c5ccf4377b9684d14" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classandres_1_1View_1aebdd1f19272b743b4422ff8ba18fc11a" kindref="member">reference</ref></type>
+        <definition>View&lt; T, isConst, A &gt;::reference andres::View&lt; T, isConst, A &gt;::operator()</definition>
+        <argsstring>(const std::size_t, const std::size_t, const std::size_t, const std::size_t) const </argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const std::size_t</type>
+          <defname>c0</defname>
+        </param>
+        <param>
+          <type>const std::size_t</type>
+          <defname>c1</defname>
+        </param>
+        <param>
+          <type>const std::size_t</type>
+          <defname>c2</defname>
+        </param>
+        <param>
+          <type>const std::size_t</type>
+          <defname>c3</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Reference data in a 4-dimensional <ref refid="classandres_1_1View" kindref="compound">View</ref> by coordinates.</para><para>This function issues a runtime error if the <ref refid="classandres_1_1View" kindref="compound">View</ref> is not 4-dimensional.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>c0</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>1st coordinate. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>c1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>2nd coordinate. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>c2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>3rd coordinate. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>c3</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>4th coordinate. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="421" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="1405" bodyend="1418"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1aee5664db40d9e07abe0dd57262b5191e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classandres_1_1View_1aebdd1f19272b743b4422ff8ba18fc11a" kindref="member">reference</ref></type>
+        <definition>View&lt; T, isConst, A &gt;::reference andres::View&lt; T, isConst, A &gt;::operator()</definition>
+        <argsstring>(const std::size_t, const std::size_t, const std::size_t, const std::size_t, const std::size_t)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const std::size_t</type>
+          <defname>c0</defname>
+        </param>
+        <param>
+          <type>const std::size_t</type>
+          <defname>c1</defname>
+        </param>
+        <param>
+          <type>const std::size_t</type>
+          <defname>c2</defname>
+        </param>
+        <param>
+          <type>const std::size_t</type>
+          <defname>c3</defname>
+        </param>
+        <param>
+          <type>const std::size_t</type>
+          <defname>c4</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Reference data in a 5-dimensional <ref refid="classandres_1_1View" kindref="compound">View</ref> by coordinates.</para><para>This function issues a runtime error if the <ref refid="classandres_1_1View" kindref="compound">View</ref> is not 5-dimensional.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>c0</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>1st coordinate. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>c1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>2nd coordinate. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>c2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>3rd coordinate. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>c3</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>4th coordinate. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>c4</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>5th coordinate. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="423" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="1434" bodyend="1448"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1ac188ed9042fce60401acd72ac489fed9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classandres_1_1View_1aebdd1f19272b743b4422ff8ba18fc11a" kindref="member">reference</ref></type>
+        <definition>View&lt; T, isConst, A &gt;::reference andres::View&lt; T, isConst, A &gt;::operator()</definition>
+        <argsstring>(const std::size_t, const std::size_t, const std::size_t, const std::size_t, const std::size_t) const </argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const std::size_t</type>
+          <defname>c0</defname>
+        </param>
+        <param>
+          <type>const std::size_t</type>
+          <defname>c1</defname>
+        </param>
+        <param>
+          <type>const std::size_t</type>
+          <defname>c2</defname>
+        </param>
+        <param>
+          <type>const std::size_t</type>
+          <defname>c3</defname>
+        </param>
+        <param>
+          <type>const std::size_t</type>
+          <defname>c4</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Reference data in a 5-dimensional <ref refid="classandres_1_1View" kindref="compound">View</ref> by coordinates.</para><para>This function issues a runtime error if the <ref refid="classandres_1_1View" kindref="compound">View</ref> is not 5-dimensional.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>c0</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>1st coordinate. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>c1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>2nd coordinate. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>c2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>3rd coordinate. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>c3</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>4th coordinate. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>c4</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>5th coordinate. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="425" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="1464" bodyend="1478"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1a2be86ccd328fc276f37686fb1872cb9c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classandres_1_1View_1aebdd1f19272b743b4422ff8ba18fc11a" kindref="member">reference</ref></type>
+        <definition>View&lt; T, isConst, A &gt;::reference andres::View&lt; T, isConst, A &gt;::operator()</definition>
+        <argsstring>(const std::size_t, const std::size_t, const std::size_t, const std::size_t, const std::size_t, const std::size_t, const std::size_t, const std::size_t, const std::size_t, const std::size_t)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const std::size_t</type>
+          <defname>c0</defname>
+        </param>
+        <param>
+          <type>const std::size_t</type>
+          <defname>c1</defname>
+        </param>
+        <param>
+          <type>const std::size_t</type>
+          <defname>c2</defname>
+        </param>
+        <param>
+          <type>const std::size_t</type>
+          <defname>c3</defname>
+        </param>
+        <param>
+          <type>const std::size_t</type>
+          <defname>c4</defname>
+        </param>
+        <param>
+          <type>const std::size_t</type>
+          <defname>c5</defname>
+        </param>
+        <param>
+          <type>const std::size_t</type>
+          <defname>c6</defname>
+        </param>
+        <param>
+          <type>const std::size_t</type>
+          <defname>c7</defname>
+        </param>
+        <param>
+          <type>const std::size_t</type>
+          <defname>c8</defname>
+        </param>
+        <param>
+          <type>const std::size_t</type>
+          <defname>c9</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Reference data in a 10-dimensional <ref refid="classandres_1_1View" kindref="compound">View</ref> by coordinates.</para><para>This function issues a runtime error if the <ref refid="classandres_1_1View" kindref="compound">View</ref> is not 5-dimensional.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>c0</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>1st coordinate. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>c1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>2nd coordinate. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>c2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>3rd coordinate. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>c3</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>4th coordinate. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>c4</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>5th coordinate. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>c5</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>6th coordinate. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>c6</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>7th coordinate. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>c7</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>8th coordinate. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>c8</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>9th coordinate. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>c9</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>10th coordinate. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="427" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="1500" bodyend="1522"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1aa9fa791b4f14b9c8b8c15aea0f53527e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classandres_1_1View_1aebdd1f19272b743b4422ff8ba18fc11a" kindref="member">reference</ref></type>
+        <definition>View&lt; T, isConst, A &gt;::reference andres::View&lt; T, isConst, A &gt;::operator()</definition>
+        <argsstring>(const std::size_t, const std::size_t, const std::size_t, const std::size_t, const std::size_t, const std::size_t, const std::size_t, const std::size_t, const std::size_t, const std::size_t) const </argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const std::size_t</type>
+          <defname>c0</defname>
+        </param>
+        <param>
+          <type>const std::size_t</type>
+          <defname>c1</defname>
+        </param>
+        <param>
+          <type>const std::size_t</type>
+          <defname>c2</defname>
+        </param>
+        <param>
+          <type>const std::size_t</type>
+          <defname>c3</defname>
+        </param>
+        <param>
+          <type>const std::size_t</type>
+          <defname>c4</defname>
+        </param>
+        <param>
+          <type>const std::size_t</type>
+          <defname>c5</defname>
+        </param>
+        <param>
+          <type>const std::size_t</type>
+          <defname>c6</defname>
+        </param>
+        <param>
+          <type>const std::size_t</type>
+          <defname>c7</defname>
+        </param>
+        <param>
+          <type>const std::size_t</type>
+          <defname>c8</defname>
+        </param>
+        <param>
+          <type>const std::size_t</type>
+          <defname>c9</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Reference data in a 10-dimensional <ref refid="classandres_1_1View" kindref="compound">View</ref> by coordinates.</para><para>This function issues a runtime error if the <ref refid="classandres_1_1View" kindref="compound">View</ref> is not 5-dimensional.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>c0</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>1st coordinate. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>c1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>2nd coordinate. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>c2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>3rd coordinate. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>c3</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>4th coordinate. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>c4</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>5th coordinate. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>c5</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>6th coordinate. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>c6</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>7th coordinate. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>c7</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>8th coordinate. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>c8</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>9th coordinate. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>c9</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>10th coordinate. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="430" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="1543" bodyend="1565"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1a190ebba7d686129ac18075e7650e0341" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class BaseIterator</type>
+          </param>
+          <param>
+            <type>class ShapeIterator</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void andres::View&lt; T, isConst, A &gt;::view</definition>
+        <argsstring>(BaseIterator, ShapeIterator, View&lt; T, isConst, A &gt; &amp;) const </argsstring>
+        <name>view</name>
+        <param>
+          <type>BaseIterator</type>
+          <defname>bit</defname>
+        </param>
+        <param>
+          <type>ShapeIterator</type>
+          <defname>sit</defname>
+        </param>
+        <param>
+          <type><ref refid="classandres_1_1View" kindref="compound">View</ref>&lt; T, isConst, A &gt; &amp;</type>
+          <defname>out</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get a sub-view with the same coordinate order.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>bit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref> to the beginning of a coordinate sequence that determines the start position of the sub-view. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref> to the beginning of a sequence that determines the shape of the sub-view. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Sub-View (output). </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="454" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="1985" bodyend="1992"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1a81d4d44cfe0b4373f5488d6b01346189" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class BaseIterator</type>
+          </param>
+          <param>
+            <type>class ShapeIterator</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void andres::View&lt; T, isConst, A &gt;::view</definition>
+        <argsstring>(BaseIterator, ShapeIterator, const CoordinateOrder &amp;, View&lt; T, isConst, A &gt; &amp;) const </argsstring>
+        <name>view</name>
+        <param>
+          <type>BaseIterator</type>
+          <defname>bit</defname>
+        </param>
+        <param>
+          <type>ShapeIterator</type>
+          <defname>sit</defname>
+        </param>
+        <param>
+          <type>const <ref refid="namespaceandres_1a2ac8b7aa89d44e8188a7c0ba50f4306b" kindref="member">CoordinateOrder</ref> &amp;</type>
+          <defname>internalCoordinateOrder</defname>
+        </param>
+        <param>
+          <type><ref refid="classandres_1_1View" kindref="compound">View</ref>&lt; T, isConst, A &gt; &amp;</type>
+          <defname>out</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get a sub-view.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>bit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref> to the beginning of a coordinate sequence that determines the start position of the sub-view. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref> to the beginning of a sequence that determines the shape of the sub-view. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>internalCoordinateOrder</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Flag to set the coordinate order for scalar indexing and iterators of the sub-view. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Sub-View (output). </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="456" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="2008" bodyend="2020"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1a4da55e4518bb93761e275b5340373ccd" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class BaseIterator</type>
+          </param>
+          <param>
+            <type>class ShapeIterator</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classandres_1_1View" kindref="compound">View</ref>&lt; T, isConst, A &gt;</type>
+        <definition>View&lt; T, isConst, A &gt; andres::View&lt; T, isConst, A &gt;::view</definition>
+        <argsstring>(BaseIterator, ShapeIterator) const </argsstring>
+        <name>view</name>
+        <param>
+          <type>BaseIterator</type>
+          <defname>bit</defname>
+        </param>
+        <param>
+          <type>ShapeIterator</type>
+          <defname>sit</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get a sub-view with the same coordinate order.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>bit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref> to the beginning of a coordinate sequence that determines the start position of the sub-view. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref> to the beginning of a sequence that determines the shape of the sub-view. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Sub-View. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="459" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="2034" bodyend="2042"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1a6ec3e4ec58da8405e3e8b4bf6d4912e4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class BaseIterator</type>
+          </param>
+          <param>
+            <type>class ShapeIterator</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classandres_1_1View" kindref="compound">View</ref>&lt; T, isConst, A &gt;</type>
+        <definition>View&lt; T, isConst, A &gt; andres::View&lt; T, isConst, A &gt;::view</definition>
+        <argsstring>(BaseIterator, ShapeIterator, const CoordinateOrder &amp;) const </argsstring>
+        <name>view</name>
+        <param>
+          <type>BaseIterator</type>
+          <defname>bit</defname>
+        </param>
+        <param>
+          <type>ShapeIterator</type>
+          <defname>sit</defname>
+        </param>
+        <param>
+          <type>const <ref refid="namespaceandres_1a2ac8b7aa89d44e8188a7c0ba50f4306b" kindref="member">CoordinateOrder</ref> &amp;</type>
+          <defname>internalCoordinateOrder</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get a sub-view.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>bit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref> to the beginning of a coordinate sequence that determines the start position of the sub-view. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref> to the beginning of a sequence that determines the shape of the sub-view. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>internalCoordinateOrder</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Flag to set the coordinate order for scalar indexing and iterators of the sub-view. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Sub-View. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="461" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="2058" bodyend="2067"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1aeeaae20aebd1f90c3b3f1aba2071e98d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class BaseIterator</type>
+          </param>
+          <param>
+            <type>class ShapeIterator</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void andres::View&lt; T, isConst, A &gt;::constView</definition>
+        <argsstring>(BaseIterator, ShapeIterator, View&lt; T, true, A &gt; &amp;) const </argsstring>
+        <name>constView</name>
+        <param>
+          <type>BaseIterator</type>
+          <defname>bit</defname>
+        </param>
+        <param>
+          <type>ShapeIterator</type>
+          <defname>sit</defname>
+        </param>
+        <param>
+          <type><ref refid="classandres_1_1View" kindref="compound">View</ref>&lt; T, true, A &gt; &amp;</type>
+          <defname>out</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get a sub-view to constant data with the same coordinate order.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>bit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref> to the beginning of a coordinate sequence that determines the start position of the sub-view. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref> to the beginning of a sequence that determines the shape of the sub-view. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Sub-View (output). </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="464" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="2082" bodyend="2089"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1a331568a945dc85ab30f03de5f993b792" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class BaseIterator</type>
+          </param>
+          <param>
+            <type>class ShapeIterator</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void andres::View&lt; T, isConst, A &gt;::constView</definition>
+        <argsstring>(BaseIterator, ShapeIterator, const CoordinateOrder &amp;, View&lt; T, true, A &gt; &amp;) const </argsstring>
+        <name>constView</name>
+        <param>
+          <type>BaseIterator</type>
+          <defname>bit</defname>
+        </param>
+        <param>
+          <type>ShapeIterator</type>
+          <defname>sit</defname>
+        </param>
+        <param>
+          <type>const <ref refid="namespaceandres_1a2ac8b7aa89d44e8188a7c0ba50f4306b" kindref="member">CoordinateOrder</ref> &amp;</type>
+          <defname>internalCoordinateOrder</defname>
+        </param>
+        <param>
+          <type><ref refid="classandres_1_1View" kindref="compound">View</ref>&lt; T, true, A &gt; &amp;</type>
+          <defname>out</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get a sub-view to constant data.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>bit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref> to the beginning of a coordinate sequence that determines the start position of the sub-view. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref> to the beginning of a sequence that determines the shape of the sub-view. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>internalCoordinateOrder</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Flag to set the coordinate order for scalar indexing and iterators of the sub-view. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Sub-View (output). </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="466" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="2105" bodyend="2119"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1ab329255f0d1c9f7acaa4460482ca1fe1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class BaseIterator</type>
+          </param>
+          <param>
+            <type>class ShapeIterator</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classandres_1_1View" kindref="compound">View</ref>&lt; T, true, A &gt;</type>
+        <definition>View&lt; T, true, A &gt; andres::View&lt; T, isConst, A &gt;::constView</definition>
+        <argsstring>(BaseIterator, ShapeIterator) const </argsstring>
+        <name>constView</name>
+        <param>
+          <type>BaseIterator</type>
+          <defname>bit</defname>
+        </param>
+        <param>
+          <type>ShapeIterator</type>
+          <defname>sit</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get a sub-view to constant data with the same coordinate order.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>bit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref> to the beginning of a coordinate sequence that determines the start position of the sub-view. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref> to the beginning of a sequence that determines the shape of the sub-view. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Sub-View. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="469" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="2134" bodyend="2142"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1ab3bfeed6e84bccb0669497f64eb88557" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class BaseIterator</type>
+          </param>
+          <param>
+            <type>class ShapeIterator</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classandres_1_1View" kindref="compound">View</ref>&lt; T, true, A &gt;</type>
+        <definition>View&lt; T, true, A &gt; andres::View&lt; T, isConst, A &gt;::constView</definition>
+        <argsstring>(BaseIterator, ShapeIterator, const CoordinateOrder &amp;) const </argsstring>
+        <name>constView</name>
+        <param>
+          <type>BaseIterator</type>
+          <defname>bit</defname>
+        </param>
+        <param>
+          <type>ShapeIterator</type>
+          <defname>sit</defname>
+        </param>
+        <param>
+          <type>const <ref refid="namespaceandres_1a2ac8b7aa89d44e8188a7c0ba50f4306b" kindref="member">CoordinateOrder</ref> &amp;</type>
+          <defname>internalCoordinateOrder</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get a sub-view to constant data.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>bit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref> to the beginning of a coordinate sequence that determines the start position of the sub-view. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref> to the beginning of a sequence that determines the shape of the sub-view. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>internalCoordinateOrder</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Flag to set the coordinate order for scalar indexing and iterators of the sub-view. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Sub-View. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="471" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="2158" bodyend="2167"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1acd1f71e27ea01d536e1539877afedfa9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classandres_1_1View_1aef54ee0a58e755b897398493d05a44df" kindref="member">iterator</ref></type>
+        <definition>View&lt; T, isConst, A &gt;::iterator andres::View&lt; T, isConst, A &gt;::begin</definition>
+        <argsstring>()</argsstring>
+        <name>begin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get an iterator to the beginning.</para><para><simplesect kind="return"><para><ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref>. </para></simplesect>
+<simplesect kind="see"><para><ref refid="classandres_1_1View_1af778a1e9839f2f90e503514e36d41b78" kindref="member">end()</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="487" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="2712" bodyend="2716"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1af778a1e9839f2f90e503514e36d41b78" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classandres_1_1View_1aef54ee0a58e755b897398493d05a44df" kindref="member">iterator</ref></type>
+        <definition>View&lt; T, isConst, A &gt;::iterator andres::View&lt; T, isConst, A &gt;::end</definition>
+        <argsstring>()</argsstring>
+        <name>end</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the end-iterator.</para><para><simplesect kind="return"><para><ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref>. </para></simplesect>
+<simplesect kind="see"><para><ref refid="classandres_1_1View_1acd1f71e27ea01d536e1539877afedfa9" kindref="member">begin()</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="488" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="2725" bodyend="2729"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1a95eb85a97d6a98b3cd3271a033ddae06" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classandres_1_1View_1a7b6f125a7b3830f30cd34887b61858a7" kindref="member">const_iterator</ref></type>
+        <definition>View&lt; T, isConst, A &gt;::const_iterator andres::View&lt; T, isConst, A &gt;::begin</definition>
+        <argsstring>() const </argsstring>
+        <name>begin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get an iterator to the beginning.</para><para><simplesect kind="return"><para><ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref>. </para></simplesect>
+<simplesect kind="see"><para><ref refid="classandres_1_1View_1af778a1e9839f2f90e503514e36d41b78" kindref="member">end()</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="489" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="2738" bodyend="2742"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1ae55b54c50dd58caf8c128c7ec72be8c3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classandres_1_1View_1a7b6f125a7b3830f30cd34887b61858a7" kindref="member">const_iterator</ref></type>
+        <definition>View&lt; T, isConst, A &gt;::const_iterator andres::View&lt; T, isConst, A &gt;::end</definition>
+        <argsstring>() const </argsstring>
+        <name>end</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the end-iterator.</para><para><simplesect kind="return"><para><ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref>. </para></simplesect>
+<simplesect kind="see"><para><ref refid="classandres_1_1View_1acd1f71e27ea01d536e1539877afedfa9" kindref="member">begin()</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="490" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="2752" bodyend="2756"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1a035fa9d7c83683bfbfb9141251336ba5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classandres_1_1View_1aab07af42756759420211d114bb705547" kindref="member">reverse_iterator</ref></type>
+        <definition>View&lt; T, isConst, A &gt;::reverse_iterator andres::View&lt; T, isConst, A &gt;::rbegin</definition>
+        <argsstring>()</argsstring>
+        <name>rbegin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get a reserve iterator to the beginning.</para><para><simplesect kind="return"><para><ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref>. </para></simplesect>
+<simplesect kind="see"><para><ref refid="classandres_1_1View_1a27d6bad469c2e4590e0fa9f00108c36e" kindref="member">rend()</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="491" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="2765" bodyend="2768"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1a27d6bad469c2e4590e0fa9f00108c36e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classandres_1_1View_1aab07af42756759420211d114bb705547" kindref="member">reverse_iterator</ref></type>
+        <definition>View&lt; T, isConst, A &gt;::reverse_iterator andres::View&lt; T, isConst, A &gt;::rend</definition>
+        <argsstring>()</argsstring>
+        <name>rend</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the reverse end-iterator.</para><para><simplesect kind="return"><para><ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref>. </para></simplesect>
+<simplesect kind="see"><para><ref refid="classandres_1_1View_1a035fa9d7c83683bfbfb9141251336ba5" kindref="member">rbegin()</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="492" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="2777" bodyend="2780"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1a7c2f923cffa4782f5d14c48d54981f46" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classandres_1_1View_1a61656971b73a48c8bf009e3200aad900" kindref="member">const_reverse_iterator</ref></type>
+        <definition>View&lt; T, isConst, A &gt;::const_reverse_iterator andres::View&lt; T, isConst, A &gt;::rbegin</definition>
+        <argsstring>() const </argsstring>
+        <name>rbegin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get a reserve iterator to the beginning.</para><para><simplesect kind="return"><para><ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref>. </para></simplesect>
+<simplesect kind="see"><para><ref refid="classandres_1_1View_1a27d6bad469c2e4590e0fa9f00108c36e" kindref="member">rend()</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="493" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="2789" bodyend="2792"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1a04e6fd865daf11473573114adf296662" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classandres_1_1View_1a61656971b73a48c8bf009e3200aad900" kindref="member">const_reverse_iterator</ref></type>
+        <definition>View&lt; T, isConst, A &gt;::const_reverse_iterator andres::View&lt; T, isConst, A &gt;::rend</definition>
+        <argsstring>() const </argsstring>
+        <name>rend</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the reverse end-iterator.</para><para><simplesect kind="return"><para><ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref>. </para></simplesect>
+<simplesect kind="see"><para><ref refid="classandres_1_1View_1a035fa9d7c83683bfbfb9141251336ba5" kindref="member">rbegin()</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="494" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="2801" bodyend="2804"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1a7d0432d097b8ce03a413006ec2fe9469" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class ShapeIterator</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void andres::View&lt; T, isConst, A &gt;::reshape</definition>
+        <argsstring>(ShapeIterator, ShapeIterator)</argsstring>
+        <name>reshape</name>
+        <param>
+          <type>ShapeIterator</type>
+          <defname>begin</defname>
+        </param>
+        <param>
+          <type>ShapeIterator</type>
+          <defname>end</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Reshape the <ref refid="classandres_1_1View" kindref="compound">View</ref>.</para><para>Two conditions have to be fulfilled in order for reshape to work:<itemizedlist>
+<listitem><para>The new and the old shape must have the same size.</para></listitem><listitem><para>The view must be simple, cf. <ref refid="classandres_1_1View_1ad747c5f0d3caecaa535afd85c1e5c250" kindref="member">isSimple()</ref>.</para></listitem></itemizedlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>begin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref> to the beginning of a sequence that determines the new shape. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>end</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref> to the end of that sequence.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="classandres_1_1View_1accc2cf4c41007424b33948b24f1eb61e" kindref="member">reshapedView()</ref>, <ref refid="classandres_1_1View_1ad747c5f0d3caecaa535afd85c1e5c250" kindref="member">isSimple()</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="498" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="2273" bodyend="2287"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1a375d3e199e219568d8a6205e4088289b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class CoordinateIterator</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void andres::View&lt; T, isConst, A &gt;::permute</definition>
+        <argsstring>(CoordinateIterator)</argsstring>
+        <name>permute</name>
+        <param>
+          <type>CoordinateIterator</type>
+          <defname>begin</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Permute dimensions.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>begin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref> to the beginning of a sequence which has to contain the integers 0, ..., <ref refid="classandres_1_1View_1a36308e1cf6bb6b17e8b0df6537c1ec39" kindref="member">dimension()</ref>-1 in any order. Otherwise, a runtime error is thrown. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="classandres_1_1View_1a278c77d7b10642fffc9ca8b3bc292cd1" kindref="member">permutedView()</ref>, <ref refid="classandres_1_1View_1ad7acad354a5be4086b9b21ab88b18d82" kindref="member">transpose()</ref>, <ref refid="classandres_1_1View_1a08fc7f17dd64241adeefac7493f39f3a" kindref="member">transposedView()</ref>, <ref refid="classandres_1_1View_1a476957393b3b21333bc665e852da47ad" kindref="member">shift()</ref>, <ref refid="classandres_1_1View_1a267a57ffddb437e19d0a15d342aeebc9" kindref="member">shiftedView()</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="500" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="2492" bodyend="2524"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1a3a837dd20fda8c536f9c76894a1f5944" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void andres::View&lt; T, isConst, A &gt;::transpose</definition>
+        <argsstring>(const std::size_t, const std::size_t)</argsstring>
+        <name>transpose</name>
+        <param>
+          <type>const std::size_t</type>
+          <defname>c1</defname>
+        </param>
+        <param>
+          <type>const std::size_t</type>
+          <defname>c2</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Exchange two dimensions.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>c1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Dimension </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>c2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Dimension </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="classandres_1_1View_1a375d3e199e219568d8a6205e4088289b" kindref="member">permute()</ref>, <ref refid="classandres_1_1View_1a278c77d7b10642fffc9ca8b3bc292cd1" kindref="member">permutedView()</ref>, <ref refid="classandres_1_1View_1a476957393b3b21333bc665e852da47ad" kindref="member">shift()</ref>, <ref refid="classandres_1_1View_1a267a57ffddb437e19d0a15d342aeebc9" kindref="member">shiftedView()</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="501" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="2557" bodyend="2587"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1ad7acad354a5be4086b9b21ab88b18d82" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void andres::View&lt; T, isConst, A &gt;::transpose</definition>
+        <argsstring>()</argsstring>
+        <name>transpose</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Reverse dimensions.</para><para><simplesect kind="see"><para><ref refid="classandres_1_1View_1a08fc7f17dd64241adeefac7493f39f3a" kindref="member">transposedView()</ref>, <ref refid="classandres_1_1View_1a375d3e199e219568d8a6205e4088289b" kindref="member">permute()</ref>, <ref refid="classandres_1_1View_1a278c77d7b10642fffc9ca8b3bc292cd1" kindref="member">permutedView()</ref>, <ref refid="classandres_1_1View_1a476957393b3b21333bc665e852da47ad" kindref="member">shift()</ref>, <ref refid="classandres_1_1View_1a267a57ffddb437e19d0a15d342aeebc9" kindref="member">shiftedView()</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="502" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="2596" bodyend="2616"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1a476957393b3b21333bc665e852da47ad" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void andres::View&lt; T, isConst, A &gt;::shift</definition>
+        <argsstring>(const int)</argsstring>
+        <name>shift</name>
+        <param>
+          <type>const int</type>
+          <defname>n</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Cycle shift dimensions.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of positions to shift </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="classandres_1_1View_1a267a57ffddb437e19d0a15d342aeebc9" kindref="member">shiftedView()</ref>, <ref refid="classandres_1_1View_1a375d3e199e219568d8a6205e4088289b" kindref="member">permute()</ref>, <ref refid="classandres_1_1View_1a278c77d7b10642fffc9ca8b3bc292cd1" kindref="member">permutedView()</ref>, <ref refid="classandres_1_1View_1ad7acad354a5be4086b9b21ab88b18d82" kindref="member">transpose()</ref>, <ref refid="classandres_1_1View_1a08fc7f17dd64241adeefac7493f39f3a" kindref="member">transposedView()</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="503" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="2663" bodyend="2685"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1a922763728fb80d24c32a5e5964537bdb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void andres::View&lt; T, isConst, A &gt;::squeeze</definition>
+        <argsstring>()</argsstring>
+        <name>squeeze</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Remove singleton dimensions by setting their coordinates to zero.</para><para><simplesect kind="see"><para><ref refid="classandres_1_1View_1a4d454242ebde77898963b7bc41208bb5" kindref="member">squeezedView()</ref>, <ref refid="classandres_1_1View_1ab39dae59df5589ec0311ad67a3c7d000" kindref="member">boundView()</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="504" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="2413" bodyend="2444"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1accc2cf4c41007424b33948b24f1eb61e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class ShapeIterator</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classandres_1_1View" kindref="compound">View</ref>&lt; T, isConst, A &gt;</type>
+        <definition>View&lt; T, isConst, A &gt; andres::View&lt; T, isConst, A &gt;::reshapedView</definition>
+        <argsstring>(ShapeIterator, ShapeIterator) const </argsstring>
+        <name>reshapedView</name>
+        <param>
+          <type>ShapeIterator</type>
+          <defname>begin</defname>
+        </param>
+        <param>
+          <type>ShapeIterator</type>
+          <defname>end</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get a reshaped <ref refid="classandres_1_1View" kindref="compound">View</ref>.</para><para>Two conditions have to be fulfilled:<itemizedlist>
+<listitem><para>The new and the old shape must have the same size.</para></listitem><listitem><para>The view must be simple, cf. <ref refid="classandres_1_1View_1ad747c5f0d3caecaa535afd85c1e5c250" kindref="member">isSimple()</ref>.</para></listitem></itemizedlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>begin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref> to the beginning of a sequence that determines the new shape. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>end</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref> to the end of that sequence.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="classandres_1_1View_1a7d0432d097b8ce03a413006ec2fe9469" kindref="member">reshape()</ref>, <ref refid="classandres_1_1View_1ad747c5f0d3caecaa535afd85c1e5c250" kindref="member">isSimple()</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="507" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="2306" bodyend="2314"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1a278c77d7b10642fffc9ca8b3bc292cd1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class CoordinateIterator</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classandres_1_1View" kindref="compound">View</ref>&lt; T, isConst, A &gt;</type>
+        <definition>View&lt; T, isConst, A &gt; andres::View&lt; T, isConst, A &gt;::permutedView</definition>
+        <argsstring>(CoordinateIterator) const </argsstring>
+        <name>permutedView</name>
+        <param>
+          <type>CoordinateIterator</type>
+          <defname>begin</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get a <ref refid="classandres_1_1View" kindref="compound">View</ref> with permuted dimensions.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>begin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref> to the beginning of a sequence which has to contain the integers 0, ..., <ref refid="classandres_1_1View_1a36308e1cf6bb6b17e8b0df6537c1ec39" kindref="member">dimension()</ref>-1 in any order. Otherwise, a runtime error is thrown. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Permuted <ref refid="classandres_1_1View" kindref="compound">View</ref>. </para></simplesect>
+<simplesect kind="see"><para><ref refid="classandres_1_1View_1a375d3e199e219568d8a6205e4088289b" kindref="member">permute()</ref>, <ref refid="classandres_1_1View_1ad7acad354a5be4086b9b21ab88b18d82" kindref="member">transpose()</ref>, <ref refid="classandres_1_1View_1a08fc7f17dd64241adeefac7493f39f3a" kindref="member">transposedView()</ref>, <ref refid="classandres_1_1View_1a476957393b3b21333bc665e852da47ad" kindref="member">shift()</ref>, <ref refid="classandres_1_1View_1a267a57ffddb437e19d0a15d342aeebc9" kindref="member">shiftedView()</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="509" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="2539" bodyend="2546"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1a08fc7f17dd64241adeefac7493f39f3a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classandres_1_1View" kindref="compound">View</ref>&lt; T, isConst, A &gt;</type>
+        <definition>View&lt; T, isConst, A &gt; andres::View&lt; T, isConst, A &gt;::transposedView</definition>
+        <argsstring>(const std::size_t, const std::size_t) const </argsstring>
+        <name>transposedView</name>
+        <param>
+          <type>const std::size_t</type>
+          <defname>c1</defname>
+        </param>
+        <param>
+          <type>const std::size_t</type>
+          <defname>c2</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get a <ref refid="classandres_1_1View" kindref="compound">View</ref> with two dimensions exchanged.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>c1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Dimension </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>c2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Dimension </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Transposed <ref refid="classandres_1_1View" kindref="compound">View</ref>. </para></simplesect>
+<simplesect kind="see"><para><ref refid="classandres_1_1View_1ad7acad354a5be4086b9b21ab88b18d82" kindref="member">transpose()</ref>, <ref refid="classandres_1_1View_1a375d3e199e219568d8a6205e4088289b" kindref="member">permute()</ref>, <ref refid="classandres_1_1View_1a278c77d7b10642fffc9ca8b3bc292cd1" kindref="member">permutedView()</ref>, <ref refid="classandres_1_1View_1a476957393b3b21333bc665e852da47ad" kindref="member">shift()</ref>, <ref refid="classandres_1_1View_1a267a57ffddb437e19d0a15d342aeebc9" kindref="member">shiftedView()</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="510" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="2629" bodyend="2637"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1a2045868486d978f41125dd59c4834fa2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classandres_1_1View" kindref="compound">View</ref>&lt; T, isConst, A &gt;</type>
+        <definition>View&lt; T, isConst, A &gt; andres::View&lt; T, isConst, A &gt;::transposedView</definition>
+        <argsstring>() const </argsstring>
+        <name>transposedView</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get a <ref refid="classandres_1_1View" kindref="compound">View</ref> with dimensions reversed.</para><para><simplesect kind="return"><para><ref refid="classandres_1_1View" kindref="compound">View</ref> with dimensions reversed. </para></simplesect>
+<simplesect kind="see"><para><ref refid="classandres_1_1View_1ad7acad354a5be4086b9b21ab88b18d82" kindref="member">transpose()</ref>, <ref refid="classandres_1_1View_1a375d3e199e219568d8a6205e4088289b" kindref="member">permute()</ref>, <ref refid="classandres_1_1View_1a278c77d7b10642fffc9ca8b3bc292cd1" kindref="member">permutedView()</ref>, <ref refid="classandres_1_1View_1a476957393b3b21333bc665e852da47ad" kindref="member">shift()</ref>, <ref refid="classandres_1_1View_1a267a57ffddb437e19d0a15d342aeebc9" kindref="member">shiftedView()</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="511" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="2647" bodyend="2652"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1a267a57ffddb437e19d0a15d342aeebc9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classandres_1_1View" kindref="compound">View</ref>&lt; T, isConst, A &gt;</type>
+        <definition>View&lt; T, isConst, A &gt; andres::View&lt; T, isConst, A &gt;::shiftedView</definition>
+        <argsstring>(const int) const </argsstring>
+        <name>shiftedView</name>
+        <param>
+          <type>const int</type>
+          <defname>n</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get a <ref refid="classandres_1_1View" kindref="compound">View</ref> which dimensions cycle shifted.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of positions to shift </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="classandres_1_1View_1a476957393b3b21333bc665e852da47ad" kindref="member">shift()</ref>, <ref refid="classandres_1_1View_1a375d3e199e219568d8a6205e4088289b" kindref="member">permute()</ref>, <ref refid="classandres_1_1View_1a278c77d7b10642fffc9ca8b3bc292cd1" kindref="member">permutedView()</ref>, <ref refid="classandres_1_1View_1ad7acad354a5be4086b9b21ab88b18d82" kindref="member">transpose()</ref>, <ref refid="classandres_1_1View_1a08fc7f17dd64241adeefac7493f39f3a" kindref="member">transposedView()</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="512" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="2695" bodyend="2702"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1ab39dae59df5589ec0311ad67a3c7d000" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classandres_1_1View" kindref="compound">View</ref>&lt; T, isConst, A &gt;</type>
+        <definition>View&lt; T, isConst, A &gt; andres::View&lt; T, isConst, A &gt;::boundView</definition>
+        <argsstring>(const std::size_t, const std::size_t=0) const </argsstring>
+        <name>boundView</name>
+        <param>
+          <type>const std::size_t</type>
+          <defname>dimension</defname>
+        </param>
+        <param>
+          <type>const std::size_t</type>
+          <defname>value</defname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get a <ref refid="classandres_1_1View" kindref="compound">View</ref> where one coordinate is bound to a value.</para><para>Binds one coordinate to a certain value. This reduces the dimension by 1.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dimension</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Dimension of the coordinate to bind. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Value to assign to the coordinate. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The bound view. </para></simplesect>
+<simplesect kind="see"><para><ref refid="classandres_1_1View_1a922763728fb80d24c32a5e5964537bdb" kindref="member">squeeze()</ref>, squeezeView() </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="513" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="2373" bodyend="2405"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1a4d454242ebde77898963b7bc41208bb5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classandres_1_1View" kindref="compound">View</ref>&lt; T, isConst, A &gt;</type>
+        <definition>View&lt; T, isConst, A &gt; andres::View&lt; T, isConst, A &gt;::squeezedView</definition>
+        <argsstring>() const </argsstring>
+        <name>squeezedView</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get a <ref refid="classandres_1_1View" kindref="compound">View</ref> where all singleton dimensions have been removed by setting their coordinates to zero.</para><para><simplesect kind="see"><para><ref refid="classandres_1_1View_1a922763728fb80d24c32a5e5964537bdb" kindref="member">squeeze()</ref>, <ref refid="classandres_1_1View_1ab39dae59df5589ec0311ad67a3c7d000" kindref="member">boundView()</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="514" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="2453" bodyend="2458"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1aaaf0d7e0d18c8ce235da39d006abfb44" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class CoordinateIterator</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void andres::View&lt; T, isConst, A &gt;::coordinatesToIndex</definition>
+        <argsstring>(CoordinateIterator, std::size_t &amp;) const </argsstring>
+        <name>coordinatesToIndex</name>
+        <param>
+          <type>CoordinateIterator</type>
+          <defname>it</defname>
+        </param>
+        <param>
+          <type>std::size_t &amp;</type>
+          <defname>out</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Compute the index that corresponds to a sequence of coordinates.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>it</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>An iterator to the beginning of the coordinate sequence. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Index (output) </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="classandres_1_1View_1aae65d4fe9cb58845479be7ea4cbb7591" kindref="member">coordinatesToOffset()</ref>, <ref refid="classandres_1_1View_1aac74ad12de420f62a474ebed05e06640" kindref="member">indexToCoordinates()</ref>, and <ref refid="classandres_1_1View_1abe37dcbd69af25882d45bdff5745e95f" kindref="member">indexToOffset()</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="526" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="764" bodyend="775"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1aae65d4fe9cb58845479be7ea4cbb7591" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class CoordinateIterator</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void andres::View&lt; T, isConst, A &gt;::coordinatesToOffset</definition>
+        <argsstring>(CoordinateIterator, std::size_t &amp;) const </argsstring>
+        <name>coordinatesToOffset</name>
+        <param>
+          <type>CoordinateIterator</type>
+          <defname>it</defname>
+        </param>
+        <param>
+          <type>std::size_t &amp;</type>
+          <defname>out</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Compute the offset that corresponds to a sequence of coordinates.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>it</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>An iterator to the beginning of the coordinate sequence. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Index (output) </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="classandres_1_1View_1aaaf0d7e0d18c8ce235da39d006abfb44" kindref="member">coordinatesToIndex()</ref>, <ref refid="classandres_1_1View_1aac74ad12de420f62a474ebed05e06640" kindref="member">indexToCoordinates()</ref>, and <ref refid="classandres_1_1View_1abe37dcbd69af25882d45bdff5745e95f" kindref="member">indexToOffset()</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="528" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="806" bodyend="817"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1aac74ad12de420f62a474ebed05e06640" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class CoordinateIterator</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void andres::View&lt; T, isConst, A &gt;::indexToCoordinates</definition>
+        <argsstring>(std::size_t, CoordinateIterator) const </argsstring>
+        <name>indexToCoordinates</name>
+        <param>
+          <type>std::size_t</type>
+          <defname>index</defname>
+        </param>
+        <param>
+          <type>CoordinateIterator</type>
+          <defname>outit</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Compute the coordinate sequence that corresponds to an index.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Index </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>An iterator into a container into which the coordinate sequence is to be written (output). </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="classandres_1_1View_1aaaf0d7e0d18c8ce235da39d006abfb44" kindref="member">coordinatesToIndex()</ref>, <ref refid="classandres_1_1View_1aae65d4fe9cb58845479be7ea4cbb7591" kindref="member">coordinatesToOffset()</ref>, and <ref refid="classandres_1_1View_1abe37dcbd69af25882d45bdff5745e95f" kindref="member">indexToOffset()</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="530" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="830" bodyend="859"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1abe37dcbd69af25882d45bdff5745e95f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void andres::View&lt; T, isConst, A &gt;::indexToOffset</definition>
+        <argsstring>(std::size_t, std::size_t &amp;) const </argsstring>
+        <name>indexToOffset</name>
+        <param>
+          <type>std::size_t</type>
+          <defname>index</defname>
+        </param>
+        <param>
+          <type>std::size_t &amp;</type>
+          <defname>out</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Compute the offset that corresponds to an index.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Index. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Offset (output). </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="classandres_1_1View_1aaaf0d7e0d18c8ce235da39d006abfb44" kindref="member">coordinatesToIndex()</ref>, <ref refid="classandres_1_1View_1aae65d4fe9cb58845479be7ea4cbb7591" kindref="member">coordinatesToOffset()</ref>, and <ref refid="classandres_1_1View_1aac74ad12de420f62a474ebed05e06640" kindref="member">indexToCoordinates()</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="531" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="870" bodyend="908"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1a2c1774da3d066b97932ea861f845d95c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string andres::View&lt; T, isConst, A &gt;::asString</definition>
+        <argsstring>(const StringStyle &amp;=MatrixStyle) const </argsstring>
+        <name>asString</name>
+        <param>
+          <type>const <ref refid="namespaceandres_1a69f07c437d156c7028c7d619e566281f" kindref="member">StringStyle</ref> &amp;</type>
+          <defname>style</defname>
+          <defval><ref refid="namespaceandres_1a69f07c437d156c7028c7d619e566281fa8b1efd8fc40539ba5b5255b46440eeaf" kindref="member">MatrixStyle</ref></defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Output as string. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="540" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="2961" bodyend="3063"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classandres_1_1View_1a4bad759276d4624894d521f390710390" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>andres::View&lt; T, isConst, A &gt;::View</definition>
+        <argsstring>(pointer, const geometry_type &amp;)</argsstring>
+        <name>View</name>
+        <param>
+          <type><ref refid="classandres_1_1View_1a9a201594c82be89fccd0fe644ea2f09c" kindref="member">pointer</ref></type>
+          <defname>data</defname>
+        </param>
+        <param>
+          <type>const geometry_type &amp;</type>
+          <defname>geometry</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="545" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="933" bodyend="941"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1af5994b44e578531df8e343fef9fc60c6" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void andres::View&lt; T, isConst, A &gt;::updateSimplicity</definition>
+        <argsstring>()</argsstring>
+        <name>updateSimplicity</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Update Simplicity.</para><para>This function sets the redundant boolean attribute isSimple_. isSimple_ is set to true if the shape strides equal the strides. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="547" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="2814" bodyend="2819"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1af272c35c56a177dc1fe511ef378a9890" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void andres::View&lt; T, isConst, A &gt;::testInvariant</definition>
+        <argsstring>() const </argsstring>
+        <name>testInvariant</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Test invariant.</para><para>This function tests the invariant of <ref refid="classandres_1_1View" kindref="compound">View</ref> and thus the consistency of redundant information. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="548" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="2865" bodyend="2911"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1aaced17dce6c4d464cc72056b251017a0" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const T &amp;</type>
+        <definition>const T &amp; andres::View&lt; T, isConst, A &gt;::operator[]</definition>
+        <argsstring>(const std::size_t) const </argsstring>
+        <name>operator[]</name>
+        <param>
+          <type>const std::size_t</type>
+          <defname>offset</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Unsafe direct memory access.</para><para>This function provides direct access to the data items under the view in the order in which these items reside in memory.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>offset</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>offset to be added to the data pointer. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>constant reference to the data item. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="551" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="2832" bodyend="2838"/>
+      </memberdef>
+      <memberdef kind="function" id="classandres_1_1View_1aec35240f0511a647d5612ec247180cd5" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>T &amp;</type>
+        <definition>T &amp; andres::View&lt; T, isConst, A &gt;::operator[]</definition>
+        <argsstring>(const std::size_t)</argsstring>
+        <name>operator[]</name>
+        <param>
+          <type>const std::size_t</type>
+          <defname>offset</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Unsafe direct memory access.</para><para>This function provides direct access to the data items under the view in the order in which these items reside in memory.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>offset</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>offset to be added to the data pointer. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>reference to the data item. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="552" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="2851" bodyend="2856"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Array-Interface to an interval of memory.</para><para>A view makes a subset of memory look as if it was stored in an <ref refid="classandres_1_1Marray" kindref="compound">Marray</ref>. With the help of a view, data in a subset of memory can be accessed and manipulated conveniently. In contrast to arrays which allocate and de-allocate their own memory, views only reference memory that has been allocated by other means. Perhaps the simplest and most important use of views is to read and manipulate sub-arrays.</para><para>Notes on arithmetic operators of <ref refid="classandres_1_1View" kindref="compound">View</ref>:<itemizedlist>
+<listitem><para>Only the pre-fix operators ++ and <ndash/> and not the corresponding post-fix operators are implemented for <ref refid="classandres_1_1View" kindref="compound">View</ref> because the return value of the post-fix operators would have to be the <ref refid="classandres_1_1View" kindref="compound">View</ref> as it is prior to the operator call. However, the data under the view cannot be preserved when incrementing or decrementing. Some compilers might accept the post-fix operators, use the pre-fix implementation implicitly and issue a warning. </para></listitem></itemizedlist>
+</para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="1898">
+        <label>andres::View&lt; T, isConst, A &gt;</label>
+        <link refid="classandres_1_1View"/>
+        <childnode refid="1899" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1899">
+        <label>andres::ViewExpression&lt; View&lt; T, isConst, A &gt;, T &gt;</label>
+        <link refid="classandres_1_1ViewExpression"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1900">
+        <label>andres::View&lt; T, isConst, A &gt;</label>
+        <link refid="classandres_1_1View"/>
+        <childnode refid="1901" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1901">
+        <label>andres::ViewExpression&lt; View&lt; T, isConst, A &gt;, T &gt;</label>
+        <link refid="classandres_1_1ViewExpression"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="113" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="113" bodyend="-1"/>
+    <listofallmembers>
+      <member refid="classandres_1_1View_1a175e5862a7133a937e7901e5894c2e10" prot="public" virt="non-virtual"><scope>andres::View</scope><name>allocator_type</name></member>
+      <member refid="classandres_1_1View_1adb82f950ac02e2482376914be5c5595c" prot="public" virt="non-virtual"><scope>andres::View</scope><name>assign</name></member>
+      <member refid="classandres_1_1View_1ab227fd41b348249cbc149b5cff2cee49" prot="public" virt="non-virtual"><scope>andres::View</scope><name>assign</name></member>
+      <member refid="classandres_1_1View_1a0bee9a9e389a0d9af1c8cc4bbe85aeb7" prot="public" virt="non-virtual"><scope>andres::View</scope><name>assign</name></member>
+      <member refid="classandres_1_1View_1a2c1774da3d066b97932ea861f845d95c" prot="public" virt="non-virtual"><scope>andres::View</scope><name>asString</name></member>
+      <member refid="classandres_1_1View_1ac9b2563b59f4fe1d90144bc4be2a2008" prot="public" virt="non-virtual"><scope>andres::View</scope><name>base</name></member>
+      <member refid="classandres_1_1View_1acd1f71e27ea01d536e1539877afedfa9" prot="public" virt="non-virtual"><scope>andres::View</scope><name>begin</name></member>
+      <member refid="classandres_1_1View_1a95eb85a97d6a98b3cd3271a033ddae06" prot="public" virt="non-virtual"><scope>andres::View</scope><name>begin</name></member>
+      <member refid="classandres_1_1View_1ab39dae59df5589ec0311ad67a3c7d000" prot="public" virt="non-virtual"><scope>andres::View</scope><name>boundView</name></member>
+      <member refid="classandres_1_1View_1a7b6f125a7b3830f30cd34887b61858a7" prot="public" virt="non-virtual"><scope>andres::View</scope><name>const_iterator</name></member>
+      <member refid="classandres_1_1View_1a947d02064bced23437b804a8050e6ccb" prot="public" virt="non-virtual"><scope>andres::View</scope><name>const_pointer</name></member>
+      <member refid="classandres_1_1View_1a69e3d49e3d8242a33c03d42dd5ecc5b8" prot="public" virt="non-virtual"><scope>andres::View</scope><name>const_reference</name></member>
+      <member refid="classandres_1_1View_1a61656971b73a48c8bf009e3200aad900" prot="public" virt="non-virtual"><scope>andres::View</scope><name>const_reverse_iterator</name></member>
+      <member refid="classandres_1_1View_1aeeaae20aebd1f90c3b3f1aba2071e98d" prot="public" virt="non-virtual"><scope>andres::View</scope><name>constView</name></member>
+      <member refid="classandres_1_1View_1a331568a945dc85ab30f03de5f993b792" prot="public" virt="non-virtual"><scope>andres::View</scope><name>constView</name></member>
+      <member refid="classandres_1_1View_1ab329255f0d1c9f7acaa4460482ca1fe1" prot="public" virt="non-virtual"><scope>andres::View</scope><name>constView</name></member>
+      <member refid="classandres_1_1View_1ab3bfeed6e84bccb0669497f64eb88557" prot="public" virt="non-virtual"><scope>andres::View</scope><name>constView</name></member>
+      <member refid="classandres_1_1View_1a7ca5aa89f5c22d80e3c7037e55c78cdb" prot="public" virt="non-virtual"><scope>andres::View</scope><name>coordinateOrder</name></member>
+      <member refid="classandres_1_1View_1aaaf0d7e0d18c8ce235da39d006abfb44" prot="public" virt="non-virtual"><scope>andres::View</scope><name>coordinatesToIndex</name></member>
+      <member refid="classandres_1_1View_1aae65d4fe9cb58845479be7ea4cbb7591" prot="public" virt="non-virtual"><scope>andres::View</scope><name>coordinatesToOffset</name></member>
+      <member refid="classandres_1_1View_1a9e52c74c06fc3aabbdda7078f1188bac" prot="private" virt="non-virtual"><scope>andres::View</scope><name>data_</name></member>
+      <member refid="classandres_1_1View_1a36308e1cf6bb6b17e8b0df6537c1ec39" prot="public" virt="non-virtual"><scope>andres::View</scope><name>dimension</name></member>
+      <member refid="classandres_1_1View_1af778a1e9839f2f90e503514e36d41b78" prot="public" virt="non-virtual"><scope>andres::View</scope><name>end</name></member>
+      <member refid="classandres_1_1View_1ae55b54c50dd58caf8c128c7ec72be8c3" prot="public" virt="non-virtual"><scope>andres::View</scope><name>end</name></member>
+      <member refid="classandres_1_1ViewExpression_1a0b26c0956d2167c6c07ba2841066d450" prot="public" virt="non-virtual"><scope>andres::View</scope><name>expression_type</name></member>
+      <member refid="classandres_1_1View_1a34d34ee96d05d878e0f0ad72eafde653" prot="private" virt="non-virtual"><scope>andres::View</scope><name>geometry_</name></member>
+      <member refid="classandres_1_1View_1a59941f09de9b9e6d3868cc1e84591358" prot="private" virt="non-virtual"><scope>andres::View</scope><name>geometry_type</name></member>
+      <member refid="classandres_1_1View_1aac74ad12de420f62a474ebed05e06640" prot="public" virt="non-virtual"><scope>andres::View</scope><name>indexToCoordinates</name></member>
+      <member refid="classandres_1_1View_1abe37dcbd69af25882d45bdff5745e95f" prot="public" virt="non-virtual"><scope>andres::View</scope><name>indexToOffset</name></member>
+      <member refid="classandres_1_1View_1ad747c5f0d3caecaa535afd85c1e5c250" prot="public" virt="non-virtual"><scope>andres::View</scope><name>isSimple</name></member>
+      <member refid="classandres_1_1View_1aef54ee0a58e755b897398493d05a44df" prot="public" virt="non-virtual"><scope>andres::View</scope><name>iterator</name></member>
+      <member refid="classandres_1_1View_1aa5a68966149f255e52d7902758b0e002" prot="private" virt="non-virtual"><scope>andres::View</scope><name>Marray</name></member>
+      <member refid="classandres_1_1ViewExpression_1a7e8ad61ca588af63869d01f8666b57e7" prot="public" virt="non-virtual"><scope>andres::View</scope><name>operator View&lt; T, isConst, A &gt; &amp;</name></member>
+      <member refid="classandres_1_1ViewExpression_1aaa41406565c736e06ec21dabf3f32378" prot="public" virt="non-virtual"><scope>andres::View</scope><name>operator View&lt; T, isConst, A &gt; const &amp;</name></member>
+      <member refid="classandres_1_1View_1a8c9e16f74973fefb3bacb1c7fb844441" prot="public" virt="non-virtual"><scope>andres::View</scope><name>operator()</name></member>
+      <member refid="classandres_1_1View_1ae06586b90683457833c4f76ac6bc714e" prot="public" virt="non-virtual"><scope>andres::View</scope><name>operator()</name></member>
+      <member refid="classandres_1_1View_1a216831a61d22edc3b74cf09df8e537f3" prot="public" virt="non-virtual"><scope>andres::View</scope><name>operator()</name></member>
+      <member refid="classandres_1_1View_1aea4e4eddd7cd0b1fc5ac97dee672b031" prot="public" virt="non-virtual"><scope>andres::View</scope><name>operator()</name></member>
+      <member refid="classandres_1_1View_1a46b12868d2aa22f89f65d604885dc1eb" prot="public" virt="non-virtual"><scope>andres::View</scope><name>operator()</name></member>
+      <member refid="classandres_1_1View_1a50af7993da2ae2efad8a250ce51bb416" prot="public" virt="non-virtual"><scope>andres::View</scope><name>operator()</name></member>
+      <member refid="classandres_1_1View_1acd5927bb3d8203e4811c6f17872b1c84" prot="public" virt="non-virtual"><scope>andres::View</scope><name>operator()</name></member>
+      <member refid="classandres_1_1View_1ad7c89152e0d8d06c5ccf4377b9684d14" prot="public" virt="non-virtual"><scope>andres::View</scope><name>operator()</name></member>
+      <member refid="classandres_1_1View_1aee5664db40d9e07abe0dd57262b5191e" prot="public" virt="non-virtual"><scope>andres::View</scope><name>operator()</name></member>
+      <member refid="classandres_1_1View_1ac188ed9042fce60401acd72ac489fed9" prot="public" virt="non-virtual"><scope>andres::View</scope><name>operator()</name></member>
+      <member refid="classandres_1_1View_1a2be86ccd328fc276f37686fb1872cb9c" prot="public" virt="non-virtual"><scope>andres::View</scope><name>operator()</name></member>
+      <member refid="classandres_1_1View_1aa9fa791b4f14b9c8b8c15aea0f53527e" prot="public" virt="non-virtual"><scope>andres::View</scope><name>operator()</name></member>
+      <member refid="classandres_1_1ViewExpression_1a40e69cbc4391f7acf38f2d2e827c7d9c" prot="public" virt="non-virtual" ambiguityscope="ViewExpression&lt; View&lt; T, isConst, A &gt;, T &gt;::"><scope>andres::View</scope><name>operator()</name></member>
+      <member refid="classandres_1_1View_1a398b0af0619bbfca644c0a2a53b598e9" prot="public" virt="non-virtual"><scope>andres::View</scope><name>operator=</name></member>
+      <member refid="classandres_1_1View_1a604e4fe802e5d712a4e99ae44e496a3f" prot="public" virt="non-virtual"><scope>andres::View</scope><name>operator=</name></member>
+      <member refid="classandres_1_1View_1a24aacc568e0bd3a5c69fe1d9550d03f7" prot="public" virt="non-virtual"><scope>andres::View</scope><name>operator=</name></member>
+      <member refid="classandres_1_1View_1a56d4233c4be9807ff750039ade3ae4d3" prot="public" virt="non-virtual"><scope>andres::View</scope><name>operator=</name></member>
+      <member refid="classandres_1_1View_1a719e584cdfc9bbf38417dadb8362610e" prot="public" virt="non-virtual"><scope>andres::View</scope><name>operator=</name></member>
+      <member refid="classandres_1_1View_1aaced17dce6c4d464cc72056b251017a0" prot="private" virt="non-virtual"><scope>andres::View</scope><name>operator[]</name></member>
+      <member refid="classandres_1_1View_1aec35240f0511a647d5612ec247180cd5" prot="private" virt="non-virtual"><scope>andres::View</scope><name>operator[]</name></member>
+      <member refid="classandres_1_1View_1afa268e37459476d9ca233d741e4bc63c" prot="public" virt="non-virtual"><scope>andres::View</scope><name>overlaps</name></member>
+      <member refid="classandres_1_1ViewExpression_1ac06ec98e7837bc72c87ef5c9881ad19f" prot="public" virt="non-virtual" ambiguityscope="ViewExpression&lt; View&lt; T, isConst, A &gt;, T &gt;::"><scope>andres::View</scope><name>overlaps</name></member>
+      <member refid="classandres_1_1View_1a375d3e199e219568d8a6205e4088289b" prot="public" virt="non-virtual"><scope>andres::View</scope><name>permute</name></member>
+      <member refid="classandres_1_1View_1a278c77d7b10642fffc9ca8b3bc292cd1" prot="public" virt="non-virtual"><scope>andres::View</scope><name>permutedView</name></member>
+      <member refid="classandres_1_1View_1a9a201594c82be89fccd0fe644ea2f09c" prot="public" virt="non-virtual"><scope>andres::View</scope><name>pointer</name></member>
+      <member refid="classandres_1_1View_1a035fa9d7c83683bfbfb9141251336ba5" prot="public" virt="non-virtual"><scope>andres::View</scope><name>rbegin</name></member>
+      <member refid="classandres_1_1View_1a7c2f923cffa4782f5d14c48d54981f46" prot="public" virt="non-virtual"><scope>andres::View</scope><name>rbegin</name></member>
+      <member refid="classandres_1_1View_1aebdd1f19272b743b4422ff8ba18fc11a" prot="public" virt="non-virtual"><scope>andres::View</scope><name>reference</name></member>
+      <member refid="classandres_1_1View_1a27d6bad469c2e4590e0fa9f00108c36e" prot="public" virt="non-virtual"><scope>andres::View</scope><name>rend</name></member>
+      <member refid="classandres_1_1View_1a04e6fd865daf11473573114adf296662" prot="public" virt="non-virtual"><scope>andres::View</scope><name>rend</name></member>
+      <member refid="classandres_1_1View_1a7d0432d097b8ce03a413006ec2fe9469" prot="public" virt="non-virtual"><scope>andres::View</scope><name>reshape</name></member>
+      <member refid="classandres_1_1View_1accc2cf4c41007424b33948b24f1eb61e" prot="public" virt="non-virtual"><scope>andres::View</scope><name>reshapedView</name></member>
+      <member refid="classandres_1_1View_1aab07af42756759420211d114bb705547" prot="public" virt="non-virtual"><scope>andres::View</scope><name>reverse_iterator</name></member>
+      <member refid="classandres_1_1View_1a9bc3d88b3e2bdf432dd68f36ff33deb3" prot="public" virt="non-virtual"><scope>andres::View</scope><name>shape</name></member>
+      <member refid="classandres_1_1View_1ad43d1b74245d56970176c75746c7c88b" prot="public" virt="non-virtual"><scope>andres::View</scope><name>shapeBegin</name></member>
+      <member refid="classandres_1_1View_1ac56e049443673fe1311b312030fadc2d" prot="public" virt="non-virtual"><scope>andres::View</scope><name>shapeEnd</name></member>
+      <member refid="classandres_1_1View_1a476957393b3b21333bc665e852da47ad" prot="public" virt="non-virtual"><scope>andres::View</scope><name>shift</name></member>
+      <member refid="classandres_1_1View_1a267a57ffddb437e19d0a15d342aeebc9" prot="public" virt="non-virtual"><scope>andres::View</scope><name>shiftedView</name></member>
+      <member refid="classandres_1_1View_1afc9504378ae2eefd7540a71d9f227338" prot="public" virt="non-virtual"><scope>andres::View</scope><name>size</name></member>
+      <member refid="classandres_1_1View_1aa80ab78f6e3a32ead389d657f6ec7308" prot="public" virt="non-virtual"><scope>andres::View</scope><name>size_type</name></member>
+      <member refid="classandres_1_1View_1a922763728fb80d24c32a5e5964537bdb" prot="public" virt="non-virtual"><scope>andres::View</scope><name>squeeze</name></member>
+      <member refid="classandres_1_1View_1a4d454242ebde77898963b7bc41208bb5" prot="public" virt="non-virtual"><scope>andres::View</scope><name>squeezedView</name></member>
+      <member refid="classandres_1_1View_1a3c4b2cee088b6cf8232289cbb50bd2b4" prot="public" virt="non-virtual"><scope>andres::View</scope><name>strides</name></member>
+      <member refid="classandres_1_1View_1a44f545270b7e66a749c2a8988a5dcd92" prot="public" virt="non-virtual"><scope>andres::View</scope><name>stridesBegin</name></member>
+      <member refid="classandres_1_1View_1ab4ee3379ba0903bb14645c397d2a85b6" prot="public" virt="non-virtual"><scope>andres::View</scope><name>stridesEnd</name></member>
+      <member refid="classandres_1_1View_1af272c35c56a177dc1fe511ef378a9890" prot="private" virt="non-virtual"><scope>andres::View</scope><name>testInvariant</name></member>
+      <member refid="classandres_1_1View_1a3a837dd20fda8c536f9c76894a1f5944" prot="public" virt="non-virtual"><scope>andres::View</scope><name>transpose</name></member>
+      <member refid="classandres_1_1View_1ad7acad354a5be4086b9b21ab88b18d82" prot="public" virt="non-virtual"><scope>andres::View</scope><name>transpose</name></member>
+      <member refid="classandres_1_1View_1a08fc7f17dd64241adeefac7493f39f3a" prot="public" virt="non-virtual"><scope>andres::View</scope><name>transposedView</name></member>
+      <member refid="classandres_1_1View_1a2045868486d978f41125dd59c4834fa2" prot="public" virt="non-virtual"><scope>andres::View</scope><name>transposedView</name></member>
+      <member refid="classandres_1_1View_1af5994b44e578531df8e343fef9fc60c6" prot="private" virt="non-virtual"><scope>andres::View</scope><name>updateSimplicity</name></member>
+      <member refid="classandres_1_1View_1abe3d48ac2b0d65536e54dbfad0a44929" prot="public" virt="non-virtual"><scope>andres::View</scope><name>value_type</name></member>
+      <member refid="classandres_1_1View_1a190ebba7d686129ac18075e7650e0341" prot="public" virt="non-virtual"><scope>andres::View</scope><name>view</name></member>
+      <member refid="classandres_1_1View_1a81d4d44cfe0b4373f5488d6b01346189" prot="public" virt="non-virtual"><scope>andres::View</scope><name>view</name></member>
+      <member refid="classandres_1_1View_1a4da55e4518bb93761e275b5340373ccd" prot="public" virt="non-virtual"><scope>andres::View</scope><name>view</name></member>
+      <member refid="classandres_1_1View_1a6ec3e4ec58da8405e3e8b4bf6d4912e4" prot="public" virt="non-virtual"><scope>andres::View</scope><name>view</name></member>
+      <member refid="classandres_1_1View_1a2658181be4befdf722462ab951ba8a67" prot="private" virt="non-virtual"><scope>andres::View</scope><name>View</name></member>
+      <member refid="classandres_1_1View_1a4368fd5dbfc08a75115341bfa7123a87" prot="public" virt="non-virtual"><scope>andres::View</scope><name>View</name></member>
+      <member refid="classandres_1_1View_1af4519c20472df4ed36905b3b6574cc46" prot="public" virt="non-virtual"><scope>andres::View</scope><name>View</name></member>
+      <member refid="classandres_1_1View_1ae2969a649e8ced36cb05e79985f4656f" prot="public" virt="non-virtual"><scope>andres::View</scope><name>View</name></member>
+      <member refid="classandres_1_1View_1ad7ee18ef33ab6e92138ba0ded346086d" prot="public" virt="non-virtual"><scope>andres::View</scope><name>View</name></member>
+      <member refid="classandres_1_1View_1a3abf83b3422d78b41560e6f87ecb542e" prot="public" virt="non-virtual"><scope>andres::View</scope><name>View</name></member>
+      <member refid="classandres_1_1View_1a4bad759276d4624894d521f390710390" prot="private" virt="non-virtual"><scope>andres::View</scope><name>View</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

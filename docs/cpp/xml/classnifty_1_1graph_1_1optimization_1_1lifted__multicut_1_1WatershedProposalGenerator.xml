@@ -1,0 +1,338 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator" kind="class" language="C++" prot="public">
+    <compoundname>nifty::graph::optimization::lifted_multicut::WatershedProposalGenerator</compoundname>
+    <basecompoundref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1ProposalGeneratorBase" prot="public" virt="non-virtual">nifty::graph::optimization::lifted_multicut::ProposalGeneratorBase&lt; OBJECTIVE &gt;</basecompoundref>
+    <includes refid="lifted__multicut_2proposal__generators_2watershed__proposal__generator_8hxx" local="no">watershed_proposal_generator.hxx</includes>
+    <innerclass refid="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_1_1SettingsType" prot="public">nifty::graph::optimization::lifted_multicut::WatershedProposalGenerator::SettingsType</innerclass>
+    <templateparamlist>
+      <param>
+        <type>class OBJECTIVE</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_1a6d15e32fd68f785c92ee9ee909e84a4d" prot="public" static="no">
+        <type>OBJECTIVE</type>
+        <definition>typedef OBJECTIVE nifty::graph::optimization::lifted_multicut::WatershedProposalGenerator&lt; OBJECTIVE &gt;::ObjectiveType</definition>
+        <argsstring></argsstring>
+        <name>ObjectiveType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/proposal_generators/watershed_proposal_generator.hxx" line="23" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/proposal_generators/watershed_proposal_generator.hxx" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_1a8bc07006f85d4302673522c0cfc07e3e" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutBase" kindref="compound">LiftedMulticutBase</ref>&lt; <ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_1a6d15e32fd68f785c92ee9ee909e84a4d" kindref="member">ObjectiveType</ref> &gt;</type>
+        <definition>typedef LiftedMulticutBase&lt;ObjectiveType&gt; nifty::graph::optimization::lifted_multicut::WatershedProposalGenerator&lt; OBJECTIVE &gt;::LiftedMulticutBaseType</definition>
+        <argsstring></argsstring>
+        <name>LiftedMulticutBaseType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/proposal_generators/watershed_proposal_generator.hxx" line="24" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/proposal_generators/watershed_proposal_generator.hxx" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_1a4ead35b918fb664a16c37f19e2831bd9" prot="public" static="no">
+        <type>ObjectiveType::GraphType</type>
+        <definition>typedef ObjectiveType::GraphType nifty::graph::optimization::lifted_multicut::WatershedProposalGenerator&lt; OBJECTIVE &gt;::GraphType</definition>
+        <argsstring></argsstring>
+        <name>GraphType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/proposal_generators/watershed_proposal_generator.hxx" line="25" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/proposal_generators/watershed_proposal_generator.hxx" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_1ab426f6e7d5adb0ddeb47ec815c247609" prot="public" static="no">
+        <type>ObjectiveType::LiftedGraphType</type>
+        <definition>typedef ObjectiveType::LiftedGraphType nifty::graph::optimization::lifted_multicut::WatershedProposalGenerator&lt; OBJECTIVE &gt;::LiftedGraphType</definition>
+        <argsstring></argsstring>
+        <name>LiftedGraphType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/proposal_generators/watershed_proposal_generator.hxx" line="26" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/proposal_generators/watershed_proposal_generator.hxx" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_1a9b84800a88ae0384cf729f345d7834da" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_1a6e4e465f3b6e039882669fcfb9714818" kindref="member">LiftedMulticutBaseType::NodeLabelsType</ref></type>
+        <definition>typedef LiftedMulticutBaseType::NodeLabelsType nifty::graph::optimization::lifted_multicut::WatershedProposalGenerator&lt; OBJECTIVE &gt;::NodeLabelsType</definition>
+        <argsstring></argsstring>
+        <name>NodeLabelsType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/proposal_generators/watershed_proposal_generator.hxx" line="27" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/proposal_generators/watershed_proposal_generator.hxx" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_1ad31d23bf9c7d159ddb3f447d763764a8" prot="public" static="no">
+        <type>GraphType::template EdgeMap&lt; float &gt;</type>
+        <definition>typedef GraphType:: template EdgeMap&lt;float&gt; nifty::graph::optimization::lifted_multicut::WatershedProposalGenerator&lt; OBJECTIVE &gt;::EdgeWeights</definition>
+        <argsstring></argsstring>
+        <name>EdgeWeights</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/proposal_generators/watershed_proposal_generator.hxx" line="29" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/proposal_generators/watershed_proposal_generator.hxx" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_1ab316e096105832ba54fba691c89a98ca" prot="private" static="no" mutable="no">
+        <type>const <ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_1a6d15e32fd68f785c92ee9ee909e84a4d" kindref="member">ObjectiveType</ref> &amp;</type>
+        <definition>const ObjectiveType&amp; nifty::graph::optimization::lifted_multicut::WatershedProposalGenerator&lt; OBJECTIVE &gt;::objective_</definition>
+        <argsstring></argsstring>
+        <name>objective_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/proposal_generators/watershed_proposal_generator.hxx" line="171" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/proposal_generators/watershed_proposal_generator.hxx" bodystart="171" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_1a6cb78ae48eeab1b8c1e707bd145f4a30" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t nifty::graph::optimization::lifted_multicut::WatershedProposalGenerator&lt; OBJECTIVE &gt;::numberOfThreads_</definition>
+        <argsstring></argsstring>
+        <name>numberOfThreads_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/proposal_generators/watershed_proposal_generator.hxx" line="172" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/proposal_generators/watershed_proposal_generator.hxx" bodystart="172" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_1a793117e27c05d3b00f7fa17d763233db" prot="private" static="no" mutable="no">
+        <type><ref refid="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_1_1SettingsType" kindref="compound">SettingsType</ref></type>
+        <definition>SettingsType nifty::graph::optimization::lifted_multicut::WatershedProposalGenerator&lt; OBJECTIVE &gt;::settings_</definition>
+        <argsstring></argsstring>
+        <name>settings_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/proposal_generators/watershed_proposal_generator.hxx" line="173" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/proposal_generators/watershed_proposal_generator.hxx" bodystart="173" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_1ab6aead0244316647af6fa2f4a4a4c80f" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; uint64_t &gt;</type>
+        <definition>std::vector&lt;uint64_t&gt; nifty::graph::optimization::lifted_multicut::WatershedProposalGenerator&lt; OBJECTIVE &gt;::negativeEdges_</definition>
+        <argsstring></argsstring>
+        <name>negativeEdges_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/proposal_generators/watershed_proposal_generator.hxx" line="174" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/proposal_generators/watershed_proposal_generator.hxx" bodystart="174" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_1aa9b7bd7ae5156c2960798e297d40a960" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_1ad31d23bf9c7d159ddb3f447d763764a8" kindref="member">EdgeWeights</ref></type>
+        <definition>EdgeWeights nifty::graph::optimization::lifted_multicut::WatershedProposalGenerator&lt; OBJECTIVE &gt;::graphEdgeWeights_</definition>
+        <argsstring></argsstring>
+        <name>graphEdgeWeights_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/proposal_generators/watershed_proposal_generator.hxx" line="175" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/proposal_generators/watershed_proposal_generator.hxx" bodystart="175" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_1ad8d5c64073c57e0c49c6b40d15903504" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::mt19937 &gt;</type>
+        <definition>std::vector&lt;std::mt19937&gt; nifty::graph::optimization::lifted_multicut::WatershedProposalGenerator&lt; OBJECTIVE &gt;::gens_</definition>
+        <argsstring></argsstring>
+        <name>gens_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/proposal_generators/watershed_proposal_generator.hxx" line="178" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/proposal_generators/watershed_proposal_generator.hxx" bodystart="178" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_1ad4e9fa4e9a7e0026f6674817fc0deb22" prot="private" static="no" mutable="no">
+        <type>std::normal_distribution</type>
+        <definition>std::normal_distribution nifty::graph::optimization::lifted_multicut::WatershedProposalGenerator&lt; OBJECTIVE &gt;::dist_</definition>
+        <argsstring></argsstring>
+        <name>dist_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/proposal_generators/watershed_proposal_generator.hxx" line="179" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/proposal_generators/watershed_proposal_generator.hxx" bodystart="179" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_1afa1506b89744fb77bff63135445d8245" prot="private" static="no" mutable="no">
+        <type>std::uniform_int_distribution</type>
+        <definition>std::uniform_int_distribution nifty::graph::optimization::lifted_multicut::WatershedProposalGenerator&lt; OBJECTIVE &gt;::intDist_</definition>
+        <argsstring></argsstring>
+        <name>intDist_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/proposal_generators/watershed_proposal_generator.hxx" line="180" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/proposal_generators/watershed_proposal_generator.hxx" bodystart="180" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_1aebed03b660b6d552bd93248d3d11669f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>nifty::graph::optimization::lifted_multicut::WatershedProposalGenerator&lt; OBJECTIVE &gt;::WatershedProposalGenerator</definition>
+        <argsstring>(const ObjectiveType &amp;objective, const size_t numberOfThreads, const SettingsType &amp;settings=SettingsType())</argsstring>
+        <name>WatershedProposalGenerator</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_1a6d15e32fd68f785c92ee9ee909e84a4d" kindref="member">ObjectiveType</ref> &amp;</type>
+          <declname>objective</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>numberOfThreads</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_1_1SettingsType" kindref="compound">SettingsType</ref> &amp;</type>
+          <declname>settings</declname>
+          <defval><ref refid="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_1_1SettingsType" kindref="compound">SettingsType</ref>()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/proposal_generators/watershed_proposal_generator.hxx" line="45" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/proposal_generators/watershed_proposal_generator.hxx" bodystart="45" bodyend="64"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_1a35f7d2b7fd5385895150f8e65d966174" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::optimization::lifted_multicut::WatershedProposalGenerator&lt; OBJECTIVE &gt;::reset</definition>
+        <argsstring>()</argsstring>
+        <name>reset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/proposal_generators/watershed_proposal_generator.hxx" line="66" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/proposal_generators/watershed_proposal_generator.hxx" bodystart="66" bodyend="121"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_1ad22a9876293b2bf9f5aff08b759842b7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual nifty::graph::optimization::lifted_multicut::WatershedProposalGenerator&lt; OBJECTIVE &gt;::~WatershedProposalGenerator</definition>
+        <argsstring>()</argsstring>
+        <name>~WatershedProposalGenerator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/proposal_generators/watershed_proposal_generator.hxx" line="123" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/proposal_generators/watershed_proposal_generator.hxx" bodystart="123" bodyend="123"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_1aca5443091b98cb7fcee4dcc2785a63cf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void nifty::graph::optimization::lifted_multicut::WatershedProposalGenerator&lt; OBJECTIVE &gt;::generateProposal</definition>
+        <argsstring>(const NodeLabelsType &amp;currentBest, NodeLabelsType &amp;proposal, const size_t tid)</argsstring>
+        <name>generateProposal</name>
+        <reimplements refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1ProposalGeneratorBase_1af3134cfd7988a1758c4a714e8a5300b1">generateProposal</reimplements>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1ProposalGeneratorBase_1a908a9320edb8af8735bc68481224b75e" kindref="member">NodeLabelsType</ref> &amp;</type>
+          <declname>currentBest</declname>
+        </param>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1ProposalGeneratorBase_1a908a9320edb8af8735bc68481224b75e" kindref="member">NodeLabelsType</ref> &amp;</type>
+          <declname>proposal</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>tid</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/proposal_generators/watershed_proposal_generator.hxx" line="125" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/proposal_generators/watershed_proposal_generator.hxx" bodystart="125" bodyend="169"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Watershed proposal generator for <ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased" kindref="compound">lifted_multicut::FusionMoveBased</ref>. </para>    </briefdescription>
+    <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>OBJECTIVE</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>{ description } </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="1915">
+        <label>nifty::graph::optimization::lifted_multicut::ProposalGeneratorBase&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1ProposalGeneratorBase"/>
+      </node>
+      <node id="1914">
+        <label>nifty::graph::optimization::lifted_multicut::WatershedProposalGenerator&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator"/>
+        <childnode refid="1915" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1917">
+        <label>nifty::graph::optimization::lifted_multicut::ProposalGeneratorBase&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1ProposalGeneratorBase"/>
+      </node>
+      <node id="1916">
+        <label>nifty::graph::optimization::lifted_multicut::WatershedProposalGenerator&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator"/>
+        <childnode refid="1917" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/proposal_generators/watershed_proposal_generator.hxx" line="21" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/proposal_generators/watershed_proposal_generator.hxx" bodystart="21" bodyend="183"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_1ad4e9fa4e9a7e0026f6674817fc0deb22" prot="private" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::WatershedProposalGenerator</scope><name>dist_</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_1ad31d23bf9c7d159ddb3f447d763764a8" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::WatershedProposalGenerator</scope><name>EdgeWeights</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_1aca5443091b98cb7fcee4dcc2785a63cf" prot="public" virt="virtual"><scope>nifty::graph::optimization::lifted_multicut::WatershedProposalGenerator</scope><name>generateProposal</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_1ad8d5c64073c57e0c49c6b40d15903504" prot="private" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::WatershedProposalGenerator</scope><name>gens_</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_1aa9b7bd7ae5156c2960798e297d40a960" prot="private" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::WatershedProposalGenerator</scope><name>graphEdgeWeights_</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_1a4ead35b918fb664a16c37f19e2831bd9" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::WatershedProposalGenerator</scope><name>GraphType</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_1afa1506b89744fb77bff63135445d8245" prot="private" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::WatershedProposalGenerator</scope><name>intDist_</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_1ab426f6e7d5adb0ddeb47ec815c247609" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::WatershedProposalGenerator</scope><name>LiftedGraphType</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_1a8bc07006f85d4302673522c0cfc07e3e" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::WatershedProposalGenerator</scope><name>LiftedMulticutBaseType</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_1ab6aead0244316647af6fa2f4a4a4c80f" prot="private" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::WatershedProposalGenerator</scope><name>negativeEdges_</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_1a9b84800a88ae0384cf729f345d7834da" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::WatershedProposalGenerator</scope><name>NodeLabelsType</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_1a6cb78ae48eeab1b8c1e707bd145f4a30" prot="private" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::WatershedProposalGenerator</scope><name>numberOfThreads_</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_1ab316e096105832ba54fba691c89a98ca" prot="private" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::WatershedProposalGenerator</scope><name>objective_</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_1a6d15e32fd68f785c92ee9ee909e84a4d" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::WatershedProposalGenerator</scope><name>ObjectiveType</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_1a35f7d2b7fd5385895150f8e65d966174" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::WatershedProposalGenerator</scope><name>reset</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_1a793117e27c05d3b00f7fa17d763233db" prot="private" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::WatershedProposalGenerator</scope><name>settings_</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_1aebed03b660b6d552bd93248d3d11669f" prot="public" virt="non-virtual"><scope>nifty::graph::optimization::lifted_multicut::WatershedProposalGenerator</scope><name>WatershedProposalGenerator</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1ProposalGeneratorBase_1a0e46c2c505a04f0d62fbc8a6b2fb5eb0" prot="public" virt="virtual"><scope>nifty::graph::optimization::lifted_multicut::WatershedProposalGenerator</scope><name>~ProposalGeneratorBase</name></member>
+      <member refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_1ad22a9876293b2bf9f5aff08b759842b7" prot="public" virt="virtual"><scope>nifty::graph::optimization::lifted_multicut::WatershedProposalGenerator</scope><name>~WatershedProposalGenerator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

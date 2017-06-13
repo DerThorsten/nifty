@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Nifty
-   &#160;<span id="projectnumber">0.5.1</span>
+   &#160;<span id="projectnumber">0.19.0</span>
    </div>
   </td>
  </tr>
@@ -91,7 +91,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#namespaces">Namespaces</a> &#124;
-<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">for_each_block.hxx File Reference</div>  </div>
@@ -106,13 +105,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 Include dependency graph for for_each_block.hxx:</div>
 <div class="dyncontent">
 <div class="center"><img src="for__each__block_8hxx__incl.png" border="0" usemap="#_2home_2tbeier_2src_2nifty_2include_2nifty_2tools_2for__each__block_8hxx" alt=""/></div>
-<!-- MAP 0 -->
+<map name="_2home_2tbeier_2src_2nifty_2include_2nifty_2tools_2for__each__block_8hxx" id="_2home_2tbeier_2src_2nifty_2include_2nifty_2tools_2for__each__block_8hxx">
+<area shape="rect" id="node5" href="arithmetic__array_8hxx.html" title="nifty/array/arithmetic\l_array.hxx" alt="" coords="260,199,401,240"/>
+<area shape="rect" id="node12" href="for__each__coordinate_8hxx.html" title="nifty/tools/for_each\l_coordinate.hxx" alt="" coords="184,109,317,151"/>
+<area shape="rect" id="node7" href="runtime__check_8hxx.html" title="nifty/tools/runtime\l_check.hxx" alt="" coords="335,288,462,329"/>
+<area shape="rect" id="node13" href="threadpool_8hxx.html" title="nifty/parallel/threadpool.hxx" alt="" coords="731,206,912,233"/>
+</map>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="for__each__block_8hxx__dep__incl.png" border="0" usemap="#_2home_2tbeier_2src_2nifty_2include_2nifty_2tools_2for__each__block_8hxxdep" alt=""/></div>
-<!-- MAP 1 -->
+<map name="_2home_2tbeier_2src_2nifty_2include_2nifty_2tools_2for__each__block_8hxxdep" id="_2home_2tbeier_2src_2nifty_2include_2nifty_2tools_2for__each__block_8hxxdep">
+<area shape="rect" id="node2" href="compute__grid__rag__hdf5_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/rag\l/detail_rag/compute_grid\l_rag_hdf5.hxx" alt="" coords="102,109,266,180"/>
+<area shape="rect" id="node5" href="grid__rag__accumulate_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/rag\l/grid_rag_accumulate.hxx" alt="" coords="291,117,461,173"/>
+<area shape="rect" id="node3" href="grid__rag__hdf5_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/rag\l/grid_rag_hdf5.hxx" alt="" coords="5,228,160,284"/>
+<area shape="rect" id="node4" href="grid__rag__stacked__2d__hdf5_8hxx.html" title="/home/tbeier/src/nifty\l/include/nifty/graph/rag\l/grid_rag_stacked_2d_hdf5.hxx" alt="" coords="184,228,387,284"/>
+</map>
 </div>
 </div>
 <p><a href="for__each__block_8hxx_source.html">Go to the source code of this file.</a></p>
@@ -124,11 +133,6 @@ Namespaces</h2></td></tr>
 <tr class="memitem:namespacenifty_1_1tools"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenifty_1_1tools.html">nifty::tools</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
-Macros</h2></td></tr>
-<tr class="memitem:a3dc822fd639861e54a963758dd1f0eb7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="for__each__block_8hxx.html#a3dc822fd639861e54a963758dd1f0eb7">NIFTY_TOOLS_FOR_EACH_BLOCK_HXX</a></td></tr>
-<tr class="separator:a3dc822fd639861e54a963758dd1f0eb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:ac5e8d4b06486a3d603cdbb7314f8dd75"><td class="memTemplParams" colspan="2">template&lt;size_t DIM, class SHAPE_T , class BLOCK_SHAPE_T , class F &gt; </td></tr>
@@ -138,19 +142,6 @@ Functions</h2></td></tr>
 <tr class="memitem:af942eef6747790a4f8d6868b1f95c3ee"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacenifty_1_1tools.html#af942eef6747790a4f8d6868b1f95c3ee">nifty::tools::parallelForEachBlockWithOverlap</a> (parallel::ThreadPool &amp;threadpool, const array::StaticArray&lt; SHAPE_T, DIM &gt; &amp;shape, const array::StaticArray&lt; BLOCK_SHAPE_T, DIM &gt; &amp;blockShape, const array::StaticArray&lt; OVERLAP_SHAPE_T, DIM &gt; &amp;overlapBegin, const array::StaticArray&lt; OVERLAP_SHAPE_T, DIM &gt; &amp;overlapEnd, F &amp;&amp;f)</td></tr>
 <tr class="separator:af942eef6747790a4f8d6868b1f95c3ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Macro Definition Documentation</h2>
-<a class="anchor" id="a3dc822fd639861e54a963758dd1f0eb7"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define NIFTY_TOOLS_FOR_EACH_BLOCK_HXX</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

@@ -1,0 +1,80 @@
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase}{}\section{nifty\+:\+:graph\+:\+:optimization\+:\+:common\+:\+:Solver\+Factory\+Base$<$ S\+O\+L\+V\+E\+R\+\_\+\+B\+A\+S\+E $>$ Class Template Reference}
+\label{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase}\index{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Factory\+Base$<$ S\+O\+L\+V\+E\+R\+\_\+\+B\+A\+S\+E $>$@{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Factory\+Base$<$ S\+O\+L\+V\+E\+R\+\_\+\+B\+A\+S\+E $>$}}
+
+
+{\ttfamily \#include $<$solver\+\_\+factory\+\_\+base.\+hxx$>$}
+
+
+
+Inheritance diagram for nifty\+:\+:graph\+:\+:optimization\+:\+:common\+:\+:Solver\+Factory\+Base$<$ S\+O\+L\+V\+E\+R\+\_\+\+B\+A\+S\+E $>$\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=241pt]{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef S\+O\+L\+V\+E\+R\+\_\+\+B\+A\+S\+E \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase_a32303ac07d31050bd56939ba09332a8c}{Solver\+Base\+Type}
+\item 
+typedef Solver\+Base\+Type\+::\+Objective\+Type \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase_addf5fe831de3b6d9e3473eee67490a5c}{Objective\+Type}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase_a939801ccfeb621ed967a5638ad726719}{$\sim$\+Solver\+Factory\+Base} ()
+\item 
+virtual std\+::shared\+\_\+ptr$<$ \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase_a32303ac07d31050bd56939ba09332a8c}{Solver\+Base\+Type} $>$ \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase_ad8946541bdc12fcd340c3049662d8f59}{create\+Shared} (const \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase_addf5fe831de3b6d9e3473eee67490a5c}{Objective\+Type} \&objective)=0
+\item 
+virtual \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase_a32303ac07d31050bd56939ba09332a8c}{Solver\+Base\+Type} $\ast$ \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase_a192c772512ac9da7e4164d9ca5cc5d95}{create} (const \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase_addf5fe831de3b6d9e3473eee67490a5c}{Objective\+Type} \&objective)=0
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase_addf5fe831de3b6d9e3473eee67490a5c}{}\index{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Factory\+Base@{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Factory\+Base}!Objective\+Type@{Objective\+Type}}
+\index{Objective\+Type@{Objective\+Type}!nifty\+::graph\+::optimization\+::common\+::\+Solver\+Factory\+Base@{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Factory\+Base}}
+\subsubsection[{Objective\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S\+O\+L\+V\+E\+R\+\_\+\+B\+A\+S\+E$>$ typedef Solver\+Base\+Type\+::\+Objective\+Type {\bf nifty\+::graph\+::optimization\+::common\+::\+Solver\+Factory\+Base}$<$ S\+O\+L\+V\+E\+R\+\_\+\+B\+A\+S\+E $>$\+::{\bf Objective\+Type}}\label{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase_addf5fe831de3b6d9e3473eee67490a5c}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase_a32303ac07d31050bd56939ba09332a8c}{}\index{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Factory\+Base@{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Factory\+Base}!Solver\+Base\+Type@{Solver\+Base\+Type}}
+\index{Solver\+Base\+Type@{Solver\+Base\+Type}!nifty\+::graph\+::optimization\+::common\+::\+Solver\+Factory\+Base@{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Factory\+Base}}
+\subsubsection[{Solver\+Base\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S\+O\+L\+V\+E\+R\+\_\+\+B\+A\+S\+E$>$ typedef S\+O\+L\+V\+E\+R\+\_\+\+B\+A\+S\+E {\bf nifty\+::graph\+::optimization\+::common\+::\+Solver\+Factory\+Base}$<$ S\+O\+L\+V\+E\+R\+\_\+\+B\+A\+S\+E $>$\+::{\bf Solver\+Base\+Type}}\label{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase_a32303ac07d31050bd56939ba09332a8c}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase_a939801ccfeb621ed967a5638ad726719}{}\index{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Factory\+Base@{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Factory\+Base}!````~Solver\+Factory\+Base@{$\sim$\+Solver\+Factory\+Base}}
+\index{````~Solver\+Factory\+Base@{$\sim$\+Solver\+Factory\+Base}!nifty\+::graph\+::optimization\+::common\+::\+Solver\+Factory\+Base@{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Factory\+Base}}
+\subsubsection[{$\sim$\+Solver\+Factory\+Base()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S\+O\+L\+V\+E\+R\+\_\+\+B\+A\+S\+E$>$ virtual {\bf nifty\+::graph\+::optimization\+::common\+::\+Solver\+Factory\+Base}$<$ S\+O\+L\+V\+E\+R\+\_\+\+B\+A\+S\+E $>$\+::$\sim${\bf Solver\+Factory\+Base} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase_a939801ccfeb621ed967a5638ad726719}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase_a192c772512ac9da7e4164d9ca5cc5d95}{}\index{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Factory\+Base@{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Factory\+Base}!create@{create}}
+\index{create@{create}!nifty\+::graph\+::optimization\+::common\+::\+Solver\+Factory\+Base@{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Factory\+Base}}
+\subsubsection[{create(const Objective\+Type \&objective)=0}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S\+O\+L\+V\+E\+R\+\_\+\+B\+A\+S\+E$>$ virtual {\bf Solver\+Base\+Type}$\ast$ {\bf nifty\+::graph\+::optimization\+::common\+::\+Solver\+Factory\+Base}$<$ S\+O\+L\+V\+E\+R\+\_\+\+B\+A\+S\+E $>$\+::create (
+\begin{DoxyParamCaption}
+\item[{const {\bf Objective\+Type} \&}]{objective}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase_a192c772512ac9da7e4164d9ca5cc5d95}
+
+
+Implemented in \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1PySolverFactoryBase_a2e409e2315c71e286e03d27f6004782b}{nifty\+::graph\+::optimization\+::common\+::\+Py\+Solver\+Factory\+Base$<$ S\+O\+L\+V\+E\+R\+\_\+\+B\+A\+S\+E $>$}.
+
+\hypertarget{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase_ad8946541bdc12fcd340c3049662d8f59}{}\index{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Factory\+Base@{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Factory\+Base}!create\+Shared@{create\+Shared}}
+\index{create\+Shared@{create\+Shared}!nifty\+::graph\+::optimization\+::common\+::\+Solver\+Factory\+Base@{nifty\+::graph\+::optimization\+::common\+::\+Solver\+Factory\+Base}}
+\subsubsection[{create\+Shared(const Objective\+Type \&objective)=0}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S\+O\+L\+V\+E\+R\+\_\+\+B\+A\+S\+E$>$ virtual std\+::shared\+\_\+ptr$<${\bf Solver\+Base\+Type}$>$ {\bf nifty\+::graph\+::optimization\+::common\+::\+Solver\+Factory\+Base}$<$ S\+O\+L\+V\+E\+R\+\_\+\+B\+A\+S\+E $>$\+::create\+Shared (
+\begin{DoxyParamCaption}
+\item[{const {\bf Objective\+Type} \&}]{objective}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase_ad8946541bdc12fcd340c3049662d8f59}
+
+
+Implemented in \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1PySolverFactoryBase_a737b0611c65673f2791dc764f6a9088c}{nifty\+::graph\+::optimization\+::common\+::\+Py\+Solver\+Factory\+Base$<$ S\+O\+L\+V\+E\+R\+\_\+\+B\+A\+S\+E $>$}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/tbeier/src/nifty/include/nifty/graph/optimization/common/\hyperlink{solver__factory__base_8hxx}{solver\+\_\+factory\+\_\+base.\+hxx}\end{DoxyCompactItemize}

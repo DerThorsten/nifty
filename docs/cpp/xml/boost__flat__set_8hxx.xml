@@ -1,0 +1,190 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="boost__flat__set_8hxx" kind="file" language="C++">
+    <compoundname>boost_flat_set.hxx</compoundname>
+    <includes local="no">boost/container/flat_set.hpp</includes>
+    <includedby refid="bounds_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/cgp/bounds.hxx</includedby>
+    <includedby refid="filled__topological__grid_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/cgp/filled_topological_grid.hxx</includedby>
+    <includedby refid="geometry_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/cgp/geometry.hxx</includedby>
+    <includedby refid="topological__grid_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/cgp/topological_grid.hxx</includedby>
+    <includedby refid="kernighan__lin_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/kernighan_lin.hxx</includedby>
+    <includedby refid="compute__grid__rag_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/rag/detail_rag/compute_grid_rag.hxx</includedby>
+    <includedby refid="compute__grid__rag__hdf5_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/rag/detail_rag/compute_grid_rag_hdf5.hxx</includedby>
+    <incdepgraph>
+      <node id="6848">
+        <label>boost/container/flat_set.hpp</label>
+      </node>
+      <node id="6847">
+        <label>/home/tbeier/src/nifty/include/nifty/container/boost_flat_set.hxx</label>
+        <link refid="boost_flat_set.hxx"/>
+        <childnode refid="6848" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="6863">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_hdf5.hxx</label>
+        <link refid="grid__rag__hdf5_8hxx"/>
+      </node>
+      <node id="6851">
+        <label>/home/tbeier/src/nifty/include/nifty/cgp/features/geometric_features.hxx</label>
+        <link refid="geometric__features_8hxx"/>
+      </node>
+      <node id="6864">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_stacked_2d.hxx</label>
+        <link refid="grid__rag__stacked__2d_8hxx"/>
+        <childnode refid="6865" relation="include">
+        </childnode>
+      </node>
+      <node id="6853">
+        <label>/home/tbeier/src/nifty/include/nifty/cgp/features.hxx</label>
+        <link refid="features_8hxx"/>
+      </node>
+      <node id="6858">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/kernighan_lin.hxx</label>
+        <link refid="kernighan__lin_8hxx"/>
+      </node>
+      <node id="6854">
+        <label>/home/tbeier/src/nifty/include/nifty/cgp/filled_topological_grid.hxx</label>
+        <link refid="filled__topological__grid_8hxx"/>
+      </node>
+      <node id="6852">
+        <label>/home/tbeier/src/nifty/include/nifty/cgp/features/topological_features.hxx</label>
+        <link refid="topological__features_8hxx"/>
+      </node>
+      <node id="6865">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_stacked_2d_hdf5.hxx</label>
+        <link refid="grid__rag__stacked__2d__hdf5_8hxx"/>
+      </node>
+      <node id="6862">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_features.hxx</label>
+        <link refid="grid__rag__features_8hxx"/>
+      </node>
+      <node id="6859">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/rag/detail_rag/compute_grid_rag.hxx</label>
+        <link refid="compute__grid__rag_8hxx"/>
+        <childnode refid="6860" relation="include">
+        </childnode>
+      </node>
+      <node id="6861">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_accumulate.hxx</label>
+        <link refid="grid__rag__accumulate_8hxx"/>
+      </node>
+      <node id="6850">
+        <label>/home/tbeier/src/nifty/include/nifty/cgp/bounds.hxx</label>
+        <link refid="bounds_8hxx"/>
+        <childnode refid="6851" relation="include">
+        </childnode>
+        <childnode refid="6852" relation="include">
+        </childnode>
+        <childnode refid="6853" relation="include">
+        </childnode>
+      </node>
+      <node id="6857">
+        <label>/home/tbeier/src/nifty/include/nifty/cgp/cgp.hxx</label>
+        <link refid="cgp_8hxx"/>
+      </node>
+      <node id="6849">
+        <label>/home/tbeier/src/nifty/include/nifty/container/boost_flat_set.hxx</label>
+        <link refid="boost_flat_set.hxx"/>
+        <childnode refid="6850" relation="include">
+        </childnode>
+        <childnode refid="6854" relation="include">
+        </childnode>
+        <childnode refid="6855" relation="include">
+        </childnode>
+        <childnode refid="6856" relation="include">
+        </childnode>
+        <childnode refid="6858" relation="include">
+        </childnode>
+        <childnode refid="6859" relation="include">
+        </childnode>
+        <childnode refid="6866" relation="include">
+        </childnode>
+      </node>
+      <node id="6860">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag.hxx</label>
+        <link refid="grid__rag_8hxx"/>
+        <childnode refid="6861" relation="include">
+        </childnode>
+        <childnode refid="6862" relation="include">
+        </childnode>
+        <childnode refid="6863" relation="include">
+        </childnode>
+        <childnode refid="6864" relation="include">
+        </childnode>
+      </node>
+      <node id="6856">
+        <label>/home/tbeier/src/nifty/include/nifty/cgp/topological_grid.hxx</label>
+        <link refid="topological__grid_8hxx"/>
+        <childnode refid="6850" relation="include">
+        </childnode>
+        <childnode refid="6857" relation="include">
+        </childnode>
+        <childnode refid="6854" relation="include">
+        </childnode>
+        <childnode refid="6855" relation="include">
+        </childnode>
+      </node>
+      <node id="6855">
+        <label>/home/tbeier/src/nifty/include/nifty/cgp/geometry.hxx</label>
+        <link refid="geometry_8hxx"/>
+        <childnode refid="6851" relation="include">
+        </childnode>
+        <childnode refid="6852" relation="include">
+        </childnode>
+      </node>
+      <node id="6866">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/rag/detail_rag/compute_grid_rag_hdf5.hxx</label>
+        <link refid="compute__grid__rag__hdf5_8hxx"/>
+        <childnode refid="6863" relation="include">
+        </childnode>
+        <childnode refid="6865" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innernamespace refid="namespacenifty">nifty</innernamespace>
+    <innernamespace refid="namespacenifty_1_1container">nifty::container</innernamespace>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="boost__flat__set_8hxx_1a6b7afcb706c8e2ecfc2e7c25c7291148" prot="public" static="no">
+        <name>__nifty_setimpl__</name>
+        <initializer>boost::container::flat_set</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/container/boost_flat_set.hxx" line="10" column="11" bodyfile="/home/tbeier/src/nifty/include/nifty/container/boost_flat_set.hxx" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>WITHIN_TRAVIS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="flat__set_8hxx" kindref="compound">nifty/container/flat_set.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__nifty_setimpl__<sp/>nifty::container::FlatSet</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;boost/container/flat_set.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10" refid="boost__flat__set_8hxx_1a6b7afcb706c8e2ecfc2e7c25c7291148" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__nifty_setimpl__<sp/>boost::container::flat_set</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacenifty" kindref="compound">nifty</ref><sp/>{</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">container{</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
+<codeline lineno="17" refid="namespacenifty_1_1container_1ad9f6bbba60eac29f50d418e4c09d5c7b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="namespacenifty_1_1container_1ad9f6bbba60eac29f50d418e4c09d5c7b" kindref="member">BoostFlatSet</ref><sp/>=<sp/>__nifty_setimpl__&lt;T&gt;;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>container</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/></highlight></codeline>
+    </programlisting>
+    <location file="/home/tbeier/src/nifty/include/nifty/container/boost_flat_set.hxx"/>
+  </compounddef>
+</doxygen>

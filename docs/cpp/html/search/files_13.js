@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['watershed_5fproposal_5fgenerator_2ehxx',['watershed_proposal_generator.hxx',['../common_2proposal__generators_2watershed__proposal__generator_8hxx.html',1,'']]],
-  ['watershed_5fproposal_5fgenerator_2ehxx',['watershed_proposal_generator.hxx',['../lifted__multicut_2proposal__generators_2watershed__proposal__generator_8hxx.html',1,'']]],
-  ['watershed_5fproposals_2ehxx',['watershed_proposals.hxx',['../watershed__proposals_8hxx.html',1,'']]]
+  ['vector_2ehxx',['vector.hxx',['../vector_8hxx.html',1,'']]],
+  ['visitor_5fbase_2ehxx',['visitor_base.hxx',['../visitor__base_8hxx.html',1,'']]]
 ];

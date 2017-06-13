@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Nifty
-   &#160;<span id="projectnumber">0.5.1</span>
+   &#160;<span id="projectnumber">0.19.0</span>
    </div>
   </td>
  </tr>
@@ -93,54 +93,51 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">const_iterator_range.hxx</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="const__iterator__range_8hxx.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef NIFTY_TOOLS_CONST_ITERATOR_RANGE_HXX</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define NIFTY_TOOLS_CONST_ITERATOR_RANGE_HXX</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacenifty.html">nifty</a>{</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">namespace </span>tools{</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">class</span> ITERATOR&gt;</div>
-<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="classnifty_1_1tools_1_1ConstIteratorRange.html">   10</a></span>&#160;<span class="keyword">class </span><a class="code" href="classnifty_1_1tools_1_1ConstIteratorRange.html">ConstIteratorRange</a>{</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="classnifty_1_1tools_1_1ConstIteratorRange.html#afb02141878a935f32f828810a2be648b">   12</a></span>&#160;    <span class="keyword">typedef</span> ITERATOR <a class="code" href="classnifty_1_1tools_1_1ConstIteratorRange.html#afb02141878a935f32f828810a2be648b">const_iterator</a>;</div>
-<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="classnifty_1_1tools_1_1ConstIteratorRange.html#a004be230f5b9612f6890e4cceed0ce92">   13</a></span>&#160;    <a class="code" href="classnifty_1_1tools_1_1ConstIteratorRange.html#a004be230f5b9612f6890e4cceed0ce92">ConstIteratorRange</a>(const_iterator b, const_iterator e)</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    :   begin_(b),</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        end_(e){</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    }</div>
-<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="classnifty_1_1tools_1_1ConstIteratorRange.html#a8e2cbbe979b889729afbe15e1a005494">   18</a></span>&#160;    const_iterator <a class="code" href="classnifty_1_1tools_1_1ConstIteratorRange.html#a8e2cbbe979b889729afbe15e1a005494">begin</a>()<span class="keyword">const</span>{</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <span class="keywordflow">return</span> begin_;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    }</div>
-<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="classnifty_1_1tools_1_1ConstIteratorRange.html#a58df2f679ea04772b59d8a29401b7fb9">   21</a></span>&#160;    const_iterator <a class="code" href="classnifty_1_1tools_1_1ConstIteratorRange.html#a58df2f679ea04772b59d8a29401b7fb9">begin</a>(){</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keywordflow">return</span> begin_;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    }</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="classnifty_1_1tools_1_1ConstIteratorRange.html#aba1ec3c080dfdefd327f4b7e293ec81d">   25</a></span>&#160;    const_iterator <a class="code" href="classnifty_1_1tools_1_1ConstIteratorRange.html#aba1ec3c080dfdefd327f4b7e293ec81d">end</a>()<span class="keyword">const</span>{</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <span class="keywordflow">return</span> end_;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    }</div>
-<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="classnifty_1_1tools_1_1ConstIteratorRange.html#add87b395b12e7ab2724c5ed61f04163f">   28</a></span>&#160;    const_iterator <a class="code" href="classnifty_1_1tools_1_1ConstIteratorRange.html#add87b395b12e7ab2724c5ed61f04163f">end</a>(){</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keywordflow">return</span> end_;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    }</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    ITERATOR begin_,end_;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;};</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;} <span class="comment">// end namespace nifty::tools</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;} <span class="comment">// end namespace nifty</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/*NIFTY_TOOLS_CONST_ITERATOR_RANGE_HXX*/</span><span class="preprocessor"></span></div>
-<div class="ttc" id="classnifty_1_1tools_1_1ConstIteratorRange_html_a58df2f679ea04772b59d8a29401b7fb9"><div class="ttname"><a href="classnifty_1_1tools_1_1ConstIteratorRange.html#a58df2f679ea04772b59d8a29401b7fb9">nifty::tools::ConstIteratorRange::begin</a></div><div class="ttdeci">const_iterator begin()</div><div class="ttdef"><b>Definition:</b> const_iterator_range.hxx:21</div></div>
-<div class="ttc" id="classnifty_1_1tools_1_1ConstIteratorRange_html_a004be230f5b9612f6890e4cceed0ce92"><div class="ttname"><a href="classnifty_1_1tools_1_1ConstIteratorRange.html#a004be230f5b9612f6890e4cceed0ce92">nifty::tools::ConstIteratorRange::ConstIteratorRange</a></div><div class="ttdeci">ConstIteratorRange(const_iterator b, const_iterator e)</div><div class="ttdef"><b>Definition:</b> const_iterator_range.hxx:13</div></div>
-<div class="ttc" id="classnifty_1_1tools_1_1ConstIteratorRange_html_aba1ec3c080dfdefd327f4b7e293ec81d"><div class="ttname"><a href="classnifty_1_1tools_1_1ConstIteratorRange.html#aba1ec3c080dfdefd327f4b7e293ec81d">nifty::tools::ConstIteratorRange::end</a></div><div class="ttdeci">const_iterator end() const </div><div class="ttdef"><b>Definition:</b> const_iterator_range.hxx:25</div></div>
-<div class="ttc" id="classnifty_1_1tools_1_1ConstIteratorRange_html_a8e2cbbe979b889729afbe15e1a005494"><div class="ttname"><a href="classnifty_1_1tools_1_1ConstIteratorRange.html#a8e2cbbe979b889729afbe15e1a005494">nifty::tools::ConstIteratorRange::begin</a></div><div class="ttdeci">const_iterator begin() const </div><div class="ttdef"><b>Definition:</b> const_iterator_range.hxx:18</div></div>
-<div class="ttc" id="classnifty_1_1tools_1_1ConstIteratorRange_html_add87b395b12e7ab2724c5ed61f04163f"><div class="ttname"><a href="classnifty_1_1tools_1_1ConstIteratorRange.html#add87b395b12e7ab2724c5ed61f04163f">nifty::tools::ConstIteratorRange::end</a></div><div class="ttdeci">const_iterator end()</div><div class="ttdef"><b>Definition:</b> const_iterator_range.hxx:28</div></div>
-<div class="ttc" id="classnifty_1_1tools_1_1ConstIteratorRange_html"><div class="ttname"><a href="classnifty_1_1tools_1_1ConstIteratorRange.html">nifty::tools::ConstIteratorRange</a></div><div class="ttdef"><b>Definition:</b> const_iterator_range.hxx:10</div></div>
-<div class="ttc" id="namespacenifty_html"><div class="ttname"><a href="namespacenifty.html">nifty</a></div><div class="ttdef"><b>Definition:</b> arithmetic_array.hxx:10</div></div>
-<div class="ttc" id="classnifty_1_1tools_1_1ConstIteratorRange_html_afb02141878a935f32f828810a2be648b"><div class="ttname"><a href="classnifty_1_1tools_1_1ConstIteratorRange.html#afb02141878a935f32f828810a2be648b">nifty::tools::ConstIteratorRange::const_iterator</a></div><div class="ttdeci">ITERATOR const_iterator</div><div class="ttdef"><b>Definition:</b> const_iterator_range.hxx:12</div></div>
+<a href="const__iterator__range_8hxx.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;</div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacenifty.html">nifty</a>{</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="keyword">namespace </span>tools{</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">class</span> ITERATOR&gt;</div>
+<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="classnifty_1_1tools_1_1ConstIteratorRange.html">    8</a></span>&#160;<span class="keyword">class </span><a class="code" href="classnifty_1_1tools_1_1ConstIteratorRange.html">ConstIteratorRange</a>{</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="classnifty_1_1tools_1_1ConstIteratorRange.html#afb02141878a935f32f828810a2be648b">   10</a></span>&#160;    <span class="keyword">typedef</span> ITERATOR <a class="code" href="classnifty_1_1tools_1_1ConstIteratorRange.html#afb02141878a935f32f828810a2be648b">const_iterator</a>;</div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="classnifty_1_1tools_1_1ConstIteratorRange.html#a004be230f5b9612f6890e4cceed0ce92">   11</a></span>&#160;    <a class="code" href="classnifty_1_1tools_1_1ConstIteratorRange.html#a004be230f5b9612f6890e4cceed0ce92">ConstIteratorRange</a>(const_iterator b, const_iterator e)</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    :   begin_(b),</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        end_(e){</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    }</div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="classnifty_1_1tools_1_1ConstIteratorRange.html#a8e2cbbe979b889729afbe15e1a005494">   16</a></span>&#160;    const_iterator <a class="code" href="classnifty_1_1tools_1_1ConstIteratorRange.html#a8e2cbbe979b889729afbe15e1a005494">begin</a>()<span class="keyword">const</span>{</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <span class="keywordflow">return</span> begin_;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    }</div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="classnifty_1_1tools_1_1ConstIteratorRange.html#a58df2f679ea04772b59d8a29401b7fb9">   19</a></span>&#160;    const_iterator <a class="code" href="classnifty_1_1tools_1_1ConstIteratorRange.html#a58df2f679ea04772b59d8a29401b7fb9">begin</a>(){</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <span class="keywordflow">return</span> begin_;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    }</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="classnifty_1_1tools_1_1ConstIteratorRange.html#aba1ec3c080dfdefd327f4b7e293ec81d">   23</a></span>&#160;    const_iterator <a class="code" href="classnifty_1_1tools_1_1ConstIteratorRange.html#aba1ec3c080dfdefd327f4b7e293ec81d">end</a>()<span class="keyword">const</span>{</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <span class="keywordflow">return</span> end_;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    }</div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="classnifty_1_1tools_1_1ConstIteratorRange.html#add87b395b12e7ab2724c5ed61f04163f">   26</a></span>&#160;    const_iterator <a class="code" href="classnifty_1_1tools_1_1ConstIteratorRange.html#add87b395b12e7ab2724c5ed61f04163f">end</a>(){</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <span class="keywordflow">return</span> end_;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    }</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    ITERATOR begin_,end_;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;};</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;} <span class="comment">// end namespace nifty::tools</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;} <span class="comment">// end namespace nifty</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
+<div class="ttc" id="classnifty_1_1tools_1_1ConstIteratorRange_html_a58df2f679ea04772b59d8a29401b7fb9"><div class="ttname"><a href="classnifty_1_1tools_1_1ConstIteratorRange.html#a58df2f679ea04772b59d8a29401b7fb9">nifty::tools::ConstIteratorRange::begin</a></div><div class="ttdeci">const_iterator begin()</div><div class="ttdef"><b>Definition:</b> const_iterator_range.hxx:19</div></div>
+<div class="ttc" id="classnifty_1_1tools_1_1ConstIteratorRange_html_a004be230f5b9612f6890e4cceed0ce92"><div class="ttname"><a href="classnifty_1_1tools_1_1ConstIteratorRange.html#a004be230f5b9612f6890e4cceed0ce92">nifty::tools::ConstIteratorRange::ConstIteratorRange</a></div><div class="ttdeci">ConstIteratorRange(const_iterator b, const_iterator e)</div><div class="ttdef"><b>Definition:</b> const_iterator_range.hxx:11</div></div>
+<div class="ttc" id="classnifty_1_1tools_1_1ConstIteratorRange_html_aba1ec3c080dfdefd327f4b7e293ec81d"><div class="ttname"><a href="classnifty_1_1tools_1_1ConstIteratorRange.html#aba1ec3c080dfdefd327f4b7e293ec81d">nifty::tools::ConstIteratorRange::end</a></div><div class="ttdeci">const_iterator end() const </div><div class="ttdef"><b>Definition:</b> const_iterator_range.hxx:23</div></div>
+<div class="ttc" id="classnifty_1_1tools_1_1ConstIteratorRange_html_a8e2cbbe979b889729afbe15e1a005494"><div class="ttname"><a href="classnifty_1_1tools_1_1ConstIteratorRange.html#a8e2cbbe979b889729afbe15e1a005494">nifty::tools::ConstIteratorRange::begin</a></div><div class="ttdeci">const_iterator begin() const </div><div class="ttdef"><b>Definition:</b> const_iterator_range.hxx:16</div></div>
+<div class="ttc" id="classnifty_1_1tools_1_1ConstIteratorRange_html_add87b395b12e7ab2724c5ed61f04163f"><div class="ttname"><a href="classnifty_1_1tools_1_1ConstIteratorRange.html#add87b395b12e7ab2724c5ed61f04163f">nifty::tools::ConstIteratorRange::end</a></div><div class="ttdeci">const_iterator end()</div><div class="ttdef"><b>Definition:</b> const_iterator_range.hxx:26</div></div>
+<div class="ttc" id="classnifty_1_1tools_1_1ConstIteratorRange_html"><div class="ttname"><a href="classnifty_1_1tools_1_1ConstIteratorRange.html">nifty::tools::ConstIteratorRange</a></div><div class="ttdef"><b>Definition:</b> const_iterator_range.hxx:8</div></div>
+<div class="ttc" id="namespacenifty_html"><div class="ttname"><a href="namespacenifty.html">nifty</a></div><div class="ttdef"><b>Definition:</b> arithmetic_array.hxx:8</div></div>
+<div class="ttc" id="classnifty_1_1tools_1_1ConstIteratorRange_html_afb02141878a935f32f828810a2be648b"><div class="ttname"><a href="classnifty_1_1tools_1_1ConstIteratorRange.html#afb02141878a935f32f828810a2be648b">nifty::tools::ConstIteratorRange::const_iterator</a></div><div class="ttdeci">ITERATOR const_iterator</div><div class="ttdef"><b>Definition:</b> const_iterator_range.hxx:10</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

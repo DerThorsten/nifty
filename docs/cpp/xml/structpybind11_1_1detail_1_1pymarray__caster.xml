@@ -1,0 +1,172 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="structpybind11_1_1detail_1_1pymarray__caster" kind="struct" language="C++" prot="public">
+    <compoundname>pybind11::detail::pymarray_caster</compoundname>
+    <derivedcompoundref refid="structpybind11_1_1detail_1_1type__caster_3_01nifty_1_1marray_1_1PyView_3_01Type_00_01DIM_00_01AUTO__CAST__TYPE_01_4_01_4" prot="public" virt="non-virtual">pybind11::detail::type_caster&lt; nifty::marray::PyView&lt; Type, DIM, AUTO_CAST_TYPE &gt; &gt;</derivedcompoundref>
+    <includes refid="converter_8hxx" local="no">converter.hxx</includes>
+    <templateparamlist>
+      <param>
+        <type>typename Type</type>
+      </param>
+      <param>
+        <type>size_t</type>
+        <declname>DIM</declname>
+        <defname>DIM</defname>
+      </param>
+      <param>
+        <type>bool</type>
+        <declname>AUTO_CAST_TYPE</declname>
+        <defname>AUTO_CAST_TYPE</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="structpybind11_1_1detail_1_1pymarray__caster_1a0593b33c0ed08f1b25b34dbc3da1b01c" prot="public" static="no">
+        <type><ref refid="classnifty_1_1marray_1_1PyView" kindref="compound">nifty::marray::PyView</ref>&lt; Type, DIM, AUTO_CAST_TYPE &gt;</type>
+        <definition>typedef nifty::marray::PyView&lt;Type, DIM, AUTO_CAST_TYPE&gt; pybind11::detail::pymarray_caster&lt; Type, DIM, AUTO_CAST_TYPE &gt;::ViewType</definition>
+        <argsstring></argsstring>
+        <name>ViewType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/converter.hxx" line="345" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/converter.hxx" bodystart="345" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="structpybind11_1_1detail_1_1pymarray__caster_1aa57421c8e7e64ab62bac67897f864ea1" prot="public" static="no">
+        <type>type_caster&lt; typename intrinsic_type&lt; Type &gt;::type &gt;</type>
+        <definition>typedef type_caster&lt;typename intrinsic_type&lt;Type&gt;::type&gt; pybind11::detail::pymarray_caster&lt; Type, DIM, AUTO_CAST_TYPE &gt;::value_conv</definition>
+        <argsstring></argsstring>
+        <name>value_conv</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/converter.hxx" line="346" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/converter.hxx" bodystart="346" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="structpybind11_1_1detail_1_1pymarray__caster_1a70ad611a7f6fd17d02b461c43dff6ea0" prot="public" static="no">
+        <type>std::conditional&lt; AUTO_CAST_TYPE, pybind11::array_t&lt; Type, py::array::forcecast &gt;, pybind11::array_t&lt; Type, py::array::c_style &gt; &gt;::type</type>
+        <definition>typedef std::conditional&lt;AUTO_CAST_TYPE, pybind11::array_t&lt;Type, py::array::forcecast&gt;, pybind11::array_t&lt;Type, py::array::c_style &gt; &gt;::type pybind11::detail::pymarray_caster&lt; Type, DIM, AUTO_CAST_TYPE &gt;::pyarray_type</definition>
+        <argsstring></argsstring>
+        <name>pyarray_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/converter.hxx" line="353" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/converter.hxx" bodystart="353" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="structpybind11_1_1detail_1_1pymarray__caster_1a0fe8ba6e31f03c24d130c0dba1a55fa8" prot="public" static="no">
+        <type>type_caster&lt; <ref refid="structpybind11_1_1detail_1_1pymarray__caster_1a70ad611a7f6fd17d02b461c43dff6ea0" kindref="member">pyarray_type</ref> &gt;</type>
+        <definition>typedef type_caster&lt;pyarray_type&gt; pybind11::detail::pymarray_caster&lt; Type, DIM, AUTO_CAST_TYPE &gt;::pyarray_conv</definition>
+        <argsstring></argsstring>
+        <name>pyarray_conv</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/converter.hxx" line="355" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/converter.hxx" bodystart="355" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structpybind11_1_1detail_1_1pymarray__caster_1a86104f2febd079f88902bfbcaf211275" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool pybind11::detail::pymarray_caster&lt; Type, DIM, AUTO_CAST_TYPE &gt;::load</definition>
+        <argsstring>(handle src, bool convert)</argsstring>
+        <name>load</name>
+        <param>
+          <type>handle</type>
+          <declname>src</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>convert</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/converter.hxx" line="357" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/converter.hxx" bodystart="357" bodyend="391"/>
+      </memberdef>
+      <memberdef kind="function" id="structpybind11_1_1detail_1_1pymarray__caster_1a40c677529b61ffbe09c3031a28c17bfd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>pybind11::detail::pymarray_caster&lt; Type, DIM, AUTO_CAST_TYPE &gt;::PYBIND11_TYPE_CASTER</definition>
+        <argsstring>(ViewType, _(&quot;array&lt;&quot;)+value_conv::name()+_(&quot;&gt;&quot;))</argsstring>
+        <name>PYBIND11_TYPE_CASTER</name>
+        <param>
+          <type><ref refid="structpybind11_1_1detail_1_1pymarray__caster_1a0593b33c0ed08f1b25b34dbc3da1b01c" kindref="member">ViewType</ref></type>
+        </param>
+        <param>
+          <type>_(&quot;array&lt;&quot;)+value_conv::name()+_(&quot;&gt;&quot;)</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/converter.hxx" line="399" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="structpybind11_1_1detail_1_1pymarray__caster_1ac614bd95690d2ab5f17c3b2603485404" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>handle</type>
+        <definition>static handle pybind11::detail::pymarray_caster&lt; Type, DIM, AUTO_CAST_TYPE &gt;::cast</definition>
+        <argsstring>(ViewType src, return_value_policy policy, handle parent)</argsstring>
+        <name>cast</name>
+        <param>
+          <type><ref refid="structpybind11_1_1detail_1_1pymarray__caster_1a0593b33c0ed08f1b25b34dbc3da1b01c" kindref="member">ViewType</ref></type>
+          <declname>src</declname>
+        </param>
+        <param>
+          <type>return_value_policy</type>
+          <declname>policy</declname>
+        </param>
+        <param>
+          <type>handle</type>
+          <declname>parent</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/converter.hxx" line="393" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/converter.hxx" bodystart="393" bodyend="397"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1651">
+        <label>pybind11::detail::type_caster&lt; nifty::marray::PyView&lt; Type, DIM, AUTO_CAST_TYPE &gt; &gt;</label>
+        <link refid="structpybind11_1_1detail_1_1type__caster_3_01nifty_1_1marray_1_1PyView_3_01Type_00_01DIM_00_01AUTO__CAST__TYPE_01_4_01_4"/>
+        <childnode refid="1650" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1650">
+        <label>pybind11::detail::pymarray_caster&lt; Type, DIM, AUTO_CAST_TYPE &gt;</label>
+        <link refid="structpybind11_1_1detail_1_1pymarray__caster"/>
+      </node>
+    </inheritancegraph>
+    <location file="/home/tbeier/src/nifty/include/nifty/python/converter.hxx" line="108" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/converter.hxx" bodystart="108" bodyend="-1"/>
+    <listofallmembers>
+      <member refid="structpybind11_1_1detail_1_1pymarray__caster_1ac614bd95690d2ab5f17c3b2603485404" prot="public" virt="non-virtual"><scope>pybind11::detail::pymarray_caster</scope><name>cast</name></member>
+      <member refid="structpybind11_1_1detail_1_1pymarray__caster_1a86104f2febd079f88902bfbcaf211275" prot="public" virt="non-virtual"><scope>pybind11::detail::pymarray_caster</scope><name>load</name></member>
+      <member refid="structpybind11_1_1detail_1_1pymarray__caster_1a0fe8ba6e31f03c24d130c0dba1a55fa8" prot="public" virt="non-virtual"><scope>pybind11::detail::pymarray_caster</scope><name>pyarray_conv</name></member>
+      <member refid="structpybind11_1_1detail_1_1pymarray__caster_1a70ad611a7f6fd17d02b461c43dff6ea0" prot="public" virt="non-virtual"><scope>pybind11::detail::pymarray_caster</scope><name>pyarray_type</name></member>
+      <member refid="structpybind11_1_1detail_1_1pymarray__caster_1a40c677529b61ffbe09c3031a28c17bfd" prot="public" virt="non-virtual"><scope>pybind11::detail::pymarray_caster</scope><name>PYBIND11_TYPE_CASTER</name></member>
+      <member refid="structpybind11_1_1detail_1_1pymarray__caster_1aa57421c8e7e64ab62bac67897f864ea1" prot="public" virt="non-virtual"><scope>pybind11::detail::pymarray_caster</scope><name>value_conv</name></member>
+      <member refid="structpybind11_1_1detail_1_1pymarray__caster_1a0593b33c0ed08f1b25b34dbc3da1b01c" prot="public" virt="non-virtual"><scope>pybind11::detail::pymarray_caster</scope><name>ViewType</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

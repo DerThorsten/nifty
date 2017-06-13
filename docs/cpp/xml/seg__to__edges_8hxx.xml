@@ -1,0 +1,287 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="seg__to__edges_8hxx" kind="file" language="C++">
+    <compoundname>seg_to_edges.hxx</compoundname>
+    <includes refid="marray_8hxx" local="yes">nifty/marray/marray.hxx</includes>
+    <includes refid="for__each__coordinate_8hxx" local="yes">nifty/tools/for_each_coordinate.hxx</includes>
+    <includes refid="timer_8hxx" local="yes">nifty/tools/timer.hxx</includes>
+    <includes local="no">cmath</includes>
+    <incdepgraph>
+      <node id="11192">
+        <label>atomic</label>
+      </node>
+      <node id="11183">
+        <label>functional</label>
+      </node>
+      <node id="11195">
+        <label>queue</label>
+      </node>
+      <node id="11173">
+        <label>limits</label>
+      </node>
+      <node id="11177">
+        <label>iterator</label>
+      </node>
+      <node id="11185">
+        <label>cstdint</label>
+      </node>
+      <node id="11187">
+        <label>nifty/tools/for_each_coordinate.hxx</label>
+        <link refid="for__each__coordinate_8hxx"/>
+        <childnode refid="11175" relation="include">
+        </childnode>
+        <childnode refid="11188" relation="include">
+        </childnode>
+        <childnode refid="11189" relation="include">
+        </childnode>
+        <childnode refid="11190" relation="include">
+        </childnode>
+        <childnode refid="11199" relation="include">
+        </childnode>
+      </node>
+      <node id="11186">
+        <label>cmath</label>
+      </node>
+      <node id="11170">
+        <label>cassert</label>
+      </node>
+      <node id="11197">
+        <label>boost/iterator/transform_iterator.hpp</label>
+      </node>
+      <node id="11172">
+        <label>stdexcept</label>
+      </node>
+      <node id="11182">
+        <label>numeric</label>
+      </node>
+      <node id="11174">
+        <label>string</label>
+      </node>
+      <node id="11198">
+        <label>boost/iterator/counting_iterator.hpp</label>
+      </node>
+      <node id="11167">
+        <label>/home/tbeier/src/nifty/include/nifty/ground_truth/seg_to_edges.hxx</label>
+        <link refid="seg_to_edges.hxx"/>
+        <childnode refid="11168" relation="include">
+        </childnode>
+        <childnode refid="11187" relation="include">
+        </childnode>
+        <childnode refid="11200" relation="include">
+        </childnode>
+        <childnode refid="11186" relation="include">
+        </childnode>
+      </node>
+      <node id="11200">
+        <label>nifty/tools/timer.hxx</label>
+        <link refid="timer_8hxx"/>
+        <childnode refid="11175" relation="include">
+        </childnode>
+        <childnode refid="11188" relation="include">
+        </childnode>
+        <childnode refid="11174" relation="include">
+        </childnode>
+      </node>
+      <node id="11169">
+        <label>nifty/marray/andres/marray.hxx</label>
+        <link refid="andres_2marray_8hxx"/>
+        <childnode refid="11170" relation="include">
+        </childnode>
+        <childnode refid="11171" relation="include">
+        </childnode>
+        <childnode refid="11172" relation="include">
+        </childnode>
+        <childnode refid="11173" relation="include">
+        </childnode>
+        <childnode refid="11174" relation="include">
+        </childnode>
+        <childnode refid="11175" relation="include">
+        </childnode>
+        <childnode refid="11176" relation="include">
+        </childnode>
+        <childnode refid="11177" relation="include">
+        </childnode>
+        <childnode refid="11178" relation="include">
+        </childnode>
+        <childnode refid="11179" relation="include">
+        </childnode>
+        <childnode refid="11180" relation="include">
+        </childnode>
+        <childnode refid="11181" relation="include">
+        </childnode>
+        <childnode refid="11182" relation="include">
+        </childnode>
+        <childnode refid="11183" relation="include">
+        </childnode>
+      </node>
+      <node id="11196">
+        <label>condition_variable</label>
+      </node>
+      <node id="11193">
+        <label>future</label>
+      </node>
+      <node id="11178">
+        <label>vector</label>
+      </node>
+      <node id="11199">
+        <label>nifty/array/arithmetic_array.hxx</label>
+        <link refid="arithmetic__array_8hxx"/>
+        <childnode refid="11189" relation="include">
+        </childnode>
+        <childnode refid="11178" relation="include">
+        </childnode>
+        <childnode refid="11184" relation="include">
+        </childnode>
+      </node>
+      <node id="11189">
+        <label>array</label>
+      </node>
+      <node id="11175">
+        <label>sstream</label>
+      </node>
+      <node id="11184">
+        <label>nifty/tools/runtime_check.hxx</label>
+        <link refid="runtime__check_8hxx"/>
+        <childnode refid="11185" relation="include">
+        </childnode>
+        <childnode refid="11172" relation="include">
+        </childnode>
+        <childnode refid="11175" relation="include">
+        </childnode>
+        <childnode refid="11178" relation="include">
+        </childnode>
+        <childnode refid="11173" relation="include">
+        </childnode>
+        <childnode refid="11186" relation="include">
+        </childnode>
+      </node>
+      <node id="11180">
+        <label>iostream</label>
+      </node>
+      <node id="11171">
+        <label>cstddef</label>
+      </node>
+      <node id="11190">
+        <label>nifty/parallel/threadpool.hxx</label>
+        <link refid="threadpool_8hxx"/>
+        <childnode refid="11183" relation="include">
+        </childnode>
+        <childnode refid="11191" relation="include">
+        </childnode>
+        <childnode refid="11192" relation="include">
+        </childnode>
+        <childnode refid="11178" relation="include">
+        </childnode>
+        <childnode refid="11193" relation="include">
+        </childnode>
+        <childnode refid="11194" relation="include">
+        </childnode>
+        <childnode refid="11195" relation="include">
+        </childnode>
+        <childnode refid="11196" relation="include">
+        </childnode>
+        <childnode refid="11172" relation="include">
+        </childnode>
+        <childnode refid="11186" relation="include">
+        </childnode>
+        <childnode refid="11197" relation="include">
+        </childnode>
+        <childnode refid="11198" relation="include">
+        </childnode>
+        <childnode refid="11184" relation="include">
+        </childnode>
+      </node>
+      <node id="11194">
+        <label>mutex</label>
+      </node>
+      <node id="11188">
+        <label>chrono</label>
+      </node>
+      <node id="11168">
+        <label>nifty/marray/marray.hxx</label>
+        <link refid="marray_8hxx"/>
+        <childnode refid="11169" relation="include">
+        </childnode>
+        <childnode refid="11184" relation="include">
+        </childnode>
+      </node>
+      <node id="11191">
+        <label>thread</label>
+      </node>
+      <node id="11179">
+        <label>set</label>
+      </node>
+      <node id="11176">
+        <label>cstring</label>
+      </node>
+      <node id="11181">
+        <label>memory</label>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespacenifty">nifty</innernamespace>
+    <innernamespace refid="namespacenifty_1_1ground__truth">nifty::ground_truth</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="marray_8hxx" kindref="compound">nifty/marray/marray.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="for__each__coordinate_8hxx" kindref="compound">nifty/tools/for_each_coordinate.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="timer_8hxx" kindref="compound">nifty/tools/timer.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cmath&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacenifty" kindref="compound">nifty</ref>{</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">ground_truth{</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">T,<sp/></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">U</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>&gt;</highlight></codeline>
+<codeline lineno="17" refid="namespacenifty_1_1ground__truth_1af49d3596b8aaf59bd7dcf3163e99d08f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespacenifty_1_1ground__truth_1af49d3596b8aaf59bd7dcf3163e99d08f" kindref="member">segToEdges2D</ref>(</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classandres_1_1View" kindref="compound">marray::View&lt;T&gt;</ref><sp/><sp/><sp/>&amp;<sp/>segmentation,</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classandres_1_1View" kindref="compound">marray::View&lt;U&gt;</ref><sp/><sp/><sp/>&amp;<sp/>edges</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>){</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>edges<sp/>=<sp/>U(0);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1array_1_1ArrayExtender" kindref="compound">array::StaticArray&lt;int64_t, 2&gt;</ref><sp/>CoordType;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CoordType<sp/>shape;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>i=0;<sp/>i&lt;2;<sp/>++i){</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>shape[i]<sp/>=<sp/>segmentation.<ref refid="classandres_1_1View_1a9bc3d88b3e2bdf432dd68f36ff33deb3" kindref="member">shape</ref>(i);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacenifty_1_1tools_1a81df2669bba7acc0ad9a253669a28ba4" kindref="member">tools::forEachCoordinate</ref>(shape,</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[&amp;](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>CoordType<sp/>&amp;<sp/>coord){</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>lu<sp/>=<sp/>segmentation(coord[0],coord[1]);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(coord[0]-1<sp/>&gt;=0<sp/>&amp;&amp;<sp/><sp/>segmentation(coord[0]-1,coord[1])!=lu<sp/>){</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>edges(coord[0],coord[1])<sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(coord[0]+1<sp/>&lt;<sp/>shape[0]<sp/>&amp;&amp;<sp/><sp/>segmentation(coord[0]+1,coord[1])!=lu<sp/>){</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>edges(coord[0],coord[1])<sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(coord[1]-1<sp/>&gt;=0<sp/>&amp;&amp;<sp/><sp/>segmentation(coord[0],coord[1]-1)!=lu<sp/>){</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>edges(coord[0],coord[1])<sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(coord[1]+1<sp/>&lt;<sp/>shape[1]<sp/>&amp;&amp;<sp/><sp/>segmentation(coord[0],coord[1]+1)!=lu<sp/>){</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>edges(coord[0],coord[1])<sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>});</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="56"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/seg_to_edges.hxx"/>
+  </compounddef>
+</doxygen>

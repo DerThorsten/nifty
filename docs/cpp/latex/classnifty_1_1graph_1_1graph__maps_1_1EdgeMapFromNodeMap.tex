@@ -1,0 +1,116 @@
+\hypertarget{classnifty_1_1graph_1_1graph__maps_1_1EdgeMapFromNodeMap}{}\section{nifty\+:\+:graph\+:\+:graph\+\_\+maps\+:\+:Edge\+Map\+From\+Node\+Map$<$ G\+R\+A\+P\+H, N\+O\+D\+E\+\_\+\+M\+A\+P, B\+I\+N\+A\+R\+Y\+\_\+\+F\+U\+N\+C\+T\+O\+R $>$ Class Template Reference}
+\label{classnifty_1_1graph_1_1graph__maps_1_1EdgeMapFromNodeMap}\index{nifty\+::graph\+::graph\+\_\+maps\+::\+Edge\+Map\+From\+Node\+Map$<$ G\+R\+A\+P\+H, N\+O\+D\+E\+\_\+\+M\+A\+P, B\+I\+N\+A\+R\+Y\+\_\+\+F\+U\+N\+C\+T\+O\+R $>$@{nifty\+::graph\+::graph\+\_\+maps\+::\+Edge\+Map\+From\+Node\+Map$<$ G\+R\+A\+P\+H, N\+O\+D\+E\+\_\+\+M\+A\+P, B\+I\+N\+A\+R\+Y\+\_\+\+F\+U\+N\+C\+T\+O\+R $>$}}
+
+
+Implicit edge map.  
+
+
+
+
+{\ttfamily \#include $<$edge\+\_\+map\+\_\+from\+\_\+node\+\_\+map.\+hxx$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef G\+R\+A\+P\+H \hyperlink{classnifty_1_1graph_1_1graph__maps_1_1EdgeMapFromNodeMap_a551dfc3ef2c5293f5306420d129da574}{Graph\+Type}
+\item 
+typedef B\+I\+N\+A\+R\+Y\+\_\+\+F\+U\+N\+C\+T\+O\+R \hyperlink{classnifty_1_1graph_1_1graph__maps_1_1EdgeMapFromNodeMap_a0fbb6e9a54ecf31d27e13db4f274a6d1}{Binary\+Functor\+Type}
+\item 
+typedef Binary\+Functor\+Type\+::value\+\_\+type \hyperlink{classnifty_1_1graph_1_1graph__maps_1_1EdgeMapFromNodeMap_abc24027c855755008ba3694cc49999c2}{value\+\_\+type}
+\item 
+typedef N\+O\+D\+E\+\_\+\+M\+A\+P \hyperlink{classnifty_1_1graph_1_1graph__maps_1_1EdgeMapFromNodeMap_ad2639421843e9da9afe18b0b35a7317e}{Node\+Map\+Type}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classnifty_1_1graph_1_1graph__maps_1_1EdgeMapFromNodeMap_abf8972db1d22bc00d2afd5cf5cb0b6a3}{Edge\+Map\+From\+Node\+Map} (const \hyperlink{classnifty_1_1graph_1_1graph__maps_1_1EdgeMapFromNodeMap_a551dfc3ef2c5293f5306420d129da574}{Graph\+Type} \&graph, \hyperlink{classnifty_1_1graph_1_1graph__maps_1_1EdgeMapFromNodeMap_ad2639421843e9da9afe18b0b35a7317e}{Node\+Map\+Type} node\+Map, \hyperlink{classnifty_1_1graph_1_1graph__maps_1_1EdgeMapFromNodeMap_a0fbb6e9a54ecf31d27e13db4f274a6d1}{Binary\+Functor\+Type} binary\+Functor)
+\begin{DoxyCompactList}\small\item\em construct edge map from node map and functor \end{DoxyCompactList}\item 
+\hyperlink{classnifty_1_1graph_1_1graph__maps_1_1EdgeMapFromNodeMap_abc24027c855755008ba3694cc49999c2}{value\+\_\+type} \hyperlink{classnifty_1_1graph_1_1graph__maps_1_1EdgeMapFromNodeMap_add73eee13b7a6f74f0ae6eac1a7c32bf}{operator\mbox{[}$\,$\mbox{]}} (const uint64\+\_\+t edge\+Index) const 
+\begin{DoxyCompactList}\small\item\em get the value for an edge \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class G\+R\+A\+P\+H, class N\+O\+D\+E\+\_\+\+M\+A\+P, class B\+I\+N\+A\+R\+Y\+\_\+\+F\+U\+N\+C\+T\+O\+R$>$class nifty\+::graph\+::graph\+\_\+maps\+::\+Edge\+Map\+From\+Node\+Map$<$ G\+R\+A\+P\+H, N\+O\+D\+E\+\_\+\+M\+A\+P, B\+I\+N\+A\+R\+Y\+\_\+\+F\+U\+N\+C\+T\+O\+R $>$}
+
+Implicit edge map. 
+
+Convert a node map into an edge map by applying a binary functor to the node maps values.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em G\+R\+A\+P\+H} & the graph type \\
+\hline
+{\em N\+O\+D\+E\+\_\+\+M\+A\+P} & The node map. This can be a (const) reference or a value type (in) case of proxy objects \\
+\hline
+{\em B\+I\+N\+A\+R\+Y\+\_\+\+F\+U\+N\+C\+T\+O\+R} & a binary functor.\+This can be a (const) reference or a value type. \\
+\hline
+\end{DoxyTemplParams}
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{classnifty_1_1graph_1_1graph__maps_1_1EdgeMapFromNodeMap_a0fbb6e9a54ecf31d27e13db4f274a6d1}{}\index{nifty\+::graph\+::graph\+\_\+maps\+::\+Edge\+Map\+From\+Node\+Map@{nifty\+::graph\+::graph\+\_\+maps\+::\+Edge\+Map\+From\+Node\+Map}!Binary\+Functor\+Type@{Binary\+Functor\+Type}}
+\index{Binary\+Functor\+Type@{Binary\+Functor\+Type}!nifty\+::graph\+::graph\+\_\+maps\+::\+Edge\+Map\+From\+Node\+Map@{nifty\+::graph\+::graph\+\_\+maps\+::\+Edge\+Map\+From\+Node\+Map}}
+\subsubsection[{Binary\+Functor\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H , class N\+O\+D\+E\+\_\+\+M\+A\+P , class B\+I\+N\+A\+R\+Y\+\_\+\+F\+U\+N\+C\+T\+O\+R $>$ typedef B\+I\+N\+A\+R\+Y\+\_\+\+F\+U\+N\+C\+T\+O\+R {\bf nifty\+::graph\+::graph\+\_\+maps\+::\+Edge\+Map\+From\+Node\+Map}$<$ G\+R\+A\+P\+H, N\+O\+D\+E\+\_\+\+M\+A\+P, B\+I\+N\+A\+R\+Y\+\_\+\+F\+U\+N\+C\+T\+O\+R $>$\+::{\bf Binary\+Functor\+Type}}\label{classnifty_1_1graph_1_1graph__maps_1_1EdgeMapFromNodeMap_a0fbb6e9a54ecf31d27e13db4f274a6d1}
+\hypertarget{classnifty_1_1graph_1_1graph__maps_1_1EdgeMapFromNodeMap_a551dfc3ef2c5293f5306420d129da574}{}\index{nifty\+::graph\+::graph\+\_\+maps\+::\+Edge\+Map\+From\+Node\+Map@{nifty\+::graph\+::graph\+\_\+maps\+::\+Edge\+Map\+From\+Node\+Map}!Graph\+Type@{Graph\+Type}}
+\index{Graph\+Type@{Graph\+Type}!nifty\+::graph\+::graph\+\_\+maps\+::\+Edge\+Map\+From\+Node\+Map@{nifty\+::graph\+::graph\+\_\+maps\+::\+Edge\+Map\+From\+Node\+Map}}
+\subsubsection[{Graph\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H , class N\+O\+D\+E\+\_\+\+M\+A\+P , class B\+I\+N\+A\+R\+Y\+\_\+\+F\+U\+N\+C\+T\+O\+R $>$ typedef G\+R\+A\+P\+H {\bf nifty\+::graph\+::graph\+\_\+maps\+::\+Edge\+Map\+From\+Node\+Map}$<$ G\+R\+A\+P\+H, N\+O\+D\+E\+\_\+\+M\+A\+P, B\+I\+N\+A\+R\+Y\+\_\+\+F\+U\+N\+C\+T\+O\+R $>$\+::{\bf Graph\+Type}}\label{classnifty_1_1graph_1_1graph__maps_1_1EdgeMapFromNodeMap_a551dfc3ef2c5293f5306420d129da574}
+\hypertarget{classnifty_1_1graph_1_1graph__maps_1_1EdgeMapFromNodeMap_ad2639421843e9da9afe18b0b35a7317e}{}\index{nifty\+::graph\+::graph\+\_\+maps\+::\+Edge\+Map\+From\+Node\+Map@{nifty\+::graph\+::graph\+\_\+maps\+::\+Edge\+Map\+From\+Node\+Map}!Node\+Map\+Type@{Node\+Map\+Type}}
+\index{Node\+Map\+Type@{Node\+Map\+Type}!nifty\+::graph\+::graph\+\_\+maps\+::\+Edge\+Map\+From\+Node\+Map@{nifty\+::graph\+::graph\+\_\+maps\+::\+Edge\+Map\+From\+Node\+Map}}
+\subsubsection[{Node\+Map\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H , class N\+O\+D\+E\+\_\+\+M\+A\+P , class B\+I\+N\+A\+R\+Y\+\_\+\+F\+U\+N\+C\+T\+O\+R $>$ typedef N\+O\+D\+E\+\_\+\+M\+A\+P {\bf nifty\+::graph\+::graph\+\_\+maps\+::\+Edge\+Map\+From\+Node\+Map}$<$ G\+R\+A\+P\+H, N\+O\+D\+E\+\_\+\+M\+A\+P, B\+I\+N\+A\+R\+Y\+\_\+\+F\+U\+N\+C\+T\+O\+R $>$\+::{\bf Node\+Map\+Type}}\label{classnifty_1_1graph_1_1graph__maps_1_1EdgeMapFromNodeMap_ad2639421843e9da9afe18b0b35a7317e}
+\hypertarget{classnifty_1_1graph_1_1graph__maps_1_1EdgeMapFromNodeMap_abc24027c855755008ba3694cc49999c2}{}\index{nifty\+::graph\+::graph\+\_\+maps\+::\+Edge\+Map\+From\+Node\+Map@{nifty\+::graph\+::graph\+\_\+maps\+::\+Edge\+Map\+From\+Node\+Map}!value\+\_\+type@{value\+\_\+type}}
+\index{value\+\_\+type@{value\+\_\+type}!nifty\+::graph\+::graph\+\_\+maps\+::\+Edge\+Map\+From\+Node\+Map@{nifty\+::graph\+::graph\+\_\+maps\+::\+Edge\+Map\+From\+Node\+Map}}
+\subsubsection[{value\+\_\+type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H , class N\+O\+D\+E\+\_\+\+M\+A\+P , class B\+I\+N\+A\+R\+Y\+\_\+\+F\+U\+N\+C\+T\+O\+R $>$ typedef Binary\+Functor\+Type\+::value\+\_\+type {\bf nifty\+::graph\+::graph\+\_\+maps\+::\+Edge\+Map\+From\+Node\+Map}$<$ G\+R\+A\+P\+H, N\+O\+D\+E\+\_\+\+M\+A\+P, B\+I\+N\+A\+R\+Y\+\_\+\+F\+U\+N\+C\+T\+O\+R $>$\+::{\bf value\+\_\+type}}\label{classnifty_1_1graph_1_1graph__maps_1_1EdgeMapFromNodeMap_abc24027c855755008ba3694cc49999c2}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classnifty_1_1graph_1_1graph__maps_1_1EdgeMapFromNodeMap_abf8972db1d22bc00d2afd5cf5cb0b6a3}{}\index{nifty\+::graph\+::graph\+\_\+maps\+::\+Edge\+Map\+From\+Node\+Map@{nifty\+::graph\+::graph\+\_\+maps\+::\+Edge\+Map\+From\+Node\+Map}!Edge\+Map\+From\+Node\+Map@{Edge\+Map\+From\+Node\+Map}}
+\index{Edge\+Map\+From\+Node\+Map@{Edge\+Map\+From\+Node\+Map}!nifty\+::graph\+::graph\+\_\+maps\+::\+Edge\+Map\+From\+Node\+Map@{nifty\+::graph\+::graph\+\_\+maps\+::\+Edge\+Map\+From\+Node\+Map}}
+\subsubsection[{Edge\+Map\+From\+Node\+Map(const Graph\+Type \&graph, Node\+Map\+Type node\+Map, Binary\+Functor\+Type binary\+Functor)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H , class N\+O\+D\+E\+\_\+\+M\+A\+P , class B\+I\+N\+A\+R\+Y\+\_\+\+F\+U\+N\+C\+T\+O\+R $>$ {\bf nifty\+::graph\+::graph\+\_\+maps\+::\+Edge\+Map\+From\+Node\+Map}$<$ G\+R\+A\+P\+H, N\+O\+D\+E\+\_\+\+M\+A\+P, B\+I\+N\+A\+R\+Y\+\_\+\+F\+U\+N\+C\+T\+O\+R $>$\+::{\bf Edge\+Map\+From\+Node\+Map} (
+\begin{DoxyParamCaption}
+\item[{const {\bf Graph\+Type} \&}]{graph, }
+\item[{{\bf Node\+Map\+Type}}]{node\+Map, }
+\item[{{\bf Binary\+Functor\+Type}}]{binary\+Functor}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1graph__maps_1_1EdgeMapFromNodeMap_abf8972db1d22bc00d2afd5cf5cb0b6a3}
+
+
+construct edge map from node map and functor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em graph} & the graph \\
+\hline
+{\em node\+Map} & the node map \\
+\hline
+{\em binary\+Functor} & the binary functor \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classnifty_1_1graph_1_1graph__maps_1_1EdgeMapFromNodeMap_add73eee13b7a6f74f0ae6eac1a7c32bf}{}\index{nifty\+::graph\+::graph\+\_\+maps\+::\+Edge\+Map\+From\+Node\+Map@{nifty\+::graph\+::graph\+\_\+maps\+::\+Edge\+Map\+From\+Node\+Map}!operator\mbox{[}$\,$\mbox{]}@{operator[]}}
+\index{operator\mbox{[}$\,$\mbox{]}@{operator[]}!nifty\+::graph\+::graph\+\_\+maps\+::\+Edge\+Map\+From\+Node\+Map@{nifty\+::graph\+::graph\+\_\+maps\+::\+Edge\+Map\+From\+Node\+Map}}
+\subsubsection[{operator[](const uint64\+\_\+t edge\+Index) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H , class N\+O\+D\+E\+\_\+\+M\+A\+P , class B\+I\+N\+A\+R\+Y\+\_\+\+F\+U\+N\+C\+T\+O\+R $>$ {\bf value\+\_\+type} {\bf nifty\+::graph\+::graph\+\_\+maps\+::\+Edge\+Map\+From\+Node\+Map}$<$ G\+R\+A\+P\+H, N\+O\+D\+E\+\_\+\+M\+A\+P, B\+I\+N\+A\+R\+Y\+\_\+\+F\+U\+N\+C\+T\+O\+R $>$\+::operator\mbox{[}$\,$\mbox{]} (
+\begin{DoxyParamCaption}
+\item[{const uint64\+\_\+t}]{edge\+Index}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1graph__maps_1_1EdgeMapFromNodeMap_add73eee13b7a6f74f0ae6eac1a7c32bf}
+
+
+get the value for an edge 
+
+get the value for an edge by calling the binary functor. The functor is called with the node maps values at the enpoints of the edge.
+
+
+\begin{DoxyParams}{Parameters}
+{\em edge\+Index} & the edge index \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the value of the edge map 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/tbeier/src/nifty/include/nifty/graph/\hyperlink{edge__map__from__node__map_8hxx}{edge\+\_\+map\+\_\+from\+\_\+node\+\_\+map.\+hxx}\end{DoxyCompactItemize}

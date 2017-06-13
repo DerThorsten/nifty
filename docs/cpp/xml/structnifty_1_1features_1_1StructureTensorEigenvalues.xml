@@ -1,0 +1,161 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="structnifty_1_1features_1_1StructureTensorEigenvalues" kind="struct" language="C++" prot="public">
+    <compoundname>nifty::features::StructureTensorEigenvalues</compoundname>
+    <basecompoundref refid="structnifty_1_1features_1_1FilterBase" prot="public" virt="non-virtual">nifty::features::FilterBase</basecompoundref>
+    <includes refid="fastfilters__wrapper_8hxx" local="no">fastfilters_wrapper.hxx</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="structnifty_1_1features_1_1StructureTensorEigenvalues_1ac10d31c7e93591c49c3ce4d73fbba486" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double nifty::features::StructureTensorEigenvalues::sigmaOuter_</definition>
+        <argsstring></argsstring>
+        <name>sigmaOuter_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" line="308" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" bodystart="308" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structnifty_1_1features_1_1StructureTensorEigenvalues_1a9691bb7847cc244a100c566f20e7f4cd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>nifty::features::StructureTensorEigenvalues::StructureTensorEigenvalues</definition>
+        <argsstring>()</argsstring>
+        <name>StructureTensorEigenvalues</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" line="241" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" bodystart="241" bodyend="242"/>
+      </memberdef>
+      <memberdef kind="function" id="structnifty_1_1features_1_1StructureTensorEigenvalues_1ab54e8f7c4d7105c12a4c3ae65123bc61" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void nifty::features::StructureTensorEigenvalues::operator()</definition>
+        <argsstring>(const fastfilters_array2d_t &amp;ff, marray::View&lt; float &gt; &amp;out, const double sigma) const </argsstring>
+        <name>operator()</name>
+        <reimplements refid="structnifty_1_1features_1_1FilterBase_1ab362e4142a783ce298a477557bcd9436">operator()</reimplements>
+        <param>
+          <type>const fastfilters_array2d_t &amp;</type>
+          <declname>ff</declname>
+        </param>
+        <param>
+          <type><ref refid="classandres_1_1View" kindref="compound">marray::View</ref>&lt; float &gt; &amp;</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>sigma</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" line="244" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" bodystart="244" bodyend="266"/>
+      </memberdef>
+      <memberdef kind="function" id="structnifty_1_1features_1_1StructureTensorEigenvalues_1a3bd67a952442dd5bd961e82e4f120c20" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void nifty::features::StructureTensorEigenvalues::operator()</definition>
+        <argsstring>(const fastfilters_array3d_t &amp;ff, marray::View&lt; float &gt; &amp;out, const double sigma) const </argsstring>
+        <name>operator()</name>
+        <reimplements refid="structnifty_1_1features_1_1FilterBase_1ab7d7de20b106e80ccfd65a818e1b6eef">operator()</reimplements>
+        <param>
+          <type>const fastfilters_array3d_t &amp;</type>
+          <declname>ff</declname>
+        </param>
+        <param>
+          <type><ref refid="classandres_1_1View" kindref="compound">marray::View</ref>&lt; float &gt; &amp;</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>sigma</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" line="268" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" bodystart="268" bodyend="297"/>
+      </memberdef>
+      <memberdef kind="function" id="structnifty_1_1features_1_1StructureTensorEigenvalues_1aa5167e0e2271ab52102d4afcb11d6634" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>bool nifty::features::StructureTensorEigenvalues::isMultiChannel</definition>
+        <argsstring>() const </argsstring>
+        <name>isMultiChannel</name>
+        <reimplements refid="structnifty_1_1features_1_1FilterBase_1a01fbc04537c69b997079a98a845c5ab3">isMultiChannel</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" line="299" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" bodystart="299" bodyend="301"/>
+      </memberdef>
+      <memberdef kind="function" id="structnifty_1_1features_1_1StructureTensorEigenvalues_1a55717fa81aee4a1faa8538be206a572f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::features::StructureTensorEigenvalues::setOuterScale</definition>
+        <argsstring>(const double sigmaOuter)</argsstring>
+        <name>setOuterScale</name>
+        <param>
+          <type>const double</type>
+          <declname>sigmaOuter</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" line="303" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" bodystart="303" bodyend="305"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1825">
+        <label>nifty::features::StructureTensorEigenvalues</label>
+        <link refid="structnifty_1_1features_1_1StructureTensorEigenvalues"/>
+        <childnode refid="1826" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1826">
+        <label>nifty::features::FilterBase</label>
+        <link refid="structnifty_1_1features_1_1FilterBase"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1827">
+        <label>nifty::features::StructureTensorEigenvalues</label>
+        <link refid="structnifty_1_1features_1_1StructureTensorEigenvalues"/>
+        <childnode refid="1828" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1828">
+        <label>nifty::features::FilterBase</label>
+        <link refid="structnifty_1_1features_1_1FilterBase"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" line="239" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" bodystart="239" bodyend="310"/>
+    <listofallmembers>
+      <member refid="structnifty_1_1features_1_1FilterBase_1ac10b9d69df645dd2feb7ce555e544502" prot="public" virt="non-virtual"><scope>nifty::features::StructureTensorEigenvalues</scope><name>FilterBase</name></member>
+      <member refid="structnifty_1_1features_1_1StructureTensorEigenvalues_1aa5167e0e2271ab52102d4afcb11d6634" prot="public" virt="virtual"><scope>nifty::features::StructureTensorEigenvalues</scope><name>isMultiChannel</name></member>
+      <member refid="structnifty_1_1features_1_1StructureTensorEigenvalues_1ab54e8f7c4d7105c12a4c3ae65123bc61" prot="public" virt="virtual"><scope>nifty::features::StructureTensorEigenvalues</scope><name>operator()</name></member>
+      <member refid="structnifty_1_1features_1_1StructureTensorEigenvalues_1a3bd67a952442dd5bd961e82e4f120c20" prot="public" virt="virtual"><scope>nifty::features::StructureTensorEigenvalues</scope><name>operator()</name></member>
+      <member refid="structnifty_1_1features_1_1FilterBase_1a4bd3a5f88a4c061e80f0b0c4a1074c8c" prot="protected" virt="non-virtual"><scope>nifty::features::StructureTensorEigenvalues</scope><name>opt_</name></member>
+      <member refid="structnifty_1_1features_1_1FilterBase_1ab59d743ba07608b8aaa37e59f049431e" prot="public" virt="non-virtual"><scope>nifty::features::StructureTensorEigenvalues</scope><name>set_window_ratio</name></member>
+      <member refid="structnifty_1_1features_1_1StructureTensorEigenvalues_1a55717fa81aee4a1faa8538be206a572f" prot="public" virt="non-virtual"><scope>nifty::features::StructureTensorEigenvalues</scope><name>setOuterScale</name></member>
+      <member refid="structnifty_1_1features_1_1StructureTensorEigenvalues_1ac10d31c7e93591c49c3ce4d73fbba486" prot="private" virt="non-virtual"><scope>nifty::features::StructureTensorEigenvalues</scope><name>sigmaOuter_</name></member>
+      <member refid="structnifty_1_1features_1_1StructureTensorEigenvalues_1a9691bb7847cc244a100c566f20e7f4cd" prot="public" virt="non-virtual"><scope>nifty::features::StructureTensorEigenvalues</scope><name>StructureTensorEigenvalues</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,284 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="marray-fftw_8hxx" kind="file" language="C++">
+    <compoundname>marray-fftw.hxx</compoundname>
+    <includes local="no">cstddef</includes>
+    <includes local="no">stdexcept</includes>
+    <includes local="no">algorithm</includes>
+    <includes local="no">complex</includes>
+    <includes refid="andres_2marray_8hxx" local="yes">marray.hxx</includes>
+    <includes local="no">fftw3.h</includes>
+    <incdepgraph>
+      <node id="11368">
+        <label>functional</label>
+      </node>
+      <node id="11358">
+        <label>limits</label>
+      </node>
+      <node id="11362">
+        <label>iterator</label>
+      </node>
+      <node id="11357">
+        <label>cassert</label>
+      </node>
+      <node id="11353">
+        <label>stdexcept</label>
+      </node>
+      <node id="11367">
+        <label>numeric</label>
+      </node>
+      <node id="11359">
+        <label>string</label>
+      </node>
+      <node id="11369">
+        <label>fftw3.h</label>
+      </node>
+      <node id="11356">
+        <label>marray.hxx</label>
+        <link refid="andres_2marray_8hxx"/>
+        <childnode refid="11357" relation="include">
+        </childnode>
+        <childnode refid="11352" relation="include">
+        </childnode>
+        <childnode refid="11353" relation="include">
+        </childnode>
+        <childnode refid="11358" relation="include">
+        </childnode>
+        <childnode refid="11359" relation="include">
+        </childnode>
+        <childnode refid="11360" relation="include">
+        </childnode>
+        <childnode refid="11361" relation="include">
+        </childnode>
+        <childnode refid="11362" relation="include">
+        </childnode>
+        <childnode refid="11363" relation="include">
+        </childnode>
+        <childnode refid="11364" relation="include">
+        </childnode>
+        <childnode refid="11365" relation="include">
+        </childnode>
+        <childnode refid="11366" relation="include">
+        </childnode>
+        <childnode refid="11367" relation="include">
+        </childnode>
+        <childnode refid="11368" relation="include">
+        </childnode>
+      </node>
+      <node id="11363">
+        <label>vector</label>
+      </node>
+      <node id="11360">
+        <label>sstream</label>
+      </node>
+      <node id="11365">
+        <label>iostream</label>
+      </node>
+      <node id="11352">
+        <label>cstddef</label>
+      </node>
+      <node id="11351">
+        <label>/home/tbeier/src/nifty/include/nifty/marray/andres/marray-fftw.hxx</label>
+        <link refid="marray-fftw.hxx"/>
+        <childnode refid="11352" relation="include">
+        </childnode>
+        <childnode refid="11353" relation="include">
+        </childnode>
+        <childnode refid="11354" relation="include">
+        </childnode>
+        <childnode refid="11355" relation="include">
+        </childnode>
+        <childnode refid="11356" relation="include">
+        </childnode>
+        <childnode refid="11369" relation="include">
+        </childnode>
+      </node>
+      <node id="11364">
+        <label>set</label>
+      </node>
+      <node id="11355">
+        <label>complex</label>
+      </node>
+      <node id="11354">
+        <label>algorithm</label>
+      </node>
+      <node id="11361">
+        <label>cstring</label>
+      </node>
+      <node id="11366">
+        <label>memory</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classandres_1_1FFT" prot="public">andres::FFT</innerclass>
+    <innerclass refid="classandres_1_1IFFT" prot="public">andres::IFFT</innerclass>
+    <innernamespace refid="namespaceandres">andres</innernamespace>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="marray-fftw_8hxx_1ae1a77a5da5a70854727f1cef07f35e7f" prot="public" static="no">
+        <name>ANDRES_MARRAY_FFTW_HXX</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-fftw.hxx" line="3" column="9" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-fftw.hxx" bodystart="3" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>ANDRES_MARRAY_FFTW_HXX</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3" refid="marray-fftw_8hxx_1ae1a77a5da5a70854727f1cef07f35e7f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ANDRES_MARRAY_FFTW_HXX</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cstddef&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdexcept&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;algorithm&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;complex&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="andres_2marray_8hxx" kindref="compound">marray.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;fftw3.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14" refid="namespaceandres" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespaceandres" kindref="compound">andres</ref><sp/>{</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>S<sp/>=<sp/>std::</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">&gt;</highlight></codeline>
+<codeline lineno="17" refid="classandres_1_1FFT" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classandres_1_1FFT" kindref="compound">FFT</ref><sp/>{</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="19" refid="classandres_1_1FFT_1a22b9513914905e90538e45d02c5e3601" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>S<sp/><ref refid="classandres_1_1FFT_1a22b9513914905e90538e45d02c5e3601" kindref="member">size_type</ref>;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classandres_1_1FFT_1a0163fa67e3b12c454ebfd688e54f7859" kindref="member">FFT</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classandres_1_1Marray" kindref="compound">andres::Marray&lt;double&gt;</ref>&amp;,<sp/><ref refid="classandres_1_1Marray" kindref="compound">andres::Marray</ref>&lt;std::complex&lt;double&gt;<sp/>&gt;&amp;);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classandres_1_1FFT_1a11656c721a5b073be01fbdd71793ee1e" kindref="member">~FFT</ref>();</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classandres_1_1FFT_1aa73174ae3df430476d768eab0ad0e283" kindref="member">execute</ref>();</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/>fftw_plan<sp/>plan_;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>S<sp/>=<sp/>std::</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">&gt;</highlight></codeline>
+<codeline lineno="30" refid="classandres_1_1IFFT" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classandres_1_1IFFT" kindref="compound">IFFT</ref><sp/>{</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="32" refid="classandres_1_1IFFT_1a15dbc48e17ab7f5f8de2fcdd507eaba5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>S<sp/><ref refid="classandres_1_1IFFT_1a15dbc48e17ab7f5f8de2fcdd507eaba5" kindref="member">size_type</ref>;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classandres_1_1IFFT_1ab99387b8042cb2f7748ff735fa227d34" kindref="member">IFFT</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classandres_1_1Marray" kindref="compound">andres::Marray</ref>&lt;std::complex&lt;double&gt;<sp/>&gt;&amp;<sp/>in,<sp/><ref refid="classandres_1_1Marray" kindref="compound">andres::Marray&lt;double&gt;</ref>&amp;<sp/>out);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classandres_1_1IFFT_1a01d5f0a0d262ee285b0517559418cf97" kindref="member">~IFFT</ref>();</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classandres_1_1IFFT_1aa73b7f9e34a4e62f6d2ff244a656dc71" kindref="member">execute</ref>();</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>fftw_plan<sp/>plan_;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>S&gt;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44" refid="classandres_1_1FFT_1a0163fa67e3b12c454ebfd688e54f7859" refkind="member"><highlight class="normal"><ref refid="classandres_1_1FFT_1a0163fa67e3b12c454ebfd688e54f7859" kindref="member">FFT&lt;S&gt;::FFT</ref>(</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classandres_1_1Marray" kindref="compound">andres::Marray&lt;double&gt;</ref>&amp;<sp/>in,</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classandres_1_1Marray" kindref="compound">andres::Marray</ref>&lt;std::complex&lt;double&gt;<sp/>&gt;&amp;<sp/>out</highlight></codeline>
+<codeline lineno="47"><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(in.<ref refid="classandres_1_1View_1a7ca5aa89f5c22d80e3c7037e55c78cdb" kindref="member">coordinateOrder</ref>()<sp/>!=<sp/><ref refid="namespaceandres_1a2ac8b7aa89d44e8188a7c0ba50f4306ba88e74e8570fc8b1bee29f708f391fe69" kindref="member">andres::CoordinateOrder::FirstMajorOrder</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(</highlight><highlight class="stringliteral">&quot;Marray<sp/>not<sp/>in<sp/>first-major<sp/>order&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(out.coordinateOrder()<sp/>!=<sp/><ref refid="namespaceandres_1a2ac8b7aa89d44e8188a7c0ba50f4306ba88e74e8570fc8b1bee29f708f391fe69" kindref="member">andres::CoordinateOrder::FirstMajorOrder</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(</highlight><highlight class="stringliteral">&quot;Marray<sp/>not<sp/>in<sp/>first-major<sp/>order&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(in.<ref refid="classandres_1_1View_1a36308e1cf6bb6b17e8b0df6537c1ec39" kindref="member">dimension</ref>()<sp/>!=<sp/>2)<sp/>{</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(</highlight><highlight class="stringliteral">&quot;Marray<sp/>not<sp/>2-dimensional.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nRows<sp/>=<sp/>in.<ref refid="classandres_1_1View_1a9bc3d88b3e2bdf432dd68f36ff33deb3" kindref="member">shape</ref>(0);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nCols<sp/>=<sp/>in.<ref refid="classandres_1_1View_1a9bc3d88b3e2bdf432dd68f36ff33deb3" kindref="member">shape</ref>(1);</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>shape[]<sp/>=<sp/>{nRows,<sp/>nCols<sp/>/<sp/>2<sp/>+<sp/>1};</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>out.resize(shape,<sp/>shape<sp/>+<sp/>2);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>rank<sp/>=<sp/>1;<sp/></highlight><highlight class="comment">//<sp/>1D<sp/>transform</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n[]<sp/>=<sp/>{nCols};<sp/></highlight><highlight class="comment">//<sp/>1D<sp/>transforms<sp/>of<sp/>length<sp/>nCols</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>howmany<sp/>=<sp/>nRows;<sp/></highlight><highlight class="comment">//<sp/>nRows<sp/>1D<sp/>transforms</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>idist<sp/>=<sp/>nCols;<sp/></highlight><highlight class="comment">//<sp/>number<sp/>of<sp/>columns<sp/>in<sp/>input<sp/>array</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>odist<sp/>=<sp/>nCols/2+1;<sp/></highlight><highlight class="comment">//<sp/>number<sp/>of<sp/>columns<sp/>in<sp/>output<sp/>array</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>istride<sp/>=<sp/>1;<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ostride<sp/>=<sp/>1;<sp/></highlight><highlight class="comment">//<sp/>array<sp/>is<sp/>contiguous<sp/>in<sp/>memory</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">*<sp/>inembed<sp/>=<sp/>n;<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*onembed<sp/>=<sp/>n;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/>pragma<sp/>omp<sp/>critical</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>plan_<sp/>=<sp/>fftw_plan_many_dft_r2c(</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rank,<sp/>n,<sp/>howmany,</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;in(0),<sp/>inembed,<sp/>istride,<sp/>idist,</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>reinterpret_cast&lt;fftw_complex*&gt;(&amp;out(0)),<sp/>onembed,<sp/>ostride,<sp/>odist,</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>FFTW_ESTIMATE</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>);</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="80"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>S&gt;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84" refid="classandres_1_1FFT_1a11656c721a5b073be01fbdd71793ee1e" refkind="member"><highlight class="normal"><ref refid="classandres_1_1FFT_1a11656c721a5b073be01fbdd71793ee1e" kindref="member">FFT&lt;S&gt;::~FFT</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/>pragma<sp/>omp<sp/>critical</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>fftw_destroy_plan(plan_);</highlight></codeline>
+<codeline lineno="87"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>S&gt;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91" refid="classandres_1_1FFT_1aa73174ae3df430476d768eab0ad0e283" refkind="member"><highlight class="normal"><ref refid="classandres_1_1FFT_1aa73174ae3df430476d768eab0ad0e283" kindref="member">FFT&lt;S&gt;::execute</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/>fftw_execute(plan_);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>S&gt;</highlight></codeline>
+<codeline lineno="96" refid="classandres_1_1IFFT_1ab99387b8042cb2f7748ff735fa227d34" refkind="member"><highlight class="normal"><ref refid="classandres_1_1IFFT_1ab99387b8042cb2f7748ff735fa227d34" kindref="member">IFFT&lt;S&gt;::IFFT</ref>(</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classandres_1_1Marray" kindref="compound">andres::Marray</ref>&lt;std::complex&lt;double&gt;<sp/>&gt;&amp;<sp/>in,</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classandres_1_1Marray" kindref="compound">andres::Marray&lt;double&gt;</ref>&amp;<sp/>out</highlight></codeline>
+<codeline lineno="99"><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(in.coordinateOrder()<sp/>!=<sp/><ref refid="namespaceandres_1a2ac8b7aa89d44e8188a7c0ba50f4306ba88e74e8570fc8b1bee29f708f391fe69" kindref="member">andres::CoordinateOrder::FirstMajorOrder</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(</highlight><highlight class="stringliteral">&quot;Marray<sp/>not<sp/>in<sp/>first-major<sp/>order&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(out.<ref refid="classandres_1_1View_1a7ca5aa89f5c22d80e3c7037e55c78cdb" kindref="member">coordinateOrder</ref>()<sp/>!=<sp/><ref refid="namespaceandres_1a2ac8b7aa89d44e8188a7c0ba50f4306ba88e74e8570fc8b1bee29f708f391fe69" kindref="member">andres::CoordinateOrder::FirstMajorOrder</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(</highlight><highlight class="stringliteral">&quot;Marray<sp/>not<sp/>in<sp/>first-major<sp/>order&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(in.dimension()<sp/>!=<sp/>2)<sp/>{</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(</highlight><highlight class="stringliteral">&quot;Marray<sp/>not<sp/>2-dimensional.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nRows<sp/>=<sp/>in.shape(0);</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nCols<sp/>=<sp/>in.shape(1);</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>shape[]<sp/>=<sp/>{nRows,<sp/>nCols};</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>out.<ref refid="classandres_1_1Marray_1aa6f53a2bb7002c69146ae9e2e3544ba2" kindref="member">resize</ref>(shape,<sp/>shape<sp/>+<sp/>2);</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>rank<sp/>=<sp/>1;<sp/></highlight><highlight class="comment">//<sp/>1D<sp/>transform</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n[]<sp/>=<sp/>{nCols};<sp/></highlight><highlight class="comment">//<sp/>1D<sp/>transforms<sp/>of<sp/>length<sp/>nCols</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>howmany<sp/>=<sp/>nRows;<sp/></highlight><highlight class="comment">//<sp/>nRows<sp/>1D<sp/>transforms</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>idist<sp/>=<sp/>nCols;<sp/></highlight><highlight class="comment">//<sp/>number<sp/>of<sp/>columns<sp/>in<sp/>input<sp/>array</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>odist<sp/>=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(nCols);<sp/></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>istride<sp/>=<sp/>1;<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ostride<sp/>=<sp/>1;<sp/></highlight><highlight class="comment">//<sp/>array<sp/>is<sp/>contiguous<sp/>in<sp/>memory</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">*<sp/>inembed<sp/>=<sp/>n;<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*onembed<sp/>=<sp/>n;</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/>pragma<sp/>omp<sp/>critical</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>plan_<sp/>=<sp/>fftw_plan_many_dft_c2r(</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rank,<sp/>n,<sp/>howmany,</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>reinterpret_cast&lt;fftw_complex*&gt;(&amp;in(0)),<sp/>inembed,<sp/>istride,<sp/>idist,</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;out(0),<sp/>onembed,<sp/>ostride,<sp/>odist,</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>FFTW_ESTIMATE</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>);</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="132"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>S&gt;</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="136" refid="classandres_1_1IFFT_1a01d5f0a0d262ee285b0517559418cf97" refkind="member"><highlight class="normal"><ref refid="classandres_1_1IFFT_1a01d5f0a0d262ee285b0517559418cf97" kindref="member">IFFT&lt;S&gt;::~IFFT</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/>pragma<sp/>omp<sp/>critical</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/>fftw_destroy_plan(plan_);</highlight></codeline>
+<codeline lineno="139"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>S&gt;</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="143" refid="classandres_1_1IFFT_1aa73b7f9e34a4e62f6d2ff244a656dc71" refkind="member"><highlight class="normal"><ref refid="classandres_1_1IFFT_1aa73b7f9e34a4e62f6d2ff244a656dc71" kindref="member">IFFT&lt;S&gt;::execute</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/>fftw_execute(plan_);</highlight></codeline>
+<codeline lineno="145"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>andres</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//<sp/>#ifndef<sp/>ANDRES_MARRAY_FFTW_HXX</highlight></codeline>
+    </programlisting>
+    <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray-fftw.hxx"/>
+  </compounddef>
+</doxygen>

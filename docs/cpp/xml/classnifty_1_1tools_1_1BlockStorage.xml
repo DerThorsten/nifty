@@ -1,0 +1,184 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="classnifty_1_1tools_1_1BlockStorage" kind="class" language="C++" prot="public">
+    <compoundname>nifty::tools::BlockStorage</compoundname>
+    <includes refid="block__access_8hxx" local="no">block_access.hxx</includes>
+    <templateparamlist>
+      <param>
+        <type>class T</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1tools_1_1BlockStorage_1af39a2936478b64389c56a5c6ef5aab7d" prot="public" static="no">
+        <type><ref refid="classandres_1_1Marray" kindref="compound">nifty::marray::Marray</ref>&lt; T &gt;</type>
+        <definition>typedef nifty::marray::Marray&lt;T&gt; nifty::tools::BlockStorage&lt; T &gt;::ArrayType</definition>
+        <argsstring></argsstring>
+        <name>ArrayType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/tools/block_access.hxx" line="13" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/tools/block_access.hxx" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1tools_1_1BlockStorage_1afe259433c35f56d01be0b597a696e090" prot="public" static="no">
+        <type><ref refid="classandres_1_1View" kindref="compound">nifty::marray::View</ref>&lt; T &gt;</type>
+        <definition>typedef nifty::marray::View&lt;T&gt; nifty::tools::BlockStorage&lt; T &gt;::ViewType</definition>
+        <argsstring></argsstring>
+        <name>ViewType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/tools/block_access.hxx" line="14" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/tools/block_access.hxx" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classnifty_1_1tools_1_1BlockStorage_1ab82ed0bd5eb3a3f0ae925b2f677ee976" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; uint64_t &gt;</type>
+        <definition>std::vector&lt;uint64_t&gt; nifty::tools::BlockStorage&lt; T &gt;::zeroCoord_</definition>
+        <argsstring></argsstring>
+        <name>zeroCoord_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/tools/block_access.hxx" line="44" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/tools/block_access.hxx" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1tools_1_1BlockStorage_1a5633ac60db90b2b0fcc204a14fc7edde" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="classnifty_1_1tools_1_1BlockStorage_1af39a2936478b64389c56a5c6ef5aab7d" kindref="member">ArrayType</ref> &gt;</type>
+        <definition>std::vector&lt;ArrayType&gt; nifty::tools::BlockStorage&lt; T &gt;::arrayVec_</definition>
+        <argsstring></argsstring>
+        <name>arrayVec_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/tools/block_access.hxx" line="45" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/tools/block_access.hxx" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1tools_1_1BlockStorage_1a95d95c49b1a1ed51c6d794d3fe8f2645" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class SHAPE</type>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>nifty::tools::BlockStorage&lt; T &gt;::BlockStorage</definition>
+        <argsstring>(const SHAPE &amp;maxShape, const std::size_t numberOfBlocks)</argsstring>
+        <name>BlockStorage</name>
+        <param>
+          <type>const SHAPE &amp;</type>
+          <declname>maxShape</declname>
+        </param>
+        <param>
+          <type>const std::size_t</type>
+          <declname>numberOfBlocks</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/tools/block_access.hxx" line="16" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/tools/block_access.hxx" bodystart="16" bodyend="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1tools_1_1BlockStorage_1a536abc42caab3d50becdfbadd2d58f89" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class SHAPE</type>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>nifty::tools::BlockStorage&lt; T &gt;::BlockStorage</definition>
+        <argsstring>(nifty::parallel::ThreadPool &amp;threadpool, const SHAPE &amp;maxShape, const std::size_t numberOfBlocks)</argsstring>
+        <name>BlockStorage</name>
+        <param>
+          <type><ref refid="classnifty_1_1parallel_1_1ThreadPool" kindref="compound">nifty::parallel::ThreadPool</ref> &amp;</type>
+          <declname>threadpool</declname>
+        </param>
+        <param>
+          <type>const SHAPE &amp;</type>
+          <declname>maxShape</declname>
+        </param>
+        <param>
+          <type>const std::size_t</type>
+          <declname>numberOfBlocks</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/tools/block_access.hxx" line="25" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/tools/block_access.hxx" bodystart="25" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1tools_1_1BlockStorage_1ae9f1e8b14c9281036350c8e6022c5ec0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class SHAPE</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classnifty_1_1tools_1_1BlockStorage_1afe259433c35f56d01be0b597a696e090" kindref="member">ViewType</ref></type>
+        <definition>ViewType nifty::tools::BlockStorage&lt; T &gt;::getView</definition>
+        <argsstring>(const SHAPE &amp;shape, const std::size_t blockIndex)</argsstring>
+        <name>getView</name>
+        <param>
+          <type>const SHAPE &amp;</type>
+          <declname>shape</declname>
+        </param>
+        <param>
+          <type>const std::size_t</type>
+          <declname>blockIndex</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/tools/block_access.hxx" line="35" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/tools/block_access.hxx" bodystart="35" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1tools_1_1BlockStorage_1a03263a4946397ebea215101c8e53bc24" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classnifty_1_1tools_1_1BlockStorage_1afe259433c35f56d01be0b597a696e090" kindref="member">ViewType</ref></type>
+        <definition>ViewType nifty::tools::BlockStorage&lt; T &gt;::getView</definition>
+        <argsstring>(const std::size_t blockIndex)</argsstring>
+        <name>getView</name>
+        <param>
+          <type>const std::size_t</type>
+          <declname>blockIndex</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/tools/block_access.hxx" line="39" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/tools/block_access.hxx" bodystart="39" bodyend="41"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/tools/block_access.hxx" line="11" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/tools/block_access.hxx" bodystart="11" bodyend="46"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1tools_1_1BlockStorage_1af39a2936478b64389c56a5c6ef5aab7d" prot="public" virt="non-virtual"><scope>nifty::tools::BlockStorage</scope><name>ArrayType</name></member>
+      <member refid="classnifty_1_1tools_1_1BlockStorage_1a5633ac60db90b2b0fcc204a14fc7edde" prot="private" virt="non-virtual"><scope>nifty::tools::BlockStorage</scope><name>arrayVec_</name></member>
+      <member refid="classnifty_1_1tools_1_1BlockStorage_1a95d95c49b1a1ed51c6d794d3fe8f2645" prot="public" virt="non-virtual"><scope>nifty::tools::BlockStorage</scope><name>BlockStorage</name></member>
+      <member refid="classnifty_1_1tools_1_1BlockStorage_1a536abc42caab3d50becdfbadd2d58f89" prot="public" virt="non-virtual"><scope>nifty::tools::BlockStorage</scope><name>BlockStorage</name></member>
+      <member refid="classnifty_1_1tools_1_1BlockStorage_1ae9f1e8b14c9281036350c8e6022c5ec0" prot="public" virt="non-virtual"><scope>nifty::tools::BlockStorage</scope><name>getView</name></member>
+      <member refid="classnifty_1_1tools_1_1BlockStorage_1a03263a4946397ebea215101c8e53bc24" prot="public" virt="non-virtual"><scope>nifty::tools::BlockStorage</scope><name>getView</name></member>
+      <member refid="classnifty_1_1tools_1_1BlockStorage_1afe259433c35f56d01be0b597a696e090" prot="public" virt="non-virtual"><scope>nifty::tools::BlockStorage</scope><name>ViewType</name></member>
+      <member refid="classnifty_1_1tools_1_1BlockStorage_1ab82ed0bd5eb3a3f0ae925b2f677ee976" prot="private" virt="non-virtual"><scope>nifty::tools::BlockStorage</scope><name>zeroCoord_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

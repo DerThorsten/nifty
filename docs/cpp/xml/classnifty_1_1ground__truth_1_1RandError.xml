@@ -1,0 +1,377 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="classnifty_1_1ground__truth_1_1RandError" kind="class" language="C++" prot="public">
+    <compoundname>nifty::ground_truth::RandError</compoundname>
+    <includes refid="partition__comparison_8hxx" local="no">partition_comparison.hxx</includes>
+    <templateparamlist>
+      <param>
+        <type>class T</type>
+        <defval>double</defval>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1ground__truth_1_1RandError_1a8ccf604387e3b5ed939c97c22c75acf9" prot="public" static="no">
+        <type>T</type>
+        <definition>typedef T nifty::ground_truth::RandError&lt; T &gt;::value_type</definition>
+        <argsstring></argsstring>
+        <name>value_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" line="20" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classnifty_1_1ground__truth_1_1RandError_1a93e8e72c08eedcfabaca8d89984b9911" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t nifty::ground_truth::RandError&lt; T &gt;::elements_</definition>
+        <argsstring></argsstring>
+        <name>elements_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" line="144" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" bodystart="144" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1ground__truth_1_1RandError_1a33ceb601c380c75203c5bac78481496c" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t nifty::ground_truth::RandError&lt; T &gt;::trueJoins_</definition>
+        <argsstring></argsstring>
+        <name>trueJoins_</name>
+        <initializer>{ size_t() }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" line="145" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" bodystart="145" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1ground__truth_1_1RandError_1ad99a66ad58a2285ff52f6ae157f05e12" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t nifty::ground_truth::RandError&lt; T &gt;::trueCuts_</definition>
+        <argsstring></argsstring>
+        <name>trueCuts_</name>
+        <initializer>{ size_t() }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" line="146" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" bodystart="146" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1ground__truth_1_1RandError_1a64457bf2e7b30c5d07ee2eb63f359852" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t nifty::ground_truth::RandError&lt; T &gt;::falseJoins_</definition>
+        <argsstring></argsstring>
+        <name>falseJoins_</name>
+        <initializer>{ size_t() }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" line="147" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" bodystart="147" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1ground__truth_1_1RandError_1a1489dc2af760967fce53fb6584eb7a8d" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t nifty::ground_truth::RandError&lt; T &gt;::falseCuts_</definition>
+        <argsstring></argsstring>
+        <name>falseCuts_</name>
+        <initializer>{ size_t() }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" line="148" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" bodystart="148" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1ground__truth_1_1RandError_1a4ad5e727b3445b52cfe87e5f5cd68a2f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class ITERATOR_TRUTH</type>
+          </param>
+          <param>
+            <type>class ITERATOR_PRED</type>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>nifty::ground_truth::RandError&lt; T &gt;::RandError</definition>
+        <argsstring>(ITERATOR_TRUTH begin0, ITERATOR_TRUTH end0, ITERATOR_PRED begin1, bool ignoreDefaultLabel=false)</argsstring>
+        <name>RandError</name>
+        <param>
+          <type>ITERATOR_TRUTH</type>
+          <declname>begin0</declname>
+        </param>
+        <param>
+          <type>ITERATOR_TRUTH</type>
+          <declname>end0</declname>
+        </param>
+        <param>
+          <type>ITERATOR_PRED</type>
+          <declname>begin1</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>ignoreDefaultLabel</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" line="23" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" bodystart="23" bodyend="83"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1ground__truth_1_1RandError_1ad439a6acad528a0d55bb8d0182bb9763" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t nifty::ground_truth::RandError&lt; T &gt;::elements</definition>
+        <argsstring>() const </argsstring>
+        <name>elements</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" line="85" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" bodystart="85" bodyend="86"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1ground__truth_1_1RandError_1af6264967f41285e889b484a865905b66" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t nifty::ground_truth::RandError&lt; T &gt;::pairs</definition>
+        <argsstring>() const </argsstring>
+        <name>pairs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" line="87" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" bodystart="87" bodyend="88"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1ground__truth_1_1RandError_1a65b8b7555186291fdc99e0bd633cc450" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t nifty::ground_truth::RandError&lt; T &gt;::trueJoins</definition>
+        <argsstring>() const </argsstring>
+        <name>trueJoins</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" line="90" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" bodystart="90" bodyend="91"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1ground__truth_1_1RandError_1abe7c1cda41bbea6f7f4d72038123651a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t nifty::ground_truth::RandError&lt; T &gt;::trueCuts</definition>
+        <argsstring>() const </argsstring>
+        <name>trueCuts</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" line="92" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" bodystart="92" bodyend="93"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1ground__truth_1_1RandError_1ac99ba816b395e9a949a4fda387f47c04" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t nifty::ground_truth::RandError&lt; T &gt;::falseJoins</definition>
+        <argsstring>() const </argsstring>
+        <name>falseJoins</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" line="94" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" bodystart="94" bodyend="95"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1ground__truth_1_1RandError_1a34a1290d7335ede34d3cfb928034d27d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t nifty::ground_truth::RandError&lt; T &gt;::falseCuts</definition>
+        <argsstring>() const </argsstring>
+        <name>falseCuts</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" line="96" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" bodystart="96" bodyend="97"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1ground__truth_1_1RandError_1a2d658ff5469faf7010f75d3a98ae10cc" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t nifty::ground_truth::RandError&lt; T &gt;::joinsInPrediction</definition>
+        <argsstring>() const </argsstring>
+        <name>joinsInPrediction</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" line="99" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" bodystart="99" bodyend="100"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1ground__truth_1_1RandError_1a37af80b186c9fb15338ba2a352712036" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t nifty::ground_truth::RandError&lt; T &gt;::cutsInPrediction</definition>
+        <argsstring>() const </argsstring>
+        <name>cutsInPrediction</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" line="101" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" bodystart="101" bodyend="102"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1ground__truth_1_1RandError_1a18e5ce6958faacd343de403b78e521e7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t nifty::ground_truth::RandError&lt; T &gt;::joinsInTruth</definition>
+        <argsstring>() const </argsstring>
+        <name>joinsInTruth</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" line="103" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" bodystart="103" bodyend="104"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1ground__truth_1_1RandError_1a308ce2c713034ac8a852dbbca5983ae7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t nifty::ground_truth::RandError&lt; T &gt;::cutsInTruth</definition>
+        <argsstring>() const </argsstring>
+        <name>cutsInTruth</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" line="105" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" bodystart="105" bodyend="106"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1ground__truth_1_1RandError_1a1b86b5566c60f77e902710b67465ed1c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classnifty_1_1ground__truth_1_1RandError_1a8ccf604387e3b5ed939c97c22c75acf9" kindref="member">value_type</ref></type>
+        <definition>value_type nifty::ground_truth::RandError&lt; T &gt;::recallOfCuts</definition>
+        <argsstring>() const </argsstring>
+        <name>recallOfCuts</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" line="108" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" bodystart="108" bodyend="114"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1ground__truth_1_1RandError_1a265473d172eb9edfae12ec6641932ed5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classnifty_1_1ground__truth_1_1RandError_1a8ccf604387e3b5ed939c97c22c75acf9" kindref="member">value_type</ref></type>
+        <definition>value_type nifty::ground_truth::RandError&lt; T &gt;::precisionOfCuts</definition>
+        <argsstring>() const </argsstring>
+        <name>precisionOfCuts</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" line="115" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" bodystart="115" bodyend="121"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1ground__truth_1_1RandError_1acd1e46b27ba981f8a56f0e56e37eb439" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classnifty_1_1ground__truth_1_1RandError_1a8ccf604387e3b5ed939c97c22c75acf9" kindref="member">value_type</ref></type>
+        <definition>value_type nifty::ground_truth::RandError&lt; T &gt;::recallOfJoins</definition>
+        <argsstring>() const </argsstring>
+        <name>recallOfJoins</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" line="123" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" bodystart="123" bodyend="129"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1ground__truth_1_1RandError_1a5d7b48ee15484fd4727cf866de6e37db" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classnifty_1_1ground__truth_1_1RandError_1a8ccf604387e3b5ed939c97c22c75acf9" kindref="member">value_type</ref></type>
+        <definition>value_type nifty::ground_truth::RandError&lt; T &gt;::precisionOfJoins</definition>
+        <argsstring>() const </argsstring>
+        <name>precisionOfJoins</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" line="130" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" bodystart="130" bodyend="136"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1ground__truth_1_1RandError_1a6ab1ff8964918590f45508e799eb9a11" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classnifty_1_1ground__truth_1_1RandError_1a8ccf604387e3b5ed939c97c22c75acf9" kindref="member">value_type</ref></type>
+        <definition>value_type nifty::ground_truth::RandError&lt; T &gt;::error</definition>
+        <argsstring>() const </argsstring>
+        <name>error</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" line="138" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" bodystart="138" bodyend="139"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1ground__truth_1_1RandError_1ac00ee6eaccaeced31ccdef585003aa43" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classnifty_1_1ground__truth_1_1RandError_1a8ccf604387e3b5ed939c97c22c75acf9" kindref="member">value_type</ref></type>
+        <definition>value_type nifty::ground_truth::RandError&lt; T &gt;::index</definition>
+        <argsstring>() const </argsstring>
+        <name>index</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" line="140" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" bodystart="140" bodyend="141"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" line="18" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/ground_truth/partition_comparison.hxx" bodystart="18" bodyend="149"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1ground__truth_1_1RandError_1a37af80b186c9fb15338ba2a352712036" prot="public" virt="non-virtual"><scope>nifty::ground_truth::RandError</scope><name>cutsInPrediction</name></member>
+      <member refid="classnifty_1_1ground__truth_1_1RandError_1a308ce2c713034ac8a852dbbca5983ae7" prot="public" virt="non-virtual"><scope>nifty::ground_truth::RandError</scope><name>cutsInTruth</name></member>
+      <member refid="classnifty_1_1ground__truth_1_1RandError_1ad439a6acad528a0d55bb8d0182bb9763" prot="public" virt="non-virtual"><scope>nifty::ground_truth::RandError</scope><name>elements</name></member>
+      <member refid="classnifty_1_1ground__truth_1_1RandError_1a93e8e72c08eedcfabaca8d89984b9911" prot="private" virt="non-virtual"><scope>nifty::ground_truth::RandError</scope><name>elements_</name></member>
+      <member refid="classnifty_1_1ground__truth_1_1RandError_1a6ab1ff8964918590f45508e799eb9a11" prot="public" virt="non-virtual"><scope>nifty::ground_truth::RandError</scope><name>error</name></member>
+      <member refid="classnifty_1_1ground__truth_1_1RandError_1a34a1290d7335ede34d3cfb928034d27d" prot="public" virt="non-virtual"><scope>nifty::ground_truth::RandError</scope><name>falseCuts</name></member>
+      <member refid="classnifty_1_1ground__truth_1_1RandError_1a1489dc2af760967fce53fb6584eb7a8d" prot="private" virt="non-virtual"><scope>nifty::ground_truth::RandError</scope><name>falseCuts_</name></member>
+      <member refid="classnifty_1_1ground__truth_1_1RandError_1ac99ba816b395e9a949a4fda387f47c04" prot="public" virt="non-virtual"><scope>nifty::ground_truth::RandError</scope><name>falseJoins</name></member>
+      <member refid="classnifty_1_1ground__truth_1_1RandError_1a64457bf2e7b30c5d07ee2eb63f359852" prot="private" virt="non-virtual"><scope>nifty::ground_truth::RandError</scope><name>falseJoins_</name></member>
+      <member refid="classnifty_1_1ground__truth_1_1RandError_1ac00ee6eaccaeced31ccdef585003aa43" prot="public" virt="non-virtual"><scope>nifty::ground_truth::RandError</scope><name>index</name></member>
+      <member refid="classnifty_1_1ground__truth_1_1RandError_1a2d658ff5469faf7010f75d3a98ae10cc" prot="public" virt="non-virtual"><scope>nifty::ground_truth::RandError</scope><name>joinsInPrediction</name></member>
+      <member refid="classnifty_1_1ground__truth_1_1RandError_1a18e5ce6958faacd343de403b78e521e7" prot="public" virt="non-virtual"><scope>nifty::ground_truth::RandError</scope><name>joinsInTruth</name></member>
+      <member refid="classnifty_1_1ground__truth_1_1RandError_1af6264967f41285e889b484a865905b66" prot="public" virt="non-virtual"><scope>nifty::ground_truth::RandError</scope><name>pairs</name></member>
+      <member refid="classnifty_1_1ground__truth_1_1RandError_1a265473d172eb9edfae12ec6641932ed5" prot="public" virt="non-virtual"><scope>nifty::ground_truth::RandError</scope><name>precisionOfCuts</name></member>
+      <member refid="classnifty_1_1ground__truth_1_1RandError_1a5d7b48ee15484fd4727cf866de6e37db" prot="public" virt="non-virtual"><scope>nifty::ground_truth::RandError</scope><name>precisionOfJoins</name></member>
+      <member refid="classnifty_1_1ground__truth_1_1RandError_1a4ad5e727b3445b52cfe87e5f5cd68a2f" prot="public" virt="non-virtual"><scope>nifty::ground_truth::RandError</scope><name>RandError</name></member>
+      <member refid="classnifty_1_1ground__truth_1_1RandError_1a1b86b5566c60f77e902710b67465ed1c" prot="public" virt="non-virtual"><scope>nifty::ground_truth::RandError</scope><name>recallOfCuts</name></member>
+      <member refid="classnifty_1_1ground__truth_1_1RandError_1acd1e46b27ba981f8a56f0e56e37eb439" prot="public" virt="non-virtual"><scope>nifty::ground_truth::RandError</scope><name>recallOfJoins</name></member>
+      <member refid="classnifty_1_1ground__truth_1_1RandError_1abe7c1cda41bbea6f7f4d72038123651a" prot="public" virt="non-virtual"><scope>nifty::ground_truth::RandError</scope><name>trueCuts</name></member>
+      <member refid="classnifty_1_1ground__truth_1_1RandError_1ad99a66ad58a2285ff52f6ae157f05e12" prot="private" virt="non-virtual"><scope>nifty::ground_truth::RandError</scope><name>trueCuts_</name></member>
+      <member refid="classnifty_1_1ground__truth_1_1RandError_1a65b8b7555186291fdc99e0bd633cc450" prot="public" virt="non-virtual"><scope>nifty::ground_truth::RandError</scope><name>trueJoins</name></member>
+      <member refid="classnifty_1_1ground__truth_1_1RandError_1a33ceb601c380c75203c5bac78481496c" prot="private" virt="non-virtual"><scope>nifty::ground_truth::RandError</scope><name>trueJoins_</name></member>
+      <member refid="classnifty_1_1ground__truth_1_1RandError_1a8ccf604387e3b5ed939c97c22c75acf9" prot="public" virt="non-virtual"><scope>nifty::ground_truth::RandError</scope><name>value_type</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

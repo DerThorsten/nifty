@@ -1,0 +1,197 @@
+\hypertarget{classandres_1_1ViewExpression}{}\section{andres\+:\+:View\+Expression$<$ E, T $>$ Class Template Reference}
+\label{classandres_1_1ViewExpression}\index{andres\+::\+View\+Expression$<$ E, T $>$@{andres\+::\+View\+Expression$<$ E, T $>$}}
+
+
+Expression template for efficient arithmetic operations.  
+
+
+
+
+{\ttfamily \#include $<$marray.\+hxx$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef E \hyperlink{classandres_1_1ViewExpression_a0b26c0956d2167c6c07ba2841066d450}{expression\+\_\+type}
+\item 
+typedef T \hyperlink{classandres_1_1ViewExpression_aad128b08207a68e92797aa2c7342feff}{value\+\_\+type}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+const std\+::size\+\_\+t \hyperlink{classandres_1_1ViewExpression_a93b140494015c1b01455083aaad98d15}{dimension} () const 
+\item 
+const std\+::size\+\_\+t \hyperlink{classandres_1_1ViewExpression_abc822f7af9444b7f59a8fd08d84cefb8}{size} () const 
+\item 
+const std\+::size\+\_\+t \hyperlink{classandres_1_1ViewExpression_a1cf03409893f5b7386a9458e9c8e1d9b}{shape} (const std\+::size\+\_\+t j) const 
+\item 
+const std\+::size\+\_\+t $\ast$ \hyperlink{classandres_1_1ViewExpression_a84e6e19c4523d47747e5c21c261c80c7}{shape\+Begin} () const 
+\item 
+const std\+::size\+\_\+t $\ast$ \hyperlink{classandres_1_1ViewExpression_aba3a1565372cdf4c99ca76c860e087aa}{shape\+End} () const 
+\item 
+{\footnotesize template$<$class Tv , bool is\+Const, class A $>$ }\\bool \hyperlink{classandres_1_1ViewExpression_ac06ec98e7837bc72c87ef5c9881ad19f}{overlaps} (const \hyperlink{classandres_1_1View}{View}$<$ Tv, is\+Const, A $>$ \&v) const 
+\item 
+const \hyperlink{namespaceandres_a2ac8b7aa89d44e8188a7c0ba50f4306b}{Coordinate\+Order} \& \hyperlink{classandres_1_1ViewExpression_a7936210ed21025b77e35c9a6f4f40619}{coordinate\+Order} () const 
+\item 
+const bool \hyperlink{classandres_1_1ViewExpression_ad4b49fe44d502e48c0286c01d23d28d8}{is\+Simple} () const 
+\item 
+{\footnotesize template$<$class Accessor $>$ }\\const T \& \hyperlink{classandres_1_1ViewExpression_a40e69cbc4391f7acf38f2d2e827c7d9c}{operator()} (Accessor it) const 
+\item 
+const T \& \hyperlink{classandres_1_1ViewExpression_a6cc016c4b3fc5c7b635d3fe4ad1a0c4c}{operator()} (const std\+::size\+\_\+t c0, const std\+::size\+\_\+t c1) const 
+\item 
+const T \& \hyperlink{classandres_1_1ViewExpression_acee883b8b06c7f739a1d584efe2d183f}{operator()} (const std\+::size\+\_\+t c0, const std\+::size\+\_\+t c1, const std\+::size\+\_\+t c2) const 
+\item 
+const T \& \hyperlink{classandres_1_1ViewExpression_ae098a083ea9e3e07f3bb297f8d792908}{operator()} (const std\+::size\+\_\+t c0, const std\+::size\+\_\+t c1, const std\+::size\+\_\+t c2, const std\+::size\+\_\+t c3) const 
+\item 
+const T \& \hyperlink{classandres_1_1ViewExpression_afed1b53168bfa8af74a8806cdc0511be}{operator()} (const std\+::size\+\_\+t c0, const std\+::size\+\_\+t c1, const std\+::size\+\_\+t c2, const std\+::size\+\_\+t c3, const std\+::size\+\_\+t c4) const 
+\item 
+const T \& \hyperlink{classandres_1_1ViewExpression_a5623026765591cb13b9f09e207610b79}{operator\mbox{[}$\,$\mbox{]}} (const std\+::size\+\_\+t offset) const 
+\item 
+\hyperlink{classandres_1_1ViewExpression_a7e8ad61ca588af63869d01f8666b57e7}{operator E \&} ()
+\item 
+\hyperlink{classandres_1_1ViewExpression_aaa41406565c736e06ec21dabf3f32378}{operator E const \&} () const 
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class E, class T$>$class andres\+::\+View\+Expression$<$ E, T $>$}
+
+Expression template for efficient arithmetic operations. 
+
+\subsection{Member Typedef Documentation}
+\hypertarget{classandres_1_1ViewExpression_a0b26c0956d2167c6c07ba2841066d450}{}\index{andres\+::\+View\+Expression@{andres\+::\+View\+Expression}!expression\+\_\+type@{expression\+\_\+type}}
+\index{expression\+\_\+type@{expression\+\_\+type}!andres\+::\+View\+Expression@{andres\+::\+View\+Expression}}
+\subsubsection[{expression\+\_\+type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class E, class T$>$ typedef E {\bf andres\+::\+View\+Expression}$<$ E, T $>$\+::{\bf expression\+\_\+type}}\label{classandres_1_1ViewExpression_a0b26c0956d2167c6c07ba2841066d450}
+\hypertarget{classandres_1_1ViewExpression_aad128b08207a68e92797aa2c7342feff}{}\index{andres\+::\+View\+Expression@{andres\+::\+View\+Expression}!value\+\_\+type@{value\+\_\+type}}
+\index{value\+\_\+type@{value\+\_\+type}!andres\+::\+View\+Expression@{andres\+::\+View\+Expression}}
+\subsubsection[{value\+\_\+type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class E, class T$>$ typedef T {\bf andres\+::\+View\+Expression}$<$ E, T $>$\+::{\bf value\+\_\+type}}\label{classandres_1_1ViewExpression_aad128b08207a68e92797aa2c7342feff}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classandres_1_1ViewExpression_a7936210ed21025b77e35c9a6f4f40619}{}\index{andres\+::\+View\+Expression@{andres\+::\+View\+Expression}!coordinate\+Order@{coordinate\+Order}}
+\index{coordinate\+Order@{coordinate\+Order}!andres\+::\+View\+Expression@{andres\+::\+View\+Expression}}
+\subsubsection[{coordinate\+Order() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class E, class T$>$ const {\bf Coordinate\+Order}\& {\bf andres\+::\+View\+Expression}$<$ E, T $>$\+::coordinate\+Order (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classandres_1_1ViewExpression_a7936210ed21025b77e35c9a6f4f40619}
+\hypertarget{classandres_1_1ViewExpression_a93b140494015c1b01455083aaad98d15}{}\index{andres\+::\+View\+Expression@{andres\+::\+View\+Expression}!dimension@{dimension}}
+\index{dimension@{dimension}!andres\+::\+View\+Expression@{andres\+::\+View\+Expression}}
+\subsubsection[{dimension() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class E, class T$>$ const std\+::size\+\_\+t {\bf andres\+::\+View\+Expression}$<$ E, T $>$\+::dimension (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classandres_1_1ViewExpression_a93b140494015c1b01455083aaad98d15}
+\hypertarget{classandres_1_1ViewExpression_ad4b49fe44d502e48c0286c01d23d28d8}{}\index{andres\+::\+View\+Expression@{andres\+::\+View\+Expression}!is\+Simple@{is\+Simple}}
+\index{is\+Simple@{is\+Simple}!andres\+::\+View\+Expression@{andres\+::\+View\+Expression}}
+\subsubsection[{is\+Simple() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class E, class T$>$ const bool {\bf andres\+::\+View\+Expression}$<$ E, T $>$\+::is\+Simple (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classandres_1_1ViewExpression_ad4b49fe44d502e48c0286c01d23d28d8}
+\hypertarget{classandres_1_1ViewExpression_a7e8ad61ca588af63869d01f8666b57e7}{}\index{andres\+::\+View\+Expression@{andres\+::\+View\+Expression}!operator E \&@{operator E \&}}
+\index{operator E \&@{operator E \&}!andres\+::\+View\+Expression@{andres\+::\+View\+Expression}}
+\subsubsection[{operator E \&()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class E, class T$>$ {\bf andres\+::\+View\+Expression}$<$ E, T $>$\+::operator E \& (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classandres_1_1ViewExpression_a7e8ad61ca588af63869d01f8666b57e7}
+\hypertarget{classandres_1_1ViewExpression_aaa41406565c736e06ec21dabf3f32378}{}\index{andres\+::\+View\+Expression@{andres\+::\+View\+Expression}!operator E const \&@{operator E const \&}}
+\index{operator E const \&@{operator E const \&}!andres\+::\+View\+Expression@{andres\+::\+View\+Expression}}
+\subsubsection[{operator E const \&() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class E, class T$>$ {\bf andres\+::\+View\+Expression}$<$ E, T $>$\+::operator E const \& (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classandres_1_1ViewExpression_aaa41406565c736e06ec21dabf3f32378}
+\hypertarget{classandres_1_1ViewExpression_a40e69cbc4391f7acf38f2d2e827c7d9c}{}\index{andres\+::\+View\+Expression@{andres\+::\+View\+Expression}!operator()@{operator()}}
+\index{operator()@{operator()}!andres\+::\+View\+Expression@{andres\+::\+View\+Expression}}
+\subsubsection[{operator()(\+Accessor it) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class E, class T$>$ template$<$class Accessor $>$ const T\& {\bf andres\+::\+View\+Expression}$<$ E, T $>$\+::operator() (
+\begin{DoxyParamCaption}
+\item[{Accessor}]{it}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classandres_1_1ViewExpression_a40e69cbc4391f7acf38f2d2e827c7d9c}
+\hypertarget{classandres_1_1ViewExpression_a6cc016c4b3fc5c7b635d3fe4ad1a0c4c}{}\index{andres\+::\+View\+Expression@{andres\+::\+View\+Expression}!operator()@{operator()}}
+\index{operator()@{operator()}!andres\+::\+View\+Expression@{andres\+::\+View\+Expression}}
+\subsubsection[{operator()(const std\+::size\+\_\+t c0, const std\+::size\+\_\+t c1) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class E, class T$>$ const T\& {\bf andres\+::\+View\+Expression}$<$ E, T $>$\+::operator() (
+\begin{DoxyParamCaption}
+\item[{const std\+::size\+\_\+t}]{c0, }
+\item[{const std\+::size\+\_\+t}]{c1}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classandres_1_1ViewExpression_a6cc016c4b3fc5c7b635d3fe4ad1a0c4c}
+\hypertarget{classandres_1_1ViewExpression_acee883b8b06c7f739a1d584efe2d183f}{}\index{andres\+::\+View\+Expression@{andres\+::\+View\+Expression}!operator()@{operator()}}
+\index{operator()@{operator()}!andres\+::\+View\+Expression@{andres\+::\+View\+Expression}}
+\subsubsection[{operator()(const std\+::size\+\_\+t c0, const std\+::size\+\_\+t c1, const std\+::size\+\_\+t c2) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class E, class T$>$ const T\& {\bf andres\+::\+View\+Expression}$<$ E, T $>$\+::operator() (
+\begin{DoxyParamCaption}
+\item[{const std\+::size\+\_\+t}]{c0, }
+\item[{const std\+::size\+\_\+t}]{c1, }
+\item[{const std\+::size\+\_\+t}]{c2}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classandres_1_1ViewExpression_acee883b8b06c7f739a1d584efe2d183f}
+\hypertarget{classandres_1_1ViewExpression_ae098a083ea9e3e07f3bb297f8d792908}{}\index{andres\+::\+View\+Expression@{andres\+::\+View\+Expression}!operator()@{operator()}}
+\index{operator()@{operator()}!andres\+::\+View\+Expression@{andres\+::\+View\+Expression}}
+\subsubsection[{operator()(const std\+::size\+\_\+t c0, const std\+::size\+\_\+t c1, const std\+::size\+\_\+t c2, const std\+::size\+\_\+t c3) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class E, class T$>$ const T\& {\bf andres\+::\+View\+Expression}$<$ E, T $>$\+::operator() (
+\begin{DoxyParamCaption}
+\item[{const std\+::size\+\_\+t}]{c0, }
+\item[{const std\+::size\+\_\+t}]{c1, }
+\item[{const std\+::size\+\_\+t}]{c2, }
+\item[{const std\+::size\+\_\+t}]{c3}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classandres_1_1ViewExpression_ae098a083ea9e3e07f3bb297f8d792908}
+\hypertarget{classandres_1_1ViewExpression_afed1b53168bfa8af74a8806cdc0511be}{}\index{andres\+::\+View\+Expression@{andres\+::\+View\+Expression}!operator()@{operator()}}
+\index{operator()@{operator()}!andres\+::\+View\+Expression@{andres\+::\+View\+Expression}}
+\subsubsection[{operator()(const std\+::size\+\_\+t c0, const std\+::size\+\_\+t c1, const std\+::size\+\_\+t c2, const std\+::size\+\_\+t c3, const std\+::size\+\_\+t c4) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class E, class T$>$ const T\& {\bf andres\+::\+View\+Expression}$<$ E, T $>$\+::operator() (
+\begin{DoxyParamCaption}
+\item[{const std\+::size\+\_\+t}]{c0, }
+\item[{const std\+::size\+\_\+t}]{c1, }
+\item[{const std\+::size\+\_\+t}]{c2, }
+\item[{const std\+::size\+\_\+t}]{c3, }
+\item[{const std\+::size\+\_\+t}]{c4}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classandres_1_1ViewExpression_afed1b53168bfa8af74a8806cdc0511be}
+\hypertarget{classandres_1_1ViewExpression_a5623026765591cb13b9f09e207610b79}{}\index{andres\+::\+View\+Expression@{andres\+::\+View\+Expression}!operator\mbox{[}$\,$\mbox{]}@{operator[]}}
+\index{operator\mbox{[}$\,$\mbox{]}@{operator[]}!andres\+::\+View\+Expression@{andres\+::\+View\+Expression}}
+\subsubsection[{operator[](const std\+::size\+\_\+t offset) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class E, class T$>$ const T\& {\bf andres\+::\+View\+Expression}$<$ E, T $>$\+::operator\mbox{[}$\,$\mbox{]} (
+\begin{DoxyParamCaption}
+\item[{const std\+::size\+\_\+t}]{offset}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classandres_1_1ViewExpression_a5623026765591cb13b9f09e207610b79}
+\hypertarget{classandres_1_1ViewExpression_ac06ec98e7837bc72c87ef5c9881ad19f}{}\index{andres\+::\+View\+Expression@{andres\+::\+View\+Expression}!overlaps@{overlaps}}
+\index{overlaps@{overlaps}!andres\+::\+View\+Expression@{andres\+::\+View\+Expression}}
+\subsubsection[{overlaps(const View$<$ Tv, is\+Const, A $>$ \&v) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class E, class T$>$ template$<$class Tv , bool is\+Const, class A $>$ bool {\bf andres\+::\+View\+Expression}$<$ E, T $>$\+::overlaps (
+\begin{DoxyParamCaption}
+\item[{const {\bf View}$<$ Tv, is\+Const, A $>$ \&}]{v}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classandres_1_1ViewExpression_ac06ec98e7837bc72c87ef5c9881ad19f}
+\hypertarget{classandres_1_1ViewExpression_a1cf03409893f5b7386a9458e9c8e1d9b}{}\index{andres\+::\+View\+Expression@{andres\+::\+View\+Expression}!shape@{shape}}
+\index{shape@{shape}!andres\+::\+View\+Expression@{andres\+::\+View\+Expression}}
+\subsubsection[{shape(const std\+::size\+\_\+t j) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class E, class T$>$ const std\+::size\+\_\+t {\bf andres\+::\+View\+Expression}$<$ E, T $>$\+::shape (
+\begin{DoxyParamCaption}
+\item[{const std\+::size\+\_\+t}]{j}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classandres_1_1ViewExpression_a1cf03409893f5b7386a9458e9c8e1d9b}
+\hypertarget{classandres_1_1ViewExpression_a84e6e19c4523d47747e5c21c261c80c7}{}\index{andres\+::\+View\+Expression@{andres\+::\+View\+Expression}!shape\+Begin@{shape\+Begin}}
+\index{shape\+Begin@{shape\+Begin}!andres\+::\+View\+Expression@{andres\+::\+View\+Expression}}
+\subsubsection[{shape\+Begin() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class E, class T$>$ const std\+::size\+\_\+t$\ast$ {\bf andres\+::\+View\+Expression}$<$ E, T $>$\+::shape\+Begin (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classandres_1_1ViewExpression_a84e6e19c4523d47747e5c21c261c80c7}
+\hypertarget{classandres_1_1ViewExpression_aba3a1565372cdf4c99ca76c860e087aa}{}\index{andres\+::\+View\+Expression@{andres\+::\+View\+Expression}!shape\+End@{shape\+End}}
+\index{shape\+End@{shape\+End}!andres\+::\+View\+Expression@{andres\+::\+View\+Expression}}
+\subsubsection[{shape\+End() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class E, class T$>$ const std\+::size\+\_\+t$\ast$ {\bf andres\+::\+View\+Expression}$<$ E, T $>$\+::shape\+End (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classandres_1_1ViewExpression_aba3a1565372cdf4c99ca76c860e087aa}
+\hypertarget{classandres_1_1ViewExpression_abc822f7af9444b7f59a8fd08d84cefb8}{}\index{andres\+::\+View\+Expression@{andres\+::\+View\+Expression}!size@{size}}
+\index{size@{size}!andres\+::\+View\+Expression@{andres\+::\+View\+Expression}}
+\subsubsection[{size() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class E, class T$>$ const std\+::size\+\_\+t {\bf andres\+::\+View\+Expression}$<$ E, T $>$\+::size (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classandres_1_1ViewExpression_abc822f7af9444b7f59a8fd08d84cefb8}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/tbeier/src/nifty/include/nifty/marray/andres/\hyperlink{andres_2marray_8hxx}{marray.\+hxx}\end{DoxyCompactItemize}

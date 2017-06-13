@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Nifty
-   &#160;<span id="projectnumber">0.5.1</span>
+   &#160;<span id="projectnumber">0.19.0</span>
    </div>
   </td>
  </tr>
@@ -140,9 +140,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 , <a class="el" href="structpybind11_1_1detail_1_1pymarray__caster.html#aa57421c8e7e64ab62bac67897f864ea1">pybind11::detail::pymarray_caster&lt; Type, DIM, AUTO_CAST_TYPE &gt;</a>
 </li>
 <li>value_type
-: <a class="el" href="classnifty_1_1container_1_1FlatSet.html#a2366c665ec49d585ff8a77362468d82d">nifty::container::FlatSet&lt; Key, Comparison, Allocator &gt;</a>
+: <a class="el" href="classandres_1_1Iterator.html#a3fd8a072268f4ad5c55963a6ea6d7a65">andres::Iterator&lt; T, isConst, A &gt;</a>
+, <a class="el" href="classandres_1_1Marray.html#a902cba550c99fb1db7b6b95edb0ca4df">andres::Marray&lt; T, A &gt;</a>
+, <a class="el" href="classandres_1_1View.html#abe3d48ac2b0d65536e54dbfad0a44929">andres::View&lt; T, isConst, A &gt;</a>
+, <a class="el" href="classandres_1_1ViewExpression.html#aad128b08207a68e92797aa2c7342feff">andres::ViewExpression&lt; E, T &gt;</a>
+, <a class="el" href="classnifty_1_1container_1_1FlatSet.html#a2366c665ec49d585ff8a77362468d82d">nifty::container::FlatSet&lt; Key, Comparison, Allocator &gt;</a>
 , <a class="el" href="classnifty_1_1filters_1_1GaussianCurvature2D.html#affdbbda626530a7cd63878ca62f3682b">nifty::filters::GaussianCurvature2D&lt; T &gt;</a>
 , <a class="el" href="structnifty_1_1graph_1_1detail__graph_1_1UndirectedGridGraphIter_1_1UnaryFunction.html#a4a60979fef293486b48029f101ceaf66">nifty::graph::detail_graph::UndirectedGridGraphIter&lt; DIM, SIMPLE_NH &gt;::UnaryFunction</a>
+, <a class="el" href="classnifty_1_1graph_1_1graph__maps_1_1EdgeMapFromNodeMap.html#abc24027c855755008ba3694cc49999c2">nifty::graph::graph_maps::EdgeMapFromNodeMap&lt; GRAPH, NODE_MAP, BINARY_FUNCTOR &gt;</a>
+, <a class="el" href="structnifty_1_1graph_1_1graph__maps_1_1MultibandArrayViewNodeMap.html#a1abb884732263c022895486ce3adf8c1">nifty::graph::graph_maps::MultibandArrayViewNodeMap&lt; ARRAY &gt;</a>
 , <a class="el" href="classnifty_1_1ground__truth_1_1RandError.html#a8ccf604387e3b5ed939c97c22c75acf9">nifty::ground_truth::RandError&lt; T &gt;</a>
 , <a class="el" href="classnifty_1_1ground__truth_1_1VariationOfInformation.html#ad0f4a205d57087c7641664b76410e40c">nifty::ground_truth::VariationOfInformation&lt; T &gt;</a>
 , <a class="el" href="classnifty_1_1tools_1_1Block.html#accbed9defe9a82425025d9182c41e0a6">nifty::tools::Block&lt; DIM, T &gt;</a>
@@ -162,75 +168,77 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 , <a class="el" href="classnifty_1_1tools_1_1Blocking.html#a5f8df3d4cdf09803217d729a04018fb3">nifty::tools::Blocking&lt; DIM, T &gt;</a>
 , <a class="el" href="classnifty_1_1tools_1_1BlockWithHalo.html#a040d8a654eb42791c6e5fbd4dfd51b9f">nifty::tools::BlockWithHalo&lt; DIM, T &gt;</a>
 </li>
+<li>view_pointer
+: <a class="el" href="classandres_1_1Iterator.html#a937adfd36b5e7b01be53d16bd823af12">andres::Iterator&lt; T, isConst, A &gt;</a>
+</li>
+<li>view_reference
+: <a class="el" href="classandres_1_1Iterator.html#aba3b6dd25a055f0aaa7a931657f86a89">andres::Iterator&lt; T, isConst, A &gt;</a>
+</li>
 <li>ViewType
 : <a class="el" href="classnifty_1_1graph_1_1ExplicitLabels.html#aaab98314403b95503bf0c32e65fd1884">nifty::graph::ExplicitLabels&lt; DIM, LABEL_TYPE &gt;</a>
-, <a class="el" href="classnifty_1_1tools_1_1BlockStorage.html#a9dd09d47fecd6aedc1c9bd84e526e84e">nifty::tools::BlockStorage&lt; T &gt;</a>
-, <a class="el" href="classnifty_1_1tools_1_1BlockView.html#a73b8633670bc34ca94859a3a37a5f84c">nifty::tools::BlockView&lt; T &gt;</a>
+, <a class="el" href="classnifty_1_1tools_1_1BlockStorage.html#afe259433c35f56d01be0b597a696e090">nifty::tools::BlockStorage&lt; T &gt;</a>
+, <a class="el" href="classnifty_1_1tools_1_1BlockView.html#acaadee9e8a7dc696acf1ebad24bd431d">nifty::tools::BlockView&lt; T &gt;</a>
 , <a class="el" href="structpybind11_1_1detail_1_1pymarray__caster.html#a0593b33c0ed08f1b25b34dbc3da1b01c">pybind11::detail::pymarray_caster&lt; Type, DIM, AUTO_CAST_TYPE &gt;</a>
 </li>
 <li>VisitedMapType
 : <a class="el" href="classnifty_1_1graph_1_1ComponentsBfs.html#a6305420bcb4dbc75af2a59445c266b05">nifty::graph::ComponentsBfs&lt; GRAPH &gt;</a>
 </li>
-<li>VisitorBase
-: <a class="el" href="classnifty_1_1graph_1_1BlockMulticut.html#a7338bedc1f9032f950cfc3a2ca446a17">nifty::graph::BlockMulticut&lt; OBJECTIVE &gt;</a>
-, <a class="el" href="classnifty_1_1graph_1_1ChainedSolvers.html#a1f90d20ae903cad5e6434d4019b28463">nifty::graph::ChainedSolvers&lt; OBJECTIVE &gt;</a>
-, <a class="el" href="classnifty_1_1graph_1_1FusionMoveBased.html#a920e1485e8ab123a4e0ae0773870f4d9">nifty::graph::FusionMoveBased&lt; PROPPOSAL_GEN &gt;</a>
-, <a class="el" href="classnifty_1_1graph_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin.html#ab9331c2df1e0f0271899de4529631965">nifty::graph::lifted_multicut::LiftedMulticutAndresKernighanLin&lt; OBJECTIVE &gt;</a>
-, <a class="el" href="classnifty_1_1graph_1_1lifted__multicut_1_1LiftedMulticutMp.html#aafe286a57ff4bda8e0c50a00a98c3b32">nifty::graph::lifted_multicut::LiftedMulticutMp&lt; OBJECTIVE &gt;</a>
-, <a class="el" href="classnifty_1_1graph_1_1lifted__multicut_1_1PyLiftedMulticutBase.html#a94d88bd4d7bf09e48fe8a89108f35070">nifty::graph::lifted_multicut::PyLiftedMulticutBase&lt; OBJECTIVE &gt;</a>
-, <a class="el" href="classnifty_1_1graph_1_1lifted__multicut_1_1PyLiftedMulticutVisitorBase.html#a978a2663f67e5f260d2d6c1d5dfd7f03">nifty::graph::lifted_multicut::PyLiftedMulticutVisitorBase&lt; OBJECTIVE &gt;</a>
-, <a class="el" href="classnifty_1_1graph_1_1mincut_1_1MincutGreedyAdditive.html#a813b2c55104d79a221b9dac3b0343ace">nifty::graph::mincut::MincutGreedyAdditive&lt; OBJECTIVE &gt;</a>
-, <a class="el" href="classnifty_1_1graph_1_1MincutBase.html#a5ba378dc5a1fc073eb9449ca635e7648">nifty::graph::MincutBase&lt; OBJECTIVE &gt;</a>
-, <a class="el" href="classnifty_1_1graph_1_1MincutQpbo.html#a1ddac4de726b9fcfac58799ab32f3025">nifty::graph::MincutQpbo&lt; OBJECTIVE &gt;</a>
-, <a class="el" href="classnifty_1_1graph_1_1MulticutAndres.html#ac07b28fb84cb2202147dd666d5d19c25">nifty::graph::MulticutAndres&lt; OBJECTIVE &gt;</a>
-, <a class="el" href="classnifty_1_1graph_1_1MulticutAndresGreedyAdditive.html#af4a079ac6b02b63260a05440414ed4f9">nifty::graph::MulticutAndresGreedyAdditive&lt; OBJECTIVE &gt;</a>
-, <a class="el" href="classnifty_1_1graph_1_1MulticutAndresKernighanLin.html#a3f2ee1336d9b9d154d72ee2d16a2b71e">nifty::graph::MulticutAndresKernighanLin&lt; OBJECTIVE &gt;</a>
-, <a class="el" href="classnifty_1_1graph_1_1MulticutBase.html#a5882fb69df59d8113f6a81a0dac26eaa">nifty::graph::MulticutBase&lt; OBJECTIVE &gt;</a>
-, <a class="el" href="classnifty_1_1graph_1_1MulticutDecomposer.html#a530a3efeb9ba47d5ca54ae23d38c3d5c">nifty::graph::MulticutDecomposer&lt; OBJECTIVE &gt;</a>
-, <a class="el" href="classnifty_1_1graph_1_1MulticutGreedyAdditive.html#a0110a72175b7ff0b2fa895466ea92737">nifty::graph::MulticutGreedyAdditive&lt; OBJECTIVE &gt;</a>
-, <a class="el" href="classnifty_1_1graph_1_1MulticutMp.html#a4a80c1f30dc62d72203f2ed6e7bdf1eb">nifty::graph::MulticutMp&lt; OBJECTIVE &gt;</a>
-, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl.html#abfd1605ff658ab8ad535ce8a87fc20e6">nifty::graph::optimization::common::detail_cc_fusion::CcFusionMoveBasedImpl&lt; OBJECTIVE, SOLVER_BASE, FUSION_MOVE &gt;</a>
-, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1multicut_1_1Cgc.html#afb4bc97ca8d80719f67fe59823ac9466">nifty::graph::optimization::multicut::Cgc&lt; OBJECTIVE &gt;</a>
-, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutIlp.html#a0dd77b07238eb761a1db58b058c0186c">nifty::graph::optimization::multicut::MulticutIlp&lt; OBJECTIVE, ILP_SOLVER &gt;</a>
-, <a class="el" href="classnifty_1_1graph_1_1PyMincutBase.html#a29aa86dab1d9d51b0c53992df95f94b7">nifty::graph::PyMincutBase&lt; OBJECTIVE &gt;</a>
-, <a class="el" href="classnifty_1_1graph_1_1PyMincutVisitorBase.html#ae7a2c382bd05a78dfe61b046a6cd77c5">nifty::graph::PyMincutVisitorBase&lt; OBJECTIVE &gt;</a>
-, <a class="el" href="classnifty_1_1graph_1_1PyMulticutBase.html#ab8e429d9af32f127a62a886c523600e4">nifty::graph::PyMulticutBase&lt; OBJECTIVE &gt;</a>
-, <a class="el" href="classnifty_1_1graph_1_1PyMulticutVisitorBase.html#a5da3ad7df0fe0fafacd0386e887c90dc">nifty::graph::PyMulticutVisitorBase&lt; OBJECTIVE &gt;</a>
-</li>
 <li>VisitorBaseTpe
 : <a class="el" href="classnifty_1_1graph_1_1optimization_1_1common_1_1VisitorProxy.html#abeeba329f198f6a6f05f9af13011e7d2">nifty::graph::optimization::common::VisitorProxy&lt; SOLVER &gt;</a>
 </li>
 <li>VisitorBaseType
-: <a class="el" href="classnifty_1_1graph_1_1lifted__multicut_1_1FusionMoveBased.html#a75f55fc3177f6bf8e070df7007bfbb5c">nifty::graph::lifted_multicut::FusionMoveBased&lt; OBJECTIVE &gt;</a>
-, <a class="el" href="classnifty_1_1graph_1_1lifted__multicut_1_1LiftedMulticutAndresGreedyAdditive.html#a4531913f0d3f10d228ee28cb983f668c">nifty::graph::lifted_multicut::LiftedMulticutAndresGreedyAdditive&lt; OBJECTIVE &gt;</a>
-, <a class="el" href="classnifty_1_1graph_1_1lifted__multicut_1_1LiftedMulticutGreedyAdditive.html#a3f18c0e6365fda786426a7ea03bc5847">nifty::graph::lifted_multicut::LiftedMulticutGreedyAdditive&lt; OBJECTIVE &gt;</a>
-, <a class="el" href="classnifty_1_1graph_1_1lifted__multicut_1_1LiftedMulticutIlp.html#a3d4b30d462387a88a2ca290c11112ed4">nifty::graph::lifted_multicut::LiftedMulticutIlp&lt; OBJECTIVE, ILP_SOLVER &gt;</a>
-, <a class="el" href="classnifty_1_1graph_1_1lifted__multicut_1_1LiftedMulticutKernighanLin.html#a857f9aef39b602be2db6657bf159b238">nifty::graph::lifted_multicut::LiftedMulticutKernighanLin&lt; OBJECTIVE &gt;</a>
+: <a class="el" href="classnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl.html#afbc19ace9c1055cf28b15a6d6dd050e7">nifty::graph::optimization::common::detail_cc_fusion::CcFusionMoveBasedImpl&lt; OBJECTIVE, SOLVER_BASE, FUSION_MOVE &gt;</a>
 , <a class="el" href="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase.html#a5a14d64c70a9cc0eebc7d71d2b089f9b">nifty::graph::optimization::common::SolverBase&lt; OBJECTIVE, CHILD &gt;</a>
+, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased.html#ab99f9c64149f5748cb98d37b97e1eb4e">nifty::graph::optimization::lifted_multicut::FusionMoveBased&lt; OBJECTIVE &gt;</a>
+, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutAndresGreedyAdditive.html#a070556ac4d486f931c1e1b286f106645">nifty::graph::optimization::lifted_multicut::LiftedMulticutAndresGreedyAdditive&lt; OBJECTIVE &gt;</a>
+, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin.html#a36384cde373a8f776b897b4cb83607bb">nifty::graph::optimization::lifted_multicut::LiftedMulticutAndresKernighanLin&lt; OBJECTIVE &gt;</a>
+, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutGreedyAdditive.html#a3620357c0df85e5305861ceb408c9bf3">nifty::graph::optimization::lifted_multicut::LiftedMulticutGreedyAdditive&lt; OBJECTIVE &gt;</a>
+, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutIlp.html#a2e08b1b4250ea071d1ecb321e1fd5c06">nifty::graph::optimization::lifted_multicut::LiftedMulticutIlp&lt; OBJECTIVE, ILP_SOLVER &gt;</a>
+, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin.html#aad5914ddfc4336c965ad791c0d0173fa">nifty::graph::optimization::lifted_multicut::LiftedMulticutKernighanLin&lt; OBJECTIVE &gt;</a>
+, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutMp.html#af0ec21b5408072a6fee250667b28e7a8">nifty::graph::optimization::lifted_multicut::LiftedMulticutMp&lt; OBJECTIVE &gt;</a>
+, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1PyLiftedMulticutBase.html#ac8cdcdeb2751c508a445e4d1a66411f6">nifty::graph::optimization::lifted_multicut::PyLiftedMulticutBase&lt; OBJECTIVE &gt;</a>
+, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1PyLiftedMulticutVisitorBase.html#a0b7aa7614030a14cf54f80ac024c5469">nifty::graph::optimization::lifted_multicut::PyLiftedMulticutVisitorBase&lt; OBJECTIVE &gt;</a>
+, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutGreedyAdditive.html#adb1c1472355ffa684b427eb817f383a5">nifty::graph::optimization::mincut::MincutGreedyAdditive&lt; OBJECTIVE &gt;</a>
+, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutQpbo.html#aba6eaaa013ca021676e82152a22e7d55">nifty::graph::optimization::mincut::MincutQpbo&lt; OBJECTIVE &gt;</a>
+, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutBase.html#ae4b7fb9386890597f91516f38b36c0b8">nifty::graph::optimization::mincut::PyMincutBase&lt; OBJECTIVE &gt;</a>
+, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutVisitorBase.html#af95408b02f41443ea9506434d4106949">nifty::graph::optimization::mincut::PyMincutVisitorBase&lt; OBJECTIVE &gt;</a>
+, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1multicut_1_1BlockMulticut.html#a5565253c12963ec0e384ccbaa56f1e5b">nifty::graph::optimization::multicut::BlockMulticut&lt; OBJECTIVE &gt;</a>
+, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1multicut_1_1Cgc.html#adb95cdb68d34774e9a3cb4990ab54ccb">nifty::graph::optimization::multicut::Cgc&lt; OBJECTIVE &gt;</a>
+, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1multicut_1_1ChainedSolvers.html#a73196408ad592adcb3e3a89fef73fb69">nifty::graph::optimization::multicut::ChainedSolvers&lt; OBJECTIVE &gt;</a>
+, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1multicut_1_1FusionMoveBased.html#acd87e9e95cad3e7faa128fe8a2bbd651">nifty::graph::optimization::multicut::FusionMoveBased&lt; PROPPOSAL_GEN &gt;</a>
+, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin.html#af81a8d0ada4683cfb667a2ed2b47a2c1">nifty::graph::optimization::multicut::KernighanLin&lt; OBJECTIVE &gt;</a>
+, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres.html#a2d78bb58be29b7d46e9c653489a6d1de">nifty::graph::optimization::multicut::MulticutAndres&lt; OBJECTIVE &gt;</a>
+, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresGreedyAdditive.html#a79fcfac650a48f7707522182b21d4f9e">nifty::graph::optimization::multicut::MulticutAndresGreedyAdditive&lt; OBJECTIVE &gt;</a>
+, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresKernighanLin.html#aa9ff2451667fafb8a65092737bf63610">nifty::graph::optimization::multicut::MulticutAndresKernighanLin&lt; OBJECTIVE &gt;</a>
+, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer.html#ad1f4a09f99e9fa5ba8ae1bf3227c18f3">nifty::graph::optimization::multicut::MulticutDecomposer&lt; OBJECTIVE &gt;</a>
+, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutGreedyAdditive.html#adc04def3b509e2b386fc0a6cb5f44a9a">nifty::graph::optimization::multicut::MulticutGreedyAdditive&lt; OBJECTIVE &gt;</a>
+, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutIlp.html#a9eefe7c387f863ed499bb53854164d9a">nifty::graph::optimization::multicut::MulticutIlp&lt; OBJECTIVE, ILP_SOLVER &gt;</a>
+, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutMp.html#ac0c55da1b0da06e56bc164f256e811e9">nifty::graph::optimization::multicut::MulticutMp&lt; OBJECTIVE &gt;</a>
+, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutBase.html#a284145d7e67237c95dde085070a89818">nifty::graph::optimization::multicut::PyMulticutBase&lt; OBJECTIVE &gt;</a>
+, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1multicut_1_1PyMulticutVisitorBase.html#ae436994b1c4379009dac9fd8e8935709">nifty::graph::optimization::multicut::PyMulticutVisitorBase&lt; OBJECTIVE &gt;</a>
 </li>
 <li>VisitorProxy
-: <a class="el" href="classnifty_1_1graph_1_1BlockMulticut.html#a47cf68caa6860e2e05a55b10ac73d39d">nifty::graph::BlockMulticut&lt; OBJECTIVE &gt;</a>
-, <a class="el" href="classnifty_1_1graph_1_1ChainedSolvers.html#a2a0d35b426487bc1c84acbac754688e9">nifty::graph::ChainedSolvers&lt; OBJECTIVE &gt;</a>
-, <a class="el" href="classnifty_1_1graph_1_1FusionMoveBased.html#ade5cd053fae62b597daeaab5d830ade2">nifty::graph::FusionMoveBased&lt; PROPPOSAL_GEN &gt;</a>
-, <a class="el" href="classnifty_1_1graph_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin.html#a155c29dba5b4776980bd4599eae348e1">nifty::graph::lifted_multicut::LiftedMulticutAndresKernighanLin&lt; OBJECTIVE &gt;</a>
-, <a class="el" href="classnifty_1_1graph_1_1lifted__multicut_1_1LiftedMulticutMp.html#a626d90e31497d790dd454961ce179d8a">nifty::graph::lifted_multicut::LiftedMulticutMp&lt; OBJECTIVE &gt;</a>
-, <a class="el" href="classnifty_1_1graph_1_1mincut_1_1MincutGreedyAdditive.html#aa211dc479cd78dbc8269f5089019f729">nifty::graph::mincut::MincutGreedyAdditive&lt; OBJECTIVE &gt;</a>
-, <a class="el" href="classnifty_1_1graph_1_1MincutBase.html#ae42805a72a13d7703d940675a6c90cd9">nifty::graph::MincutBase&lt; OBJECTIVE &gt;</a>
-, <a class="el" href="classnifty_1_1graph_1_1MincutQpbo.html#a89d9a6ede7906b5d0afd49fbb873a6fb">nifty::graph::MincutQpbo&lt; OBJECTIVE &gt;</a>
-, <a class="el" href="classnifty_1_1graph_1_1MulticutAndres.html#ad56184f36c01591fbb5d99da132c2833">nifty::graph::MulticutAndres&lt; OBJECTIVE &gt;</a>
-, <a class="el" href="classnifty_1_1graph_1_1MulticutBase.html#a6ede271a3cb0ae4711a7e9da2b07efa9">nifty::graph::MulticutBase&lt; OBJECTIVE &gt;</a>
-, <a class="el" href="classnifty_1_1graph_1_1MulticutDecomposer.html#abca5e422a02426a903dc28fb6538aa7c">nifty::graph::MulticutDecomposer&lt; OBJECTIVE &gt;</a>
-, <a class="el" href="classnifty_1_1graph_1_1MulticutMp.html#af4895ae0b773b8f102cb9644551cd38d">nifty::graph::MulticutMp&lt; OBJECTIVE &gt;</a>
-, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl.html#a65874a0dbbea397a1323b93a0f327a40">nifty::graph::optimization::common::detail_cc_fusion::CcFusionMoveBasedImpl&lt; OBJECTIVE, SOLVER_BASE, FUSION_MOVE &gt;</a>
-, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1multicut_1_1Cgc.html#abcca194a80764ede21e22a9a9dbbddc4">nifty::graph::optimization::multicut::Cgc&lt; OBJECTIVE &gt;</a>
-, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutIlp.html#ab78a646c0aea8aa633ff7155f349d7a6">nifty::graph::optimization::multicut::MulticutIlp&lt; OBJECTIVE, ILP_SOLVER &gt;</a>
+: <a class="el" href="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin.html#a95be4fc2d2b7c812c300c7e42eb35f29">nifty::graph::optimization::lifted_multicut::LiftedMulticutAndresKernighanLin&lt; OBJECTIVE &gt;</a>
+, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutMp.html#a61d89421f75d06b01a120cc6a4aa2154">nifty::graph::optimization::lifted_multicut::LiftedMulticutMp&lt; OBJECTIVE &gt;</a>
+, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1multicut_1_1BlockMulticut.html#ae5c617c56143fe71df413d906d027df3">nifty::graph::optimization::multicut::BlockMulticut&lt; OBJECTIVE &gt;</a>
 </li>
 <li>VisitorProxyType
-: <a class="el" href="classnifty_1_1graph_1_1lifted__multicut_1_1FusionMoveBased.html#a2918408ccd082b0d3ce38cfebf8da5ad">nifty::graph::lifted_multicut::FusionMoveBased&lt; OBJECTIVE &gt;</a>
-, <a class="el" href="classnifty_1_1graph_1_1lifted__multicut_1_1LiftedMulticutAndresGreedyAdditive.html#aa365becac68b1dea378e889f964b80d8">nifty::graph::lifted_multicut::LiftedMulticutAndresGreedyAdditive&lt; OBJECTIVE &gt;</a>
-, <a class="el" href="classnifty_1_1graph_1_1lifted__multicut_1_1LiftedMulticutIlp.html#a4b6c6a7510ed7dff44329443a72b3f77">nifty::graph::lifted_multicut::LiftedMulticutIlp&lt; OBJECTIVE, ILP_SOLVER &gt;</a>
-, <a class="el" href="classnifty_1_1graph_1_1lifted__multicut_1_1LiftedMulticutKernighanLin.html#abef495b6fbc0aace11c550698bf20788">nifty::graph::lifted_multicut::LiftedMulticutKernighanLin&lt; OBJECTIVE &gt;</a>
+: <a class="el" href="classnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl.html#a7316953ca74bcfbbc177b560775e7327">nifty::graph::optimization::common::detail_cc_fusion::CcFusionMoveBasedImpl&lt; OBJECTIVE, SOLVER_BASE, FUSION_MOVE &gt;</a>
 , <a class="el" href="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase.html#a58913ea9ab9232ff72608b710c1012d0">nifty::graph::optimization::common::SolverBase&lt; OBJECTIVE, CHILD &gt;</a>
+, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1FusionMoveBased.html#a90007609e3d57ad1fb9bea79930db60a">nifty::graph::optimization::lifted_multicut::FusionMoveBased&lt; OBJECTIVE &gt;</a>
+, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutAndresGreedyAdditive.html#a706e405951c302b86fafbcea85f7ce83">nifty::graph::optimization::lifted_multicut::LiftedMulticutAndresGreedyAdditive&lt; OBJECTIVE &gt;</a>
+, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutIlp.html#a1d6ef354f5ba27268ea186b9eb4ea4f5">nifty::graph::optimization::lifted_multicut::LiftedMulticutIlp&lt; OBJECTIVE, ILP_SOLVER &gt;</a>
+, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin.html#a936d52bf3c38146f7fc4e02e1b281ca5">nifty::graph::optimization::lifted_multicut::LiftedMulticutKernighanLin&lt; OBJECTIVE &gt;</a>
+, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutGreedyAdditive.html#a121376340855c9c7acf5ba60eea0218c">nifty::graph::optimization::mincut::MincutGreedyAdditive&lt; OBJECTIVE &gt;</a>
+, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutQpbo.html#a1675bc1767efc807ca32b1e7b74133f1">nifty::graph::optimization::mincut::MincutQpbo&lt; OBJECTIVE &gt;</a>
+, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1multicut_1_1Cgc.html#a0c82617574e6f1c5b2e801ed5699d725">nifty::graph::optimization::multicut::Cgc&lt; OBJECTIVE &gt;</a>
+, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1multicut_1_1ChainedSolvers.html#abdaad4f08d245de900243682dd917596">nifty::graph::optimization::multicut::ChainedSolvers&lt; OBJECTIVE &gt;</a>
+, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1multicut_1_1FusionMoveBased.html#ae1d6db357008989be58be404480ebbcd">nifty::graph::optimization::multicut::FusionMoveBased&lt; PROPPOSAL_GEN &gt;</a>
+, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1multicut_1_1KernighanLin.html#a633a30d53d3f5fa12742d9ba5a8d0326">nifty::graph::optimization::multicut::KernighanLin&lt; OBJECTIVE &gt;</a>
+, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres.html#aa9bb57168c3d0c6cba6610d6a27f5b4e">nifty::graph::optimization::multicut::MulticutAndres&lt; OBJECTIVE &gt;</a>
+, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutDecomposer.html#a53a9d7161f78a1857add8e82d05fbd70">nifty::graph::optimization::multicut::MulticutDecomposer&lt; OBJECTIVE &gt;</a>
+, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutIlp.html#ad770feadea053ce14d19fb0db774867b">nifty::graph::optimization::multicut::MulticutIlp&lt; OBJECTIVE, ILP_SOLVER &gt;</a>
+, <a class="el" href="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutMp.html#a5b2de2a593f41a26245d5c6d1514b94a">nifty::graph::optimization::multicut::MulticutMp&lt; OBJECTIVE &gt;</a>
 </li>
 </ul>
 </div><!-- contents -->

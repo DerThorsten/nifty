@@ -1,0 +1,663 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="multicut__cc__fusion__move__based_8hxx" kind="file" language="C++">
+    <compoundname>multicut_cc_fusion_move_based.hxx</compoundname>
+    <includes refid="runtime__check_8hxx" local="yes">nifty/tools/runtime_check.hxx</includes>
+    <includes refid="components_8hxx" local="yes">nifty/graph/components.hxx</includes>
+    <includes refid="paths_8hxx" local="yes">nifty/graph/paths.hxx</includes>
+    <includes refid="multicut__base_8hxx" local="yes">nifty/graph/optimization/multicut/multicut_base.hxx</includes>
+    <includes refid="contiguous__indices_8hxx" local="yes">nifty/graph/detail/contiguous_indices.hxx</includes>
+    <includes refid="multicut_2fusion__move_8hxx" local="yes">nifty/graph/optimization/multicut/fusion_move.hxx</includes>
+    <includes refid="cc__fusion__move__based__impl_8hxx" local="yes">nifty/graph/optimization/common/cc_fusion_move_based_impl.hxx</includes>
+    <includes refid="common_2proposal__generators_2proposal__generator__factory__base_8hxx" local="yes">nifty/graph/optimization/common/proposal_generators/proposal_generator_factory_base.hxx</includes>
+    <incdepgraph>
+      <node id="9524">
+        <label>nifty/graph/optimization/common/proposal_generators/proposal_generator_factory_base.hxx</label>
+        <link refid="common_2proposal__generators_2proposal__generator__factory__base_8hxx"/>
+        <childnode refid="9486" relation="include">
+        </childnode>
+        <childnode refid="9523" relation="include">
+        </childnode>
+      </node>
+      <node id="9516">
+        <label>atomic</label>
+      </node>
+      <node id="9509">
+        <label>nifty/graph/optimization/multicut/multicut_factory.hxx</label>
+        <link refid="multicut__factory_8hxx"/>
+        <childnode refid="9472" relation="include">
+        </childnode>
+      </node>
+      <node id="9506">
+        <label>nifty/tools/const_iterator_range.hxx</label>
+        <link refid="const__iterator__range_8hxx"/>
+      </node>
+      <node id="9520">
+        <label>iomanip</label>
+      </node>
+      <node id="9490">
+        <label>functional</label>
+      </node>
+      <node id="9465">
+        <label>queue</label>
+      </node>
+      <node id="9512">
+        <label>boost/version.hpp</label>
+      </node>
+      <node id="9458">
+        <label>limits</label>
+      </node>
+      <node id="9503">
+        <label>iterator</label>
+      </node>
+      <node id="9460">
+        <label>nifty/graph/components.hxx</label>
+        <link refid="components_8hxx"/>
+        <childnode refid="9461" relation="include">
+        </childnode>
+        <childnode refid="9462" relation="include">
+        </childnode>
+        <childnode refid="9463" relation="include">
+        </childnode>
+        <childnode refid="9467" relation="include">
+        </childnode>
+      </node>
+      <node id="9454">
+        <label>cstdint</label>
+      </node>
+      <node id="9481">
+        <label>nifty/tools/logging.hxx</label>
+        <link refid="logging_8hxx"/>
+      </node>
+      <node id="9493">
+        <label>nifty/graph/edge_contraction_graph.hxx</label>
+        <link refid="graph_2edge__contraction__graph_8hxx"/>
+        <childnode refid="9490" relation="include">
+        </childnode>
+        <childnode refid="9494" relation="include">
+        </childnode>
+        <childnode refid="9495" relation="include">
+        </childnode>
+        <childnode refid="9496" relation="include">
+        </childnode>
+        <childnode refid="9507" relation="include">
+        </childnode>
+        <childnode refid="9453" relation="include">
+        </childnode>
+        <childnode refid="9467" relation="include">
+        </childnode>
+        <childnode refid="9492" relation="include">
+        </childnode>
+      </node>
+      <node id="9488">
+        <label>nifty/graph/optimization/multicut/multicut_greedy_additive.hxx</label>
+        <link refid="multicut__greedy__additive_8hxx"/>
+        <childnode refid="9489" relation="include">
+        </childnode>
+        <childnode refid="9490" relation="include">
+        </childnode>
+        <childnode refid="9491" relation="include">
+        </childnode>
+        <childnode refid="9453" relation="include">
+        </childnode>
+        <childnode refid="9492" relation="include">
+        </childnode>
+        <childnode refid="9472" relation="include">
+        </childnode>
+        <childnode refid="9493" relation="include">
+        </childnode>
+      </node>
+      <node id="9519">
+        <label>nifty/graph/optimization/common/cc_fusion_move_based_impl.hxx</label>
+        <link refid="cc__fusion__move__based__impl_8hxx"/>
+        <childnode refid="9520" relation="include">
+        </childnode>
+        <childnode refid="9508" relation="include">
+        </childnode>
+        <childnode refid="9487" relation="include">
+        </childnode>
+        <childnode refid="9457" relation="include">
+        </childnode>
+        <childnode refid="9466" relation="include">
+        </childnode>
+        <childnode refid="9491" relation="include">
+        </childnode>
+        <childnode refid="9453" relation="include">
+        </childnode>
+        <childnode refid="9467" relation="include">
+        </childnode>
+        <childnode refid="9492" relation="include">
+        </childnode>
+        <childnode refid="9521" relation="include">
+        </childnode>
+        <childnode refid="9493" relation="include">
+        </childnode>
+        <childnode refid="9460" relation="include">
+        </childnode>
+        <childnode refid="9514" relation="include">
+        </childnode>
+        <childnode refid="9523" relation="include">
+        </childnode>
+        <childnode refid="9524" relation="include">
+        </childnode>
+      </node>
+      <node id="9484">
+        <label>nifty/graph/optimization/multicut/fusion_move.hxx</label>
+        <link refid="multicut_2fusion__move_8hxx"/>
+        <childnode refid="9485" relation="include">
+        </childnode>
+        <childnode refid="9486" relation="include">
+        </childnode>
+        <childnode refid="9487" relation="include">
+        </childnode>
+        <childnode refid="9488" relation="include">
+        </childnode>
+        <childnode refid="9453" relation="include">
+        </childnode>
+        <childnode refid="9467" relation="include">
+        </childnode>
+        <childnode refid="9472" relation="include">
+        </childnode>
+        <childnode refid="9509" relation="include">
+        </childnode>
+        <childnode refid="9510" relation="include">
+        </childnode>
+        <childnode refid="9511" relation="include">
+        </childnode>
+      </node>
+      <node id="9459">
+        <label>cmath</label>
+      </node>
+      <node id="9501">
+        <label>cassert</label>
+      </node>
+      <node id="9472">
+        <label>nifty/graph/optimization/multicut/multicut_base.hxx</label>
+        <link refid="multicut__base_8hxx"/>
+        <childnode refid="9473" relation="include">
+        </childnode>
+        <childnode refid="9474" relation="include">
+        </childnode>
+        <childnode refid="9456" relation="include">
+        </childnode>
+        <childnode refid="9475" relation="include">
+        </childnode>
+        <childnode refid="9476" relation="include">
+        </childnode>
+      </node>
+      <node id="9497">
+        <label>boost/iterator/transform_iterator.hpp</label>
+      </node>
+      <node id="9455">
+        <label>stdexcept</label>
+      </node>
+      <node id="9505">
+        <label>numeric</label>
+      </node>
+      <node id="9496">
+        <label>nifty/graph/undirected_graph_base.hxx</label>
+        <link refid="undirected__graph__base_8hxx"/>
+        <childnode refid="9497" relation="include">
+        </childnode>
+        <childnode refid="9483" relation="include">
+        </childnode>
+        <childnode refid="9498" relation="include">
+        </childnode>
+        <childnode refid="9506" relation="include">
+        </childnode>
+      </node>
+      <node id="9452">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_cc_fusion_move_based.hxx</label>
+        <link refid="multicut_cc_fusion_move_based.hxx"/>
+        <childnode refid="9453" relation="include">
+        </childnode>
+        <childnode refid="9460" relation="include">
+        </childnode>
+        <childnode refid="9470" relation="include">
+        </childnode>
+        <childnode refid="9472" relation="include">
+        </childnode>
+        <childnode refid="9482" relation="include">
+        </childnode>
+        <childnode refid="9484" relation="include">
+        </childnode>
+        <childnode refid="9519" relation="include">
+        </childnode>
+        <childnode refid="9524" relation="include">
+        </childnode>
+      </node>
+      <node id="9492">
+        <label>nifty/graph/detail/adjacency.hxx</label>
+        <link refid="adjacency_8hxx"/>
+      </node>
+      <node id="9463">
+        <label>nifty/graph/breadth_first_search.hxx</label>
+        <link refid="breadth__first__search_8hxx"/>
+        <childnode refid="9462" relation="include">
+        </childnode>
+        <childnode refid="9464" relation="include">
+        </childnode>
+      </node>
+      <node id="9473">
+        <label>string</label>
+      </node>
+      <node id="9513">
+        <label>boost/iterator/counting_iterator.hpp</label>
+      </node>
+      <node id="9475">
+        <label>nifty/exceptions/exceptions.hxx</label>
+        <link refid="exceptions_8hxx"/>
+        <childnode refid="9455" relation="include">
+        </childnode>
+      </node>
+      <node id="9469">
+        <label>map</label>
+      </node>
+      <node id="9487">
+        <label>unordered_set</label>
+      </node>
+      <node id="9522">
+        <label>mincut_visitor_base.hxx</label>
+        <link refid="mincut__visitor__base_8hxx"/>
+        <childnode refid="9473" relation="include">
+        </childnode>
+        <childnode refid="9474" relation="include">
+        </childnode>
+        <childnode refid="9456" relation="include">
+        </childnode>
+        <childnode refid="9477" relation="include">
+        </childnode>
+      </node>
+      <node id="9510">
+        <label>nifty/graph/optimization/multicut/multicut_objective.hxx</label>
+        <link refid="graph_2optimization_2multicut_2multicut__objective_8hxx"/>
+        <childnode refid="9453" relation="include">
+        </childnode>
+        <childnode refid="9462" relation="include">
+        </childnode>
+        <childnode refid="9498" relation="include">
+        </childnode>
+      </node>
+      <node id="9480">
+        <label>nifty/tools/timer.hxx</label>
+        <link refid="timer_8hxx"/>
+        <childnode refid="9456" relation="include">
+        </childnode>
+        <childnode refid="9479" relation="include">
+        </childnode>
+        <childnode refid="9473" relation="include">
+        </childnode>
+      </node>
+      <node id="9462">
+        <label>nifty/graph/subgraph_mask.hxx</label>
+        <link refid="subgraph__mask_8hxx"/>
+      </node>
+      <node id="9521">
+        <label>nifty/graph/optimization/mincut/mincut_base.hxx</label>
+        <link refid="mincut__base_8hxx"/>
+        <childnode refid="9473" relation="include">
+        </childnode>
+        <childnode refid="9474" relation="include">
+        </childnode>
+        <childnode refid="9456" relation="include">
+        </childnode>
+        <childnode refid="9475" relation="include">
+        </childnode>
+        <childnode refid="9522" relation="include">
+        </childnode>
+      </node>
+      <node id="9500">
+        <label>nifty/marray/andres/marray.hxx</label>
+        <link refid="andres_2marray_8hxx"/>
+        <childnode refid="9501" relation="include">
+        </childnode>
+        <childnode refid="9468" relation="include">
+        </childnode>
+        <childnode refid="9455" relation="include">
+        </childnode>
+        <childnode refid="9458" relation="include">
+        </childnode>
+        <childnode refid="9473" relation="include">
+        </childnode>
+        <childnode refid="9456" relation="include">
+        </childnode>
+        <childnode refid="9502" relation="include">
+        </childnode>
+        <childnode refid="9503" relation="include">
+        </childnode>
+        <childnode refid="9457" relation="include">
+        </childnode>
+        <childnode refid="9504" relation="include">
+        </childnode>
+        <childnode refid="9478" relation="include">
+        </childnode>
+        <childnode refid="9486" relation="include">
+        </childnode>
+        <childnode refid="9505" relation="include">
+        </childnode>
+        <childnode refid="9490" relation="include">
+        </childnode>
+      </node>
+      <node id="9489">
+        <label>random</label>
+      </node>
+      <node id="9518">
+        <label>condition_variable</label>
+      </node>
+      <node id="9467">
+        <label>nifty/ufd/ufd.hxx</label>
+        <link refid="ufd_8hxx"/>
+        <childnode refid="9468" relation="include">
+        </childnode>
+        <childnode refid="9457" relation="include">
+        </childnode>
+        <childnode refid="9469" relation="include">
+        </childnode>
+      </node>
+      <node id="9495">
+        <label>boost/container/flat_set.hpp</label>
+      </node>
+      <node id="9517">
+        <label>future</label>
+      </node>
+      <node id="9507">
+        <label>nifty/container/flat_set.hxx</label>
+        <link refid="flat__set_8hxx"/>
+        <childnode refid="9468" relation="include">
+        </childnode>
+        <childnode refid="9457" relation="include">
+        </childnode>
+        <childnode refid="9508" relation="include">
+        </childnode>
+        <childnode refid="9490" relation="include">
+        </childnode>
+        <childnode refid="9471" relation="include">
+        </childnode>
+      </node>
+      <node id="9491">
+        <label>nifty/tools/changable_priority_queue.hxx</label>
+        <link refid="changable__priority__queue_8hxx"/>
+        <childnode refid="9465" relation="include">
+        </childnode>
+      </node>
+      <node id="9466">
+        <label>stack</label>
+      </node>
+      <node id="9457">
+        <label>vector</label>
+      </node>
+      <node id="9483">
+        <label>nifty/graph/graph_tags.hxx</label>
+        <link refid="graph__tags_8hxx"/>
+      </node>
+      <node id="9477">
+        <label>nifty/graph/optimization/common/visitor_base.hxx</label>
+        <link refid="visitor__base_8hxx"/>
+        <childnode refid="9473" relation="include">
+        </childnode>
+        <childnode refid="9474" relation="include">
+        </childnode>
+        <childnode refid="9456" relation="include">
+        </childnode>
+        <childnode refid="9478" relation="include">
+        </childnode>
+        <childnode refid="9479" relation="include">
+        </childnode>
+        <childnode refid="9480" relation="include">
+        </childnode>
+        <childnode refid="9481" relation="include">
+        </childnode>
+      </node>
+      <node id="9471">
+        <label>utility</label>
+      </node>
+      <node id="9456">
+        <label>sstream</label>
+      </node>
+      <node id="9453">
+        <label>nifty/tools/runtime_check.hxx</label>
+        <link refid="runtime__check_8hxx"/>
+        <childnode refid="9454" relation="include">
+        </childnode>
+        <childnode refid="9455" relation="include">
+        </childnode>
+        <childnode refid="9456" relation="include">
+        </childnode>
+        <childnode refid="9457" relation="include">
+        </childnode>
+        <childnode refid="9458" relation="include">
+        </childnode>
+        <childnode refid="9459" relation="include">
+        </childnode>
+      </node>
+      <node id="9464">
+        <label>nifty/graph/detail/search_impl.hxx</label>
+        <link refid="search__impl_8hxx"/>
+        <childnode refid="9465" relation="include">
+        </childnode>
+        <childnode refid="9466" relation="include">
+        </childnode>
+        <childnode refid="9462" relation="include">
+        </childnode>
+      </node>
+      <node id="9470">
+        <label>nifty/graph/paths.hxx</label>
+        <link refid="paths_8hxx"/>
+        <childnode refid="9468" relation="include">
+        </childnode>
+        <childnode refid="9471" relation="include">
+        </childnode>
+        <childnode refid="9465" relation="include">
+        </childnode>
+        <childnode refid="9462" relation="include">
+        </childnode>
+      </node>
+      <node id="9498">
+        <label>nifty/graph/graph_maps.hxx</label>
+        <link refid="graph__maps_8hxx"/>
+        <childnode refid="9499" relation="include">
+        </childnode>
+      </node>
+      <node id="9478">
+        <label>iostream</label>
+      </node>
+      <node id="9468">
+        <label>cstddef</label>
+      </node>
+      <node id="9461">
+        <label>unordered_map</label>
+      </node>
+      <node id="9514">
+        <label>nifty/parallel/threadpool.hxx</label>
+        <link refid="threadpool_8hxx"/>
+        <childnode refid="9490" relation="include">
+        </childnode>
+        <childnode refid="9515" relation="include">
+        </childnode>
+        <childnode refid="9516" relation="include">
+        </childnode>
+        <childnode refid="9457" relation="include">
+        </childnode>
+        <childnode refid="9517" relation="include">
+        </childnode>
+        <childnode refid="9485" relation="include">
+        </childnode>
+        <childnode refid="9465" relation="include">
+        </childnode>
+        <childnode refid="9518" relation="include">
+        </childnode>
+        <childnode refid="9455" relation="include">
+        </childnode>
+        <childnode refid="9459" relation="include">
+        </childnode>
+        <childnode refid="9497" relation="include">
+        </childnode>
+        <childnode refid="9513" relation="include">
+        </childnode>
+        <childnode refid="9453" relation="include">
+        </childnode>
+      </node>
+      <node id="9485">
+        <label>mutex</label>
+      </node>
+      <node id="9479">
+        <label>chrono</label>
+      </node>
+      <node id="9511">
+        <label>nifty/graph/undirected_list_graph.hxx</label>
+        <link refid="graph_2undirected__list__graph_8hxx"/>
+        <childnode refid="9457" relation="include">
+        </childnode>
+        <childnode refid="9469" relation="include">
+        </childnode>
+        <childnode refid="9512" relation="include">
+        </childnode>
+        <childnode refid="9495" relation="include">
+        </childnode>
+        <childnode refid="9513" relation="include">
+        </childnode>
+        <childnode refid="9507" relation="include">
+        </childnode>
+        <childnode refid="9453" relation="include">
+        </childnode>
+        <childnode refid="9496" relation="include">
+        </childnode>
+        <childnode refid="9492" relation="include">
+        </childnode>
+        <childnode refid="9483" relation="include">
+        </childnode>
+        <childnode refid="9514" relation="include">
+        </childnode>
+      </node>
+      <node id="9499">
+        <label>nifty/marray/marray.hxx</label>
+        <link refid="marray_8hxx"/>
+        <childnode refid="9500" relation="include">
+        </childnode>
+        <childnode refid="9453" relation="include">
+        </childnode>
+      </node>
+      <node id="9515">
+        <label>thread</label>
+      </node>
+      <node id="9523">
+        <label>nifty/graph/optimization/common/proposal_generators/proposal_generator_base.hxx</label>
+        <link refid="common_2proposal__generators_2proposal__generator__base_8hxx"/>
+      </node>
+      <node id="9494">
+        <label>type_traits</label>
+      </node>
+      <node id="9504">
+        <label>set</label>
+      </node>
+      <node id="9476">
+        <label>nifty/graph/optimization/multicut/multicut_visitor_base.hxx</label>
+        <link refid="multicut__visitor__base_8hxx"/>
+        <childnode refid="9473" relation="include">
+        </childnode>
+        <childnode refid="9474" relation="include">
+        </childnode>
+        <childnode refid="9456" relation="include">
+        </childnode>
+        <childnode refid="9477" relation="include">
+        </childnode>
+      </node>
+      <node id="9508">
+        <label>algorithm</label>
+      </node>
+      <node id="9502">
+        <label>cstring</label>
+      </node>
+      <node id="9486">
+        <label>memory</label>
+      </node>
+      <node id="9474">
+        <label>initializer_list</label>
+      </node>
+      <node id="9482">
+        <label>nifty/graph/detail/contiguous_indices.hxx</label>
+        <link refid="contiguous__indices_8hxx"/>
+        <childnode refid="9483" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <innerclass refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1DefaultProposalGeneratorMock" prot="public">nifty::graph::optimization::multicut::DefaultProposalGeneratorMock</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutCcFusionMoveBased" prot="public">nifty::graph::optimization::multicut::MulticutCcFusionMoveBased</innerclass>
+    <innernamespace refid="namespacenifty">nifty</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph">nifty::graph</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph_1_1optimization">nifty::graph::optimization</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph_1_1optimization_1_1multicut">nifty::graph::optimization::multicut</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="runtime__check_8hxx" kindref="compound">nifty/tools/runtime_check.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="components_8hxx" kindref="compound">nifty/graph/components.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="paths_8hxx" kindref="compound">nifty/graph/paths.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="multicut__base_8hxx" kindref="compound">nifty/graph/optimization/multicut/multicut_base.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="contiguous__indices_8hxx" kindref="compound">nifty/graph/detail/contiguous_indices.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="multicut_2fusion__move_8hxx" kindref="compound">nifty/graph/optimization/multicut/fusion_move.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="cc__fusion__move__based__impl_8hxx" kindref="compound">nifty/graph/optimization/common/cc_fusion_move_based_impl.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="common_2proposal__generators_2proposal__generator__factory__base_8hxx" kindref="compound">nifty/graph/optimization/common/proposal_generators/proposal_generator_factory_base.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacenifty" kindref="compound">nifty</ref>{</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">graph{</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">optimization{</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">multicut{</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24" refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1DefaultProposalGeneratorMock" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1DefaultProposalGeneratorMock" kindref="compound">DefaultProposalGeneratorMock</ref>{</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
+<codeline lineno="30" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutCcFusionMoveBased" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutCcFusionMoveBased" kindref="compound">MulticutCcFusionMoveBased</ref><sp/>:<sp/></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>impl<sp/>is<sp/>the<sp/>base<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl" kindref="compound">nifty::graph::optimization::common::detail_cc_fusion::CcFusionMoveBasedImpl</ref>&lt;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>OBJECTIVE,<sp/></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>MulticutBase&lt;OBJECTIVE&gt;,</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>FusionMove&lt;OBJECTIVE&gt;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>&gt;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:<sp/></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutCcFusionMoveBased_1a4e77d22f2925cd6d677347e852b247df" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>OBJECTIVE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutCcFusionMoveBased_1a4e77d22f2925cd6d677347e852b247df" kindref="member">ObjectiveType</ref>;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl" kindref="compound">nifty::graph::optimization::common::detail_cc_fusion::CcFusionMoveBasedImpl</ref>&lt;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>OBJECTIVE,<sp/></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutBase" kindref="compound">MulticutBase&lt;OBJECTIVE&gt;</ref>,</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1FusionMove" kindref="compound">FusionMove&lt;OBJECTIVE&gt;</ref></highlight></codeline>
+<codeline lineno="46" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutCcFusionMoveBased_1a02769d7dd373c4203525109810b56b27" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&gt;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutCcFusionMoveBased_1a02769d7dd373c4203525109810b56b27" kindref="member">BaseType</ref>;</highlight></codeline>
+<codeline lineno="47" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutCcFusionMoveBased_1aed0ee5627ed2e4e9801eec0c5f89b424" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>BaseType::Settings<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutCcFusionMoveBased_1aed0ee5627ed2e4e9801eec0c5f89b424" kindref="member">Settings</ref>;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="49" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutCcFusionMoveBased_1aea0e882aaf4cba0a60468a6d828a33f6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutCcFusionMoveBased_1aea0e882aaf4cba0a60468a6d828a33f6" kindref="member">~MulticutCcFusionMoveBased</ref>(){</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutCcFusionMoveBased_1a555d3df8bceb5c96da6bb183629fa902" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutCcFusionMoveBased_1a555d3df8bceb5c96da6bb183629fa902" kindref="member">MulticutCcFusionMoveBased</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ObjectiveType<sp/>&amp;<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1ad97005b4bf8bd030c06759e90ca8bbd3" kindref="member">objective</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Settings<sp/>&amp;<sp/>settings<sp/>=<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutCcFusionMoveBased_1aed0ee5627ed2e4e9801eec0c5f89b424" kindref="member">Settings</ref>())</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl" kindref="compound">BaseType</ref>(objective,<sp/>settings){</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph::optimization::multicut</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph::optimization</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_cc_fusion_move_based.hxx"/>
+  </compounddef>
+</doxygen>

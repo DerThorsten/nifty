@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Multicut Logging Visitor &#8212; Nifty 0.15.0 documentation</title>
+    <title>Multicut Logging Visitor &#8212; Nifty 0.19.0 documentation</title>
     
     <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -15,7 +15,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '0.15.0',
+        VERSION:     '0.19.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -28,7 +28,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="ISBI 2012 Simple 2D Multicut Pipeline" href="../multicut/plot_isbi_2012_multicut_2D_simple.html" />
+    <link rel="next" title="Union-Find Data Structure" href="../misc/plot_ufd.html" />
     <link rel="prev" title="Edge/Node Weighted Watersheds" href="plot_undirected_grid_graph_watersheds.html" /> 
   </head>
   <body role="document">
@@ -42,13 +42,14 @@
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="../multicut/plot_isbi_2012_multicut_2D_simple.html" title="ISBI 2012 Simple 2D Multicut Pipeline"
+          <a href="../misc/plot_ufd.html" title="Union-Find Data Structure"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="plot_undirected_grid_graph_watersheds.html" title="Edge/Node Weighted Watersheds"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">Nifty 0.15.0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Gallery of Examples</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">Nifty 0.19.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../examples.html" >Nifty Examples Gallery</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" accesskey="U">Gallery of Examples</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -57,8 +58,8 @@
   <p class="topless"><a href="plot_undirected_grid_graph_watersheds.html"
                         title="previous chapter">Edge/Node Weighted Watersheds</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="../multicut/plot_isbi_2012_multicut_2D_simple.html"
-                        title="next chapter">ISBI 2012 Simple 2D Multicut Pipeline</a></p>
+  <p class="topless"><a href="../misc/plot_ufd.html"
+                        title="next chapter">Union-Find Data Structure</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../search.html" method="get">
@@ -113,7 +114,7 @@ and log the runtime / energies.</p>
 <span class="n">uvIds</span> <span class="o">=</span> <span class="n">uvIds</span><span class="p">[</span><span class="n">uvIds</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">!=</span><span class="n">uvIds</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],:]</span>
 
 <span class="c1"># setup graph</span>
-<span class="n">Graph</span> <span class="o">=</span> <a href="../../gen_modules/nifty.graph.html#nifty.graph.UndirectedGraph" title="View documentation for nifty.graph.UndirectedGraph"><span class="n">nifty</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">UndirectedGraph</span></a>
+<span class="n">Graph</span> <span class="o">=</span> <a href="../../sections/gen_modules/nifty.graph.html#nifty.graph.UndirectedGraph" title="View documentation for nifty.graph.UndirectedGraph"><span class="n">nifty</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">UndirectedGraph</span></a>
 <span class="n">graph</span> <span class="o">=</span> <span class="n">Graph</span><span class="p">(</span><span class="n">numberOfNodes</span><span class="p">)</span>
 <span class="n">graph</span><span class="o">.</span><span class="n">insertEdges</span><span class="p">(</span><span class="n">uvIds</span><span class="p">)</span>
 
@@ -124,7 +125,7 @@ and log the runtime / energies.</p>
 <span class="c1"># construct a multicut objective</span>
 <span class="n">MulticutObjective</span> <span class="o">=</span> <span class="n">Graph</span><span class="o">.</span><span class="n">MulticutObjective</span>
 <span class="c1"># the actual class of the objective</span>
-<span class="k">assert</span> <span class="n">MulticutObjective</span> <span class="o">==</span> <a href="../../gen_modules/nifty.graph.optimization.multicut.html#nifty.graph.optimization.multicut.MulticutObjectiveUndirectedGraph" title="View documentation for nifty.graph.optimization.multicut.MulticutObjectiveUndirectedGraph"><span class="n">nifty_multicut</span><span class="o">.</span><span class="n">MulticutObjectiveUndirectedGraph</span></a>
+<span class="k">assert</span> <span class="n">MulticutObjective</span> <span class="o">==</span> <a href="../../sections/gen_modules/nifty.graph.optimization.multicut.html#nifty.graph.optimization.multicut.MulticutObjectiveUndirectedGraph" title="View documentation for nifty.graph.optimization.multicut.MulticutObjectiveUndirectedGraph"><span class="n">nifty_multicut</span><span class="o">.</span><span class="n">MulticutObjectiveUndirectedGraph</span></a>
 
 <span class="n">objective</span> <span class="o">=</span> <span class="n">MulticutObjective</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
 
@@ -147,12 +148,12 @@ and log the runtime / energies.</p>
 <span class="n">solverFactory</span> <span class="o">=</span> <span class="n">MulticutObjective</span><span class="o">.</span><span class="n">greedyAdditiveFactory</span><span class="p">()</span>
 <span class="c1"># same as above but very verbose</span>
 <span class="k">if</span> <span class="bp">False</span><span class="p">:</span>
-    <span class="n">solverFactory</span> <span class="o">=</span> <a href="../../gen_modules/nifty.graph.optimization.multicut.html#nifty.graph.optimization.multicut.MulticutObjectiveUndirectedGraph.greedyAdditiveFactory" title="View documentation for nifty.graph.optimization.multicut.MulticutObjectiveUndirectedGraph.greedyAdditiveFactory"><span class="n">nifty_multicut</span><span class="o">.</span><span class="n">MulticutObjectiveUndirectedGraph</span><span class="o">.</span><span class="n">greedyAdditiveFactory</span></a><span class="p">()</span>
+    <span class="n">solverFactory</span> <span class="o">=</span> <a href="../../sections/gen_modules/nifty.graph.optimization.multicut.html#nifty.graph.optimization.multicut.MulticutObjectiveUndirectedGraph.greedyAdditiveFactory" title="View documentation for nifty.graph.optimization.multicut.MulticutObjectiveUndirectedGraph.greedyAdditiveFactory"><span class="n">nifty_multicut</span><span class="o">.</span><span class="n">MulticutObjectiveUndirectedGraph</span><span class="o">.</span><span class="n">greedyAdditiveFactory</span></a><span class="p">()</span>
 
 
 <span class="n">results</span><span class="p">[</span><span class="s1">&#39;greedy-additive&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">runSolver</span><span class="p">(</span><span class="n">solverFactory</span><span class="p">)</span>
 
-<span class="k">if</span> <a href="../../gen_modules/nifty.html#nifty.Configuration.WITH_QPBO" title="View documentation for nifty.Configuration.WITH_QPBO"><span class="n">nifty</span><span class="o">.</span><span class="n">Configuration</span><span class="o">.</span><span class="n">WITH_QPBO</span></a><span class="p">:</span>
+<span class="k">if</span> <a href="../../sections/gen_modules/nifty.html#nifty.Configuration.WITH_QPBO" title="View documentation for nifty.Configuration.WITH_QPBO"><span class="n">nifty</span><span class="o">.</span><span class="n">Configuration</span><span class="o">.</span><span class="n">WITH_QPBO</span></a><span class="p">:</span>
 
     <span class="c1"># cgc</span>
     <span class="n">solverFactory</span> <span class="o">=</span> <span class="n">MulticutObjective</span><span class="o">.</span><span class="n">cgcFactory</span><span class="p">(</span><span class="bp">True</span><span class="p">,</span><span class="bp">True</span><span class="p">)</span>
@@ -166,15 +167,15 @@ and log the runtime / energies.</p>
     <span class="n">results</span><span class="p">[</span><span class="s1">&#39;greedy-additive + cgc-qpbo&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">runSolver</span><span class="p">(</span><span class="n">solverFactory</span><span class="p">)</span>
 
 
-<span class="k">if</span> <a href="../../gen_modules/nifty.html#nifty.Configuration.WITH_CPLEX" title="View documentation for nifty.Configuration.WITH_CPLEX"><span class="n">nifty</span><span class="o">.</span><span class="n">Configuration</span><span class="o">.</span><span class="n">WITH_CPLEX</span></a><span class="p">:</span>
+<span class="k">if</span> <a href="../../sections/gen_modules/nifty.html#nifty.Configuration.WITH_CPLEX" title="View documentation for nifty.Configuration.WITH_CPLEX"><span class="n">nifty</span><span class="o">.</span><span class="n">Configuration</span><span class="o">.</span><span class="n">WITH_CPLEX</span></a><span class="p">:</span>
     <span class="n">solverFactory</span> <span class="o">=</span> <span class="n">MulticutObjective</span><span class="o">.</span><span class="n">multicutIlpCplexFactory</span><span class="p">()</span>
     <span class="n">results</span><span class="p">[</span><span class="s1">&#39;ilp-cplex&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">runSolver</span><span class="p">(</span><span class="n">solverFactory</span><span class="p">)</span>
 
-<span class="k">if</span> <a href="../../gen_modules/nifty.html#nifty.Configuration.WITH_GUROBI" title="View documentation for nifty.Configuration.WITH_GUROBI"><span class="n">nifty</span><span class="o">.</span><span class="n">Configuration</span><span class="o">.</span><span class="n">WITH_GUROBI</span></a><span class="p">:</span>
+<span class="k">if</span> <a href="../../sections/gen_modules/nifty.html#nifty.Configuration.WITH_GUROBI" title="View documentation for nifty.Configuration.WITH_GUROBI"><span class="n">nifty</span><span class="o">.</span><span class="n">Configuration</span><span class="o">.</span><span class="n">WITH_GUROBI</span></a><span class="p">:</span>
     <span class="n">solverFactory</span> <span class="o">=</span> <span class="n">MulticutObjective</span><span class="o">.</span><span class="n">multicutIlpGurobiFactory</span><span class="p">()</span>
     <span class="n">results</span><span class="p">[</span><span class="s1">&#39;ilp-gurbi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">runSolver</span><span class="p">(</span><span class="n">solverFactory</span><span class="p">)</span>
 
-<span class="k">if</span> <a href="../../gen_modules/nifty.html#nifty.Configuration.WITH_GLPK" title="View documentation for nifty.Configuration.WITH_GLPK"><span class="n">nifty</span><span class="o">.</span><span class="n">Configuration</span><span class="o">.</span><span class="n">WITH_GLPK</span></a><span class="p">:</span>
+<span class="k">if</span> <a href="../../sections/gen_modules/nifty.html#nifty.Configuration.WITH_GLPK" title="View documentation for nifty.Configuration.WITH_GLPK"><span class="n">nifty</span><span class="o">.</span><span class="n">Configuration</span><span class="o">.</span><span class="n">WITH_GLPK</span></a><span class="p">:</span>
     <span class="n">solverFactory</span> <span class="o">=</span> <span class="n">MulticutObjective</span><span class="o">.</span><span class="n">multicutIlpGlpkFactory</span><span class="p">()</span>
     <span class="n">results</span><span class="p">[</span><span class="s1">&#39;ilp-glpk&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">runSolver</span><span class="p">(</span><span class="n">solverFactory</span><span class="p">)</span>
 
@@ -185,8 +186,8 @@ and log the runtime / energies.</p>
 <span class="n">pylab</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.5</span><span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="mf">1.5</span><span class="o">*</span><span class="n">b</span>
 
 <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">results</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-    <span class="p">(</span><span class="n">runtimes</span><span class="p">,</span><span class="n">energies</span><span class="p">)</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
-    <span class="n">pylab</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">energies</span><span class="p">,</span> <span class="n">runtimes</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">energies</span><span class="p">,</span> <span class="n">runtimes</span><span class="p">)</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+    <span class="n">pylab</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">runtimes</span><span class="p">,</span> <span class="n">energies</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
 
 <span class="n">pylab</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Multicut Solver Comparison on Toy Graph&#39;</span><span class="p">)</span>
 <span class="n">pylab</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Runtime [s]&#39;</span><span class="p">)</span>
@@ -195,7 +196,7 @@ and log the runtime / energies.</p>
 <span class="n">pylab</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p><strong>Total running time of the script:</strong> ( 0 minutes  0.278 seconds)</p>
+<p><strong>Total running time of the script:</strong> ( 0 minutes  0.084 seconds)</p>
 <div class="sphx-glr-footer docutils container">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" href="../../_downloads/plot_toy_multicut.py" download=""><code class="xref download docutils literal"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_toy_multicut.py</span></code></a></div>
@@ -221,13 +222,14 @@ and log the runtime / energies.</p>
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="../multicut/plot_isbi_2012_multicut_2D_simple.html" title="ISBI 2012 Simple 2D Multicut Pipeline"
+          <a href="../misc/plot_ufd.html" title="Union-Find Data Structure"
              >next</a> |</li>
         <li class="right" >
           <a href="plot_undirected_grid_graph_watersheds.html" title="Edge/Node Weighted Watersheds"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">Nifty 0.15.0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" >Gallery of Examples</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">Nifty 0.19.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../examples.html" >Nifty Examples Gallery</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" >Gallery of Examples</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

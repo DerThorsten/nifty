@@ -1,0 +1,770 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+  <compounddef id="classnifty_1_1graph_1_1EdgeContractionGraphWithSets" kind="class" language="C++" prot="public">
+    <compoundname>nifty::graph::EdgeContractionGraphWithSets</compoundname>
+    <basecompoundref refid="classnifty_1_1graph_1_1UndirectedGraphBase" prot="public" virt="non-virtual">nifty::graph::UndirectedGraphBase&lt; EdgeContractionGraphWithSets&lt; GRAPH, OUTER_CALLBACK, SET &gt;, EdgeContractionGraphWithSetsHelper&lt; GRAPH, OUTER_CALLBACK, SET &gt;::NodeIter, EdgeContractionGraphWithSetsHelper&lt; GRAPH, OUTER_CALLBACK, SET &gt;::EdgeIter, EdgeContractionGraphWithSetsHelper&lt; GRAPH, OUTER_CALLBACK, SET &gt;::AdjacencyIter &gt;</basecompoundref>
+    <includes refid="graph_2edge__contraction__graph_8hxx" local="no">edge_contraction_graph.hxx</includes>
+    <templateparamlist>
+      <param>
+        <type>class GRAPH</type>
+      </param>
+      <param>
+        <type>class OUTER_CALLBACK</type>
+      </param>
+      <param>
+        <type>class SET</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1ad242adf3d95cf4d1e5157f7888ddf1b6" prot="private" static="no">
+        <type><ref refid="structnifty_1_1graph_1_1EdgeContractionGraphWithSetsHelper" kindref="compound">EdgeContractionGraphWithSetsHelper</ref>&lt; GRAPH, OUTER_CALLBACK, SET &gt;</type>
+        <definition>typedef EdgeContractionGraphWithSetsHelper&lt;GRAPH,OUTER_CALLBACK,SET&gt; nifty::graph::EdgeContractionGraphWithSets&lt; GRAPH, OUTER_CALLBACK, SET &gt;::TypeHelper</definition>
+        <argsstring></argsstring>
+        <name>TypeHelper</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" line="154" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" bodystart="154" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1a6b3ca9e19cdb2fbddbc5c87cf278a796" prot="private" static="no">
+        <type><ref refid="structnifty_1_1graph_1_1EdgeContractionGraphWithSetsHelper_1a7b0578f3509ed396dd72b029e4e8b105" kindref="member">TypeHelper::SelfType</ref></type>
+        <definition>typedef TypeHelper::SelfType nifty::graph::EdgeContractionGraphWithSets&lt; GRAPH, OUTER_CALLBACK, SET &gt;::SelfType</definition>
+        <argsstring></argsstring>
+        <name>SelfType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" line="156" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" bodystart="156" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1a3d66093fe00c5ec0dd7d1b5171fdbaab" prot="private" static="no">
+        <type><ref refid="structnifty_1_1graph_1_1EdgeContractionGraphWithSetsHelper_1add695ccd6756ec7e79ce2b4e6fceb5fc" kindref="member">TypeHelper::CGraphType</ref></type>
+        <definition>typedef TypeHelper::CGraphType nifty::graph::EdgeContractionGraphWithSets&lt; GRAPH, OUTER_CALLBACK, SET &gt;::CGraphType</definition>
+        <argsstring></argsstring>
+        <name>CGraphType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" line="157" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" bodystart="157" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1a4ae64a63ff19750de1cfafe916489dc7" prot="private" static="no">
+        <type><ref refid="structnifty_1_1graph_1_1EdgeContractionGraphWithSetsHelper_1a2378dd6c8e82012a04236593971ac4e7" kindref="member">TypeHelper::EdgeStorage</ref></type>
+        <definition>typedef TypeHelper::EdgeStorage nifty::graph::EdgeContractionGraphWithSets&lt; GRAPH, OUTER_CALLBACK, SET &gt;::EdgeStorage</definition>
+        <argsstring></argsstring>
+        <name>EdgeStorage</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" line="158" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" bodystart="158" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1a6585f1adb38795c1c49a88c1ea4f2e25" prot="private" static="no">
+        <type>detail_edge_contraction_graph::InnerCallback&lt; <ref refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1abadbbebcd10e37a1a3f59bb967accdf0" kindref="member">GraphType</ref>, <ref refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1a2f741cfabfa1fb4c5bfc75df557c1d12" kindref="member">OuterCallbackType</ref>, <ref refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1aeb3c8839879c1e126ceaca6bdfdff008" kindref="member">SetType</ref> &gt;</type>
+        <definition>typedef detail_edge_contraction_graph::InnerCallback&lt;GraphType, OuterCallbackType, SetType&gt; nifty::graph::EdgeContractionGraphWithSets&lt; GRAPH, OUTER_CALLBACK, SET &gt;::InnerCallbackType</definition>
+        <argsstring></argsstring>
+        <name>InnerCallbackType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" line="295" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" bodystart="295" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1abadbbebcd10e37a1a3f59bb967accdf0" prot="public" static="no">
+        <type><ref refid="structnifty_1_1graph_1_1EdgeContractionGraphWithSetsHelper_1a7f5226bf25f277d906a526db55556cdf" kindref="member">TypeHelper::GraphType</ref></type>
+        <definition>typedef TypeHelper::GraphType nifty::graph::EdgeContractionGraphWithSets&lt; GRAPH, OUTER_CALLBACK, SET &gt;::GraphType</definition>
+        <argsstring></argsstring>
+        <name>GraphType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" line="160" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" bodystart="160" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1a2f741cfabfa1fb4c5bfc75df557c1d12" prot="public" static="no">
+        <type><ref refid="structnifty_1_1graph_1_1EdgeContractionGraphWithSetsHelper_1a3e0b97cbc8de91c57e3dc83860edda69" kindref="member">TypeHelper::OuterCallbackType</ref></type>
+        <definition>typedef TypeHelper::OuterCallbackType nifty::graph::EdgeContractionGraphWithSets&lt; GRAPH, OUTER_CALLBACK, SET &gt;::OuterCallbackType</definition>
+        <argsstring></argsstring>
+        <name>OuterCallbackType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" line="161" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" bodystart="161" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1aeb3c8839879c1e126ceaca6bdfdff008" prot="public" static="no">
+        <type><ref refid="structnifty_1_1graph_1_1EdgeContractionGraphWithSetsHelper_1acc1b924a2b02648491b614c8d69ca9fb" kindref="member">TypeHelper::SetType</ref></type>
+        <definition>typedef TypeHelper::SetType nifty::graph::EdgeContractionGraphWithSets&lt; GRAPH, OUTER_CALLBACK, SET &gt;::SetType</definition>
+        <argsstring></argsstring>
+        <name>SetType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" line="162" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" bodystart="162" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1ae340ffb867bc1eb19b139e879174607e" prot="public" static="no">
+        <type><ref refid="structnifty_1_1graph_1_1EdgeContractionGraphWithSetsHelper_1a254e8886638750a06342b813be34344d" kindref="member">TypeHelper::NodeUfdType</ref></type>
+        <definition>typedef TypeHelper::NodeUfdType nifty::graph::EdgeContractionGraphWithSets&lt; GRAPH, OUTER_CALLBACK, SET &gt;::NodeUfdType</definition>
+        <argsstring></argsstring>
+        <name>NodeUfdType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" line="163" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" bodystart="163" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1abfc56b6e721306de50e308e7b199b18c" prot="public" static="no">
+        <type><ref refid="structnifty_1_1graph_1_1EdgeContractionGraphWithSetsHelper_1ab619625636cb861e740f216ea946fe06" kindref="member">TypeHelper::EdgeIter</ref></type>
+        <definition>typedef TypeHelper::EdgeIter nifty::graph::EdgeContractionGraphWithSets&lt; GRAPH, OUTER_CALLBACK, SET &gt;::EdgeIter</definition>
+        <argsstring></argsstring>
+        <name>EdgeIter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" line="164" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" bodystart="164" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1af9e889455b883d034bf708a0b5b05bee" prot="public" static="no">
+        <type><ref refid="structnifty_1_1graph_1_1EdgeContractionGraphWithSetsHelper_1a6d07b232c0af5bf7170edb2eea02a8fb" kindref="member">TypeHelper::NodeIter</ref></type>
+        <definition>typedef TypeHelper::NodeIter nifty::graph::EdgeContractionGraphWithSets&lt; GRAPH, OUTER_CALLBACK, SET &gt;::NodeIter</definition>
+        <argsstring></argsstring>
+        <name>NodeIter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" line="165" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" bodystart="165" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1ab4782e97223ab8ba2d207325aae693d6" prot="public" static="no">
+        <type><ref refid="structnifty_1_1graph_1_1EdgeContractionGraphWithSetsHelper_1a9d9969291ab3cf558c7ad2f00a2c189d" kindref="member">TypeHelper::AdjacencyIter</ref></type>
+        <definition>typedef TypeHelper::AdjacencyIter nifty::graph::EdgeContractionGraphWithSets&lt; GRAPH, OUTER_CALLBACK, SET &gt;::AdjacencyIter</definition>
+        <argsstring></argsstring>
+        <name>AdjacencyIter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" line="166" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" bodystart="166" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1a6ea951b692d5c6358003500873533f4d" prot="public" static="no">
+        <type><ref refid="structnifty_1_1graph_1_1SparseTag" kindref="compound">SparseTag</ref></type>
+        <definition>typedef SparseTag nifty::graph::EdgeContractionGraphWithSets&lt; GRAPH, OUTER_CALLBACK, SET &gt;::EdgeIdTag</definition>
+        <argsstring></argsstring>
+        <name>EdgeIdTag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" line="168" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" bodystart="168" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1a6dbcfb7d4bf82719837d809465f0ac06" prot="public" static="no">
+        <type><ref refid="structnifty_1_1graph_1_1SparseTag" kindref="compound">SparseTag</ref></type>
+        <definition>typedef SparseTag nifty::graph::EdgeContractionGraphWithSets&lt; GRAPH, OUTER_CALLBACK, SET &gt;::NodeIdTag</definition>
+        <argsstring></argsstring>
+        <name>NodeIdTag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" line="169" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" bodystart="169" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1a6f0b9f8843ed508f1e934aee64a129a5" prot="public" static="no">
+        <type><ref refid="structnifty_1_1graph_1_1SortedTag" kindref="compound">SortedTag</ref></type>
+        <definition>typedef SortedTag nifty::graph::EdgeContractionGraphWithSets&lt; GRAPH, OUTER_CALLBACK, SET &gt;::EdgeIdOrderTag</definition>
+        <argsstring></argsstring>
+        <name>EdgeIdOrderTag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" line="171" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" bodystart="171" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1aacddf197fc8a2d4268d971bf026323f4" prot="public" static="no">
+        <type><ref refid="structnifty_1_1graph_1_1SortedTag" kindref="compound">SortedTag</ref></type>
+        <definition>typedef SortedTag nifty::graph::EdgeContractionGraphWithSets&lt; GRAPH, OUTER_CALLBACK, SET &gt;::NodeIdOrderTag</definition>
+        <argsstring></argsstring>
+        <name>NodeIdOrderTag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" line="172" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" bodystart="172" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1a7da00fd9944052131b8be4997b878763" prot="private" static="no" mutable="no">
+        <type>InnerCallbackType</type>
+        <definition>InnerCallbackType nifty::graph::EdgeContractionGraphWithSets&lt; GRAPH, OUTER_CALLBACK, SET &gt;::innerCallback_</definition>
+        <argsstring></argsstring>
+        <name>innerCallback_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" line="296" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" bodystart="296" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1af8bd1827aacfbaf1c99fe10c977057de" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1EdgeContractionGraph" kindref="compound">CGraphType</ref></type>
+        <definition>CGraphType nifty::graph::EdgeContractionGraphWithSets&lt; GRAPH, OUTER_CALLBACK, SET &gt;::cgraph_</definition>
+        <argsstring></argsstring>
+        <name>cgraph_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" line="297" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" bodystart="297" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1a7ccb1db6a954ebcd7d4e56b150812ca2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>nifty::graph::EdgeContractionGraphWithSets&lt; GRAPH, OUTER_CALLBACK, SET &gt;::EdgeContractionGraphWithSets</definition>
+        <argsstring>(const GraphType &amp;graph, OuterCallbackType &amp;outerCallback)</argsstring>
+        <name>EdgeContractionGraphWithSets</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1abadbbebcd10e37a1a3f59bb967accdf0" kindref="member">GraphType</ref> &amp;</type>
+          <declname>graph</declname>
+        </param>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1a2f741cfabfa1fb4c5bfc75df557c1d12" kindref="member">OuterCallbackType</ref> &amp;</type>
+          <declname>outerCallback</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" line="176" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" bodystart="176" bodyend="180"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1a036d840034dba16a993c4d2e7177c0a0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1af9e889455b883d034bf708a0b5b05bee" kindref="member">NodeIter</ref></type>
+        <definition>NodeIter nifty::graph::EdgeContractionGraphWithSets&lt; GRAPH, OUTER_CALLBACK, SET &gt;::nodesBegin</definition>
+        <argsstring>() const </argsstring>
+        <name>nodesBegin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" line="183" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" bodystart="183" bodyend="186"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1a49d17a93f9477eff85c16fd924c5fd60" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1af9e889455b883d034bf708a0b5b05bee" kindref="member">NodeIter</ref></type>
+        <definition>NodeIter nifty::graph::EdgeContractionGraphWithSets&lt; GRAPH, OUTER_CALLBACK, SET &gt;::nodesEnd</definition>
+        <argsstring>() const </argsstring>
+        <name>nodesEnd</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" line="187" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" bodystart="187" bodyend="190"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1a6f76721c5b2615161150d26346ae8b88" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1abfc56b6e721306de50e308e7b199b18c" kindref="member">EdgeIter</ref></type>
+        <definition>EdgeIter nifty::graph::EdgeContractionGraphWithSets&lt; GRAPH, OUTER_CALLBACK, SET &gt;::edgesBegin</definition>
+        <argsstring>() const </argsstring>
+        <name>edgesBegin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" line="191" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" bodystart="191" bodyend="194"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1a487f0ac816886e26e43fb92cef30febf" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1abfc56b6e721306de50e308e7b199b18c" kindref="member">EdgeIter</ref></type>
+        <definition>EdgeIter nifty::graph::EdgeContractionGraphWithSets&lt; GRAPH, OUTER_CALLBACK, SET &gt;::edgesEnd</definition>
+        <argsstring>() const </argsstring>
+        <name>edgesEnd</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" line="195" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" bodystart="195" bodyend="198"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1ad0029a65cb55c509e902f28c5f54c325" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class F</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::graph::EdgeContractionGraphWithSets&lt; GRAPH, OUTER_CALLBACK, SET &gt;::forEachEdge</definition>
+        <argsstring>(F &amp;&amp;f) const </argsstring>
+        <name>forEachEdge</name>
+        <param>
+          <type>F &amp;&amp;</type>
+          <declname>f</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" line="202" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" bodystart="202" bodyend="206"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1a9264d7e3941163f723eda6bd54550cbb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class F</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::graph::EdgeContractionGraphWithSets&lt; GRAPH, OUTER_CALLBACK, SET &gt;::forEachNode</definition>
+        <argsstring>(F &amp;&amp;f) const </argsstring>
+        <name>forEachNode</name>
+        <param>
+          <type>F &amp;&amp;</type>
+          <declname>f</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" line="208" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" bodystart="208" bodyend="212"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1ab0d27a1dc2eec100bef62aed49772893" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1ab4782e97223ab8ba2d207325aae693d6" kindref="member">AdjacencyIter</ref></type>
+        <definition>AdjacencyIter nifty::graph::EdgeContractionGraphWithSets&lt; GRAPH, OUTER_CALLBACK, SET &gt;::adjacencyBegin</definition>
+        <argsstring>(const int64_t node) const </argsstring>
+        <name>adjacencyBegin</name>
+        <param>
+          <type>const int64_t</type>
+          <declname>node</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" line="214" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" bodystart="214" bodyend="217"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1a80ba6846ff642ebdc31b93c9f8116abf" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1ab4782e97223ab8ba2d207325aae693d6" kindref="member">AdjacencyIter</ref></type>
+        <definition>AdjacencyIter nifty::graph::EdgeContractionGraphWithSets&lt; GRAPH, OUTER_CALLBACK, SET &gt;::adjacencyEnd</definition>
+        <argsstring>(const int64_t node) const </argsstring>
+        <name>adjacencyEnd</name>
+        <param>
+          <type>const int64_t</type>
+          <declname>node</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" line="218" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" bodystart="218" bodyend="221"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1a21ec4a0e7b2cb6f06761521066003a34" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1ab4782e97223ab8ba2d207325aae693d6" kindref="member">AdjacencyIter</ref></type>
+        <definition>AdjacencyIter nifty::graph::EdgeContractionGraphWithSets&lt; GRAPH, OUTER_CALLBACK, SET &gt;::adjacencyOutBegin</definition>
+        <argsstring>(const int64_t node) const </argsstring>
+        <name>adjacencyOutBegin</name>
+        <param>
+          <type>const int64_t</type>
+          <declname>node</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" line="222" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" bodystart="222" bodyend="225"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1a1a59be69bf3915f39c1492c62e098e09" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>EdgeStorage</type>
+        <definition>EdgeStorage nifty::graph::EdgeContractionGraphWithSets&lt; GRAPH, OUTER_CALLBACK, SET &gt;::uv</definition>
+        <argsstring>(const uint64_t edge) const </argsstring>
+        <name>uv</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>edge</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" line="228" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" bodystart="228" bodyend="231"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1ab6a9c6b0b9bf368511c15b7a544b22a8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int64_t</type>
+        <definition>int64_t nifty::graph::EdgeContractionGraphWithSets&lt; GRAPH, OUTER_CALLBACK, SET &gt;::u</definition>
+        <argsstring>(const uint64_t edge) const </argsstring>
+        <name>u</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>edge</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" line="232" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" bodystart="232" bodyend="235"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1a98b71392054a18ce0dc9ae501f2b50fa" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int64_t</type>
+        <definition>int64_t nifty::graph::EdgeContractionGraphWithSets&lt; GRAPH, OUTER_CALLBACK, SET &gt;::v</definition>
+        <argsstring>(const uint64_t edge) const </argsstring>
+        <name>v</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>edge</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" line="236" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" bodystart="236" bodyend="239"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1ac7b95bcd4775eb6ebf43dd19c6db5eb0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint64_t</type>
+        <definition>uint64_t nifty::graph::EdgeContractionGraphWithSets&lt; GRAPH, OUTER_CALLBACK, SET &gt;::numberOfNodes</definition>
+        <argsstring>() const </argsstring>
+        <name>numberOfNodes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" line="241" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" bodystart="241" bodyend="244"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1a1921bd2bbb2f6e9ba566410140997c11" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint64_t</type>
+        <definition>uint64_t nifty::graph::EdgeContractionGraphWithSets&lt; GRAPH, OUTER_CALLBACK, SET &gt;::numberOfEdges</definition>
+        <argsstring>() const </argsstring>
+        <name>numberOfEdges</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" line="245" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" bodystart="245" bodyend="248"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1a5b7960306ee794f32b677881a1e0f692" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int64_t</type>
+        <definition>int64_t nifty::graph::EdgeContractionGraphWithSets&lt; GRAPH, OUTER_CALLBACK, SET &gt;::nodeIdUpperBound</definition>
+        <argsstring>() const </argsstring>
+        <name>nodeIdUpperBound</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" line="250" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" bodystart="250" bodyend="253"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1a3468f49ec6597765d7e09729e2cf8353" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int64_t</type>
+        <definition>int64_t nifty::graph::EdgeContractionGraphWithSets&lt; GRAPH, OUTER_CALLBACK, SET &gt;::edgeIdUpperBound</definition>
+        <argsstring>() const </argsstring>
+        <name>edgeIdUpperBound</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" line="254" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" bodystart="254" bodyend="257"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1ac3944f85e26450f450cd2837a0e09eee" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int64_t</type>
+        <definition>int64_t nifty::graph::EdgeContractionGraphWithSets&lt; GRAPH, OUTER_CALLBACK, SET &gt;::findEdge</definition>
+        <argsstring>(const int64_t u, const int64_t v) const </argsstring>
+        <name>findEdge</name>
+        <param>
+          <type>const int64_t</type>
+          <declname>u</declname>
+        </param>
+        <param>
+          <type>const int64_t</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" line="259" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" bodystart="259" bodyend="263"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1aac2039e7aa273ca72a664636284e094c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::EdgeContractionGraphWithSets&lt; GRAPH, OUTER_CALLBACK, SET &gt;::contractEdge</definition>
+        <argsstring>(const uint64_t edgeToContract)</argsstring>
+        <name>contractEdge</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>edgeToContract</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" line="266" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" bodystart="266" bodyend="269"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1a26b35f687abffaf422f779bf0922f3de" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::EdgeContractionGraphWithSets&lt; GRAPH, OUTER_CALLBACK, SET &gt;::reset</definition>
+        <argsstring>()</argsstring>
+        <name>reset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" line="270" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" bodystart="270" bodyend="273"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1ac38c333c1f5543dd8b32694ee7242530" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1abadbbebcd10e37a1a3f59bb967accdf0" kindref="member">GraphType</ref> &amp;</type>
+        <definition>const GraphType&amp; nifty::graph::EdgeContractionGraphWithSets&lt; GRAPH, OUTER_CALLBACK, SET &gt;::baseGraph</definition>
+        <argsstring>() const </argsstring>
+        <name>baseGraph</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" line="275" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" bodystart="275" bodyend="277"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1a00b7e03323c0bceccdfd802f9cee43bb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint64_t</type>
+        <definition>uint64_t nifty::graph::EdgeContractionGraphWithSets&lt; GRAPH, OUTER_CALLBACK, SET &gt;::findRepresentativeNode</definition>
+        <argsstring>(const uint64_t node) const </argsstring>
+        <name>findRepresentativeNode</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>node</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" line="278" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" bodystart="278" bodyend="280"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1ac8441861738a40c90408a3d6fbdd5ecd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint64_t</type>
+        <definition>uint64_t nifty::graph::EdgeContractionGraphWithSets&lt; GRAPH, OUTER_CALLBACK, SET &gt;::findRepresentativeNode</definition>
+        <argsstring>(const uint64_t node)</argsstring>
+        <name>findRepresentativeNode</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>node</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" line="281" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" bodystart="281" bodyend="283"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1a6726a1c592335f483e96f0feccb36925" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint64_t</type>
+        <definition>uint64_t nifty::graph::EdgeContractionGraphWithSets&lt; GRAPH, OUTER_CALLBACK, SET &gt;::findRepresentativeEdge</definition>
+        <argsstring>(const uint64_t edge) const </argsstring>
+        <name>findRepresentativeEdge</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>edge</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" line="284" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" bodystart="284" bodyend="286"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1a287efe08f0cbc8824a3bf6ce525af9ae" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint64_t</type>
+        <definition>uint64_t nifty::graph::EdgeContractionGraphWithSets&lt; GRAPH, OUTER_CALLBACK, SET &gt;::findRepresentativeEdge</definition>
+        <argsstring>(const uint64_t edge)</argsstring>
+        <name>findRepresentativeEdge</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>edge</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" line="287" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" bodystart="287" bodyend="289"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1af5492376d5b822751f55b28a49c1ca69" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint64_t</type>
+        <definition>uint64_t nifty::graph::EdgeContractionGraphWithSets&lt; GRAPH, OUTER_CALLBACK, SET &gt;::nodeOfDeadEdge</definition>
+        <argsstring>(const uint64_t deadEdge) const </argsstring>
+        <name>nodeOfDeadEdge</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>deadEdge</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" line="290" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" bodystart="290" bodyend="293"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1136">
+        <label>nifty::graph::EdgeContractionGraphWithSets&lt; GRAPH, OUTER_CALLBACK, SET &gt;</label>
+        <link refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets"/>
+        <childnode refid="1137" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1137">
+        <label>nifty::graph::UndirectedGraphBase&lt; EdgeContractionGraphWithSets&lt; GRAPH, OUTER_CALLBACK, SET &gt;, EdgeContractionGraphWithSetsHelper&lt; GRAPH, OUTER_CALLBACK, SET &gt;::NodeIter, EdgeContractionGraphWithSetsHelper&lt; GRAPH, OUTER_CALLBACK, SET &gt;::EdgeIter, EdgeContractionGraphWithSetsHelper&lt; GRAPH, OUTER_CALLBACK, SET &gt;::AdjacencyIter &gt;</label>
+        <link refid="classnifty_1_1graph_1_1UndirectedGraphBase"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1138">
+        <label>nifty::graph::EdgeContractionGraphWithSets&lt; GRAPH, OUTER_CALLBACK, SET &gt;</label>
+        <link refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets"/>
+        <childnode refid="1139" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1139">
+        <label>nifty::graph::UndirectedGraphBase&lt; EdgeContractionGraphWithSets&lt; GRAPH, OUTER_CALLBACK, SET &gt;, EdgeContractionGraphWithSetsHelper&lt; GRAPH, OUTER_CALLBACK, SET &gt;::NodeIter, EdgeContractionGraphWithSetsHelper&lt; GRAPH, OUTER_CALLBACK, SET &gt;::EdgeIter, EdgeContractionGraphWithSetsHelper&lt; GRAPH, OUTER_CALLBACK, SET &gt;::AdjacencyIter &gt;</label>
+        <link refid="classnifty_1_1graph_1_1UndirectedGraphBase"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" line="31" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx" bodystart="31" bodyend="-1"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a7077e010ade064cd0e5f7bbca55120b7" prot="public" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>adjacency</name></member>
+      <member refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1ab0d27a1dc2eec100bef62aed49772893" prot="public" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>adjacencyBegin</name></member>
+      <member refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1a80ba6846ff642ebdc31b93c9f8116abf" prot="public" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>adjacencyEnd</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a6ed7fbd6938aad8f6520eb3298bbe24e" prot="public" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>adjacencyIn</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a7afa033e4b12fcf61b51cd64d80c3c5a" prot="public" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>adjacencyInBegin</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraphBase_1ab07e2c9932aefe659b1b378462941ac3" prot="public" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>adjacencyInEnd</name></member>
+      <member refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1ab4782e97223ab8ba2d207325aae693d6" prot="public" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>AdjacencyIter</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraphBase_1af23538c8549cdce616df93f6a0d0f229" prot="public" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>adjacencyOut</name></member>
+      <member refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1a21ec4a0e7b2cb6f06761521066003a34" prot="public" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>adjacencyOutBegin</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraphBase_1ae4b6e4c05d4a6cdefaa74e4d320763bd" prot="public" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>adjacencyOutEnd</name></member>
+      <member refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1ac38c333c1f5543dd8b32694ee7242530" prot="public" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>baseGraph</name></member>
+      <member refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1af8bd1827aacfbaf1c99fe10c977057de" prot="private" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>cgraph_</name></member>
+      <member refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1a3d66093fe00c5ec0dd7d1b5171fdbaab" prot="private" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>CGraphType</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraphBase_1af2541cf9fb91440ff0a7b56dd5a6be29" prot="public" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>ChildGraph</name></member>
+      <member refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1aac2039e7aa273ca72a664636284e094c" prot="public" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>contractEdge</name></member>
+      <member refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1a7ccb1db6a954ebcd7d4e56b150812ca2" prot="public" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>EdgeContractionGraphWithSets</name></member>
+      <member refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1a6f0b9f8843ed508f1e934aee64a129a5" prot="public" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>EdgeIdOrderTag</name></member>
+      <member refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1a6ea951b692d5c6358003500873533f4d" prot="public" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>EdgeIdTag</name></member>
+      <member refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1a3468f49ec6597765d7e09729e2cf8353" prot="public" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>edgeIdUpperBound</name></member>
+      <member refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1abfc56b6e721306de50e308e7b199b18c" prot="public" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>EdgeIter</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a45e69adbc55f3841a414a886b97d9672" prot="public" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>edges</name></member>
+      <member refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1a6f76721c5b2615161150d26346ae8b88" prot="public" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>edgesBegin</name></member>
+      <member refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1a487f0ac816886e26e43fb92cef30febf" prot="public" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>edgesEnd</name></member>
+      <member refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1a4ae64a63ff19750de1cfafe916489dc7" prot="private" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>EdgeStorage</name></member>
+      <member refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1ac3944f85e26450f450cd2837a0e09eee" prot="public" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>findEdge</name></member>
+      <member refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1a6726a1c592335f483e96f0feccb36925" prot="public" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>findRepresentativeEdge</name></member>
+      <member refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1a287efe08f0cbc8824a3bf6ce525af9ae" prot="public" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>findRepresentativeEdge</name></member>
+      <member refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1a00b7e03323c0bceccdfd802f9cee43bb" prot="public" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>findRepresentativeNode</name></member>
+      <member refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1ac8441861738a40c90408a3d6fbdd5ecd" prot="public" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>findRepresentativeNode</name></member>
+      <member refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1ad0029a65cb55c509e902f28c5f54c325" prot="public" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>forEachEdge</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a07dfaf6d9511301e6c8fcdc05a6ec358" prot="public" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>forEachItem</name></member>
+      <member refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1a9264d7e3941163f723eda6bd54550cbb" prot="public" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>forEachNode</name></member>
+      <member refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1abadbbebcd10e37a1a3f59bb967accdf0" prot="public" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>GraphType</name></member>
+      <member refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1a7da00fd9944052131b8be4997b878763" prot="private" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>innerCallback_</name></member>
+      <member refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1a6585f1adb38795c1c49a88c1ea4f2e25" prot="private" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>InnerCallbackType</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a40f5b095eec6297939d5ec7ffa785c13" prot="public" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>items</name></member>
+      <member refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1aacddf197fc8a2d4268d971bf026323f4" prot="public" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>NodeIdOrderTag</name></member>
+      <member refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1a6dbcfb7d4bf82719837d809465f0ac06" prot="public" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>NodeIdTag</name></member>
+      <member refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1a5b7960306ee794f32b677881a1e0f692" prot="public" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>nodeIdUpperBound</name></member>
+      <member refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1af9e889455b883d034bf708a0b5b05bee" prot="public" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>NodeIter</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a4b3cb925bbce09bea0ceeede5c04c4a1" prot="public" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>nodeLabelsToEdgeLabels</name></member>
+      <member refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1af5492376d5b822751f55b28a49c1ca69" prot="public" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>nodeOfDeadEdge</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraphBase_1ae143a4dc03467aad4b89a627ae6fdfc7" prot="public" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>nodes</name></member>
+      <member refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1a036d840034dba16a993c4d2e7177c0a0" prot="public" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>nodesBegin</name></member>
+      <member refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1a49d17a93f9477eff85c16fd924c5fd60" prot="public" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>nodesEnd</name></member>
+      <member refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1ae340ffb867bc1eb19b139e879174607e" prot="public" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>NodeUfdType</name></member>
+      <member refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1a1921bd2bbb2f6e9ba566410140997c11" prot="public" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>numberOfEdges</name></member>
+      <member refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1ac7b95bcd4775eb6ebf43dd19c6db5eb0" prot="public" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>numberOfNodes</name></member>
+      <member refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1a2f741cfabfa1fb4c5bfc75df557c1d12" prot="public" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>OuterCallbackType</name></member>
+      <member refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1a26b35f687abffaf422f779bf0922f3de" prot="public" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>reset</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a3a637f240a8d05794be99e5f290a71b9" prot="public" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>Self</name></member>
+      <member refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1a6b3ca9e19cdb2fbddbc5c87cf278a796" prot="private" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>SelfType</name></member>
+      <member refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1aeb3c8839879c1e126ceaca6bdfdff008" prot="public" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>SetType</name></member>
+      <member refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1ad242adf3d95cf4d1e5157f7888ddf1b6" prot="private" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>TypeHelper</name></member>
+      <member refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1ab6a9c6b0b9bf368511c15b7a544b22a8" prot="public" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>u</name></member>
+      <member refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1a1a59be69bf3915f39c1492c62e098e09" prot="public" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>uv</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a06f985778f273042431f8389e471b4a5" prot="public" virt="non-virtual" ambiguityscope="UndirectedGraphBase&lt; EdgeContractionGraphWithSets&lt; GRAPH, OUTER_CALLBACK, SET &gt;, EdgeContractionGraphWithSetsHelper&lt; GRAPH, OUTER_CALLBACK, SET &gt;::NodeIter, EdgeContractionGraphWithSetsHelper&lt; GRAPH, OUTER_CALLBACK, SET &gt;::EdgeIter, EdgeContractionGraphWithSetsHelper&lt; GRAPH, OUTER_CALLBACK, SET &gt;::AdjacencyIter &gt;::"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>uv</name></member>
+      <member refid="classnifty_1_1graph_1_1EdgeContractionGraphWithSets_1a98b71392054a18ce0dc9ae501f2b50fa" prot="public" virt="non-virtual"><scope>nifty::graph::EdgeContractionGraphWithSets</scope><name>v</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
