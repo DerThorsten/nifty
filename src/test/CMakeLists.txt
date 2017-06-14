@@ -5,6 +5,11 @@
 
 SET(TEST_LIBS "")
 
+if(BUILD_CPP_TEST_WITH_GLIBCXX_CXX11_ABI)
+else()
+    ADD_DEFINITIONS(-D_GLIBCXX_USE_CXX11_ABI=0)
+endif()
+
 add_subdirectory(test_graph)
 add_subdirectory(test_array)
 add_subdirectory(test_features)
