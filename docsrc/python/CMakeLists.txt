@@ -26,8 +26,9 @@ if(BUILD_NIFTY_PYTHON AND BUILD_PYTHON_DOCS)
             "${CMAKE_CURRENT_SOURCE_DIR}/_templates/template_module.rst"
             "${SPHINX_BUILD_DIR}/_templates/template_module.rst"
             @ONLY)
+
         configure_file(
-            "${CMAKE_CURRENT_SOURCE_DIR}/refs.bib"
+            "${CMAKE_CURRENT_SOURCE_DIR}/../common/refs.bib"
             "${SPHINX_BUILD_DIR}/refs.bib"
             @ONLY)
 

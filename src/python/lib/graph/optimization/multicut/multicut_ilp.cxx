@@ -74,8 +74,6 @@ namespace multicut{
 
             .def(py::init<>())
             .def_readwrite("numberOfIterations", &SettingsType::numberOfIterations)
-            .def_readwrite("verbose", &SettingsType::verbose)
-            .def_readwrite("verboseIlp", &SettingsType::verboseIlp)
             .def_readwrite("addThreeCyclesConstraints", &SettingsType::addThreeCyclesConstraints)
             .def_readwrite("addOnlyViolatedThreeCyclesConstraints", &SettingsType::addOnlyViolatedThreeCyclesConstraints)
             .def_readwrite("ilpSettings",&SettingsType::ilpSettings)

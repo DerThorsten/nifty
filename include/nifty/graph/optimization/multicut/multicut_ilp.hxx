@@ -17,6 +17,18 @@ namespace graph{
 namespace optimization{
 namespace multicut{
 
+    /**
+     * @brief ILP Cutting plane multicut solver
+     * @details ILP Cutting plane multicut solver
+     * adding violated cycle constraints in an 
+     * iterative fashion.
+     * 
+     * <b>Cite:</b> \cite Kappes-2011 \cite andres_2011_probabilistic
+     * 
+     * @ingroup group_multicut_solver
+     * @tparam OBJECTIVE The multicut objective (e.g. MulticutObjective)
+     * @tparam ILP_SOLVER The ILP solver backend (e.g. ilp_backend::Cplex, ilp_backend::Glpk, ilp_backend::Gurobi)
+     */
     template<class OBJECTIVE, class ILP_SOLVER>
     class MulticutIlp : public MulticutBase<OBJECTIVE>
     {
@@ -26,10 +38,9 @@ namespace multicut{
         typedef MulticutBase<OBJECTIVE> BaseType;
         typedef typename BaseType::VisitorBaseType VisitorBaseType;
         typedef typename BaseType::VisitorProxyType VisitorProxyType;
-        //typedef typename Base::EdgeLabels EdgeLabels;
         typedef typename BaseType::NodeLabelsType NodeLabelsType;
         typedef ILP_SOLVER IlpSovler;
-        typedef typename IlpSovler::SettingsType IlpSettings;
+        typedef typename IlpSovler::SettingsType IlpSettingsType;
         typedef typename Objective::Graph Graph;
 
     private:
@@ -52,14 +63,48 @@ namespace multicut{
 
     public:
 
+        /**
+         * @brief Settings for MulticutIlp solver.
+         * @details The settings for MulticutIlp
+         * are not very critical and the default
+         * settings should be changed seldomly.
+         * 
+         */
         struct SettingsType{
 
-            size_t numberOfIterations{0};
-            int verbose { 0 };
-            bool verboseIlp{false};
+        
+
+            /**
+             *  \brief  Maximum allowed cutting plane iterations 
+             *  \details  Maximum allowed cutting plane iteration.
+             *  A value of zero will be interpreted as an unlimited
+             *  number of iterations.
+             */
+            size_t numberOfIterations{0};   
+
+            /**
+             *  \brief Explicitly add constrains for cycle of length three.
+             *  \details   Should constrains for cycles of length three
+             *  be added explicitly before the actual optimization.
+             *  This can speedup the optimization process.
+             */
             bool addThreeCyclesConstraints{true};
+                  
+            /**
+             *  \brief Explicitly add violated constrains for cycle of length three.
+             *  \details If addThreeCyclesConstraints is true, 
+             *  should only possible violating constraints
+             *  be added before the actual optimization.
+             *  This can speedup the optimization process.
+             */
             bool addOnlyViolatedThreeCyclesConstraints{true};
-            IlpSettings ilpSettings;
+
+            /**
+             *   \brief Settings of the ILP backend.
+             *   \detailed ILP related options like relative and
+             *   absolute gaps can be specified
+             */
+            IlpSettingsType ilpSettings{};
         };
 
         virtual ~MulticutIlp(){
