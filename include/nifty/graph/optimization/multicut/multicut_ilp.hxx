@@ -25,6 +25,8 @@ namespace multicut{
      * 
      * <b>Cite:</b> \cite Kappes-2011 \cite andres_2011_probabilistic
      * 
+     * 
+     * 
      * @ingroup group_multicut_solver
      * @tparam OBJECTIVE The multicut objective (e.g. MulticutObjective)
      * @tparam ILP_SOLVER The ILP solver backend (e.g. ilp_backend::Cplex, ilp_backend::Glpk, ilp_backend::Gurobi)
@@ -34,18 +36,32 @@ namespace multicut{
     {
     public: 
 
+        typedef OBJECTIVE ObjectiveType;
+
+        /// \deprecated using Objective is deprecated. Use Objective Type instead
         typedef OBJECTIVE Objective;
+
+        /// \deprecated using GraphType is deprecated. Use GraphType Type instead
+        typedef typename ObjectiveType::Graph Graph;
+        
+        /// \brief Base Type / parent class
         typedef MulticutBase<OBJECTIVE> BaseType;
+
+        /// Visitor base class
         typedef typename BaseType::VisitorBaseType VisitorBaseType;
-        typedef typename BaseType::VisitorProxyType VisitorProxyType;
+        
         typedef typename BaseType::NodeLabelsType NodeLabelsType;
         typedef ILP_SOLVER IlpSovler;
         typedef typename IlpSovler::SettingsType IlpSettingsType;
-        typedef typename Objective::Graph Graph;
+        
+        
+        typedef typename ObjectiveType::GraphType GraphType;
 
     private:
-        typedef ComponentsUfd<Graph> Components;
-        typedef detail_graph::EdgeIndicesToContiguousEdgeIndices<Graph> DenseIds;
+
+        typedef typename BaseType::VisitorProxyType VisitorProxyType;
+        typedef ComponentsUfd<GraphType> Components;
+        typedef detail_graph::EdgeIndicesToContiguousEdgeIndices<GraphType> DenseIds;
 
         struct SubgraphWithCut {
             SubgraphWithCut(const IlpSovler& ilpSolver, const DenseIds & denseIds)
@@ -68,7 +84,6 @@ namespace multicut{
          * @details The settings for MulticutIlp
          * are not very critical and the default
          * settings should be changed seldomly.
-         * 
          */
         struct SettingsType{
 
@@ -156,8 +171,8 @@ namespace multicut{
         size_t addCycleInequalities();
         void addThreeCyclesConstraintsExplicitly();
 
-        const Objective & objective_;
-        const Graph & graph_;
+        const ObjectiveType & objective_;
+        const GraphType & graph_;
 
         IlpSovler * ilpSolver_;
         Components components_;
@@ -178,7 +193,7 @@ namespace multicut{
     template<class OBJECTIVE, class ILP_SOLVER>
     MulticutIlp<OBJECTIVE, ILP_SOLVER>::
     MulticutIlp(
-        const Objective & objective, 
+        const ObjectiveType & objective, 
         const SettingsType & settings
     )
     :   objective_(objective),
@@ -248,7 +263,7 @@ namespace multicut{
     }
 
     template<class OBJECTIVE, class ILP_SOLVER>
-    const typename MulticutIlp<OBJECTIVE, ILP_SOLVER>::Objective &
+    const typename MulticutIlp<OBJECTIVE, ILP_SOLVER>::ObjectiveType &
     MulticutIlp<OBJECTIVE, ILP_SOLVER>::
     objective()const{
         return objective_;
