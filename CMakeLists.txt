@@ -24,7 +24,6 @@ option(WITH_FASTFILTERS OFF)
 option(WITH_LP_MP OFF)
 option(WITH_QPBO ON)
 
-option(BUILD_CPP_TEST_WITH_GLIBCXX_CXX11_ABI OFF)
 
 option(BUILD_PYTHON_TEST OFF)
 option(BUILD_CPP_TEST ON)
@@ -158,8 +157,6 @@ endif()
 find_package(Boost  REQUIRED)
 include_directories(${Boost_INCLUDE_DIRS})
 MESSAGE( STATUS ${Boost_INCLUDE_DIRS})
-include_directories(${Boost_INCLUDE_DIR})
-MESSAGE( STATUS ${Boost_INCLUDE_DIR})
 
 
 if(WITHIN_TRAVIS)

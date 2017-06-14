@@ -1,13 +1,9 @@
-#define BOOST_TEST_MODULE NiftyGridGraphTest
-
-#include <boost/test/unit_test.hpp>
-
 #include <iostream> 
 
 #include "nifty/tools/runtime_check.hxx"
 #include "nifty/graph/undirected_grid_graph.hxx"
 
-BOOST_AUTO_TEST_CASE(UndirectedGridGraphTest)
+void undirectedGridGraphTest()
 {
     //auto e = 0;
     //nifty::graph::UndirectedGraph<> graph(4);
@@ -22,4 +18,8 @@ BOOST_AUTO_TEST_CASE(UndirectedGridGraphTest)
     GridGraphType graph(shape);
     
     NIFTY_TEST_OP(graph.numberOfNodes(),==,shape[0]*shape[1]);
+}
+
+int main(){
+	undirectedGridGraphTest();
 }

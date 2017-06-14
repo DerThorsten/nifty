@@ -1,12 +1,8 @@
-#define BOOST_TEST_MODULE NiftyTestBlocking
-
-
-#include <boost/test/unit_test.hpp>
 #include "nifty/tools/blocking.hxx"
 
 
 
-BOOST_AUTO_TEST_CASE(BlockingTest)
+void blockingTest()
 {   
 
     typedef nifty::tools::Blocking<3> Blocking;
@@ -27,3 +23,6 @@ BOOST_AUTO_TEST_CASE(BlockingTest)
 
 }
 
+int main() {
+	blockingTest();
+}

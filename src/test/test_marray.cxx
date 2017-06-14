@@ -1,7 +1,3 @@
-#define BOOST_TEST_MODULE NiftyTestMarray
-
-#include <boost/test/unit_test.hpp>
-
 #include <iostream> 
 
 #include "nifty/tools/runtime_check.hxx"
@@ -9,7 +5,7 @@
 
 #include "nifty/tools/timer.hxx"
 
-BOOST_AUTO_TEST_CASE(StridesTest)
+void stridesTest()
 {
     {
         std::vector<size_t> shape({10,20});
@@ -46,6 +42,10 @@ BOOST_AUTO_TEST_CASE(StridesTest)
 
         
     }
+}
+
+int main(){
+    stridesTest();
 }
 
 

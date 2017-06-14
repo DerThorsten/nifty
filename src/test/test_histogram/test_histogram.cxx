@@ -1,7 +1,3 @@
-#define BOOST_TEST_MODULE NiftyBreadthFirstSearchTest
-
-#include <boost/test/unit_test.hpp>
-
 #include <iostream> 
 
 #include "nifty/tools/runtime_check.hxx"
@@ -9,7 +5,7 @@
 
 static const float tol = 0.000001;
 
-BOOST_AUTO_TEST_CASE(HistogramTest1)
+void histogramTest1()
 {
 
     nifty::histogram::Histogram<float> hist(0,6,6);
@@ -47,4 +43,8 @@ BOOST_AUTO_TEST_CASE(HistogramTest1)
     nifty::histogram::quantiles(hist, &rank, &rank+1, &median);
     NIFTY_TEST_EQ_TOL(median,3.0, tol);
 
+}
+
+int main(){
+    histogramTest1();
 }

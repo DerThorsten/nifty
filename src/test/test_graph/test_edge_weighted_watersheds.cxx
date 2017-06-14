@@ -1,7 +1,3 @@
-#define BOOST_TEST_MODULE NiftyEdgeWeightedWatershedsTest
-
-#include <boost/test/unit_test.hpp>
-
 #include <iostream> 
 #include <random>
 
@@ -10,7 +6,7 @@
 #include "nifty/graph/edge_weighted_watersheds.hxx"
 
 
-BOOST_AUTO_TEST_CASE(RandomizedEdgeWeightedWatersheds)
+void randomizedEdgeWeightedWatersheds()
 {
     // rand gen 
     //std::random_device rd();
@@ -51,3 +47,6 @@ BOOST_AUTO_TEST_CASE(RandomizedEdgeWeightedWatersheds)
 
 }
 
+int main(){
+    randomizedEdgeWeightedWatersheds();
+}
