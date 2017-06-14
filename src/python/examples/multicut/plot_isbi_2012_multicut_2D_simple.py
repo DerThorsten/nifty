@@ -49,7 +49,7 @@ import nifty.segmentation
 import nifty.filters
 import nifty.graph.rag
 import nifty.ground_truth
-import nifty.graph.optimization.multicut
+import nifty.graph.opt.multicut
 
 #############################################################
 # Download  ISBI 2012:

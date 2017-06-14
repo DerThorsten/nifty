@@ -1,4 +1,4 @@
-.. _nifty_graph_optimization_mincut:
+.. _nifty_graph_opt_mincut:
 
 
 Mincut:

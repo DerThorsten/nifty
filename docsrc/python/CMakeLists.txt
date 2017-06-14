@@ -1,4 +1,5 @@
 if(BUILD_NIFTY_PYTHON AND BUILD_PYTHON_DOCS)
+
     find_package(SPHINX REQUIRED)
 
         if(NOT DEFINED SPHINX_THEME)
@@ -29,6 +30,10 @@ if(BUILD_NIFTY_PYTHON AND BUILD_PYTHON_DOCS)
 
         configure_file(
             "${CMAKE_CURRENT_SOURCE_DIR}/../common/refs.bib"
+            "${CMAKE_CURRENT_SOURCE_DIR}/refs.bib"
+            @ONLY)
+        configure_file(
+            "${CMAKE_CURRENT_SOURCE_DIR}/../common/refs.bib"
             "${SPHINX_BUILD_DIR}/refs.bib"
             @ONLY)
 
@@ -46,8 +51,18 @@ if(BUILD_NIFTY_PYTHON AND BUILD_PYTHON_DOCS)
         #install(DIRECTORY ${SPHINX_HTML_DIR}
         #    DESTINATION share/doc/nifty_python
         #)
+
+        # if there is a cpp doc 
+        if(BUILD_DOCS)
+            if(DOXYGEN_FOUND)
+                    add_dependencies(python-doc cpp-doc-xml)
+            endif(DOXYGEN_FOUND)
+        endif(BUILD_DOCS)
+
         add_dependencies(python-doc python-module )
         add_dependencies(doc python-doc)
+
+
 endif()
 
 
