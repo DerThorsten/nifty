@@ -12,7 +12,7 @@ For more details, see seection :ref:`theory_multicut`.
 from __future__ import absolute_import
 import sys
 from functools import partial
-from . import _multicut as __multicut
+#from . import _multicut as __multicut
 from ._multicut import *
 from .... import Configuration, LogLevel
 from ... import (UndirectedGraph,EdgeContractionGraphUndirectedGraph)
