@@ -3,9 +3,9 @@ set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules)
 
 project(nifty)
 
-set (NIFTY_VERSION_MAJOR 0)
-set (NIFTY_VERSION_MINOR 18)
-set (NIFTY_VERSION_PATCH 0)
+set (NIFTY_VERSION_MAJOR 0 )
+set (NIFTY_VERSION_MINOR 19)
+set (NIFTY_VERSION_PATCH 0 )
 
 
 set (NIFTY_VERSION_SHORT_STR "${NIFTY_VERSION_MAJOR}.${NIFTY_VERSION_MINOR}")
@@ -24,7 +24,6 @@ option(WITH_FASTFILTERS OFF)
 option(WITH_LP_MP OFF)
 option(WITH_QPBO ON)
 
-option(BUILD_CPP_TEST_WITH_GLIBCXX_CXX11_ABI OFF)
 
 option(BUILD_PYTHON_TEST OFF)
 option(BUILD_CPP_TEST ON)
@@ -56,6 +55,8 @@ if(REMOVE_SOME_WARNINGS AND (CMAKE_CXX_COMPILER_ID MATCHES "GNU" OR CMAKE_CXX_CO
     endif()
 endif()
 
+
+# boost geometry needs this 
 if(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
     add_definitions(-fext-numeric-literals)
 endif()
@@ -156,8 +157,6 @@ endif()
 find_package(Boost  REQUIRED)
 include_directories(${Boost_INCLUDE_DIRS})
 MESSAGE( STATUS ${Boost_INCLUDE_DIRS})
-include_directories(${Boost_INCLUDE_DIR})
-MESSAGE( STATUS ${Boost_INCLUDE_DIR})
 
 
 if(WITHIN_TRAVIS)

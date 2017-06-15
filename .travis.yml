@@ -61,10 +61,9 @@ matrix:
             - python3.5-dev
             - python3.5-venv
             - libhdf5-serial-dev
-            - libboost-all-dev
+            - libboost-dev
             - libglpk-dev
             - cmake
-            - libboost-test-dev 
       script:
 
 
@@ -121,10 +120,9 @@ matrix:
             - python3.5-dev
             - python3.5-venv
             - libhdf5-serial-dev
-            - libboost-all-dev
+            - libboost-dev
             - libglpk-dev
             - cmake
-            - libboost-test-dev 
       script:
         - pyvenv-3.5 venv
 
@@ -169,7 +167,7 @@ matrix:
         - CTEST_OUTPUT_ON_FAILURE=TRUE make test
 
     # conda linux python gcc4 python 2.7
-    # NO C++ test
+    # C++ test
     # CALLS python tests by hand 
     # (make python test does not work yet)
     - os: linux
@@ -226,7 +224,7 @@ matrix:
                 -DWITH_GLPK=OFF 
                 -DWITH_CPLEX=OFF 
                 -DWITH_GUROBI=OFF
-                -DBUILD_CPP_TEST=OFF 
+                -DBUILD_CPP_TEST=ON 
                 -DBUILD_PYTHON_TEST=ON 
                 -DBUILD_NIFTY_PYTHON=ON 
                 -DNOSETESTS_PATH=$ENV_BIN 
@@ -240,10 +238,14 @@ matrix:
         # the actual build
         ###############################################
         - make -j 2
-
+        ###############################################
+        # cpp tests
+        ############################################### 
+        - CTEST_OUTPUT_ON_FAILURE=TRUE make test
         ###############################################
         # install and test the project
         ###############################################
+
         - sudo make install
         - cd src/python/test
         # this is a fucked up way of running python test
@@ -321,7 +323,7 @@ matrix:
                 -DWITH_GLPK=OFF 
                 -DWITH_CPLEX=OFF 
                 -DWITH_GUROBI=OFF
-                -DBUILD_CPP_TEST=OFF 
+                -DBUILD_CPP_TEST=ON 
                 -DBUILD_PYTHON_TEST=ON 
                 -DBUILD_NIFTY_PYTHON=ON 
                 -DNOSETESTS_PATH=$ENV_BIN 
@@ -335,10 +337,14 @@ matrix:
         # the actual build
         ###############################################
         - make -j 2
-
+        ###############################################
+        # cpp tests
+        ###############################################
+        - CTEST_OUTPUT_ON_FAILURE=TRUE make test
         ###############################################
         # install and test the project
         ###############################################
+        
         - sudo make install
         - cd src/python/test
         # this is a fucked up way of running python test
@@ -417,7 +423,7 @@ matrix:
                 -DWITH_GLPK=OFF 
                 -DWITH_CPLEX=OFF 
                 -DWITH_GUROBI=OFF
-                -DBUILD_CPP_TEST=OFF 
+                -DBUILD_CPP_TEST=ON 
                 -DBUILD_PYTHON_TEST=ON 
                 -DBUILD_NIFTY_PYTHON=ON 
                 -DNOSETESTS_PATH=$ENV_BIN 
@@ -430,8 +436,9 @@ matrix:
         ###############################################
         # the actual build
         ###############################################
-        - make -j 2
 
+        - make -j 2
+        - CTEST_OUTPUT_ON_FAILURE=TRUE make test
         ###############################################
         # install and test the project
         ###############################################
