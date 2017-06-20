@@ -3,8 +3,8 @@
 
 #include "nifty/tools/runtime_check.hxx"
 #include "nifty/graph/undirected_list_graph.hxx"
-#include "nifty/graph/optimization/multicut/multicut_objective.hxx"
-#include "nifty/graph/optimization/multicut/multicut_ilp.hxx"
+#include "nifty/graph/opt/multicut/multicut_objective.hxx"
+#include "nifty/graph/opt/multicut/multicut_ilp.hxx"
 
 #ifdef WITH_GUROBI
 #include "nifty/ilp_backend/gurobi.hxx"
@@ -29,8 +29,8 @@ void randomizedMulticutTest()
 
     typedef double WeightType;
     typedef nifty::graph::UndirectedGraph<> Graph;
-    typedef nifty::graph::optimization::multicut::MulticutObjective<Graph, WeightType> Objective;
-    typedef nifty::graph::optimization::multicut::MulticutVerboseVisitor<Objective> VerboseVisitor;
+    typedef nifty::graph::opt::multicut::MulticutObjective<Graph, WeightType> Objective;
+    typedef nifty::graph::opt::multicut::MulticutVerboseVisitor<Objective> VerboseVisitor;
 
 
 
@@ -64,7 +64,7 @@ void randomizedMulticutTest()
     {
         std::cout<<"opt gurobi \n";
         typedef nifty::ilp_backend::Gurobi IlpSolver;
-        typedef nifty::graph::optimization::multicut::MulticutIlp<Objective, IlpSolver> Solver;
+        typedef nifty::graph::opt::multicut::MulticutIlp<Objective, IlpSolver> Solver;
         typedef typename Solver::NodeLabelsType NodeLabelsType;
         // optimize 
         Solver solver(objective);
@@ -81,7 +81,7 @@ void randomizedMulticutTest()
     {
         std::cout<<"opt cplex \n";
         typedef nifty::ilp_backend::Cplex IlpSolver;
-        typedef nifty::graph::optimization::multicut::MulticutIlp<Objective, IlpSolver> Solver;
+        typedef nifty::graph::opt::multicut::MulticutIlp<Objective, IlpSolver> Solver;
         typedef typename Solver::NodeLabelsType NodeLabelsType;
         // optimize 
         Solver solver(objective);
@@ -98,7 +98,7 @@ void randomizedMulticutTest()
     {
         std::cout<<"opt glpk \n";
         typedef nifty::ilp_backend::Glpk IlpSolver;
-        typedef nifty::graph::optimization::multicut::MulticutIlp<Objective, IlpSolver> Solver;
+        typedef nifty::graph::opt::multicut::MulticutIlp<Objective, IlpSolver> Solver;
         typedef typename Solver::NodeLabelsType NodeLabelsType;
         // optimize 
         Solver solver(objective);
@@ -124,8 +124,8 @@ void simpleMulticutTest()
 
     typedef double WeightType;
     typedef nifty::graph::UndirectedGraph<> Graph;
-    typedef nifty::graph::optimization::multicut::MulticutObjective<Graph, WeightType> Objective;
-    typedef nifty::graph::optimization::multicut::MulticutVerboseVisitor<Objective> VerboseVisitor;
+    typedef nifty::graph::opt::multicut::MulticutObjective<Graph, WeightType> Objective;
+    typedef nifty::graph::opt::multicut::MulticutVerboseVisitor<Objective> VerboseVisitor;
 
 
 
@@ -179,7 +179,7 @@ void simpleMulticutTest()
     {
         std::cout<<"opt gurobi \n";
         typedef nifty::ilp_backend::Gurobi IlpSolver;
-        typedef nifty::graph::optimization::multicut::MulticutIlp<Objective, IlpSolver> Solver;
+        typedef nifty::graph::opt::multicut::MulticutIlp<Objective, IlpSolver> Solver;
         
         typedef typename Solver::NodeLabelsType NodeLabelsType;
         Solver solver(objective);
@@ -203,7 +203,7 @@ void simpleMulticutTest()
     {
         std::cout<<"opt cplex \n";
         typedef nifty::ilp_backend::Cplex IlpSolver;
-        typedef nifty::graph::optimization::multicut::MulticutIlp<Objective, IlpSolver> Solver;
+        typedef nifty::graph::opt::multicut::MulticutIlp<Objective, IlpSolver> Solver;
         typedef typename Solver::NodeLabelsType NodeLabelsType;
 
 
@@ -228,7 +228,7 @@ void simpleMulticutTest()
     {
         std::cout<<"opt glpk \n";
         typedef nifty::ilp_backend::Glpk IlpSolver;
-        typedef nifty::graph::optimization::multicut::MulticutIlp<Objective, IlpSolver> Solver;
+        typedef nifty::graph::opt::multicut::MulticutIlp<Objective, IlpSolver> Solver;
         typedef typename Solver::NodeLabelsType NodeLabelsType;
 
 

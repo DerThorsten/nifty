@@ -1,4 +1,4 @@
-.. _nifty_graph_optimization_lifted_multicut:
+.. _nifty_graph_opt_lifted_multicut:
 
 
 Lifted Multicut:

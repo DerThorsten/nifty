@@ -4,8 +4,8 @@
 #include "nifty/tools/runtime_check.hxx"
 
 #include "nifty/graph/undirected_list_graph.hxx"
-#include "nifty/graph/optimization/multicut/multicut_objective.hxx"
-#include "nifty/graph/optimization/multicut/multicut_greedy_additive.hxx"
+#include "nifty/graph/opt/multicut/multicut_objective.hxx"
+#include "nifty/graph/opt/multicut/multicut_greedy_additive.hxx"
 
 int main( int argc , char *argv[] ){
 
@@ -35,7 +35,7 @@ int main( int argc , char *argv[] ){
 
     // create multicut objective
     // do not add more edges to graph after creating the mc objective
-    typedef nifty::graph::optimization::multicut::MulticutObjective<Graph, float> MulticutObjective;
+    typedef nifty::graph::opt::multicut::MulticutObjective<Graph, float> MulticutObjective;
     MulticutObjective objective(graph);
 
     // Set edge weights 
@@ -52,8 +52,8 @@ int main( int argc , char *argv[] ){
     // solve not very powerful but simple solver
     {  
        
-        typedef nifty::graph::optimization::multicut::MulticutGreedyAdditive<MulticutObjective> MulticutSolver;
-        typedef nifty::graph::optimization::multicut::MulticutVerboseVisitor<MulticutObjective> MulticutVerboseVisitor;
+        typedef nifty::graph::opt::multicut::MulticutGreedyAdditive<MulticutObjective> MulticutSolver;
+        typedef nifty::graph::opt::multicut::MulticutVerboseVisitor<MulticutObjective> MulticutVerboseVisitor;
         typedef typename MulticutSolver::NodeLabelsType NodeLabelsType;
         MulticutSolver solver(objective);
 

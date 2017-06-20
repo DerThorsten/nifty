@@ -17,7 +17,7 @@ Nifty
 
 
 A nifty library for 2D and 3D image segmentation,
-graph based segmentation an optimization.
+graph based segmentation an opt.
 This library provided building blocks for segmentation
 algorithms and complex segmentation pipelines.
 The core is implemented in C++ but
