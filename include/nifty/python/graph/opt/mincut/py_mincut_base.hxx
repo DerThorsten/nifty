@@ -16,12 +16,12 @@ template<class OBJECTIVE>
 class PyMincutBase : public MincutBase<OBJECTIVE> {
 public:
     /* Inherit the constructors */
-    // using MincutFactory<Objective>::MincutFactory;
+    // using MincutFactory<ObjectiveType>::MincutFactory;
 
-    typedef OBJECTIVE Objective;
+    typedef OBJECTIVE ObjectiveType;
     typedef MincutVisitorBase<OBJECTIVE> VisitorBaseType;
-    typedef MincutBase<Objective> McBase;
-    typedef typename Objective::Graph Graph;
+    typedef MincutBase<ObjectiveType> McBase;
+    typedef typename ObjectiveType::Graph Graph;
     typedef typename McBase::NodeLabelsType NodeLabelsType;
 
 
@@ -51,9 +51,9 @@ public:
         );
     }
 
-    const Objective & objective() const {
+    const ObjectiveType & objective() const {
         PYBIND11_OVERLOAD_PURE(
-            const Objective & ,    /* Return type */
+            const ObjectiveType & ,    /* Return type */
             McBase,                /* Parent class */
             objective              /* Name of function */
         );

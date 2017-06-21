@@ -18,22 +18,22 @@ template<class OBJECTIVE>
 class PyProposalGeneratorFactoryBase : public ProposalGeneratorFactoryBase<OBJECTIVE> {
 public:
     /* Inherit the constructors */
-    // using LiftedMulticutFactory<Objective>::LiftedMulticutFactory;
-    typedef OBJECTIVE Objective;
-    typedef ProposalGeneratorBase<Objective> ProposalGeneratorBaseType;
+    // using LiftedMulticutFactory<ObjectiveType>::LiftedMulticutFactory;
+    typedef OBJECTIVE ObjectiveType;
+    typedef ProposalGeneratorBase<ObjectiveType> ProposalGeneratorBaseType;
     /* Trampoline (need one for each virtual function) */
-    std::shared_ptr<ProposalGeneratorBaseType> createShared(const Objective & objective, const size_t numberOfThreads) {
+    std::shared_ptr<ProposalGeneratorBaseType> createShared(const ObjectiveType & objective, const size_t numberOfThreads) {
         PYBIND11_OVERLOAD_PURE(
             std::shared_ptr<ProposalGeneratorBaseType>,     /* Return type */
-            ProposalGeneratorFactoryBase<Objective>,        /* Parent class */
+            ProposalGeneratorFactoryBase<ObjectiveType>,        /* Parent class */
             createShared,                                              /* Name of function */
             objective, numberOfThreads                                           /* Argument(s) */
         );
     }
-    ProposalGeneratorBaseType * create(const Objective & objective, const size_t numberOfThreads) {
+    ProposalGeneratorBaseType * create(const ObjectiveType & objective, const size_t numberOfThreads) {
         PYBIND11_OVERLOAD_PURE(
             ProposalGeneratorBaseType* ,                    /* Return type */
-            ProposalGeneratorFactoryBase<Objective>,        /* Parent class */
+            ProposalGeneratorFactoryBase<ObjectiveType>,        /* Parent class */
             create,                                                 /* Name of function */
             objective, numberOfThreads                                           /* Argument(s) */
         );
