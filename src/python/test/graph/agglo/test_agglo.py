@@ -41,7 +41,7 @@ def testMala():
     g.insertEdges(edges)
 
 
-    edgeIndicators = numpy.ones(shape=[g.numberOfEdges])
+    edgeIndicators = numpy.array([0.3, 0.1, 0.7])
     edgeSizes = numpy.ones(shape=[g.numberOfEdges])
     nodeSizes = numpy.ones(shape=[g.numberOfNodes])
 
@@ -55,8 +55,10 @@ def testMala():
 
     # merge graph edge merge times
     mergeTimes = clusterPolicy.mergeTimes
-    mergeTimes = agglomerativeClustering.ucmTransform(mergeTimes)
+    print(mergeTimes)
 
+    mergeTimes = agglomerativeClustering.ucmTransform(mergeTimes)
+    print(mergeTimes)
 
     seg = agglomerativeClustering.result()
 
