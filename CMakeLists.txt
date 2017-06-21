@@ -288,7 +288,6 @@ enable_testing()
 # global headers
 #-------------------------------------------------------------------------------------------------------------------
 file(GLOB_RECURSE headers include/*.hxx)
-file(GLOB_RECURSE headers ${CMAKE_INSTALL_PREFIX}/include/*.hxx)
 include_directories(include)
 
 

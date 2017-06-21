@@ -9,17 +9,8 @@ Contents:
     examples
     sections/faq
     sections/reference
-    sections/cpp_reference
+    sections/cpp_reference/nifty
     sections/contribute
     zbibliography
 
 
-
-.. doxygenclass:: nifty::graph::opt::multicut::MulticutIlp
-   :project: nifty
-   :no-link:
-
-
-.. doxygenclass:: nifty::graph::opt::multicut::MulticutIlp
-   :project: nifty
-   

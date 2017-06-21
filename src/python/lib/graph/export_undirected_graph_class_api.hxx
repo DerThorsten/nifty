@@ -166,6 +166,10 @@ namespace graph{
             .def("__next__", &PyAdjacencyIter::next);
         ;
 
+
+        typedef typename G:: template EdgeMap<uint64_t> EdgeMapUInt64;
+        exportEdgeMap<G, EdgeMapUInt64>(graphModule, clsName + std::string("EdgeMapUInt64"));
+
         typedef typename G:: template EdgeMap<double> EdgeMapFloat64;
         exportEdgeMap<G, EdgeMapFloat64>(graphModule, clsName + std::string("EdgeMapFloat64"));
 

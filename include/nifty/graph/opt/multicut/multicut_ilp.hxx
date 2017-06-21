@@ -18,74 +18,57 @@ namespace opt{
 namespace multicut{
 
     /*!
-    @brief ILP Cutting plane multicut solver
-    @details ILP Cutting plane multicut solver
-    adding violated cycle constraints in an 
-    iterative fashion.
 
-    \if HTML_BUILD
-    <b>Cite:</b> \cite Kappes-2011 \cite andres_2011_probabilistic
-    \endif
+        @brief ILP Cutting plane multicut solver
+        @tparam OBJECTIVE The multicut objective (e.g. MulticutObjective)
+        @tparam ILP_SOLVER The ILP solver backend (e.g. ilp_backend::Cplex, ilp_backend::Glpk, ilp_backend::Gurobi)
+        @details ILP Cutting plane multicut solver
+        adding violated cycle constraints in an 
+        iterative fashion.
 
-    \breathe
-    **Cite:** :cite:`Kappes-2011` :cite:`andres_2011_probabilistic`
-    \endbreathe
+        \if HTML_BUILD
+        <b>Cite:</b> \cite Kappes-2011 \cite andres_2011_probabilistic
+        \endif
+
+        \breathe
+        **Cite:** :cite:`Kappes-2011` :cite:`andres_2011_probabilistic`
+        \endbreathe
 
 
-    \breathe
-    **Corresponding Python Classes and their template Instantiations**:
-        
-    *   :class:`nifty.graph.opt.multicut.MulticutIlpCplexMulticutObjectiveUndirectedGraph` 
-    
-        *  **OBJECTIVE** : 
-        
+        \breathe
 
-            **C++:** :cpp:class:`nifty::graph::opt::multicut::MulticutObjective`
+            .. note:: Corresponding Python Classes:
 
-            **Python:** :class:`nifty.graph.opt.multicut.MulticutObjectiveUndirectedGraph` 
-            
+                .. list-table::  Template Instantiation:
+                    :header-rows: 1
 
-        *  **ILP_SOLVER** : 
-        
+                    * - Python class
+                      - OBJECTIVE
+                      - ILP_SOLVER
+                    * - :class:`~nifty.graph.opt.multicut.MulticutIlpCplexMulticutObjectiveUndirectedGraph` 
+                      - **C++   :** :cpp:class:`~nifty::graph::opt::multicut::MulticutObjective`
+                      - **C++   :** :cpp:class:`~nifty::ilp_backend::Cplex`
+                    * - 
+                      - **Python:**  :class:`~nifty.graph.opt.multicut.MulticutObjectiveUndirectedGraph` 
+                      - **Python:**  -
+                    * - :class:`~nifty.graph.opt.multicut.MulticutIlpGlpkMulticutObjectiveUndirectedGraph` 
+                      - **C++   :** :cpp:class:`~nifty::graph::opt::multicut::MulticutObjective`
+                      - **C++   :** :cpp:class:`~nifty::ilp_backend::Glpk`
+                    * - 
+                      - **Python:**  :class:`~nifty.graph.opt.multicut.MulticutObjectiveUndirectedGraph` 
+                      - **Python:**  -
 
-            **C++:** :cpp:class:`nifty::ilp_backend::Cplex`
-             
 
-            **Python:** - 
 
-    *   :class:`nifty.graph.opt.multicut.MulticutIlpGlpkMulticutObjectiveUndirectedGraph` 
+                
 
-        *  **OBJECTIVE** : 
-        
 
-            **C++:** :cpp:class:`nifty::graph::opt::multicut::MulticutObjective`
-        
-
-            **Python:** :class:`nifty.graph.opt.multicut.MulticutObjectiveUndirectedGraph` 
-            
-        *  **ILP_SOLVER** :  
-          
+        \endbreathe
          
-            **C++:** :cpp:class:`nifty::ilp_backend::Glpk`
-             
-             
-            **Python:**  - 
+         
+         
+        @ingroup group_multicut_solver
 
-
-        
-
-
-
-
-
-
-    \endbreathe
-     
-     
-     
-    @ingroup group_multicut_solver
-    @tparam OBJECTIVE The multicut objective (e.g. MulticutObjective)
-    @tparam ILP_SOLVER The ILP solver backend (e.g. ilp_backend::Cplex, ilp_backend::Glpk, ilp_backend::Gurobi)
     */
     template<class OBJECTIVE, class ILP_SOLVER>
     class MulticutIlp : public MulticutBase<OBJECTIVE>

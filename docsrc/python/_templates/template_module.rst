@@ -11,6 +11,10 @@
 
    {% for item in functions %}
 
+
+   ---------------------
+
+
    .. autofunction:: {{ item }}
 
    .. include:: backreferences/{{fullname}}.{{item}}.examples
@@ -18,6 +22,9 @@
    .. raw:: html
 
            <div style='clear:both'></div>
+
+   ---------------------
+
 
    {%- endfor %}
    {% endif %}
@@ -30,6 +37,11 @@
    -------
 
    {% for item in classes %}
+
+
+   -----------------------
+
+
    .. autoclass:: {{ item }}
       :members:
       :undoc-members:
@@ -40,6 +52,7 @@
 
            <div style='clear:both'></div>
 
+   ---------------------
 
    {%- endfor %}
    {% endif %}
@@ -53,6 +66,7 @@
 
    .. autosummary::
    {% for item in exceptions %}
+   --------------------------------
       {{ item }}
    {%- endfor %}
    {% endif %}

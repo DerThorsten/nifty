@@ -11,6 +11,8 @@ if(BUILD_NIFTY_PYTHON AND BUILD_PYTHON_DOCS)
         # configured documentation tools and intermediate build results
         set(SPHINX_BUILD_DIR "${CMAKE_BINARY_DIR}/docs/python/_build")
 
+        file(COPY "${CMAKE_SOURCE_DIR}/docsrc/python/_themes" DESTINATION "${SPHINX_BUILD_DIR}/")
+
         file(MAKE_DIRECTORY "${CMAKE_BINARY_DIR}/docs/python/_build/_static")
 
         # Sphinx cache with pickled ReST documents

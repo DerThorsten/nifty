@@ -34,7 +34,7 @@ namespace agglo{
             
             typedef typename AGGLO_CLUSTER_TYPE::GraphType GraphType;
             typedef typename GraphType:: template EdgeMap<double> EdgeMapFloat64;
-
+            typedef typename GraphType:: template EdgeMap<uint64_t> EdgeMapUInt64;
             aggloCls
                 .def("runAndGetDendrogramHeight", [](
                     AGGLO_CLUSTER_TYPE * self, const bool verbose
@@ -49,6 +49,21 @@ namespace agglo{
                 }
                 ,
                     py::arg("verbose") = false
+                )
+
+
+                .def("ucmTransform", [](
+                    AGGLO_CLUSTER_TYPE * self,
+                    const EdgeMapUInt64 & edgeValues
+                ){
+                    const auto & graph = self->graph();
+                    nifty::marray::PyView<uint64_t> transformed( {std::size_t(graph.edgeIdUpperBound()+1)  });
+                    {
+                        py::gil_scoped_release allowThreads;
+                        self->ucmTransform(edgeValues, transformed);
+                    }
+                    return transformed;
+                }
                 )
 
                 .def("ucmTransform", [](
