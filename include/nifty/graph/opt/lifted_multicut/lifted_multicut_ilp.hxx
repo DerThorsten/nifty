@@ -22,15 +22,15 @@ namespace lifted_multicut{
     {
     public: 
 
-        typedef OBJECTIVE Objective;
+        typedef OBJECTIVE ObjectiveType;
         typedef LiftedMulticutBase<OBJECTIVE> BaseType;
         typedef typename BaseType::VisitorBaseType VisitorBaseType;
         typedef typename BaseType::VisitorProxyType VisitorProxyType;
         typedef typename BaseType::NodeLabelsType NodeLabelsType;
         typedef ILP_SOLVER IlpSovler;
         typedef typename IlpSovler::SettingsType IlpSettings;
-        typedef typename Objective::Graph Graph;
-        typedef typename Objective::LiftedGraph LiftedGraph;
+        typedef typename ObjectiveType::Graph Graph;
+        typedef typename ObjectiveType::LiftedGraph LiftedGraph;
 
     private:
         typedef ComponentsUfd<Graph> Components;
@@ -42,7 +42,7 @@ namespace lifted_multicut{
         template< bool TAKE_UNCUT = true>
         struct GraphSubgraphWithCut {
             GraphSubgraphWithCut(
-                const Objective & objective,
+                const ObjectiveType & objective,
                 const IlpSovler& ilpSolver, 
                 const DenseIds & denseIds
             )
@@ -60,7 +60,7 @@ namespace lifted_multicut{
                     return ilpSolver_.label(denseIds_[lifdtedGraphEdge]) >= 0.5; 
             }
 
-            const Objective & objective_;
+            const ObjectiveType & objective_;
             const IlpSovler & ilpSolver_;
             const DenseIds & denseIds_;
         };
@@ -81,11 +81,11 @@ namespace lifted_multicut{
             if(ilpSolver_ != nullptr)
                 delete ilpSolver_;
         }
-        LiftedMulticutIlp(const Objective & objective, const SettingsType & settings = SettingsType());
+        LiftedMulticutIlp(const ObjectiveType & objective, const SettingsType & settings = SettingsType());
 
 
         virtual void optimize(NodeLabelsType & nodeLabels, VisitorBaseType * visitor);
-        virtual const Objective & objective() const;
+        virtual const ObjectiveType & objective() const;
 
 
         virtual const NodeLabelsType & currentBestNodeLabels( ){
@@ -126,7 +126,7 @@ namespace lifted_multicut{
         size_t addViolatedInequalities(const bool searchForCutConstraitns, VisitorProxyType & visitor);
         void addThreeCyclesConstraintsExplicitly();
 
-        const Objective & objective_;
+        const ObjectiveType & objective_;
         const Graph & graph_;
         const LiftedGraph & liftedGraph_;
 
@@ -150,7 +150,7 @@ namespace lifted_multicut{
     template<class OBJECTIVE, class ILP_SOLVER>
     LiftedMulticutIlp<OBJECTIVE, ILP_SOLVER>::
     LiftedMulticutIlp(
-        const Objective & objective, 
+        const ObjectiveType & objective, 
         const SettingsType & settings
     )
     :   objective_(objective),
@@ -274,7 +274,7 @@ namespace lifted_multicut{
     }
 
     template<class OBJECTIVE, class ILP_SOLVER>
-    const typename LiftedMulticutIlp<OBJECTIVE, ILP_SOLVER>::Objective &
+    const typename LiftedMulticutIlp<OBJECTIVE, ILP_SOLVER>::ObjectiveType &
     LiftedMulticutIlp<OBJECTIVE, ILP_SOLVER>::
     objective()const{
         return objective_;

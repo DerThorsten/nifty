@@ -35,14 +35,14 @@ namespace lifted_multicut{
         };
 
 
-        typedef OBJECTIVE Objective;
-        typedef typename Objective::LiftedGraph LiftedGraph;
+        typedef OBJECTIVE ObjectiveType;
+        typedef typename ObjectiveType::LiftedGraph LiftedGraph;
         typedef typename LiftedGraph:: template EdgeMap<double> CurrentWeightMap;
         typedef typename LiftedGraph:: template EdgeMap<bool>   IsLiftedMap;
         typedef nifty::tools::ChangeablePriorityQueue< double ,std::greater<double> > QueueType;
 
         LiftedMulticutGreedyAdditiveCallback(
-            const Objective & objective,
+            const ObjectiveType & objective,
             const SettingsType & settings
         )
         :   objective_(objective),
@@ -201,7 +201,7 @@ namespace lifted_multicut{
 
     private:
 
-        const Objective & objective_;
+        const ObjectiveType & objective_;
         const LiftedGraph & liftedGraph_;
         QueueType pq_;
 
@@ -225,10 +225,10 @@ namespace lifted_multicut{
     {
     public: 
 
-        typedef OBJECTIVE Objective;
-        typedef typename Objective::Graph Graph;
-        typedef typename Objective::LiftedGraph LiftedGraph;
-        typedef detail_lifted_multicut_greedy_additive::LiftedMulticutGreedyAdditiveCallback<Objective> Callback;
+        typedef OBJECTIVE ObjectiveType;
+        typedef typename ObjectiveType::Graph Graph;
+        typedef typename ObjectiveType::LiftedGraph LiftedGraph;
+        typedef detail_lifted_multicut_greedy_additive::LiftedMulticutGreedyAdditiveCallback<ObjectiveType> Callback;
         typedef LiftedMulticutBase<OBJECTIVE> BaseType;
         typedef typename BaseType::VisitorBaseType VisitorBaseType;
         typedef typename BaseType::NodeLabelsType NodeLabelsType;
@@ -238,9 +238,9 @@ namespace lifted_multicut{
         typedef typename Callback::SettingsType SettingsType;
 
         virtual ~LiftedMulticutGreedyAdditive(){}
-        LiftedMulticutGreedyAdditive(const Objective & objective, const SettingsType & settings = SettingsType());
+        LiftedMulticutGreedyAdditive(const ObjectiveType & objective, const SettingsType & settings = SettingsType());
         virtual void optimize(NodeLabelsType & nodeLabels, VisitorBaseType * visitor);
-        virtual const Objective & objective() const;
+        virtual const ObjectiveType & objective() const;
 
         void reset();
         void changeSettings(const SettingsType & settings);
@@ -263,7 +263,7 @@ namespace lifted_multicut{
     private:
 
 
-        const Objective & objective_;
+        const ObjectiveType & objective_;
         const Graph & graph_;
         NodeLabelsType * currentBest_;
 
@@ -275,7 +275,7 @@ namespace lifted_multicut{
     template<class OBJECTIVE>
     LiftedMulticutGreedyAdditive<OBJECTIVE>::
     LiftedMulticutGreedyAdditive(
-        const Objective & objective, 
+        const ObjectiveType & objective, 
         const SettingsType & settings
     )
     :   objective_(objective),
@@ -330,7 +330,7 @@ namespace lifted_multicut{
     }
 
     template<class OBJECTIVE>
-    const typename LiftedMulticutGreedyAdditive<OBJECTIVE>::Objective &
+    const typename LiftedMulticutGreedyAdditive<OBJECTIVE>::ObjectiveType &
     LiftedMulticutGreedyAdditive<OBJECTIVE>::
     objective()const{
         return objective_;
