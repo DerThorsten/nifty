@@ -24,12 +24,12 @@ namespace multicut{
     {
     public: 
 
-        typedef OBJECTIVE Objective;
+        typedef OBJECTIVE ObjectiveType;
         typedef MulticutBase<OBJECTIVE> BaseType;
         typedef typename BaseType::VisitorBaseType VisitorBaseType;
         typedef typename BaseType::VisitorProxyType VisitorProxyType;
         typedef typename BaseType::NodeLabelsType NodeLabelsType;
-        typedef typename Objective::Graph Graph;
+        typedef typename ObjectiveType::Graph Graph;
         
         // factory for the lp_mp primal rounder
         typedef nifty::graph::opt::common::SolverFactoryBase<BaseType> McFactoryBase;
@@ -51,7 +51,7 @@ namespace multicut{
                 std::vector<char> labeling(g.numberOfEdges(), 0);
                 if(g.numberOfEdges() > 0) {
                     
-                    Objective obj(g);
+                    ObjectiveType obj(g);
 
                     auto & objWeights = obj.weights();
                     for(auto eId = 0; eId < edgeValues.size(); ++eId) {
@@ -121,11 +121,11 @@ namespace multicut{
             delete mpSolver_;
         }
         
-        MulticutMp(const Objective & objective, const SettingsType & settings = SettingsType());
+        MulticutMp(const ObjectiveType & objective, const SettingsType & settings = SettingsType());
 
         virtual void optimize(NodeLabelsType & nodeLabels, VisitorBaseType * visitor);
         
-        virtual const Objective & objective() const {return objective_;}
+        virtual const ObjectiveType & objective() const {return objective_;}
         virtual const NodeLabelsType & currentBestNodeLabels() {return *currentBest_;}
 
         virtual std::string name() const {
@@ -143,7 +143,7 @@ namespace multicut{
         void nodeLabeling();
         std::vector<std::string> toOptionsVector() const;
 
-        const Objective & objective_;
+        const ObjectiveType & objective_;
         const Graph & graph_;
 
         SettingsType settings_;
@@ -157,7 +157,7 @@ namespace multicut{
     template<class OBJECTIVE>
     MulticutMp<OBJECTIVE>::
     MulticutMp(
-        const Objective & objective, 
+        const ObjectiveType & objective, 
         const SettingsType & settings
     )
     :   objective_(objective),
@@ -169,7 +169,7 @@ namespace multicut{
     {
         // if we don't have a mc-factory, we use the LP_MP default rounder
         if(!bool(settings_.mcFactory)) {
-            typedef MulticutAndresKernighanLin<Objective> DefaultSolver;
+            typedef MulticutAndresKernighanLin<ObjectiveType> DefaultSolver;
             typedef nifty::graph::opt::common::SolverFactory<DefaultSolver> DefaultFactory;
             settings_.mcFactory = std::make_shared<DefaultFactory>();
         }

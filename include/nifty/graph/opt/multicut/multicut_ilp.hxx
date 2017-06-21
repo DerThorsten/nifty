@@ -95,7 +95,7 @@ namespace multicut{
         typedef OBJECTIVE ObjectiveType;
 
         /// \deprecated using Objective is deprecated. Use Objective Type instead
-        typedef OBJECTIVE Objective;
+        //typedef OBJECTIVE Objective;
 
         /// \deprecated using GraphType is deprecated. Use GraphType Type instead
         typedef typename ObjectiveType::Graph Graph;
@@ -182,11 +182,11 @@ namespace multicut{
             if(ilpSolver_ != nullptr)
                 delete ilpSolver_;
         }
-        MulticutIlp(const Objective & objective, const SettingsType & settings = SettingsType());
+        MulticutIlp(const ObjectiveType & objective, const SettingsType & settings = SettingsType());
 
 
         virtual void optimize(NodeLabelsType & nodeLabels, VisitorBaseType * visitor);
-        virtual const Objective & objective() const;
+        virtual const ObjectiveType & objective() const;
 
 
         virtual const NodeLabelsType & currentBestNodeLabels( ){

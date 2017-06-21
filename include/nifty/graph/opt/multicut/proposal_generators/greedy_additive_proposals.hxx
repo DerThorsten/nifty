@@ -15,10 +15,10 @@ namespace multicut{
     template<class OBJECTIVE>
     class GreedyAdditiveProposals{
     public:
-        typedef OBJECTIVE Objective;
-        typedef typename Objective::Graph Graph;
-        typedef MulticutBase<Objective> Base;
-        typedef MulticutGreedyAdditive<Objective> Solver;
+        typedef OBJECTIVE ObjectiveType;
+        typedef typename ObjectiveType::Graph Graph;
+        typedef MulticutBase<ObjectiveType> Base;
+        typedef MulticutGreedyAdditive<ObjectiveType> Solver;
         typedef typename Solver::SettingsType SolverSettings;
         typedef typename Base::NodeLabelsType NodeLabelsType;
 
@@ -34,7 +34,7 @@ namespace multicut{
         }
 
         GreedyAdditiveProposals(
-            const Objective & objective, 
+            const ObjectiveType & objective, 
             const SettingsType  & settings,
             const size_t threadIndex
         )
@@ -68,7 +68,7 @@ namespace multicut{
                 proposal[node] = currentBest[node];
             }
 
-            MulticutEmptyVisitor<Objective> visitor;
+            MulticutEmptyVisitor<ObjectiveType> visitor;
 
             solver_->optimize(proposal, &visitor);
             ++proposalNumber_;
@@ -81,7 +81,7 @@ namespace multicut{
 
     private:
 
-        const Objective & objective_;
+        const ObjectiveType & objective_;
         const Graph graph_;
         SettingsType settings_;
         size_t threadIndex_;

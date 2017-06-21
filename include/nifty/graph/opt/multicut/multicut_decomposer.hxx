@@ -18,14 +18,14 @@ namespace multicut{
     {
     public: 
 
-        typedef OBJECTIVE Objective;
-        typedef typename Objective::WeightType WeightType;
+        typedef OBJECTIVE ObjectiveType;
+        typedef typename ObjectiveType::WeightType WeightType;
         typedef MulticutBase<OBJECTIVE> BaseType;
         typedef typename BaseType::VisitorBaseType VisitorBaseType;
         typedef typename BaseType::VisitorProxyType VisitorProxyType;
         typedef typename BaseType::NodeLabelsType NodeLabelsType;
-        typedef typename Objective::Graph Graph;
-        typedef typename Objective::WeightsMap WeightsMap;
+        typedef typename ObjectiveType::Graph Graph;
+        typedef typename ObjectiveType::WeightsMap WeightsMap;
 
 
         typedef nifty::graph::opt::common::SolverFactoryBase<BaseType> FactoryBase;
@@ -53,11 +53,11 @@ namespace multicut{
         virtual ~MulticutDecomposer(){
             
         }
-        MulticutDecomposer(const Objective & objective, const SettingsType & settings = SettingsType());
+        MulticutDecomposer(const ObjectiveType & objective, const SettingsType & settings = SettingsType());
 
 
         virtual void optimize(NodeLabelsType & nodeLabels, VisitorBaseType * visitor);
-        virtual const Objective & objective() const;
+        virtual const ObjectiveType & objective() const;
 
 
         virtual const NodeLabelsType & currentBestNodeLabels( ){
@@ -90,7 +90,7 @@ namespace multicut{
 
 
 
-        const Objective & objective_;
+        const ObjectiveType & objective_;
         const Graph & graph_;
         const WeightsMap & weights_;
 
@@ -104,7 +104,7 @@ namespace multicut{
     template<class OBJECTIVE>
     MulticutDecomposer<OBJECTIVE>::
     MulticutDecomposer(
-        const Objective & objective, 
+        const ObjectiveType & objective, 
         const SettingsType & settings
     )
     :   objective_(objective),
@@ -312,7 +312,7 @@ namespace multicut{
     }
 
     template<class OBJECTIVE>
-    const typename MulticutDecomposer<OBJECTIVE>::Objective &
+    const typename MulticutDecomposer<OBJECTIVE>::ObjectiveType &
     MulticutDecomposer<OBJECTIVE>::
     objective()const{
         return objective_;

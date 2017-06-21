@@ -19,10 +19,10 @@ namespace multicut{
     template<class OBJECTIVE>
     class PerturbAndMap{
     public:
-        typedef OBJECTIVE Objective;
-        typedef typename  Objective::Graph Graph;
+        typedef OBJECTIVE ObjectiveType;
+        typedef typename  ObjectiveType::Graph Graph;
         typedef MulticutObjective<Graph, double> InternalObjective;
-        typedef MulticutBase<Objective> MulticutBaseType;
+        typedef MulticutBase<ObjectiveType> MulticutBaseType;
         typedef MulticutBase<InternalObjective> IternalMulticutBaseType;
         typedef nifty::graph::opt::common::SolverFactoryBase<IternalMulticutBaseType> InternalMcFactoryBase;
         typedef typename Graph:: template NodeMap<uint64_t> NodeLabels;
@@ -48,11 +48,11 @@ namespace multicut{
             double noiseMagnitude{1.0};
         };
 
-        PerturbAndMap(const Objective & objective, const SettingsType settings = SettingsType());
+        PerturbAndMap(const ObjectiveType & objective, const SettingsType settings = SettingsType());
         ~PerturbAndMap();
 
 
-        const Objective & objective()const;
+        const ObjectiveType & objective()const;
         const Graph & graph()const;
 
         void optimize(EdgeState & edgeState);
@@ -86,7 +86,7 @@ namespace multicut{
 
 
 
-        const Objective & objective_;
+        const ObjectiveType & objective_;
         const Graph & graph_;
         SettingsType settings_;
 
@@ -97,7 +97,7 @@ namespace multicut{
     template<class OBJECTIVE>
     PerturbAndMap<OBJECTIVE>::
     PerturbAndMap(
-        const Objective & objective, 
+        const ObjectiveType & objective, 
         const SettingsType settings
     )
     :   objective_(objective),
@@ -142,7 +142,7 @@ namespace multicut{
     }
 
     template<class OBJECTIVE>
-    const typename PerturbAndMap<OBJECTIVE>::Objective & 
+    const typename PerturbAndMap<OBJECTIVE>::ObjectiveType & 
     PerturbAndMap<OBJECTIVE>::
     objective()const{
         return objective_;
@@ -197,7 +197,7 @@ namespace multicut{
                     arg[node] = startingPoint[node];
 
                 //std::cout<<"optimize \n";
-                MulticutVerboseVisitor<Objective> v;
+                MulticutVerboseVisitor<ObjectiveType> v;
                 solver->optimize(arg, nullptr);
 
                 //std::cout<<"write res \n";

@@ -25,7 +25,6 @@ namespace multicut{
     {
     public: 
 
-        typedef OBJECTIVE Objective;
         typedef OBJECTIVE ObjectiveType;
         typedef typename ObjectiveType::WeightType WeightType;
         typedef MulticutBase<ObjectiveType> BaseType;
@@ -52,11 +51,11 @@ namespace multicut{
         virtual ~BlockMulticut(){
             
         }
-        BlockMulticut(const Objective & objective, const SettingsType & settings = SettingsType());
+        BlockMulticut(const ObjectiveType & objective, const SettingsType & settings = SettingsType());
 
 
         virtual void optimize(NodeLabels & nodeLabels, VisitorBaseType * visitor);
-        virtual const Objective & objective() const;
+        virtual const ObjectiveType & objective() const;
 
 
         virtual const NodeLabels & currentBestNodeLabels( ){
@@ -74,7 +73,7 @@ namespace multicut{
     private:
 
 
-        const Objective & objective_;
+        const ObjectiveType & objective_;
         SettingsType settings_;
         NodeLabels * currentBest_;
         double currentBestEnergy_;
@@ -85,7 +84,7 @@ namespace multicut{
     template<class OBJECTIVE>
     BlockMulticut<OBJECTIVE>::
     BlockMulticut(
-        const Objective & objective, 
+        const ObjectiveType & objective, 
         const SettingsType & settings
     )
     :   objective_(objective),
@@ -115,7 +114,7 @@ namespace multicut{
     }
 
     template<class OBJECTIVE>
-    const typename BlockMulticut<OBJECTIVE>::Objective &
+    const typename BlockMulticut<OBJECTIVE>::ObjectiveType &
     BlockMulticut<OBJECTIVE>::
     objective()const{
         return objective_;

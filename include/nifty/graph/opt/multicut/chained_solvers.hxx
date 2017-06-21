@@ -24,7 +24,6 @@ namespace multicut{
     {
     public:
 
-        typedef OBJECTIVE Objective;
         typedef OBJECTIVE ObjectiveType;
         typedef typename ObjectiveType::WeightType WeightType;
         typedef MulticutBase<ObjectiveType> BaseType;
@@ -100,11 +99,11 @@ namespace multicut{
         virtual ~ChainedSolvers(){
 
         }
-        ChainedSolvers(const Objective & objective, const SettingsType & settings = SettingsType());
+        ChainedSolvers(const ObjectiveType & objective, const SettingsType & settings = SettingsType());
 
 
         virtual void optimize(NodeLabelsType & nodeLabels, VisitorBaseType * visitor);
-        virtual const Objective & objective() const;
+        virtual const ObjectiveType & objective() const;
 
 
         virtual const NodeLabelsType & currentBestNodeLabels( ){
@@ -122,7 +121,7 @@ namespace multicut{
     private:
 
 
-        const Objective & objective_;
+        const ObjectiveType & objective_;
         SettingsType settings_;
         NodeLabelsType * currentBest_;
         double currentBestEnergy_;
@@ -133,7 +132,7 @@ namespace multicut{
     template<class OBJECTIVE>
     ChainedSolvers<OBJECTIVE>::
     ChainedSolvers(
-        const Objective & objective,
+        const ObjectiveType & objective,
         const SettingsType & settings
     )
     :   objective_(objective),
@@ -190,7 +189,7 @@ namespace multicut{
     }
 
     template<class OBJECTIVE>
-    const typename ChainedSolvers<OBJECTIVE>::Objective &
+    const typename ChainedSolvers<OBJECTIVE>::ObjectiveType &
     ChainedSolvers<OBJECTIVE>::
     objective()const{
         return objective_;

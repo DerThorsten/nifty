@@ -557,8 +557,7 @@ namespace multicut{
     {
     
     public: 
-
-        typedef OBJECTIVE Objective;    
+   
         typedef OBJECTIVE ObjectiveType;
         typedef typename ObjectiveType::WeightType WeightType;
         typedef MulticutBase<ObjectiveType> BaseType;
@@ -608,11 +607,11 @@ namespace multicut{
         virtual ~Cgc(){
             
         }
-        Cgc(const Objective & objective, const SettingsType & settings = SettingsType());
+        Cgc(const ObjectiveType & objective, const SettingsType & settings = SettingsType());
 
 
         virtual void optimize(NodeLabelsType & nodeLabels, VisitorBaseType * visitor);
-        virtual const Objective & objective() const;
+        virtual const ObjectiveType & objective() const;
 
 
         virtual const NodeLabelsType & currentBestNodeLabels( ){
@@ -635,14 +634,14 @@ namespace multicut{
 
         void glueAndCutPhase(VisitorProxyType & visitorProxy);
 
-        const Objective & objective_;
+        const ObjectiveType & objective_;
         const Graph & graph_;
         const WeightsMap & weights_;
 
         Components components_;
         SettingsType settings_;
         IsDirtyEdge isDirtyEdge_;
-        detail_cgc::SubmodelOptimizer<Objective> submodel_;
+        detail_cgc::SubmodelOptimizer<ObjectiveType> submodel_;
         NodeLabelsType * currentBest_;
         double currentBestEnergy_;
 
@@ -655,7 +654,7 @@ namespace multicut{
     template<class OBJECTIVE>
     Cgc<OBJECTIVE>::
     Cgc(
-        const Objective & objective, 
+        const ObjectiveType & objective, 
         const SettingsType & settings
     )
     :   objective_(objective),
@@ -1003,7 +1002,7 @@ namespace multicut{
     }
 
     template<class OBJECTIVE>
-    const typename Cgc<OBJECTIVE>::Objective &
+    const typename Cgc<OBJECTIVE>::ObjectiveType &
     Cgc<OBJECTIVE>::
     objective()const{
         return objective_;
