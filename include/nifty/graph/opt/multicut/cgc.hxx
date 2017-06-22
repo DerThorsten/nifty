@@ -40,7 +40,7 @@ namespace multicut{
             typedef OBJECTIVE ObjectiveType;
             typedef typename ObjectiveType::WeightType WeightType;
             typedef MulticutBase<ObjectiveType> MulticutBaseType;
-            typedef typename ObjectiveType::Graph GraphType;
+            typedef typename ObjectiveType::GraphType GraphType;
             typedef typename ObjectiveType::WeightsMap WeightsMapType;
             typedef typename GraphType:: template NodeMap<uint64_t> GlobalNodeToLocal;
             typedef std::vector<uint64_t>                       LocalNodeToGlobal;
@@ -413,7 +413,6 @@ namespace multicut{
 
             typedef PartitionCallback<OBJECTIVE, SETTINGS> SelfType;
             typedef OBJECTIVE ObjectiveType;
-            typedef typename ObjectiveType::Graph Graph;
             typedef typename ObjectiveType::GraphType GraphType;
             typedef typename GraphType:: template NodeMap<uint64_t> CcNodeSize;
             typedef typename GraphType:: template EdgeMap<float>    McWeights;
@@ -527,10 +526,10 @@ namespace multicut{
                 //
                 return pq_;
             }
-            EdgeContractionGraph<Graph, SelfType> & edgeContractionGraph(){
+            EdgeContractionGraph<GraphType, SelfType> & edgeContractionGraph(){
                 return edgeContractionGraph_;
             }
-            const EdgeContractionGraph<Graph, SelfType> & edgeContractionGraph()const{
+            const EdgeContractionGraph<GraphType, SelfType> & edgeContractionGraph()const{
                 return edgeContractionGraph_;
             }
         private:
@@ -564,7 +563,6 @@ namespace multicut{
         typedef typename BaseType::VisitorBaseType VisitorBaseType;
         typedef typename BaseType::VisitorProxyType VisitorProxyType;
         typedef typename BaseType::NodeLabelsType NodeLabelsType;
-        typedef typename ObjectiveType::Graph Graph;
         typedef typename ObjectiveType::GraphType GraphType;
         typedef typename ObjectiveType::WeightsMap WeightsMap;
         typedef typename GraphType:: template EdgeMap<uint8_t> IsDirtyEdge;
@@ -586,7 +584,7 @@ namespace multicut{
         typedef nifty::graph::opt::common::SolverFactoryBase<BaseType> FactoryBase;
        
     private:
-        typedef ComponentsUfd<Graph> Components;
+        typedef ComponentsUfd<GraphType> Components;
     
     public:
 
@@ -635,7 +633,7 @@ namespace multicut{
         void glueAndCutPhase(VisitorProxyType & visitorProxy);
 
         const ObjectiveType & objective_;
-        const Graph & graph_;
+        const GraphType & graph_;
         const WeightsMap & weights_;
 
         Components components_;

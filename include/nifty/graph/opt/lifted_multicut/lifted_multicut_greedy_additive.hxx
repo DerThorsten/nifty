@@ -226,7 +226,7 @@ namespace lifted_multicut{
     public: 
 
         typedef OBJECTIVE ObjectiveType;
-        typedef typename ObjectiveType::Graph Graph;
+        typedef typename ObjectiveType::GraphType GraphType;
         typedef typename ObjectiveType::LiftedGraph LiftedGraph;
         typedef detail_lifted_multicut_greedy_additive::LiftedMulticutGreedyAdditiveCallback<ObjectiveType> Callback;
         typedef LiftedMulticutBase<OBJECTIVE> BaseType;
@@ -264,7 +264,7 @@ namespace lifted_multicut{
 
 
         const ObjectiveType & objective_;
-        const Graph & graph_;
+        const GraphType & graph_;
         NodeLabelsType * currentBest_;
 
         Callback callback_;

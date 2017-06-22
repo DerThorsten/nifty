@@ -25,7 +25,7 @@ public:
     typedef OBJECTIVE ObjectiveType;
     typedef MincutVisitorBase<OBJECTIVE> VisitorBaseType;
     typedef MincutBase<ObjectiveType> McBase;
-    typedef typename ObjectiveType::Graph Graph;
+    typedef typename ObjectiveType::GraphType GraphType;
 
 
 

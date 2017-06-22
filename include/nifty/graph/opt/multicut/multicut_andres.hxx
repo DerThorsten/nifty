@@ -18,11 +18,12 @@ namespace multicut{
     {
     public: 
         typedef OBJECTIVE ObjectiveType;
+        typedef typename ObjectiveType::GraphType GraphType;
         typedef MulticutBase<OBJECTIVE> BaseType;
         typedef typename BaseType::VisitorBaseType VisitorBaseType;
         typedef typename BaseType::VisitorProxyType VisitorProxyType;
         typedef typename BaseType::NodeLabelsType NodeLabelsType;
-        typedef andres::graph::Graph<> Graph;
+        typedef andres::graph::Graph<> AGraphType;
 
         MulticutAndres(const ObjectiveType & objective);
 
@@ -36,7 +37,7 @@ namespace multicut{
         void nodeLabelsToEdgeLabels(std::vector<char> & edgeLabels);
         void edgeLabelsToNodeLabels(const std::vector<char> & edgeLabels);
         NodeLabelsType * currentBest_;
-        Graph graph_;
+        AGraphType graph_;
 
     private:
         void initGraph();

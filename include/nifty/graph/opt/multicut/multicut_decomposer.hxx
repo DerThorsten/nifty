@@ -24,14 +24,14 @@ namespace multicut{
         typedef typename BaseType::VisitorBaseType VisitorBaseType;
         typedef typename BaseType::VisitorProxyType VisitorProxyType;
         typedef typename BaseType::NodeLabelsType NodeLabelsType;
-        typedef typename ObjectiveType::Graph Graph;
+        typedef typename ObjectiveType::GraphType GraphType;
         typedef typename ObjectiveType::WeightsMap WeightsMap;
 
 
         typedef nifty::graph::opt::common::SolverFactoryBase<BaseType> FactoryBase;
        
     private:
-        typedef ComponentsUfd<Graph> Components;
+        typedef ComponentsUfd<GraphType> Components;
         
         
     public:
@@ -91,7 +91,7 @@ namespace multicut{
 
 
         const ObjectiveType & objective_;
-        const Graph & graph_;
+        const GraphType & graph_;
         const WeightsMap & weights_;
 
         Components components_;

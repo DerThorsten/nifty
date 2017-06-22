@@ -35,7 +35,7 @@ namespace higher_order_multicut{
         std::vector<uint64_t> edgeIds_;
     };
 
-
+    // ????? Graph or GRAPH
     template<class GRAPH, class WEIGHT_TYPE >   
     class HigherOrderMulticutObjective 
     {   

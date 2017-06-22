@@ -29,13 +29,13 @@ namespace lifted_multicut{
         typedef typename BaseType::NodeLabelsType NodeLabelsType;
         typedef ILP_SOLVER IlpSovler;
         typedef typename IlpSovler::SettingsType IlpSettings;
-        typedef typename ObjectiveType::Graph Graph;
+        typedef typename ObjectiveType::GraphType GraphType;
         typedef typename ObjectiveType::LiftedGraph LiftedGraph;
 
     private:
-        typedef ComponentsUfd<Graph> Components;
+        typedef ComponentsUfd<GraphType> Components;
         typedef detail_graph::EdgeIndicesToContiguousEdgeIndices<LiftedGraph> DenseIds;
-        typedef DepthFirstSearch<Graph> DfsType;
+        typedef DepthFirstSearch<GraphType> DfsType;
 
 
 
@@ -127,7 +127,7 @@ namespace lifted_multicut{
         void addThreeCyclesConstraintsExplicitly();
 
         const ObjectiveType & objective_;
-        const Graph & graph_;
+        const GraphType & graph_;
         const LiftedGraph & liftedGraph_;
 
         IlpSovler * ilpSolver_;
@@ -136,7 +136,7 @@ namespace lifted_multicut{
         // is a zero overhead function which just returns the edge itself
         // since all so far existing graphs have contiguous edge ids
         DenseIds denseIds_;
-        BidirectionalBreadthFirstSearch<Graph> bibfs_;
+        BidirectionalBreadthFirstSearch<GraphType> bibfs_;
         DfsType dfs_;
         SettingsType settings_;
         std::vector<size_t> variables_;
@@ -361,7 +361,7 @@ namespace lifted_multicut{
                             ++nCut;
                         }
                     };
-                    DefaultSubgraphMask<Graph> subgraphMask;
+                    DefaultSubgraphMask<GraphType> subgraphMask;
                     dfs_.run(&va, &va+1, subgraphMask, dfsVisitor);
 
                     coefficients_[nCut] = 1.0;

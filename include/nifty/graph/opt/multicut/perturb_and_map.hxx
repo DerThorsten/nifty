@@ -20,13 +20,13 @@ namespace multicut{
     class PerturbAndMap{
     public:
         typedef OBJECTIVE ObjectiveType;
-        typedef typename  ObjectiveType::Graph Graph;
-        typedef MulticutObjective<Graph, double> InternalObjective;
+        typedef typename  ObjectiveType::GraphType GraphType;
+        typedef MulticutObjective<GraphType, double> InternalObjective;
         typedef MulticutBase<ObjectiveType> MulticutBaseType;
         typedef MulticutBase<InternalObjective> IternalMulticutBaseType;
         typedef nifty::graph::opt::common::SolverFactoryBase<IternalMulticutBaseType> InternalMcFactoryBase;
-        typedef typename Graph:: template NodeMap<uint64_t> NodeLabels;
-        typedef typename Graph:: template EdgeMap<double>   EdgeState;
+        typedef typename GraphType:: template NodeMap<uint64_t> NodeLabels;
+        typedef typename GraphType:: template EdgeMap<double>   EdgeState;
         typedef std::shared_ptr<InternalMcFactoryBase> FactorySmartPtr;
 
 
@@ -53,7 +53,7 @@ namespace multicut{
 
 
         const ObjectiveType & objective()const;
-        const Graph & graph()const;
+        const GraphType & graph()const;
 
         void optimize(EdgeState & edgeState);
 
@@ -63,7 +63,7 @@ namespace multicut{
     private:
 
         struct ThreadData{
-            ThreadData(const size_t threadId,const int seed, const Graph & graph)
+            ThreadData(const size_t threadId,const int seed, const GraphType & graph)
             :   objective_(graph),
                 solver_(nullptr),
                 gen_(threadId+seed),
@@ -87,7 +87,7 @@ namespace multicut{
 
 
         const ObjectiveType & objective_;
-        const Graph & graph_;
+        const GraphType & graph_;
         SettingsType settings_;
 
         std::vector<ThreadData*> threadDataVec_;
@@ -149,7 +149,7 @@ namespace multicut{
     }
 
     template<class OBJECTIVE>
-    const typename PerturbAndMap<OBJECTIVE>::Graph & 
+    const typename PerturbAndMap<OBJECTIVE>::GraphType & 
     PerturbAndMap<OBJECTIVE>::
     graph()const{
         return objective_.graph();
@@ -175,7 +175,7 @@ namespace multicut{
         std::mutex mtx;
         auto nFinished = 0;
 
-        typedef typename Graph:: template EdgeMap<uint64_t> EdgeCutCounter;
+        typedef typename GraphType:: template EdgeMap<uint64_t> EdgeCutCounter;
         EdgeCutCounter edgeCutCounter(graph_, 0);
 
         nifty::parallel::parallel_foreach(settings_.numberOfThreads,

@@ -29,7 +29,7 @@ namespace multicut{
     public: 
 
         typedef typename PROPPOSAL_GEN::ObjectiveType ObjectiveType;
-        typedef typename ObjectiveType::Graph Graph;
+        typedef typename ObjectiveType::GraphType GraphType;
         typedef MulticutBase<ObjectiveType> BaseType;
         typedef typename BaseType::VisitorBaseType VisitorBaseType;
         typedef typename BaseType::VisitorProxyType VisitorProxyType;
@@ -39,7 +39,7 @@ namespace multicut{
         typedef PROPPOSAL_GEN ProposalGen;
         typedef typename ProposalGen::SettingsType ProposalGenSettings;
         typedef typename FusionMoveType::SettingsType FusionMoveSettings;
-        typedef typename Graph:: template EdgeMap<double> EdgeWeights;
+        typedef typename GraphType:: template EdgeMap<double> EdgeWeights;
     public:
 
         struct SettingsType{
@@ -78,7 +78,7 @@ namespace multicut{
         void optimizeSerial(NodeLabelsType & nodeLabels, VisitorBaseType * visitor);
 
         const ObjectiveType & objective_;
-        const Graph & graph_;
+        const GraphType & graph_;
         SettingsType settings_;
         nifty::parallel::ParallelOptions parallelOptions_;
 

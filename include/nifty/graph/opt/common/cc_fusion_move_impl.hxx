@@ -22,8 +22,8 @@ namespace common{
     class FusionMove{
     public:
         typedef OBJECTIVE ObjectiveType;
-        typedef typename ObjectiveType::Graph Graph;
-        typedef typename Graph:: template NodeMap<uint8_t> NodeLabels;
+        typedef typename ObjectiveType::GraphType GraphType;
+        typedef typename GraphType:: template NodeMap<uint8_t> NodeLabels;
         
 
         typedef UndirectedGraph<> FmGraph;
@@ -206,7 +206,7 @@ namespace common{
 
 
         const ObjectiveType & objective_;
-        const Graph & graph_;
+        const GraphType & graph_;
         SettingsType settings_;
         nifty::ufd::Ufd< > ufd_;
         NodeLabels nodeToDense_;

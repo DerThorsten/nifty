@@ -16,7 +16,7 @@ namespace multicut{
     class GreedyAdditiveProposals{
     public:
         typedef OBJECTIVE ObjectiveType;
-        typedef typename ObjectiveType::Graph Graph;
+        typedef typename ObjectiveType::GraphType GraphType;
         typedef MulticutBase<ObjectiveType> Base;
         typedef MulticutGreedyAdditive<ObjectiveType> Solver;
         typedef typename Solver::SettingsType SolverSettings;
@@ -82,7 +82,7 @@ namespace multicut{
     private:
 
         const ObjectiveType & objective_;
-        const Graph graph_;
+        const GraphType graph_;
         SettingsType settings_;
         size_t threadIndex_;
         size_t proposalNumber_;

@@ -22,8 +22,8 @@ namespace mincut{
     class MincutCcFusionMove{
     public:
         typedef OBJECTIVE ObjectiveType;
-        typedef typename ObjectiveType::Graph Graph;
-        typedef typename Graph:: template NodeMap<uint64_t> NodeLabelsType;
+        typedef typename ObjectiveType::GraphType GraphType;
+        typedef typename GraphType:: template NodeMap<uint64_t> NodeLabelsType;
         
 
         typedef UndirectedGraph<> FmGraph;
@@ -207,7 +207,7 @@ namespace mincut{
 
 
         const ObjectiveType & objective_;
-        const Graph & graph_;
+        const GraphType & graph_;
         SettingsType settings_;
         nifty::ufd::Ufd< > ufd_;
         NodeLabelsType nodeToDense_;

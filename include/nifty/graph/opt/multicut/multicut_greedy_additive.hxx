@@ -41,7 +41,7 @@ namespace multicut{
 
 
         typedef OBJECTIVE ObjectiveType;
-        typedef typename ObjectiveType::Graph Graph;
+        typedef typename ObjectiveType::GraphType GraphType;
         typedef nifty::tools::ChangeablePriorityQueue< double ,std::greater<double> > QueueType;
 
         MulticutGreedyAdditiveCallback(
@@ -145,7 +145,7 @@ namespace multicut{
     private:
 
         const ObjectiveType & objective_;
-        const Graph & graph_;
+        const GraphType & graph_;
         QueueType pq_;
         SettingsType settings_;
         uint64_t currentNodeNum_;
@@ -165,7 +165,7 @@ namespace multicut{
     public: 
 
         typedef OBJECTIVE ObjectiveType;
-        typedef typename ObjectiveType::Graph Graph;
+        typedef typename ObjectiveType::GraphType GraphType;
         typedef detail_multicut_greedy_additive::MulticutGreedyAdditiveCallback<ObjectiveType> Callback;
         typedef MulticutBase<OBJECTIVE> BaseType;
         typedef typename BaseType::VisitorBaseType VisitorBaseType;
@@ -202,11 +202,11 @@ namespace multicut{
 
 
         const ObjectiveType & objective_;
-        const Graph & graph_;
+        const GraphType & graph_;
         NodeLabelsType * currentBest_;
 
         Callback callback_;
-        EdgeContractionGraph<Graph, Callback> edgeContractionGraph_;
+        EdgeContractionGraph<GraphType, Callback> edgeContractionGraph_;
     };
 
     

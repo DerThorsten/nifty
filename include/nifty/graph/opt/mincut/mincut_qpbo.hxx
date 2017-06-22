@@ -25,11 +25,11 @@ namespace mincut{
         typedef typename BaseType::VisitorBaseType VisitorBaseType;
         typedef typename BaseType::VisitorProxyType VisitorProxyType;
         typedef typename BaseType::NodeLabelsType NodeLabelsType;
-        typedef typename ObjectiveType::Graph Graph;
+        typedef typename ObjectiveType::GraphType GraphType;
 
     private:
         typedef float QpboValueType;
-        typedef detail_graph::NodeIndicesToContiguousNodeIndices<Graph> DenseIds;
+        typedef detail_graph::NodeIndicesToContiguousNodeIndices<GraphType> DenseIds;
 
 
 
@@ -77,7 +77,7 @@ namespace mincut{
         void addThreeCyclesConstraintsExplicitly();
 
         const ObjectiveType & objective_;
-        const Graph & graph_;
+        const GraphType & graph_;
 
         // zero overhead lookup for graphs which have already
         // dense ids (only merge graph does not have dense ids)

@@ -93,12 +93,7 @@ namespace multicut{
     public: 
 
         typedef OBJECTIVE ObjectiveType;
-
-        /// \deprecated using Objective is deprecated. Use Objective Type instead
-        //typedef OBJECTIVE Objective;
-
-        /// \deprecated using GraphType is deprecated. Use GraphType Type instead
-        typedef typename ObjectiveType::Graph Graph;
+        typedef typename ObjectiveType::GraphType GraphType;
         
         /// \brief Base Type / parent class
         typedef MulticutBase<OBJECTIVE> BaseType;
@@ -109,9 +104,6 @@ namespace multicut{
         typedef typename BaseType::NodeLabelsType NodeLabelsType;
         typedef ILP_SOLVER IlpSovler;
         typedef typename IlpSovler::SettingsType IlpSettingsType;
-        
-        
-        typedef typename ObjectiveType::GraphType GraphType;
 
     private:
 
@@ -236,7 +228,7 @@ namespace multicut{
         // is a zero overhead function which just returns the edge itself
         // since all so far existing graphs have contiguous edge ids
         DenseIds denseIds_;
-        BidirectionalBreadthFirstSearch<Graph> bibfs_;
+        BidirectionalBreadthFirstSearch<GraphType> bibfs_;
         SettingsType settings_;
         std::vector<size_t> variables_;
         std::vector<double> coefficients_;

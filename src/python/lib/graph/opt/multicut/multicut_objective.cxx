@@ -21,10 +21,10 @@ namespace multicut{
     template<class GRAPH>
     void exportMulticutObjectiveT(py::module & multicutModule) {
 
-        typedef GRAPH Graph;
-        typedef MulticutObjective<Graph, double> ObjectiveType;
+        typedef GRAPH GraphType;
+        typedef MulticutObjective<GraphType, double> ObjectiveType;
 
-        const auto graphClsName = GraphName<Graph>::name();
+        const auto graphClsName = GraphName<GraphType>::name();
         const auto clsName = MulticutObjectiveName<ObjectiveType>::name();
 
         auto multicutObjectiveCls = py::class_<ObjectiveType>(multicutModule, clsName.c_str(),
@@ -48,7 +48,7 @@ namespace multicut{
             .def("__init__",
                 [](
                     ObjectiveType & instance,
-                    const Graph & graph,  
+                    const GraphType & graph,  
                     nifty::marray::PyView<double> array
                 ){
                     NIFTY_CHECK_OP(array.dimension(),==,1,"wrong dimensions");
@@ -82,7 +82,7 @@ namespace multicut{
 
 
         multicutModule.def("multicutObjective",
-            [](const Graph & graph,  nifty::marray::PyView<double> array){
+            [](const GraphType & graph,  nifty::marray::PyView<double> array){
                 NIFTY_CHECK_OP(array.dimension(),==,1,"wrong dimensions");
                 NIFTY_CHECK_OP(array.shape(0),==,graph.edgeIdUpperBound()+1,"wrong shape");
                 

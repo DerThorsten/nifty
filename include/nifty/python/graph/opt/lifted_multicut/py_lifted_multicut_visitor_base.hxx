@@ -27,7 +27,7 @@ public:
     typedef OBJECTIVE ObjectiveType;
     typedef LiftedMulticutVisitorBase<OBJECTIVE> VisitorBaseType;
     typedef LiftedMulticutBase<ObjectiveType> LmcBase;
-    typedef typename ObjectiveType::Graph Graph;
+    typedef typename ObjectiveType::GraphType GraphType;
 
 
 

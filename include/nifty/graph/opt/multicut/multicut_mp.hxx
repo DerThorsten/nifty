@@ -29,7 +29,7 @@ namespace multicut{
         typedef typename BaseType::VisitorBaseType VisitorBaseType;
         typedef typename BaseType::VisitorProxyType VisitorProxyType;
         typedef typename BaseType::NodeLabelsType NodeLabelsType;
-        typedef typename ObjectiveType::Graph Graph;
+        typedef typename ObjectiveType::GraphType GraphType;
         
         // factory for the lp_mp primal rounder
         typedef nifty::graph::opt::common::SolverFactoryBase<BaseType> McFactoryBase;
@@ -38,7 +38,7 @@ namespace multicut{
         
         struct NiftyRounder {
             
-            typedef Graph GraphType;
+            typedef GraphType GraphType;
 
             NiftyRounder(std::shared_ptr<McFactoryBase> factory) 
                 : factory_(factory)
@@ -144,7 +144,7 @@ namespace multicut{
         std::vector<std::string> toOptionsVector() const;
 
         const ObjectiveType & objective_;
-        const Graph & graph_;
+        const GraphType & graph_;
 
         SettingsType settings_;
         NodeLabelsType * currentBest_;

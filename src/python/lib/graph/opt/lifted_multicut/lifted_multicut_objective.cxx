@@ -20,8 +20,8 @@ namespace lifted_multicut{
     template<class GRAPH>
     void exportLiftedMulticutObjectiveT(py::module & liftedMulticutModule) {
 
-        typedef GRAPH Graph;
-        typedef LiftedMulticutObjective<Graph, double> ObjectiveType;
+        typedef GRAPH GraphType;
+        typedef LiftedMulticutObjective<GraphType, double> ObjectiveType;
         typedef typename ObjectiveType::LiftedGraphType LiftedGraphType;
         const auto clsName = LiftedMulticutObjectiveName<ObjectiveType>::name();
 
@@ -173,7 +173,7 @@ namespace lifted_multicut{
 
 
         liftedMulticutModule.def("liftedMulticutObjective",
-            [](const Graph & graph){
+            [](const GraphType & graph){
 
                 auto obj = new ObjectiveType(graph);
                 return obj;

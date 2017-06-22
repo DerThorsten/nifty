@@ -25,7 +25,7 @@ public:
     typedef OBJECTIVE ObjectiveType;
     typedef MulticutVisitorBase<OBJECTIVE> VisitorBaseType;
     typedef MulticutBase<ObjectiveType> McBase;
-    typedef typename ObjectiveType::Graph Graph;
+    typedef typename ObjectiveType::GraphType GraphType;
 
 
 

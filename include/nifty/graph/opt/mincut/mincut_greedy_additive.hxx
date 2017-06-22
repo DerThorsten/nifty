@@ -43,7 +43,7 @@ namespace mincut{
 
 
         typedef OBJECTIVE ObjectiveType;
-        typedef typename ObjectiveType::Graph Graph;
+        typedef typename ObjectiveType::GraphType GraphType;
         typedef nifty::tools::ChangeablePriorityQueue< double ,std::greater<double> > QueueType;
 
         MincutGreedyAdditiveCallback(
@@ -150,7 +150,7 @@ namespace mincut{
     private:
 
         const ObjectiveType & objective_;
-        const Graph & graph_;
+        const GraphType & graph_;
         QueueType pq_;
         SettingsType settings_;
         uint64_t currentNodeNum_;
@@ -171,7 +171,7 @@ namespace mincut{
         typedef float QpboValueType;
         typedef OBJECTIVE ObjectiveType;
         typedef OBJECTIVE ObjectiveType;
-        typedef typename ObjectiveType::Graph Graph;
+        typedef typename ObjectiveType::GraphType GraphType;
         typedef typename ObjectiveType::GraphType GraphType;
         typedef detail_mincut_greedy_additive::MincutGreedyAdditiveCallback<ObjectiveType> CallbackType;
         typedef nifty::graph::EdgeContractionGraph<GraphType, CallbackType> ContractionGraphType;
@@ -213,7 +213,7 @@ namespace mincut{
 
 
         const ObjectiveType & objective_;
-        const Graph & graph_;
+        const GraphType & graph_;
         NodeLabelsType * currentBest_;
         double currentBestEnergy_;
         CallbackType callback_;
