@@ -35,18 +35,16 @@ namespace higher_order_multicut{
         std::vector<uint64_t> edgeIds_;
     };
 
-    // ????? Graph or GRAPH
     template<class GRAPH, class WEIGHT_TYPE >   
     class HigherOrderMulticutObjective 
     {   
     public:
-        typedef GRAPH Graph;
-        typedef Graph GraphType;
+        typedef GRAPH GraphType;
         typedef typename GraphType:: template NodeMap<uint64_t> NodeLabelsType;
         
         typedef WEIGHT_TYPE WeightType;
-        typedef graph_maps::EdgeMap<Graph, WeightType> WeightsMap;
-        HigherOrderMulticutObjective(const Graph & g )
+        typedef graph_maps::EdgeMap<GraphType, WeightType> WeightsMap;
+        HigherOrderMulticutObjective(const GraphType & g )
         :   graph_(g),
             weights_(g, 0.0)
         {
@@ -57,7 +55,7 @@ namespace higher_order_multicut{
         }
 
         // MUST IMPL INTERFACE
-        const Graph & graph() const{
+        const GraphType & graph() const{
             return graph_;
         }
         const WeightsMap & weights() const{
@@ -69,7 +67,7 @@ namespace higher_order_multicut{
 
     private:
 
-        const Graph & graph_;
+        const GraphType & graph_;
         WeightsMap weights_;
 
 
