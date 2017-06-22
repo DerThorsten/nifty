@@ -28,14 +28,12 @@ namespace multicut{
     {
     public: 
 
-        typedef OBJECTIVE Objective;
         typedef OBJECTIVE ObjectiveType;
         typedef typename ObjectiveType::WeightType WeightType;
         typedef MulticutBase<ObjectiveType> BaseType;
         typedef typename BaseType::VisitorBaseType VisitorBaseType;
         typedef typename BaseType::VisitorProxyType VisitorProxyType;
         typedef typename BaseType::NodeLabelsType NodeLabelsType;
-        typedef typename ObjectiveType::Graph Graph;
         typedef typename ObjectiveType::GraphType GraphType;
         typedef typename ObjectiveType::WeightsMap WeightsMap;
         typedef typename GraphType:: template EdgeMap<uint8_t> IsDirtyEdge;
@@ -58,11 +56,11 @@ namespace multicut{
         virtual ~KernighanLin(){
             
         }
-        KernighanLin(const Objective & objective, const SettingsType & settings = SettingsType());
+        KernighanLin(const ObjectiveType & objective, const SettingsType & settings = SettingsType());
 
 
         virtual void optimize(NodeLabelsType & nodeLabels, VisitorBaseType * visitor);
-        virtual const Objective & objective() const;
+        virtual const ObjectiveType & objective() const;
 
 
         virtual const NodeLabelsType & currentBestNodeLabels( ){
@@ -110,7 +108,7 @@ namespace multicut{
 
         double update_bipartition(std::vector<uint64_t>& A, std::vector<uint64_t>& B);
 
-        const Objective & objective_;
+        const ObjectiveType & objective_;
         const GraphType & graph_;
         SettingsType settings_;
         NodeLabelsType * currentBest_;
@@ -124,7 +122,7 @@ namespace multicut{
     template<class OBJECTIVE>
     KernighanLin<OBJECTIVE>::
     KernighanLin(
-        const Objective & objective, 
+        const ObjectiveType & objective, 
         const SettingsType & settings
     )
     :   objective_(objective),
@@ -618,7 +616,7 @@ namespace multicut{
     }
 
     template<class OBJECTIVE>
-    const typename KernighanLin<OBJECTIVE>::Objective &
+    const typename KernighanLin<OBJECTIVE>::ObjectiveType &
     KernighanLin<OBJECTIVE>::
     objective()const{
         return objective_;

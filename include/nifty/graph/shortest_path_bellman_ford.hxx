@@ -17,14 +17,14 @@ namespace graph{
     class ShortestPathBellmanFord{
 
     public:
-        typedef GRAPH Graph;
+        typedef GRAPH GraphType;
         typedef WEIGHT_TYPE WeightType;
 
-        typedef typename Graph:: template NodeMap<int64_t>     PredecessorsMap;
-        typedef typename Graph:: template NodeMap<WeightType>  DistanceMap;
+        typedef typename GraphType:: template NodeMap<int64_t>     PredecessorsMap;
+        typedef typename GraphType:: template NodeMap<WeightType>  DistanceMap;
 
     public:
-        ShortestPathBellmanFord(const Graph & g)
+        ShortestPathBellmanFord(const GraphType & g)
         :   g_(g),
             predMap_(g),
             distMap_(g){
@@ -39,7 +39,7 @@ namespace graph{
             const int64_t target = -1
         ){
             // subgraph mask
-            DefaultSubgraphMask<Graph> subgraphMask;
+            DefaultSubgraphMask<GraphType> subgraphMask;
             // visitor
             auto visitor = [&]
             (   
@@ -63,7 +63,7 @@ namespace graph{
         ){
 
             // subgraph mask
-            DefaultSubgraphMask<Graph> subgraphMask;
+            DefaultSubgraphMask<GraphType> subgraphMask;
             this->initializeMaps(&source, &source +1);
             // visitor
             auto visitor = [](   int64_t topNode,

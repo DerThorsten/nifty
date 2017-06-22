@@ -21,9 +21,9 @@ namespace common{
     template<class OBJECTIVE>
     class FusionMove{
     public:
-        typedef OBJECTIVE Objective;
-        typedef typename Objective::Graph Graph;
-        typedef typename Graph:: template NodeMap<uint8_t> NodeLabels;
+        typedef OBJECTIVE ObjectiveType;
+        typedef typename ObjectiveType::GraphType GraphType;
+        typedef typename GraphType:: template NodeMap<uint8_t> NodeLabels;
         
 
         typedef UndirectedGraph<> FmGraph;
@@ -37,7 +37,7 @@ namespace common{
             std::shared_ptr<FmMcFactoryBase> minCutFactory;
         };
 
-        FusionMove(const Objective & objective, const SettingsType & settings = SettingsType())
+        FusionMove(const ObjectiveType & objective, const SettingsType & settings = SettingsType())
         :   objective_(objective),
             graph_(objective.graph()),
             settings_(settings),
@@ -205,8 +205,8 @@ namespace common{
         }
 
 
-        const Objective & objective_;
-        const Graph & graph_;
+        const ObjectiveType & objective_;
+        const GraphType & graph_;
         SettingsType settings_;
         nifty::ufd::Ufd< > ufd_;
         NodeLabels nodeToDense_;

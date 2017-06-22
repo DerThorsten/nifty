@@ -42,12 +42,12 @@ namespace mincut{
         };
 
 
-        typedef OBJECTIVE Objective;
-        typedef typename Objective::Graph Graph;
+        typedef OBJECTIVE ObjectiveType;
+        typedef typename ObjectiveType::GraphType GraphType;
         typedef nifty::tools::ChangeablePriorityQueue< double ,std::greater<double> > QueueType;
 
         MincutGreedyAdditiveCallback(
-            const Objective & objective,
+            const ObjectiveType & objective,
             const SettingsType & settings
         )
         :   objective_(objective),
@@ -149,8 +149,8 @@ namespace mincut{
         }
     private:
 
-        const Objective & objective_;
-        const Graph & graph_;
+        const ObjectiveType & objective_;
+        const GraphType & graph_;
         QueueType pq_;
         SettingsType settings_;
         uint64_t currentNodeNum_;
@@ -169,11 +169,11 @@ namespace mincut{
     {
     public: 
         typedef float QpboValueType;
-        typedef OBJECTIVE Objective;
         typedef OBJECTIVE ObjectiveType;
-        typedef typename Objective::Graph Graph;
+        typedef OBJECTIVE ObjectiveType;
         typedef typename ObjectiveType::GraphType GraphType;
-        typedef detail_mincut_greedy_additive::MincutGreedyAdditiveCallback<Objective> CallbackType;
+        typedef typename ObjectiveType::GraphType GraphType;
+        typedef detail_mincut_greedy_additive::MincutGreedyAdditiveCallback<ObjectiveType> CallbackType;
         typedef nifty::graph::EdgeContractionGraph<GraphType, CallbackType> ContractionGraphType;
         typedef MincutBase<OBJECTIVE> BaseType;
         typedef typename BaseType::VisitorBaseType VisitorBaseType;
@@ -185,9 +185,9 @@ namespace mincut{
         typedef typename CallbackType::SettingsType SettingsType;
 
         virtual ~MincutGreedyAdditive(){}
-        MincutGreedyAdditive(const Objective & objective, const SettingsType & settings = SettingsType());
+        MincutGreedyAdditive(const ObjectiveType & objective, const SettingsType & settings = SettingsType());
         virtual void optimize(NodeLabelsType & nodeLabels, VisitorBaseType * visitor);
-        virtual const Objective & objective() const;
+        virtual const ObjectiveType & objective() const;
 
         void reset();
         void changeSettings(const SettingsType & settings);
@@ -212,8 +212,8 @@ namespace mincut{
     private:
 
 
-        const Objective & objective_;
-        const Graph & graph_;
+        const ObjectiveType & objective_;
+        const GraphType & graph_;
         NodeLabelsType * currentBest_;
         double currentBestEnergy_;
         CallbackType callback_;
@@ -225,7 +225,7 @@ namespace mincut{
     template<class OBJECTIVE>
     MincutGreedyAdditive<OBJECTIVE>::
     MincutGreedyAdditive(
-        const Objective & objective, 
+        const ObjectiveType & objective, 
         const SettingsType & settings
     )
     :   objective_(objective),
@@ -348,7 +348,7 @@ namespace mincut{
     }
 
     template<class OBJECTIVE>
-    const typename MincutGreedyAdditive<OBJECTIVE>::Objective &
+    const typename MincutGreedyAdditive<OBJECTIVE>::ObjectiveType &
     MincutGreedyAdditive<OBJECTIVE>::
     objective()const{
         return objective_;

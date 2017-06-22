@@ -20,12 +20,12 @@ template<class OBJECTIVE>
 class PyMincutVisitorBase : public MincutVisitorBase<OBJECTIVE> {
 public:
     /* Inherit the constructors */
-    // using MincutFactory<Objective>::MincutFactory;
+    // using MincutFactory<ObjectiveType>::MincutFactory;
 
-    typedef OBJECTIVE Objective;
+    typedef OBJECTIVE ObjectiveType;
     typedef MincutVisitorBase<OBJECTIVE> VisitorBaseType;
-    typedef MincutBase<Objective> McBase;
-    typedef typename Objective::Graph Graph;
+    typedef MincutBase<ObjectiveType> McBase;
+    typedef typename ObjectiveType::GraphType GraphType;
 
 
 

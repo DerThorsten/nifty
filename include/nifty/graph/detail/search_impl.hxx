@@ -31,13 +31,13 @@ namespace detail_graph{
     class SearchImpl{
 
     public:
-        typedef GRAPH Graph;
-        typedef typename Graph:: template NodeMap<int64_t>     PredecessorsMap;
-        typedef typename Graph:: template NodeMap<int64_t>  DistanceMap;
+        typedef GRAPH GraphType;
+        typedef typename GraphType:: template NodeMap<int64_t>     PredecessorsMap;
+        typedef typename GraphType:: template NodeMap<int64_t>  DistanceMap;
     private:
         typedef QUEUE Queue;
     public:
-        SearchImpl(const Graph & g)
+        SearchImpl(const GraphType & g)
         :   g_(g),
             queue_(),
             predMap_(g),
@@ -71,7 +71,7 @@ namespace detail_graph{
 
 
             // subgraph mask
-            DefaultSubgraphMask<Graph> subgraphMask;
+            DefaultSubgraphMask<GraphType> subgraphMask;
 
             this->run(&source, &source + 1 , subgraphMask, visitor);
         }
@@ -86,7 +86,7 @@ namespace detail_graph{
             const int64_t target = -1
         ){
             // subgraph mask
-            DefaultSubgraphMask<Graph> subgraphMask;
+            DefaultSubgraphMask<GraphType> subgraphMask;
             // visitor
             auto visitor = [&]
             (   
@@ -138,7 +138,7 @@ namespace detail_graph{
         ){
 
             // subgraph mask
-            DefaultSubgraphMask<Graph> subgraphMask;
+            DefaultSubgraphMask<GraphType> subgraphMask;
             this->initializeMaps(&source, &source +1);
             // visitor
             auto visitor = [&]

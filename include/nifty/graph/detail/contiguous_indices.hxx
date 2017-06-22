@@ -10,8 +10,8 @@ namespace detail_graph{
     template<class GRAPH, class EDGE_ID_TAG>
     class EdgeIndicesToContiguousEdgeIndicesImpl{
     public:
-        typedef GRAPH Graph;
-        EdgeIndicesToContiguousEdgeIndicesImpl(const Graph & graph)
+        typedef GRAPH GraphType;
+        EdgeIndicesToContiguousEdgeIndicesImpl(const GraphType & graph)
         : ids_(graph){
 
             auto cid = 0;
@@ -25,7 +25,7 @@ namespace detail_graph{
             return ids_[edge];
         }
     private:
-        typedef typename Graph:: template EdgeMap<uint64_t>  ContiguousIdStorage;
+        typedef typename GraphType:: template EdgeMap<uint64_t>  ContiguousIdStorage;
         ContiguousIdStorage ids_;
     };
 
@@ -33,8 +33,8 @@ namespace detail_graph{
     template<class GRAPH>
     class EdgeIndicesToContiguousEdgeIndicesImpl<GRAPH, nifty::graph::ContiguousTag>  {
     public:
-        typedef GRAPH Graph;
-        EdgeIndicesToContiguousEdgeIndicesImpl(const Graph & graph){
+        typedef GRAPH GraphType;
+        EdgeIndicesToContiguousEdgeIndicesImpl(const GraphType & graph){
         }
         int64_t operator[](const int64_t edge)const{
             return edge;
@@ -55,8 +55,8 @@ namespace detail_graph{
     template<class GRAPH, class NODE_ID_TAG>
     class NodeIndicesToContiguousNodeIndicesImpl{
     public:
-        typedef GRAPH Graph;
-        NodeIndicesToContiguousNodeIndicesImpl(const Graph & graph)
+        typedef GRAPH GraphType;
+        NodeIndicesToContiguousNodeIndicesImpl(const GraphType & graph)
         : ids_(graph){
 
             auto cid = 0;
@@ -70,7 +70,7 @@ namespace detail_graph{
             return ids_[node];
         }
     private:
-        typedef typename Graph:: template NodeMap<uint64_t>  ContiguousIdStorage;
+        typedef typename GraphType:: template NodeMap<uint64_t>  ContiguousIdStorage;
         ContiguousIdStorage ids_;
     };
 
@@ -78,8 +78,8 @@ namespace detail_graph{
     template<class GRAPH>
     class NodeIndicesToContiguousNodeIndicesImpl<GRAPH, nifty::graph::ContiguousTag>  {
     public:
-        typedef GRAPH Graph;
-        NodeIndicesToContiguousNodeIndicesImpl(const Graph & graph){
+        typedef GRAPH GraphType;
+        NodeIndicesToContiguousNodeIndicesImpl(const GraphType & graph){
         }
         int64_t operator[](const int64_t node)const{
             return node;

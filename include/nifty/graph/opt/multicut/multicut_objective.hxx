@@ -48,13 +48,12 @@ namespace multicut{
         >
     {   
     public:
-        typedef GRAPH Graph;
-        typedef Graph GraphType;
+        typedef GRAPH GraphType;
         typedef typename GraphType:: template NodeMap<uint64_t> NodeLabelsType;
         
         typedef WEIGHT_TYPE WeightType;
-        typedef graph_maps::EdgeMap<Graph, WeightType> WeightsMap;
-        MulticutObjective(const Graph & g )
+        typedef graph_maps::EdgeMap<GraphType, WeightType> WeightsMap;
+        MulticutObjective(const GraphType & g )
         :   graph_(g),
             weights_(g, 0.0)
         {
@@ -65,14 +64,14 @@ namespace multicut{
         }
 
         // MUST IMPL INTERFACE
-        const Graph & graph() const{
+        const GraphType & graph() const{
             return graph_;
         }
         const WeightsMap & weights() const{
             return weights_;
         }
     private:
-        const Graph & graph_;
+        const GraphType & graph_;
         WeightsMap weights_;
     };
 
