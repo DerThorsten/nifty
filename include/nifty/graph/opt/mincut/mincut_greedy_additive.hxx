@@ -170,8 +170,6 @@ namespace mincut{
     public: 
         typedef float QpboValueType;
         typedef OBJECTIVE ObjectiveType;
-        typedef OBJECTIVE ObjectiveType;
-        typedef typename ObjectiveType::GraphType GraphType;
         typedef typename ObjectiveType::GraphType GraphType;
         typedef detail_mincut_greedy_additive::MincutGreedyAdditiveCallback<ObjectiveType> CallbackType;
         typedef nifty::graph::EdgeContractionGraph<GraphType, CallbackType> ContractionGraphType;
