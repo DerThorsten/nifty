@@ -1,5 +1,6 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/numpy.h>
+#include <pybind11/stl.h>
 
 #include "nifty/python/converter.hxx"
 
@@ -78,7 +79,7 @@ namespace graph{
            [](
                 const RAG & rag,
                 nifty::marray::PyView<T, 1, AUTO_CONVERT> nodeData,
-                nifty::hdf5::Hdf5Array<T> pixelData,
+                nifty::hdf5::Hdf5Array<T> & pixelData,
                 const int numberOfThreads
            ){  
                 const auto & shape = rag.shape();
@@ -92,6 +93,31 @@ namespace graph{
                 }
            },
            py::arg("graph"),py::arg("nodeData"),py::arg("pixelData"),py::arg("numberOfThreads")=-1
+        );
+    }
+
+    // TODO TODO TODO
+    template<class RAG, class T>
+    void exportProjectScalarNodeDataInSubBlockStackedHdf5T(py::module & ragModule){
+
+        ragModule.def("projectScalarNodeDataInSubBlock",
+           [](
+                const RAG & rag,
+                std::map<T, T> & nodeData,
+                nifty::hdf5::Hdf5Array<T>  & pixelData,
+                const std::vector<int64_t> & blockBegin,
+                const std::vector<int64_t> & blockEnd,
+                const int numberOfThreads
+           ){
+                const auto & shape = rag.shape();
+                {
+                    py::gil_scoped_release allowThreads;
+                    projectScalarNodeDataInSubBlock(
+                        rag, nodeData, pixelData, blockBegin, blockEnd, numberOfThreads
+                    );
+                }
+           },
+           py::arg("graph"),py::arg("nodeData"),py::arg("pixelData"),py::arg("blockBegin"),py::arg("blockEnd"),py::arg("numberOfThreads")=-1
         );
     }
     #endif
@@ -116,52 +142,57 @@ namespace graph{
             exportProjectScalarNodeDataToPixelsT<ExplicitLabelsGridRag2D, double, 2, true>(ragModule);
             exportProjectScalarNodeDataToPixelsT<ExplicitLabelsGridRag3D, double, 3, true>(ragModule);
         }
-        
+
         // exportScalarNodeDataToPixelsStacked
         {
             // explicit
             {
-                typedef ExplicitLabels<3,uint32_t> LabelsUInt32; 
+                typedef ExplicitLabels<3,uint32_t> LabelsUInt32;
                 typedef GridRagStacked2D<LabelsUInt32> StackedRagUInt32;
-                typedef ExplicitLabels<3,uint64_t> LabelsUInt64; 
+                typedef ExplicitLabels<3,uint64_t> LabelsUInt64;
                 typedef GridRagStacked2D<LabelsUInt64> StackedRagUInt64;
 
                 exportProjectScalarNodeDataToPixelsStackedExplicitT<StackedRagUInt32,uint32_t,false>(ragModule);
                 exportProjectScalarNodeDataToPixelsStackedExplicitT<StackedRagUInt32,uint64_t,false>(ragModule);
                 exportProjectScalarNodeDataToPixelsStackedExplicitT<StackedRagUInt32,float,false>(ragModule);
                 exportProjectScalarNodeDataToPixelsStackedExplicitT<StackedRagUInt32,double,true>(ragModule);
-                
+
                 exportProjectScalarNodeDataToPixelsStackedExplicitT<StackedRagUInt64,uint32_t,false>(ragModule);
                 exportProjectScalarNodeDataToPixelsStackedExplicitT<StackedRagUInt64,uint64_t,false>(ragModule);
                 exportProjectScalarNodeDataToPixelsStackedExplicitT<StackedRagUInt64,float,false>(ragModule);
                 exportProjectScalarNodeDataToPixelsStackedExplicitT<StackedRagUInt64,double,true>(ragModule);
-            
             }
-            
-            // hdf5 
+
+            // hdf5
             #ifdef WITH_HDF5
             {
-                typedef Hdf5Labels<3,uint32_t> LabelsUInt32; 
+                typedef Hdf5Labels<3,uint32_t> LabelsUInt32;
                 typedef GridRagStacked2D<LabelsUInt32> StackedRagUInt32;
-                typedef Hdf5Labels<3,uint64_t> LabelsUInt64; 
+                typedef Hdf5Labels<3,uint64_t> LabelsUInt64;
                 typedef GridRagStacked2D<LabelsUInt64> StackedRagUInt64;
-                
+
+                // FIXME this looks wrong...
                 exportProjectScalarNodeDataToPixelsStackedHdf5T<StackedRagUInt32,uint32_t,false>(ragModule);
                 exportProjectScalarNodeDataToPixelsStackedHdf5T<StackedRagUInt32,uint64_t,false>(ragModule);
                 exportProjectScalarNodeDataToPixelsStackedHdf5T<StackedRagUInt32,float,false>(ragModule);
                 exportProjectScalarNodeDataToPixelsStackedHdf5T<StackedRagUInt32,double,true>(ragModule);
-                
+
                 exportProjectScalarNodeDataToPixelsStackedHdf5T<StackedRagUInt64,uint32_t,false>(ragModule);
                 exportProjectScalarNodeDataToPixelsStackedHdf5T<StackedRagUInt64,uint64_t,false>(ragModule);
                 exportProjectScalarNodeDataToPixelsStackedHdf5T<StackedRagUInt64,float,false>(ragModule);
                 exportProjectScalarNodeDataToPixelsStackedHdf5T<StackedRagUInt64,double,true>(ragModule);
-            
-            }
+
+                exportProjectScalarNodeDataInSubBlockStackedHdf5T<StackedRagUInt32,uint32_t>(ragModule);
+                exportProjectScalarNodeDataInSubBlockStackedHdf5T<StackedRagUInt32,uint64_t>(ragModule);
+                
+                exportProjectScalarNodeDataInSubBlockStackedHdf5T<StackedRagUInt64,uint32_t>(ragModule);
+                exportProjectScalarNodeDataInSubBlockStackedHdf5T<StackedRagUInt64,uint64_t>(ragModule);
+
             #endif
 
         }
     }
+}
 
 } // end namespace graph
 } // end namespace nifty
-    

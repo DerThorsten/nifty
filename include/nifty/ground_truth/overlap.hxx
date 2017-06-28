@@ -9,7 +9,7 @@
 namespace nifty{
 namespace ground_truth{
 
-    template<class LABEL_TYPE = uint32_t, class COUNT_TYPE = uint32_t>
+    template<class LABEL_TYPE = uint64_t, class COUNT_TYPE = uint64_t>
     class Overlap{
     public:
 

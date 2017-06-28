@@ -24,6 +24,26 @@ namespace cgp{
             return 6;
         }
             
+        std::vector<std::string> names()const{
+
+            std::vector<std::string> res;
+
+            const auto baseName = std::string("BasicTopologicalFeatures");
+            
+            auto insertUVFeat = [&](const std::string & name){
+                res.push_back(baseName+name+std::string("UV-Min"));
+                res.push_back(baseName+name+std::string("UV-Max"));
+                res.push_back(baseName+name+std::string("UV-Sum"));
+                res.push_back(baseName+name+std::string("UV-AbsDiff"));
+            };
+            
+
+            res.push_back(baseName+std::string("Cell1BoundedBySize"));
+            res.push_back(baseName+std::string("Cell1NeighbourEdges"));
+            insertUVFeat("Cell2Degree");
+
+            return res;
+        }
 
         template<class T>
         void operator()(
@@ -53,13 +73,13 @@ namespace cgp{
                 // number of 0-cells bounding this 1-cell
                 // aka how many junctions has this edge (0,1 or 2)
                 const auto boundedBySize = cell1BoundedByVector[cell1Index].size();
-                auto nCells0 = 0 ;
+                auto nCells1 = 0 ;
                 for(auto i=0; i<boundedBySize; ++i){
                     const auto cell0Index = cell1BoundedByVector[cell1Index][i];
-                    nCells0 += cell0BoundsVector[cell0Index].size();
+                    nCells1 += cell0BoundsVector[cell0Index].size();
                 }
                 features(cell1Index, fIndex++) = boundedBySize;
-                features(cell1Index, fIndex++) = nCells0;
+                features(cell1Index, fIndex++) = nCells1;
 
 
 
