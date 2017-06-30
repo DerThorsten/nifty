@@ -188,9 +188,9 @@ namespace graph{
                 exportProjectScalarNodeDataInSubBlockStackedHdf5T<StackedRagUInt64,uint32_t>(ragModule);
                 exportProjectScalarNodeDataInSubBlockStackedHdf5T<StackedRagUInt64,uint64_t>(ragModule);
 
-            #endif
-
         }
+        #endif
+
     }
 }
 
