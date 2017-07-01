@@ -1,3 +1,4 @@
+#include <cstddef>
 #include <pybind11/pybind11.h>
 #include <pybind11/numpy.h>
 #include <pybind11/stl.h>
@@ -22,7 +23,7 @@ namespace graph{
     using namespace py;
 
 
-    template<class RAG,class T,size_t DATA_DIM>
+    template<class RAG,class T,std::size_t DATA_DIM>
     void exportGridRagAccumulateLabelsT(py::module & ragModule){
 
         ragModule.def("gridRagAccumulateLabels",
@@ -52,7 +53,7 @@ namespace graph{
                 const RAG & rag,
                 DATA labels,
                 const int numberOfThreads
-            ){  
+            ){
                 typedef typename DATA::DataType DataType;
                 nifty::marray::PyView<DataType> nodeLabels({rag.numberOfNodes()});
                 {
@@ -116,37 +117,37 @@ namespace graph{
             exportGridRagAccumulateLabelsT<ExplicitLabelsGridRag2D, uint32_t, 2>(ragModule);
             exportGridRagAccumulateLabelsT<ExplicitLabelsGridRag3D, uint32_t, 3>(ragModule);
         }
-        
+
         // exportGridRagStackedAccumulateLabels
         {
             // explicit
             {
-                typedef ExplicitLabels<3,uint32_t> LabelsUInt32; 
+                typedef ExplicitLabels<3,uint32_t> LabelsUInt32;
                 typedef GridRagStacked2D<LabelsUInt32> StackedRagUInt32;
-                typedef ExplicitLabels<3,uint64_t> LabelsUInt64; 
+                typedef ExplicitLabels<3,uint64_t> LabelsUInt64;
                 typedef GridRagStacked2D<LabelsUInt64> StackedRagUInt64;
-            
+
                 typedef nifty::marray::PyView<uint32_t, 3> UInt32Array;
                 typedef nifty::marray::PyView<uint64_t, 3> UInt64Array;
-                
+
                 // accumulate labels
                 exportGridRagStackedAccumulateLabelsT<StackedRagUInt32, UInt32Array>(ragModule);
                 exportGridRagStackedAccumulateLabelsT<StackedRagUInt64, UInt32Array>(ragModule);
                 exportGridRagStackedAccumulateLabelsT<StackedRagUInt32, UInt64Array>(ragModule);
                 exportGridRagStackedAccumulateLabelsT<StackedRagUInt64, UInt64Array>(ragModule);
             }
-            
-            // hdf5 
+
+            // hdf5
             #ifdef WITH_HDF5
             {
-                typedef Hdf5Labels<3,uint32_t> LabelsUInt32; 
+                typedef Hdf5Labels<3,uint32_t> LabelsUInt32;
                 typedef GridRagStacked2D<LabelsUInt32> StackedRagUInt32;
-                typedef Hdf5Labels<3,uint64_t> LabelsUInt64; 
+                typedef Hdf5Labels<3,uint64_t> LabelsUInt64;
                 typedef GridRagStacked2D<LabelsUInt64> StackedRagUInt64;
-            
+
                 typedef nifty::hdf5::Hdf5Array<uint32_t> UInt32Array;
                 typedef nifty::hdf5::Hdf5Array<uint64_t> UInt64Array;
-                
+
                 // accumulate labels
                 exportGridRagStackedAccumulateLabelsT<StackedRagUInt32, UInt32Array>(ragModule);
                 exportGridRagStackedAccumulateLabelsT<StackedRagUInt64, UInt32Array>(ragModule);
@@ -158,10 +159,8 @@ namespace graph{
                 //exportGetSkipEdgesForSliceT<StackedRagUInt64,uint64_t>(ragModule);
             }
             #endif
-
         }
     }
 
 } // end namespace graph
 } // end namespace nifty
-    

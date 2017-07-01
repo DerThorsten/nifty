@@ -1,7 +1,18 @@
+Travis (Ubuntu and MacOS builds)
+---------------------------------
+Master: [![Build Status master](https://travis-ci.org/DerThorsten/nifty.svg?branch=master)](https://travis-ci.org/DerThorsten/nifty) Dev: [![Build Status dev](https://travis-ci.org/DerThorsten/nifty.svg?branch=dev)](https://travis-ci.org/DerThorsten/nifty)
+
+Appveyor (Windows builds)
+---------------------------------
+Master: 
+[![Build status](https://ci.appveyor.com/api/projects/status/u6nfcpfhpyya5mk8/branch/master?svg=true)](https://ci.appveyor.com/project/DerThorsten/nifty-5sb8n/branch/master)
+Dev:
+[![Build status](https://ci.appveyor.com/api/projects/status/u6nfcpfhpyya5mk8/branch/dev?svg=true)](https://ci.appveyor.com/project/DerThorsten/nifty-5sb8n/branch/dev)
+
+
 Nifty
 ========
 
-Master: [![Build Status master](https://travis-ci.org/DerThorsten/nifty.svg?branch=master)](https://travis-ci.org/DerThorsten/nifty) Dev: [![Build Status dev](https://travis-ci.org/DerThorsten/nifty.svg?branch=dev)](https://travis-ci.org/DerThorsten/nifty)
 
 
 
@@ -39,12 +50,16 @@ Features (Highlights):
         * Multicut-Ilp-Cplex
         * Multicut-Ilp-Gurobi
         * Multicut-Ilp-Glpk
+    * Decomposing Solver (Alush and Goldberger 2012)
     * Cut Glue & Cut (Beier et al 2014)
         * Cut Glue & Cut - QPBO 
     * Greedy Additive Clustering /  Energy based Hierarchical Clustering (Beier et al. 2015)
     * Fusion Moves for Correlation clustering (Beier et al. 2015)
         * Perturbed Random Seed Watershed Proposal Generator
         * Perturbed Greedy Additive Clustering Proposal Generator
+    * Kernighan-Lin Algorithm with Joins (Keuper et al 2015)
+
+
 * Lifted Multicut: (Andres et al. 2015, Keuper et al 2015)
     * Kernighan-Lin Algorithm with Joins (Keuper et al 2015)
     * Greedy Additive Clustering (Keuper et al 2015)

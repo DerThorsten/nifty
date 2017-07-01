@@ -1,3 +1,5 @@
+#include <cstddef>
+
 #include <pybind11/pybind11.h>
 #include <pybind11/numpy.h>
 
@@ -40,21 +42,21 @@ namespace lifted_multicut{
         const auto clsName = std::string("LiftedMulticutBase") + objName;
         // base factory
         py::class_<
-            LmcBase, 
-            std::unique_ptr<LmcBase>, 
-            PyLmcBase 
+            LmcBase,
+            std::unique_ptr<LmcBase>,
+            PyLmcBase
         > lmcBase(liftedMulticutModule, clsName.c_str());
-        
+
         lmcBase
             .def(py::init<>())
-            .def("optimize", 
+            .def("optimize",
                 [](
                     LmcBase * self
                 ){
                     //std::cout<<"without arg\n";
                     const auto & graph = self->objective().graph();
                     //std::cout<<"optimize that damn thing\n";
-            
+
 
 
                     typename LmcBase::NodeLabelsType nodeLabels(graph,0);
@@ -62,7 +64,7 @@ namespace lifted_multicut{
                         py::gil_scoped_release allowThreads;
                         self->optimize(nodeLabels, nullptr);
                     }
-                    std::vector<size_t> shape = {size_t(graph.nodeIdUpperBound()+1)};
+                    std::vector<std::size_t> shape = {std::size_t(graph.nodeIdUpperBound()+1)};
                     nifty::marray::PyView<uint64_t> array(shape.begin(),shape.end());
                     for(auto node : graph.nodes()){
                         array(node) = nodeLabels[node];
@@ -71,7 +73,7 @@ namespace lifted_multicut{
 
                 }
             )
-            .def("optimize", 
+            .def("optimize",
                 [](
                     LmcBase * self,
                     LmcVisitorBase * visitor
@@ -79,7 +81,7 @@ namespace lifted_multicut{
                     //std::cout<<"with visitor\n";
                     const auto & graph = self->objective().graph();
                     //std::cout<<"optimize that damn thing\n";
-            
+
 
 
                     typename LmcBase::NodeLabelsType nodeLabels(graph,0);
@@ -87,7 +89,7 @@ namespace lifted_multicut{
                         py::gil_scoped_release allowThreads;
                         self->optimize(nodeLabels, visitor);
                     }
-                    std::vector<size_t> shape = {size_t(graph.nodeIdUpperBound()+1)};
+                    std::vector<std::size_t> shape = {std::size_t(graph.nodeIdUpperBound()+1)};
                     nifty::marray::PyView<uint64_t> array(shape.begin(),shape.end());
                     for(auto node : graph.nodes()){
                         array(node) = nodeLabels[node];
@@ -97,7 +99,7 @@ namespace lifted_multicut{
                 },
                 py::arg("visitor")
             )
-            .def("optimize", 
+            .def("optimize",
                 [](
                     LmcBase * self,
                     nifty::marray::PyView<uint64_t> array
@@ -126,7 +128,7 @@ namespace lifted_multicut{
                 },
                 py::arg("nodeLabels")
             )
-            .def("optimize", 
+            .def("optimize",
                 [](
                     LmcBase * self,
                     LmcVisitorBase * visitor,
@@ -178,10 +180,9 @@ namespace lifted_multicut{
         //    typedef LiftedMulticutObjective<GraphType, double> ObjectiveType;
         //    exportLiftedMulticutBaseT<ObjectiveType>(liftedMulticutModule);
         //}
-    }        
+    }
 
 }
 } // namespace nifty::graph::optimization
 }
 }
-    

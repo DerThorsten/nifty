@@ -8,25 +8,25 @@ add_custom_target(python-module)
 
 ###########################################################################
 # copy all python files from:
-#    src/python/module 
-# recursively into 
+#    src/python/module
+# recursively into
 #   /blddir/python/
 ###########################################################################
-file(GLOB_RECURSE  ${MODULE_NAME}_PYTHON_FILES  
+file(GLOB_RECURSE  ${MODULE_NAME}_PYTHON_FILES
     "${CMAKE_SOURCE_DIR}/src/python/module/nifty/*.py"
 )
 FOREACH(PYTHON_FILENAME   ${${MODULE_NAME}_PYTHON_FILES})
-    string(REPLACE "${CMAKE_SOURCE_DIR}/src/python/module/" "" 
+    string(REPLACE "${CMAKE_SOURCE_DIR}/src/python/module/" ""
         RELATIVE_FILENAME
         ${PYTHON_FILENAME})
-    string(REPLACE "/" "_" 
+    string(REPLACE "/" "_"
         RELATIVE_FILENAME_TARGET_NAME
         ${RELATIVE_FILENAME})
     get_filename_component(FILE_DIR  ${CMAKE_BINARY_DIR}/${RELATIVE_FILENAME} DIRECTORY)
     file(MAKE_DIRECTORY ${FILE_DIR})
 
     add_custom_target(copy_${RELATIVE_FILENAME_TARGET_NAME} ALL
-        COMMAND cmake -E copy_if_different 
+        COMMAND cmake -E copy_if_different
         ${PYTHON_FILENAME}
         ${CMAKE_BINARY_DIR}/python/${RELATIVE_FILENAME})
     add_dependencies(python-module copy_${RELATIVE_FILENAME_TARGET_NAME})
@@ -52,11 +52,13 @@ macro(addPythonModule)
 
 
     #Create the binding library
-    pybind11_add_module(_${MODULE_NAME} 
+    pybind11_add_module(_${MODULE_NAME}
         ${ADD_PY_MOD_SOURCES}
     )
     #if (APPLE AND NOT ${CMAKE_BUILD_TYPE} MATCHES Debug)
-    target_compile_options(_${MODULE_NAME} PRIVATE "-fvisibility=default")
+    if(CMAKE_CXX_COMPILER_ID MATCHES "GNU" OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+      target_compile_options(_${MODULE_NAME} PRIVATE "-fvisibility=default")
+    endif()
 
     #endif()
     set_target_properties(_${MODULE_NAME}  PROPERTIES PREFIX "")
@@ -64,12 +66,12 @@ macro(addPythonModule)
     #message(STATUS ********Module: ${MODULE_NAME})
     #message(STATUS ********Libs: ${ADD_PY_MOD_LIBRRARIES})
 
-    
+
 
     # link additional libraries
-    target_link_libraries(_${MODULE_NAME} 
+    target_link_libraries(_${MODULE_NAME}
         PUBLIC
-        ${PYTHON_LIBRARIES} 
+        ${PYTHON_LIBRARIES}
         ${ADD_PY_MOD_LIBRRARIES}
     )
 
@@ -80,7 +82,7 @@ macro(addPythonModule)
     ADD_CUSTOM_COMMAND(
         TARGET _${MODULE_NAME}
         POST_BUILD
-        COMMAND ${CMAKE_COMMAND} ARGS -E copy_if_different $<TARGET_FILE:_${MODULE_NAME}> 
+        COMMAND ${CMAKE_COMMAND} ARGS -E copy_if_different $<TARGET_FILE:_${MODULE_NAME}>
         ${CMAKE_BINARY_DIR}/python/${ADD_PY_MOD_NESTED_NAME}/
         COMMENT "Copying target ${MODULE_NAME} to temporary module directory")
 
@@ -92,7 +94,7 @@ endmacro()
 
 addPythonModule(
     NESTED_NAME
-        nifty 
+        nifty
     SOURCES
         nifty.cxx
     LIBRRARIES

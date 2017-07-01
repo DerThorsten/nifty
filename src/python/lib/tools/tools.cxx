@@ -20,6 +20,10 @@ namespace tools{
 
 
 PYBIND11_PLUGIN(_tools) {
+
+    py::options options;
+    options.disable_function_signatures();
+    
     py::module toolsModule("_tools", "tools submodule of nifty");
 
     using namespace nifty::tools;

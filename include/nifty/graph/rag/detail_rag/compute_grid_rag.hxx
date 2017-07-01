@@ -3,6 +3,7 @@
 #include <functional>
 #include <algorithm>
 #include <map>
+#include <cstddef>
 
 #include "nifty/container/boost_flat_set.hxx"
 #include "nifty/array/arithmetic_array.hxx"
@@ -17,13 +18,13 @@ namespace nifty{
 namespace graph{
 
 
-template<size_t DIM, class LABEL_TYPE>
+template<std::size_t DIM, class LABEL_TYPE>
 class ExplicitLabels;
 
 template<class LABEL_TYPE>
 class GridRagStacked2D;
 
-template<size_t DIM, class LABELS_PROXY>
+template<std::size_t DIM, class LABELS_PROXY>
 class GridRag;
 
 
@@ -34,7 +35,7 @@ template< class GRID_RAG>
 struct ComputeRag;
 
 
-template<size_t DIM, class LABEL_TYPE>
+template<std::size_t DIM, class LABEL_TYPE>
 struct ComputeRag< GridRag<DIM,  ExplicitLabels<DIM, LABEL_TYPE> > > {
 
     template<class S>
@@ -49,7 +50,7 @@ struct ComputeRag< GridRag<DIM,  ExplicitLabels<DIM, LABEL_TYPE> > > {
 
         const auto labelsProxy = rag.labelsProxy();
         const auto numberOfLabels = labelsProxy.numberOfLabels();
-        const auto labels = labelsProxy.labels(); 
+        const auto labels = labelsProxy.labels();
         const auto & shape = labelsProxy.shape();
 
         nifty::parallel::ParallelOptions pOpts(settings.numberOfThreads);
@@ -57,7 +58,7 @@ struct ComputeRag< GridRag<DIM,  ExplicitLabels<DIM, LABEL_TYPE> > > {
         // assign the number of nodes to the graph
         rag.assign(numberOfLabels);
 
-        auto makeCoord2 = [](const Coord & coord,const size_t axis){
+        auto makeCoord2 = [](const Coord & coord,const std::size_t axis){
             Coord coord2 = coord;
             coord2[axis] += 1;
             return coord2;
@@ -66,7 +67,7 @@ struct ComputeRag< GridRag<DIM,  ExplicitLabels<DIM, LABEL_TYPE> > > {
         if(pOpts.getActualNumThreads()<=1){
             nifty::tools::forEachCoordinate(shape,[&](const Coord & coord){
                 const auto lU = labels(coord.asStdArray());
-                for(size_t axis=0; axis<DIM; ++axis){
+                for(std::size_t axis=0; axis<DIM; ++axis){
                     auto coord2 = makeCoord2(coord, axis);
                     if(coord2[axis] < shape[axis]){
                         const auto lV = labels(coord2.asStdArray());
@@ -84,14 +85,14 @@ struct ComputeRag< GridRag<DIM,  ExplicitLabels<DIM, LABEL_TYPE> > > {
             };
 
             std::vector<PerThread> perThreadDataVec(pOpts.getActualNumThreads());
-            for(size_t i=0; i<perThreadDataVec.size(); ++i)
+            for(std::size_t i=0; i<perThreadDataVec.size(); ++i)
                 perThreadDataVec[i].adjacency.resize(numberOfLabels);
 
-            // collect the node-adjacency sets in parallel which needs to be merged later 
+            // collect the node-adjacency sets in parallel which needs to be merged later
             nifty::tools::parallelForEachCoordinate(threadpool, shape,[&](const int tid, const Coord & coord){
                 auto & adjacency = perThreadDataVec[tid].adjacency;
                 const auto lU = labels(coord.asStdArray());
-                for(size_t axis=0; axis<DIM; ++axis){
+                for(std::size_t axis=0; axis<DIM; ++axis){
                     const auto coord2 = makeCoord2(coord, axis);
                     if(coord2[axis] < shape[axis]){
                         const auto lV = labels(coord2.asStdArray());
@@ -119,11 +120,8 @@ struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
     typedef typename LABELS_PROXY::LabelType LabelType;
     typedef typename RagType::NodeAdjacency NodeAdjacency;
     typedef typename RagType::EdgeStorage EdgeStorage;
-    
-    // typedefs for sequential IO version 
-    //typedef container::BoostFlatSet<uint64_t> AdjacencyType;
-    //typedef std::vector<AdjacencyType> AdjacencyVector;
-    
+
+
     template<class S>
     static void computeRag(
         RagType & rag,
@@ -139,9 +137,9 @@ struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
         const auto & labelsProxy = rag.labelsProxy();
         const auto & shape = labelsProxy.shape();
         const LabelType numberOfLabels = labelsProxy.numberOfLabels();
-        
+
         rag.assign(numberOfLabels);
-        
+
         nifty::parallel::ParallelOptions pOpts(settings.numberOfThreads);
         nifty::parallel::ThreadPool threadpool(pOpts);
         const auto nThreads = pOpts.getActualNumThreads();
@@ -154,21 +152,21 @@ struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
 
         /*
          * Parallel IO version
-        */ 
+        */
         EdgeLenghtsStorage edgeLenStorage(numberOfSlices);
 
         /////////////////////////////////////////////////////
         // Phase 1 : In slice node adjacency and edge count
         /////////////////////////////////////////////////////
         //std::cout<<"phase 1\n";
-        { 
+        {
             BlockStorageType sliceLabelsStorage(threadpool, sliceShape3, nThreads);
 
             parallel::parallel_foreach(threadpool, numberOfSlices, [&](const int tid, const int64_t sliceIndex){
                 auto & sliceData  = perSliceDataVec[sliceIndex];
                 auto & edgeLens   = edgeLenStorage[sliceIndex];
 
-                // 
+                //
                 auto sliceLabelsFlat3DView = sliceLabelsStorage.getView(tid);
 
                 // fetch the data for the slice
@@ -177,12 +175,12 @@ struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
                 labelsProxy.readSubarray(blockBegin, blockEnd, sliceLabelsFlat3DView);
                 auto sliceLabels = sliceLabelsFlat3DView.squeezedView();
 
-                // do the thing 
+                // do the thing
                 nifty::tools::forEachCoordinate(sliceShape2,[&](const Coord2 & coord){
                     const auto lU = sliceLabels(coord.asStdArray());
                     sliceData.minInSliceNode = std::min(sliceData.minInSliceNode, lU);
                     sliceData.maxInSliceNode = std::max(sliceData.maxInSliceNode, lU);
-                    for(size_t axis=0; axis<2; ++axis){
+                    for(std::size_t axis=0; axis<2; ++axis){
                         Coord2 coord2 = coord;
                         ++coord2[axis];
                         if(coord2[axis] < sliceShape2[axis]){
@@ -247,7 +245,7 @@ struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
                 auto edgeIndex = sliceData.inSliceEdgeOffset;
                 const auto startNode = sliceData.minInSliceNode;
                 const auto endNode = sliceData.maxInSliceNode+1;
-                
+
                 for(uint64_t u = startNode; u< endNode; ++u){
                     for(auto & vAdj :  rag.nodes_[u]){
                         const auto v = vAdj.node();
@@ -284,7 +282,7 @@ struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
                 parallel::parallel_foreach(threadpool, numberOfSlices-1, [&](const int tid, const int64_t sliceAIndex){
 
                     // this seems super ugly...
-                    // there must be a better way to loop in parallel 
+                    // there must be a better way to loop in parallel
                     // over first the odd then the even coordinates
                     const auto oddIndex = bool(sliceAIndex%2);
                     if((startIndex==0 && !oddIndex) || (startIndex==1 && oddIndex )){
@@ -322,7 +320,7 @@ struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
                             
                             if(rag.insertEdgeOnlyInNodeAdj(lU, lV)){
                                 ++perSliceDataVec[sliceAIndex].numberOfToNextSliceEdges;
-                            }                      
+                            }
                         });
                     }
                 });
@@ -364,7 +362,7 @@ struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
                 auto edgeIndex = sliceData.toNextSliceEdgeOffset;
                 const auto startNode = sliceData.minInSliceNode;
                 const auto endNode = sliceData.maxInSliceNode+1;
-                
+
                 for(uint64_t u = startNode; u< endNode; ++u){
                     for(auto & vAdj : rag.nodes_[u]){
                         const auto v = vAdj.node();
@@ -384,7 +382,7 @@ struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
                 //NIFTY_CHECK_OP(edgeIndex, ==, sliceData.inSliceEdgeOffset + sliceData.numberOfInSliceEdges,"");
             });
         }
-    } 
+    }
 };
 
 
@@ -393,5 +391,3 @@ struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
 
 } // end namespace graph
 } // end namespace nifty
-
-

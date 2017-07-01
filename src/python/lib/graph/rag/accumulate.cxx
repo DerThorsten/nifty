@@ -1,3 +1,4 @@
+#include <cstddef>
 #include <pybind11/pybind11.h>
 #include <pybind11/numpy.h>
 
@@ -29,7 +30,7 @@ namespace graph{
 
     using namespace py;
 
-    template<size_t DIM, class RAG, class DATA_T>
+    template<std::size_t DIM, class RAG, class DATA_T>
     void exportAccumulateEdgeMeanAndLength(
         py::module & ragModule
     ){
@@ -57,7 +58,7 @@ namespace graph{
     }
 
 
-    template<size_t DIM, class RAG, class DATA_T>
+    template<std::size_t DIM, class RAG, class DATA_T>
     void exportAccumulateGeometricEdgeFeatures(
         py::module & ragModule
     ){
@@ -83,7 +84,7 @@ namespace graph{
     }
 
 
-    template<size_t DIM, class RAG, class DATA_T>
+    template<std::size_t DIM, class RAG, class DATA_T>
     void exportAccumulateMeanAndLength(
         py::module & ragModule
     ){
@@ -115,7 +116,7 @@ namespace graph{
     }
 
     #ifdef WITH_HDF5
-    template<size_t DIM, class RAG, class DATA_T>
+    template<std::size_t DIM, class RAG, class DATA_T>
     void exportAccumulateMeanAndLengthHdf5(
         py::module & ragModule
     ){
@@ -150,7 +151,7 @@ namespace graph{
 
 
 
-    template<size_t DIM, class RAG, class DATA_T>
+    template<std::size_t DIM, class RAG, class DATA_T>
     void exportAccumulateStandartFeatures(
         py::module & ragModule
     ){
@@ -184,7 +185,7 @@ namespace graph{
     }
 
     #ifdef WITH_HDF5
-    template<size_t DIM, class RAG, class DATA_T>
+    template<std::size_t DIM, class RAG, class DATA_T>
     void exportAccumulateStandartFeaturesHdf5(
         py::module & ragModule
     ){
@@ -217,12 +218,12 @@ namespace graph{
         );
     }
 
-    #endif 
+    #endif
 
 
 
 
-    template<size_t DIM, class RAG, class DATA_T>
+    template<std::size_t DIM, class RAG, class DATA_T>
     void exportAccumulateNodeStandartFeatures(
         py::module & ragModule
     ){
@@ -251,8 +252,8 @@ namespace graph{
         py::arg("numberOfThreads")= -1
         );
     }
-    
-    template<size_t DIM, class RAG, class DATA_T>
+
+    template<std::size_t DIM, class RAG, class DATA_T>
     void exportAccumulateEdgeStandartFeatures(
         py::module & ragModule
     ){
@@ -284,7 +285,7 @@ namespace graph{
 
 
 
-    template<size_t DIM, class RAG, class DATA_T>
+    template<std::size_t DIM, class RAG, class DATA_T>
     void exportAccumulateGeometricNodeFeatures(
         py::module & ragModule
     ){
@@ -320,7 +321,7 @@ namespace graph{
             exportAccumulateEdgeMeanAndLength<2, Rag2d, float>(ragModule);
             exportAccumulateEdgeMeanAndLength<3, Rag3d, float>(ragModule);
 
- 
+
 
 
 
@@ -333,7 +334,7 @@ namespace graph{
 
             exportAccumulateNodeStandartFeatures<2, Rag2d, float>(ragModule);
             exportAccumulateNodeStandartFeatures<3, Rag3d, float>(ragModule);
-            
+
             exportAccumulateEdgeStandartFeatures<2, Rag2d, float>(ragModule);
             exportAccumulateEdgeStandartFeatures<3, Rag3d, float>(ragModule);
 
@@ -355,4 +356,3 @@ namespace graph{
 
 } // end namespace graph
 } // end namespace nifty
-    

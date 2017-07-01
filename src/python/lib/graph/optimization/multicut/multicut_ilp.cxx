@@ -101,7 +101,9 @@ namespace multicut{
     }
     
     void exportMulticutIlp(py::module & multicutModule){
-
+        
+        py::options options;
+        options.disable_function_signatures();
                 
         py::class_<ilp_backend::IlpBackendSettings>(multicutModule, "IlpBackendSettings")
             .def(py::init<>())

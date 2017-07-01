@@ -1,3 +1,4 @@
+#include <cstddef>
 #include <pybind11/pybind11.h>
 #include <pybind11/numpy.h>
 #include <pybind11/stl.h>
@@ -23,7 +24,7 @@ namespace graph{
 
     using namespace py;
 
-    template<class RAG,class T,size_t DATA_DIM, bool AUTO_CONVERT>
+    template<class RAG,class T,std::size_t DATA_DIM, bool AUTO_CONVERT>
     void exportProjectScalarNodeDataToPixelsT(py::module & ragModule){
 
         ragModule.def("projectScalarNodeDataToPixels",
@@ -31,10 +32,10 @@ namespace graph{
                 const RAG & rag,
                 nifty::marray::PyView<T, 1, AUTO_CONVERT> nodeData,
                 const int numberOfThreads
-           ){  
+           ){
                 const auto labelsProxy = rag.labelsProxy();
                 const auto & shape = labelsProxy.shape();
-                const auto labels = labelsProxy.labels(); 
+                const auto labels = labelsProxy.labels();
 
                 nifty::marray::PyView<T, DATA_DIM> pixelData(shape.begin(),shape.end());
                 {
@@ -46,8 +47,8 @@ namespace graph{
            py::arg("graph"),py::arg("nodeData"),py::arg("numberOfThreads")=-1
         );
     }
-    
-    
+
+
     template<class RAG, class T, bool AUTO_CONVERT>
     void exportProjectScalarNodeDataToPixelsStackedExplicitT(py::module & ragModule){
 
@@ -56,7 +57,7 @@ namespace graph{
                 const RAG & rag,
                 nifty::marray::PyView<T, 1, AUTO_CONVERT> nodeData,
                 const int numberOfThreads
-           ){  
+           ){
                 const auto & shape = rag.shape();
 
                 nifty::marray::PyView<T,3> pixelData(shape.begin(),shape.end());
@@ -69,8 +70,8 @@ namespace graph{
            py::arg("graph"),py::arg("nodeData"),py::arg("numberOfThreads")=-1
         );
     }
-    
-    
+
+
     #ifdef WITH_HDF5
     template<class RAG, class T, bool AUTO_CONVERT>
     void exportProjectScalarNodeDataToPixelsStackedHdf5T(py::module & ragModule){
@@ -81,7 +82,7 @@ namespace graph{
                 nifty::marray::PyView<T, 1, AUTO_CONVERT> nodeData,
                 nifty::hdf5::Hdf5Array<T> & pixelData,
                 const int numberOfThreads
-           ){  
+           ){
                 const auto & shape = rag.shape();
 
                 for(int d = 0; d < 3; ++d)
@@ -96,7 +97,7 @@ namespace graph{
         );
     }
 
-    // TODO TODO TODO
+
     template<class RAG, class T>
     void exportProjectScalarNodeDataInSubBlockStackedHdf5T(py::module & ragModule){
 

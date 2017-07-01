@@ -50,7 +50,7 @@ boundedBy = {1:bounds[0].reverseMapping(),
 
 
 # compute features
-cell1Features = ncgp.cell1Features(tgrid=tgrid, geometry=geometry,
+cell1Features, cell1FeatureNames = ncgp.cell1Features(tgrid=tgrid, geometry=geometry,
     bounds=bounds, boundedBy=boundedBy)
 
 
