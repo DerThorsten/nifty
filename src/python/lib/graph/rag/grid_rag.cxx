@@ -6,9 +6,11 @@
 #include "nifty/python/converter.hxx"
 
 #include "nifty/graph/rag/grid_rag.hxx"
+#include "nifty/graph/rag/grid_rag_stacked_2d.hxx"
 
 #ifdef WITH_HDF5
 #include "nifty/graph/rag/grid_rag_hdf5.hxx"
+#include "nifty/graph/rag/grid_rag_stacked_2d_hdf5.hxx"
 #include "nifty/graph/rag/grid_rag_labels_hdf5.hxx"
 #endif
 
@@ -308,7 +310,6 @@ namespace graph{
         typedef ExplicitLabels<3, LABELS> LabelsProxyType;
         typedef GridRag<3, LabelsProxyType >  BaseGraph;
         typedef GridRagStacked2D<LabelsProxyType >  GridRagType;
-
 
 
         auto clsT = py::class_<GridRagType, BaseGraph>(ragModule, clsName.c_str());
