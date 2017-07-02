@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <cmath>
+#include <cstddef>
 
 #include "nifty/graph/rag/grid_rag.hxx"
 #include "nifty/marray/marray.hxx"
@@ -49,7 +50,7 @@ namespace graph{
     };
 
     template<class T,class U>
-    inline T 
+    inline T
     replaceIfNotFinite(const T & val, const U & replaceVal){
         if(std::isfinite(val))
             return val;
@@ -60,7 +61,7 @@ namespace graph{
 
 
     // accumulator with data
-    template<class EDGE_ACC_CHAIN, size_t DIM, class LABELS_PROXY, class DATA, class F>
+    template<class EDGE_ACC_CHAIN, std::size_t DIM, class LABELS_PROXY, class DATA, class F>
     void accumulateEdgeFeaturesWithAccChain(
 
         const GridRag<DIM, LABELS_PROXY> & rag,
@@ -79,10 +80,10 @@ namespace graph{
 
         typedef array::StaticArray<int64_t, DIM> Coord;
         typedef EDGE_ACC_CHAIN EdgeAccChainType;
-        typedef std::vector<EdgeAccChainType> EdgeAccChainVectorType; 
+        typedef std::vector<EdgeAccChainType> EdgeAccChainVectorType;
 
 
-        const size_t actualNumberOfThreads = pOpts.getActualNumThreads();
+        const std::size_t actualNumberOfThreads = pOpts.getActualNumThreads();
 
 
         const auto & shape = rag.shape();
@@ -92,7 +93,7 @@ namespace graph{
         std::vector< EdgeAccChainVectorType * > perThreadEdgeAccChainVector(actualNumberOfThreads);
 
 
-        parallel::parallel_foreach(threadpool, actualNumberOfThreads, 
+        parallel::parallel_foreach(threadpool, actualNumberOfThreads,
         [&](const int tid, const int64_t i){
             perThreadEdgeAccChainVector[i] = new EdgeAccChainVectorType(rag.edgeIdUpperBound()+1);
         });
@@ -102,13 +103,17 @@ namespace graph{
             histogram_opt = histogram_opt.setMinMax(accOptions.minVal, accOptions.maxVal); 
             parallel::parallel_foreach(threadpool, actualNumberOfThreads,
             [&](int tid, int i){
+
+                vigra::HistogramOptions histogram_opt;
+                histogram_opt = histogram_opt.setMinMax(accOptions.minVal, accOptions.maxVal);
+
                 auto & edgeAccVec = *(perThreadEdgeAccChainVector[i]);
                 for(auto & edgeAcc : edgeAccVec){
                     edgeAcc.setHistogramOptions(histogram_opt);
                 }
             });
         }
-        
+
         const auto passesRequired = (*perThreadEdgeAccChainVector.front()).front().passesRequired();
 
         // do N passes of accumulator
@@ -143,7 +148,7 @@ namespace graph{
                 // loop over all coordinates in block
                 nifty::tools::forEachCoordinate(nonOlBlockShape,[&](const Coord & coordU){
                     const auto lU = labelsBlockView(coordU.asStdArray());
-                    for(size_t axis=0; axis<DIM; ++axis){
+                    for(std::size_t axis=0; axis<DIM; ++axis){
                         auto coordV = makeCoord2(coordU, axis);
                         if(coordV[axis] < actualBlockShape[axis]){
                             const auto lV = labelsBlockView(coordV.asStdArray());
@@ -156,7 +161,7 @@ namespace graph{
                                 VigraCoord vigraCoordU;
                                 VigraCoord vigraCoordV;
 
-                                for(size_t d=0; d<DIM; ++d){
+                                for(std::size_t d=0; d<DIM; ++d){
                                     vigraCoordU[d] = coordU[d]+blockBegin[d];
                                     vigraCoordV[d] = coordV[d]+blockBegin[d];
                                 }
@@ -174,26 +179,26 @@ namespace graph{
 
 
         // merge the accumulators parallel
-        parallel::parallel_foreach(threadpool, resultAccVec.size(), 
+        parallel::parallel_foreach(threadpool, resultAccVec.size(),
         [&](const int tid, const int64_t edge){
 
             for(auto t=1; t<actualNumberOfThreads; ++t){
                 resultAccVec[edge].merge((*(perThreadEdgeAccChainVector[t]))[edge]);
-            }            
+            }
         });
-        
+
         // call functor with finished acc chain
         f(resultAccVec);
 
-        // delete 
-        parallel::parallel_foreach(threadpool, actualNumberOfThreads, 
+        // delete
+        parallel::parallel_foreach(threadpool, actualNumberOfThreads,
         [&](const int tid, const int64_t i){
             delete perThreadEdgeAccChainVector[i];
         });
     }
 
     // accumulator with data
-    template<class EDGE_ACC_CHAIN, class NODE_ACC_CHAIN, size_t DIM, class LABELS_PROXY, class DATA, class F>
+    template<class EDGE_ACC_CHAIN, class NODE_ACC_CHAIN, std::size_t DIM, class LABELS_PROXY, class DATA, class F>
     void accumulateEdgeAndNodeFeaturesWithAccChainSaveMemory(
 
         const GridRag<DIM, LABELS_PROXY> & rag,
@@ -214,10 +219,10 @@ namespace graph{
 
         typedef EDGE_ACC_CHAIN EdgeAccChainType;
         typedef NODE_ACC_CHAIN NodeAccChainType;
-        typedef std::unordered_map<uint64_t, EdgeAccChainType> EdgeAccChainMapType; 
-        typedef std::unordered_map<uint64_t, NodeAccChainType> NodeAccChainMapType; 
+        typedef std::unordered_map<uint64_t, EdgeAccChainType> EdgeAccChainMapType;
+        typedef std::unordered_map<uint64_t, NodeAccChainType> NodeAccChainMapType;
 
-        const size_t actualNumberOfThreads = pOpts.getActualNumThreads();
+        const std::size_t actualNumberOfThreads = pOpts.getActualNumThreads();
 
 
         const auto & shape = rag.shape();
@@ -226,7 +231,7 @@ namespace graph{
         std::vector< EdgeAccChainMapType * > perThreadEdgeAccChainMap(actualNumberOfThreads);
         std::vector< NodeAccChainMapType * > perThreadNodeAccChainMap(actualNumberOfThreads);
 
-        parallel::parallel_foreach(threadpool, actualNumberOfThreads, 
+        parallel::parallel_foreach(threadpool, actualNumberOfThreads,
         [&](const int tid, const int64_t i){
             perThreadEdgeAccChainMap[i] = new EdgeAccChainMapType();
             perThreadNodeAccChainMap[i] = new NodeAccChainMapType();
@@ -247,7 +252,7 @@ namespace graph{
             [&](int tid, int i){
 
                     vigra::HistogramOptions histogram_opt;
-                    histogram_opt = histogram_opt.setMinMax(accOptions.minVal, accOptions.maxVal); 
+                    histogram_opt = histogram_opt.setMinMax(accOptions.minVal, accOptions.maxVal);
 
                     auto & edgeAccVec = *(perThreadEdgeAccChainMap[i]);
                     for(auto & edgeAcc : edgeAccVec){
@@ -282,7 +287,7 @@ namespace graph{
 
                 const auto nonOlBlockShape  = blockCoreEnd - blockCoreBegin;
                 const auto actualBlockShape = blockEnd - blockBegin;
- 
+
                 // read the labels block and the data block
                 auto labelsBlockView = labelsBlockStorage.getView(actualBlockShape, tid);
                 auto dataBlockView = dataBlocKStorage.getView(actualBlockShape, tid);
@@ -294,17 +299,17 @@ namespace graph{
 
                     const auto lU = labelsBlockView(coordU.asStdArray());
                     const auto dataU = dataBlockView(coordU.asStdArray());
-                    
+
                     VigraCoord vigraCoordU;
-                    for(size_t d=0; d<DIM; ++d)
+                    for(std::size_t d=0; d<DIM; ++d)
                         vigraCoordU[d] = coordU[d] + blockBegin[d];
 
                     if(pass <= numberOfNodePasses)
                         nodeAccMap[lU].updatePassN(dataU, vigraCoordU, pass);
-                    
+
                     // accumulate the edge features
                     if(pass <= numberOfEdgePasses){
-                        for(size_t axis=0; axis<DIM; ++axis){
+                        for(std::size_t axis=0; axis<DIM; ++axis){
                             auto coordV = makeCoord2(coordU, axis);
                             if(coordV[axis] < actualBlockShape[axis]){
                                 const auto lV = labelsBlockView(coordV.asStdArray());
@@ -314,7 +319,7 @@ namespace graph{
                                     const auto dataV = dataBlockView(coordV.asStdArray());
 
                                     VigraCoord vigraCoordV;
-                                    for(size_t d=0; d<DIM; ++d)
+                                    for(std::size_t d=0; d<DIM; ++d)
                                         vigraCoordV[d] = coordV[d] + blockBegin[d];
 
                                     edgeAccMap[edge].updatePassN(dataU, vigraCoordU, pass);
@@ -336,30 +341,30 @@ namespace graph{
 
 
         // merge the accumulators parallel
-        parallel::parallel_foreach(threadpool, edgeResultAccVec.size(), 
+        parallel::parallel_foreach(threadpool, edgeResultAccVec.size(),
         [&](const int tid, const int64_t edge){
             for(auto t=0; t<actualNumberOfThreads; ++t){
                 auto & accChainMap = *(perThreadEdgeAccChainMap[t]);
                 auto findResIter = accChainMap.find(edge);
                 if(findResIter != accChainMap.end())
-                    edgeResultAccVec[edge].merge(findResIter->second);           
+                    edgeResultAccVec[edge].merge(findResIter->second);
             }
         });
-        parallel::parallel_foreach(threadpool, nodeResultAccVec.size(), 
+        parallel::parallel_foreach(threadpool, nodeResultAccVec.size(),
         [&](const int tid, const int64_t node){
             for(auto t=0; t<actualNumberOfThreads; ++t){
                 auto & accChainMap = *(perThreadNodeAccChainMap[t]);
                 auto findResIter = accChainMap.find(node);
                 if(findResIter != accChainMap.end())
-                    nodeResultAccVec[node].merge(findResIter->second);           
+                    nodeResultAccVec[node].merge(findResIter->second);
             }
         });
-        
+
         // call functor with finished acc chain
         f(edgeResultAccVec, nodeResultAccVec);
 
 
-        parallel::parallel_foreach(threadpool, actualNumberOfThreads, 
+        parallel::parallel_foreach(threadpool, actualNumberOfThreads,
         [&](const int tid, const int64_t i){
             delete perThreadEdgeAccChainMap[i];
             delete perThreadNodeAccChainMap[i];
@@ -369,7 +374,7 @@ namespace graph{
 
 
     // accumulator with data
-    template<class EDGE_ACC_CHAIN, class NODE_ACC_CHAIN, size_t DIM, class LABELS_PROXY, class DATA, class F>
+    template<class EDGE_ACC_CHAIN, class NODE_ACC_CHAIN, std::size_t DIM, class LABELS_PROXY, class DATA, class F>
     void accumulateEdgeAndNodeFeaturesWithAccChain(
 
         const GridRag<DIM, LABELS_PROXY> & rag,
@@ -391,10 +396,10 @@ namespace graph{
 
         typedef EDGE_ACC_CHAIN EdgeAccChainType;
         typedef NODE_ACC_CHAIN NodeAccChainType;
-        typedef std::vector<EdgeAccChainType> EdgeAccChainVectorType; 
-        typedef std::vector<NodeAccChainType> NodeAccChainVectorType; 
+        typedef std::vector<EdgeAccChainType> EdgeAccChainVectorType;
+        typedef std::vector<NodeAccChainType> NodeAccChainVectorType;
 
-        const size_t actualNumberOfThreads = pOpts.getActualNumThreads();
+        const std::size_t actualNumberOfThreads = pOpts.getActualNumThreads();
 
 
         const auto & shape = rag.shape();
@@ -407,7 +412,7 @@ namespace graph{
         //std::cout<<"B\n";
 
 
-        parallel::parallel_foreach(threadpool, actualNumberOfThreads, 
+        parallel::parallel_foreach(threadpool, actualNumberOfThreads,
         [&](const int tid, const int64_t i){
             perThreadEdgeAccChainVector[i] = new EdgeAccChainVectorType(rag.edgeIdUpperBound()+1);
             perThreadNodeAccChainVector[i] = new NodeAccChainVectorType(rag.nodeIdUpperBound()+1);
@@ -430,7 +435,7 @@ namespace graph{
             [&](int tid, int i){
 
                     vigra::HistogramOptions histogram_opt;
-                    histogram_opt = histogram_opt.setMinMax(accOptions.minVal, accOptions.maxVal); 
+                    histogram_opt = histogram_opt.setMinMax(accOptions.minVal, accOptions.maxVal);
 
                     auto & edgeAccVec = *(perThreadEdgeAccChainVector[i]);
                     for(auto & edgeAcc : edgeAccVec){
@@ -470,7 +475,7 @@ namespace graph{
                 //std::cout<<"E2\n";
                 const auto nonOlBlockShape  = blockCoreEnd - blockCoreBegin;
                 const auto actualBlockShape = blockEnd - blockBegin;
-    
+
                 //std::cout<<"E3\n";
                 // read the labels block and the data block
                 auto labelsBlockView = labelsBlockStorage.getView(actualBlockShape, tid);
@@ -488,19 +493,19 @@ namespace graph{
 
                     const auto lU = labelsBlockView(coordU.asStdArray());
                     const auto dataU = dataBlockView(coordU.asStdArray());
-                    
+
                     VigraCoord vigraCoordU;
-                    for(size_t d=0; d<DIM; ++d){
+                    for(std::size_t d=0; d<DIM; ++d){
                         vigraCoordU[d] = coordU[d] + blockBegin[d];
                         NIFTY_CHECK_OP(vigraCoordU[d], < ,shape[d],"");
                     }
 
                     if(pass <= numberOfNodePasses)
                         nodeAccVec[lU].updatePassN(dataU, vigraCoordU, pass);
-                    
+
                     // accumulate the edge features
                     if(pass <= numberOfEdgePasses){
-                        for(size_t axis=0; axis<DIM; ++axis){
+                        for(std::size_t axis=0; axis<DIM; ++axis){
                             auto coordV = makeCoord2(coordU, axis);
                             if(coordV[axis] < actualBlockShape[axis]){
                                 const auto lV = labelsBlockView(coordV.asStdArray());
@@ -510,7 +515,7 @@ namespace graph{
                                     const auto dataV = dataBlockView(coordV.asStdArray());
 
                                     VigraCoord vigraCoordV;
-                                    for(size_t d=0; d<DIM; ++d){
+                                    for(std::size_t d=0; d<DIM; ++d){
                                         vigraCoordV[d] = coordV[d] + blockBegin[d];
                                         NIFTY_CHECK_OP(vigraCoordV[d], < ,shape[d],"");
                                     }
@@ -530,26 +535,26 @@ namespace graph{
         auto & nodeResultAccVec = *perThreadNodeAccChainVector.front();
 
         // merge the accumulators parallel
-        parallel::parallel_foreach(threadpool, edgeResultAccVec.size(), 
+        parallel::parallel_foreach(threadpool, edgeResultAccVec.size(),
         [&](const int tid, const int64_t edge){
             for(auto t=1; t<actualNumberOfThreads; ++t){
                 auto & accChainVec = *(perThreadEdgeAccChainVector[t]);
-                edgeResultAccVec[edge].merge(accChainVec[edge]);           
+                edgeResultAccVec[edge].merge(accChainVec[edge]);
             }
         });
-        parallel::parallel_foreach(threadpool, nodeResultAccVec.size(), 
+        parallel::parallel_foreach(threadpool, nodeResultAccVec.size(),
         [&](const int tid, const int64_t node){
             for(auto t=1; t<actualNumberOfThreads; ++t){
                 auto & accChainVec = *(perThreadNodeAccChainVector[t]);
-                nodeResultAccVec[node].merge(accChainVec[node]);           
+                nodeResultAccVec[node].merge(accChainVec[node]);
             }
         });
-        
+
         // call functor with finished acc chain
         f(edgeResultAccVec, nodeResultAccVec);
 
 
-        parallel::parallel_foreach(threadpool, actualNumberOfThreads, 
+        parallel::parallel_foreach(threadpool, actualNumberOfThreads,
         [&](const int tid, const int64_t i){
             delete perThreadEdgeAccChainVector[i];
             delete perThreadNodeAccChainVector[i];
@@ -558,7 +563,7 @@ namespace graph{
     }
 
     // accumulate without data
-    template<class EDGE_ACC_CHAIN, class NODE_ACC_CHAIN, size_t DIM, class LABELS_PROXY, class F>
+    template<class EDGE_ACC_CHAIN, class NODE_ACC_CHAIN, std::size_t DIM, class LABELS_PROXY, class F>
     void accumulateEdgeAndNodeFeaturesWithAccChain(
 
         const GridRag<DIM, LABELS_PROXY> & rag,
@@ -567,7 +572,7 @@ namespace graph{
         parallel::ThreadPool & threadpool,
         F && f
     ){
-      
+
 
 
         typedef LABELS_PROXY LabelsProxyType;
@@ -578,10 +583,10 @@ namespace graph{
 
         typedef EDGE_ACC_CHAIN EdgeAccChainType;
         typedef NODE_ACC_CHAIN NodeAccChainType;
-        typedef std::vector<EdgeAccChainType> EdgeAccChainVectorType; 
-        typedef std::vector<NodeAccChainType> NodeAccChainVectorType; 
+        typedef std::vector<EdgeAccChainType> EdgeAccChainVectorType;
+        typedef std::vector<NodeAccChainType> NodeAccChainVectorType;
 
-        const size_t actualNumberOfThreads = pOpts.getActualNumThreads();
+        const std::size_t actualNumberOfThreads = pOpts.getActualNumThreads();
 
 
         const auto & shape = rag.shape();
@@ -590,7 +595,7 @@ namespace graph{
         std::vector< EdgeAccChainVectorType * > perThreadEdgeAccChainVector(actualNumberOfThreads);
         std::vector< NodeAccChainVectorType * > perThreadNodeAccChainVector(actualNumberOfThreads);
 
-        parallel::parallel_foreach(threadpool, actualNumberOfThreads, 
+        parallel::parallel_foreach(threadpool, actualNumberOfThreads,
         [&](const int tid, const int64_t i){
             perThreadEdgeAccChainVector[i] = new EdgeAccChainVectorType(rag.edgeIdUpperBound()+1);
             perThreadNodeAccChainVector[i] = new NodeAccChainVectorType(rag.nodeIdUpperBound()+1);
@@ -625,7 +630,7 @@ namespace graph{
 
                 const auto nonOlBlockShape  = blockCoreEnd - blockCoreBegin;
                 const auto actualBlockShape = blockEnd - blockBegin;
- 
+
                 // read the labels block and the data block
                 auto labelsBlockView = labelsBlockStorage.getView(actualBlockShape, tid);
                 tools::readSubarray(rag.labelsProxy(), blockBegin, blockEnd, labelsBlockView);
@@ -635,17 +640,17 @@ namespace graph{
 
                     const auto lU = labelsBlockView(coordU.asStdArray());
                     const auto dataU = 0.0;
-                    
+
                     VigraCoord vigraCoordU;
-                    for(size_t d=0; d<DIM; ++d)
+                    for(std::size_t d=0; d<DIM; ++d)
                         vigraCoordU[d] = coordU[d] + blockBegin[d];
 
                     if(pass <= numberOfNodePasses)
                         nodeAccVec[lU].updatePassN(dataU, vigraCoordU, pass);
-                    
+
                     // accumulate the edge features
                     if(pass <= numberOfEdgePasses){
-                        for(size_t axis=0; axis<DIM; ++axis){
+                        for(std::size_t axis=0; axis<DIM; ++axis){
                             auto coordV = makeCoord2(coordU, axis);
                             if(coordV[axis] < actualBlockShape[axis]){
                                 const auto lV = labelsBlockView(coordV.asStdArray());
@@ -655,7 +660,7 @@ namespace graph{
                                     const auto dataV = 0.0;
 
                                     VigraCoord vigraCoordV;
-                                    for(size_t d=0; d<DIM; ++d)
+                                    for(std::size_t d=0; d<DIM; ++d)
                                         vigraCoordV[d] = coordV[d] + blockBegin[d];
 
                                     edgeAccVec[edge].updatePassN(dataU, vigraCoordU, pass);
@@ -674,37 +679,37 @@ namespace graph{
         auto & nodeResultAccVec = *perThreadNodeAccChainVector.front();
 
         // merge the accumulators parallel
-        parallel::parallel_foreach(threadpool, edgeResultAccVec.size(), 
+        parallel::parallel_foreach(threadpool, edgeResultAccVec.size(),
         [&](const int tid, const int64_t edge){
             for(auto t=1; t<actualNumberOfThreads; ++t){
                 auto & accChainVec = *(perThreadEdgeAccChainVector[t]);
-                edgeResultAccVec[edge].merge(accChainVec[edge]);           
+                edgeResultAccVec[edge].merge(accChainVec[edge]);
             }
         });
-        parallel::parallel_foreach(threadpool, nodeResultAccVec.size(), 
+        parallel::parallel_foreach(threadpool, nodeResultAccVec.size(),
         [&](const int tid, const int64_t node){
             for(auto t=1; t<actualNumberOfThreads; ++t){
                 auto & accChainVec = *(perThreadNodeAccChainVector[t]);
-                nodeResultAccVec[node].merge(accChainVec[node]);           
+                nodeResultAccVec[node].merge(accChainVec[node]);
             }
         });
-        
+
         // call functor with finished acc chain
         f(edgeResultAccVec, nodeResultAccVec);
 
 
-        parallel::parallel_foreach(threadpool, actualNumberOfThreads, 
+        parallel::parallel_foreach(threadpool, actualNumberOfThreads,
         [&](const int tid, const int64_t i){
             delete perThreadEdgeAccChainVector[i];
             delete perThreadNodeAccChainVector[i];
         });
 
-        
+
     }
 
 
     // accumulator with data
-    template<class NODE_ACC_CHAIN, size_t DIM, class LABELS_PROXY, class DATA, class F>
+    template<class NODE_ACC_CHAIN, std::size_t DIM, class LABELS_PROXY, class DATA, class F>
     void accumulateNodeFeaturesWithAccChain(
 
         const GridRag<DIM, LABELS_PROXY> & rag,
@@ -724,9 +729,9 @@ namespace graph{
         typedef array::StaticArray<int64_t, DIM> Coord;
 
         typedef NODE_ACC_CHAIN NodeAccChainType;
-        typedef std::vector<NodeAccChainType> NodeAccChainVectorType; 
+        typedef std::vector<NodeAccChainType> NodeAccChainVectorType;
 
-        const size_t actualNumberOfThreads = pOpts.getActualNumThreads();
+        const std::size_t actualNumberOfThreads = pOpts.getActualNumThreads();
 
 
         const auto & shape = rag.shape();
@@ -734,7 +739,7 @@ namespace graph{
 
         std::vector< NodeAccChainVectorType * > perThreadNodeAccChainVector(actualNumberOfThreads);
 
-        parallel::parallel_foreach(threadpool, actualNumberOfThreads, 
+        parallel::parallel_foreach(threadpool, actualNumberOfThreads,
         [&](const int tid, const int64_t i){
             perThreadNodeAccChainVector[i] = new NodeAccChainVectorType(rag.nodeIdUpperBound()+1);
         });
@@ -747,7 +752,7 @@ namespace graph{
             [&](int tid, int i){
 
                     vigra::HistogramOptions histogram_opt;
-                    histogram_opt = histogram_opt.setMinMax(accOptions.minVal, accOptions.maxVal); 
+                    histogram_opt = histogram_opt.setMinMax(accOptions.minVal, accOptions.maxVal);
 
                     auto & nodeAccVec = *(perThreadNodeAccChainVector[i]);
                     for(auto & nodeAcc : nodeAccVec){
@@ -776,7 +781,7 @@ namespace graph{
 
                 const auto nonOlBlockShape  = blockCoreEnd - blockCoreBegin;
                 const auto actualBlockShape = blockEnd - blockBegin;
- 
+
                 // read the labels block and the data block
                 auto labelsBlockView = labelsBlockStorage.getView(actualBlockShape, tid);
                 auto dataBlockView = dataBlocKStorage.getView(actualBlockShape, tid);
@@ -788,9 +793,9 @@ namespace graph{
 
                     const auto lU = labelsBlockView(coordU.asStdArray());
                     const auto dataU = dataBlockView(coordU.asStdArray());
-                    
+
                     VigraCoord vigraCoordU;
-                    for(size_t d=0; d<DIM; ++d)
+                    for(std::size_t d=0; d<DIM; ++d)
                         vigraCoordU[d] = coordU[d] + blockBegin[d];
 
                     nodeAccVec[lU].updatePassN(dataU, vigraCoordU, pass);
@@ -801,19 +806,19 @@ namespace graph{
         auto & nodeResultAccVec = *perThreadNodeAccChainVector.front();
 
         // merge the accumulators parallel
-        parallel::parallel_foreach(threadpool, nodeResultAccVec.size(), 
+        parallel::parallel_foreach(threadpool, nodeResultAccVec.size(),
         [&](const int tid, const int64_t node){
             for(auto t=1; t<actualNumberOfThreads; ++t){
                 auto & accChainVec = *(perThreadNodeAccChainVector[t]);
-                nodeResultAccVec[node].merge(accChainVec[node]);           
+                nodeResultAccVec[node].merge(accChainVec[node]);
             }
         });
-        
+
         // call functor with finished acc chain
         f(nodeResultAccVec);
 
 
-        parallel::parallel_foreach(threadpool, actualNumberOfThreads, 
+        parallel::parallel_foreach(threadpool, actualNumberOfThreads,
         [&](const int tid, const int64_t i){
             delete perThreadNodeAccChainVector[i];
         });
@@ -822,7 +827,7 @@ namespace graph{
 
 
     // accumulate without data
-    template<class NODE_ACC_CHAIN, size_t DIM, class LABELS_PROXY, class F>
+    template<class NODE_ACC_CHAIN, std::size_t DIM, class LABELS_PROXY, class F>
     void accumulateNodeFeaturesWithAccChain(
 
         const GridRag<DIM, LABELS_PROXY> & rag,
@@ -831,7 +836,7 @@ namespace graph{
         parallel::ThreadPool & threadpool,
         F && f
     ){
-      
+
 
 
         typedef LABELS_PROXY LabelsProxyType;
@@ -842,16 +847,16 @@ namespace graph{
 
 
         typedef NODE_ACC_CHAIN NodeAccChainType;
-        typedef std::vector<NodeAccChainType> NodeAccChainVectorType; 
+        typedef std::vector<NodeAccChainType> NodeAccChainVectorType;
 
-        const size_t actualNumberOfThreads = pOpts.getActualNumThreads();
+        const std::size_t actualNumberOfThreads = pOpts.getActualNumThreads();
 
 
         const auto & shape = rag.shape();
 
         std::vector< NodeAccChainVectorType * > perThreadNodeAccChainVector(actualNumberOfThreads);
 
-        parallel::parallel_foreach(threadpool, actualNumberOfThreads, 
+        parallel::parallel_foreach(threadpool, actualNumberOfThreads,
         [&](const int tid, const int64_t i){
             perThreadNodeAccChainVector[i] = new NodeAccChainVectorType(rag.nodeIdUpperBound()+1);
         });
@@ -879,7 +884,7 @@ namespace graph{
 
                 const auto nonOlBlockShape  = blockCoreEnd - blockCoreBegin;
                 const auto actualBlockShape = blockEnd - blockBegin;
- 
+
                 // read the labels block and the data block
                 auto labelsBlockView = labelsBlockStorage.getView(actualBlockShape, tid);
                 tools::readSubarray(rag.labelsProxy(), blockBegin, blockEnd, labelsBlockView);
@@ -889,14 +894,14 @@ namespace graph{
 
                     const auto lU = labelsBlockView(coordU.asStdArray());
                     const auto dataU = 0.0;
-                    
+
                     VigraCoord vigraCoordU;
-                    for(size_t d=0; d<DIM; ++d)
+                    for(std::size_t d=0; d<DIM; ++d)
                         vigraCoordU[d] = coordU[d] + blockBegin[d];
 
-  
+
                     nodeAccVec[lU].updatePassN(dataU, vigraCoordU, pass);
-                    
+
                 });
             });
         }
@@ -904,26 +909,26 @@ namespace graph{
         auto & nodeResultAccVec = *perThreadNodeAccChainVector.front();
 
 
-        parallel::parallel_foreach(threadpool, nodeResultAccVec.size(), 
+        parallel::parallel_foreach(threadpool, nodeResultAccVec.size(),
         [&](const int tid, const int64_t node){
             for(auto t=1; t<actualNumberOfThreads; ++t){
                 auto & accChainVec = *(perThreadNodeAccChainVector[t]);
-                nodeResultAccVec[node].merge(accChainVec[node]);           
+                nodeResultAccVec[node].merge(accChainVec[node]);
             }
         });
-        
+
         // call functor with finished acc chain
         f(nodeResultAccVec);
 
 
-        parallel::parallel_foreach(threadpool, actualNumberOfThreads, 
+        parallel::parallel_foreach(threadpool, actualNumberOfThreads,
         [&](const int tid, const int64_t i){
             delete perThreadNodeAccChainVector[i];
         });
     }
 
 
-    template<size_t DIM, class LABELS_PROXY, class DATA, class FEATURE_TYPE>
+    template<std::size_t DIM, class LABELS_PROXY, class DATA, class FEATURE_TYPE>
     void accumulateMeanAndLength(
         const GridRag<DIM, LABELS_PROXY> & rag,
         const DATA & data,
@@ -943,7 +948,7 @@ namespace graph{
         // threadpool
         nifty::parallel::ParallelOptions pOpts(numberOfThreads);
         nifty::parallel::ThreadPool threadpool(pOpts);
-        const size_t actualNumberOfThreads = pOpts.getActualNumThreads();
+        const std::size_t actualNumberOfThreads = pOpts.getActualNumThreads();
 
         ////std::cout<<"Using "<<actualNumberOfThreads<<"\n";
         if(!saveMemory){
@@ -972,7 +977,7 @@ namespace graph{
 
 
 
-    template<size_t DIM, class LABELS_PROXY, class DATA, class FEATURE_TYPE>
+    template<std::size_t DIM, class LABELS_PROXY, class DATA, class FEATURE_TYPE>
     void accumulateEdgeMeanAndLength(
         const GridRag<DIM, LABELS_PROXY> & rag,
         const DATA & data,
@@ -990,7 +995,7 @@ namespace graph{
         // threadpool
         nifty::parallel::ParallelOptions pOpts(numberOfThreads);
         nifty::parallel::ThreadPool threadpool(pOpts);
-        const size_t actualNumberOfThreads = pOpts.getActualNumThreads();
+        const std::size_t actualNumberOfThreads = pOpts.getActualNumThreads();
 
 
         // allocate a ach chain vector for each thread
@@ -1009,7 +1014,7 @@ namespace graph{
 
 
     // 11 features
-    template<size_t DIM, class LABELS_PROXY, class DATA, class FEATURE_TYPE>
+    template<std::size_t DIM, class LABELS_PROXY, class DATA, class FEATURE_TYPE>
     void accumulateStandartFeatures(
         const GridRag<DIM, LABELS_PROXY> & rag,
         const DATA & data,
@@ -1028,8 +1033,8 @@ namespace graph{
         typedef acc::StandardQuantiles<SomeHistogram > Quantiles;
 
 
-        typedef acc::Select< 
-            acc::DataArg<1>, 
+        typedef acc::Select<
+            acc::DataArg<1>,
             acc::Mean,        //1
             acc::Variance,    //1
             acc::Skewness,    //1
@@ -1042,14 +1047,14 @@ namespace graph{
         // threadpool
         nifty::parallel::ParallelOptions pOpts(numberOfThreads);
         nifty::parallel::ThreadPool threadpool(pOpts);
-        const size_t actualNumberOfThreads = pOpts.getActualNumThreads();
+        const std::size_t actualNumberOfThreads = pOpts.getActualNumThreads();
 
 
         accumulateEdgeAndNodeFeaturesWithAccChain<AccChainType,AccChainType>(
-            rag, 
-            data, 
-            blockShape, 
-            pOpts, 
+            rag,
+            data,
+            blockShape,
+            pOpts,
             threadpool,
             [&](
                 const std::vector<AccChainType> & edgeAccChainVec,
@@ -1070,7 +1075,7 @@ namespace graph{
                     for(auto qi=0; qi<7; ++qi)
                         edgeFeaturesOut(edge, 4+qi) = replaceIfNotFinite(quantiles[qi], mean);
                 });
-              
+
                 parallel::parallel_foreach(threadpool, nodeAccChainVec.size(),[&](
                     const int tid, const int64_t node
                 ){
@@ -1092,7 +1097,7 @@ namespace graph{
 
 
     // 11 features
-    template<size_t DIM, class LABELS_PROXY, class DATA, class FEATURE_TYPE>
+    template<std::size_t DIM, class LABELS_PROXY, class DATA, class FEATURE_TYPE>
     void accumulateEdgeStandartFeatures(
         const GridRag<DIM, LABELS_PROXY> & rag,
         const DATA & data,
@@ -1123,7 +1128,7 @@ namespace graph{
         // threadpool
         nifty::parallel::ParallelOptions pOpts(numberOfThreads);
         nifty::parallel::ThreadPool threadpool(pOpts);
-        const size_t actualNumberOfThreads = pOpts.getActualNumThreads();
+        const std::size_t actualNumberOfThreads = pOpts.getActualNumThreads();
 
         accumulateEdgeFeaturesWithAccChain<AccChainType>(
             rag,
@@ -1148,7 +1153,7 @@ namespace graph{
                     edgeFeaturesOut(edge, 3) = replaceIfNotFinite(get<acc::Kurtosis>(chain), 0.0);
                     for(auto qi=0; qi<7; ++qi)
                         edgeFeaturesOut(edge, 4+qi) = replaceIfNotFinite(quantiles[qi], mean);
-                }); 
+                });
             },
             AccOptions(minVal, maxVal)
         );
@@ -1156,7 +1161,7 @@ namespace graph{
     }
 
 
-    template<size_t DIM, class LABELS_PROXY, class DATA, class FEATURE_TYPE>
+    template<std::size_t DIM, class LABELS_PROXY, class DATA, class FEATURE_TYPE>
     void accumulateNodeStandartFeatures(
         const GridRag<DIM, LABELS_PROXY> & rag,
         const DATA & data,
@@ -1174,8 +1179,8 @@ namespace graph{
         typedef acc::StandardQuantiles<SomeHistogram > Quantiles;
 
 
-        typedef acc::Select< 
-            acc::DataArg<1>, 
+        typedef acc::Select<
+            acc::DataArg<1>,
             acc::Mean,        //1
             acc::Variance,    //1
             acc::Skewness,    //1
@@ -1188,14 +1193,14 @@ namespace graph{
         // threadpool
         nifty::parallel::ParallelOptions pOpts(numberOfThreads);
         nifty::parallel::ThreadPool threadpool(pOpts);
-        const size_t actualNumberOfThreads = pOpts.getActualNumThreads();
+        const std::size_t actualNumberOfThreads = pOpts.getActualNumThreads();
 
 
         accumulateNodeFeaturesWithAccChain<AccChainType>(
-            rag, 
-            data, 
-            blockShape, 
-            pOpts, 
+            rag,
+            data,
+            blockShape,
+            pOpts,
             threadpool,
             [&](
                 const std::vector<AccChainType> & nodeAccChainVec
@@ -1223,7 +1228,7 @@ namespace graph{
     }
 
     // number of features = 1 + 3*DIM
-    template<size_t DIM, class LABELS_PROXY, class FEATURE_TYPE>
+    template<std::size_t DIM, class LABELS_PROXY, class FEATURE_TYPE>
     void accumulateGeometricNodeFeatures(
         const GridRag<DIM, LABELS_PROXY> & rag,
         const array::StaticArray<int64_t, DIM> & blockShape,
@@ -1235,8 +1240,8 @@ namespace graph{
 
 
         typedef acc::Coord<acc::Principal<acc::CoordinateSystem> >                 RegionAxes;
-        typedef acc::Select< 
-            acc::DataArg<1>, 
+        typedef acc::Select<
+            acc::DataArg<1>,
             acc::Count,
             acc::RegionCenter,
             RegionAxes
@@ -1247,13 +1252,13 @@ namespace graph{
         // threadpool
         nifty::parallel::ParallelOptions pOpts(numberOfThreads);
         nifty::parallel::ThreadPool threadpool(pOpts);
-        const size_t actualNumberOfThreads = pOpts.getActualNumThreads();
+        const std::size_t actualNumberOfThreads = pOpts.getActualNumThreads();
 
 
         accumulateNodeFeaturesWithAccChain<AccChainType>(
-            rag, 
-            blockShape, 
-            pOpts, 
+            rag,
+            blockShape,
+            pOpts,
             threadpool,
             [&](
                 const std::vector<AccChainType> & nodeAccChainVec
@@ -1264,7 +1269,7 @@ namespace graph{
                     const int tid, const int64_t node
                 ){
                     const auto & chain = nodeAccChainVec[node];
-                    
+
                     const auto regionCenter = get<acc::RegionCenter>(chain);
                     const auto regionAxes = get<RegionAxes>(chain);
 
@@ -1298,14 +1303,14 @@ namespace graph{
      * @tparam     DIM              Dimension of the rag
      * @tparam     LABELS_PROXY     Label Proxy type of the rag
      * @tparam     FEATURE_TYPE     OutType of the features
-     * 
-     * @detail 
-     *   
+     *
+     * @detail
+     *
      *   feature 0 : mean edge length
-     * 
-     * 
+     *
+     *
      */
-    template<size_t DIM, class LABELS_PROXY, class FEATURE_TYPE>
+    template<std::size_t DIM, class LABELS_PROXY, class FEATURE_TYPE>
     void accumulateGeometricEdgeFeatures(
         const GridRag<DIM, LABELS_PROXY> & rag,
         const array::StaticArray<int64_t, DIM> & blockShape,
@@ -1321,11 +1326,11 @@ namespace graph{
         typedef acc::Coord<acc::Principal<acc::CoordinateSystem> >                 RegionAxes;
         typedef acc::Principal<acc::CoordinateSystem>   PrincipalAxes;
 
-        typedef acc::Select<  
+        typedef acc::Select<
             acc::DataArg<1>,
             acc::Count,
             //,
-            //PrincipalAxes   
+            //PrincipalAxes
             acc::RegionCenter,
             //RegionRadii,
             RegionAxes
@@ -1333,33 +1338,33 @@ namespace graph{
         > SelectType;
 
 
-        
-        
-        
-        
-        
-        
-        
+
+
+
+
+
+
+
         typedef acc::StandAloneAccumulatorChain<DIM,float, SelectType> AccChainType;
 
-        
+
         // threadpool
         nifty::parallel::ParallelOptions pOpts(numberOfThreads);
         nifty::parallel::ThreadPool threadpool(pOpts);
-        const size_t actualNumberOfThreads = pOpts.getActualNumThreads();
+        const std::size_t actualNumberOfThreads = pOpts.getActualNumThreads();
 
 
-        
+
         accumulateEdgeAndNodeFeaturesWithAccChain<AccChainType,AccChainType>(
-            rag, 
-            blockShape, 
-            pOpts, 
+            rag,
+            blockShape,
+            pOpts,
             threadpool,
             [&](
                 const std::vector<AccChainType> & edgeAccChainVec,
                 const std::vector<AccChainType> & nodeAccChainVec
             ){
-                
+
                 using namespace vigra::acc;
 
                 parallel::parallel_foreach(threadpool, edgeAccChainVec.size(),[&](
@@ -1378,7 +1383,7 @@ namespace graph{
                     const auto pAxesU = get<RegionAxes>(chainU);
                     const auto pAxesV = get<RegionAxes>(chainV);
 
-                    
+
                     const auto rCenterE = get<acc::RegionCenter>(chainE);
                     const auto rCenterU = get<acc::RegionCenter>(chainU);
                     const auto rCenterV = get<acc::RegionCenter>(chainV);
@@ -1416,15 +1421,15 @@ namespace graph{
                     // region axis based
                     vigra::TinyVector<float,DIM> r0U, r0V, r0E;
 
-                    for(size_t i=0; i<DIM; ++i){
+                    for(std::size_t i=0; i<DIM; ++i){
                         r0U = pAxesU[i];
                         r0V = pAxesV[i];
                         r0E = pAxesE[i];
                     }
 
-                    // angle UV 
+                    // angle UV
                     const auto aUV=std::acos(vigra::dot(r0U,r0V)/(vigra::norm(r0U),vigra::norm(r0V)));
-                    // angle UE 
+                    // angle UE
                     const auto aUE=std::acos(vigra::dot(r0U,r0E)/(vigra::norm(r0U),vigra::norm(r0E)));
                     // angle VE
                     const auto aVE=std::acos(vigra::dot(r0V,r0E)/(vigra::norm(r0V),vigra::norm(r0E)));
@@ -1433,10 +1438,10 @@ namespace graph{
                     edgeFeaturesOut(edge, 16) = replaceIfNotFinite(std::abs(aUE-aVE), 0.0);
 
 
-        
+
 
                 });
-                
+
             }
         );
     }
@@ -1450,9 +1455,7 @@ namespace graph{
 
 
 
-        
+
 
 } // end namespace graph
 } // end namespace nifty
-
-

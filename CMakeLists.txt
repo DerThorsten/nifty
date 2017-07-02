@@ -4,7 +4,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules)
 project(nifty)
 
 set (NIFTY_VERSION_MAJOR 0)
-set (NIFTY_VERSION_MINOR 15)
+set (NIFTY_VERSION_MINOR 18)
 set (NIFTY_VERSION_PATCH 0)
 
 
@@ -35,8 +35,13 @@ option(BUILD_PYTHON_DOCS "Build the Python documentation with Sphinx" OFF)
 
 option(REMOVE_SOME_WARNINGS "Remove some annoying warnings" ON)
 
+if(MSVC)
+    # Disable autolinking on MSVC.
+    add_definitions(-DBOOST_ALL_NO_LIB)
+endif()
+
 # from externals..
-if(REMOVE_SOME_WARNINGS)
+if(REMOVE_SOME_WARNINGS AND (CMAKE_CXX_COMPILER_ID MATCHES "GNU" OR CMAKE_CXX_COMPILER_ID MATCHES "Clang"))
     add_definitions(-Wno-attributes)
     # vigra uses old stuff....
     add_definitions(-Wno-deprecated-declarations)
@@ -110,11 +115,11 @@ find_package(Threads)
 # rt lib
 #-------------------------------------------------------------------------------------------------------------------
 if(UNIX AND NOT APPLE)
-  find_library(RT rt) 
-  set(LINK_RT true) 
+  find_library(RT rt)
+  set(LINK_RT true)
   #message(STATUS "Linking to RT is enabled")
 else()
-  set(LINK_RT false) 
+  set(LINK_RT false)
   #message(STATUS "Linking to RT is diabled")
 endif()
 
@@ -223,7 +228,7 @@ if(WITH_LP_MP)
     include_directories("${CMAKE_CURRENT_SOURCE_DIR}/externals/LP_MP/include")
     include_directories("${CMAKE_CURRENT_SOURCE_DIR}/externals/LP_MP/lib")
     add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/externals/LP_MP/lib")
-    
+
     add_definitions(-DWITH_LP_MP)
     add_definitions(-DWITH_SAT)
 
@@ -236,10 +241,10 @@ if(WITH_LP_MP)
         # adding only -ffast-math will result in infinity and nan not being checked (but e.g. graph matching and discrete tomography have infinite costs)
         #add_definitions(-ffast-math -fno-finite-math-only)
         add_definitions()
-        SET(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -march=native") 
+        SET(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -march=native")
         SET(CMAKE_EXE_LINKER_FLAGS_RELEASE  "${CMAKE_EXE_LINKER_FLAGS_RELEASE} ${CMAKE_CXX_FLAGS_RELEASE}" )
     endif()
-    
+
     # include LP_MP dependencies
     include_directories("${CMAKE_CURRENT_SOURCE_DIR}/externals/LP_MP/external/meta/include")
     include_directories("${CMAKE_CURRENT_SOURCE_DIR}/externals/LP_MP/external/Catch/include")
@@ -249,7 +254,7 @@ if(WITH_LP_MP)
     include_directories("${CMAKE_CURRENT_SOURCE_DIR}/externals/LP_MP/external/cereal/include")
     include_directories("${CMAKE_CURRENT_SOURCE_DIR}/externals/LP_MP/external/tclap/include")
     include_directories("${CMAKE_CURRENT_SOURCE_DIR}/externals/LP_MP/external/lingeling-ala")
-    
+
     ## TODO this seems to be a pretty old version, would the newer version help?!
     ## FIXME we actually don't need to link this for building the LP_MP multicut
     #include(ExternalProject)
@@ -263,9 +268,9 @@ if(WITH_LP_MP)
     #   BUILD_COMMAND "make"
     #   INSTALL_COMMAND ""
     #   )
-    #include_directories("${CMAKE_CURRENT_BINARY_DIR}/lingeling-prefix/src/lingeling") 
+    #include_directories("${CMAKE_CURRENT_BINARY_DIR}/lingeling-prefix/src/lingeling")
     ##link_directories("${CMAKE_CURRENT_BINARY_DIR}/lingeling-prefix/src/lingeling")
-    
+
 endif()
 
 

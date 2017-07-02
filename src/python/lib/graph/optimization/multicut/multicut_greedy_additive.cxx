@@ -54,6 +54,7 @@ namespace multicut{
             .def(py::init<>())
             .def_readwrite("nodeNumStopCond", &Settings::nodeNumStopCond)
             .def_readwrite("weightStopCond", &Settings::weightStopCond)
+            .def_readwrite("visitNth", &Settings::visitNth)
             //.def_readwrite("verbose", &Settings::verbose)
         ;
      

@@ -2,6 +2,7 @@
 
 
 #include <algorithm>
+#include <cstddef>
 
 #include "nifty/array/arithmetic_array.hxx"
 #include "nifty/marray/marray.hxx"
@@ -13,7 +14,7 @@
 namespace nifty{
 namespace graph{
 
-template<size_t DIM, class LABEL_TYPE>
+template<std::size_t DIM, class LABEL_TYPE>
 class ExplicitLabels{
 public:
     typedef tools::BlockView< LABEL_TYPE> BlockStorageType;
@@ -27,7 +28,7 @@ public:
     :   labels_(labels),
         shape_()
     {
-        for(size_t i=0; i<DIM; ++i)
+        for(std::size_t i=0; i<DIM; ++i)
             shape_[i] = labels_.shape(i);
     }
 
@@ -42,13 +43,13 @@ public:
             return *std::max_element(startPtr, startPtr+labels_.size())+1;
         }
         else if(labels_.isSimple()){
-            
+
             NIFTY_CHECK_OP(d,==,labels_.size(),"");
             return *std::max_element(startPtr, startPtr+labels_.size())+1;
         }
         else {
             LABEL_TYPE nLabels = 0;
-            for(size_t i=0; i<labels_.size(); i++)
+            for(std::size_t i=0; i<labels_.size(); i++)
                 nLabels = std::max(labels_(i), nLabels);
             return nLabels+1;
         }
@@ -102,7 +103,7 @@ private:
 
 namespace tools{
 
-    template<class LABEL_TYPE, size_t DIM, class COORD>
+    template<class LABEL_TYPE, std::size_t DIM, class COORD>
     inline void readSubarray(
         const graph::ExplicitLabels<DIM, LABEL_TYPE> & labels,
         const COORD & beginCoord,
@@ -118,7 +119,3 @@ namespace tools{
 
 
 } // namespace nifty
-
-
-
-

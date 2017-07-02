@@ -167,10 +167,13 @@ namespace tools{
             }
 
             return BlockType(beginCoord, endCoord);
-        }   
+        }
 
+        // FIXME FIXME FIXME
+        // FIXME FIXME FIXME
+        // FIXME FIXME FIXME
         BlockWithHaloType getBlockWithHalo(
-            const uint64_t blockIndex, 
+            const uint64_t blockIndex,
             const VectorType & haloBegin,
             const VectorType & haloEnd
         )const{
@@ -183,9 +186,49 @@ namespace tools{
                 outerEnd[d]   = std::min(innerBlock.end()[d]   + haloEnd[d], roiEnd_[d]);
             }
             return BlockWithHaloType(BlockType(outerBegin, outerEnd), innerBlock);
-        }   
+        }
 
-        // TODO this is implemented pretty brute force, but for now this should not be critical performance wise in any way
+
+        // get all block ids taht have overlap with the roi
+        void getBlockIdsOverlappingBoundingBox(
+                const VectorType & roiBegin,
+                const VectorType & roiEnd,
+                const VectorType & blockHalo,
+                std::vector<uint64_t> & idsOut) const {
+
+            // TODO assert that the roi is in global roi
+
+            idsOut.clear();
+
+            // lambda to check whether two values are in range
+            auto valueInRange = [](T value, T min, T max) {
+                return (value >= min) && (value <= max);
+            };
+
+            for(size_t blockId = 0; blockId < numberOfBlocks(); ++blockId) {
+
+                // get coordinates of the current bock
+                const auto & block = getBlockWithHalo(blockId, blockHalo).outerBlock();
+                const auto & begin = block.begin();
+                const auto & end   = block.end();
+
+                // check for each dimension whether the current block has overlap with the roi
+                std::vector<bool> overlapInDim(DIM, false);
+                for( auto d = 0; d < DIM; ++d) {
+                    if( valueInRange(roiBegin[d], begin[d], end[d]) || valueInRange(begin[d], roiBegin[d], roiEnd[d]) ) {
+                        overlapInDim[d] = true;
+                    }
+                }
+
+                // if all dimentsions have overlap, push back the block id
+                if(std::all_of(overlapInDim.begin(), overlapInDim.end(), [](bool i){return i;})) {
+                    idsOut.push_back(blockId);
+                }
+            }
+        }
+
+
+        // get all block ids that are enclosed in the roi
         void getBlockIdsInBoundingBox(
                 const VectorType & roiBegin,
                 const VectorType & roiEnd,
@@ -193,24 +236,32 @@ namespace tools{
                 std::vector<uint64_t> & idsOut) const {
 
             // TODO assert that the roi is in global roi
-            //
+
             idsOut.clear();
 
             for(size_t blockId = 0; blockId < numberOfBlocks(); ++blockId) {
-                bool inRoi = true;
+
+                // get coordinates of the current bock
                 const auto & block = getBlockWithHalo(blockId, blockHalo).outerBlock();
                 const auto & begin = block.begin();
-                const auto & end = block.end();
+                const auto & end   = block.end();
+
+                // check for each dimension whether the current block has overlap with the roi
+                std::vector<bool> enclosedInDim(DIM, false);
                 for( auto d = 0; d < DIM; ++d) {
-                    // check if roi encluses block
-                    if( ! (begin[d] >= roiBegin[d] && end[d] <= roiEnd[d]) )
-                        inRoi = false;
+                    if(begin[d] >= roiBegin[d] && end[d] <= roiEnd[d]) {
+                        enclosedInDim[d] = true;
+                    }
                 }
-                if(inRoi)
+
+                // if all dimentsions have overlap, push back the block id
+                if(std::all_of(enclosedInDim.begin(), enclosedInDim.end(), [](bool i){return i;})) {
                     idsOut.push_back(blockId);
+                }
             }
         }
-        
+
+
         // get all block ids in slice z
         void getBlockIdsInSlice(
                 const T z,
@@ -233,14 +284,13 @@ namespace tools{
             }
         }
 
+
         BlockWithHaloType getBlockWithHalo(
             const uint64_t blockIndex, 
             const VectorType & halo
         )const{
             return this->getBlockWithHalo(blockIndex, halo, halo);
-        } 
-
-
+        }
 
 
         BlockWithHaloType addHalo(

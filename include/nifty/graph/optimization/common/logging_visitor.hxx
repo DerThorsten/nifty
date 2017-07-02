@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cstddef>
 #include <string>
 #include <initializer_list>
 #include <sstream>
@@ -17,21 +18,22 @@ namespace common{
 
 
 
-    //template<class SOLVER> 
+    //template<class SOLVER>
     //class VisitorBase;
-    
 
-    template<class SOLVER> 
+
+    template<class SOLVER>
     class LoggingVisitor : public VisitorBase<SOLVER>{
     public:
         typedef SOLVER SolverType;
         typedef nifty::tools::Timer TimerType;
 
         LoggingVisitor(
-            const int visitNth = 1, 
+            const int visitNth = 1,
             const bool verbose = true,
             const double timeLimitSolver = std::numeric_limits<double>::infinity(),
-            const double timeLimitTotal  = std::numeric_limits<double>::infinity()
+            const double timeLimitTotal  = std::numeric_limits<double>::infinity(),
+            const nifty::logging::LogLevel logLevel = nifty::logging::LogLevel::WARN
         )
         :   visitNth_(visitNth),
             verbose_(verbose),
@@ -41,10 +43,11 @@ namespace common{
             timeLimitTotal_(timeLimitTotal),
             runtimeSolver_(0.0),
             runtimeTotal_(0.0),
+            logLevel_(logLevel),
             logNames_(),
             logValues_(),
-            iterations_(), 
-            energies_(), 
+            iterations_(),
+            energies_(),
             runtimes_()
         {
 
@@ -57,7 +60,7 @@ namespace common{
             timerSolver_.start();
             timerTotal_.start();
         }
-        
+
         virtual bool visit(SolverType * solver) {
             timerSolver_.stop();
             timerTotal_.stop();
@@ -78,7 +81,7 @@ namespace common{
                     ss << "E: " << e << " ";
                     ss << "t[s]: " << runtimeSolver_ << " ";
                     ss << "/ " << runtimeTotal_ << " ";
-                    for(size_t i=0; i<logNames_.size(); ++i){
+                    for(std::size_t i=0; i<logNames_.size(); ++i){
                         ss<<logNames_[i]<<" "<<logValues_[i]<<" ";
                     }
                     ss<<"\n";
@@ -91,13 +94,34 @@ namespace common{
             return runOpt_;
         }
         
-        virtual void end(SolverType * )   {
+        virtual void end(SolverType * solver)   {
+
+
+            timerSolver_.stop();
+            timerTotal_.stop();
+            runtimeTotal_  += timerTotal_.elapsedSeconds();
+            timerTotal_.reset().start();
+            runtimeSolver_ +=  timerSolver_.elapsedSeconds();
+
+
+            const auto e = solver->currentBestEnergy();
+            iterations_.push_back(iter_);
+            energies_.push_back(e);
+            runtimes_.push_back(runtimeSolver_);
+
+            std::stringstream ss;
+            ss << "E: " << e << " ";
+            ss << "t[s]: " << runtimeSolver_ << " ";
+            ss << "/ " << runtimeTotal_ << " ";
+            ss<<"\n";
+            std::cout<<ss.str();
+
             if(verbose_){
                 std::cout<<"end inference\n";
             }
             timerSolver_.stop();
         }
-        
+
         virtual void clearLogNames(){
             logNames_.clear();
             logValues_.clear();
@@ -106,14 +130,14 @@ namespace common{
             logNames_.assign(logNames.begin(), logNames.end());
             logValues_.resize(logNames.size());
         }
-        
-        virtual void setLogValue(const size_t logIndex, double logValue){
+
+        virtual void setLogValue(const std::size_t logIndex, double logValue){
             logValues_[logIndex] = logValue;
         }
 
         virtual void printLog(const nifty::logging::LogLevel logLevel, const std::string & logString){
-            if(verbose_){
-                std::cout<<"LOG["<<int(logLevel)<<"]: "<<logString<<"\n";
+            if(int(logLevel) <= int(logLevel_)){
+                std::cout<<"LOG["<<nifty::logging::logLevelName(logLevel)<<"]: "<<logString<<"\n";
             }
         }
 
@@ -127,7 +151,7 @@ namespace common{
          * @return iterations vector
          */
         const std::vector<uint32_t> & iterations()const{
-            return iterations_; 
+            return iterations_;
         }
         /**
          * @brief logged current best energies vector
@@ -135,7 +159,7 @@ namespace common{
          * @return energy vector
          */
         const std::vector<double>   & energies()const{
-            return energies_; 
+            return energies_;
         }
         /**
          * @brief logged runtime vector
@@ -143,29 +167,30 @@ namespace common{
          * @return runtime vector
          */
         const std::vector<double>   & runtimes()const{
-            return runtimes_; 
+            return runtimes_;
         }
-                
+
     private:
-       
+
         int visitNth_;
         bool verbose_;
         bool runOpt_;
         int iter_;
-        
+
         double timeLimitTotal_;
         double timeLimitSolver_;
         double runtimeSolver_;
         double runtimeTotal_;
+        nifty::logging::LogLevel logLevel_;
         TimerType timerSolver_;
         TimerType timerTotal_;
 
         std::vector<std::string>    logNames_;
         std::vector<double>         logValues_;
         // logging vectors
-        std::vector<uint32_t> iterations_; 
-        std::vector<double>   energies_; 
-        std::vector<double>   runtimes_; 
+        std::vector<uint32_t> iterations_;
+        std::vector<double>   energies_;
+        std::vector<double>   runtimes_;
 
         inline void checkRuntime() {
             if(runtimeSolver_ > timeLimitSolver_) {

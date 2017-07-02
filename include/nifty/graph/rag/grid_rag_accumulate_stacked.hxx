@@ -235,7 +235,10 @@ namespace graph{
             AccOptions(minVal, maxVal)
         );
     }
-    
+
+
+    // FIXME we rely on the out vector coming in the right shape from python,
+    // that is kindof hacky...
     template<class LABELS_PROXY>
     void getSkipEdgeLengths(
         const GridRagStacked2D<LABELS_PROXY> & rag,
@@ -252,6 +255,7 @@ namespace graph{
         getSkipEdgeLengthsImpl(rag, out, skipEdges, skipRanges, skipStarts, pOpts, threadpool);
     }
 
+
     template<class LABELS_PROXY>
     void getSkipEdgeLengthsImpl(
         const GridRagStacked2D<LABELS_PROXY> & rag,
@@ -263,30 +267,31 @@ namespace graph{
         parallel::ThreadPool & threadpool
     ){
         typedef LABELS_PROXY LabelsProxyType;
-        
+
         typedef typename LabelsProxyType::BlockStorageType LabelBlockStorage;
-    
+
         typedef array::StaticArray<int64_t, 3> Coord;
         typedef array::StaticArray<int64_t, 2> Coord2;
 
-        typedef std::pair<uint64_t,uint64_t> SkipEdgeStorage; 
-    
+        typedef std::pair<uint64_t,uint64_t> SkipEdgeStorage;
+        typedef std::vector<size_t> EdgeLenVector;
+
         const size_t actualNumberOfThreads = pOpts.getActualNumThreads();
-    
+
         const auto & shape = rag.shape();
         const auto & labelsProxy = rag.labelsProxy();
-        
+
         Coord2 sliceShape2({shape[1], shape[2]});
         Coord sliceShape3({1L,shape[1], shape[2]});
-        
+
         LabelBlockStorage labelsAStorage(threadpool, sliceShape3, 1);
         LabelBlockStorage labelsBStorage(threadpool, sliceShape3, 1);
-    
+
         // get unique lower slices with skip edges
         std::vector<size_t> lowerSlices;
         tools::uniques(skipStarts, lowerSlices);
         auto lowest = int64_t(lowerSlices[0]);
-    
+
         // get upper slices with skip edges for each lower slice and number of skip edges for each lower slice
         std::map<size_t,std::vector<size_t>> skipSlices;
         std::map<size_t,size_t> numberOfSkipEdgesPerSlice;
@@ -295,84 +300,91 @@ namespace graph{
             skipSlices[sliceId] = std::vector<size_t>();
             numberOfSkipEdgesPerSlice[sliceId] = 0;
         }
-        // 
+
+        // determine the number of skip edges starting from each slice
+        // and fill the conversion of uv-ids to edge-id
+        std::map<SkipEdgeStorage, size_t> skipUvsToIds;
         for(size_t skipId = 0; skipId < skipEdges.size(); ++skipId) {
+
+            // find the source slice of this skip edge and increment the number of edges in the slice
             auto sliceId = skipStarts[skipId];
             ++numberOfSkipEdgesPerSlice[sliceId];
+
+            // add the target slice of this skip edge to the target slices of the source slice
             auto targetSlice = sliceId + skipRanges[skipId];
             auto & thisSkipSlices = skipSlices[sliceId];
             if(std::find(thisSkipSlices.begin(), thisSkipSlices.end(), targetSlice) == thisSkipSlices.end() )
                 thisSkipSlices.push_back(targetSlice);
+
+            // fill the uvs to ids map
+            skipUvsToIds[skipEdges[skipId]] = skipId;
         }
-        
+
         int countSlice = 0;
         size_t skipEdgeOffset = 0;
         for(auto sliceId : lowerSlices) {
-    
+
             std::cout << countSlice++ << " / " << lowerSlices.size() << std::endl;
-            std::cout << "Computing lengths for skip edges from slice " << sliceId << std::endl; 
-                
-            Coord beginA({int64_t(sliceId),0L,0L}); 
-            Coord endA(  {int64_t(sliceId+1),shape[1],shape[2]}); 
-            auto labelsA = labelsAStorage.getView(0);  
+            std::cout << "Computing lengths for skip edges from slice " << sliceId << std::endl;
+
+            Coord beginA({int64_t(sliceId),0L,0L});
+            Coord endA(  {int64_t(sliceId+1),shape[1],shape[2]});
+            auto labelsA = labelsAStorage.getView(0);
             labelsProxy.readSubarray(beginA, endA, labelsA);
             auto labelsASqueezed = labelsA.squeezedView();
 
             auto skipEdgesInSlice = numberOfSkipEdgesPerSlice[sliceId];
-            std::vector<std::map<SkipEdgeStorage,size_t>> perThreadData(actualNumberOfThreads, std::map<SkipEdgeStorage,size_t>() );
-                
+            std::vector<EdgeLenVector> perThreadData(actualNumberOfThreads, EdgeLenVector(skipEdgesInSlice));
+
             Coord beginB;
             Coord endB;
             // iterate over all upper slices that have skip edges with this slice
             for(auto nextId : skipSlices[sliceId] ) {
                 std::cout << "to slice " << nextId << std::endl;
-    
+
                 beginB = Coord({int64_t(nextId),0L,0L});
                 endB   = Coord({int64_t(nextId+1),shape[1],shape[2]});
-                
-                auto labelsB = labelsBStorage.getView(0);  
+
+                auto labelsB = labelsBStorage.getView(0);
                 labelsProxy.readSubarray(beginB, endB, labelsB);
                 auto labelsBSqueezed = labelsB.squeezedView();
-        
+
                 // accumulate filter for the between slice edges
                 nifty::tools::parallelForEachCoordinate(threadpool, sliceShape2, [&](const int tid, const Coord2 coord){
 
                     auto & threadData = perThreadData[tid];
-    
+
                     // labels are different for different slices by default!
                     const auto lU = labelsASqueezed(coord.asStdArray());
                     const auto lV = labelsBSqueezed(coord.asStdArray());
-    
-                    // check if lU and lV have a skip edge
+
+                    // we search for the skipId corresponding to this pair of uv-ids
+                    // for slices with partial defects, not all uv-pairs correspond to a skip-edge.
+                    // in that case, we simply continue without doing anything
                     auto skipPair = std::make_pair(static_cast<uint64_t>(lU), static_cast<uint64_t>(lV));
-                    auto skipIt = threadData.find(skipPair);
-                    if( skipIt == threadData.end() )
-                        threadData[skipPair] = 1;
-                    else
-                        ++(skipIt->second);
-                });
-            }
-            
-            // merge thread data
-            for(size_t t = 0; t < actualNumberOfThreads; ++t) {
-                
-                auto & threadData = perThreadData[t];
-                // get the keys from the map holding all potential skip edges
-                std::vector<SkipEdgeStorage> keys;
-                tools::extractKeys(threadData, keys);
-                
-                parallel::parallel_foreach(threadpool, keys.size(), 
-                [&](const int tid, const int64_t keyId){
-                    
-                    auto & key = keys[keyId];
-                    auto skipIterator = std::find(skipEdges.begin()+skipEdgeOffset, skipEdges.end()+skipEdgeOffset+skipEdgesInSlice, key);
-                    if(skipIterator != skipEdges.end()) {
-                        const auto skipId = std::distance(skipEdges.begin(), skipIterator);
-                        out[skipId] += threadData[key];
+                    auto mapIterator = skipUvsToIds.find(skipPair);
+                    if(mapIterator == skipUvsToIds.end()) {
+                        return;
                     }
-                    
+
+                    // the in slice id corresponds to the global id - the offset corresponding to
+                    // the current source slice
+                    auto skipId = mapIterator->second - skipEdgeOffset;
+                    ++threadData[skipId];
+
                 });
             }
+
+            // write the thread data into out in parallel over the edges
+            parallel::parallel_foreach(threadpool, skipEdgesInSlice, [&](const int tid, const int64_t skipId){
+
+                auto & outData = out[skipId + skipEdgeOffset];
+                for(size_t t = 0; t < actualNumberOfThreads; ++t) {
+                    auto & threadData = perThreadData[t];
+                    outData += threadData[skipId];
+                }
+
+            });
             skipEdgeOffset += skipEdgesInSlice;
         }
     }

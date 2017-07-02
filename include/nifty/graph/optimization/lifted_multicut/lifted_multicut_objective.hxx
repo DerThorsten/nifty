@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cstddef>
 
 
 #include "nifty/tools/runtime_check.hxx"
@@ -29,7 +30,7 @@ namespace lifted_multicut{
 
         typedef CHILD_OBJECTIVE ChildObjective;
         typedef LiftedMulticutObjectiveBase<ChildObjective, GRAPH, LIFTED_GRAPH, WEIGHT_TYPE> Self;
-    
+
 
         template<class NODE_LABELS>
         WEIGHT_TYPE evalNodeLabels(const NODE_LABELS & nodeLabels)const{
@@ -67,13 +68,13 @@ namespace lifted_multicut{
 
 
 
-    template<class GRAPH, class WEIGHT_TYPE>   
+    template<class GRAPH, class WEIGHT_TYPE>
     class LiftedMulticutObjective :  public
         LiftedMulticutObjectiveBase<
-            LiftedMulticutObjective<GRAPH, WEIGHT_TYPE>, 
+            LiftedMulticutObjective<GRAPH, WEIGHT_TYPE>,
             GRAPH, UndirectedGraph<>, WEIGHT_TYPE
         >
-    {   
+    {
     private:
         //typedef nifty::graph::detail_graph::NodeIndicesToContiguousNodeIndices<GRAPH > ToContiguousNodes;
 
@@ -89,26 +90,26 @@ namespace lifted_multicut{
         typedef GRAPH GraphType;
 
 
-       
 
 
 
-       
+
+
 
         typedef UndirectedGraph<> LiftedGraphType;
         typedef GraphType Graph;
         typedef typename GraphType:: template NodeMap<uint64_t> NodeLabelsType;
-        
+
         typedef LiftedGraphType LiftedGraph;
-       
+
         typedef WEIGHT_TYPE WeightType;
         typedef graph_maps::EdgeMap<LiftedGraph, WeightType> WeightsMapType;
         typedef WeightsMapType WeightsMap;
-        
+
 
         LiftedMulticutObjective(const Graph & graph, const int64_t reserveAdditionalEdges = -1)
         :   graph_(graph),
-            liftedGraph_(graph.numberOfNodes(), graph.numberOfEdges() + (reserveAdditionalEdges<0 ?  graph.numberOfEdges() : reserveAdditionalEdges) ), 
+            liftedGraph_(graph.numberOfNodes(), graph.numberOfEdges() + (reserveAdditionalEdges<0 ?  graph.numberOfEdges() : reserveAdditionalEdges) ),
             weights_(liftedGraph_){
 
             for(const auto edge : graph_.edges()){
@@ -152,9 +153,9 @@ namespace lifted_multicut{
         const LiftedGraph & liftedGraph() const{
             return liftedGraph_;
         }
-        
 
-        void insertLiftedEdgesBfs(const size_t maxDistance){
+
+        void insertLiftedEdgesBfs(const std::size_t maxDistance){
 
             BreadthFirstSearch<GraphType> bfs(graph_);
             graph_.forEachNode([&](const uint64_t sourceNode){
@@ -165,7 +166,7 @@ namespace lifted_multicut{
         }
 
         template<class DIST_VEC_TYPE>
-        void insertLiftedEdgesBfs(const size_t maxDistance, DIST_VEC_TYPE & distVec){
+        void insertLiftedEdgesBfs(const std::size_t maxDistance, DIST_VEC_TYPE & distVec){
 
             BreadthFirstSearch<GraphType> bfs(graph_);
             graph_.forEachNode([&](const uint64_t sourceNode){
@@ -214,8 +215,8 @@ namespace lifted_multicut{
          * @brief Iterate over all edges of the lifted graph which are in the original graph
          * @details Iterate over all edges of the lifted graph which are in the original graph.
          * The ids are w.r.t. the lifted graph
-         * 
-         * @param f functor/lambda which is called for each edge id 
+         *
+         * @param f functor/lambda which is called for each edge id
          */
         template<class F>
         void forEachGraphEdge(F && f)const{
@@ -241,8 +242,8 @@ namespace lifted_multicut{
          * @brief Iterate over all edges of the lifted graph which are NOT in the original graph.
          * @details Iterate over all edges of the lifted graph which are NOT the original graph.
          * The ids are w.r.t. the lifted graph
-         * 
-         * @param f functor/lambda which is called for each edge id 
+         *
+         * @param f functor/lambda which is called for each edge id
          */
         template<class F>
         void forEachLiftedeEdge(F && f)const{
@@ -277,4 +278,3 @@ namespace lifted_multicut{
 } // namespace nifty::graph::optimization
 } // namespace nifty::graph
 } // namespace nifty
-

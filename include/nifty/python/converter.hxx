@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cctype>
 #include <type_traits>
 #include <initializer_list>
 #include <iostream>
@@ -32,8 +33,8 @@ namespace detail{
 
 
 
-    // to avoid the include of pybind/stl.h 
-    // we re-implement the array_caster 
+    // to avoid the include of pybind/stl.h
+    // we re-implement the array_caster
     template <typename ArrayType, typename Value, bool Resizable, size_t Size = 0> struct array_caster_ {
         using value_conv = make_caster<Value>;
 
@@ -97,15 +98,15 @@ namespace detail{
 
 
 
-    template <typename Type, size_t Size> 
+    template <typename Type, size_t Size>
     struct type_caster< nifty::array::StaticArray<Type, Size> >
     : array_caster_< nifty::array::StaticArray<Type, Size>, Type, false, Size> {
     };
 
 
-    template <typename Type, size_t DIM, bool AUTO_CAST_TYPE> 
+    template <typename Type, size_t DIM, bool AUTO_CAST_TYPE>
     struct pymarray_caster;
-    
+
 
 }
 }
@@ -146,7 +147,7 @@ namespace pybind11
         bool disassoc;
     };
     #else
-    class gil_release { 
+    class gil_release {
         void releaseGil(bool disassoc = false){}
         void unreleaseGil(){}
     };
@@ -160,7 +161,7 @@ namespace nifty
 namespace marray
 {
 
-    template <typename VALUE_TYPE, size_t DIM = 0, bool AUTO_CAST_TYPE=true> 
+    template <typename VALUE_TYPE, size_t DIM = 0, bool AUTO_CAST_TYPE=true>
     class PyView : public View<VALUE_TYPE, false>
     {
         friend struct pybind11::detail::pymarray_caster<VALUE_TYPE,DIM, AUTO_CAST_TYPE>;
@@ -172,7 +173,7 @@ namespace marray
 
         typename std::conditional<AUTO_CAST_TYPE,
                 pybind11::array_t<VALUE_TYPE, py::array::forcecast>,
-                pybind11::array_t<VALUE_TYPE, py::array::c_style > 
+                pybind11::array_t<VALUE_TYPE, py::array::c_style >
         >::type py_array;
 
       public:
@@ -211,7 +212,7 @@ namespace marray
         template <class ShapeIterator>
         PyView(ShapeIterator begin, ShapeIterator end)
         {
-            
+
             //std::cout<<"-----\n";
             this->assignFromShape(begin, end);
         }
@@ -271,7 +272,7 @@ namespace marray
                 //std::cout<<"cast\n";
                 ptr = (VALUE_TYPE *)info.ptr;
                 //std::cout<<"dpme\n";
-            }   
+            }
             //std::cout<<"scoped gil_scoped_acquire_DONE\n";
             for (size_t i = 0; i < shape.size(); ++i) {
                 strides[i] /= sizeof(VALUE_TYPE);
@@ -280,7 +281,7 @@ namespace marray
         }
 
     public:
-        
+
         void createViewFrom(const nifty::marray::View<VALUE_TYPE> & view)
         {
             std::vector<size_t> shape(view.shapeBegin(), view.shapeEnd());
@@ -309,9 +310,9 @@ namespace marray
 }
 
 
-template <typename VALUE_TYPE, size_t DIM,  bool AUTO_CAST_TYPE> 
+template <typename VALUE_TYPE, size_t DIM,  bool AUTO_CAST_TYPE>
 std::ostream& operator<<(
-    std::ostream& os, 
+    std::ostream& os,
     const nifty::marray::PyView<VALUE_TYPE, DIM, AUTO_CAST_TYPE> & obj
 )
 {
@@ -342,7 +343,7 @@ namespace pybind11
 
 
 
-        template <typename Type, size_t DIM, bool AUTO_CAST_TYPE> 
+        template <typename Type, size_t DIM, bool AUTO_CAST_TYPE>
         struct pymarray_caster {
             typedef typename nifty::marray::PyView<Type, DIM, AUTO_CAST_TYPE> ViewType;
             typedef type_caster<typename intrinsic_type<Type>::type> value_conv;
@@ -351,7 +352,7 @@ namespace pybind11
 
             typedef typename std::conditional<AUTO_CAST_TYPE,
                 pybind11::array_t<Type, py::array::forcecast>,
-                pybind11::array_t<Type, py::array::c_style > 
+                pybind11::array_t<Type, py::array::c_style >
             >::type pyarray_type;
 
             typedef type_caster<pyarray_type> pyarray_conv;
@@ -370,7 +371,7 @@ namespace pybind11
 
                 //if(!AUTO_CAST_TYPE){
                 //    auto pyFormat = info.format;
-                //    auto itemsize = info.itemsize; 
+                //    auto itemsize = info.itemsize;
                 //    auto cppFormat =  py::detail::npy_format_descriptor<Type>::value;
                 //    //std::cout<<"pyFormat  "<<pyFormat<<" size "<<itemsize<<"\n";
                 //    //std::cout<<"cppFormat "<<cppFormat<<"\n";
@@ -401,18 +402,18 @@ namespace pybind11
             PYBIND11_TYPE_CASTER(ViewType, _("array<") + value_conv::name() + _(">"));
         };
 
-        template <typename Type, size_t DIM, bool AUTO_CAST_TYPE> 
-        struct type_caster<nifty::marray::PyView<Type, DIM, AUTO_CAST_TYPE> > 
+        template <typename Type, size_t DIM, bool AUTO_CAST_TYPE>
+        struct type_caster<nifty::marray::PyView<Type, DIM, AUTO_CAST_TYPE> >
             : pymarray_caster<Type,DIM, AUTO_CAST_TYPE> {
         };
 
-        //template <typename Type, size_t DIM> 
+        //template <typename Type, size_t DIM>
         //struct marray_caster {
         //    static_assert(std::is_same<Type, void>::value,
         //                  "Please use nifty::marray::PyView instead of nifty::marray::View for arguments and return values.");
         //};
-        //template <typename Type> 
-        //struct type_caster<nifty::marray::View<Type> > 
+        //template <typename Type>
+        //struct type_caster<nifty::marray::View<Type> >
         //: marray_caster<Type> {
         //};
     }
@@ -475,7 +476,7 @@ namespace nifty{
 
 
         NumpyArray(py::array_t<T> & array)
-        :   array_(array) 
+        :   array_(array)
         {
             py::buffer_info info = array.request();
             T * ptr = static_cast<T*>(info.ptr);
@@ -487,11 +488,11 @@ namespace nifty{
                 marray::FirstMajorOrder
             );
         }
-        
+
 
         py::array_t<T>  pyArray(){
             return array_;
-        }        
+        }
 
     private:
         py::array_t<T> array_;
@@ -499,4 +500,3 @@ namespace nifty{
 
 } // namespace nifty
 */
-

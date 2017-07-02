@@ -110,8 +110,8 @@ a,b = pylab.rcParams['figure.figsize']
 pylab.rcParams['figure.figsize'] = 1.5*a, 1.5*b
 
 for key in results.keys():
-    (runtimes,energies) = results[key]
-    pylab.semilogx(energies, runtimes, label=key, marker='o')
+    (energies, runtimes) = results[key]
+    pylab.semilogx(runtimes, energies, label=key, marker='o')
 
 pylab.title('Multicut Solver Comparison on Toy Graph')
 pylab.xlabel('Runtime [s]')
