@@ -33,21 +33,31 @@ namespace minstcut{
 
 
         minstcutModule.def("minstcutObjective",
-            [](const GraphType & graph,  nifty::marray::PyView<double> array){
+            [](const GraphType & graph,  nifty::marray::PyView<double> array, nifty::marray::PyView<double> unaries){
                 NIFTY_CHECK_OP(array.dimension(),==,1,"wrong dimensions");
                 NIFTY_CHECK_OP(array.shape(0),==,graph.edgeIdUpperBound()+1,"wrong shape");
+
+                NIFTY_CHECK_OP(unaries.dimension(),==,2,"wrong dimensions");
+                NIFTY_CHECK_OP(unaries.shape(0),==,graph.nodeIdUpperBound()+1,"wrong shape");
+                NIFTY_CHECK_OP(unaries.shape(1),==,2, "wrong shape");
                 
                 auto obj = new ObjectiveType(graph);
                 auto & weights = obj->weights();
-                //auto & unaries = obj->unaries();
+                
                 graph.forEachEdge([&](int64_t edge){
                     weights[edge] += array(edge);
                 });
+
+                graph.forEachNode([&](int64_t node){
+                    unaries[node] += unaries(node);
+                });
+
+
                 return obj;
             },
             py::return_value_policy::take_ownership,
             py::keep_alive<0, 1>(),
-            py::arg("graph"),py::arg("weights")  
+            py::arg("graph"),py::arg("weights"),py::arg("unaries")  
         );
     }
 
