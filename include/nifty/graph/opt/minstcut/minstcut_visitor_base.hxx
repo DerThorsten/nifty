@@ -10,24 +10,24 @@
 namespace nifty {
 namespace graph {
 namespace opt{
-namespace mincut{
+namespace minstcut{
 
     template<class OBJECTIVE>
-    class MincutBase;
+    class MinstcutBase;
 
     template<class OBJECTIVE>
-    using MincutVisitorBase = nifty::graph::opt::common::VisitorBase< MincutBase<OBJECTIVE> >;
+    using MinstcutVisitorBase = nifty::graph::opt::common::VisitorBase< MinstcutBase<OBJECTIVE> >;
 
     template<class OBJECTIVE>
-    using MincutVerboseVisitor = nifty::graph::opt::common::VerboseVisitor< MincutBase<OBJECTIVE> >;
+    using MinstcutVerboseVisitor = nifty::graph::opt::common::VerboseVisitor< MinstcutBase<OBJECTIVE> >;
 
     template<class OBJECTIVE>
-    using MincutEmptyVisitor = nifty::graph::opt::common::EmptyVisitor< MincutBase<OBJECTIVE> >;
+    using MinstcutEmptyVisitor = nifty::graph::opt::common::EmptyVisitor< MinstcutBase<OBJECTIVE> >;
 
     template<class OBJECTIVE>
-    using MincutVisitorProxy = nifty::graph::opt::common::VisitorProxy< MincutBase<OBJECTIVE> >;
+    using MinstcutVisitorProxy = nifty::graph::opt::common::VisitorProxy< MinstcutBase<OBJECTIVE> >;
 
-} // namespace nifty::graph::opt::mincut
+} // namespace nifty::graph::opt::minstcut
 } // namespace nifty::graph::opt
 } // namespace graph
 } // namespace nifty

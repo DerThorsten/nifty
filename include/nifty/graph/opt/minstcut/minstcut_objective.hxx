@@ -7,14 +7,14 @@
 namespace nifty{
 namespace graph{
 namespace opt{
-namespace mincut{
+namespace minstcut{
 
     template<class CHILD_OBJECTIVE, class GRAPH, class WEIGHT_TYPE>
-    class MincutObjectiveBase{
+    class MinstcutObjectiveBase{
     public:
 
         typedef CHILD_OBJECTIVE ChildObjective;
-        typedef MincutObjectiveBase<ChildObjective, GRAPH, WEIGHT_TYPE> Self;
+        typedef MinstcutObjectiveBase<ChildObjective, GRAPH, WEIGHT_TYPE> Self;
 
         template<class NODE_LABELS>
         WEIGHT_TYPE evalNodeLabels(const NODE_LABELS & nodeLabels)const{
@@ -40,7 +40,7 @@ namespace mincut{
                     sum += costPair.second;
                 }
                 else{
-                    throw std::runtime_error("hey dude use 0 ")
+                    throw std::runtime_error("error - ???");
                 }
             }
             return sum;
@@ -57,9 +57,9 @@ namespace mincut{
 
 
     template<class GRAPH, class WEIGHT_TYPE>   
-    class MincutObjective :  public
-        MincutObjectiveBase<
-            MincutObjective<GRAPH, WEIGHT_TYPE>, GRAPH, WEIGHT_TYPE
+    class MinstcutObjective :  public
+        MinstcutObjectiveBase<
+            MinstcutObjective<GRAPH, WEIGHT_TYPE>, GRAPH, WEIGHT_TYPE
         >
     {   
     public:
@@ -68,7 +68,7 @@ namespace mincut{
         typedef graph_maps::EdgeMap<GraphType, WeightType> WeightsMap;
         typedef graph_maps::NodeMap<GraphType, std::pair<float, float> > UnaryMap;
         typedef typename GraphType:: template NodeMap<uint64_t> NodeLabelsType;
-        MincutObjective(const GraphType & g )
+        MinstcutObjective(const GraphType & g )
         :   graph_(g),
             weights_(g, 0.0)
         {
@@ -93,7 +93,7 @@ namespace mincut{
         WeightsMap weights_;
         UnaryMap unaries_;
     };
-} // namespace nifty::graph::opt::mincut
+} // namespace nifty::graph::opt::minstcut
 } // namespace nifty::graph::opt
 } // namespace nifty::graph
 } // namespace nifty

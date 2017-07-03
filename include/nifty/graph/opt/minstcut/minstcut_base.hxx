@@ -5,19 +5,19 @@
 #include <sstream>
 
 #include "nifty/graph/opt/common/solver_base.hxx"
-#include "mincut_visitor_base.hxx"
+#include "minstcut_visitor_base.hxx"
 
 namespace nifty {
 namespace graph {
 namespace opt{
-namespace mincut{
+namespace minstcut{
 
 
     template<class OBJECTIVE>
-    class MincutBase :
+    class MinstcutBase :
         public nifty::graph::opt::common::SolverBase<
             OBJECTIVE,
-            MincutBase<OBJECTIVE>
+            MinstcutBase<OBJECTIVE>
         >
     {
 
@@ -26,16 +26,16 @@ namespace mincut{
     #if 0
     
     template<class OBJECTIVE>
-    class MincutBase{
+    class MinstcutBase{
     
     public:
         typedef OBJECTIVE ObjectiveType;
-        typedef MincutVisitorBase<ObjectiveType> VisitorBaseType;
-        typedef MincutVisitorProxy<ObjectiveType> VisitorProxy;
+        typedef MinstcutVisitorBase<ObjectiveType> VisitorBaseType;
+        typedef MinstcutVisitorProxy<ObjectiveType> VisitorProxy;
         typedef typename ObjectiveType::Graph Graph;
         typedef typename Graph:: template NodeMap<uint64_t> NodeLabelsType;
 
-        virtual ~MincutBase(){};
+        virtual ~MinstcutBase(){};
         virtual void optimize(NodeLabelsType & nodeLabels, VisitorBaseType * visitor) = 0;
         virtual const ObjectiveType & objective() const = 0;
         virtual const NodeLabelsType & currentBestNodeLabels() = 0;
@@ -70,7 +70,7 @@ namespace mincut{
     };
     #endif
 
-} // namespace nifty::graph::opt::mincut
+} // namespace nifty::graph::opt::minstcut
 } // namespace nifty::graph::opt
 } // namespace graph
 } // namespace nifty
