@@ -136,7 +136,7 @@ public:
     void deserialize(ITER & iter);
 
     UndirectedGraph<EdgeInternalType,NodeInteralType> extractSubgraphFromNodes(
-        const std::vector<NODE_INTERNAL_TYPE> & nodeList, 
+        const std::vector<NODE_INTERNAL_TYPE> & nodeList,
         std::vector<EDGE_INTERANL_TYPE> & innerEdgesOut,
         std::vector<EDGE_INTERANL_TYPE> & outerEdgesOut) const;
 
