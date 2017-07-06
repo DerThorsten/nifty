@@ -43,6 +43,7 @@ namespace minstcut{
                 
                 auto obj = new ObjectiveType(graph);
                 auto & weights = obj->weights();
+                //auto & unaries = obj->unaries();
                 
                 graph.forEachEdge([&](int64_t edge){
                     weights[edge] += array(edge);

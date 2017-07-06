@@ -1,4 +1,4 @@
-#include "examples_common.hxx"
+//#include "examples_common.hxx"
 
 #include <iostream>
 #include "nifty/tools/runtime_check.hxx"

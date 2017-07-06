@@ -14,14 +14,7 @@ namespace minstcut{
     void exportMinstcutFactory(py::module &);
     void exportMinstcutVisitorBase(py::module &);
     void exportMinstcutBase(py::module &);
-    #if WITH_QPBO
-    void exportMinstcutQpbo(py::module &);
-    #endif 
 
-    void exportMinstcutCcFusionMoveBased(py::module &);
-    #if WITH_QPBO
-    void exportMinstcutGreedyAdditive(py::module &);
-    #endif 
 
 } // namespace nifty::graph::opt::minstcut
 } // namespace nifty::graph::opt
@@ -44,11 +37,7 @@ PYBIND11_PLUGIN(_minstcut) {
     exportMinstcutVisitorBase(minstcutModule);
     exportMinstcutBase(minstcutModule);
     exportMinstcutFactory(minstcutModule);
-    #ifdef WITH_QPBO
-    exportMinstcutQpbo(minstcutModule);
-    exportMinstcutGreedyAdditive(minstcutModule);
-    #endif
-    exportMinstcutCcFusionMoveBased(minstcutModule);
+    
     return minstcutModule.ptr();
 }
 
