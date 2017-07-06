@@ -22,10 +22,10 @@ namespace graph{
 
     using namespace py;
 
-    template<size_t DIM, class LABELS_PROXY>
+    template<size_t DIM, class RAG_TYPE>
     void exportGridRagCoordinatesT(py::module & module, const std::string & name) {
 
-        typedef RagCoordinates<DIM, LABELS_PROXY> CoordinatesType;
+        typedef RagCoordinates<DIM, RAG_TYPE> CoordinatesType;
         typedef typename CoordinatesType::RagType RagType;
         typedef typename CoordinatesType::Coord Coord;
 
@@ -91,8 +91,17 @@ namespace graph{
     }
 
     void exportGridRagCoordinates(py::module & module) {
-        typedef ExplicitLabels<3,uint32_t> LabelsType;
-        exportGridRagCoordinatesT<3,LabelsType>(module, "Explicit3d");
+        typedef ExplicitLabelsGridRag<3, uint32_t> ExplicitLabelsGridRag3D;
+        exportGridRagCoordinatesT<3, ExplicitLabelsGridRag3D>(module, "Explicit3d");
+
+        // hdf5
+        #ifdef WITH_HDF5
+        {
+            typedef Hdf5Labels<3,uint32_t> LabelsUInt32;
+            typedef GridRagStacked2D<LabelsUInt32> StackedRagUInt32;
+            exportGridRagCoordinatesT<3, StackedRagUInt32>(module, "StackedRag3d");
+        }
+        #endif
     }
 
 }
