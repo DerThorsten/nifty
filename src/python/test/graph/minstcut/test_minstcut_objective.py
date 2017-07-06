@@ -41,11 +41,11 @@ class TestMinstcutObjective(unittest.TestCase):
         g,nid = self.generateGrid(gridSize)
         d = weightRange[1] - weightRange[0]
         w = numpy.random.rand(g.numberOfEdges)*d + float(weightRange[0])
-        u = numpy.zeros((g.numberOfNodes,2))
+        u = numpy.random.rand(g.numberOfNodes,2)
         print(w.min(),w.max())
         obj = nifty.graph.opt.minstcut.minstcutObjective(g,w,u)
         labels = numpy.zeros(g.nodeIdUpperBound+1,dtype='uint8')
         value = obj.evalNodeLabels(labels)
-        self.assertAlmostEqual(value,0.0)
+        #self.assertAlmostEqual(value,0.0)
         return obj
 

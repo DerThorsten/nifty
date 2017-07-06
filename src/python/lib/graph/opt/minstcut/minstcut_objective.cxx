@@ -33,24 +33,25 @@ namespace minstcut{
 
 
         minstcutModule.def("minstcutObjective",
-            [](const GraphType & graph,  nifty::marray::PyView<double> array, nifty::marray::PyView<double> unaries){
-                NIFTY_CHECK_OP(array.dimension(),==,1,"wrong dimensions");
-                NIFTY_CHECK_OP(array.shape(0),==,graph.edgeIdUpperBound()+1,"wrong shape");
+            [](const GraphType & graph,  nifty::marray::PyView<double> weightsArray, nifty::marray::PyView<double> unrariesArray){
+                NIFTY_CHECK_OP(weightsArray.dimension(),==,1,"wrong dimensions");
+                NIFTY_CHECK_OP(weightsArray.shape(0),==,graph.edgeIdUpperBound()+1,"wrong shape");
 
-                NIFTY_CHECK_OP(unaries.dimension(),==,2,"wrong dimensions");
-                NIFTY_CHECK_OP(unaries.shape(0),==,graph.nodeIdUpperBound()+1,"wrong shape");
-                NIFTY_CHECK_OP(unaries.shape(1),==,2, "wrong shape");
+                NIFTY_CHECK_OP(unrariesArray.dimension(),==,2,"wrong dimensions");
+                NIFTY_CHECK_OP(unrariesArray.shape(0),==,graph.nodeIdUpperBound()+1,"wrong shape");
+                NIFTY_CHECK_OP(unrariesArray.shape(1),==,2, "wrong shape");
                 
                 auto obj = new ObjectiveType(graph);
                 auto & weights = obj->weights();
-                //auto & unaries = obj->unaries();
+                auto & unaries = obj->unaries();
                 
                 graph.forEachEdge([&](int64_t edge){
-                    weights[edge] += array(edge);
+                    weights[edge] += weightsArray(edge);
                 });
 
                 graph.forEachNode([&](int64_t node){
-                    unaries[node] += unaries(node);
+                    unaries[node].first += unrariesArray(node,0);
+                    unaries[node].second += unrariesArray(node,1);
                 });
 
 
