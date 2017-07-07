@@ -88,6 +88,18 @@ namespace graph {
                 const std::vector<int64_t> & offset = std::vector<int64_t>()
         ) const;
 
+        // center the coordinate to new offset and return false if it is not in the ROI
+        static bool cropCoordinate(Coord & coordinate, const std::vector<int64_t> & offset, const Coord & outShape) {
+            bool inRoi = true;
+            for(int d = 0; d < DIM; ++d) {
+                coordinate[d] -= offset[d];
+                if(coordinate[d] >= outShape[d]) {
+                    inRoi = false;
+                }
+            }
+            return inRoi;
+        }
+
         const RagType & rag_;
         CoordinateStorageType storage_;
     };
@@ -98,23 +110,26 @@ namespace graph {
     inline void RagCoordinates<DIM, RAG_TYPE>::writeBothCoordinates(const int64_t edgeId, const T edgeVal, marray::View<T> & out, const std::vector<int64_t> & offset) const {
 
         const auto & coords = edgeCoordinates(edgeId);
-        Coord coordUp;
-        Coord coordDn;
+        Coord coordUp, coordDn, outShape;
+        for(int d = 0; d < DIM; ++d) {
+            outShape[d] = out.shape(d);
+        }
+
         for(size_t ii = 0; ii < coords.size() / DIM; ++ii) {
             for(size_t d = 0; d < DIM; ++d) {
                 coordUp[d] = static_cast<int64_t>( ceil(float(coords[DIM * ii + d]) / 2) );
                 coordDn[d] = static_cast<int64_t>( floor(float(coords[DIM * ii + d]) / 2) );
             }
+
+            // we need to shift and crop the coordinates if we deal with a subvolume
             if( !offset.empty() ) {
-                for(int d = 0; d < DIM; ++d) {
-                    coordUp[d] -= offset[d];
-                    coordDn[d] -= offset[d];
+                auto inRoiUp = cropCoordinate(coordUp, offset, outShape);
+                auto inRoiDn = cropCoordinate(coordDn, offset, outShape);
+                if(!(inRoiUp && inRoiDn)) {
+                    continue;
                 }
             }
-            for(int d = 0; d < DIM; ++d) {
-                NIFTY_CHECK_OP(coordUp[d], <, out.shape(d), "Coordinate out of range");
-                NIFTY_CHECK_OP(coordDn[d], <, out.shape(d), "Coordinate out of range");
-            }
+
             out(coordUp.asStdArray()) = edgeVal;
             out(coordDn.asStdArray()) = edgeVal;
         }
@@ -126,14 +141,18 @@ namespace graph {
     inline void RagCoordinates<DIM, RAG_TYPE>::writeLowerCoordinates(const int64_t edgeId, const T edgeVal, marray::View<T> & out, const std::vector<int64_t> & offset) const {
 
         const auto & coords = edgeCoordinates(edgeId);
-        Coord coord;
+        Coord coord, outShape;
+        for(int d = 0; d < DIM; ++d) {
+            outShape[d] = out.shape(d);
+        }
+
         for(size_t ii = 0; ii < coords.size() / DIM; ++ii) {
             for(size_t d = 0; d < DIM; ++d) {
                 coord[d] = static_cast<int64_t>( floor(float(coords[DIM * ii + d]) / 2) );
             }
             if( !offset.empty() ) {
-                for(int d = 0; d < DIM; ++d) {
-                    coord[d] -= offset[d];
+                if(!cropCoordinate(coord, offset, outShape)) {
+                    continue;
                 }
             }
             out(coord.asStdArray()) = edgeVal;
@@ -146,14 +165,18 @@ namespace graph {
     inline void RagCoordinates<DIM, RAG_TYPE>::writeUpperCoordinates(const int64_t edgeId, const T edgeVal, marray::View<T> & out, const std::vector<int64_t> & offset) const {
 
         const auto & coords = edgeCoordinates(edgeId);
-        Coord coord;
+        Coord coord, outShape;
+        for(int d = 0; d < DIM; ++d) {
+            outShape[d] = out.shape(d);
+        }
+
         for(size_t ii = 0; ii < coords.size() / DIM; ++ii) {
             for(size_t d = 0; d < DIM; ++d) {
                 coord[d] = static_cast<int64_t>( ceil(float(coords[DIM * ii + d]) / 2) );
             }
             if( !offset.empty() ) {
-                for(int d = 0; d < DIM; ++d) {
-                    coord[d] -= offset[d];
+                if(!cropCoordinate(coord, offset, outShape)) {
+                    continue;
                 }
             }
             out(coord.asStdArray()) = edgeVal;
@@ -286,10 +309,8 @@ namespace graph {
         // keep only the edge values that are in our subvolume
 
         std::vector<int64_t> subEdges;
-        std::cout << "Before subgraph" << std::endl;
         const auto subGraph = rag_.extractSubgraphFromRoi(begin, end, subEdges);
 
-        std::cout << "Have subgraph, going to loop" << std::endl;
         nifty::parallel::ThreadPool threadpool(nThreads);
         parallel::parallel_foreach(threadpool, subEdges.size(), [&](const int tid, const int subEdgeId) {
 
@@ -313,7 +334,6 @@ namespace graph {
             }
 
         });
-        std::cout << "Have looped" << std::endl;
 
     }
 

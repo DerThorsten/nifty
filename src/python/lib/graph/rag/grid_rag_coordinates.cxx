@@ -83,7 +83,6 @@ namespace graph{
                 shape[d] = end[d] - begin[d];
             marray::PyView<uint32_t,DIM> out(shape.begin(), shape.end());
             self.edgesToSubVolume(edgeValues, out, begin, end, edgeDirection, ignoreValue, numberOfThreads);
-            std::cout << "Have out" << std::endl;
             return out;
         }, py::arg("edgeValues"), py::arg("begin"), py::arg("end"), py::arg("edgeDirection") = 0, py::arg("ignoreValue") = 0, py::arg("numberOfThreads") = -1)
         .def("storageLengths", &CoordinatesType::storageLengths)

@@ -135,7 +135,6 @@ public:
         // extract the inner uv ids
         // TODO parallelize
         std::set<std::pair<int64_t, int64_t>> innerEdges;
-        std::cout << "Before subgraph loop" << std::endl;
         tools::forEachCoordinate(subShape, [&](const ShapeType & coord){
             const auto lU = subLabels(coord.asStdArray());
             for(int d = 0; d < DIM; ++d) {
@@ -148,7 +147,6 @@ public:
                 }
             }
         });
-        std::cout << "After subgraph loop" << std::endl;
 
         // convert the inner uv ids to global edge ids and construct new graph in local coordinates
         innerEdgesOut.reserve(innerEdges.size());
@@ -159,8 +157,6 @@ public:
 
             subGraph.insertEdge(globalToLocalNodes[lU], globalToLocalNodes[lV]);
         }
-        std::cout << "Here" << std::endl;
-
         return subGraph;
     }
 
