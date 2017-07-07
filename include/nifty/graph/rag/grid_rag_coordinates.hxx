@@ -111,6 +111,10 @@ namespace graph {
                     coordDn[d] -= offset[d];
                 }
             }
+            for(int d = 0; d < DIM; ++d) {
+                NIFTY_CHECK_OP(coordUp[d], <, out.shape(d), "Coordinate out of range");
+                NIFTY_CHECK_OP(coordDn[d], <, out.shape(d), "Coordinate out of range");
+            }
             out(coordUp.asStdArray()) = edgeVal;
             out(coordDn.asStdArray()) = edgeVal;
         }
