@@ -169,9 +169,7 @@ namespace tools{
             return BlockType(beginCoord, endCoord);
         }
 
-        // FIXME FIXME FIXME
-        // FIXME FIXME FIXME
-        // FIXME FIXME FIXME
+
         BlockWithHaloType getBlockWithHalo(
             const uint64_t blockIndex,
             const VectorType & haloBegin,
@@ -259,6 +257,69 @@ namespace tools{
                     idsOut.push_back(blockId);
                 }
             }
+        }
+
+
+        // return the overlaps (in local block coordinates for two specified blocks)
+        bool getLocalOverlaps(
+                const uint64_t blockAId,
+                const uint64_t blockBId,
+                const VectorType & blockHalo,
+                VectorType & overlapBeginA,
+                VectorType & overlapEndA,
+                VectorType & overlapBeginB,
+                VectorType & overlapEndB
+        ) const {
+
+            // lambda to check whether two values are in range
+            auto valueInRange = [](T value, T min, T max) {
+                return (value >= min) && (value <= max);
+            };
+
+            // determine whether the query block starts inside block
+            auto isLeft = [&](const BlockType & queryBlock, const BlockType & block) {
+                std::vector<bool> left(DIM, false);
+                const auto & queryBegin = queryBlock.begin();
+                const auto & begin = block.begin();
+                const auto & end   = block.end();
+                for(int d = 0; d < DIM; ++d) {
+                    left[d] = valueInRange(queryBegin[d], begin[d], end[d]);
+                }
+                return std::all_of(left.begin(), left.end(), [](bool i){return i;});
+            };
+
+            const auto blockA = getBlockWithHalo(blockAId, blockHalo).outerBlock();
+            const auto blockB = getBlockWithHalo(blockBId, blockHalo).outerBlock();
+
+            auto aIsLeft = isLeft(blockA, blockB);
+            auto bIsLeft = isLeft(blockB, blockA);
+
+            const auto & beginA = blockA.begin();
+            const auto & beginB = blockB.begin();
+
+            // check which one is the left block and set the global overlap accordingly
+            VectorType globalOverlapBegin, globalOverlapEnd;
+            if( aIsLeft && (!bIsLeft) ) {
+                globalOverlapBegin = beginB;
+                globalOverlapEnd   = blockB.end();
+            }
+            else if( bIsLeft && (!aIsLeft) ) {
+                globalOverlapBegin = beginB;
+                globalOverlapEnd   = blockA.end();
+            }
+            else { // otherwise return that no overlap was found
+                return false;
+            }
+
+            for(int d = 0; d < DIM; ++d) {
+                overlapBeginA[d] = globalOverlapBegin[d] - beginA[d];
+                overlapEndA[d] = globalOverlapEnd[d] - beginA[d];
+
+                overlapBeginB[d] = globalOverlapBegin[d] - beginB[d];
+                overlapEndB[d] = globalOverlapEnd[d] - beginB[d];
+            }
+
+            return true;
         }
 
 
