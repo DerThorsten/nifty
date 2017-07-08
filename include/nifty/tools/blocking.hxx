@@ -187,6 +187,40 @@ namespace tools{
         }
 
 
+        // get all block ids that are enclosed in the roi
+        void getBlockIdsInBoundingBox(
+                const VectorType & roiBegin,
+                const VectorType & roiEnd,
+                const VectorType & blockHalo,
+                std::vector<uint64_t> & idsOut) const {
+
+            // TODO assert that the roi is in global roi
+
+            idsOut.clear();
+
+            for(size_t blockId = 0; blockId < numberOfBlocks(); ++blockId) {
+
+                // get coordinates of the current bock
+                const auto & block = getBlockWithHalo(blockId, blockHalo).outerBlock();
+                const auto & begin = block.begin();
+                const auto & end   = block.end();
+
+                // check for each dimension whether the current block has overlap with the roi
+                std::vector<bool> enclosedInDim(DIM, false);
+                for( auto d = 0; d < DIM; ++d) {
+                    if(begin[d] >= roiBegin[d] && end[d] <= roiEnd[d]) {
+                        enclosedInDim[d] = true;
+                    }
+                }
+
+                // if all dimentsions have overlap, push back the block id
+                if(std::all_of(enclosedInDim.begin(), enclosedInDim.end(), [](bool i){return i;})) {
+                    idsOut.push_back(blockId);
+                }
+            }
+        }
+
+
         // get all block ids taht have overlap with the roi
         void getBlockIdsOverlappingBoundingBox(
                 const VectorType & roiBegin,
@@ -226,39 +260,6 @@ namespace tools{
         }
 
 
-        // get all block ids that are enclosed in the roi
-        void getBlockIdsInBoundingBox(
-                const VectorType & roiBegin,
-                const VectorType & roiEnd,
-                const VectorType & blockHalo,
-                std::vector<uint64_t> & idsOut) const {
-
-            // TODO assert that the roi is in global roi
-
-            idsOut.clear();
-
-            for(size_t blockId = 0; blockId < numberOfBlocks(); ++blockId) {
-
-                // get coordinates of the current bock
-                const auto & block = getBlockWithHalo(blockId, blockHalo).outerBlock();
-                const auto & begin = block.begin();
-                const auto & end   = block.end();
-
-                // check for each dimension whether the current block has overlap with the roi
-                std::vector<bool> enclosedInDim(DIM, false);
-                for( auto d = 0; d < DIM; ++d) {
-                    if(begin[d] >= roiBegin[d] && end[d] <= roiEnd[d]) {
-                        enclosedInDim[d] = true;
-                    }
-                }
-
-                // if all dimentsions have overlap, push back the block id
-                if(std::all_of(enclosedInDim.begin(), enclosedInDim.end(), [](bool i){return i;})) {
-                    idsOut.push_back(blockId);
-                }
-            }
-        }
-
 
         // return the overlaps (in local block coordinates for two specified blocks)
         bool getLocalOverlaps(
@@ -276,6 +277,7 @@ namespace tools{
                 return (value >= min) && (value <= max);
             };
 
+            // TODO use std::bitset instead ?
             // determine whether the query block starts inside block
             auto isLeft = [&](const BlockType & queryBlock, const BlockType & block) {
                 std::vector<bool> left(DIM, false);
@@ -285,7 +287,7 @@ namespace tools{
                 for(int d = 0; d < DIM; ++d) {
                     left[d] = valueInRange(queryBegin[d], begin[d], end[d]);
                 }
-                return std::all_of(left.begin(), left.end(), [](bool i){return i;});
+                return left;
             };
 
             const auto blockA = getBlockWithHalo(blockAId, blockHalo).outerBlock();
@@ -294,18 +296,33 @@ namespace tools{
             auto aIsLeft = isLeft(blockA, blockB);
             auto bIsLeft = isLeft(blockB, blockA);
 
+            std::vector<bool> overlaps(DIM);
+            for(int d = 0; d < DIM; ++d) {
+                overlaps[d] = aIsLeft[d] || bIsLeft[d];
+            }
+
             const auto & beginA = blockA.begin();
             const auto & beginB = blockB.begin();
+            const auto & endA = blockA.end();
+            const auto & endB = blockB.end();
 
-            // check which one is the left block and set the global overlap accordingly
             VectorType globalOverlapBegin, globalOverlapEnd;
-            if( aIsLeft && (!bIsLeft) ) {
-                globalOverlapBegin = beginB;
-                globalOverlapEnd   = blockB.end();
-            }
-            else if( bIsLeft && (!aIsLeft) ) {
-                globalOverlapBegin = beginB;
-                globalOverlapEnd   = blockA.end();
+            // check if the blocks are overlapping
+            if( std::all_of( overlaps.begin(), overlaps.end(), [](bool i){return i;}) ) {
+
+                // set the appropriate begin and end for each dimension
+                for(int d = 0; d < DIM; ++d) {
+                    // a is left in this dimension -> we set the beginning to begin(A) end the end to end(B)
+                    if(aIsLeft[d]) {
+                        globalOverlapBegin[d] = beginA[d];
+                        globalOverlapEnd[d] = endB[d];
+                    }
+                    else { // b is left in this dimension, or a and b are equal -> we set the beginning to begin(B) and the end to end(A)
+                        globalOverlapBegin[d] = beginB[d];
+                        globalOverlapEnd[d] = endA[d];
+                    }
+                }
+            
             }
             else { // otherwise return that no overlap was found
                 return false;
