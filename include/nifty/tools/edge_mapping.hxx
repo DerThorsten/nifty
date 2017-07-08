@@ -50,6 +50,8 @@ private:
 template<class EDGE_TYPE, class NODE_TYPE>
 void EdgeMapping<EDGE_TYPE, NODE_TYPE>::initializeMapping(const marray::View<EdgeType> & uvIds, const std::vector<NodeType> & oldToNewNodes)
 {
+
+    /*
     NodeType uNew, vNew;
     UvType uvNew;
     std::map<UvType, EdgeType> indexMap;
@@ -74,15 +76,16 @@ void EdgeMapping<EDGE_TYPE, NODE_TYPE>::initializeMapping(const marray::View<Edg
 
         oldToNewEdges_[i] = e.first->second;
     }
+    */
 
     // FIXME there is some bug in parallelisation
-    /*
     typedef std::vector< std::pair<UvType, EdgeType> > newUvToOldEdgeVector;
     std::vector<newUvToOldEdgeVector> threadVectors(threadpool_.nThreads());
 
     // find new uv ids in parallel
     parallel::parallel_foreach(threadpool_, uvIds.shape(0), [&](const int tId, const EdgeType edgeId){
-        NodeType uNew, vNew = oldToNewNodes[uvIds(edgeId, 0)], oldToNewNodes[uvIds(edgeId, 1)];
+        NodeType uNew = oldToNewNodes[uvIds(edgeId, 0)];
+        NodeType vNew = oldToNewNodes[uvIds(edgeId, 1)];
 
         if(uNew == vNew) {
             //NOTE this is threadsafe, because we are looping over edgeId in parralel
@@ -98,32 +101,19 @@ void EdgeMapping<EDGE_TYPE, NODE_TYPE>::initializeMapping(const marray::View<Edg
     });
 
     // insert the uv-ids into newUvIds
-    // surprisingly, initial benchmarks have shown that the 'find' approach 
-    // is fastest for keeping the newUvIds unique.
-    // TODO benchmark this again properly
+
+    // TODO via std::unique
+
+    //// via set TODO unordered
+    //std::set<UvType> uvNewTmp;
     //for(size_t t = 0; t < threadpool_.nThreads(); ++t) {
     //    const auto & thisVector = threadVectors[t];
     //    for(const auto & elem : thisVector) {
-
-    //        if(std::find(newUvIds_.begin(), newUvIds_.end(), elem.first) == newUvIds_.end()) {
-    //            newUvIds_.push_back(elem.first);
-    //        }
+    //        uvNewTmp.insert(elem.first);
     //    }
-
     //}
-    //std::sort(newUvIds_.begin(), newUvIds_.end());
-
-    // via set TODO unordered
-    std::set<UvType> uvNewTmp;
-    for(size_t t = 0; t < threadpool_.nThreads(); ++t) {
-        const auto & thisVector = threadVectors[t];
-        for(const auto & elem : thisVector) {
-            uvNewTmp.insert(elem.first);
-        }
-    }
-    newUvIds_.resize(uvNewTmp.size());
-    std::copy(uvNewTmp.begin(), uvNewTmp.end(), newUvIds_.begin());
-
+    //newUvIds_.resize(uvNewTmp.size());
+    //std::copy(uvNewTmp.begin(), uvNewTmp.end(), newUvIds_.begin());
 
     // construct a lut for the new uv-ids
     std::map<UvType, EdgeType> lut;
@@ -143,7 +133,6 @@ void EdgeMapping<EDGE_TYPE, NODE_TYPE>::initializeMapping(const marray::View<Edg
         }
 
     });
-    */
 
 }
 
