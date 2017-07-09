@@ -78,9 +78,10 @@ void EdgeMapping<EDGE_TYPE, NODE_TYPE>::initializeMapping(const marray::View<Edg
     }
     */
 
-    // FIXME there is some bug in parallelisation
     typedef std::vector< std::pair<UvType, EdgeType> > newUvToOldEdgeVector;
     std::vector<newUvToOldEdgeVector> threadVectors(threadpool_.nThreads());
+    // TODO try unordered set, but need custom hash
+    std::vector<std::set<UvType>> threadSets(threadpool_.nThreads());
 
     // find new uv ids in parallel
     parallel::parallel_foreach(threadpool_, uvIds.shape(0), [&](const int tId, const EdgeType edgeId){
@@ -93,29 +94,32 @@ void EdgeMapping<EDGE_TYPE, NODE_TYPE>::initializeMapping(const marray::View<Edg
             return;
         }
 
-        // perform map insertion with hint
+        //
         auto & thisVector = threadVectors[tId];
+        auto & thisSet = threadSet[tId];
         auto uvNew = std::make_pair(std::min(uNew, vNew), std::max(uNew, vNew));
         thisVector.emplace_back( std::make_pair(uvNew, edgeId) );
+        thisSet.insert(uvNew);
 
     });
 
     // insert the uv-ids into newUvIds
 
+    // TODO benchmark
+
     // TODO via std::unique
 
     //// via set TODO unordered
-    //std::set<UvType> uvNewTmp;
-    //for(size_t t = 0; t < threadpool_.nThreads(); ++t) {
-    //    const auto & thisVector = threadVectors[t];
-    //    for(const auto & elem : thisVector) {
-    //        uvNewTmp.insert(elem.first);
-    //    }
-    //}
-    //newUvIds_.resize(uvNewTmp.size());
-    //std::copy(uvNewTmp.begin(), uvNewTmp.end(), newUvIds_.begin());
+    std::set<UvType> uvNewTmp;
+    for(size_t t = 0; t < threadpool_.nThreads(); ++t) {
+        const auto & thisSet = threadSets[t];
+        uvNewTmp.insert(thisSet.begin(), thisSet.end());
+    }
+    newUvIds_.resize(uvNewTmp.size());
+    std::copy(uvNewTmp.begin(), uvNewTmp.end(), newUvIds_.begin());
 
     // construct a lut for the new uv-ids
+    // TODO hashmap ?!
     std::map<UvType, EdgeType> lut;
     for(EdgeType newEdgeId = 0; newEdgeId < newUvIds_.size(); ++newEdgeId) {
         lut[newUvIds_[newEdgeId]] = newEdgeId;
