@@ -45,7 +45,10 @@ def ragCoordinates(
     rag,
     numberOfThreads=-1
 ):
-    return coordinatesFactoryExplicit3d(rag, numberOfThreads=numberOfThreads)
+    if len(rag.shape) == 2:
+        return coordinatesFactoryExplicit2d(rag, numberOfThreads=numberOfThreads)
+    else:
+        return coordinatesFactoryExplicit3d(rag, numberOfThreads=numberOfThreads)
 
 
 def ragCoordinatesStacked(

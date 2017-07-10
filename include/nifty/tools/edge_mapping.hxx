@@ -96,7 +96,7 @@ void EdgeMapping<EDGE_TYPE, NODE_TYPE>::initializeMapping(const marray::View<Edg
 
         //
         auto & thisVector = threadVectors[tId];
-        auto & thisSet = threadSet[tId];
+        auto & thisSet = threadSets[tId];
         auto uvNew = std::make_pair(std::min(uNew, vNew), std::max(uNew, vNew));
         thisVector.emplace_back( std::make_pair(uvNew, edgeId) );
         thisSet.insert(uvNew);

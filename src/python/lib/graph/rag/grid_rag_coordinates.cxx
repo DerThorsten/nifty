@@ -104,7 +104,9 @@ namespace graph{
     }
 
     void exportGridRagCoordinates(py::module & module) {
+        typedef ExplicitLabelsGridRag<2, uint32_t> ExplicitLabelsGridRag2D;
         typedef ExplicitLabelsGridRag<3, uint32_t> ExplicitLabelsGridRag3D;
+        exportGridRagCoordinatesT<2, ExplicitLabelsGridRag2D>(module, "Explicit2d");
         exportGridRagCoordinatesT<3, ExplicitLabelsGridRag3D>(module, "Explicit3d");
 
         // hdf5
