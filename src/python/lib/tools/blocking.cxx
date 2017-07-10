@@ -103,6 +103,21 @@ namespace tools{
                 return out;
             })
 
+            .def("getLocalOverlaps", [](
+                const BlockingType & self,
+                const size_t indexA,
+                const size_t indexB,
+                const VectorType blockHalo) {
+
+                VectorType blockABegin, blockBBegin, blockAEnd, blockBEnd;
+                bool ret;
+                {
+                    py::gil_scoped_release allowThreads;
+                    ret = self.getLocalOverlaps(indexA, indexB, blockHalo, blockABegin, blockAEnd, blockBBegin, blockBEnd);
+                }
+                return std::make_tuple(ret, blockABegin, blockAEnd, blockBBegin, blockBEnd);
+            })
+
             .def("getBlockWithHalo", [](
                     const BlockingType & self,
                     const size_t blockIndex,

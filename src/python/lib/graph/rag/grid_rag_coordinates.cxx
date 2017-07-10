@@ -4,13 +4,10 @@
 
 #include "nifty/python/converter.hxx"
 
-// no hdf5 support for now
-//#ifdef WITH_HDF5
-//#include "nifty/hdf5/hdf5_array.hxx"
-//#include "nifty/graph/rag/grid_rag_hdf5.hxx"
-//#include "nifty/graph/rag/grid_rag_stacked_2d_hdf5.hxx"
-//#include "nifty/graph/rag/grid_rag_labels_hdf5.hxx"
-//#endif
+#ifdef WITH_HDF5
+#include "nifty/graph/rag/grid_rag_hdf5.hxx"
+#include "nifty/graph/rag/grid_rag_stacked_2d_hdf5.hxx"
+#endif
 
 #include "nifty/graph/rag/grid_rag.hxx"
 #include "nifty/graph/rag/grid_rag_coordinates.hxx"
@@ -22,10 +19,10 @@ namespace graph{
 
     using namespace py;
 
-    template<size_t DIM, class LABELS_PROXY>
+    template<size_t DIM, class RAG_TYPE>
     void exportGridRagCoordinatesT(py::module & module, const std::string & name) {
 
-        typedef RagCoordinates<DIM, LABELS_PROXY> CoordinatesType;
+        typedef RagCoordinates<DIM, RAG_TYPE> CoordinatesType;
         typedef typename CoordinatesType::RagType RagType;
         typedef typename CoordinatesType::Coord Coord;
 
@@ -72,6 +69,22 @@ namespace graph{
             self.edgesToVolume(edgeValues, out, edgeDirection, ignoreValue, numberOfThreads);
             return out;
         }, py::arg("edgeValues"), py::arg("edgeDirection") = 0, py::arg("ignoreValue") = 0, py::arg("numberOfThreads") = -1)
+        .def("edgesToSubVolume", [](
+                const CoordinatesType & self,
+                const std::vector<uint32_t> & edgeValues,
+                const std::vector<int64_t> & begin,
+                const std::vector<int64_t> & end,
+                const int edgeDirection,
+                const uint32_t ignoreValue,
+                const int numberOfThreads) {
+
+            std::vector<int64_t> shape(DIM);
+            for(int d = 0; d < DIM; ++d)
+                shape[d] = end[d] - begin[d];
+            marray::PyView<uint32_t,DIM> out(shape.begin(), shape.end());
+            self.edgesToSubVolume(edgeValues, out, begin, end, edgeDirection, ignoreValue, numberOfThreads);
+            return out;
+        }, py::arg("edgeValues"), py::arg("begin"), py::arg("end"), py::arg("edgeDirection") = 0, py::arg("ignoreValue") = 0, py::arg("numberOfThreads") = -1)
         .def("storageLengths", &CoordinatesType::storageLengths)
         ;
 
@@ -91,8 +104,19 @@ namespace graph{
     }
 
     void exportGridRagCoordinates(py::module & module) {
-        typedef ExplicitLabels<3,uint32_t> LabelsType;
-        exportGridRagCoordinatesT<3,LabelsType>(module, "Explicit3d");
+        typedef ExplicitLabelsGridRag<2, uint32_t> ExplicitLabelsGridRag2D;
+        typedef ExplicitLabelsGridRag<3, uint32_t> ExplicitLabelsGridRag3D;
+        exportGridRagCoordinatesT<2, ExplicitLabelsGridRag2D>(module, "Explicit2d");
+        exportGridRagCoordinatesT<3, ExplicitLabelsGridRag3D>(module, "Explicit3d");
+
+        // hdf5
+        #ifdef WITH_HDF5
+        {
+            typedef Hdf5Labels<3,uint32_t> LabelsUInt32;
+            typedef GridRagStacked2D<LabelsUInt32> StackedRagUInt32;
+            exportGridRagCoordinatesT<3, StackedRagUInt32>(module, "StackedRag3d");
+        }
+        #endif
     }
 
 }

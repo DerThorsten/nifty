@@ -17,7 +17,12 @@
 #include "nifty/graph/undirected_list_graph.hxx"
 #include "nifty/parallel/threadpool.hxx"
 #include "nifty/tools/timer.hxx"
+#include "nifty/tools/array_tools.hxx"
 //#include "nifty/graph/detail/contiguous_indices.hxx"
+
+#ifdef WITH_HDF5
+#include "nifty/graph/rag/grid_rag_labels_hdf5.hxx"
+#endif
 
 
 namespace nifty{
@@ -96,6 +101,65 @@ public:
     const ShapeType & shape()const{
         return labelsProxy_.shape();
     }
+
+    UndirectedGraph<> extractSubgraphFromRoi(
+        const ShapeType & begin, const ShapeType & end,
+        std::vector<int64_t> & innerEdgesOut
+        ) const
+    {
+        typedef typename LABELS_PROXY::LabelType LabelType;
+        innerEdgesOut.clear();
+
+        ShapeType subShape;
+        for(int d = 0; d < DIM; ++d)
+            subShape[d] = end[d] - begin[d];
+        marray::Marray<LabelType> subLabels(subShape.begin(), subShape.end());
+
+        tools::readSubarray(labelsProxy_, begin, end, subLabels);
+
+        std::vector<LabelType> uniqueNodes;
+        tools::uniques(subLabels, uniqueNodes);
+
+        std::map<LabelType, LabelType> globalToLocalNodes;
+        for(int ii = 0; ii < uniqueNodes.size(); ++ii) {
+            globalToLocalNodes[uniqueNodes[ii]] = ii;
+        }
+        UndirectedGraph<> subGraph(uniqueNodes.size());
+
+        auto makeCoord2 = [](const ShapeType & coord, const int d) {
+            ShapeType coord2 = coord;
+            coord2[d] += 1;
+            return coord2;
+        };
+
+        // extract the inner uv ids
+        // TODO parallelize
+        std::set<std::pair<int64_t, int64_t>> innerEdges;
+        tools::forEachCoordinate(subShape, [&](const ShapeType & coord){
+            const auto lU = subLabels(coord.asStdArray());
+            for(int d = 0; d < DIM; ++d) {
+                if(coord[d] < subShape[d] - 1) {
+                    auto coordV = makeCoord2(coord, d);
+                    const auto lV = subLabels(coordV.asStdArray());
+                    if(lU != lV) {
+                        innerEdges.emplace( std::make_pair(std::min(lU, lV), std::max(lU, lV)) );
+                    }
+                }
+            }
+        });
+
+        // convert the inner uv ids to global edge ids and construct new graph in local coordinates
+        innerEdgesOut.reserve(innerEdges.size());
+        for(auto it = innerEdges.begin(); it != innerEdges.end(); ++it) {
+            const auto lU = it->first;
+            const auto lV = it->second;
+            innerEdgesOut.push_back(this->findEdge(lU, lV));
+
+            subGraph.insertEdge(globalToLocalNodes[lU], globalToLocalNodes[lV]);
+        }
+        return subGraph;
+    }
+
 protected:
     GridRag(const LabelsProxy & labelsProxy, const Settings & settings, const DontComputeRag)
     :   settings_(settings),

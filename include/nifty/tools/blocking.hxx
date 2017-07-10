@@ -169,9 +169,7 @@ namespace tools{
             return BlockType(beginCoord, endCoord);
         }
 
-        // FIXME FIXME FIXME
-        // FIXME FIXME FIXME
-        // FIXME FIXME FIXME
+
         BlockWithHaloType getBlockWithHalo(
             const uint64_t blockIndex,
             const VectorType & haloBegin,
@@ -186,6 +184,40 @@ namespace tools{
                 outerEnd[d]   = std::min(innerBlock.end()[d]   + haloEnd[d], roiEnd_[d]);
             }
             return BlockWithHaloType(BlockType(outerBegin, outerEnd), innerBlock);
+        }
+
+
+        // get all block ids that are enclosed in the roi
+        void getBlockIdsInBoundingBox(
+                const VectorType & roiBegin,
+                const VectorType & roiEnd,
+                const VectorType & blockHalo,
+                std::vector<uint64_t> & idsOut) const {
+
+            // TODO assert that the roi is in global roi
+
+            idsOut.clear();
+
+            for(size_t blockId = 0; blockId < numberOfBlocks(); ++blockId) {
+
+                // get coordinates of the current bock
+                const auto & block = getBlockWithHalo(blockId, blockHalo).outerBlock();
+                const auto & begin = block.begin();
+                const auto & end   = block.end();
+
+                // check for each dimension whether the current block has overlap with the roi
+                std::vector<bool> enclosedInDim(DIM, false);
+                for( auto d = 0; d < DIM; ++d) {
+                    if(begin[d] >= roiBegin[d] && end[d] <= roiEnd[d]) {
+                        enclosedInDim[d] = true;
+                    }
+                }
+
+                // if all dimentsions have overlap, push back the block id
+                if(std::all_of(enclosedInDim.begin(), enclosedInDim.end(), [](bool i){return i;})) {
+                    idsOut.push_back(blockId);
+                }
+            }
         }
 
 
@@ -228,37 +260,83 @@ namespace tools{
         }
 
 
-        // get all block ids that are enclosed in the roi
-        void getBlockIdsInBoundingBox(
-                const VectorType & roiBegin,
-                const VectorType & roiEnd,
+
+        // return the overlaps (in local block coordinates for two specified blocks)
+        bool getLocalOverlaps(
+                const uint64_t blockAId,
+                const uint64_t blockBId,
                 const VectorType & blockHalo,
-                std::vector<uint64_t> & idsOut) const {
+                VectorType & overlapBeginA,
+                VectorType & overlapEndA,
+                VectorType & overlapBeginB,
+                VectorType & overlapEndB
+        ) const {
 
-            // TODO assert that the roi is in global roi
+            // lambda to check whether two values are in range
+            auto valueInRange = [](T value, T min, T max) {
+                return (value >= min) && (value <= max);
+            };
 
-            idsOut.clear();
-
-            for(size_t blockId = 0; blockId < numberOfBlocks(); ++blockId) {
-
-                // get coordinates of the current bock
-                const auto & block = getBlockWithHalo(blockId, blockHalo).outerBlock();
+            // TODO use std::bitset instead ?
+            // determine whether the query block starts inside block
+            auto isLeft = [&](const BlockType & queryBlock, const BlockType & block) {
+                std::vector<bool> left(DIM, false);
+                const auto & queryBegin = queryBlock.begin();
                 const auto & begin = block.begin();
                 const auto & end   = block.end();
+                for(int d = 0; d < DIM; ++d) {
+                    left[d] = valueInRange(queryBegin[d], begin[d], end[d]);
+                }
+                return left;
+            };
 
-                // check for each dimension whether the current block has overlap with the roi
-                std::vector<bool> enclosedInDim(DIM, false);
-                for( auto d = 0; d < DIM; ++d) {
-                    if(begin[d] >= roiBegin[d] && end[d] <= roiEnd[d]) {
-                        enclosedInDim[d] = true;
+            const auto blockA = getBlockWithHalo(blockAId, blockHalo).outerBlock();
+            const auto blockB = getBlockWithHalo(blockBId, blockHalo).outerBlock();
+
+            auto aIsLeft = isLeft(blockA, blockB);
+            auto bIsLeft = isLeft(blockB, blockA);
+
+            std::vector<bool> overlaps(DIM);
+            for(int d = 0; d < DIM; ++d) {
+                overlaps[d] = aIsLeft[d] || bIsLeft[d];
+            }
+
+            const auto & beginA = blockA.begin();
+            const auto & beginB = blockB.begin();
+            const auto & endA = blockA.end();
+            const auto & endB = blockB.end();
+
+            VectorType globalOverlapBegin, globalOverlapEnd;
+            // check if the blocks are overlapping
+            if( std::all_of( overlaps.begin(), overlaps.end(), [](bool i){return i;}) ) {
+
+                // set the appropriate begin and end for each dimension
+                for(int d = 0; d < DIM; ++d) {
+                    // a is left in this dimension -> we set the beginning to begin(A) end the end to end(B)
+                    if(aIsLeft[d]) {
+                        globalOverlapBegin[d] = beginA[d];
+                        globalOverlapEnd[d] = endB[d];
+                    }
+                    else { // b is left in this dimension, or a and b are equal -> we set the beginning to begin(B) and the end to end(A)
+                        globalOverlapBegin[d] = beginB[d];
+                        globalOverlapEnd[d] = endA[d];
                     }
                 }
-
-                // if all dimentsions have overlap, push back the block id
-                if(std::all_of(enclosedInDim.begin(), enclosedInDim.end(), [](bool i){return i;})) {
-                    idsOut.push_back(blockId);
-                }
+            
             }
+            else { // otherwise return that no overlap was found
+                return false;
+            }
+
+            for(int d = 0; d < DIM; ++d) {
+                overlapBeginA[d] = globalOverlapBegin[d] - beginA[d];
+                overlapEndA[d] = globalOverlapEnd[d] - beginA[d];
+
+                overlapBeginB[d] = globalOverlapBegin[d] - beginB[d];
+                overlapEndB[d] = globalOverlapEnd[d] - beginB[d];
+            }
+
+            return true;
         }
 
 

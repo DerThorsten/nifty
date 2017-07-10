@@ -45,8 +45,17 @@ def ragCoordinates(
     rag,
     numberOfThreads=-1
 ):
-    # TODO different options for dim and labels-proxy
-    return coordinatesFactoryExplicit3d(rag, numberOfThreads=numberOfThreads)
+    if len(rag.shape) == 2:
+        return coordinatesFactoryExplicit2d(rag, numberOfThreads=numberOfThreads)
+    else:
+        return coordinatesFactoryExplicit3d(rag, numberOfThreads=numberOfThreads)
+
+
+def ragCoordinatesStacked(
+    rag,
+    numberOfThreads=-1
+):
+    return coordinatesFactoryStackedRag3d(rag, numberOfThreads=numberOfThreads)
 
 
 if Configuration.WITH_HDF5:
