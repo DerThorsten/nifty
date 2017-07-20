@@ -70,7 +70,7 @@ namespace minstcut{
         typedef typename GraphType:: template NodeMap<uint64_t> NodeLabelsType;
         MinstcutObjective(const GraphType & g )
         :   graph_(g),
-            weights_(g, 0.0)
+            weights_(g, 0.0),unaries_(g, {0.0 , 0.0})   
         {
 
         }
@@ -88,6 +88,12 @@ namespace minstcut{
         const UnaryMap & unaries() const{
             return unaries_;
         }
+
+        UnaryMap & unaries() {
+            return unaries_;
+        }
+
+
     private:
         const GraphType & graph_;
         WeightsMap weights_;
