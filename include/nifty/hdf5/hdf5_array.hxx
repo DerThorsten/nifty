@@ -39,6 +39,7 @@ namespace hdf5{
             const auto dim = std::distance(shapeBegin, shapeEnd);
 
             shape_.resize(dim);
+            effectiveShape_.resize(dim);
             chunkShape_.resize(dim);
 
             std::vector<hsize_t> shape(dim);
@@ -49,10 +50,14 @@ namespace hdf5{
                 const auto cs = *chunkShapeBegin;
                 shape[d] = s;
                 shape_[d] = s;
+                effectiveShape_[d] = s;
                 chunkShape[d] = cs;
                 chunkShape_[d] = cs;
                 ++shapeBegin;
                 ++chunkShapeBegin;
+
+                offsetFront_.push_back(0);
+                offsetBack_.push_back(0);
             }
 
             // chunk properties
@@ -127,17 +132,63 @@ namespace hdf5{
         uint64_t dimension()const{
             return shape_.size();
         }
+
         uint64_t shape(const std::size_t d)const{
-            return shape_[d];
+            return effectiveShape_[d];
         }
+
         const std::vector<uint64_t> & shape()const{
-            return shape_;
+            return effectiveShape_;
         }
+
         uint64_t chunkShape(const std::size_t d)const{
             return chunkShape_[d];
         }
+
         const std::vector<uint64_t> & chunkShape()const{
             return chunkShape_;
+        }
+
+        void resetOffsets() {
+            for(size_t d = 0; d < dimension(); ++d) {
+               effectiveShape_[d] = shape_[d];
+               offsetFront_[d] = 0;
+               offsetBack_[d] = 0;
+            }
+        }
+
+        template<class OFFSET_ITERATOR>
+        bool setOffsetFront(OFFSET_ITERATOR offsetIter) {
+            for(size_t d = 0; d < dimension(); ++d) {
+               offsetFront_[d] = *offsetIter;
+               effectiveShape_[d] = shape_[d] - *offsetIter - offsetBack_[d];
+               ++offsetIter;
+            }
+            for(size_t d = 0; d < dimension(); ++d) {
+                if(effectiveShape_[d] == 0 || effectiveShape_[d] > shape_[d]) {  // the shapes are uint, so negative shapes get mapped to high integers
+                    std::cout << "Invalid offset setting, resetting all offsets to 0" << std::endl;
+                    resetOffsets();
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        template<class OFFSET_ITERATOR>
+        bool setOffsetBack(OFFSET_ITERATOR offsetIter) {
+            for(size_t d = 0; d < dimension(); ++d) {
+               offsetBack_[d] = *offsetIter;
+               effectiveShape_[d] = shape_[d] - *offsetIter - offsetFront_[d];
+               ++offsetIter;
+            }
+            for(size_t d = 0; d < dimension(); ++d) {
+                if(effectiveShape_[d] == 0 || effectiveShape_[d] > shape_[d]) {
+                    std::cout << "Invalid offset setting, resetting all offsets to 0" << std::endl;
+                    resetOffsets();
+                    return false;
+                }
+            }
+            return true;
         }
 
         bool isChunked()const{
@@ -153,7 +204,10 @@ namespace hdf5{
             NIFTY_CHECK(out.coordinateOrder() == marray::FirstMajorOrder,
                 "currently only views with last major order are supported"
             );
-            this->loadHyperslab(roiBeginIter, roiBeginIter+out.dimension(), out.shapeBegin(), out);
+            std::vector<uint64_t> roiTmp(roiBeginIter, roiBeginIter+out.dimension());
+            for(size_t d = 0; d < out.dimension(); ++d)
+                roiTmp[d] += offsetFront_[d];
+            this->loadHyperslab(roiTmp.begin(), roiTmp.end(), out.shapeBegin(), out);
         }
 
         template<class ITER>
@@ -175,7 +229,10 @@ namespace hdf5{
             NIFTY_CHECK(in.coordinateOrder() == marray::FirstMajorOrder,
                 "currently only views with last major order are supported"
             );
-            this->saveHyperslab(roiBeginIter, roiBeginIter+in.dimension(), in.shapeBegin(), in);
+            std::vector<uint64_t> roiTmp(roiBeginIter, roiBeginIter+in.dimension());
+            for(size_t d = 0; d < in.dimension(); ++d)
+                roiTmp[d] += offsetFront_[d];
+            this->saveHyperslab(roiTmp.begin(), roiTmp.end(), in.shapeBegin(), in);
         }
 
         template<class ITER>
@@ -424,7 +481,10 @@ namespace hdf5{
         hid_t dataset_;
         hid_t datatype_;
         std::vector<uint64_t> shape_;
+        std::vector<uint64_t> effectiveShape_;
         std::vector<uint64_t> chunkShape_;
+        std::vector<uint64_t> offsetFront_;
+        std::vector<uint64_t> offsetBack_;
         bool isChunked_;
     public: // Hacy for now, better to declare functions that are allowed to change this friend...
         // FIXME having a mutex member makes class non-copyable -> global mtx for now...

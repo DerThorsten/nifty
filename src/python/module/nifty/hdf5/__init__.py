@@ -22,6 +22,36 @@ import numbers
 if Configuration.WITH_HDF5:
 
 
+    # convenience wrapper around hdf5 array
+    def hdf5Array(dtype, *args, **kwargs):
+
+        if numpy.dtype(dtype) == numpy.dtype("uint8"):
+            return Hdf5ArrayUInt8(*args, **kwargs)
+        elif numpy.dtype(dtype) == numpy.dtype("uint16"):
+            return Hdf5ArrayUInt16(*args, **kwargs)
+        elif numpy.dtype(dtype) == numpy.dtype("uint32"):
+            return Hdf5ArrayUInt32(*args, **kwargs)
+        elif numpy.dtype(dtype) == numpy.dtype("uint64"):
+            return Hdf5ArrayUInt64(*args, **kwargs)
+
+        elif numpy.dtype(dtype) == numpy.dtype("int8"):
+            return Hdf5ArrayInt8(*args, **kwargs)
+        elif numpy.dtype(dtype) == numpy.dtype("int16"):
+            return Hdf5ArrayInt16(*args, **kwargs)
+        elif numpy.dtype(dtype) == numpy.dtype("int32"):
+            return Hdf5ArrayInt32(*args, **kwargs)
+        elif numpy.dtype(dtype) == numpy.dtype("int64"):
+            return Hdf5ArrayInt64(*args, **kwargs)
+
+        elif numpy.dtype(dtype) == numpy.dtype("float32"):
+            return Hdf5ArrayFloat32(*args, **kwargs)
+        elif numpy.dtype(dtype) == numpy.dtype("float64"):
+            return Hdf5ArrayFloat64(*args, **kwargs)
+
+        else:
+            raise RuntimeError("Datatype %s not supported!" % (str(dtype),))
+
+
     def unionFindWatershed(heightMapFilename,
                            heightMapDataset,
                            labelsFilename,
@@ -31,7 +61,7 @@ if Configuration.WITH_HDF5:
 
         nDim  =  len(blockShape)
         # pow2 blockshape
-        # 
+        #
         #pow2Blockshape = [2**(math.ceil(math.log(v)/math.log(2))) for v in blockShape]
         blockShapeArray = [128] * nDim
 
@@ -39,8 +69,8 @@ if Configuration.WITH_HDF5:
 
         f = _hdf5.__dict__[fname]
 
-        f(heightMapFilename, heightMapDataset, 
-          labelsFilename, labelsDataset, 
+        f(heightMapFilename, heightMapDataset,
+          labelsFilename, labelsDataset,
           list(blockShape), list(blockShapeArray),int(numberOfThreads))
 
 
@@ -77,7 +107,7 @@ if Configuration.WITH_HDF5:
                     step = indexingObj.step
                     if step is not None and  step != 1:
                         raise RuntimeError("currently step must be 1 in slicing but step is %d"%sliceObj.step)
-                
+
 
             return self.readSubarray(roiBegin, roiEnd)
 
