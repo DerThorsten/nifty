@@ -118,7 +118,6 @@ namespace hdf5{
             offsetFront_.resize(dimension());
             offsetBack_.resize(dimension());
             for(size_t d = 0; d < dimension(); ++d) {
-                std::cout << d << std::endl;
                 effectiveShape_[d] = shape_[d];
                 offsetFront_[d] = 0;
                 offsetBack_[d] = 0;
