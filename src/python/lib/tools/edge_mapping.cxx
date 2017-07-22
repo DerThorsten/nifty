@@ -16,35 +16,46 @@ namespace tools{
 
         typedef EDGE_TYPE EdgeType;
         typedef NODE_TYPE NodeType;
-        
+
         typedef EdgeMapping<EdgeType, NodeType> MappingType;
         py::class_<MappingType>(toolsModule, "EdgeMapping")
             .def(py::init<size_t>())
 
             .def("initializeMapping",
                 [](MappingType & self, const marray::PyView<EdgeType> uvIds, const std::vector<NodeType> & oldToNewNodes) {
-                    self.initializeMapping(uvIds, oldToNewNodes);
+                    {
+                        py::gil_scoped_release allowThreads;
+                        self.initializeMapping(uvIds, oldToNewNodes);
+                    }
                 }
             )
-            
+
             .def("mapEdgeValues",
                 [](const MappingType & self, const std::vector<float> & edgeValues) {
                     std::vector<float> newEdgeValues;
-                    self.mapEdgeValues(edgeValues, newEdgeValues);
+                    {
+                        py::gil_scoped_release allowThreads;
+                        self.mapEdgeValues(edgeValues, newEdgeValues);
+                    }
                     return newEdgeValues;
                 }
             )
-            
+
             .def("getNewUvIds",
                 [](const MappingType & self) {
+
                     size_t shape[] = {self.numberOfNewEdges(), 2};
                     marray::PyView<EdgeType> newUvIds(shape, shape + 2);
-                    const auto & newUvIdsInternal = self.getNewUvIds();
-                    
-                    // this could also be parallelized
-                    for(size_t i = 0; i < self.numberOfNewEdges(); ++i) {
-                        newUvIds(i, 0) = newUvIdsInternal[i].first;
-                        newUvIds(i, 1) = newUvIdsInternal[i].second;
+
+                    {
+                        py::gil_scoped_release allowThreads;
+                        const auto & newUvIdsInternal = self.getNewUvIds();
+
+                        // this could also be parallelized
+                        for(size_t i = 0; i < self.numberOfNewEdges(); ++i) {
+                            newUvIds(i, 0) = newUvIdsInternal[i].first;
+                            newUvIds(i, 1) = newUvIdsInternal[i].second;
+                        }
                     }
 
                     return newUvIds;
@@ -54,7 +65,10 @@ namespace tools{
             .def("getNewEdgeIds",
                 [](const MappingType & self, const std::vector<EdgeType> & edgeIds) {
                     std::vector<EdgeType> newEdgeIds;
-                    self.getNewEdgeIds(edgeIds, newEdgeIds);
+                    {
+                        py::gil_scoped_release allowThreads;
+                        self.getNewEdgeIds(edgeIds, newEdgeIds);
+                    }
                     return newEdgeIds;
                 }
             )

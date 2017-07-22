@@ -183,28 +183,39 @@ void EdgeMapping<EDGE_TYPE, NODE_TYPE>::getNewEdgeIds(
         const std::vector<EdgeType> & edgeIds, std::vector<EdgeType> & newEdgeIds) const {
 
     newEdgeIds.clear();
-
-    std::vector<std::set<EdgeType>> threadSets(threadpool_.nThreads());
-
-    // find new edges in parallel
-    parallel::parallel_foreach(threadpool_, edgeIds.size(), [&](const int tId, const int edgeId){
-        auto newEdge = oldToNewEdges_[edgeId];
+    for(auto oldEdge : edgeIds) {
+        auto newEdge = oldToNewEdges_[oldEdge];
         if(newEdge != -1) {
-            auto & thisSet = threadSets[tId];
-            thisSet.insert(newEdge);
+            newEdgeIds.push_back(newEdge);
         }
-    });
-
-    // merge the edge sets
-    auto & destSet = threadSets[0];
-    for(int tId = 1; tId < threadpool_.nThreads(); ++tId) {
-        const auto & srcSet = threadSets[tId];
-        destSet.insert(srcSet.begin(), srcSet.end());
     }
 
-    // write edge values to out vector
-    newEdgeIds.resize(destSet.size());
-    std::copy(destSet.begin(), destSet.end(), newEdgeIds.begin());
+    std::sort(newEdgeIds.begin(), newEdgeIds.end());
+    auto edgeIt = std::unique(newEdgeIds.begin(), newEdgeIds.end());
+    newEdgeIds.erase(edgeIt, newEdgeIds.end());
+
+    // FIXME this is buggy !
+    //std::vector<std::set<EdgeType>> threadSets(threadpool_.nThreads());
+
+    //// find new edges in parallel
+    //parallel::parallel_foreach(threadpool_, edgeIds.size(), [&](const int tId, const int edgeId){
+    //    auto newEdge = oldToNewEdges_[edgeId];
+    //    if(newEdge != -1) {
+    //        auto & thisSet = threadSets[tId];
+    //        thisSet.insert(newEdge);
+    //    }
+    //});
+
+    //// merge the edge sets
+    //auto & destSet = threadSets[0];
+    //for(int tId = 1; tId < threadpool_.nThreads(); ++tId) {
+    //    const auto & srcSet = threadSets[tId];
+    //    destSet.insert(srcSet.begin(), srcSet.end());
+    //}
+
+    //// write edge values to out vector
+    //newEdgeIds.resize(destSet.size());
+    //std::copy(destSet.begin(), destSet.end(), newEdgeIds.begin());
 
 }
 
