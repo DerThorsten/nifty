@@ -113,11 +113,16 @@ namespace hdf5{
 
             this->loadShape(shape_);
             this->loadChunkShape(chunkShape_);
-            //std::cout << "Loaded with shapes and chunks:" << std::endl;
-            //for(int d = 0; d < dimension(); ++d) {
-            //    std::cout << shape(d) << std::endl;
-            //    std::cout << chunkShape(d) << std::endl;
-            //}
+            // need to set correct effective shape and initial offsets
+            effectiveShape_.resize(dimension());
+            offsetFront_.resize(dimension());
+            offsetBack_.resize(dimension());
+            for(size_t d = 0; d < dimension(); ++d) {
+                std::cout << d << std::endl;
+                effectiveShape_[d] = shape_[d];
+                offsetFront_[d] = 0;
+                offsetBack_[d] = 0;
+            }
         }
 
         int setCache(){
