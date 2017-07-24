@@ -15,7 +15,7 @@
 
 namespace nifty{
 namespace graph{
-    
+
     // accumulator with data
     template<class EDGE_ACC_CHAIN, class LABELS_PROXY, class DATA, class F>
     void accumulateEdgeFeaturesWithAccChain(
@@ -27,7 +27,7 @@ namespace graph{
         F && f,
         const AccOptions & accOptions = AccOptions()
     ){
-        
+
         typedef LABELS_PROXY LabelsProxyType;
         typedef typename vigra::MultiArrayShape<3>::type   VigraCoord;
         typedef typename LabelsProxyType::BlockStorageType LabelStorage;
@@ -36,64 +36,64 @@ namespace graph{
         typedef array::StaticArray<int64_t,3> Coord;
         typedef array::StaticArray<int64_t,2> Coord2;
         typedef EDGE_ACC_CHAIN EdgeAccChainType;
-        typedef std::vector<EdgeAccChainType> EdgeAccChainVectorType; 
-        
+        typedef std::vector<EdgeAccChainType> EdgeAccChainVectorType;
+
         const auto & labelsProxy = rag.labelsProxy();
         const auto & shape = labelsProxy.shape();
-        
+
         EdgeAccChainVectorType edgeAccChainVector(rag.edgeIdUpperBound()+1);
-        
+
         if(accOptions.setMinMax){
             parallel::parallel_foreach(threadpool, rag.edgeIdUpperBound()+1,
             [&](int tid, int edge){
                 vigra::HistogramOptions histogram_opt;
-                histogram_opt = histogram_opt.setMinMax(accOptions.minVal, accOptions.maxVal); 
+                histogram_opt = histogram_opt.setMinMax(accOptions.minVal, accOptions.maxVal);
                 edgeAccChainVector[edge].setHistogramOptions(histogram_opt);
             });
         }
-        
+
         const auto nThreads = pOpts.getActualNumThreads();
 
         uint64_t numberOfSlices = shape[0];
         const Coord2 sliceShape2({shape[1], shape[2]});
         const Coord  sliceShape3({1L,shape[1], shape[2]});
         const Coord  sliceABShape({2L,shape[1], shape[2]});
-        
+
         const auto passesRequired = edgeAccChainVector.front().passesRequired();
-        
+
         // do N passes of accumulator
         for(auto pass=1; pass <= passesRequired; ++pass){
-            
+
             // in slice edges
             {
                 LabelStorage labelStorage(threadpool, sliceShape3, nThreads);
                 DataStorage  dataStorage(threadpool, sliceShape3, nThreads);
 
                 parallel::parallel_foreach(threadpool, numberOfSlices, [&](const int tid, const int64_t sliceIndex){
-                    
+
                     auto sliceLabels3DView = labelStorage.getView(tid);
                     auto sliceData3DView   = dataStorage.getView(tid);
 
                     // fetch the data for the slice
                     const Coord blockBegin({sliceIndex,0L,0L});
                     const Coord blockEnd({sliceIndex+1, sliceShape2[0], sliceShape2[1]});
-                    
+
                     labelsProxy.readSubarray(blockBegin, blockEnd, sliceLabels3DView);
                     tools::readSubarray(data, blockBegin, blockEnd, sliceData3DView);
-                    
+
                     auto sliceLabels = sliceLabels3DView.squeezedView();
                     auto sliceData   = sliceData3DView.squeezedView();
 
-                    // do the thing 
+                    // do the thing
                     nifty::tools::forEachCoordinate(sliceShape2,[&](const Coord2 & coord){
-                        
+
                         const auto lU = sliceLabels(coord.asStdArray());
                         const auto dataU = sliceData(coord.asStdArray());
                         VigraCoord vigraCoordU;
                         vigraCoordU[0] = sliceIndex;
                         for(size_t d=1; d<3; ++d)
                             vigraCoordU[d] = coord[d];
-                        
+
                         for(size_t axis=0; axis<2; ++axis){
                             Coord2 coord2 = coord;
                             ++coord2[axis];
@@ -115,7 +115,7 @@ namespace graph{
                     });
                 });
             }
-            
+
             //between slice edges
             {
                 LabelStorage labelStorage(threadpool, sliceABShape, nThreads);
@@ -125,7 +125,7 @@ namespace graph{
                     parallel::parallel_foreach(threadpool, numberOfSlices-1, [&](const int tid, const int64_t sliceAIndex){
 
                         // this seems super ugly...
-                        // there must be a better way to loop in parallel 
+                        // there must be a better way to loop in parallel
                         // over first the odd then the even coordinates
                         const auto oddIndex = bool(sliceAIndex%2);
                         if((startIndex==0 && !oddIndex) || (startIndex==1 && oddIndex )){
@@ -144,10 +144,10 @@ namespace graph{
 
                             const Coord coordAOffset{0L,0L,0L};
                             const Coord coordBOffset{1L,0L,0L};
-                            
+
                             auto labelsA = labelsAB.view(coordAOffset.begin(), sliceShape3.begin()).squeezedView();
                             auto labelsB = labelsAB.view(coordBOffset.begin(), sliceShape3.begin()).squeezedView();
-                            
+
                             auto dataA = dataAB.view(coordAOffset.begin(), sliceShape3.begin()).squeezedView();
                             auto dataB = dataAB.view(coordBOffset.begin(), sliceShape3.begin()).squeezedView();
 
@@ -157,7 +157,7 @@ namespace graph{
 
                                 const auto dataU = dataA(coord.asStdArray());
                                 const auto dataV = dataB(coord.asStdArray());
-                                
+
                                 VigraCoord vigraCoordU;
                                 VigraCoord vigraCoordV;
                                 vigraCoordU[0] = sliceAIndex;
@@ -166,11 +166,11 @@ namespace graph{
                                     vigraCoordU[d] = coord[d];
                                     vigraCoordV[d] = coord[d];
                                 }
-                                    
+
                                 auto edge = rag.findEdge(lU,lV);
                                 edgeAccChainVector[edge].updatePassN(dataU, vigraCoordU, pass);
                                 edgeAccChainVector[edge].updatePassN(dataV, vigraCoordV, pass);
-                                    
+
                             });
                         }
                     });
@@ -179,8 +179,8 @@ namespace graph{
         }
         f(edgeAccChainVector);
     }
-    
-    
+
+
     // 9 features
     template<class LABELS_PROXY, class DATA, class FEATURE_TYPE>
     void accumulateEdgeStandartFeatures(

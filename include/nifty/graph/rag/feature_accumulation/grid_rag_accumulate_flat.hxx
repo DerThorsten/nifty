@@ -19,10 +19,10 @@ inline void accumulateInnerSliceFeatures(
         const int pass,
         const int64_t sliceId
         ) {
-    
+
     typedef COORD Coord2;
     typedef typename vigra::MultiArrayShape<3>::type VigraCoord;
-    
+
     nifty::tools::forEachCoordinate(sliceShape2, [&](const Coord2 coord){
         const auto lU = labelsSqueezed(coord.asStdArray());
         for(int axis = 0; axis < 2; ++axis){
@@ -31,8 +31,8 @@ inline void accumulateInnerSliceFeatures(
             if( coord2[axis] < sliceShape2[axis]) {
                 const auto lV = labelsSqueezed(coord2.asStdArray());
                 if(lU != lV) {
-                    VigraCoord vigraCoordU;    
-                    VigraCoord vigraCoordV;    
+                    VigraCoord vigraCoordU;
+                    VigraCoord vigraCoordV;
                     vigraCoordU[0] = sliceId;
                     vigraCoordV[0] = sliceId;
                     for(int d = 1; d < 3; ++d){
@@ -64,16 +64,16 @@ inline void accumulateBetweenSliceFeatures(
         const int64_t sliceIdB,
         const int zDirection = 0 // this is a flag that determines which slice(s) are taken into account for the z-edges
     ){
-    
+
     typedef COORD Coord2;
     typedef typename vigra::MultiArrayShape<3>::type VigraCoord;
-    
+
     nifty::tools::forEachCoordinate(sliceShape2, [&](const Coord2 coord){
         const auto lU = labelsASqueezed(coord.asStdArray());
         const auto lV = labelsBSqueezed(coord.asStdArray());
         if(lU != lV) {
-            VigraCoord vigraCoordU;    
-            VigraCoord vigraCoordV;    
+            VigraCoord vigraCoordU;
+            VigraCoord vigraCoordV;
             vigraCoordU[0] = sliceIdA;
             vigraCoordV[0] = sliceIdB;
             for(int d = 1; d < 3; ++d){
@@ -112,13 +112,13 @@ void accumulateEdgeFeaturesFlatWithAccChain(
     typedef LABELS_PROXY LabelsProxyType;
     typedef typename LabelsProxyType::LabelType LabelType;
     typedef typename DATA::DataType DataType;
-    
+
     typedef typename LabelsProxyType::BlockStorageType LabelBlockStorage;
     typedef tools::BlockStorage<DataType> DataBlockStorage;
 
     typedef array::StaticArray<int64_t, 3> Coord;
     typedef array::StaticArray<int64_t, 2> Coord2;
-    
+
     typedef EDGE_ACC_CHAIN EdgeAccChainType;
     typedef std::vector<EdgeAccChainType>   AccChainVectorType; 
 
@@ -126,19 +126,19 @@ void accumulateEdgeFeaturesFlatWithAccChain(
 
     const auto & shape = rag.shape();
     const auto & labelsProxy = rag.labelsProxy();
-    
+
     uint64_t numberOfSlices = shape[0];
-    
+
     Coord2 sliceShape2({shape[1], shape[2]});
     Coord sliceShape3({1L, shape[1], shape[2]});
-        
+
     // edge acc vectors for multiple threads
     std::vector<AccChainVectorType> perThreadAccChainVector(actualNumberOfThreads);
     parallel::parallel_foreach(threadpool, actualNumberOfThreads, 
     [&](const int tid, const int64_t i){
         perThreadAccChainVector[i] = AccChainVectorType(rag.edgeIdUpperBound()+1);
     });
-        
+
     if(accOptions.setMinMax){
         vigra::HistogramOptions histogram_opt;
         histogram_opt = histogram_opt.setMinMax(accOptions.minVal, accOptions.maxVal); 
@@ -160,18 +160,18 @@ void accumulateEdgeFeaturesFlatWithAccChain(
         ++lowerSliceId;
         ++upperSliceId;
     }
-    
-    
+
+
     const auto passesRequired = (perThreadAccChainVector.front()).front().passesRequired();
     for(auto pass = 1; pass <= passesRequired; ++pass) {
-        std::cout << "Pass " << pass << " / " << passesRequired << std::endl; 
-    
+        std::cout << "Pass " << pass << " / " << passesRequired << std::endl;
+
         // label and data storages
         LabelBlockStorage  labelsAStorage(threadpool, sliceShape3, actualNumberOfThreads);
         LabelBlockStorage  labelsBStorage(threadpool, sliceShape3, actualNumberOfThreads);
         DataBlockStorage   dataAStorage(threadpool, sliceShape3, actualNumberOfThreads);
         DataBlockStorage   dataBStorage(threadpool, sliceShape3, actualNumberOfThreads);
-        
+
         parallel::parallel_foreach(threadpool, slicePairs.size(), [&](const int tid, const int64_t pairId){
 
             //std::cout << "Processing slice pair: " << pairId << " / " << slicePairs.size() << std::endl;
@@ -182,15 +182,15 @@ void accumulateEdgeFeaturesFlatWithAccChain(
 
             Coord beginA ({sliceIdA, 0L, 0L});
             Coord endA({sliceIdA+1, shape[1], shape[2]});
-            
-            auto labelsA = labelsAStorage.getView(tid);  
+
+            auto labelsA = labelsAStorage.getView(tid);
             labelsProxy.readSubarray(beginA, endA, labelsA);
             auto labelsASqueezed = labelsA.squeezedView();
-        
+
             auto dataA = dataAStorage.getView(tid);
             tools::readSubarray(data, beginA, endA, dataA);
             auto dataASqueezed = dataA.squeezedView();
-            
+
             accumulateInnerSliceFeatures(
                     threadAccChainVec,
                     sliceShape2,
@@ -204,15 +204,15 @@ void accumulateEdgeFeaturesFlatWithAccChain(
             Coord beginB = Coord({sliceIdB,   0L,       0L});
             Coord endB   = Coord({sliceIdB+1, shape[1], shape[2]});
             marray::View<LabelType> labelsBSqueezed;
-        
+
             // read labels and data for upper slice
-            auto labelsB = labelsBStorage.getView(tid);  
+            auto labelsB = labelsBStorage.getView(tid);
             labelsProxy.readSubarray(beginB, endB, labelsB);
             labelsBSqueezed = labelsB.squeezedView();
             auto dataB = dataBStorage.getView(tid);
             tools::readSubarray(data, beginB, endB, dataB);
             auto dataBSqueezed = dataB.squeezedView();
-            
+
             // accumulate features for the in between slice edges
             accumulateBetweenSliceFeatures(
                     threadAccChainVec,
@@ -226,7 +226,7 @@ void accumulateEdgeFeaturesFlatWithAccChain(
                     sliceIdA,
                     sliceIdB,
                     accOptions.zDirection);
-               
+
             // accumulate the inner slice features for the last slice,
             // which is never a lower slice
             if(sliceIdB == numberOfSlices - 1) {
@@ -241,19 +241,19 @@ void accumulateEdgeFeaturesFlatWithAccChain(
             }
         });
     }
-    
+
     // merge the accumulators in parallel
     auto & resultAccVec = perThreadAccChainVector.front();
-    parallel::parallel_foreach(threadpool, resultAccVec.size(), 
+    parallel::parallel_foreach(threadpool, resultAccVec.size(),
     [&](const int tid, const int64_t edge){
         for(auto t=1; t<actualNumberOfThreads; ++t){
             resultAccVec[edge].merge((perThreadAccChainVector[t])[edge]);
-        }            
+        }
     });
     // call functor with finished acc chain
     f(resultAccVec);
 }
-    
+
 
 // 9 features
 template<size_t DIM, class LABELS_PROXY, class DATA, class FEATURE_TYPE>
@@ -310,7 +310,7 @@ void accumulateEdgeFeaturesFlat(
                 //edgeFeaturesOut(edge, 3) = replaceIfNotFinite(get<acc::Kurtosis>(chain), 0.0);
                 for(auto qi=0; qi<7; ++qi)
                     edgeFeaturesOut(edge, 2+qi) = replaceIfNotFinite(quantiles[qi], mean);
-            }); 
+            });
         },
         AccOptions(minVal, maxVal, zDirection)
     );

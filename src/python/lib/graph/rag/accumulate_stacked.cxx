@@ -4,7 +4,7 @@
 
 #include "nifty/python/converter.hxx"
 
-#include "nifty/graph/rag/grid_rag_accumulate_stacked.hxx"
+#include "nifty/graph/rag/feature_accumulation/grid_rag_accumulate_stacked.hxx"
 
 namespace py = pybind11;
 

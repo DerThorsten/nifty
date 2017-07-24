@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_GRAPH_RAG_GRID_RAG_ACCUMULATE_FILTERS_STACKED_HXX
-#define NIFTY_GRAPH_RAG_GRID_RAG_ACCUMULATE_FILTERS_STACKED_HXX
 
 #include <vector>
 #include <functional>
@@ -33,7 +31,7 @@ inline void calculateFilters(const marray::View<DATA_TYPE> & dataSqueezed,
         marray::View<float> & filter,
         parallel::ThreadPool & threadpool,
         const F & f) {
-    
+
     typedef DATA_TYPE DataType;
     typedef COORD Coord;
     marray::View<float> dataView;
@@ -45,7 +43,7 @@ inline void calculateFilters(const marray::View<DATA_TYPE> & dataSqueezed,
         // slow for marrays)
         tools::forEachCoordinate(
             sliceShape2, [&dataCopy,&dataSqueezed](Coord coord){
-                dataCopy(coord.asStdArray()) = (float) dataSqueezed(coord.asStdArray());        
+                dataCopy(coord.asStdArray()) = (float) dataSqueezed(coord.asStdArray());
         });
         Coord base;
         Coord shape;
@@ -58,6 +56,7 @@ inline void calculateFilters(const marray::View<DATA_TYPE> & dataSqueezed,
     f(dataView, filter, threadpool);
 }
 
+
 // calculate filters for given input single threaded
 template<class DATA_TYPE, class F, class COORD>
 inline void calculateFilters(const marray::View<DATA_TYPE> & dataSqueezed,
@@ -66,7 +65,7 @@ inline void calculateFilters(const marray::View<DATA_TYPE> & dataSqueezed,
         marray::View<float> & filter,
         const F & f,
         const bool preSmooth = false) {
-    
+
     typedef DATA_TYPE DataType;
     typedef COORD Coord;
     marray::View<float> dataView;
@@ -78,7 +77,7 @@ inline void calculateFilters(const marray::View<DATA_TYPE> & dataSqueezed,
         // slow for marrays)
         tools::forEachCoordinate(
             sliceShape2, [&dataCopy,&dataSqueezed](Coord coord){
-                dataCopy(coord.asStdArray()) = (float) dataSqueezed(coord.asStdArray());        
+                dataCopy(coord.asStdArray()) = (float) dataSqueezed(coord.asStdArray());
         });
         Coord base;
         Coord shape;
@@ -91,6 +90,7 @@ inline void calculateFilters(const marray::View<DATA_TYPE> & dataSqueezed,
     f(dataView, filter, preSmooth);
 }
 
+
 template<class ACC_CHAIN_VECTOR, class HISTO_OPTS_VEC, class COORD, class LABEL_TYPE, class RAG>
 inline void accumulateInnerSliceFeatures(ACC_CHAIN_VECTOR & channelAccChainVec,
         const HISTO_OPTS_VEC & histoOptionsVec,
@@ -101,18 +101,18 @@ inline void accumulateInnerSliceFeatures(ACC_CHAIN_VECTOR & channelAccChainVec,
         const RAG & rag,
         const marray::View<float> & filter
         ) {
-    
+
     typedef COORD Coord2;
     typedef typename vigra::MultiArrayShape<3>::type VigraCoord;
     size_t pass = 1;
     size_t numberOfChannels = channelAccChainVec[0].size();
-    
+
     // set minmax for accumulator chains
     for(int64_t edge = 0; edge < channelAccChainVec.size(); ++edge){
         for(int c = 0; c < numberOfChannels; ++c)
             channelAccChainVec[edge][c].setHistogramOptions(histoOptionsVec[c]);
     }
-    
+
     // accumulate filter for the inner slice edges
     nifty::tools::forEachCoordinate(sliceShape2, [&](const Coord2 coord){
         const auto lU = labelsSqueezed(coord.asStdArray());
@@ -122,8 +122,8 @@ inline void accumulateInnerSliceFeatures(ACC_CHAIN_VECTOR & channelAccChainVec,
             if( coord2[axis] < sliceShape2[axis]) {
                 const auto lV = labelsSqueezed(coord2.asStdArray());
                 if(lU != lV) {
-                    VigraCoord vigraCoordU;    
-                    VigraCoord vigraCoordV;    
+                    VigraCoord vigraCoordU;
+                    VigraCoord vigraCoordV;
                     vigraCoordU[0] = sliceId;
                     vigraCoordV[0] = sliceId;
                     for(int d = 1; d < 3; ++d){
@@ -155,26 +155,27 @@ inline void accumulateBetweenSliceFeatures(ACC_CHAIN_VECTOR & channelAccChainVec
         const int64_t betweenEdgeOffset,
         const RAG & rag,
         const marray::View<float> & filterA,
-        const marray::View<float> & filterB
+        const marray::View<float> & filterB,
+        const int zDirection
     ){
-    
+
     typedef COORD Coord2;
     typedef typename vigra::MultiArrayShape<3>::type VigraCoord;
     size_t pass = 1;
     size_t numberOfChannels = channelAccChainVec[0].size();
-    
+
     // set minmax for accumulator chains
     for(int64_t edge = 0; edge < channelAccChainVec.size(); ++edge){
         for(int c = 0; c < numberOfChannels; ++c)
             channelAccChainVec[edge][c].setHistogramOptions(histoOptionsVec[c]);
     }
-            
+
     nifty::tools::forEachCoordinate(sliceShape2, [&](const Coord2 coord){
         // labels are different for different slices by default!
         const auto lU = labelsASqueezed(coord.asStdArray());
         const auto lV = labelsBSqueezed(coord.asStdArray());
-        VigraCoord vigraCoordU;    
-        VigraCoord vigraCoordV;    
+        VigraCoord vigraCoordU;
+        VigraCoord vigraCoordV;
         vigraCoordU[0] = sliceIdA;
         vigraCoordV[0] = sliceIdB;
         for(int d = 1; d < 3; ++d){
@@ -182,18 +183,30 @@ inline void accumulateBetweenSliceFeatures(ACC_CHAIN_VECTOR & channelAccChainVec
             vigraCoordV[d] = coord[d-1];
         }
         const auto edge = rag.findEdge(lU,lV) - betweenEdgeOffset;
-        for(int c = 0; c < numberOfChannels; ++c) {
-            const auto fU = filterA(c, coord[0], coord[1]);
-            const auto fV = filterB(c, coord[0], coord[1]);
-            channelAccChainVec[edge][c].updatePassN(fU, vigraCoordU, pass);
-            channelAccChainVec[edge][c].updatePassN(fV, vigraCoordV, pass);
+        if(zDirection==0) { // 0 -> take into account z and z + 1
+            for(int c = 0; c < numberOfChannels; ++c) {
+                const auto fU = filterA(c, coord[0], coord[1]);
+                const auto fV = filterB(c, coord[0], coord[1]);
+                channelAccChainVec[edge][c].updatePassN(fU, vigraCoordU, pass);
+                channelAccChainVec[edge][c].updatePassN(fV, vigraCoordV, pass);
+            }
+        }
+        else if(zDirection==1) { // 1 -> take into accout only z
+            for(int c = 0; c < numberOfChannels; ++c) {
+                const auto fU = filterA(c, coord[0], coord[1]);
+                channelAccChainVec[edge][c].updatePassN(fU, vigraCoordU, pass);
+            }
+        }
+        else if(zDirection==2) { // 2 -> take into accout only z + 1
+            for(int c = 0; c < numberOfChannels; ++c) {
+                const auto fV = filterB(c, coord[0], coord[1]);
+                channelAccChainVec[edge][c].updatePassN(fV, vigraCoordV, pass);
+            }
         }
     });
 }
 
-// TODO
-// TODO for z edges, introduce option for only looking up / down, once we have established this on cremi
-// TODO
+
 template<class EDGE_ACC_CHAIN, class LABELS_PROXY, class DATA, class F_XY, class F_Z>
 void accumulateEdgeFeaturesFromFiltersWithAccChain(
     const GridRagStacked2D<LABELS_PROXY> & rag,
@@ -203,45 +216,46 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
     const parallel::ParallelOptions & pOpts,
     parallel::ThreadPool & threadpool,
     F_XY && fXY,
-    F_Z && fZ
+    F_Z && fZ,
+    const int zDirection
 ){
     typedef LABELS_PROXY LabelsProxyType;
     typedef typename LabelsProxyType::LabelType LabelType;
     typedef typename DATA::DataType DataType;
-    
+
     typedef typename LabelsProxyType::BlockStorageType LabelBlockStorage;
     typedef tools::BlockStorage<DataType> DataBlockStorage;
     typedef tools::BlockStorage<float> FilterBlockStorage;
 
     typedef array::StaticArray<int64_t, 3> Coord;
     typedef array::StaticArray<int64_t, 2> Coord2;
-    
+
     typedef EDGE_ACC_CHAIN EdgeAccChainType;
-    typedef std::vector<EdgeAccChainType>   AccChainVectorType; 
-    typedef std::vector<AccChainVectorType> ChannelAccChainVectorType; 
+    typedef std::vector<EdgeAccChainType>   AccChainVectorType;
+    typedef std::vector<AccChainVectorType> ChannelAccChainVectorType;
     typedef typename features::ApplyFilters<2>::FiltersToSigmasType FiltersToSigmasType;
 
     const size_t actualNumberOfThreads = pOpts.getActualNumThreads();
 
     const auto & shape = rag.shape();
     const auto & labelsProxy = rag.labelsProxy();
-    
+
     // sigmas and filters to sigmas: TODO make accessible
     std::vector<double> sigmas({1.6,4.2,8.2});
     FiltersToSigmasType filtersToSigmas({ { true, true, true},      // GaussianSmoothing
                                           { true, true, true},      // LaplacianOfGaussian
                                           { false, false, false},   // GaussianGradientMagnitude
                                           { true, true, true } });  // HessianOfGaussianEigenvalues
-    
+
     features::ApplyFilters<2> applyFilters(sigmas, filtersToSigmas);
     size_t numberOfChannels = applyFilters.numberOfChannels();
-    
+
     uint64_t numberOfSlices = shape[0];
-    
+
     Coord2 sliceShape2({shape[1], shape[2]});
     Coord sliceShape3({1L, shape[1], shape[2]});
     Coord filterShape({int64_t(numberOfChannels), shape[1], shape[2]});
-    
+
     // filter computation and accumulation
     // FIXME we only support 1 pass for now
     //for(auto pass = 1; pass <= channelAccChainVector.front().front().passesRequired(); ++pass) {
@@ -252,7 +266,7 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
         // edge acc vectors for multiple threads
         std::vector< ChannelAccChainVectorType> perThreadChannelAccChainVector(actualNumberOfThreads);
 
-        // TODO we could do this less memory consuming, if we allocate less data here and 
+        // TODO we could do this less memory consuming, if we allocate less data here and
         // allocate some in every thread
         LabelBlockStorage  labelsAStorage(threadpool, sliceShape3, actualNumberOfThreads);
         LabelBlockStorage  labelsBStorage(threadpool, sliceShape3, actualNumberOfThreads);
@@ -264,13 +278,13 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
         //FilterBlockStorage dataCopyStorage(threadpool, sliceShape2, actualNumberOfThreads);
 
         // process slice 0 to find min and max for histogram opts
-        Coord begin0({0L, 0L, 0L}); 
-        Coord end0(  {1L, shape[1], shape[2]}); 
-        
-        auto labels0 = labelsAStorage.getView(0);  
+        Coord begin0({0L, 0L, 0L});
+        Coord end0(  {1L, shape[1], shape[2]});
+
+        auto labels0 = labelsAStorage.getView(0);
         labelsProxy.readSubarray(begin0, end0, labels0);
         auto labels0Squeezed = labels0.squeezedView();
-            
+
         auto data0 = dataStorage.getView(0);
         tools::readSubarray(data, begin0, end0, data0);
         auto data0Squeezed = data0.squeezedView();
@@ -280,6 +294,7 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
         if( typeid(DataType) != typeid(float) )
             dataCopy.resize(sliceShape2.begin(), sliceShape2.end());
         auto filter0 = filterAStorage.getView(0);
+
         // apply filters in parallel
         calculateFilters(data0Squeezed,
                 dataCopy,
@@ -287,6 +302,7 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
                 filter0,
                 threadpool,
                 applyFilters);
+
         // apply filters with pre smoothing
         // TODO benchmark this!
         //calculateFilters(data0Squeezed,
@@ -303,7 +319,7 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
             Coord cBegin({c,0L,0L});
             auto channelView = filter0.view(cBegin.begin(), cShape.begin());
             auto minMax = std::minmax_element(channelView.begin(), channelView.end());
-            auto min = *(minMax.first); 
+            auto min = *(minMax.first);
             auto max = *(minMax.second);
             histoOpts.setMinMax(min,max);
         });
@@ -317,7 +333,7 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
             ++lowerSliceId;
             ++upperSliceId;
         }
-    
+
         parallel::parallel_foreach(threadpool, slicePairs.size(), [&](const int tid, const int64_t pairId){
 
             std::cout << "Processing slice pair: " << pairId << " / " << slicePairs.size() << std::endl;
@@ -329,20 +345,20 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
             // compute the filters for slice A
             Coord beginA ({sliceIdA, 0L, 0L});
             Coord endA({sliceIdA+1, shape[1], shape[2]});
-            
-            auto labelsA = labelsAStorage.getView(tid);  
+
+            auto labelsA = labelsAStorage.getView(tid);
             labelsProxy.readSubarray(beginA, endA, labelsA);
             auto labelsASqueezed = labelsA.squeezedView();
-        
+
             auto dataA = dataStorage.getView(tid);
             tools::readSubarray(data, beginA, endA, dataA);
             auto dataASqueezed = dataA.squeezedView();
-            
+
             //auto dataCopy = dataCopyStorage.getView(tid);
             marray::Marray<float> dataCopy;
             if( typeid(DataType) != typeid(float) )
                 dataCopy.resize(sliceShape2.begin(), sliceShape2.end());
-            
+
             auto filterA = filterAStorage.getView(tid);
             calculateFilters(dataASqueezed,
                     dataCopy,
@@ -375,14 +391,14 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
             Coord endB   = Coord({sliceIdB+1, shape[1], shape[2]});
             auto filterB = filterBStorage.getView(tid);
             marray::View<LabelType> labelsBSqueezed;
-        
+
             // read labels, data and calculate the filters for upper slice
             // do if we are not keeping only xy edges or
-            // if we are at the last slice (which is never a lower slice and 
+            // if we are at the last slice (which is never a lower slice and
             // must hence be accumulated extra)
             if(!keepXYOnly || sliceIdB == numberOfSlices - 1 ) {
                 // read labels
-                auto labelsB = labelsBStorage.getView(tid);  
+                auto labelsB = labelsBStorage.getView(tid);
                 labelsProxy.readSubarray(beginB, endB, labelsB);
                 labelsBSqueezed = labelsB.squeezedView();
                 // read data
@@ -397,7 +413,7 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
                         applyFilters,
                         true); // activate pre-smoothing
             }
-            
+
             // acccumulate the between slice features
             if(!keepXYOnly) {
                 auto betweenEdgeOffset = rag.betweenSliceEdgeOffset(sliceIdA);
@@ -416,10 +432,11 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
                         betweenEdgeOffset,
                         rag,
                         filterA,
-                        filterB);
+                        filterB,
+                        zDirection);
                 fZ(channelAccChainVec, accOffset);
             }
-               
+
             // accumulate the inner slice features for the last slice, which is never a lower slice
             if(!keepZOnly && (sliceIdB == numberOfSlices - 1 && rag.numberOfInSliceEdges(sliceIdB) > 0)) {
                 auto inEdgeOffset = rag.inSliceEdgeOffset(sliceIdB);
@@ -452,6 +469,7 @@ void accumulateEdgeFeaturesFromFilters(
     OUTPUT & edgeFeaturesOutZ,
     const bool keepXYOnly,
     const bool keepZOnly,
+    const int zDirection = 0,
     const int numberOfThreads = -1
 ){
     namespace acc = vigra::acc;
@@ -500,7 +518,7 @@ void accumulateEdgeFeaturesFromFilters(
                     featuresTemp(edge, cOffset+2+qi) = replaceIfNotFinite(quantiles[qi], mean);
                 cOffset += nStats;
             }
-        } 
+        }
 
         FeatCoord begin({int64_t(edgeOffset),0L});
         FeatCoord end({edgeOffset+nEdges,nChannels*nStats});
@@ -509,15 +527,15 @@ void accumulateEdgeFeaturesFromFilters(
     };
 
     // instantiation of accumulators for xy / z edges
-    auto accFunctionXY = std::bind(accFunction, 
+    auto accFunctionXY = std::bind(accFunction,
             std::placeholders::_1,
             std::placeholders::_2,
             std::ref(edgeFeaturesOutXY));
-    auto accFunctionZ = std::bind(accFunction, 
+    auto accFunctionZ = std::bind(accFunction,
             std::placeholders::_1,
             std::placeholders::_2,
             std::ref(edgeFeaturesOutZ));
-    
+
     accumulateEdgeFeaturesFromFiltersWithAccChain<AccChainType>(
         rag,
         data,
@@ -526,7 +544,8 @@ void accumulateEdgeFeaturesFromFilters(
         pOpts,
         threadpool,
         accFunctionXY,
-        accFunctionZ
+        accFunctionZ,
+        zDirection
         );
 }
 
@@ -541,7 +560,8 @@ void accumulateSkipEdgeFeaturesFromFiltersWithAccChain(
     const std::vector<size_t> & skipStarts,
     const parallel::ParallelOptions & pOpts,
     parallel::ThreadPool & threadpool,
-    F && f
+    F && f,
+    const int zDirection
 ){
     typedef std::pair<uint64_t,uint64_t> SkipEdgeStorage;
 
@@ -638,11 +658,11 @@ void accumulateSkipEdgeFeaturesFromFiltersWithAccChain(
         for(auto sliceId : lowerSlices) {
 
             std::cout << countSlice++ << " / " << lowerSlices.size() << std::endl;
-            std::cout << "Finding features for skip edges from slice " << sliceId << std::endl; 
+            std::cout << "Finding features for skip edges from slice " << sliceId << std::endl;
 
-            Coord beginA({int64_t(sliceId),0L,0L}); 
-            Coord endA(  {int64_t(sliceId+1),shape[1],shape[2]}); 
-            auto labelsA = labelsAStorage.getView(0);  
+            Coord beginA({int64_t(sliceId),0L,0L});
+            Coord endA(  {int64_t(sliceId+1),shape[1],shape[2]});
+            auto labelsA = labelsAStorage.getView(0);
             labelsProxy.readSubarray(beginA, endA, labelsA);
             auto labelsASqueezed = labelsA.squeezedView();
 
@@ -755,11 +775,25 @@ void accumulateSkipEdgeFeaturesFromFiltersWithAccChain(
                         vigraCoordV[d] = coord[d-1];
                     }
 
-                    for(int c = 0; c < numberOfChannels; ++c) {
-                        const auto fU = filterA(c, coord[0], coord[1]);
-                        const auto fV = filterB(c, coord[0], coord[1]);
-                        accChainVec[c].updatePassN(fU, vigraCoordU, pass);
-                        accChainVec[c].updatePassN(fV, vigraCoordV, pass);
+                    if(zDirection==0) { // 0 -> take into account z and z + 1
+                        for(int c = 0; c < numberOfChannels; ++c) {
+                            const auto fU = filterA(c, coord[0], coord[1]);
+                            const auto fV = filterB(c, coord[0], coord[1]);
+                            accChainVec[c].updatePassN(fU, vigraCoordU, pass);
+                            accChainVec[c].updatePassN(fV, vigraCoordV, pass);
+                        }
+                    }
+                    else if(zDirection==1) { // 1 -> take into accout only z
+                        for(int c = 0; c < numberOfChannels; ++c) {
+                            const auto fU = filterA(c, coord[0], coord[1]);
+                            accChainVec[c].updatePassN(fU, vigraCoordU, pass);
+                        }
+                    }
+                    else if(zDirection==2) { // 2 -> take into accout only z + 1
+                        for(int c = 0; c < numberOfChannels; ++c) {
+                            const auto fV = filterB(c, coord[0], coord[1]);
+                            accChainVec[c].updatePassN(fV, vigraCoordV, pass);
+                        }
                     }
                 });
             }
@@ -794,6 +828,7 @@ void accumulateSkipEdgeFeaturesFromFilters(
     const std::vector<std::pair<uint64_t,uint64_t>> & skipEdges,
     const std::vector<size_t> & skipRanges,
     const std::vector<size_t> & skipStarts,
+    const int zDirection = 0,
     const int numberOfThreads = -1
 ){
     namespace acc = vigra::acc;
@@ -835,7 +870,7 @@ void accumulateSkipEdgeFeaturesFromFilters(
             const auto nChannels = channelAccChainVec.front().size();
 
             marray::Marray<DataType> featuresTemp({nEdges,nChannels*nStats});
-            
+
             parallel::parallel_foreach(threadpool, channelAccChainVec.size(),
                 [&](const int tid, const int64_t edge){
 
@@ -852,18 +887,17 @@ void accumulateSkipEdgeFeaturesFromFilters(
                         featuresTemp(edge, cOffset+2+qi) = replaceIfNotFinite(quantiles[qi], mean);
                     cOffset += nStats;
                 }
-            }); 
+            });
 
             FeatCoord begin({int64_t(edgeOffset),0L});
             FeatCoord end({edgeOffset+nEdges,nChannels*nStats});
 
             tools::writeSubarray(edgeFeaturesOut, begin, end, featuresTemp);
-        }
+        },
+        zDirection
     );
 }
 
 
 } // namespace graph
 } // namespace nifty
-
-#endif

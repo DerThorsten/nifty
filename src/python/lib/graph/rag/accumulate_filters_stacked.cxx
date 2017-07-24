@@ -9,7 +9,7 @@
 #include "nifty/graph/rag/grid_rag.hxx"
 #include "nifty/graph/rag/grid_rag_stacked_2d.hxx"
 #include "nifty/graph/rag/grid_rag_labels.hxx"
-#include "nifty/graph/rag/grid_rag_accumulate_filters_stacked.hxx"
+#include "nifty/graph/rag/feature_accumulation/grid_rag_accumulate_filters_stacked.hxx"
 
 #ifdef WITH_HDF5
 #include "nifty/graph/rag/grid_rag_labels_hdf5.hxx"
@@ -34,6 +34,7 @@ namespace graph{
             DATA & data,
             const bool keepXYOnly,
             const bool keepZOnly,
+            const int zDirection,
             const int numberOfThreads
         ){
             if(keepXYOnly && keepZOnly)
@@ -49,7 +50,7 @@ namespace graph{
             nifty::marray::PyView<float> outZ({nEdgesZ,nFeatures});
             {
                 py::gil_scoped_release allowThreads;
-                accumulateEdgeFeaturesFromFilters(rag, data, outXY, outZ, keepXYOnly, keepZOnly, numberOfThreads);
+                accumulateEdgeFeaturesFromFilters(rag, data, outXY, outZ, keepXYOnly, keepZOnly, zDirection, numberOfThreads);
             }
             return std::make_tuple(outXY, outZ);
         },
@@ -57,10 +58,11 @@ namespace graph{
         py::arg("data"),
         py::arg("keepXYOnly") = false,
         py::arg("keepZOnly") = false,
+        py::arg("zDirection") = 0,
         py::arg("numberOfThreads")= -1
         );
     }
-    
+
     template<class RAG, class DATA>
     void exportAccumulateEdgeFeaturesFromFiltersOutOfCoreT(
         py::module & ragModule
@@ -73,6 +75,7 @@ namespace graph{
             nifty::hdf5::Hdf5Array<float> & outZ,
             const bool keepXYOnly,
             const bool keepZOnly,
+            const int zDirection,
             const int numberOfThreads
         ){
 
@@ -80,7 +83,7 @@ namespace graph{
                 throw std::runtime_error("keepXYOnly and keepZOnly are not allowed to be both activated!");
             uint64_t nEdgesXY = !keepZOnly ? rag.numberOfInSliceEdges() : 0L;
             uint64_t nEdgesZ  = !keepXYOnly ? rag.numberOfInBetweenSliceEdges() : 0L;
-            
+
             // TODO don't hard code this
             uint64_t nChannels = 12;
             uint64_t nStats = 9;
@@ -92,7 +95,7 @@ namespace graph{
             NIFTY_CHECK_OP(outZ.shape(1),==,nFeatures,"Number of features is incorrect!");
             {
                 py::gil_scoped_release allowThreads;
-                accumulateEdgeFeaturesFromFilters(rag, data, outXY, outZ, keepXYOnly, keepZOnly, numberOfThreads);
+                accumulateEdgeFeaturesFromFilters(rag, data, outXY, outZ, keepXYOnly, keepZOnly, zDirection, numberOfThreads);
             }
         },
         py::arg("rag"),
@@ -101,10 +104,11 @@ namespace graph{
         py::arg("outZ"),
         py::arg("keepXYOnly") = false,
         py::arg("keepZOnly") = false,
+        py::arg("zDirection") = 0,
         py::arg("numberOfThreads")= -1
         );
     }
-    
+
     template<class RAG, class DATA>
     void exportAccumulateSkipEdgeFeaturesFromFiltersT(
         py::module & ragModule
@@ -116,10 +120,11 @@ namespace graph{
             const std::vector<std::pair<size_t,size_t>> & skipEdges,
             const std::vector<size_t> & skipRanges,
             const std::vector<size_t> & skipStarts,
+            const int zDirection,
             const int numberOfThreads
         ){
             uint64_t nSkipEdges = skipEdges.size();
-            
+
             // TODO don't hard code this
             uint64_t nChannels = 12;
             uint64_t nStats = 9;
@@ -133,6 +138,7 @@ namespace graph{
                     skipEdges,
                     skipRanges,
                     skipStarts,
+                    zDirection,
                     numberOfThreads);
             }
             return out;
@@ -142,6 +148,7 @@ namespace graph{
         py::arg("skipEdges"),
         py::arg("skipRanges"),
         py::arg("skipStarts"),
+        py::arg("zDirection") = 0,
         py::arg("numberOfThreads")= -1
         );
     }
