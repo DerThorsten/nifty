@@ -264,7 +264,7 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
         // accumulate inner slice feature
 
         // edge acc vectors for multiple threads
-        std::vector< ChannelAccChainVectorType> perThreadChannelAccChainVector(actualNumberOfThreads);
+        std::vector<ChannelAccChainVectorType> perThreadChannelAccChainVector(actualNumberOfThreads);
 
         // TODO we could do this less memory consuming, if we allocate less data here and
         // allocate some in every thread
@@ -280,10 +280,6 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
         // process slice 0 to find min and max for histogram opts
         Coord begin0({0L, 0L, 0L});
         Coord end0(  {1L, shape[1], shape[2]});
-
-        auto labels0 = labelsAStorage.getView(0);
-        labelsProxy.readSubarray(begin0, end0, labels0);
-        auto labels0Squeezed = labels0.squeezedView();
 
         auto data0 = dataStorage.getView(0);
         tools::readSubarray(data, begin0, end0, data0);

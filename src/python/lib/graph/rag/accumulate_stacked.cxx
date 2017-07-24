@@ -14,35 +14,86 @@ namespace graph{
     using namespace py;
 
     template<class RAG, class DATA>
-    void exportAccumulateEdgeStandartFeaturesStacked(
+    void exportAccumulateEdgeStandardFeaturesStackedInCoreT(
         py::module & ragModule
     ){
-        ragModule.def("accumulateEdgeStandartFeatures",
+        ragModule.def("accumulateEdgeStandardFeatures",
         [](
             const RAG & rag,
-            DATA data,
-            const double minVal,
-            const double maxVal,
+            DATA & data,
+            const bool keepXYOnly,
+            const bool keepZOnly,
+            const int zDirection,
             const int numberOfThreads
         ){
-            typedef typename DATA::DataType DataType;
-            typedef nifty::marray::PyView<DataType> NumpyArrayType;
-            NumpyArrayType edgeOut({uint64_t(rag.edgeIdUpperBound()+1),uint64_t(9)});
+            if(keepXYOnly && keepZOnly)
+                throw std::runtime_error("keepXYOnly and keepZOnly are not allowed to be both activated!");
+            uint64_t nEdgesXY = !keepZOnly ? rag.numberOfInSliceEdges() : 0L;
+            uint64_t nEdgesZ  = !keepXYOnly ? rag.numberOfInBetweenSliceEdges() : 0L;
+            uint64_t nStats = 9;
+
+            nifty::marray::PyView<float> outXY({nEdgesXY, nStats});
+            nifty::marray::PyView<float> outZ({nEdgesZ, nStats});
             {
                 py::gil_scoped_release allowThreads;
-                accumulateEdgeStandartFeatures(rag, data, minVal, maxVal, edgeOut, numberOfThreads);
+                accumulateEdgeStandardFeatures(rag, data, outXY, outZ, keepXYOnly, keepZOnly, zDirection, numberOfThreads);
             }
-            return edgeOut;
+            return std::make_tuple(outXY, outZ);
         },
         py::arg("rag"),
         py::arg("data"),
-        py::arg("minVal"),
-        py::arg("maxVal"),
+        py::arg("keepXYOnly") = false,
+        py::arg("keepZOnly") = false,
+        py::arg("zDirection")= 0,
         py::arg("numberOfThreads")= -1
         );
     }
-    
-    
+
+
+    template<class RAG, class DATA>
+    void exportAccumulateEdgeStandardFeaturesOutOfCoreT(
+        py::module & ragModule
+    ){
+        ragModule.def("accumulateEdgeStandardFeatures",
+        [](
+            const RAG & rag,
+            DATA & data,
+            nifty::hdf5::Hdf5Array<float> & outXY,
+            nifty::hdf5::Hdf5Array<float> & outZ,
+            const bool keepXYOnly,
+            const bool keepZOnly,
+            const int zDirection,
+            const int numberOfThreads
+        ){
+
+            if(keepXYOnly && keepZOnly)
+                throw std::runtime_error("keepXYOnly and keepZOnly are not allowed to be both activated!");
+            uint64_t nEdgesXY = !keepZOnly ? rag.numberOfInSliceEdges() : 0L;
+            uint64_t nEdgesZ  = !keepXYOnly ? rag.numberOfInBetweenSliceEdges() : 0L;
+
+            uint64_t nFeatures = 9;
+            // need to check that this is set correct
+            NIFTY_CHECK_OP(outXY.shape(0),==,nEdgesXY,"Number of edges is incorrect!");
+            NIFTY_CHECK_OP(outZ.shape(0),==,nEdgesZ,"Number of edges is incorrect!");
+            NIFTY_CHECK_OP(outXY.shape(1),==,nFeatures,"Number of features is incorrect!");
+            NIFTY_CHECK_OP(outZ.shape(1),==,nFeatures,"Number of features is incorrect!");
+            {
+                py::gil_scoped_release allowThreads;
+                accumulateEdgeStandardFeatures(rag, data, outXY, outZ, keepXYOnly, keepZOnly, zDirection, numberOfThreads);
+            }
+        },
+        py::arg("rag"),
+        py::arg("data"),
+        py::arg("outXY"),
+        py::arg("outZ"),
+        py::arg("keepXYOnly") = false,
+        py::arg("keepZOnly") = false,
+        py::arg("zDirection") = 0,
+        py::arg("numberOfThreads")= -1
+        );
+    }
+
+
     template<class RAG>
     void exportGetSkipEdgeLengthsT(
         py::module & ragModule
@@ -81,25 +132,31 @@ namespace graph{
 
         //explicit
         {
-            typedef ExplicitLabels<3,uint32_t> LabelsUInt32; 
+            typedef ExplicitLabels<3,uint32_t> LabelsUInt32;
             typedef GridRagStacked2D<LabelsUInt32> StackedRagUInt32;
-            typedef ExplicitLabels<3,uint64_t> LabelsUInt64; 
+            typedef ExplicitLabels<3,uint64_t> LabelsUInt64;
             typedef GridRagStacked2D<LabelsUInt64> StackedRagUInt64;
             typedef nifty::marray::PyView<float, 3> FloatArray;
             typedef nifty::marray::PyView<uint8_t, 3> UInt8Array;
 
-            exportAccumulateEdgeStandartFeaturesStacked<StackedRagUInt32,FloatArray>(ragModule);
-            exportAccumulateEdgeStandartFeaturesStacked<StackedRagUInt32,UInt8Array>(ragModule);
+            exportAccumulateEdgeStandardFeaturesStackedInCoreT<StackedRagUInt32,FloatArray>(ragModule);
+            exportAccumulateEdgeStandardFeaturesStackedInCoreT<StackedRagUInt32,UInt8Array>(ragModule);
         }
         // hdf5
         #ifdef WITH_HDF5
         {
-            typedef Hdf5Labels<3,uint32_t> LabelsUInt32; 
+            typedef Hdf5Labels<3,uint32_t> LabelsUInt32;
             typedef GridRagStacked2D<LabelsUInt32> StackedRagUInt32;
-            typedef Hdf5Labels<3,uint64_t> LabelsUInt64; 
+            typedef Hdf5Labels<3,uint64_t> LabelsUInt64;
             typedef GridRagStacked2D<LabelsUInt64> StackedRagUInt64;
             typedef nifty::hdf5::Hdf5Array<float> FloatArray;
             typedef nifty::hdf5::Hdf5Array<uint8_t> UInt8Array;
+
+            // out of core
+            exportAccumulateEdgeStandardFeaturesOutOfCoreT<StackedRagUInt32, FloatArray>(ragModule);
+            //exportAccumulateEdgeStandardFeaturesOutOfCoreT<StackedRagUInt64, FloatArray>(ragModule);
+            exportAccumulateEdgeStandardFeaturesOutOfCoreT<StackedRagUInt32, UInt8Array>(ragModule);
+            //exportAccumulateEdgeStandardFeaturesOutOfCoreT<StackedRagUInt64, UInt8Array>(ragModule);
 
             exportGetSkipEdgeLengthsT<StackedRagUInt32>(ragModule);
             exportGetSkipEdgeLengthsT<StackedRagUInt64>(ragModule);

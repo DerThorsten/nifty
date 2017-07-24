@@ -40,7 +40,7 @@ namespace graph{
             if(keepXYOnly && keepZOnly)
                 throw std::runtime_error("keepXYOnly and keepZOnly are not allowed to be both activated!");
             uint64_t nEdgesXY = !keepZOnly ? rag.numberOfInSliceEdges() : 0L;
-            uint64_t nEdgesZ  = !keepXYOnly ? rag.numberOfInSliceEdges() : 0L;
+            uint64_t nEdgesZ  = !keepXYOnly ? rag.numberOfInBetweenSliceEdges() : 0L;
 
             // TODO don't hard code this
             uint64_t nChannels = 12;
