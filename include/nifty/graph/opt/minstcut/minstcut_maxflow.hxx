@@ -22,8 +22,8 @@ namespace minstcut{
 
         typedef OBJECTIVE ObjectiveType;
         typedef MinstcutBase<OBJECTIVE> BaseType;
-        typedef typename BaseType::VisitorBaseType VisitorBaseType;
-        typedef typename BaseType::VisitorProxyType VisitorProxyType;
+        //typedef typename BaseType::VisitorBaseType VisitorBaseType;
+        //typedef typename BaseType::VisitorProxyType VisitorProxyType;
         typedef typename BaseType::NodeLabelsType NodeLabelsType;
         typedef typename ObjectiveType::GraphType GraphType;
     
@@ -33,12 +33,14 @@ namespace minstcut{
         typedef float tcaptype;
         typedef float flowtype;
 
-        typedef detail_graph::NodeIndicesToContiguousNodeIndices<GraphType> DenseIds;
+        //typedef detail_graph::NodeIndicesToContiguousNodeIndices<GraphType> DenseIds;
 
     public:
 
-        MinstcutMaxflow(ObjectiveType & objective);
+        MinstcutMaxflow(const ObjectiveType & objective);
         ~MinstcutMaxflow(){}
+
+        void optimize(NodeLabelsType & nodeLabels);
 
     private:
 
@@ -55,7 +57,7 @@ namespace minstcut{
     template<class OBJECTIVE>
     MinstcutMaxflow<OBJECTIVE>::
     MinstcutMaxflow(
-        const ObjectiveType & objective,
+        const ObjectiveType & objective
     )
     :   objective_(objective),
         graph_(objective.graph()),
@@ -77,12 +79,12 @@ namespace minstcut{
             if(e0 < e1){
                 const auto c0 = 0.0;
                 const auto c1 = e1 - e0;
-                maxflow_.add_tweight(node, c0, c1);
+                maxflow_.add_tweights(node, c0, c1);
             }
             else{
                 const auto c1 = 0.0;
                 const auto c0 = e0 - e1;
-                maxflow_.add_tweights(node, c0, c1)
+                maxflow_.add_tweights(node, c0, c1);
             }
         }
 
@@ -97,16 +99,16 @@ namespace minstcut{
     template<class OBJECTIVE>
     void MinstcutMaxflow<OBJECTIVE>::
     optimize(
-        NodeLabelsType & nodeLabels, VisitorBaseType * visitor
+        NodeLabelsType & nodeLabels
         ){
 
-        VisitorProxyType visitorProxy(visitor);
-        visitorProxy.begin(this);
+        // VisitorProxyType visitorProxy(visitor);
+        // visitorProxy.begin(this);
 
         graph_.maxflow();
 
-        for (auto node : graph_nodes()) {
-            if (graph_.what_segment(node) == maxflow_::SOURCE) {
+        for (auto node : graph_.nodes()) {
+            if (graph_.what_segment(node) == Graph<captype,tcaptype,flowtype>::termtype::SOURCE) {
                 nodeLabels[node] = 0.;
             }
             else {
