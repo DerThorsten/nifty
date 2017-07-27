@@ -9,6 +9,7 @@ SET(MOD_SOURCES
     minstcut_factory.cxx
     # solvers
     #mincut_cc_fusion_move_based.cxx
+    minstcut_maxflow.cxx
 )
 
 #if(WITH_QPBO)
