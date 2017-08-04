@@ -1024,8 +1024,8 @@ namespace graph{
             acc::DataArg<1>,
             acc::Mean,        //1
             acc::Variance,    //1
-            acc::Skewness,    //1
-            acc::Kurtosis,    //1
+            //acc::Skewness,    //1
+            //acc::Kurtosis,    //1
             Quantiles         //7
         > SelectType;
         typedef acc::StandAloneAccumulatorChain<DIM, DataType, SelectType> AccChainType;
@@ -1057,10 +1057,10 @@ namespace graph{
                     const auto quantiles = get<Quantiles>(chain);
                     edgeFeaturesOut(edge, 0) = replaceIfNotFinite(mean,     0.0);
                     edgeFeaturesOut(edge, 1) = replaceIfNotFinite(get<acc::Variance>(chain), 0.0);
-                    edgeFeaturesOut(edge, 2) = replaceIfNotFinite(get<acc::Skewness>(chain), 0.0);
-                    edgeFeaturesOut(edge, 3) = replaceIfNotFinite(get<acc::Kurtosis>(chain), 0.0);
+                    //edgeFeaturesOut(edge, 2) = replaceIfNotFinite(get<acc::Skewness>(chain), 0.0);
+                    //edgeFeaturesOut(edge, 3) = replaceIfNotFinite(get<acc::Kurtosis>(chain), 0.0);
                     for(auto qi=0; qi<7; ++qi)
-                        edgeFeaturesOut(edge, 4+qi) = replaceIfNotFinite(quantiles[qi], mean);
+                        edgeFeaturesOut(edge, 2+qi) = replaceIfNotFinite(quantiles[qi], mean);
                 });
 
                 parallel::parallel_foreach(threadpool, nodeAccChainVec.size(),[&](
@@ -1071,10 +1071,10 @@ namespace graph{
                     const auto quantiles = get<Quantiles>(chain);
                     nodeFeaturesOut(node, 0) = replaceIfNotFinite(mean,     0.0);
                     nodeFeaturesOut(node, 1) = replaceIfNotFinite(get<acc::Variance>(chain), 0.0);
-                    nodeFeaturesOut(node, 2) = replaceIfNotFinite(get<acc::Skewness>(chain), 0.0);
-                    nodeFeaturesOut(node, 3) = replaceIfNotFinite(get<acc::Kurtosis>(chain), 0.0);
+                    //nodeFeaturesOut(node, 2) = replaceIfNotFinite(get<acc::Skewness>(chain), 0.0);
+                    //nodeFeaturesOut(node, 3) = replaceIfNotFinite(get<acc::Kurtosis>(chain), 0.0);
                     for(auto qi=0; qi<7; ++qi){
-                        nodeFeaturesOut(node, 4+qi) = replaceIfNotFinite(quantiles[qi], mean);
+                        nodeFeaturesOut(node, 2+qi) = replaceIfNotFinite(quantiles[qi], mean);
                     }
                 });
 
@@ -1106,8 +1106,8 @@ namespace graph{
             acc::DataArg<1>,
             acc::Mean,        //1
             acc::Variance,    //1
-            acc::Skewness,    //1
-            acc::Kurtosis,    //1
+            //acc::Skewness,    //1
+            //acc::Kurtosis,    //1
             Quantiles         //7
         > SelectType;
         typedef acc::StandAloneAccumulatorChain<DIM, DataType, SelectType> AccChainType;
@@ -1136,10 +1136,10 @@ namespace graph{
                     const auto quantiles = get<Quantiles>(chain);
                     edgeFeaturesOut(edge, 0) = replaceIfNotFinite(mean,     0.0);
                     edgeFeaturesOut(edge, 1) = replaceIfNotFinite(get<acc::Variance>(chain), 0.0);
-                    edgeFeaturesOut(edge, 2) = replaceIfNotFinite(get<acc::Skewness>(chain), 0.0);
-                    edgeFeaturesOut(edge, 3) = replaceIfNotFinite(get<acc::Kurtosis>(chain), 0.0);
+                    //edgeFeaturesOut(edge, 2) = replaceIfNotFinite(get<acc::Skewness>(chain), 0.0);
+                    //edgeFeaturesOut(edge, 3) = replaceIfNotFinite(get<acc::Kurtosis>(chain), 0.0);
                     for(auto qi=0; qi<7; ++qi)
-                        edgeFeaturesOut(edge, 4+qi) = replaceIfNotFinite(quantiles[qi], mean);
+                        edgeFeaturesOut(edge, 2+qi) = replaceIfNotFinite(quantiles[qi], mean);
                 });
             },
             AccOptions(minVal, maxVal)
@@ -1170,8 +1170,8 @@ namespace graph{
             acc::DataArg<1>,
             acc::Mean,        //1
             acc::Variance,    //1
-            acc::Skewness,    //1
-            acc::Kurtosis,    //1
+            //acc::Skewness,    //1
+            //acc::Kurtosis,    //1
             Quantiles         //7
         > SelectType;
         typedef acc::StandAloneAccumulatorChain<DIM, DataType, SelectType> AccChainType;
@@ -1202,10 +1202,10 @@ namespace graph{
                     const auto quantiles = get<Quantiles>(chain);
                     nodeFeaturesOut(node, 0) = replaceIfNotFinite(mean,     0.0);
                     nodeFeaturesOut(node, 1) = replaceIfNotFinite(get<acc::Variance>(chain), 0.0);
-                    nodeFeaturesOut(node, 2) = replaceIfNotFinite(get<acc::Skewness>(chain), 0.0);
-                    nodeFeaturesOut(node, 3) = replaceIfNotFinite(get<acc::Kurtosis>(chain), 0.0);
+                    //nodeFeaturesOut(node, 2) = replaceIfNotFinite(get<acc::Skewness>(chain), 0.0);
+                    //nodeFeaturesOut(node, 3) = replaceIfNotFinite(get<acc::Kurtosis>(chain), 0.0);
                     for(auto qi=0; qi<7; ++qi){
-                        nodeFeaturesOut(node, 4+qi) = replaceIfNotFinite(quantiles[qi], mean);
+                        nodeFeaturesOut(node, 2+qi) = replaceIfNotFinite(quantiles[qi], mean);
                     }
                 });
 
