@@ -166,8 +166,8 @@ namespace graph{
         ){
             typedef nifty::marray::PyView<DATA_T> NumpyArrayType;
             typedef std::pair<NumpyArrayType, NumpyArrayType>  OutType;
-            NumpyArrayType edgeOut({uint64_t(rag.edgeIdUpperBound()+1),uint64_t(11)});
-            NumpyArrayType nodeOut({uint64_t(rag.nodeIdUpperBound()+1),uint64_t(11)});
+            NumpyArrayType edgeOut({uint64_t(rag.edgeIdUpperBound()+1),uint64_t(9)});
+            NumpyArrayType nodeOut({uint64_t(rag.nodeIdUpperBound()+1),uint64_t(9)});
             {
                 py::gil_scoped_release allowThreads;
                 array::StaticArray<int64_t, DIM> blocKShape_;
@@ -200,8 +200,8 @@ namespace graph{
         ){
             typedef nifty::marray::PyView<DATA_T> NumpyArrayType;
             typedef std::pair<NumpyArrayType, NumpyArrayType>  OutType;
-            NumpyArrayType edgeOut({uint64_t(rag.edgeIdUpperBound()+1),uint64_t(11)});
-            NumpyArrayType nodeOut({uint64_t(rag.nodeIdUpperBound()+1),uint64_t(11)});
+            NumpyArrayType edgeOut({uint64_t(rag.edgeIdUpperBound()+1),uint64_t(9)});
+            NumpyArrayType nodeOut({uint64_t(rag.nodeIdUpperBound()+1),uint64_t(9)});
             {
                 py::gil_scoped_release allowThreads;
                 array::StaticArray<int64_t, DIM> blocKShape_;
@@ -237,7 +237,7 @@ namespace graph{
             const int numberOfThreads
         ){
             typedef nifty::marray::PyView<DATA_T> NumpyArrayType;
-            NumpyArrayType nodeOut({uint64_t(rag.nodeIdUpperBound()+1),uint64_t(11)});
+            NumpyArrayType nodeOut({uint64_t(rag.nodeIdUpperBound()+1),uint64_t(9)});
             {
                 py::gil_scoped_release allowThreads;
                 accumulateNodeStandartFeatures(rag, data, minVal, maxVal, blocKShape, nodeOut, numberOfThreads);
@@ -267,7 +267,7 @@ namespace graph{
             const int numberOfThreads
         ){
             typedef nifty::marray::PyView<DATA_T> NumpyArrayType;
-            NumpyArrayType edgeOut({uint64_t(rag.edgeIdUpperBound()+1),uint64_t(11)});
+            NumpyArrayType edgeOut({uint64_t(rag.edgeIdUpperBound()+1),uint64_t(9)});
             {
                 py::gil_scoped_release allowThreads;
                 accumulateEdgeStandartFeatures(rag, data, minVal, maxVal, blocKShape, edgeOut, numberOfThreads);
