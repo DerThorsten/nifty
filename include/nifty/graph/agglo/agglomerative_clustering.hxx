@@ -38,6 +38,70 @@ public:
             clusterPolicy_.edgeContractionGraph().contractEdge(edgeToContractNext);
         }
     }
+
+  
+
+    template<class MERGE_TIMES, class EDGE_DENDROGRAM_HEIGHT>
+    void runAndGetMergeTimesAndDendrogramHeight(
+        MERGE_TIMES & mergeTimes,
+        EDGE_DENDROGRAM_HEIGHT & dendrogramHeight,
+        const bool verbose=false  
+    ){
+        const auto & cgraph = clusterPolicy_.edgeContractionGraph();
+        const auto & graph = cgraph.graph();
+        for(const auto edge: graph.edges()){
+            mergeTimes[edge] = graph.numberOfNodes();
+        }
+        auto t=-0;
+        while(!clusterPolicy_.isDone()){
+
+            if(clusterPolicy_.edgeContractionGraph().numberOfEdges() == 0)
+                break;
+
+            const auto edgeToContractNextAndPriority = clusterPolicy_.edgeToContractNext();
+            const auto edgeToContractNext = edgeToContractNextAndPriority.first;
+            const auto priority = edgeToContractNextAndPriority.second;
+            dendrogramHeight[edgeToContractNext] = priority;
+            mergeTimes[edgeToContractNext] = edgeToContractNext;
+            if(verbose){
+                const auto & cgraph = clusterPolicy_.edgeContractionGraph();
+                std::cout<<"Nodes "<<cgraph.numberOfNodes()<<" p="<<priority<<"\n";
+            }
+            clusterPolicy_.edgeContractionGraph().contractEdge(edgeToContractNext);
+        }
+        this->ucmTransform(mergeTimes);
+        this->ucmTransform(dendrogramHeight);
+    }
+    
+
+    template<class MERGE_TIMES>
+    void runAndGetMergeTimes(
+        MERGE_TIMES & mergeTimes,
+        const bool verbose=false  
+    ){
+        const auto & cgraph = clusterPolicy_.edgeContractionGraph();
+        const auto & graph = cgraph.graph();
+        for(const auto edge: graph.edges()){
+            mergeTimes[edge] = graph.numberOfNodes();
+        }
+        auto t=-0;
+        while(!clusterPolicy_.isDone()){
+
+            if(clusterPolicy_.edgeContractionGraph().numberOfEdges() == 0)
+                break;
+
+            const auto edgeToContractNextAndPriority = clusterPolicy_.edgeToContractNext();
+            const auto edgeToContractNext = edgeToContractNextAndPriority.first;
+            const auto priority = edgeToContractNextAndPriority.second;
+            mergeTimes[edgeToContractNext] = edgeToContractNext;
+            if(verbose){
+                const auto & cgraph = clusterPolicy_.edgeContractionGraph();
+                std::cout<<"Nodes "<<cgraph.numberOfNodes()<<" p="<<priority<<"\n";
+            }
+            clusterPolicy_.edgeContractionGraph().contractEdge(edgeToContractNext);
+        }
+        this->ucmTransform(mergeTimes);
+    }
     
 
     template<class EDGE_DENDROGRAM_HEIGHT>

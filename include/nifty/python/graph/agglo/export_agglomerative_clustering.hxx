@@ -36,6 +36,40 @@ namespace agglo{
             typedef typename GraphType:: template EdgeMap<double> EdgeMapFloat64;
 
             aggloCls
+
+                .def("runAndGetMergeTimes", [](
+                    AGGLO_CLUSTER_TYPE * self, const bool verbose
+                ){
+                    const auto & graph = self->graph();
+                    nifty::marray::PyView<uint64_t> mtimes ( {std::size_t(graph.edgeIdUpperBound()+1)  });
+                    {
+                        py::gil_scoped_release allowThreads;
+                        self->runAndGetMergeTimes(mtimes, verbose);
+                    }
+                }
+                ,
+                    py::arg("verbose") = false
+                )
+
+                .def("runAndGetMergeTimesAndDendrogramHeight", [](
+                    AGGLO_CLUSTER_TYPE * self, const bool verbose
+                ){
+                    const auto & graph = self->graph();
+                    nifty::marray::PyView<double>   dheight( {std::size_t(graph.edgeIdUpperBound()+1)  });
+                    nifty::marray::PyView<uint64_t> mtimes ( {std::size_t(graph.edgeIdUpperBound()+1)  });
+                    {
+                        py::gil_scoped_release allowThreads;
+                        self->runAndGetMergeTimesAndDendrogramHeight(mtimes, dheight,verbose);
+                    }
+                    return std::pair<
+                        nifty::marray::PyView<uint64_t>,
+                        nifty::marray::PyView<double> 
+                    >(mtimes, dheight);
+                }
+                ,
+                    py::arg("verbose") = false
+                )
+
                 .def("runAndGetDendrogramHeight", [](
                     AGGLO_CLUSTER_TYPE * self, const bool verbose
                 ){

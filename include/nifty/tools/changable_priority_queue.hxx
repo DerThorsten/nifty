@@ -49,7 +49,7 @@ public:
         return currentSize_ == 0;
     }
  
-    /// check if the PQ is empty
+    /// clear PQ
     void clear() {
         for(int i = 0; i < currentSize_; i++)
         {

@@ -12,6 +12,7 @@ namespace tools{
     void exportMakeDense(py::module &);
     void exportBlocking(py::module &);
     void exportTake(py::module &);
+    void exportChangeablePriorityQueue(py::module &);
 }
 }
 
@@ -28,6 +29,7 @@ PYBIND11_PLUGIN(_tools) {
     exportMakeDense(toolsModule);
     exportBlocking(toolsModule);
     exportTake(toolsModule);
-
+    exportChangeablePriorityQueue(toolsModule);
+    
     return toolsModule.ptr();
 }
