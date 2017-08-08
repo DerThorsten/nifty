@@ -24,6 +24,7 @@ namespace graph{
 
     using namespace py;
 
+    // TODO assert that z direction is in (0,1,2)
     template<class RAG, class DATA>
     void exportAccumulateEdgeFeaturesFromFiltersInCoreT(
         py::module & ragModule
@@ -39,8 +40,8 @@ namespace graph{
         ){
             if(keepXYOnly && keepZOnly)
                 throw std::runtime_error("keepXYOnly and keepZOnly are not allowed to be both activated!");
-            uint64_t nEdgesXY = !keepZOnly ? rag.numberOfInSliceEdges() : 0L;
-            uint64_t nEdgesZ  = !keepXYOnly ? rag.numberOfInBetweenSliceEdges() : 0L;
+            uint64_t nEdgesXY = !keepZOnly ? rag.numberOfInSliceEdges() : 1L;
+            uint64_t nEdgesZ  = !keepXYOnly ? rag.numberOfInBetweenSliceEdges() : 1L;
 
             // TODO don't hard code this
             uint64_t nChannels = 12;
@@ -63,6 +64,7 @@ namespace graph{
         );
     }
 
+    // TODO assert that z direction is in (0,1,2)
     template<class RAG, class DATA>
     void exportAccumulateEdgeFeaturesFromFiltersOutOfCoreT(
         py::module & ragModule
@@ -81,8 +83,8 @@ namespace graph{
 
             if(keepXYOnly && keepZOnly)
                 throw std::runtime_error("keepXYOnly and keepZOnly are not allowed to be both activated!");
-            uint64_t nEdgesXY = !keepZOnly ? rag.numberOfInSliceEdges() : 0L;
-            uint64_t nEdgesZ  = !keepXYOnly ? rag.numberOfInBetweenSliceEdges() : 0L;
+            uint64_t nEdgesXY = !keepZOnly ? rag.numberOfInSliceEdges() : 1L;
+            uint64_t nEdgesZ  = !keepXYOnly ? rag.numberOfInBetweenSliceEdges() : 1L;
 
             // TODO don't hard code this
             uint64_t nChannels = 12;
@@ -109,6 +111,7 @@ namespace graph{
         );
     }
 
+    // TODO assert that z direction is in (0,1,2)
     template<class RAG, class DATA>
     void exportAccumulateSkipEdgeFeaturesFromFiltersT(
         py::module & ragModule
