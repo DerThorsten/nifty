@@ -66,6 +66,10 @@ namespace graph{
 
             const auto & shape = self.rag().shape();
             marray::PyView<uint32_t,DIM> out(shape.begin(), shape.end());
+
+            // FIXME need pyview with initializaion...
+            std::fill(out.begin(), out.end(), 0);
+
             self.edgesToVolume(edgeValues, out, edgeDirection, ignoreValue, numberOfThreads);
             return out;
         }, py::arg("edgeValues"), py::arg("edgeDirection") = 0, py::arg("ignoreValue") = 0, py::arg("numberOfThreads") = -1)
