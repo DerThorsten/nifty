@@ -178,7 +178,7 @@ make -j${CPU_COUNT}
 
 ##
 ## Install to prefix
-cp -r ${SRC_DIR}/build/python/nifty ${PREFIX}/lib/python${PY_ABI}/site-packages/
+cp -r ${SRC_DIR}/build/python/nifty ${PREFIX}/lib/python${PY_VER}/site-packages/
 
 
 NIFTY_MODULE_SO=${PREFIX}/lib/python${PY_VER}/site-packages/nifty/_nifty.so
