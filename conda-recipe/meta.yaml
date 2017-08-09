@@ -46,8 +46,8 @@ requirements:
     - gcc 4.8.5 # [unix]
     - boost 1.60.0
     - python {{PY_VER}}*
-    - hdf5 1.8.17
-    - fastfilters 0.2.4.post3
+    - hdf5 >=1.8.17
+    - fastfilters
 
     {% if WITH_CPLEX is defined and WITH_CPLEX %}
     - cplex-shared # Need to make sure that cplex dylibs exist
@@ -62,12 +62,14 @@ requirements:
     - libgcc 4.8*
     - boost 1.60.0
     - python {{PY_VER}}*
-    - hdf5 1.8.17
+    - hdf5 >=1.8.17
     - numpy # Numpy version is not constrained, thanks to pybind11 magic
-    - fastfilters 0.2.4.post3
-    - futures
-    - scikit-image 0.13
-    - scipy 0.19
+    - fastfilters
+    - scikit-image
+    - scipy
+    {% if PY_VER < 3 %}
+      - futures
+    {% endif %}
 
 
     {% if WITH_CPLEX is defined and WITH_CPLEX %}

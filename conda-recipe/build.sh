@@ -154,8 +154,8 @@ cmake .. \
 \
         -DBUILD_NIFTY_PYTHON=ON \
         -DPYTHON_EXECUTABLE=${PYTHON} \
-        -DPYTHON_LIBRARY=${PREFIX}/lib/libpython2.7.${DYLIB} \
-        -DPYTHON_INCLUDE_DIR=${PREFIX}/include/python2.7 \
+        -DPYTHON_LIBRARY=${PREFIX}/lib/libpython${PY_VER}.${DYLIB} \
+        -DPYTHON_INCLUDE_DIR=${PREFIX}/include/python${PY_VER} \
 ##
 
 ##
@@ -171,10 +171,10 @@ fi
 
 ##
 ## Install to prefix
-cp -r ${SRC_DIR}/build/python/nifty ${PREFIX}/lib/python2.7/site-packages/
+cp -r ${SRC_DIR}/build/python/nifty ${PREFIX}/lib/python${PY_VER}/site-packages/
 
 
-NIFTY_MODULE_SO=${PREFIX}/lib/python2.7/site-packages/nifty/_nifty.so
+NIFTY_MODULE_SO=${PREFIX}/lib/python${PY_VER}/site-packages/nifty/_nifty.so
 
 ##
 ## Rename the python module entirely, and change cplex lib install names.
@@ -189,7 +189,7 @@ if [[ "$WITH_CPLEX" != "" ]]; then
         fi
 
         # Rename the nifty package to 'nifty_with_cplex'
-        cd "${PREFIX}/lib/python2.7/site-packages/"
+        cd "${PREFIX}/lib/python${PY_VER}/site-packages/"
         mv nifty nifty_with_cplex
     )
 fi
@@ -206,7 +206,7 @@ if [[ "$WITH_GUROBI" != "" ]]; then
         fi
 
         # Rename the nifty package to 'nifty_with_gurobi'
-        cd "${PREFIX}/lib/python2.7/site-packages/"
+        cd "${PREFIX}/lib/python${PY_VER}/site-packages/"
         mv nifty nifty_with_gurobi
     )
 fi
