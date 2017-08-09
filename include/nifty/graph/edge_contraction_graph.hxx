@@ -291,6 +291,11 @@ namespace graph{
             NIFTY_ASSERT(innerCallback_.edgesSet_.find(deadEdge)==innerCallback_.edgesSet_.end());
             return cgraph_.nodeOfDeadEdge(deadEdge);
         }
+
+
+        const NodeUfdType & nodeUfd()const{
+            return cgraph_.nodeUfd();
+        }
     private:
         typedef detail_edge_contraction_graph::InnerCallback<GraphType, OuterCallbackType, SetType> InnerCallbackType;
         InnerCallbackType innerCallback_;
