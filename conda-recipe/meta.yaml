@@ -43,10 +43,9 @@ build:
 
 requirements:
   build:
-    - gcc 4.8.5 # [unix]
-    - boost 1.60.0
+    - boost 1.63.0
     - python {{PY_VER}}*
-    - hdf5 >=1.8.17
+    - hdf5 >=1.8.18
     - fastfilters
 
     {% if WITH_CPLEX is defined and WITH_CPLEX %}
@@ -59,17 +58,14 @@ requirements:
     {% endif %}
 
   run:
-    - libgcc 4.8*
-    - boost 1.60.0
+    - boost 1.63.0
     - python {{PY_VER}}*
-    - hdf5 >=1.8.17
+    - hdf5 >=1.8.18
     - numpy # Numpy version is not constrained, thanks to pybind11 magic
     - fastfilters
     - scikit-image
     - scipy
-    {% if PY_VER < 3 %}
-      - futures
-    {% endif %}
+    - futures # [py2k]
 
 
     {% if WITH_CPLEX is defined and WITH_CPLEX %}
