@@ -109,6 +109,17 @@ namespace graph{
                 "       *   'prod': Product of the two image values at edges endpoints of coordinates.\n"
             )
 
+            .def("affinitiesToEdgeMap",
+                [](
+                    const GraphType & g,
+                    nifty::marray::PyView<float, DIM+1> affinities
+                ){
+                    nifty::marray::PyView<float> out({g.edgeIdUpperBound()+1});
+                    g.affinitiesToEdgeMap(affinities, out);
+                },
+                py::arg("affinities")
+            )
+
 
             //.def("uvIds",
             //    [](GraphType & g) {
