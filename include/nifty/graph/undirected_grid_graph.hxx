@@ -303,6 +303,55 @@ public:
         }
     }
 
+
+    // FIXME this can probably be done more effiicently
+    /**
+     * @brief convert an affinity map with DIM+1 dimension to an edge map
+     * @details convert an affinity map with DIM+1 dimension to an edge map
+     * by assining the affinity values to corresponding affinity values
+     *
+     * @param       image the input affinities
+     * @param[out]  the result edge map
+     *
+     * @return [description]
+     */
+    template<class AFFINITIES, class EDGE_MAP>
+    void affinitiesToEdgeMap(
+        const AFFINITIES & affinities,
+        EDGE_MAP & edgeMap
+    )const{
+        NIFTY_CHECK_OP(affinities.shape(0), ==, DIM, "wrong number of affinity channels")
+        for(auto d=1; d<DIM+1; ++d){
+            NIFTY_CHECK_OP(shape(d-1), ==, affinities.shape(d), "wrong shape")
+        }
+
+        typedef nifty::array::StaticArray<int64_t, DIM+1> AffinityCoordType;
+
+        for(const auto edge : this->edges()){
+
+            const auto uv = this->uv(edge);
+            CoordinateType cU,cV;
+            nodeToCoordinate(uv.first,  cU);
+            nodeToCoordinate(uv.second, cV);
+
+            // find the correct affinity edge
+            AffinityCoordType affCoord;
+            for(size_t d = 0; d < DIM; ++d) {
+                auto diff = cU[d] - cV[d];
+                if(diff == 0) {
+                    affCoord[d + 1] = cU[d];
+                }
+                else {
+                    affCoord[d + 1] = std::min(cU[d], cV[d]);
+                    affCoord[0] = d;
+                }
+            }
+
+            edgeMap[edge] = affinities(affCoord.asStdArray());
+        }
+    }
+
+
     /**
      * @brief convert an image with DIM dimension to an edge map
      * @details convert an image with DIM dimension to an edge map
