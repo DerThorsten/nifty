@@ -116,6 +116,7 @@ namespace graph{
                 ){
                     nifty::marray::PyView<float> out({g.edgeIdUpperBound()+1});
                     g.affinitiesToEdgeMap(affinities, out);
+                    return out;
                 },
                 py::arg("affinities")
             )
