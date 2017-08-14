@@ -131,6 +131,7 @@ namespace graph{
         typedef COORD Coord;
         marray::View<float> dataView;
         if( typeid(DataType) == typeid(float) ) {
+            dataCopy = dataSqueezed;
             return;
         }
         else {
@@ -167,6 +168,7 @@ namespace graph{
         typedef typename vigra::MultiArrayShape<3>::type   VigraCoord;
         typedef typename LabelsProxyType::BlockStorageType LabelStorage;
         typedef typename tools::BlockStorageSelector<DATA>::type DataStorage;
+        typedef tools::BlockStorage<float> DataCopyStorage;
 
         typedef array::StaticArray<int64_t,3> Coord;
         typedef array::StaticArray<int64_t,2> Coord2;
@@ -200,6 +202,10 @@ namespace graph{
             DataStorage dataAStorage(threadpool, sliceShape3, nThreads);
             DataStorage dataBStorage(threadpool, sliceShape3, nThreads);
 
+            // storage for the data we have to copy if type of data is not float
+            DataCopyStorage dataACopyStorage(threadpool, sliceShape2, nThreads);
+            DataCopyStorage dataBCopyStorage(threadpool, sliceShape2, nThreads);
+
             // process slice 0 to find min and max for histogram opts
             Coord begin0({0L, 0L, 0L});
             Coord end0(  {1L, shape[1], shape[2]});
@@ -210,8 +216,8 @@ namespace graph{
 
             vigra::HistogramOptions histoOptions;
             auto minMax = std::minmax_element(data0Squeezed.begin(), data0Squeezed.end());
-            auto min = *(minMax.first);
-            auto max = *(minMax.second);
+            float min = static_cast<float>(*(minMax.first));
+            float max = static_cast<float>(*(minMax.second));
             histoOptions.setMinMax(min, max);
 
             // construct slice pairs for processing in parallel
@@ -245,9 +251,7 @@ namespace graph{
                 auto dataASqueezed = dataA.squeezedView();
 
                 // copy the data if our input is not float
-                marray::Marray<float> dataACopy;
-                if( typeid(DataType) != typeid(float) )
-                    dataACopy.resize(sliceShape2.begin(), sliceShape2.end());
+                auto dataACopy = dataACopyStorage.getView(tid);
                 copyIfNecessary(dataASqueezed, dataACopy, sliceShape2);
 
                 // acccumulate the inner slice features
@@ -277,7 +281,7 @@ namespace graph{
                 Coord endB   = Coord({sliceIdB+1, shape[1], shape[2]});
                 marray::View<LabelType> labelsBSqueezed;
                 marray::View<DataType> dataBSqueezed;
-                marray::Marray<float> dataBCopy;
+                auto dataBCopy = dataBCopyStorage.getView(tid);
 
                 // read labels and data for upper slice
                 // do if we are not keeping only xy edges or
@@ -293,9 +297,6 @@ namespace graph{
                     tools::readSubarray(data, beginB, endB, dataB);
                     dataBSqueezed = dataB.squeezedView();
 
-                    // copy the data if our input is not float
-                    if( typeid(DataType) != typeid(float) )
-                        dataBCopy.resize(sliceShape2.begin(), sliceShape2.end());
                     copyIfNecessary(dataBSqueezed, dataBCopy, sliceShape2);
                 }
 
@@ -393,9 +394,7 @@ namespace graph{
 
             marray::Marray<DataType> featuresTemp({nEdges, nStats});
 
-            parallel::parallel_foreach(threadpool, edgeAccChainVec.size(),[&](
-                const int tid, const int64_t edge
-            ){
+            for(auto edge = 0; edge < edgeAccChainVec.size(); ++edge) {
                 const auto & chain = edgeAccChainVec[edge];
                 const auto mean = get<acc::Mean>(chain);
                 const auto quantiles = get<Quantiles>(chain);
@@ -403,7 +402,7 @@ namespace graph{
                 featuresTemp(edge, 1) = replaceIfNotFinite(get<acc::Variance>(chain), 0.0);
                 for(auto qi=0; qi<7; ++qi)
                     featuresTemp(edge, 2+qi) = replaceIfNotFinite(quantiles[qi], mean);
-            });
+            }
 
             FeatCoord begin({int64_t(edgeOffset),0L});
             FeatCoord end({edgeOffset+nEdges, nStats});

@@ -28,8 +28,8 @@ namespace graph{
         ){
             if(keepXYOnly && keepZOnly)
                 throw std::runtime_error("keepXYOnly and keepZOnly are not allowed to be both activated!");
-            uint64_t nEdgesXY = !keepZOnly ? rag.numberOfInSliceEdges() : 0L;
-            uint64_t nEdgesZ  = !keepXYOnly ? rag.numberOfInBetweenSliceEdges() : 0L;
+            uint64_t nEdgesXY = !keepZOnly ? rag.numberOfInSliceEdges() : 1L;
+            uint64_t nEdgesZ  = !keepXYOnly ? rag.numberOfInBetweenSliceEdges() : 1L;
             uint64_t nStats = 9;
 
             nifty::marray::PyView<float> outXY({nEdgesXY, nStats});
@@ -68,8 +68,8 @@ namespace graph{
 
             if(keepXYOnly && keepZOnly)
                 throw std::runtime_error("keepXYOnly and keepZOnly are not allowed to be both activated!");
-            uint64_t nEdgesXY = !keepZOnly ? rag.numberOfInSliceEdges() : 0L;
-            uint64_t nEdgesZ  = !keepXYOnly ? rag.numberOfInBetweenSliceEdges() : 0L;
+            uint64_t nEdgesXY = !keepZOnly ? rag.numberOfInSliceEdges() : 1L;
+            uint64_t nEdgesZ  = !keepXYOnly ? rag.numberOfInBetweenSliceEdges() : 1L;
 
             uint64_t nFeatures = 9;
             // need to check that this is set correct
@@ -154,8 +154,8 @@ namespace graph{
 
             // out of core
             exportAccumulateEdgeStandardFeaturesOutOfCoreT<StackedRagUInt32, FloatArray>(ragModule);
-            //exportAccumulateEdgeStandardFeaturesOutOfCoreT<StackedRagUInt64, FloatArray>(ragModule);
-            exportAccumulateEdgeStandardFeaturesOutOfCoreT<StackedRagUInt32, UInt8Array>(ragModule);
+            exportAccumulateEdgeStandardFeaturesOutOfCoreT<StackedRagUInt64, FloatArray>(ragModule);
+            //exportAccumulateEdgeStandardFeaturesOutOfCoreT<StackedRagUInt32, UInt8Array>(ragModule);
             //exportAccumulateEdgeStandardFeaturesOutOfCoreT<StackedRagUInt64, UInt8Array>(ragModule);
 
             exportGetSkipEdgeLengthsT<StackedRagUInt32>(ragModule);
