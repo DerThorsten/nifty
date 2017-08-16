@@ -118,8 +118,6 @@ def distanceTransformWatersheds(pmap, preBinarizationMedianRadius=1, threshold =
     Raises:
         RuntimeError: if applied to data with wrong dimensionality
     """
-
-
     if pmap.ndim != 2:
         raise RuntimeError("Currently only implemented for 2D data")
 
