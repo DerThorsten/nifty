@@ -45,7 +45,7 @@ requirements:
   build:
     - boost 1.63.0
     - python {{PY_VER}}*
-    - hdf5 1.8.17
+    - hdf5 1.8.17 # Need this version to be compatible with current vigra package
     - fastfilters
 
     {% if WITH_CPLEX is defined and WITH_CPLEX %}
@@ -60,7 +60,7 @@ requirements:
   run:
     - boost 1.63.0
     - python {{PY_VER}}*
-    - hdf5 1.8.17
+    - hdf5 1.8.17 # Need this version to be compatible with current vigra package
     - numpy # Numpy version is not constrained, thanks to pybind11 magic
     - fastfilters
     - scikit-image
