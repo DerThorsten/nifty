@@ -337,12 +337,12 @@ for ds in ['test']:
         # do multicut obtimization 
         if nifty.Configuration.WITH_CPLEX:
             solver = MulticutObjective.multicutIlpCplexFactory().create(objective)
-        elif nifty.Configuration.WITH_GLPK:
+        elif nifty.Configuration.WITH_GUROBI:
             solver = MulticutObjective.multicutIlpGurobiFactory().create(objective)
         elif nifty.Configuration.WITH_GLPK:
             solver = MulticutObjective.multicutIlpGlpkFactory().create(objective)
         else:
-            solver = MulticutObjective.fusionMoveBasedFactory().create(objective)
+            solver = MulticutObjective.greedyAdditiveFactory().create(objective)
 
 
         arg = solver.optimize(visitor=MulticutObjective.verboseVisitor())
