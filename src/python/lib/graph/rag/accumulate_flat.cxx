@@ -20,9 +20,9 @@ namespace py = pybind11;
 
 namespace nifty{
 namespace graph{
-    
+
     using namespace py;
-    
+
     template<class RAG, class DATA_T>
     void exportAccumulateEdgeFeaturesFlatT(
         py::module & ragModule
@@ -52,9 +52,9 @@ namespace graph{
         py::arg("numberOfThreads")= -1
         );
     }
-    
+
     void exportAccumulateFlat(py::module & ragModule) {
-        
+
         typedef ExplicitLabelsGridRag<3, uint32_t> Rag3d;
         exportAccumulateEdgeFeaturesFlatT<Rag3d, float>(ragModule);
 
