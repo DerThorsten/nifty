@@ -341,7 +341,7 @@ template<class EDGE_INTERANL_TYPE, class NODE_INTERNAL_TYPE >
 uint64_t
 UndirectedGraph<EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE>::
 serializationSize() const{
-    auto size = 0;
+    uint64_t size = 0L;
     size += 2; // number of nodes;  number of edges
     size += this->numberOfEdges() * 2;  // u, v;
     return size;
@@ -358,7 +358,6 @@ serialize(ITER & iter) const{
     *iter = this->numberOfEdges();
     ++iter;
 
-    int i = 0;
     for(const auto edge : this->edges()){
         *iter = this->u(edge);
         ++iter;
