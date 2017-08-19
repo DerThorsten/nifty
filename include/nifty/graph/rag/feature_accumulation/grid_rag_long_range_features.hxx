@@ -101,8 +101,14 @@ void getLongRangeAdjacency(
 // accumulate features for long range adjacency along the z (anisotropic) axis
 // assumes flat superpixels !
 template<class RAG, class AFFINITIES>
-void accumulateLongRangeFeatures() {
-    
+void accumulateLongRangeFeatures(
+    const RAG & rag,
+    const AFFINITIES & affinities,
+    const std::vector<std::pair<typename RAG::LabelType, typename RAG::LabelType>> & adjacency,
+    const size_t longRange,
+    const int numberOfThreads
+) {
+
 }
 
 

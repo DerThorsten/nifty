@@ -18,6 +18,7 @@
 
 namespace py = pybind11;
 
+// FIXME this doesn't really need the rag at all ....
 namespace nifty{
 namespace graph{
 
@@ -45,11 +46,34 @@ namespace graph{
         );
     }
 
-    void exportLongRangeFeatures(py::module & ragModule) {
+    template<class RAG>
+    void exportAccumulateLongRangeFeaturesT(py::module & ragModule) {
+        ragModule.def("accumulateLongRangeFeatures",
+        [](
+            const RAG & rag,
+            const marray::PyView<float> affinities,
+            const std::vector<std::pair<typename RAG::LabelType, typename RAG::LabelType>> & adjacency,
+            const size_t longRange,
+            const int numberOfThreads
+        ){
+            typedef typename RAG::LabelType LabelType;
+            size_t nStats = 9;
+            nifty::marray::PyView<float> features({adjacency.size(), nStats});
+            {
+                py::gil_scoped_release allowThreads;
+                accumulateLongRangeFeatures(rag, affinities, adjacency, longRange, numberOfThreads);
+            }
+            return features;
+        },
+        py::arg("rag"), py::arg("affinities"), py::arg("adjacency"), py::arg("longRange"), py::arg("numberOfThreads")=-1
+        );
 
+    }
+
+    void exportLongRangeFeatures(py::module & ragModule) {
         typedef ExplicitLabelsGridRag<3, uint32_t> Rag3d;
         exportGetLongRangeAdjacencyT<Rag3d>(ragModule);
-
+        exportAccumulateLongRangeFeaturesT<Rag3d>(ragModule);
     }
 
 }
