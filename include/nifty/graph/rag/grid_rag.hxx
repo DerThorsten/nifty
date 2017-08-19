@@ -57,6 +57,8 @@ class GridRag : public UndirectedGraph<>{
 public:
     struct DontComputeRag{};
     typedef LABELS_PROXY LabelsProxy;
+    typedef typename LabelsProxy::LabelType LabelType;
+    
     struct Settings{
         Settings()
         :   numberOfThreads(-1),

@@ -18,6 +18,7 @@ namespace graph{
     void exportAccumulateEdgeFeaturesFromFilters(py::module &);
     void exportAccumulateFlat(py::module &);
     void exportGridRagCoordinates(py::module &);
+    void exportLongRangeFeatures(py::module &);
 
 }
 }
@@ -27,7 +28,7 @@ PYBIND11_PLUGIN(_rag) {
 
     py::options options;
     options.disable_function_signatures();
-        
+
     py::module ragModule("_rag", "rag submodule of nifty.graph");
 
     using namespace nifty::graph;
@@ -40,6 +41,7 @@ PYBIND11_PLUGIN(_rag) {
     exportAccumulateStacked(ragModule);
     exportAccumulateFlat(ragModule);
     exportGridRagCoordinates(ragModule);
+    exportLongRangeFeatures(ragModule);
     #ifdef WITH_FASTFILTERS
     exportAccumulateEdgeFeaturesFromFilters(ragModule);
     #endif

@@ -14,7 +14,7 @@
 
 #include "nifty/graph/rag/grid_rag.hxx"
 #include "nifty/graph/rag/grid_rag_labels.hxx"
-#include "nifty/graph/rag/feature_accumulation/grid_rag_long_range_adjacency.hxx"
+#include "nifty/graph/rag/feature_accumulation/grid_rag_long_range_features.hxx"
 
 namespace py = pybind11;
 
