@@ -82,7 +82,7 @@ namespace multicut{
             ;
         }
 
-        { // interface flipper proposal generator
+        { // random node color proposal generator
             typedef optCommon::RandomNodeColorProposalGenerator<ObjectiveType> ProposalGeneratorType;
             typedef typename ProposalGeneratorType::SettingsType PGenSettigns;
             auto pGenSettigns = optCommon::exportCCProposalGenerator<ProposalGeneratorType>(

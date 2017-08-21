@@ -543,39 +543,6 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
         return s
     O.fusionMoveSettings = staticmethod(fusionMoveSettings)
 
-    def fusionMoveBasedFactory(numberOfIterations=10,verbose=0,
-                               numberOfParallelProposals=10, fuseN=2,
-                               stopIfNoImprovement=4,
-                               numberOfThreads=-1,
-                               proposalGen=None,
-                               fusionMove=None):
-        if proposalGen is None:
-            proposalGen = greedyAdditiveProposals()
-        if fusionMove is None:
-            fusionMove = fusionMoveSettings()
-        solverSettings = None
-
-
-
-        if isinstance(proposalGen, getSettingsCls("FusionMoveBasedGreedyAdditiveProposalGen") ):
-            solverSettings, factoryCls = getSettingsAndFactoryCls("FusionMoveBasedGreedyAdditive")
-        elif isinstance(proposalGen, getSettingsCls("FusionMoveBasedWatershedProposalGen") ):
-            solverSettings, factoryCls = getSettingsAndFactoryCls("FusionMoveBasedWatershed")
-        else:
-            raise TypeError(str(proposalGen)+" is of unknown type")
-
-        solverSettings.fusionMoveSettings = fusionMove
-        solverSettings.proposalGenSettings = proposalGen
-        solverSettings.numberOfIterations = int(numberOfIterations)
-        solverSettings.verbose = int(verbose)
-        solverSettings.numberOfParallelProposals = int(numberOfParallelProposals)
-        solverSettings.fuseN = int(fuseN)
-        solverSettings.stopIfNoImprovement = int(stopIfNoImprovement)
-        solverSettings.numberOfThreads = int(numberOfThreads)
-        factory = factoryCls(solverSettings)
-        return factory
-    O.fusionMoveBasedFactory = staticmethod(fusionMoveBasedFactory)
-
 
 
 

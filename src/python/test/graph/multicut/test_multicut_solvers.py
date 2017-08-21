@@ -113,6 +113,23 @@ class TestLiftedMulticutSolver(unittest.TestCase):
         self._testGridModelImpl(Obj.chainedSolversFactory([a,b,c]), gridSize=[6,6])
 
 
+
+    def testCcFusionMoveBasedFactory(self):
+        Obj = nifty.graph.UndirectedGraph.MulticutObjective
+        self._testGridModelImpl(Obj.ccFusionMoveBasedFactory(), gridSize=[10,10])
+
+        self._testGridModelImpl(
+            Obj.ccFusionMoveBasedFactory(proposalGenerator= Obj.watershedCcProposals()),
+            gridSize=[10,10])
+
+        self._testGridModelImpl(
+            Obj.ccFusionMoveBasedFactory(proposalGenerator= Obj.interfaceFlipperCcProposals()),
+            gridSize=[10,10])
+
+        self._testGridModelImpl(
+            Obj.ccFusionMoveBasedFactory(proposalGenerator= Obj.randomNodeColorCcProposals()),
+            gridSize=[10,10])
+
     if nifty.Configuration.WITH_CPLEX:
         def testMulticutIlpCplex(self):
             Obj = nifty.graph.UndirectedGraph.MulticutObjective

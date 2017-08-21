@@ -38,7 +38,7 @@ namespace multicut{
         {
             typedef FusionMove<ObjectiveType> FusionMoveType;
             typedef typename FusionMoveType::SettingsType FusionMoveSettings;
-            const auto fmSettingsName = std::string("__FusionMoveSettings") + objName;
+            const auto fmSettingsName = std::string("__FusionMoveSettingsType") + objName;
             py::class_<FusionMoveSettings>(multicutModule, fmSettingsName.c_str())
                 .def(py::init<>())
                 .def_readwrite("mcFactory",&FusionMoveSettings::mcFactory)
@@ -46,7 +46,7 @@ namespace multicut{
 
         }
 
-
+        #if 0
 
         // the inference 
         {
@@ -135,7 +135,7 @@ namespace multicut{
                 .def_readwrite("numberOfThreads",  &SettingsType::numberOfThreads)
             ;
         }
-     
+        #endif
     }
 
     void exportFusionMoveBased(py::module & multicutModule) {
