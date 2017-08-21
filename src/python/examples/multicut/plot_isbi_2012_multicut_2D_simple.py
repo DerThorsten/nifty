@@ -339,10 +339,8 @@ for ds in ['test']:
             solver = MulticutObjective.multicutIlpCplexFactory().create(objective)
         elif nifty.Configuration.WITH_GUROBI:
             solver = MulticutObjective.multicutIlpGurobiFactory().create(objective)
-        elif nifty.Configuration.WITH_GLPK:
-            solver = MulticutObjective.multicutIlpGlpkFactory().create(objective)
         else:
-            solver = MulticutObjective.greedyAdditiveFactory().create(objective)
+            solver = MulticutObjective.ccFusionMoveBasedFactory().create(objective)
 
 
         arg = solver.optimize(visitor=MulticutObjective.verboseVisitor())
