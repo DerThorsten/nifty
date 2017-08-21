@@ -141,7 +141,7 @@ class TestLiftedMulticutSolver(unittest.TestCase):
             self._testGridModelImpl(Obj.multicutIlpGurobiFactory(), gridSize=[5,5])
 
     if nifty.Configuration.WITH_GLPK:
-        def testMulticutIlpCGlpk(self):
+        def testMulticutIlpGlpk(self):
             Obj = nifty.graph.UndirectedGraph.MulticutObjective
             objective = self.gridModel(gridSize=[4,5])
             factory = Obj.multicutIlpGlpkFactory()
