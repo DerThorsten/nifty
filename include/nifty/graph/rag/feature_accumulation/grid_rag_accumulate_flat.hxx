@@ -192,13 +192,14 @@ void accumulateEdgeFeaturesFlatWithAccChain(
             auto dataASqueezed = dataA.squeezedView();
 
             accumulateInnerSliceFeatures(
-                    threadAccChainVec,
-                    sliceShape2,
-                    labelsASqueezed,
-                    rag,
-                    dataASqueezed,
-                    pass,
-                    sliceIdA);
+                threadAccChainVec,
+                sliceShape2,
+                labelsASqueezed,
+                rag,
+                dataASqueezed,
+                pass,
+                sliceIdA
+            );
 
             // process upper slice
             Coord beginB = Coord({sliceIdB,   0L,       0L});

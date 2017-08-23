@@ -149,7 +149,6 @@ namespace graph{
     // accumulator with data
     template<class EDGE_ACC_CHAIN, class LABELS_PROXY, class DATA, class F_XY, class F_Z>
     void accumulateEdgeFeaturesWithAccChain(
-
         const GridRagStacked2D<LABELS_PROXY> & rag,
         const DATA & data,
         const bool keepXYOnly,
