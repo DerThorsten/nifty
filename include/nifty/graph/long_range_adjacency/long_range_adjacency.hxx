@@ -7,34 +7,40 @@
 namespace nifty {
 namespace graph {
 
-template<class LABELS_PROXY>
+template<class LABELS>
 class LongRangeAdjacency : public UndirectedGraph<>{
 
 public:
-    typedef LABELS_PROXY LabelsProxy;
-    typedef typename LabelsProxy::LabelType LabelType;
+    typedef LABELS Labels;
+    typedef typename Labels::DataType LabelType;
     typedef UndirectedGraph<> BaseType;
+
+    typedef array::StaticArray<int64_t, 3> Coord;
+    typedef array::StaticArray<int64_t, 2> Coord2;
 
     // constructor from data
     LongRangeAdjacency(
-        const LabelsProxy & labelsProxy,
+        const Labels & labels,
         const size_t range,
+        const size_t numberOfLabels,
         const int numberOfThreads=-1
-    ) : labelsProxy_(labelsProxy), range_(range),
-        numberOfEdgesInSlice_(labelsProxy.shape()[0]),
-        edgeOffset_(labelsProxy.shape()[0])
+    ) : range_(range),
+        shape_({labels.shape(0), labels.shape(1), labels.shape(2)}),
+        numberOfEdgesInSlice_(shape_[0]),
+        edgeOffset_(shape_[0])
     {
-        initAdjacency(numberOfThreads);
+        initAdjacency(labels, numberOfLabels, numberOfThreads);
     }
 
     // constructor from serialization
     template<class ITER>
     LongRangeAdjacency(
-        const LabelsProxy & labelsProxy,
+        const Labels & labels,
         ITER & iter
-    ) : labelsProxy_(labelsProxy), range_(0),
-        numberOfEdgesInSlice_(labelsProxy.shape()[0]),
-        edgeOffset_(labelsProxy.shape()[0])
+    ) : range_(0),
+        shape_({labels.shape(0), labels.shape(1), labels.shape(2)}),
+        numberOfEdgesInSlice_(shape_[0]),
+        edgeOffset_(shape_[0])
     {
         deserializeAdjacency(iter);
     }
@@ -51,19 +57,19 @@ public:
     size_t serializationSize() const {
         size_t size = BaseType::serializationSize();
         size += 1;
-        size += labelsProxy_.shape()[0] * 2;
+        size += shape_[0] * 2;
         return size;
     }
 
-    const LabelsProxy & labelsProxy() const {
-        return labelsProxy_;
+    int64_t shape(const size_t i) const {
+        return shape_[i];
     }
 
     template<class ITER>
     void serialize(ITER & iter) const {
         *iter = range_;
         ++iter;
-        size_t nSlices = labelsProxy_.shape()[0];
+        size_t nSlices = shape_[0];
         for(size_t slice = 0; slice < nSlices; ++slice) {
             *iter = numberOfEdgesInSlice_[slice];
             ++iter;
@@ -75,13 +81,13 @@ public:
 
 
 private:
-    void initAdjacency(const int numberOfThreads);
+    void initAdjacency(const Labels & labels, const size_t numberOfLabels, const int numberOfThreads);
 
     template<class ITER>
     void deserializeAdjacency(ITER & iter) {
         range_ = *iter;
         ++iter;
-        size_t nSlices = labelsProxy_.shape()[0];
+        size_t nSlices = shape_[0];
         for(size_t slice = 0; slice < nSlices; ++slice) {
             numberOfEdgesInSlice_[slice] = *iter;
             ++iter;
@@ -91,34 +97,31 @@ private:
         BaseType::deserialize(iter);
     }
 
-    const LabelsProxy & labelsProxy_;
+    Coord shape_;
     size_t range_;
     std::vector<size_t> numberOfEdgesInSlice_;
     std::vector<size_t> edgeOffset_;
 };
 
 
-template<class LABELS_PROXY>
-void LongRangeAdjacency<LABELS_PROXY>::initAdjacency(const int numberOfThreads) {
+template<class LABELS>
+void LongRangeAdjacency<LABELS>::initAdjacency(const LABELS & labels, const size_t numberOfLabels, const int numberOfThreads) {
 
-    typedef array::StaticArray<int64_t, 3> Coord;
-    typedef array::StaticArray<int64_t, 2> Coord2;
-    typedef typename LabelsProxy::BlockStorageType LabelStorage;
+    typedef tools::BlockStorage<LabelType> LabelStorage;
 
     // set the number of nodes in the graph == number of labels
-    BaseType::assign(labelsProxy_.numberOfLabels());
+    BaseType::assign(numberOfLabels);
 
     // get the shape, number of slices and slice shapes
-    const auto & shape = labelsProxy_.shape();
-    const size_t nSlices = shape[0];
-    Coord2 sliceShape2({shape[1], shape[2]});
-    Coord sliceShape3({1L, shape[1], shape[2]});
+    const size_t nSlices = shape_[0];
+    Coord2 sliceShape2({shape_[1], shape_[2]});
+    Coord sliceShape3({1L, shape_[1], shape_[2]});
 
     // threadpool and actual number of threads
     nifty::parallel::ThreadPool threadpool(numberOfThreads);
     const size_t nThreads = threadpool.nThreads();
 
-    std::vector<LabelType> minNodeInSlice(nSlices);
+    std::vector<LabelType> minNodeInSlice(nSlices, numberOfLabels + 1);
     std::vector<LabelType> maxNodeInSlice(nSlices);
 
     // loop over the slices in parallel, for each slice find the edges
@@ -132,9 +135,9 @@ void LongRangeAdjacency<LABELS_PROXY>::initAdjacency(const int numberOfThreads) 
 
             // get segmentation in base slice
             Coord beginA ({int64_t(slice), 0L, 0L});
-            Coord endA({int64_t(slice + 1), shape[1], shape[2]});
+            Coord endA({int64_t(slice + 1), shape_[1], shape_[2]});
             auto labelsA = labelsAStorage.getView(tid);
-            labelsProxy_.readSubarray(beginA, endA, labelsA);
+            tools::readSubarray(labels, beginA, endA, labelsA);
             auto labelsASqueezed = labelsA.squeezedView();
 
             // iterate over the xy-coordinates and find the min and max nodes
@@ -154,14 +157,14 @@ void LongRangeAdjacency<LABELS_PROXY>::initAdjacency(const int numberOfThreads) 
             for(int64_t z = 2; z <= range_; ++z) {
 
                 // we continue if the long range affinity would reach out of the data
-                if(slice + z >= shape[0]) {
+                if(slice + z >= shape_[0]) {
                     continue;
                 }
 
                 // get upper segmentation
                 Coord beginB ({slice + z, 0L, 0L});
-                Coord endB({slice + z + 1, shape[1], shape[2]});
-                labelsProxy_.readSubarray(beginB, endB, labelsB);
+                Coord endB({slice + z + 1, shape_[1], shape_[2]});
+                tools::readSubarray(labels, beginB, endB, labelsB);
                 auto labelsBSqueezed = labelsB.squeezedView();
 
                 // iterate over the xy-coordinates and insert the long range edges
@@ -196,7 +199,7 @@ void LongRangeAdjacency<LABELS_PROXY>::initAdjacency(const int numberOfThreads) 
 
             auto edgeIndex = edgeOffset_[slice];
             const auto startNode = minNodeInSlice[slice];
-            const auto endNode = maxNodeInSlice[slice] + 1;
+            const auto endNode   = maxNodeInSlice[slice] + 1;
 
             for(uint64_t u = startNode; u < endNode; ++u){
                 for(auto & vAdj : nodes[u]){

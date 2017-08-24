@@ -16,15 +16,16 @@ for key in __long_range_adjacency.__dict__.keys():
 def longRangeAdjacency(labels, longRange, numberOfThreads=-1, serialization=None):
     assert labels.ndim == 3
     if serialization is None:
-        return explicitLabelsLongRangeAdjacency(labels, 0, longRange, numberOfThreads)
+        numberOfLabels = labels.max() + 1
+        return explicitLabelsLongRangeAdjacency(labels, longRange, numberOfLabels, numberOfThreads)
     else:
-        return explicitLabelsLongRangeAdjacency(labels, 0, serialization)
+        return explicitLabelsLongRangeAdjacency(labels, serialization)
 
 
 if Configuration.WITH_HDF5:
 
     def longRangeAdjacencyHDF5(labels, longRange, numberOfLabels, numberOfThreads=-1, serialization=None):
         if serialization is None:
-            return hdf5LabelsLongRangeAdjacency(labels, numberOfLabels, longRange, numberOfThreads)
+            return hdf5LabelsLongRangeAdjacency(labels,  longRange, numberOfLabels, numberOfThreads)
         else:
-            return hdf5LabelsLongRangeAdjacency(labels, numberOfLabels, serialization)
+            return hdf5LabelsLongRangeAdjacency(labels, serialization)

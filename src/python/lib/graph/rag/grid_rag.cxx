@@ -80,7 +80,6 @@ namespace graph{
 
                 NIFTY_CHECK_OP(d,==,serialization.size(), "serialization must be contiguous");
 
-
                 auto s = typename  GridRagType::Settings();
                 s.numberOfThreads = -1;
                 ExplicitLabels<DIM, LABELS> explicitLabels(labels);
