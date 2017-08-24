@@ -131,7 +131,7 @@ namespace graph{
         exportLongRangeAdjacencyT<Hdf5LabelsProxy,Hdf5LabelArray>(
             module,
             "Hdf5LabelsLongRangeAdjacency",
-            "hHdf5LabelsLongRangeAdjacency"
+            "hdf5LabelsLongRangeAdjacency"
         );
         #endif
     }
