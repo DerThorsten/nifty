@@ -6,70 +6,47 @@
 
 #ifdef WITH_HDF5
 #include "nifty/hdf5/hdf5_array.hxx"
-#include "nifty/graph/rag/grid_rag_labels_hdf5.hxx"
 #endif
 
-#include "nifty/graph/rag/grid_rag_labels.hxx"
-#include "nifty/graph/rag/long_range_adjacency/long_range_adjacency.hxx"
+#include "nifty/graph/long_range_adjacency/long_range_adjacency.hxx"
+#include "nifty/graph/long_range_adjacency/accumulate_long_range_features.hxx"
 
 namespace py = pybind11;
 
-// FIXME this doesn't really need the rag at all ....
 namespace nifty{
 namespace graph{
 
     using namespace py;
 
-    template<class RAG>
-    void exportGetLongRangeAdjacencyT(
-        py::module & module
-    ){
-        ragModule.def("getLongRangeAdjacency",
+    template<class ADJACENCY>
+    void exportLongRangeFeaturesInCoreT(py::module & module) {
+        ragModule.def("longRangeFeatures",
         [](
-            const RAG & rag,
-            const size_t longRange,
+            const ADJACENCY & longRangeAdjacency,
+            marray::PyView<typename ADJACENCY::LabelType, 3> labels,
+            marray::PyView<float, 4> affinities,
             const int numberOfThreads
         ){
-            typedef typename RAG::LabelType LabelType;
-            std::vector<std::pair<LabelType, LabelType>> adjacencyOut;
-            {
-                py::gil_scoped_release allowThreads;
-                getLongRangeAdjacency(rag, longRange, adjacencyOut, numberOfThreads);
-            }
-            return adjacencyOut;
-        },
-        py::arg("rag"), py::arg("longRange"), py::arg("numberOfThreads")=-1
-        );
-    }
-
-    template<class RAG>
-    void exportAccumulateLongRangeFeaturesT(py::module & ragModule) {
-        ragModule.def("accumulateLongRangeFeatures",
-        [](
-            const RAG & rag,
-            const marray::PyView<float> affinities,
-            const std::vector<std::pair<typename RAG::LabelType, typename RAG::LabelType>> & adjacency,
-            const size_t longRange,
-            const int numberOfThreads
-        ){
-            typedef typename RAG::LabelType LabelType;
             size_t nStats = 9;
             nifty::marray::PyView<float> features({adjacency.size(), nStats});
             {
                 py::gil_scoped_release allowThreads;
-                accumulateLongRangeFeatures(rag, affinities, adjacency, longRange, numberOfThreads);
+                longRangeFeatures(longRangeAdjacency, labels, affinities, numberOfThreads);
             }
             return features;
         },
-        py::arg("rag"), py::arg("affinities"), py::arg("adjacency"), py::arg("longRange"), py::arg("numberOfThreads")=-1
+        py::arg("longRangeAdjacency"), py::arg("labels"), py::arg("affinities"), py::arg("numberOfThreads")=-1
         );
 
     }
 
-    void exportLongRangeFeatures(py::module & ragModule) {
-        typedef ExplicitLabelsGridRag<3, uint32_t> Rag3d;
-        exportGetLongRangeAdjacencyT<Rag3d>(ragModule);
-        exportAccumulateLongRangeFeaturesT<Rag3d>(ragModule);
+    // TODO HDF5 out of core
+
+    void exportLongRangeFeatures(py::module & module) {
+        typedef LongRangeAdjacency<marray::View<uint32_t>> ExplicitAdjacency;
+        exportLongRangeFeaturesInCoreT<ExplicitAdjacency>(module);
+
+        // TODO HDF5
     }
 
 }

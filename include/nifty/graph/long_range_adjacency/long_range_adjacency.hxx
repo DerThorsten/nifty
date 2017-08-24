@@ -65,6 +65,10 @@ public:
         return shape_[i];
     }
 
+    const Coord & shape() const {
+        return shape_;
+    }
+
     template<class ITER>
     void serialize(ITER & iter) const {
         *iter = range_;

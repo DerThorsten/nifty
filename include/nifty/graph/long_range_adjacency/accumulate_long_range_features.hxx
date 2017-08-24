@@ -4,6 +4,7 @@
 
 #include "nifty/tools/array_tools.hxx"
 #include "nifty/graph/rag/grid_rag_accumulate.hxx"
+#include "nifty/graph/long_range_adjacency/long_range_adjacency.hxx"
 
 
 namespace nifty {
@@ -12,22 +13,20 @@ namespace graph {
 
 // accumulate features for long range adjacency along the z (anisotropic) axis
 // assumes flat superpixels !
-template<class EDGE_ACC_CHAIN, class RAG, class AFFINITIES, class F>
+template<class EDGE_ACC_CHAIN, class ADJACENCY, class LABELS, class AFFINITIES, class F>
 void accumulateLongRangeFeaturesWithAccChain(
-    const RAG & rag,
+    const ADJACENCY & adj,
+    const LABELS & labels,
     const AFFINITIES & affinities,
-    const std::vector<std::pair<typename RAG::LabelType, typename RAG::LabelType>> & adjacency,
-    const size_t longRange,
     parallel::ThreadPool & threadpool,
     F && f,
     const AccOptions & accOptions = AccOptions()
 ) {
-    typedef LABELS_PROXY LabelsProxyType;
-    typedef typename LabelsProxyType::LabelType LabelType;
-    typedef typename DATA::DataType DataType;
+    typedef typename AFFINITIES::DataType DataType;
+    typedef typename LABELS::DataType LabelType;
 
-    typedef typename LabelsProxyType::BlockStorageType LabelBlockStorage;
     typedef tools::BlockStorage<DataType> DataBlockStorage;
+    typedef tools::BlockStorage<DataType> LabelBlockStorage;
 
     typedef array::StaticArray<int64_t, 3> Coord;
     typedef array::StaticArray<int64_t, 2> Coord2;
@@ -37,11 +36,11 @@ void accumulateLongRangeFeaturesWithAccChain(
 
     const size_t actualNumberOfThreads = threadpool.nThreads();
 
-    const auto & shape = rag.shape();
-    const auto & labelsProxy = rag.labelsProxy();
+    const auto & shape = adj.shape();
 
+    // TODO need to be more precise with zdir here !!!
     size_t nSlices = shape[0] - 2;
-    size_t nEdges = adjacency.size();
+    size_t nEdges = adj.numberOfEdges;
 
     Coord2 sliceShape2({shape[1], shape[2]});
     Coord sliceShape3({1L, shape[1], shape[2]});
@@ -74,6 +73,7 @@ void accumulateLongRangeFeaturesWithAccChain(
         DataBlockStorage   dataAStorage(threadpool, sliceShape3, actualNumberOfThreads);
         DataBlockStorage   dataBStorage(threadpool, sliceShape3, actualNumberOfThreads);
 
+        // TODO need to be more precise with zdir here !!!
         parallel::parallel_foreach(threadpool, nSlices, [&](const int tid, const int64_t slice){
 
             auto & threadAccChainVec = perThreadAccChainVector[tid];
@@ -82,7 +82,7 @@ void accumulateLongRangeFeaturesWithAccChain(
             Coord endA({slice + 1, shape[1], shape[2]});
 
             auto labelsA = labelsAStorage.getView(tid);
-            labelsProxy.readSubarray(beginA, endA, labelsA);
+            tools::readSubarray(labels, beginA, endA, labelsA);
             auto labelsASqueezed = labelsA.squeezedView();
 
             auto dataA = dataAStorage.getView(tid);
@@ -96,12 +96,13 @@ void accumulateLongRangeFeaturesWithAccChain(
 
             // read labels and data for upper slice
             auto labelsB = labelsBStorage.getView(tid);
-            labelsProxy.readSubarray(beginB, endB, labelsB);
+            tools::readSubarray(labels, beginB, endB, labelsB);
             labelsBSqueezed = labelsB.squeezedView();
             auto dataB = dataBStorage.getView(tid);
             tools::readSubarray(data, beginB, endB, dataB);
             auto dataBSqueezed = dataB.squeezedView();
-        
+
+            // TODO need to be more precise with zrange here !!!
             for(int64_t z = 2; z <= longRange; ++z) {
 
                 // we continue if the long range affinity would reach out of the data
@@ -111,19 +112,19 @@ void accumulateLongRangeFeaturesWithAccChain(
 
                 // TODO TODO TODO
                 // accumulate the long range features
-                accumulateLongRangeFeaturesForSlice(
-                    threadAccChainVec,
-                    sliceShape2,
-                    labelsASqueezed,
-                    labelsBSqueezed,
-                    adjacency,
-                    dataASqueezed,
-                    dataBSqueezed,
-                    pass,
-                    slice,
-                    slice+z+,
-                    accOptions.zDirection
-                );
+                //accumulateLongRangeFeaturesForSlice(
+                //    adj,
+                //    threadAccChainVec,
+                //    sliceShape2,
+                //    labelsASqueezed,
+                //    labelsBSqueezed,
+                //    dataASqueezed,
+                //    dataBSqueezed,
+                //    pass,
+                //    slice,
+                //    slice+z+,
+                //    accOptions.zDirection
+                //);
             }
         });
     }
@@ -142,12 +143,11 @@ void accumulateLongRangeFeaturesWithAccChain(
 }
 
 
-template<class RAG, class AFFINITIES, class OUTPUT>
+template<class ADJACENCY, class LABELS, class AFFINITIES, class OUTPUT>
 void accumulateLongRangeFeatures(
-    const RAG & rag,
+    const ADJACENCY & adj,
+    const LABELS & labels,
     const AFFINITIES & affinities,
-    const std::vector<std::pair<typename RAG::LabelType, typename RAG::LabelType>> & adjacency,
-    const size_t longRange,
     OUTPUT & featuresOut,
     const double minVal,
     const double maxVal,
@@ -173,6 +173,7 @@ void accumulateLongRangeFeatures(
     nifty::parallel::ParallelOptions pOpts(numberOfThreads);
     nifty::parallel::ThreadPool threadpool(pOpts);
 
+    // FIXME
     // accumulator function
     auto accFunction = [&threadpool, &featuresOut](
         const std::vector<AccChainType> & edgeAccChainVec
@@ -195,12 +196,10 @@ void accumulateLongRangeFeatures(
     };
 
     accumulateLongRangeFeaturesWithAccChain<AccChainType>(
-        rag,
+        adj,
+        labels,
         affinities,
-        adjacency,
-        longRange,
         threadpool,
-        zDirection,
         accFunction,
         AccOptions(minVal, maxVal, zDirection)
     );
