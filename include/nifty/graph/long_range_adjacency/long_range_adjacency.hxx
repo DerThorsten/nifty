@@ -2,305 +2,219 @@
 
 #include "nifty/parallel/threadpool.hxx"
 #include "nifty/tools/array_tools.hxx"
+#include "nifty/graph/undirected_list_graph.hxx"
 
 namespace nifty {
 namespace graph {
 
+template<class LABELS_PROXY>
+class LongRangeAdjacency : public UndirectedGraph<>{
 
-// TODO
-// get the long range adjacency along the z (anisotropic) axis
-// assumes flat superpixels !
-template<class RAG>
-void getLongRangeAdjacency(
-    const RAG & rag,
-    const size_t longRange,
-    std::vector<std::pair<typename RAG::LabelType, typename RAG::LabelType>> & adjacencyOut,
-    const int numberOfThreads=-1
-) {
-    typedef array::StaticArray<int64_t,3> Coord;
-    typedef array::StaticArray<int64_t,2> Coord2;
-    typedef typename RAG::LabelsProxy LabelsProxy;
-    typedef typename LabelsProxy::BlockStorageType LabelStorage;
+public:
+    typedef LABELS_PROXY LabelsProxy;
+    typedef typename LabelsProxy::LabelType LabelType;
+    typedef UndirectedGraph<> BaseType;
 
-    typedef typename RAG::LabelType LabelType;
-    typedef std::set<std::pair<LabelType, LabelType>> AdjacencySet;
-
-    // instantiate threadpool and get the actual number of threads
-    parallel::ThreadPool threadpool(numberOfThreads);
-    auto nThreads = threadpool.nThreads();
-
-    // instantiate thread data (= adjacency set for each thread)
-    std::vector<AdjacencySet> threadData(nThreads);
-
-    // labels proxy and shape
-    const auto & labelsProxy = rag.labelsProxy();
-    const auto & shape = labelsProxy.shape();
-
-    // instantiate the slice shapes
-    const Coord2 sliceShape2({shape[1], shape[2]});
-    const Coord  sliceShape3({1L, shape[1], shape[2]});
-
-    // instantiate the label storage
-    LabelStorage labelsAStorage(threadpool, sliceShape3, nThreads);
-    LabelStorage labelsBStorage(threadpool, sliceShape3, nThreads);
-
-    // we don't need to take into account the 2 uppermost slices, because they don't have any 
-    // long tange neighbors
-    size_t nSlices = shape[0] - 2;
-    // iterate over all the slices z and find the adjacency to the slices above,
-    // from z+2 to z+longRange
-    parallel::parallel_foreach(threadpool, nSlices, [&](const int tid, const int slice) {
-
-        // get thread
-        auto & threadAdjacency = threadData[tid];
-
-        // get lower segmentation
-        Coord beginA ({int64_t(slice), 0L, 0L});
-        Coord endA({int64_t(slice + 1), shape[1], shape[2]});
-        auto labelsA = labelsAStorage.getView(tid);
-        labelsProxy.readSubarray(beginA, endA, labelsA);
-        auto labelsASqueezed = labelsA.squeezedView();
-
-        // get view for upper segmentation
-        auto labelsB = labelsBStorage.getView(tid);
-
-        for(int64_t z = 2; z <= longRange; ++z) {
-
-            // we continue if the long range affinity would reach out of the data
-            if(slice + z >= shape[0]) {
-                continue;
-            }
-
-            // get upper segmentation
-            Coord beginB ({slice + z, 0L, 0L});
-            Coord endB({slice + z + 1, shape[1], shape[2]});
-            labelsProxy.readSubarray(beginB, endB, labelsB);
-            auto labelsBSqueezed = labelsB.squeezedView();
-
-            // iterate over the xy-coordinates
-            LabelType lU, lV;
-            tools::forEachCoordinate(sliceShape2, [&](const Coord2 coord){
-                lU = labelsASqueezed(coord.asStdArray());
-                lV = labelsASqueezed(coord.asStdArray());
-                threadAdjacency.insert(std::make_pair(std::min(lU, lV), std::max(lU, lV)));
-            });
-        }
-    });
-
-    // write the results to out vector
-    // out size and thread offsets
-    size_t totalSize = 0;
-    std::vector<size_t> threadOffsets(nThreads);
-    for(int tId = 0; tId < nThreads; ++tId) {
-        auto threadSize = threadData[tId].size();
-        threadOffsets[tId] = totalSize;
-        totalSize += threadSize;
+    // constructor from data
+    LongRangeAdjacency(
+        const LabelsProxy & labelsProxy,
+        const size_t range,
+        const int numberOfThreads=-1
+    ) : labelsProxy_(labelsProxy), range_(range),
+        numberOfEdgesInSlice_(labelsProxy.shape()[0]),
+        edgeOffset_(labelsProxy.shape()[0])
+    {
+        initAdjacency(numberOfThreads);
     }
-    adjacencyOut.resize(totalSize);
-    parallel::parallel_foreach(threadpool, nThreads, [&](const int tId, const int threadId){
-        const auto & threadAdjacency = threadData[threadId];
-        std::copy(threadAdjacency.begin(), threadAdjacency.end(), adjacencyOut.begin() + threadOffsets[threadId]);
-    });
-}
+
+    // constructor from serialization
+    template<class ITER>
+    LongRangeAdjacency(
+        const LabelsProxy & labelsProxy,
+        ITER & iter
+    ) : labelsProxy_(labelsProxy), range_(0),
+        numberOfEdgesInSlice_(labelsProxy.shape()[0]),
+        edgeOffset_(labelsProxy.shape()[0])
+    {
+        deserializeAdjacency(iter);
+    }
+
+    // API
+    size_t numberOfEdgesInSlice(const size_t z) const {
+        return numberOfEdgesInSlice_[z];
+    }
+
+    size_t edgeOffset(const size_t z) const {
+        return edgeOffset_[z];
+    }
+
+    size_t serializationSize() const {
+        size_t size = BaseType::serializationSize();
+        size += 1;
+        size += labelsProxy_.shape()[0] * 2;
+        return size;
+    }
+
+    const LabelsProxy & labelsProxy() const {
+        return labelsProxy_;
+    }
+
+    template<class ITER>
+    void serialize(ITER & iter) const {
+        *iter = range_;
+        ++iter;
+        size_t nSlices = labelsProxy_.shape()[0];
+        for(size_t slice = 0; slice < nSlices; ++slice) {
+            *iter = numberOfEdgesInSlice_[slice];
+            ++iter;
+            *iter = edgeOffset_[slice];
+            ++iter;
+        }
+        BaseType::serialize(iter);
+    }
 
 
-// accumulate features for long range adjacency along the z (anisotropic) axis
-// assumes flat superpixels !
-template<class EDGE_ACC_CHAIN, class RAG, class AFFINITIES, class F>
-void accumulateLongRangeFeaturesWithAccChain(
-    const RAG & rag,
-    const AFFINITIES & affinities,
-    const std::vector<std::pair<typename RAG::LabelType, typename RAG::LabelType>> & adjacency,
-    const size_t longRange,
-    parallel::ThreadPool & threadpool,
-    F && f,
-    const AccOptions & accOptions = AccOptions()
-) {
-    typedef LABELS_PROXY LabelsProxyType;
-    typedef typename LabelsProxyType::LabelType LabelType;
-    typedef typename DATA::DataType DataType;
+private:
+    void initAdjacency(const int numberOfThreads);
 
-    typedef typename LabelsProxyType::BlockStorageType LabelBlockStorage;
-    typedef tools::BlockStorage<DataType> DataBlockStorage;
+    template<class ITER>
+    void deserializeAdjacency(ITER & iter) {
+        range_ = *iter;
+        ++iter;
+        size_t nSlices = labelsProxy_.shape()[0];
+        for(size_t slice = 0; slice < nSlices; ++slice) {
+            numberOfEdgesInSlice_[slice] = *iter;
+            ++iter;
+            edgeOffset_[slice] = *iter;
+            ++iter;
+        }
+        BaseType::deserialize(iter);
+    }
+
+    const LabelsProxy & labelsProxy_;
+    size_t range_;
+    std::vector<size_t> numberOfEdgesInSlice_;
+    std::vector<size_t> edgeOffset_;
+};
+
+
+template<class LABELS_PROXY>
+void LongRangeAdjacency<LABELS_PROXY>::initAdjacency(const int numberOfThreads) {
 
     typedef array::StaticArray<int64_t, 3> Coord;
     typedef array::StaticArray<int64_t, 2> Coord2;
+    typedef typename LabelsProxy::BlockStorageType LabelStorage;
 
-    typedef EDGE_ACC_CHAIN EdgeAccChainType;
-    typedef std::vector<EdgeAccChainType> AccChainVectorType;
+    // set the number of nodes in the graph == number of labels
+    BaseType::assign(labelsProxy_.numberOfLabels());
 
-    const size_t actualNumberOfThreads = threadpool.nThreads();
-
-    const auto & shape = rag.shape();
-    const auto & labelsProxy = rag.labelsProxy();
-
-    size_t nSlices = shape[0] - 2;
-    size_t nEdges = adjacency.size();
-
+    // get the shape, number of slices and slice shapes
+    const auto & shape = labelsProxy_.shape();
+    const size_t nSlices = shape[0];
     Coord2 sliceShape2({shape[1], shape[2]});
     Coord sliceShape3({1L, shape[1], shape[2]});
 
-    // edge acc vectors for multiple threads
-    std::vector<AccChainVectorType> perThreadAccChainVector(actualNumberOfThreads);
-    parallel::parallel_foreach(threadpool, actualNumberOfThreads,
-    [&](const int tid, const int64_t i){
-        perThreadAccChainVector[i] = AccChainVectorType(nEdges);
-    });
+    // threadpool and actual number of threads
+    nifty::parallel::ThreadPool threadpool(numberOfThreads);
+    const size_t nThreads = threadpool.nThreads();
 
-    // set the accumulator chain options
-    if(accOptions.setMinMax){
-        vigra::HistogramOptions histogram_opt;
-        histogram_opt = histogram_opt.setMinMax(accOptions.minVal, accOptions.maxVal);
-        parallel::parallel_foreach(threadpool, actualNumberOfThreads,
-        [&](int tid, int i){
-            auto & edgeAccVec = perThreadAccChainVector[i];
-            for(auto & edgeAcc : edgeAccVec){
-                edgeAcc.setHistogramOptions(histogram_opt);
-            }
-        });
-    }
+    std::vector<LabelType> minNodeInSlice(nSlices);
+    std::vector<LabelType> maxNodeInSlice(nSlices);
 
-    const int pass = 1
+    // loop over the slices in parallel, for each slice find the edges
+    // to nodes in the next 2 to 'range' slices
     {
-        // label and data storages
-        LabelBlockStorage  labelsAStorage(threadpool, sliceShape3, actualNumberOfThreads);
-        LabelBlockStorage  labelsBStorage(threadpool, sliceShape3, actualNumberOfThreads);
-        DataBlockStorage   dataAStorage(threadpool, sliceShape3, actualNumberOfThreads);
-        DataBlockStorage   dataBStorage(threadpool, sliceShape3, actualNumberOfThreads);
+        // instantiate the label storages
+        LabelStorage labelsAStorage(threadpool, sliceShape3, nThreads);
+        LabelStorage labelsBStorage(threadpool, sliceShape3, nThreads);
 
-        parallel::parallel_foreach(threadpool, nSlices, [&](const int tid, const int64_t slice){
+        parallel::parallel_foreach(threadpool, nSlices-2, [&](const int tid, const int slice) {
 
-            auto & threadAccChainVec = perThreadAccChainVector[tid];
-
-            Coord beginA ({slice, 0L, 0L});
-            Coord endA({slice + 1, shape[1], shape[2]});
-
+            // get segmentation in base slice
+            Coord beginA ({int64_t(slice), 0L, 0L});
+            Coord endA({int64_t(slice + 1), shape[1], shape[2]});
             auto labelsA = labelsAStorage.getView(tid);
-            labelsProxy.readSubarray(beginA, endA, labelsA);
+            labelsProxy_.readSubarray(beginA, endA, labelsA);
             auto labelsASqueezed = labelsA.squeezedView();
 
-            auto dataA = dataAStorage.getView(tid);
-            tools::readSubarray(data, beginA, endA, dataA);
-            auto dataASqueezed = dataA.squeezedView();
+            // iterate over the xy-coordinates and find the min and max nodes
+            LabelType lU;
+            auto & minNode = minNodeInSlice[slice];
+            auto & maxNode = maxNodeInSlice[slice];
+            tools::forEachCoordinate(sliceShape2, [&](const Coord2 coord){
+                lU = labelsASqueezed(coord.asStdArray());
+                minNode = std::min(minNode, lU);
+                maxNode = std::max(maxNode, lU);
+            });
 
-            // process upper slice
-            Coord beginB = Coord({sliceIdB,   0L,       0L});
-            Coord endB   = Coord({sliceIdB+1, shape[1], shape[2]});
-            marray::View<LabelType> labelsBSqueezed;
-
-            // read labels and data for upper slice
+            // get view for segmenation in upper slice
             auto labelsB = labelsBStorage.getView(tid);
-            labelsProxy.readSubarray(beginB, endB, labelsB);
-            labelsBSqueezed = labelsB.squeezedView();
-            auto dataB = dataBStorage.getView(tid);
-            tools::readSubarray(data, beginB, endB, dataB);
-            auto dataBSqueezed = dataB.squeezedView();
-        
-            for(int64_t z = 2; z <= longRange; ++z) {
+
+            // iterate over the next 2 - range_ slices
+            for(int64_t z = 2; z <= range_; ++z) {
 
                 // we continue if the long range affinity would reach out of the data
                 if(slice + z >= shape[0]) {
                     continue;
                 }
 
-                // TODO TODO TODO
-                // accumulate the long range features
-                accumulateLongRangeFeaturesForSlice(
-                    threadAccChainVec,
-                    sliceShape2,
-                    labelsASqueezed,
-                    labelsBSqueezed,
-                    adjacency,
-                    dataASqueezed,
-                    dataBSqueezed,
-                    pass,
-                    slice,
-                    slice+z+,
-                    accOptions.zDirection
-                );
+                // get upper segmentation
+                Coord beginB ({slice + z, 0L, 0L});
+                Coord endB({slice + z + 1, shape[1], shape[2]});
+                labelsProxy_.readSubarray(beginB, endB, labelsB);
+                auto labelsBSqueezed = labelsB.squeezedView();
+
+                // iterate over the xy-coordinates and insert the long range edges
+                LabelType lU, lV;
+                tools::forEachCoordinate(sliceShape2, [&](const Coord2 coord){
+                    lU = labelsASqueezed(coord.asStdArray());
+                    lV = labelsBSqueezed(coord.asStdArray());
+                    if(BaseType::insertEdgeOnlyInNodeAdj(lU, lV)){
+                        ++numberOfEdgesInSlice_[slice]; // if this is the first time we hit this edge, increase the edge count
+                    }
+                });
             }
         });
     }
 
-    // merge the accumulators in parallel
-    auto & resultAccVec = perThreadAccChainVector.front();
-    parallel::parallel_foreach(threadpool, resultAccVec.size(),
-    [&](const int tid, const int64_t edge){
-        for(auto t=1; t<actualNumberOfThreads; ++t){
-            resultAccVec[edge].merge((perThreadAccChainVector[t])[edge]);
+    // set up the edge offsets
+    size_t offset = numberOfEdgesInSlice_[0];
+    {
+        edgeOffset_[0] = 0;
+        for(size_t slice = 1; slice < nSlices-2; ++slice) {
+            edgeOffset_[slice] = offset;
+            offset += numberOfEdgesInSlice_[slice];
         }
-    });
-    // call functor with finished acc chain
-    f(resultAccVec);
+    }
 
-}
+    // set up the edge indices
+    {
+        auto & edges = BaseType::edges_;
+        auto & nodes = BaseType::nodes_;
+        edges.resize(offset);
+        parallel::parallel_foreach(threadpool, nSlices-2, [&](const int tid, const int64_t slice){
 
+            auto edgeIndex = edgeOffset_[slice];
+            const auto startNode = minNodeInSlice[slice];
+            const auto endNode = maxNodeInSlice[slice] + 1;
 
-template<class RAG, class AFFINITIES, class OUTPUT>
-void accumulateLongRangeFeatures(
-    const RAG & rag,
-    const AFFINITIES & affinities,
-    const std::vector<std::pair<typename RAG::LabelType, typename RAG::LabelType>> & adjacency,
-    const size_t longRange,
-    OUTPUT & featuresOut,
-    const double minVal,
-    const double maxVal,
-    const int zDirection = 0,
-    const int numberOfThreads = -1
-) {
-
-    namespace acc = vigra::acc;
-    typedef float DataType;
-
-    typedef acc::UserRangeHistogram<40>            SomeHistogram;   //binCount set at compile time
-    typedef acc::StandardQuantiles<SomeHistogram > Quantiles;
-
-    typedef acc::Select<
-        acc::DataArg<1>,
-        acc::Mean,        //1
-        acc::Variance,    //1
-        Quantiles         //7
-    > SelectType;
-    typedef acc::StandAloneAccumulatorChain<3, DataType, SelectType> AccChainType;
-
-    // threadpool
-    nifty::parallel::ParallelOptions pOpts(numberOfThreads);
-    nifty::parallel::ThreadPool threadpool(pOpts);
-
-    // accumulator function
-    auto accFunction = [&threadpool, &featuresOut](
-        const std::vector<AccChainType> & edgeAccChainVec
-    ){
-        using namespace vigra::acc;
-        typedef array::StaticArray<int64_t, 2> FeatCoord;
-
-        parallel::parallel_foreach(threadpool, edgeAccChainVec.size(),[&](
-            const int tid, const int64_t edge
-        ){
-            const auto & chain = edgeAccChainVec[edge];
-            const auto mean = get<acc::Mean>(chain);
-            const auto quantiles = get<Quantiles>(chain);
-            edgeFeaturesOut(edge, 0) = replaceIfNotFinite(mean, 0.0);
-            edgeFeaturesOut(edge, 1) = replaceIfNotFinite(get<acc::Variance>(chain), 0.0);
-            for(auto qi=0; qi<7; ++qi)
-                edgeFeaturesOut(edge, 2+qi) = replaceIfNotFinite(quantiles[qi], mean);
+            for(uint64_t u = startNode; u < endNode; ++u){
+                for(auto & vAdj : nodes[u]){
+                    const auto v = vAdj.node();
+                    if(u < v){
+                        auto e = BaseType::EdgeStorage(u, v);
+                        edges[edgeIndex] = e;
+                        vAdj.changeEdgeIndex(edgeIndex);
+                        auto fres =  nodes[v].find(NodeAdjacency(u));
+                        fres->changeEdgeIndex(edgeIndex);
+                        // increase the edge index
+                        ++edgeIndex;
+                    }
+                }
+            }
         });
-
-    };
-
-    accumulateLongRangeFeaturesWithAccChain<AccChainType>(
-        rag,
-        affinities,
-        adjacency,
-        longRange,
-        threadpool,
-        zDirection,
-        accFunction,
-        AccOptions(minVal, maxVal, zDirection)
-    );
-
+    }
 }
-
 
 } // end namespace graph
 } // end namespace nifty

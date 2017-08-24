@@ -8,9 +8,7 @@ PYBIND11_DECLARE_HOLDER_TYPE(T, std::shared_ptr<T>);
 namespace nifty{
 namespace graph{
 
-
     void exportLongRangeAdjacency(py::module &);
-
 }
 }
 
@@ -26,6 +24,6 @@ PYBIND11_PLUGIN(_long_range_adjacency) {
 
     exportLongRangeAdjacency(module);
 
-    return ragModule.ptr();
+    return module.ptr();
 }
 

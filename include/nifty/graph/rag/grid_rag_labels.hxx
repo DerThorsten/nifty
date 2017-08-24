@@ -24,7 +24,10 @@ public:
     // \deprecated
     typedef nifty::marray::View<LABEL_TYPE> ViewType;
 
-    ExplicitLabels(const nifty::marray::View<LABEL_TYPE, false> & labels = nifty::marray::View<LABEL_TYPE, false>())
+    ExplicitLabels(
+        const nifty::marray::View<LABEL_TYPE, false> & labels = nifty::marray::View<LABEL_TYPE, false>(),
+        const LabelType numberOfLabels = 0 // dummy, only here to be compatible with the HDF5 labels
+    )
     :   labels_(labels),
         shape_()
     {

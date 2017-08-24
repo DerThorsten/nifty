@@ -14,7 +14,6 @@ addPythonModule(
         accumulate_filters_stacked.cxx
         accumulate_flat.cxx
         grid_rag_coordinates.cxx
-        grid_rag_long_range_features.cxx 
     LIBRRARIES
         ${HDF5_LIBRARIES} ${FASTFILTERS_LIBRARY}# ${NIFTY_LP_SOLVER_LIBS}
 )

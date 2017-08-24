@@ -18,9 +18,8 @@ namespace nifty{
 namespace graph{
 
 
-
     using namespace py;
-   
+
     template<class CLS, class BASE>
     void removeFunctions(py::class_<CLS, BASE > & clsT){
         clsT
@@ -33,11 +32,10 @@ namespace graph{
         ;
     }
 
-     
 
     template<size_t DIM, class LABELS>
     void exportExpilictGridRagT(
-        py::module & ragModule, 
+        py::module & ragModule,
         const std::string & clsName,
         const std::string & facName
     ){
@@ -100,7 +98,7 @@ namespace graph{
     #ifdef WITH_HDF5
     template<size_t DIM, class LABELS>
     void exportHdf5GridRagT(
-        py::module & ragModule, 
+        py::module & ragModule,
         const std::string & clsName,
         const std::string & facName
     ){
