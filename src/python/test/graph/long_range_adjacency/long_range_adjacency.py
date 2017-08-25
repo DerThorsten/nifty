@@ -22,6 +22,11 @@ class TestLongRangeAdjacecny(unittest.TestCase):
         )
         return seg
 
+    def generate_toy_affinities(self):
+         affs = np.ones((1, 3, 3, 3), dtype='float32')
+         affs[:, -1] = 0
+         return affs
+
     def generate_random_data(self):
         seg = np.zeros((100, 100, 100), dtype='uint32')
         current_label = 0
@@ -36,7 +41,7 @@ class TestLongRangeAdjacecny(unittest.TestCase):
         return seg, n_labels
 
     def generate_random_affinities(self, long_range):
-        return np.random.random(size=(long_range, 100, 100, 100)).astype('float32')
+        return np.random.random(size=(long_range - 1, 100, 100, 100)).astype('float32')
 
     def checks_toy_data(self, lr):
         self.assertEqual(lr.numberOfNodes, 8)
@@ -68,6 +73,16 @@ class TestLongRangeAdjacecny(unittest.TestCase):
         lr = nlr.longRangeAdjacency(seg, 4, 1)
         self.assertEqual(lr.numberOfNodes, n_labels)
         self.assertGreater(lr.numberOfEdges, 100)
+
+    def test_features_toy_data(self):
+        seg = self.generate_toy_data()
+        affs = self.generate_toy_affinities()
+        lr = nlr.longRangeAdjacency(seg, 2, 1)
+        expected_mean = {1: 1., 2: 0.}
+        for z_dir in (1, 2):
+            features = nlr.longRangeFeatures(lr, seg, affs, z_dir)
+            self.assertTrue((features[:, 0] == expected_mean[z_dir]).all())
+            self.assertTrue((features[:, 1] == 0.).all())
 
     def test_features_random_data(self):
         seg, _ = self.generate_random_data()

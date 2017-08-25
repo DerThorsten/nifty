@@ -10,6 +10,7 @@
 
 #include "nifty/graph/long_range_adjacency/long_range_adjacency.hxx"
 #include "nifty/graph/long_range_adjacency/accumulate_long_range_features.hxx"
+#include "nifty/tools/runtime_check.hxx"
 
 namespace py = pybind11;
 
@@ -28,6 +29,10 @@ namespace graph{
             const int zDirection,
             const int numberOfThreads
         ){
+            NIFTY_CHECK_OP(affinities.shape(0), ==, longRangeAdjacency.range()-1, "Number of channels is wrong!");
+            for(int d = 0; d < 3; ++d) {
+                NIFTY_CHECK_OP(affinities.shape(d+1), ==, longRangeAdjacency.shape(d), "Wrong shape");
+            }
             size_t nStats = 9;
             nifty::marray::PyView<float> features({longRangeAdjacency.numberOfEdges(), nStats});
             {
