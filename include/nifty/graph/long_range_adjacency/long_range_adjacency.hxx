@@ -46,6 +46,11 @@ public:
     }
 
     // API
+    
+    size_t range() const {
+        return range_;
+    }
+    
     size_t numberOfEdgesInSlice(const size_t z) const {
         return numberOfEdgesInSlice_[z];
     }

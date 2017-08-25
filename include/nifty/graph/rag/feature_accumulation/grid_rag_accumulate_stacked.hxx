@@ -29,6 +29,7 @@ namespace graph{
 
         typedef COORD Coord2;
         typedef typename vigra::MultiArrayShape<3>::type VigraCoord;
+        typedef LABEL_TYPE LabelType;
 
         // set minmax for accumulator chains
         for(int64_t edge = 0; edge < accChainVec.size(); ++edge){
@@ -36,15 +37,17 @@ namespace graph{
         }
 
         // accumulate filter for the inner slice edges
+        LabelType lU, lV;
+        float fU, fV;
+        VigraCoord vigraCoordU, vigraCoordV;
         nifty::tools::forEachCoordinate(sliceShape2, [&](const Coord2 coord){
-            const auto lU = labels(coord.asStdArray());
+            lU = labels(coord.asStdArray());
             for(int axis = 0; axis < 2; ++axis){
                 Coord2 coord2 = coord;
                 ++coord2[axis];
                 if( coord2[axis] < sliceShape2[axis]) {
-                    const auto lV = labels(coord2.asStdArray());
+                    lV = labels(coord2.asStdArray());
                     if(lU != lV) {
-                        VigraCoord vigraCoordU, vigraCoordV;
                         vigraCoordU[0] = sliceId;
                         vigraCoordV[0] = sliceId;
                         for(int d = 1; d < 3; ++d){
@@ -52,8 +55,8 @@ namespace graph{
                             vigraCoordV[d] = coord2[d-1];
                         }
                         const auto edge = rag.findEdge(lU,lV) - inEdgeOffset;
-                        const auto fU = data(coord.asStdArray());
-                        const auto fV = data(coord2.asStdArray());
+                        fU = data(coord.asStdArray());
+                        fV = data(coord2.asStdArray());
                         accChainVec[edge].updatePassN(fU, vigraCoordU, pass);
                         accChainVec[edge].updatePassN(fV, vigraCoordV, pass);
                     }
@@ -83,17 +86,20 @@ namespace graph{
 
         typedef COORD Coord2;
         typedef typename vigra::MultiArrayShape<3>::type VigraCoord;
+        typedef LABEL_TYPE LabelType;
 
         // set minmax for accumulator chains
         for(int64_t edge = 0; edge < accChainVec.size(); ++edge){
             accChainVec[edge].setHistogramOptions(histoOptions);
         }
 
+        VigraCoord vigraCoordU, vigraCoordV;
+        LabelType lU, lV;
+        float fU, fV;
         nifty::tools::forEachCoordinate(sliceShape2, [&](const Coord2 coord){
             // labels are different for different slices by default!
-            const auto lU = labelsA(coord.asStdArray());
-            const auto lV = labelsB(coord.asStdArray());
-            VigraCoord vigraCoordU, vigraCoordV;
+            lU = labelsA(coord.asStdArray());
+            lV = labelsB(coord.asStdArray());
             vigraCoordU[0] = sliceIdA;
             vigraCoordV[0] = sliceIdB;
             for(int d = 1; d < 3; ++d){
@@ -102,17 +108,17 @@ namespace graph{
             }
             const auto edge = rag.findEdge(lU,lV) - betweenEdgeOffset;
             if(zDirection==0) { // 0 -> take into account z and z + 1
-                const auto fU = dataA(coord.asStdArray());
-                const auto fV = dataB(coord.asStdArray());
+                fU = dataA(coord.asStdArray());
+                fV = dataB(coord.asStdArray());
                 accChainVec[edge].updatePassN(fU, vigraCoordU, pass);
                 accChainVec[edge].updatePassN(fV, vigraCoordV, pass);
             }
             else if(zDirection==1) { // 1 -> take into accout only z
-                const auto fU = dataA(coord.asStdArray());
+                fU = dataA(coord.asStdArray());
                 accChainVec[edge].updatePassN(fU, vigraCoordU, pass);
             }
             else if(zDirection==2) { // 2 -> take into accout only z + 1
-                const auto fV = dataB(coord.asStdArray());
+                fV = dataB(coord.asStdArray());
                 accChainVec[edge].updatePassN(fV, vigraCoordV, pass);
             }
         });
@@ -177,25 +183,17 @@ namespace graph{
         const auto & labelsProxy = rag.labelsProxy();
         const auto & shape = labelsProxy.shape();
 
-        EdgeAccChainVectorType edgeAccChainVector(rag.edgeIdUpperBound()+1);
-
         const auto nThreads = pOpts.getActualNumThreads();
 
         uint64_t numberOfSlices = shape[0];
         const Coord2 sliceShape2({shape[1], shape[2]});
         const Coord  sliceShape3({1L,shape[1], shape[2]});
 
-        const auto passesRequired = edgeAccChainVector.front().passesRequired();
-
         // For now, we only support single pass!
         // do N passes of accumulator
         //for(auto pass=1; pass <= passesRequired; ++pass){
         int pass = 1;
         {
-            // accumulate inner slice feature
-            // edge acc vectors for multiple threads
-            std::vector<EdgeAccChainVectorType> perThreadAccChainVector(nThreads);
-
             LabelStorage labelsAStorage(threadpool, sliceShape3, nThreads);
             LabelStorage labelsBStorage(threadpool, sliceShape3, nThreads);
             DataStorage dataAStorage(threadpool, sliceShape3, nThreads);
@@ -235,7 +233,6 @@ namespace graph{
                 std::cout << "Processing slice pair: " << pairId << " / " << slicePairs.size() << std::endl;
                 int64_t sliceIdA = slicePairs[pairId].first; // lower slice
                 int64_t sliceIdB = slicePairs[pairId].second;// upper slice
-                auto & accChainVec = perThreadAccChainVector[tid];
 
                 // compute the filters for slice A
                 Coord beginA ({sliceIdA, 0L, 0L});
@@ -259,7 +256,7 @@ namespace graph{
                 if( rag.numberOfInSliceEdges(sliceIdA) > 0 && !keepZOnly) {
                     auto inEdgeOffset = rag.inSliceEdgeOffset(sliceIdA);
                     // resize the current acc chain vector
-                    accChainVec = EdgeAccChainVectorType(rag.numberOfInSliceEdges(sliceIdA));
+                    EdgeAccChainVectorType accChainVec(rag.numberOfInSliceEdges(sliceIdA));
                     accumulateInnerSliceFeatures(
                         accChainVec,
                         histoOptions,
@@ -304,7 +301,7 @@ namespace graph{
                     auto betweenEdgeOffset = rag.betweenSliceEdgeOffset(sliceIdA);
                     auto accOffset = rag.betweenSliceEdgeOffset(sliceIdA) - rag.numberOfInSliceEdges();
                     // resize the current acc chain vector
-                    accChainVec = EdgeAccChainVectorType(rag.numberOfInBetweenSliceEdges(sliceIdA));
+                    EdgeAccChainVectorType accChainVec(rag.numberOfInBetweenSliceEdges(sliceIdA));
                     // accumulate features for the in between slice edges
                     accumulateBetweenSliceFeatures(
                         accChainVec,
@@ -328,7 +325,7 @@ namespace graph{
                 if(!keepZOnly && (sliceIdB == numberOfSlices - 1 && rag.numberOfInSliceEdges(sliceIdB) > 0)) {
                     auto inEdgeOffset = rag.inSliceEdgeOffset(sliceIdB);
                     // resize the current acc chain vector
-                    accChainVec = EdgeAccChainVectorType(rag.numberOfInSliceEdges(sliceIdB));
+                    EdgeAccChainVectorType accChainVec(rag.numberOfInSliceEdges(sliceIdB));
                     accumulateInnerSliceFeatures(
                             accChainVec,
                             histoOptions,

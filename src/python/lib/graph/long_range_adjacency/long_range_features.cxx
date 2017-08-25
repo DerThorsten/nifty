@@ -20,22 +20,23 @@ namespace graph{
 
     template<class ADJACENCY>
     void exportLongRangeFeaturesInCoreT(py::module & module) {
-        ragModule.def("longRangeFeatures",
+        module.def("longRangeFeatures",
         [](
             const ADJACENCY & longRangeAdjacency,
             marray::PyView<typename ADJACENCY::LabelType, 3> labels,
             marray::PyView<float, 4> affinities,
+            const int zDirection,
             const int numberOfThreads
         ){
             size_t nStats = 9;
-            nifty::marray::PyView<float> features({adjacency.size(), nStats});
+            nifty::marray::PyView<float> features({longRangeAdjacency.numberOfEdges(), nStats});
             {
                 py::gil_scoped_release allowThreads;
-                longRangeFeatures(longRangeAdjacency, labels, affinities, numberOfThreads);
+                accumulateLongRangeFeatures(longRangeAdjacency, labels, affinities, features, zDirection, numberOfThreads);
             }
             return features;
         },
-        py::arg("longRangeAdjacency"), py::arg("labels"), py::arg("affinities"), py::arg("numberOfThreads")=-1
+        py::arg("longRangeAdjacency"), py::arg("labels"), py::arg("affinities"), py::arg("zDirection"), py::arg("numberOfThreads")=-1
         );
 
     }
@@ -43,7 +44,8 @@ namespace graph{
     // TODO HDF5 out of core
 
     void exportLongRangeFeatures(py::module & module) {
-        typedef LongRangeAdjacency<marray::View<uint32_t>> ExplicitAdjacency;
+        typedef marray::PyView<uint32_t, 3> ExplicitLabels;
+        typedef LongRangeAdjacency<ExplicitLabels> ExplicitAdjacency;
         exportLongRangeFeaturesInCoreT<ExplicitAdjacency>(module);
 
         // TODO HDF5

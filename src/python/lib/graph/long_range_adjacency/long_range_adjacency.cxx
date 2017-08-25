@@ -112,8 +112,8 @@ namespace graph{
 
     void exportLongRangeAdjacency(py::module & module) {
 
-        typedef marray::PyView<uint32_t, 3> explicitLabels;
-        exportLongRangeAdjacencyT<explicitLabels>(
+        typedef marray::PyView<uint32_t, 3> ExplicitLabels;
+        exportLongRangeAdjacencyT<ExplicitLabels>(
             module,
             "ExplicitLabelsLongRangeAdjacency",
             "explicitLabelsLongRangeAdjacency"

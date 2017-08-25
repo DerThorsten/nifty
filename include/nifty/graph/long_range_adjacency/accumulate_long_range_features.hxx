@@ -10,6 +10,43 @@
 namespace nifty {
 namespace graph {
 
+template<class ADJACENCY, class ACC_CHAIN_VECTOR, class COORD>
+void accumulateLongRangeFeaturesForSlice(
+    const ADJACENCY & adj,
+    ACC_CHAIN_VECTOR & accChainVec,
+    const COORD & sliceShape2,
+    const marray::View<typename ADJACENCY::LabelType> & labelsA,
+    const marray::View<typename ADJACENCY::LabelType> & labelsB,
+    const marray::View<float> & affinities,
+    const int pass,
+    const size_t slice,
+    const size_t targetSlice,
+    const size_t edgeOffset
+) {
+    typedef COORD Coord2;
+    typedef typename vigra::MultiArrayShape<3>::type VigraCoord;
+    typedef typename ADJACENCY::LabelType LabelType;
+
+    VigraCoord vigraCoord;
+    LabelType lU, lV;
+    float aff;
+    nifty::tools::forEachCoordinate(sliceShape2, [&](const Coord2 coord){
+
+        // labels are different for different slices by default!
+        lU = labelsA(coord.asStdArray());
+        lV = labelsB(coord.asStdArray());
+        // affinity
+        aff = affinities(coord.asStdArray());
+
+        vigraCoord[0] = slice;
+        for(int d = 1; d < 3; ++d){
+            vigraCoord[d] = coord[d-1];
+        }
+        const auto edge = adj.findEdge(lU, lV) - edgeOffset;
+        accChainVec[edge].updatePassN(aff, vigraCoord, pass);
+    });
+
+}
 
 // accumulate features for long range adjacency along the z (anisotropic) axis
 // assumes flat superpixels !
@@ -20,126 +57,127 @@ void accumulateLongRangeFeaturesWithAccChain(
     const AFFINITIES & affinities,
     parallel::ThreadPool & threadpool,
     F && f,
-    const AccOptions & accOptions = AccOptions()
+    const int zDirection
 ) {
     typedef typename AFFINITIES::DataType DataType;
     typedef typename LABELS::DataType LabelType;
 
     typedef tools::BlockStorage<DataType> DataBlockStorage;
-    typedef tools::BlockStorage<DataType> LabelBlockStorage;
+    typedef tools::BlockStorage<LabelType> LabelBlockStorage;
 
-    typedef array::StaticArray<int64_t, 3> Coord;
+    typedef array::StaticArray<int64_t, 4> Coord4;
+    typedef array::StaticArray<int64_t, 3> Coord3;
     typedef array::StaticArray<int64_t, 2> Coord2;
 
     typedef EDGE_ACC_CHAIN EdgeAccChainType;
-    typedef std::vector<EdgeAccChainType> AccChainVectorType;
+    typedef std::vector<EdgeAccChainType> EdgeAccChainVectorType;
 
     const size_t actualNumberOfThreads = threadpool.nThreads();
 
     const auto & shape = adj.shape();
 
-    // TODO need to be more precise with zdir here !!!
-    size_t nSlices = shape[0] - 2;
-    size_t nEdges = adj.numberOfEdges;
+    const size_t nSlices = shape[0] - 2;
+    const size_t nEdges = adj.numberOfEdges();
+
+    // convention for zDirection: 1 -> affinties go to upper slices, 2 -> affinities go to lower slices
+    const bool affsToUpper = zDirection == 1;
 
     Coord2 sliceShape2({shape[1], shape[2]});
-    Coord sliceShape3({1L, shape[1], shape[2]});
+    Coord3 sliceShape3({1L, shape[1], shape[2]});
+    Coord4 sliceShape4({1L, 1L, shape[1], shape[2]});
 
-    // edge acc vectors for multiple threads
-    std::vector<AccChainVectorType> perThreadAccChainVector(actualNumberOfThreads);
-    parallel::parallel_foreach(threadpool, actualNumberOfThreads,
-    [&](const int tid, const int64_t i){
-        perThreadAccChainVector[i] = AccChainVectorType(nEdges);
-    });
-
-    // set the accumulator chain options
-    if(accOptions.setMinMax){
-        vigra::HistogramOptions histogram_opt;
-        histogram_opt = histogram_opt.setMinMax(accOptions.minVal, accOptions.maxVal);
-        parallel::parallel_foreach(threadpool, actualNumberOfThreads,
-        [&](int tid, int i){
-            auto & edgeAccVec = perThreadAccChainVector[i];
-            for(auto & edgeAcc : edgeAccVec){
-                edgeAcc.setHistogramOptions(histogram_opt);
-            }
-        });
-    }
-
-    const int pass = 1
+    const int pass = 1;
     {
         // label and data storages
-        LabelBlockStorage  labelsAStorage(threadpool, sliceShape3, actualNumberOfThreads);
-        LabelBlockStorage  labelsBStorage(threadpool, sliceShape3, actualNumberOfThreads);
-        DataBlockStorage   dataAStorage(threadpool, sliceShape3, actualNumberOfThreads);
-        DataBlockStorage   dataBStorage(threadpool, sliceShape3, actualNumberOfThreads);
+        LabelBlockStorage labelsAStorage(threadpool, sliceShape3, actualNumberOfThreads);
+        LabelBlockStorage labelsBStorage(threadpool, sliceShape3, actualNumberOfThreads);
+        DataBlockStorage affinityStorage(threadpool, sliceShape4, actualNumberOfThreads);
 
-        // TODO need to be more precise with zdir here !!!
+        // affinities are in range 0 to 1 -> we hardcode this !!
+        vigra::HistogramOptions histoOptions;
+        histoOptions.setMinMax(0., 1.);
+
         parallel::parallel_foreach(threadpool, nSlices, [&](const int tid, const int64_t slice){
 
-            auto & threadAccChainVec = perThreadAccChainVector[tid];
+            // init this accumulatore chain
+            EdgeAccChainVectorType accChainVec(adj.numberOfEdgesInSlice(slice));
+            // set minmax for accumulator chains
+            for(size_t edge = 0; edge < accChainVec.size(); ++edge){
+                accChainVec[edge].setHistogramOptions(histoOptions);
+            }
+            const size_t edgeOffset = adj.edgeOffset(slice);
 
-            Coord beginA ({slice, 0L, 0L});
-            Coord endA({slice + 1, shape[1], shape[2]});
+            Coord3 beginA({slice, 0L, 0L});
+            Coord3 endA({slice + 1, shape[1], shape[2]});
 
             auto labelsA = labelsAStorage.getView(tid);
             tools::readSubarray(labels, beginA, endA, labelsA);
             auto labelsASqueezed = labelsA.squeezedView();
 
-            auto dataA = dataAStorage.getView(tid);
-            tools::readSubarray(data, beginA, endA, dataA);
-            auto dataASqueezed = dataA.squeezedView();
+            // initialize the affinity storage and coordinates
+            auto affs = affinityStorage.getView(tid);
+            Coord4 beginAff({0L, 0L, 0L, 0L});
+            Coord4 endAff({0L, 0L, shape[1], shape[2]});
 
-            // process upper slice
-            Coord beginB = Coord({sliceIdB,   0L,       0L});
-            Coord endB   = Coord({sliceIdB+1, shape[1], shape[2]});
-            marray::View<LabelType> labelsBSqueezed;
-
-            // read labels and data for upper slice
+            // init view for labelsB
             auto labelsB = labelsBStorage.getView(tid);
-            tools::readSubarray(labels, beginB, endB, labelsB);
-            labelsBSqueezed = labelsB.squeezedView();
-            auto dataB = dataBStorage.getView(tid);
-            tools::readSubarray(data, beginB, endB, dataB);
-            auto dataBSqueezed = dataB.squeezedView();
 
-            // TODO need to be more precise with zrange here !!!
-            for(int64_t z = 2; z <= longRange; ++z) {
+            int64_t targetSlice;
+            size_t channel;
+            for(int64_t z = 2; z <= adj.range(); ++z) {
 
-                // we continue if the long range affinity would reach out of the data
-                if(slice + z >= shape[0]) {
-                    continue;
+                targetSlice = slice + z;
+                // we break if the long range affinity would reach out of the data
+                if(targetSlice >= shape[0]) {
+                    break;
                 }
 
-                // TODO TODO TODO
+                // get the correct affinity channel
+                channel = z - 2;
+                beginAff[0] = channel;
+                endAff[0] = channel+1;
+
+                // if affinities point to upper slices, we read the affinity channel from the
+                // lower slice
+                if(affsToUpper) {
+                    beginAff[1] = slice;
+                    endAff[1] = slice + 1;
+                }
+                // otherwise we read them from the upper slice
+                else {
+                    beginAff[1] = targetSlice;
+                    endAff[1] = targetSlice + 1;
+                }
+
+                // read and squeeze affinities
+                tools::readSubarray(affinities, beginAff, endAff, affs);
+                auto affsSqueezed = affs.squeezedView();
+
+                // read upper labels
+                Coord3 beginB({targetSlice,   0L,       0L});
+                Coord3 endB({targetSlice + 1, shape[1], shape[2]});
+                tools::readSubarray(labels, beginB, endB, labelsB);
+                auto labelsBSqueezed = labelsB.squeezedView();
+
                 // accumulate the long range features
-                //accumulateLongRangeFeaturesForSlice(
-                //    adj,
-                //    threadAccChainVec,
-                //    sliceShape2,
-                //    labelsASqueezed,
-                //    labelsBSqueezed,
-                //    dataASqueezed,
-                //    dataBSqueezed,
-                //    pass,
-                //    slice,
-                //    slice+z+,
-                //    accOptions.zDirection
-                //);
+                accumulateLongRangeFeaturesForSlice(
+                    adj,
+                    accChainVec,
+                    sliceShape2,
+                    labelsASqueezed,
+                    labelsBSqueezed,
+                    affsSqueezed,
+                    pass,
+                    slice,
+                    targetSlice,
+                    edgeOffset
+                );
             }
+
+            // callback to write out features
+            f(accChainVec, edgeOffset);
         });
     }
-
-    // merge the accumulators in parallel
-    auto & resultAccVec = perThreadAccChainVector.front();
-    parallel::parallel_foreach(threadpool, resultAccVec.size(),
-    [&](const int tid, const int64_t edge){
-        for(auto t=1; t<actualNumberOfThreads; ++t){
-            resultAccVec[edge].merge((perThreadAccChainVector[t])[edge]);
-        }
-    });
-    // call functor with finished acc chain
-    f(resultAccVec);
-
 }
 
 
@@ -149,9 +187,7 @@ void accumulateLongRangeFeatures(
     const LABELS & labels,
     const AFFINITIES & affinities,
     OUTPUT & featuresOut,
-    const double minVal,
-    const double maxVal,
-    const int zDirection = 0,
+    const int zDirection,
     const int numberOfThreads = -1
 ) {
 
@@ -173,26 +209,33 @@ void accumulateLongRangeFeatures(
     nifty::parallel::ParallelOptions pOpts(numberOfThreads);
     nifty::parallel::ThreadPool threadpool(pOpts);
 
-    // FIXME
     // accumulator function
     auto accFunction = [&threadpool, &featuresOut](
-        const std::vector<AccChainType> & edgeAccChainVec
+        const std::vector<AccChainType> & edgeAccChainVec,
+        const size_t edgeOffset
     ){
         using namespace vigra::acc;
         typedef array::StaticArray<int64_t, 2> FeatCoord;
 
-        parallel::parallel_foreach(threadpool, edgeAccChainVec.size(),[&](
-            const int tid, const int64_t edge
-        ){
+        const uint64_t nEdges = edgeAccChainVec.size();
+        const uint64_t nStats = 9;
+
+        marray::Marray<float> featuresTemp({nEdges, nStats});
+
+        for(auto edge = 0; edge < nEdges; ++edge) {
             const auto & chain = edgeAccChainVec[edge];
             const auto mean = get<acc::Mean>(chain);
             const auto quantiles = get<Quantiles>(chain);
-            edgeFeaturesOut(edge, 0) = replaceIfNotFinite(mean, 0.0);
-            edgeFeaturesOut(edge, 1) = replaceIfNotFinite(get<acc::Variance>(chain), 0.0);
+            featuresTemp(edge, 0) = replaceIfNotFinite(mean, 0.0);
+            featuresTemp(edge, 1) = replaceIfNotFinite(get<acc::Variance>(chain), 0.0);
             for(auto qi=0; qi<7; ++qi)
-                edgeFeaturesOut(edge, 2+qi) = replaceIfNotFinite(quantiles[qi], mean);
-        });
+                featuresTemp(edge, 2+qi) = replaceIfNotFinite(quantiles[qi], mean);
+        }
 
+        FeatCoord begin({int64_t(edgeOffset),0L});
+        FeatCoord end({edgeOffset+nEdges, nStats});
+
+        tools::writeSubarray(featuresOut, begin, end, featuresTemp);
     };
 
     accumulateLongRangeFeaturesWithAccChain<AccChainType>(
@@ -201,7 +244,7 @@ void accumulateLongRangeFeatures(
         affinities,
         threadpool,
         accFunction,
-        AccOptions(minVal, maxVal, zDirection)
+        zDirection
     );
 
 }

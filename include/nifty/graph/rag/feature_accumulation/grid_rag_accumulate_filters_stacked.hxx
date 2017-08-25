@@ -104,6 +104,8 @@ inline void accumulateInnerSliceFeatures(ACC_CHAIN_VECTOR & channelAccChainVec,
 
     typedef COORD Coord2;
     typedef typename vigra::MultiArrayShape<3>::type VigraCoord;
+    typedef LABEL_TYPE LabelType;
+
     size_t pass = 1;
     size_t numberOfChannels = channelAccChainVec[0].size();
 
@@ -114,16 +116,17 @@ inline void accumulateInnerSliceFeatures(ACC_CHAIN_VECTOR & channelAccChainVec,
     }
 
     // accumulate filter for the inner slice edges
+    LabelType lU, lV;
+    float fU, fV;
+    VigraCoord vigraCoordU, vigraCoordV;
     nifty::tools::forEachCoordinate(sliceShape2, [&](const Coord2 coord){
-        const auto lU = labelsSqueezed(coord.asStdArray());
+        lU = labelsSqueezed(coord.asStdArray());
         for(int axis = 0; axis < 2; ++axis){
             Coord2 coord2 = coord;
             ++coord2[axis];
             if( coord2[axis] < sliceShape2[axis]) {
-                const auto lV = labelsSqueezed(coord2.asStdArray());
+                lV = labelsSqueezed(coord2.asStdArray());
                 if(lU != lV) {
-                    VigraCoord vigraCoordU;
-                    VigraCoord vigraCoordV;
                     vigraCoordU[0] = sliceId;
                     vigraCoordV[0] = sliceId;
                     for(int d = 1; d < 3; ++d){
@@ -132,8 +135,8 @@ inline void accumulateInnerSliceFeatures(ACC_CHAIN_VECTOR & channelAccChainVec,
                     }
                     const auto edge = rag.findEdge(lU,lV) - inEdgeOffset;
                     for(int c = 0; c < numberOfChannels; ++c) {
-                        const auto fU = filter(c, coord[0], coord[1]);
-                        const auto fV = filter(c, coord2[0], coord2[1]);
+                        fU = filter(c, coord[0], coord[1]);
+                        fV = filter(c, coord2[0], coord2[1]);
                         channelAccChainVec[edge][c].updatePassN(fU, vigraCoordU, pass);
                         channelAccChainVec[edge][c].updatePassN(fV, vigraCoordV, pass);
                     }
@@ -161,6 +164,8 @@ inline void accumulateBetweenSliceFeatures(ACC_CHAIN_VECTOR & channelAccChainVec
 
     typedef COORD Coord2;
     typedef typename vigra::MultiArrayShape<3>::type VigraCoord;
+    typedef LABEL_TYPE LabelType;
+
     size_t pass = 1;
     size_t numberOfChannels = channelAccChainVec[0].size();
 
@@ -170,12 +175,13 @@ inline void accumulateBetweenSliceFeatures(ACC_CHAIN_VECTOR & channelAccChainVec
             channelAccChainVec[edge][c].setHistogramOptions(histoOptionsVec[c]);
     }
 
+    LabelType lU, lV;
+    float fU, fV;
+    VigraCoord vigraCoordU, vigraCoordV;
     nifty::tools::forEachCoordinate(sliceShape2, [&](const Coord2 coord){
         // labels are different for different slices by default!
-        const auto lU = labelsASqueezed(coord.asStdArray());
-        const auto lV = labelsBSqueezed(coord.asStdArray());
-        VigraCoord vigraCoordU;
-        VigraCoord vigraCoordV;
+        lU = labelsASqueezed(coord.asStdArray());
+        lV = labelsBSqueezed(coord.asStdArray());
         vigraCoordU[0] = sliceIdA;
         vigraCoordV[0] = sliceIdB;
         for(int d = 1; d < 3; ++d){
@@ -185,21 +191,21 @@ inline void accumulateBetweenSliceFeatures(ACC_CHAIN_VECTOR & channelAccChainVec
         const auto edge = rag.findEdge(lU,lV) - betweenEdgeOffset;
         if(zDirection==0) { // 0 -> take into account z and z + 1
             for(int c = 0; c < numberOfChannels; ++c) {
-                const auto fU = filterA(c, coord[0], coord[1]);
-                const auto fV = filterB(c, coord[0], coord[1]);
+                fU = filterA(c, coord[0], coord[1]);
+                fV = filterB(c, coord[0], coord[1]);
                 channelAccChainVec[edge][c].updatePassN(fU, vigraCoordU, pass);
                 channelAccChainVec[edge][c].updatePassN(fV, vigraCoordV, pass);
             }
         }
         else if(zDirection==1) { // 1 -> take into accout only z
             for(int c = 0; c < numberOfChannels; ++c) {
-                const auto fU = filterA(c, coord[0], coord[1]);
+                fU = filterA(c, coord[0], coord[1]);
                 channelAccChainVec[edge][c].updatePassN(fU, vigraCoordU, pass);
             }
         }
         else if(zDirection==2) { // 2 -> take into accout only z + 1
             for(int c = 0; c < numberOfChannels; ++c) {
-                const auto fV = filterB(c, coord[0], coord[1]);
+                fV = filterB(c, coord[0], coord[1]);
                 channelAccChainVec[edge][c].updatePassN(fV, vigraCoordV, pass);
             }
         }
@@ -262,9 +268,6 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
     //int pass = 1;
     {
         // accumulate inner slice feature
-
-        // edge acc vectors for multiple threads
-        std::vector<ChannelAccChainVectorType> perThreadChannelAccChainVector(actualNumberOfThreads);
 
         // TODO we could do this less memory consuming, if we allocate less data here and
         // allocate some in every thread
@@ -335,8 +338,6 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
             std::cout << "Processing slice pair: " << pairId << " / " << slicePairs.size() << std::endl;
             int64_t sliceIdA = slicePairs[pairId].first; // lower slice
             int64_t sliceIdB = slicePairs[pairId].second;// upper slice
-            //std::cout << "Upper: " << sliceIdA << " Lower: " << sliceIdB << std::endl;
-            auto & channelAccChainVec = perThreadChannelAccChainVector[tid];
 
             // compute the filters for slice A
             Coord beginA ({sliceIdA, 0L, 0L});
@@ -368,9 +369,11 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
             // (no edge can happend for defected slices)
             if( rag.numberOfInSliceEdges(sliceIdA) > 0 && !keepZOnly) {
                 auto inEdgeOffset = rag.inSliceEdgeOffset(sliceIdA);
-                // resize the current channel acc chain vector
-                channelAccChainVec = ChannelAccChainVectorType( rag.numberOfInSliceEdges(sliceIdA),
-                        AccChainVectorType(numberOfChannels) );
+                // make new acc chain vector
+                ChannelAccChainVectorType channelAccChainVec(
+                        rag.numberOfInSliceEdges(sliceIdA),
+                        AccChainVectorType(numberOfChannels)
+                );
                 accumulateInnerSliceFeatures(channelAccChainVec,
                         histoOptionsVec,
                         sliceShape2,
@@ -414,9 +417,11 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
             if(!keepXYOnly) {
                 auto betweenEdgeOffset = rag.betweenSliceEdgeOffset(sliceIdA);
                 auto accOffset = rag.betweenSliceEdgeOffset(sliceIdA) - rag.numberOfInSliceEdges();
-                // resize the current channel acc chain vector
-                channelAccChainVec = ChannelAccChainVectorType( rag.numberOfInBetweenSliceEdges(sliceIdA),
-                        AccChainVectorType(numberOfChannels) );
+                // make new acc chain vector
+                ChannelAccChainVectorType channelAccChainVec(
+                    rag.numberOfInBetweenSliceEdges(sliceIdA),
+                    AccChainVectorType(numberOfChannels)
+                );
                 // accumulate features for the in between slice edges
                 accumulateBetweenSliceFeatures(channelAccChainVec,
                         histoOptionsVec,
@@ -436,9 +441,11 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
             // accumulate the inner slice features for the last slice, which is never a lower slice
             if(!keepZOnly && (sliceIdB == numberOfSlices - 1 && rag.numberOfInSliceEdges(sliceIdB) > 0)) {
                 auto inEdgeOffset = rag.inSliceEdgeOffset(sliceIdB);
-                // resize the current channel acc chain vector
-                channelAccChainVec = ChannelAccChainVectorType( rag.numberOfInSliceEdges(sliceIdB),
-                        AccChainVectorType(numberOfChannels) );
+                // make new acc chain vector
+                ChannelAccChainVectorType channelAccChainVec(
+                    rag.numberOfInSliceEdges(sliceIdB),
+                    AccChainVectorType(numberOfChannels)
+                );
                 accumulateInnerSliceFeatures(channelAccChainVec,
                         histoOptionsVec,
                         sliceShape2,
