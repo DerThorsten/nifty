@@ -149,12 +149,13 @@ cmake .. \
         -DCMAKE_OSX_DEPLOYMENT_TARGET=10.9\
         -DCMAKE_INSTALL_PREFIX=${PREFIX} \
         -DCMAKE_PREFIX_PATH=${PREFIX} \
-\
-        -DCMAKE_SHARED_LINKER_FLAGS="${LDFLAGS}" \
-        -DCMAKE_EXE_LINKER_FLAGS="${LDFLAGS}" \
-        -DCMAKE_CXX_FLAGS="${CXXFLAGS}" \
-        -DCMAKE_CXX_FLAGS_RELEASE="${CXXFLAGS}" \
-        -DCMAKE_CXX_FLAGS_DEBUG="${CXXFLAGS}" \
+        #\
+        # FIXME why are we doing this ?
+        #-DCMAKE_SHARED_LINKER_FLAGS="${LDFLAGS}" \
+        #-DCMAKE_EXE_LINKER_FLAGS="${LDFLAGS}" \
+        #-DCMAKE_CXX_FLAGS="${CXXFLAGS}" \
+        #-DCMAKE_CXX_FLAGS_RELEASE="${CXXFLAGS}" \
+        #-DCMAKE_CXX_FLAGS_DEBUG="${CXXFLAGS}" \
 \
         -DBOOST_ROOT=${PREFIX} \
         -DWITH_HDF5=ON \
