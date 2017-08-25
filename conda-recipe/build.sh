@@ -145,16 +145,15 @@ PY_ABI=${PY_VER}${PY_ABIFLAGS}
 cmake .. \
         -DCMAKE_C_COMPILER=${CC} \
         -DCMAKE_CXX_COMPILER=${CXX} \
-        -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_BUILD_TYPE=RELEASE \
         -DCMAKE_OSX_DEPLOYMENT_TARGET=10.9\
         -DCMAKE_INSTALL_PREFIX=${PREFIX} \
         -DCMAKE_PREFIX_PATH=${PREFIX} \
 \
-         # FIXME why are we doing this ?
         -DCMAKE_SHARED_LINKER_FLAGS="${LDFLAGS}" \
         -DCMAKE_EXE_LINKER_FLAGS="${LDFLAGS}" \
         -DCMAKE_CXX_FLAGS="${CXXFLAGS}" \
-        -DCMAKE_CXX_FLAGS_RELEASE="${CXXFLAGS}" \
+        -DCMAKE_CXX_FLAGS_RELEASE="${CXXFLAGS} -O3 -DNDEBUG" \
         -DCMAKE_CXX_FLAGS_DEBUG="${CXXFLAGS}" \
 \
         -DBOOST_ROOT=${PREFIX} \
@@ -174,7 +173,7 @@ cmake .. \
 ##
 ## Compile
 ##
-make VERBOSE=1 -j${CPU_COUNT}
+make -j${CPU_COUNT}
 #make test
 
 ##
