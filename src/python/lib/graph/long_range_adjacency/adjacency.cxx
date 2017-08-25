@@ -9,6 +9,7 @@ namespace nifty{
 namespace graph{
 
     void exportLongRangeAdjacency(py::module &);
+    void exportLongRangeFeatures(py::module &);
 }
 }
 
@@ -23,6 +24,7 @@ PYBIND11_PLUGIN(_long_range_adjacency) {
     using namespace nifty::graph;
 
     exportLongRangeAdjacency(module);
+    exportLongRangeFeatures(module);
 
     return module.ptr();
 }

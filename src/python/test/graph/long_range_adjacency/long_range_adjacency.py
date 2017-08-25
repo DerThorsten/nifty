@@ -35,6 +35,9 @@ class TestLongRangeAdjacecny(unittest.TestCase):
         n_labels = seg.max() + 1
         return seg, n_labels
 
+    def generate_random_affinities(self, long_range):
+        return np.random.random(size=(long_range, 100, 100, 100)).astype('float32')
+
     def checks_toy_data(self, lr):
         self.assertEqual(lr.numberOfNodes, 8)
         self.assertEqual(lr.numberOfEdges, 4)
@@ -65,6 +68,18 @@ class TestLongRangeAdjacecny(unittest.TestCase):
         lr = nlr.longRangeAdjacency(seg, 4, 1)
         self.assertEqual(lr.numberOfNodes, n_labels)
         self.assertGreater(lr.numberOfEdges, 100)
+
+    def test_features_random_data(self):
+        seg, _ = self.generate_random_data()
+        for long_range in (2, 3, 4):
+            affinities = self.generate_random_affinities(long_range)
+            lr = nlr.longRangeAdjacency(seg, long_range, 1)
+            for z_dir in (1, 2):
+                features = nlr.longRangeFeatures(lr, seg, affinities, z_dir)
+                self.assertEqual(features.shape[0], lr.numberOfEdges)
+                self.assertEqual(features.shape[1], 9)
+                for col in range(features.shape[1]):
+                    self.assertFalse(np.sum(features[:, col]) == 0)
 
 
 if __name__ == '__main__':
