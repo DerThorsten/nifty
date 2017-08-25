@@ -21,4 +21,4 @@ addPythonModule(
 add_subdirectory(agglo)
 add_subdirectory(rag)
 add_subdirectory(optimization)
-add_subdirectory(long_range_adjacency)
+#add_subdirectory(long_range_adjacency)
