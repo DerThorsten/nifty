@@ -181,7 +181,7 @@ void LongRangeAdjacency<LABELS>::initAdjacency(const LABELS & labels, const size
                 tools::forEachCoordinate(sliceShape2, [&](const Coord2 coord){
                     lU = labelsASqueezed(coord.asStdArray());
                     lV = labelsBSqueezed(coord.asStdArray());
-                    if(BaseType::insertEdgeOnlyInNodeAdj(lU, lV)){
+                    if(insertEdgeOnlyInNodeAdj(lU, lV)){
                         ++numberOfEdgesInSlice_[slice]; // if this is the first time we hit this edge, increase the edge count
                     }
                 });
