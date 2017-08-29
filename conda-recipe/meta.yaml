@@ -43,7 +43,8 @@ build:
 
 requirements:
   build:
-    - boost 1.63.0
+    - boost 1.63.0 # [py3k]
+    - boost 1.60.0 # [py2k]
     - python {{PY_VER}}*
     - hdf5 1.8.17 # Need this version to be compatible with current vigra package
     - fastfilters
@@ -58,7 +59,8 @@ requirements:
     {% endif %}
 
   run:
-    - boost 1.63.0
+    - boost 1.63.0 # [py3k]
+    - boost 1.60.0 # [py2k]
     - python {{PY_VER}}*
     - hdf5 1.8.17 # Need this version to be compatible with current vigra package
     - numpy # Numpy version is not constrained, thanks to pybind11 magic
