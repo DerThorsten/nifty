@@ -23,11 +23,13 @@ public:
         const Labels & labels,
         const size_t range,
         const size_t numberOfLabels,
+        const bool ignoreLabel,
         const int numberOfThreads=-1
     ) : range_(range),
         shape_({labels.shape(0), labels.shape(1), labels.shape(2)}),
         numberOfEdgesInSlice_(shape_[0]),
-        edgeOffset_(shape_[0])
+        edgeOffset_(shape_[0]),
+        ignoreLabel_(ignoreLabel)
     {
         initAdjacency(labels, numberOfLabels, numberOfThreads);
     }
@@ -46,11 +48,11 @@ public:
     }
 
     // API
-    
+
     size_t range() const {
         return range_;
     }
-    
+
     size_t numberOfEdgesInSlice(const size_t z) const {
         return numberOfEdgesInSlice_[z];
     }
@@ -61,8 +63,8 @@ public:
 
     size_t serializationSize() const {
         size_t size = BaseType::serializationSize();
-        size += 1;
-        size += shape_[0] * 2;
+        size += 2; // increase by 2 for the fields longRange and ignoreLabel
+        size += shape_[0] * 2; // increase by slice vector sizes
         return size;
     }
 
@@ -78,6 +80,8 @@ public:
     void serialize(ITER & iter) const {
         *iter = range_;
         ++iter;
+        *iter = ignoreLabel_ ? 1 : 0;
+        ++iter;
         size_t nSlices = shape_[0];
         for(size_t slice = 0; slice < nSlices; ++slice) {
             *iter = numberOfEdgesInSlice_[slice];
@@ -88,6 +92,9 @@ public:
         BaseType::serialize(iter);
     }
 
+    bool hasIgnoreLabel() const {
+        return ignoreLabel_;
+    }
 
 private:
     void initAdjacency(const Labels & labels, const size_t numberOfLabels, const int numberOfThreads);
@@ -95,6 +102,8 @@ private:
     template<class ITER>
     void deserializeAdjacency(ITER & iter) {
         range_ = *iter;
+        ++iter;
+        ignoreLabel_ = (*iter == 1) ? true : false;
         ++iter;
         size_t nSlices = shape_[0];
         for(size_t slice = 0; slice < nSlices; ++slice) {
@@ -110,13 +119,17 @@ private:
     size_t range_;
     std::vector<size_t> numberOfEdgesInSlice_;
     std::vector<size_t> edgeOffset_;
+    bool ignoreLabel_;
 };
 
 
+// FIXME multithreading sometimes causes segfaults / undefined behaviour, if we have an ignore label
 template<class LABELS>
 void LongRangeAdjacency<LABELS>::initAdjacency(const LABELS & labels, const size_t numberOfLabels, const int numberOfThreads) {
 
     typedef tools::BlockStorage<LabelType> LabelStorage;
+    //std::cout << "Start" << std::endl;
+    //std::cout << "ignoreLabel " << ignoreLabel_ << std::endl;
 
     // set the number of nodes in the graph == number of labels
     BaseType::assign(numberOfLabels);
@@ -155,9 +168,17 @@ void LongRangeAdjacency<LABELS>::initAdjacency(const LABELS & labels, const size
             auto & maxNode = maxNodeInSlice[slice];
             tools::forEachCoordinate(sliceShape2, [&](const Coord2 coord){
                 lU = labelsASqueezed(coord.asStdArray());
+
+                // if we have an ignore label, it is assumed to be zero and is
+                // skipped in all the calculations
+                if(lU == 0 && ignoreLabel_) {
+                    return;
+                }
+
                 minNode = std::min(minNode, lU);
                 maxNode = std::max(maxNode, lU);
             });
+            //std::cout << slice << " " << minNode << " " << maxNode << std::endl;
 
             // get view for segmenation in upper slice
             auto labelsB = labelsBStorage.getView(tid);
@@ -169,6 +190,7 @@ void LongRangeAdjacency<LABELS>::initAdjacency(const LABELS & labels, const size
                 if(slice + z >= shape_[0]) {
                     continue;
                 }
+                //std::cout << "to upper slice " << slice + z << std::endl;
 
                 // get upper segmentation
                 Coord beginB ({slice + z, 0L, 0L});
@@ -181,6 +203,12 @@ void LongRangeAdjacency<LABELS>::initAdjacency(const LABELS & labels, const size
                 tools::forEachCoordinate(sliceShape2, [&](const Coord2 coord){
                     lU = labelsASqueezed(coord.asStdArray());
                     lV = labelsBSqueezed(coord.asStdArray());
+
+                    // skip ignore label
+                    if(ignoreLabel_ && (lU == 0 || lV == 0)) {
+                        return;
+                    }
+
                     if(insertEdgeOnlyInNodeAdj(lU, lV)){
                         ++numberOfEdgesInSlice_[slice]; // if this is the first time we hit this edge, increase the edge count
                     }
@@ -226,6 +254,7 @@ void LongRangeAdjacency<LABELS>::initAdjacency(const LABELS & labels, const size
             }
         });
     }
+    //std::cout << "Stop" << std::endl;
 }
 
 } // end namespace graph

@@ -75,15 +75,17 @@ namespace graph{
                Labels labels,
                const size_t range,
                const size_t numberOfLabels,
+               const bool ignoreLabel,
                const int numberOfThreads
             ){
-                auto ptr = new AdjacencyType(labels, range, numberOfLabels, numberOfThreads);
+                auto ptr = new AdjacencyType(labels, range, numberOfLabels, ignoreLabel, numberOfThreads);
                 return ptr;
             },
             py::return_value_policy::take_ownership,
             py::arg("labels"),
             py::arg("range"),
             py::arg("numberOfLabels"),
+            py::arg_t<bool>("ignoreLabel", false),
             py::arg_t<int>("numberOfThreads", -1)
         );
 

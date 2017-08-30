@@ -27,6 +27,8 @@ void accumulateLongRangeFeaturesForSlice(
     typedef typename vigra::MultiArrayShape<3>::type VigraCoord;
     typedef typename ADJACENCY::LabelType LabelType;
 
+    //std::cout << "Starting to accumulate from " << slice << " to " << targetSlice << std::endl;
+
     VigraCoord vigraCoord;
     LabelType lU, lV;
     float aff;
@@ -42,6 +44,11 @@ void accumulateLongRangeFeaturesForSlice(
         for(int d = 1; d < 3; ++d){
             vigraCoord[d] = coord[d-1];
         }
+
+        if(adj.hasIgnoreLabel() && (lU == 0 || lV == 0)) {
+            return;
+        }
+
         const auto edge = adj.findEdge(lU, lV) - edgeOffset;
         accChainVec[edge].updatePassN(aff, vigraCoord, pass);
     });
