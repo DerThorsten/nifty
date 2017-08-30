@@ -9,6 +9,7 @@ addPythonModule(
         unique.cxx
         nodes_to_blocks.cxx
         edge_mapping.cxx
+        sleep.cxx
     LIBRRARIES
         ${HDF5_LIBRARIES}
 )
