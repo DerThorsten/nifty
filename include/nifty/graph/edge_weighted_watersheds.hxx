@@ -60,7 +60,7 @@ namespace detail_watersheds_segmentation{
         PRIORITY_MANIP_FUNCTOR  & priorManipFunctor,
         LABELS                  & labels
     ){  
-        typedef GRAPH Graph;
+        typedef GRAPH GraphType;
         typedef typename EDGE_WEIGHTS::value_type WeightType;
         typedef typename LABELS::value_type  LabelType;
         //typedef typename Graph:: template EdgeMap<bool>    EdgeBoolMap;
@@ -141,7 +141,7 @@ namespace detail_watersheds_segmentation{
         const SEEDS             & seeds,
         LABELS                  & labels
     ){  
-        typedef GRAPH Graph;
+        typedef GRAPH GraphType;
         typedef typename EDGE_WEIGHTS::value_type WeightType;
         typedef typename LABELS::value_type  LabelType;
         //typedef typename Graph:: template EdgeMap<bool>    EdgeBoolMap;

@@ -43,9 +43,9 @@ build:
 
 requirements:
   build:
-    - boost 1.63.0
-    - python {{PY_VER}}
-    - hdf5 >=1.8.18
+    - boost >=1.55.0
+    - python
+    - hdf5 >=1.8.0
 
     {% if WITH_CPLEX is defined and WITH_CPLEX %}
     - cplex-shared # Need to make sure that cplex dylibs exist
@@ -57,11 +57,12 @@ requirements:
     {% endif %}
 
   run:
-    - boost 1.63.0
-    - python {{PY_VER}}*
-    - hdf5 >=1.8.18
+    - gcc >=4.8.5 # [unix]
+    - boost >=1.55.0
+    - python
+    - hdf5 >=1.8.0
     - numpy # Numpy version is not constrained, thanks to pybind11 magic
-    - fastfilters
+    #- fastfilters
     - scikit-image
     - scipy
     - futures # [py2k]

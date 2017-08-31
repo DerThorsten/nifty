@@ -20,16 +20,16 @@ namespace mincut{
     {
     public: 
 
-        typedef OBJECTIVE Objective;
+        typedef OBJECTIVE ObjectiveType;
         typedef MincutBase<OBJECTIVE> BaseType;
         typedef typename BaseType::VisitorBaseType VisitorBaseType;
         typedef typename BaseType::VisitorProxyType VisitorProxyType;
         typedef typename BaseType::NodeLabelsType NodeLabelsType;
-        typedef typename Objective::Graph Graph;
+        typedef typename ObjectiveType::GraphType GraphType;
 
     private:
         typedef float QpboValueType;
-        typedef detail_graph::NodeIndicesToContiguousNodeIndices<Graph> DenseIds;
+        typedef detail_graph::NodeIndicesToContiguousNodeIndices<GraphType> DenseIds;
 
 
 
@@ -43,11 +43,11 @@ namespace mincut{
         virtual ~MincutQpbo(){
 
         }
-        MincutQpbo(const Objective & objective, const SettingsType & settings = SettingsType());
+        MincutQpbo(const ObjectiveType & objective, const SettingsType & settings = SettingsType());
 
 
         virtual void optimize(NodeLabelsType & nodeLabels, VisitorBaseType * visitor);
-        virtual const Objective & objective() const;
+        virtual const ObjectiveType & objective() const;
 
 
         virtual const NodeLabelsType & currentBestNodeLabels( ){
@@ -76,8 +76,8 @@ namespace mincut{
         size_t addCycleInequalities();
         void addThreeCyclesConstraintsExplicitly();
 
-        const Objective & objective_;
-        const Graph & graph_;
+        const ObjectiveType & objective_;
+        const GraphType & graph_;
 
         // zero overhead lookup for graphs which have already
         // dense ids (only merge graph does not have dense ids)
@@ -92,7 +92,7 @@ namespace mincut{
     template<class OBJECTIVE>
     MincutQpbo<OBJECTIVE>::
     MincutQpbo(
-        const Objective & objective, 
+        const ObjectiveType & objective, 
         const SettingsType & settings
     )
     :   objective_(objective),
@@ -168,7 +168,7 @@ namespace mincut{
     }
 
     template<class OBJECTIVE>
-    inline const typename MincutQpbo<OBJECTIVE>::Objective &
+    inline const typename MincutQpbo<OBJECTIVE>::ObjectiveType &
     MincutQpbo<OBJECTIVE>::
     objective()const{
         return objective_;

@@ -8,8 +8,8 @@
 
 void undirectedGraphShortestPathDijkstraTest()
 {
-    typedef nifty::graph::UndirectedGraph<>  Graph;
-    Graph g(6);
+    typedef nifty::graph::UndirectedGraph<>  GraphType;
+    GraphType g(6);
 
     //   0 | 1 |
     //   _   _ 
@@ -23,7 +23,7 @@ void undirectedGraphShortestPathDijkstraTest()
     auto e45 = g.insertEdge(4,5);
     std::vector<float> ew = {10.0,2.0,3.0,4.0,20.0,1.0};
 
-    typedef nifty::graph::ShortestPathDijkstra<Graph,float> Sp;
+    typedef nifty::graph::ShortestPathDijkstra<GraphType,float> Sp;
 
     // single source single target
     {
@@ -77,8 +77,8 @@ void undirectedGraphShortestPathDijkstraTest()
 
 void directedGraphShortestPathDijkstraTest()
 {
-    typedef nifty::graph::SimpleDirectedGraph<>  Graph;
-    Graph g(6);
+    typedef nifty::graph::SimpleDirectedGraph<>  GraphType;
+    GraphType g(6);
 
     //   0 | 1 |
     //   _   _ 
@@ -92,7 +92,7 @@ void directedGraphShortestPathDijkstraTest()
     auto e45 = g.insertArc(4,5);
     std::vector<float> ew = {10.0,2.0,3.0,4.0,20.0,1.0};
 
-    typedef nifty::graph::ShortestPathDijkstra<Graph,float> Sp;
+    typedef nifty::graph::ShortestPathDijkstra<GraphType,float> Sp;
 
     // single source single target
     {

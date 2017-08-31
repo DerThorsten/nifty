@@ -16,13 +16,13 @@ namespace multicut{
     template<class OBJECTIVE>
     class WatershedProposals{
     public:
-        typedef OBJECTIVE Objective;
-        typedef typename Objective::Graph Graph;
-        typedef MulticutBase<Objective> Base;
-        typedef MulticutGreedyAdditive<Objective> Solver;
+        typedef OBJECTIVE ObjectiveType;
+        typedef typename ObjectiveType::GraphType GraphType;
+        typedef MulticutBase<ObjectiveType> Base;
+        typedef MulticutGreedyAdditive<ObjectiveType> Solver;
         typedef typename Solver::SettingsType SolverSettings;
         typedef typename Base::NodeLabelsType NodeLabelsType;
-        typedef typename Graph:: template EdgeMap<double>  EdgeWeights;
+        typedef typename GraphType:: template EdgeMap<double>  EdgeWeights;
 
         struct SettingsType{
             double sigma{1.0};
@@ -34,7 +34,7 @@ namespace multicut{
         }
 
         WatershedProposals(
-            const Objective & objective, 
+            const ObjectiveType & objective, 
             const SettingsType  & settings,
             const size_t threadIndex
         )
@@ -115,8 +115,8 @@ namespace multicut{
 
     private:
 
-        const Objective & objective_;
-        const Graph graph_;
+        const ObjectiveType & objective_;
+        const GraphType graph_;
         EdgeWeights weights_;
         NodeLabelsType seeds_;
         std::vector<uint64_t> negativeEdges_;

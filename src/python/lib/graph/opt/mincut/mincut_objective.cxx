@@ -19,8 +19,8 @@ namespace mincut{
     template<class GRAPH>
     void exportMincutObjectiveT(py::module & mincutModule) {
 
-        typedef GRAPH Graph;
-        typedef MincutObjective<Graph, double> ObjectiveType;
+        typedef GRAPH GraphType;
+        typedef MincutObjective<GraphType, double> ObjectiveType;
         const auto clsName = MincutObjectiveName<ObjectiveType>::name();
 
         auto mincutObjectiveCls = py::class_<ObjectiveType>(mincutModule, clsName.c_str());
@@ -33,7 +33,7 @@ namespace mincut{
 
 
         mincutModule.def("mincutObjective",
-            [](const Graph & graph,  nifty::marray::PyView<double> array){
+            [](const GraphType & graph,  nifty::marray::PyView<double> array){
                 NIFTY_CHECK_OP(array.dimension(),==,1,"wrong dimensions");
                 NIFTY_CHECK_OP(array.shape(0),==,graph.edgeIdUpperBound()+1,"wrong shape");
                 

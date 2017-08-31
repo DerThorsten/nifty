@@ -9,6 +9,7 @@ from . import opt
 from . opt import multicut
 from . opt import lifted_multicut
 from . opt import mincut
+from . opt import minstcut
 
 
 # import opt.multicut as multicut
@@ -49,6 +50,11 @@ EdgeContractionGraphUndirectedGraph.MulticutObjective = multicut.MulticutObjecti
 UndirectedGraph.MincutObjective                     = mincut.MincutObjectiveUndirectedGraph
 UndirectedGraph.EdgeContractionGraph                = EdgeContractionGraphUndirectedGraph
 EdgeContractionGraphUndirectedGraph.MincutObjective = mincut.MincutObjectiveEdgeContractionGraphUndirectedGraph
+
+# #minstcut objective
+# UndirectedGraph.MinstcutObjective                     = minstcut.MinstcutObjectiveUndirectedGraph
+# UndirectedGraph.EdgeContractionGraph                = EdgeContractionGraphUndirectedGraph
+# EdgeContractionGraphUndirectedGraph.MinstcutObjective = minstcut.MinstcutObjectiveEdgeContractionGraphUndirectedGraph
 
 # lifted multicut objective
 UndirectedGraph.LiftedMulticutObjective = lifted_multicut.LiftedMulticutObjectiveUndirectedGraph

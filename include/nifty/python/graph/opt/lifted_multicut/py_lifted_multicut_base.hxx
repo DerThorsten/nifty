@@ -19,14 +19,14 @@ template<class OBJECTIVE>
 class PyLiftedMulticutBase : public LiftedMulticutBase<OBJECTIVE> {
 public:
     /* Inherit the constructors */
-    // using LiftedMulticutFactory<Objective>::LiftedMulticutFactory;
+    // using LiftedMulticutFactory<ObjectiveType>::LiftedMulticutFactory;
 
-    typedef OBJECTIVE Objective;
+    typedef OBJECTIVE ObjectiveType;
     typedef LiftedMulticutVisitorBase<OBJECTIVE> VisitorBaseType;
-    typedef LiftedMulticutBase<Objective> McBase;
-    typedef typename Objective::Graph Graph;
-    typedef typename Graph:: template EdgeMap<uint8_t>  EdgeLabels;
-    typedef typename Graph:: template NodeMap<uint64_t> NodeLabelsType;
+    typedef LiftedMulticutBase<ObjectiveType> McBase;
+    typedef typename ObjectiveType::GraphType GraphType;
+    typedef typename GraphType:: template EdgeMap<uint8_t>  EdgeLabels;
+    typedef typename GraphType:: template NodeMap<uint64_t> NodeLabelsType;
 
 
     /* Trampoline (need one for each virtual function) */
@@ -55,9 +55,9 @@ public:
         );
     }
 
-    const Objective & objective() const {
+    const ObjectiveType & objective() const {
         PYBIND11_OVERLOAD_PURE(
-            const Objective & ,    /* Return type */
+            const ObjectiveType & ,    /* Return type */
             McBase,                /* Parent class */
             objective              /* Name of function */
         );

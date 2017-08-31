@@ -19,18 +19,18 @@ namespace graph{
 
     void exportUndirectedListGraph(py::module & graphModule) {
 
-        typedef UndirectedGraph<> Graph;
+        typedef UndirectedGraph<> GraphType;
         const auto clsName = std::string("UndirectedGraph");
-        auto undirectedGraphCls = py::class_<Graph>(graphModule, clsName.c_str());
+        auto undirectedGraphCls = py::class_<GraphType>(graphModule, clsName.c_str());
 
         undirectedGraphCls
             .def(py::init<const uint64_t,const uint64_t>(),
                py::arg_t<uint64_t>("numberOfNodes",0),
                py::arg_t<uint64_t>("reserveEdges",0)
             )
-            .def("insertEdge",&Graph::insertEdge)
+            .def("insertEdge",&GraphType::insertEdge)
             .def("insertEdges",
-                [](Graph & g, nifty::marray::PyView<uint64_t> array) {
+                [](GraphType & g, nifty::marray::PyView<uint64_t> array) {
                     NIFTY_CHECK_OP(array.dimension(),==,2,"wrong dimensions");
                     NIFTY_CHECK_OP(array.shape(1),==,2,"wrong shape");
                     for(size_t i=0; i<array.shape(0); ++i){
@@ -39,7 +39,7 @@ namespace graph{
                 }
             )
             //.def("uvIds",
-            //    [](Graph & g) {
+            //    [](GraphType & g) {
             //        nifty::marray::PyView<uint64_t> out({uint64_t(g.numberOfEdges()), uint64_t(2)});
             //        for(const auto edge : g.edges()){
             //            const auto uv = g.uv(edge); 
@@ -50,7 +50,7 @@ namespace graph{
             //    }
             //)
             .def("serialize",
-                [](const Graph & g) {
+                [](const GraphType & g) {
                     nifty::marray::PyView<uint64_t> out({g.serializationSize()});
                     auto ptr = &out(0);
                     g.serialize(ptr);
@@ -58,7 +58,7 @@ namespace graph{
                 }
             )
             .def("deserialize",
-                [](Graph & g, nifty::marray::PyView<uint64_t,1> serialization) {
+                [](GraphType & g, nifty::marray::PyView<uint64_t,1> serialization) {
 
                     auto  startPtr = &serialization(0);
                     auto  lastElement = &serialization(serialization.size()-1);
@@ -72,11 +72,11 @@ namespace graph{
                 }
             )
             .def("extractSubgraphFromNodes",
-                []( Graph & g, const marray::PyView<int64_t,1> nodeList) {
+                []( GraphType & g, const marray::PyView<int64_t,1> nodeList) {
                     
                     std::vector<int64_t> innerEdgesVec;  
                     std::vector<int64_t> outerEdgesVec;  
-                    Graph subgraph;
+                    GraphType subgraph;
                     {
                         py::gil_scoped_release allowThreads;
                         subgraph = g.extractSubgraphFromNodes(nodeList, innerEdgesVec, outerEdgesVec);
@@ -87,7 +87,7 @@ namespace graph{
         ;
 
         // export the base graph API (others might derive)
-        exportUndirectedGraphClassAPI<Graph>(graphModule, undirectedGraphCls,clsName);
+        exportUndirectedGraphClassAPI<GraphType>(graphModule, undirectedGraphCls,clsName);
 
 
     }
