@@ -39,9 +39,9 @@ class GridRagStacked2D
     
 public:
     typedef typename BaseType::LabelsProxy LabelsProxy;
-    typedef typename BaseType::Settings Settings;
+    typedef typename BaseType::SettingsType SettingsType;
     
-    GridRagStacked2D(const LabelsProxy & labelsProxy, const Settings & settings = Settings())
+    GridRagStacked2D(const LabelsProxy & labelsProxy, const SettingsType & settings = SettingsType())
     :   BaseType(labelsProxy, settings, typename BaseType::DontComputeRag()),
         perSliceDataVec_(
             labelsProxy.shape()[0], 

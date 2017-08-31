@@ -1,14 +1,10 @@
-#define BOOST_TEST_MODULE NiftyTestFeatureFunctors
-
-#include <boost/test/unit_test.hpp>
-
 #include <iostream> 
 
 #include "nifty/tools/runtime_check.hxx"
 #include "nifty/features/fastfilters_wrapper.hxx"
 
 
-BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest2D)
+void fastfiltersWrapperTest2D()
 {
     // test data generated with ff pybindings
     
@@ -83,7 +79,8 @@ BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest2D)
 }
 
 
-BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest3D)
+
+void fastfiltersWrapperTest3D()
 {
 
     // test data generated with ff pybindings
@@ -219,4 +216,9 @@ BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest3D)
         }
     }
 
+}
+
+int main(){
+    fastfiltersWrapperTest2D();
+    fastfiltersWrapperTest3D();
 }

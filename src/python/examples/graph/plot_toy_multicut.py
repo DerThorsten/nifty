@@ -24,7 +24,7 @@ import pylab
        
 # nifty
 import nifty
-import nifty.graph.optimization.multicut  as nifty_multicut  
+import nifty.graph.opt.multicut  as nifty_multicut  
 
 
 # a toy graph with random

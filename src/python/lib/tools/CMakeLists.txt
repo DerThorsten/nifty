@@ -6,5 +6,6 @@ addPythonModule(
         make_dense.cxx
         blocking.cxx
         take.cxx
+        changable_priority_queue.cxx
 )
 

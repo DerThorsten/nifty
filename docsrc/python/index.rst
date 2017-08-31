@@ -9,13 +9,17 @@ Contents:
     examples
     sections/faq
     sections/reference
+    sections/cpp_reference
     sections/contribute
     zbibliography
 
 
 
-.. This is a test
-.. .. doxygenindex::
-..    :project: nifty
-..    :outline:
-..    :no-link:
+.. doxygenclass:: nifty::graph::opt::multicut::MulticutIlp
+   :project: nifty
+   :no-link:
+
+
+.. doxygenclass:: nifty::graph::opt::multicut::MulticutIlp
+   :project: nifty
+   

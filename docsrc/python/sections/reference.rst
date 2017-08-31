@@ -14,10 +14,10 @@ Nifty API Reference
     nifty.graph
     nifty.graph.rag
     nifty.graph.agglo
-    nifty.graph.optimization
-    nifty.graph.optimization.multicut
-    nifty.graph.optimization.lifted_multicut
-    nifty.graph.optimization.mincut
+    nifty.graph.opt
+    nifty.graph.opt.multicut
+    nifty.graph.opt.lifted_multicut
+    nifty.graph.opt.mincut
     nifty.segmentation
     nifty.ground_truth
     nifty.hdf5

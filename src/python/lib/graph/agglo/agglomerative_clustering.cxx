@@ -58,7 +58,7 @@ namespace agglo{
                     const float sizeRegularizer,
                     const bool verbose
                 ){
-                    typename ClusterPolicyType::Settings s;
+                    typename ClusterPolicyType::SettingsType s;
                     s.numberOfNodesStop = numberOfNodesStop;
                     s.sizeRegularizer = sizeRegularizer;
                     s.threshold = threshold;
@@ -173,7 +173,7 @@ namespace agglo{
                     const uint64_t numberOfNodesStop,
                     const float sizeRegularizer
                 ){
-                    typename ClusterPolicyType::Settings s;
+                    typename ClusterPolicyType::SettingsType s;
                     s.numberOfNodesStop = numberOfNodesStop;
                     s.sizeRegularizer = sizeRegularizer;
                     s.beta = beta;
@@ -213,7 +213,7 @@ namespace agglo{
         {   
             // name and type of cluster operator
             typedef MinimumNodeSizeClusterPolicy<GraphType> ClusterPolicyType;
-            typedef typename ClusterPolicyType::Settings Setting;
+            typedef typename ClusterPolicyType::SettingsType Setting;
             const auto clusterPolicyBaseName = std::string("MinimumNodeSizeClusterPolicy");
             const auto clusterPolicyClsName = clusterPolicyBaseName + graphName;
             const auto clusterPolicyFacName = lowerFirst(clusterPolicyBaseName);

@@ -96,7 +96,7 @@ def diskMedian(img, radius):
     nimg = img.copy()
     oldMin = img.min()
     oldMax = img.max()
-    nimg = numpy.require(img, dtype='float32')
+    nimg = numpy.require(nimg, dtype='float32')
     nimg -= oldMin
     nimg /= (oldMax - oldMin)
     nimg *= 255.0

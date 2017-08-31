@@ -70,7 +70,7 @@ namespace graph{
                 return g.nodeOfDeadEdge(deadEdge);
             })
             .def_property_readonly("baseGraph", &GraphType::baseGraph)
-
+            .def_property_readonly("nodeUfd", &GraphType::nodeUfd)
 
 
         ;

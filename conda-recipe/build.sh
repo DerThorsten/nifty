@@ -12,8 +12,12 @@ fi
 
 # Platform-specific dylib extension
 if [ $(uname) == "Darwin" ]; then
+    export CC=clang
+    export CXX=clang++
     export DYLIB="dylib"
 else
+    export CC=gcc
+    export CXX=g++
     export DYLIB="so"
 fi
 
@@ -108,8 +112,8 @@ else
 	    #       depending on which version of the C++ std library you need to use:
 	    #       - For libstdc++ (from the GNU people), use libgurobi_stdc++.a
 	    #       - For libc++    (from the clang people), use libgurobi_c++.a
-	    #       We use gcc (even on Mac), so we use the libstdc++ version.
-	    GUROBI_ARGS="${GUROBI_ARGS} -DGUROBI_CPP_LIBRARY=${GUROBI_ROOT_DIR}/lib/libgurobi_stdc++.a"    
+	    #       We use clang, so we use the libc++ version.
+	    GUROBI_ARGS="${GUROBI_ARGS} -DGUROBI_CPP_LIBRARY=${GUROBI_ROOT_DIR}/lib/libgurobi_c++.a"    
     else
         # Only one choice on Linux. It works with libstdc++ (from the GNU people).
         # (The naming convention isn't consistent with the name on Mac, but that's okay.)
@@ -121,27 +125,35 @@ fi
 ## START THE BUILD
 ##
 
-mkdir build
+mkdir -p build
 cd build
 
 CXXFLAGS="${CXXFLAGS} -I${PREFIX}/include"
 LDFLAGS="${LDFLAGS} -Wl,-rpath,${PREFIX}/lib -L${PREFIX}/lib"
 
+if [ $(uname) == Darwin ]; then
+    CXXFLAGS="$CXXFLAGS -stdlib=libc++"
+fi
+
+PY_VER=$(python -c "import sys; print('{}.{}'.format(*sys.version_info[:2]))")
+PY_ABIFLAGS=$(python -c "import sys; print('' if sys.version_info.major == 2 else sys.abiflags)")
+PY_ABI=${PY_VER}${PY_ABIFLAGS}
+
 ##
 ## Configure
 ##
 cmake .. \
-        -DCMAKE_C_COMPILER=${PREFIX}/bin/gcc \
-        -DCMAKE_CXX_COMPILER=${PREFIX}/bin/g++ \
+        -DCMAKE_C_COMPILER=${CC} \
+        -DCMAKE_CXX_COMPILER=${CXX} \
         -DCMAKE_BUILD_TYPE=RELEASE \
-        -DCMAKE_OSX_DEPLOYMENT_TARGET=10.7\
+        -DCMAKE_OSX_DEPLOYMENT_TARGET=10.9\
         -DCMAKE_INSTALL_PREFIX=${PREFIX} \
         -DCMAKE_PREFIX_PATH=${PREFIX} \
 \
         -DCMAKE_SHARED_LINKER_FLAGS="${LDFLAGS}" \
         -DCMAKE_EXE_LINKER_FLAGS="${LDFLAGS}" \
         -DCMAKE_CXX_FLAGS="${CXXFLAGS}" \
-        -DCMAKE_CXX_FLAGS_RELEASE="${CXXFLAGS}" \
+        -DCMAKE_CXX_FLAGS_RELEASE="${CXXFLAGS} -O3 -DNDEBUG" \
         -DCMAKE_CXX_FLAGS_DEBUG="${CXXFLAGS}" \
 \
         -DBOOST_ROOT=${PREFIX} \
@@ -152,27 +164,23 @@ cmake .. \
 \
         -DBUILD_NIFTY_PYTHON=ON \
         -DPYTHON_EXECUTABLE=${PYTHON} \
-        -DPYTHON_LIBRARY=${PREFIX}/lib/libpython2.7.${DYLIB} \
-        -DPYTHON_INCLUDE_DIR=${PREFIX}/include/python2.7 \
+        -DPYTHON_LIBRARY=${PREFIX}/lib/libpython${PY_ABI}.${DYLIB} \
+        -DPYTHON_INCLUDE_DIR=${PREFIX}/include/python${PY_ABI} \
 ##
 
 ##
 ## Compile
 ##
-if [[ $(uname) == 'Darwin' ]]; then
-    make -j${CPU_COUNT} 2> >(python "${RECIPE_DIR}"/filter-macos-linker-warnings.py)
-else
-    make -j${CPU_COUNT}
-fi
+make -j${CPU_COUNT}
 
 #make test
 
 ##
 ## Install to prefix
-cp -r ${SRC_DIR}/build/python/nifty ${PREFIX}/lib/python2.7/site-packages/
+cp -r ${SRC_DIR}/build/python/nifty ${PREFIX}/lib/python${PY_VER}/site-packages/
 
 
-NIFTY_MODULE_SO=${PREFIX}/lib/python2.7/site-packages/nifty/_nifty.so
+NIFTY_MODULE_SO=${PREFIX}/lib/python${PY_VER}/site-packages/nifty/_nifty.so
 
 ##
 ## Rename the python module entirely, and change cplex lib install names.
@@ -187,7 +195,7 @@ if [[ "$WITH_CPLEX" != "" ]]; then
         fi
 
         # Rename the nifty package to 'nifty_with_cplex'
-        cd "${PREFIX}/lib/python2.7/site-packages/"
+        cd "${PREFIX}/lib/python${PY_VER}/site-packages/"
         mv nifty nifty_with_cplex
     )
 fi
@@ -204,7 +212,7 @@ if [[ "$WITH_GUROBI" != "" ]]; then
         fi
 
         # Rename the nifty package to 'nifty_with_gurobi'
-        cd "${PREFIX}/lib/python2.7/site-packages/"
+        cd "${PREFIX}/lib/pythoni${PY_VER}/site-packages/"
         mv nifty nifty_with_gurobi
     )
 fi
