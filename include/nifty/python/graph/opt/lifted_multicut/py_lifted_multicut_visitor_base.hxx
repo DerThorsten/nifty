@@ -22,12 +22,12 @@ template<class OBJECTIVE>
 class PyLiftedMulticutVisitorBase : public LiftedMulticutVisitorBase<OBJECTIVE> {
 public:
     /* Inherit the constructors */
-    // using LiftedMulticutFactory<Objective>::LiftedMulticutFactory;
+    // using LiftedMulticutFactory<ObjectiveType>::LiftedMulticutFactory;
 
-    typedef OBJECTIVE Objective;
+    typedef OBJECTIVE ObjectiveType;
     typedef LiftedMulticutVisitorBase<OBJECTIVE> VisitorBaseType;
-    typedef LiftedMulticutBase<Objective> LmcBase;
-    typedef typename Objective::Graph Graph;
+    typedef LiftedMulticutBase<ObjectiveType> LmcBase;
+    typedef typename ObjectiveType::GraphType GraphType;
 
 
 

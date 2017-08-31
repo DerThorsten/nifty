@@ -16,9 +16,9 @@ template<class GRAPH>
 class ComponentsUfd {
 
 public:
-    typedef GRAPH Graph;
+    typedef GRAPH GraphType;
 
-    ComponentsUfd(const Graph & graph)
+    ComponentsUfd(const GraphType & graph)
     :   graph_(graph),
         ufd_(graph.nodeIdUpperBound()+1),
         offset_(ufd_.numberOfElements() - graph_.numberOfNodes()),
@@ -27,7 +27,7 @@ public:
     }
 
     uint64_t build(){
-        return build(DefaultSubgraphMask<Graph>());
+        return build(DefaultSubgraphMask<GraphType>());
     }
 
     template<class NODE_LABELS>
@@ -127,14 +127,14 @@ public:
     
     }
 
-    const Graph & graph()const{
+    const GraphType & graph()const{
         return graph_;
     }
 
 
 
 private:
-    const Graph & graph_;
+    const GraphType & graph_;
     nifty::ufd::Ufd< > ufd_;
     uint64_t offset_;
     bool needsReset_;
@@ -151,11 +151,11 @@ template<class GRAPH>
 class ComponentsBfs {
 
 public:
-    typedef GRAPH Graph;
-    typedef typename Graph:: template EdgeMap<uint64_t> LabelsMapType;
-    typedef typename Graph:: template EdgeMap<bool>    VisitedMapType;
+    typedef GRAPH GraphType;
+    typedef typename GraphType:: template EdgeMap<uint64_t> LabelsMapType;
+    typedef typename GraphType:: template EdgeMap<bool>    VisitedMapType;
 
-    ComponentsBfs(const Graph & graph)
+    ComponentsBfs(const GraphType & graph)
     :   graph_(graph),
         labels_(graph),
         visited_(graph, false),
@@ -166,7 +166,7 @@ public:
     }
 
     uint64_t build(){
-        return build(DefaultSubgraphMask<Graph>());
+        return build(DefaultSubgraphMask<GraphType>());
     }
 
     template<class SUBGRAPH_MASK>
@@ -243,7 +243,7 @@ public:
 
 
 private:
-    const Graph & graph_;
+    const GraphType & graph_;
     LabelsMapType labels_;
     VisitedMapType visited_;
     uint64_t numberOfLabels_;

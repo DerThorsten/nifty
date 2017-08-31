@@ -97,7 +97,7 @@ namespace lifted_multicut{
 
 
         typedef UndirectedGraph<> LiftedGraphType;
-        typedef GraphType Graph;
+
         typedef typename GraphType:: template NodeMap<uint64_t> NodeLabelsType;
 
         typedef LiftedGraphType LiftedGraph;
@@ -107,7 +107,7 @@ namespace lifted_multicut{
         typedef WeightsMapType WeightsMap;
 
 
-        LiftedMulticutObjective(const Graph & graph, const int64_t reserveAdditionalEdges = -1)
+        LiftedMulticutObjective(const GraphType & graph, const int64_t reserveAdditionalEdges = -1)
         :   graph_(graph),
             liftedGraph_(graph.numberOfNodes(), graph.numberOfEdges() + (reserveAdditionalEdges<0 ?  graph.numberOfEdges() : reserveAdditionalEdges) ),
             weights_(liftedGraph_){
@@ -146,7 +146,7 @@ namespace lifted_multicut{
             return weights_;
         }
 
-        const Graph & graph() const{
+        const GraphType & graph() const{
             return graph_;
         }
 
@@ -180,8 +180,8 @@ namespace lifted_multicut{
 
         int64_t graphEdgeInLiftedGraph(const uint64_t graphEdge)const{
 
-            typedef std::is_same<typename Graph::EdgeIdTag,  ContiguousTag> CondA;
-            typedef std::is_same<typename Graph::EdgeIdOrderTag, SortedTag> CondB;
+            typedef std::is_same<typename GraphType::EdgeIdTag,  ContiguousTag> CondA;
+            typedef std::is_same<typename GraphType::EdgeIdOrderTag, SortedTag> CondB;
 
             if(CondA::value && CondB::value  ){
                 return graphEdge;
@@ -195,8 +195,8 @@ namespace lifted_multicut{
 
         int64_t liftedGraphEdgeInGraph(const uint64_t liftedGraphEdge)const{
 
-            typedef std::is_same<typename Graph::EdgeIdTag,  ContiguousTag> CondA;
-            typedef std::is_same<typename Graph::EdgeIdOrderTag, SortedTag> CondB;
+            typedef std::is_same<typename GraphType::EdgeIdTag,  ContiguousTag> CondA;
+            typedef std::is_same<typename GraphType::EdgeIdOrderTag, SortedTag> CondB;
 
             if(CondA::value && CondB::value  ){
                 if(liftedGraphEdge < graph_.numberOfEdges())
@@ -268,7 +268,7 @@ namespace lifted_multicut{
 
 
     protected:
-        const Graph & graph_;
+        const GraphType & graph_;
         LiftedGraph liftedGraph_;
         WeightsMap weights_;
 
