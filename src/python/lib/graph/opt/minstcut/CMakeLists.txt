@@ -9,17 +9,9 @@ SET(MOD_SOURCES
     minstcut_factory.cxx
     # solvers
     #mincut_cc_fusion_move_based.cxx
-    minstcut_maxflow.cxx
+    #minstcut_maxflow.cxx
 )
 
-#if(WITH_QPBO)
-    # SET(MOD_LIBS    ${MOD_LIBS} external_qpbo)
-    # SET(MOD_SOURCES ${MOD_SOURCES} 
-    #     mincut_qpbo.cxx
-    #     mincut_greedy_additive.cxx
-    # )
-
-#endif(WITH_QPBO)
 
 addPythonModule(
     NESTED_NAME 
