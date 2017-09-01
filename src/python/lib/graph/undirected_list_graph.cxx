@@ -84,6 +84,17 @@ namespace graph{
                     return std::make_tuple(innerEdgesVec, outerEdgesVec, subgraph);
                 }
             )
+            .def("edgesFromNodeList",
+                [](Graph & g, const std::vector<int64_t> & nodeList) {
+
+                    std::vector<int64_t> edges;
+                    {
+                        py::gil_scoped_release allowThreads;
+                        g.edgesFromNodeList(nodeList, edges);
+                    }
+                    return edges;
+                }
+            )
         ;
 
         // export the base graph API (others might derive)

@@ -141,6 +141,23 @@ public:
         std::vector<EDGE_INTERANL_TYPE> & innerEdgesOut,
         std::vector<EDGE_INTERANL_TYPE> & outerEdgesOut) const;
 
+    // extract all the edges that connect nodes in the node list
+    void edgesFromNodeList(const std::vector<NODE_INTERNAL_TYPE> & nodeList,
+            std::vector<EDGE_INTERANL_TYPE> & edges) {
+        std::unordered_set<EDGE_INTERANL_TYPE> edgesTmp;
+        NODE_INTERNAL_TYPE v;
+        for(auto u : nodeList) {
+            for(auto adjacencyIt = this->adjacencyBegin(u); adjacencyIt != this->adjacencyEnd(u); ++adjacencyIt) {
+                v = adjacencyIt->node();
+                if( std::find(nodeList.begin(), nodeList.end(), v) != nodeList.end() ) {
+                    edgesTmp.insert(adjacencyIt->edge());
+                }
+            }
+        }
+        edges.resize(edgesTmp.size());
+        std::copy(edgesTmp.begin(), edgesTmp.end(), edges.begin());
+    }
+
 protected:
 
     bool insertEdgeOnlyInNodeAdj(const int64_t u, const int64_t v);
