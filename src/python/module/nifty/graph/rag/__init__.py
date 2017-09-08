@@ -20,13 +20,13 @@ def gridRag(labels, numberOfThreads=-1, serialization = None):
     labels = numpy.require(labels ,dtype='uint32')
 
 
-    if labels.ndim == 2:
+    if numpy.squeeze(labels).ndim == 2:
         if serialization is None:
             return explicitLabelsGridRag2D(labels, numberOfThreads=int(numberOfThreads))
         else:
             return explicitLabelsGridRag2D(labels, serialization)
 
-    elif labels.ndim == 3:
+    elif numpy.squeeze(labels).ndim == 3:
         if serialization is None:
             return explicitLabelsGridRag3D(labels, numberOfThreads=int(numberOfThreads))
         else:
