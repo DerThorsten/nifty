@@ -395,8 +395,17 @@ namespace graph{
 
     void exportGridRag(py::module & ragModule) {
 
-        exportExpilictGridRagT<2, uint32_t>(ragModule, "ExplicitLabelsGridRag2D", "explicitLabelsGridRag2D");
-        exportExpilictGridRagT<3, uint32_t>(ragModule, "ExplicitLabelsGridRag3D", "explicitLabelsGridRag3D");
+        exportExpilictGridRagT<2, uint8_t>(ragModule, "ExplicitLabelsGridRag2D_uint8", "explicitLabelsGridRag2D");
+        exportExpilictGridRagT<3, uint8_t>(ragModule, "ExplicitLabelsGridRag3D_uint8", "explicitLabelsGridRag3D");
+
+        exportExpilictGridRagT<2, uint16_t>(ragModule, "ExplicitLabelsGridRag2D_uint16", "explicitLabelsGridRag2D");
+        exportExpilictGridRagT<3, uint16_t>(ragModule, "ExplicitLabelsGridRag3D_uint16", "explicitLabelsGridRag3D");
+
+        exportExpilictGridRagT<2, uint32_t>(ragModule, "ExplicitLabelsGridRag2D_uint32", "explicitLabelsGridRag2D");
+        exportExpilictGridRagT<3, uint32_t>(ragModule, "ExplicitLabelsGridRag3D_uint32", "explicitLabelsGridRag3D");
+
+        exportExpilictGridRagT<2, uint64_t>(ragModule, "ExplicitLabelsGridRag2D", "explicitLabelsGridRag2D");
+        exportExpilictGridRagT<3, uint64_t>(ragModule, "ExplicitLabelsGridRag3D", "explicitLabelsGridRag3D");
 
         exportExplicitGridRagStacked2D<uint32_t>(ragModule, "GridRagStacked2DExplicit", "gridRagStacked2DExplicitImpl");
 
