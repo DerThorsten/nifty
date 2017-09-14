@@ -378,22 +378,21 @@ public:
             axis  = axes[affCoord[0]];
             range = ranges[affCoord[0]];
 
-            // 
             for(size_t d = 0; d < DIM; ++d) {
                 cU[d] = affCoord[d+1];
-                if(d == axis) {
-                    cV[d] = affCoord[d+1] + range;
-                    // range check
-                    if(cV[d] >= shape(d) || cV[d] < 0) {
-                        continue;
-                    }
-                } else {
-                    cV[d] = affCoord[d+1];
-                }
-                auto u = coordianteToNode(cU);
-                auto v = coordianteToNode(cV);
-                edgeMap.emplace(std::make_pair(std::min(u,v), std::max(u,v)), affinities(affCoord.asStdArray()));
+                cV[d] = affCoord[d+1];
             }
+            cV[axis] += range;
+            // range check
+            if(cV[axis] >= shape(axis) || cV[axis] < 0) {
+                continue;
+            }
+            auto u = coordianteToNode(cU);
+            auto v = coordianteToNode(cV);
+            edgeMap.emplace(
+                std::make_pair(std::min(u,v), std::max(u,v)),
+                affinities(affCoord.asStdArray())
+            );
         }
     }
 
