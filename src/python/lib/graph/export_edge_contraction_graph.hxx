@@ -40,7 +40,7 @@ namespace graph{
     ) {
 
 
-        
+
         typedef BASE_GRAPH BaseGraphType;
         typedef PyContractionGraph<BaseGraphType> GraphType;
         typedef FlexibleCallback Callback;
@@ -74,7 +74,7 @@ namespace graph{
 
 
         ;
-        
+
 
         // export the base graph API (others might derive)
         exportUndirectedGraphClassAPI<GraphType>(graphModule, cls, clsName);
@@ -82,8 +82,8 @@ namespace graph{
 
 
         return cls;
-    }   
-    
+    }
+
 
 
 } // namespace nifty::graph

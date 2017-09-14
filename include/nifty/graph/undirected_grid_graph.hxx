@@ -327,10 +327,10 @@ public:
 
         typedef nifty::array::StaticArray<int64_t, DIM+1> AffinityCoordType;
 
+        CoordinateType cU,cV;
         for(const auto edge : this->edges()){
 
             const auto uv = this->uv(edge);
-            CoordinateType cU,cV;
             nodeToCoordinate(uv.first,  cU);
             nodeToCoordinate(uv.second, cV);
 
@@ -342,12 +342,58 @@ public:
                     affCoord[d + 1] = cU[d];
                 }
                 else {
+                    // TODO max for different direction convention
                     affCoord[d + 1] = std::min(cU[d], cV[d]);
                     affCoord[0] = d;
                 }
             }
 
             edgeMap[edge] = affinities(affCoord.asStdArray());
+        }
+    }
+
+
+    template<class AFFINITIES, class EDGE_MAP, class ITER>
+    void longRangeAffinitiesToLiftedEdges(
+        const AFFINITIES & affinities,
+        EDGE_MAP & edgeMap,
+        ITER rangesBegin, // iterator to the ranges of the affinities
+        ITER axesBegin    // iterator to the axes of the affinities
+    ) const {
+        typedef nifty::array::StaticArray<int64_t, DIM+1> AffinityCoordType;
+        for(auto d=1; d<DIM+1; ++d){
+            NIFTY_CHECK_OP(shape(d-1), ==, affinities.shape(d), "wrong shape")
+        }
+        size_t affLen = affinities.shape(0);
+        std::vector<int> ranges(rangesBegin, rangesBegin + affLen);
+        std::vector<int> axes(axesBegin, axesBegin + affLen);
+
+        AffinityCoordType affCoord;
+        CoordinateType cU, cV;
+        size_t axis, range;
+
+        // iterate over the affinties
+        for(size_t edgeId = 0; edgeId < affinities.size(); ++edgeId) {
+            affinities.indexToCoordinates(edgeId, affCoord.begin());
+            axis  = axes[affCoord[0]];
+            range = ranges[affCoord[0]];
+
+            // 
+            for(size_t d = 0; d < DIM; ++d) {
+                cU[d] = affCoord[d+1];
+                if(d == axis) {
+                    cV[d] = affCoord[d+1] + range;
+                    // range check
+                    if(cV[d] >= shape(d) || cV[d] < 0) {
+                        continue;
+                    }
+                } else {
+                    cV[d] = affCoord[d+1];
+                }
+                auto u = coordianteToNode(cU);
+                auto v = coordianteToNode(cV);
+                edgeMap.emplace(std::make_pair(std::min(u,v), std::max(u,v)), affinities(affCoord.asStdArray()));
+            }
         }
     }
 

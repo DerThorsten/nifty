@@ -121,6 +121,42 @@ namespace graph{
                 py::arg("affinities")
             )
 
+            // expected input:
+            // affinties: array of shape [nChannels, volShape]
+            // ranges: list with nChannels entries, each entry determining the range of the corresponding
+            // affinty channel
+            // axes: list with nChannels entries, each entry determining the axes of the corresponding
+            // affinity channel
+            // Example:
+            // 2d affinties with alternating xy-channels
+            // with range 2, 4, 8 in xy (and negative direction convention) have
+            // ranges = [-2, -2, -4, -4, -8, -8]
+            // axes   = [ 0,  1,  0,  1,  0,  1]
+            .def("liftedProblemFromLongRangeAffinities",
+                [](
+                    const GraphType & g,
+                    nifty::marray::PyView<float, DIM+1> affinities,
+                    const std::vector<int> & ranges,
+                    const std::vector<int> & axes
+                ) {
+                    std::map<std::pair<int64_t, int64_t>, float> edgeMap;
+                    g.longRangeAffinitiesToLiftedEdges(affinities, edgeMap, ranges.begin(), axes.begin());
+                    // extract edge values and lifted uv-ides from the edge map
+                    nifty::marray::PyView<float, 1> values({edgeMap.size()});
+                    std::vector<size_t> uvShape = {edgeMap.size(), 2};
+                    nifty::marray::PyView<float, 2> liftedUvs(uvShape.begin(), uvShape.end());
+                    size_t i = 0;
+                    for(const auto & mapVal : edgeMap) {
+                        values[i] = mapVal.second;
+                        liftedUvs[i,0] = mapVal.first.first;
+                        liftedUvs[i,1] = mapVal.first.second;
+                        ++i;
+                    }
+                    return std::make_pair(values, liftedUvs);
+                },
+                py::arg("affinities"), py::arg("ranges"), py::arg("axes")
+            )
+
 
             //.def("uvIds",
             //    [](GraphType & g) {
