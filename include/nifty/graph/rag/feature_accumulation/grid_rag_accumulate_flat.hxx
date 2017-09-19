@@ -1,6 +1,4 @@
 #pragma once
-#ifndef NIFTY_GRAPH_RAG_GRID_RAG_ACCUMULATE_FLAT_HXX
-#define NIFTY_GRAPH_RAG_GRID_RAG_ACCUMULATE_FLAT_HXX
 
 #include "nifty/graph/rag/grid_rag_accumulate.hxx"
 
@@ -319,5 +317,3 @@ void accumulateEdgeFeaturesFlat(
 
 } // namespace graph
 } // namespace nifty
-
-#endif /* NIFTY_GRAPH_RAG_GRID_RAG_ACCUMULATE_FLAT_HXX */

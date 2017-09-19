@@ -18,6 +18,7 @@ namespace graph{
     void exportAccumulateEdgeFeaturesFromFilters(py::module &);
     void exportAccumulateFlat(py::module &);
     void exportGridRagCoordinates(py::module &);
+    void exportAccumulateAffinityFeatures(py::module &);
 
 }
 }
@@ -40,6 +41,7 @@ PYBIND11_PLUGIN(_rag) {
     exportAccumulateStacked(ragModule);
     exportAccumulateFlat(ragModule);
     exportGridRagCoordinates(ragModule);
+    exportAccumulateAffinityFeatures(ragModule);
     #ifdef WITH_FASTFILTERS
     exportAccumulateEdgeFeaturesFromFilters(ragModule);
     #endif
