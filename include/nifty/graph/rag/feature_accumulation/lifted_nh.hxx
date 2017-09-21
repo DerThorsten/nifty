@@ -7,14 +7,14 @@
 namespace nifty {
 namespace graph {
 
-template<class LABELS>
+template<class RAG>
 class LiftedNh : public UndirectedGraph<>{
 
 // TODO
 // - make ready for 2d stacked
 // - out of core
 public:
-    typedef LABELS Labels;
+    typedef RAG Rag;
     typedef UndirectedGraph<> BaseType;
 
     typedef array::StaticArray<int64_t, 4> Coord4;
@@ -24,8 +24,7 @@ public:
     // compute lifted nh from affinities
     template<typename ITER>
     LiftedNh(
-        const LABELS & labels,
-        const size_t numberOfLabels,
+        const RAG & rag,
         ITER rangeIterBegin,
         ITER rangeIterEnd,
         ITER axesIterBegin,
@@ -33,7 +32,7 @@ public:
     ) : ranges_(rangeIterBegin, rangeIterEnd),
         axes_(axesIterBegin, axesIterBegin + std::distance(rangeIterBegin, rangeIterEnd))
     {
-        initLiftedNh(labels, numberOfLabels, numberOfThreads);
+        initLiftedNh(rag, numberOfThreads);
     }
 
     const std::vector<int> & ranges() const {return ranges_;}
@@ -42,7 +41,7 @@ public:
 
 private:
     void initLiftedNh(
-        const Labels & labels, const size_t numberOfLabels, const int numberOfThreads);
+        const Rag & labels, const int numberOfThreads);
 
     std::vector<int> ranges_;
     std::vector<int> axes_;
@@ -51,15 +50,16 @@ private:
 
 
 // TODO use block storage mechanism to make out of core
-template<class LABELS>
-void LiftedNh<LABELS>::initLiftedNh(
-    const LABELS & labels, const size_t numberOfLabels, const int numberOfThreads
+template<class RAG>
+void LiftedNh<RAG>::initLiftedNh(
+    const RAG & rag, const int numberOfThreads
 ) {
 
     //typedef tools::BlockStorage<LabelType> LabelStorage;
+    const auto & labels = rag.labelsProxy().labels();
 
     // set the number of nodes in the graph == number of labels
-    BaseType::assign(numberOfLabels);
+    BaseType::assign(rag.labelsProxy().numberOfLabels());
     Coord3 shape;
     for(size_t d = 0; d < 3; ++d) {
         shape[d] = labels.shape(d);
@@ -117,9 +117,20 @@ void LiftedNh<LABELS>::initLiftedNh(
         }
         auto u = labels(cU.asStdArray());
         auto v = labels(cV.asStdArray());
-        BaseType::insertEdge(
-            std::min(u, v), std::max(u, v)
-        );
+
+        // only do stuff if the labels are different
+        if(u != v) {
+
+            // only add an edge to the lifted nh if it is not
+            // in the local one
+            if(rag.findEdge(u, v) != -1) {
+                continue;
+            }
+
+            BaseType::insertEdge(
+                std::min(u, v), std::max(u, v)
+            );
+        }
     }
 }
 

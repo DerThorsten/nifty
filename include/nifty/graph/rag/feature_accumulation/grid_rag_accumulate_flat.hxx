@@ -118,7 +118,7 @@ void accumulateEdgeFeaturesFlatWithAccChain(
     typedef array::StaticArray<int64_t, 2> Coord2;
 
     typedef EDGE_ACC_CHAIN EdgeAccChainType;
-    typedef std::vector<EdgeAccChainType>   AccChainVectorType; 
+    typedef std::vector<EdgeAccChainType>   AccChainVectorType;
 
     const size_t actualNumberOfThreads = pOpts.getActualNumThreads();
 
@@ -132,14 +132,14 @@ void accumulateEdgeFeaturesFlatWithAccChain(
 
     // edge acc vectors for multiple threads
     std::vector<AccChainVectorType> perThreadAccChainVector(actualNumberOfThreads);
-    parallel::parallel_foreach(threadpool, actualNumberOfThreads, 
+    parallel::parallel_foreach(threadpool, actualNumberOfThreads,
     [&](const int tid, const int64_t i){
         perThreadAccChainVector[i] = AccChainVectorType(rag.edgeIdUpperBound()+1);
     });
 
     if(accOptions.setMinMax){
         vigra::HistogramOptions histogram_opt;
-        histogram_opt = histogram_opt.setMinMax(accOptions.minVal, accOptions.maxVal); 
+        histogram_opt = histogram_opt.setMinMax(accOptions.minVal, accOptions.maxVal);
         parallel::parallel_foreach(threadpool, actualNumberOfThreads,
         [&](int tid, int i){
             auto & edgeAccVec = perThreadAccChainVector[i];

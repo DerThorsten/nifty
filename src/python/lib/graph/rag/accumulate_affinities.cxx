@@ -1,6 +1,7 @@
 #include <cstddef>
 #include <pybind11/pybind11.h>
 #include <pybind11/numpy.h>
+#include <pybind11/stl.h>
 
 #include "nifty/python/converter.hxx"
 
@@ -35,8 +36,9 @@ namespace graph{
             //{
             //    py::gil_scoped_release allowThreads;
             //}
-            LiftedNh<marray::View<uint32_t>> lnh(
-                rag.labelsProxy().labels(), rag.labelsProxy().numberOfLabels(), ranges.begin(), ranges.end(), axes.begin(), numberOfThreads
+            // FIXME this doesn't lift the gil
+            LiftedNh<RAG> lnh(
+                rag, ranges.begin(), ranges.end(), axes.begin(), numberOfThreads
             );
 
             uint64_t nLocal  = rag.edgeIdUpperBound() + 1;
@@ -44,12 +46,16 @@ namespace graph{
             marray::PyView<float> outLocal({nLocal, uint64_t(9)});
             marray::PyView<float> outLifted({nLifted, uint64_t(9)});
             {
+                py::gil_scoped_release allowThreads;
                 accumulateLongRangeAffinities(rag, lnh, affinities, 0., 1.,  outLocal, outLifted, numberOfThreads);
             }
             marray::PyView<uint32_t> lnhOut({nLifted, uint64_t(2)});
-            for(size_t e = 0; e < nLifted; ++e) {
-                lnhOut(e, 0) = lnh.u(e);
-                lnhOut(e, 1) = lnh.v(e);
+            {
+                py::gil_scoped_release allowThreads;
+                for(size_t e = 0; e < nLifted; ++e) {
+                    lnhOut(e, 0) = lnh.u(e);
+                    lnhOut(e, 1) = lnh.v(e);
+                }
             }
             return std::make_tuple(lnhOut, outLocal, outLifted);
         },
