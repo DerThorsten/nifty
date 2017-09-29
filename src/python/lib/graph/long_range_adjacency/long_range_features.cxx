@@ -41,7 +41,11 @@ namespace graph{
             }
             return features;
         },
-        py::arg("longRangeAdjacency"), py::arg("labels"), py::arg("affinities"), py::arg("zDirection"), py::arg("numberOfThreads")=-1
+        py::arg("longRangeAdjacency"),
+        py::arg("labels"),
+        py::arg("affinities"),
+        py::arg("zDirection"),
+        py::arg("numberOfThreads")=-1
         );
 
     }

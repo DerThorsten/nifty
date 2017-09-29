@@ -32,6 +32,7 @@ public:
         ignoreLabel_(ignoreLabel)
     {
         initAdjacency(labels, numberOfLabels, numberOfThreads);
+        std::cout << "end init" << std::endl;
     }
 
     // constructor from serialization
@@ -178,7 +179,6 @@ void LongRangeAdjacency<LABELS>::initAdjacency(const LABELS & labels, const size
                 minNode = std::min(minNode, lU);
                 maxNode = std::max(maxNode, lU);
             });
-            //std::cout << slice << " " << minNode << " " << maxNode << std::endl;
 
             // get view for segmenation in upper slice
             auto labelsB = labelsBStorage.getView(tid);
@@ -254,7 +254,6 @@ void LongRangeAdjacency<LABELS>::initAdjacency(const LABELS & labels, const size
             }
         });
     }
-    //std::cout << "Stop" << std::endl;
 }
 
 } // end namespace graph
