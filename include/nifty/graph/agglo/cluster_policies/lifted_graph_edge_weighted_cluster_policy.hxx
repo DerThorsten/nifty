@@ -24,8 +24,8 @@ template<
 class LiftedGraphEdgeWeightedClusterPolicy{
 
     typedef LiftedGraphEdgeWeightedClusterPolicy<
-        GRAPH, EDGE_INDICATORS, 
-        EDGE_SIZES, NODE_SIZES, 
+        GRAPH, EDGE_INDICATORS,
+        EDGE_SIZES, NODE_SIZES,
         EDGE_IS_LIFTED, ENABLE_UCM
     > SelfType;
 
@@ -84,7 +84,7 @@ private:
     NodeSizesType       nodeSizes_;
     EdgeIsLifted        edgeIsLifted_;
     Settings            settings_;
-    
+
     // INTERNAL
     EdgeContractionGraphType edgeContractionGraph_;
     QueueType pq_;
@@ -110,14 +110,14 @@ LiftedGraphEdgeWeightedClusterPolicy(
     settings_(settings),
     edgeIsLifted_(edgeIsLifted),
     edgeContractionGraph_(graph, *this),
-    pq_(graph.edgeIdUpperBound()+1)  
+    pq_(graph.edgeIdUpperBound()+1)
     //currentWeight_(graph)
 {
     this->initializeWeights();
 }
 
 template<class GRAPH,class EDGE_INDICATORS,class EDGE_SIZES,class NODE_SIZES,class EDGE_IS_LIFTED, bool ENABLE_UCM>
-inline std::pair<uint64_t, double> 
+inline std::pair<uint64_t, double>
 LiftedGraphEdgeWeightedClusterPolicy<GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, EDGE_IS_LIFTED, ENABLE_UCM>::
 edgeToContractNext() const {
     const auto edgeToContract = pq_.top();
@@ -277,4 +277,3 @@ contractEdgeDone(
 } // namespace agglo
 } // namespace nifty::graph
 } // namespace nifty
-

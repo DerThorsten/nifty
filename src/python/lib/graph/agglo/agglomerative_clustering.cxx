@@ -24,6 +24,61 @@ namespace agglo{
 
 
     template<class GRAPH, bool WITH_UCM>
+    void exportLiftedGraphEdgeWeightedPolicy(py::module & aggloModule) {
+        typedef GRAPH GraphType;
+        const auto graphName = GraphName<GraphType>::name();
+        typedef nifty::marray::PyView<float, 1> PyViewFloat1;
+        typedef nifty::marray::PyView<bool, 1> PyViewBool1;
+        const std::string withUcmStr =  WITH_UCM ? std::string("WithUcm") :  std::string();
+
+        {
+            // name and type of cluster operator
+            typedef LiftedGraphEdgeWeightedClusterPolicy<GraphType, PyViewFloat1, PyViewFloat1, PyViewFloat1, PyViewBool1, WITH_UCM> ClusterPolicyType;
+            const auto clusterPolicyBaseName = std::string("LiftedGraphEdgeWeightedClusterPolicy") +  withUcmStr;
+            const auto clusterPolicyClsName = clusterPolicyBaseName + graphName;
+            const auto clusterPolicyFacName = lowerFirst(clusterPolicyBaseName);
+
+            // the cluster operator cls
+            py::class_<ClusterPolicyType>(aggloModule, clusterPolicyClsName.c_str())
+                //.def_property_readonly("edgeIndicators", &ClusterPolicyType::edgeIndicators)
+                //.def_property_readonly("edgeSizes", &ClusterPolicyType::edgeSizes)
+            ;
+
+            // factory
+            aggloModule.def(clusterPolicyFacName.c_str(),
+                [](
+                    const GraphType & graph,
+                    const PyViewFloat1 & edgeIndicators,
+                    const PyViewFloat1 & edgeSizes,
+                    const PyViewFloat1 & nodeSizes,
+                    const PyViewBool1 & edgeIsLifted,
+                    const uint64_t numberOfNodesStop,
+                    const float sizeRegularizer
+                ){
+                    typename ClusterPolicyType::Settings s;
+                    s.numberOfNodesStop = numberOfNodesStop;
+                    s.sizeRegularizer = sizeRegularizer;
+                    auto ptr = new ClusterPolicyType(graph, edgeIndicators, edgeSizes, nodeSizes, edgeIsLifted, s);
+                    return ptr;
+                },
+                py::return_value_policy::take_ownership,
+                py::keep_alive<0,1>(), // graph
+                py::arg("graph"),
+                py::arg("edgeIndicators"),
+                py::arg("edgeSizes"),
+                py::arg("nodeSizes"),
+                py::arg("edgeIsLifted"),
+                py::arg("numberOfNodesStop") = 1,
+                py::arg("sizeRegularizer") = 0.5f
+            );
+
+            // export the agglomerative clustering functionality for this cluster operator
+            exportAgglomerativeClusteringTClusterPolicy<ClusterPolicyType>(aggloModule, clusterPolicyBaseName);
+        }
+    }
+
+
+    template<class GRAPH, bool WITH_UCM>
     void exportMalaClusterPolicy(py::module & aggloModule) {
         
         typedef GRAPH GraphType;
@@ -275,6 +330,9 @@ namespace agglo{
             exportNodeAndEdgeWeightedClusterPolicy<GraphType, true>(aggloModule);
 
             exportMinimumNodeSizeClusterPolicy<GraphType>(aggloModule);
+
+            exportLiftedGraphEdgeWeightedPolicy<GraphType, false>(aggloModule);
+            exportLiftedGraphEdgeWeightedPolicy<GraphType, true>(aggloModule);
         }
 
         {
@@ -290,6 +348,9 @@ namespace agglo{
             exportNodeAndEdgeWeightedClusterPolicy<GraphType, true>(aggloModule);
 
             exportMinimumNodeSizeClusterPolicy<GraphType>(aggloModule);
+            
+            exportLiftedGraphEdgeWeightedPolicy<GraphType, false>(aggloModule);
+            exportLiftedGraphEdgeWeightedPolicy<GraphType, true>(aggloModule);
         }
 
         {
@@ -305,6 +366,9 @@ namespace agglo{
             exportNodeAndEdgeWeightedClusterPolicy<GraphType, true>(aggloModule);
 
             exportMinimumNodeSizeClusterPolicy<GraphType>(aggloModule);
+            
+            exportLiftedGraphEdgeWeightedPolicy<GraphType, false>(aggloModule);
+            exportLiftedGraphEdgeWeightedPolicy<GraphType, true>(aggloModule);
         }
     }
 
