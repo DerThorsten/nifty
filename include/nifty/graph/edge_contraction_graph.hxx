@@ -33,8 +33,9 @@ namespace graph{
 
     struct FlexibleCallback{
         inline void contractEdge(const uint64_t edgeToContract){
-            if(contractEdgeCallback)
+            if(contractEdgeCallback){
                 contractEdgeCallback(edgeToContract);
+            }
         }
 
         inline void mergeNodes(const uint64_t aliveNode, const uint64_t deadNode){

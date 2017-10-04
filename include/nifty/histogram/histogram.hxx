@@ -12,11 +12,11 @@ namespace histogram{
     public:
         typedef BINCOUNT BincountType;
         Histogram(
-            const T minVal, 
-            const T maxVal,
-            const size_t bincount
+            const T minVal=0, 
+            const T maxVal=1,
+            const size_t bincount=40
         )
-        :   counts_(bincount),
+        :   counts_(bincount,0),
             minVal_(minVal),
             maxVal_(maxVal),
             binWidth_((maxVal-minVal)/T(bincount)),
@@ -102,6 +102,15 @@ namespace histogram{
 
         float binWidth()const{
             return binWidth_;
+        }
+
+        /// \warning this function has undefined behavior
+        /// if bins and limits do not match
+        void merge(const Histogram & other){
+            for(auto b=0; b<counts_.size(); ++b){
+                counts_[b] += other.counts_[b];
+            }
+            sum_ += other.sum_;
         }
 
     private:

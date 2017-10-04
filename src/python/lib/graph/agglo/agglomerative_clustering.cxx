@@ -55,12 +55,12 @@ namespace agglo{
                     const PyViewFloat1 & nodeSizes,
                     const float threshold,
                     const uint64_t numberOfNodesStop,
-                    const float sizeRegularizer,
+                    const int bincount,
                     const bool verbose
                 ){
                     typename ClusterPolicyType::SettingsType s;
                     s.numberOfNodesStop = numberOfNodesStop;
-                    s.sizeRegularizer = sizeRegularizer;
+                    s.bincount = bincount;
                     s.threshold = threshold;
                     s.verbose = verbose;
                     auto ptr = new ClusterPolicyType(graph, edgeIndicators, edgeSizes, nodeSizes, s);
@@ -74,7 +74,7 @@ namespace agglo{
                 py::arg("nodeSizes"),
                 py::arg("threshold") = 0.5,
                 py::arg("numberOfNodesStop") = 1,
-                py::arg("sizeRegularizer") = 0.5f,
+                py::arg("bincount") = 40,
                 py::arg("verbose") = false
             );
 
