@@ -32,7 +32,7 @@ public:
         ignoreLabel_(ignoreLabel)
     {
         initAdjacency(labels, numberOfLabels, numberOfThreads);
-        std::cout << "end init" << std::endl;
+        //std::cout << "end init" << std::endl;
     }
 
     // constructor from serialization
@@ -131,6 +131,7 @@ void LongRangeAdjacency<LABELS>::initAdjacency(const LABELS & labels, const size
     typedef tools::BlockStorage<LabelType> LabelStorage;
     //std::cout << "Start" << std::endl;
     //std::cout << "ignoreLabel " << ignoreLabel_ << std::endl;
+    //std::cout << "Nthreads: " << numberOfThreads << std::endl; 
 
     // set the number of nodes in the graph == number of labels
     BaseType::assign(numberOfLabels);
@@ -147,6 +148,7 @@ void LongRangeAdjacency<LABELS>::initAdjacency(const LABELS & labels, const size
     std::vector<LabelType> minNodeInSlice(nSlices, numberOfLabels + 1);
     std::vector<LabelType> maxNodeInSlice(nSlices);
 
+    //std::cout << "Before loop" << std::endl;
     // loop over the slices in parallel, for each slice find the edges
     // to nodes in the next 2 to 'range' slices
     {
@@ -155,6 +157,7 @@ void LongRangeAdjacency<LABELS>::initAdjacency(const LABELS & labels, const size
         LabelStorage labelsBStorage(threadpool, sliceShape3, nThreads);
 
         parallel::parallel_foreach(threadpool, nSlices-2, [&](const int tid, const int slice) {
+            //std::cout << "Loop in " << slice << std::endl;
 
             // get segmentation in base slice
             Coord beginA ({int64_t(slice), 0L, 0L});
@@ -179,6 +182,7 @@ void LongRangeAdjacency<LABELS>::initAdjacency(const LABELS & labels, const size
                 minNode = std::min(minNode, lU);
                 maxNode = std::max(maxNode, lU);
             });
+            //std::cout << minNode << " , " << maxNode << std::endl;
 
             // get view for segmenation in upper slice
             auto labelsB = labelsBStorage.getView(tid);
@@ -216,6 +220,7 @@ void LongRangeAdjacency<LABELS>::initAdjacency(const LABELS & labels, const size
             }
         });
     }
+    //std::cout << "Loop done" << std::endl;
 
     // set up the edge offsets
     size_t offset = numberOfEdgesInSlice_[0];
@@ -254,6 +259,7 @@ void LongRangeAdjacency<LABELS>::initAdjacency(const LABELS & labels, const size
             }
         });
     }
+    //std::cout << "Adjacency init done" << std::endl;
 }
 
 } // end namespace graph
