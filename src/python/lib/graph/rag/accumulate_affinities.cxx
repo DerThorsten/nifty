@@ -65,6 +65,26 @@ namespace graph{
         py::arg("axes"),
         py::arg("numberOfThreads")= -1
         );
+
+        ragModule.def("featuresFromLocalAffinities",
+        [](
+            const RAG & rag,
+            nifty::marray::PyView<float> affinities,
+            const int numberOfThreads
+        ){
+
+            uint64_t nEdges  = rag.edgeIdUpperBound() + 1;
+            marray::PyView<float> out({nEdges, uint64_t(9)});
+            {
+                py::gil_scoped_release allowThreads;
+                accumulateAffinities(rag, affinities, 0., 1.,  out, numberOfThreads);
+            }
+            return out;
+        },
+        py::arg("rag"),
+        py::arg("affinities"),
+        py::arg("numberOfThreads")= -1
+        );
     }
 
     void exportAccumulateAffinityFeatures(py::module & ragModule) {
