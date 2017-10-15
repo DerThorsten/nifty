@@ -154,8 +154,8 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
 
     def warmStartGreeedyDecorator(func):
         def func_wrapper(*args, **kwargs):
-            warmStartGreedy = kwargs.get('warmStartGreedy', False)
-            greedyVisitNth = kwargs.get('greedyVisitNth', 100)
+            warmStartGreedy = kwargs.pop('warmStartGreedy', False)
+            greedyVisitNth = kwargs.pop('greedyVisitNth', 100)
             if(warmStartGreedy):
                 greedyFactory = greedyAdditiveFactory(visitNth=int(greedyVisitNth))
                 factory = func(*args, **kwargs)
