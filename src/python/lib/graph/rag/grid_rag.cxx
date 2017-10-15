@@ -55,7 +55,7 @@ namespace graph{
                nifty::marray::PyView<LABELS, DIM> labels,
                const int numberOfThreads
             ){
-                auto s = typename  GridRagType::Settings();
+                auto s = typename  GridRagType::SettingsType();
                 s.numberOfThreads = numberOfThreads;
                 ExplicitLabels<DIM, LABELS> explicitLabels(labels);
                 auto ptr = new GridRagType(explicitLabels, s);
@@ -80,7 +80,7 @@ namespace graph{
 
                 NIFTY_CHECK_OP(d,==,serialization.size(), "serialization must be contiguous");
 
-                auto s = typename  GridRagType::Settings();
+                auto s = typename  GridRagType::SettingsType();
                 s.numberOfThreads = -1;
                 ExplicitLabels<DIM, LABELS> explicitLabels(labels);
                 auto ptr = new GridRagType(explicitLabels,startPtr, s);
@@ -144,7 +144,7 @@ namespace graph{
                 std::vector<int64_t>  blockShape,
                 const int numberOfThreads
             ){
-                auto s = typename  GridRagType::Settings();
+                auto s = typename  GridRagType::SettingsType();
                 s.numberOfThreads = numberOfThreads;
 
                 if(blockShape.size() == DIM){
@@ -182,9 +182,9 @@ namespace graph{
                 NIFTY_CHECK_OP(d,==,serialization.size(), "serialization must be contiguous");
 
 
-                auto s = typename  GridRagType::Settings();
+                auto s = typename  GridRagType::SettingsType();
                 s.numberOfThreads = -1;
-    
+
                 auto ptr = new GridRagType(labelsProxy, startPtr, s);
                 return ptr;
             },
@@ -206,7 +206,6 @@ namespace graph{
         exportHdf5GridRagT<3, uint32_t>(ragModule, "GridRagHdf5Labels3D", "gridRag3DHdf5");
         #endif
     }
-        
 
 } // end namespace graph
 } // end namespace nifty

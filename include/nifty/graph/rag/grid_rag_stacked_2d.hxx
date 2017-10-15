@@ -36,17 +36,16 @@ class GridRagStacked2D
         LabelType minInSliceNode;
         LabelType maxInSliceNode;
     };
-    
+
 public:
     typedef typename BaseType::LabelsProxy LabelsProxy;
-    typedef typename BaseType::Settings Settings;
-    
-    GridRagStacked2D(const LabelsProxy & labelsProxy,
-            const Settings & settings = Settings())
+    typedef typename BaseType::SettingsType SettingsType;
+
+    GridRagStacked2D(const LabelsProxy & labelsProxy, const SettingsType & settings = SettingsType())
     :   BaseType(labelsProxy, settings, typename BaseType::DontComputeRag()),
         perSliceDataVec_(
-            labelsProxy.shape()[0], 
-            PerSliceData(labelsProxy.numberOfLabels()) 
+            labelsProxy.shape()[0],
+            PerSliceData(labelsProxy.numberOfLabels())
         ),
         numberOfInSliceEdges_(0),
         numberOfInBetweenSliceEdges_(0),
@@ -54,15 +53,15 @@ public:
     {
         detail_rag::ComputeRag< SelfType >::computeRag(*this, this->settings_);
     }
-    
+
     template<class ITER>
     GridRagStacked2D(const LabelsProxy & labelsProxy,
             ITER serializationBegin,
-            const Settings & settings = Settings())
+            const SettingsType & settings = SettingsType())
     :   BaseType(labelsProxy, settings, typename BaseType::DontComputeRag()),
         perSliceDataVec_(
-            labelsProxy.shape()[0], 
-            PerSliceData(labelsProxy.numberOfLabels()) 
+            labelsProxy.shape()[0],
+            PerSliceData(labelsProxy.numberOfLabels())
         ),
         numberOfInSliceEdges_(0),
         numberOfInBetweenSliceEdges_(0),
@@ -110,10 +109,10 @@ public:
 
     // additional serialisation
     uint64_t serializationSize() const;
-    
+
     template<class ITER>
     void serialize(ITER & iter) const;
-    
+
     template<class ITER>
     void deserialize(ITER & iter);
 private:
@@ -161,7 +160,7 @@ void GridRagStacked2D<LABEL_PROXY>::serialize(ITER & iter) const {
 template<class LABEL_PROXY>
 template<class ITER>
 void GridRagStacked2D<LABEL_PROXY>::deserialize(ITER & iter) {
-    
+
     BaseType::deserialize(iter);
     this->numberOfInSliceEdges_ = *iter;
     ++iter;

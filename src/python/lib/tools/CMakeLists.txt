@@ -6,6 +6,7 @@ addPythonModule(
         make_dense.cxx
         blocking.cxx
         take.cxx
+        changable_priority_queue.cxx
         unique.cxx
         nodes_to_blocks.cxx
         edge_mapping.cxx

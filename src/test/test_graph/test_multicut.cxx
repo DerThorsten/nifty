@@ -1,14 +1,10 @@
-#define BOOST_TEST_MODULE NiftyMulticutTest
-
-#include <boost/test/unit_test.hpp>
-
 #include <iostream> 
 #include <random>
 
 #include "nifty/tools/runtime_check.hxx"
 #include "nifty/graph/undirected_list_graph.hxx"
-#include "nifty/graph/optimization/multicut/multicut_objective.hxx"
-#include "nifty/graph/optimization/multicut/multicut_ilp.hxx"
+#include "nifty/graph/opt/multicut/multicut_objective.hxx"
+#include "nifty/graph/opt/multicut/multicut_ilp.hxx"
 
 #ifdef WITH_GUROBI
 #include "nifty/ilp_backend/gurobi.hxx"
@@ -22,7 +18,7 @@
 #include "nifty/ilp_backend/glpk.hxx"
 #endif
 
-BOOST_AUTO_TEST_CASE(RandomizedMulticutTest)
+void randomizedMulticutTest()
 {
     // rand gen 
     //std::random_device rd();
@@ -33,8 +29,8 @@ BOOST_AUTO_TEST_CASE(RandomizedMulticutTest)
 
     typedef double WeightType;
     typedef nifty::graph::UndirectedGraph<> Graph;
-    typedef nifty::graph::optimization::multicut::MulticutObjective<Graph, WeightType> Objective;
-    typedef nifty::graph::optimization::multicut::MulticutVerboseVisitor<Objective> VerboseVisitor;
+    typedef nifty::graph::opt::multicut::MulticutObjective<Graph, WeightType> Objective;
+    typedef nifty::graph::opt::multicut::MulticutVerboseVisitor<Objective> VerboseVisitor;
 
 
 
@@ -68,14 +64,14 @@ BOOST_AUTO_TEST_CASE(RandomizedMulticutTest)
     {
         std::cout<<"opt gurobi \n";
         typedef nifty::ilp_backend::Gurobi IlpSolver;
-        typedef nifty::graph::optimization::multicut::MulticutIlp<Objective, IlpSolver> Solver;
-        typedef typename Solver::NodeLabels NodeLabels;
+        typedef nifty::graph::opt::multicut::MulticutIlp<Objective, IlpSolver> Solver;
+        typedef typename Solver::NodeLabelsType NodeLabelsType;
         // optimize 
         Solver solver(objective);
         nifty::graph::graph_maps::EdgeMap<Graph, uint8_t> outputEdgeLabels(g,0);
         
         VerboseVisitor visitor; 
-        NodeLabels nodeLabels(g, 0);
+        NodeLabelsType nodeLabels(g, 0);
         solver.optimize(nodeLabels, &visitor);
         g.nodeLabelsToEdgeLabels(nodeLabels, outputEdgeLabels);     
     }
@@ -85,14 +81,14 @@ BOOST_AUTO_TEST_CASE(RandomizedMulticutTest)
     {
         std::cout<<"opt cplex \n";
         typedef nifty::ilp_backend::Cplex IlpSolver;
-        typedef nifty::graph::optimization::multicut::MulticutIlp<Objective, IlpSolver> Solver;
-        typedef typename Solver::NodeLabels NodeLabels;
+        typedef nifty::graph::opt::multicut::MulticutIlp<Objective, IlpSolver> Solver;
+        typedef typename Solver::NodeLabelsType NodeLabelsType;
         // optimize 
         Solver solver(objective);
         nifty::graph::graph_maps::EdgeMap<Graph, uint8_t> outputEdgeLabels(g,0);
         
         VerboseVisitor visitor; 
-        NodeLabels nodeLabels(g, 0);
+        NodeLabelsType nodeLabels(g, 0);
         solver.optimize(nodeLabels, &visitor);
         g.nodeLabelsToEdgeLabels(nodeLabels, outputEdgeLabels);     
     }
@@ -102,14 +98,14 @@ BOOST_AUTO_TEST_CASE(RandomizedMulticutTest)
     {
         std::cout<<"opt glpk \n";
         typedef nifty::ilp_backend::Glpk IlpSolver;
-        typedef nifty::graph::optimization::multicut::MulticutIlp<Objective, IlpSolver> Solver;
-        typedef typename Solver::NodeLabels NodeLabels;
+        typedef nifty::graph::opt::multicut::MulticutIlp<Objective, IlpSolver> Solver;
+        typedef typename Solver::NodeLabelsType NodeLabelsType;
         // optimize 
         Solver solver(objective);
         nifty::graph::graph_maps::EdgeMap<Graph, uint8_t> outputEdgeLabels(g,0);
         
         VerboseVisitor visitor; 
-        NodeLabels nodeLabels(g, 0);
+        NodeLabelsType nodeLabels(g, 0);
         solver.optimize(nodeLabels, &visitor);
         g.nodeLabelsToEdgeLabels(nodeLabels, outputEdgeLabels);     
     }
@@ -117,7 +113,7 @@ BOOST_AUTO_TEST_CASE(RandomizedMulticutTest)
 }
 
 
-BOOST_AUTO_TEST_CASE(SimpleMulticutTest)
+void simpleMulticutTest()
 {
     // rand gen 
     //std::random_device rd();
@@ -128,8 +124,8 @@ BOOST_AUTO_TEST_CASE(SimpleMulticutTest)
 
     typedef double WeightType;
     typedef nifty::graph::UndirectedGraph<> Graph;
-    typedef nifty::graph::optimization::multicut::MulticutObjective<Graph, WeightType> Objective;
-    typedef nifty::graph::optimization::multicut::MulticutVerboseVisitor<Objective> VerboseVisitor;
+    typedef nifty::graph::opt::multicut::MulticutObjective<Graph, WeightType> Objective;
+    typedef nifty::graph::opt::multicut::MulticutVerboseVisitor<Objective> VerboseVisitor;
 
 
 
@@ -183,15 +179,15 @@ BOOST_AUTO_TEST_CASE(SimpleMulticutTest)
     {
         std::cout<<"opt gurobi \n";
         typedef nifty::ilp_backend::Gurobi IlpSolver;
-        typedef nifty::graph::optimization::multicut::MulticutIlp<Objective, IlpSolver> Solver;
+        typedef nifty::graph::opt::multicut::MulticutIlp<Objective, IlpSolver> Solver;
         
-        typedef typename Solver::NodeLabels NodeLabels;
+        typedef typename Solver::NodeLabelsType NodeLabelsType;
         Solver solver(objective);
 
         nifty::graph::graph_maps::EdgeMap<Graph, uint16_t> outputEdgeLabels(g,0);
 
         VerboseVisitor visitor; 
-        NodeLabels nodeLabels(g, 0);
+        NodeLabelsType nodeLabels(g, 0);
         solver.optimize(nodeLabels, &visitor);
         g.nodeLabelsToEdgeLabels(nodeLabels, outputEdgeLabels);
 
@@ -207,8 +203,8 @@ BOOST_AUTO_TEST_CASE(SimpleMulticutTest)
     {
         std::cout<<"opt cplex \n";
         typedef nifty::ilp_backend::Cplex IlpSolver;
-        typedef nifty::graph::optimization::multicut::MulticutIlp<Objective, IlpSolver> Solver;
-        typedef typename Solver::NodeLabels NodeLabels;
+        typedef nifty::graph::opt::multicut::MulticutIlp<Objective, IlpSolver> Solver;
+        typedef typename Solver::NodeLabelsType NodeLabelsType;
 
 
         Solver solver(objective);
@@ -217,7 +213,7 @@ BOOST_AUTO_TEST_CASE(SimpleMulticutTest)
 
 
         VerboseVisitor visitor; 
-        NodeLabels nodeLabels(g, 0);
+        NodeLabelsType nodeLabels(g, 0);
         solver.optimize(nodeLabels, &visitor);
         g.nodeLabelsToEdgeLabels(nodeLabels, outputEdgeLabels);
         
@@ -232,8 +228,8 @@ BOOST_AUTO_TEST_CASE(SimpleMulticutTest)
     {
         std::cout<<"opt glpk \n";
         typedef nifty::ilp_backend::Glpk IlpSolver;
-        typedef nifty::graph::optimization::multicut::MulticutIlp<Objective, IlpSolver> Solver;
-        typedef typename Solver::NodeLabels NodeLabels;
+        typedef nifty::graph::opt::multicut::MulticutIlp<Objective, IlpSolver> Solver;
+        typedef typename Solver::NodeLabelsType NodeLabelsType;
 
 
         Solver solver(objective);
@@ -242,7 +238,7 @@ BOOST_AUTO_TEST_CASE(SimpleMulticutTest)
 
 
         VerboseVisitor visitor; 
-        NodeLabels nodeLabels(g, 0);
+        NodeLabelsType nodeLabels(g, 0);
         solver.optimize(nodeLabels, &visitor);
         g.nodeLabelsToEdgeLabels(nodeLabels, outputEdgeLabels);
         
@@ -251,4 +247,9 @@ BOOST_AUTO_TEST_CASE(SimpleMulticutTest)
         }
     }
     #endif
+}
+
+int main(){
+    randomizedMulticutTest();
+    simpleMulticutTest();
 }

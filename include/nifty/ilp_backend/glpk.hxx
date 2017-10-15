@@ -14,9 +14,9 @@ namespace ilp_backend{
 class Glpk {
 public:
 
-    typedef IlpBackendSettings Settings;
+    typedef IlpBackendSettings SettingsType;
 
-    Glpk(const Settings & settings = Settings());
+    Glpk(const SettingsType & settings = SettingsType());
     ~Glpk();
 
     void initModel(const size_t, const double*);
@@ -42,7 +42,7 @@ public:
     }
 
 private:
-    Settings settings_;
+    SettingsType settings_;
     size_t nVariables_;
 
     glp_prob * lp;
@@ -51,7 +51,7 @@ private:
 
 };
 
-inline Glpk::Glpk(const Settings & settings)
+inline Glpk::Glpk(const SettingsType & settings)
 :   settings_(settings),
     nVariables_(0),
     lp(nullptr),

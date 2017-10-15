@@ -16,6 +16,7 @@ namespace tools{
     void exportNodesToBlocks(py::module &);
     void exportEdgeMapping(py::module &);
     void exportSleep(py::module &);
+    void exportChangeablePriorityQueue(py::module &);
 }
 }
 
@@ -24,7 +25,7 @@ PYBIND11_PLUGIN(_tools) {
 
     py::options options;
     options.disable_function_signatures();
-    
+
     py::module toolsModule("_tools", "tools submodule of nifty");
 
     using namespace nifty::tools;
@@ -36,6 +37,6 @@ PYBIND11_PLUGIN(_tools) {
     exportNodesToBlocks(toolsModule);
     exportEdgeMapping(toolsModule);
     exportSleep(toolsModule);
-
+    exportChangeablePriorityQueue(toolsModule);
     return toolsModule.ptr();
 }

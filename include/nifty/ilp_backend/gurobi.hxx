@@ -14,9 +14,9 @@ namespace ilp_backend{
 class Gurobi {
 public:
 
-    typedef IlpBackendSettings Settings;
+    typedef IlpBackendSettings SettingsType;
 
-    Gurobi(const Settings & settings = Settings());
+    Gurobi(const SettingsType & settings = SettingsType());
     ~Gurobi();
 
     void initModel(const size_t, const double*);
@@ -44,7 +44,7 @@ public:
     }
 
 private:
-    Settings settings_;
+    SettingsType settings_;
     GRBEnv gurobiEnvironment_;
     GRBModel* gurobiModel_;
     GRBVar* gurobiVariables_;
@@ -52,7 +52,7 @@ private:
     size_t nVariables_;
 };
 
-inline Gurobi::Gurobi(const Settings & settings)
+inline Gurobi::Gurobi(const SettingsType & settings)
 :   settings_(settings),
     gurobiEnvironment_(),
     gurobiModel_(NULL),
@@ -92,16 +92,16 @@ Gurobi::initModel(
 
     // lp solver
     switch(settings_.lpSolver) {
-        case Settings::LP_SOLVER_PRIMAL_SIMPLEX:
+        case SettingsType::LP_SOLVER_PRIMAL_SIMPLEX:
             gurobiEnvironment_.set(GRB_IntParam_NodeMethod, 0);
             break;
-        case Settings::LP_SOLVER_DUAL_SIMPLEX:
+        case SettingsType::LP_SOLVER_DUAL_SIMPLEX:
             gurobiEnvironment_.set(GRB_IntParam_NodeMethod, 1);
             break;
-        case Settings::LP_SOLVER_BARRIER:
+        case SettingsType::LP_SOLVER_BARRIER:
             gurobiEnvironment_.set(GRB_IntParam_NodeMethod, 2);
             break;
-        case Settings::LP_SOLVER_SIFTING:
+        case SettingsType::LP_SOLVER_SIFTING:
             gurobiEnvironment_.set(GRB_IntParam_NodeMethod, 1); // dual simplex
             gurobiEnvironment_.set(GRB_IntParam_SiftMethod, 1); // moderate, 2 = aggressive
             break;
@@ -121,16 +121,16 @@ Gurobi::initModel(
 
     // presolver
     switch(settings_.preSolver) {
-        case Settings::PRE_SOLVER_NONE:
+        case SettingsType::PRE_SOLVER_NONE:
             gurobiEnvironment_.set(GRB_IntParam_Presolve, 0);
             return;
-        case Settings::PRE_SOLVER_AUTO:
+        case SettingsType::PRE_SOLVER_AUTO:
             gurobiEnvironment_.set(GRB_IntParam_PreDual, -1);
             break;
-        case Settings::PRE_SOLVER_PRIMAL:
+        case SettingsType::PRE_SOLVER_PRIMAL:
             gurobiEnvironment_.set(GRB_IntParam_PreDual, 0);
             break;
-        case Settings::PRE_SOLVER_DUAL:
+        case SettingsType::PRE_SOLVER_DUAL:
             gurobiEnvironment_.set(GRB_IntParam_PreDual, 1);
             break;
         default:

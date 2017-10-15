@@ -1,7 +1,3 @@
-#define BOOST_TEST_MODULE NiftyShortestPathBellmanFordTest
-
-#include <boost/test/unit_test.hpp>
-
 #include <iostream> 
 
 #include "nifty/tools/runtime_check.hxx"
@@ -9,7 +5,7 @@
 #include "nifty/graph/shortest_path_bellman_ford.hxx"
 
 
-BOOST_AUTO_TEST_CASE(ShortestPathBellmanFordTest)
+void shortestPathBellmanFordTest()
 {
     typedef nifty::graph::SimpleDirectedGraph<>  Graph;
     Graph g(6);
@@ -57,4 +53,8 @@ BOOST_AUTO_TEST_CASE(ShortestPathBellmanFordTest)
 
     }
 
+}
+
+int main(){
+    shortestPathBellmanFordTest();
 }

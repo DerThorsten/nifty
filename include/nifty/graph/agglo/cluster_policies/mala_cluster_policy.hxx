@@ -29,7 +29,7 @@ class MalaClusterPolicy{
     > SelfType;
 
 private:
-
+    typedef typename GRAPH:: template EdgeMap<uint64_t> UInt64EdgeMap;
     typedef typename GRAPH:: template EdgeMap<double> FloatEdgeMap;
     typedef typename GRAPH:: template NodeMap<double> FloatNodeMap;
 
@@ -40,7 +40,10 @@ public:
     typedef FloatEdgeMap                                EdgeSizesType;
     typedef FloatNodeMap                                NodeSizesType;
 
-    struct Settings : public EdgeWeightedClusterPolicySettings
+
+    typedef UInt64EdgeMap                               MergeTimesType;
+
+    struct SettingsType : public EdgeWeightedClusterPolicySettings
     {
 
         float threshold{0.5};
@@ -66,7 +69,7 @@ public:
                               const EDGE_INDICATORS & , 
                               const EDGE_SIZES & , 
                               const NODE_SIZES & ,
-                              const Settings & settings = Settings());
+                              const SettingsType & settings = SettingsType());
 
 
     std::pair<uint64_t, double> edgeToContractNext() const;
@@ -82,6 +85,20 @@ public:
     void mergeNodes(const uint64_t aliveNode, const uint64_t deadNode);
     void mergeEdges(const uint64_t aliveEdge, const uint64_t deadEdge);
     void contractEdgeDone(const uint64_t edgeToContract);
+
+
+    const EdgeIndicatorsType & edgeIndicators() const {
+        return edgeIndicators_;
+    }
+    const EdgeSizesType & edgeSizes() const {
+        return edgeSizes_;
+    }
+    const MergeTimesType & mergeTimes() const {
+        return mergeTimes_;
+    }
+    const NodeSizesType & nodeSizes() const {
+        return nodeSizes_;
+    }
 
 private:
     float histogramToMedian(const uint64_t edge) const;
@@ -102,7 +119,12 @@ private:
     EdgeIndicatorsType  edgeIndicators_;
     EdgeSizesType       edgeSizes_;
     NodeSizesType       nodeSizes_;
-    Settings            settings_;
+
+
+    MergeTimesType       mergeTimes_;
+
+
+    SettingsType            settings_;
     
     // INTERNAL
     EdgeContractionGraphType edgeContractionGraph_;
@@ -110,6 +132,7 @@ private:
 
     EdgeHistogramMap histograms_;
 
+    uint64_t time_;
 
 
 };
@@ -123,16 +146,18 @@ MalaClusterPolicy(
     const EDGE_INDICATORS & edgeIndicators,
     const EDGE_SIZES      & edgeSizes,
     const NODE_SIZES      & nodeSizes,
-    const Settings & settings
+    const SettingsType & settings
 )
 :   graph_(graph),
     edgeIndicators_(graph),
     edgeSizes_(graph),
     nodeSizes_(graph),
+    mergeTimes_(graph, graph_.numberOfNodes()),
     settings_(settings),
     edgeContractionGraph_(graph, *this),
     pq_(graph.edgeIdUpperBound()+1),
-    histograms_(graph)
+    histograms_(graph),
+    time_(0)
 {
     graph_.forEachEdge([&](const uint64_t edge){
 
@@ -189,6 +214,8 @@ MalaClusterPolicy<GRAPH, ENABLE_UCM>::
 contractEdge(
     const uint64_t edgeToContract
 ){
+    mergeTimes_[edgeToContract] = time_;
+    ++time_;
     pq_.deleteItem(edgeToContract);
 }
 
@@ -235,6 +262,7 @@ MalaClusterPolicy<GRAPH, ENABLE_UCM>::
 contractEdgeDone(
     const uint64_t edgeToContract
 ){
+
 }
 
 template<class GRAPH, bool ENABLE_UCM>

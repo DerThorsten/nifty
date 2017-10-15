@@ -4,11 +4,11 @@ from . import _graph as __graph
 from ._graph import *
 
 from .. import Configuration
-from . import optimization
+from . import opt
 
-from . optimization import multicut
-from . optimization import lifted_multicut
-from . optimization import mincut
+from . opt import multicut
+from . opt import lifted_multicut
+from . opt import mincut
 
 import numpy
 from functools import partial

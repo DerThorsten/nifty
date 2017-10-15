@@ -37,7 +37,7 @@ public:
     typedef EDGE_SIZES                                  EdgeSizesType;
     typedef NODE_SIZES                                  NodeSizesType;
     typedef EDGE_IS_LIFTED                              EdgeIsLifted;
-    typedef EdgeWeightedClusterPolicySettings           Settings;
+    typedef EdgeWeightedClusterPolicySettings           SettingsType;
     typedef EdgeContractionGraph<GraphType, SelfType>   EdgeContractionGraphType;
 
 
@@ -56,7 +56,7 @@ public:
         const GraphType &, EdgeIndicatorsType, 
         EdgeSizesType, NodeSizesType,
         EdgeIsLifted,
-        const Settings & settings = Settings());
+        const SettingsType & settings = SettingsType());
 
     std::pair<uint64_t, double> edgeToContractNext() const;
     bool isDone() const;
@@ -83,7 +83,7 @@ private:
     EdgeSizesType       edgeSizes_;
     NodeSizesType       nodeSizes_;
     EdgeIsLifted        edgeIsLifted_;
-    Settings            settings_;
+    SettingsType            settings_;
 
     // INTERNAL
     EdgeContractionGraphType edgeContractionGraph_;
@@ -101,7 +101,7 @@ LiftedGraphEdgeWeightedClusterPolicy(
     EdgeSizesType       edgeSizes,
     NodeSizesType       nodeSizes,
     EdgeIsLifted        edgeIsLifted,
-    const Settings & settings
+    const SettingsType & settings
 )
 :   graph_(graph),
     edgeIndicators_(edgeIndicators),

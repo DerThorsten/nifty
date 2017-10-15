@@ -8,8 +8,8 @@
 #include "nifty/python/converter.hxx"
 #include "nifty/hdf5/hdf5_array.hxx"
 
-#include "vigra/multi_array_chunked_hdf5.hxx"
-#include "vigra/blockwise_watersheds.hxx"
+// #include "vigra/multi_array_chunked_hdf5.hxx"
+// #include "vigra/blockwise_watersheds.hxx"
 
 
 namespace py = pybind11;
@@ -18,10 +18,9 @@ namespace py = pybind11;
 
 namespace nifty{
 namespace hdf5{
-
+    #if 0
     template<class T, class L, unsigned int DIM>
     void exportHdf5BlockwiseWatershedT(py::module & hdf5Module, const std::string & fnamePostfix) {
-
         const std::string fname = std::string("blockwiseWatershed_") + fnamePostfix;
         hdf5Module.def(fname.c_str(),
             [](
@@ -74,11 +73,10 @@ namespace hdf5{
         ;
     }
 
-
     void exportHdf5BlockwiseWatershed(py::module & hdf5Module) {
         exportHdf5BlockwiseWatershedT<float, uint32_t, 3>(hdf5Module, "float32_uint32_3d");
     }
-
+    #endif
 }
 }
 

@@ -4,7 +4,7 @@
 import unittest
 import nifty
 import nifty.graph
-import nifty.graph.optimization.mincut
+import nifty.graph.opt.mincut
 import numpy
 import random
 
@@ -42,7 +42,7 @@ class TestMincutSolver(unittest.TestCase):
         d = weightRange[1] - weightRange[0]
         w = numpy.random.rand(g.numberOfEdges)*d + float(weightRange[0])
         print(w.min(),w.max())
-        obj = nifty.graph.optimization.mincut.mincutObjective(g,w)
+        obj = nifty.graph.opt.mincut.mincutObjective(g,w)
         
         return obj
 

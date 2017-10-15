@@ -20,7 +20,7 @@ namespace graph{
 
 
     using namespace py;
-   
+
     template<class CLS, class BASE>
     void removeFunctions(py::class_<CLS, BASE > & clsT){
         clsT
@@ -32,15 +32,15 @@ namespace graph{
             })
         ;
     }
-    
+
     template<class LABELS>
     void exportExplicitGridRagStacked2D(
-        py::module & ragModule, 
+        py::module & ragModule,
         const std::string & clsName,
         const std::string & facName
     ){
         py::object baseGraphPyCls = ragModule.attr("ExplicitLabelsGridRag3D");
-        
+
         typedef ExplicitLabels<3, LABELS> LabelsProxyType;
         typedef GridRag<3, LabelsProxyType >  BaseGraph;
         typedef GridRagStacked2D<LabelsProxyType >  GridRagType;
@@ -131,7 +131,7 @@ namespace graph{
                nifty::marray::PyView<LABELS, 3> labels,
                const int numberOfThreads
             ){
-                auto s = typename  GridRagType::Settings();
+                auto s = typename  GridRagType::SettingsType();
                 s.numberOfThreads = numberOfThreads;
                 ExplicitLabels<3, LABELS> explicitLabels(labels);
                 auto ptr = new GridRagType(explicitLabels, s);
@@ -142,7 +142,7 @@ namespace graph{
             py::arg("labels"),
             py::arg_t< int >("numberOfThreads", -1 )
         );
-        
+
         // from labels + initialization
         ragModule.def(facName.c_str(),
             [](
@@ -153,8 +153,8 @@ namespace graph{
                 auto  lastElement = &serialization(serialization.size()-1);
                 auto d = lastElement - startPtr + 1;
                 NIFTY_CHECK_OP(d,==,serialization.size(), "serialization must be contiguous");
-                
-                auto s = typename  GridRagType::Settings();
+
+                auto s = typename  GridRagType::SettingsType();
                 s.numberOfThreads = -1;
                 ExplicitLabels<3, LABELS> explicitLabels(labels);
                 auto ptr = new GridRagType(explicitLabels, startPtr, s);
@@ -167,11 +167,11 @@ namespace graph{
         );
 
     }
-    
+
     #ifdef WITH_HDF5
     template<class LABELS>
     void exportHdf5GridRagStacked2D(
-        py::module & ragModule, 
+        py::module & ragModule,
         const std::string & clsName,
         const std::string & facName
     ){
@@ -262,7 +262,7 @@ namespace graph{
                 const LabelsProxyType & labelsProxy,
                 const int numberOfThreads
             ){
-                auto s = typename  GridRagType::Settings();
+                auto s = typename  GridRagType::SettingsType();
                 s.numberOfThreads = numberOfThreads;
 
                 auto ptr = new GridRagType(labelsProxy, s);
@@ -273,7 +273,7 @@ namespace graph{
             py::arg("labelsProxy"),
             py::arg_t< int >("numberOfThreads", -1 )
         );
-        
+
         // init from labels + serialization
         ragModule.def(facName.c_str(),
             [](
@@ -286,7 +286,7 @@ namespace graph{
 
                 NIFTY_CHECK_OP(d,==,serialization.size(), "serialization must be contiguous");
 
-                auto s = typename  GridRagType::Settings();
+                auto s = typename  GridRagType::SettingsType();
                 s.numberOfThreads = -1;
                 auto ptr = new GridRagType(labelsProxy, startPtr, s);
                 return ptr;
@@ -299,7 +299,7 @@ namespace graph{
 
     }
     #endif
-    
+
     void exportGridRagStacked(py::module & ragModule) {
         exportExplicitGridRagStacked2D<uint32_t>(ragModule, "GridRagStacked2DExplicit", "gridRagStacked2DExplicitImpl");
         #ifdef WITH_HDF5

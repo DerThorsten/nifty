@@ -1,13 +1,9 @@
-#define BOOST_TEST_MODULE NiftyGraphTest
-
-#include <boost/test/unit_test.hpp>
-
 #include <iostream> 
 
 #include "nifty/tools/runtime_check.hxx"
 #include "nifty/graph/undirected_list_graph.hxx"
 
-BOOST_AUTO_TEST_CASE(UndirectedGraphTest)
+void undirectedGraphTest()
 {
     auto e = 0;
     nifty::graph::UndirectedGraph<> graph(4);
@@ -72,4 +68,8 @@ BOOST_AUTO_TEST_CASE(UndirectedGraphTest)
     }
     NIFTY_TEST_OP(graph.numberOfEdges(),==,c);
 
+}
+
+int main(){
+    undirectedGraphTest();
 }

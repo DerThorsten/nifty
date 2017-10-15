@@ -308,7 +308,7 @@ public:
     /**
      * @brief convert an affinity map with DIM+1 dimension to an edge map
      * @details convert an affinity map with DIM+1 dimension to an edge map
-     * by assining the affinity values to corresponding affinity values
+     * by assigning the affinity values to corresponding affinity values
      *
      * @param       image the input affinities
      * @param[out]  the result edge map

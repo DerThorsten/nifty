@@ -25,12 +25,11 @@ PYBIND11_PLUGIN(_graph) {
 
     py::options options;
     options.disable_function_signatures();
-    
+
     py::module module("_graph", "graph submodule of nifty");
 
     using namespace nifty::graph;
 
-        
 
     exportUndirectedListGraph(module);
     exportUndirectedGridGraph(module);
