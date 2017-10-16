@@ -30,7 +30,10 @@ namespace graph{
            
                 nifty::marray::PyView<uint64_t> labels({seeds.shape(0)});
                 
-                edgeWeightedWatershedsSegmentation(graph, edgeWeights, seeds, labels);
+                {
+                    py::gil_scoped_release allowThreads;
+                    edgeWeightedWatershedsSegmentation(graph, edgeWeights, seeds, labels);
+                }
 
                 return labels;
 
