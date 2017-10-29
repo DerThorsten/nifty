@@ -1,18 +1,33 @@
 cmake_minimum_required(VERSION 3.1)
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules)
 
-project(nifty)
+project(NIFTY)
+set(${PROJECT_NAME}_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-set (NIFTY_VERSION_MAJOR 0 )
-set (NIFTY_VERSION_MINOR 20)
-set (NIFTY_VERSION_PATCH 0 )
+#-------------------------------------------------------------------------------------------------------------------
+# Version
+#-------------------------------------------------------------------------------------------------------------------
+# as seen in the github.com/QuantStack/xtensor
+file(STRINGS "${${PROJECT_NAME}_INCLUDE_DIR}/nifty/nifty_config.hxx" ${PROJECT_NAME}_version_defines
+     REGEX "#define ${PROJECT_NAME}_VERSION_(MAJOR|MINOR|PATCH)")
+foreach(ver ${${PROJECT_NAME}_version_defines})
+    if(ver MATCHES "#define ${PROJECT_NAME}_VERSION_(MAJOR|MINOR|PATCH) +([^ ]+)$")
+        set(${PROJECT_NAME}_VERSION_${CMAKE_MATCH_1} "${CMAKE_MATCH_2}" CACHE INTERNAL "")
+    endif()
+endforeach()
+set(${PROJECT_NAME}_VERSION 
+    ${${PROJECT_NAME}_VERSION_MAJOR}.${${PROJECT_NAME}_VERSION_MINOR}.${${PROJECT_NAME}_VERSION_PATCH})
+message(STATUS "${PROJECT_NAME} v${${PROJECT_NAME}_VERSION}")
 
 
-set (NIFTY_VERSION_SHORT_STR "${NIFTY_VERSION_MAJOR}.${NIFTY_VERSION_MINOR}")
-set (NIFTY_VERSION_STR "${NIFTY_VERSION_MAJOR}.${NIFTY_VERSION_MINOR}.${NIFTY_VERSION_PATCH}")
 
 
 include(CheckCXXCompilerFlag)
+
+
+include_directories(${${PROJECT_NAME}_INCLUDE_DIR})
+
+
 
 
 
@@ -65,26 +80,22 @@ endif()
 # check for c++ 14 support
 #-------------------------------------------------------------------------------------------------------------------
 
-# FIXME c++14 checks are broken!
+
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+
+# FIXME c++14 checks are broken!?!
 if (CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR CMAKE_CXX_COMPILER_ID MATCHES "GNU")
     CHECK_CXX_COMPILER_FLAG("-std=c++14" HAS_CPP14_FLAG)
-    CHECK_CXX_COMPILER_FLAG("-std=c++11" HAS_CPP11_FLAG)
     if (HAS_CPP14_FLAG)
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
-    elseif (HAS_CPP11_FLAG)
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
-    else()
-        message(FATAL_ERROR "Unsupported compiler -- nifty  requires C++11 support!")
     endif()
 endif()
 
 # WITH_LP_MP needs special treatment since
 # it requires C++ 14 and used OpenMP
 if(WITH_LP_MP)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
-    set(CMAKE_CXX_STANDARD 14)
-    set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
     find_package(OpenMP)
     if (OPENMP_FOUND)
         set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
@@ -126,17 +137,28 @@ else()
 endif()
 
 
+
+find_package(xtensor REQUIRED)
+include_directories(${xtensor_INCLUDE_DIRS})
+
+
+
+
+
+
+
+
+
+
+
 #-------------------------------------------------------------------------------------------------------------------
 # externals
 #-------------------------------------------------------------------------------------------------------------------
 include_directories( "${CMAKE_CURRENT_SOURCE_DIR}/externals/maxflow")
 include_directories( "${CMAKE_CURRENT_SOURCE_DIR}/externals/qpbo")
-#include_directories( "${CMAKE_CURRENT_SOURCE_DIR}/externals/marray/include")
-include_directories( "${CMAKE_CURRENT_SOURCE_DIR}/externals/pybind11/include")
 include_directories( "${CMAKE_CURRENT_SOURCE_DIR}/externals/vigra/include")
 include_directories( "${CMAKE_CURRENT_SOURCE_DIR}/externals/graph/include")
 
-add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/externals/pybind11")
 
 
 
@@ -288,7 +310,6 @@ enable_testing()
 # global headers
 #-------------------------------------------------------------------------------------------------------------------
 file(GLOB_RECURSE headers include/*.hxx)
-file(GLOB_RECURSE headers ${CMAKE_INSTALL_PREFIX}/include/*.hxx)
 include_directories(include)
 
 
@@ -307,19 +328,6 @@ add_subdirectory(docsrc)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 #-------------------------------------------------------------------------------------------------------------------
 #  install headers
 #-------------------------------------------------------------------------------------------------------------------
@@ -330,3 +338,35 @@ install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/include/nifty"
   PATTERN "*.hpp"
   PATTERN "*.h"
 )
+
+
+
+
+
+
+#------------------------------------------------------------------------------------------------------------------
+# install
+#-------------------------------------------------------------------------------------------------------------------
+include(GNUInstallDirs)
+include(CMakePackageConfigHelpers)
+
+
+install(DIRECTORY  ${${PROJECT_NAME}_INCLUDE_DIR}/nifty
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/nifty)
+
+
+set(${PROJECT_NAME}_CMAKECONFIG_INSTALL_DIR "${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}" CACHE
+    STRING "install path for ${PROJECT_NAME}Config.cmake")
+
+configure_package_config_file(${PROJECT_NAME}Config.cmake.in
+                              "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+                              INSTALL_DESTINATION ${${PROJECT_NAME}_CMAKECONFIG_INSTALL_DIR})
+
+
+write_basic_package_version_file(${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake
+                                 VERSION ${${PROJECT_NAME}_VERSION}
+                                 COMPATIBILITY AnyNewerVersion)
+
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake
+              ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake
+        DESTINATION ${${PROJECT_NAME}_CMAKECONFIG_INSTALL_DIR})

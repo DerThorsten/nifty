@@ -1,4 +1,11 @@
 #include <pybind11/pybind11.h>
+
+
+
+#define FORCE_IMPORT_ARRAY
+#include "xtensor-python/pyarray.hpp"
+#include "xtensor-python/pyvectorize.hpp"
+
 #include <iostream>
 
 namespace py = pybind11;
@@ -22,6 +29,7 @@ namespace lifted_multicut{
     void exportLiftedMulticutAndresGreedyAdditive(py::module &);
     void exportFusionMoveBased(py::module &);
     void exportLiftedGraphFeatures(py::module &);
+    void exportPixelWiseLmcObjective(py::module &);
 
 }
 } // namespace nifty::graph::opt
@@ -32,6 +40,7 @@ namespace lifted_multicut{
 
 PYBIND11_PLUGIN(_lifted_multicut) {
 
+    xt::import_numpy();
 
     py::options options;
     options.disable_function_signatures();
@@ -51,6 +60,7 @@ PYBIND11_PLUGIN(_lifted_multicut) {
     exportLiftedMulticutAndresGreedyAdditive(liftedMulticutModule);
     exportFusionMoveBased(liftedMulticutModule);
     exportLiftedGraphFeatures(liftedMulticutModule);
+    exportPixelWiseLmcObjective(liftedMulticutModule);
     
     #ifdef WITH_LP_MP
     exportLiftedMulticutMp(liftedMulticutModule);
