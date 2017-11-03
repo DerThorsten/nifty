@@ -12,6 +12,7 @@ SET(MOD_SOURCES
         lifted_multicut_andres_greedy_additive.cxx
         fusion_move_based.cxx
         lifted_graph_features.cxx
+        chained_solvers.cxx
         pixel_wise_lifted_multicut.cxx
 )
 

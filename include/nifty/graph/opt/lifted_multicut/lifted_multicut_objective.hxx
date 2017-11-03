@@ -110,7 +110,7 @@ namespace lifted_multicut{
         LiftedMulticutObjective(const GraphType & graph, const int64_t reserveAdditionalEdges = -1)
         :   graph_(graph),
             liftedGraph_(graph.numberOfNodes(), graph.numberOfEdges() + (reserveAdditionalEdges<0 ?  graph.numberOfEdges() : reserveAdditionalEdges) ),
-            weights_(liftedGraph_){
+            weights_(liftedGraph_,0){
 
             for(const auto edge : graph_.edges()){
                 const auto uv = graph_.uv(edge);

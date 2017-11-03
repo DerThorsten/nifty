@@ -45,7 +45,7 @@ namespace lifted_multicut{
                     const auto label_p = labels(p0, p1);
                     for(int offset_index=0; offset_index<n_offsets; ++offset_index){
                         const int q0 = p0 + offsets(offset_index, 0);
-                        const int q1 = p1 + offsets(offset_index, 0);
+                        const int q1 = p1 + offsets(offset_index, 1);
                         if(q0 >= 0 && q0 < shape[0]  && q1 >= 0 && q1 < shape[1]){
                             const auto label_q = labels(q0, q1);
                             if(label_p != label_q){
@@ -304,7 +304,7 @@ namespace lifted_multicut{
 
                 for(int offset_index=0; offset_index<n_offsets; ++offset_index){
                     const int q0 = p0 + offsets(offset_index, 0);
-                    const int q1 = p1 + offsets(offset_index, 0);
+                    const int q1 = p1 + offsets(offset_index, 1);
                     if(q0 >= 0 && q0 < shape[0]  && q1 >= 0 && q1 < shape[1]){
 
                         const auto node_q = q0*shape[1] + q1;

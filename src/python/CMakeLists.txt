@@ -4,11 +4,12 @@ include_directories(${xtensor-python_INCLUDE_DIRS})
 find_package(pybind11 REQUIRED)
 include_directories(${pybind11_INCLUDE_DIRS})
 
+find_package(NUMPY REQUIRED)
+include_directories(${PYTHON_NUMPY_INCLUDE_DIR})
 
 
-add_subdirectory(lib)
 add_subdirectory(test)
-
+add_subdirectory(lib)
 
 
 #################################

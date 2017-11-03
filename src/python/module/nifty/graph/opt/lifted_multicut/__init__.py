@@ -47,6 +47,9 @@ def __extendLiftedMulticutObj(objectiveCls, objectiveName):
         s =  getSettings(baseName)
         F =  getCls(baseName + "Factory" ,objectiveName)
         return s,F
+        
+    def factoryClsName(baseName):
+        return baseName + "Factory" + objectiveName
 
 
     O = objectiveCls
@@ -55,6 +58,37 @@ def __extendLiftedMulticutObj(objectiveCls, objectiveName):
         V = getLmcCls("LiftedMulticutVerboseVisitor")
         return V(visitNth)
     O.verboseVisitor = staticmethod(verboseVisitor)
+
+
+
+    def chainedSolversFactory(factories):
+        s,F = getSettingsAndFactoryCls("ChainedSolvers")
+        s.factories = factories
+        return F(s)
+    O.chainedSolversFactory = staticmethod(chainedSolversFactory)
+
+    O.chainedSolversFactory.__doc__ = """ create an instance of :class:`%s`
+
+        Chain multiple solvers
+        such that each successor is warm-started with
+        its predecessor solver.
+
+    Warning:
+        The solvers should be able to be warm started.
+
+    Args:
+        weightStopCond (float): stop clustering when the highest
+            weight in cluster-graph is lower as this value (default: {0.0})
+        nodeNumStopCond: stop clustering when a cluster-graph
+            reached a certain number of nodes.
+            Numbers smaller 1 are interpreted as fraction
+            of the graphs number of nodes.
+            If nodeNumStopCond is smaller 0 this
+            stopping condition is ignored  (default: {-1})
+    Returns:
+        %s : multicut factory
+    """%(factoryClsName("ChainedSolvers"),factoryClsName("ChainedSolvers"))
+
 
 
 

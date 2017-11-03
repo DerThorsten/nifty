@@ -30,6 +30,7 @@ namespace lifted_multicut{
     void exportFusionMoveBased(py::module &);
     void exportLiftedGraphFeatures(py::module &);
     void exportPixelWiseLmcObjective(py::module &);
+    void exportChainedSolvers(py::module &);
 
 }
 } // namespace nifty::graph::opt
@@ -61,7 +62,7 @@ PYBIND11_PLUGIN(_lifted_multicut) {
     exportFusionMoveBased(liftedMulticutModule);
     exportLiftedGraphFeatures(liftedMulticutModule);
     exportPixelWiseLmcObjective(liftedMulticutModule);
-    
+    exportChainedSolvers(liftedMulticutModule);
     #ifdef WITH_LP_MP
     exportLiftedMulticutMp(liftedMulticutModule);
     #endif

@@ -1,8 +1,10 @@
 #include <pybind11/pybind11.h>
-
+#include <pybind11/stl.h>
 
 #include "nifty/graph/opt/lifted_multicut/fusion_move_based.hxx"
 #include "nifty/graph/opt/lifted_multicut/pixel_wise.hxx"
+
+
 
 #include <xtensor/xtensor.hpp>
 #include <xtensor/xlayout.hpp>
@@ -39,7 +41,7 @@ namespace lifted_multicut{
                 py::arg("weights"),
                 py::arg("offsets")
             )
-
+            .def_property_readonly("shape",&ObjType::shape)
             .def("evaluate",
             [](
                 const ObjType & self,
@@ -75,6 +77,7 @@ namespace lifted_multicut{
                 py::arg("solver_factory"),
                 py::keep_alive<1,2>()
             )
+
             .def("fuse",[](
                 CCFusionType & self,
                 xt::pytensor<uint64_t,  DIM> labels_a,
