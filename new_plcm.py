@@ -544,6 +544,7 @@ if __name__ == "__main__":
 
     # load weighs and raw
     path_affinities = "/home/tbeier/nice_p/isbi_test_default.h5"
+    path_affinities = "/home/tbeier/nice_probs/isbi_test_default.h5"
     offsets = numpy.array([
         [-1,0],[0,-1],
         [-9,0],[0,-9],[-9,-9],[9,-9],
@@ -553,13 +554,15 @@ if __name__ == "__main__":
     import h5py
     f5_affinities = h5py.File(path_affinities)
     affinities = f5_affinities['data']
-    z = 5
+    z = 15
     # get once slice
     affinities = numpy.rollaxis(affinities[:,z,:,:],0,3)
     affinities = numpy.require(affinities, requirements=['C'])
 
     import skimage.io
-    raw = skimage.io.imread('/home/tbeier/src/nifty/mysandbox/NaturePaperDataUpl/ISBI2012/raw_test.tif')
+    raw_path = "/home/tbeier/src/nifty/src/python/examples/multicut/NaturePaperDataUpl/ISBI2012/raw_test.tif"
+    #raw_path = '/home/tbeier/src/nifty/mysandbox/NaturePaperDataUpl/ISBI2012/raw_test.tif'
+    raw = skimage.io.imread(raw_path)
     raw = raw[z,:,:]
 
 
