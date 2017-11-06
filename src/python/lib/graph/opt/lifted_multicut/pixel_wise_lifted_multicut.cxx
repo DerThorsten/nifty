@@ -21,7 +21,7 @@ namespace opt{
 namespace lifted_multicut{
 
     template<std::size_t DIM>
-    void exportPixelWiseLmcObjectiveT(py::module & liftedMulticutModule) {
+    void exportPixelWiseLmcStuffT(py::module & liftedMulticutModule) {
 
 
         typedef PixelWiseLmcObjective<DIM> ObjType;
@@ -85,6 +85,13 @@ namespace lifted_multicut{
             ){
                 return self.fuse(labels_a, labels_b);
             })
+            .def("fuse",[](
+                CCFusionType & self,
+                xt::pytensor<uint64_t,  DIM+1> labels
+            ){
+                return self.fuse(labels);
+            })
+
         ;
 
 
@@ -92,8 +99,18 @@ namespace lifted_multicut{
 
     }
 
-    void exportPixelWiseLmcObjective(py::module & liftedMulticutModule) {
-        exportPixelWiseLmcObjectiveT<2>(liftedMulticutModule);
+    void exportPixelWiseLmcStuff(py::module & liftedMulticutModule) {
+        exportPixelWiseLmcStuffT<2>(liftedMulticutModule);
+
+        liftedMulticutModule.def("pixel_wise_lmc_edge_gt_2d",
+            [](
+                const xt::pytensor<uint64_t,2> gt,
+                const xt::pytensor<int64_t, 2> offsets
+            ){
+                return nifty::graph::opt::lifted_multicut::pixel_wise_lmc_edge_gt_2d(gt, offsets);
+            }
+        );
+            
     }
 
 

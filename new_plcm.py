@@ -42,6 +42,9 @@ class PlmcObjective2D(nifty.graph.opt.lifted_multicut.PixelWiseLmcObjective2D):
 
         return proposals
 
+
+        
+
     def proposal_from_raw_agglo(self):
 
         proposals = []
@@ -308,14 +311,23 @@ def solve_single_scale(objective, best_l=None):
 
         def fuse_with(self, labels):
 
-            if self.best_l is  None:
-                self.best_l = labels
-            else:
+            labels = numpy.squeeze(labels)
+            labels = numpy.require(labels, requirements=['C'])
 
-                self.best_l = self.fm.fuse(
-                    numpy.require(labels, requirements=['C']),
-                    numpy.require(self.best_l,requirements=['C'])
-                )
+            if labels.ndim == 2:
+                if self.best_l is  None:
+                    self.best_l = labels
+                else:
+                    #print("fuuuuu")
+                    self.best_l = self.fm.fuse(
+                        labels,
+                        numpy.require(self.best_l,requirements=['C'])
+                    )
+                
+            else:
+                labels = numpy.concatenate([self.best_l[:,:,None], labels],axis=2)
+                self.best_l = self.fm.fuse(labels)
+
             self.best_e = objective.evaluate(self.best_l)
             print(self.best_e)
 
@@ -355,6 +367,34 @@ def solve_single_scale(objective, best_l=None):
         seg = nifty.segmentation.connectedComponents(seg)
         return seg
 
+
+    def refiner(labels,r):
+
+        grid = numpy.arange(labels.size) + labels.max() + 1
+        grid = grid.reshape(labels.shape)
+
+        zeros = numpy.zeros_like(labels)
+        boundaries = skimage.segmentation.mark_boundaries(zeros, labels.astype('uint32'))[:,:,0]*255
+
+
+        #print(boundaries.min(),boundaries.max())
+        boundaries = vigra.filters.discDilation(boundaries.astype('uint8'),r).squeeze()
+        new_seeds = labels.copy()
+        where_mask = boundaries==255
+        new_seeds[where_mask] = grid[where_mask]
+        
+        return new_seeds
+
+
+
+
+
+
+
+
+
+
+
     proposals = []
 
     proposals += objective.proposals_from_raw()
@@ -363,68 +403,116 @@ def solve_single_scale(objective, best_l=None):
     proposals += [seeded_watersheds(s) for s in (1.0, 2.0, 3.0)]
 
 
-    shuffle(proposals)
+    #shuffle(proposals)
 
 
     print("fuabsf")
 
-    counter = 0
+
+
+
     for proposal in proposals:
         print("fuse with prop")
         fuse_inf.fuse_with(proposal)
-        if (counter+1)% 4 == 0:
-            p = refine_watershed(fuse_inf.best_l,r=4,sigma=1.5)
-            fuse_inf.fuse_with(p)
-        counter += 1
 
+    
+    
+    if False:
+        print("refine watershed")
 
+        for r in (1,2,3,4,5):
+            for s in (1.0, 2.0, 3.0,5.0):
+                p = refine_watershed(fuse_inf.best_l,r=r,sigma=s)
+                fuse_inf.fuse_with(p)
 
+    else:
+        for r in (1,2,3,4):
+            while(True):
+                print("buja",r)
+                best_e = float(fuse_inf.best_e)
+                fuse_inf.fuse_with(refiner(fuse_inf.best_l, r=2))
+                if fuse_inf.best_e >= best_e:
+                    break
 
     #sys.exit()
 
-    print("refine watershed")
 
-    for r in (1,2,3,4,5):
-        for s in (1.0, 2.0, 3.0,5.0):
-            p = refine_watershed(fuse_inf.best_l,r=r,sigma=s)
-            fuse_inf.fuse_with(p)
+    if True:
 
-
-
+        for ps in (1,2,3,4):
+            print("multi shiftey", ps)
+            # shift
+            for i in range(10):
 
 
+                print("Si",i)
+
+                proposals = []
+
+
+                best_e = float(fuse_inf.best_e)
+                padded = numpy.pad(fuse_inf.best_l+1, ps+1, mode='constant', constant_values=0)
+                for x in range(-ps,ps+1):
+                    for y in range(-ps,ps+1):
+
+
+                        labels = padded[
+                            ps + x :  ps + x + shape[0],
+                            ps + y :  ps + y + shape[1]
+                        ]
+                        #labels = nifty.segmentation.connectedComponents(prop)
+                        proposals.append(labels[:,:,None])
+
+                        if len(proposals) >= 6:
+                            proposals = numpy.concatenate(proposals, axis=2)
+                            fuse_inf.fuse_with(proposals)
+                            proposals = []
+
+                
+                if len(proposals) >= 1:
+
+                    proposals = numpy.concatenate(proposals, axis=2)
+                    fuse_inf.fuse_with(proposals)
+
+                if(fuse_inf.best_e >= best_e):
+                    break
+
+
+        print("shiftey done ")
+
+    else:
 
 
 
-    print("shiftey")
-    # shift
-    ps = 5
-    for i in range(10):
-        print("Si",i)
+        print("shiftey")
+        # shift
+        ps = 2
+        for i in range(10):
+            print("Si",i)
 
-        proposals = []
+            proposals = []
 
 
-        best_e = float(fuse_inf.best_e)
-        padded = numpy.pad(fuse_inf.best_l+1, ps+1, mode='constant', constant_values=0)
-        for x in range(-ps,ps):
-            for y in range(-ps,ps):
+            best_e = float(fuse_inf.best_e)
+            padded = numpy.pad(fuse_inf.best_l+1, ps+1, mode='constant', constant_values=0)
+            for x in range(-ps,ps):
+                for y in range(-ps,ps):
 
-                labels = padded[
-                    ps + x :  ps + x + shape[0],
-                    ps + y :  ps + y + shape[1]
-                ]
-                #labels = nifty.segmentation.connectedComponents(prop)
-                proposals.append(labels)
-        
-        shuffle(proposals)
-        for labels in proposals:
-            fuse_inf.fuse_with(labels)
+                    labels = padded[
+                        ps + x :  ps + x + shape[0],
+                        ps + y :  ps + y + shape[1]
+                    ]
+                    #labels = nifty.segmentation.connectedComponents(prop)
+                    proposals.append(labels)
+            
+            shuffle(proposals)
+            for labels in proposals:
+                fuse_inf.fuse_with(labels)
 
-        if(fuse_inf.best_e >= best_e):
-            break
+            if(fuse_inf.best_e >= best_e):
+                break
 
-    print("shiftey done ")
+        print("shiftey done ")
 
 
 
@@ -506,7 +594,7 @@ def affinities_to_better_weights(affinities, offsets, beta=0.5):
 
 
     # long range
-    weights[:,:,:]  = -1.0*(affinities[:,:,:]-0.9)
+    weights[:,:,:]  = -1.0*(affinities[:,:,:]-0.5)
 
     # local weighs
     weights[:,:,0] = 1.0 - affinities[:,:,0]
@@ -544,7 +632,7 @@ if __name__ == "__main__":
 
     # load weighs and raw
     path_affinities = "/home/tbeier/nice_p/isbi_test_default.h5"
-    path_affinities = "/home/tbeier/nice_probs/isbi_test_default.h5"
+    #path_affinities = "/home/tbeier/nice_probs/isbi_test_default.h5"
     offsets = numpy.array([
         [-1,0],[0,-1],
         [-9,0],[0,-9],[-9,-9],[9,-9],
@@ -554,14 +642,14 @@ if __name__ == "__main__":
     import h5py
     f5_affinities = h5py.File(path_affinities)
     affinities = f5_affinities['data']
-    z = 15
+    z = 8
     # get once slice
     affinities = numpy.rollaxis(affinities[:,z,:,:],0,3)
     affinities = numpy.require(affinities, requirements=['C'])
 
     import skimage.io
-    raw_path = "/home/tbeier/src/nifty/src/python/examples/multicut/NaturePaperDataUpl/ISBI2012/raw_test.tif"
-    #raw_path = '/home/tbeier/src/nifty/mysandbox/NaturePaperDataUpl/ISBI2012/raw_test.tif'
+    #raw_path = "/home/tbeier/src/nifty/src/python/examples/multicut/NaturePaperDataUpl/ISBI2012/raw_test.tif"
+    raw_path = '/home/tbeier/src/nifty/mysandbox/NaturePaperDataUpl/ISBI2012/raw_test.tif'
     raw = skimage.io.imread(raw_path)
     raw = raw[z,:,:]
 

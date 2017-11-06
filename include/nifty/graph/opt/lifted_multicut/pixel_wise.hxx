@@ -9,6 +9,7 @@
 #include <xtensor/xmath.hpp>
 #include <xtensor/xtensor.hpp>
 #include <xtensor/xexpression.hpp>
+#include <xtensor/xview.hpp>
 
 #include "nifty/ufd/ufd.hxx"
 #include "nifty/graph/undirected_list_graph.hxx"
@@ -65,6 +66,42 @@ namespace lifted_multicut{
 
 
 
+
+    template<class D_WEIGHTS, class D_OFFSETS>
+    auto pixel_wise_lmc_edge_gt_2d(
+        const xt::xexpression<D_WEIGHTS> & e_gt,
+        const xt::xexpression<D_OFFSETS> & e_offsets
+    ){
+        typedef xt::xtensor<bool, 3, xt::layout_type::row_major> ReturnType;
+       
+
+        const auto & gt = e_gt.derived_cast();
+        const auto & offsets = e_offsets.derived_cast();
+        const auto & shape = gt.shape();
+        const auto n_offsets = offsets.shape()[0];
+
+        typename ReturnType::shape_type result_shape{
+            size_t(shape[0]), size_t(shape[1]), size_t(n_offsets)};
+
+        auto result = ReturnType(result_shape);
+
+        // fill the lifted obj
+        for(int p0=0; p0<shape[0]; ++p0)
+        for(int p1=0; p1<shape[1]; ++p1){
+
+            const auto p_label = gt(p0, p1);
+
+            for(int offset_index=0; offset_index<n_offsets; ++offset_index){
+                const int q0 = p0 + offsets(offset_index, 0);
+                const int q1 = p1 + offsets(offset_index, 1);
+                if(q0 >= 0 && q0 < shape[0]  && q1 >= 0 && q1 < shape[1]){
+                    const auto q_label = gt(q0, q1);
+                    result(p0, p1, offset_index) = p_label != q_label;
+                }
+            }
+        }
+        return result;
+    }
 
 
 
@@ -192,30 +229,21 @@ namespace lifted_multicut{
             const xt::xexpression<D_LABELS_B>  & e_labels_b
         ){
 
-
-
             ufd_.reset();
 
             const auto & shape = objective_.shape();
-            const auto & offsets = objective_.offsets();
-            const auto & weights = objective_.weights();
-            const auto & n_offsets = objective_.n_offsets();
             const auto & labels_a = e_labels_a.derived_cast();
             const auto & labels_b = e_labels_b.derived_cast();
 
-            auto e_a = objective_.evaluate(labels_a);
-            auto e_b = objective_.evaluate(labels_b);
-
-
-            typename xt::xtensor<int, DIM>::shape_type reshape;
-            reshape[0] = shape[0];
-            reshape[1] = shape[1];
+            typename xt::xtensor<int, DIM>::shape_type reshape{size_t(shape[0]), size_t(shape[1])};
             auto res = xt::xtensor<int, DIM, xt::layout_type::row_major>(reshape);
 
 
-            uint64_t node_p = 0;
             this->merge_ufd(e_labels_a, e_labels_b);
 
+            // 
+            auto e_a = objective_.evaluate(labels_a);
+            auto e_b = objective_.evaluate(labels_b);
             this->do_it(res, [&](
                 const auto & cc_node_labels,
                 const auto & cc_energy
@@ -239,104 +267,84 @@ namespace lifted_multicut{
                 }
             });
 
-
-            // // make map dense   
-            // const auto cc_n_variables = ufd_.numberOfSets();
-            // boost::container::flat_map<uint64_t, uint64_t> to_dense;
-            // ufd_.representativeLabeling(to_dense);
-            // {
-            //     auto res_iter = res.begin();
-            //     for(auto var=0; var<objective_.n_variables(); ++var){
-            //         *res_iter = to_dense[ufd_.find(var)];
-            //         ++res_iter;
-            //     }   
-            // }
-
-
-
-            
-            // // build the normal graph
-            // CCGraphType cc_graph(cc_n_variables);
-
-            // node_p = 0 ;
-            // for(int p0=0; p0<shape[0]; ++p0)
-            // for(int p1=0; p1<shape[1]; ++p1){
-
-            //     const auto p_label = ufd_.find(node_p);
-
-            //     if(p0 + 1 < shape[0]){
-            //         const auto node_q = node_p + shape[1];
-            //         const auto q_label = ufd_.find(node_q);
-            //         if(p_label != q_label){
-            //             cc_graph.insertEdge(to_dense[p_label],to_dense[q_label]);
-            //         }
-            //     }
-            //     if(p1 + 1 < shape[1]){
-            //         const auto node_q = node_p + 1;
-            //         const auto q_label = ufd_.find(node_q);
-            //         if(p_label != q_label){
-            //             cc_graph.insertEdge(to_dense[p_label],to_dense[q_label]);
-            //         }
-            //     }
-            //     ++node_p;
-            // }
-
-            // CCObjectiveType cc_obj(cc_graph);
-
-            // node_p = 0 ;
-
-            // // fill the lifted obj
-            // for(int p0=0; p0<shape[0]; ++p0)
-            // for(int p1=0; p1<shape[1]; ++p1){
-
-            //     const auto p_label = ufd_.find(node_p);
-
-            //     for(int offset_index=0; offset_index<n_offsets; ++offset_index){
-            //         const int q0 = p0 + offsets(offset_index, 0);
-            //         const int q1 = p1 + offsets(offset_index, 1);
-            //         if(q0 >= 0 && q0 < shape[0]  && q1 >= 0 && q1 < shape[1]){
-
-            //             const auto node_q = q0*shape[1] + q1;
-            //             const auto q_label = ufd_.find(node_q);
-            //             if(p_label != q_label){
-
-            //                 cc_obj.setCost(to_dense[p_label], to_dense[q_label], 
-            //                     weights(p0,p1,offset_index));
-            //             }
-            //         }
-            //     }
-            //     ++node_p;
-            // }
-
-
-            // auto solver = solver_fatory_->create(cc_obj);
-            // CCNodeLabels cc_node_labels(cc_graph);
-
-
-            // nifty::graph::opt::common::VerboseVisitor<CCBaseType> visitor;
-            // solver->optimize(cc_node_labels, nullptr);
-            // auto e_res = cc_obj.evalNodeLabels(cc_node_labels);
-            // delete solver;  
-
-            /*
-            if(e_res < std::min(e_a, e_b))
-            {
-                auto res_iter = res.begin();
-                for(auto var=0; var<objective_.n_variables(); ++var){
-                    *res_iter = cc_node_labels[to_dense[ufd_.find(var)]];
-                    ++res_iter;
-                }   
-            }
-            else if(e_a < e_res){
-                std::copy(labels_a.begin(), labels_a.end(), res.begin());
-            }
-            else{
-                std::copy(labels_b.begin(), labels_b.end(), res.begin());
-            }
-            */
             return res;
 
         }
+
+
+        template<class D_LABELS>
+        auto fuse(
+            const xt::xexpression<D_LABELS>  & e_labels
+        ){
+
+
+
+            ufd_.reset();
+
+            const auto & shape = objective_.shape();
+
+
+
+
+
+            typename xt::xtensor<int, DIM>::shape_type reshape{size_t(shape[0]), size_t(shape[1])};
+            auto res = xt::xtensor<int, DIM, xt::layout_type::row_major>(reshape);
+
+
+            this->merge_ufd2(e_labels);
+
+
+            // 
+           
+            this->do_it(res, [&](
+                const auto & cc_node_labels,
+                const auto & cc_energy
+            ){
+
+                const auto & labels = e_labels.derived_cast();
+                const auto n_proposals = labels.shape()[DIM];
+                auto best_e = std::numeric_limits<float>::infinity();
+                auto best_i = 0;
+
+                for(auto i=0; i<n_proposals; ++i){
+                    const auto l = xt::view(e_labels.derived_cast(),xt::all(), xt::all(),i);
+                    const auto e = objective_.evaluate(l);
+                    if(e < best_e){
+                        best_e = e;
+                        best_i = i;
+                    }
+                }
+                
+
+                if(cc_energy < best_e){//cc_energy < std::min(e_a, e_b)){
+                    
+                    auto res_iter = res.begin();
+                    for(auto var=0; var<objective_.n_variables(); ++var){
+                        const auto dense_var = *res_iter;
+                        *res_iter = cc_node_labels[dense_var];
+                        //*res_iter = cc_node_labels[to_dense[ufd_.find(var)]];
+                        ++res_iter;
+                    }   
+
+                }
+                else{
+                    const auto l = xt::view(e_labels.derived_cast(),xt::all(), xt::all(),best_i);
+                    std::copy(l.begin(), l.end(), res.begin());
+                }
+            });
+
+            return res;
+
+        }
+
+
+
+
+
+
+
+
+
 
 
     private:
@@ -377,6 +385,58 @@ namespace lifted_multicut{
                 ++node_p;
             }
         }
+
+
+
+
+        template<class D_LABELS>
+        auto merge_ufd2(
+            const xt::xexpression<D_LABELS>  & e_labels
+        ){
+            const auto & shape = objective_.shape();
+            const auto & labels = e_labels.derived_cast();
+            const auto n_offsets = labels.shape()[DIM];
+
+            //const auto pview = xt::view(labels,0,0,xt::all());
+            //const auto bla = pview(0);
+
+            uint64_t node_p = 0;
+            for(int p0=0; p0<shape[0]; ++p0)
+            for(int p1=0; p1<shape[1]; ++p1){
+                if(p0 + 1 < shape[0]){
+                    bool do_merge = true;
+                    for(auto o=0; o<n_offsets; ++o){
+                        const auto p_label = labels(p0,  p1,o);
+                        const auto q_label = labels(p0+1,p1,o);
+                        if(p_label != q_label ){ 
+                            do_merge = false;
+                            break;
+                        }
+                    }
+                    if(do_merge){
+                        const auto node_q = node_p + shape[1];
+                        ufd_.merge(node_p, node_q);
+                    }
+                }
+                if(p1 + 1 < shape[1]){
+                    bool do_merge = true;
+                    for(auto o=0; o<n_offsets; ++o){
+                        const auto p_label = labels(p0, p1,  o);
+                        const auto q_label = labels(p0, p1+1,o);
+                        if(p_label != q_label ){ 
+                            do_merge = false;
+                            break;
+                        }
+                    }
+                    if(do_merge){
+                        const auto node_q = node_p + 1;
+                        ufd_.merge(node_p, node_q);
+                    }
+                }
+                ++node_p;
+            }
+        }
+
 
 
         template<class F>
