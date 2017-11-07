@@ -280,15 +280,28 @@ mergeEdges(
     const auto sa = edgeSizes_[aliveEdge];
     const auto sd = edgeSizes_[deadEdge];
     const auto s = sa + sd;
-    mergePrios_[aliveEdge]    = (sa*mergePrios_[aliveEdge]    + sd*mergePrios_[deadEdge])/s;
-    notMergePrios_[aliveEdge] = (sa*notMergePrios_[aliveEdge] + sd*notMergePrios_[deadEdge])/s;
-    edgeSizes_[aliveEdge] = s;
-    
+
+
     const auto deadIsMergeEdge = isMergeEdge_[deadEdge];
     auto & aliveIsMergeEdge = isMergeEdge_[aliveEdge];
     if(deadIsMergeEdge != aliveIsMergeEdge){
-        aliveIsMergeEdge = mergePrios_[aliveEdge] >= notMergePrios_[aliveEdge];
+        aliveIsMergeEdge = true;
+        //aliveIsMergeEdge = mergePrios_[aliveEdge] >= notMergePrios_[aliveEdge];
     }
+
+
+    if(aliveIsMergeEdge){
+        mergePrios_[aliveEdge]    = (sa*mergePrios_[aliveEdge]    + sd*mergePrios_[deadEdge])/s;
+        notMergePrios_[aliveEdge] = (sa*notMergePrios_[aliveEdge] + sd*notMergePrios_[deadEdge])/s;
+        edgeSizes_[aliveEdge] = s;
+    }
+    else{
+        mergePrios_[aliveEdge]    = (sa*mergePrios_[aliveEdge]    + sd*mergePrios_[deadEdge])/s;
+        notMergePrios_[aliveEdge] = std::min(notMergePrios_[aliveEdge] , notMergePrios_[deadEdge]);
+        edgeSizes_[aliveEdge] = s;
+    }
+    
+    
     // update prios
     pq_.push(aliveEdge, this->pqActionPrio(aliveEdge));
 }

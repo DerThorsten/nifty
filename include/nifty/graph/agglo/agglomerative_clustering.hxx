@@ -22,7 +22,7 @@ public:
     }
 
 
-    void run(const bool verbose=false){
+    void run(const bool verbose=false, const uint64_t printNth=100){
         while(!clusterPolicy_.isDone()){
 
             if(clusterPolicy_.edgeContractionGraph().numberOfEdges() == 0)
@@ -34,7 +34,10 @@ public:
             const auto priority = edgeToContractNextAndPriority.second;
             if(verbose){
                 const auto & cgraph = clusterPolicy_.edgeContractionGraph();
-                std::cout<<"Nodes "<<cgraph.numberOfNodes()<<" p="<<priority<<"\n";
+                const auto nNodes = cgraph.numberOfNodes();
+                if(  (nNodes + 1) % printNth  == 0){
+                    std::cout<<"Nodes "<<cgraph.numberOfNodes()<<" p="<<priority<<"\n";
+                }
             }
             clusterPolicy_.edgeContractionGraph().contractEdge(edgeToContractNext);
         }

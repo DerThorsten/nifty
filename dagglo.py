@@ -8,7 +8,7 @@ import vigra
 # load affinities
 z = 5
 w = 512
-path_affinities = "/home/tbeier/nice_p/isbi_test_default.h5"
+path_affinities = "/home/tbeier/nice_probs/isbi_test_default.h5"
 offsets = numpy.array([
     [-1,0],[0,-1],
     [-9,0],[0,-9],[-9,-9],[9,-9],
@@ -25,8 +25,8 @@ affinities = numpy.require(affinities, dtype='float32', requirements=['C'])
 
 # load raw
 import skimage.io
-#raw_path = "/home/tbeier/src/nifty/src/python/examples/multicut/NaturePaperDataUpl/ISBI2012/raw_test.tif"
-raw_path = '/home/tbeier/src/nifty/mysandbox/NaturePaperDataUpl/ISBI2012/raw_test.tif'
+raw_path = "/home/tbeier/src/nifty/src/python/examples/multicut/NaturePaperDataUpl/ISBI2012/raw_test.tif"
+#raw_path = '/home/tbeier/src/nifty/mysandbox/NaturePaperDataUpl/ISBI2012/raw_test.tif'
 raw = skimage.io.imread(raw_path)
 raw = raw[z,0:w,0:w]
 
