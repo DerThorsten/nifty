@@ -1,6 +1,11 @@
 #include <pybind11/pybind11.h>
 #include <iostream>
 
+#define FORCE_IMPORT_ARRAY
+#include "xtensor-python/pyarray.hpp"
+#include "xtensor-python/pyvectorize.hpp"
+
+
 namespace py = pybind11;
 
 PYBIND11_DECLARE_HOLDER_TYPE(T, std::shared_ptr<T>);
@@ -10,6 +15,7 @@ namespace graph{
 namespace agglo{
 
     void exportAgglomerativeClustering(py::module &);    
+    void exportFixationAgglomerativeClustering(py::module &);    
 }
 }
 }
@@ -18,7 +24,8 @@ namespace agglo{
 
 PYBIND11_PLUGIN(_agglo) {
 
-
+    xt::import_numpy();
+    
     py::options options;
     options.disable_function_signatures();
         
@@ -27,6 +34,7 @@ PYBIND11_PLUGIN(_agglo) {
     using namespace nifty::graph::agglo;
 
     exportAgglomerativeClustering(aggloModule);
+    exportFixationAgglomerativeClustering(aggloModule);
 
     return aggloModule.ptr();
 }

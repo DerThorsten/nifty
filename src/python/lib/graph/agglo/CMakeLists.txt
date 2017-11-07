@@ -4,4 +4,5 @@ addPythonModule(
     SOURCES
         agglo.cxx
         agglomerative_clustering.cxx
+        fixation_agglomerative_clustering.cxx
 )

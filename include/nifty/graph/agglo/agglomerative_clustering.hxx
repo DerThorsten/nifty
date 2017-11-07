@@ -27,8 +27,9 @@ public:
 
             if(clusterPolicy_.edgeContractionGraph().numberOfEdges() == 0)
                 break;
-
+            //std::cout<<"AgglomerativeClustering edgeToContractNext\n";
             const auto edgeToContractNextAndPriority = clusterPolicy_.edgeToContractNext();
+            //std::cout<<"AgglomerativeClustering edgeToContractNext done\n";
             const auto edgeToContractNext = edgeToContractNextAndPriority.first;
             const auto priority = edgeToContractNextAndPriority.second;
             if(verbose){
