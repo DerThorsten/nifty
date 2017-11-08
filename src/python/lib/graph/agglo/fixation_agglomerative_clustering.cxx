@@ -233,7 +233,7 @@ namespace agglo{
                             else{
                                 const auto mergeP    = mergePrios(uCoord[0], uCoord[1], uCoord[2], offset_index);
                                 const auto notMergeP = notMergePrios(uCoord[0], uCoord[1], uCoord[2], offset_index);
-                                if(notMergeP > mergeP){
+                                if(notMergeP*4.0 > mergeP){
                                     const auto v = vi(vCoord);
                                     g.insertEdge(u,v);
                                 }
@@ -285,7 +285,7 @@ namespace agglo{
                             else{
                                 const auto mergeP    = mergePrios(uCoord[0], uCoord[1], uCoord[2], offset_index);
                                 const auto notMergeP = notMergePrios(uCoord[0], uCoord[1], uCoord[2], offset_index);
-                                if(notMergeP > mergeP){
+                                if(notMergeP*4.0 > mergeP){
                                     const auto v = vi(vCoord);
                                     const auto edge = g.findEdge(u,v);
                                     NIFTY_CHECK_OP(edge,>=,0,"internal error");

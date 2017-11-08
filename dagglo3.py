@@ -17,6 +17,11 @@ offsets = numpy.array([
 [0, -27, 0], [0, 0, -27]
 ]).astype('int64')
 
+mergec_z = [0]
+
+
+
+
 # z = offsets[:,0].copy()
 # x = offsets[:,1].copy()
 # y = offsets[:,2].copy()
@@ -40,7 +45,7 @@ print(affinities.shape)
 affinities = affinities[:,:,:, :]
 print("in aff shape",affinities.shape)
 affinities = numpy.rollaxis(affinities ,0,4)
-affinities  = affinities[0:5,0:w,0:w,:]
+affinities  = affinities[:,:,:,:]
 
 
 
@@ -59,7 +64,7 @@ import skimage.io
 raw_path = "/home/tbeier/src/nifty/src/python/examples/multicut/NaturePaperDataUpl/ISBI2012/raw_test.tif"
 #raw_path = '/home/tbeier/src/nifty/mysandbox/NaturePaperDataUpl/ISBI2012/raw_test.tif'
 raw = skimage.io.imread(raw_path)
-raw = raw[0:5,0:w,0:w]
+raw = raw[:,:,:]
 #raw = numpy.rollaxis(raw ,0,3)
 
 
@@ -76,6 +81,13 @@ isMergeEdgeOffset[2] = True
 #sys.exit()
 
 
+def make_more_morse(prio, raw):
+    #for z in range(prio.shape[0]):
+    #    raw_xy = vigra.gaussianSmoothing(raw[z,...],0.2)
+    #    prio_xyc = vigra.taggedView(prio[z,...],'xyc')
+    #    prio[z,...] += 0.001*vigra.gaussianSmoothing(prio_xyc, 6.0)   + 0.0000001*(raw_xy[:,:,None])
+    return prio
+
 
 notMergePrios = affinities.copy()
 #notMergePrios[notMergePrios<0.9999] = 0
@@ -83,15 +95,21 @@ notMergePrios = affinities.copy()
 
 if True:
     affinities = numpy.require(affinities, dtype='float32', requirements=['C'])
+    mergePrios = make_more_morse(1.0 - affinities, raw)
+    notMergePrios = make_more_morse(affinities, 255.0-raw)
+
+    mergePrios[:,:,:,mergec_z] *= 0.9
+    notMergePrios[:,:,:,[3,4,5,6]] *= 0.9
+
     with nifty.Timer("jay"):
         nodeSeg = nifty.graph.agglo.pixelWiseFixation3D(
-            mergePrios=    (1.0 - affinities)+0.0,  #vigra.gaussianSmoothing(vigra.taggedView( (1.0 - affinities),'xyc'),0.01),
+            mergePrios=    mergePrios,  #vigra.gaussianSmoothing(vigra.taggedView( (1.0 - affinities),'xyc'),0.01),
             notMergePrios= notMergePrios,               #vigra.gaussianSmoothing(vigra.taggedView( (affinities),'xyc'),0.01),
             offsets=offsets,
             isMergeEdgeOffset=isMergeEdgeOffset
         )
 
-    f = h5py.File("/home/tbeier/nice_probs/agglo_res3.h5",'w')
+    f = h5py.File("/home/tbeier/nice_probs/agglo_res8.h",'w')
     f['data'] = nodeSeg
     f.close()
     #nodeSeg = nodeSeg.reshape(shape)

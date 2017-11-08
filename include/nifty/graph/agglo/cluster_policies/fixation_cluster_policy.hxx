@@ -94,6 +94,7 @@ public:
         const auto v = uv.second;
         const auto & setU  = nonLinkConstraints_[u];
         const auto & setV  = nonLinkConstraints_[v];
+        NIFTY_CHECK((setU.find(v)!=setU.end()) == (setV.find(u)!=setV.end()),"");
         if(setU.find(v)!=setU.end()){// || setV.find(u)!=setV.end()){
             return false;
         }
@@ -187,11 +188,12 @@ template<class GRAPH, bool ENABLE_UCM>
 inline bool 
 FixationClusterPolicy<GRAPH, ENABLE_UCM>::
 isDone()     {
-    if(edgeContractionGraph_.numberOfNodes() <= settings_.numberOfNodesStop || pq_.empty() || pq_.topPriority() < -0.0000001){
+    if(edgeContractionGraph_.numberOfNodes() <= settings_.numberOfNodesStop || pq_.empty() || pq_.topPriority() < 0.5){
         return  true;
     }
     else{
-        while(pq_.topPriority() > -0.0000001 ){
+        while(pq_.topPriority() > 0.5 ){
+        //while(pq_.topPriority() > -0.0000001 ){
             const auto nextActioneEdge = pq_.top();
             if(isMergeEdge_[nextActioneEdge]){
                 if(this->isMergeAllowed(nextActioneEdge)){
@@ -260,7 +262,6 @@ mergeNodes(
         nlc.insert(aliveNode);
     }
 
-    // redundant???
     aliveNodeNlc.erase(deadNode);
 
 }
@@ -285,23 +286,26 @@ mergeEdges(
     const auto deadIsMergeEdge = isMergeEdge_[deadEdge];
     auto & aliveIsMergeEdge = isMergeEdge_[aliveEdge];
     if(deadIsMergeEdge != aliveIsMergeEdge){
-        aliveIsMergeEdge = true;
-        //aliveIsMergeEdge = mergePrios_[aliveEdge] >= notMergePrios_[aliveEdge];
+        //aliveIsMergeEdge = true;
+        aliveIsMergeEdge = mergePrios_[aliveEdge] >= notMergePrios_[aliveEdge];
     }
 
+    mergePrios_[aliveEdge]    = std::max(mergePrios_[aliveEdge]    , mergePrios_[deadEdge]);
+    notMergePrios_[aliveEdge] = std::max(notMergePrios_[aliveEdge] , notMergePrios_[deadEdge]);
+    edgeSizes_[aliveEdge] = s;
 
-    if(aliveIsMergeEdge){
-        //mergePrios_[aliveEdge]    = (sa*mergePrios_[aliveEdge]    + sd*mergePrios_[deadEdge])/s;        
-        mergePrios_[aliveEdge]    = std::max(mergePrios_[aliveEdge]    , mergePrios_[deadEdge]);
-        notMergePrios_[aliveEdge] = (sa*notMergePrios_[aliveEdge] + sd*notMergePrios_[deadEdge])/s;
-        edgeSizes_[aliveEdge] = s;
-    }
-    else{
-        mergePrios_[aliveEdge]    = (sa*mergePrios_[aliveEdge]    + sd*mergePrios_[deadEdge])/s;
-        notMergePrios_[aliveEdge] = (sa*notMergePrios_[aliveEdge] + sd*notMergePrios_[deadEdge])/s;
-        //notMergePrios_[aliveEdge] = std::min(notMergePrios_[aliveEdge] , notMergePrios_[deadEdge]);
-        edgeSizes_[aliveEdge] = s;
-    }
+    //if(aliveIsMergeEdge){
+    //    //mergePrios_[aliveEdge]    = (sa*mergePrios_[aliveEdge]    + sd*mergePrios_[deadEdge])/s;        
+    //    mergePrios_[aliveEdge]    = std::max(mergePrios_[aliveEdge]    , mergePrios_[deadEdge]);
+    //    notMergePrios_[aliveEdge] = std::max(notMergePrios_[aliveEdge] , notMergePrios_[deadEdge]);
+    //    edgeSizes_[aliveEdge] = s;
+    //}
+    //else{
+    //    mergePrios_[aliveEdge]    = (sa*mergePrios_[aliveEdge]    + sd*mergePrios_[deadEdge])/s;
+    //    //notMergePrios_[aliveEdge] = (sa*notMergePrios_[aliveEdge] + sd*notMergePrios_[deadEdge])/s;
+    //    notMergePrios_[aliveEdge] = std::max(notMergePrios_[aliveEdge] , notMergePrios_[deadEdge]);
+    //    edgeSizes_[aliveEdge] = s;
+    //}
     
     
     // update prios
