@@ -7,7 +7,7 @@
 #include "xtensor-python/pyvectorize.hpp"
 
 
-
+#include "nifty/tools/runtime_check.hxx"
 #include "nifty/python/converter.hxx"
 #include "nifty/python/graph/undirected_list_graph.hxx"
 #include "nifty/python/graph/undirected_grid_graph.hxx"
@@ -101,10 +101,11 @@ namespace agglo{
         aggloModule.def(
             "pixelWiseFixation2D",
             [](
-                xt::pytensor<float, 3>  mergePrios,
-                xt::pytensor<float, 3>  notMergePrios,
+                xt::pytensor<float, 3>      mergePrios,
+                xt::pytensor<float, 3>      notMergePrios,
                 xt::pytensor<int64_t, 2>    offsets,
-                xt::pytensor<bool, 1>   isMergeEdgeOffset
+                xt::pytensor<bool, 1>       isMergeEdgeOffset,
+                const bool sparseRepulsiveOnly = true
             ){
                 const auto & shape = mergePrios.shape();
                 std::array<int,2 > uCoord, vCoord;
@@ -184,7 +185,8 @@ namespace agglo{
             py::arg("mergePrios"),
             py::arg("notMergePrios"),
             py::arg("offsets"),
-            py::arg("isMergeEdgeOffset")
+            py::arg("isMergeEdgeOffset"),
+            py::arg("sparseRepulsiveOnly") = true
         );
 
 
@@ -199,7 +201,7 @@ namespace agglo{
                 const auto & shape = mergePrios.shape();
                 std::array<int,3 > uCoord, vCoord;
                 typedef nifty::graph::UndirectedGraph<> GraphType;
-                nifty::graph::UndirectedGraph<> g(shape[0] * shape[1]* shape[2]);
+                GraphType g(shape[0] * shape[1]* shape[2]);
 
                 auto vi = [&](const auto & coord){
                     return coord[0]*shape[1]*shape[2] 
@@ -224,8 +226,18 @@ namespace agglo{
                            vCoord[1]>=0 && vCoord[1]<shape[1] &&
                            vCoord[2]>=0 && vCoord[2]<shape[2]
                         ){
-                            const auto v = vi(vCoord);
-                            g.insertEdge(u,v);
+                            if(isMergeEdgeOffset[offset_index]){
+                                const auto v = vi(vCoord);
+                                g.insertEdge(u,v);
+                            }
+                            else{
+                                const auto mergeP    = mergePrios(uCoord[0], uCoord[1], uCoord[2], offset_index);
+                                const auto notMergeP = notMergePrios(uCoord[0], uCoord[1], uCoord[2], offset_index);
+                                if(notMergeP > mergeP){
+                                    const auto v = vi(vCoord);
+                                    g.insertEdge(u,v);
+                                }
+                            }
                         }
                     }
                 }
@@ -258,12 +270,32 @@ namespace agglo{
                            vCoord[1]>=0 && vCoord[1]<shape[1] &&
                            vCoord[2]>=0 && vCoord[2]<shape[2]
                         ){
-                            const auto v = vi(vCoord);
-                            const auto edge = g.findEdge(u,v);
 
-                            mergePriosMap[edge]    = mergePrios(uCoord[0], uCoord[1], uCoord[2], offset_index);
-                            notMergePriosMap[edge] = notMergePrios(uCoord[0], uCoord[1], uCoord[2], offset_index);
-                            isMergeEdgeMap[edge]   = isMergeEdgeOffset(offset_index);
+
+
+                            if(isMergeEdgeOffset[offset_index]){
+                                const auto v = vi(vCoord);
+                                const auto edge = g.findEdge(u,v);
+
+                                mergePriosMap[edge]    = mergePrios(uCoord[0], uCoord[1], uCoord[2], offset_index);
+                                notMergePriosMap[edge] = notMergePrios(uCoord[0], uCoord[1], uCoord[2], offset_index);
+                                isMergeEdgeMap[edge]   = isMergeEdgeOffset(offset_index);
+
+                            }
+                            else{
+                                const auto mergeP    = mergePrios(uCoord[0], uCoord[1], uCoord[2], offset_index);
+                                const auto notMergeP = notMergePrios(uCoord[0], uCoord[1], uCoord[2], offset_index);
+                                if(notMergeP > mergeP){
+                                    const auto v = vi(vCoord);
+                                    const auto edge = g.findEdge(u,v);
+                                    NIFTY_CHECK_OP(edge,>=,0,"internal error");
+
+                                    mergePriosMap[edge]    = mergePrios(uCoord[0], uCoord[1], uCoord[2], offset_index);
+                                    notMergePriosMap[edge] = notMergePrios(uCoord[0], uCoord[1], uCoord[2], offset_index);
+                                    isMergeEdgeMap[edge]   = isMergeEdgeOffset(offset_index);
+                                }
+                            }
+
                         }
                     }
                     ++c;
@@ -275,7 +307,7 @@ namespace agglo{
 
                 ClusterPolicyType clusterPolicy(g, mergePriosMap, notMergePriosMap, isMergeEdgeMap, edgeSizeMap);
                 AgglomerativeClusteringType hcluster(clusterPolicy);
-                hcluster.run(true);
+                hcluster.run(true,10000);
 
 
                 xt::pytensor<uint64_t, 3> result({

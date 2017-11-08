@@ -291,13 +291,15 @@ mergeEdges(
 
 
     if(aliveIsMergeEdge){
-        mergePrios_[aliveEdge]    = (sa*mergePrios_[aliveEdge]    + sd*mergePrios_[deadEdge])/s;
+        //mergePrios_[aliveEdge]    = (sa*mergePrios_[aliveEdge]    + sd*mergePrios_[deadEdge])/s;        
+        mergePrios_[aliveEdge]    = std::max(mergePrios_[aliveEdge]    , mergePrios_[deadEdge]);
         notMergePrios_[aliveEdge] = (sa*notMergePrios_[aliveEdge] + sd*notMergePrios_[deadEdge])/s;
         edgeSizes_[aliveEdge] = s;
     }
     else{
         mergePrios_[aliveEdge]    = (sa*mergePrios_[aliveEdge]    + sd*mergePrios_[deadEdge])/s;
-        notMergePrios_[aliveEdge] = std::min(notMergePrios_[aliveEdge] , notMergePrios_[deadEdge]);
+        notMergePrios_[aliveEdge] = (sa*notMergePrios_[aliveEdge] + sd*notMergePrios_[deadEdge])/s;
+        //notMergePrios_[aliveEdge] = std::min(notMergePrios_[aliveEdge] , notMergePrios_[deadEdge]);
         edgeSizes_[aliveEdge] = s;
     }
     
