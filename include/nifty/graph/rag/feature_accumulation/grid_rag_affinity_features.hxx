@@ -218,33 +218,37 @@ void accumulateLongRangeAffninitiesWithAccChain(
     }
 
     // axes and reanges from the lifted nhood
-    const auto & axes = lnh.axes();
-    const auto & ranges = lnh.ranges();
+    const auto & offsets = lnh.offsets();
 
     Coord4 affCoord;
     Coord3 cU, cV;
     VigraCoord vc;
-    int axis, range;
     int pass = 1;
 
     size_t nLinks = affinities.size();
+    std::vector<int> offset;
+    size_t channelId = 0;
     // iterate over all affinity links and accumulate the associated
     // affinity edges
     for(size_t linkId = 0; linkId < nLinks; ++linkId) {
 
         affinities.indexToCoordinates(linkId, affCoord.begin());
-        axis  = axes[affCoord[0]];
-        range = ranges[affCoord[0]];
-
-        for(int d = 0; d < 3; ++d) {
+        offset = offsets[channelId];
+        
+        bool outOfRange = false;
+        for(size_t d = 0; d < 3; ++d) {
             cU[d] = affCoord[d+1];
-            cV[d] = affCoord[d+1];
+            cV[d] = affCoord[d+1] + offset[d];
+            // range check
+            if(cV[d] >= shape[d] || cV[d] < 0) {
+                outOfRange = true;
+                break;
+            }
         }
-        cV[axis] += range;
-        // range check
-        if(cV[axis] >= shape[axis] || cV[axis] < 0) {
+        if(outOfRange) {
             continue;
         }
+
         auto u = labels(cU.asStdArray());
         auto v = labels(cV.asStdArray());
 
@@ -266,6 +270,12 @@ void accumulateLongRangeAffninitiesWithAccChain(
                 liftedEdgeAccumulators[e].updatePassN(val, vc, pass);
             }
         }
+
+        ++channelId;
+        if(channelId >= offsets.size()) {
+            channelId = 0;
+        }
+
     }
     f_local(localEdgeAccumulators);
     f_lifted(liftedEdgeAccumulators);

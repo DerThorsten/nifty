@@ -13,6 +13,7 @@ class LiftedNh : public UndirectedGraph<>{
 // TODO
 // - make ready for 2d stacked
 // - out of core
+// - switch to more general offset description
 public:
     typedef RAG Rag;
     typedef UndirectedGraph<> BaseType;
@@ -25,27 +26,21 @@ public:
     template<typename ITER>
     LiftedNh(
         const RAG & rag,
-        ITER rangeIterBegin,
-        ITER rangeIterEnd,
-        ITER axesIterBegin,
+        ITER offsetsIterBegin,
+        ITER offsetsIterEnd,
         const int numberOfThreads=-1
-    ) : ranges_(rangeIterBegin, rangeIterEnd),
-        axes_(axesIterBegin, axesIterBegin + std::distance(rangeIterBegin, rangeIterEnd))
+    ) : offsets_(offsetsIterBegin, offsetsIterEnd)
     {
         initLiftedNh(rag, numberOfThreads);
     }
 
-    const std::vector<int> & ranges() const {return ranges_;}
-    const std::vector<int> & axes()  const {return axes_;}
-    const std::vector<int> & lrIndices() const {return lrIndices_;}
+    const std::vector<std::vector<int>> & offsets() const {return offsets_;}
 
 private:
     void initLiftedNh(
         const Rag & labels, const int numberOfThreads);
 
-    std::vector<int> ranges_;
-    std::vector<int> axes_;
-    std::vector<size_t> lrIndices_;
+    std::vector<std::vector<int>> offsets_;
 };
 
 
@@ -70,22 +65,12 @@ void LiftedNh<RAG>::initLiftedNh(
     //nifty::parallel::ThreadPool threadpool(numberOfThreads);
     //const size_t nThreads = threadpool.nThreads();
 
-    //
-    // get the lr edges (== ranges with abs value bigger than 1)
-    //
-
-    for(size_t ii = 0; ii < ranges_.size(); ++ii) {
-        if(std::abs(ranges_[ii]) > 1) {
-            lrIndices_.push_back(ii);
-        }
-    }
-
-    // number of links = number of lr channels * number of pixels
-    size_t nLinks = lrIndices_.size() * labels.size();
+    // number of links = number of channels * number of pixels
+    size_t nLinks = offsets_.size() * labels.size();
 
     // FIXME super dirty hack to get the index to offsets translator from marray
     Coord4 affShape;
-    affShape[0] = lrIndices_.size();
+    affShape[0] = offsets_.size();
     for(size_t d = 0; d < 3; ++d) {
         affShape[d+1] = shape[d];
     }
@@ -99,22 +84,26 @@ void LiftedNh<RAG>::initLiftedNh(
     //
     Coord4 affCoord;
     Coord3 cU, cV;
-    int axis, range, lrId;
+    int channelId = 0;
+    std::vector<int> offset;
     for(size_t linkId = 0; linkId < nLinks; ++linkId) {
         fakeAffinities.indexToCoordinates(linkId, affCoord.begin());
-        lrId = lrIndices_[affCoord[0]];
-        axis  = axes_[lrId];
-        range = ranges_[lrId];
+        offset = offsets_[channelId];
 
+        bool outOfRange = false;
         for(size_t d = 0; d < 3; ++d) {
             cU[d] = affCoord[d+1];
-            cV[d] = affCoord[d+1];
+            cV[d] = affCoord[d+1] + offset[d];
+            // range check
+            if(cV[d] >= shape[d] || cV[d] < 0) {
+                outOfRange = true;
+                break;
+            }
         }
-        cV[axis] += range;
-        // range check
-        if(cV[axis] >= shape[axis] || cV[axis] < 0) {
+        if(outOfRange) {
             continue;
         }
+
         auto u = labels(cU.asStdArray());
         auto v = labels(cV.asStdArray());
 
@@ -130,6 +119,12 @@ void LiftedNh<RAG>::initLiftedNh(
             BaseType::insertEdge(
                 std::min(u, v), std::max(u, v)
             );
+        }
+
+        // decrease the channel id back to zero if we go over the max
+        ++channelId;
+        if(channelId >= offsets_.size()) {
+            channelId = 0;
         }
     }
 }

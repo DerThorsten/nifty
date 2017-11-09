@@ -18,17 +18,19 @@ namespace graph{
 
     using namespace py;
 
-    // TODO first version....
+    // TODO
+    // - parallelize properly
+    // - lift gil everywhere
+    // - return count of affinities per edge in features
     template<class RAG>
     void exportAccumulateAffinityFeaturesT(
         py::module & ragModule
     ){
-        ragModule.def("computeCostsAndNhFromAffinities",
+        ragModule.def("computeFeaturesAndNhFromAffinities",
         [](
             const RAG & rag,
             nifty::marray::PyView<float> affinities,
-            const std::vector<int> & ranges,
-            const std::vector<int> & axes,
+            const std::vector<std::vector<int>> & offsets,
             const int numberOfThreads
         ){
 
@@ -36,9 +38,8 @@ namespace graph{
             //{
             //    py::gil_scoped_release allowThreads;
             //}
-            // FIXME this doesn't lift the gil
             LiftedNh<RAG> lnh(
-                rag, ranges.begin(), ranges.end(), axes.begin(), numberOfThreads
+                rag, offsets.begin(), offsets.end(), numberOfThreads
             );
 
             uint64_t nLocal  = rag.edgeIdUpperBound() + 1;
@@ -61,8 +62,7 @@ namespace graph{
         },
         py::arg("rag"),
         py::arg("affinities"),
-        py::arg("ranges"),
-        py::arg("axes"),
+        py::arg("offsets"),
         py::arg("numberOfThreads")= -1
         );
 
