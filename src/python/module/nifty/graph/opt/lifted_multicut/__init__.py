@@ -15,6 +15,30 @@ for key in __lifted_multicut.__dict__.keys():
         pass
 
 
+# class PixelWiseLmcObjective(object):
+#     def __init__(self, weights, offsets):
+#         self.weights = weights 
+#         self.offsets = offsets
+
+#         if(self.offsets.shape[1] == 2):
+#             self._obj = PixelWiseLmcObjective2D(self.weights, self.offsets)
+#         else if (self.offsets.shape[1] == 3):
+#             self._obj = ixelWiseLmcObjective3D(self.weights, self.offsets)
+
+#     def evaluate(self, labels):
+#         self._obj.evaluate(labels)
+
+
+# def pixelWiseLmcObjective(weights, offsets):
+#     return PixelWiseLmcObjective(weights, offsets)
+
+
+
+
+
+
+
+
 def __extendLiftedMulticutObj(objectiveCls, objectiveName):
 
     def insertLiftedEdgesBfs(self, maxDistance, returnDistance = False):

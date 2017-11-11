@@ -124,15 +124,17 @@ namespace agglo{
         aggloCls
             .def("run", [](
                 AgglomerativeClusteringType * self,
-                const bool verbose
+                const bool verbose,
+                const int64_t printNth
             ){
                 {
                     py::gil_scoped_release allowThreds;
-                    self->run(verbose);
+                    self->run(verbose, printNth);
                 }
             }
             ,
-                py::arg("verbose") = false
+                py::arg("verbose") = false,
+                py::arg("printNth") = 1
             )
 
             .def("result", [](
