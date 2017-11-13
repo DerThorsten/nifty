@@ -44,8 +44,8 @@ namespace graph{
 
             uint64_t nLocal  = rag.edgeIdUpperBound() + 1;
             uint64_t nLifted = lnh.edgeIdUpperBound() + 1;
-            marray::PyView<float> outLocal({nLocal, uint64_t(9)});
-            marray::PyView<float> outLifted({nLifted, uint64_t(9)});
+            marray::PyView<float> outLocal({nLocal, uint64_t(10)});
+            marray::PyView<float> outLifted({nLifted, uint64_t(10)});
             {
                 py::gil_scoped_release allowThreads;
                 accumulateLongRangeAffinities(rag, lnh, affinities, 0., 1.,  outLocal, outLifted, numberOfThreads);

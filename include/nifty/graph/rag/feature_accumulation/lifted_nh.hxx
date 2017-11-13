@@ -84,10 +84,11 @@ void LiftedNh<RAG>::initLiftedNh(
     //
     Coord4 affCoord;
     Coord3 cU, cV;
-    int channelId = 0;
+    size_t channelId;
     std::vector<int> offset;
     for(size_t linkId = 0; linkId < nLinks; ++linkId) {
         fakeAffinities.indexToCoordinates(linkId, affCoord.begin());
+        channelId = affCoord[0];
         offset = offsets_[channelId];
 
         bool outOfRange = false;
@@ -119,12 +120,6 @@ void LiftedNh<RAG>::initLiftedNh(
             BaseType::insertEdge(
                 std::min(u, v), std::max(u, v)
             );
-        }
-
-        // decrease the channel id back to zero if we go over the max
-        ++channelId;
-        if(channelId >= offsets_.size()) {
-            channelId = 0;
         }
     }
 }

@@ -227,14 +227,15 @@ void accumulateLongRangeAffninitiesWithAccChain(
 
     size_t nLinks = affinities.size();
     std::vector<int> offset;
-    size_t channelId = 0;
+    size_t channelId;
     // iterate over all affinity links and accumulate the associated
     // affinity edges
     for(size_t linkId = 0; linkId < nLinks; ++linkId) {
 
         affinities.indexToCoordinates(linkId, affCoord.begin());
+        channelId = affCoord[0];
         offset = offsets[channelId];
-        
+
         bool outOfRange = false;
         for(size_t d = 0; d < 3; ++d) {
             cU[d] = affCoord[d+1];
@@ -265,15 +266,10 @@ void accumulateLongRangeAffninitiesWithAccChain(
             if(e != -1) {
                 localEdgeAccumulators[e].updatePassN(val, vc, pass);
             } else {
-                // asser that this really exists ?!
                 e = lnh.findEdge(u, v);
+                // TODO assert that this really exists ?!
                 liftedEdgeAccumulators[e].updatePassN(val, vc, pass);
             }
-        }
-
-        ++channelId;
-        if(channelId >= offsets.size()) {
-            channelId = 0;
         }
 
     }
@@ -282,7 +278,7 @@ void accumulateLongRangeAffninitiesWithAccChain(
 }
 
 
-// 9 features
+// 10 features
 template<class RAG, class LNH, class AFFINITIES>
 void accumulateLongRangeAffinities(
     const RAG & rag,
@@ -304,9 +300,10 @@ void accumulateLongRangeAffinities(
     // TODO need to accumulate edge size here as well !!!
     typedef acc::Select<
         acc::DataArg<1>,
-        acc::Mean,        //1
-        acc::Variance,    //1
-        Quantiles         //7
+        acc::Mean,        // 1
+        acc::Variance,    // 1
+        Quantiles,        // 7
+        acc::Count        // 1
     > SelectType;
     typedef acc::StandAloneAccumulatorChain<3, float, SelectType> AccChainType;
 
