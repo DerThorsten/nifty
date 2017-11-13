@@ -194,6 +194,10 @@ namespace lifted_multicut{
             typedef nifty::graph::UndirectedGridGraph<2,true> GraphType;
             exportLiftedMulticutObjectiveT<GraphType>(liftedMulticutModule);
         }
+        {
+            typedef nifty::graph::UndirectedGridGraph<3,true> GraphType;
+            exportLiftedMulticutObjectiveT<GraphType>(liftedMulticutModule);
+        }
     }
 
 }

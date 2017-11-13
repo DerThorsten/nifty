@@ -51,16 +51,30 @@ namespace lifted_multicut{
             },
                 py::arg("labels")
             )
+            .def("optimize",
+            [](
+                const ObjType & self,
+                typename ObjType::LmcFactoryBaseSharedPtr factory,
+                xt::pytensor<uint64_t,  DIM> labels
+            ){
+                return self.optimize(factory, labels);
+            },
+                py::arg("factory"),
+                py::arg("labels")
+            )
         ;
 
 
-        typedef PixelWiseLmcConnetedComponentsFusion<2> CCFusionType;
+        typedef PixelWiseLmcConnetedComponentsFusion<DIM> CCFusionType;
 
 
         std::string fmClsName = std::string("PixelWiseLmcConnetedComponentsFusion") + std::to_string(DIM) + std::string("D");
         
         typedef typename CCFusionType::CCLmcFactoryBase CCLmcFactoryBase;
         typedef std::shared_ptr<CCLmcFactoryBase> CCLmcFactoryBaseSharedPtr;
+
+
+
 
         py::class_<CCFusionType>(liftedMulticutModule, fmClsName.c_str())
             
@@ -100,7 +114,10 @@ namespace lifted_multicut{
     }
 
     void exportPixelWiseLmcStuff(py::module & liftedMulticutModule) {
+
+
         exportPixelWiseLmcStuffT<2>(liftedMulticutModule);
+        exportPixelWiseLmcStuffT<3>(liftedMulticutModule);
 
         liftedMulticutModule.def("pixel_wise_lmc_edge_gt_2d",
             [](

@@ -13,6 +13,7 @@
 
 #include "nifty/ufd/ufd.hxx"
 #include "nifty/graph/undirected_list_graph.hxx"
+#include "nifty/python/graph/undirected_grid_graph.hxx"
 #include "nifty/graph/opt/lifted_multicut/lifted_multicut_objective.hxx"
 namespace nifty{
 namespace graph{
@@ -78,7 +79,7 @@ namespace lifted_multicut{
                 for(int p1=0; p1<shape[1]; ++p1)
                 for(int p2=0; p2<shape[2]; ++p2)
                 {
-                    const auto label_p = labels(p0, p1);
+                    const auto label_p = labels(p0, p1, p2);
                     for(int offset_index=0; offset_index<n_offsets; ++offset_index){  
                         const int q0 = p0 + offsets(offset_index, 0);
                         const int q1 = p1 + offsets(offset_index, 1);
@@ -196,6 +197,22 @@ namespace lifted_multicut{
         auto n_variables() const {
             return n_variables_;
         }
+
+        typedef nifty::graph::UndirectedGridGraph<DIM,true>                 GraphType; 
+        typedef LiftedMulticutObjective<GraphType, double >                 ObjectiveType;
+        typedef LiftedMulticutBase<ObjectiveType>                           BaseType;
+        typedef typename BaseType::VisitorBaseType                          VisitorBaseType;
+        typedef typename BaseType::NodeLabelsType                           NodeLabels;
+        typedef nifty::graph::opt::common::SolverFactoryBase<BaseType>      LmcFactoryBase;
+        typedef std::shared_ptr<LmcFactoryBase>                             LmcFactoryBaseSharedPtr;
+
+        template<class D_LABELS>
+        auto optimize(
+            LmcFactoryBaseSharedPtr factory,
+            const xt::xexpression<D_LABELS> & e_labels
+        )const{
+
+        }
     private:
 
         xt::xtensor<int,       2, xt::layout_type::row_major> offsets_;
@@ -290,7 +307,7 @@ namespace lifted_multicut{
                     }   
 
                 }
-                else if(e_a < cc_energy){
+                else if(e_a < e_b){
                     std::copy(labels_a.begin(), labels_a.end(), res.begin());
                 }
                 else{
@@ -563,14 +580,6 @@ namespace lifted_multicut{
 
 
 
-
-
-
-
-
-    template<std::size_t DIM>
-    class PixelWiseLmcConnetedComponentsFusion;
-
     template<>
     class PixelWiseLmcConnetedComponentsFusion<3>
     {
@@ -653,7 +662,7 @@ namespace lifted_multicut{
                     }   
 
                 }
-                else if(e_a < cc_energy){
+                else if(e_a < e_b){
                     std::copy(labels_a.begin(), labels_a.end(), res.begin());
                 }
                 else{
@@ -671,7 +680,7 @@ namespace lifted_multicut{
             const xt::xexpression<D_LABELS>  & e_labels
         ){
 
-
+            //NIFTY_CHECK(false,"");
 
             ufd_.reset();
 
@@ -681,7 +690,9 @@ namespace lifted_multicut{
 
 
 
-            typename xt::xtensor<int, DIM>::shape_type reshape{size_t(shape[0]), size_t(shape[1])};
+            typename xt::xtensor<int, DIM>::shape_type reshape{
+                size_t(shape[0]), size_t(shape[1]),size_t(shape[2])
+            };
             auto res = xt::xtensor<int, DIM, xt::layout_type::row_major>(reshape);
 
 
@@ -701,7 +712,7 @@ namespace lifted_multicut{
                 auto best_i = 0;
 
                 for(auto i=0; i<n_proposals; ++i){
-                    const auto l = xt::view(e_labels.derived_cast(),xt::all(), xt::all(),i);
+                    const auto l = xt::view(e_labels.derived_cast(),xt::all(), xt::all(), xt::all(),i);
                     const auto e = objective_.evaluate(l);
                     if(e < best_e){
                         best_e = e;
@@ -722,7 +733,7 @@ namespace lifted_multicut{
 
                 }
                 else{
-                    const auto l = xt::view(e_labels.derived_cast(),xt::all(), xt::all(),best_i);
+                    const auto l = xt::view(e_labels.derived_cast(),xt::all(),xt::all(), xt::all(),best_i);
                     std::copy(l.begin(), l.end(), res.begin());
                 }
             });
@@ -746,10 +757,10 @@ namespace lifted_multicut{
             uint64_t node_p = 0;
             for(int p0=0; p0<shape[0]; ++p0)
             for(int p1=0; p1<shape[1]; ++p1)
-            for(int p2=0; p2<shape[1]; ++p2){
+            for(int p2=0; p2<shape[2]; ++p2){
 
-                const auto p_label_a = labels_a(p0, p1);
-                const auto p_label_b = labels_b(p0, p1);
+                const auto p_label_a = labels_a(p0, p1, p2);
+                const auto p_label_b = labels_b(p0, p1, p2);
 
                 if(p0 + 1 < shape[0]){
                     const auto q_label_a = labels_a(p0+1, p1, p2);
@@ -786,6 +797,7 @@ namespace lifted_multicut{
         auto merge_ufd2(
             const xt::xexpression<D_LABELS>  & e_labels
         ){
+            //NIFTY_CHECK(false,"");
             const auto & shape = objective_.shape();
             const auto & labels = e_labels.derived_cast();
             const auto n_offsets = labels.shape()[DIM];
@@ -809,7 +821,7 @@ namespace lifted_multicut{
                         }
                     }
                     if(do_merge){
-                        const auto node_q = node_p + shape[1];
+                        const auto node_q = node_p + shape[2];
                         ufd_.merge(node_p, node_q);
                     }
                 }
@@ -898,7 +910,7 @@ namespace lifted_multicut{
                     }
                 }
                 if(p1 + 1 < shape[1]){
-                    const auto node_q = node_p + shape[1];
+                    const auto node_q = node_p + shape[2];
                     const auto q_label = ufd_.find(node_q);
                     if(p_label != q_label){
                         cc_graph.insertEdge(to_dense[p_label],to_dense[q_label]);
@@ -929,18 +941,18 @@ namespace lifted_multicut{
                 for(int offset_index=0; offset_index<n_offsets; ++offset_index){
                     const int q0 = p0 + offsets(offset_index, 0);
                     const int q1 = p1 + offsets(offset_index, 1);
-                    const int q2 = p2 + offsets(offset_index, 1);
+                    const int q2 = p2 + offsets(offset_index, 2);
                     if( q0 >= 0 && q0 < shape[0] && 
                         q1 >= 0 && q1 < shape[1] &&
                         q2 >= 0 && q2 < shape[2]
                     ){
 
-                        const auto node_q = q0*shape[1]*shape[2] + q1*shape[1] + q2;
+                        const auto node_q = q0*shape[1]*shape[2] + q1*shape[2] + q2;
                         const auto q_label = ufd_.find(node_q);
                         if(p_label != q_label){
 
                             cc_obj.setCost(to_dense[p_label], to_dense[q_label], 
-                                weights(p0,p1,offset_index));
+                                weights(p0,p1,p2,offset_index));
                         }
                     }
                 }

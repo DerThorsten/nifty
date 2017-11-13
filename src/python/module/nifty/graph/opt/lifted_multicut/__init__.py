@@ -15,22 +15,35 @@ for key in __lifted_multicut.__dict__.keys():
         pass
 
 
-# class PixelWiseLmcObjective(object):
-#     def __init__(self, weights, offsets):
-#         self.weights = weights 
-#         self.offsets = offsets
-
-#         if(self.offsets.shape[1] == 2):
-#             self._obj = PixelWiseLmcObjective2D(self.weights, self.offsets)
-#         else if (self.offsets.shape[1] == 3):
-#             self._obj = ixelWiseLmcObjective3D(self.weights, self.offsets)
-
-#     def evaluate(self, labels):
-#         self._obj.evaluate(labels)
+class PixelWiseLmcObjective(object):
+    def __init__(self, weights, offsets):
 
 
-# def pixelWiseLmcObjective(weights, offsets):
-#     return PixelWiseLmcObjective(weights, offsets)
+        self.weights = weights 
+        self.offsets = offsets
+
+        if(self.offsets.shape[1] == 2):
+            assert weights.shape[2] == offsets.shape[0]
+            self.shape = weights.shape[0:2]
+            self.ndim = 2
+            self._obj = PixelWiseLmcObjective2D(self.weights, self.offsets)
+        elif (self.offsets.shape[1] == 3):
+            self.shape = weights.shape[0:3]
+            self.ndim = 3
+            assert weights.shape[3] == offsets.shape[0]
+            self._obj = PixelWiseLmcObjective3D(self.weights, self.offsets)
+        else:
+            raise NotImplementedError("PixelWiseLmcObjective is only implemented for 2D and 3D images")
+
+    def evaluate(self, labels):
+        return self._obj.evaluate(labels)
+
+    def cpp_obj(self):
+        return self._obj
+
+
+def pixelWiseLmcObjective(weights, offsets):
+    return PixelWiseLmcObjective(weights, offsets)
 
 
 
