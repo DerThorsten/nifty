@@ -300,6 +300,7 @@ namespace lifted_multicut{
             visitor->addLogNames({"#nodes","topWeight"});
             visitor->begin(this);
         }
+        auto i=0;
         if(graph_.numberOfEdges()>0){
             currentBest_ = & nodeLabels;
             while(!callback_.done() ){
@@ -312,12 +313,17 @@ namespace lifted_multicut{
 
             
                 if(visitor!=nullptr){
-                   visitor->setLogValue(0, edgeContractionGraph_.numberOfNodes());
-                   visitor->setLogValue(1, callback_.queue().topPriority());
-                   if(!visitor->visit(this)){
-                       break;
-                   }
+
+                    if(i%1000 == 0){
+                        visitor->setLogValue(0, edgeContractionGraph_.numberOfNodes());
+                        visitor->setLogValue(1, callback_.queue().topPriority());
+                        if(!visitor->visit(this)){
+                            break;
+                        }
+                    }
+
                 }
+                ++i;
             }
             
             for(auto node : graph_.nodes()){

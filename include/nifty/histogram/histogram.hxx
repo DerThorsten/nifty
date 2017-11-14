@@ -12,9 +12,9 @@ namespace histogram{
     public:
         typedef BINCOUNT BincountType;
         Histogram(
-            const T minVal, 
-            const T maxVal,
-            const size_t bincount
+            const T minVal = 0, 
+            const T maxVal = 1,
+            const size_t bincount = 40
         )
         :   counts_(bincount),
             minVal_(minVal),
@@ -104,6 +104,13 @@ namespace histogram{
             return binWidth_;
         }
 
+        void merge(const Histogram & other){
+            for(auto i=0; i<counts_.size(); ++i){
+                counts_[i] += other.counts_[i];
+            }
+            sum_ += other.sum_;
+        }
+
     private:
 
         double fbinToValue(double fbin)const{
@@ -130,8 +137,6 @@ namespace histogram{
 
             return val*float(this->numberOfBins()-1);
         }
-
-
 
         std::vector<BincountType> counts_;
         T minVal_;

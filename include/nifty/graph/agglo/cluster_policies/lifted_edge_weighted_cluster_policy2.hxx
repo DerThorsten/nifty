@@ -3,7 +3,7 @@
 #include <functional>
 
 
-
+#include "nifty/histogram/histogram.hxx"
 #include "nifty/tools/changable_priority_queue.hxx"
 #include "nifty/graph/edge_contraction_graph.hxx"
 #include "nifty/graph/agglo/cluster_policies/cluster_policies_common.hxx"
@@ -11,8 +11,6 @@
 namespace nifty{
 namespace graph{
 namespace agglo{
-
-
 
 
 
@@ -33,6 +31,7 @@ private:
     typedef typename GRAPH:: template NodeMap<double> FloatNodeMap;
 
 public:
+
     // input types
     typedef GRAPH                                        GraphType;
     typedef FloatEdgeMap                                 EdgeIndicatorsType;
@@ -49,7 +48,8 @@ public:
 private:
 
     // internal types
-
+    typedef nifty::histogram::Histogram<float> HistogramType;
+    typedef typename GRAPH:: template EdgeMap<HistogramType> HistogramMap;
 
     typedef nifty::tools::ChangeablePriorityQueue< double ,std::less<double> > QueueType;
 
@@ -108,6 +108,8 @@ private:
     SettingsType            settings_;
     
     // INTERNAL
+    HistogramMap eHist_;
+     
     EdgeContractionGraphType edgeContractionGraph_;
     QueueType pq_;
 
@@ -130,12 +132,16 @@ LiftedGraphEdgeWeightedClusterPolicy(
     edgeSizes_(graph),
     isLiftedEdge_(graph),
     nodeSizes_(graph),
-    pq_(graph.edgeIdUpperBound()+1),
     settings_(settings),
-    edgeContractionGraph_(graph, *this)
+    eHist_(graph, HistogramType(0.0, 1.0, 40)),
+    edgeContractionGraph_(graph, *this),
+    pq_(graph.edgeIdUpperBound()+1)
 {
     graph_.forEachEdge([&](const uint64_t edge){
+
         edgeIndicators_[edge] = edgeIndicators[edge];
+        eHist_[edge].insert(edgeIndicators[edge]);
+
         edgeSizes_[edge] = edgeSizes[edge];
         isLiftedEdge_[edge] = isLiftedEdge[edge];
     });
@@ -185,7 +191,16 @@ computeWeight(
         return std::numeric_limits<float>::infinity();
     }
     else{
-        return edgeIndicators_[edge];// * sFac;
+        if(true){
+            //std::cout<<"braa\n";
+            const float r = 0.5;
+            float out;
+            nifty::histogram::quantiles(eHist_[edge], &r,&r+1,&out);
+            return out;
+        }
+        else{
+            return edgeIndicators_[edge];// * sFac;
+        }
     }
 }
 
@@ -236,6 +251,7 @@ mergeEdges(
 
     la = la && ld;
 
+    eHist_[aliveEdge].merge(eHist_[deadEdge]);
 
     edgeIndicators_[aliveEdge] = (sa*edgeIndicators_[aliveEdge] + sd*edgeIndicators_[deadEdge])/s;
     edgeSizes_[aliveEdge] = s;

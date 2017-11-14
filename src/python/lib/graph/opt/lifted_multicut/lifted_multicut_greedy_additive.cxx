@@ -10,6 +10,7 @@
 #include "nifty/python/graph/opt/lifted_multicut/lifted_multicut_objective.hxx"
 #include "nifty/python/graph/opt/lifted_multicut/export_lifted_multicut_solver.hxx"
 
+
 namespace py = pybind11;
 
 PYBIND11_DECLARE_HOLDER_TYPE(T, std::shared_ptr<T>);

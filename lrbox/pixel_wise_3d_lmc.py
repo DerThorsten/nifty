@@ -64,9 +64,6 @@ class Fuse3D(object):
 
 
 
-
-
-
 if __name__ == "__main__":
 
 
@@ -84,6 +81,26 @@ if __name__ == "__main__":
 
     isbi_obj_0 = isbi_obj.z_objective(z=0)
 
+
+
+    GridGraphObj = nlmc.LiftedMulticutObjectiveUndirectedGridGraph3DSimpleNh
+
+
+    greedy_factory = GridGraphObj.liftedMulticutGreedyAdditiveFactory()
+    kl_factory = GridGraphObj.liftedMulticutKernighanLinFactory()
+    fusion_factory = GridGraphObj.fusionMoveBasedFactory()
+
+    factory = GridGraphObj.chainedSolversFactory([
+        greedy_factory,
+        kl_factory,
+        fusion_factory
+    ])
+    res = isbi_obj_0.optimize(factory)
+
+
+
+    pylab.imshow(res)
+    pylab.show()
 
     sys.exit(0)
 

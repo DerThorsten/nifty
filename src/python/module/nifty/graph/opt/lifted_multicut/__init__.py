@@ -5,6 +5,8 @@ from functools import partial
 from ..multicut import ilpSettings
 from .. import Configuration
 
+import numpy
+
 __all__ = []
 for key in __lifted_multicut.__dict__.keys():
     __all__.append(key)
@@ -25,15 +27,22 @@ class PixelWiseLmcObjective(object):
         if(self.offsets.shape[1] == 2):
             assert weights.shape[2] == offsets.shape[0]
             self.shape = weights.shape[0:2]
+            self.n_variables = self.shape[0]*self.shape[1]
             self.ndim = 2
             self._obj = PixelWiseLmcObjective2D(self.weights, self.offsets)
         elif (self.offsets.shape[1] == 3):
             self.shape = weights.shape[0:3]
+            self.n_variables = self.shape[0]*self.shape[1]*self.shape[2]
             self.ndim = 3
             assert weights.shape[3] == offsets.shape[0]
             self._obj = PixelWiseLmcObjective3D(self.weights, self.offsets)
         else:
             raise NotImplementedError("PixelWiseLmcObjective is only implemented for 2D and 3D images")
+
+    def optimize(self,factory, labels=None):
+        if labels is None:
+            labels = numpy.arange(self.n_variables).reshape(self.shape)
+        return self._obj.optimize(factory, labels)
 
     def evaluate(self, labels):
         return self._obj.evaluate(labels)
@@ -302,6 +311,9 @@ __extendLiftedMulticutObj(LiftedMulticutObjectiveUndirectedGraph,
     "LiftedMulticutObjectiveUndirectedGraph")
 
 __extendLiftedMulticutObj(LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh,
+    "LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh")
+
+__extendLiftedMulticutObj(LiftedMulticutObjectiveUndirectedGridGraph3DSimpleNh,
     "LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh")
 
 del __extendLiftedMulticutObj

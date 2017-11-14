@@ -23,6 +23,8 @@ namespace lifted_multicut{
 
     ///\cond
     namespace detail_plmc{
+
+
         template<std::size_t DIM>
         struct EvalHelper;
 
@@ -60,7 +62,6 @@ namespace lifted_multicut{
             }
         };
 
-
         template<>
         struct EvalHelper<3>{
             template<class OBJ, class D_LABELS>
@@ -80,6 +81,7 @@ namespace lifted_multicut{
                 for(int p2=0; p2<shape[2]; ++p2)
                 {
                     const auto label_p = labels(p0, p1, p2);
+
                     for(int offset_index=0; offset_index<n_offsets; ++offset_index){  
                         const int q0 = p0 + offsets(offset_index, 0);
                         const int q1 = p1 + offsets(offset_index, 1);
@@ -96,6 +98,79 @@ namespace lifted_multicut{
                     }
                 }
                 return e;
+            }
+        };
+
+
+        template<std::size_t DIM>
+        struct FillObjHelper;
+
+        template<>
+        struct FillObjHelper<2>{
+
+            template<class OBJ, class GG_OBJ>
+            static auto fill(
+                const OBJ & obj,
+                GG_OBJ & gridGraphObj
+            ){
+
+                const auto & weights = obj.weights();
+                const auto & offsets = obj.offsets();
+                const auto & shape = obj.shape();
+                const auto & n_offsets = obj.n_offsets();
+                auto node_p = 0;
+                for(int p0=0; p0<shape[0]; ++p0)
+                for(int p1=0; p1<shape[1]; ++p1){
+                    for(int offset_index=0; offset_index<n_offsets; ++offset_index){  
+                        const int q0 = p0 + offsets(offset_index, 0);
+                        const int q1 = p1 + offsets(offset_index, 1);
+                        if(q0 >= 0 && q0 < shape[0] && 
+                           q1 >= 0 && q1 < shape[1] 
+                        ){
+                            const auto node_q = q0*shape[1] + q1;
+                            const auto e = weights(p0, p1, offset_index);
+                            gridGraphObj.setCost(node_p, node_q, e);                            
+                        }
+                    }
+                    ++node_p;
+                }
+            }
+        };
+
+
+        template<>
+        struct FillObjHelper<3>{
+            template<class OBJ, class GG_OBJ>
+            static auto fill(
+                const OBJ & obj,
+                GG_OBJ & gridGraphObj
+            ){
+
+                const auto & weights = obj.weights();
+                const auto & offsets = obj.offsets();
+                const auto & shape = obj.shape();
+                const auto & n_offsets = obj.n_offsets();
+
+                auto node_p = 0;
+                for(int p0=0; p0<shape[0]; ++p0)
+                for(int p1=0; p1<shape[1]; ++p1)
+                for(int p2=0; p2<shape[2]; ++p2){
+                    for(int offset_index=0; offset_index<n_offsets; ++offset_index){  
+                        const int q0 = p0 + offsets(offset_index, 0);
+                        const int q1 = p1 + offsets(offset_index, 1);
+                        const int q2 = p2 + offsets(offset_index, 2);
+                        if(q0 >= 0 && q0 < shape[0] && 
+                           q1 >= 0 && q1 < shape[1] && 
+                           q2 >= 0 && q2 < shape[2]
+                        ){
+                            const auto node_q = q0*shape[1]*shape[2] + q1*shape[2] + q2;
+                            const auto e = weights(p0, p1, p2, offset_index);
+                            gridGraphObj.setCost(node_p, node_q, e);                            
+                        }
+                    }
+                    ++node_p;
+                }
+
             }
         };
     }
@@ -212,7 +287,52 @@ namespace lifted_multicut{
             const xt::xexpression<D_LABELS> & e_labels
         )const{
 
-        }
+            const auto & labels = e_labels.derived_cast();
+
+
+            nifty::array::StaticArray<int, DIM>  shape;
+            std::copy(shape_.begin(), shape_.end(), shape.begin());
+
+            GraphType gridGraph(shape);
+            ObjectiveType gridGraphObj(gridGraph);
+
+
+            detail_plmc::FillObjHelper<DIM>::fill(*this, gridGraphObj);
+            NodeLabels gridGraphNodeLabels(gridGraph);
+
+            auto node=0;
+            for(auto l : labels){
+                gridGraphNodeLabels[node] = l;
+                ++node;
+            }
+
+
+            auto solver = factory->create(gridGraphObj);
+
+            nifty::graph::opt::common::VerboseVisitor<BaseType> visitor;
+
+
+
+
+            solver->optimize(gridGraphNodeLabels, &visitor);
+            delete solver;
+
+            typename xt::xtensor<uint64_t, DIM>::shape_type res_shape;
+            std::copy(shape_.begin(), shape_.end(), res_shape.begin());
+
+            xt::xtensor<uint64_t, DIM> resultArray(res_shape);
+
+            node=0;
+            for(auto & resLabel : resultArray){
+                resLabel = gridGraphNodeLabels[node];
+                ++node;
+            }
+            return resultArray;
+        }   
+
+
+
+
     private:
 
         xt::xtensor<int,       2, xt::layout_type::row_major> offsets_;
@@ -965,6 +1085,8 @@ namespace lifted_multicut{
 
 
             nifty::graph::opt::common::VerboseVisitor<CCBaseType> visitor;
+
+
             solver->optimize(cc_node_labels, nullptr);
             auto e_res = cc_obj.evalNodeLabels(cc_node_labels);
             delete solver;  

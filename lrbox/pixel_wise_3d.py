@@ -40,6 +40,8 @@ def makeLongRangGridGraph(shape, offsets, affinities):
 if __name__ == "__main__":
 
 
+    mode = "test"
+
     # the offsets
     offsets = numpy.array([
     [-1, 0, 0], [0, -1, 0], [0, 0, -1],                  # direct 3d nhood for attractive edges
@@ -52,10 +54,10 @@ if __name__ == "__main__":
     print("offsets", offsets.shape)
 
 
-    # the test data
-    affF = "/home/tbeier/nice_probs/isbi_test_offsetsV4_3d_meantda_damws2deval_final.h5"
+    # the data
+    affF = "/home/tbeier/nice_probs/isbi_%s_offsetsV4_3d_meantda_damws2deval_final.h5"%mode
     affF = h5py.File(affF)
-    aff = affF['data'][:,10:16,0:512,0:512]
+    aff = affF['data'][:,:,:,:]
     assert aff.shape[0] == n_offsets
     affF.close()
     shape = aff.shape[1:4]
@@ -64,10 +66,11 @@ if __name__ == "__main__":
 
     # load raw
     import skimage.io
-    raw_path = "/home/tbeier/src/nifty/src/python/examples/multicut/NaturePaperDataUpl/ISBI2012/raw_test.tif"
-    #raw_path = '/home/tbeier/src/nifty/mysandbox/NaturePaperDataUpl/ISBI2012/raw_test.tif'
+    raw_path = "/home/tbeier/src/nifty/src/python/examples/multicut/NaturePaperDataUpl/ISBI2012/raw_%s.tif"%mode
+    #raw_path = '/home/tbeier/src/nifty/mysandbox/NaturePaperDataUpl/ISBI2012/raw_train.tif'
     raw = skimage.io.imread(raw_path)
-    raw = raw[10:16,0:512,0:512]
+    affF = "/home/tbeier/nice_probs/isbi_%s_offsetsV4_3d_meantda_damws2deval_final.h5"%mode
+    raw = raw[:,:,:]
     #raw = numpy.rollaxis(raw ,0,3)
 
 
@@ -82,38 +85,44 @@ if __name__ == "__main__":
 
 
 
+    with nifty.Timer("time everything"):
     
 
-    g, affinities, offset_index = makeLongRangGridGraph(shape=shape,offsets=offsets, affinities=aff    )
-    print(g,affinities.shape, offset_index.shape)
-    isLiftedEdge = offset_index.astype('uint8')
+        g, affinities, offset_index = makeLongRangGridGraph(shape=shape,offsets=offsets, affinities=aff    )
+        print(g,affinities.shape, offset_index.shape)
+        isLiftedEdge = offset_index.astype('uint8')
 
-    w = numpy.where(offset_index<=2)
-    isLiftedEdge[:] = 1
-    isLiftedEdge[w] = 0 
-
-
-    edgeSizes = numpy.ones(g.numberOfEdges, dtype='float32')
-    nodeSizes = numpy.ones(g.numberOfNodes, dtype='float32')
-    aff = numpy.require(aff, dtype='float32')
+        w = numpy.where(offset_index<=2)
+        isLiftedEdge[:] = 1
+        isLiftedEdge[w] = 0 
 
 
-    print("affminmax", affinities.min(), affinities.max())
-
-    clusterPolicy = nifty.graph.agglo.liftedGraphEdgeWeightedClusterPolicy(graph=g,
-        edgeIndicators=affinities, edgeSizes=edgeSizes, isLiftedEdge=isLiftedEdge,  nodeSizes=nodeSizes)
-
-
-    # run agglomerative clustering
-    agglomerativeClustering = nifty.graph.agglo.agglomerativeClustering(clusterPolicy) 
-    agglomerativeClustering.run(True,1000)
-    nodeSeg = agglomerativeClustering.result()
+        edgeSizes = numpy.ones(g.numberOfEdges, dtype='float32')
+        nodeSizes = numpy.ones(g.numberOfNodes, dtype='float32')
+        aff = numpy.require(aff, dtype='float32')
 
 
-    nodeSeg = nodeSeg.reshape(shape)
+        print("affminmax", affinities.min(), affinities.max())
+
+        clusterPolicy = nifty.graph.agglo.liftedGraphEdgeWeightedClusterPolicy(graph=g,
+            edgeIndicators=affinities, edgeSizes=edgeSizes, isLiftedEdge=isLiftedEdge,  nodeSizes=nodeSizes)
+
+
+        # run agglomerative clustering
+        agglomerativeClustering = nifty.graph.agglo.agglomerativeClustering(clusterPolicy) 
+        agglomerativeClustering.run(True,1000)
+        nodeSeg = agglomerativeClustering.result()
+
+
+        nodeSeg = nodeSeg.reshape(shape)
 
 
 
-    pylab.imshow(nifty.segmentation.segmentOverlay(raw[2,:,:], 
-        nifty.segmentation.connectedComponents(nodeSeg[2,:,:]),beta=0.15, thin=False))
+    # write result
+    out_file = h5py.File("%s_aggl_median_delayed_lifted.h5"%mode,"w")
+    out_file['data'] = nodeSeg
+    out_file.close()
+
+    pylab.imshow(nifty.segmentation.segmentOverlay(raw[14,:,:], 
+        nifty.segmentation.connectedComponents(nodeSeg[14,:,:]),beta=0.15, thin=False))
     pylab.show()
