@@ -92,7 +92,7 @@ void LiftedNh<RAG>::initLiftedNh(
     //
     // iterate over the links and insert the corresponding uv pairs into the NH
     //
-    parallel::parallel_foreach(threadpool, nLinks, [&](int tid, int linkId){
+    parallel::parallel_foreach(threadpool, nLinks, [&](int tid, size_t linkId){
 
         // the coordiantes we will need
         Coord4 affCoord;
@@ -100,6 +100,7 @@ void LiftedNh<RAG>::initLiftedNh(
 
         fakeAffinities.indexToCoordinates(linkId, affCoord.begin());
         auto channelId = affCoord[0];
+
         const auto & offset = offsets_[channelId];
 
         bool outOfRange = false;
@@ -132,6 +133,7 @@ void LiftedNh<RAG>::initLiftedNh(
             adjacency[u].insert(v);
         }
     });
+
     BaseType::mergeAdjacencies(threadAdjacencies, threadpool);
 }
 

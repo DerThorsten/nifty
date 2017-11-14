@@ -251,7 +251,7 @@ void accumulateLongRangeAffninitiesWithAccChain(
     size_t nLinks = affinities.size();
     // iterate over all affinity links and accumulate the associated
     // affinity edges
-    parallel_foreach(threadpool, nLinks, [&](int tid, int linkId) {
+    parallel_foreach(threadpool, nLinks, [&](int tid, size_t linkId) {
 
         // define all the coordinates we will need
         Coord4 affCoord;
