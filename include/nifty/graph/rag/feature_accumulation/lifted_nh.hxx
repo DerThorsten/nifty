@@ -54,7 +54,8 @@ void LiftedNh<RAG>::initLiftedNh(
     const auto & labels = rag.labelsProxy().labels();
 
     // set the number of nodes in the graph == number of labels
-    BaseType::assign(rag.labelsProxy().numberOfLabels());
+    auto numberOfLabels = rag.labelsProxy().numberOfLabels();
+    BaseType::assign(numberOfLabels);
     Coord3 shape;
     for(size_t d = 0; d < 3; ++d) {
         shape[d] = labels.shape(d);
@@ -62,8 +63,8 @@ void LiftedNh<RAG>::initLiftedNh(
 
     // TODO parallelize properly
     // threadpool and actual number of threads
-    //nifty::parallel::ThreadPool threadpool(numberOfThreads);
-    //const size_t nThreads = threadpool.nThreads();
+    nifty::parallel::ThreadPool threadpool(numberOfThreads);
+    const size_t nThreads = threadpool.nThreads();
 
     // number of links = number of channels * number of pixels
     size_t nLinks = offsets_.size() * labels.size();
@@ -79,17 +80,27 @@ void LiftedNh<RAG>::initLiftedNh(
     //marray::Marray<int8_t> fakeAffinities(marray::InitializationSkipping, affShape.begin(), affShape.end());
     marray::Marray<int8_t> fakeAffinities(affShape.begin(), affShape.end());
 
+    // per thread data for adjacencies
+    struct PerThread{
+        std::vector< container::BoostFlatSet<uint64_t> > adjacency;
+    };
+    std::vector<PerThread> threadAdjacencies(nThreads);
+    parallel::parallel_foreach(threadpool, nThreads, [&](int tid, int threadId) {
+        threadAdjacencies[threadId].adjacency.resize(numberOfLabels);
+    });
+
     //
     // iterate over the links and insert the corresponding uv pairs into the NH
     //
-    Coord4 affCoord;
-    Coord3 cU, cV;
-    size_t channelId;
-    std::vector<int> offset;
-    for(size_t linkId = 0; linkId < nLinks; ++linkId) {
+    parallel::parallel_foreach(threadpool, nLinks, [&](int tid, int linkId){
+
+        // the coordiantes we will need
+        Coord4 affCoord;
+        Coord3 cU, cV;
+
         fakeAffinities.indexToCoordinates(linkId, affCoord.begin());
-        channelId = affCoord[0];
-        offset = offsets_[channelId];
+        auto channelId = affCoord[0];
+        const auto & offset = offsets_[channelId];
 
         bool outOfRange = false;
         for(size_t d = 0; d < 3; ++d) {
@@ -102,7 +113,7 @@ void LiftedNh<RAG>::initLiftedNh(
             }
         }
         if(outOfRange) {
-            continue;
+            return;
         }
 
         auto u = labels(cU.asStdArray());
@@ -114,14 +125,14 @@ void LiftedNh<RAG>::initLiftedNh(
             // only add an edge to the lifted nh if it is not
             // in the local one
             if(rag.findEdge(u, v) != -1) {
-                continue;
+                return;
             }
-
-            BaseType::insertEdge(
-                std::min(u, v), std::max(u, v)
-            );
+            auto & adjacency = threadAdjacencies[tid].adjacency;
+            adjacency[v].insert(u);
+            adjacency[u].insert(v);
         }
-    }
+    });
+    BaseType::mergeAdjacencies(threadAdjacencies, threadpool);
 }
 
 

@@ -24,7 +24,8 @@ void accumulateAffninitiesWithAccChain(
     typedef typename vigra::MultiArrayShape<3>::type VigraCoord;
 
     typedef EDGE_ACC_CHAIN EdgeAccChainType;
-    typedef std::vector<EdgeAccChainType>   AccChainVectorType;
+    typedef std::vector<EdgeAccChainType> AccChainVectorType;
+    typedef std::vector<AccChainVectorType> ThreadAccChainVectorType;
 
     const auto & labels = rag.labelsProxy().labels();
 
@@ -39,38 +40,43 @@ void accumulateAffninitiesWithAccChain(
     // only single threaded for now
     // accumulator chain vectors for local and lifted edges
     size_t nEdges = rag.edgeIdUpperBound() + 1;
-    AccChainVectorType edgeAccumulators(nEdges);
+    auto nThreads = threadpool.nThreads();
+    ThreadAccChainVectorType edgeAccumulators(nThreads);
 
-    // set the histogram options
-    if(accOptions.setMinMax){
-        vigra::HistogramOptions histogram_opt;
-        histogram_opt = histogram_opt.setMinMax(accOptions.minVal, accOptions.maxVal);
-        // for local accumumlators
-        parallel::parallel_foreach(threadpool, nEdges,
-        [&](int tid, int edgeId){
-            edgeAccumulators[edgeId].setHistogramOptions(histogram_opt);
-        });
-    }
+    vigra::HistogramOptions histogram_opt;
+    histogram_opt = histogram_opt.setMinMax(accOptions.minVal, accOptions.maxVal);
 
-    // axes and reanges from the lifted nhood
-    // TODO don't hardcode this
+    parallel::parallel_foreach(threadpool, nThreads,
+    [&](int tid, int threadId){
+        auto & thisAccumulators = edgeAccumulators[threadId];
+        thisAccumulators = AccChainVectorType(nEdges);
+        // set the histogram options
+        if(accOptions.setMinMax){
+            for(size_t edgeId; edgeId < nEdges; ++edgeId) {
+                thisAccumulators[edgeId].setHistogramOptions(histogram_opt);
+            }
+        }
+    });
+
+    // axes and reanges for local nhood
+    // TODO don't hardcode the affinity direction
     std::array<int, 3> axes({0, 1, 2});
     std::array<int, 3> ranges({-1, -1, -1});
 
-    Coord4 affCoord;
-    Coord3 cU, cV;
-    VigraCoord vc;
-    int axis, range;
     int pass = 1;
 
     size_t nLinks = affinities.size();
     // iterate over all affinity links and accumulate the associated
     // affinity edges
-    for(size_t linkId = 0; linkId < nLinks; ++linkId) {
+    parallel_foreach(threadpool, nLinks, [&](int tid, int linkId) {
+
+        Coord4 affCoord;
+        Coord3 cU, cV;
+        VigraCoord vc;
 
         affinities.indexToCoordinates(linkId, affCoord.begin());
-        axis  = axes[affCoord[0]];
-        range = ranges[affCoord[0]];
+        auto axis  = axes[affCoord[0]];
+        auto range = ranges[affCoord[0]];
 
         for(int d = 0; d < 3; ++d) {
             cU[d] = affCoord[d+1];
@@ -79,7 +85,7 @@ void accumulateAffninitiesWithAccChain(
         cV[axis] += range;
         // range check
         if(cV[axis] >= shape[axis] || cV[axis] < 0) {
-            continue;
+            return;
         }
         auto u = labels(cU.asStdArray());
         auto v = labels(cV.asStdArray());
@@ -87,6 +93,7 @@ void accumulateAffninitiesWithAccChain(
         // only do stuff if the labels are different
         if(u != v) {
 
+            auto & thisAccumulators = edgeAccumulators[tid];
             // we just update the vigra coord of label u
             for(int d = 0; d < 3; ++d) {
                 vc = cU[d];
@@ -94,10 +101,20 @@ void accumulateAffninitiesWithAccChain(
 
             auto val = affinities(affCoord.asStdArray());
             auto e = rag.findEdge(u, v);
-            edgeAccumulators[e].updatePassN(val, vc, pass);
+            thisAccumulators[e].updatePassN(val, vc, pass);
         }
-    }
-    f(edgeAccumulators);
+    });
+
+    // merge accumulators
+    auto & resultAccVec = edgeAccumulators.front();
+    parallel::parallel_foreach(threadpool, resultAccVec.size(),
+    [&](const int tid, const int64_t edge){
+        for(auto t=1; t<nThreads; ++t){
+            resultAccVec[edge].merge((edgeAccumulators[t])[edge]);
+        }
+    });
+
+    f(resultAccVec);
 }
 
 
@@ -183,6 +200,7 @@ void accumulateLongRangeAffninitiesWithAccChain(
 
     typedef EDGE_ACC_CHAIN EdgeAccChainType;
     typedef std::vector<EdgeAccChainType>   AccChainVectorType;
+    typedef std::vector<AccChainVectorType> ThreadAccChainVectorType;
 
     const auto & labels = rag.labelsProxy().labels();
 
@@ -194,47 +212,55 @@ void accumulateLongRangeAffninitiesWithAccChain(
         affShape[d] = affinities.shape(d+1);
     }
 
-    // only single threaded for now
-    // accumulator chain vectors for local and lifted edges
     size_t nLocal = rag.edgeIdUpperBound() + 1;
     size_t nLifted = lnh.edgeIdUpperBound() + 1;
-    AccChainVectorType localEdgeAccumulators(nLocal);
-    AccChainVectorType liftedEdgeAccumulators(nLifted);
+    auto nThreads = threadpool.nThreads();
 
-    // set the histogram options
-    if(accOptions.setMinMax){
-        vigra::HistogramOptions histogram_opt;
-        histogram_opt = histogram_opt.setMinMax(accOptions.minVal, accOptions.maxVal);
-        // for local accumumlators
-        parallel::parallel_foreach(threadpool, nLocal,
-        [&](int tid, int edgeId){
-            localEdgeAccumulators[edgeId].setHistogramOptions(histogram_opt);
-        });
-        // for lifted accumumlators
-        parallel::parallel_foreach(threadpool, nLifted,
-        [&](int tid, int edgeId){
-            liftedEdgeAccumulators[edgeId].setHistogramOptions(histogram_opt);
-        });
-    }
+    vigra::HistogramOptions histogram_opt;
+    histogram_opt = histogram_opt.setMinMax(accOptions.minVal, accOptions.maxVal);
 
-    // axes and reanges from the lifted nhood
+    // initialize local acc chain vectors in parallel
+    auto localEdgeAccumulators = ThreadAccChainVectorType(nThreads);
+    parallel::parallel_foreach(threadpool, nThreads,
+    [&](int tid, int threadId) {
+        auto & thisAcc = localEdgeAccumulators[threadId];
+        thisAcc = AccChainVectorType(nLocal);
+        if(accOptions.setMinMax){
+            for(size_t edgeId; edgeId < nLocal; ++edgeId) {
+                thisAcc[edgeId].setHistogramOptions(histogram_opt);
+            }
+        }
+    });
+
+    // initialize lifted acc chain vectors in parallel
+    auto liftedEdgeAccumulators = ThreadAccChainVectorType(nThreads);
+    parallel::parallel_foreach(threadpool, nThreads,
+    [&](int tid, int threadId) {
+        auto & thisAcc = liftedEdgeAccumulators[threadId];
+        thisAcc = AccChainVectorType(nLifted);
+        if(accOptions.setMinMax){
+            for(size_t edgeId; edgeId < nLifted; ++edgeId) {
+                thisAcc[edgeId].setHistogramOptions(histogram_opt);
+            }
+        }
+    });
+
+    // offsets from the lifted nhood
     const auto & offsets = lnh.offsets();
-
-    Coord4 affCoord;
-    Coord3 cU, cV;
-    VigraCoord vc;
     int pass = 1;
-
     size_t nLinks = affinities.size();
-    std::vector<int> offset;
-    size_t channelId;
     // iterate over all affinity links and accumulate the associated
     // affinity edges
-    for(size_t linkId = 0; linkId < nLinks; ++linkId) {
+    parallel_foreach(threadpool, nLinks, [&](int tid, int linkId) {
+
+        // define all the coordinates we will need
+        Coord4 affCoord;
+        Coord3 cU, cV;
+        VigraCoord vc;
 
         affinities.indexToCoordinates(linkId, affCoord.begin());
-        channelId = affCoord[0];
-        offset = offsets[channelId];
+        size_t channelId = affCoord[0];
+        const auto & offset = offsets[channelId];
 
         bool outOfRange = false;
         for(size_t d = 0; d < 3; ++d) {
@@ -247,7 +273,7 @@ void accumulateLongRangeAffninitiesWithAccChain(
             }
         }
         if(outOfRange) {
-            continue;
+            return;
         }
 
         auto u = labels(cU.asStdArray());
@@ -264,17 +290,35 @@ void accumulateLongRangeAffninitiesWithAccChain(
             auto val = affinities(affCoord.asStdArray());
             auto e = rag.findEdge(u, v);
             if(e != -1) {
-                localEdgeAccumulators[e].updatePassN(val, vc, pass);
+                auto & thisAccumulators = localEdgeAccumulators[tid];
+                thisAccumulators[e].updatePassN(val, vc, pass);
             } else {
+                auto & thisAccumulators = liftedEdgeAccumulators[tid];
                 e = lnh.findEdge(u, v);
-                // TODO assert that this really exists ?!
-                liftedEdgeAccumulators[e].updatePassN(val, vc, pass);
+                thisAccumulators[e].updatePassN(val, vc, pass);
             }
         }
 
-    }
-    f_local(localEdgeAccumulators);
-    f_lifted(liftedEdgeAccumulators);
+    });
+
+    // merge the accumulators in parallel
+    auto & localResultAccVec = localEdgeAccumulators.front();
+    parallel::parallel_foreach(threadpool, localResultAccVec.size(),
+    [&](const int tid, const int64_t edge){
+        for(auto t=1; t<nThreads; ++t){
+            localResultAccVec[edge].merge((localEdgeAccumulators[t])[edge]);
+        }
+    });
+    f_local(localResultAccVec);
+
+    auto & liftedResultAccVec = liftedEdgeAccumulators.front();
+    parallel::parallel_foreach(threadpool, liftedResultAccVec.size(),
+    [&](const int tid, const int64_t edge){
+        for(auto t=1; t<nThreads; ++t){
+            liftedResultAccVec[edge].merge((liftedEdgeAccumulators[t])[edge]);
+        }
+    });
+    f_lifted(liftedResultAccVec);
 }
 
 
