@@ -4,7 +4,7 @@ from ._lifted_multicut import *
 from functools import partial
 from ..multicut import ilpSettings
 from .. import Configuration
-
+import nifty.tools
 import numpy
 
 __all__ = []
@@ -43,6 +43,10 @@ class PixelWiseLmcObjective(object):
         if labels is None:
             labels = numpy.arange(self.n_variables).reshape(self.shape)
         return self._obj.optimize(factory, labels)
+
+
+
+
 
     def evaluate(self, labels):
         return self._obj.evaluate(labels)

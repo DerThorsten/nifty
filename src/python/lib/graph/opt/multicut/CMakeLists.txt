@@ -31,3 +31,5 @@ addPythonModule(
     LIBRRARIES
         ${MOD_LIBS}
 )
+
+target_link_libraries(_multicut PUBLIC ${MOD_LIBS} )

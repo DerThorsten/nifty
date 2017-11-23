@@ -61,6 +61,27 @@ UndirectedGraph.LiftedMulticutObjective = lifted_multicut.LiftedMulticutObjectiv
 
 
 
+
+def randomGraph(numberOfNodes, numberOfEdges):
+    g = UndirectedGraph(numberOfNodes)
+
+    uv = numpy.random.randint(low=0, high=numberOfNodes-1, size=numberOfEdges*2)
+    uv = uv.reshape([-1,2])
+
+    where = numpy.where(uv[:,0]!=uv[:,1])[0]
+    uv = uv[where,:]
+
+
+    g.insertEdges(uv)
+    while( g.numberOfEdges < numberOfEdges):
+        u,v = numpy.random.randint(low=0, high=numberOfNodes-1, size=2)
+        if u != v:
+            g.insertEdge(int(u),int(v))
+    return g
+
+
+
+
 class EdgeContractionGraphCallback(EdgeContractionGraphCallbackImpl):
     def __init__(self):
         super(EdgeContractionGraphCallback, self).__init__()

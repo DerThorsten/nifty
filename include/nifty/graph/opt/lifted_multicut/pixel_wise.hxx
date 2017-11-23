@@ -284,7 +284,8 @@ namespace lifted_multicut{
         template<class D_LABELS>
         auto optimize(
             LmcFactoryBaseSharedPtr factory,
-            const xt::xexpression<D_LABELS> & e_labels
+            const xt::xexpression<D_LABELS> & e_labels,
+            const bool verbose = false
         )const{
 
             const auto & labels = e_labels.derived_cast();
@@ -309,12 +310,13 @@ namespace lifted_multicut{
 
             auto solver = factory->create(gridGraphObj);
 
-            nifty::graph::opt::common::VerboseVisitor<BaseType> visitor;
-
-
-
-
-            solver->optimize(gridGraphNodeLabels, &visitor);
+            if(verbose){
+                nifty::graph::opt::common::VerboseVisitor<BaseType> visitor;
+                solver->optimize(gridGraphNodeLabels, &visitor);
+            }
+            else{
+                solver->optimize(gridGraphNodeLabels, nullptr);
+            }
             delete solver;
 
             typename xt::xtensor<uint64_t, DIM>::shape_type res_shape;

@@ -16,7 +16,7 @@ def affinities_to_weights(affinities, offsets):
 
     weights = affinities.copy()
     weights[:]       =        -2.0*(affinities[:]-0.5)
-    weights[...,0:3] =  1.0 -  affinities[...,0:3]
+    weights[...,0:3] =  (1.0 -  affinities[...,0:3]) + 0
 
     # local z 
     weights[...,0]*=0.2

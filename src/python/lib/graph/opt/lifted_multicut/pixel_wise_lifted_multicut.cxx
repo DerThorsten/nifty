@@ -55,12 +55,14 @@ namespace lifted_multicut{
             [](
                 const ObjType & self,
                 typename ObjType::LmcFactoryBaseSharedPtr factory,
-                xt::pytensor<uint64_t,  DIM> labels
+                xt::pytensor<uint64_t,  DIM> labels,
+                const bool verbose
             ){
-                return self.optimize(factory, labels);
+                return self.optimize(factory, labels, verbose);
             },
                 py::arg("factory"),
-                py::arg("labels")
+                py::arg("labels"),
+                py::arg("verbose") = false
             )
         ;
 

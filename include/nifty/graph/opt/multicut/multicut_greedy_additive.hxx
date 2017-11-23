@@ -36,7 +36,7 @@ namespace multicut{
             bool addNoise {false};
             double sigma{1.0};
 
-            int visitNth{100};
+            int visitNth{1};
         };
 
 

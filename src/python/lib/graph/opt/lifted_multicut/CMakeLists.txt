@@ -8,7 +8,7 @@ SET(MOD_SOURCES
         lifted_multicut_greedy_additive.cxx
         lifted_multicut_kernighan_lin.cxx
         lifted_multicut_ilp.cxx
-        #lifted_multicut_andres_kernighan_lin.cxx
+        lifted_multicut_andres_kernighan_lin.cxx
         lifted_multicut_andres_greedy_additive.cxx
         fusion_move_based.cxx
         lifted_graph_features.cxx
@@ -37,3 +37,5 @@ addPythonModule(
 target_link_libraries(_lifted_multicut PUBLIC
     ${HDF5_LIBRARIES}
 )
+
+target_link_libraries(_lifted_multicut PUBLIC ${MOD_LIBS} )
