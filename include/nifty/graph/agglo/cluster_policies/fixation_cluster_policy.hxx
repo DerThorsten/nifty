@@ -110,7 +110,6 @@ public:
         nonLinkConstraints_[uv.first].insert(uv.second);
         nonLinkConstraints_[uv.second].insert(uv.first);
 
-        // we had good stuff when oe was called edge (bug which was good???)
         for(auto node: {u,v}){
             for(const auto adj : edgeContractionGraph_.adjacency(node)){
                 const auto oe = adj.edge();
@@ -205,12 +204,11 @@ template<class GRAPH, bool ENABLE_UCM>
 inline bool 
 FixationClusterPolicy<GRAPH, ENABLE_UCM>::
 isDone()     {
-    if(edgeContractionGraph_.numberOfNodes() <= settings_.numberOfNodesStop || pq_.empty() || pq_.topPriority() < 0.5){
+    if(edgeContractionGraph_.numberOfNodes() <= settings_.numberOfNodesStop || pq_.empty() || pq_.topPriority() < -0.0000001){
         return  true;
     }
     else{
-        while(pq_.topPriority() > 0.5 ){
-        //while(pq_.topPriority() > -0.0000001 ){
+        while(pq_.topPriority() > -0.0000001 ){
             const auto nextActioneEdge = pq_.top();
             if(isMergeEdge_[nextActioneEdge]){
                 if(this->isMergeAllowed(nextActioneEdge)){
@@ -240,11 +238,7 @@ pqActionPrio(
 ) const {
 
     if(isMergeEdge_[edge]){
-        const auto uv = edgeContractionGraph_.uv(edge);
-        const auto nu = nonLinkConstraints_[uv.first].size();
-        const auto nv = nonLinkConstraints_[uv.second].size();
-
-        return mergePrios_[edge] + 0.1*float(nu+nv);
+        return mergePrios_[edge];//+ 0.1*float(nu+nv);
     }
     else{
         return notMergePrios_[edge];
@@ -317,11 +311,11 @@ mergeEdges(
         aliveIsMergeEdge = mergePrios_[aliveEdge] >= notMergePrios_[aliveEdge];
     }
 
-    //mergePrios_[aliveEdge]    = std::max(mergePrios_[aliveEdge]    , mergePrios_[deadEdge]);
-    //notMergePrios_[aliveEdge] = std::max(notMergePrios_[aliveEdge] , notMergePrios_[deadEdge]);
+    mergePrios_[aliveEdge]    = std::max(mergePrios_[aliveEdge]    , mergePrios_[deadEdge]);
+    notMergePrios_[aliveEdge] = std::max(notMergePrios_[aliveEdge] , notMergePrios_[deadEdge]);
     
-    mergePrios_[aliveEdge]    = (sa*mergePrios_[aliveEdge]    + sd*mergePrios_[deadEdge])/s;
-    notMergePrios_[aliveEdge] = (sa*notMergePrios_[aliveEdge] + sd*notMergePrios_[deadEdge])/s;
+    //mergePrios_[aliveEdge]    = (sa*mergePrios_[aliveEdge]    + sd*mergePrios_[deadEdge])/s;
+    //notMergePrios_[aliveEdge] = (sa*notMergePrios_[aliveEdge] + sd*notMergePrios_[deadEdge])/s;
   
     edgeSizes_[aliveEdge] = s;
 
