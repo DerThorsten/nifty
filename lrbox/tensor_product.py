@@ -57,7 +57,7 @@ if __name__ == "__main__":
     # the data
     affF = "/home/tbeier/nice_probs/isbi_%s_offsetsV4_3d_meantda_damws2deval_final.h5"%mode
     affF = h5py.File(affF)
-    aff = affF['data'][:,0:1,0:35,0:35]
+    aff = affF['data'][:,0:1,0:200,0:200]
     assert aff.shape[0] == n_offsets
     affF.close()
     shape = aff.shape[1:4]
@@ -70,7 +70,7 @@ if __name__ == "__main__":
     #raw_path = '/home/tbeier/src/nifty/mysandbox/NaturePaperDataUpl/ISBI2012/raw_train.tif'
     raw = skimage.io.imread(raw_path)
     affF = "/home/tbeier/nice_probs/isbi_%s_offsetsV4_3d_meantda_damws2deval_final.h5"%mode
-    raw = raw[0:1,0:35,0:35]
+    raw = raw[0:1,0:200,0:200]
     #raw = numpy.rollaxis(raw ,0,3)
 
 
@@ -79,15 +79,16 @@ if __name__ == "__main__":
 
 
     def do_stuff(A):
-
+        return A
         A_init = A.copy()
         Q = A.copy()
         I = scipy.sparse.identity(A.shape[0])
 
-        for x in range(20):
-
+        for x in range(2):
+            print("x",x)
             Q = A.dot(Q).dot(A.T) + I
-
+            Q.eliminate_zeros()
+            Q = Q[Q.getnnz(1)>0.0001]
         return Q
 
 
@@ -95,21 +96,32 @@ if __name__ == "__main__":
 
     g, affinities, offset_index = makeLongRangGridGraph(shape=shape,offsets=offsets, affinities=aff    )
     uv = g.uvIds()
+    u = uv[:,0]
+    v = uv[:,1]
 
     isLiftedEdge = offset_index.astype('int32')
+    w = numpy.where(offset_index<=2)
+    isLiftedEdge[:] = 1
+    isLiftedEdge[w] = 0 
 
     from scipy.sparse import coo_matrix
     n_pixels = shape[0]*shape[1]*shape[2]
     
     real_aff = 1.0 - affinities
 
+    non_zero = numpy.where(real_aff>0.00001)[0]
+    real_aff = real_aff[non_zero]
+    u = u[non_zero]
+    v = v[non_zero]
+
     real_aff2 = numpy.concatenate([real_aff,real_aff])
-    r = numpy.concatenate([uv[:,0], uv[:,1]])
-    c = numpy.concatenate([uv[:,1], uv[:,0]])
+    r = numpy.concatenate([u,v])
+    c = numpy.concatenate([v,u])
+
     A = coo_matrix((real_aff2, (r, c)), shape=(n_pixels, n_pixels)) 
     from sklearn.preprocessing import normalize
     A = normalize(A, norm='l1', axis=0)
-    A *= 0.9999
+    A *= 0.99999999
 
 
     B = do_stuff(A)
@@ -133,9 +145,10 @@ if __name__ == "__main__":
     vals -= vals.min()
     vals /= vals.max()
     vals = 1.0 - vals
+
     print(vals.min(),vals.max())
     clusterPolicy = nifty.graph.agglo.liftedGraphEdgeWeightedClusterPolicy(graph=g,
-        edgeIndicators=vals, edgeSizes=edgeSizes, isLiftedEdge=isLiftedEdge,  nodeSizes=nodeSizes)
+        edgeIndicators=affinities, edgeSizes=edgeSizes, isLiftedEdge=isLiftedEdge,  nodeSizes=nodeSizes)
 
 
     # run agglomerative clustering
@@ -149,5 +162,5 @@ if __name__ == "__main__":
 
     overlay = nifty.segmentation.segmentOverlay(raw[0,:,:],nodeSeg[0,:,:])
 
-    pylab.imshow(nodeSeg[0,:,:])
+    pylab.imshow(overlay)
     pylab.show()

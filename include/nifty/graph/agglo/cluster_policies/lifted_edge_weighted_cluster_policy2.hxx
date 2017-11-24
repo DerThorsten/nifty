@@ -164,18 +164,18 @@ template<class GRAPH, bool ENABLE_UCM>
 inline bool 
 LiftedGraphEdgeWeightedClusterPolicy<GRAPH, ENABLE_UCM>::
 isDone() const {
-    if(edgeContractionGraph_.numberOfNodes() <= 20){
+    if(edgeContractionGraph_.numberOfNodes() <= 100){
         return true;
     }
     else{
         return false;
     }
-    //if(pq_.topPriority() > 0.5){
-    //    return true;
-    //}
-    //else{
-    //    return pq_.empty();
-    //}
+    if(pq_.topPriority() > 0.5){
+       return true;
+    }
+    else{
+       return pq_.empty();
+    }
 }
 
 
