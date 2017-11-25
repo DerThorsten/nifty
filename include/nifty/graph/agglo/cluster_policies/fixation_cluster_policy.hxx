@@ -110,14 +110,14 @@ public:
         nonLinkConstraints_[uv.first].insert(uv.second);
         nonLinkConstraints_[uv.second].insert(uv.first);
 
-        for(auto node: {u,v}){
-            for(const auto adj : edgeContractionGraph_.adjacency(node)){
-                const auto oe = adj.edge();
-                if(isMergeEdge_[oe]){
-                    pq_.push(oe, this->pqActionPrio(oe));
-                }
-            }
-        }
+        //for(auto node: {u,v}){
+        //    for(const auto adj : edgeContractionGraph_.adjacency(node)){
+        //        const auto oe = adj.edge();
+        //        if(isMergeEdge_[oe]){
+        //            pq_.push(oe, this->pqActionPrio(oe));
+        //        }
+        //    }
+        //}
 
         // for(const auto ajd : edgeContractionGraph_.adjacency(u)){
 
@@ -306,17 +306,17 @@ mergeEdges(
 
     const auto deadIsMergeEdge = isMergeEdge_[deadEdge];
     auto & aliveIsMergeEdge = isMergeEdge_[aliveEdge];
-    if(deadIsMergeEdge != aliveIsMergeEdge){
-        //aliveIsMergeEdge = true;
-        aliveIsMergeEdge = mergePrios_[aliveEdge] >= notMergePrios_[aliveEdge];
-    }
-
+    
     mergePrios_[aliveEdge]    = std::max(mergePrios_[aliveEdge]    , mergePrios_[deadEdge]);
     notMergePrios_[aliveEdge] = std::max(notMergePrios_[aliveEdge] , notMergePrios_[deadEdge]);
     
     //mergePrios_[aliveEdge]    = (sa*mergePrios_[aliveEdge]    + sd*mergePrios_[deadEdge])/s;
     //notMergePrios_[aliveEdge] = (sa*notMergePrios_[aliveEdge] + sd*notMergePrios_[deadEdge])/s;
-  
+    if(deadIsMergeEdge != aliveIsMergeEdge){
+        //aliveIsMergeEdge = true;
+        aliveIsMergeEdge = mergePrios_[aliveEdge] >= notMergePrios_[aliveEdge];
+    }
+
     edgeSizes_[aliveEdge] = s;
 
     //if(aliveIsMergeEdge){
