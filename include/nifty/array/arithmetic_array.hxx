@@ -136,6 +136,17 @@ namespace array{
         BaseType & asStdArray(){
             return  static_cast< BaseType & >(*this);
         }
+
+        template<class SHAPE>
+        bool allInsideShape(const SHAPE & shape)const{
+            for(auto d=0; d<DIM; ++d){
+                const auto & val = this->operator[](d);
+                if(val<T(0) || val>=shape[d]){
+                    return false;
+                }
+            }
+            return true;
+        }
     };
 
 

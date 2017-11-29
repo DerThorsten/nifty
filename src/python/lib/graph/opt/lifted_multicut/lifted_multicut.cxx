@@ -27,7 +27,7 @@ namespace lifted_multicut{
     void exportLiftedMulticutMp(py::module &);
     void exportLiftedMulticutAndresKernighanLin(py::module &);
     void exportLiftedMulticutAndresGreedyAdditive(py::module &);
-void exportFusionMoveBased(py::module &);
+    void exportFusionMoveBased(py::module &);
     void exportLiftedGraphFeatures(py::module &);
     void exportPixelWiseLmcStuff(py::module &);
     void exportChainedSolvers(py::module &);

@@ -129,8 +129,21 @@ def undirectedGridGraph(shape, simpleNh=True):
     else:
         raise RuntimeError("currently only 2D and 3D grid graph is exposed to python")
 
-
 gridGraph = undirectedGridGraph
+
+def undirectedLongRangeGridGraph(shape, offsets):
+    offsets = numpy.require(offsets, dtype='int64')
+    shape = list(shape)
+    if len(shape) == 2:
+        G = UndirectedLongRangeGridGraph2D
+    elif len(shape) == 3:
+        G = UndirectedLongRangeGridGraph3D
+    else:
+        raise RuntimeError("wrong dimension: undirectedLongRangeGridGraph is only implemented for 2D and 3D")
+
+    return G(shape=shape, offsets=offsets)
+
+longRangeGridGraph = undirectedLongRangeGridGraph
 
 
 def drawGraph(graph, method='spring'):

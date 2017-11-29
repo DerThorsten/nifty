@@ -65,12 +65,12 @@ macro(addPythonModule)
     #message(STATUS ********Module: ${MODULE_NAME})
     #message(STATUS ********Libs: ${ADD_PY_MOD_LIBRRARIES})
 
-    ## link additional libraries
-    #target_link_libraries(_${MODULE_NAME}
-    #    PUBLIC
-    #    ${PYTHON_LIBRARIES}
-    #    ${ADD_PY_MOD_LIBRRARIES}
-    #)
+    # link additional libraries
+    target_link_libraries(_${MODULE_NAME}
+        PUBLIC
+        ${PYTHON_LIBRARIES}
+        ${ADD_PY_MOD_LIBRRARIES}
+    )
 
     # create module dir
     file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/python/${ADD_PY_MOD_NESTED_NAME})
