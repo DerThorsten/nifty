@@ -19,9 +19,9 @@ namespace agglo{
 template<
     class GRAPH,bool ENABLE_UCM
 >
-class FixationClusterPolicy2{
+class FixationClusterPolicy3{
 
-    typedef FixationClusterPolicy2<
+    typedef FixationClusterPolicy3<
         GRAPH, ENABLE_UCM
     > SelfType;
 
@@ -62,11 +62,11 @@ private:
 
 public:
 
-    template<class MERGE_PRIOS, class NOT_MERGE_PRIOS, class IS_LOCAL_EDGE, class EDGE_SIZES>
-    FixationClusterPolicy2(const GraphType &, 
+    template<class MERGE_PRIOS, class NOT_MERGE_PRIOS, class IS_MERGE_EDGE, class EDGE_SIZES>
+    FixationClusterPolicy3(const GraphType &, 
                               const MERGE_PRIOS & , 
                               const NOT_MERGE_PRIOS &,
-                              const IS_LOCAL_EDGE &,
+                              const IS_MERGE_EDGE &,
                               const EDGE_SIZES & , 
                               const SettingsType & settings = SettingsType());
 
@@ -79,7 +79,7 @@ public:
     EdgeContractionGraphType & edgeContractionGraph();
 
 private:
-    double pqMergePrio(const uint64_t edge) const;
+    double pqActionPrio(const uint64_t edge) const;
 
 public:
     // callbacks called by edge contraction graph
@@ -89,14 +89,11 @@ public:
     void contractEdgeDone(const uint64_t edgeToContract);
 
     bool isMergeAllowed(const uint64_t edge){
-        if(isLocalEdge_[edge]){
-           return isPureLocal_[edge] ? true : mergePrios_[edge] > notMergePrios_[edge];
-        }
-        else{
-            return false;
-        }
+        return !isNonLinkEdge_[edge];
     }
-    
+    void addNonLinkConstraint(const uint64_t edge){
+        isNonLinkEdge_[edge] = 1;
+    }
 
     const EdgePrioType & mergePrios() const {
         return mergePrios_;
@@ -114,18 +111,18 @@ private:
     const GraphType &   graph_;
 
 
-    NonLinkConstraints nonLinkConstraints_;
 
     EdgePrioType mergePrios_;
     EdgePrioType notMergePrios_; 
 
-    UInt8EdgeMap isLocalEdge_;
-    UInt8EdgeMap isPureLocal_;
+    UInt8EdgeMap isMergeEdge_;
+
 
     EdgeSizesType       edgeSizes_;
     SettingsType        settings_;
     
     // INTERNAL
+    UInt8EdgeMap isNonLinkEdge_;
     EdgeContractionGraphType edgeContractionGraph_;
     QueueType pq_;
 
@@ -136,72 +133,57 @@ private:
 
 
 template<class GRAPH, bool ENABLE_UCM>
-template<class MERGE_PRIOS, class NOT_MERGE_PRIOS, class IS_LOCAL_EDGE,class EDGE_SIZES>
-inline FixationClusterPolicy2<GRAPH, ENABLE_UCM>::
-FixationClusterPolicy2(
+template<class MERGE_PRIOS, class NOT_MERGE_PRIOS, class IS_MERGE_EDGE,class EDGE_SIZES>
+inline FixationClusterPolicy3<GRAPH, ENABLE_UCM>::
+FixationClusterPolicy3(
     const GraphType & graph,
     const MERGE_PRIOS & mergePrios,
     const NOT_MERGE_PRIOS & notMergePrios,
-    const IS_LOCAL_EDGE & isLocalEdge,
+    const IS_MERGE_EDGE & isMergeEdge,
     const EDGE_SIZES      & edgeSizes,
     const SettingsType & settings
 )
 :   graph_(graph),
-    nonLinkConstraints_(graph),
     mergePrios_(graph),
     notMergePrios_(graph),
-    isLocalEdge_(graph),
-    isPureLocal_(graph),
+    isMergeEdge_(graph),
     edgeSizes_(graph),
     pq_(graph.edgeIdUpperBound()+1),
     settings_(settings),
+    isNonLinkEdge_(graph, 0),
     edgeContractionGraph_(graph, *this)
 {
     //std::cout<<"constructor\n";
     graph_.forEachEdge([&](const uint64_t edge){
-        isLocalEdge_[edge] = isLocalEdge[edge];
-
-        if(isLocalEdge_[edge]){
-            notMergePrios_[edge] = 0.0;
-            mergePrios_[edge] = mergePrios[edge];
-        }
-        else{
-            notMergePrios_[edge] = notMergePrios[edge];
-            mergePrios_[edge] = 0.0;
-        }
-        isPureLocal_[edge] = isLocalEdge[edge];
+        mergePrios_[edge] = mergePrios[edge];
+        notMergePrios_[edge] = notMergePrios[edge];
+        isMergeEdge_[edge] = isMergeEdge[edge]; 
         edgeSizes_[edge] = edgeSizes[edge];
-        pq_.push(edge, this->pqMergePrio(edge));
+        pq_.push(edge, this->pqActionPrio(edge));
     });
 }
 
 template<class GRAPH, bool ENABLE_UCM>
 inline std::pair<uint64_t, double> 
-FixationClusterPolicy2<GRAPH, ENABLE_UCM>::
+FixationClusterPolicy3<GRAPH, ENABLE_UCM>::
 edgeToContractNext() const {    
     return std::pair<uint64_t, double>(edgeToContractNext_,edgeToContractNextMergePrio_) ;
 }
 
 template<class GRAPH, bool ENABLE_UCM>
 inline bool 
-FixationClusterPolicy2<GRAPH, ENABLE_UCM>::
+FixationClusterPolicy3<GRAPH, ENABLE_UCM>::
 isDone()     {
-    if(edgeContractionGraph_.numberOfNodes() <= settings_.numberOfNodesStop){
-        //std::cout<<"done a1\n";
-        return  true;
-    }
-    else if(pq_.empty() || pq_.topPriority() <  -0.0000001){
-        //std::cout<<"done a2\n";
+    if(edgeContractionGraph_.numberOfNodes() <= settings_.numberOfNodesStop || pq_.empty() || pq_.topPriority() < -0.0000001){
         return  true;
     }
     else{
         while(pq_.topPriority() > -0.0000001 ){
             const auto nextActioneEdge = pq_.top();
-            if(isLocalEdge_[nextActioneEdge]){
+            if(isMergeEdge_[nextActioneEdge]){
                 if(this->isMergeAllowed(nextActioneEdge)){
                     edgeToContractNext_ = nextActioneEdge;
                     edgeToContractNextMergePrio_ = pq_.topPriority();
-                    //std::cout<<"not done\n";
                     return false;
                 }
                 else{
@@ -209,10 +191,10 @@ isDone()     {
                 }
             }
             else{
+                this->addNonLinkConstraint(nextActioneEdge);
                 pq_.push(nextActioneEdge, -1.0);
             }
         }
-        //std::cout<<"done b\n";
         return true;
     }
 }
@@ -220,16 +202,22 @@ isDone()     {
 
 template<class GRAPH, bool ENABLE_UCM>
 inline double 
-FixationClusterPolicy2<GRAPH, ENABLE_UCM>::
-pqMergePrio(
+FixationClusterPolicy3<GRAPH, ENABLE_UCM>::
+pqActionPrio(
     const uint64_t edge
 ) const {
-    return isLocalEdge_[edge] ?  double(mergePrios_[edge]) : -1.0; 
+
+    if(isMergeEdge_[edge]){
+        return mergePrios_[edge];//+ 0.1*float(nu+nv);
+    }
+    else{
+        return notMergePrios_[edge];
+    }
 }
 
 template<class GRAPH, bool ENABLE_UCM>
 inline void 
-FixationClusterPolicy2<GRAPH, ENABLE_UCM>::
+FixationClusterPolicy3<GRAPH, ENABLE_UCM>::
 contractEdge(
     const uint64_t edgeToContract
 ){
@@ -237,39 +225,24 @@ contractEdge(
 }
 
 template<class GRAPH, bool ENABLE_UCM>
-inline typename FixationClusterPolicy2<GRAPH, ENABLE_UCM>::EdgeContractionGraphType & 
-FixationClusterPolicy2<GRAPH, ENABLE_UCM>::
+inline typename FixationClusterPolicy3<GRAPH, ENABLE_UCM>::EdgeContractionGraphType & 
+FixationClusterPolicy3<GRAPH, ENABLE_UCM>::
 edgeContractionGraph(){
     return edgeContractionGraph_;
 }
 
 template<class GRAPH, bool ENABLE_UCM>
 inline void 
-FixationClusterPolicy2<GRAPH, ENABLE_UCM>::
+FixationClusterPolicy3<GRAPH, ENABLE_UCM>::
 mergeNodes(
     const uint64_t aliveNode, 
     const uint64_t deadNode
 ){
-
-    /*
-    auto  & aliveNodeNlc = nonLinkConstraints_[aliveNode];
-    const auto & deadNodeNlc = nonLinkConstraints_[deadNode];
-    aliveNodeNlc.insert(deadNodeNlc.begin(), deadNodeNlc.end());
-    for(const auto v : deadNodeNlc){
-        auto & nlc = nonLinkConstraints_[v];
-
-        // best way to change values in set... 
-        nlc.erase(deadNode);
-        nlc.insert(aliveNode);
-    }
-    aliveNodeNlc.erase(deadNode);
-    */
-
 }
 
 template<class GRAPH, bool ENABLE_UCM>
 inline void 
-FixationClusterPolicy2<GRAPH, ENABLE_UCM>::
+FixationClusterPolicy3<GRAPH, ENABLE_UCM>::
 mergeEdges(
     const uint64_t aliveEdge, 
     const uint64_t deadEdge
@@ -278,32 +251,35 @@ mergeEdges(
     NIFTY_CHECK(pq_.contains(aliveEdge),"");
     NIFTY_CHECK(pq_.contains(deadEdge),"");
     
-    isPureLocal_[aliveEdge] = isPureLocal_[aliveEdge] && isPureLocal_[deadEdge];
     pq_.deleteItem(deadEdge);
     const auto sa = edgeSizes_[aliveEdge];
     const auto sd = edgeSizes_[deadEdge];
     const auto s = sa + sd;
 
 
-    const auto deadIsLocalEdge = isLocalEdge_[deadEdge];
-    auto & aliveIsLocalEdge = isLocalEdge_[aliveEdge];
+    const auto deadIsMergeEdge = isMergeEdge_[deadEdge];
+    auto & aliveIsMergeEdge = isMergeEdge_[aliveEdge];
     
-    aliveIsLocalEdge = deadIsLocalEdge || aliveIsLocalEdge;
-
     mergePrios_[aliveEdge]    = std::max(mergePrios_[aliveEdge]    , mergePrios_[deadEdge]);
     notMergePrios_[aliveEdge] = std::max(notMergePrios_[aliveEdge] , notMergePrios_[deadEdge]);
-       
+    
+    isNonLinkEdge_[aliveEdge] = std::max(isNonLinkEdge_[aliveEdge], isNonLinkEdge_[deadEdge]);
+
+
+    if(deadIsMergeEdge != aliveIsMergeEdge){
+        aliveIsMergeEdge = mergePrios_[aliveEdge] >= notMergePrios_[aliveEdge];
+    }
+
+    edgeSizes_[aliveEdge] = s;
     
     // update prios
-    
-    pq_.push(aliveEdge, this->pqMergePrio(aliveEdge));
-    
+    pq_.push(aliveEdge, this->pqActionPrio(aliveEdge));
 }
 
 
 template<class GRAPH, bool ENABLE_UCM>
 inline void 
-FixationClusterPolicy2<GRAPH, ENABLE_UCM>::
+FixationClusterPolicy3<GRAPH, ENABLE_UCM>::
 contractEdgeDone(
     const uint64_t edgeToContract
 ){
