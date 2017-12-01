@@ -29,6 +29,105 @@ namespace graph{
 
     using namespace py;
 
+
+    template<std::size_t DIM, class RAG, class CONTR_GRAP, class DATA_T>
+    void exportAccumulateAffinitiesMeanAndLength(
+        py::module & ragModule
+    ){
+        ragModule.def("accumulateAffinities",
+        [](
+            const RAG & rag,
+            nifty::marray::PyView<DATA_T, DIM+1> affinities,
+            nifty::marray::PyView<int, 2>      offsets
+        ){
+
+
+            const auto & labels = rag.labelsProxy().labels();
+            const auto & shape = rag.labelsProxy().shape();
+
+            typedef nifty::marray::PyView<DATA_T> NumpyArrayType;
+        
+            NumpyArrayType accAff({uint64_t(rag.edgeIdUpperBound()+1)});
+
+            // std::vector<size_t> counter(uint64_t(rag.edgeIdUpperBound()+1), 0);
+            NumpyArrayType counter({uint64_t(rag.edgeIdUpperBound()+1)});
+
+            std::fill(accAff.begin(), accAff.end(), 0);
+            std::fill(counter.begin(), counter.end(), 0);
+
+
+            for(auto x=0; x<shape[0]; ++x){
+                for(auto y=0; y<shape[1]; ++y){
+                    if (DIM==3){
+                        for(auto z=0; z<shape[2]; ++z){
+
+                            const auto u = labels(x,y,z);
+
+                            for(auto i=0; i<offsets.shape(0); ++i){
+                                const auto ox = offsets(i, 0);
+                                const auto oy = offsets(i, 1);
+                                const auto oz = offsets(i, 2);
+                                const auto xx = ox +x ;
+                                const auto yy = oy +y ;
+                                const auto zz = oz +z ;
+
+
+                                if(xx>=0 && xx<shape[0] && yy >=0 && yy<shape[1] && zz >=0 && zz<shape[2]){
+                                    const auto v = labels(xx,yy,zz);
+                                    if(u != v){
+                                        const auto edge = rag.findEdge(u,v);
+                                        if(edge >=0 ){
+                                            counter[edge] += 1.;
+                                            // accAff[edge] = 0.;
+                                            accAff[edge] += affinities(x,y,z,i);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    } else if(DIM==2) {
+                        const auto u = labels(x,y);
+
+                        for(auto i=0; i<offsets.shape(0); ++i){
+                            const auto ox = offsets(i, 0);
+                            const auto oy = offsets(i, 1);
+
+                            const auto xx = ox +x ;
+                            const auto yy = oy +y ;
+
+                            if(xx>=0 && xx<shape[0] && yy >=0 && yy<shape[1]){
+                                const auto v = labels(xx,yy);
+                                if(u != v){
+                                    const auto edge = rag.findEdge(u,v);
+                                    if(edge >=0 ){
+                                        counter[edge] +=1.;
+                                        // accAff[edge] = 0.;
+                                        accAff[edge] += affinities(x,y,i);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Normalize:
+            for(auto i=0; i<uint64_t(rag.edgeIdUpperBound()+1); ++i){
+                if(counter[i]!=0){
+                    accAff[i] /= counter[i];
+                }
+            }
+            return accAff;
+
+        },
+        py::arg("rag"),
+        py::arg("affinities"),
+        py::arg("offsets")
+        );
+
+    }
+
+
     template<std::size_t DIM, class RAG, class DATA_T>
     void exportAccumulateEdgeMeanAndLength(
         py::module & ragModule

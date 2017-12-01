@@ -43,10 +43,10 @@ struct ComputeRag< GridRag<DIM,  ExplicitLabels<DIM, LABEL_TYPE> > > {
         GridRag<DIM,  ExplicitLabels<DIM, LABEL_TYPE> > & rag,
         const S & settings
     ){
-        typedef GridRag<DIM,  ExplicitLabels<DIM, LABEL_TYPE> >  Graph;
+        typedef GridRag<DIM,  ExplicitLabels<DIM, LABEL_TYPE> >  GraphType;
         typedef array::StaticArray<int64_t, DIM> Coord;
-        typedef typename Graph::NodeAdjacency NodeAdjacency;
-        typedef typename Graph::EdgeStorage EdgeStorage;
+        typedef typename GraphType::NodeAdjacency NodeAdjacency;
+        typedef typename GraphType::EdgeStorage EdgeStorage;
 
         const auto labelsProxy = rag.labelsProxy();
         const auto numberOfLabels = labelsProxy.numberOfLabels();

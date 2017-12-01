@@ -29,7 +29,7 @@ namespace lifted_multicut{
 
         typedef OBJECTIVE ObjectiveType;
         typedef LiftedMulticutBase<ObjectiveType> BaseType;
-        typedef typename ObjectiveType::Graph Graph;
+        typedef typename ObjectiveType::GraphType GraphType;
         typedef typename ObjectiveType::LiftedGraphType LiftedGraphType;
         typedef typename BaseType::VisitorBaseType VisitorBaseType;
         typedef typename BaseType::VisitorProxyType VisitorProxy;
@@ -174,7 +174,7 @@ namespace lifted_multicut{
         
         const ObjectiveType & objective_;
         SettingsType settings_;
-        const Graph & graph_;
+        const GraphType & graph_;
         const LiftedGraphType & liftedGraph_;
         
         NodeLabels * currentBest_;

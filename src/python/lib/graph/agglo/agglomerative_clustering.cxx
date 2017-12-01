@@ -14,6 +14,8 @@
 #include "nifty/graph/agglo/cluster_policies/minimum_node_size_cluster_policy.hxx"
 #include "nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx"
 
+
+
 namespace py = pybind11;
 
 PYBIND11_DECLARE_HOLDER_TYPE(T, std::shared_ptr<T>);
@@ -137,6 +139,9 @@ namespace agglo{
             exportAgglomerativeClusteringTClusterPolicy<ClusterPolicyType>(aggloModule, clusterPolicyBaseName);
         }
     }
+
+
+
 
     template<class GRAPH, bool WITH_UCM>
     void exportEdgeWeightedClusterPolicy(py::module & aggloModule) {
@@ -320,6 +325,7 @@ namespace agglo{
         {
             typedef PyUndirectedGraph GraphType;
 
+        
             exportMalaClusterPolicy<GraphType, false>(aggloModule);
             exportMalaClusterPolicy<GraphType, true>(aggloModule);
 

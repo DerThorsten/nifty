@@ -16,5 +16,7 @@ addPythonModule(
         grid_rag_coordinates.cxx
         accumulate_affinities.cxx
     LIBRRARIES
-        ${HDF5_LIBRARIES} ${FASTFILTERS_LIBRARY}# ${NIFTY_LP_SOLVER_LIBS}
+        ${HDF5_LIBRARIES} 
+        ${FASTFILTERS_LIBRARY}
+        #${NIFTY_LP_SOLVER_LIBS}
 )

@@ -10,15 +10,15 @@ namespace graph{
     class ShortestPathDijkstra{
 
     public:
-        typedef GRAPH Graph;
+        typedef GRAPH GraphType;
         typedef WEIGHT_TYPE WeightType;
 
-        typedef typename Graph:: template NodeMap<int64_t>     PredecessorsMap;
-        typedef typename Graph:: template NodeMap<WeightType>  DistanceMap;
+        typedef typename GraphType:: template NodeMap<int64_t>     PredecessorsMap;
+        typedef typename GraphType:: template NodeMap<WeightType>  DistanceMap;
     private:
         typedef nifty::tools::ChangeablePriorityQueue<WeightType>    PqType;
     public:
-        ShortestPathDijkstra(const Graph & g)
+        ShortestPathDijkstra(const GraphType & g)
         :   g_(g),
             pq_(g.nodeIdUpperBound()+1),
             predMap_(g),
@@ -34,7 +34,7 @@ namespace graph{
             const int64_t target = -1
         ){
             // subgraph mask
-            DefaultSubgraphMask<Graph> subgraphMask;
+            DefaultSubgraphMask<GraphType> subgraphMask;
             // visitor
             auto visitor = [&]
             (
@@ -58,8 +58,7 @@ namespace graph{
             const std::vector<int64_t> & targets
         ){
             // subgraph mask
-            DefaultSubgraphMask<Graph> subgraphMask;
-
+            DefaultSubgraphMask<GraphType> subgraphMask;
             // visitor
             size_t trgtsFound = 0;
             auto visitor = [&targets, &trgtsFound]
@@ -90,7 +89,7 @@ namespace graph{
         ){
 
             // subgraph mask
-            DefaultSubgraphMask<Graph> subgraphMask;
+            DefaultSubgraphMask<GraphType> subgraphMask;
             this->initializeMaps(&source, &source +1);
             // visitor
             auto visitor = [](   int64_t topNode,

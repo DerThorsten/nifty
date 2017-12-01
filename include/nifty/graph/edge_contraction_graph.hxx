@@ -371,7 +371,7 @@ namespace graph{
     public:
         typedef std::integral_constant<bool,WITH_EDGE_UFD> WithEdgeUfd;
 
-        typedef GRAPH Graph;
+        typedef GRAPH GraphType;
         typedef CALLBACK Callback;
         typedef nifty::ufd::Ufd< > NodeUfdType;
     private:
@@ -383,11 +383,11 @@ namespace graph{
         typedef std::pair<int64_t,int64_t> EdgeStorage;
         typedef typename NodeStorage::const_iterator AdjacencyIter;
     private:
-        typedef typename Graph:: template NodeMap<NodeStorage> NodesContainer; 
-        typedef typename Graph:: template EdgeMap<EdgeStorage> EdgeContainer;
+        typedef typename GraphType:: template NodeMap<NodeStorage> NodesContainer; 
+        typedef typename GraphType:: template EdgeMap<EdgeStorage> EdgeContainer;
     public:
 
-        EdgeContractionGraph(const Graph & graph,   Callback & callback);
+        EdgeContractionGraph(const GraphType & graph,   Callback & callback);
 
         struct AdjacencyIterRange :  public tools::ConstIteratorRange<AdjacencyIter>{
             using tools::ConstIteratorRange<AdjacencyIter>::ConstIteratorRange;
@@ -415,8 +415,8 @@ namespace graph{
         void contractEdge(const uint64_t edgeToContract);
         void reset();
 
-        const Graph & baseGraph()const;
-        const Graph & graph()const;
+        const GraphType & baseGraph()const;
+        const GraphType & graph()const;
         uint64_t findRepresentativeNode(const uint64_t node)const;
         uint64_t findRepresentativeNode(const uint64_t node);
         uint64_t nodeOfDeadEdge(const uint64_t deadEdge)const;
@@ -429,7 +429,7 @@ namespace graph{
 
         void relabelEdge(const uint64_t edge,const uint64_t deadNode, const uint64_t aliveNode);
 
-        const Graph & graph_;
+        const GraphType & graph_;
 
         Callback & callback_;
 
@@ -444,7 +444,7 @@ namespace graph{
     template<class GRAPH, class CALLBACK, bool WITH_EDGE_UFD>
     inline EdgeContractionGraph<GRAPH, CALLBACK, WITH_EDGE_UFD>::
     EdgeContractionGraph(
-        const Graph & graph,   
+        const GraphType & graph,   
         Callback & callback
     )
     :   detail_edge_contraction_graph::EdgeContractionGraphEdgeUfdHelper<GRAPH, WITH_EDGE_UFD>(graph),
@@ -750,14 +750,14 @@ namespace graph{
     }
 
     template<class GRAPH, class CALLBACK, bool WITH_EDGE_UFD>
-    inline const typename EdgeContractionGraph<GRAPH, CALLBACK, WITH_EDGE_UFD>::Graph & 
+    inline const typename EdgeContractionGraph<GRAPH, CALLBACK, WITH_EDGE_UFD>::GraphType & 
     EdgeContractionGraph<GRAPH, CALLBACK, WITH_EDGE_UFD>::
     baseGraph()const{
         return graph_;
     }
 
     template<class GRAPH, class CALLBACK, bool WITH_EDGE_UFD>
-    inline const typename EdgeContractionGraph<GRAPH, CALLBACK, WITH_EDGE_UFD>::Graph & 
+    inline const typename EdgeContractionGraph<GRAPH, CALLBACK, WITH_EDGE_UFD>::GraphType & 
     EdgeContractionGraph<GRAPH, CALLBACK, WITH_EDGE_UFD>::
     graph()const{
         return graph_;

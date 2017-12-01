@@ -21,6 +21,7 @@
 
 
 #include "andres/graph/graph.hxx"
+#include "andres/graph/components.hxx"
 #include "andres/graph/multicut-lifted/kernighan-lin.hxx"
 
 
@@ -50,7 +51,7 @@ namespace lifted_multicut{
         typedef typename ObjectiveType::LiftedGraphType LiftedGraphType;
         
         typedef typename BaseType::VisitorBaseType VisitorBaseType;
-        typedef typename BaseType::VisitorProxy VisitorProxy;
+        typedef typename BaseType::VisitorProxyType VisitorProxy;
         typedef typename BaseType::NodeLabelsType NodeLabelsType;
 
     private:
@@ -73,7 +74,7 @@ namespace lifted_multicut{
 
         virtual ~LiftedMulticutAndresKernighanLin(){}
         LiftedMulticutAndresKernighanLin(const ObjectiveType & objective, const SettingsType & settings = SettingsType());
-        virtual void optimize(NodeLabels & nodeLabels, VisitorBaseType * visitor);
+        virtual void optimize(NodeLabelsType & nodeLabels, VisitorBaseType * visitor);
         virtual const ObjectiveType & objective() const;
 
 
@@ -83,7 +84,7 @@ namespace lifted_multicut{
  
 
 
-        virtual const NodeLabels & currentBestNodeLabels( ){
+        virtual const NodeLabelsType & currentBestNodeLabels( ){
             return *currentBest_;
         }
 
@@ -101,7 +102,7 @@ namespace lifted_multicut{
         SettingsType settings_;
         const GraphType & graph_;
         const LiftedGraphType & liftedGraph_;
-        NodeLabels * currentBest_;
+        NodeLabelsType * currentBest_;
 
         andres::graph::Graph<> aGraph_;
         andres::graph::Graph<> aLiftedGraph_;
@@ -141,7 +142,7 @@ namespace lifted_multicut{
     template<class OBJECTIVE>
     void LiftedMulticutAndresKernighanLin<OBJECTIVE>::
     optimize(
-        NodeLabels & nodeLabels,  VisitorBaseType * visitor
+        NodeLabelsType & nodeLabels,  VisitorBaseType * visitor
     ){
         
         currentBest_ = &nodeLabels;

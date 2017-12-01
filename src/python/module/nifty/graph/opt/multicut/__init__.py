@@ -116,7 +116,7 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
         return s
     O.watershedProposals = staticmethod(watershedProposals)
 
-    def greedyAdditiveFactory( weightStopCond=0.0, nodeNumStopCond=-1.0, visitNth=100):
+    def greedyAdditiveFactory( weightStopCond=0.0, nodeNumStopCond=-1.0, visitNth=1):
         s,F = getSettingsAndFactoryCls("MulticutGreedyAdditive")
         s.weightStopCond = float(weightStopCond)
         s.nodeNumStopCond = float(nodeNumStopCond)
@@ -329,7 +329,7 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
             numberOfOuterIterations = 100,
             epsilon = 1e-6,
             verbose = False,
-            greedyWarmstart = True
+            greedyWarmstart = False
             ):
         s, F = getSettingsAndFactoryCls("MulticutAndresKernighanLin")
         s.numberOfInnerIterations = numberOfInnerIterations

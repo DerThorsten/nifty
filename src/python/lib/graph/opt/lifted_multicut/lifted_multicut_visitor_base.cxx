@@ -78,6 +78,11 @@ namespace lifted_multicut{
             typedef LiftedMulticutObjective<GraphType, double> ObjectiveType;
             exportLiftedMulticutVisitorBaseT<ObjectiveType>(liftedMulticutModule);
         }
+        {
+            typedef nifty::graph::UndirectedGridGraph<3,true> GraphType;
+            typedef LiftedMulticutObjective<GraphType, double> ObjectiveType;
+            exportLiftedMulticutVisitorBaseT<ObjectiveType>(liftedMulticutModule);
+        }
         //{
         //    typedef PyContractionGraph<PyUndirectedGraph> GraphType;
         //    typedef LiftedMulticutObjective<GraphType, double> ObjectiveType;

@@ -9,6 +9,7 @@ from . import opt
 from . opt import multicut
 from . opt import lifted_multicut
 from . opt import mincut
+from . opt import minstcut
 
 import numpy
 from functools import partial
@@ -44,8 +45,34 @@ UndirectedGraph.MincutObjective                     = mincut.MincutObjectiveUndi
 UndirectedGraph.EdgeContractionGraph                = EdgeContractionGraphUndirectedGraph
 EdgeContractionGraphUndirectedGraph.MincutObjective = mincut.MincutObjectiveEdgeContractionGraphUndirectedGraph
 
+# #minstcut objective
+# UndirectedGraph.MinstcutObjective                     = minstcut.MinstcutObjectiveUndirectedGraph
+# UndirectedGraph.EdgeContractionGraph                = EdgeContractionGraphUndirectedGraph
+# EdgeContractionGraphUndirectedGraph.MinstcutObjective = minstcut.MinstcutObjectiveEdgeContractionGraphUndirectedGraph
+
 # lifted multicut objective
 UndirectedGraph.LiftedMulticutObjective = lifted_multicut.LiftedMulticutObjectiveUndirectedGraph
+
+
+
+
+def randomGraph(numberOfNodes, numberOfEdges):
+    g = UndirectedGraph(numberOfNodes)
+
+    uv = numpy.random.randint(low=0, high=numberOfNodes-1, size=numberOfEdges*2)
+    uv = uv.reshape([-1,2])
+
+    where = numpy.where(uv[:,0]!=uv[:,1])[0]
+    uv = uv[where,:]
+
+
+    g.insertEdges(uv)
+    while( g.numberOfEdges < numberOfEdges):
+        u,v = numpy.random.randint(low=0, high=numberOfNodes-1, size=2)
+        if u != v:
+            g.insertEdge(int(u),int(v))
+    return g
+
 
 
 
@@ -96,8 +123,21 @@ def undirectedGridGraph(shape, simpleNh=True):
     else:
         raise RuntimeError("currently only 2D and 3D grid graph is exposed to python")
 
-
 gridGraph = undirectedGridGraph
+
+def undirectedLongRangeGridGraph(shape, offsets):
+    offsets = numpy.require(offsets, dtype='int64')
+    shape = list(shape)
+    if len(shape) == 2:
+        G = UndirectedLongRangeGridGraph2D
+    elif len(shape) == 3:
+        G = UndirectedLongRangeGridGraph3D
+    else:
+        raise RuntimeError("wrong dimension: undirectedLongRangeGridGraph is only implemented for 2D and 3D")
+
+    return G(shape=shape, offsets=offsets)
+
+longRangeGridGraph = undirectedLongRangeGridGraph
 
 
 def drawGraph(graph, method='spring'):
