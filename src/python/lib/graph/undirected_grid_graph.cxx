@@ -136,25 +136,16 @@ namespace graph{
                 [](
                     const GraphType & g,
                     nifty::marray::PyView<float, DIM+1> affinities,
-                    const std::vector<int> & ranges,
-                    const std::vector<int> & axes
+                    const std::vector<std::vector<int>> & offsets
                 ) {
-                    std::map<std::pair<int64_t, int64_t>, float> edgeMap;
-                    g.longRangeAffinitiesToLiftedEdges(affinities, edgeMap, ranges.begin(), axes.begin());
-                    // extract edge values and lifted uv-ides from the edge map
-                    nifty::marray::PyView<float, 1> values({edgeMap.size()});
-                    std::vector<size_t> uvShape = {edgeMap.size(), 2};
-                    nifty::marray::PyView<float, 2> liftedUvs(uvShape.begin(), uvShape.end());
-                    size_t i = 0;
-                    for(const auto & mapVal : edgeMap) {
-                        values[i] = mapVal.second;
-                        liftedUvs[i,0] = mapVal.first.first;
-                        liftedUvs[i,1] = mapVal.first.second;
-                        ++i;
+                    std::map<std::pair<size_t, size_t>, float> edgeMap;
+                    {
+                        py::gil_scoped_release allowThreads;
+                        g.longRangeAffinitiesToLiftedEdges(affinities, edgeMap, offsets.begin());
                     }
-                    return std::make_pair(values, liftedUvs);
+                    return edgeMap;
                 },
-                py::arg("affinities"), py::arg("ranges"), py::arg("axes")
+                py::arg("affinities"), py::arg("offsets")
             )
 
 

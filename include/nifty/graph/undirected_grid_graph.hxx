@@ -357,42 +357,50 @@ public:
     void longRangeAffinitiesToLiftedEdges(
         const AFFINITIES & affinities,
         EDGE_MAP & edgeMap,
-        ITER rangesBegin, // iterator to the ranges of the affinities
-        ITER axesBegin    // iterator to the axes of the affinities
+        ITER offsetsBegin
     ) const {
         typedef nifty::array::StaticArray<int64_t, DIM+1> AffinityCoordType;
         for(auto d=1; d<DIM+1; ++d){
             NIFTY_CHECK_OP(shape(d-1), ==, affinities.shape(d), "wrong shape")
         }
         size_t affLen = affinities.shape(0);
-        std::vector<int> ranges(rangesBegin, rangesBegin + affLen);
-        std::vector<int> axes(axesBegin, axesBegin + affLen);
+        std::vector<std::vector<int>> offsets(offsetsBegin, offsetsBegin + affLen);
 
         AffinityCoordType affCoord;
         CoordinateType cU, cV;
-        size_t axis, range;
 
         // iterate over the affinties
         for(size_t edgeId = 0; edgeId < affinities.size(); ++edgeId) {
             affinities.indexToCoordinates(edgeId, affCoord.begin());
-            axis  = axes[affCoord[0]];
-            range = ranges[affCoord[0]];
+            auto & offset = offsets[affCoord[0]];
 
+            bool outOfRange = false;
             for(size_t d = 0; d < DIM; ++d) {
                 cU[d] = affCoord[d+1];
-                cV[d] = affCoord[d+1];
+                cV[d] = affCoord[d+1] + offset[d];
+                // range check
+                if(cV[d] >= shape(d) || cV[d] < 0) {
+                    outOfRange = true;
+                    break;
+                }
             }
-            cV[axis] += range;
-            // range check
-            if(cV[axis] >= shape(axis) || cV[axis] < 0) {
+            if(outOfRange) {
                 continue;
             }
-            auto u = coordianteToNode(cU);
-            auto v = coordianteToNode(cV);
-            edgeMap.emplace(
-                std::make_pair(std::min(u,v), std::max(u,v)),
-                affinities(affCoord.asStdArray())
-            );
+            size_t u = coordianteToNode(cU);
+            size_t v = coordianteToNode(cV);
+            size_t u_ = std::min(u,v);
+            size_t v_ = std::max(u,v);
+            if(u_ > numberOfNodes()) {
+                std::cout << "u is out of range " << u_ << " " << numberOfNodes() << std::endl;
+                throw std::runtime_error("Out of node range");
+            }
+            if(v_ > numberOfNodes()) {
+                std::cout << "v is out of range " << v_ << " " << numberOfNodes() << std::endl;
+                throw std::runtime_error("Out of node range");
+            }
+            edgeMap.emplace(std::make_pair(u_, v_),
+                                           affinities(affCoord.asStdArray()));
         }
     }
 
