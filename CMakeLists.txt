@@ -38,6 +38,8 @@ option(WITH_HDF5 OFF)
 option(WITH_FASTFILTERS OFF)
 option(WITH_LP_MP OFF)
 option(WITH_QPBO ON)
+# TODO include Z5
+option(WITH_Z5 OFF)
 
 option(BUILD_CPP_TEST_WITH_GLIBCXX_CXX11_ABI OFF)
 
@@ -83,15 +85,7 @@ endif()
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-
-# FIXME c++14 checks are broken!?!
-if (CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR CMAKE_CXX_COMPILER_ID MATCHES "GNU")
-    CHECK_CXX_COMPILER_FLAG("-std=c++14" HAS_CPP14_FLAG)
-    if (HAS_CPP14_FLAG)
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
-    endif()
-endif()
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 
 # WITH_LP_MP needs special treatment since
 # it requires C++ 14 and used OpenMP
@@ -101,7 +95,6 @@ if(WITH_LP_MP)
         set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
         set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
     endif()
-
 endif()
 
 
@@ -176,9 +169,9 @@ endif()
 #-------------------------------------------------------------------------------------------------------------------
 # find boost
 #-------------------------------------------------------------------------------------------------------------------
-find_package(Boost  REQUIRED)
+find_package(Boost REQUIRED)
 include_directories(${Boost_INCLUDE_DIRS})
-MESSAGE( STATUS ${Boost_INCLUDE_DIRS})
+MESSAGE(STATUS ${Boost_INCLUDE_DIRS})
 
 
 if(WITHIN_TRAVIS)
@@ -233,6 +226,18 @@ if(WITH_FASTFILTERS)
     find_package(FASTFILTERS REQUIRED)
     include_directories(${FASTFILTERS_INCLUDE_DIR})
     add_definitions(-DWITH_FASTFILTERS)
+endif()
+
+
+
+#-------------------------------------------------------------------------------------------------------------------
+# find z5
+#-------------------------------------------------------------------------------------------------------------------
+if(WITH_Z5)
+    # TODO implement find script in z5
+    find_package(Z5 REQUIRED)
+    include_directories(${Z5_INCLUDE_DIR})
+    add_definitions(-DWITH_Z5)
 endif()
 
 
