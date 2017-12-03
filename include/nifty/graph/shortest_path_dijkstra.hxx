@@ -121,7 +121,7 @@ namespace graph{
             return predMap_;
         }
 
-        const Graph & graph() const {
+        const GraphType & graph() const {
             return g_;
         }
     private:
@@ -196,7 +196,7 @@ namespace graph{
             }
         }
 
-        const Graph & g_;
+        const GraphType & g_;
         PqType pq_;
         PredecessorsMap predMap_;
         DistanceMap     distMap_;

@@ -61,7 +61,7 @@ namespace graph{
                 }
             )
             .def("extractSubgraphFromNodes",
-                []( GraphType & g, const marray::PyView<int64_t,1> nodeList) {
+                []( GraphType & g, const std::vector<int64_t> & nodeList) {
                     std::vector<int64_t> innerEdgesVec;
                     std::vector<int64_t> outerEdgesVec;
                     GraphType subgraph;
@@ -73,7 +73,7 @@ namespace graph{
                 }
             )
             .def("edgesFromNodeList",
-                [](Graph & g, const std::vector<int64_t> & nodeList) {
+                [](GraphType & g, const std::vector<int64_t> & nodeList) {
 
                     std::vector<int64_t> edges;
                     {
