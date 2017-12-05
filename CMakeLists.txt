@@ -38,7 +38,6 @@ option(WITH_HDF5 OFF)
 option(WITH_FASTFILTERS OFF)
 option(WITH_LP_MP OFF)
 option(WITH_QPBO ON)
-# TODO include Z5
 option(WITH_Z5 OFF)
 
 option(BUILD_CPP_TEST_WITH_GLIBCXX_CXX11_ABI OFF)
@@ -238,6 +237,7 @@ if(WITH_Z5)
     find_package(Z5 REQUIRED)
     include_directories(${Z5_INCLUDE_DIR})
     add_definitions(-DWITH_Z5)
+    # TODO compression libs and linking
 endif()
 
 
