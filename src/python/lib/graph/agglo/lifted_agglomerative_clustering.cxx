@@ -60,10 +60,26 @@ namespace agglo{
                     const PyViewFloat1 & edgeIndicators,
                     const PyViewFloat1 & edgeSizes,
                     const PyViewUInt8_1 & isLiftedEdge,
-                    const PyViewFloat1 & nodeSizes
+                    const PyViewFloat1 & nodeSizes,
+                    const std::string stopConditionType,
+                    const double stopPriority,
+                    const uint64_t stopNodeNumber
+                
                 ){
-                    typename ClusterPolicyType::SettingsType s;
-                    //s.numberOfNodesStop = numberOfNodesStop;
+                    typedef typename ClusterPolicyType::SettingsType SettingsType;
+                    SettingsType s;
+                    if(stopConditionType == std::string("priority") ){
+                        s.stopConditionType = SettingsType::PRIORITY;
+                    }
+                    else if(stopConditionType == std::string("numberOfNodes")){
+                        s.stopConditionType = SettingsType::NODE_NUMBER;
+                    }
+                    else{
+                        throw std::runtime_error("wrong stopConditionType: must "
+                            "be \"priority\" or must be \"stopNodeNumber\" or ");
+                    }
+                    s.stopPriority = stopPriority;
+                    s.stopNodeNumber = stopNodeNumber;
                     auto ptr = new ClusterPolicyType(graph, edgeIndicators, edgeSizes, isLiftedEdge, nodeSizes, s);
                     return ptr;
                 },
@@ -73,7 +89,10 @@ namespace agglo{
                 py::arg("edgeIndicators"),
                 py::arg("edgeSizes"),
                 py::arg("isLiftedEdge"),
-                py::arg("nodeSizes")
+                py::arg("nodeSizes"),
+                py::arg("stopConditionType") = std::string("priority"),
+                py::arg("stopPriority") = 0.5,
+                py::arg("stopNodeNumber") = 0
             );
 
             // export the agglomerative clustering functionality for this cluster operator

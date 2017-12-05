@@ -105,7 +105,8 @@ if __name__ == "__main__":
         print("affminmax", affinities.min(), affinities.max())
 
         clusterPolicy = nifty.graph.agglo.liftedGraphEdgeWeightedClusterPolicy(graph=g,
-            edgeIndicators=affinities, edgeSizes=edgeSizes, isLiftedEdge=isLiftedEdge,  nodeSizes=nodeSizes)
+            edgeIndicators=affinities, edgeSizes=edgeSizes, isLiftedEdge=isLiftedEdge,  nodeSizes=nodeSizes,
+            stopConditionType="numberOfNodes",stopNodeNumber=4)
 
 
         # run agglomerative clustering
