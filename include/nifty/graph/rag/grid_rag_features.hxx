@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include "nifty/graph/rag/grid_rag.hxx"
 #include "nifty/marray/marray.hxx"
 
@@ -9,26 +8,21 @@
 namespace nifty{
 namespace graph{
 
-
     template<size_t DIM, class LABELS_TYPE, class LABELS, class NODE_MAP>
-    void gridRagAccumulateLabels(
-        const ExplicitLabelsGridRag<DIM, LABELS_TYPE> & graph,
-        nifty::marray::View<LABELS> data,
-        NODE_MAP &  nodeMap,
-        const bool ignoreBackground = false,
-        const LABELS ignoreValue = 0
-    ){
+    void gridRagAccumulateLabels(const ExplicitLabelsGridRag<DIM, LABELS_TYPE> & graph,
+                                 nifty::marray::View<LABELS> data,
+                                 NODE_MAP & nodeMap,
+                                 const bool ignoreBackground = false,
+                                 const LABELS ignoreValue = 0){
         typedef std::array<int64_t, DIM> Coord;
 
         const auto labelsProxy = graph.labelsProxy();
         const auto & shape = labelsProxy.shape();
-        const auto labels = labelsProxy.labels();
+        const auto & labels = labelsProxy.labels();
 
-        std::vector<  std::unordered_map<LABELS, size_t> > overlaps(graph.numberOfNodes());
+        std::vector<std::unordered_map<LABELS, size_t>> overlaps(graph.numberOfNodes());
 
-
-
-        nifty::tools::forEachCoordinate(shape,[&](const Coord & coord){
+        nifty::tools::forEachCoordinate(shape, [&](const Coord & coord){
             const auto node = labels(coord);
             const auto l  = data(coord);
             overlaps[node][l] += 1;
@@ -55,5 +49,3 @@ namespace graph{
 
 } // end namespace graph
 } // end namespace nifty
-
-

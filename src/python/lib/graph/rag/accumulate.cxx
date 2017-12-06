@@ -3,20 +3,13 @@
 #include <pybind11/numpy.h>
 
 #include "nifty/python/converter.hxx"
-
-
 #ifdef WITH_HDF5
 #include "nifty/hdf5/hdf5_array.hxx"
-#include "nifty/graph/rag/grid_rag_hdf5.hxx"
-#include "nifty/graph/rag/grid_rag_stacked_2d_hdf5.hxx"
-#include "nifty/graph/rag/grid_rag_labels_hdf5.hxx"
 #endif
 
-
 #include "nifty/graph/rag/grid_rag.hxx"
-#include "nifty/graph/rag/grid_rag_labels.hxx"
+#include "nifty/graph/rag/grid_rag_labels_proxy.hxx"
 #include "nifty/graph/rag/grid_rag_accumulate.hxx"
-
 
 
 namespace py = pybind11;
@@ -25,10 +18,7 @@ namespace py = pybind11;
 namespace nifty{
 namespace graph{
 
-
-
     using namespace py;
-
 
     template<std::size_t DIM, class RAG, class CONTR_GRAP, class DATA_T>
     void exportAccumulateAffinitiesMeanAndLength(
@@ -40,13 +30,11 @@ namespace graph{
             nifty::marray::PyView<DATA_T, DIM+1> affinities,
             nifty::marray::PyView<int, 2>      offsets
         ){
-
-
             const auto & labels = rag.labelsProxy().labels();
             const auto & shape = rag.labelsProxy().shape();
 
             typedef nifty::marray::PyView<DATA_T> NumpyArrayType;
-        
+
             NumpyArrayType accAff({uint64_t(rag.edgeIdUpperBound()+1)});
 
             // std::vector<size_t> counter(uint64_t(rag.edgeIdUpperBound()+1), 0);
@@ -419,13 +407,8 @@ namespace graph{
             exportAccumulateEdgeMeanAndLength<2, Rag2d, float>(ragModule);
             exportAccumulateEdgeMeanAndLength<3, Rag3d, float>(ragModule);
 
-
-
-
-
             exportAccumulateMeanAndLength<2, Rag2d, float>(ragModule);
             exportAccumulateMeanAndLength<3, Rag3d, float>(ragModule);
-
 
             exportAccumulateStandartFeatures<2, Rag2d, float>(ragModule);
             exportAccumulateStandartFeatures<3, Rag3d, float>(ragModule);
@@ -442,11 +425,10 @@ namespace graph{
             exportAccumulateGeometricEdgeFeatures<2, Rag2d, float>(ragModule);
             exportAccumulateGeometricEdgeFeatures<3, Rag3d, float>(ragModule);
 
-
             #ifdef WITH_HDF5
-            typedef GridRag<3, Hdf5Labels<3, uint32_t>  >  RagH53d;
+            typedef GridRag<3, Hdf5Labels<3, uint32_t>> RagH53d;
             //exportAccumulateMeanAndLengthHdf5<3,RagH53d, float>(ragModule);
-            exportAccumulateStandartFeaturesHdf5<3, RagH53d, uint8_t >(ragModule);
+            exportAccumulateStandartFeaturesHdf5<3, RagH53d, uint8_t>(ragModule);
             #endif
 
         }

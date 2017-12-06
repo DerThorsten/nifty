@@ -3,12 +3,9 @@
 #include <pybind11/stl.h>
 
 #include "nifty/python/converter.hxx"
-
 #include "nifty/graph/rag/grid_rag_stacked_2d.hxx"
-
 #ifdef WITH_HDF5
-#include "nifty/graph/rag/grid_rag_stacked_2d_hdf5.hxx"
-#include "nifty/graph/rag/grid_rag_labels_hdf5.hxx"
+#include "nifty/hdf5/hdf5_array.hxx"
 #endif
 
 namespace py = pybind11;
@@ -171,13 +168,11 @@ namespace graph{
 
     void exportGridRagStacked(py::module & ragModule) {
         // export in-memory labels
-        typedef ExplicitLabels<3, uint32_t> ExplicitLabelsType;
-        exportGridRagStackedT<ExplicitLabelsType>(ragModule, "GridRagStacked2DExplicit", "gridRagStacked2DExplicitImpl");
+        exportGridRagStackedT<ExplicitLabels<3, uint32_t>>(ragModule, "GridRagStacked2DExplicit", "gridRagStacked2DExplicitImpl");
 
         // export hdf5 labels
         #ifdef WITH_HDF5
-        typedef Hdf5Labels<3, uint32_t> Hdf5LabelsType;
-        exportGridRagStackedT<Hdf5LabelsType>(ragModule, "GridRagStacked2DHdf5", "gridRagStacked2DHdf5Impl");
+        exportGridRagStackedT<Hdf5Labels<3, uint32_t>>(ragModule, "GridRagStacked2DHdf5", "gridRagStacked2DHdf5Impl");
         #endif
 
         // export z5 labels

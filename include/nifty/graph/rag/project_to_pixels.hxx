@@ -15,12 +15,10 @@ namespace graph{
 
 
 
-template<
-    size_t DIM, 
-    class LABELS_TYPE, 
-    class PIXEL_ARRAY, 
-    class NODE_MAP
->
+template<size_t DIM,
+         class LABELS_TYPE,
+         class PIXEL_ARRAY,
+         class NODE_MAP>
 void projectScalarNodeDataToPixels(
     const ExplicitLabelsGridRag<DIM, LABELS_TYPE> & graph,
     NODE_MAP & nodeData,
@@ -31,10 +29,9 @@ void projectScalarNodeDataToPixels(
 
     const auto labelsProxy = graph.labelsProxy();
     const auto & shape = labelsProxy.shape();
-    const auto labels = labelsProxy.labels(); 
-    
+    const auto labels = labelsProxy.labels();
 
-    // if scalar 
+    // if scalar
     auto pOpt = nifty::parallel::ParallelOptions(numberOfThreads);
     nifty::parallel::ThreadPool threadpool(pOpt);
     nifty::tools::parallelForEachCoordinate(threadpool, shape,

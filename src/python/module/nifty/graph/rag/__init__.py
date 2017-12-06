@@ -9,30 +9,33 @@ import numpy
 __all__ = []
 for key in __rag.__dict__.keys():
     try:
-        __rag.__dict__[key].__module__='nifty.graph.rag'
+        __rag.__dict__[key].__module__ = 'nifty.graph.rag'
     except:
         pass
 
     __all__.append(key)
 
 
-def gridRag(labels, numberOfThreads=-1, serialization=None):
+def gridRag(labels, numberOfLabels, blockShape=None, numberOfThreads=-1, serialization=None):
     labels = numpy.require(labels, dtype='uint32')
     dim = labels.ndim
+    bs = [100] * dim if blockShape is None else blockShape
 
     if dim == 2:
-        # TODO nLabels
-        labelsProxy = explicitLabelsGridRag2DLabelsProxy(labels)
+        labelsProxy = explicitLabelsGridRag2DLabelsProxy(labels, numberOfLabels)
         if serialization is None:
-            return explicitLabelsGridRag2D(labelsProxy, numberOfThreads=int(numberOfThreads))
+            return explicitLabelsGridRag2D(labelsProxy,
+                                           blockShape=bs,
+                                           numberOfThreads=int(numberOfThreads))
         else:
             return explicitLabelsGridRag2D(labelsProxy, serialization)
 
     elif dim == 3:
-        # TODO nLabels
-        labelsProxy = explicitLabelsGridRag3DLabelsProxy(labels)
+        labelsProxy = explicitLabelsGridRag3DLabelsProxy(labels, numberOfLabels)
         if serialization is None:
-            return explicitLabelsGridRag3D(labelsProxy, numberOfThreads=int(numberOfThreads))
+            return explicitLabelsGridRag3D(labelsProxy,
+                                           blockShape=bs,
+                                           numberOfThreads=int(numberOfThreads))
         else:
             return explicitLabelsGridRag3D(labelsProxy, serialization)
 
@@ -42,9 +45,9 @@ def gridRag(labels, numberOfThreads=-1, serialization=None):
     return ragGraph
 
 
-def gridRagStacked2D(labels, numberOfThreads=-1):
-    labels = numpy.require(labels)
-
+def gridRagStacked2D(labels, numberOfLabels, numberOfThreads=-1):
+    labels = numpy.require(labels, dtype='uint32')
+    labelsProxy = explicitLabelsGridRag3DLabelsProxy(labels, numberOfLabels)
     return gridRagStacked2DExplicitImpl(labels, numberOfThreads)
 
 
@@ -65,10 +68,7 @@ if Configuration.WITH_HDF5:
     def gridRagHdf5(labels, numberOfLabels, blockShape=None, numberOfThreads=-1):
 
         dim = labels.ndim
-        if blockShape is None:
-            bs = [100] * dim
-        else:
-            bs = blockShape
+        bs = [100] * dim if blockShape is None else blockShape
 
         if dim == 2:
             labelsProxy = gridRag2DHdf5LabelsProxy(labels, int(numberOfLabels))
@@ -95,6 +95,7 @@ if Configuration.WITH_HDF5:
         return ragGraph
 
     def writeStackedRagToHdf5(rag, savePath):
+        # TODO h5py instead of vifea
         import vigra
         vigra.writeHDF5(rag.numberOfNodes, savePath, 'numberOfNodes')
         vigra.writeHDF5(rag.numberOfEdges, savePath, 'numberOfEdges')
@@ -111,9 +112,10 @@ if Configuration.WITH_HDF5:
 
     def readStackedRagFromHdf5(labels, numberOfLabels, savePath):
         assert labels.ndim == 3
+        # TODO h5py instead of vifea
         import vigra
-        # load the serialization from h5
 
+        # load the serialization from h5
         # serialization of the undirected graph
         serialization = numpy.array(vigra.readHDF5(savePath, 'numberOfNodes'))
         serialization = numpy.append(serialization, numpy.array(vigra.readHDF5(savePath, 'numberOfEdges')))

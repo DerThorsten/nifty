@@ -8,13 +8,9 @@
 
 #include "nifty/graph/rag/grid_rag.hxx"
 #include "nifty/graph/rag/grid_rag_stacked_2d.hxx"
-#include "nifty/graph/rag/grid_rag_labels.hxx"
+#include "nifty/graph/rag/grid_rag_labels_proxy.hxx"
 #include "nifty/graph/rag/feature_accumulation/grid_rag_accumulate_filters_stacked.hxx"
 
-#ifdef WITH_HDF5
-#include "nifty/graph/rag/grid_rag_labels_hdf5.hxx"
-#include "nifty/graph/rag/grid_rag_stacked_2d_hdf5.hxx"
-#endif
 
 namespace py = pybind11;
 
@@ -161,46 +157,34 @@ namespace graph{
 
         //explicit
         {
-            typedef ExplicitLabels<3,uint32_t> LabelsUInt32; 
+            typedef ExplicitLabels<3,uint32_t> LabelsUInt32;
             typedef GridRagStacked2D<LabelsUInt32> StackedRagUInt32;
-            typedef ExplicitLabels<3,uint64_t> LabelsUInt64; 
-            typedef GridRagStacked2D<LabelsUInt64> StackedRagUInt64;
             typedef nifty::marray::PyView<float, 3> FloatArray;
             typedef nifty::marray::PyView<uint8_t, 3> UInt8Array;
 
             exportAccumulateEdgeFeaturesFromFiltersInCoreT<StackedRagUInt32, FloatArray>(ragModule);
-            exportAccumulateEdgeFeaturesFromFiltersInCoreT<StackedRagUInt64, FloatArray>(ragModule);
             exportAccumulateEdgeFeaturesFromFiltersInCoreT<StackedRagUInt32, UInt8Array>(ragModule);
-            exportAccumulateEdgeFeaturesFromFiltersInCoreT<StackedRagUInt64, UInt8Array>(ragModule);
         }
-        
+
         //hdf5
         #ifdef WITH_HDF5
         {
-            typedef Hdf5Labels<3,uint32_t> LabelsUInt32; 
+            typedef Hdf5Labels<3,uint32_t> LabelsUInt32;
             typedef GridRagStacked2D<LabelsUInt32> StackedRagUInt32;
-            typedef Hdf5Labels<3,uint64_t> LabelsUInt64; 
-            typedef GridRagStacked2D<LabelsUInt64> StackedRagUInt64;
             typedef nifty::hdf5::Hdf5Array<float> FloatArray;
             typedef nifty::hdf5::Hdf5Array<uint8_t> UInt8Array;
 
             // in core
             //exportAccumulateEdgeFeaturesFromFiltersInCoreT<StackedRagUInt32, FloatArray>(ragModule);
-            //exportAccumulateEdgeFeaturesFromFiltersInCoreT<StackedRagUInt64, FloatArray>(ragModule);
             //exportAccumulateEdgeFeaturesFromFiltersInCoreT<StackedRagUInt32, UInt8Array>(ragModule);
-            //exportAccumulateEdgeFeaturesFromFiltersInCoreT<StackedRagUInt64, UInt8Array>(ragModule);
 
             // out of core
             exportAccumulateEdgeFeaturesFromFiltersOutOfCoreT<StackedRagUInt32, FloatArray>(ragModule);
-            exportAccumulateEdgeFeaturesFromFiltersOutOfCoreT<StackedRagUInt64, FloatArray>(ragModule);
             exportAccumulateEdgeFeaturesFromFiltersOutOfCoreT<StackedRagUInt32, UInt8Array>(ragModule);
-            exportAccumulateEdgeFeaturesFromFiltersOutOfCoreT<StackedRagUInt64, UInt8Array>(ragModule);
-            
+
             // export skipEdgeFeatures
             exportAccumulateSkipEdgeFeaturesFromFiltersT<StackedRagUInt32, FloatArray>(ragModule);
-            exportAccumulateSkipEdgeFeaturesFromFiltersT<StackedRagUInt64, FloatArray>(ragModule);
             exportAccumulateSkipEdgeFeaturesFromFiltersT<StackedRagUInt32, UInt8Array>(ragModule);
-            exportAccumulateSkipEdgeFeaturesFromFiltersT<StackedRagUInt64, UInt8Array>(ragModule);
         }
         #endif
     }

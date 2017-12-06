@@ -4,11 +4,6 @@
 
 #include "nifty/python/converter.hxx"
 
-#ifdef WITH_HDF5
-#include "nifty/graph/rag/grid_rag_hdf5.hxx"
-#include "nifty/graph/rag/grid_rag_stacked_2d_hdf5.hxx"
-#endif
-
 #include "nifty/graph/rag/grid_rag.hxx"
 #include "nifty/graph/rag/grid_rag_coordinates.hxx"
 

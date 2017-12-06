@@ -5,10 +5,8 @@
 #include "nifty/python/converter.hxx"
 
 #include "nifty/graph/rag/grid_rag.hxx"
-
 #ifdef WITH_HDF5
-#include "nifty/graph/rag/grid_rag_hdf5.hxx"
-#include "nifty/graph/rag/grid_rag_labels_hdf5.hxx"
+#include "nifty/hdf5/hdf5_array.hxx"
 #endif
 
 namespace py = pybind11;
@@ -16,7 +14,6 @@ namespace py = pybind11;
 
 namespace nifty{
 namespace graph{
-
 
     using namespace py;
 
@@ -71,8 +68,12 @@ namespace graph{
         // factories
         // from labels
         ragModule.def(facName.c_str(),[](const LabelsProxyType & labels,
+                                         const std::array<int64_t, DIM> blockShape,
                                          const int numberOfThreads){
-                auto s = typename  GridRagType::SettingsType();
+                auto s = typename GridRagType::SettingsType();
+                for(int ii = 0; ii < DIM; ++ii) {
+                    s.blockShape[ii] = blockShape[ii];
+                }
                 s.numberOfThreads = numberOfThreads;
                 auto ptr = new GridRagType(labels, s);
                 return ptr;
@@ -80,6 +81,7 @@ namespace graph{
             py::return_value_policy::take_ownership,
             py::keep_alive<0, 1>(),
             py::arg("labels"),
+            py::arg("blockShape"),
             py::arg_t< int >("numberOfThreads", -1 )
         );
 
@@ -111,17 +113,13 @@ namespace graph{
     void exportGridRag(py::module & ragModule) {
 
         // export grid rag with in-memory labels
-        typedef ExplicitLabels<2, uint32_t> ExplicitLabels2DType;
-        exportGridRagT<2, ExplicitLabels2DType>(ragModule, "ExplicitLabelsGridRag2D", "explicitLabelsGridRag2D");
-        typedef ExplicitLabels<3, uint32_t> ExplicitLabels3DType;
-        exportGridRagT<3, ExplicitLabels3DType>(ragModule, "ExplicitLabelsGridRag3D", "explicitLabelsGridRag3D");
+        exportGridRagT<2, ExplicitLabels<2, uint32_t>>(ragModule, "ExplicitLabelsGridRag2D", "explicitLabelsGridRag2D");
+        exportGridRagT<3, ExplicitLabels<3, uint32_t>>(ragModule, "ExplicitLabelsGridRag3D", "explicitLabelsGridRag3D");
 
         // export grid rag with hdf5 labels
         #ifdef WITH_HDF5
-        typedef Hdf5Labels<2, uint32_t> Hdf5Labels2DType;
-        exportGridRagT<2, Hdf5Labels2DType>(ragModule, "GridRagHdf5Labels2D", "gridRag2DHdf5");
-        typedef Hdf5Labels<3, uint32_t> Hdf5Labels3DType;
-        exportGridRagT<3, Hdf5Labels3DType>(ragModule, "GridRagHdf5Labels3D", "gridRag3DHdf5");
+        exportGridRagT<2, Hdf5Labels<2, uint32_t>>(ragModule, "GridRagHdf5Labels2D", "gridRag2DHdf5");
+        exportGridRagT<3, Hdf5Labels<3, uint32_t>>(ragModule, "GridRagHdf5Labels3D", "gridRag3DHdf5");
         #endif
 
         // export with z5 labels

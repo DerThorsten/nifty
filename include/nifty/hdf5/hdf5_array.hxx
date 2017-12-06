@@ -20,6 +20,7 @@ namespace hdf5{
     public:
 
         typedef T DataType;
+        typedef T value_type;
 
         template<class SHAPE_ITER, class CHUNK_SHAPE_ITER>
         Hdf5Array(

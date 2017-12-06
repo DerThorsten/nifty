@@ -1,19 +1,18 @@
 #pragma once
 
-
 #include "nifty/array/arithmetic_array.hxx"
 #include "nifty/graph/rag/grid_rag.hxx"
+
+#include "nifty/graph/rag/detail_rag/compute_grid_rag_stacked.hxx"
+
 
 namespace nifty{
 namespace graph{
 
 
-
-
 template<class LABEL_PROXY>
-class GridRagStacked2D
-: public GridRag<3, LABEL_PROXY >
-{
+class GridRagStacked2D : public GridRag<3, LABEL_PROXY> {
+
     typedef LABEL_PROXY LabelsProxyType;
     typedef GridRag<3, LABEL_PROXY > BaseType;
     typedef GridRagStacked2D< LABEL_PROXY > SelfType;
@@ -187,6 +186,6 @@ void GridRagStacked2D<LABEL_PROXY>::deserialize(ITER & iter) {
     }
 }
 
+
 } // end namespace graph
 } // end namespace nifty
-

@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include <random>
 #include <functional>
 #include <ctime>
@@ -11,14 +10,15 @@
 #include <unordered_set>
 
 #include "nifty/array/arithmetic_array.hxx"
-#include "nifty/graph/rag/grid_rag_labels_proxy.hxx"
-#include "nifty/graph/rag/detail_rag/compute_grid_rag.hxx"
-#include "nifty/marray/marray.hxx"
 #include "nifty/graph/undirected_list_graph.hxx"
 #include "nifty/parallel/threadpool.hxx"
 #include "nifty/tools/timer.hxx"
 #include "nifty/tools/array_tools.hxx"
-//#include "nifty/graph/detail/contiguous_indices.hxx"
+
+#include "nifty/graph/rag/grid_rag_labels_proxy.hxx"
+#include "nifty/graph/rag/detail_rag/compute_grid_rag.hxx"
+// TODO switch to xtensor
+#include "nifty/marray/marray.hxx"
 
 
 namespace nifty{
@@ -32,9 +32,6 @@ COORD makeCoord2(const COORD & coord,const size_t axis){
     return coord2;
 };
 
-
-template<size_t DIM, class LABEL_TYPE>
-class ExplicitLabels;
 
 template<class LABELS_PROXY>
 struct RefHelper{
@@ -76,18 +73,15 @@ public:
     :   settings_(settings),
         labelsProxy_(labelsProxy)
     {
-        detail_rag::ComputeRag< SelfType >::computeRag(*this, settings_);
+        detail_rag::ComputeRag<SelfType>::computeRag(*this, settings_);
     }
 
     template<class ITER>
-    GridRag(
-        const LabelsProxy & labelsProxy,
-        ITER serializationBegin,
-        const SettingsType & settings = SettingsType()
-    )
+    GridRag(const LabelsProxy & labelsProxy,
+            ITER serializationBegin,
+            const SettingsType & settings = SettingsType())
     :   settings_(settings),
-        labelsProxy_(labelsProxy)
-    {
+        labelsProxy_(labelsProxy) {
         this->deserialize(serializationBegin);
     }
 
@@ -99,11 +93,9 @@ public:
         return labelsProxy_.shape();
     }
 
-    UndirectedGraph<> extractSubgraphFromRoi(
-        const ShapeType & begin, const ShapeType & end,
-        std::vector<int64_t> & innerEdgesOut
-        ) const
-    {
+    UndirectedGraph<> extractSubgraphFromRoi(const ShapeType & begin,
+                                             const ShapeType & end,
+                                             std::vector<int64_t> & innerEdgesOut) const {
         typedef typename LABELS_PROXY::LabelType LabelType;
         innerEdgesOut.clear();
 
@@ -167,17 +159,12 @@ protected:
     typedef typename RefHelper<LABELS_PROXY>::type StorageType;
     SettingsType settings_;
     StorageType labelsProxy_;
-
 };
 
 
 // TODO switch to xtensor
-template<class LABEL_TYPE>
-using ExplicitLabels = nifty::marray::View<LABEL_TYPE>;
-template<unsigned int DIM, class LABEL_TYPE>
-using ExplicitLabelsGridRag = GridRag<DIM, LabelsProxy<DIM, ExplicitLabels<LABEL_TYPE>>>;
-
+template<std::size_t DIM, class LABELS_TYPE>
+using ExplicitLabelsGridRag = GridRag<DIM, ExplicitLabels<DIM, LABELS_TYPE>>;
 
 } // end namespace graph
 } // end namespace nifty
-

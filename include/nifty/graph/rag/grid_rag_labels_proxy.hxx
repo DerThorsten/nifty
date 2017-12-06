@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include <algorithm>
 #include <cstddef>
 
@@ -8,7 +7,10 @@
 #include "nifty/marray/marray.hxx"
 #include "nifty/tools/runtime_check.hxx"
 #include "nifty/tools/block_access.hxx"
-//#include "nifty/graph/detail/contiguous_indices.hxx"
+
+#ifdef WITH_HDF5
+#include "nifty/hdf5/hdf5_array.hxx"
+#endif
 
 
 namespace nifty{
@@ -18,12 +20,11 @@ template<std::size_t DIM, class LABEL_ARRAY>
 class LabelsProxy {
 public:
     typedef LABEL_ARRAY LabelArrayType;
-    // TODO get the data type from the label array
-    typedef typename LabelArrayType::DataType LabelType
-    typedef tools::BlockView< LabelType> BlockStorageType;
+    // TODO this proably won't work for xt
+    typedef typename LabelArrayType::value_type LabelType;
+    typedef tools::BlockView<LabelType> BlockStorageType;
 
-    // TODO switch to xtensor
-    ExplicitLabels(
+    LabelsProxy(
         const LabelArrayType & labels,
         const std::size_t numberOfLabels
     )
@@ -62,6 +63,16 @@ private:
     array::StaticArray<int64_t, DIM> shape_;
 };
 
+
+template<std::size_t DIM, class LABELS_TYPE>
+using ExplicitLabels = LabelsProxy<DIM, nifty::marray::View<LABELS_TYPE>>;
+
+#ifdef WITH_HDF5
+template<std::size_t DIM, class LABELS_TYPE>
+using Hdf5Labels = LabelsProxy<DIM, nifty::hdf5::Hdf5Array<LABELS_TYPE>>;
+#endif
+
+
 } // namespace nifty::graph
 
 
@@ -72,13 +83,9 @@ namespace tools{
     inline void readSubarray(const graph::LabelsProxy<DIM, LABEL_ARRAY> & labels,
                              const COORD & beginCoord,
                              const COORD & endCoord,
-                             marray::View<typename LABEL_ARRAY::DataType> & subarray) {
+                             marray::View<typename LABEL_ARRAY::value_type> & subarray) {
         labels.readSubarray(beginCoord, endCoord, subarray);
     }
 
 } // namespace nifty::tools
-
-
-
-
 } // namespace nifty

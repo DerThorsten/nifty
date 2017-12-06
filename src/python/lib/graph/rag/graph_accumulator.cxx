@@ -9,7 +9,7 @@
 #include "nifty/graph/rag/grid_rag_features_stacked.hxx"
 
 #ifdef WITH_HDF5
-#include "nifty/graph/rag/grid_rag_stacked_2d_hdf5.hxx"
+#include "nifty/hdf5/hdf5_array.hxx"
 #endif
 
 

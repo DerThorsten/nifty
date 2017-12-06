@@ -6,7 +6,6 @@
 
 #ifdef WITH_HDF5
 #include "nifty/hdf5/hdf5_array.hxx"
-#include "nifty/graph/rag/grid_rag_stacked_2d_hdf5.hxx"
 #endif
 
 #include "nifty/marray/marray.hxx"

@@ -7,9 +7,6 @@
 #include "nifty/graph/rag/grid_rag_accumulate.hxx"
 
 #include "nifty/graph/rag/grid_rag_stacked_2d.hxx"
-#ifdef WITH_HDF5
-#include "nifty/graph/rag/grid_rag_stacked_2d_hdf5.hxx"
-#endif
 
 namespace nifty{
 namespace graph{
