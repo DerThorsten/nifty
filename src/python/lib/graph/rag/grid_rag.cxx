@@ -33,91 +33,26 @@ namespace graph{
     }
 
 
-    template<size_t DIM, class LABELS>
-    void exportExpilictGridRagT(
-        py::module & ragModule,
-        const std::string & clsName,
-        const std::string & facName
-    ){
+    template<size_t DIM, class LABELS_PROXY>
+    void exportGridRagT(py::module & ragModule,
+                        const std::string & clsName,
+                        const std::string & facName){
+        // typedefs
         typedef UndirectedGraph<> BaseGraph;
-        typedef ExplicitLabelsGridRag<DIM, LABELS> GridRagType;
+        typedef LABELS_PROXY LabelsProxyType;
+        typedef typename LabelsProxyType::LabelArrayType LabelArrayType;
+        typedef GridRag<DIM, LABELS_PROXY> GridRagType;
 
-        auto clsT = py::class_<GridRagType,BaseGraph>(ragModule, clsName.c_str());
-        // export the rag shape
-        clsT
-            .def_property_readonly("shape",[](const GridRagType & self){return self.shape();})
-        ;
-        removeFunctions<GridRagType, BaseGraph>(clsT);
-
-        // from labels
-        ragModule.def(facName.c_str(),
-            [](
-               nifty::marray::PyView<LABELS, DIM> labels,
-               const int numberOfThreads
-            ){
-                auto s = typename  GridRagType::SettingsType();
-                s.numberOfThreads = numberOfThreads;
-                ExplicitLabels<DIM, LABELS> explicitLabels(labels);
-                auto ptr = new GridRagType(explicitLabels, s);
-                return ptr;
-            },
-            py::return_value_policy::take_ownership,
-            py::keep_alive<0, 1>(),
-            py::arg("labels"),
-            py::arg_t< int >("numberOfThreads", -1 )
-        );
-
-        // from labels + serialization
-        ragModule.def(facName.c_str(),
-            [](
-               nifty::marray::PyView<LABELS, DIM>           labels,
-               nifty::marray::PyView<uint64_t,   1, false>  serialization
-            ){
-
-                auto  startPtr = &serialization(0);
-                auto  lastElement = &serialization(serialization.size()-1);
-                auto d = lastElement - startPtr + 1;
-
-                NIFTY_CHECK_OP(d,==,serialization.size(), "serialization must be contiguous");
-
-                auto s = typename  GridRagType::SettingsType();
-                s.numberOfThreads = -1;
-                ExplicitLabels<DIM, LABELS> explicitLabels(labels);
-                auto ptr = new GridRagType(explicitLabels,startPtr, s);
-                return ptr;
-            },
-            py::return_value_policy::take_ownership,
-            py::keep_alive<0, 1>(),
-            py::arg("labels"),
-            py::arg("serialization")
-        );
-
-    }
-
-    #ifdef WITH_HDF5
-    template<size_t DIM, class LABELS>
-    void exportHdf5GridRagT(
-        py::module & ragModule,
-        const std::string & clsName,
-        const std::string & facName
-    ){
-        typedef UndirectedGraph<> BaseGraph;
-        typedef Hdf5Labels<DIM, LABELS> LabelsProxyType;
-        typedef GridRag<DIM, LabelsProxyType >  GridRagType;
-
-
+        // export the labels proxy
         const auto labelsProxyClsName = clsName + std::string("LabelsProxy");
         const auto labelsProxyFacName = facName + std::string("LabelsProxy");
         py::class_<LabelsProxyType>(ragModule, labelsProxyClsName.c_str())
-            .def("hdf5Array",&LabelsProxyType::hdf5Array,py::return_value_policy::reference)
+            .def("labels", &LabelsProxyType::labels, py::return_value_policy::reference)
         ;
 
-        ragModule.def(labelsProxyFacName.c_str(),
-            [](
-               const hdf5::Hdf5Array<LABELS> & hdf5Array,
-               const int64_t numberOfLabels
-            ){
-                auto ptr = new LabelsProxyType(hdf5Array, numberOfLabels);
+        ragModule.def(labelsProxyFacName.c_str(),[](const LabelArrayType & labels,
+                                                    const int64_t numberOfLabels){
+                auto ptr = new LabelsProxyType(labels, numberOfLabels);
                 return ptr;
             },
             py::return_value_policy::take_ownership,
@@ -126,54 +61,32 @@ namespace graph{
             py::arg("numberOfLabels")
         );
 
-
-
-        auto clsT = py::class_<GridRagType, BaseGraph>(ragModule, clsName.c_str());
+        // export the rag
+        auto clsT = py::class_<GridRagType,BaseGraph>(ragModule, clsName.c_str());
         clsT
-            .def("labelsProxy",&GridRagType::labelsProxy,py::return_value_policy::reference)
             .def_property_readonly("shape",[](const GridRagType & self){return self.shape();})
         ;
-
         removeFunctions<GridRagType, BaseGraph>(clsT);
 
-
-
-        ragModule.def(facName.c_str(),
-            [](
-                const LabelsProxyType & labelsProxy,
-                std::vector<int64_t>  blockShape,
-                const int numberOfThreads
-            ){
+        // factories
+        // from labels
+        ragModule.def(facName.c_str(),[](const LabelsProxyType & labels,
+                                         const int numberOfThreads){
                 auto s = typename  GridRagType::SettingsType();
                 s.numberOfThreads = numberOfThreads;
-
-                if(blockShape.size() == DIM){
-                    std::copy(blockShape.begin(), blockShape.end(), s.blockShape.begin());
-                }
-                else if(blockShape.size() == 1){
-                    std::fill(s.blockShape.begin(), s.blockShape.end(), blockShape[0]);
-                }
-                else if(blockShape.size() != 0){
-                    throw std::runtime_error("block shape has a non matching shape");
-                }
-
-                auto ptr = new GridRagType(labelsProxy, s);
+                auto ptr = new GridRagType(labels, s);
                 return ptr;
             },
             py::return_value_policy::take_ownership,
             py::keep_alive<0, 1>(),
-            py::arg("labelsProxy"),
-            py::arg_t< std::vector<int64_t>  >("blockShape", std::vector<int64_t>() ),
+            py::arg("labels"),
             py::arg_t< int >("numberOfThreads", -1 )
         );
 
-
-
-        ragModule.def(facName.c_str(),
-            [](
-               const LabelsProxyType & labelsProxy,
-               nifty::marray::PyView<uint64_t,   1, false>  serialization
-            ){
+        // TODO switch to xtensor
+        // from labels + serialization
+        ragModule.def(facName.c_str(),[](const LabelsProxyType & labels,
+                                         nifty::marray::PyView<uint64_t, 1, false> serialization){
 
                 auto  startPtr = &serialization(0);
                 auto  lastElement = &serialization(serialization.size()-1);
@@ -181,11 +94,9 @@ namespace graph{
 
                 NIFTY_CHECK_OP(d,==,serialization.size(), "serialization must be contiguous");
 
-
                 auto s = typename  GridRagType::SettingsType();
                 s.numberOfThreads = -1;
-
-                auto ptr = new GridRagType(labelsProxy, startPtr, s);
+                auto ptr = new GridRagType(labels, startPtr, s);
                 return ptr;
             },
             py::return_value_policy::take_ownership,
@@ -195,16 +106,27 @@ namespace graph{
         );
 
     }
-    #endif
 
 
     void exportGridRag(py::module & ragModule) {
-        exportExpilictGridRagT<2, uint32_t>(ragModule, "ExplicitLabelsGridRag2D", "explicitLabelsGridRag2D");
-        exportExpilictGridRagT<3, uint32_t>(ragModule, "ExplicitLabelsGridRag3D", "explicitLabelsGridRag3D");
+
+        // export grid rag with in-memory labels
+        typedef ExplicitLabels<2, uint32_t> ExplicitLabels2DType;
+        exportGridRagT<2, ExplicitLabels2DType>(ragModule, "ExplicitLabelsGridRag2D", "explicitLabelsGridRag2D");
+        typedef ExplicitLabels<3, uint32_t> ExplicitLabels3DType;
+        exportGridRagT<3, ExplicitLabels3DType>(ragModule, "ExplicitLabelsGridRag3D", "explicitLabelsGridRag3D");
+
+        // export grid rag with hdf5 labels
         #ifdef WITH_HDF5
-        exportHdf5GridRagT<2, uint32_t>(ragModule, "GridRagHdf5Labels2D", "gridRag2DHdf5");
-        exportHdf5GridRagT<3, uint32_t>(ragModule, "GridRagHdf5Labels3D", "gridRag3DHdf5");
+        typedef Hdf5Labels<2, uint32_t> Hdf5Labels2DType;
+        exportGridRagT<2, Hdf5Labels2DType>(ragModule, "GridRagHdf5Labels2D", "gridRag2DHdf5");
+        typedef Hdf5Labels<3, uint32_t> Hdf5Labels3DType;
+        exportGridRagT<3, Hdf5Labels3DType>(ragModule, "GridRagHdf5Labels3D", "gridRag3DHdf5");
         #endif
+
+        // export with z5 labels
+        //#ifdef WITH_Z5
+        //#endif
     }
 
 } // end namespace graph

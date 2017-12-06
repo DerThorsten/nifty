@@ -17,10 +17,6 @@
 namespace nifty{
 namespace graph{
 
-
-template<std::size_t DIM, class LABEL_TYPE>
-class ExplicitLabels;
-
 template<class LABEL_TYPE>
 class GridRagStacked2D;
 
@@ -34,16 +30,16 @@ namespace detail_rag{
 template< class GRID_RAG>
 struct ComputeRag;
 
-
-template<std::size_t DIM, class LABEL_TYPE>
-struct ComputeRag< GridRag<DIM,  ExplicitLabels<DIM, LABEL_TYPE> > > {
+// TODO unifiy this with hdf5 rag
+template<std::size_t DIM, class LABELS_PROXY>
+struct ComputeRag< GridRag<DIM, LABELS_PROXY> > {
 
     template<class S>
     static void computeRag(
-        GridRag<DIM,  ExplicitLabels<DIM, LABEL_TYPE> > & rag,
+        GridRag<DIM, LABELS_PROXY> & rag,
         const S & settings
     ){
-        typedef GridRag<DIM,  ExplicitLabels<DIM, LABEL_TYPE> >  GraphType;
+        typedef GridRag<DIM, LABELS_PROXY> GraphType;
         typedef array::StaticArray<int64_t, DIM> Coord;
         typedef typename GraphType::NodeAdjacency NodeAdjacency;
         typedef typename GraphType::EdgeStorage EdgeStorage;
@@ -110,6 +106,7 @@ struct ComputeRag< GridRag<DIM,  ExplicitLabels<DIM, LABEL_TYPE> > > {
 };
 
 
+// TODO move to own header
 
 template<class LABELS_PROXY>
 struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
@@ -188,8 +185,8 @@ struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
                             if(lU != lV){
                                 sliceData.minInSliceNode = std::min(sliceData.minInSliceNode, lV);
                                 sliceData.maxInSliceNode = std::max(sliceData.maxInSliceNode, lV);
-                                
-                                // add up the len 
+
+                                // add up the len
                                 // map insert cf.: http://stackoverflow.com/questions/97050/stdmap-insert-or-stdmap-find
                                 auto e = EdgeStorage(std::min(lU,lV),std::max(lU,lV));
                                 auto findEdge = edgeLens.lower_bound(e);
@@ -213,7 +210,7 @@ struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
         // Phase 2 : set up the in slice edge offsets
         /////////////////////////////////////////////////////
         {
-            
+
             for(auto sliceIndex=1; sliceIndex<numberOfSlices; ++sliceIndex){
                 const auto prevOffset = perSliceDataVec[sliceIndex-1].inSliceEdgeOffset;
                 const auto prevEdgeNum = perSliceDataVec[sliceIndex-1].numberOfInSliceEdges;
@@ -224,7 +221,7 @@ struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
             }
             const auto & lastSlice =  perSliceDataVec.back();
             rag.numberOfInSliceEdges_ = lastSlice.inSliceEdgeOffset + lastSlice.numberOfInSliceEdges;
-            
+
         }
 
         //std::cout<<"phase 3\n";
@@ -266,7 +263,7 @@ struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
                 NIFTY_CHECK_OP(edgeIndex, ==, sliceData.inSliceEdgeOffset + sliceData.numberOfInSliceEdges,"");
             });
         }
-        
+
         //std::cout<<"phase 4\n";
         /////////////////////////////////////////////////////
         // Phase 4 : between slice edges
@@ -295,21 +292,21 @@ struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
                         const Coord beginB({sliceBIndex,0L,0L});
                         const Coord endA({sliceAIndex+1,shape[1],shape[2]});
                         const Coord endB({sliceBIndex+1,shape[1],shape[2]});
-                        
+
                         auto sliceAView = sliceAStorage.getView(tid);
                         auto sliceBView = sliceBStorage.getView(tid);
 
                         labelsProxy.readSubarray(beginA, endA, sliceAView);
                         labelsProxy.readSubarray(beginB, endB, sliceBView);
-                        
+
                         auto sliceALabels = sliceAView.squeezedView();
                         auto sliceBLabels = sliceBView.squeezedView();
 
                         nifty::tools::forEachCoordinate(sliceShape2,[&](const Coord2 & coord){
                             const auto lU = sliceALabels(coord.asStdArray());
                             const auto lV = sliceBLabels(coord.asStdArray());
-                                
-                            // add up the len 
+
+                            // add up the len
                             // map insert cf.: http://stackoverflow.com/questions/97050/stdmap-insert-or-stdmap-find
                             auto e = EdgeStorage(std::min(lU,lV),std::max(lU,lV));
                             auto findEdge = edgeLens.lower_bound(e);
@@ -317,7 +314,7 @@ struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
                                 ++(findEdge->second);
                             else
                                 edgeLens.insert(findEdge, std::make_pair(e,1));
-                            
+
                             if(rag.insertEdgeOnlyInNodeAdj(lU, lV)){
                                 ++perSliceDataVec[sliceAIndex].numberOfToNextSliceEdges;
                             }
@@ -326,7 +323,7 @@ struct ComputeRag< GridRagStacked2D< LABELS_PROXY > > {
                 });
             }
         }
-        
+
         //std::cout<<"phase 5\n";
         /////////////////////////////////////////////////////
         // Phase 5 : set up the between slice edge offsets

@@ -11,7 +11,7 @@
 #include <unordered_set>
 
 #include "nifty/array/arithmetic_array.hxx"
-#include "nifty/graph/rag/grid_rag_labels.hxx"
+#include "nifty/graph/rag/grid_rag_labels_proxy.hxx"
 #include "nifty/graph/rag/detail_rag/compute_grid_rag.hxx"
 #include "nifty/marray/marray.hxx"
 #include "nifty/graph/undirected_list_graph.hxx"
@@ -19,10 +19,6 @@
 #include "nifty/tools/timer.hxx"
 #include "nifty/tools/array_tools.hxx"
 //#include "nifty/graph/detail/contiguous_indices.hxx"
-
-#ifdef WITH_HDF5
-#include "nifty/graph/rag/grid_rag_labels_hdf5.hxx"
-#endif
 
 
 namespace nifty{
@@ -175,8 +171,11 @@ protected:
 };
 
 
+// TODO switch to xtensor
+template<class LABEL_TYPE>
+using ExplicitLabels = nifty::marray::View<LABEL_TYPE>;
 template<unsigned int DIM, class LABEL_TYPE>
-using ExplicitLabelsGridRag = GridRag<DIM, ExplicitLabels<DIM, LABEL_TYPE> > ; 
+using ExplicitLabelsGridRag = GridRag<DIM, LabelsProxy<DIM, ExplicitLabels<LABEL_TYPE>>>;
 
 
 } // end namespace graph

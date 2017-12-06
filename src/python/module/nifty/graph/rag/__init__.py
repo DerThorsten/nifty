@@ -18,20 +18,28 @@ for key in __rag.__dict__.keys():
 
 def gridRag(labels, numberOfThreads=-1, serialization=None):
     labels = numpy.require(labels, dtype='uint32')
+    dim = labels.ndim
 
-    if numpy.squeeze(labels).ndim == 2:
+    if dim == 2:
+        # TODO nLabels
+        labelsProxy = explicitLabelsGridRag2DLabelsProxy(labels)
         if serialization is None:
-            return explicitLabelsGridRag2D(labels, numberOfThreads=int(numberOfThreads))
+            return explicitLabelsGridRag2D(labelsProxy, numberOfThreads=int(numberOfThreads))
         else:
-            return explicitLabelsGridRag2D(labels, serialization)
+            return explicitLabelsGridRag2D(labelsProxy, serialization)
 
-    elif numpy.squeeze(labels).ndim == 3:
+    elif dim == 3:
+        # TODO nLabels
+        labelsProxy = explicitLabelsGridRag3DLabelsProxy(labels)
         if serialization is None:
-            return explicitLabelsGridRag3D(labels, numberOfThreads=int(numberOfThreads))
+            return explicitLabelsGridRag3D(labelsProxy, numberOfThreads=int(numberOfThreads))
         else:
-            return explicitLabelsGridRag3D(labels, serialization)
+            return explicitLabelsGridRag3D(labelsProxy, serialization)
+
     else:
         raise RuntimeError("wrong dimension, currently only 2D and 3D is implemented")
+
+    return ragGraph
 
 
 def gridRagStacked2D(labels, numberOfThreads=-1):
@@ -41,20 +49,14 @@ def gridRagStacked2D(labels, numberOfThreads=-1):
 
 
 # helper class for rag coordinates
-def ragCoordinates(
-    rag,
-    numberOfThreads=-1
-):
+def ragCoordinates(rag, numberOfThreads=-1):
     if len(rag.shape) == 2:
         return coordinatesFactoryExplicit2d(rag, numberOfThreads=numberOfThreads)
     else:
         return coordinatesFactoryExplicit3d(rag, numberOfThreads=numberOfThreads)
 
 
-def ragCoordinatesStacked(
-    rag,
-    numberOfThreads=-1
-):
+def ragCoordinatesStacked(rag, numberOfThreads=-1):
     return coordinatesFactoryStackedRag3d(rag, numberOfThreads=numberOfThreads)
 
 
