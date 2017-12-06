@@ -112,6 +112,8 @@ namespace graph{
 
     void exportGridRag(py::module & ragModule) {
 
+        // FIXME this does not work, because we don't have proper pybindings for normal marray::View
+        // fix this with xtensor !!!
         // export grid rag with in-memory labels
         exportGridRagT<2, ExplicitLabels<2, uint32_t>>(ragModule, "ExplicitLabelsGridRag2D", "explicitLabelsGridRag2D");
         exportGridRagT<3, ExplicitLabels<3, uint32_t>>(ragModule, "ExplicitLabelsGridRag3D", "explicitLabelsGridRag3D");

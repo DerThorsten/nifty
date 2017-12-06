@@ -14,7 +14,7 @@ public:
     typedef nifty::marray::View<T> ViewType;
     template<class SHAPE>
     BlockStorage(
-        const SHAPE & maxShape,  
+        const SHAPE & maxShape,
         const std::size_t numberOfBlocks
     )
     :   arrayVec_(numberOfBlocks, ArrayType(maxShape.begin(), maxShape.end())){
@@ -24,7 +24,7 @@ public:
     template<class SHAPE>
     BlockStorage(
         nifty::parallel::ThreadPool & threadpool,
-        const SHAPE & maxShape,  
+        const SHAPE & maxShape,
         const std::size_t numberOfBlocks
     )
     :   arrayVec_(numberOfBlocks),
@@ -57,7 +57,7 @@ public:
 
     template<class SHAPE>
     BlockView(
-        const SHAPE & maxShape,  
+        const SHAPE & maxShape,
         const std::size_t numberOfBlocks
     ){
 
@@ -66,7 +66,7 @@ public:
     template<class SHAPE>
     BlockView(
         nifty::parallel::ThreadPool & threadpool,
-        const SHAPE & maxShape,  
+        const SHAPE & maxShape,
         const std::size_t numberOfBlocks
     ){
 

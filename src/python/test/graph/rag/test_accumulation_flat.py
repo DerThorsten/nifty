@@ -12,7 +12,8 @@ from functools import partial
 
 class TestAccumulation(unittest.TestCase):
 
-    def setUp(self):
+    @classmethod
+    def setUpClass(self):
 
         urlData = 'https://www.dropbox.com/s/l1tgzlim8h1pb7w/test_data_anisotropic.zip?dl=0'
         call(['wget', '-Odata.zip', urlData])
@@ -32,7 +33,8 @@ class TestAccumulation(unittest.TestCase):
         self.dataFile = nh5.openFile('./data/pmap.h5')
         self.dataArray = nh5.hdf5Array('float32', self.dataFile, 'data')
 
-    def tearDown(self):
+    @classmethod
+    def tearDownClass(self):
         nh5.closeFile(self.segFile)
         nh5.closeFile(self.dataFile)
         rmtree('./data')
@@ -70,7 +72,7 @@ class TestAccumulation(unittest.TestCase):
 
     def testFlatAccumulation(self):
         seg, val = self.makeToyData()
-        rag = nrag.gridRag(seg)
+        rag = nrag.gridRag(seg, numberOfLabels=seg.max() + 1)
 
         # test the different z accumulations
         for zDir in (0, 1, 2):
@@ -189,8 +191,8 @@ class TestAccumulation(unittest.TestCase):
         # reference filter feats
         makeFeatures(nrag.accumulateEdgeFeaturesFromFilters, 'filter')
 
-    # TODO make this work
-    def _testStandardAccumulation(self):
+    @unittest.expectedFailure
+    def testStandardAccumulation(self):
         seg, val = self.makeToyData()
         rag = nrag.gridRagStacked2D(seg)
 

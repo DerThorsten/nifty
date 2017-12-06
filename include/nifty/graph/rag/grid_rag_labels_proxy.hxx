@@ -22,7 +22,7 @@ public:
     typedef LABEL_ARRAY LabelArrayType;
     // TODO this proably won't work for xt
     typedef typename LabelArrayType::value_type LabelType;
-    typedef tools::BlockView<LabelType> BlockStorageType;
+    typedef tools::BlockStorage<LabelType> BlockStorageType;
 
     LabelsProxy(
         const LabelArrayType & labels,
