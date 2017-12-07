@@ -31,7 +31,7 @@ namespace tools {
 
         // get the view in the array
         xt::slice_vector slice(array);
-        sliceFromRoi(slice, beginCoord, endCoord);
+        xtensor::sliceFromRoi(slice, beginCoord, endCoord);
         const auto view = xt::dynamic_view(array, slice);
 
         // FIXME this is probably slow and would be faster with direct memory copy ?!
@@ -51,7 +51,7 @@ namespace tools {
 
         // get the view in the array
         xt::slice_vector slice(array);
-        sliceFromRoi(slice, beginCoord, endCoord);
+        xtensor::sliceFromRoi(slice, beginCoord, endCoord);
         auto view = xt::dynamic_view(array, slice);
 
         // FIXME this is probably slow and would be faster with direct memory copy ?!

@@ -4,9 +4,11 @@
 #include <cstddef>
 
 #include "nifty/array/arithmetic_array.hxx"
-#include "nifty/marray/marray.hxx"
 #include "nifty/tools/runtime_check.hxx"
 #include "nifty/tools/block_access.hxx"
+
+#include "xtensor/xarray.hpp"
+#include "nifty/xtensor/xtensor.hxx"
 
 #ifdef WITH_HDF5
 #include "nifty/hdf5/hdf5_array.hxx"
@@ -41,11 +43,10 @@ public:
         return numberOfLabels_;
     }
 
-    // TODO switch to xtensor
-    template<class ROI_BEGIN_COORD, class ROI_END_COORD>
+    template<class ROI_BEGIN_COORD, class ROI_END_COORD, class ARRAY>
     void readSubarray(const ROI_BEGIN_COORD & roiBeginCoord,
                       const ROI_END_COORD & roiEndCoord,
-                      marray::View<LabelType> & outArray) const {
+                      xt::xexpression<ARRAY> & outArray) const {
         tools::readSubarray(labels_, roiBeginCoord, roiEndCoord, outArray);
     }
 
@@ -64,8 +65,8 @@ private:
 };
 
 
-template<std::size_t DIM, class LABELS_TYPE>
-using ExplicitLabels = LabelsProxy<DIM, nifty::marray::View<LABELS_TYPE>>;
+template<std::size_t DIM, class ARRAY>
+using ExplicitLabels = LabelsProxy<DIM, xt::xexpression<ARRAY>>;
 
 #ifdef WITH_HDF5
 template<std::size_t DIM, class LABELS_TYPE>
@@ -78,12 +79,11 @@ using Hdf5Labels = LabelsProxy<DIM, nifty::hdf5::Hdf5Array<LABELS_TYPE>>;
 
 namespace tools{
 
-    // TODO switch to xtensor
-    template<class LABEL_ARRAY, std::size_t DIM, class COORD>
+    template<class LABEL_ARRAY, std::size_t DIM, class COORD, class ARRAY>
     inline void readSubarray(const graph::LabelsProxy<DIM, LABEL_ARRAY> & labels,
                              const COORD & beginCoord,
                              const COORD & endCoord,
-                             marray::View<typename LABEL_ARRAY::value_type> & subarray) {
+                             xt::xexpression<ARRAY> & subarray) {
         labels.readSubarray(beginCoord, endCoord, subarray);
     }
 
