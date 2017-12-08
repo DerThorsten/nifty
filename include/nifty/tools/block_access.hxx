@@ -42,14 +42,14 @@ public:
     }
 
     template<class SHAPE>
-    inline auto && getView(const SHAPE & shape, const std::size_t blockIndex) {
+    inline auto getView(const SHAPE & shape, const std::size_t blockIndex) {
         auto & array = arrayVec_[blockIndex];
         xt::slice_vector slice(array);
-        sliceFromRoi(slice, zeroCoord_, shape);
+        xtensor::sliceFromRoi(slice, zeroCoord_, shape);
         return xt::dynamic_view(array, slice);
     }
 
-    inline auto && getView(const std::size_t blockIndex) {
+    inline auto & getView(const std::size_t blockIndex) {
         return arrayVec_[blockIndex];
     }
 
@@ -57,62 +57,6 @@ private:
     std::vector<uint64_t> zeroCoord_;
     std::vector<ArrayType> arrayVec_;
 };
-
-
-// FIXME I have no idea what this does ....
-/*
-template<class T>
-class BlockView{
-public:
-    typedef nifty::marray::View<T> ViewType;
-
-
-    template<class SHAPE>
-    BlockView(
-        const SHAPE & maxShape,
-        const std::size_t numberOfBlocks
-    ){
-
-    }
-
-    template<class SHAPE>
-    BlockView(
-        nifty::parallel::ThreadPool & threadpool,
-        const SHAPE & maxShape,
-        const std::size_t numberOfBlocks
-    ){
-
-    }
-
-    ViewType getView(const std::size_t blockIndex) {
-       return ViewType();
-    }
-
-    template<class SHAPE>
-    ViewType getView(const SHAPE & shape, const std::size_t blockIndex) {
-        return ViewType();
-    }
-
-private:
-    //std::vector<ViewType> viewVec_;
-};
-
-template<class ARRAY>
-struct BlockStorageSelector;
-
-
-template<class T, bool C, class A>
-struct BlockStorageSelector<marray::View<T, C, A> >
-{
-   typedef BlockView<T> type;
-};
-
-template<class T, class A>
-struct BlockStorageSelector<marray::Marray<T, A> >
-{
-   typedef BlockView<T> type;
-};
-*/
 
 
 } // end namespace nifty::tools

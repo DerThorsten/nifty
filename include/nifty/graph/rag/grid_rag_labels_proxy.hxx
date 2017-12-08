@@ -7,9 +7,7 @@
 #include "nifty/tools/runtime_check.hxx"
 #include "nifty/tools/block_access.hxx"
 
-#include "xtensor/xarray.hpp"
 #include "nifty/xtensor/xtensor.hxx"
-//#include "nifty/marray/marray.hxx"
 
 #ifdef WITH_HDF5
 #include "nifty/hdf5/hdf5_array.hxx"

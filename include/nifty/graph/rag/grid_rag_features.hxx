@@ -1,7 +1,6 @@
 #pragma once
 
 #include "nifty/graph/rag/grid_rag.hxx"
-#include "xtensor/xarray.hpp"
 #include "nifty/xtensor/xtensor.hxx"
 
 #include "nifty/tools/for_each_coordinate.hxx"
@@ -26,8 +25,8 @@ namespace graph{
         std::vector<std::unordered_map<LabelType, size_t>> overlaps(graph.numberOfNodes());
 
         nifty::tools::forEachCoordinate(shape, [&](const Coord & coord){
-            const auto node = xtensor::access(labels, coord);
-            const auto l = xtensor::access(data, coord);
+            const auto node = xtensor::read(labels, coord);
+            const auto l = xtensor::read(data, coord);
             overlaps[node][l] += 1;
         });
 
@@ -35,7 +34,7 @@ namespace graph{
             const auto & ol = overlaps[node];
             // find max ol
             size_t maxOl = 0;
-            LABELS maxOlLabel = 0;
+            LabelType maxOlLabel = 0;
             for(auto kv : ol){
                 if(kv.second > maxOl){
                     if(ignoreBackground && kv.first == ignoreValue) {

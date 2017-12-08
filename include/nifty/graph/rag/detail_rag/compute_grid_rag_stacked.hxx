@@ -13,7 +13,6 @@
 #include "nifty/graph/rag/grid_rag_labels_proxy.hxx"
 #include "nifty/graph/undirected_list_graph.hxx"
 
-#include "xtensor/xarray.hpp"
 #include "nifty/xtensor/xtensor.hxx"
 
 namespace nifty{
@@ -98,14 +97,14 @@ struct ComputeRag<GridRagStacked2D<LABELS_PROXY>> {
 
                 // do the thing
                 nifty::tools::forEachCoordinate(sliceShape2,[&](const Coord2 & coord){
-                    const auto lU = xtensor::access(sliceLabels, coord.asStdArray());
+                    const auto lU = xtensor::read(sliceLabels, coord.asStdArray());
                     sliceData.minInSliceNode = std::min(sliceData.minInSliceNode, lU);
                     sliceData.maxInSliceNode = std::max(sliceData.maxInSliceNode, lU);
                     for(std::size_t axis=0; axis<2; ++axis){
                         Coord2 coord2 = coord;
                         ++coord2[axis];
                         if(coord2[axis] < sliceShape2[axis]){
-                            const auto lV = xtensor::access(sliceLabels, coord2.asStdArray());
+                            const auto lV = xtensor::read(sliceLabels, coord2.asStdArray());
                             if(lU != lV){
                                 sliceData.minInSliceNode = std::min(sliceData.minInSliceNode, lV);
                                 sliceData.maxInSliceNode = std::max(sliceData.maxInSliceNode, lV);
@@ -227,8 +226,8 @@ struct ComputeRag<GridRagStacked2D<LABELS_PROXY>> {
                         auto sliceBLabels = xtensor::squeezedView(sliceBView);
 
                         nifty::tools::forEachCoordinate(sliceShape2,[&](const Coord2 & coord){
-                            const auto lU = xtensor::access(sliceALabels, coord.asStdArray());
-                            const auto lV = xtensor::access(sliceBLabels, coord.asStdArray());
+                            const auto lU = xtensor::read(sliceALabels, coord.asStdArray());
+                            const auto lV = xtensor::read(sliceBLabels, coord.asStdArray());
 
                             // add up the len
                             // map insert cf.: http://stackoverflow.com/questions/97050/stdmap-insert-or-stdmap-find

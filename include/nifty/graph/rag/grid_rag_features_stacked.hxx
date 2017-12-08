@@ -11,9 +11,7 @@
 #include "nifty/tools/memory.hxx"
 #include "nifty/tools/runtime_check.hxx"
 
-#include "xtensor/xarray.hpp"
 #include "nifty/xtensor/xtensor.hxx"
-
 
 
 namespace nifty{
@@ -72,8 +70,8 @@ namespace graph{
             auto sliceData = xtensor::squeezedView(sliceDataFlat3DView);
 
             nifty::tools::forEachCoordinate(sliceShape2,[&](const Coord2 & coord){
-                const auto node = xtensor::access(sliceLabels, coord.asStdArray());
-                const auto l    = xtensor::access(sliceData, coord.asStdArray());
+                const auto node = xtensor::read(sliceLabels, coord.asStdArray());
+                const auto l    = xtensor::read(sliceData, coord.asStdArray());
                 overlaps[node][l] += 1;
             });
 

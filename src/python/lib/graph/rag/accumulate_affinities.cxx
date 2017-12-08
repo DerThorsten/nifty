@@ -3,8 +3,7 @@
 #include <pybind11/numpy.h>
 #include <pybind11/stl.h>
 
-#include "nifty/python/converter.hxx"
-
+#include "xtensor-python/pytensor.hpp"
 
 #include "nifty/graph/rag/grid_rag.hxx"
 #include "nifty/graph/rag/feature_accumulation/grid_rag_affinity_features.hxx"
@@ -22,14 +21,14 @@ namespace graph{
     // - parallelize properly
     // - lift gil everywhere
     // - return count of affinities per edge in features
-    template<class RAG>
+    template<class RAG, unsigned DIM>
     void exportAccumulateAffinityFeaturesT(
         py::module & ragModule
     ){
         ragModule.def("computeFeaturesAndNhFromAffinities",
         [](
             const RAG & rag,
-            nifty::marray::PyView<float> affinities,
+            xt::pytensor<float, DIM+1> affinities,
             const std::vector<std::vector<int>> & offsets,
             const int numberOfThreads
         ){
@@ -42,15 +41,15 @@ namespace graph{
                 rag, offsets.begin(), offsets.end(), numberOfThreads
             );
 
-            uint64_t nLocal  = rag.edgeIdUpperBound() + 1;
-            uint64_t nLifted = lnh.edgeIdUpperBound() + 1;
-            marray::PyView<float> outLocal({nLocal, uint64_t(10)});
-            marray::PyView<float> outLifted({nLifted, uint64_t(10)});
+            int64_t nLocal  = rag.edgeIdUpperBound() + 1;
+            int64_t nLifted = lnh.edgeIdUpperBound() + 1;
+            xt::pytensor<float, 2> outLocal({nLocal, int64_t(10)});
+            xt::pytensor<float, 2> outLifted({nLifted, int64_t(10)});
             {
                 py::gil_scoped_release allowThreads;
                 accumulateLongRangeAffinities(rag, lnh, affinities, 0., 1.,  outLocal, outLifted, numberOfThreads);
             }
-            marray::PyView<uint32_t> lnhOut({nLifted, uint64_t(2)});
+            xt::pytensor<uint32_t, 2> lnhOut({nLifted, int64_t(2)});
             {
                 py::gil_scoped_release allowThreads;
                 for(size_t e = 0; e < nLifted; ++e) {
@@ -69,12 +68,12 @@ namespace graph{
         ragModule.def("featuresFromLocalAffinities",
         [](
             const RAG & rag,
-            nifty::marray::PyView<float> affinities,
+            xt::pytensor<float, DIM+1> affinities,
             const int numberOfThreads
         ){
 
-            uint64_t nEdges  = rag.edgeIdUpperBound() + 1;
-            marray::PyView<float> out({nEdges, uint64_t(9)});
+            int64_t nEdges  = rag.edgeIdUpperBound() + 1;
+            xt::pytensor<float, 2> out({nEdges, int64_t(9)});
             {
                 py::gil_scoped_release allowThreads;
                 accumulateAffinities(rag, affinities, 0., 1.,  out, numberOfThreads);
@@ -88,8 +87,10 @@ namespace graph{
     }
 
     void exportAccumulateAffinityFeatures(py::module & ragModule) {
-        typedef ExplicitLabelsGridRag<3, uint32_t> Rag3d;
-        exportAccumulateAffinityFeaturesT<Rag3d>(ragModule);
+        typedef LabelsProxy<3, xt::pytensor<uint32_t, 3>> ExplicitPyLabels3D;
+        typedef GridRag<3, ExplicitPyLabels3D> Rag3d;
+        // FIXME FIXME we need `unravelIndex` functionality for this
+        //exportAccumulateAffinityFeaturesT<Rag3d, 3>(ragModule);
     }
 
 }

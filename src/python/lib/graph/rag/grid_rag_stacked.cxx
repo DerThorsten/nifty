@@ -2,15 +2,12 @@
 #include <pybind11/numpy.h>
 #include <pybind11/stl.h>
 
-#include "nifty/python/converter.hxx"
 #include "nifty/graph/rag/grid_rag_stacked_2d.hxx"
 #ifdef WITH_HDF5
 #include "nifty/hdf5/hdf5_array.hxx"
 #endif
 
-// TODO we could actually use pytensor, because
-// the rag dimension is known at compile time
-#include "xtensor-python/pyarray.hpp"
+#include "xtensor-python/pytensor.hpp"
 
 namespace py = pybind11;
 
@@ -22,6 +19,7 @@ namespace graph{
 
     using namespace py;
 
+    // FIXME switch to xtensor
     template<class CLS, class BASE>
     void removeFunctions(py::class_<CLS, BASE > & clsT){
         clsT
@@ -48,10 +46,13 @@ namespace graph{
             // export shape and acces to the labels proxy object
             .def_property_readonly("shape", [](const GridRagType & self){return self.shape();})
             .def("labelsProxy", &GridRagType::labelsProxy, py::return_value_policy::reference)
+
+            //
             // export the per slice properties
+            // 
             .def("minMaxLabelPerSlice",[](const GridRagType & self){
                 const auto & shape = self.shape();
-                nifty::marray::PyView<uint64_t, 2> out({size_t(shape[0]),size_t(2)});
+                xt::pytensor<uint64_t, 2> out({int64_t(shape[0]), int64_t(2)});
                 for(auto sliceIndex = 0; sliceIndex<shape[0]; ++sliceIndex){
                     auto mima = self.minMaxNode(sliceIndex);
                     out(sliceIndex, 0) = mima.first;
@@ -59,46 +60,52 @@ namespace graph{
                 }
                 return out;
             })
+
             .def("numberOfNodesPerSlice",[](const GridRagType & self){
                 const auto & shape = self.shape();
-                nifty::marray::PyView<uint64_t,  1> out({size_t(shape[0])});
+                xt::pytensor<uint64_t, 1> out({int64_t(shape[0])});
                 for(auto sliceIndex = 0; sliceIndex<shape[0]; ++sliceIndex){
                     out(sliceIndex) =  self.numberOfNodes(sliceIndex);
                 }
                 return out;
             })
+
             .def("numberOfInSliceEdges",[](const GridRagType & self){
                 const auto & shape = self.shape();
-                nifty::marray::PyView<uint64_t,  1> out({size_t(shape[0])});
+                xt::pytensor<uint64_t, 1> out({int64_t(shape[0])});
                 for(auto sliceIndex = 0; sliceIndex<shape[0]; ++sliceIndex){
                     out(sliceIndex) =  self.numberOfInSliceEdges(sliceIndex);
                 }
                 return out;
             })
+
             .def("numberOfInBetweenSliceEdges",[](const GridRagType & self){
                 const auto & shape = self.shape();
-                nifty::marray::PyView<uint64_t,  1> out({size_t(shape[0])});
+                xt::pytensor<uint64_t, 1> out({int64_t(shape[0])});
                 for(auto sliceIndex = 0; sliceIndex<shape[0]; ++sliceIndex){
                     out(sliceIndex) =  self.numberOfInBetweenSliceEdges(sliceIndex);
                 }
                 return out;
             })
+
             .def("inSliceEdgeOffset",[](const GridRagType & self){
                 const auto & shape = self.shape();
-                nifty::marray::PyView<uint64_t,  1> out({size_t(shape[0])});
+                xt::pytensor<uint64_t, 1> out({int64_t(shape[0])});
                 for(auto sliceIndex = 0; sliceIndex<shape[0]; ++sliceIndex){
                     out(sliceIndex) =  self.inSliceEdgeOffset(sliceIndex);
                 }
                 return out;
             })
+
             .def("betweenSliceEdgeOffset",[](const GridRagType & self){
                 const auto & shape = self.shape();
-                nifty::marray::PyView<uint64_t,  1> out({size_t(shape[0])});
+                xt::pytensor<uint64_t, 1> out({int64_t(shape[0])});
                 for(auto sliceIndex = 0; sliceIndex<shape[0]; ++sliceIndex){
                     out(sliceIndex) =  self.betweenSliceEdgeOffset(sliceIndex);
                 }
                 return out;
             })
+
             .def_property_readonly("totalNumberOfInSliceEdges",[](const GridRagType & self){
                 return self.numberOfInSliceEdges();
             })
@@ -107,22 +114,23 @@ namespace graph{
             })
             // export serialization and deserialization
             .def("serialize",[](const GridRagType & self){
-                nifty::marray::PyView<uint64_t> out({self.serializationSize()});
+                xt::pytensor<uint64_t, 1> out({self.serializationSize()});
                 auto ptr = &out(0);
                 self.serialize(ptr);
                 return out;
             })
-            // TODO use xtensor for python bindings
-            .def("deserialize",[](GridRagType & self, nifty::marray::PyView<uint64_t, 1> serialization) {
+
+            .def("deserialize",[](GridRagType & self, xt::pytensor<uint64_t, 1> serialization) {
                     auto startPtr = &serialization(0);
                     auto lastElement = &serialization(serialization.size()-1);
                     auto d = lastElement - startPtr + 1;
                     NIFTY_CHECK_OP(d,==,serialization.size(), "serialization must be contiguous");
                     self.deserialize(startPtr);
             })
+
             // export edgeLengths TODO remove this once / if we have removed this functionality
             .def("edgeLengths",[](GridRagType & self) {
-                nifty::marray::PyView<uint64_t,1> out({self.numberOfEdges()});
+                xt::pytensor<uint64_t,1> out({self.numberOfEdges()});
                 const auto & edgeLens = self.edgeLengths();
                 for(int edge = 0; edge < self.numberOfEdges(); ++edge)
                     out(edge) = edgeLens[edge];
@@ -149,8 +157,7 @@ namespace graph{
         // from labels + serialization
         ragModule.def(facName.c_str(),
             [](const LabelsProxyType & labelsProxy,
-               // TODO use xtensor for python bindings !
-               nifty::marray::PyView<uint64_t, 1, false> serialization
+               xt::pytensor<uint64_t, 1> serialization
             ){
                 auto startPtr = &serialization(0);
                 auto lastElement = &serialization(serialization.size()-1);
@@ -172,7 +179,7 @@ namespace graph{
 
     void exportGridRagStacked(py::module & ragModule) {
         // export in-memory labels
-        typedef LabelsProxy<3, xt::pyarray<uint32_t>> ExplicitPyLabels3D;
+        typedef LabelsProxy<3, xt::pytensor<uint32_t, 3>> ExplicitPyLabels3D;
         exportGridRagStackedT<ExplicitPyLabels3D>(ragModule, "GridRagStacked2DExplicit", "gridRagStacked2DExplicitImpl");
 
         // export hdf5 labels

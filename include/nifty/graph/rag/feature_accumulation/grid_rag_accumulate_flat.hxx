@@ -7,27 +7,28 @@
 namespace nifty{
 namespace graph{
 
-template<class ACC_CHAIN_VECTOR, class COORD, class LABEL_TYPE, class RAG>
-inline void accumulateInnerSliceFeatures(
-        ACC_CHAIN_VECTOR & accChainVec,
-        const COORD & sliceShape2,
-        const marray::View<LABEL_TYPE> & labelsSqueezed,
-        const RAG & rag,
-        const marray::View<float> & data,
-        const int pass,
-        const int64_t sliceId
-        ) {
+template<class ACC_CHAIN_VECTOR, class COORD, class LABEL_ARRAY, class DATA_ARRAY, class RAG>
+inline void accumulateInnerSliceFeatures(ACC_CHAIN_VECTOR & accChainVec,
+                                         const COORD & sliceShape2,
+                                         const xt::xexpression<LABEL_ARRAY> & labelsSqueezedExp,
+                                         const RAG & rag,
+                                         const xt::xexpression<DATA_ARRAY> & dataExp,
+                                         const int pass,
+                                         const int64_t sliceId) {
 
     typedef COORD Coord2;
     typedef typename vigra::MultiArrayShape<3>::type VigraCoord;
 
+    const auto & labelsSqueezed = labelsSqueezedExp.derived_cast();
+    const auto & data = dataExp.derived_cast();
+
     nifty::tools::forEachCoordinate(sliceShape2, [&](const Coord2 coord){
-        const auto lU = labelsSqueezed(coord.asStdArray());
+        const auto lU = xtensor::read(labelsSqueezed, coord.asStdArray());
         for(int axis = 0; axis < 2; ++axis){
             Coord2 coord2 = coord;
             ++coord2[axis];
             if( coord2[axis] < sliceShape2[axis]) {
-                const auto lV = labelsSqueezed(coord2.asStdArray());
+                const auto lV = xtensor::read(labelsSqueezed, coord2.asStdArray());
                 if(lU != lV) {
                     VigraCoord vigraCoordU;
                     VigraCoord vigraCoordV;
@@ -38,8 +39,8 @@ inline void accumulateInnerSliceFeatures(
                         vigraCoordV[d] = coord2[d-1];
                     }
                     const auto edge = rag.findEdge(lU,lV);
-                    const auto fU = data(coord.asStdArray());
-                    const auto fV = data(coord2.asStdArray());
+                    const auto fU = xtensor::read(data, coord.asStdArray());
+                    const auto fV = xtensor::read(data, coord2.asStdArray());
                     accChainVec[edge].updatePassN(fU, vigraCoordU, pass);
                     accChainVec[edge].updatePassN(fV, vigraCoordV, pass);
                 }
@@ -48,27 +49,31 @@ inline void accumulateInnerSliceFeatures(
     });
 }
 
-template<class ACC_CHAIN_VECTOR, class COORD, class LABEL_TYPE, class RAG>
-inline void accumulateBetweenSliceFeatures(
-        ACC_CHAIN_VECTOR & accChainVec,
-        const COORD & sliceShape2,
-        const marray::View<LABEL_TYPE> & labelsASqueezed,
-        const marray::View<LABEL_TYPE> & labelsBSqueezed,
-        const RAG & rag,
-        const marray::View<float> & dataA,
-        const marray::View<float> & dataB,
-        const int pass,
-        const int64_t sliceIdA,
-        const int64_t sliceIdB,
-        const int zDirection = 0 // this is a flag that determines which slice(s) are taken into account for the z-edges
-    ){
+template<class ACC_CHAIN_VECTOR, class COORD, class LABEL_ARRAY, class DATA_ARRAY, class RAG>
+inline void accumulateBetweenSliceFeatures(ACC_CHAIN_VECTOR & accChainVec,
+                                           const COORD & sliceShape2,
+                                           const xt::xexpression<LABEL_ARRAY> & labelsASqueezedExp,
+                                           const xt::xexpression<LABEL_ARRAY> & labelsBSqueezedExp,
+                                           const RAG & rag,
+                                           const xt::xexpression<DATA_ARRAY> & dataAExp,
+                                           const xt::xexpression<DATA_ARRAY> & dataBExp,
+                                           const int pass,
+                                           const int64_t sliceIdA,
+                                           const int64_t sliceIdB,
+                                           const int zDirection = 0){
 
     typedef COORD Coord2;
     typedef typename vigra::MultiArrayShape<3>::type VigraCoord;
 
+    const auto &labelsASqueezed = labelsASqueezedExp.derived_cast();
+    const auto &labelsBSqueezed = labelsBSqueezedExp.derived_cast();
+    
+    const auto &dataA = dataAExp.derived_cast();
+    const auto &dataB = dataBExp.derived_cast();
+
     nifty::tools::forEachCoordinate(sliceShape2, [&](const Coord2 coord){
-        const auto lU = labelsASqueezed(coord.asStdArray());
-        const auto lV = labelsBSqueezed(coord.asStdArray());
+        const auto lU = xtensor::read(labelsASqueezed, coord.asStdArray());
+        const auto lV = xtensor::read(labelsBSqueezed, coord.asStdArray());
         if(lU != lV) {
             VigraCoord vigraCoordU;
             VigraCoord vigraCoordV;
@@ -80,17 +85,17 @@ inline void accumulateBetweenSliceFeatures(
             }
             const auto edge = rag.findEdge(lU,lV);
             if(zDirection==0) { // 0 -> take into account z and z + 1
-                const auto fU = dataA(coord.asStdArray());
-                const auto fV = dataB(coord.asStdArray());
+                const auto fU = xtensor::read(dataA, coord.asStdArray());
+                const auto fV = xtensor::read(dataB, coord.asStdArray());
                 accChainVec[edge].updatePassN(fU, vigraCoordU, pass);
                 accChainVec[edge].updatePassN(fV, vigraCoordV, pass);
             }
             else if(zDirection==1) { // 1 -> take into accout only z
-                const auto fU = dataA(coord.asStdArray());
+                const auto fU = xtensor::read(dataA, coord.asStdArray());
                 accChainVec[edge].updatePassN(fU, vigraCoordU, pass);
             }
             else if(zDirection==2) { // 2 -> take into accout only z + 1
-                const auto fV = dataB(coord.asStdArray());
+                const auto fV = xtensor::read(dataB, coord.asStdArray());
                 accChainVec[edge].updatePassN(fV, vigraCoordV, pass);
             }
         }
@@ -109,7 +114,7 @@ void accumulateEdgeFeaturesFlatWithAccChain(
 ){
     typedef LABELS_PROXY LabelsProxyType;
     typedef typename LabelsProxyType::LabelType LabelType;
-    typedef typename DATA::DataType DataType;
+    typedef typename DATA::value_type DataType;
 
     typedef typename LabelsProxyType::BlockStorageType LabelBlockStorage;
     typedef tools::BlockStorage<DataType> DataBlockStorage;
@@ -183,11 +188,11 @@ void accumulateEdgeFeaturesFlatWithAccChain(
 
             auto labelsA = labelsAStorage.getView(tid);
             labelsProxy.readSubarray(beginA, endA, labelsA);
-            auto labelsASqueezed = labelsA.squeezedView();
+            auto labelsASqueezed = xtensor::squeezedView(labelsA);
 
             auto dataA = dataAStorage.getView(tid);
             tools::readSubarray(data, beginA, endA, dataA);
-            auto dataASqueezed = dataA.squeezedView();
+            auto dataASqueezed = xtensor::squeezedView(dataA);
 
             accumulateInnerSliceFeatures(
                 threadAccChainVec,
@@ -202,15 +207,14 @@ void accumulateEdgeFeaturesFlatWithAccChain(
             // process upper slice
             Coord beginB = Coord({sliceIdB,   0L,       0L});
             Coord endB   = Coord({sliceIdB+1, shape[1], shape[2]});
-            marray::View<LabelType> labelsBSqueezed;
 
             // read labels and data for upper slice
             auto labelsB = labelsBStorage.getView(tid);
             labelsProxy.readSubarray(beginB, endB, labelsB);
-            labelsBSqueezed = labelsB.squeezedView();
+            auto labelsBSqueezed = xtensor::squeezedView(labelsB);
             auto dataB = dataBStorage.getView(tid);
             tools::readSubarray(data, beginB, endB, dataB);
-            auto dataBSqueezed = dataB.squeezedView();
+            auto dataBSqueezed = xtensor::squeezedView(dataB);
 
             // accumulate features for the in between slice edges
             accumulateBetweenSliceFeatures(
@@ -261,12 +265,12 @@ void accumulateEdgeFeaturesFlat(
     const DATA & data,
     const double minVal,
     const double maxVal,
-    marray::View<FEATURE_TYPE> & edgeFeaturesOut,
+    xt::xexpression<FEATURE_TYPE> & edgeFeaturesOutExp,
     const int zDirection = 0,
     const int numberOfThreads = -1
 ){
     namespace acc = vigra::acc;
-    typedef FEATURE_TYPE DataType;
+    typedef typename FEATURE_TYPE::value_type DataType;
 
     typedef acc::UserRangeHistogram<40>            SomeHistogram;   //binCount set at compile time
     typedef acc::StandardQuantiles<SomeHistogram > Quantiles;
@@ -281,6 +285,8 @@ void accumulateEdgeFeaturesFlat(
         Quantiles         //7
     > SelectType;
     typedef acc::StandAloneAccumulatorChain<DIM, DataType, SelectType> AccChainType;
+
+    auto & edgeFeaturesOut = edgeFeaturesOutExp.derived_cast();
 
     // threadpool
     nifty::parallel::ParallelOptions pOpts(numberOfThreads);

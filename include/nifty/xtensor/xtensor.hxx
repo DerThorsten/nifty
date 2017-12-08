@@ -8,10 +8,10 @@ namespace nifty {
 namespace xtensor {
     // small helper function to convert a ROI given by (offset, shape) into
     // a proper xtensor sliceing
-    template<typename COORD>
+    template<typename COORD1, typename COORD2>
     inline void sliceFromRoi(xt::slice_vector & roiSlice,
-                             const COORD & begin,
-                             const COORD & end) {
+                             const COORD1 & begin,
+                             const COORD2 & end) {
         for(int d = 0; d < begin.size(); ++d) {
             roiSlice.push_back(xt::range(begin[d], end[d]));
         }
@@ -38,8 +38,8 @@ namespace xtensor {
     // FIXME we need a default way to do this for D > 6
     // maybe just accessing it with an iterator `begin` works ?!
     template<class ARRAY, class COORD>
-    inline typename ARRAY::value_type access(const xt::xexpression<ARRAY> & arrayExp,
-                                             const COORD & coord) {
+    inline typename ARRAY::value_type read(const xt::xexpression<ARRAY> & arrayExp,
+                                           const COORD & coord) {
         auto & array = arrayExp.derived_cast();
         switch(coord.size()) {
             case 1: return array(coord[0]);
@@ -48,6 +48,25 @@ namespace xtensor {
             case 4: return array(coord[0], coord[1], coord[2], coord[3]);
             case 5: return array(coord[0], coord[1], coord[2], coord[3], coord[4]);
             case 6: return array(coord[0], coord[1], coord[2], coord[3], coord[4], coord[5]);
+            default: throw std::runtime_error("xtensor access with coordinate is only supported up to 6D");
+        }
+    }
+
+    // FIXME there should be a more elegant way to do this
+    // FIXME we need a default way to do this for D > 6
+    // maybe just accessing it with an iterator `begin` works ?!
+    template<class ARRAY, class COORD>
+    inline void write(xt::xexpression<ARRAY> & arrayExp,
+                      const COORD & coord,
+                      const typename ARRAY::value_type val) {
+        auto & array = arrayExp.derived_cast();
+        switch(coord.size()) {
+            case 1: array(coord[0]) = val; break;
+            case 2: array(coord[0], coord[1]) = val; break;
+            case 3: array(coord[0], coord[1], coord[2]) = val; break;
+            case 4: array(coord[0], coord[1], coord[2], coord[3]) = val; break;
+            case 5: array(coord[0], coord[1], coord[2], coord[3], coord[4]) = val; break;
+            case 6: array(coord[0], coord[1], coord[2], coord[3], coord[4], coord[5]) = val; break;
             default: throw std::runtime_error("xtensor access with coordinate is only supported up to 6D");
         }
     }

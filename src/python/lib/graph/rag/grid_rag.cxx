@@ -2,10 +2,7 @@
 #include <pybind11/numpy.h>
 #include <pybind11/stl.h>
 
-#include "nifty/python/converter.hxx"
-// TODO we could actually use pytensor, because
-// the rag dimension is known at compile time
-#include "xtensor-python/pyarray.hpp"
+#include "xtensor-python/pytensor.hpp"
 
 #include "nifty/graph/rag/grid_rag.hxx"
 #ifdef WITH_HDF5
@@ -20,6 +17,7 @@ namespace graph{
 
     using namespace py;
 
+    // FIXME switch to xtensor
     template<class CLS, class BASE>
     void removeFunctions(py::class_<CLS, BASE > & clsT){
         clsT
@@ -88,10 +86,9 @@ namespace graph{
             py::arg_t< int >("numberOfThreads", -1 )
         );
 
-        // TODO switch to xtensor
         // from labels + serialization
         ragModule.def(facName.c_str(),[](const LabelsProxyType & labels,
-                                         nifty::marray::PyView<uint64_t, 1, false> serialization){
+                                         xt::pytensor<uint64_t, 1> serialization){
 
                 auto  startPtr = &serialization(0);
                 auto  lastElement = &serialization(serialization.size()-1);
@@ -117,9 +114,9 @@ namespace graph{
 
         // export grid rag with in-memory labels
         // TODO we could actually use pytensor, because the dimenstion is known at compile time
-        typedef LabelsProxy<2, xt::pyarray<uint32_t>> ExplicitPyLabels2D;
+        typedef LabelsProxy<2, xt::pytensor<uint32_t, 2>> ExplicitPyLabels2D;
         exportGridRagT<2, ExplicitPyLabels2D>(ragModule, "ExplicitLabelsGridRag2D", "explicitLabelsGridRag2D");
-        typedef LabelsProxy<3, xt::pyarray<uint32_t>> ExplicitPyLabels3D;
+        typedef LabelsProxy<3, xt::pytensor<uint32_t, 3>> ExplicitPyLabels3D;
         exportGridRagT<3, ExplicitPyLabels3D>(ragModule, "ExplicitLabelsGridRag3D", "explicitLabelsGridRag3D");
 
         // export grid rag with hdf5 labels

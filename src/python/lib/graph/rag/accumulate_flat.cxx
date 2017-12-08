@@ -2,8 +2,6 @@
 #include <pybind11/numpy.h>
 #include <pybind11/stl.h>
 
-#include "nifty/python/converter.hxx"
-
 // no hdf5 support for now
 //#ifdef WITH_HDF5
 //#include "nifty/hdf5/hdf5_array.hxx"
@@ -15,6 +13,8 @@
 #include "nifty/graph/rag/grid_rag.hxx"
 #include "nifty/graph/rag/grid_rag_labels_proxy.hxx"
 #include "nifty/graph/rag/feature_accumulation/grid_rag_accumulate_flat.hxx"
+
+#include "xtensor-python/pytensor.hpp"
 
 namespace py = pybind11;
 
@@ -30,14 +30,14 @@ namespace graph{
         ragModule.def("accumulateEdgeFeaturesFlat",
         [](
             const RAG & rag,
-            nifty::marray::PyView<DATA_T, 3> data,
+            xt::pytensor<DATA_T, 3> data,
             const double minVal,
             const double maxVal,
             const int zDirection,
             const int numberOfThreads
         ){
-            typedef nifty::marray::PyView<DATA_T> NumpyArrayType;
-            NumpyArrayType edgeOut({uint64_t(rag.edgeIdUpperBound()+1),uint64_t(9)});
+            typedef xt::pytensor<DATA_T, 2> NumpyArrayType;
+            NumpyArrayType edgeOut({int64_t(rag.edgeIdUpperBound()+1), int64_t(9)});
             {
                 py::gil_scoped_release allowThreads;
                 accumulateEdgeFeaturesFlat(rag, data, minVal, maxVal, edgeOut, zDirection, numberOfThreads);
@@ -55,7 +55,8 @@ namespace graph{
 
     void exportAccumulateFlat(py::module & ragModule) {
 
-        typedef ExplicitLabelsGridRag<3, uint32_t> Rag3d;
+        typedef LabelsProxy<3, xt::pytensor<uint32_t, 3>> ExplicitPyLabels3D;
+        typedef GridRag<3, ExplicitPyLabels3D> Rag3d;
         exportAccumulateEdgeFeaturesFlatT<Rag3d, float>(ragModule);
 
     }

@@ -31,10 +31,10 @@ void accumulateAffninitiesWithAccChain(
 
     Coord3 shape;
     Coord4 affShape;
-    affShape[0] = affinities.shape(0);
+    affShape[0] = affinities.shape()[0];
     for(int d = 0; d < 3; ++d) {
         shape[d] = labels.shape(d);
-        affShape[d] = affinities.shape(d+1);
+        affShape[d] = affinities.shape()[d+1];
     }
 
     // only single threaded for now
@@ -74,6 +74,7 @@ void accumulateAffninitiesWithAccChain(
         Coord3 cU, cV;
         VigraCoord vc;
 
+        // FIXME FIXME FIXME does xtensor support unravel index in this fashion ?
         affinities.indexToCoordinates(linkId, affCoord.begin());
         auto axis  = axes[affCoord[0]];
         auto range = ranges[affCoord[0]];
@@ -99,7 +100,7 @@ void accumulateAffninitiesWithAccChain(
                 vc = cU[d];
             }
 
-            auto val = affinities(affCoord.asStdArray());
+            auto val = xtensor::read(affinities, affCoord.asStdArray());
             auto e = rag.findEdge(u, v);
             thisAccumulators[e].updatePassN(val, vc, pass);
         }
@@ -119,13 +120,13 @@ void accumulateAffninitiesWithAccChain(
 
 
 // 9 features
-template<class RAG, class AFFINITIES>
+template<class RAG, class AFFINITIES, class FEATURE_ARRAY>
 void accumulateAffinities(
     const RAG & rag,
     const AFFINITIES & affinities,
     const double minVal,
     const double maxVal,
-    marray::View<float> & features,
+    xt::xexpression<FEATURE_ARRAY> & featuresExp,
     const int numberOfThreads = -1
 ){
     // TODO check that affinity channels and lnh axes and ranges agree
@@ -143,6 +144,8 @@ void accumulateAffinities(
         Quantiles         //7
     > SelectType;
     typedef acc::StandAloneAccumulatorChain<3, float, SelectType> AccChainType;
+
+    auto & features = featuresExp.derived_cast();
 
     // threadpool
     nifty::parallel::ParallelOptions pOpts(numberOfThreads);
@@ -323,15 +326,15 @@ void accumulateLongRangeAffninitiesWithAccChain(
 
 
 // 10 features
-template<class RAG, class LNH, class AFFINITIES>
+template<class RAG, class LNH, class AFFINITIES, class FEATURE_ARRAY>
 void accumulateLongRangeAffinities(
     const RAG & rag,
     const LNH & lnh,
     const AFFINITIES & affinities,
     const double minVal,
     const double maxVal,
-    marray::View<float> & localFeatures,
-    marray::View<float> & liftedFeatures,
+    xt::xexpression<FEATURE_ARRAY> & localFeaturesExp,
+    xt::xexpression<FEATURE_ARRAY> & liftedFeaturesExp,
     const int numberOfThreads = -1
 ){
     // TODO check that affinity channels and lnh axes and ranges agree
@@ -350,6 +353,8 @@ void accumulateLongRangeAffinities(
         acc::Count        // 1
     > SelectType;
     typedef acc::StandAloneAccumulatorChain<3, float, SelectType> AccChainType;
+    auto & localFeatures = localFeaturesExp.derived_cast();
+    auto & liftedFeatures = liftedFeaturesExp.derived_cast();
 
     // threadpool
     nifty::parallel::ParallelOptions pOpts(numberOfThreads);

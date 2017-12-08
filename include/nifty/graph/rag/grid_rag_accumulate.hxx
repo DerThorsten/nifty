@@ -5,10 +5,11 @@
 #include <cstddef>
 
 #include "nifty/graph/rag/grid_rag.hxx"
-#include "nifty/marray/marray.hxx"
 #include "nifty/tools/for_each_block.hxx"
 #include "nifty/parallel/threadpool.hxx"
 #include "vigra/accumulator.hxx"
+
+#include "nifty/xtensor/xtensor.hxx"
 
 
 #include <unordered_map>
@@ -62,36 +63,29 @@ namespace graph{
 
     // accumulator with data
     template<class EDGE_ACC_CHAIN, std::size_t DIM, class LABELS_PROXY, class DATA, class F>
-    void accumulateEdgeFeaturesWithAccChain(
-
-        const GridRag<DIM, LABELS_PROXY> & rag,
-        const DATA & data,
-        const array::StaticArray<int64_t, DIM> & blockShape,
-        const parallel::ParallelOptions & pOpts,
-        parallel::ThreadPool & threadpool,
-        F && f,
-        const AccOptions & accOptions = AccOptions()
-    ){
+    void accumulateEdgeFeaturesWithAccChain(const GridRag<DIM, LABELS_PROXY> & rag,
+                                            const DATA & data,
+                                            const array::StaticArray<int64_t, DIM> & blockShape,
+                                            const parallel::ParallelOptions & pOpts,
+                                            parallel::ThreadPool & threadpool,
+                                            F && f,
+                                            const AccOptions & accOptions = AccOptions()){
 
         typedef LABELS_PROXY LabelsProxyType;
-        typedef typename vigra::MultiArrayShape<DIM>::type   VigraCoord;
+        typedef typename DATA::value_type DataType;
+        typedef typename vigra::MultiArrayShape<DIM>::type VigraCoord;
         typedef typename LabelsProxyType::BlockStorageType LabelBlockStorage;
-        typedef typename tools::BlockStorageSelector<DATA>::type DataBlocKStorage;
+        typedef tools::BlockStorage<DataType> DataBlockStorage;
 
         typedef array::StaticArray<int64_t, DIM> Coord;
         typedef EDGE_ACC_CHAIN EdgeAccChainType;
         typedef std::vector<EdgeAccChainType> EdgeAccChainVectorType;
 
-
         const std::size_t actualNumberOfThreads = pOpts.getActualNumThreads();
-
 
         const auto & shape = rag.shape();
 
-
-
         std::vector< EdgeAccChainVectorType * > perThreadEdgeAccChainVector(actualNumberOfThreads);
-
 
         parallel::parallel_foreach(threadpool, actualNumberOfThreads,
         [&](const int tid, const int64_t i){
@@ -123,7 +117,7 @@ namespace graph{
             const Coord overlapBegin(0), overlapEnd(1);
             const Coord storageShape = blockShape + overlapEnd;
             LabelBlockStorage labelsBlockStorage(threadpool, storageShape, actualNumberOfThreads);
-            DataBlocKStorage dataBlocKStorage(threadpool, storageShape, actualNumberOfThreads);
+            DataBlockStorage dataBlockStorage(threadpool, storageShape, actualNumberOfThreads);
             tools::parallelForEachBlockWithOverlap(threadpool,shape, blockShape, overlapBegin, overlapEnd,
             [&](
                 const int tid,
@@ -141,22 +135,22 @@ namespace graph{
 
                 // read the labels block and the data block
                 auto labelsBlockView = labelsBlockStorage.getView(actualBlockShape, tid);
-                auto dataBlockView = dataBlocKStorage.getView(actualBlockShape, tid);
+                auto dataBlockView = dataBlockStorage.getView(actualBlockShape, tid);
                 tools::readSubarray(rag.labelsProxy(), blockBegin, blockEnd, labelsBlockView);
                 tools::readSubarray(data, blockBegin, blockEnd, dataBlockView);
 
                 // loop over all coordinates in block
                 nifty::tools::forEachCoordinate(nonOlBlockShape,[&](const Coord & coordU){
-                    const auto lU = labelsBlockView(coordU.asStdArray());
+                    const auto lU = xtensor::read(labelsBlockView, coordU.asStdArray());
                     for(std::size_t axis=0; axis<DIM; ++axis){
                         auto coordV = makeCoord2(coordU, axis);
                         if(coordV[axis] < actualBlockShape[axis]){
-                            const auto lV = labelsBlockView(coordV.asStdArray());
+                            const auto lV = xtensor::read(labelsBlockView, coordV.asStdArray());
                             if(lU != lV){
                                 const auto edge = rag.findEdge(lU,lV);
 
-                                const auto dataU = dataBlockView(coordU.asStdArray());
-                                const auto dataV = dataBlockView(coordV.asStdArray());
+                                const auto dataU = xtensor::read(dataBlockView, coordU.asStdArray());
+                                const auto dataV = xtensor::read(dataBlockView, coordV.asStdArray());
 
                                 VigraCoord vigraCoordU;
                                 VigraCoord vigraCoordV;
@@ -197,23 +191,22 @@ namespace graph{
         });
     }
 
+
     // accumulator with data
     template<class EDGE_ACC_CHAIN, class NODE_ACC_CHAIN, std::size_t DIM, class LABELS_PROXY, class DATA, class F>
-    void accumulateEdgeAndNodeFeaturesWithAccChainSaveMemory(
-
-        const GridRag<DIM, LABELS_PROXY> & rag,
-        const DATA & data,
-        const array::StaticArray<int64_t, DIM> & blockShape,
-        const parallel::ParallelOptions & pOpts,
-        parallel::ThreadPool & threadpool,
-        F && f,
-        const AccOptions & accOptions = AccOptions()
-    ){
+    void accumulateEdgeAndNodeFeaturesWithAccChainSaveMemory(const GridRag<DIM, LABELS_PROXY> & rag,
+                                                             const DATA & data,
+                                                             const array::StaticArray<int64_t, DIM> & blockShape,
+                                                             const parallel::ParallelOptions & pOpts,
+                                                             parallel::ThreadPool & threadpool,
+                                                             F && f,
+                                                             const AccOptions & accOptions = AccOptions()){
 
         typedef LABELS_PROXY LabelsProxyType;
-        typedef typename vigra::MultiArrayShape<DIM>::type   VigraCoord;
+        typedef typename DATA::value_type DataType;
+        typedef typename vigra::MultiArrayShape<DIM>::type  VigraCoord;
         typedef typename LabelsProxyType::BlockStorageType LabelBlockStorage;
-        typedef typename tools::BlockStorageSelector<DATA>::type DataBlocKStorage;
+        typedef tools::BlockStorage<DataType> DataBlockStorage;
 
         typedef array::StaticArray<int64_t, DIM> Coord;
 
@@ -224,9 +217,7 @@ namespace graph{
 
         const std::size_t actualNumberOfThreads = pOpts.getActualNumThreads();
 
-
         const auto & shape = rag.shape();
-
 
         std::vector< EdgeAccChainMapType * > perThreadEdgeAccChainMap(actualNumberOfThreads);
         std::vector< NodeAccChainMapType * > perThreadNodeAccChainMap(actualNumberOfThreads);
@@ -237,11 +228,8 @@ namespace graph{
             perThreadNodeAccChainMap[i] = new NodeAccChainMapType();
         });
 
-
-
         EdgeAccChainType dummyEdgeChain;
         NodeAccChainType dummyNodeChain;
-
 
         const auto numberOfEdgePasses = dummyEdgeChain.passesRequired();
         const auto numberOfNodePasses = dummyNodeChain.passesRequired();
@@ -273,7 +261,7 @@ namespace graph{
             const Coord overlapBegin(0), overlapEnd(1);
             const Coord storageShape = blockShape + overlapEnd;
             LabelBlockStorage labelsBlockStorage(threadpool, storageShape, actualNumberOfThreads);
-            DataBlocKStorage dataBlocKStorage(threadpool, storageShape, actualNumberOfThreads);
+            DataBlockStorage dataBlockStorage(threadpool, storageShape, actualNumberOfThreads);
             tools::parallelForEachBlockWithOverlap(threadpool,shape, blockShape, overlapBegin, overlapEnd,
             [&](
                 const int tid,
@@ -290,15 +278,15 @@ namespace graph{
 
                 // read the labels block and the data block
                 auto labelsBlockView = labelsBlockStorage.getView(actualBlockShape, tid);
-                auto dataBlockView = dataBlocKStorage.getView(actualBlockShape, tid);
+                auto dataBlockView = dataBlockStorage.getView(actualBlockShape, tid);
                 tools::readSubarray(rag.labelsProxy(), blockBegin, blockEnd, labelsBlockView);
                 tools::readSubarray(data, blockBegin, blockEnd, dataBlockView);
 
                 // loop over all coordinates in block
                 nifty::tools::forEachCoordinate(nonOlBlockShape,[&](const Coord & coordU){
 
-                    const auto lU = labelsBlockView(coordU.asStdArray());
-                    const auto dataU = dataBlockView(coordU.asStdArray());
+                    const auto lU = xtensor::read(labelsBlockView, coordU.asStdArray());
+                    const auto dataU = xtensor::read(dataBlockView, coordU.asStdArray());
 
                     VigraCoord vigraCoordU;
                     for(std::size_t d=0; d<DIM; ++d)
@@ -312,11 +300,11 @@ namespace graph{
                         for(std::size_t axis=0; axis<DIM; ++axis){
                             auto coordV = makeCoord2(coordU, axis);
                             if(coordV[axis] < actualBlockShape[axis]){
-                                const auto lV = labelsBlockView(coordV.asStdArray());
+                                const auto lV = xtensor::read(labelsBlockView, coordV.asStdArray());
                                 if(lU != lV){
 
                                     const auto edge = rag.findEdge(lU,lV);
-                                    const auto dataV = dataBlockView(coordV.asStdArray());
+                                    const auto dataV = xtensor::read(dataBlockView, coordV.asStdArray());
 
                                     VigraCoord vigraCoordV;
                                     for(std::size_t d=0; d<DIM; ++d)
@@ -375,22 +363,20 @@ namespace graph{
 
     // accumulator with data
     template<class EDGE_ACC_CHAIN, class NODE_ACC_CHAIN, std::size_t DIM, class LABELS_PROXY, class DATA, class F>
-    void accumulateEdgeAndNodeFeaturesWithAccChain(
-
-        const GridRag<DIM, LABELS_PROXY> & rag,
-        const DATA & data,
-        const array::StaticArray<int64_t, DIM> & blockShape,
-        const parallel::ParallelOptions & pOpts,
-        parallel::ThreadPool & threadpool,
-        F && f,
-        const AccOptions & accOptions = AccOptions()
-    ){
+    void accumulateEdgeAndNodeFeaturesWithAccChain(const GridRag<DIM, LABELS_PROXY> & rag,
+                                                   const DATA & data,
+                                                   const array::StaticArray<int64_t, DIM> & blockShape,
+                                                   const parallel::ParallelOptions & pOpts,
+                                                   parallel::ThreadPool & threadpool,
+                                                   F && f,
+                                                   const AccOptions & accOptions = AccOptions()){
         //std::cout<<"A\n";
 
         typedef LABELS_PROXY LabelsProxyType;
+        typedef typename DATA::value_type DataType;
         typedef typename vigra::MultiArrayShape<DIM>::type   VigraCoord;
         typedef typename LabelsProxyType::BlockStorageType LabelBlockStorage;
-        typedef typename tools::BlockStorageSelector<DATA>::type DataBlocKStorage;
+        typedef tools::BlockStorage<DataType> DataBlockStorage;
 
         typedef array::StaticArray<int64_t, DIM> Coord;
 
@@ -459,7 +445,7 @@ namespace graph{
             const Coord overlapBegin(0), overlapEnd(1);
             const Coord storageShape = blockShape + overlapEnd;
             LabelBlockStorage labelsBlockStorage(threadpool, storageShape, actualNumberOfThreads);
-            DataBlocKStorage dataBlocKStorage(threadpool, storageShape, actualNumberOfThreads);
+            DataBlockStorage dataBlockStorage(threadpool, storageShape, actualNumberOfThreads);
             tools::parallelForEachBlockWithOverlap(threadpool,shape, blockShape, overlapBegin, overlapEnd,
             [&](
                 const int tid,
@@ -479,7 +465,7 @@ namespace graph{
                 //std::cout<<"E3\n";
                 // read the labels block and the data block
                 auto labelsBlockView = labelsBlockStorage.getView(actualBlockShape, tid);
-                auto dataBlockView = dataBlocKStorage.getView(actualBlockShape, tid);
+                auto dataBlockView = dataBlockStorage.getView(actualBlockShape, tid);
 
                 //std::cout<<"E4 1\n";
                 tools::readSubarray(rag.labelsProxy(), blockBegin, blockEnd, labelsBlockView);
@@ -491,8 +477,8 @@ namespace graph{
                 // loop over all coordinates in block
                 nifty::tools::forEachCoordinate(nonOlBlockShape,[&](const Coord & coordU){
 
-                    const auto lU = labelsBlockView(coordU.asStdArray());
-                    const auto dataU = dataBlockView(coordU.asStdArray());
+                    const auto lU = xtensor::read(labelsBlockView, coordU.asStdArray());
+                    const auto dataU = xtensor::read(dataBlockView, coordU.asStdArray());
 
                     VigraCoord vigraCoordU;
                     for(std::size_t d=0; d<DIM; ++d){
@@ -508,11 +494,11 @@ namespace graph{
                         for(std::size_t axis=0; axis<DIM; ++axis){
                             auto coordV = makeCoord2(coordU, axis);
                             if(coordV[axis] < actualBlockShape[axis]){
-                                const auto lV = labelsBlockView(coordV.asStdArray());
+                                const auto lV = xtensor::read(labelsBlockView, coordV.asStdArray());
                                 if(lU != lV){
 
                                     const auto edge = rag.findEdge(lU,lV);
-                                    const auto dataV = dataBlockView(coordV.asStdArray());
+                                    const auto dataV = xtensor::read(dataBlockView, coordV.asStdArray());
 
                                     VigraCoord vigraCoordV;
                                     for(std::size_t d=0; d<DIM; ++d){
@@ -553,7 +539,6 @@ namespace graph{
         // call functor with finished acc chain
         f(edgeResultAccVec, nodeResultAccVec);
 
-
         parallel::parallel_foreach(threadpool, actualNumberOfThreads,
         [&](const int tid, const int64_t i){
             delete perThreadEdgeAccChainVector[i];
@@ -562,18 +547,14 @@ namespace graph{
 
     }
 
+
     // accumulate without data
     template<class EDGE_ACC_CHAIN, class NODE_ACC_CHAIN, std::size_t DIM, class LABELS_PROXY, class F>
-    void accumulateEdgeAndNodeFeaturesWithAccChain(
-
-        const GridRag<DIM, LABELS_PROXY> & rag,
-        const array::StaticArray<int64_t, DIM> & blockShape,
-        const parallel::ParallelOptions & pOpts,
-        parallel::ThreadPool & threadpool,
-        F && f
-    ){
-
-
+    void accumulateEdgeAndNodeFeaturesWithAccChain(const GridRag<DIM, LABELS_PROXY> & rag,
+                                                   const array::StaticArray<int64_t, DIM> & blockShape,
+                                                   const parallel::ParallelOptions & pOpts,
+                                                   parallel::ThreadPool & threadpool,
+                                                   F && f){
 
         typedef LABELS_PROXY LabelsProxyType;
         typedef typename vigra::MultiArrayShape<DIM>::type   VigraCoord;
@@ -588,9 +569,7 @@ namespace graph{
 
         const std::size_t actualNumberOfThreads = pOpts.getActualNumThreads();
 
-
         const auto & shape = rag.shape();
-
 
         std::vector< EdgeAccChainVectorType * > perThreadEdgeAccChainVector(actualNumberOfThreads);
         std::vector< NodeAccChainVectorType * > perThreadNodeAccChainVector(actualNumberOfThreads);
@@ -600,11 +579,6 @@ namespace graph{
             perThreadEdgeAccChainVector[i] = new EdgeAccChainVectorType(rag.edgeIdUpperBound()+1);
             perThreadNodeAccChainVector[i] = new NodeAccChainVectorType(rag.nodeIdUpperBound()+1);
         });
-
-
-
-
-
 
         const auto numberOfEdgePasses = (*perThreadEdgeAccChainVector.front()).front().passesRequired();
         const auto numberOfNodePasses = (*perThreadNodeAccChainVector.front()).front().passesRequired();
@@ -638,7 +612,7 @@ namespace graph{
                 // loop over all coordinates in block
                 nifty::tools::forEachCoordinate(nonOlBlockShape,[&](const Coord & coordU){
 
-                    const auto lU = labelsBlockView(coordU.asStdArray());
+                    const auto lU = xtensor::read(labelsBlockView, coordU.asStdArray());
                     const auto dataU = 0.0;
 
                     VigraCoord vigraCoordU;
@@ -653,7 +627,7 @@ namespace graph{
                         for(std::size_t axis=0; axis<DIM; ++axis){
                             auto coordV = makeCoord2(coordU, axis);
                             if(coordV[axis] < actualBlockShape[axis]){
-                                const auto lV = labelsBlockView(coordV.asStdArray());
+                                const auto lV = xtensor::read(labelsBlockView, coordV.asStdArray());
                                 if(lU != lV){
 
                                     const auto edge = rag.findEdge(lU,lV);
@@ -710,21 +684,19 @@ namespace graph{
 
     // accumulator with data
     template<class NODE_ACC_CHAIN, std::size_t DIM, class LABELS_PROXY, class DATA, class F>
-    void accumulateNodeFeaturesWithAccChain(
-
-        const GridRag<DIM, LABELS_PROXY> & rag,
-        const DATA & data,
-        const array::StaticArray<int64_t, DIM> & blockShape,
-        const parallel::ParallelOptions & pOpts,
-        parallel::ThreadPool & threadpool,
-        F && f,
-        const AccOptions & accOptions = AccOptions()
-    ){
+    void accumulateNodeFeaturesWithAccChain(const GridRag<DIM, LABELS_PROXY> & rag,
+                                            const DATA & data,
+                                            const array::StaticArray<int64_t, DIM> & blockShape,
+                                            const parallel::ParallelOptions & pOpts,
+                                            parallel::ThreadPool & threadpool,
+                                            F && f,
+                                            const AccOptions & accOptions = AccOptions()){
 
         typedef LABELS_PROXY LabelsProxyType;
+        typedef typename DATA::value_type DataType;
         typedef typename vigra::MultiArrayShape<DIM>::type   VigraCoord;
         typedef typename LabelsProxyType::BlockStorageType LabelBlockStorage;
-        typedef typename tools::BlockStorageSelector<DATA>::type DataBlocKStorage;
+        typedef tools::BlockStorage<DataType> DataBlockStorage;
 
         typedef array::StaticArray<int64_t, DIM> Coord;
 
@@ -768,7 +740,7 @@ namespace graph{
             const Coord overlapBegin(0), overlapEnd(1);
             const Coord storageShape = blockShape + overlapEnd;
             LabelBlockStorage labelsBlockStorage(threadpool, storageShape, actualNumberOfThreads);
-            DataBlocKStorage dataBlocKStorage(threadpool, storageShape, actualNumberOfThreads);
+            DataBlockStorage dataBlockStorage(threadpool, storageShape, actualNumberOfThreads);
             tools::parallelForEachBlockWithOverlap(threadpool,shape, blockShape, overlapBegin, overlapEnd,
             [&](
                 const int tid,
@@ -784,15 +756,15 @@ namespace graph{
 
                 // read the labels block and the data block
                 auto labelsBlockView = labelsBlockStorage.getView(actualBlockShape, tid);
-                auto dataBlockView = dataBlocKStorage.getView(actualBlockShape, tid);
+                auto dataBlockView = dataBlockStorage.getView(actualBlockShape, tid);
                 tools::readSubarray(rag.labelsProxy(), blockBegin, blockEnd, labelsBlockView);
                 tools::readSubarray(data, blockBegin, blockEnd, dataBlockView);
 
                 // loop over all coordinates in block
                 nifty::tools::forEachCoordinate(nonOlBlockShape,[&](const Coord & coordU){
 
-                    const auto lU = labelsBlockView(coordU.asStdArray());
-                    const auto dataU = dataBlockView(coordU.asStdArray());
+                    const auto lU = xtensor::read(labelsBlockView, coordU.asStdArray());
+                    const auto dataU = xtensor::read(dataBlockView, coordU.asStdArray());
 
                     VigraCoord vigraCoordU;
                     for(std::size_t d=0; d<DIM; ++d)
@@ -828,16 +800,11 @@ namespace graph{
 
     // accumulate without data
     template<class NODE_ACC_CHAIN, std::size_t DIM, class LABELS_PROXY, class F>
-    void accumulateNodeFeaturesWithAccChain(
-
-        const GridRag<DIM, LABELS_PROXY> & rag,
-        const array::StaticArray<int64_t, DIM> & blockShape,
-        const parallel::ParallelOptions & pOpts,
-        parallel::ThreadPool & threadpool,
-        F && f
-    ){
-
-
+    void accumulateNodeFeaturesWithAccChain(const GridRag<DIM, LABELS_PROXY> & rag,
+                                            const array::StaticArray<int64_t, DIM> & blockShape,
+                                            const parallel::ParallelOptions & pOpts,
+                                            parallel::ThreadPool & threadpool,
+                                            F && f){
 
         typedef LABELS_PROXY LabelsProxyType;
         typedef typename vigra::MultiArrayShape<DIM>::type   VigraCoord;
@@ -892,7 +859,7 @@ namespace graph{
                 // loop over all coordinates in block
                 nifty::tools::forEachCoordinate(nonOlBlockShape,[&](const Coord & coordU){
 
-                    const auto lU = labelsBlockView(coordU.asStdArray());
+                    const auto lU = xtensor::read(labelsBlockView, coordU.asStdArray());
                     const auto dataU = 0.0;
 
                     VigraCoord vigraCoordU;
@@ -929,21 +896,21 @@ namespace graph{
 
 
     template<std::size_t DIM, class LABELS_PROXY, class DATA, class FEATURE_TYPE>
-    void accumulateMeanAndLength(
-        const GridRag<DIM, LABELS_PROXY> & rag,
-        const DATA & data,
-        const array::StaticArray<int64_t, DIM> & blockShape,
-        marray::View<FEATURE_TYPE> & edgeFeaturesOut,
-        marray::View<FEATURE_TYPE> & nodeFeaturesOut,
-        const int numberOfThreads = -1,
-        const bool saveMemory = false
-    ){
+    void accumulateMeanAndLength(const GridRag<DIM, LABELS_PROXY> & rag,
+                                 const DATA & data,
+                                 const array::StaticArray<int64_t, DIM> & blockShape,
+                                 xt::xexpression<FEATURE_TYPE> & edgeFeaturesOutExp,
+                                 xt::xexpression<FEATURE_TYPE> & nodeFeaturesOutExp,
+                                 const int numberOfThreads = -1,
+                                 const bool saveMemory = false){
         namespace acc = vigra::acc;
 
-        typedef FEATURE_TYPE DataType;
+        typedef typename FEATURE_TYPE::value_type DataType;
         typedef acc::Select< acc::DataArg<1>, acc::Mean, acc::Count> SelectType;
         typedef acc::StandAloneAccumulatorChain<DIM, DataType, SelectType> AccChainType;
 
+        auto & edgeFeaturesOut = edgeFeaturesOutExp.derived_cast();
+        auto & nodeFeaturesOut = nodeFeaturesOutExp.derived_cast();
 
         // threadpool
         nifty::parallel::ParallelOptions pOpts(numberOfThreads);
@@ -978,25 +945,23 @@ namespace graph{
 
 
     template<std::size_t DIM, class LABELS_PROXY, class DATA, class FEATURE_TYPE>
-    void accumulateEdgeMeanAndLength(
-        const GridRag<DIM, LABELS_PROXY> & rag,
-        const DATA & data,
-        const array::StaticArray<int64_t, DIM> & blockShape,
-        marray::View<FEATURE_TYPE> & out,
-        const int numberOfThreads = -1
-    ){
+    void accumulateEdgeMeanAndLength(const GridRag<DIM, LABELS_PROXY> & rag,
+                                     const DATA & data,
+                                     const array::StaticArray<int64_t, DIM> & blockShape,
+                                     xt::xexpression<FEATURE_TYPE> & outExp,
+                                     const int numberOfThreads = -1){
         namespace acc = vigra::acc;
 
-        typedef FEATURE_TYPE DataType;
+        typedef typename FEATURE_TYPE::value_type DataType;
         typedef acc::Select< acc::DataArg<1>, acc::Mean, acc::Count> SelectType;
         typedef acc::StandAloneAccumulatorChain<DIM, DataType, SelectType> EdgeAccChainType;
 
+        auto & out = outExp.derived_cast();
 
         // threadpool
         nifty::parallel::ParallelOptions pOpts(numberOfThreads);
         nifty::parallel::ThreadPool threadpool(pOpts);
         const std::size_t actualNumberOfThreads = pOpts.getActualNumThreads();
-
 
         // allocate a ach chain vector for each thread
         accumulateEdgeFeaturesWithAccChain<EdgeAccChainType>(rag, data, blockShape, pOpts, threadpool,
@@ -1021,17 +986,18 @@ namespace graph{
         const double minVal,
         const double maxVal,
         const array::StaticArray<int64_t, DIM> & blockShape,
-        marray::View<FEATURE_TYPE> & edgeFeaturesOut,
-        marray::View<FEATURE_TYPE> & nodeFeaturesOut,
+        xt::xexpression<FEATURE_TYPE> & edgeFeaturesOutExp,
+        xt::xexpression<FEATURE_TYPE> & nodeFeaturesOutExp,
         const int numberOfThreads = -1
     ){
         namespace acc = vigra::acc;
-        typedef FEATURE_TYPE DataType;
-
+        typedef typename FEATURE_TYPE::value_type DataType;
 
         typedef acc::UserRangeHistogram<40>            SomeHistogram;   //binCount set at compile time
         typedef acc::StandardQuantiles<SomeHistogram > Quantiles;
 
+        auto & edgeFeaturesOut = edgeFeaturesOutExp.derived_cast();
+        auto & nodeFeaturesOut = nodeFeaturesOutExp.derived_cast();
 
         typedef acc::Select<
             acc::DataArg<1>,
@@ -1104,16 +1070,14 @@ namespace graph{
         const double minVal,
         const double maxVal,
         const array::StaticArray<int64_t, DIM> & blockShape,
-        marray::View<FEATURE_TYPE> & edgeFeaturesOut,
+        xt::xexpression<FEATURE_TYPE> & edgeFeaturesOutExp,
         const int numberOfThreads = -1
     ){
         namespace acc = vigra::acc;
-        typedef FEATURE_TYPE DataType;
-
+        typedef typename FEATURE_TYPE::value_type DataType;
 
         typedef acc::UserRangeHistogram<40>            SomeHistogram;   //binCount set at compile time
         typedef acc::StandardQuantiles<SomeHistogram > Quantiles;
-
 
         typedef acc::Select<
             acc::DataArg<1>,
@@ -1124,6 +1088,8 @@ namespace graph{
             Quantiles         //7
         > SelectType;
         typedef acc::StandAloneAccumulatorChain<DIM, DataType, SelectType> AccChainType;
+
+        auto & edgeFeaturesOut = edgeFeaturesOutExp.derived_cast();
 
         // threadpool
         nifty::parallel::ParallelOptions pOpts(numberOfThreads);
@@ -1162,22 +1128,18 @@ namespace graph{
 
 
     template<std::size_t DIM, class LABELS_PROXY, class DATA, class FEATURE_TYPE>
-    void accumulateNodeStandartFeatures(
-        const GridRag<DIM, LABELS_PROXY> & rag,
-        const DATA & data,
-        const double minVal,
-        const double maxVal,
-        const array::StaticArray<int64_t, DIM> & blockShape,
-        marray::View<FEATURE_TYPE> & nodeFeaturesOut,
-        const int numberOfThreads = -1
-    ){
+    void accumulateNodeStandartFeatures(const GridRag<DIM, LABELS_PROXY> & rag,
+                                        const DATA & data,
+                                        const double minVal,
+                                        const double maxVal,
+                                        const array::StaticArray<int64_t, DIM> & blockShape,
+                                        xt::xexpression<FEATURE_TYPE> & nodeFeaturesOutExp,
+                                        const int numberOfThreads = -1){
         namespace acc = vigra::acc;
-        typedef FEATURE_TYPE DataType;
-
+        typedef typename FEATURE_TYPE::value_type DataType;
 
         typedef acc::UserRangeHistogram<40>            SomeHistogram;   //binCount set at compile time
         typedef acc::StandardQuantiles<SomeHistogram > Quantiles;
-
 
         typedef acc::Select<
             acc::DataArg<1>,
@@ -1189,12 +1151,12 @@ namespace graph{
         > SelectType;
         typedef acc::StandAloneAccumulatorChain<DIM, DataType, SelectType> AccChainType;
 
+        auto & nodeFeaturesOut = nodeFeaturesOutExp.derived_cast();
 
         // threadpool
         nifty::parallel::ParallelOptions pOpts(numberOfThreads);
         nifty::parallel::ThreadPool threadpool(pOpts);
         const std::size_t actualNumberOfThreads = pOpts.getActualNumThreads();
-
 
         accumulateNodeFeaturesWithAccChain<AccChainType>(
             rag,
@@ -1232,14 +1194,12 @@ namespace graph{
     void accumulateGeometricNodeFeatures(
         const GridRag<DIM, LABELS_PROXY> & rag,
         const array::StaticArray<int64_t, DIM> & blockShape,
-        marray::View<FEATURE_TYPE> & nodeFeaturesOut,
+        xt::xexpression<FEATURE_TYPE> & nodeFeaturesOutExp,
         const int numberOfThreads = -1
     ){
         namespace acc = vigra::acc;
 
-
-
-        typedef acc::Coord<acc::Principal<acc::CoordinateSystem> >                 RegionAxes;
+        typedef acc::Coord<acc::Principal<acc::CoordinateSystem>> RegionAxes;
         typedef acc::Select<
             acc::DataArg<1>,
             acc::Count,
@@ -1248,12 +1208,12 @@ namespace graph{
         > SelectType;
         typedef acc::StandAloneAccumulatorChain<DIM, float, SelectType> AccChainType;
 
+        auto & nodeFeaturesOut = nodeFeaturesOutExp.derived_cast();
 
         // threadpool
         nifty::parallel::ParallelOptions pOpts(numberOfThreads);
         nifty::parallel::ThreadPool threadpool(pOpts);
         const std::size_t actualNumberOfThreads = pOpts.getActualNumThreads();
-
 
         accumulateNodeFeaturesWithAccChain<AccChainType>(
             rag,
@@ -1311,20 +1271,16 @@ namespace graph{
      *
      */
     template<std::size_t DIM, class LABELS_PROXY, class FEATURE_TYPE>
-    void accumulateGeometricEdgeFeatures(
-        const GridRag<DIM, LABELS_PROXY> & rag,
-        const array::StaticArray<int64_t, DIM> & blockShape,
-        marray::View<FEATURE_TYPE> & edgeFeaturesOut,
-        const int numberOfThreads = -1
-    ){
+    void accumulateGeometricEdgeFeatures(const GridRag<DIM, LABELS_PROXY> & rag,
+                                         const array::StaticArray<int64_t, DIM> & blockShape,
+                                         xt::xexpression<FEATURE_TYPE> & edgeFeaturesOutExp,
+                                         const int numberOfThreads = -1){
 
         namespace acc = vigra::acc;
-        typedef FEATURE_TYPE DataType;
+        typedef typename FEATURE_TYPE::value_type DataType;
 
-
-        //typedef Coord<RootDivideByCount<Principal<PowerSum<2> > > > RegionRadii;
-        typedef acc::Coord<acc::Principal<acc::CoordinateSystem> >                 RegionAxes;
-        typedef acc::Principal<acc::CoordinateSystem>   PrincipalAxes;
+        typedef acc::Coord<acc::Principal<acc::CoordinateSystem>> RegionAxes;
+        typedef acc::Principal<acc::CoordinateSystem> PrincipalAxes;
 
         typedef acc::Select<
             acc::DataArg<1>,
@@ -1336,24 +1292,14 @@ namespace graph{
             RegionAxes
             //PrincipalAxes
         > SelectType;
-
-
-
-
-
-
-
-
-
         typedef acc::StandAloneAccumulatorChain<DIM,float, SelectType> AccChainType;
 
+        auto & edgeFeaturesOut = edgeFeaturesOutExp.derived_cast();
 
         // threadpool
         nifty::parallel::ParallelOptions pOpts(numberOfThreads);
         nifty::parallel::ThreadPool threadpool(pOpts);
         const std::size_t actualNumberOfThreads = pOpts.getActualNumThreads();
-
-
 
         accumulateEdgeAndNodeFeaturesWithAccChain<AccChainType,AccChainType>(
             rag,
@@ -1437,25 +1383,11 @@ namespace graph{
                     edgeFeaturesOut(edge, 15) = replaceIfNotFinite(aUV, 0.0);
                     edgeFeaturesOut(edge, 16) = replaceIfNotFinite(std::abs(aUE-aVE), 0.0);
 
-
-
-
                 });
 
             }
         );
     }
-
-
-
-
-
-
-
-
-
-
-
 
 } // end namespace graph
 } // end namespace nifty

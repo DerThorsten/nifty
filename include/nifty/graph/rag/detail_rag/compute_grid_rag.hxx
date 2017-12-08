@@ -13,9 +13,6 @@
 #include "nifty/graph/rag/grid_rag_labels_proxy.hxx"
 #include "nifty/graph/undirected_list_graph.hxx"
 
-// TODO switch to xtensor
-//#include "nifty/marray/marray.hxx"
-#include "xtensor/xarray.hpp"
 #include "nifty/xtensor/xtensor.hxx"
 
 
@@ -63,7 +60,7 @@ struct ComputeRag<GridRag<DIM, LABELS_PROXY>> {
         }
 
         struct PerThreadData{
-            xt::xarray<LabelType> blockLabels;
+            xt::xtensor<LabelType, DIM> blockLabels;
             std::vector< container::BoostFlatSet<uint64_t> > adjacency;
         };
 
@@ -121,11 +118,11 @@ struct ComputeRag<GridRag<DIM, LABELS_PROXY>> {
 
             auto & adjacency = perThreadDataVec[tid].adjacency;
             nifty::tools::forEachCoordinate(actualBlockShape,[&](const Coord & coord){
-                const auto lU = xtensor::access(blockLabels, coord.asStdArray());
+                const auto lU = xtensor::read(blockLabels, coord.asStdArray());
                 for(std::size_t axis=0; axis<DIM; ++axis){
                     const auto coord2 = makeCoord2(coord, axis);
                     if(coord2[axis] < actualBlockShape[axis]){
-                        const auto lV = xtensor::access(blockLabels, coord2.asStdArray());
+                        const auto lV = xtensor::read(blockLabels, coord2.asStdArray());
                         if(lU != lV){
                             adjacency[lV].insert(lU);
                             adjacency[lU].insert(lV);

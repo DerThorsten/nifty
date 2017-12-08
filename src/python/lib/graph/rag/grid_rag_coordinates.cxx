@@ -2,10 +2,10 @@
 #include <pybind11/numpy.h>
 #include <pybind11/stl.h>
 
-#include "nifty/python/converter.hxx"
-
 #include "nifty/graph/rag/grid_rag.hxx"
 #include "nifty/graph/rag/grid_rag_coordinates.hxx"
+
+#include "xtensor-python/pytensor.hpp"
 
 namespace py = pybind11;
 
@@ -25,66 +25,73 @@ namespace graph{
         std::string factoryName = "coordinatesFactory" + name;
 
         py::class_<CoordinatesType>(module, className.c_str())
-        .def("topologicalEdgeCoordinates", [](const CoordinatesType & self, const int64_t edgeId){
-            const auto & coords = self.edgeCoordinates(edgeId);
-            size_t nCoordinates = coords.size() / DIM;
-            marray::PyView<int32_t,DIM> out({nCoordinates,DIM});
-            size_t jj = 0;
-            for(size_t ii = 0; ii < nCoordinates; ++ii) {
-                for(size_t d = 0; d < DIM; ++d) {
-                    out(ii,d) = coords[jj];
-                    ++jj;
+
+            .def("topologicalEdgeCoordinates", [](const CoordinatesType & self, const int64_t edgeId){
+                const auto & coords = self.edgeCoordinates(edgeId);
+                size_t nCoordinates = coords.size() / DIM;
+                xt::pytensor<int32_t, DIM> out({(int64_t) nCoordinates, DIM});
+                size_t jj = 0;
+                for(size_t ii = 0; ii < nCoordinates; ++ii) {
+                    for(size_t d = 0; d < DIM; ++d) {
+                        out(ii,d) = coords[jj];
+                        ++jj;
+                    }
                 }
-            }
-            return out;
-        })
-        .def("edgeCoordinates", [](const CoordinatesType & self, const int64_t edgeId){
-            const auto & coords = self.edgeCoordinates(edgeId);
-            size_t nCoordinates = 2 * coords.size() / DIM;
-            marray::PyView<int32_t,DIM> out({nCoordinates,DIM});
-            size_t jj = 0;
-            for(size_t ii = 0; ii < nCoordinates / 2; ++ii) {
-                for(size_t d = 0; d < DIM; ++d) {
-                    out(2*ii, d)   = std::floor(coords[jj] / 2);
-                    out(2*ii+1, d) = std::ceil( coords[jj] / 2);
-                    ++jj;
+                return out;
+            })
+
+            .def("edgeCoordinates", [](const CoordinatesType & self, const int64_t edgeId){
+                const auto & coords = self.edgeCoordinates(edgeId);
+                size_t nCoordinates = 2 * coords.size() / DIM;
+                xt::pytensor<int32_t, DIM> out({(int64_t) nCoordinates, DIM});
+                size_t jj = 0;
+                for(size_t ii = 0; ii < nCoordinates / 2; ++ii) {
+                    for(size_t d = 0; d < DIM; ++d) {
+                        out(2*ii, d)   = std::floor(coords[jj] / 2);
+                        out(2*ii+1, d) = std::ceil( coords[jj] / 2);
+                        ++jj;
+                    }
                 }
-            }
-            return out;
-        })
-        .def("edgesToVolume", [](
-                const CoordinatesType & self,
-                const std::vector<uint32_t> & edgeValues,
-                const int edgeDirection,
-                const uint32_t ignoreValue,
-                const int numberOfThreads) {
+                return out;
+            })
 
-            const auto & shape = self.rag().shape();
-            marray::PyView<uint32_t,DIM> out(shape.begin(), shape.end());
+            .def("edgesToVolume", [](
+                    const CoordinatesType & self,
+                    const std::vector<uint32_t> & edgeValues,
+                    const int edgeDirection,
+                    const uint32_t ignoreValue,
+                    const int numberOfThreads) {
 
-            // FIXME need pyview with initializaion...
-            std::fill(out.begin(), out.end(), 0);
+                typedef typename xt::pytensor<uint32_t, DIM>::shape_type ShapeType;
+                ShapeType shape;
+                std::copy(self.rag().shape().begin(), self.rag().shape().end(), shape.begin());
+                xt::pytensor<uint32_t, DIM> out(shape);
 
-            self.edgesToVolume(edgeValues, out, edgeDirection, ignoreValue, numberOfThreads);
-            return out;
-        }, py::arg("edgeValues"), py::arg("edgeDirection") = 0, py::arg("ignoreValue") = 0, py::arg("numberOfThreads") = -1)
-        .def("edgesToSubVolume", [](
-                const CoordinatesType & self,
-                const std::vector<uint32_t> & edgeValues,
-                const std::vector<int64_t> & begin,
-                const std::vector<int64_t> & end,
-                const int edgeDirection,
-                const uint32_t ignoreValue,
-                const int numberOfThreads) {
+                self.edgesToVolume(edgeValues, out, edgeDirection, ignoreValue, numberOfThreads);
+                return out;
+            }, py::arg("edgeValues"), py::arg("edgeDirection") = 0, py::arg("ignoreValue") = 0, py::arg("numberOfThreads") = -1)
 
-            std::vector<int64_t> shape(DIM);
-            for(int d = 0; d < DIM; ++d)
-                shape[d] = end[d] - begin[d];
-            marray::PyView<uint32_t,DIM> out(shape.begin(), shape.end());
-            self.edgesToSubVolume(edgeValues, out, begin, end, edgeDirection, ignoreValue, numberOfThreads);
-            return out;
-        }, py::arg("edgeValues"), py::arg("begin"), py::arg("end"), py::arg("edgeDirection") = 0, py::arg("ignoreValue") = 0, py::arg("numberOfThreads") = -1)
-        .def("storageLengths", &CoordinatesType::storageLengths)
+            .def("edgesToSubVolume", [](
+                    const CoordinatesType & self,
+                    const std::vector<uint32_t> & edgeValues,
+                    const std::vector<int64_t> & begin,
+                    const std::vector<int64_t> & end,
+                    const int edgeDirection,
+                    const uint32_t ignoreValue,
+                    const int numberOfThreads) {
+
+                typedef typename xt::pytensor<uint32_t, DIM>::shape_type ShapeType;
+                ShapeType shape;
+                for(int d = 0; d < DIM; ++d) {
+                    shape[d] = end[d] - begin[d];
+                }
+                xt::pytensor<uint32_t, DIM> out(shape);
+
+                self.edgesToSubVolume(edgeValues, out, begin, end, edgeDirection, ignoreValue, numberOfThreads);
+                return out;
+            }, py::arg("edgeValues"), py::arg("begin"), py::arg("end"), py::arg("edgeDirection") = 0, py::arg("ignoreValue") = 0, py::arg("numberOfThreads") = -1)
+
+            .def("storageLengths", &CoordinatesType::storageLengths)
         ;
 
         module.def(factoryName.c_str(),
@@ -103,10 +110,14 @@ namespace graph{
     }
 
     void exportGridRagCoordinates(py::module & module) {
-        typedef ExplicitLabelsGridRag<2, uint32_t> ExplicitLabelsGridRag2D;
-        typedef ExplicitLabelsGridRag<3, uint32_t> ExplicitLabelsGridRag3D;
-        exportGridRagCoordinatesT<2, ExplicitLabelsGridRag2D>(module, "Explicit2d");
-        exportGridRagCoordinatesT<3, ExplicitLabelsGridRag3D>(module, "Explicit3d");
+        typedef LabelsProxy<2, xt::pytensor<uint32_t, 2>> ExplicitPyLabels2D;
+        typedef GridRag<2, ExplicitPyLabels2D> Rag2d;
+
+        typedef LabelsProxy<3, xt::pytensor<uint32_t, 3>> ExplicitPyLabels3D;
+        typedef GridRag<3, ExplicitPyLabels3D> Rag3d;
+
+        exportGridRagCoordinatesT<2, Rag2d>(module, "Explicit2d");
+        exportGridRagCoordinatesT<3, Rag3d>(module, "Explicit3d");
 
         // hdf5
         #ifdef WITH_HDF5

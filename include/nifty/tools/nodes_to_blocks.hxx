@@ -2,30 +2,33 @@
 
 #include "nifty/tools/blocking.hxx"
 #include "nifty/tools/array_tools.hxx"
-#include "nifty/hdf5/hdf5_array.hxx"
 #include "nifty/parallel/threadpool.hxx"
+
+#ifdef WITH_HDF5
+#include "nifty/hdf5/hdf5_array.hxx"
+#endif
 
 namespace nifty{
 namespace tools{
 
     // TODO we should exclude defected slices
-    template<class T, class COORD>
-    void nodesToBlocksStacked(const nifty::hdf5::Hdf5Array<T> & segmentation,
-            const Blocking<3> & blocking,
-            const COORD & halo,
-            const std::vector<int64_t> & skipSlices, // slices we skip due to defects
-            std::vector<std::vector<T>> & out,
-            const int nThreads = -1) {
+    template<class T, class DATA_BACKEND, class COORD>
+    void nodesToBlocksStacked(const DATA_BACKEND & segmentation,
+                              const Blocking<3> & blocking,
+                              const COORD & halo,
+                              const std::vector<int64_t> & skipSlices, // slices we skip due to defects
+                              std::vector<std::vector<T>> & out,
+                              const int nThreads = -1) {
 
         typedef tools::BlockStorage<T> LabelsStorage;
         typedef nifty::array::StaticArray<int64_t,3> Coord;
         typedef nifty::array::StaticArray<int64_t,2> Coord2;
         // copy halo to internal coordinate type
         Coord internalHalo({halo[0],halo[1],halo[2]});
-    
+
         nifty::parallel::ParallelOptions pOpts(nThreads);
         nifty::parallel::ThreadPool threadpool(pOpts);
-        
+
         size_t nBlocks = blocking.numberOfBlocks();
         out.resize(nBlocks);
 
@@ -35,25 +38,25 @@ namespace tools{
         // thread data
         LabelsStorage labelsStorage(threadpool, sliceShape, nThreads);
         std::vector< std::map<uint64_t,std::vector<T> >> threadData(nThreads);
-        
+
         // loop over the slices in parallel and find uniques for the blocking
         nifty::parallel::parallel_foreach(threadpool, shape[0], [&](const int64_t tid, const int64_t sliceId){
 
             if(std::find(skipSlices.begin(), skipSlices.end(), sliceId) != skipSlices.end())
                 return;
-            
+
             auto & threadUniques = threadData[tid];
 
             // get subblocks in this slice
             Coord sliceBegin({sliceId,0L,0L});
             std::vector<uint64_t> subBlocks;
             blocking.getBlockIdsInSlice(sliceId, internalHalo, subBlocks);
-            
+
             // read segmentation in this slice
             auto subseg = labelsStorage.getView(tid);
             segmentation.readSubarray(sliceBegin.begin(), subseg);
             auto subsegSqueezed = subseg.squeezedView();
-            
+
             // find uniques in subblocks
             Coord2 blockBegin, blockShape;
             std::vector<T> blockUniques;

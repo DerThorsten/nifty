@@ -8,25 +8,31 @@
 
 #include "nifty/graph/rag/grid_rag_stacked_2d.hxx"
 
+#include "xtensor/xtensor.hpp"
+#include "nifty/xtensor/xtensor.hxx"
+
 namespace nifty{
 namespace graph{
 
-    template<class ACC_CHAIN_VECTOR, class HISTO_OPTS, class COORD, class LABEL_TYPE, class RAG>
+    template<class ACC_CHAIN_VECTOR, class HISTO_OPTS, class COORD, class LABEL_ARRAY, class DATA_ARRAY, class RAG>
     inline void accumulateInnerSliceFeatures(
             ACC_CHAIN_VECTOR & accChainVec,
             const HISTO_OPTS & histoOptions,
             const COORD & sliceShape2,
-            const marray::View<LABEL_TYPE> & labels,
+            const xt::xexpression<LABEL_ARRAY> & labelsExp,
             const int64_t sliceId,
             const int64_t inEdgeOffset,
             const RAG & rag,
-            const marray::View<float> & data,
+            const xt::xexpression<DATA_ARRAY> & dataExp,
             const int pass
         ) {
 
         typedef COORD Coord2;
         typedef typename vigra::MultiArrayShape<3>::type VigraCoord;
-        typedef LABEL_TYPE LabelType;
+        typedef typename LABEL_ARRAY::value_type LabelType;
+
+        const auto & labels = labelsExp.derived_cast();
+        const auto & data = dataExp.derived_cast();
 
         // set minmax for accumulator chains
         for(int64_t edge = 0; edge < accChainVec.size(); ++edge){
@@ -38,12 +44,12 @@ namespace graph{
         float fU, fV;
         VigraCoord vigraCoordU, vigraCoordV;
         nifty::tools::forEachCoordinate(sliceShape2, [&](const Coord2 coord){
-            lU = labels(coord.asStdArray());
+            lU = xtensor::read(labels, coord.asStdArray());
             for(int axis = 0; axis < 2; ++axis){
                 Coord2 coord2 = coord;
                 ++coord2[axis];
                 if( coord2[axis] < sliceShape2[axis]) {
-                    lV = labels(coord2.asStdArray());
+                    lV = xtensor::read(labels, coord2.asStdArray());
                     if(lU != lV) {
                         vigraCoordU[0] = sliceId;
                         vigraCoordV[0] = sliceId;
@@ -52,8 +58,8 @@ namespace graph{
                             vigraCoordV[d] = coord2[d-1];
                         }
                         const auto edge = rag.findEdge(lU,lV) - inEdgeOffset;
-                        fU = data(coord.asStdArray());
-                        fV = data(coord2.asStdArray());
+                        fU = xtensor::read(data, coord.asStdArray());
+                        fV = xtensor::read(data, coord2.asStdArray());
                         accChainVec[edge].updatePassN(fU, vigraCoordU, pass);
                         accChainVec[edge].updatePassN(fV, vigraCoordV, pass);
                     }
@@ -63,27 +69,38 @@ namespace graph{
     }
 
 
+    // FIXME FIXME FIXME 
+    // FIXME !!! we waste a lot for zDirection != 0, because we always load both slices, which is totally
+    // unncessary. Instead, we should have 2 seperate functons (z = 0 / z = 1,2) that get called with the proper 
+    // labels and data
+    //
     // accumulate filter for the between slice edges
-    template<class ACC_CHAIN_VECTOR, class HISTO_OPTS, class COORD, class LABEL_TYPE, class RAG>
+    template<class ACC_CHAIN_VECTOR, class HISTO_OPTS, class COORD, class LABEL_ARRAY, class DATA_ARRAY, class RAG>
     inline void accumulateBetweenSliceFeatures(
             ACC_CHAIN_VECTOR & accChainVec,
             const HISTO_OPTS & histoOptions,
             const COORD & sliceShape2,
-            const marray::View<LABEL_TYPE> & labelsA,
-            const marray::View<LABEL_TYPE> & labelsB,
+            const xt::xexpression<LABEL_ARRAY> & labelsAExp,
+            const xt::xexpression<LABEL_ARRAY> & labelsBExp,
             const int64_t sliceIdA,
             const int64_t sliceIdB,
             const int64_t betweenEdgeOffset,
             const RAG & rag,
-            const marray::View<float> & dataA,
-            const marray::View<float> & dataB,
+            const xt::xexpression<DATA_ARRAY> & dataAExp,
+            const xt::xexpression<DATA_ARRAY> & dataBExp,
             const int zDirection,
             const int pass
         ){
 
         typedef COORD Coord2;
         typedef typename vigra::MultiArrayShape<3>::type VigraCoord;
-        typedef LABEL_TYPE LabelType;
+        typedef typename LABEL_ARRAY::value_type LabelType;
+
+        const auto & labelsA = labelsAExp.derived_cast();
+        const auto & labelsB = labelsBExp.derived_cast();
+
+        const auto & dataA = dataAExp.derived_cast();
+        const auto & dataB = dataBExp.derived_cast();
 
         // set minmax for accumulator chains
         for(int64_t edge = 0; edge < accChainVec.size(); ++edge){
@@ -95,8 +112,8 @@ namespace graph{
         float fU, fV;
         nifty::tools::forEachCoordinate(sliceShape2, [&](const Coord2 coord){
             // labels are different for different slices by default!
-            lU = labelsA(coord.asStdArray());
-            lV = labelsB(coord.asStdArray());
+            lU = xtensor::read(labelsA, coord.asStdArray());
+            lV = xtensor::read(labelsB, coord.asStdArray());
             vigraCoordU[0] = sliceIdA;
             vigraCoordV[0] = sliceIdB;
             for(int d = 1; d < 3; ++d){
@@ -105,44 +122,45 @@ namespace graph{
             }
             const auto edge = rag.findEdge(lU,lV) - betweenEdgeOffset;
             if(zDirection==0) { // 0 -> take into account z and z + 1
-                fU = dataA(coord.asStdArray());
-                fV = dataB(coord.asStdArray());
+                fU = xtensor::read(dataA, coord.asStdArray());
+                fV = xtensor::read(dataB, coord.asStdArray());
                 accChainVec[edge].updatePassN(fU, vigraCoordU, pass);
                 accChainVec[edge].updatePassN(fV, vigraCoordV, pass);
             }
             else if(zDirection==1) { // 1 -> take into accout only z
-                fU = dataA(coord.asStdArray());
+                fU = xtensor::read(dataA, coord.asStdArray());
                 accChainVec[edge].updatePassN(fU, vigraCoordU, pass);
             }
             else if(zDirection==2) { // 2 -> take into accout only z + 1
-                fV = dataB(coord.asStdArray());
+                fV = xtensor::read(dataB, coord.asStdArray());
                 accChainVec[edge].updatePassN(fV, vigraCoordV, pass);
             }
         });
     }
 
 
+    // FIXME FIXME FIXME 
+    // I am pretty sure this does not do what I inteded
+    // (i.e. it copys float as well as every other data type)
     // copy data if the dtype is not float
-    template<class DATA_TYPE, class COORD>
-    inline void copyIfNecessary(
-        const marray::View<DATA_TYPE> & dataSqueezed,
-        marray::View<float> & dataCopy,
-        const COORD & sliceShape2
-    ) {
-
-        typedef DATA_TYPE DataType;
+    template<class ARRAY1, class ARRAY2, class COORD>
+    inline void copyIfNecessary(const xt::xexpression<ARRAY1> & dataSqueezedExp,
+                                xt::xexpression<ARRAY2> & dataCopyExp,
+                                const COORD & sliceShape2) {
+        typedef typename ARRAY1::value_type DataType;
         typedef COORD Coord;
-        marray::View<float> dataView;
+        auto & dataSqueezed = dataSqueezedExp.derived_cast();
+        auto & dataCopy = dataCopyExp.derived_cast();
         if( typeid(DataType) == typeid(float) ) {
             dataCopy = dataSqueezed;
             return;
         }
         else {
-            // copy the data (we don't use std::copy here, because iterators are terribly
-            // slow for marrays)
+            // FIXME use better copying for xtensor !!!
             tools::forEachCoordinate(
                 sliceShape2, [&dataCopy, &dataSqueezed](Coord coord){
-                    dataCopy(coord.asStdArray()) = (float) dataSqueezed(coord.asStdArray());
+                    xtensor::write(dataCopy, coord.asStdArray(),
+                                   (float) xtensor::read(dataSqueezed, coord.asStdArray()));
             });
             return;
         }
@@ -165,11 +183,11 @@ namespace graph{
 
         typedef LABELS_PROXY LabelsProxyType;
         typedef typename LabelsProxyType::LabelType LabelType;
-        typedef typename DATA::DataType DataType;
+        typedef typename DATA::value_type DataType;
 
         typedef typename vigra::MultiArrayShape<3>::type   VigraCoord;
         typedef typename LabelsProxyType::BlockStorageType LabelStorage;
-        typedef typename tools::BlockStorageSelector<DATA>::type DataStorage;
+        typedef tools::BlockStorage<DataType> DataStorage;
         typedef tools::BlockStorage<float> DataCopyStorage;
 
         typedef array::StaticArray<int64_t,3> Coord;
@@ -206,7 +224,7 @@ namespace graph{
 
             auto data0 = dataAStorage.getView(0);
             tools::readSubarray(data, begin0, end0, data0);
-            auto data0Squeezed = data0.squeezedView();
+            auto data0Squeezed = xtensor::squeezedView(data0);
 
             vigra::HistogramOptions histoOptions;
             auto minMax = std::minmax_element(data0Squeezed.begin(), data0Squeezed.end());
@@ -237,11 +255,11 @@ namespace graph{
 
                 auto labelsA = labelsAStorage.getView(tid);
                 labelsProxy.readSubarray(beginA, endA, labelsA);
-                auto labelsASqueezed = labelsA.squeezedView();
+                auto labelsASqueezed = xtensor::squeezedView(labelsA);
 
                 auto dataA = dataAStorage.getView(tid);
                 tools::readSubarray(data, beginA, endA, dataA);
-                auto dataASqueezed = dataA.squeezedView();
+                auto dataASqueezed = xtensor::squeezedView(dataA);
 
                 // copy the data if our input is not float
                 auto dataACopy = dataACopyStorage.getView(tid);
@@ -268,73 +286,69 @@ namespace graph{
                     fXY(accChainVec, inEdgeOffset);
                 }
 
+                //
                 // process upper slice
-                // TODO copy non-float data ?!
-                Coord beginB = Coord({sliceIdB,   0L,       0L});
-                Coord endB   = Coord({sliceIdB+1, shape[1], shape[2]});
-                marray::View<LabelType> labelsBSqueezed;
-                marray::View<DataType> dataBSqueezed;
-                auto dataBCopy = dataBCopyStorage.getView(tid);
-
-                // read labels and data for upper slice
                 // do if we are not keeping only xy edges or
                 // if we are at the last slice (which is never a lower slice and
                 // must hence be accumulated extra)
+                //
                 if(!keepXYOnly || sliceIdB == numberOfSlices - 1 ) {
+
+                    // init labels and data for upper slice
+                    Coord beginB = Coord({sliceIdB,   0L,       0L});
+                    Coord endB   = Coord({sliceIdB+1, shape[1], shape[2]});
+                    auto dataBCopy = dataBCopyStorage.getView(tid);
+
                     // read labels
                     auto labelsB = labelsBStorage.getView(tid);
                     labelsProxy.readSubarray(beginB, endB, labelsB);
-                    labelsBSqueezed = labelsB.squeezedView();
+                    auto labelsBSqueezed = xtensor::squeezedView(labelsB);
                     // read data
                     auto dataB = dataBStorage.getView(tid);
                     tools::readSubarray(data, beginB, endB, dataB);
-                    dataBSqueezed = dataB.squeezedView();
+                    auto dataBSqueezed = xtensor::squeezedView(dataB);
 
                     copyIfNecessary(dataBSqueezed, dataBCopy, sliceShape2);
-                }
 
-                // acccumulate the between slice features
-                if(!keepXYOnly) {
-                    auto betweenEdgeOffset = rag.betweenSliceEdgeOffset(sliceIdA);
-                    auto accOffset = rag.betweenSliceEdgeOffset(sliceIdA) - rag.numberOfInSliceEdges();
-                    // resize the current acc chain vector
-                    EdgeAccChainVectorType accChainVec(rag.numberOfInBetweenSliceEdges(sliceIdA));
-                    // accumulate features for the in between slice edges
-                    accumulateBetweenSliceFeatures(
-                        accChainVec,
-                        histoOptions,
-                        sliceShape2,
-                        labelsASqueezed,
-                        labelsBSqueezed,
-                        sliceIdA,
-                        sliceIdB,
-                        betweenEdgeOffset,
-                        rag,
-                        dataACopy,
-                        dataBCopy,
-                        zDirection,
-                        pass
-                    );
-                    fZ(accChainVec, accOffset);
-                }
+                    // acccumulate the between slice features
+                    if(!keepXYOnly) {
+                        auto betweenEdgeOffset = rag.betweenSliceEdgeOffset(sliceIdA);
+                        auto accOffset = rag.betweenSliceEdgeOffset(sliceIdA) - rag.numberOfInSliceEdges();
+                        // resize the current acc chain vector
+                        EdgeAccChainVectorType accChainVec(rag.numberOfInBetweenSliceEdges(sliceIdA));
+                        // accumulate features for the in between slice edges
+                        accumulateBetweenSliceFeatures(accChainVec,
+                                                       histoOptions,
+                                                       sliceShape2,
+                                                       labelsASqueezed,
+                                                       labelsBSqueezed,
+                                                       sliceIdA,
+                                                       sliceIdB,
+                                                       betweenEdgeOffset,
+                                                       rag,
+                                                       dataACopy,
+                                                       dataBCopy,
+                                                       zDirection,
+                                                       pass);
+                        fZ(accChainVec, accOffset);
+                    }
 
-                // accumulate the inner slice features for the last slice, which is never a lower slice
-                if(!keepZOnly && (sliceIdB == numberOfSlices - 1 && rag.numberOfInSliceEdges(sliceIdB) > 0)) {
-                    auto inEdgeOffset = rag.inSliceEdgeOffset(sliceIdB);
-                    // resize the current acc chain vector
-                    EdgeAccChainVectorType accChainVec(rag.numberOfInSliceEdges(sliceIdB));
-                    accumulateInnerSliceFeatures(
-                            accChainVec,
-                            histoOptions,
-                            sliceShape2,
-                            labelsBSqueezed,
-                            sliceIdB,
-                            inEdgeOffset,
-                            rag,
-                            dataBCopy,
-                            pass
-                    );
-                    fXY(accChainVec, inEdgeOffset);
+                    // accumulate the inner slice features for the last slice, which is never a lower slice
+                    if(!keepZOnly && (sliceIdB == numberOfSlices - 1 && rag.numberOfInSliceEdges(sliceIdB) > 0)) {
+                        auto inEdgeOffset = rag.inSliceEdgeOffset(sliceIdB);
+                        // resize the current acc chain vector
+                        EdgeAccChainVectorType accChainVec(rag.numberOfInSliceEdges(sliceIdB));
+                        accumulateInnerSliceFeatures(accChainVec,
+                                                     histoOptions,
+                                                     sliceShape2,
+                                                     labelsBSqueezed,
+                                                     sliceIdB,
+                                                     inEdgeOffset,
+                                                     rag,
+                                                     dataBCopy,
+                                                     pass);
+                        fXY(accChainVec, inEdgeOffset);
+                    }
                 }
 
             });
@@ -385,7 +399,7 @@ namespace graph{
             const uint64_t nEdges = edgeAccChainVec.size();
             const uint64_t nStats = 9;
 
-            marray::Marray<DataType> featuresTemp({nEdges, nStats});
+            xt::xtensor<DataType, 2> featuresTemp({nEdges, nStats});
 
             for(auto edge = 0; edge < edgeAccChainVec.size(); ++edge) {
                 const auto & chain = edgeAccChainVec[edge];
@@ -545,8 +559,8 @@ namespace graph{
                     auto & threadData = perThreadData[tid];
 
                     // labels are different for different slices by default!
-                    const auto lU = labelsASqueezed(coord.asStdArray());
-                    const auto lV = labelsBSqueezed(coord.asStdArray());
+                    const auto lU = xtensor::read(labelsASqueezed, coord.asStdArray());
+                    const auto lV = xtensor::read(labelsBSqueezed, coord.asStdArray());
 
                     // we search for the skipId corresponding to this pair of uv-ids
                     // for slices with partial defects, not all uv-pairs correspond to a skip-edge.

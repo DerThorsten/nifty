@@ -3,11 +3,10 @@
 
 #include <algorithm>
 
-#include "nifty/marray/marray.hxx"
 #include "nifty/tools/for_each_coordinate.hxx"
 #include "nifty/array/arithmetic_array.hxx"
 
-//#include "nifty/graph/detail/contiguous_indices.hxx"
+#include "nifty/xtensor/xtensor.hxx"
 
 
 namespace nifty{
@@ -35,8 +34,8 @@ void projectScalarNodeDataToPixels(
     nifty::parallel::ThreadPool threadpool(pOpt);
     nifty::tools::parallelForEachCoordinate(threadpool, shape,
     [&](int tid, const Coord & coord){
-        const auto node = labels(coord.asStdArray());
-        pixelData(coord.asStdArray()) = nodeData[node];
+        const auto node = xtensor::read(labels, coord.asStdArray());
+        xtensor::write(pixelData, coord.asStdArray(), nodeData[node]);
     });
 
 }

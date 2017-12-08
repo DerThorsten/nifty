@@ -2,9 +2,8 @@
 #include <pybind11/numpy.h>
 #include <pybind11/stl.h>
 
-#include "nifty/python/converter.hxx"
-
 #include "nifty/graph/rag/feature_accumulation/grid_rag_accumulate_stacked.hxx"
+#include "xtensor-python/pytensor.hpp"
 
 namespace py = pybind11;
 
@@ -32,8 +31,8 @@ namespace graph{
             uint64_t nEdgesZ  = !keepXYOnly ? rag.numberOfInBetweenSliceEdges() : 1L;
             uint64_t nStats = 9;
 
-            nifty::marray::PyView<float> outXY({nEdgesXY, nStats});
-            nifty::marray::PyView<float> outZ({nEdgesZ, nStats});
+            xt::pytensor<float, 2> outXY({(int64_t) nEdgesXY, (int64_t) nStats});
+            xt::pytensor<float, 2> outZ({(int64_t) nEdgesZ, (int64_t) nStats});
             {
                 py::gil_scoped_release allowThreads;
                 accumulateEdgeStandardFeatures(rag, data, outXY, outZ, keepXYOnly, keepZOnly, zDirection, numberOfThreads);
@@ -134,15 +133,13 @@ namespace graph{
 
         //explicit
         {
-            typedef ExplicitLabels<3,uint32_t> LabelsUInt32;
-            typedef GridRagStacked2D<LabelsUInt32> StackedRagUInt32;
-            typedef ExplicitLabels<3,uint64_t> LabelsUInt64;
-            typedef GridRagStacked2D<LabelsUInt64> StackedRagUInt64;
-            typedef nifty::marray::PyView<float, 3> FloatArray;
-            typedef nifty::marray::PyView<uint8_t, 3> UInt8Array;
+            typedef LabelsProxy<3, xt::pytensor<uint32_t, 3>> ExplicitPyLabels3D;
+            typedef GridRagStacked2D<ExplicitPyLabels3D> StackedRagUInt32;
+            typedef xt::pytensor<float, 3> FloatArray;
+            typedef xt::pytensor<uint8_t, 3> UInt8Array;
 
-            exportAccumulateEdgeStandardFeaturesStackedInCoreT<StackedRagUInt32,FloatArray>(ragModule);
-            exportAccumulateEdgeStandardFeaturesStackedInCoreT<StackedRagUInt32,UInt8Array>(ragModule);
+            exportAccumulateEdgeStandardFeaturesStackedInCoreT<StackedRagUInt32, FloatArray>(ragModule);
+            exportAccumulateEdgeStandardFeaturesStackedInCoreT<StackedRagUInt32, UInt8Array>(ragModule);
         }
         // hdf5
         #ifdef WITH_HDF5

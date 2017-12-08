@@ -17,8 +17,9 @@
 
 #include "nifty/graph/rag/grid_rag_labels_proxy.hxx"
 #include "nifty/graph/rag/detail_rag/compute_grid_rag.hxx"
-// TODO switch to xtensor
-#include "nifty/marray/marray.hxx"
+
+#include "xtensor/xtensor.hpp"
+#include "nifty/xtensor/xtensor.hxx"
 
 
 namespace nifty{
@@ -91,12 +92,16 @@ public:
                                              const ShapeType & end,
                                              std::vector<int64_t> & innerEdgesOut) const {
         typedef typename LABELS_PROXY::LabelType LabelType;
+        typedef typename xt::xtensor<LabelType, DIM>::shape_type ArrayShapeType;
         innerEdgesOut.clear();
 
         ShapeType subShape;
-        for(int d = 0; d < DIM; ++d)
+        ArrayShapeType subArrayShape;
+        for(int d = 0; d < DIM; ++d) {
             subShape[d] = end[d] - begin[d];
-        marray::Marray<LabelType> subLabels(subShape.begin(), subShape.end());
+            subArrayShape[d] = subShape[d];
+        }
+        xt::xtensor<LabelType, DIM> subLabels(subArrayShape);
 
         tools::readSubarray(labelsProxy_, begin, end, subLabels);
 
@@ -119,11 +124,11 @@ public:
         // TODO parallelize
         std::set<std::pair<int64_t, int64_t>> innerEdges;
         tools::forEachCoordinate(subShape, [&](const ShapeType & coord){
-            const auto lU = subLabels(coord.asStdArray());
+            const auto lU = xtensor::read(subLabels, coord.asStdArray());
             for(int d = 0; d < DIM; ++d) {
                 if(coord[d] < subShape[d] - 1) {
                     auto coordV = makeCoord2(coord, d);
-                    const auto lV = subLabels(coordV.asStdArray());
+                    const auto lV = xtensor::read(subLabels, coordV.asStdArray());
                     if(lU != lV) {
                         innerEdges.emplace( std::make_pair(std::min(lU, lV), std::max(lU, lV)) );
                     }
