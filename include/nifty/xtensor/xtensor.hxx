@@ -12,10 +12,46 @@ namespace xtensor {
     inline void sliceFromRoi(xt::slice_vector & roiSlice,
                              const COORD & begin,
                              const COORD & end) {
-        for(int d = 0; d < offset.size(); ++d) {
+        for(int d = 0; d < begin.size(); ++d) {
             roiSlice.push_back(xt::range(begin[d], end[d]));
         }
     }
+
+    // small helper function to squeeze along given dimension
+    template<class ARRAY>
+    inline auto squeezedView(xt::xexpression<ARRAY> & arrayExp) {
+        auto & array = arrayExp.derived_cast();
+        auto & shape = array.shape();
+        xt::slice_vector squeeze(array);
+        for(const auto s : shape) {
+            if(s == 1) {
+                squeeze.push_back(1);
+            } else {
+                squeeze.push_back(xt::all());
+            }
+        }
+        return xt::dynamic_view(array, squeeze);
+    }
+
+
+    // FIXME there should be a more elegant way to do this
+    // FIXME we need a default way to do this for D > 6
+    // maybe just accessing it with an iterator `begin` works ?!
+    template<class ARRAY, class COORD>
+    inline typename ARRAY::value_type access(const xt::xexpression<ARRAY> & arrayExp,
+                                             const COORD & coord) {
+        auto & array = arrayExp.derived_cast();
+        switch(coord.size()) {
+            case 1: return array(coord[0]);
+            case 2: return array(coord[0], coord[1]);
+            case 3: return array(coord[0], coord[1], coord[2]);
+            case 4: return array(coord[0], coord[1], coord[2], coord[3]);
+            case 5: return array(coord[0], coord[1], coord[2], coord[3], coord[4]);
+            case 6: return array(coord[0], coord[1], coord[2], coord[3], coord[4], coord[5]);
+            default: throw std::runtime_error("xtensor access with coordinate is only supported up to 6D");
+        }
+    }
+
 }
 
 namespace tools {

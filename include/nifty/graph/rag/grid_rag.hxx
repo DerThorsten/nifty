@@ -38,12 +38,6 @@ struct RefHelper{
     typedef const LABELS_PROXY & type;
 };
 
-template<size_t DIM, class LABEL_TYPE>
-struct RefHelper<ExplicitLabels<DIM, LABEL_TYPE>>{
-    typedef ExplicitLabels<DIM, LABEL_TYPE> type;
-};
-
-
 
 template<size_t DIM, class LABELS_PROXY>
 class GridRag : public UndirectedGraph<>{
@@ -160,11 +154,6 @@ protected:
     SettingsType settings_;
     StorageType labelsProxy_;
 };
-
-
-// TODO switch to xtensor
-template<std::size_t DIM, class LABELS_TYPE>
-using ExplicitLabelsGridRag = GridRag<DIM, ExplicitLabels<DIM, LABELS_TYPE>>;
 
 } // end namespace graph
 } // end namespace nifty

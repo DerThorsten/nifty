@@ -12,8 +12,11 @@
 
 #include "nifty/graph/rag/grid_rag_labels_proxy.hxx"
 #include "nifty/graph/undirected_list_graph.hxx"
+
 // TODO switch to xtensor
-#include "nifty/marray/marray.hxx"
+//#include "nifty/marray/marray.hxx"
+#include "xtensor/xarray.hpp"
+#include "nifty/xtensor/xtensor.hxx"
 
 
 namespace nifty{
@@ -60,14 +63,16 @@ struct ComputeRag<GridRag<DIM, LABELS_PROXY>> {
         }
 
         struct PerThreadData{
-            // TODO switch to xtensor
-            nifty::marray::Marray<LabelType> blockLabels;
+            xt::xarray<LabelType> blockLabels;
             std::vector< container::BoostFlatSet<uint64_t> > adjacency;
         };
 
+        // FIXME xarrays can't be constructed with the nifty shape type
+        // we should get rid of it....
+        std::vector<size_t> arrayShape(blockShapeWithBorder.begin(), blockShapeWithBorder.end());
         std::vector<PerThreadData> perThreadDataVec(nThreads);
         parallel::parallel_foreach(threadpool, nThreads, [&](const int tid, const int i){
-            perThreadDataVec[i].blockLabels.resize(blockShapeWithBorder.begin(), blockShapeWithBorder.end());
+            perThreadDataVec[i].blockLabels.reshape(arrayShape);
             perThreadDataVec[i].adjacency.resize(numberOfLabels);
         });
 
@@ -104,15 +109,10 @@ struct ComputeRag<GridRag<DIM, LABELS_PROXY>> {
             const Coord & blockBegin, const Coord & blockEnd
         ){
             const Coord actualBlockShape = blockEnd - blockBegin;
-            auto blockLabels = perThreadDataVec[tid].blockLabels.view(zeroCoord.begin(), actualBlockShape.begin());
-
-            Coord marrayShape;
-            Coord viewShape;
-
-            for(auto d=0; d<DIM; ++d){
-                marrayShape[d] = perThreadDataVec[tid].blockLabels.shape(d);
-                viewShape[d] = blockLabels.shape(d);
-            }
+            auto & blockView = perThreadDataVec[tid].blockLabels;
+            xt::slice_vector slice(blockView);
+            xtensor::sliceFromRoi(slice, zeroCoord, actualBlockShape);
+            auto blockLabels = xt::dynamic_view(blockView, slice);
 
             // TODO the lock should be unnecessary !
             //mtx.lock();
@@ -121,11 +121,11 @@ struct ComputeRag<GridRag<DIM, LABELS_PROXY>> {
 
             auto & adjacency = perThreadDataVec[tid].adjacency;
             nifty::tools::forEachCoordinate(actualBlockShape,[&](const Coord & coord){
-                const auto lU = blockLabels(coord.asStdArray());
+                const auto lU = xtensor::access(blockLabels, coord.asStdArray());
                 for(std::size_t axis=0; axis<DIM; ++axis){
                     const auto coord2 = makeCoord2(coord, axis);
                     if(coord2[axis] < actualBlockShape[axis]){
-                        const auto lV = blockLabels(coord2.asStdArray());
+                        const auto lV = xtensor::access(blockLabels, coord2.asStdArray());
                         if(lU != lV){
                             adjacency[lV].insert(lU);
                             adjacency[lU].insert(lV);

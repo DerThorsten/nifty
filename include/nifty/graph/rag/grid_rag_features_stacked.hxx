@@ -6,12 +6,14 @@
 #include "nifty/hdf5/hdf5_array.hxx"
 #endif
 
-#include "nifty/marray/marray.hxx"
-
 #include "nifty/tools/for_each_coordinate.hxx"
 #include "nifty/tools/array_tools.hxx"
 #include "nifty/tools/memory.hxx"
 #include "nifty/tools/runtime_check.hxx"
+
+#include "xtensor/xarray.hpp"
+#include "nifty/xtensor/xtensor.hxx"
+
 
 
 namespace nifty{
@@ -28,17 +30,18 @@ namespace graph{
         typedef LABELS_PROXY LabelsProxyType;
         typedef typename LABELS_PROXY::LabelType LabelType;
         typedef typename LabelsProxyType::BlockStorageType LabelsBlockStorage;
-        typedef typename tools::BlockStorageSelector<LABELS>::type DataBlockStorage;
+        typedef typename tools::BlockStorage<typename LABELS::value_type> DataBlockStorage;
 
         typedef array::StaticArray<int64_t, 3> Coord;
         typedef array::StaticArray<int64_t, 2> Coord2;
 
         const auto & labelsProxy = graph.labelsProxy();
         const auto & shape = labelsProxy.shape();
+        const auto & dataShape = data.shape();
 
-        NIFTY_CHECK_OP(data.shape(0),==,shape[0], "Shape along z does not agree")
-        NIFTY_CHECK_OP(data.shape(1),==,shape[1], "Shape along y does not agree")
-        NIFTY_CHECK_OP(data.shape(2),==,shape[2], "Shape along x does not agree")
+        NIFTY_CHECK_OP(dataShape[0],==,shape[0], "Shape along z does not agree")
+        NIFTY_CHECK_OP(dataShape[1],==,shape[1], "Shape along y does not agree")
+        NIFTY_CHECK_OP(dataShape[2],==,shape[2], "Shape along x does not agree")
 
         nifty::parallel::ParallelOptions pOpts(numberOfThreads);
         nifty::parallel::ThreadPool threadpool(pOpts);
@@ -65,12 +68,12 @@ namespace graph{
             tools::readSubarray(labelsProxy, blockBegin, blockEnd, sliceLabelsFlat3DView);
             tools::readSubarray(data, blockBegin, blockEnd, sliceDataFlat3DView);
 
-            auto sliceLabels = sliceLabelsFlat3DView.squeezedView();
-            auto sliceData = sliceDataFlat3DView.squeezedView();
+            auto sliceLabels = xtensor::squeezedView(sliceLabelsFlat3DView);
+            auto sliceData = xtensor::squeezedView(sliceDataFlat3DView);
 
             nifty::tools::forEachCoordinate(sliceShape2,[&](const Coord2 & coord){
-                const auto node = sliceLabels( coord.asStdArray() );
-                const auto l    = sliceData( coord.asStdArray() );
+                const auto node = xtensor::access(sliceLabels, coord.asStdArray());
+                const auto l    = xtensor::access(sliceData, coord.asStdArray());
                 overlaps[node][l] += 1;
             });
 
@@ -92,6 +95,8 @@ namespace graph{
     }
 
 
+    // TODO to lazy to port this to xtensor right now
+    /*
     template<class LABELS_PROXY, class NODE_TYPE>
     inline void getSkipEdgesForNode(
         const LABELS_PROXY & labels,
@@ -332,6 +337,7 @@ namespace graph{
             }
         }
     }
+    */
 
 } // end namespace graph
 } // end namespace nifty

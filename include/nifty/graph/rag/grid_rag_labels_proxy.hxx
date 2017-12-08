@@ -9,6 +9,7 @@
 
 #include "xtensor/xarray.hpp"
 #include "nifty/xtensor/xtensor.hxx"
+//#include "nifty/marray/marray.hxx"
 
 #ifdef WITH_HDF5
 #include "nifty/hdf5/hdf5_array.hxx"
@@ -22,7 +23,7 @@ template<std::size_t DIM, class LABEL_ARRAY>
 class LabelsProxy {
 public:
     typedef LABEL_ARRAY LabelArrayType;
-    // TODO this proably won't work for xt
+    // this should also work for xtensor
     typedef typename LabelArrayType::value_type LabelType;
     typedef tools::BlockStorage<LabelType> BlockStorageType;
 
@@ -34,9 +35,10 @@ public:
         numberOfLabels_(numberOfLabels),
         shape_()
     {
-        // FIXME this probably won't work for xt shape
-        for(std::size_t i=0; i<DIM; ++i)
-            shape_[i] = labels_.shape(i);
+        auto & tmpShape = labels.shape();
+        for(std::size_t i=0; i<DIM; ++i) {
+            shape_[i] = tmpShape[i];
+        }
     }
 
     std::size_t numberOfLabels() const {
@@ -64,9 +66,6 @@ private:
     array::StaticArray<int64_t, DIM> shape_;
 };
 
-
-template<std::size_t DIM, class ARRAY>
-using ExplicitLabels = LabelsProxy<DIM, xt::xexpression<ARRAY>>;
 
 #ifdef WITH_HDF5
 template<std::size_t DIM, class LABELS_TYPE>

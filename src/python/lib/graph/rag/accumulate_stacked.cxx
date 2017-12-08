@@ -50,6 +50,7 @@ namespace graph{
     }
 
 
+    #ifdef WITH_HDF5
     template<class RAG, class DATA>
     void exportAccumulateEdgeStandardFeaturesOutOfCoreT(
         py::module & ragModule
@@ -92,6 +93,7 @@ namespace graph{
         py::arg("numberOfThreads")= -1
         );
     }
+    #endif
 
 
     template<class RAG>

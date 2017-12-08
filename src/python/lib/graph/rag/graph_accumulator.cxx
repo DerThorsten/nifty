@@ -12,6 +12,11 @@
 #include "nifty/hdf5/hdf5_array.hxx"
 #endif
 
+// TODO we could actually use pytensor, because
+// the rag dimension is known at compile time
+#include "xtensor-python/pyarray.hpp"
+#include "xtensor-python/pytensor.hpp"
+
 
 
 namespace py = pybind11;
@@ -23,17 +28,17 @@ namespace graph{
     using namespace py;
 
 
-    template<class RAG,class T,std::size_t DATA_DIM>
+    template<class RAG, class T, std::size_t DATA_DIM>
     void exportGridRagAccumulateLabelsT(py::module & ragModule){
 
         ragModule.def("gridRagAccumulateLabels",
             [](
                 const RAG & rag,
-                nifty::marray::PyView<T, DATA_DIM> labels,
+                xt::pyarray<T> labels,
                 const bool ignoreBackground,
                 const T ignoreValue
             ){
-                nifty::marray::PyView<T> nodeLabels({rag.numberOfNodes()});
+                xt::pytensor<T, 2> nodeLabels({rag.numberOfNodes()});
                 {
                     py::gil_scoped_release allowThreads;
                     gridRagAccumulateLabels(rag, labels, nodeLabels, ignoreBackground, ignoreValue);
@@ -54,8 +59,8 @@ namespace graph{
                 DATA labels,
                 const int numberOfThreads
             ){
-                typedef typename DATA::DataType DataType;
-                nifty::marray::PyView<DataType> nodeLabels({rag.numberOfNodes()});
+                typedef typename DATA::value_type DataType;
+                xt::pyarray<DataType> nodeLabels({rag.numberOfNodes()});
                 {
                     py::gil_scoped_release allowThreads;
                     gridRagAccumulateLabels(rag, labels, nodeLabels);
@@ -111,8 +116,10 @@ namespace graph{
 
         // exportGridRagAccumulateLabels Explicit
         {
-            typedef ExplicitLabelsGridRag<2, uint32_t> ExplicitLabelsGridRag2D;
-            typedef ExplicitLabelsGridRag<3, uint32_t> ExplicitLabelsGridRag3D;
+            typedef LabelsProxy<2, xt::pyarray<uint32_t>> ExplicitPyLabels2D;
+            typedef GridRag<2, ExplicitPyLabels2D> ExplicitLabelsGridRag2D;
+            typedef LabelsProxy<3, xt::pyarray<uint32_t>> ExplicitPyLabels3D;
+            typedef GridRag<3, ExplicitPyLabels3D> ExplicitLabelsGridRag3D;
             // accumulate labels
             exportGridRagAccumulateLabelsT<ExplicitLabelsGridRag2D, uint32_t, 2>(ragModule);
             exportGridRagAccumulateLabelsT<ExplicitLabelsGridRag3D, uint32_t, 3>(ragModule);
@@ -122,19 +129,15 @@ namespace graph{
         {
             // explicit
             {
-                typedef ExplicitLabels<3,uint32_t> LabelsUInt32;
-                typedef GridRagStacked2D<LabelsUInt32> StackedRagUInt32;
-                typedef ExplicitLabels<3,uint64_t> LabelsUInt64;
-                typedef GridRagStacked2D<LabelsUInt64> StackedRagUInt64;
+                typedef LabelsProxy<3, xt::pyarray<uint32_t>> ExplicitPyLabels3D;
+                typedef GridRagStacked2D<ExplicitPyLabels3D> StackedRagUInt32;
 
-                typedef nifty::marray::PyView<uint32_t, 3> UInt32Array;
-                typedef nifty::marray::PyView<uint64_t, 3> UInt64Array;
+                typedef xt::pyarray<uint32_t> UInt32Array;
+                typedef xt::pyarray<uint64_t> UInt64Array;
 
                 // accumulate labels
                 exportGridRagStackedAccumulateLabelsT<StackedRagUInt32, UInt32Array>(ragModule);
-                exportGridRagStackedAccumulateLabelsT<StackedRagUInt64, UInt32Array>(ragModule);
                 exportGridRagStackedAccumulateLabelsT<StackedRagUInt32, UInt64Array>(ragModule);
-                exportGridRagStackedAccumulateLabelsT<StackedRagUInt64, UInt64Array>(ragModule);
             }
 
             // hdf5

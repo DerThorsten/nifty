@@ -14,13 +14,12 @@ namespace nifty{
 namespace graph{
 
 
-
 template<size_t DIM,
-         class LABELS_TYPE,
+         class LABELS_PROXY,
          class PIXEL_ARRAY,
          class NODE_MAP>
 void projectScalarNodeDataToPixels(
-    const ExplicitLabelsGridRag<DIM, LABELS_TYPE> & graph,
+    const GridRag<DIM, LABELS_PROXY> & graph,
     NODE_MAP & nodeData,
     PIXEL_ARRAY & pixelData,
     const int numberOfThreads = -1

@@ -3,6 +3,9 @@
 #include <pybind11/stl.h>
 
 #include "nifty/python/converter.hxx"
+// TODO we could actually use pytensor, because
+// the rag dimension is known at compile time
+#include "xtensor-python/pyarray.hpp"
 
 #include "nifty/graph/rag/grid_rag.hxx"
 #ifdef WITH_HDF5
@@ -112,11 +115,12 @@ namespace graph{
 
     void exportGridRag(py::module & ragModule) {
 
-        // FIXME this does not work, because we don't have proper pybindings for normal marray::View
-        // fix this with xtensor !!!
         // export grid rag with in-memory labels
-        exportGridRagT<2, ExplicitLabels<2, uint32_t>>(ragModule, "ExplicitLabelsGridRag2D", "explicitLabelsGridRag2D");
-        exportGridRagT<3, ExplicitLabels<3, uint32_t>>(ragModule, "ExplicitLabelsGridRag3D", "explicitLabelsGridRag3D");
+        // TODO we could actually use pytensor, because the dimenstion is known at compile time
+        typedef LabelsProxy<2, xt::pyarray<uint32_t>> ExplicitPyLabels2D;
+        exportGridRagT<2, ExplicitPyLabels2D>(ragModule, "ExplicitLabelsGridRag2D", "explicitLabelsGridRag2D");
+        typedef LabelsProxy<3, xt::pyarray<uint32_t>> ExplicitPyLabels3D;
+        exportGridRagT<3, ExplicitPyLabels3D>(ragModule, "ExplicitLabelsGridRag3D", "explicitLabelsGridRag3D");
 
         // export grid rag with hdf5 labels
         #ifdef WITH_HDF5

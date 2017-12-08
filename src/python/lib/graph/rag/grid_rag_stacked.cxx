@@ -8,6 +8,10 @@
 #include "nifty/hdf5/hdf5_array.hxx"
 #endif
 
+// TODO we could actually use pytensor, because
+// the rag dimension is known at compile time
+#include "xtensor-python/pyarray.hpp"
+
 namespace py = pybind11;
 
 
@@ -168,7 +172,8 @@ namespace graph{
 
     void exportGridRagStacked(py::module & ragModule) {
         // export in-memory labels
-        exportGridRagStackedT<ExplicitLabels<3, uint32_t>>(ragModule, "GridRagStacked2DExplicit", "gridRagStacked2DExplicitImpl");
+        typedef LabelsProxy<3, xt::pyarray<uint32_t>> ExplicitPyLabels3D;
+        exportGridRagStackedT<ExplicitPyLabels3D>(ragModule, "GridRagStacked2DExplicit", "gridRagStacked2DExplicitImpl");
 
         // export hdf5 labels
         #ifdef WITH_HDF5

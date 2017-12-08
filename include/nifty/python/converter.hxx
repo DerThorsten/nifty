@@ -321,6 +321,7 @@ std::ostream& operator<<(
 }
 
 
+/*
 namespace tools{
 
     template<class ARRAY>
@@ -332,6 +333,7 @@ namespace tools{
        typedef BlockView<T> type;
     };
 }
+*/
 
 }
 

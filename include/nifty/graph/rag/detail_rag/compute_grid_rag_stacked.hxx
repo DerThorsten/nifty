@@ -12,8 +12,9 @@
 
 #include "nifty/graph/rag/grid_rag_labels_proxy.hxx"
 #include "nifty/graph/undirected_list_graph.hxx"
-// TODO switch to xtensor
-#include "nifty/marray/marray.hxx"
+
+#include "xtensor/xarray.hpp"
+#include "nifty/xtensor/xtensor.hxx"
 
 namespace nifty{
 namespace graph{
@@ -92,18 +93,19 @@ struct ComputeRag<GridRagStacked2D<LABELS_PROXY>> {
                 const Coord blockBegin({sliceIndex,0L,0L});
                 const Coord blockEnd({sliceIndex+1, sliceShape2[0], sliceShape2[1]});
                 labelsProxy.readSubarray(blockBegin, blockEnd, sliceLabelsFlat3DView);
-                auto sliceLabels = sliceLabelsFlat3DView.squeezedView();
+                //
+                auto sliceLabels = xtensor::squeezedView(sliceLabelsFlat3DView);
 
                 // do the thing
                 nifty::tools::forEachCoordinate(sliceShape2,[&](const Coord2 & coord){
-                    const auto lU = sliceLabels(coord.asStdArray());
+                    const auto lU = xtensor::access(sliceLabels, coord.asStdArray());
                     sliceData.minInSliceNode = std::min(sliceData.minInSliceNode, lU);
                     sliceData.maxInSliceNode = std::max(sliceData.maxInSliceNode, lU);
                     for(std::size_t axis=0; axis<2; ++axis){
                         Coord2 coord2 = coord;
                         ++coord2[axis];
                         if(coord2[axis] < sliceShape2[axis]){
-                            const auto lV = sliceLabels(coord2.asStdArray());
+                            const auto lV = xtensor::access(sliceLabels, coord2.asStdArray());
                             if(lU != lV){
                                 sliceData.minInSliceNode = std::min(sliceData.minInSliceNode, lV);
                                 sliceData.maxInSliceNode = std::max(sliceData.maxInSliceNode, lV);
@@ -176,7 +178,7 @@ struct ComputeRag<GridRagStacked2D<LABELS_PROXY>> {
                             auto fres =  rag.nodes_[v].find(NodeAdjacency(u));
                             fres->changeEdgeIndex(edgeIndex);
                             // set the edge lens
-                            edgeLengths[edgeIndex] = edgeLensSlice.at(e); 
+                            edgeLengths[edgeIndex] = edgeLensSlice.at(e);
                             // increase the edge index
                             ++edgeIndex;
                         }
@@ -221,12 +223,12 @@ struct ComputeRag<GridRagStacked2D<LABELS_PROXY>> {
                         labelsProxy.readSubarray(beginA, endA, sliceAView);
                         labelsProxy.readSubarray(beginB, endB, sliceBView);
 
-                        auto sliceALabels = sliceAView.squeezedView();
-                        auto sliceBLabels = sliceBView.squeezedView();
+                        auto sliceALabels = xtensor::squeezedView(sliceAView);
+                        auto sliceBLabels = xtensor::squeezedView(sliceBView);
 
                         nifty::tools::forEachCoordinate(sliceShape2,[&](const Coord2 & coord){
-                            const auto lU = sliceALabels(coord.asStdArray());
-                            const auto lV = sliceBLabels(coord.asStdArray());
+                            const auto lU = xtensor::access(sliceALabels, coord.asStdArray());
+                            const auto lV = xtensor::access(sliceBLabels, coord.asStdArray());
 
                             // add up the len
                             // map insert cf.: http://stackoverflow.com/questions/97050/stdmap-insert-or-stdmap-find
