@@ -434,7 +434,7 @@ namespace detail_fastfilters {
         inline void applyFilterId(const size_t filterId,
                                   FastfiltersArrayType & ff,
                                   xt::xexpression<ARRAY> & outExp,
-                                  const double sigma) {
+                                  const double sigma) const {
             auto & out = outExp.derived_cast();
             switch(filterId) {
                 case 0: gs_(ff, out, sigma); break;
@@ -457,7 +457,7 @@ namespace detail_fastfilters {
             // checks
             NIFTY_CHECK_OP(in.dimension(), ==, DIM,
                            "Input needs to be of correct dimension.");
-            NIFTY_CHECK_OP(out.shape(0), ==, numberOfChannels(),
+            NIFTY_CHECK_OP(out.shape()[0], ==, numberOfChannels(),
                            "Number of channels of out array do not match!");
             const auto & shape = in.shape();
             for(int d = 0; d < DIM; ++d) {
@@ -499,12 +499,13 @@ namespace detail_fastfilters {
                         continue;
                     }
                     auto sigma = sigmas_[jj];
-                    const auto & shapeView = numberOfChannels(ii);
+                    const auto & shapeView = (numberOfChannels(ii) == 1)  ? shapeSingleChannel : shapeMultiChannel;;
 
                     xt::slice_vector slice(out);
                     xtensor::sliceFromOffset(slice, base, shapeView);
-                    auto view = xtensor::squeezedView(xt::dynamic_view(out, slice));
-                    applyFilterId(ii, ff, view, sigma);
+                    auto view = xt::dynamic_view(out, slice);
+                    auto squeezedView = xtensor::squeezedView(view);
+                    applyFilterId(ii, ff, squeezedView, sigma);
                     base[0] += (int64_t) numberOfChannels(ii);
                 }
             }
@@ -566,8 +567,9 @@ namespace detail_fastfilters {
                     // presmooth with gaussian
                     xt::slice_vector slice(preSmoothed);
                     xtensor::sliceFromOffset(slice, preBase, shapeSingleChannel);
-                    auto preView = xtensor::squeezedView(xt::dynamic_view(preSmoothed, slice));
-                    gs_(ff, preView, sigmaNeedForPre);
+                    auto preView = xt::dynamic_view(preSmoothed, slice);
+                    auto squeezedPreView = xtensor::squeezedView(preView);
+                    gs_(ff, squeezedPreView, sigmaNeedForPre);
                     detail_fastfilters::convertXtensor2ff(preView, ff); // write presmoothed into the ff array
                     sigmaPre = sigmaPreDesired;
                     sigmaNeed = std::sqrt(sigma*sigma - sigmaPre*sigmaPre);
@@ -583,8 +585,9 @@ namespace detail_fastfilters {
 
                     xt::slice_vector slice(out);
                     xtensor::sliceFromOffset(slice, viewBase, viewShape);
-                    auto view = xtensor::squeezedView(xt::dynamic_view(out, slice));
-                    applyFilterId(jj, ff, view, sigmaNeed);
+                    auto view = xt::dynamic_view(out, slice);
+                    auto squeezedView = xtensor::squeezedView(view);
+                    applyFilterId(jj, ff, squeezedView, sigmaNeed);
                 }
             }
         }
@@ -632,8 +635,9 @@ namespace detail_fastfilters {
                 const auto & viewShape = (numberOfChannels(filterId) == 1)  ? shapeSingleChannel : shapeMultiChannel;
                 xt::slice_vector slice(out);
                 xtensor::sliceFromOffset(slice, viewBase, viewShape);
-                auto view = xtensor::squeezedView(xt::dynamic_view(out, slice));
-                applyFilterId(filterId, ff, view, sigma);
+                auto view = xt::dynamic_view(out, slice);
+                auto squeezedView = xtensor::squeezedView(view);
+                applyFilterId(filterId, ff, squeezedView, sigma);
             });
         }
 

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "nifty/marray/marray.hxx"
+//#include "nifty/xtensor/xtensor.hxx"
 
 namespace nifty{
 namespace graph{
@@ -40,13 +41,13 @@ struct NodeMap : public std::vector<T>{
  * but a fixed length vector for each node.
  * The return type of operator[] is a tiny proxy
  * object holding the vector.
- * 
- * 
+ *
+ *
  * @tparam G GraphType4
  * @tparam T ValueType
  */
 template<class G, class T>
-struct MultibandNodeMap 
+struct MultibandNodeMap
 {
 
 public:
@@ -111,7 +112,7 @@ private:
 
 
 template<class ARRAY>
-struct MultibandArrayViewNodeMap 
+struct MultibandArrayViewNodeMap
 {
 
 public:
@@ -192,7 +193,7 @@ struct EdgeMap : public std::vector<T>{
     EdgeMap( const G & g)
     :   std::vector<T>( g.edgeIdUpperBound()+1){
     }
-    
+
     EdgeMap( )
     :   std::vector<T>( ){
     }

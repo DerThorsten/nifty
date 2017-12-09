@@ -28,7 +28,7 @@ namespace graph{
 template<class DATA_ARRAY, class F, class COORD, class FEATURE_ARRAY>
 inline void calculateFilters(const xt::xexpression<DATA_ARRAY> & dataExp,
                              const COORD & sliceShape2,
-                             const xt::xexpression<FEATURE_ARRAY> & filterExp,
+                             xt::xexpression<FEATURE_ARRAY> & filterExp,
                              parallel::ThreadPool & threadpool,
                              const F & f) {
 
