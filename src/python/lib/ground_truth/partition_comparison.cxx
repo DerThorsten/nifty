@@ -19,16 +19,11 @@ namespace ground_truth{
 
     void exportPartitionComparison(py::module & module){
 
-        
         typedef VariationOfInformation<> ViType;
         py::class_<ViType>(module, "VariationOfInformation")
-        .def("__init__",
-            [](
-                ViType &instance,
-                nifty::marray::PyView<uint32_t> labelsTruth,
-                nifty::marray::PyView<uint32_t> labelsPrediction,
-                const bool ignoreDefaultLabel = false
-            ) {
+        .def(py::init([](nifty::marray::PyView<uint32_t> labelsTruth,
+                         nifty::marray::PyView<uint32_t> labelsPrediction,
+                         const bool ignoreDefaultLabel = false) {
 
                 NIFTY_CHECK(labelsTruth.coordinateOrder()==labelsPrediction.coordinateOrder(),"coordinate orders do not match");
                 {
@@ -44,13 +39,11 @@ namespace ground_truth{
                     NIFTY_CHECK_OP(d,==,labelsPrediction.size(),"labelsPrediction must be contiguous")
                 }
 
-                new (&instance) ViType(
-                    &labelsTruth(0),
-                    &labelsTruth(0)+labelsTruth.size(),
-                    &labelsPrediction(0),
-                    ignoreDefaultLabel
-                );
-            },
+                return new ViType(&labelsTruth(0),
+                                  &labelsTruth(0) + labelsTruth.size(),
+                                  &labelsPrediction(0),
+                                  ignoreDefaultLabel);
+            }),
             py::arg("labelsTruth"),
             py::arg("labelsPrediction"),
             py::arg("ignoreDefaultLabel")=false
@@ -63,13 +56,9 @@ namespace ground_truth{
 
         typedef RandError<> RandErrorType;
         py::class_<RandErrorType>(module, "RandError")
-        .def("__init__",
-            [](
-                RandErrorType &instance,
-                nifty::marray::PyView<uint32_t> labelsTruth,
-                nifty::marray::PyView<uint32_t> labelsPrediction,
-                const bool ignoreDefaultLabel = false
-            ) {
+        .def(py::init([](nifty::marray::PyView<uint32_t> labelsTruth,
+                         nifty::marray::PyView<uint32_t> labelsPrediction,
+                         const bool ignoreDefaultLabel = false) {
 
                 NIFTY_CHECK(labelsTruth.coordinateOrder()==labelsPrediction.coordinateOrder(),"coordinate orders do not match");
                 {
@@ -85,13 +74,11 @@ namespace ground_truth{
                     NIFTY_CHECK_OP(d,==,labelsPrediction.size(),"labelsPrediction must be contiguous")
                 }
 
-                new (&instance) RandErrorType(
-                    &labelsTruth(0),
-                    &labelsTruth(0)+labelsTruth.size(),
-                    &labelsPrediction(0),
-                    ignoreDefaultLabel
-                );
-            },
+                return new RandErrorType(&labelsTruth(0),
+                                         &labelsTruth(0) + labelsTruth.size(),
+                                         &labelsPrediction(0),
+                                         ignoreDefaultLabel);
+            }),
             py::arg("labelsTruth"),
             py::arg("labelsPrediction"),
             py::arg("ignoreDefaultLabel")=false

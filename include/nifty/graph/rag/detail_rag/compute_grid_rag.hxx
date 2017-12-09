@@ -97,7 +97,7 @@ struct ComputeRag<GridRag<DIM, LABELS_PROXY>> {
         });
 
 
-        std::cout<<"nBlocks "<<nBlocks<<"\n";
+        std::cout << "nBlocks "<< nBlocks << "\n";
 
         tools::parallelForEachBlockWithOverlap(threadpool, shape, settings.blockShape, overlapBegin, overlapEnd,
         [&](

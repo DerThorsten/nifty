@@ -18,7 +18,7 @@ namespace tools{
 
 
     void exportChangeablePriorityQueue(py::module & toolsModule){
-        
+
         typedef ChangeablePriorityQueue<double> QueueType;
         typedef typename QueueType::priority_type priority_type;
         typedef typename QueueType::ValueType ValueType;
@@ -29,14 +29,11 @@ namespace tools{
         const auto clsStr = std::string("ChangeablePriorityQueue");
         py::class_<QueueType>(toolsModule, clsStr.c_str())
 
-            .def("__init__",
-                [](
-                    QueueType & instance, 
-                    const std::size_t maxSize
-                ){
-                    new (&instance) QueueType(maxSize);
-                }
+            .def(py::init([](const std::size_t maxSize){
+                    return new QueueType(maxSize);
+                })
             )
+
             .def("__len__",&QueueType::size)
             .def("__contains__",&QueueType::contains)
             .def("__delitem__",&QueueType::deleteItem)
@@ -49,7 +46,7 @@ namespace tools{
             .def("top",&QueueType::top)
             .def("pop",&QueueType::pop)
             .def("topPriority",&QueueType::topPriority)
-            
+
             .def("deleteItem",&QueueType::deleteItem)
             .def("changePriority",&QueueType::changePriority)
         ;

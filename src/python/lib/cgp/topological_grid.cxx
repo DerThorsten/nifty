@@ -19,12 +19,9 @@ namespace cgp{
         typedef TopologicalGrid<DIM> TopologicalGrid;
         const std::string clsName = std::string("TopologicalGrid")+std::to_string(DIM)+std::string("D");
         py::class_<TopologicalGrid>(m, clsName.c_str())
-            .def("__init__",[](
-                TopologicalGrid & self,
-                nifty::marray::PyView<uint32_t, DIM> labels
-            ){
-                new (&self) TopologicalGrid(labels);
-            })
+            .def(py::init([](nifty::marray::PyView<uint32_t, DIM> labels){
+                return new TopologicalGrid(labels);
+            }))
             .def_property_readonly("shape", &TopologicalGrid::shape)
             .def_property_readonly("topologicalGridShape", &TopologicalGrid::topologicalGridShape)
             .def_property_readonly("numberOfCells", &TopologicalGrid::numberOfCells)
@@ -49,12 +46,10 @@ namespace cgp{
         typedef FilledTopologicalGrid<DIM> FilledTopologicalGrid;
         const std::string clsName = std::string("FilledTopologicalGrid")+std::to_string(DIM)+std::string("D");
         py::class_<FilledTopologicalGrid>(m, clsName.c_str())
-            .def("__init__",[](
-                FilledTopologicalGrid & self,
-                const TopologicalGrid & tGrid
-            ){
-                new (&self) FilledTopologicalGrid(tGrid);
-            })
+            .def(py::init([](const TopologicalGrid & tGrid){
+                return new FilledTopologicalGrid(tGrid);
+            }))
+
             .def_property_readonly("numberOfCells",[](const FilledTopologicalGrid & self){
                 return self.numberOfCells();
             })

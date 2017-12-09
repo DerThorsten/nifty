@@ -33,7 +33,7 @@ public:
         numberOfLabels_(numberOfLabels),
         shape_()
     {
-        auto & tmpShape = labels.shape();
+        auto & tmpShape = labels_.shape();
         for(std::size_t i=0; i<DIM; ++i) {
             shape_[i] = tmpShape[i];
         }

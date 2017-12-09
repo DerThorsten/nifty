@@ -23,15 +23,11 @@ namespace ground_truth{
 
         py::class_<OverlapType>(groundTruthModule, "Overlap")
 
-            .def("__init__",
-                [](
-                    OverlapType &instance,
-                    const uint64_t maxLabelA,
-                    nifty::marray::PyView<uint64_t> labelA,
-                    nifty::marray::PyView<uint64_t> labelB
-                ) {
-                    new (&instance) OverlapType(maxLabelA, labelA, labelB);
-                }
+            .def(py::init([](const uint64_t maxLabelA,
+                             nifty::marray::PyView<uint64_t> labelA,
+                             nifty::marray::PyView<uint64_t> labelB) {
+                    return new OverlapType(maxLabelA, labelA, labelB);
+                })
             )
             .def("differentOverlaps",[](
                 const OverlapType & self,

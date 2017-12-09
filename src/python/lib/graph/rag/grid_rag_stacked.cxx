@@ -38,6 +38,7 @@ namespace graph{
                                const std::string & facName){
 
         typedef LABELS_PROXY LabelsProxyType;
+        typedef typename LabelsProxyType::LabelArrayType LabelArrayType;
         typedef GridRag<3, LabelsProxyType> BaseGraph;
         typedef GridRagStacked2D<LabelsProxyType> GridRagType;
 
@@ -45,11 +46,10 @@ namespace graph{
         clsT
             // export shape and acces to the labels proxy object
             .def_property_readonly("shape", [](const GridRagType & self){return self.shape();})
-            .def("labelsProxy", &GridRagType::labelsProxy, py::return_value_policy::reference)
 
             //
             // export the per slice properties
-            // 
+            //
             .def("minMaxLabelPerSlice",[](const GridRagType & self){
                 const auto & shape = self.shape();
                 xt::pytensor<uint64_t, 2> out({int64_t(shape[0]), int64_t(2)});
@@ -142,23 +142,31 @@ namespace graph{
 
         // from labels
         ragModule.def(facName.c_str(),
-            [](const LabelsProxyType & labelsProxy, const int numberOfThreads){
+            [](const LabelArrayType & labels,
+               const int64_t numberOfLabels,
+               const int numberOfThreads){
+
+                LabelsProxyType labelsProxy(labels, numberOfLabels);
+
                 auto s = typename  GridRagType::SettingsType();
                 s.numberOfThreads = numberOfThreads;
-                auto ptr = new GridRagType(labelsProxy, s);
-                return ptr;
+                return new GridRagType(labelsProxy, s);
             },
             py::return_value_policy::take_ownership,
             py::keep_alive<0, 1>(),
             py::arg("labelsProxy"),
-            py::arg_t< int >("numberOfThreads", -1 )
+            py::arg("numberOfLabels"),
+            py::arg_t<int>("numberOfThreads", -1)
         );
 
         // from labels + serialization
         ragModule.def(facName.c_str(),
-            [](const LabelsProxyType & labelsProxy,
+            [](const LabelArrayType & labels,
+               const int64_t numberOfLabels,
                xt::pytensor<uint64_t, 1> serialization
             ){
+                LabelsProxyType labelsProxy(labels, numberOfLabels);
+
                 auto startPtr = &serialization(0);
                 auto lastElement = &serialization(serialization.size()-1);
                 auto d = lastElement - startPtr + 1;
@@ -166,12 +174,12 @@ namespace graph{
 
                 auto s = typename GridRagType::SettingsType();
                 s.numberOfThreads = -1;
-                auto ptr = new GridRagType(labelsProxy, startPtr, s);
-                return ptr;
+                return new GridRagType(labelsProxy, startPtr, s);
             },
             py::return_value_policy::take_ownership,
             py::keep_alive<0, 1>(),
             py::arg("labelsProxy"),
+            py::arg("numberOfLabels"),
             py::arg("serialization")
         );
 
@@ -180,11 +188,15 @@ namespace graph{
     void exportGridRagStacked(py::module & ragModule) {
         // export in-memory labels
         typedef LabelsProxy<3, xt::pytensor<uint32_t, 3>> ExplicitPyLabels3D;
-        exportGridRagStackedT<ExplicitPyLabels3D>(ragModule, "GridRagStacked2DExplicit", "gridRagStacked2DExplicitImpl");
+        exportGridRagStackedT<ExplicitPyLabels3D>(ragModule,
+                                                  "GridRagStacked2DExplicit",
+                                                  "gridRagStacked2DExplicitImpl");
 
         // export hdf5 labels
         #ifdef WITH_HDF5
-        exportGridRagStackedT<Hdf5Labels<3, uint32_t>>(ragModule, "GridRagStacked2DHdf5", "gridRagStacked2DHdf5Impl");
+        exportGridRagStackedT<Hdf5Labels<3, uint32_t>>(ragModule,
+                                                       "GridRagStacked2DHdf5",
+                                                       "gridRagStacked2DHdf5Impl");
         #endif
 
         // export z5 labels

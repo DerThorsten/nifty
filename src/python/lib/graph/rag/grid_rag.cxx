@@ -4,6 +4,9 @@
 
 #include "xtensor-python/pytensor.hpp"
 
+// still need this for python bindings of nifty::ArrayExtender
+#include "nifty/python/converter.hxx"
+
 #include "nifty/graph/rag/grid_rag.hxx"
 #ifdef WITH_HDF5
 #include "nifty/hdf5/hdf5_array.hxx"
@@ -41,24 +44,6 @@ namespace graph{
         typedef typename LabelsProxyType::LabelArrayType LabelArrayType;
         typedef GridRag<DIM, LABELS_PROXY> GridRagType;
 
-        // export the labels proxy
-        const auto labelsProxyClsName = clsName + std::string("LabelsProxy");
-        const auto labelsProxyFacName = facName + std::string("LabelsProxy");
-        py::class_<LabelsProxyType>(ragModule, labelsProxyClsName.c_str())
-            .def("labels", &LabelsProxyType::labels, py::return_value_policy::reference)
-        ;
-
-        ragModule.def(labelsProxyFacName.c_str(),[](const LabelArrayType & labels,
-                                                    const int64_t numberOfLabels){
-                auto ptr = new LabelsProxyType(labels, numberOfLabels);
-                return ptr;
-            },
-            py::return_value_policy::take_ownership,
-            py::keep_alive<0, 1>(),
-            py::arg("labels"),
-            py::arg("numberOfLabels")
-        );
-
         // export the rag
         auto clsT = py::class_<GridRagType,BaseGraph>(ragModule, clsName.c_str());
         clsT
@@ -68,27 +53,35 @@ namespace graph{
 
         // factories
         // from labels
-        ragModule.def(facName.c_str(),[](const LabelsProxyType & labels,
+        ragModule.def(facName.c_str(),[](const LabelArrayType & labels,
+                                         const int64_t numberOfLabels,
                                          const std::array<int64_t, DIM> blockShape,
                                          const int numberOfThreads){
+
+                LabelsProxyType labelsProxy(labels, numberOfLabels);
+
                 auto s = typename GridRagType::SettingsType();
                 for(int ii = 0; ii < DIM; ++ii) {
                     s.blockShape[ii] = blockShape[ii];
                 }
+
                 s.numberOfThreads = numberOfThreads;
-                auto ptr = new GridRagType(labels, s);
-                return ptr;
+                return new GridRagType(labelsProxy, s);
             },
             py::return_value_policy::take_ownership,
             py::keep_alive<0, 1>(),
             py::arg("labels"),
+            py::arg("numberOfLabels"),
             py::arg("blockShape"),
             py::arg_t< int >("numberOfThreads", -1 )
         );
 
         // from labels + serialization
-        ragModule.def(facName.c_str(),[](const LabelsProxyType & labels,
+        ragModule.def(facName.c_str(),[](const LabelArrayType & labels,
+                                         const int64_t numberOfLabels,
                                          xt::pytensor<uint64_t, 1> serialization){
+
+                LabelsProxyType labelsProxy(labels, numberOfLabels);
 
                 auto  startPtr = &serialization(0);
                 auto  lastElement = &serialization(serialization.size()-1);
@@ -98,12 +91,13 @@ namespace graph{
 
                 auto s = typename  GridRagType::SettingsType();
                 s.numberOfThreads = -1;
-                auto ptr = new GridRagType(labels, startPtr, s);
+                auto ptr = new GridRagType(labelsProxy, startPtr, s);
                 return ptr;
             },
             py::return_value_policy::take_ownership,
             py::keep_alive<0, 1>(),
             py::arg("labels"),
+            py::arg("numberOfLabels"),
             py::arg("serialization")
         );
 

@@ -22,22 +22,26 @@ def gridRag(labels, numberOfLabels, blockShape=None, numberOfThreads=-1, seriali
     bs = [100] * dim if blockShape is None else blockShape
 
     if dim == 2:
-        labelsProxy = explicitLabelsGridRag2DLabelsProxy(labels, numberOfLabels)
         if serialization is None:
-            return explicitLabelsGridRag2D(labelsProxy,
+            return explicitLabelsGridRag2D(labels,
                                            blockShape=bs,
+                                           numberOfLabels=numberOfLabels,
                                            numberOfThreads=int(numberOfThreads))
         else:
-            return explicitLabelsGridRag2D(labelsProxy, serialization)
+            return explicitLabelsGridRag2D(labels,
+                                           numberOfLabels=numberOfLabels,
+                                           serialization=serialization)
 
     elif dim == 3:
-        labelsProxy = explicitLabelsGridRag3DLabelsProxy(labels, numberOfLabels)
         if serialization is None:
-            return explicitLabelsGridRag3D(labelsProxy,
+            return explicitLabelsGridRag3D(labels,
                                            blockShape=bs,
+                                           numberOfLabels=numberOfLabels,
                                            numberOfThreads=int(numberOfThreads))
         else:
-            return explicitLabelsGridRag3D(labelsProxy, serialization)
+            return explicitLabelsGridRag3D(labelsProxy,
+                                           numberOfLabels=numberOfLabels,
+                                           serialization=serialization)
 
     else:
         raise RuntimeError("wrong dimension, currently only 2D and 3D is implemented")
@@ -45,10 +49,16 @@ def gridRag(labels, numberOfLabels, blockShape=None, numberOfThreads=-1, seriali
     return ragGraph
 
 
-def gridRagStacked2D(labels, numberOfLabels, numberOfThreads=-1):
+def gridRagStacked2D(labels, numberOfLabels, serialization=None, numberOfThreads=-1):
     labels = numpy.require(labels, dtype='uint32')
-    labelsProxy = explicitLabelsGridRag3DLabelsProxy(labels, numberOfLabels)
-    return gridRagStacked2DExplicitImpl(labels, numberOfThreads)
+    if serialization is None:
+        return gridRagStacked2DExplicitImpl(labels,
+                                            numberOfLabels=numberOfLabels,
+                                            numberOfThreads=numberOfThreads)
+    else:
+        return gridRagStacked2DExplicitImpl(labels,
+                                            numberOfLabels=numberOfLabels,
+                                            serialization=serialization)
 
 
 # helper class for rag coordinates

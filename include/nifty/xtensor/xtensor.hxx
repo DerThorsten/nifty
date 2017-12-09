@@ -94,6 +94,7 @@ namespace tools {
                              const COORD & beginCoord,
                              const COORD & endCoord,
                              xt::xexpression<ARRAY2> & subarrayExpression){
+
         auto & array = arrayExpression.derived_cast();
         auto & subarray = subarrayExpression.derived_cast();
 

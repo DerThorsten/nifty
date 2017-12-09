@@ -1,6 +1,11 @@
 #include <pybind11/pybind11.h>
 #include <iostream>
 
+#define FORCE_IMPORT_ARRAY
+#include "xtensor-python/pytensor.hpp"
+#include "xtensor-python/pyarray.hpp"
+#include "xtensor-python/pyvectorize.hpp"
+
 namespace py = pybind11;
 
 PYBIND11_DECLARE_HOLDER_TYPE(T, std::shared_ptr<T>);
@@ -25,6 +30,8 @@ namespace graph{
 
 
 PYBIND11_PLUGIN(_rag) {
+
+    xt::import_numpy();
 
     py::options options;
     options.disable_function_signatures();

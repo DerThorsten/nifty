@@ -23,21 +23,18 @@ namespace hdf5{
             .def(py::init<const hid_t & , const std::string &>())
 
 
-            .def("__init__",[](
-                Hdf5ArrayType & instance,
-                const hid_t & groupHandle,
-                const std::string & datasetName,
-                std::vector<size_t> shape,
-                std::vector<size_t> chunkShape,
-                const int compression
-            ){
-                NIFTY_CHECK_OP(shape.size(), == ,chunkShape.size(), 
+            .def(py::init([](const hid_t & groupHandle,
+                             const std::string & datasetName,
+                             std::vector<size_t> shape,
+                             std::vector<size_t> chunkShape,
+                             const int compression){
+                NIFTY_CHECK_OP(shape.size(), == ,chunkShape.size(),
                     "shape and chunk shape do not match");
 
-                new (&instance) Hdf5ArrayType(groupHandle, datasetName,
-                                              shape.begin(), shape.end(),
-                                              chunkShape.begin(),compression);
-            },
+                return new Hdf5ArrayType(groupHandle, datasetName,
+                                         shape.begin(), shape.end(),
+                                         chunkShape.begin(), compression);
+            }),
                 py::arg("groupHandle"),
                 py::arg("datasetName"),
                 py::arg("shape"),
@@ -70,7 +67,6 @@ namespace hdf5{
                 std::vector<size_t> roiEnd
             ){
                 //std::cout<<"READ\n";
-                
                 py::gil_release gilRease1;
 
                 //std::cout<<"relase gil\n";

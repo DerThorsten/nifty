@@ -13,6 +13,9 @@
 #include "xtensor-python/pytensor.hpp"
 #include "nifty/xtensor/xtensor.hxx"
 
+// still need this for python bindings of nifty::ArrayExtender
+#include "nifty/python/converter.hxx"
+
 namespace py = pybind11;
 
 

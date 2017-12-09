@@ -47,16 +47,12 @@ namespace tools{
         const auto blockingClsStr = std::string("Blocking") + dimStr;
         py::class_<BlockingType>(toolsModule, blockingClsStr.c_str())
 
-            .def("__init__",
-                [](
-                    BlockingType & instance, 
-                    VectorType roiBegin,
-                    VectorType roiEnd,
-                    VectorType blockShape,
-                    VectorType blockShift
-                ){
-                    new (&instance) BlockingType(roiBegin, roiEnd, blockShape, blockShift);
-                }
+            .def(py::init([](VectorType roiBegin,
+                             VectorType roiEnd,
+                             VectorType blockShape,
+                             VectorType blockShift){
+                    return new BlockingType(roiBegin, roiEnd, blockShape, blockShift);
+                })
             )
 
             .def_property_readonly("roiBegin",&BlockingType::roiBegin)
@@ -65,10 +61,8 @@ namespace tools{
             .def_property_readonly("blockShift",&BlockingType::blockShift)
             .def_property_readonly("blocksPerAxis",&BlockingType::blocksPerAxis)
             .def_property_readonly("numberOfBlocks",&BlockingType::numberOfBlocks)
-            
 
             .def("getBlock", &BlockingType::getBlock)
-
 
             .def("getBlockIdsInBoundingBox", [](const BlockingType & self,
                 const VectorType roiBegin,
@@ -85,7 +79,6 @@ namespace tools{
                     out(i) = tmp[i];
                 return out;
             })
-
 
             .def("getBlockIdsOverlappingBoundingBox", [](const BlockingType & self,
                 const VectorType roiBegin,
@@ -113,7 +106,9 @@ namespace tools{
                 bool ret;
                 {
                     py::gil_scoped_release allowThreads;
-                    ret = self.getLocalOverlaps(indexA, indexB, blockHalo, blockABegin, blockAEnd, blockBBegin, blockBEnd);
+                    ret = self.getLocalOverlaps(indexA, indexB, blockHalo,
+                                                blockABegin, blockAEnd,
+                                                blockBBegin, blockBEnd);
                 }
                 return std::make_tuple(ret, blockABegin, blockAEnd, blockBBegin, blockBEnd);
             })

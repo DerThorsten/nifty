@@ -14,9 +14,9 @@ namespace nifty{
 namespace graph{
 namespace agglo{
 
-    void exportAgglomerativeClustering(py::module &);    
-    void exportFixationAgglomerativeClustering(py::module &);    
-    void exportLiftedAgglomerativeClusteringPolicy(py::module &);    
+    void exportAgglomerativeClustering(py::module &);
+    void exportFixationAgglomerativeClustering(py::module &);
+    void exportLiftedAgglomerativeClusteringPolicy(py::module &);
     void exportGeneralizedLongRangeClusterPolicy(py::module &);
 }
 }
@@ -27,12 +27,12 @@ namespace agglo{
 PYBIND11_PLUGIN(_agglo) {
 
     xt::import_numpy();
-    
+
     py::options options;
     options.disable_function_signatures();
-        
+
     py::module aggloModule("_agglo", "agglo submodule of nifty.graph");
-    
+
     using namespace nifty::graph::agglo;
 
     exportAgglomerativeClustering(aggloModule);
