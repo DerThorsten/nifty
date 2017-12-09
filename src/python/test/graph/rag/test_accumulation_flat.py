@@ -198,11 +198,9 @@ class TestAccumulation(unittest.TestCase):
 
         # test the different z accumulations
         for zDir in (0, 1, 2):
-            feats = nrag.accumulateEdgeStandardFeatures(
-                rag,
-                val,
-                zDir
-            )
+            feats = nrag.accumulateEdgeStandardFeatures(rag,
+                                                        val,
+                                                        zDir)
             self.assertEqual(len(feats), rag.numberOfEdges)
             self.checkToyFeats(feats, zDir)
 

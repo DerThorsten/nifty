@@ -24,13 +24,5 @@ namespace tools{
         z5::multiarray::writeSubarray<T>(ds, subarray, beginCoord.begin());
     }
 
-    template<class ARRAY>
-    struct BlockStorageSelector;
-
-    struct BlockStorageSelector<z5::Dataset>
-    {
-       typedef BlockStorage<T> type;
-    };
-
 } // namespace nifty::tools
 } // namespace nifty
