@@ -233,6 +233,7 @@ FixationClusterPolicy2<GRAPH, ENABLE_UCM>::
 contractEdge(
     const uint64_t edgeToContract
 ){
+    std::cout<<"contract edge: "<<edgeToContract<<"\n"; 
     pq_.deleteItem(edgeToContract);
 }
 
@@ -250,7 +251,7 @@ mergeNodes(
     const uint64_t aliveNode, 
     const uint64_t deadNode
 ){
-
+    std::cout<<"    merge nodes: a/d "<<aliveNode<<" "<<deadNode<<" \n"; 
     /*
     auto  & aliveNodeNlc = nonLinkConstraints_[aliveNode];
     const auto & deadNodeNlc = nonLinkConstraints_[deadNode];
@@ -274,6 +275,7 @@ mergeEdges(
     const uint64_t aliveEdge, 
     const uint64_t deadEdge
 ){
+    std::cout<<"    merge edges: a/d "<<aliveEdge<<" "<<deadEdge<<" \n"; 
     NIFTY_CHECK_OP(aliveEdge,!=,deadEdge,"");
     NIFTY_CHECK(pq_.contains(aliveEdge),"");
     NIFTY_CHECK(pq_.contains(deadEdge),"");
@@ -307,7 +309,7 @@ FixationClusterPolicy2<GRAPH, ENABLE_UCM>::
 contractEdgeDone(
     const uint64_t edgeToContract
 ){
-
+    std::cout<<"contract edge done: "<<edgeToContract<<"\n\n";
 }
 
 
