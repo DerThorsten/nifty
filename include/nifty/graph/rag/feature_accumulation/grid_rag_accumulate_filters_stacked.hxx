@@ -853,7 +853,7 @@ void accumulateSkipEdgeFeaturesFromFilters(
             const auto nEdges    = channelAccChainVec.size();
             const auto nChannels = channelAccChainVec.front().size();
 
-            marray::Marray<DataType> featuresTemp({nEdges,nChannels*nStats});
+            xt::xtensor<DataType, 2> featuresTemp({nEdges, nChannels * nStats});
 
             parallel::parallel_foreach(threadpool, channelAccChainVec.size(),
                 [&](const int tid, const int64_t edge){
