@@ -5,12 +5,13 @@
 
 #include "nifty/graph/rag/grid_rag.hxx"
 #include "nifty/graph/rag/grid_rag_stacked_2d.hxx"
-#include "nifty/marray/marray.hxx"
 #include "nifty/parallel/threadpool.hxx"
 #include "nifty/features/fastfilters_wrapper.hxx"
 #include "vigra/accumulator.hxx"
 #include "nifty/graph/rag/grid_rag_accumulate.hxx"
 #include "nifty/tools/array_tools.hxx"
+
+#include "nifty/xtensor/xtensor.hxx"
 
 #ifdef WITH_HDF5
 #include "nifty/hdf5/hdf5_array.hxx"
@@ -24,87 +25,86 @@ namespace graph{
 //
 
 // calculate filters for given input with threadpool
-template<class DATA_TYPE, class F, class COORD>
-inline void calculateFilters(const marray::View<DATA_TYPE> & dataSqueezed,
-        marray::View<float> & dataCopy,
-        const COORD & sliceShape2,
-        marray::View<float> & filter,
-        parallel::ThreadPool & threadpool,
-        const F & f) {
+template<class DATA_ARRAY, class F, class COORD, class FEATURE_ARRAY>
+inline void calculateFilters(const xt::xexpression<DATA_ARRAY> & dataExp,
+                             const COORD & sliceShape2,
+                             const xt::xexpression<FEATURE_ARRAY> & filterExp,
+                             parallel::ThreadPool & threadpool,
+                             const F & f) {
 
-    typedef DATA_TYPE DataType;
+    typedef typename DATA_ARRAY::value_type DataType;
     typedef COORD Coord;
-    marray::View<float> dataView;
+
+    const auto & data = dataExp.derived_cast();
+    auto & filter = filterExp.derived_cast();
+
     if( typeid(DataType) == typeid(float) ) {
-        dataView = dataSqueezed;
+        f(data, filter, threadpool);
     }
     else {
-        // copy the data (we don't use std::copy here, because iterators are terribly
-        // slow for marrays)
-        tools::forEachCoordinate(
-            sliceShape2, [&dataCopy,&dataSqueezed](Coord coord){
-                dataCopy(coord.asStdArray()) = (float) dataSqueezed(coord.asStdArray());
+        // copy the data
+        // FIXME FIXME FIXME there is probably a faster way yo do this
+        typedef typename xt::xtensor<float, 3>::shape_type ShapeType;
+        ShapeType shape;
+        std::copy(data.shape().begin(), data.shape().end(), shape.begin());
+        xt::xtensor<float, 3> dataTmp(shape);
+        tools::forEachCoordinate(sliceShape2, [&dataTmp, &data](Coord coord){
+            xtensor::write(dataTmp, coord.asStdArray(),
+                           (float) xtensor::read(data, coord.asStdArray()));
         });
-        Coord base;
-        Coord shape;
-        for(int d = 0; d < dataCopy.dimension(); ++d) {
-            base[d] = 0;
-            shape[d] = dataCopy.shape(d);
-        }
-        dataView = dataCopy.view(base.begin(), shape.begin());
+        f(dataTmp, filter, threadpool);
     }
-    f(dataView, filter, threadpool);
 }
 
 
 // calculate filters for given input single threaded
-template<class DATA_TYPE, class F, class COORD>
-inline void calculateFilters(const marray::View<DATA_TYPE> & dataSqueezed,
-        marray::View<float> & dataCopy,
-        const COORD & sliceShape2,
-        marray::View<float> & filter,
-        const F & f,
-        const bool preSmooth = false) {
+template<class DATA_ARRAY, class F, class COORD, class FEATURE_ARRAY>
+inline void calculateFilters(const xt::xexpression<DATA_ARRAY> & dataExp,
+                             const COORD & sliceShape2,
+                             xt::xexpression<FEATURE_ARRAY> & filterExp,
+                             const F & f,
+                             const bool preSmooth = false) {
 
-    typedef DATA_TYPE DataType;
+    typedef typename DATA_ARRAY::value_type DataType;
     typedef COORD Coord;
-    marray::View<float> dataView;
+
+    const auto & data = dataExp.derived_cast();
+    auto & filter = filterExp.derived_cast();
+
     if( typeid(DataType) == typeid(float) ) {
-        dataView = dataSqueezed;
+        f(data, filter, preSmooth);
     }
     else {
-        // copy the data (we don't use std::copy here, because iterators are terribly
-        // slow for marrays)
-        tools::forEachCoordinate(
-            sliceShape2, [&dataCopy,&dataSqueezed](Coord coord){
-                dataCopy(coord.asStdArray()) = (float) dataSqueezed(coord.asStdArray());
+        // copy the data
+        // FIXME FIXME FIXME there is probably a faster way yo do this
+        typedef typename xt::xtensor<float, 3>::shape_type ShapeType;
+        ShapeType shape;
+        std::copy(data.shape().begin(), data.shape().end(), shape.begin());
+        xt::xtensor<float, 3> dataTmp(shape);
+        tools::forEachCoordinate(sliceShape2, [&data, &dataTmp](Coord coord){
+            xtensor::write(dataTmp, coord.asStdArray(),
+                           (float) xtensor::read(data, coord.asStdArray()));
         });
-        Coord base;
-        Coord shape;
-        for(int d = 0; d < dataCopy.dimension(); ++d) {
-            base[d] = 0;
-            shape[d] = dataCopy.shape(d);
-        }
-        dataView = dataCopy.view(base.begin(), shape.begin());
+        f(dataTmp, filter, preSmooth);
     }
-    f(dataView, filter, preSmooth);
 }
 
 
-template<class ACC_CHAIN_VECTOR, class HISTO_OPTS_VEC, class COORD, class LABEL_TYPE, class RAG>
+template<class ACC_CHAIN_VECTOR, class HISTO_OPTS_VEC, class COORD, class LABEL_ARRAY, class RAG, class FEATURE_ARRAY>
 inline void accumulateInnerSliceFeatures(ACC_CHAIN_VECTOR & channelAccChainVec,
-        const HISTO_OPTS_VEC & histoOptionsVec,
-        const COORD & sliceShape2,
-        const marray::View<LABEL_TYPE> & labelsSqueezed,
-        const int64_t sliceId,
-        const int64_t inEdgeOffset,
-        const RAG & rag,
-        const marray::View<float> & filter
-        ) {
-
+                                         const HISTO_OPTS_VEC & histoOptionsVec,
+                                         const COORD & sliceShape2,
+                                         const xt::xexpression<LABEL_ARRAY> & labelsExp,
+                                         const int64_t sliceId,
+                                         const int64_t inEdgeOffset,
+                                         const RAG & rag,
+                                         const xt::xexpression<FEATURE_ARRAY> & filterExp) {
     typedef COORD Coord2;
     typedef typename vigra::MultiArrayShape<3>::type VigraCoord;
-    typedef LABEL_TYPE LabelType;
+    typedef typename LABEL_ARRAY::value_type LabelType;
+
+    const auto & labels = labelsExp.derived_cast();
+    const auto & filter = filterExp.derived_cast();
 
     size_t pass = 1;
     size_t numberOfChannels = channelAccChainVec[0].size();
@@ -120,12 +120,12 @@ inline void accumulateInnerSliceFeatures(ACC_CHAIN_VECTOR & channelAccChainVec,
     float fU, fV;
     VigraCoord vigraCoordU, vigraCoordV;
     nifty::tools::forEachCoordinate(sliceShape2, [&](const Coord2 coord){
-        lU = labelsSqueezed(coord.asStdArray());
+        lU = xtensor::read(labels, coord.asStdArray());
         for(int axis = 0; axis < 2; ++axis){
             Coord2 coord2 = coord;
             ++coord2[axis];
             if( coord2[axis] < sliceShape2[axis]) {
-                lV = labelsSqueezed(coord2.asStdArray());
+                lV = xtensor::read(labels, coord2.asStdArray());
                 if(lU != lV) {
                     vigraCoordU[0] = sliceId;
                     vigraCoordV[0] = sliceId;
@@ -146,25 +146,33 @@ inline void accumulateInnerSliceFeatures(ACC_CHAIN_VECTOR & channelAccChainVec,
     });
 }
 
-// accumulate filter for the between slice edges
-template<class ACC_CHAIN_VECTOR, class HISTO_OPTS_VEC, class COORD, class LABEL_TYPE, class RAG>
-inline void accumulateBetweenSliceFeatures(ACC_CHAIN_VECTOR & channelAccChainVec,
-        const HISTO_OPTS_VEC & histoOptionsVec,
-        const COORD & sliceShape2,
-        const marray::View<LABEL_TYPE> & labelsASqueezed,
-        const marray::View<LABEL_TYPE> & labelsBSqueezed,
-        const int64_t sliceIdA,
-        const int64_t sliceIdB,
-        const int64_t betweenEdgeOffset,
-        const RAG & rag,
-        const marray::View<float> & filterA,
-        const marray::View<float> & filterB,
-        const int zDirection
-    ){
 
+// FIXME FIXME FIXME 
+// FIXME !!! we waste a lot for zDirection != 0, because we always load both slices, which is totally
+// unncessary. Instead, we should have 2 seperate functons (z = 0 / z = 1,2) that get called with the proper
+// accumulate filter for the between slice edges
+template<class ACC_CHAIN_VECTOR, class HISTO_OPTS_VEC, class COORD, class LABEL_ARRAY, class RAG, class FEATURE_ARRAY>
+inline void accumulateBetweenSliceFeatures(ACC_CHAIN_VECTOR & channelAccChainVec,
+                                           const HISTO_OPTS_VEC & histoOptionsVec,
+                                           const COORD & sliceShape2,
+                                           const xt::xexpression<LABEL_ARRAY> & labelsAExp,
+                                           const xt::xexpression<LABEL_ARRAY> & labelsBExp,
+                                           const int64_t sliceIdA,
+                                           const int64_t sliceIdB,
+                                           const int64_t betweenEdgeOffset,
+                                           const RAG & rag,
+                                           const xt::xexpression<FEATURE_ARRAY> & filterAExp,
+                                           const xt::xexpression<FEATURE_ARRAY> & filterBExp,
+                                           const int zDirection){
     typedef COORD Coord2;
     typedef typename vigra::MultiArrayShape<3>::type VigraCoord;
-    typedef LABEL_TYPE LabelType;
+    typedef typename LABEL_ARRAY::value_type LabelType;
+
+    const auto & labelsA = labelsAExp.derived_cast();
+    const auto & labelsB = labelsBExp.derived_cast();
+
+    const auto & filterA = filterAExp.derived_cast();
+    const auto & filterB = filterBExp.derived_cast();
 
     size_t pass = 1;
     size_t numberOfChannels = channelAccChainVec[0].size();
@@ -180,8 +188,8 @@ inline void accumulateBetweenSliceFeatures(ACC_CHAIN_VECTOR & channelAccChainVec
     VigraCoord vigraCoordU, vigraCoordV;
     nifty::tools::forEachCoordinate(sliceShape2, [&](const Coord2 coord){
         // labels are different for different slices by default!
-        lU = labelsASqueezed(coord.asStdArray());
-        lV = labelsBSqueezed(coord.asStdArray());
+        lU = xtensor::read(labelsA, coord.asStdArray());
+        lV = xtensor::read(labelsB, coord.asStdArray());
         vigraCoordU[0] = sliceIdA;
         vigraCoordV[0] = sliceIdB;
         for(int d = 1; d < 3; ++d){
@@ -214,20 +222,18 @@ inline void accumulateBetweenSliceFeatures(ACC_CHAIN_VECTOR & channelAccChainVec
 
 
 template<class EDGE_ACC_CHAIN, class LABELS_PROXY, class DATA, class F_XY, class F_Z>
-void accumulateEdgeFeaturesFromFiltersWithAccChain(
-    const GridRagStacked2D<LABELS_PROXY> & rag,
-    const DATA & data,
-    const bool keepXYOnly,
-    const bool keepZOnly,
-    const parallel::ParallelOptions & pOpts,
-    parallel::ThreadPool & threadpool,
-    F_XY && fXY,
-    F_Z && fZ,
-    const int zDirection
-){
+void accumulateEdgeFeaturesFromFiltersWithAccChain(const GridRagStacked2D<LABELS_PROXY> & rag,
+                                                   const DATA & data,
+                                                   const bool keepXYOnly,
+                                                   const bool keepZOnly,
+                                                   const parallel::ParallelOptions & pOpts,
+                                                   parallel::ThreadPool & threadpool,
+                                                   F_XY && fXY,
+                                                   F_Z && fZ,
+                                                   const int zDirection){
     typedef LABELS_PROXY LabelsProxyType;
     typedef typename LabelsProxyType::LabelType LabelType;
-    typedef typename DATA::DataType DataType;
+    typedef typename DATA::value_type DataType;
 
     typedef typename LabelsProxyType::BlockStorageType LabelBlockStorage;
     typedef tools::BlockStorage<DataType> DataBlockStorage;
@@ -248,10 +254,10 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
 
     // sigmas and filters to sigmas: TODO make accessible
     std::vector<double> sigmas({1.6,4.2,8.2});
-    FiltersToSigmasType filtersToSigmas({ { true, true, true},      // GaussianSmoothing
-                                          { true, true, true},      // LaplacianOfGaussian
-                                          { false, false, false},   // GaussianGradientMagnitude
-                                          { true, true, true } });  // HessianOfGaussianEigenvalues
+    FiltersToSigmasType filtersToSigmas{std::vector<bool>{true, true, true},  // GaussianSmoothing
+                                        std::vector<bool>{true, true, true},  // LaplacianOfGaussian
+                                        std::vector<bool>{false, false, false}, // GaussianGradientMagnitude
+                                        std::vector<bool>{true,  true,  true}}; // HessianOfGaussianEigenvalues
 
     features::ApplyFilters<2> applyFilters(sigmas, filtersToSigmas);
     size_t numberOfChannels = applyFilters.numberOfChannels();
@@ -286,37 +292,24 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
 
         auto data0 = dataStorage.getView(0);
         tools::readSubarray(data, begin0, end0, data0);
-        auto data0Squeezed = data0.squeezedView();
-
-        //auto dataCopy = dataCopyStorage.getView(0); // in case we need to copy data for non-float type
-        marray::Marray<float> dataCopy;
-        if( typeid(DataType) != typeid(float) )
-            dataCopy.resize(sliceShape2.begin(), sliceShape2.end());
+        auto data0Squeezed = xtensor::squeezedView(data0);
         auto filter0 = filterAStorage.getView(0);
 
         // apply filters in parallel
         calculateFilters(data0Squeezed,
-                dataCopy,
-                sliceShape2,
-                filter0,
-                threadpool,
-                applyFilters);
-
-        // apply filters with pre smoothing
-        // TODO benchmark this!
-        //calculateFilters(data0Squeezed,
-        //        dataCopy,
-        //        sliceShape2,
-        //        filter0,
-        //        applyFilters,
-        //        true);
+                         sliceShape2,
+                         filter0,
+                         threadpool,
+                         applyFilters);
 
         std::vector<vigra::HistogramOptions> histoOptionsVec(numberOfChannels);
-        Coord cShape({1L,sliceShape2[0],sliceShape2[1]});
+        Coord cShape({1L, sliceShape2[0], sliceShape2[1]});
         parallel::parallel_foreach(threadpool, numberOfChannels, [&](const int tid, const int64_t c){
             auto & histoOpts = histoOptionsVec[c];
-            Coord cBegin({c,0L,0L});
-            auto channelView = filter0.view(cBegin.begin(), cShape.begin());
+            Coord cBegin({c, 0L, 0L});
+            xt::slice_vector slice(filter0);
+            xtensor::sliceFromOffset(slice, cBegin, cShape);
+            auto channelView = xt::dynamic_view(filter0, slice);
             auto minMax = std::minmax_element(channelView.begin(), channelView.end());
             auto min = *(minMax.first);
             auto max = *(minMax.second);
@@ -340,29 +333,23 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
             int64_t sliceIdB = slicePairs[pairId].second;// upper slice
 
             // compute the filters for slice A
-            Coord beginA ({sliceIdA, 0L, 0L});
+            Coord beginA({sliceIdA, 0L, 0L});
             Coord endA({sliceIdA+1, shape[1], shape[2]});
 
             auto labelsA = labelsAStorage.getView(tid);
             labelsProxy.readSubarray(beginA, endA, labelsA);
-            auto labelsASqueezed = labelsA.squeezedView();
+            auto labelsASqueezed = xtensor::squeezedView(labelsA);
 
             auto dataA = dataStorage.getView(tid);
             tools::readSubarray(data, beginA, endA, dataA);
-            auto dataASqueezed = dataA.squeezedView();
-
-            //auto dataCopy = dataCopyStorage.getView(tid);
-            marray::Marray<float> dataCopy;
-            if( typeid(DataType) != typeid(float) )
-                dataCopy.resize(sliceShape2.begin(), sliceShape2.end());
+            auto dataASqueezed = xtensor::squeezedView(dataA);
 
             auto filterA = filterAStorage.getView(tid);
             calculateFilters(dataASqueezed,
-                    dataCopy,
-                    sliceShape2,
-                    filterA,
-                    applyFilters,
-                    true); // presmoothing
+                             sliceShape2,
+                             filterA,
+                             applyFilters,
+                             true); // presmoothing
 
             // acccumulate the inner slice features
             // only if not keepZOnly and if we have at least one edge in this slice
@@ -375,88 +362,86 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
                         AccChainVectorType(numberOfChannels)
                 );
                 accumulateInnerSliceFeatures(channelAccChainVec,
-                        histoOptionsVec,
-                        sliceShape2,
-                        labelsASqueezed,
-                        sliceIdA,
-                        inEdgeOffset,
-                        rag,
-                        filterA);
+                                             histoOptionsVec,
+                                             sliceShape2,
+                                             labelsASqueezed,
+                                             sliceIdA,
+                                             inEdgeOffset,
+                                             rag,
+                                             filterA);
                 fXY(channelAccChainVec, inEdgeOffset);
             }
-
-            // process upper slice
-            Coord beginB = Coord({sliceIdB,   0L,       0L});
-            Coord endB   = Coord({sliceIdB+1, shape[1], shape[2]});
-            auto filterB = filterBStorage.getView(tid);
-            marray::View<LabelType> labelsBSqueezed;
 
             // read labels, data and calculate the filters for upper slice
             // do if we are not keeping only xy edges or
             // if we are at the last slice (which is never a lower slice and
             // must hence be accumulated extra)
-            if(!keepXYOnly || sliceIdB == numberOfSlices - 1 ) {
+            if(!keepXYOnly || sliceIdB == numberOfSlices - 1) {
+
+                // process upper slice
+                Coord beginB = Coord({sliceIdB, 0L, 0L});
+                Coord endB   = Coord({sliceIdB + 1, shape[1], shape[2]});
+                auto filterB = filterBStorage.getView(tid);
+
                 // read labels
                 auto labelsB = labelsBStorage.getView(tid);
                 labelsProxy.readSubarray(beginB, endB, labelsB);
-                labelsBSqueezed = labelsB.squeezedView();
+                auto labelsBSqueezed = xtensor::squeezedView(labelsB);
                 // read data
                 auto dataB = dataStorage.getView(tid);
                 tools::readSubarray(data, beginB, endB, dataB);
-                auto dataBSqueezed = dataB.squeezedView();
+                auto dataBSqueezed = xtensor::squeezedView(dataB);
                 // calc filter
                 calculateFilters(dataBSqueezed,
-                        dataCopy,
-                        sliceShape2,
-                        filterB,
-                        applyFilters,
-                        true); // activate pre-smoothing
-            }
+                                 sliceShape2,
+                                 filterB,
+                                 applyFilters,
+                                 true); // activate pre-smoothing
 
-            // acccumulate the between slice features
-            if(!keepXYOnly) {
-                auto betweenEdgeOffset = rag.betweenSliceEdgeOffset(sliceIdA);
-                auto accOffset = rag.betweenSliceEdgeOffset(sliceIdA) - rag.numberOfInSliceEdges();
-                // make new acc chain vector
-                ChannelAccChainVectorType channelAccChainVec(
-                    rag.numberOfInBetweenSliceEdges(sliceIdA),
-                    AccChainVectorType(numberOfChannels)
-                );
-                // accumulate features for the in between slice edges
-                accumulateBetweenSliceFeatures(channelAccChainVec,
-                        histoOptionsVec,
-                        sliceShape2,
-                        labelsASqueezed,
-                        labelsBSqueezed,
-                        sliceIdA,
-                        sliceIdB,
-                        betweenEdgeOffset,
-                        rag,
-                        filterA,
-                        filterB,
-                        zDirection);
-                fZ(channelAccChainVec, accOffset);
-            }
+                // acccumulate the between slice features
+                if(!keepXYOnly) {
+                    auto betweenEdgeOffset = rag.betweenSliceEdgeOffset(sliceIdA);
+                    auto accOffset = rag.betweenSliceEdgeOffset(sliceIdA) - rag.numberOfInSliceEdges();
+                    // make new acc chain vector
+                    ChannelAccChainVectorType channelAccChainVec(
+                        rag.numberOfInBetweenSliceEdges(sliceIdA),
+                        AccChainVectorType(numberOfChannels)
+                    );
+                    // accumulate features for the in between slice edges
+                    accumulateBetweenSliceFeatures(channelAccChainVec,
+                                                   histoOptionsVec,
+                                                   sliceShape2,
+                                                   labelsASqueezed,
+                                                   labelsBSqueezed,
+                                                   sliceIdA,
+                                                   sliceIdB,
+                                                   betweenEdgeOffset,
+                                                   rag,
+                                                   filterA,
+                                                   filterB,
+                                                   zDirection);
+                    fZ(channelAccChainVec, accOffset);
+                }
 
-            // accumulate the inner slice features for the last slice, which is never a lower slice
-            if(!keepZOnly && (sliceIdB == numberOfSlices - 1 && rag.numberOfInSliceEdges(sliceIdB) > 0)) {
-                auto inEdgeOffset = rag.inSliceEdgeOffset(sliceIdB);
-                // make new acc chain vector
-                ChannelAccChainVectorType channelAccChainVec(
-                    rag.numberOfInSliceEdges(sliceIdB),
-                    AccChainVectorType(numberOfChannels)
-                );
-                accumulateInnerSliceFeatures(channelAccChainVec,
-                        histoOptionsVec,
-                        sliceShape2,
-                        labelsBSqueezed,
-                        sliceIdB,
-                        inEdgeOffset,
-                        rag,
-                        filterB);
-                fXY(channelAccChainVec, inEdgeOffset);
+                // accumulate the inner slice features for the last slice, which is never a lower slice
+                if(!keepZOnly && (sliceIdB == numberOfSlices - 1 && rag.numberOfInSliceEdges(sliceIdB) > 0)) {
+                    auto inEdgeOffset = rag.inSliceEdgeOffset(sliceIdB);
+                    // make new acc chain vector
+                    ChannelAccChainVectorType channelAccChainVec(
+                        rag.numberOfInSliceEdges(sliceIdB),
+                        AccChainVectorType(numberOfChannels)
+                    );
+                    accumulateInnerSliceFeatures(channelAccChainVec,
+                                                 histoOptionsVec,
+                                                 sliceShape2,
+                                                 labelsBSqueezed,
+                                                 sliceIdB,
+                                                 inEdgeOffset,
+                                                 rag,
+                                                 filterB);
+                    fXY(channelAccChainVec, inEdgeOffset);
+                }
             }
-
         });
     }
     std::cout << "Slices done" << std::endl;
@@ -465,20 +450,18 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(
 
 // 9 features per channel
 template<class LABELS_PROXY, class DATA, class OUTPUT>
-void accumulateEdgeFeaturesFromFilters(
-    const GridRagStacked2D<LABELS_PROXY> & rag,
-    const DATA & data,
-    OUTPUT & edgeFeaturesOutXY,
-    OUTPUT & edgeFeaturesOutZ,
-    const bool keepXYOnly,
-    const bool keepZOnly,
-    const int zDirection = 0,
-    const int numberOfThreads = -1
-){
+void accumulateEdgeFeaturesFromFilters(const GridRagStacked2D<LABELS_PROXY> & rag,
+                                       const DATA & data,
+                                       OUTPUT & edgeFeaturesOutXY,
+                                       OUTPUT & edgeFeaturesOutZ,
+                                       const bool keepXYOnly,
+                                       const bool keepZOnly,
+                                       const int zDirection = 0,
+                                       const int numberOfThreads = -1) {
     namespace acc = vigra::acc;
     typedef float DataType;
 
-    typedef acc::UserRangeHistogram<40>            SomeHistogram;   //binCount set at compile time
+    typedef acc::UserRangeHistogram<40> SomeHistogram;   //binCount set at compile time
     typedef acc::StandardQuantiles<SomeHistogram > Quantiles;
 
     typedef acc::Select<
@@ -503,10 +486,10 @@ void accumulateEdgeFeaturesFromFilters(
         typedef array::StaticArray<int64_t, 2> FeatCoord;
 
         const auto nStats = 9;
-        const auto nEdges    = channelAccChainVec.size();
+        const auto nEdges = channelAccChainVec.size();
         const auto nChannels = channelAccChainVec.front().size();
 
-        marray::Marray<DataType> featuresTemp({nEdges,nChannels*nStats});
+        xt::xtensor<DataType, 2> featuresTemp({nEdges, nChannels * nStats});
         for(int64_t edge = 0; edge < channelAccChainVec.size(); ++edge) {
             const auto & edgeAccChainVec = channelAccChainVec[edge];
             auto cOffset = 0;
@@ -539,37 +522,35 @@ void accumulateEdgeFeaturesFromFilters(
             std::placeholders::_2,
             std::ref(edgeFeaturesOutZ));
 
-    accumulateEdgeFeaturesFromFiltersWithAccChain<AccChainType>(
-        rag,
-        data,
-        keepXYOnly,
-        keepZOnly,
-        pOpts,
-        threadpool,
-        accFunctionXY,
-        accFunctionZ,
-        zDirection
-        );
+    accumulateEdgeFeaturesFromFiltersWithAccChain<AccChainType>(rag,
+                                                                data,
+                                                                keepXYOnly,
+                                                                keepZOnly,
+                                                                pOpts,
+                                                                threadpool,
+                                                                accFunctionXY,
+                                                                accFunctionZ,
+                                                                zDirection);
 }
 
 
+// TODO re-enable this
+/*
 // TODO use the proper helper functions here !
 template<class EDGE_ACC_CHAIN, class LABELS_PROXY, class DATA, class F>
-void accumulateSkipEdgeFeaturesFromFiltersWithAccChain(
-    const GridRagStacked2D<LABELS_PROXY> & rag,
-    const DATA & data,
-    const std::vector<std::pair<uint64_t,uint64_t>> & skipEdges,
-    const std::vector<size_t> & skipRanges,
-    const std::vector<size_t> & skipStarts,
-    const parallel::ParallelOptions & pOpts,
-    parallel::ThreadPool & threadpool,
-    F && f,
-    const int zDirection
-){
+void accumulateSkipEdgeFeaturesFromFiltersWithAccChain(const GridRagStacked2D<LABELS_PROXY> & rag,
+                                                       const DATA & data,
+                                                       const std::vector<std::pair<uint64_t,uint64_t>> & skipEdges,
+                                                       const std::vector<size_t> & skipRanges,
+                                                       const std::vector<size_t> & skipStarts,
+                                                       const parallel::ParallelOptions & pOpts,
+                                                       parallel::ThreadPool & threadpool,
+                                                       F && f,
+                                                       const int zDirection){
     typedef std::pair<uint64_t,uint64_t> SkipEdgeStorage;
 
     typedef LABELS_PROXY LabelsProxyType;
-    typedef typename DATA::DataType DataType;
+    typedef typename DATA::value_type DataType;
     typedef typename vigra::MultiArrayShape<3>::type VigraCoord;
 
     typedef typename LabelsProxyType::BlockStorageType LabelBlockStorage;
@@ -900,6 +881,7 @@ void accumulateSkipEdgeFeaturesFromFilters(
         zDirection
     );
 }
+*/
 
 
 } // namespace graph

@@ -9,6 +9,8 @@
 #include "nifty/graph/rag/grid_rag_labels_proxy.hxx"
 #include "nifty/graph/rag/feature_accumulation/grid_rag_accumulate_filters_stacked.hxx"
 
+#include "xtensor-python/pytensor.hpp"
+
 
 namespace py = pybind11;
 
@@ -34,18 +36,21 @@ namespace graph{
         ){
             if(keepXYOnly && keepZOnly)
                 throw std::runtime_error("keepXYOnly and keepZOnly are not allowed to be both activated!");
-            uint64_t nEdgesXY = !keepZOnly ? rag.numberOfInSliceEdges() : 1L;
-            uint64_t nEdgesZ  = !keepXYOnly ? rag.numberOfInBetweenSliceEdges() : 1L;
+            int64_t nEdgesXY = !keepZOnly ? rag.numberOfInSliceEdges() : 1L;
+            int64_t nEdgesZ  = !keepXYOnly ? rag.numberOfInBetweenSliceEdges() : 1L;
 
             // TODO don't hard code this
-            uint64_t nChannels = 12;
-            uint64_t nStats = 9;
-            uint64_t nFeatures = nChannels * nStats;
-            nifty::marray::PyView<float> outXY({nEdgesXY,nFeatures});
-            nifty::marray::PyView<float> outZ({nEdgesZ,nFeatures});
+            int64_t nChannels = 12;
+            int64_t nStats = 9;
+            int64_t nFeatures = nChannels * nStats;
+            xt::pytensor<float, 2> outXY({nEdgesXY, nFeatures});
+            xt::pytensor<float, 2> outZ({nEdgesZ, nFeatures});
             {
                 py::gil_scoped_release allowThreads;
-                accumulateEdgeFeaturesFromFilters(rag, data, outXY, outZ, keepXYOnly, keepZOnly, zDirection, numberOfThreads);
+                accumulateEdgeFeaturesFromFilters(rag, data,
+                                                  outXY, outZ,
+                                                  keepXYOnly, keepZOnly,
+                                                  zDirection, numberOfThreads);
             }
             return std::make_tuple(outXY, outZ);
         },
@@ -58,7 +63,9 @@ namespace graph{
         );
     }
 
+
     // TODO assert that z direction is in (0,1,2)
+    #ifdef WITH_HDF5
     template<class RAG, class DATA>
     void exportAccumulateEdgeFeaturesFromFiltersOutOfCoreT(
         py::module & ragModule
@@ -104,6 +111,8 @@ namespace graph{
         py::arg("numberOfThreads")= -1
         );
     }
+    #endif
+
 
     // TODO assert that z direction is in (0,1,2)
     template<class RAG, class DATA>
@@ -120,23 +129,18 @@ namespace graph{
             const int zDirection,
             const int numberOfThreads
         ){
-            uint64_t nSkipEdges = skipEdges.size();
+            int64_t nSkipEdges = skipEdges.size();
 
             // TODO don't hard code this
-            uint64_t nChannels = 12;
-            uint64_t nStats = 9;
-            uint64_t nFeatures = nChannels * nStats;
-            nifty::marray::PyView<float> out({nSkipEdges,nFeatures});
+            int64_t nChannels = 12;
+            int64_t nStats = 9;
+            int64_t nFeatures = nChannels * nStats;
+            xt::xtensor<float, 2> out({nSkipEdges, nFeatures});
             {
                 py::gil_scoped_release allowThreads;
-                accumulateSkipEdgeFeaturesFromFilters(rag,
-                    data,
-                    out,
-                    skipEdges,
-                    skipRanges,
-                    skipStarts,
-                    zDirection,
-                    numberOfThreads);
+                accumulateSkipEdgeFeaturesFromFilters(rag, data,out,
+                                                      skipEdges, skipRanges, skipStarts,
+                                                      zDirection, numberOfThreads);
             }
             return out;
         },
@@ -155,10 +159,10 @@ namespace graph{
 
         //explicit
         {
-            typedef ExplicitLabels<3,uint32_t> LabelsUInt32;
-            typedef GridRagStacked2D<LabelsUInt32> StackedRagUInt32;
-            typedef nifty::marray::PyView<float, 3> FloatArray;
-            typedef nifty::marray::PyView<uint8_t, 3> UInt8Array;
+            typedef LabelsProxy<3, xt::pytensor<uint32_t, 3>> ExplicitPyLabels3D;
+            typedef GridRagStacked2D<ExplicitPyLabels3D> StackedRagUInt32;
+            typedef xt::pytensor<float, 3> FloatArray;
+            typedef xt::pytensor<uint8_t, 3> UInt8Array;
 
             exportAccumulateEdgeFeaturesFromFiltersInCoreT<StackedRagUInt32, FloatArray>(ragModule);
             exportAccumulateEdgeFeaturesFromFiltersInCoreT<StackedRagUInt32, UInt8Array>(ragModule);

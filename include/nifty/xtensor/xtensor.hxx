@@ -6,7 +6,7 @@
 namespace nifty {
 
 namespace xtensor {
-    // small helper function to convert a ROI given by (offset, shape) into
+    // helper function to convert a ROI given by (begin, end) into
     // a proper xtensor sliceing
     template<typename COORD1, typename COORD2>
     inline void sliceFromRoi(xt::slice_vector & roiSlice,
@@ -17,7 +17,20 @@ namespace xtensor {
         }
     }
 
-    // small helper function to squeeze along given dimension
+
+    // helper function to convert a ROI given by (offset, shape) into
+    // a proper xtensor sliceing
+    template<typename COORD1, typename COORD2>
+    inline void sliceFromOffset(xt::slice_vector & roiSlice,
+                                const COORD1 & offset,
+                                const COORD2 & shape) {
+        for(int d = 0; d < offset.size(); ++d) {
+            roiSlice.push_back(xt::range(offset[d], offset[d] + shape[d]));
+        }
+    }
+
+
+    // helper function to squeeze along given dimension
     template<class ARRAY>
     inline auto squeezedView(xt::xexpression<ARRAY> & arrayExp) {
         auto & array = arrayExp.derived_cast();

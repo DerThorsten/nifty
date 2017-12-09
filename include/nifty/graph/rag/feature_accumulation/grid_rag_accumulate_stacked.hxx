@@ -139,7 +139,7 @@ namespace graph{
     }
 
 
-    // FIXME FIXME FIXME 
+    // FIXME FIXME FIXME
     // I am pretty sure this does not do what I inteded
     // (i.e. it copys float as well as every other data type)
     // copy data if the dtype is not float
