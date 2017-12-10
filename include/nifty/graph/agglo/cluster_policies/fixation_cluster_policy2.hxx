@@ -90,6 +90,8 @@ public:
 
     bool isMergeAllowed(const uint64_t edge){
         if(isLocalEdge_[edge]){
+            // todo this isPureLocal_ seems to be legacy
+            // check if needed
            return isPureLocal_[edge] ? true : mergePrios_[edge] > notMergePrios_[edge];
         }
         else{
