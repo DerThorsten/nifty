@@ -13,6 +13,12 @@
 #include "nifty/hdf5/hdf5_array.hxx"
 #endif
 
+// FIXME this causes multiple definition linker errors
+// why ?!
+#ifdef WITH_Z5
+#include "nifty/z5/z5.hxx"
+#endif
+
 
 namespace nifty{
 namespace graph{
@@ -63,12 +69,6 @@ private:
     std::size_t numberOfLabels_;
     array::StaticArray<int64_t, DIM> shape_;
 };
-
-
-#ifdef WITH_HDF5
-template<std::size_t DIM, class LABELS_TYPE>
-using Hdf5Labels = LabelsProxy<DIM, nifty::hdf5::Hdf5Array<LABELS_TYPE>>;
-#endif
 
 
 } // namespace nifty::graph

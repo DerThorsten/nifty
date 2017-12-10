@@ -3,8 +3,13 @@
 #include <pybind11/stl.h>
 
 #include "nifty/graph/rag/grid_rag_stacked_2d.hxx"
+
 #ifdef WITH_HDF5
 #include "nifty/hdf5/hdf5_array.hxx"
+#endif
+
+#ifdef WITH_Z5
+#include "nifty/z5/z5.hxx"
 #endif
 
 #include "xtensor-python/pytensor.hpp"
@@ -63,7 +68,7 @@ namespace graph{
 
             .def("numberOfNodesPerSlice",[](const GridRagType & self){
                 const auto & shape = self.shape();
-                xt::pytensor<uint64_t, 1> out({int64_t(shape[0])});
+                xt::pytensor<uint64_t, 1> out({(uint64_t) shape[0]});
                 for(auto sliceIndex = 0; sliceIndex<shape[0]; ++sliceIndex){
                     out(sliceIndex) =  self.numberOfNodes(sliceIndex);
                 }
@@ -72,7 +77,7 @@ namespace graph{
 
             .def("numberOfInSliceEdges",[](const GridRagType & self){
                 const auto & shape = self.shape();
-                xt::pytensor<uint64_t, 1> out({int64_t(shape[0])});
+                xt::pytensor<uint64_t, 1> out({(uint64_t) shape[0]});
                 for(auto sliceIndex = 0; sliceIndex<shape[0]; ++sliceIndex){
                     out(sliceIndex) =  self.numberOfInSliceEdges(sliceIndex);
                 }
@@ -81,7 +86,7 @@ namespace graph{
 
             .def("numberOfInBetweenSliceEdges",[](const GridRagType & self){
                 const auto & shape = self.shape();
-                xt::pytensor<uint64_t, 1> out({int64_t(shape[0])});
+                xt::pytensor<uint64_t, 1> out({(uint64_t) shape[0]});
                 for(auto sliceIndex = 0; sliceIndex<shape[0]; ++sliceIndex){
                     out(sliceIndex) =  self.numberOfInBetweenSliceEdges(sliceIndex);
                 }
@@ -90,7 +95,7 @@ namespace graph{
 
             .def("inSliceEdgeOffset",[](const GridRagType & self){
                 const auto & shape = self.shape();
-                xt::pytensor<uint64_t, 1> out({int64_t(shape[0])});
+                xt::pytensor<uint64_t, 1> out({(uint64_t) shape[0]});
                 for(auto sliceIndex = 0; sliceIndex<shape[0]; ++sliceIndex){
                     out(sliceIndex) =  self.inSliceEdgeOffset(sliceIndex);
                 }
@@ -99,7 +104,7 @@ namespace graph{
 
             .def("betweenSliceEdgeOffset",[](const GridRagType & self){
                 const auto & shape = self.shape();
-                xt::pytensor<uint64_t, 1> out({int64_t(shape[0])});
+                xt::pytensor<uint64_t, 1> out({(uint64_t) shape[0]});
                 for(auto sliceIndex = 0; sliceIndex<shape[0]; ++sliceIndex){
                     out(sliceIndex) =  self.betweenSliceEdgeOffset(sliceIndex);
                 }
@@ -194,14 +199,19 @@ namespace graph{
 
         // export hdf5 labels
         #ifdef WITH_HDF5
-        exportGridRagStackedT<Hdf5Labels<3, uint32_t>>(ragModule,
-                                                       "GridRagStacked2DHdf5",
-                                                       "gridRagStacked2DHdf5Impl");
+        typedef LabelsProxy<3, Hdf5Array<uint32_t>> Hdf5Labels;
+        exportGridRagStackedT<Hdf5Labels>(ragModule,
+                                          "GridRagStacked2DHdf5",
+                                          "gridRagStacked2DHdf5Impl");
         #endif
 
         // export z5 labels
-        //#ifdef WITH_Z5
-        //#endif
+        #ifdef WITH_Z5
+        typedef LabelsProxy<3, z5::DatasetTyped<uint32_t>> Z5Labels;
+        exportGridRagStackedT<Z5Labels>(ragModule,
+                                        "GridRagStacked2DZ5",
+                                        "gridRagStacked2DZ5Impl");
+        #endif
     }
 
 } // end namespace graph

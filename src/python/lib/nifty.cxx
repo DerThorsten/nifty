@@ -96,6 +96,14 @@ PYBIND11_PLUGIN(_nifty) {
             #endif
         }
         )
+        .def_property_readonly_static("WITH_Z5", [](py::object /* self */) { 
+            #ifdef  WITH_Z5
+            return true;
+            #else
+            return false;
+            #endif
+        }
+        )
         .def_property_readonly_static("WITH_LP_MP", [](py::object /* self */) { 
             #ifdef  WITH_LP_MP
             return true;
@@ -112,7 +120,7 @@ PYBIND11_PLUGIN(_nifty) {
             #endif
         }
         )
-        
+
         ;
     return module.ptr();
 }

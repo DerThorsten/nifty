@@ -5,6 +5,12 @@ from .. import Configuration
 
 import numpy
 
+try:
+    import h5py
+    WITH_H5PY = True
+else:
+    WITH_H5PY = False
+
 
 __all__ = []
 for key in __rag.__dict__.keys():
@@ -19,12 +25,12 @@ for key in __rag.__dict__.keys():
 def gridRag(labels, numberOfLabels, blockShape=None, numberOfThreads=-1, serialization=None):
     labels = numpy.require(labels, dtype='uint32')
     dim = labels.ndim
-    bs = [100] * dim if blockShape is None else blockShape
+    blockShape_ = [100] * dim if blockShape is None else blockShape
 
     if dim == 2:
         if serialization is None:
             return explicitLabelsGridRag2D(labels,
-                                           blockShape=bs,
+                                           blockShape=blockShape_,
                                            numberOfLabels=numberOfLabels,
                                            numberOfThreads=int(numberOfThreads))
         else:
@@ -35,7 +41,7 @@ def gridRag(labels, numberOfLabels, blockShape=None, numberOfThreads=-1, seriali
     elif dim == 3:
         if serialization is None:
             return explicitLabelsGridRag3D(labels,
-                                           blockShape=bs,
+                                           blockShape=blockShape_,
                                            numberOfLabels=numberOfLabels,
                                            numberOfThreads=int(numberOfThreads))
         else:
@@ -46,11 +52,10 @@ def gridRag(labels, numberOfLabels, blockShape=None, numberOfThreads=-1, seriali
     else:
         raise RuntimeError("wrong dimension, currently only 2D and 3D is implemented")
 
-    return ragGraph
-
 
 def gridRagStacked2D(labels, numberOfLabels, serialization=None, numberOfThreads=-1):
     labels = numpy.require(labels, dtype='uint32')
+    assert labels.ndim == 3, "Stacked rag is only available for 3D labels"
     if serialization is None:
         return gridRagStacked2DExplicitImpl(labels,
                                             numberOfLabels=numberOfLabels,
@@ -78,74 +83,116 @@ if Configuration.WITH_HDF5:
     def gridRagHdf5(labels, numberOfLabels, blockShape=None, numberOfThreads=-1):
 
         dim = labels.ndim
-        bs = [100] * dim if blockShape is None else blockShape
+        blockShape_ = [100] * dim if blockShape is None else blockShape
 
         if dim == 2:
-            labelsProxy = gridRag2DHdf5LabelsProxy(labels, int(numberOfLabels))
-            ragGraph = gridRag2DHdf5(labelsProxy, bs, int(numberOfThreads))
+            return gridRag2DHdf5(labels,
+                                 numberOfLabels=numberOfLabels,
+                                 blockShape=blockShape_,
+                                 numberOfThreads=int(numberOfThreads))
         elif dim == 3:
-            labelsProxy = gridRag3DHdf5LabelsProxy(labels, int(numberOfLabels))
-            ragGraph = gridRag3DHdf5(labelsProxy, bs, int(numberOfThreads))
+            return gridRag3DHdf5(labels,
+                                 numberOfLabels=numberOfLabels,
+                                 blockShape=blockShape_,
+                                 numberOfThreads=int(numberOfThreads))
         else:
             raise RuntimeError("gridRagHdf5 is only implemented for 2D and 3D not for %dD" % dim)
 
-        return ragGraph
 
     def gridRagStacked2DHdf5(labels, numberOfLabels, numberOfThreads=-1, serialization=None):
-        dim = labels.ndim
-        if dim == 3:
-            labelsProxy = gridRag3DHdf5LabelsProxy(labels, int(numberOfLabels))
-            if serialization is not None:
-                ragGraph = gridRagStacked2DHdf5Impl(labelsProxy, serialization)
-            else:
-                ragGraph = gridRagStacked2DHdf5Impl(labelsProxy, int(numberOfThreads))
+        assert labels.ndim == 3, "Stacked rag is only available for 3D labels"
+        if serialization is None:
+            return gridRagStacked2DHdf5Impl(labels,
+                                            numberOfLabels=numberOfLabels,
+                                            numberOfThreads=int(numberOfThreads))
         else:
-            raise RuntimeError("gridRagStacked2DHdf5 is only implemented for 3D not for %dD" % dim)
+            return gridRagStacked2DHdf5Impl(labels,
+                                            numberOfLabels=numberOfLabels,
+                                            serialization=serialization)
 
-        return ragGraph
+if Configuration.WITH_Z5:
 
+    def gridRagZ5(labels, numberOfLabels, blockShape=None, numberOfThreads=-1):
+
+        dim = labels.ndim
+        blockShape_ = [100] * dim if blockShape is None else blockShape
+
+        if dim == 2:
+            return gridRag2DZ5(labels,
+                               numberOfLabels=numberOfLabels,
+                               blockShape=blockShape_,
+                               numberOfThreads=int(numberOfThreads))
+        elif dim == 3:
+            return gridRag3DZ5(labels,
+                               numberOfLabels=numberOfLabels,
+                               blockShape=blockShape_,
+                               numberOfThreads=int(numberOfThreads))
+        else:
+            raise RuntimeError("gridRagZ5 is only implemented for 2D and 3D not for %dD" % dim)
+
+
+    def gridRagStacked2DZ5(labels, numberOfLabels, numberOfThreads=-1, serialization=None):
+        assert labels.ndim == 3, "Stacked rag is only available for 3D labels"
+        if serialization is None:
+            return gridRagStacked2DZ5Impl(labels,
+                                          numberOfLabels=numberOfLabels,
+                                          numberOfThreads=int(numberOfThreads))
+        else:
+            return gridRagStacked2DZ5Impl(labels,
+                                          numberOfLabels=numberOfLabels,
+                                          serialization=serialization)
+
+
+if WITH_H5PY:
+
+    # TODO write the type of the rag
     def writeStackedRagToHdf5(rag, savePath):
-        # TODO h5py instead of vifea
-        import vigra
-        vigra.writeHDF5(rag.numberOfNodes, savePath, 'numberOfNodes')
-        vigra.writeHDF5(rag.numberOfEdges, savePath, 'numberOfEdges')
-        vigra.writeHDF5(rag.uvIds(), savePath, 'uvIds')
-        vigra.writeHDF5(rag.minMaxLabelPerSlice(), savePath, 'minMaxLabelPerSlice')
-        vigra.writeHDF5(rag.numberOfNodesPerSlice(), savePath, 'numberOfNodesPerSlice')
-        vigra.writeHDF5(rag.numberOfInSliceEdges(), savePath, 'numberOfInSliceEdges')
-        vigra.writeHDF5(rag.numberOfInBetweenSliceEdges(), savePath, 'numberOfInBetweenSliceEdges')
-        vigra.writeHDF5(rag.inSliceEdgeOffset(), savePath, 'inSliceEdgeOffset')
-        vigra.writeHDF5(rag.betweenSliceEdgeOffset(), savePath, 'betweenSliceEdgeOffset')
-        vigra.writeHDF5(rag.totalNumberOfInSliceEdges, savePath, 'totalNumberOfInSliceEdges')
-        vigra.writeHDF5(rag.totalNumberOfInBetweenSliceEdges, savePath, 'totalNumberOfInBetweenSliceEdges')
-        vigra.writeHDF5(rag.edgeLengths(), savePath, 'edgeLengths')
+        with h5py.File(savePath) as f:
+            f.create_dataset('numberOfNodes', data=rag.numberOfNodes)
+            f.create_dataset('numberOfEdges', data=rag.numberOfEdges)
+            f.create_dataset('uvIds', data=rag.uvIds())
+            f.create_dataset('minMaxLabelPerSlice', data=rag.minMaxLabelPerSlice())
+            f.create_dataset('numberOfNodesPerSlice', data=rag.numberOfNodesPerSlice())
+            f.create_dataset('numberOfInSliceEdges', data=rag.numberOfInSliceEdges())
+            f.create_dataset('numberOfInBetweenSliceEdges',
+                             data=rag.numberOfInBetweenSliceEdges())
+            f.create_dataset('inSliceEdgeOffset', data=rag.inSliceEdgeOffset())
+            f.create_dataset('betweenSliceEdgeOffset', data=rag.betweenSliceEdgeOffset())
+            f.create_dataset('totalNumberOfInSliceEdges', data=rag.totalNumberOfInSliceEdges)
+            f.create_dataset('totalNumberOfInBetweenSliceEdges',
+                             data=rag.totalNumberOfInBetweenSliceEdges)
+            f.create_dataset('edgeLengths', data=rag.edgeLengths())
 
+    # TODO read the type of the rag
     def readStackedRagFromHdf5(labels, numberOfLabels, savePath):
-        assert labels.ndim == 3
-        # TODO h5py instead of vifea
-        import vigra
-
+        assert labels.ndim == 3, "Stacked rag is only available for 3D labels"
+        serialization = []
         # load the serialization from h5
-        # serialization of the undirected graph
-        serialization = numpy.array(vigra.readHDF5(savePath, 'numberOfNodes'))
-        serialization = numpy.append(serialization, numpy.array(vigra.readHDF5(savePath, 'numberOfEdges')))
-        serialization = numpy.append(serialization, vigra.readHDF5(savePath, 'uvIds').ravel())
+        with h5py.File(savePath, 'r') as f:
+            # serialization of the undirected graph
+            serialization.append(numpy.array(f['numberOfNodes'][:], dtype='uint64'))
+            serialization.append(numpy.array(f['numberOfEdges'][:], dtype='uint64'))
+            serialization.append(f['uvIds'][:].ravel().astype('uint64', copy=False))
 
-        # serialization of the stacked rag
-        serialization = numpy.append(serialization, numpy.array(vigra.readHDF5(savePath, 'totalNumberOfInSliceEdges')))
-        serialization = numpy.append(
-            serialization, numpy.array(vigra.readHDF5(savePath, 'totalNumberOfInBetweenSliceEdges'))
-        )
-        # load all the per slice data to squeeze it in the format we need for serializing
-        # cf. nifty/include/nifty/graph/rag/grid_rag_stacked_2d.hxx serialize
-        inSliceDataKeys = [
-            'numberOfInSliceEdges', 'numberOfInBetweenSliceEdges', 'inSliceEdgeOffset', 'betweenSliceEdgeOffset'
-        ]
-        perSliceData = numpy.concatenate([vigra.readHDF5(savePath, key)[:, None] for key in inSliceDataKeys], axis=1)
-        perSliceData = numpy.concatenate([perSliceData, vigra.readHDF5(savePath, 'minMaxLabelPerSlice')], axis=1)
-        serialization = numpy.append(serialization, perSliceData.ravel())
-        serialization = numpy.append(serialization, vigra.readHDF5(savePath, 'edgeLengths'))
+            # serialization of the stacked rag
+            serialization.append(numpy.array(f['totalNumberOfInSliceEdges'][:], dtype='uint64'))
+            serialization.append(numpy.array(f['totalNumberOfInBetweenSliceEdges'][:],
+                                             dtype='uint64'))
+
+            # load all the per slice data to squeeze it in the format we need for serializing
+            # cf. nifty/include/nifty/graph/rag/grid_rag_stacked_2d.hxx serialize
+            inSliceDataKeys = ['numberOfNodesPerSlice',
+                               'numberOfInSliceEdges',
+                               'numberOfInBetweenSliceEdges',
+                               'inSliceEdgeOffset',
+                               'betweenSliceEdgeOffset']
+            perSliceData = numpy.concatenate([f[key][:, None] for key in inSliceDataKeys], axis=1)
+            perSliceData = numpy.concatenate([perSliceData, f['minMaxLabelPerSlice'][:]], axis=1)
+            serialization.append(perSliceData.ravel().astype('uint64', copy=False))
+            serialization.append(f['edgeLengths'][:].astype('uint64', copy=False))
 
         # get the rag from serialization + labels
-        labelsProxy = gridRag3DHdf5LabelsProxy(labels, int(numberOfLabels))
-        return gridRagStacked2DHdf5Impl(labelsProxy, serialization.astype('uint64'))
+        serialization = numpy.array(serialization, dtype='uint64')
+        return gridRagStacked2DHdf5Impl(labels,
+                                        numberOfLabels=numberOfLabels,
+                                        serialization=serialization)

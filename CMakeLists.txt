@@ -21,13 +21,13 @@ message(STATUS "${PROJECT_NAME} v${${PROJECT_NAME}_VERSION}")
 
 
 
-
 include(CheckCXXCompilerFlag)
 
 
 include_directories(${${PROJECT_NAME}_INCLUDE_DIR})
 
-
+# Old ABI to be compatible with boost
+add_definitions(-D_GLIBCXX_USE_CXX11_ABI=0)
 
 
 
@@ -168,7 +168,7 @@ endif()
 #-------------------------------------------------------------------------------------------------------------------
 # find boost
 #-------------------------------------------------------------------------------------------------------------------
-find_package(Boost REQUIRED)
+find_package(Boost 1.63.0 COMPONENTS system filesystem REQUIRED)
 include_directories(${Boost_INCLUDE_DIRS})
 MESSAGE(STATUS ${Boost_INCLUDE_DIRS})
 
@@ -233,11 +233,29 @@ endif()
 # find z5
 #-------------------------------------------------------------------------------------------------------------------
 if(WITH_Z5)
-    # TODO implement find script in z5
-    find_package(Z5 REQUIRED)
-    include_directories(${Z5_INCLUDE_DIR})
     add_definitions(-DWITH_Z5)
-    # TODO compression libs and linking
+
+    include_directories("${CMAKE_CURRENT_SOURCE_DIR}/externals/z5/include")
+    include_directories("${CMAKE_CURRENT_SOURCE_DIR}/externals/z5/external/json/src")
+    set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH};${CMAKE_CURRENT_SOURCE_DIR}/externals/z5/cmake")
+
+    # z5 compression libraries
+    SET(Z5_COMPRESSION_LIBRARIES "")
+
+    find_package(BLOSC REQUIRED)
+    include_directories(${BLOSC_INCLUDE_DIR})
+    add_definitions(-DWITH_BLOSC)
+    SET(Z5_COMPRESSION_LIBRARIES "${Z5_COMPRESSION_LIBRARIES};${BLOSC_LIBRARIES}")
+
+    find_package(ZLIB REQUIRED)
+    include_directories(ZLIB_INCLUDE_DIRS)
+    add_definitions(-DWITH_ZLIB)
+    SET(Z5_COMPRESSION_LIBRARIES "${Z5_COMPRESSION_LIBRARIES};${ZLIB_LIBRARIES}")
+
+    find_package(BZip2 REQUIRED)
+    include_directories(BZIP2_INCLUDE_DIRS)
+    add_definitions(-DWITH_BZIP2)
+    SET(Z5_COMPRESSION_LIBRARIES "${Z5_COMPRESSION_LIBRARIES};${BZIP2_LIBRARIES}")
 endif()
 
 
