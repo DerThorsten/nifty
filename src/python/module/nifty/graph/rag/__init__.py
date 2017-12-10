@@ -125,7 +125,7 @@ if Configuration.WITH_Z5:
 
         # TODO we only need this, because we cannot link properly to the z5 python bindings
         # TODO support more dtypes
-        labelWrapper = nifty.z5.DatasetWrapperUint32(os.path.join(labelPath, labelKey))
+        labelWrapper = nifty.z5.datasetWrapper('uint32', os.path.join(labelPath, labelKey))
         dim = len(labelWrapper.shape)
         blockShape_ = [100] * dim if blockShape is None else blockShape
 
