@@ -46,8 +46,8 @@ public:
     typedef FloatNodeMap                                NodeSizesType;
 
     struct SettingsType{
-        double p0{0.0};
-        double p1{0.0};
+        double p0{1.0};
+        double p1{1.0};
         uint64_t numberOfNodesStop{1};
     };
 
@@ -161,7 +161,9 @@ GeneralizedFixationClusterPolicy(
     settings_(settings),
     edgeContractionGraph_(graph, *this)
 {
-    //std::cout<<"constructor\n";
+    std::cout<<"constructor\n";
+    std::cout<<"settings_.p0 "<<settings_.p0<<"\n";
+    std::cout<<"settings_.p1 "<<settings_.p1<<"\n";
     graph_.forEachEdge([&](const uint64_t edge){
         isLocalEdge_[edge] = isLocalEdge[edge];
 
@@ -287,25 +289,24 @@ mergeEdges(
     isPureLocal_[aliveEdge] = isPureLocal_[aliveEdge] && isPureLocal_[deadEdge];
     pq_.deleteItem(deadEdge);
 
-
+    const auto deadIsLocalEdge = isLocalEdge_[deadEdge];
+    auto & aliveIsLocalEdge = isLocalEdge_[aliveEdge];
+    aliveIsLocalEdge = deadIsLocalEdge || aliveIsLocalEdge;
 
     auto power_mean = [](
-        const double a,
-        const double d,
-        const double wa,
-        const double wd,
-        const double p
+        const long double a,
+        const long double d,
+        const long double wa,
+        const long double wd,
+        const long double p
     ){
 
         const auto wad = wa+wd;
         const auto nwa = wa/wad;
         const auto nwd = wd/wad;
-
-
         const auto sa = nwa * std::pow(a, p);
-        const auto sb = nwd * std::pow(d, p);
-
-        return std::pow(sa+sb, 1.0/p);
+        const auto sd = nwd * std::pow(d, p);
+        return std::pow(sa+sd, 1.0/p);
     };
 
     // update sizes
@@ -317,12 +318,13 @@ mergeEdges(
 
 
     mergePrios_[aliveEdge]    = power_mean(mergePrios_[aliveEdge], mergePrios_[deadEdge], 
-                                    sa, sd, settings_.p0);
+                                    1, 1, settings_.p0);
     notMergePrios_[aliveEdge] = power_mean(notMergePrios_[aliveEdge] , notMergePrios_[deadEdge], 
-                                    sa, sd, settings_.p0);
+                                    1, 1, settings_.p1);
        
-    
-    // update prios
+    //mergePrios_[aliveEdge]    = std::max(mergePrios_[aliveEdge], mergePrios_[deadEdge]);
+    //notMergePrios_[aliveEdge] = std::max(notMergePrios_[aliveEdge] , notMergePrios_[deadEdge]);
+       
     
     pq_.push(aliveEdge, this->pqMergePrio(aliveEdge));
     

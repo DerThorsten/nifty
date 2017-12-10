@@ -172,10 +172,14 @@ namespace agglo{
                     const PyViewFloat1 & notMergePrios,
                     const PyViewUInt8_1 & isLocalEdge,
                     const PyViewFloat1 & edgeSizes,
+                    const double p0,
+                    const double p1,
                     const uint64_t numberOfNodesStop
                 ){
                     typename ClusterPolicyType::SettingsType s;
                     s.numberOfNodesStop = numberOfNodesStop;
+                    s.p0 = p0;
+                    s.p1 = p1;
                     auto ptr = new ClusterPolicyType(graph, mergePrios, notMergePrios, isLocalEdge, edgeSizes, s);
                     return ptr;
                 },
@@ -186,6 +190,8 @@ namespace agglo{
                 py::arg("notMergePrios"),
                 py::arg("isMergeEdge"),
                 py::arg("edgeSizes"),
+                py::arg("p0") = 1.0,
+                py::arg("p1") = 1.0,
                 py::arg("numberOfNodesStop") = 1
             );
 
