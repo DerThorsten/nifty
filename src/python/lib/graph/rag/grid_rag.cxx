@@ -109,19 +109,41 @@ namespace graph{
         // export grid rag with in-memory labels
         // TODO we could actually use pytensor, because the dimenstion is known at compile time
         typedef LabelsProxy<2, xt::pytensor<uint32_t, 2>> ExplicitPyLabels2D;
-        exportGridRagT<2, ExplicitPyLabels2D>(ragModule, "ExplicitLabelsGridRag2D", "explicitLabelsGridRag2D");
+        exportGridRagT<2, ExplicitPyLabels2D>(ragModule,
+                                              "ExplicitLabelsGridRag2D",
+                                              "explicitLabelsGridRag2D");
         typedef LabelsProxy<3, xt::pytensor<uint32_t, 3>> ExplicitPyLabels3D;
-        exportGridRagT<3, ExplicitPyLabels3D>(ragModule, "ExplicitLabelsGridRag3D", "explicitLabelsGridRag3D");
+        exportGridRagT<3, ExplicitPyLabels3D>(ragModule,
+                                              "ExplicitLabelsGridRag3D",
+                                               "explicitLabelsGridRag3D");
 
         // export grid rag with hdf5 labels
         #ifdef WITH_HDF5
-        exportGridRagT<2, Hdf5Labels<2, uint32_t>>(ragModule, "GridRagHdf5Labels2D", "gridRag2DHdf5");
-        exportGridRagT<3, Hdf5Labels<3, uint32_t>>(ragModule, "GridRagHdf5Labels3D", "gridRag3DHdf5");
+        typedef LabelsProxy<2, nifty::hdf5::Hdf5Array<uint32_t>> Hdf5Labels2D;
+        exportGridRagT<2, Hdf5Labels2D>(ragModule,
+                                        "GridRag2DHdf5",
+                                        "gridRag2DHdf5");
+
+        typedef LabelsProxy<3, nifty::hdf5::Hdf5Array<uint32_t>> Hdf5Labels3D;
+        exportGridRagT<3, Hdf5Labels3D>(ragModule,
+                                        "GridRag3DHdf5",
+                                        "gridRag3DHdf5");
         #endif
 
         // export with z5 labels
-        //#ifdef WITH_Z5
-        //#endif
+        #ifdef WITH_Z5
+        //typedef LabelsProxy<2, z5::DatasetTyped<uint32_t>> Z5Labels2D;
+        typedef LabelsProxy<2, nifty::nz5::DatasetWrapper<uint32_t>> Z5Labels2D;
+        exportGridRagT<2, Z5Labels2D>(ragModule,
+                                      "GridRag2DZ5",
+                                      "gridRag2DZ5");
+        //
+        //typedef LabelsProxy<3, z5::DatasetTyped<uint32_t>> Z5Labels3D;
+        typedef LabelsProxy<3, nifty::nz5::DatasetWrapper<uint32_t>> Z5Labels3D;
+        exportGridRagT<3, Z5Labels3D>(ragModule,
+                                      "GridRag3DZ5",
+                                      "gridRag3DZ5");
+        #endif
     }
 
 } // end namespace graph

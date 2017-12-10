@@ -1,16 +1,12 @@
 from __future__ import absolute_import
-from . import _rag as __rag
-from ._rag import *
+
+import os
 from .. import Configuration
 
 import numpy
 
-try:
-    import h5py
-    WITH_H5PY = True
-else:
-    WITH_H5PY = False
-
+from . import _rag as __rag
+from ._rag import *
 
 __all__ = []
 for key in __rag.__dict__.keys():
@@ -20,6 +16,15 @@ for key in __rag.__dict__.keys():
         pass
 
     __all__.append(key)
+
+try:
+    import h5py
+    WITH_H5PY = True
+except ImportError:
+    WITH_H5PY = False
+
+if Configuration.WITH_Z5:
+    import nifty.z5
 
 
 def gridRag(labels, numberOfLabels, blockShape=None, numberOfThreads=-1, serialization=None):
@@ -114,16 +119,23 @@ if Configuration.WITH_Z5:
 
     def gridRagZ5(labels, numberOfLabels, blockShape=None, numberOfThreads=-1):
 
-        dim = labels.ndim
+        # for z5 files, we pass a tuple containing the path to the file and the dataset key
+        assert len(labels) == 2
+        labelPath, labelKey = labels
+
+        # TODO we only need this, because we cannot link properly to the z5 python bindings
+        # TODO support more dtypes
+        labelWrapper = nifty.z5.DatasetWrapperUint32(os.path.join(labelPath, labelKey))
+        dim = len(labelWrapper.shape)
         blockShape_ = [100] * dim if blockShape is None else blockShape
 
         if dim == 2:
-            return gridRag2DZ5(labels,
+            return gridRag2DZ5(labelWrapper,
                                numberOfLabels=numberOfLabels,
                                blockShape=blockShape_,
                                numberOfThreads=int(numberOfThreads))
         elif dim == 3:
-            return gridRag3DZ5(labels,
+            return gridRag3DZ5(labelWrapper,
                                numberOfLabels=numberOfLabels,
                                blockShape=blockShape_,
                                numberOfThreads=int(numberOfThreads))
@@ -132,13 +144,23 @@ if Configuration.WITH_Z5:
 
 
     def gridRagStacked2DZ5(labels, numberOfLabels, numberOfThreads=-1, serialization=None):
-        assert labels.ndim == 3, "Stacked rag is only available for 3D labels"
+
+        # for z5 files, we pass a tuple containing the path to the file and the dataset key
+        assert len(labels) == 2
+        labelPath, labelKey = labels
+
+        # TODO we only need this, because we cannot link properly to the z5 python bindings
+        # TODO support more dtypes
+        labelWrapper = nifty.z5.DatasetWrapperUint32(os.path.join(labelPath, labelKey))
+        dim = len(labelWrapper.shape)
+        assert dim == 3, "Stacked rag is only available for 3D labels"
+
         if serialization is None:
-            return gridRagStacked2DZ5Impl(labels,
+            return gridRagStacked2DZ5Impl(labelWrapper,
                                           numberOfLabels=numberOfLabels,
                                           numberOfThreads=int(numberOfThreads))
         else:
-            return gridRagStacked2DZ5Impl(labels,
+            return gridRagStacked2DZ5Impl(labelWrapper,
                                           numberOfLabels=numberOfLabels,
                                           serialization=serialization)
 

@@ -199,7 +199,7 @@ namespace graph{
 
         // export hdf5 labels
         #ifdef WITH_HDF5
-        typedef LabelsProxy<3, Hdf5Array<uint32_t>> Hdf5Labels;
+        typedef LabelsProxy<3, nifty::hdf5::Hdf5Array<uint32_t>> Hdf5Labels;
         exportGridRagStackedT<Hdf5Labels>(ragModule,
                                           "GridRagStacked2DHdf5",
                                           "gridRagStacked2DHdf5Impl");
@@ -207,7 +207,8 @@ namespace graph{
 
         // export z5 labels
         #ifdef WITH_Z5
-        typedef LabelsProxy<3, z5::DatasetTyped<uint32_t>> Z5Labels;
+        //typedef LabelsProxy<3, z5::DatasetTyped<uint32_t>> Z5Labels;
+        typedef LabelsProxy<3, nifty::nz5::DatasetWrapper<uint32_t>> Z5Labels;
         exportGridRagStackedT<Z5Labels>(ragModule,
                                         "GridRagStacked2DZ5",
                                         "gridRagStacked2DZ5Impl");

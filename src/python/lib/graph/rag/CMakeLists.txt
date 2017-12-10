@@ -1,5 +1,4 @@
 
-
 addPythonModule(
     NESTED_NAME 
         nifty/graph/rag  

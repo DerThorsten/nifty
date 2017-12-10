@@ -13,8 +13,6 @@
 #include "nifty/hdf5/hdf5_array.hxx"
 #endif
 
-// FIXME this causes multiple definition linker errors
-// why ?!
 #ifdef WITH_Z5
 #include "nifty/z5/z5.hxx"
 #endif

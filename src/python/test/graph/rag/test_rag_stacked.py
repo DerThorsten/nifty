@@ -77,11 +77,6 @@ class TestRagStacked(TestRagBase):
                          (2, 5)]
 
     def small_array_test(self, array, ragFunction):
-        self.assertEqual(array.shape[0], self.shape[0])
-        self.assertEqual(array.shape[1], self.shape[1])
-        self.assertEqual(array.shape[2], self.shape[2])
-
-        array[0:self.shape[0], 0:self.shape[1], 0:self.shape[2]] = self.labels
         rag = ragFunction(array,
                           numberOfLabels=self.labels.max() + 1,
                           numberOfThreads=-1)
@@ -93,6 +88,7 @@ class TestRagStacked(TestRagBase):
 
     def test_grid_rag_stacked2d(self):
         array = numpy.zeros(self.shape, dtype='uint32')
+        array[:] = self.labels
         self.small_array_test(array, nrag.gridRagStacked2D)
 
     @unittest.skipUnless(nifty.Configuration.WITH_HDF5, "skipping hdf5 tests")
@@ -101,17 +97,27 @@ class TestRagStacked(TestRagBase):
         hidT = nhdf5.createFile(self.path)
         chunkShape = [1, 2, 1]
         array = nhdf5.Hdf5ArrayUInt32(hidT, "data", self.shape, chunkShape)
+        array[0:self.shape[0], 0:self.shape[1], 0:self.shape[2]] = self.labels
         self.small_array_test(array, nrag.gridRagStacked2DHdf5)
         nhdf5.closeFile(hidT)
 
-    # TODO n5 test
+    @unittest.skipUnless(nifty.Configuration.WITH_Z5, "skipping z5 tests")
+    def test_grid_rag_z5_stacked2d(self):
+        import z5py
+        zfile = z5py.File(self.path, use_zarr_format=False)
+        chunkShape = [1, 2, 1]
+        array = zfile.create_dataset("data",
+                                     dtype='uint32',
+                                     shape=self.shape,
+                                     chunks=chunkShape,
+                                     compressor='raw')
+        array[:] = self.labels
+        # we only pass the path and key to the dataset, because we
+        # cannot properly link the python bindings for now
+        # self.small_array_test(array, nrag.gridRagStacked2DZ5)
+        self.small_array_test((self.path, "data"), nrag.gridRagStacked2DZ5)
 
     def big_array_test(self, array, ragFunction):
-        self.assertEqual(array.shape[0], self.bigShape[0])
-        self.assertEqual(array.shape[1], self.bigShape[1])
-        self.assertEqual(array.shape[2], self.bigShape[2])
-
-        array[0:self.bigShape[0], 0:self.bigShape[1], 0:self.bigShape[2]] = self.bigLabels
         rag = ragFunction(array,
                           numberOfLabels=self.bigLabels.max() + 1,
                           numberOfThreads=-1)
@@ -123,6 +129,7 @@ class TestRagStacked(TestRagBase):
 
     def test_grid_rag_stacked2d_large(self):
         array = numpy.zeros(self.bigShape, dtype='uint32')
+        array[:] = self.bigLabels
         self.big_array_test(array, nrag.gridRagStacked2D)
 
     @unittest.skipUnless(nifty.Configuration.WITH_HDF5, "skipping hdf5 tests")
@@ -130,13 +137,29 @@ class TestRagStacked(TestRagBase):
         import nifty.hdf5 as nhdf5
         hidT = nhdf5.createFile(self.path)
         chunkShape = [1, 2, 1]
-        array = nhdf5.Hdf5ArrayUInt32(hidT, "data", shape, chunkShape)
+        array = nhdf5.Hdf5ArrayUInt32(hidT, "data", self.bigShape, chunkShape)
+        array[0:self.bigShape[0], 0:self.bigShape[1], 0:self.bigShape[2]] = self.bigLabels
         self.big_array_test(array, nrag.gridRagStacked2DHdf5)
         nhdf5.closeFile(hidT)
 
-    # TODO n5 test
+    @unittest.skipUnless(nifty.Configuration.WITH_Z5, "skipping z5 tests")
+    def test_grid_rag_z5_stacked2d(self):
+        import z5py
+        zfile = z5py.File(self.path, use_zarr_format=False)
+        chunkShape = [1, 2, 1]
+        array = zfile.create_dataset("data",
+                                     dtype='uint32',
+                                     shape=self.bigShape,
+                                     chunks=chunkShape,
+                                     compressor='raw')
+        array[:] = self.bigLabels
+        # we only pass the path and key to the dataset, because we
+        # cannot properly link the python bindings for now
+        # self.small_array_test(array, nrag.gridRagStacked2DZ5)
+        self.big_array_test((self.path, "data"), nrag.gridRagStacked2DZ5)
 
-    # TODO make rag skeleton for this
+
+    # TODO make test skeleton for this
     @unittest.skipUnless(nifty.Configuration.WITH_HDF5, "skipping hdf5 tests")
     def test_stacked_rag_serialize_deserialize(self):
         import nifty.hdf5 as nhdf5
