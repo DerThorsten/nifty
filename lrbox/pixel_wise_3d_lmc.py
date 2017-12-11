@@ -80,11 +80,11 @@ if __name__ == "__main__":
 
     # load the data
     mode = "test"
-    slicing = [slice(0,30),slice(0,512), slice(0,512)]
+    slicing = [slice(0,4),slice(0,512), slice(0,512)]
     affinities, offsets, raw = data_loader.load_isbi_3d(slicing=slicing, mode=mode)
     shape = raw.shape
     # load all precomputed proposals
-    precomputed_proposals = data_loader.load_predcomuted(slicing=slicing, mode=mode)
+    #precomputed_proposals = data_loader.load_predcomuted(slicing=slicing, mode=mode)
 
 
     # make lmc objective
@@ -96,11 +96,11 @@ if __name__ == "__main__":
 
     factory = GridObj.chainedSolversFactory([
         GridObj.liftedMulticutGreedyAdditiveFactory(),
-        GridObj.liftedMulticutKernighanLinFactory()
-        #GridObj.fusionMoveBasedFactory()
+        GridObj.liftedMulticutKernighanLinFactory(),
+        GridObj.fusionMoveBasedFactory()
     ])
 
-    isbi_obj_0 = isbi_obj.z_objective(z=29)
+    isbi_obj_0 = isbi_obj.z_objective(z=1)
 
 
 
@@ -108,7 +108,7 @@ if __name__ == "__main__":
         save_seg(seg=labels_a, raw=isbi_obj_0.raw, base_path="/home/tbeier/src/nifty/lrbox/labels_a")
         save_seg(seg=labels_b, raw=isbi_obj_0.raw, base_path="/home/tbeier/src/nifty/lrbox/labels_b")
 
-    seg = isbi_obj_0.optimize_blockwise(factory, callback=callback)
+    seg = isbi_obj_0.optimize_h_blockwise(factory, callback=callback)
     save_seg(seg=seg, raw=isbi_obj_0.raw, base_path="/home/tbeier/src/nifty/lrbox/seg")
 
 
@@ -162,7 +162,7 @@ if __name__ == "__main__":
             
 
             for ps in (1,2):
-                print("multi shiftey", ps)
+                #print("multi shiftey", ps)
                 # shift
                 while(True):
 

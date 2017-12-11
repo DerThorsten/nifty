@@ -300,13 +300,28 @@ mergeEdges(
         const long double wd,
         const long double p
     ){
-
-        const auto wad = wa+wd;
-        const auto nwa = wa/wad;
-        const auto nwd = wd/wad;
-        const auto sa = nwa * std::pow(a, p);
-        const auto sd = nwd * std::pow(d, p);
-        return std::pow(sa+sd, 1.0/p);
+        const long double  eps = 0.000000001;
+        if(std::isinf(p)){
+            // max
+            if(p>0){
+                return std::max(a,d);
+            }
+            // min
+            else{
+                return std::min(a,d);
+            }
+        }
+        else if(p > 1.0-eps && p< 1+ eps){
+            return (wa*a + wd*d)/(wa+wd);
+        }
+        else{
+            const auto wad = wa+wd;
+            const auto nwa = wa/wad;
+            const auto nwd = wd/wad;
+            const auto sa = nwa * std::pow(a, p);
+            const auto sd = nwd * std::pow(d, p);
+            return std::pow(sa+sd, 1.0/p);
+        }
     };
 
     // update sizes
