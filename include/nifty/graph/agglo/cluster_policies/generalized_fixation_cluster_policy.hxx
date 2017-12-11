@@ -46,6 +46,7 @@ public:
     typedef FloatNodeMap                                NodeSizesType;
 
     struct SettingsType{
+        bool zeroInit = false;
         double p0{1.0};
         double p1{1.0};
         uint64_t numberOfNodesStop{1};
@@ -125,7 +126,7 @@ private:
 
     UInt8EdgeMap isLocalEdge_;
     UInt8EdgeMap isPureLocal_;
-
+    UInt8EdgeMap isPureLifted_;
     EdgeSizesType       edgeSizes_;
     SettingsType        settings_;
     
@@ -156,6 +157,7 @@ GeneralizedFixationClusterPolicy(
     notMergePrios_(graph),
     isLocalEdge_(graph),
     isPureLocal_(graph),
+    isPureLifted_(graph),
     edgeSizes_(graph),
     pq_(graph.edgeIdUpperBound()+1),
     settings_(settings),
@@ -167,15 +169,19 @@ GeneralizedFixationClusterPolicy(
     graph_.forEachEdge([&](const uint64_t edge){
         isLocalEdge_[edge] = isLocalEdge[edge];
 
-        if(isLocalEdge_[edge]){
-            notMergePrios_[edge] = 0.0;
-            mergePrios_[edge] = mergePrios[edge];
+        notMergePrios_[edge] = notMergePrios[edge];
+        mergePrios_[edge] = mergePrios[edge];
+
+        if(settings_.zeroInit){
+            if(isLocalEdge_[edge]) 
+                notMergePrios_[edge] = 0.0;
+            else
+                mergePrios_[edge] = 0.0;
         }
-        else{
-            notMergePrios_[edge] = notMergePrios[edge];
-            mergePrios_[edge] = 0.0;
-        }
+        
         isPureLocal_[edge] = isLocalEdge[edge];
+        isPureLifted_[edge] = !isLocalEdge[edge];
+
         edgeSizes_[edge] = edgeSizes[edge];
         pq_.push(edge, this->pqMergePrio(edge));
     });
@@ -286,12 +292,10 @@ mergeEdges(
     NIFTY_CHECK(pq_.contains(aliveEdge),"");
     NIFTY_CHECK(pq_.contains(deadEdge),"");
     
-    isPureLocal_[aliveEdge] = isPureLocal_[aliveEdge] && isPureLocal_[deadEdge];
+
     pq_.deleteItem(deadEdge);
 
-    const auto deadIsLocalEdge = isLocalEdge_[deadEdge];
-    auto & aliveIsLocalEdge = isLocalEdge_[aliveEdge];
-    aliveIsLocalEdge = deadIsLocalEdge || aliveIsLocalEdge;
+   
 
     auto power_mean = [](
         const long double a,
@@ -324,29 +328,49 @@ mergeEdges(
         }
     };
 
-    // update sizes
+    //  sizes
     const auto sa = edgeSizes_[aliveEdge];
     const auto sd = edgeSizes_[deadEdge];
+
+    const auto zi = settings_.zeroInit ;
+
+
+    // update merge prio
+    if(zi && isPureLifted_[aliveEdge] && !isPureLifted_[deadEdge]){
+        mergePrios_[aliveEdge] = mergePrios_[deadEdge];
+    }
+    else if(zi && !isPureLifted_[aliveEdge] && isPureLifted_[deadEdge]){
+        mergePrios_[deadEdge] = mergePrios_[aliveEdge];
+    }
+    else{
+        mergePrios_[aliveEdge]    = power_mean(mergePrios_[aliveEdge],     mergePrios_[deadEdge],    sa, sd, settings_.p0);
+    }
+
+
+    // update notMergePrio
+    if(zi && isPureLocal_[aliveEdge] && !isPureLocal_[deadEdge]){
+        notMergePrios_[aliveEdge] = notMergePrios_[deadEdge];
+    }
+    else if(zi && !isPureLocal_[aliveEdge] && isPureLocal_[deadEdge]){
+        notMergePrios_[aliveEdge] = notMergePrios_[deadEdge];
+    }
+    else{
+        notMergePrios_[aliveEdge] = power_mean(notMergePrios_[aliveEdge] , notMergePrios_[deadEdge], sa, sd, settings_.p1);
+    }
+
+   
+    
+
     edgeSizes_[aliveEdge] = sa + sd;
 
-    // power mean
+    const auto deadIsLocalEdge = isLocalEdge_[deadEdge];
+    auto & aliveIsLocalEdge = isLocalEdge_[aliveEdge];
+    aliveIsLocalEdge = deadIsLocalEdge || aliveIsLocalEdge;
+
+    isPureLocal_[aliveEdge] = isPureLocal_[aliveEdge] && isPureLocal_[deadEdge];
+    isPureLifted_[aliveEdge] = isPureLifted_[aliveEdge] && isPureLifted_[deadEdge];
 
 
-    mergePrios_[aliveEdge]    = power_mean(mergePrios_[aliveEdge], mergePrios_[deadEdge], 
-                                    sa, sd, settings_.p0);
-    notMergePrios_[aliveEdge] = power_mean(notMergePrios_[aliveEdge] , notMergePrios_[deadEdge], 
-                                    sa, sd, settings_.p1);
-
-
-    // const auto s = mergePrios_[aliveEdge] + notMergePrios_[aliveEdge];
-    // mergePrios_[aliveEdge] /= s;
-    // notMergePrios_[aliveEdge] /= s;
-
-
-       
-    //mergePrios_[aliveEdge]    = std::max(mergePrios_[aliveEdge], mergePrios_[deadEdge]);
-    //notMergePrios_[aliveEdge] = std::max(notMergePrios_[aliveEdge] , notMergePrios_[deadEdge]);
-       
     
     pq_.push(aliveEdge, this->pqMergePrio(aliveEdge));
     
