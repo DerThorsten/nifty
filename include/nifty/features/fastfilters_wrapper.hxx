@@ -67,6 +67,17 @@ namespace detail_fastfilters {
                 FastfiltersDim<fastfilters_array_t>::set_z(shape[dim - 3], ff);
                 FastfiltersDim<fastfilters_array_t>::set_stride_z(strides[dim - 3], ff);
             }
+
+            //ff.n_x = shape[0];
+            //ff.stride_x = strides[0];
+
+            //ff.n_y = shape[0];
+            //ff.stride_y = strides[0];
+
+            //if (dim == 3) {
+            //    FastfiltersDim<fastfilters_array_t>::set_z(shape[0], ff);
+            //    FastfiltersDim<fastfilters_array_t>::set_stride_z(strides[0], ff);
+            //}
         } else {
             throw std::runtime_error("Too few dimensions.");
         }
@@ -113,11 +124,13 @@ namespace detail_fastfilters {
         void inline operator()(const fastfilters_array2d_t & ff,
                                xt::xexpression<ARRAY> & outExp,
                                const double sigma) const {
+            std::cout << "Here" << std::endl;
             auto & out = outExp.derived_cast();
             fastfilters_array2d_t ff_out;
             detail_fastfilters::convertXtensor2ff(out, ff_out);
             if( !fastfilters_fir_gaussian2d(&ff, 0, sigma, &ff_out, &opt_) )
                 throw std::runtime_error("GaussianSmoothing 2d failed.");
+            std::cout << "There" << std::endl;
         }
 
         template<class ARRAY>
@@ -633,6 +646,7 @@ namespace detail_fastfilters {
                 const auto sigma = filterIdAndSigmas[fid].second;
                 const auto & viewBase = bases[fid];
                 const auto & viewShape = (numberOfChannels(filterId) == 1)  ? shapeSingleChannel : shapeMultiChannel;
+                std::cout << "Apply Filter from " << viewBase << " with shape " << viewShape << std::endl;
                 xt::slice_vector slice(out);
                 xtensor::sliceFromOffset(slice, viewBase, viewShape);
                 auto view = xt::dynamic_view(out, slice);

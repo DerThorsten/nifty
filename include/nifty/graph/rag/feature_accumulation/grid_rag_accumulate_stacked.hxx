@@ -254,7 +254,12 @@ namespace graph{
                 Coord endA({sliceIdA+1, shape[1], shape[2]});
 
                 auto labelsA = labelsAStorage.getView(tid);
+                std::cout << "Reading labels" << std::endl;
+                std::cout << "From " << beginA << " to " << endA << std::endl;
+                std::cout << labelsProxy.shape()[0] << " " << labelsProxy.shape()[1] << " " << labelsProxy.shape()[2] << std::endl;
+                std::cout << labelsA.shape()[0] << " " << labelsA.shape()[1] << " " << labelsA.shape()[2] << std::endl;
                 labelsProxy.readSubarray(beginA, endA, labelsA);
+                std::cout << "done" << std::endl;
                 auto labelsASqueezed = xtensor::squeezedView(labelsA);
 
                 auto dataA = dataAStorage.getView(tid);
@@ -269,6 +274,7 @@ namespace graph{
                 // only if not keepZOnly and if we have at least one edge in this slice
                 // (no edge can happend for defected slices)
                 if( rag.numberOfInSliceEdges(sliceIdA) > 0 && !keepZOnly) {
+                    std::cout << "Inner slice features" << std::endl;
                     auto inEdgeOffset = rag.inSliceEdgeOffset(sliceIdA);
                     // resize the current acc chain vector
                     EdgeAccChainVectorType accChainVec(rag.numberOfInSliceEdges(sliceIdA));
@@ -284,6 +290,7 @@ namespace graph{
                         pass
                     );
                     fXY(accChainVec, inEdgeOffset);
+                    std::cout << "done" << std::endl;
                 }
 
                 //
@@ -312,6 +319,7 @@ namespace graph{
 
                     // acccumulate the between slice features
                     if(!keepXYOnly) {
+                        std::cout << "Between slice features" << std::endl;
                         auto betweenEdgeOffset = rag.betweenSliceEdgeOffset(sliceIdA);
                         auto accOffset = rag.betweenSliceEdgeOffset(sliceIdA) - rag.numberOfInSliceEdges();
                         // resize the current acc chain vector
@@ -331,6 +339,7 @@ namespace graph{
                                                        zDirection,
                                                        pass);
                         fZ(accChainVec, accOffset);
+                        std::cout << "done" << std::endl;
                     }
 
                     // accumulate the inner slice features for the last slice, which is never a lower slice

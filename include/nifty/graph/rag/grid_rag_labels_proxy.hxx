@@ -33,10 +33,12 @@ public:
         const LabelArrayType & labels,
         const std::size_t numberOfLabels
     )
+    //:   labels_(std::make_unique<LabelArrayType>(labels)),
     :   labels_(labels),
         numberOfLabels_(numberOfLabels),
         shape_()
     {
+        //auto & tmpShape = labels_->shape();
         auto & tmpShape = labels_.shape();
         for(std::size_t i=0; i<DIM; ++i) {
             shape_[i] = tmpShape[i];
@@ -51,10 +53,12 @@ public:
     void readSubarray(const ROI_BEGIN_COORD & roiBeginCoord,
                       const ROI_END_COORD & roiEndCoord,
                       xt::xexpression<ARRAY> & outArray) const {
+        //tools::readSubarray(*labels_, roiBeginCoord, roiEndCoord, outArray);
         tools::readSubarray(labels_, roiBeginCoord, roiEndCoord, outArray);
     }
 
     const LabelArrayType & labels() const{
+        //return *labels_;
         return labels_;
     }
 
@@ -64,6 +68,7 @@ public:
 
 private:
     const LabelArrayType & labels_;
+    //std::unique_ptr<LabelArrayType> labels_;
     std::size_t numberOfLabels_;
     array::StaticArray<int64_t, DIM> shape_;
 };

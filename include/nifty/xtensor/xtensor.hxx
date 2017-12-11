@@ -95,17 +95,28 @@ namespace tools {
                              const COORD & endCoord,
                              xt::xexpression<ARRAY2> & subarrayExpression){
 
+        std::cout << "A" << std::endl;
         auto & array = arrayExpression.derived_cast();
+        std::cout << "AA" << std::endl;
+        std::cout << array(0, 0) << std::endl;
+        std::cout << "B" << std::endl;
         auto & subarray = subarrayExpression.derived_cast();
+        std::cout << "C" << std::endl;
 
         // get the view in the array
         xt::slice_vector slice(array);
+        std::cout << "D" << std::endl;
         xtensor::sliceFromRoi(slice, beginCoord, endCoord);
+        std::cout << "E" << std::endl;
         const auto view = xt::dynamic_view(array, slice);
+        std::cout << "EE" << std::endl;
+        std::cout << view(0, 0) << std::endl;
 
         // FIXME this is probably slow and would be faster with direct memory copy ?!
         // or figure out xt assignments...
+        std::cout << "F" << std::endl;
         subarray = view;
+        std::cout << "G" << std::endl;
     }
 
 
@@ -126,6 +137,17 @@ namespace tools {
         // FIXME this is probably slow and would be faster with direct memory copy ?!
         // or figure out xt assignments...
         view = data;
+    }
+
+    template<class ARRAY>
+    inline bool isChunked(const xt::xexpression<ARRAY> & arr) {
+        return false;
+    }
+
+    // dummy to be compatible with z5 interface
+    template<class ARRAY>
+    inline std::vector<size_t> getChunkShape(const xt::xexpression<ARRAY> & arr) {
+        return std::vector<size_t>();
     }
 
 

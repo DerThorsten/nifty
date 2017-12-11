@@ -55,5 +55,15 @@ namespace tools{
         z5::multiarray::writeSubarray<typename ARRAY::value_type>(ds.wrapped(), subarray, beginCoord.begin());
     }
 
+    template<class T>
+    inline bool isChunked(const nz5::DatasetWrapper<T> & ds) {
+        return true;
+    }
+
+    template<class T>
+    inline std::vector<size_t> getChunkShape(const nz5::DatasetWrapper<T> & ds) {
+        return ds.wrapped().maxChunkShape();
+    }
+
 } // namespace nifty::tools
 } // namespace nifty
