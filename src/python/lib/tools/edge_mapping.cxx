@@ -3,7 +3,7 @@
 #include <pybind11/numpy.h>
 #include <pybind11/stl.h>
 
-#include "nifty/python/converter.hxx"
+#include "xtensor-python/pytensor.hpp"
 #include "nifty/tools/edge_mapping.hxx"
 
 namespace py = pybind11;
@@ -22,7 +22,7 @@ namespace tools{
             .def(py::init<size_t>())
 
             .def("initializeMapping",
-                [](MappingType & self, const marray::PyView<EdgeType> uvIds, const std::vector<NodeType> & oldToNewNodes) {
+                [](MappingType & self, const xt::pytensor<EdgeType, 2> & uvIds, const std::vector<NodeType> & oldToNewNodes) {
                     {
                         py::gil_scoped_release allowThreads;
                         self.initializeMapping(uvIds, oldToNewNodes);
@@ -44,8 +44,9 @@ namespace tools{
             .def("getNewUvIds",
                 [](const MappingType & self) {
 
-                    size_t shape[] = {self.numberOfNewEdges(), 2};
-                    marray::PyView<EdgeType> newUvIds(shape, shape + 2);
+                    typedef typename xt::pytensor<EdgeType, 2>::shape_type ShapeType;
+                    ShapeType shape{(int64_t)self.numberOfNewEdges(), 2L};
+                    xt::pytensor<EdgeType, 2> newUvIds(shape);
 
                     {
                         py::gil_scoped_release allowThreads;

@@ -1,5 +1,4 @@
 #pragma once
-//#include "nifty/marray/marray.hxx"
 
 #include "xtensor/xarray.hpp"
 #include "nifty/xtensor/xtensor.hxx"
@@ -14,8 +13,6 @@ namespace tools{
 template<class T>
 class BlockStorage{
 public:
-    //typedef nifty::marray::Marray<T> ArrayType;
-    //typedef nifty::marray::View<T> ViewType;
     typedef xt::xarray<T> ArrayType;
     template<class SHAPE>
     BlockStorage(

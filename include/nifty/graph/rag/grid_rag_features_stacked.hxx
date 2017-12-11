@@ -48,7 +48,7 @@ namespace graph{
         Coord2 sliceShape2({shape[1], shape[2]});
         Coord sliceShape3({1L,shape[1], shape[2]});
 
-        std::vector<  std::unordered_map<uint64_t, uint64_t> > overlaps(graph.numberOfNodes());
+        std::vector<std::unordered_map<uint64_t, uint64_t>> overlaps(graph.numberOfNodes());
 
         LabelsBlockStorage sliceLabelsStorage(threadpool, sliceShape3, nThreads);
         DataBlockStorage   sliceDataStorage(threadpool, sliceShape3, nThreads);

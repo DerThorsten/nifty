@@ -6,7 +6,7 @@
 
 #include <typeinfo> // to debug atm
 
-#include "nifty/python/converter.hxx"
+#include "xtensor-python/pyarray.hpp"
 #include "nifty/tools/make_dense.hxx"
 
 namespace py = pybind11;
@@ -16,15 +16,15 @@ namespace py = pybind11;
 namespace nifty{
 namespace tools{
 
-    template<class T, bool AUTO_CAST>
+    template<class T>
     void exportMakeDenseT(py::module & toolsModule) {
 
         toolsModule.def("makeDense",
-        [](
-           nifty::marray::PyView<T,0,AUTO_CAST> dataIn
-        ){
+        [](const xt::pyarray<T> & dataIn){
 
-            nifty::marray::PyView<T> dataOut(dataIn.shapeBegin(), dataIn.shapeEnd());
+            typedef typename xt::pyarray<T>::shape_type ShapeType;
+            ShapeType shape(dataIn.shape().begin(), dataIn.shape().end());
+            xt::pyarray<T> dataOut(shape);
             {
                 py::gil_scoped_release allowThreads;
                 tools::makeDense(dataIn, dataOut);
@@ -35,15 +35,13 @@ namespace tools{
 
 
     void exportMakeDense(py::module & toolsModule) {
-        
-        exportMakeDenseT<uint32_t, false>(toolsModule);
-        exportMakeDenseT<uint64_t, false>(toolsModule);
-        exportMakeDenseT<int32_t, false>(toolsModule);
+
+        exportMakeDenseT<uint32_t>(toolsModule);
+        exportMakeDenseT<uint64_t>(toolsModule);
+        exportMakeDenseT<int32_t>(toolsModule);
 
         //exportMakeDenseT<float   , false>(toolsModule);
-
-        exportMakeDenseT<int64_t   , true>(toolsModule);
-
+        exportMakeDenseT<int64_t>(toolsModule);
     }
 
 }

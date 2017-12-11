@@ -1,6 +1,10 @@
 #include <pybind11/pybind11.h>
 #include <iostream>
 
+#define FORCE_IMPORT_ARRAY
+#include "xtensor-python/pytensor.hpp"
+#include "xtensor-python/pyarray.hpp"
+
 namespace py = pybind11;
 
 PYBIND11_DECLARE_HOLDER_TYPE(T, std::shared_ptr<T>);
@@ -21,12 +25,14 @@ namespace tools{
 }
 
 
-PYBIND11_PLUGIN(_tools) {
+PYBIND11_MODULE(_tools, toolsModule) {
+
+    xt::import_numpy();
 
     py::options options;
     options.disable_function_signatures();
 
-    py::module toolsModule("_tools", "tools submodule of nifty");
+    toolsModule.doc() = "tools submodule of nifty";
 
     using namespace nifty::tools;
 
@@ -38,5 +44,4 @@ PYBIND11_PLUGIN(_tools) {
     exportEdgeMapping(toolsModule);
     exportSleep(toolsModule);
     exportChangeablePriorityQueue(toolsModule);
-    return toolsModule.ptr();
 }

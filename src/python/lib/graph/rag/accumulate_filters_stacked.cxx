@@ -172,7 +172,7 @@ namespace graph{
         //hdf5
         #ifdef WITH_HDF5
         {
-            typedef Hdf5Labels<3,uint32_t> LabelsUInt32;
+            typedef LabelsProxy<3, nifty::hdf5::Hdf5Array<uint32_t>> LabelsUInt32;
             typedef GridRagStacked2D<LabelsUInt32> StackedRagUInt32;
             typedef nifty::hdf5::Hdf5Array<float> FloatArray;
             typedef nifty::hdf5::Hdf5Array<uint8_t> UInt8Array;

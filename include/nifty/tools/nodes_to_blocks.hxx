@@ -8,6 +8,10 @@
 #include "nifty/hdf5/hdf5_array.hxx"
 #endif
 
+#ifdef WITH_Z5
+#include "nifty/z5/z5.hxx"
+#endif
+
 namespace nifty{
 namespace tools{
 

@@ -10,6 +10,10 @@
 #include "nifty/hdf5/hdf5_array.hxx"
 #endif
 
+#ifdef WITH_Z5
+#include "nifty/z5/z5.hxx"
+#endif
+
 #include "xtensor-python/pytensor.hpp"
 
 
@@ -28,7 +32,7 @@ namespace graph{
         ragModule.def("gridRagAccumulateLabels",
             [](
                 const RAG & rag,
-                xt::pytensor<T, DATA_DIM> labels,
+                const xt::pytensor<T, DATA_DIM> & labels,
                 const bool ignoreBackground,
                 const T ignoreValue
             ){
@@ -53,7 +57,7 @@ namespace graph{
         ragModule.def("gridRagAccumulateLabels",
             [](
                 const RAG & rag,
-                DATA labels,
+                const DATA & labels,
                 const int numberOfThreads
             ){
                 typedef typename DATA::value_type DataType;
@@ -123,44 +127,65 @@ namespace graph{
             exportGridRagAccumulateLabelsT<ExplicitLabelsGridRag3D, uint32_t, 3>(ragModule);
         }
 
-        // exportGridRagStackedAccumulateLabels
+        // explicit stacked rag
         {
-            // explicit
-            {
-                typedef LabelsProxy<3, xt::pytensor<uint32_t, 3>> ExplicitPyLabels3D;
-                typedef GridRagStacked2D<ExplicitPyLabels3D> StackedRagUInt32;
+            typedef LabelsProxy<3, xt::pytensor<uint32_t, 3>> ExplicitPyLabels3D;
+            typedef GridRagStacked2D<ExplicitPyLabels3D> StackedRagUInt32;
 
-                typedef xt::pytensor<uint32_t, 3> UInt32Array;
-                typedef xt::pytensor<uint64_t, 3> UInt64Array;
+            typedef xt::pytensor<uint32_t, 3> UInt32Array;
+            typedef xt::pytensor<uint64_t, 3> UInt64Array;
 
-                // accumulate labels
-                exportGridRagStackedAccumulateLabelsT<StackedRagUInt32, UInt32Array>(ragModule);
-                exportGridRagStackedAccumulateLabelsT<StackedRagUInt32, UInt64Array>(ragModule);
-            }
-
-            // hdf5
-            #ifdef WITH_HDF5
-            {
-                typedef Hdf5Labels<3,uint32_t> LabelsUInt32;
-                typedef GridRagStacked2D<LabelsUInt32> StackedRagUInt32;
-                typedef Hdf5Labels<3,uint64_t> LabelsUInt64;
-                typedef GridRagStacked2D<LabelsUInt64> StackedRagUInt64;
-
-                typedef nifty::hdf5::Hdf5Array<uint32_t> UInt32Array;
-                typedef nifty::hdf5::Hdf5Array<uint64_t> UInt64Array;
-
-                // accumulate labels
-                exportGridRagStackedAccumulateLabelsT<StackedRagUInt32, UInt32Array>(ragModule);
-                exportGridRagStackedAccumulateLabelsT<StackedRagUInt64, UInt32Array>(ragModule);
-                exportGridRagStackedAccumulateLabelsT<StackedRagUInt32, UInt64Array>(ragModule);
-                exportGridRagStackedAccumulateLabelsT<StackedRagUInt64, UInt64Array>(ragModule);
-
-                // getSkipEdgesForSlice
-                exportGetSkipEdgesForSliceT<StackedRagUInt32,uint32_t>(ragModule);
-                //exportGetSkipEdgesForSliceT<StackedRagUInt64,uint64_t>(ragModule);
-            }
-            #endif
+            // accumulate labels
+            exportGridRagStackedAccumulateLabelsT<StackedRagUInt32, UInt32Array>(ragModule);
+            exportGridRagStackedAccumulateLabelsT<StackedRagUInt32, UInt64Array>(ragModule);
         }
+
+        // hdf5 stacked rag
+        #ifdef WITH_HDF5
+        {
+            typedef Hdf5Labels<3,uint32_t> LabelsUInt32;
+            typedef GridRagStacked2D<LabelsUInt32> StackedRagUInt32;
+            typedef Hdf5Labels<3,uint64_t> LabelsUInt64;
+            typedef GridRagStacked2D<LabelsUInt64> StackedRagUInt64;
+
+            typedef nifty::hdf5::Hdf5Array<uint32_t> UInt32Array;
+            typedef nifty::hdf5::Hdf5Array<uint64_t> UInt64Array;
+
+            // accumulate labels
+            exportGridRagStackedAccumulateLabelsT<StackedRagUInt32, UInt32Array>(ragModule);
+            exportGridRagStackedAccumulateLabelsT<StackedRagUInt64, UInt32Array>(ragModule);
+            exportGridRagStackedAccumulateLabelsT<StackedRagUInt32, UInt64Array>(ragModule);
+            exportGridRagStackedAccumulateLabelsT<StackedRagUInt64, UInt64Array>(ragModule);
+
+            // getSkipEdgesForSlice
+            exportGetSkipEdgesForSliceT<StackedRagUInt32,uint32_t>(ragModule);
+            //exportGetSkipEdgesForSliceT<StackedRagUInt64,uint64_t>(ragModule);
+        }
+        #endif
+
+        //n5 stacked rag
+        #ifdef WITH_Z5
+        {
+            typedef LabelsProxy<3, nifty::nz5::DatasetWrapper<uint32_t>> Labels32;
+            typedef LabelsProxy<3, nifty::nz5::DatasetWrapper<uint64_t>> Labels64;
+            typedef GridRagStacked2D<Labels32> StackedRagUInt32;
+            typedef GridRagStacked2D<Labels64> StackedRagUInt64;
+
+            typedef nifty::nz5::DatasetWrapper<uint32_t> UInt32Array;
+            typedef nifty::nz5::DatasetWrapper<uint64_t> UInt64Array;
+
+            // accumulate labels
+            exportGridRagStackedAccumulateLabelsT<StackedRagUInt32, UInt32Array>(ragModule);
+            exportGridRagStackedAccumulateLabelsT<StackedRagUInt64, UInt32Array>(ragModule);
+
+            exportGridRagStackedAccumulateLabelsT<StackedRagUInt32, UInt64Array>(ragModule);
+            exportGridRagStackedAccumulateLabelsT<StackedRagUInt64, UInt64Array>(ragModule);
+
+            // getSkipEdgesForSlice
+            //exportGetSkipEdgesForSliceT<StackedRagUInt32,uint32_t>(ragModule);
+            //exportGetSkipEdgesForSliceT<StackedRagUInt64,uint64_t>(ragModule);
+        }
+        #endif
     }
 
 } // end namespace graph

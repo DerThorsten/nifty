@@ -13,7 +13,7 @@ namespace py = pybind11;
 namespace nifty{
 namespace tools{
 
-    template<class T, class DATA_BACKEND>
+    template<class DATA_BACKEND>
     void exportNodesToBlocksStackedT(py::module & toolsModule) {
 
         toolsModule.def("nodesToBlocksStacked",
@@ -23,7 +23,8 @@ namespace tools{
            const std::vector<int64_t> & skipSlices,
            const int nThreads
         ){
-            std::vector<std::vector<T>> out;
+            typedef typename DATA_BACKEND::value_type DataType;
+            std::vector<std::vector<DataType>> out;
             {
                 py::gil_scoped_release allowThreads;
                 nodesToBlocksStacked(segmentation, blocking, halo, skipSlices, out, nThreads);
@@ -43,13 +44,22 @@ namespace tools{
         // export for hdf5
         #ifdef WITH_HDF5
         {
-            typedef nifty::hdf5::Hdf5Array<uint32_t> Hdf5ArrayType;
-            exportNodesToBlocksStackedT<uint32_t, Hdf5ArrayType>(toolsModule);
-            //exportNodesToBlocksStackedT<uint64_t>(toolsModule);
+            typedef nifty::hdf5::Hdf5Array<uint32_t> Hdf5Array32;
+            typedef nifty::hdf5::Hdf5Array<uint64_t> Hdf5Array64;
+            exportNodesToBlocksStackedT<Hdf5Array32>(toolsModule);
+            exportNodesToBlocksStackedT<Hdf5Array64>(toolsModule);
         }
         #endif
 
-        // TODO z5
+        // export for z5
+        #ifdef WITH_HDF5
+        {
+            typedef nifty::nz5::DatasetWrapper<uint32_t> Z5Array32;
+            typedef nifty::nz5::DatasetWrapper<uint64_t> Z5Array64;
+            exportNodesToBlocksStackedT<Z5Array32>(toolsModule);
+            exportNodesToBlocksStackedT<Z5Array64>(toolsModule);
+        }
+        #endif
     }
 }
 }

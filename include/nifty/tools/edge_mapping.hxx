@@ -4,7 +4,7 @@
 #include <map>
 #include <vector>
 
-#include "nifty/marray/marray.hxx"
+#include "nifty/xtensor/xtensor.hxx"
 #include "nifty/parallel/threadpool.hxx"
 
 namespace nifty {
@@ -24,15 +24,16 @@ public:
         : oldToNewEdges_(numberOfEdges), newUvIds_(), threadpool_(nThreads)
     {}
 
-    void initializeMapping(const marray::View<EdgeType> & uvIds, const std::vector<NodeType> & oldToNewNodes);
+    template<class ARRAY>
+    void initializeMapping(const xt::xexpression<ARRAY> &, const std::vector<NodeType> &);
 
     template<class T>
-    void mapEdgeValues(const std::vector<T> & edgeValues, std::vector<T> & newEdgeValues) const;
+    void mapEdgeValues(const std::vector<T> &, std::vector<T> &) const;
 
     const UvVectorType & getNewUvIds() const
     {return newUvIds_;}
 
-    void getNewEdgeIds(const std::vector<EdgeType> & edgeIds, std::vector<EdgeType> & newEdgeIds) const;
+    void getNewEdgeIds(const std::vector<EdgeType> &, std::vector<EdgeType> &) const;
 
     size_t numberOfNewEdges() const
     {return newUvIds_.size();}
@@ -48,7 +49,8 @@ private:
 
 // TODO parallelize ?!
 template<class EDGE_TYPE, class NODE_TYPE>
-void EdgeMapping<EDGE_TYPE, NODE_TYPE>::initializeMapping(const marray::View<EdgeType> & uvIds, const std::vector<NodeType> & oldToNewNodes)
+template<class ARRAY>
+void EdgeMapping<EDGE_TYPE, NODE_TYPE>::initializeMapping(const xt::xexpression<ARRAY> & uvIdsExp, const std::vector<NodeType> & oldToNewNodes)
 {
 
     /*
@@ -78,13 +80,15 @@ void EdgeMapping<EDGE_TYPE, NODE_TYPE>::initializeMapping(const marray::View<Edg
     }
     */
 
+    const auto & uvIds = uvIdsExp.derived_cast();
+
     typedef std::vector< std::pair<UvType, EdgeType> > newUvToOldEdgeVector;
     std::vector<newUvToOldEdgeVector> threadVectors(threadpool_.nThreads());
     // TODO try unordered set, but need custom hash
     std::vector<std::set<UvType>> threadSets(threadpool_.nThreads());
 
     // find new uv ids in parallel
-    parallel::parallel_foreach(threadpool_, uvIds.shape(0), [&](const int tId, const EdgeType edgeId){
+    parallel::parallel_foreach(threadpool_, uvIds.shape()[0], [&](const int tId, const EdgeType edgeId){
         NodeType uNew = oldToNewNodes[uvIds(edgeId, 0)];
         NodeType vNew = oldToNewNodes[uvIds(edgeId, 1)];
 
