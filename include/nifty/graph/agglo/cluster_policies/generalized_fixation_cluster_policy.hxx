@@ -311,7 +311,7 @@ mergeEdges(
                 return std::min(a,d);
             }
         }
-        else if(p > 1.0-eps && p< 1+ eps){
+        else if(p > 1.0-eps && p< 1.0+ eps){
             return (wa*a + wd*d)/(wa+wd);
         }
         else{
