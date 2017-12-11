@@ -35,7 +35,7 @@ private:
     //typedef std::set<uint64_t> SetType;
     //typedef std::unordered_set<uint64_t> SetType;
 
-    typedef typename GRAPH:: template NodeMap<SetType > NonLinkConstraints;
+
 
 
 public:
@@ -119,7 +119,6 @@ private:
     const GraphType &   graph_;
 
 
-    NonLinkConstraints nonLinkConstraints_;
 
     EdgePrioType mergePrios_;
     EdgePrioType notMergePrios_; 
@@ -152,7 +151,6 @@ GeneralizedFixationClusterPolicy(
     const SettingsType & settings
 )
 :   graph_(graph),
-    nonLinkConstraints_(graph),
     mergePrios_(graph),
     notMergePrios_(graph),
     isLocalEdge_(graph),
@@ -263,20 +261,6 @@ mergeNodes(
     const uint64_t aliveNode, 
     const uint64_t deadNode
 ){
-    //std::cout<<"    merge nodes: a/d "<<aliveNode<<" "<<deadNode<<" \n"; 
-    /*
-    auto  & aliveNodeNlc = nonLinkConstraints_[aliveNode];
-    const auto & deadNodeNlc = nonLinkConstraints_[deadNode];
-    aliveNodeNlc.insert(deadNodeNlc.begin(), deadNodeNlc.end());
-    for(const auto v : deadNodeNlc){
-        auto & nlc = nonLinkConstraints_[v];
-
-        // best way to change values in set... 
-        nlc.erase(deadNode);
-        nlc.insert(aliveNode);
-    }
-    aliveNodeNlc.erase(deadNode);
-    */
 
 }
 
