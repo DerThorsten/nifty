@@ -37,8 +37,8 @@ namespace graph{
             const auto & labels = rag.labelsProxy().labels();
             const auto & shape = rag.labelsProxy().shape();
 
-            xt::pytensor<DATA_T, 1> accAff({uint64_t(rag.edgeIdUpperBound()+1)});
-            xt::pytensor<DATA_T, 1> counter({uint64_t(rag.edgeIdUpperBound()+1)});
+            xt::pytensor<DATA_T, 1> accAff = xt::zeros<DATA_T>({(int64_t) rag.edgeIdUpperBound()+1});
+            xt::pytensor<DATA_T, 1> counter = xt::zeros<DATA_T>({(int64_t) rag.edgeIdUpperBound()+1});
 
             auto & offsetShape = offsets.shape();
 

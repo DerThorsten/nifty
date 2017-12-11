@@ -32,7 +32,7 @@ namespace graph{
                 const bool ignoreBackground,
                 const T ignoreValue
             ){
-                xt::pytensor<T, 1> nodeLabels({(uint32_t) rag.numberOfNodes()});
+                xt::pytensor<T, 1> nodeLabels = xt::zeros<T>({(int64_t) rag.numberOfNodes()});
                 {
                     py::gil_scoped_release allowThreads;
                     gridRagAccumulateLabels(rag, labels, nodeLabels, ignoreBackground, ignoreValue);
@@ -40,7 +40,10 @@ namespace graph{
                 return nodeLabels;
 
             },
-            py::arg("graph"),py::arg("labels"),py::arg("ignoreBackground")=false,py::arg("ignoreValue")=0
+            py::arg("graph"),
+            py::arg("labels"),
+            py::arg("ignoreBackground")=false,
+            py::arg("ignoreValue")=0
         );
     }
 
@@ -54,7 +57,7 @@ namespace graph{
                 const int numberOfThreads
             ){
                 typedef typename DATA::value_type DataType;
-                xt::pytensor<DataType, 1> nodeLabels({(uint32_t) rag.numberOfNodes()});
+                xt::pytensor<DataType, 1> nodeLabels = xt::zeros<DataType>({(int64_t) rag.numberOfNodes()});
                 {
                     py::gil_scoped_release allowThreads;
                     gridRagAccumulateLabels(rag, labels, nodeLabels);

@@ -65,8 +65,7 @@ namespace graph{
 
 
     // TODO assert that z direction is in (0,1,2)
-    #ifdef WITH_HDF5
-    template<class RAG, class DATA>
+    template<class RAG, class DATA, class FEATURES>
     void exportAccumulateEdgeFeaturesFromFiltersOutOfCoreT(
         py::module & ragModule
     ){
@@ -74,8 +73,8 @@ namespace graph{
         [](
             const RAG & rag,
             DATA & data,
-            nifty::hdf5::Hdf5Array<float> & outXY,
-            nifty::hdf5::Hdf5Array<float> & outZ,
+            FEATURES & outXY,
+            FEATURES & outZ,
             const bool keepXYOnly,
             const bool keepZOnly,
             const int zDirection,
@@ -92,13 +91,16 @@ namespace graph{
             uint64_t nStats = 9;
             uint64_t nFeatures = nChannels * nStats;
             // need to check that this is set correct
-            NIFTY_CHECK_OP(outXY.shape(0),==,nEdgesXY,"Number of edges is incorrect!");
-            NIFTY_CHECK_OP(outZ.shape(0),==,nEdgesZ,"Number of edges is incorrect!");
-            NIFTY_CHECK_OP(outXY.shape(1),==,nFeatures,"Number of features is incorrect!");
-            NIFTY_CHECK_OP(outZ.shape(1),==,nFeatures,"Number of features is incorrect!");
+            NIFTY_CHECK_OP(outXY.shape()[0],==,nEdgesXY,"Number of edges is incorrect!");
+            NIFTY_CHECK_OP(outZ.shape()[0],==,nEdgesZ,"Number of edges is incorrect!");
+            NIFTY_CHECK_OP(outXY.shape()[1],==,nFeatures,"Number of features is incorrect!");
+            NIFTY_CHECK_OP(outZ.shape()[1],==,nFeatures,"Number of features is incorrect!");
             {
                 py::gil_scoped_release allowThreads;
-                accumulateEdgeFeaturesFromFilters(rag, data, outXY, outZ, keepXYOnly, keepZOnly, zDirection, numberOfThreads);
+                accumulateEdgeFeaturesFromFilters(rag, data,
+                                                  outXY, outZ,
+                                                  keepXYOnly, keepZOnly,
+                                                  zDirection, numberOfThreads);
             }
         },
         py::arg("rag"),
@@ -108,10 +110,9 @@ namespace graph{
         py::arg("keepXYOnly") = false,
         py::arg("keepZOnly") = false,
         py::arg("zDirection") = 0,
-        py::arg("numberOfThreads")= -1
+        py::arg("numberOfThreads") = -1
         );
     }
-    #endif
 
 
     // TODO assert that z direction is in (0,1,2)
@@ -176,17 +177,34 @@ namespace graph{
             typedef nifty::hdf5::Hdf5Array<float> FloatArray;
             typedef nifty::hdf5::Hdf5Array<uint8_t> UInt8Array;
 
-            // in core
-            //exportAccumulateEdgeFeaturesFromFiltersInCoreT<StackedRagUInt32, FloatArray>(ragModule);
-            //exportAccumulateEdgeFeaturesFromFiltersInCoreT<StackedRagUInt32, UInt8Array>(ragModule);
-
             // out of core
-            exportAccumulateEdgeFeaturesFromFiltersOutOfCoreT<StackedRagUInt32, FloatArray>(ragModule);
-            exportAccumulateEdgeFeaturesFromFiltersOutOfCoreT<StackedRagUInt32, UInt8Array>(ragModule);
+            exportAccumulateEdgeFeaturesFromFiltersOutOfCoreT<StackedRagUInt32, FloatArray, FloatArray>(ragModule);
+            exportAccumulateEdgeFeaturesFromFiltersOutOfCoreT<StackedRagUInt32, UInt8Array, FloatArray>(ragModule);
 
             // export skipEdgeFeatures
-            exportAccumulateSkipEdgeFeaturesFromFiltersT<StackedRagUInt32, FloatArray>(ragModule);
-            exportAccumulateSkipEdgeFeaturesFromFiltersT<StackedRagUInt32, UInt8Array>(ragModule);
+            //exportAccumulateSkipEdgeFeaturesFromFiltersT<StackedRagUInt32, FloatArray>(ragModule);
+            //exportAccumulateSkipEdgeFeaturesFromFiltersT<StackedRagUInt32, UInt8Array>(ragModule);
+        }
+        #endif
+
+        //z5
+        #ifdef WITH_Z5
+        {
+            typedef LabelsProxy<3, nifty::nz5::DatasetWrapper<uint32_t>> Z5Labels32;
+            typedef LabelsProxy<3, nifty::nz5::DatasetWrapper<uint64_t>> Z5Labels64;
+
+            typedef GridRagStacked2D<Z5Labels32> StackedRagUInt32;
+            typedef GridRagStacked2D<Z5Labels64> StackedRagUInt64;
+            typedef nifty::nz5::DatasetWrapper<float> FloatArray;
+            typedef nifty::nz5::DatasetWrapper<uint8_t> UInt8Array;
+
+            // out of core
+            exportAccumulateEdgeFeaturesFromFiltersOutOfCoreT<StackedRagUInt32, FloatArray, FloatArray>(ragModule);
+            exportAccumulateEdgeFeaturesFromFiltersOutOfCoreT<StackedRagUInt32, UInt8Array, FloatArray>(ragModule);
+
+            exportAccumulateEdgeFeaturesFromFiltersOutOfCoreT<StackedRagUInt64, FloatArray, FloatArray>(ragModule);
+            exportAccumulateEdgeFeaturesFromFiltersOutOfCoreT<StackedRagUInt64, UInt8Array, FloatArray>(ragModule);
+
         }
         #endif
     }

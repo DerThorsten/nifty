@@ -17,6 +17,10 @@
 #include "nifty/hdf5/hdf5_array.hxx"
 #endif
 
+#ifdef WITH_Z5
+#include "nifty/z5/z5.hxx"
+#endif
+
 namespace nifty{
 namespace graph{
 
@@ -115,17 +119,34 @@ inline void accumulateInnerSliceFeatures(ACC_CHAIN_VECTOR & channelAccChainVec,
             channelAccChainVec[edge][c].setHistogramOptions(histoOptionsVec[c]);
     }
 
+    const auto haveIgnoreLabel = rag.haveIgnoreLabel();
+    const auto ignoreLabel = rag.ignoreLabel();
+
     // accumulate filter for the inner slice edges
     LabelType lU, lV;
     float fU, fV;
     VigraCoord vigraCoordU, vigraCoordV;
     nifty::tools::forEachCoordinate(sliceShape2, [&](const Coord2 coord){
+
         lU = xtensor::read(labels, coord.asStdArray());
+        // skip if we have the ignore label activated and
+        // if we hit an ignore label
+        if(haveIgnoreLabel && lU == ignoreLabel) {
+            return;
+        }
+
         for(int axis = 0; axis < 2; ++axis){
             Coord2 coord2 = coord;
             ++coord2[axis];
             if( coord2[axis] < sliceShape2[axis]) {
+
                 lV = xtensor::read(labels, coord2.asStdArray());
+                // skip if we have the ignore label activated and
+                // if we hit an ignore label
+                if(haveIgnoreLabel && lV == ignoreLabel) {
+                    return;
+                }
+
                 if(lU != lV) {
                     vigraCoordU[0] = sliceId;
                     vigraCoordV[0] = sliceId;
@@ -174,6 +195,9 @@ inline void accumulateBetweenSliceFeatures(ACC_CHAIN_VECTOR & channelAccChainVec
     const auto & filterA = filterAExp.derived_cast();
     const auto & filterB = filterBExp.derived_cast();
 
+    const auto haveIgnoreLabel = rag.haveIgnoreLabel();
+    const auto ignoreLabel = rag.ignoreLabel();
+
     size_t pass = 1;
     size_t numberOfChannels = channelAccChainVec[0].size();
 
@@ -190,6 +214,15 @@ inline void accumulateBetweenSliceFeatures(ACC_CHAIN_VECTOR & channelAccChainVec
         // labels are different for different slices by default!
         lU = xtensor::read(labelsA, coord.asStdArray());
         lV = xtensor::read(labelsB, coord.asStdArray());
+
+        // skip if we have the ignore label activated and
+        // if we hit an ignore label
+        if(haveIgnoreLabel) {
+            if(lU == ignoreLabel || lV == ignoreLabel) {
+                return;
+            }
+        }
+
         vigraCoordU[0] = sliceIdA;
         vigraCoordV[0] = sliceIdB;
         for(int d = 1; d < 3; ++d){
