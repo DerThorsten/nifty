@@ -52,7 +52,7 @@ namespace tools{
         #endif
 
         // export for z5
-        #ifdef WITH_HDF5
+        #ifdef WITH_Z5
         {
             typedef nifty::nz5::DatasetWrapper<uint32_t> Z5Array32;
             typedef nifty::nz5::DatasetWrapper<uint64_t> Z5Array64;

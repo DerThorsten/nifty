@@ -3,6 +3,7 @@
 #include "nifty/tools/blocking.hxx"
 #include "nifty/tools/array_tools.hxx"
 #include "nifty/parallel/threadpool.hxx"
+#include "nifty/xtensor/xtensor.hxx"
 
 #ifdef WITH_HDF5
 #include "nifty/hdf5/hdf5_array.hxx"
@@ -52,14 +53,15 @@ namespace tools{
             auto & threadUniques = threadData[tid];
 
             // get subblocks in this slice
-            Coord sliceBegin({sliceId,0L,0L});
+            Coord sliceBegin({sliceId, 0L, 0L});
+            Coord sliceEnd({sliceId + 1, sliceShape[1], sliceShape[2]});
             std::vector<uint64_t> subBlocks;
             blocking.getBlockIdsInSlice(sliceId, internalHalo, subBlocks);
 
             // read segmentation in this slice
             auto subseg = labelsStorage.getView(tid);
-            segmentation.readSubarray(sliceBegin.begin(), subseg);
-            auto subsegSqueezed = subseg.squeezedView();
+            tools::readSubarray(segmentation, sliceBegin, sliceEnd, subseg);
+            auto subsegSqueezed = xtensor::squeezedView(subseg);
 
             // find uniques in subblocks
             Coord2 blockBegin, blockShape;
@@ -74,7 +76,9 @@ namespace tools{
                     blockShape[d] = blockShape3d[d+1];
                 }
 
-                auto blockView = subsegSqueezed.view(blockBegin.begin(), blockShape.begin());
+                xt::slice_vector slice(subsegSqueezed);
+                xtensor::sliceFromOffset(slice, blockBegin, blockShape);
+                auto blockView = xt::dynamic_view(subsegSqueezed, slice);
                 uniques(blockView, blockUniques);
                 // check whether the block is already in the map, extend if it is, inser otherwise
                 // insertion method from http://stackoverflow.com/questions/97050/stdmap-insert-or-stdmap-find
