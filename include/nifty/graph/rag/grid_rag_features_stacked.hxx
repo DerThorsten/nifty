@@ -8,7 +8,6 @@
 
 #include "nifty/tools/for_each_coordinate.hxx"
 #include "nifty/tools/array_tools.hxx"
-#include "nifty/tools/memory.hxx"
 #include "nifty/tools/runtime_check.hxx"
 
 #include "nifty/xtensor/xtensor.hxx"

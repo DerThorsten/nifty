@@ -45,7 +45,7 @@ namespace graph{
         typedef GridRag<DIM, LABELS_PROXY> GridRagType;
 
         // export the rag
-        auto clsT = py::class_<GridRagType,BaseGraph>(ragModule, clsName.c_str());
+        auto clsT = py::class_<GridRagType, BaseGraph>(ragModule, clsName.c_str());
         clsT
             .def_property_readonly("shape",[](const GridRagType & self){return self.shape();})
         ;
@@ -70,7 +70,7 @@ namespace graph{
             },
             py::return_value_policy::take_ownership,
             py::keep_alive<0, 1>(),
-            py::arg("labels"),
+            py::arg("labels").noconvert(),
             py::arg("numberOfLabels"),
             py::arg("blockShape"),
             py::arg_t< int >("numberOfThreads", -1 )
@@ -96,7 +96,7 @@ namespace graph{
             },
             py::return_value_policy::take_ownership,
             py::keep_alive<0, 1>(),
-            py::arg("labels"),
+            py::arg("labels").noconvert(),
             py::arg("numberOfLabels"),
             py::arg("serialization")
         );
@@ -112,10 +112,16 @@ namespace graph{
         exportGridRagT<2, ExplicitPyLabels2D>(ragModule,
                                               "ExplicitLabelsGridRag2D",
                                               "explicitLabelsGridRag2D");
-        typedef LabelsProxy<3, xt::pytensor<uint32_t, 3>> ExplicitPyLabels3D;
-        exportGridRagT<3, ExplicitPyLabels3D>(ragModule,
-                                              "ExplicitLabelsGridRag3D",
-                                               "explicitLabelsGridRag3D");
+
+        typedef LabelsProxy<3, xt::pytensor<uint32_t, 3>> ExplicitPyLabels3D32;
+        exportGridRagT<3, ExplicitPyLabels3D32>(ragModule,
+                                               "ExplicitLabelsGridRag3D32",
+                                               "explicitLabelsGridRag3D32");
+
+        typedef LabelsProxy<3, xt::pytensor<uint64_t, 3>> ExplicitPyLabels3D64;
+        exportGridRagT<3, ExplicitPyLabels3D64>(ragModule,
+                                                "ExplicitLabelsGridRag3D64",
+                                                "explicitLabelsGridRag3D64");
 
         // export grid rag with hdf5 labels
         #ifdef WITH_HDF5
@@ -124,10 +130,15 @@ namespace graph{
                                         "GridRag2DHdf5",
                                         "gridRag2DHdf5");
 
-        typedef LabelsProxy<3, nifty::hdf5::Hdf5Array<uint32_t>> Hdf5Labels3D;
-        exportGridRagT<3, Hdf5Labels3D>(ragModule,
-                                        "GridRag3DHdf5",
-                                        "gridRag3DHdf5");
+        typedef LabelsProxy<3, nifty::hdf5::Hdf5Array<uint32_t>> Hdf5Labels3D32;
+        exportGridRagT<3, Hdf5Labels3D32>(ragModule,
+                                          "GridRag3DHdf532",
+                                          "gridRag3DHdf532");
+
+        typedef LabelsProxy<3, nifty::hdf5::Hdf5Array<uint64_t>> Hdf5Labels3D64;
+        exportGridRagT<3, Hdf5Labels3D64>(ragModule,
+                                          "GridRag3DHdf564",
+                                          "gridRag3DHdf564");
         #endif
 
         // export with z5 labels
@@ -139,10 +150,15 @@ namespace graph{
                                       "gridRag2DZ5");
         //
         //typedef LabelsProxy<3, z5::DatasetTyped<uint32_t>> Z5Labels3D;
-        typedef LabelsProxy<3, nifty::nz5::DatasetWrapper<uint32_t>> Z5Labels3D;
-        exportGridRagT<3, Z5Labels3D>(ragModule,
-                                      "GridRag3DZ5",
-                                      "gridRag3DZ5");
+        typedef LabelsProxy<3, nifty::nz5::DatasetWrapper<uint32_t>> Z5Labels3D32;
+        exportGridRagT<3, Z5Labels3D32>(ragModule,
+                                        "GridRag3DZ532",
+                                        "gridRag3DZ532");
+
+        typedef LabelsProxy<3, nifty::nz5::DatasetWrapper<uint64_t>> Z5Labels3D64;
+        exportGridRagT<3, Z5Labels3D64>(ragModule,
+                                        "GridRag3DZ564",
+                                        "gridRag3DZ564");
         #endif
     }
 

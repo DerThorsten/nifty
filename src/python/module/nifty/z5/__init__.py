@@ -23,7 +23,7 @@ else:
 if Configuration.WITH_Z5:
 
     # convenience wrapper around z5 dataset wrapper
-    def datasetWrappper(dtype, *args, **kwargs):
+    def datasetWrapper(dtype, *args, **kwargs):
 
         if numpy.dtype(dtype) == numpy.dtype("uint8"):
             return DatasetWrapperUint8(*args, **kwargs)

@@ -27,8 +27,13 @@ if Configuration.WITH_Z5:
     import nifty.z5
 
 
-def gridRag(labels, numberOfLabels, blockShape=None, numberOfThreads=-1, serialization=None):
-    labels = numpy.require(labels, dtype='uint32')
+def gridRag(labels,
+            numberOfLabels,
+            blockShape=None,
+            numberOfThreads=-1,
+            serialization=None,
+            dtype='uint32'):
+    labels = numpy.require(labels, dtype=dtype)
     dim = labels.ndim
     blockShape_ = [100] * dim if blockShape is None else blockShape
 
@@ -44,31 +49,39 @@ def gridRag(labels, numberOfLabels, blockShape=None, numberOfThreads=-1, seriali
                                            serialization=serialization)
 
     elif dim == 3:
+        factory = explicitLabelsGridRag3D32 if dtype == numpy.dtype('uint32') \
+            else explicitLabelsGridRag3D64
         if serialization is None:
-            return explicitLabelsGridRag3D(labels,
-                                           blockShape=blockShape_,
-                                           numberOfLabels=numberOfLabels,
-                                           numberOfThreads=int(numberOfThreads))
+            return factory(labels,
+                           blockShape=blockShape_,
+                           numberOfLabels=numberOfLabels,
+                           numberOfThreads=int(numberOfThreads))
         else:
-            return explicitLabelsGridRag3D(labelsProxy,
-                                           numberOfLabels=numberOfLabels,
-                                           serialization=serialization)
+            return factory(labelsProxy,
+                           numberOfLabels=numberOfLabels,
+                           serialization=serialization)
 
     else:
         raise RuntimeError("wrong dimension, currently only 2D and 3D is implemented")
 
 
-def gridRagStacked2D(labels, numberOfLabels, serialization=None, numberOfThreads=-1):
-    labels = numpy.require(labels, dtype='uint32')
+def gridRagStacked2D(labels,
+                     numberOfLabels,
+                     serialization=None,
+                     numberOfThreads=-1,
+                     dtype='uint32'):
+    labels = numpy.require(labels, dtype=dtype)
     assert labels.ndim == 3, "Stacked rag is only available for 3D labels"
+    factory = gridRagStacked2D32 if dtype == numpy.dtype('uint32') \
+        else gridRagStacked2D64
     if serialization is None:
-        return gridRagStacked2DExplicitImpl(labels,
-                                            numberOfLabels=numberOfLabels,
-                                            numberOfThreads=numberOfThreads)
+        return factory(labels,
+                       numberOfLabels=numberOfLabels,
+                       numberOfThreads=numberOfThreads)
     else:
-        return gridRagStacked2DExplicitImpl(labels,
-                                            numberOfLabels=numberOfLabels,
-                                            serialization=serialization)
+        return factory(labels,
+                       numberOfLabels=numberOfLabels,
+                       serialization=serialization)
 
 
 # helper class for rag coordinates
@@ -85,7 +98,11 @@ def ragCoordinatesStacked(rag, numberOfThreads=-1):
 
 if Configuration.WITH_HDF5:
 
-    def gridRagHdf5(labels, numberOfLabels, blockShape=None, numberOfThreads=-1):
+    def gridRagHdf5(labels,
+                    numberOfLabels,
+                    blockShape=None,
+                    numberOfThreads=-1,
+                    dtype='uint32'):
 
         dim = labels.ndim
         blockShape_ = [100] * dim if blockShape is None else blockShape
@@ -96,28 +113,40 @@ if Configuration.WITH_HDF5:
                                  blockShape=blockShape_,
                                  numberOfThreads=int(numberOfThreads))
         elif dim == 3:
-            return gridRag3DHdf5(labels,
-                                 numberOfLabels=numberOfLabels,
-                                 blockShape=blockShape_,
-                                 numberOfThreads=int(numberOfThreads))
+            factory = gridRag3DHdf532 if dtype == numpy.dtype('uint32') \
+                else gridRag3DHdf564
+            return factory(labels,
+                           numberOfLabels=numberOfLabels,
+                           blockShape=blockShape_,
+                           numberOfThreads=int(numberOfThreads))
         else:
             raise RuntimeError("gridRagHdf5 is only implemented for 2D and 3D not for %dD" % dim)
 
 
-    def gridRagStacked2DHdf5(labels, numberOfLabels, numberOfThreads=-1, serialization=None):
+    def gridRagStacked2DHdf5(labels,
+                             numberOfLabels,
+                             numberOfThreads=-1,
+                             serialization=None,
+                             dtype='uint32'):
         assert labels.ndim == 3, "Stacked rag is only available for 3D labels"
+        factory = gridRagStacked2DHdf532 if dtype == numpy.dtype('uint32') \
+            else gridRagStacked2DHdf564
         if serialization is None:
-            return gridRagStacked2DHdf5Impl(labels,
-                                            numberOfLabels=numberOfLabels,
-                                            numberOfThreads=int(numberOfThreads))
+            return factory(labels,
+                           numberOfLabels=numberOfLabels,
+                           numberOfThreads=int(numberOfThreads))
         else:
-            return gridRagStacked2DHdf5Impl(labels,
-                                            numberOfLabels=numberOfLabels,
-                                            serialization=serialization)
+            return factory(labels,
+                           numberOfLabels=numberOfLabels,
+                           serialization=serialization)
 
 if Configuration.WITH_Z5:
 
-    def gridRagZ5(labels, numberOfLabels, blockShape=None, numberOfThreads=-1):
+    def gridRagZ5(labels,
+                  numberOfLabels,
+                  blockShape=None,
+                  numberOfThreads=-1,
+                  dtype='uint32'):
 
         # for z5 files, we pass a tuple containing the path to the file and the dataset key
         assert len(labels) == 2
@@ -125,7 +154,7 @@ if Configuration.WITH_Z5:
 
         # TODO we only need this, because we cannot link properly to the z5 python bindings
         # TODO support more dtypes
-        labelWrapper = nifty.z5.datasetWrapper('uint32', os.path.join(labelPath, labelKey))
+        labelWrapper = nifty.z5.datasetWrapper(dtype, os.path.join(labelPath, labelKey))
         dim = len(labelWrapper.shape)
         blockShape_ = [100] * dim if blockShape is None else blockShape
 
@@ -135,39 +164,45 @@ if Configuration.WITH_Z5:
                                blockShape=blockShape_,
                                numberOfThreads=int(numberOfThreads))
         elif dim == 3:
-            return gridRag3DZ5(labelWrapper,
-                               numberOfLabels=numberOfLabels,
-                               blockShape=blockShape_,
-                               numberOfThreads=int(numberOfThreads))
+            factory = gridRag3DZ532 if dtype == numpy.dtype('uint32') \
+                else gridRag3DZ564
+            return factory(labelWrapper,
+                           numberOfLabels=numberOfLabels,
+                           blockShape=blockShape_,
+                           numberOfThreads=int(numberOfThreads))
         else:
             raise RuntimeError("gridRagZ5 is only implemented for 2D and 3D not for %dD" % dim)
 
 
-    def gridRagStacked2DZ5(labels, numberOfLabels, numberOfThreads=-1, serialization=None):
+    def gridRagStacked2DZ5(labels,
+                           numberOfLabels,
+                           numberOfThreads=-1,
+                           serialization=None,
+                           dtype='uint32'):
 
         # for z5 files, we pass a tuple containing the path to the file and the dataset key
         assert len(labels) == 2
         labelPath, labelKey = labels
 
         # TODO we only need this, because we cannot link properly to the z5 python bindings
-        # TODO support more dtypes
-        labelWrapper = nifty.z5.DatasetWrapperUint32(os.path.join(labelPath, labelKey))
+        labelWrapper = nifty.z5.datasetWrapper(dtype, os.path.join(labelPath, labelKey))
         dim = len(labelWrapper.shape)
         assert dim == 3, "Stacked rag is only available for 3D labels"
 
+        factory = gridRagStacked2DZ532 if dtype == numpy.dtype('uint32') \
+            else gridRagStacked2DZ564
         if serialization is None:
-            return gridRagStacked2DZ5Impl(labelWrapper,
-                                          numberOfLabels=numberOfLabels,
-                                          numberOfThreads=int(numberOfThreads))
+            return factory(labelWrapper,
+                           numberOfLabels=numberOfLabels,
+                           numberOfThreads=int(numberOfThreads))
         else:
-            return gridRagStacked2DZ5Impl(labelWrapper,
-                                          numberOfLabels=numberOfLabels,
-                                          serialization=serialization)
+            return factory(labelWrapper,
+                           numberOfLabels=numberOfLabels,
+                           serialization=serialization)
 
 
 if WITH_H5PY:
 
-    # TODO write the type of the rag
     def writeStackedRagToHdf5(rag, savePath):
         with h5py.File(savePath) as f:
             f.create_dataset('numberOfNodes', data=rag.numberOfNodes)
@@ -185,36 +220,62 @@ if WITH_H5PY:
                              data=rag.totalNumberOfInBetweenSliceEdges)
             f.create_dataset('edgeLengths', data=rag.edgeLengths())
 
-    # TODO read the type of the rag
+            className = rag.__class__.__name__
+
+            if className.startswith('GridRagStacked2DZ5'):
+                factory = 'gridRagStacked2DZ5'
+            elif className.startswith('GridRagStacked2DHdf5'):
+                factory = 'gridRagStacked2DHdf5'
+            elif className.startswith('GridRagStacked2D'):
+                factory = 'gridRagStacked2D'
+
+            # write factory and dtype as attributes
+            attrs = f.attrs
+            attrs['factory'] = factory
+            dtype = 'uint' + className[-2:]
+            attrs['dtype'] = dtype
+
     def readStackedRagFromHdf5(labels, numberOfLabels, savePath):
-        assert labels.ndim == 3, "Stacked rag is only available for 3D labels"
         serialization = []
         # load the serialization from h5
         with h5py.File(savePath, 'r') as f:
             # serialization of the undirected graph
-            serialization.append(numpy.array(f['numberOfNodes'][:], dtype='uint64'))
-            serialization.append(numpy.array(f['numberOfEdges'][:], dtype='uint64'))
-            serialization.append(f['uvIds'][:].ravel().astype('uint64', copy=False))
+            eAndN = numpy.zeros((2, 1), dtype='uint64')
+            eAndN[0] = f['numberOfNodes']
+            eAndN[1] = f['numberOfEdges']
+            serialization.append(eAndN)
+            serialization.append(f['uvIds'][:].ravel().astype('uint64', copy=False)[:, None])
 
             # serialization of the stacked rag
-            serialization.append(numpy.array(f['totalNumberOfInSliceEdges'][:], dtype='uint64'))
-            serialization.append(numpy.array(f['totalNumberOfInBetweenSliceEdges'][:],
-                                             dtype='uint64'))
+            tEdges = numpy.zeros((2, 1), dtype='uint64')
+            tEdges[0] = f['totalNumberOfInSliceEdges']
+            tEdges[1] = f['totalNumberOfInBetweenSliceEdges']
+            serialization.append(tEdges)
 
             # load all the per slice data to squeeze it in the format we need for serializing
             # cf. nifty/include/nifty/graph/rag/grid_rag_stacked_2d.hxx serialize
-            inSliceDataKeys = ['numberOfNodesPerSlice',
-                               'numberOfInSliceEdges',
+            inSliceDataKeys = ['numberOfInSliceEdges',
                                'numberOfInBetweenSliceEdges',
                                'inSliceEdgeOffset',
                                'betweenSliceEdgeOffset']
-            perSliceData = numpy.concatenate([f[key][:, None] for key in inSliceDataKeys], axis=1)
-            perSliceData = numpy.concatenate([perSliceData, f['minMaxLabelPerSlice'][:]], axis=1)
-            serialization.append(perSliceData.ravel().astype('uint64', copy=False))
-            serialization.append(f['edgeLengths'][:].astype('uint64', copy=False))
+            perSliceData = numpy.concatenate([numpy.array(f[key], dtype='uint64')[:, None]
+                                              for key in inSliceDataKeys], axis=0)
+            minmaxLabel = f['minMaxLabelPerSlice'][:]
+            perSliceData = numpy.concatenate([perSliceData, minmaxLabel[:, :1], minmaxLabel[:, 1:]],
+                                             axis=0)
+            serialization.append(perSliceData.astype('uint64', copy=False))
+            serialization.append(f['edgeLengths'][:].astype('uint64', copy=False)[:, None])
 
-        # get the rag from serialization + labels
-        serialization = numpy.array(serialization, dtype='uint64')
-        return gridRagStacked2DHdf5Impl(labels,
-                                        numberOfLabels=numberOfLabels,
-                                        serialization=serialization)
+            # read factory and dtype from attributes
+            attrs = f.attrs
+            factory = eval(attrs['factory'])
+            dtype = attrs['dtype']
+
+        for ser in serialization:
+            print(ser.shape)
+        serialization = numpy.concatenate(serialization)
+
+        return factory(labels,
+                       dtype=dtype,
+                       numberOfLabels=numberOfLabels,
+                       serialization=serialization.squeeze())

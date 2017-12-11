@@ -1,15 +1,18 @@
 from __future__ import print_function
-import shutil
-import os
 import unittest
 import numpy
 import nifty
 import nifty.graph.rag as nrag
 
+try:
+    import h5py
+    WITH_H5PY = True
+except ImportError:
+    WITH_H5PY = False
+
 from test_rag import TestRagBase
 
 
-# TODO same test skeletons for all rag implementations
 class TestRagStacked(TestRagBase):
     # shape of the small label array
     shape = [3, 2, 2]
@@ -84,7 +87,8 @@ class TestRagStacked(TestRagBase):
         self.generic_rag_test(rag=rag,
                               numberOfNodes=self.labels.max() + 1,
                               shouldEdges=self.shouldEdges,
-                              shouldNotEdges=self.shouldNotEdges)
+                              shouldNotEdges=self.shouldNotEdges,
+                              shape=self.shape)
 
     def test_grid_rag_stacked2d(self):
         array = numpy.zeros(self.shape, dtype='uint32')
@@ -125,7 +129,8 @@ class TestRagStacked(TestRagBase):
         self.generic_rag_test(rag=rag,
                               numberOfNodes=self.bigLabels.max() + 1,
                               shouldEdges=self.bigShouldEdges,
-                              shouldNotEdges=self.bigShouldNotEdges)
+                              shouldNotEdges=self.bigShouldNotEdges,
+                              shape=self.bigShape)
 
     def test_grid_rag_stacked2d_large(self):
         array = numpy.zeros(self.bigShape, dtype='uint32')
@@ -143,7 +148,7 @@ class TestRagStacked(TestRagBase):
         nhdf5.closeFile(hidT)
 
     @unittest.skipUnless(nifty.Configuration.WITH_Z5, "skipping z5 tests")
-    def test_grid_rag_z5_stacked2d(self):
+    def test_grid_rag_z5_stacked2d_large(self):
         import z5py
         zfile = z5py.File(self.path, use_zarr_format=False)
         chunkShape = [1, 2, 1]
@@ -158,73 +163,27 @@ class TestRagStacked(TestRagBase):
         # self.small_array_test(array, nrag.gridRagStacked2DZ5)
         self.big_array_test((self.path, "data"), nrag.gridRagStacked2DZ5)
 
-
-    # TODO make test skeleton for this
-    @unittest.skipUnless(nifty.Configuration.WITH_HDF5, "skipping hdf5 tests")
-    def test_stacked_rag_serialize_deserialize(self):
-        import nifty.hdf5 as nhdf5
-
-        shape = [3,4,4]
-        chunkShape = [1,2,1]
-
-        hidT = nhdf5.createFile(self.path)
-        array = nhdf5.Hdf5ArrayUInt32(hidT, "data", shape, chunkShape)
-
-        self.assertEqual(array.shape[0], shape[0])
-        self.assertEqual(array.shape[1], shape[1])
-        self.assertEqual(array.shape[2], shape[2])
-
-        labels = [[[0, 0, 0, 0],
-                   [1, 1, 1, 1],
-                   [2, 2, 2, 2],
-                   [2, 2, 2, 2]],
-                  [[3, 3, 3, 3],
-                   [3, 3, 3, 3],
-                   [3, 3, 3, 3],
-                   [3, 3, 3, 3]],
-                  [[4, 4, 5, 5],
-                   [4, 4, 5, 5],
-                   [4, 4, 5, 5],
-                   [4, 4, 5, 5]]]
-        labels = numpy.array(labels, dtype='uint32')
-
-        self.assertEqual(labels.shape[0], shape[0])
-        self.assertEqual(labels.shape[1], shape[1])
-        self.assertEqual(labels.shape[2], shape[2])
-
-        array[0:shape[0], 0:shape[1], 0:shape[2]] = labels
-        ragA = nrag.gridRagStacked2DHdf5(array,
-                                         numberOfLabels=labels.max() + 1,
-                                        numberOfThreads=-1)
-
-        shouldEdges = [(0, 1),
-                       (0, 3),
-                       (1, 2),
-                       (1, 3),
-                       (2, 3),
-                       (3, 4),
-                       (3, 5),
-                       (4, 5)]
-
-        shouldNotEdges = [(0, 4),
-                          (0, 5),
-                          (1, 4),
-                          (1, 5),
-                          (2, 4),
-                          (2, 5)]
+    def serialization_test(self, array, ragFunction):
+        ragA = ragFunction(array,
+                           numberOfLabels=self.bigLabels.max() + 1,
+                           numberOfThreads=-1)
 
         self.generic_rag_test(rag=ragA,
-                              numberOfNodes=labels.max()+1,
-                              shouldEdges=shouldEdges,
-                              shouldNotEdges=shouldNotEdges)
-
-        serialization = ragA.serialize()
-        ragB = nrag.gridRagStacked2DHdf5(array,
-                                         numberOfLabels=labels.max() + 1,
-                                         serialization=serialization)
+                              numberOfNodes=self.bigLabels.max() + 1,
+                              shouldEdges=self.bigShouldEdges,
+                              shouldNotEdges=self.bigShouldNotEdges,
+                              shape=self.bigShape)
+        nrag.writeStackedRagToHdf5(ragA, self.path2)
+        ragB = nrag.readStackedRagFromHdf5(labels=array,
+                                           numberOfLabels=self.bigLabels.max() + 1,
+                                           savePath=self.path2)
         self.generic_rag_test(rag=ragB,
-                              numberOfNodes=labels.max()+1,
-                              shouldEdges=shouldEdges, shouldNotEdges=shouldNotEdges)
+                              numberOfNodes=self.bigLabels.max() + 1,
+                              shouldEdges=self.bigShouldEdges,
+                              shouldNotEdges=self.bigShouldNotEdges,
+                              shape=self.bigShape)
+
+        self.assertEqual(type(ragA), type(ragB))
 
         self.assertTrue((ragA.minMaxLabelPerSlice() == ragB.minMaxLabelPerSlice()).all())
         self.assertTrue((ragA.numberOfNodesPerSlice() == ragB.numberOfNodesPerSlice()).all())
@@ -232,7 +191,40 @@ class TestRagStacked(TestRagBase):
         self.assertTrue((ragA.numberOfInBetweenSliceEdges() == ragB.numberOfInBetweenSliceEdges()).all())
         self.assertTrue((ragA.inSliceEdgeOffset() == ragB.inSliceEdgeOffset()).all())
         self.assertTrue((ragA.betweenSliceEdgeOffset() == ragB.betweenSliceEdgeOffset()).all())
+
+    @unittest.skipUnless(WITH_H5PY, "skipping explicit serialization tests")
+    def test_stacked_rag_serialize_deserialize(self):
+        array = numpy.zeros(self.bigShape, dtype='uint32')
+        array[:] = self.bigLabels
+        self.serialization_test(array, nrag.gridRagStacked2D)
+
+    @unittest.skipUnless(nifty.Configuration.WITH_HDF5 and WITH_H5PY,
+                         "skipping hdf5 serialization tests")
+    def test_stacked_rag_hdf5_serialize_deserialize(self):
+        import nifty.hdf5 as nhdf5
+        hidT = nhdf5.createFile(self.path)
+        chunkShape = [1, 2, 1]
+        array = nhdf5.Hdf5ArrayUInt32(hidT, "data", self.bigShape, chunkShape)
+        array[0:self.bigShape[0], 0:self.bigShape[1], 0:self.bigShape[2]] = self.bigLabels
+        serialization_test(self, array, gridRagStacked2DHdf5)
         nhdf5.closeFile(hidT)
+
+    @unittest.skipUnless(nifty.Configuration.WITH_Z5 and WITH_H5PY,
+                         "skipping z5 serialization tests")
+    def test_grid_rag_z5_serialize_deserialize(self):
+        import z5py
+        zfile = z5py.File(self.path, use_zarr_format=False)
+        chunkShape = [1, 2, 1]
+        array = zfile.create_dataset("data",
+                                     dtype='uint32',
+                                     shape=self.bigShape,
+                                     chunks=chunkShape,
+                                     compressor='raw')
+        array[:] = self.bigLabels
+        # we only pass the path and key to the dataset, because we
+        # cannot properly link the python bindings for now
+        # self.small_array_test(array, nrag.gridRagStacked2DZ5)
+        self.serialization_test((self.path, "data"), nrag.gridRagStacked2DZ5)
 
 
 if __name__ == '__main__':

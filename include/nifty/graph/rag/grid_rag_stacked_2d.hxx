@@ -13,11 +13,10 @@ namespace graph{
 template<class LABEL_PROXY>
 class GridRagStacked2D : public GridRag<3, LABEL_PROXY> {
 
-    typedef LABEL_PROXY LabelsProxyType;
     typedef GridRag<3, LABEL_PROXY > BaseType;
     typedef GridRagStacked2D< LABEL_PROXY > SelfType;
-    typedef typename LabelsProxyType::LabelType LabelType;
-    friend class detail_rag::ComputeRag< SelfType >;
+    typedef typename LABEL_PROXY::LabelType LabelType;
+    friend class detail_rag::ComputeRag<SelfType>;
 
     struct PerSliceData{
         PerSliceData(const LabelType numberOfLabels)
@@ -136,17 +135,27 @@ void GridRagStacked2D<LABEL_PROXY>::serialize(ITER & iter) const {
     ++iter;
     *iter = this->numberOfInBetweenSliceEdges_;
     ++iter;
-    for( const auto & perSliceData : this->perSliceDataVec_ ) {
+    for(const auto & perSliceData : this->perSliceDataVec_ ) {
         *iter = perSliceData.numberOfInSliceEdges;
         ++iter;
+    }
+    for(const auto & perSliceData : this->perSliceDataVec_ ) {
         *iter = perSliceData.numberOfToNextSliceEdges;
         ++iter;
+    }
+    for(const auto & perSliceData : this->perSliceDataVec_ ) {
         *iter = perSliceData.inSliceEdgeOffset;
         ++iter;
+    }
+    for(const auto & perSliceData : this->perSliceDataVec_ ) {
         *iter = perSliceData.toNextSliceEdgeOffset;
         ++iter;
+    }
+    for(const auto & perSliceData : this->perSliceDataVec_ ) {
         *iter = perSliceData.minInSliceNode;
         ++iter;
+    }
+    for(const auto & perSliceData : this->perSliceDataVec_ ) {
         *iter = perSliceData.maxInSliceNode;
         ++iter;
     }
@@ -165,17 +174,27 @@ void GridRagStacked2D<LABEL_PROXY>::deserialize(ITER & iter) {
     ++iter;
     this->numberOfInBetweenSliceEdges_ = *iter;
     ++iter;
-    for( auto & perSliceData : this->perSliceDataVec_ ) {
+    for(auto & perSliceData : this->perSliceDataVec_ ) {
         perSliceData.numberOfInSliceEdges = *iter;
         ++iter;
+    }
+    for(auto & perSliceData : this->perSliceDataVec_ ) {
         perSliceData.numberOfToNextSliceEdges = *iter;
         ++iter;
+    }
+    for(auto & perSliceData : this->perSliceDataVec_ ) {
         perSliceData.inSliceEdgeOffset = *iter;
         ++iter;
+    }
+    for(auto & perSliceData : this->perSliceDataVec_ ) {
         perSliceData.toNextSliceEdgeOffset = *iter;
         ++iter;
+    }
+    for(auto & perSliceData : this->perSliceDataVec_ ) {
         perSliceData.minInSliceNode = *iter;
         ++iter;
+    }
+    for(auto & perSliceData : this->perSliceDataVec_ ) {
         perSliceData.maxInSliceNode = *iter;
         ++iter;
     }

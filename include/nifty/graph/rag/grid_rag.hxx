@@ -25,20 +25,12 @@
 namespace nifty{
 namespace graph{
 
-
 template<class COORD>
 COORD makeCoord2(const COORD & coord,const size_t axis){
     COORD coord2 = coord;
     coord2[axis] += 1;
     return coord2;
 };
-
-
-template<class LABELS_PROXY>
-struct RefHelper{
-    typedef const LABELS_PROXY & type;
-};
-
 
 template<size_t DIM, class LABELS_PROXY>
 class GridRag : public UndirectedGraph<>{
@@ -66,8 +58,8 @@ public:
 
     GridRag(const LabelsProxy & labelsProxy, const SettingsType & settings = SettingsType())
     :   settings_(settings),
-        labelsProxy_(labelsProxy)
-    {
+        labelsProxy_(std::make_unique<LabelsProxy>(labelsProxy))
+   {
         detail_rag::ComputeRag<SelfType>::computeRag(*this, settings_);
     }
 
@@ -76,16 +68,16 @@ public:
             ITER serializationBegin,
             const SettingsType & settings = SettingsType())
     :   settings_(settings),
-        labelsProxy_(labelsProxy) {
+        labelsProxy_(std::make_unique<LabelsProxy>(labelsProxy)) {
         this->deserialize(serializationBegin);
     }
 
     const LabelsProxy & labelsProxy() const {
-        return labelsProxy_;
+        return *labelsProxy_;
     }
 
-    const ShapeType & shape()const{
-        return labelsProxy_.shape();
+    const ShapeType & shape() const{
+        return labelsProxy_->shape();
     }
 
     UndirectedGraph<> extractSubgraphFromRoi(const ShapeType & begin,
@@ -103,7 +95,7 @@ public:
         }
         xt::xtensor<LabelType, DIM> subLabels(subArrayShape);
 
-        tools::readSubarray(labelsProxy_, begin, end, subLabels);
+        tools::readSubarray(*labelsProxy_, begin, end, subLabels);
 
         std::vector<LabelType> uniqueNodes;
         tools::uniques(subLabels, uniqueNodes);
@@ -151,11 +143,11 @@ public:
 protected:
     GridRag(const LabelsProxy & labelsProxy, const SettingsType & settings, const DontComputeRag)
     :   settings_(settings),
-        labelsProxy_(labelsProxy){
-
+        labelsProxy_(std::make_unique<LabelsProxy>(labelsProxy)){
     }
+
 protected:
-    typedef typename RefHelper<LABELS_PROXY>::type StorageType;
+    typedef std::unique_ptr<LabelsProxy> StorageType;
     SettingsType settings_;
     StorageType labelsProxy_;
 };

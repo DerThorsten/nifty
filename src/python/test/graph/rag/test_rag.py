@@ -13,15 +13,18 @@ class TestRagBase(unittest.TestCase):
         self.tmp = './tmp'
         if not os.path.exists(self.tmp):
             os.mkdir(self.tmp)
-        self.path = os.path.join(self.tmp, 'rag.h5')
+        self.path = os.path.join(self.tmp, 'rag')
+        self.path2 = os.path.join(self.tmp, 'rag2')
 
     def tearDown(self):
         if os.path.exists(self.tmp):
             shutil.rmtree(self.tmp)
 
-    def generic_rag_test(self, rag, numberOfNodes, shouldEdges, shouldNotEdges):
+    def generic_rag_test(self, rag, numberOfNodes, shouldEdges, shouldNotEdges, shape=None):
         self.assertEqual(rag.numberOfNodes, numberOfNodes)
         self.assertEqual(rag.numberOfEdges, len(shouldEdges))
+        if shape is not None:
+            self.assertEqual(rag.shape, shape)
 
         edgeList = []
         for edge in rag.edges():
@@ -63,7 +66,7 @@ class TestRag(TestRagBase):
         insertWorked = True
         # TODO we should use a assertRaises here
         try:
-            g.insertEdge(0,1)
+            g.insertEdge(0, 1)
         except:
             insertWorked = False
         self.assertFalse(insertWorked)
@@ -118,8 +121,8 @@ class TestRag(TestRagBase):
         ragA = nifty.graph.rag.gridRag(labels, n_labels, numberOfThreads=1)
         ragB = nifty.graph.rag.gridRag(labels, n_labels)
 
-        self.assertTrue(isinstance(ragA, nifty.graph.rag.ExplicitLabelsGridRag3D))
-        self.assertTrue(isinstance(ragB, nifty.graph.rag.ExplicitLabelsGridRag3D))
+        self.assertTrue(isinstance(ragA, nifty.graph.rag.ExplicitLabelsGridRag3D32))
+        self.assertTrue(isinstance(ragB, nifty.graph.rag.ExplicitLabelsGridRag3D32))
 
         shouldEdges = [(0, 1),
                        (0, 2),
@@ -187,7 +190,7 @@ class TestRag(TestRagBase):
 
         shape = [5, 6]
         chunkShape = [3, 2]
-        blockShape =  [2, 3]
+        blockShape = [2, 3]
 
         hidT = nhdf5.createFile(self.path)
         array = nhdf5.Hdf5ArrayUInt32(hidT, "data", shape, chunkShape)
@@ -199,7 +202,7 @@ class TestRag(TestRagBase):
                               [0, 2, 2, 0, 1, 3],
                               [0, 3, 3, 3, 3, 3],
                               [0, 3, 4, 5, 5, 5],
-                              [0, 0, 4, 6, 6, 6],],
+                              [0, 0, 4, 6, 6, 6]],
                              dtype='uint32')
 
         self.assertEqual(labels.shape[0], shape[0])

@@ -4,6 +4,9 @@
 
 #include "nifty/graph/rag/grid_rag_stacked_2d.hxx"
 
+// still need this for python bindings of nifty::ArrayExtender
+#include "nifty/python/converter.hxx"
+
 #ifdef WITH_HDF5
 #include "nifty/hdf5/hdf5_array.hxx"
 #endif
@@ -50,7 +53,7 @@ namespace graph{
         auto clsT = py::class_<GridRagType, BaseGraph>(ragModule, clsName.c_str());
         clsT
             // export shape and acces to the labels proxy object
-            .def_property_readonly("shape", [](const GridRagType & self){return self.shape();})
+            //.def_property_readonly("shape", [](const GridRagType & self){return self.shape();})
 
             //
             // export the per slice properties
@@ -68,7 +71,7 @@ namespace graph{
 
             .def("numberOfNodesPerSlice",[](const GridRagType & self){
                 const auto & shape = self.shape();
-                xt::pytensor<uint64_t, 1> out({(uint64_t) shape[0]});
+                xt::pytensor<uint64_t, 1> out = xt::zeros<uint64_t>({(int64_t) shape[0]});
                 for(auto sliceIndex = 0; sliceIndex<shape[0]; ++sliceIndex){
                     out(sliceIndex) =  self.numberOfNodes(sliceIndex);
                 }
@@ -77,7 +80,7 @@ namespace graph{
 
             .def("numberOfInSliceEdges",[](const GridRagType & self){
                 const auto & shape = self.shape();
-                xt::pytensor<uint64_t, 1> out({(uint64_t) shape[0]});
+                xt::pytensor<uint64_t, 1> out = xt::zeros<uint64_t>({(int64_t) shape[0]});
                 for(auto sliceIndex = 0; sliceIndex<shape[0]; ++sliceIndex){
                     out(sliceIndex) =  self.numberOfInSliceEdges(sliceIndex);
                 }
@@ -86,7 +89,7 @@ namespace graph{
 
             .def("numberOfInBetweenSliceEdges",[](const GridRagType & self){
                 const auto & shape = self.shape();
-                xt::pytensor<uint64_t, 1> out({(uint64_t) shape[0]});
+                xt::pytensor<uint64_t, 1> out = xt::zeros<uint64_t>({(int64_t) shape[0]});
                 for(auto sliceIndex = 0; sliceIndex<shape[0]; ++sliceIndex){
                     out(sliceIndex) =  self.numberOfInBetweenSliceEdges(sliceIndex);
                 }
@@ -95,7 +98,7 @@ namespace graph{
 
             .def("inSliceEdgeOffset",[](const GridRagType & self){
                 const auto & shape = self.shape();
-                xt::pytensor<uint64_t, 1> out({(uint64_t) shape[0]});
+                xt::pytensor<uint64_t, 1> out = xt::zeros<uint64_t>({(int64_t) shape[0]});
                 for(auto sliceIndex = 0; sliceIndex<shape[0]; ++sliceIndex){
                     out(sliceIndex) =  self.inSliceEdgeOffset(sliceIndex);
                 }
@@ -104,7 +107,7 @@ namespace graph{
 
             .def("betweenSliceEdgeOffset",[](const GridRagType & self){
                 const auto & shape = self.shape();
-                xt::pytensor<uint64_t, 1> out({(uint64_t) shape[0]});
+                xt::pytensor<uint64_t, 1> out = xt::zeros<uint64_t>({(int64_t) shape[0]});
                 for(auto sliceIndex = 0; sliceIndex<shape[0]; ++sliceIndex){
                     out(sliceIndex) =  self.betweenSliceEdgeOffset(sliceIndex);
                 }
@@ -119,7 +122,7 @@ namespace graph{
             })
             // export serialization and deserialization
             .def("serialize",[](const GridRagType & self){
-                xt::pytensor<uint64_t, 1> out({self.serializationSize()});
+                xt::pytensor<uint64_t, 1> out = xt::zeros<uint64_t>({self.serializationSize()});
                 auto ptr = &out(0);
                 self.serialize(ptr);
                 return out;
@@ -135,7 +138,7 @@ namespace graph{
 
             // export edgeLengths TODO remove this once / if we have removed this functionality
             .def("edgeLengths",[](GridRagType & self) {
-                xt::pytensor<uint64_t,1> out({self.numberOfEdges()});
+                xt::pytensor<uint64_t,1> out = xt::zeros<uint64_t>({self.numberOfEdges()});
                 const auto & edgeLens = self.edgeLengths();
                 for(int edge = 0; edge < self.numberOfEdges(); ++edge)
                     out(edge) = edgeLens[edge];
@@ -159,7 +162,7 @@ namespace graph{
             },
             py::return_value_policy::take_ownership,
             py::keep_alive<0, 1>(),
-            py::arg("labelsProxy"),
+            py::arg("labels").noconvert(),
             py::arg("numberOfLabels"),
             py::arg_t<int>("numberOfThreads", -1)
         );
@@ -183,7 +186,7 @@ namespace graph{
             },
             py::return_value_policy::take_ownership,
             py::keep_alive<0, 1>(),
-            py::arg("labelsProxy"),
+            py::arg("labels").noconvert(),
             py::arg("numberOfLabels"),
             py::arg("serialization")
         );
@@ -192,26 +195,40 @@ namespace graph{
 
     void exportGridRagStacked(py::module & ragModule) {
         // export in-memory labels
-        typedef LabelsProxy<3, xt::pytensor<uint32_t, 3>> ExplicitPyLabels3D;
-        exportGridRagStackedT<ExplicitPyLabels3D>(ragModule,
-                                                  "GridRagStacked2DExplicit",
-                                                  "gridRagStacked2DExplicitImpl");
+        typedef LabelsProxy<3, xt::pytensor<uint32_t, 3>> ExplicitPyLabels3D32;
+        exportGridRagStackedT<ExplicitPyLabels3D32>(ragModule,
+                                                  "GridRagStacked2D32",
+                                                  "gridRagStacked2D32");
+        typedef LabelsProxy<3, xt::pytensor<uint64_t, 3>> ExplicitPyLabels3D64;
+        exportGridRagStackedT<ExplicitPyLabels3D64>(ragModule,
+                                                  "GridRagStacked2D64",
+                                                  "gridRagStacked2D64");
 
         // export hdf5 labels
         #ifdef WITH_HDF5
-        typedef LabelsProxy<3, nifty::hdf5::Hdf5Array<uint32_t>> Hdf5Labels;
-        exportGridRagStackedT<Hdf5Labels>(ragModule,
-                                          "GridRagStacked2DHdf5",
-                                          "gridRagStacked2DHdf5Impl");
+        typedef LabelsProxy<3, nifty::hdf5::Hdf5Array<uint32_t>> Hdf5Labels32;
+        exportGridRagStackedT<Hdf5Labels32>(ragModule,
+                                            "GridRagStacked2DHdf532",
+                                            "gridRagStacked2DHdf532");
+
+        typedef LabelsProxy<3, nifty::hdf5::Hdf5Array<uint64_t>> Hdf5Labels64;
+        exportGridRagStackedT<Hdf5Labels64>(ragModule,
+                                            "GridRagStacked2DHdf564",
+                                            "gridRagStacked2DHdf564");
         #endif
 
         // export z5 labels
         #ifdef WITH_Z5
         //typedef LabelsProxy<3, z5::DatasetTyped<uint32_t>> Z5Labels;
-        typedef LabelsProxy<3, nifty::nz5::DatasetWrapper<uint32_t>> Z5Labels;
-        exportGridRagStackedT<Z5Labels>(ragModule,
-                                        "GridRagStacked2DZ5",
-                                        "gridRagStacked2DZ5Impl");
+        typedef LabelsProxy<3, nifty::nz5::DatasetWrapper<uint32_t>> Z5Labels32;
+        exportGridRagStackedT<Z5Labels32>(ragModule,
+                                          "GridRagStacked2DZ532",
+                                          "gridRagStacked2DZ532");
+
+        typedef LabelsProxy<3, nifty::nz5::DatasetWrapper<uint64_t>> Z5Labels64;
+        exportGridRagStackedT<Z5Labels64>(ragModule,
+                                          "GridRagStacked2DZ564",
+                                          "gridRagStacked2DZ564");
         #endif
     }
 
