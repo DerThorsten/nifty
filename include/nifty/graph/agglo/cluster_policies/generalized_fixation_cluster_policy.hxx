@@ -333,9 +333,16 @@ mergeEdges(
 
 
     mergePrios_[aliveEdge]    = power_mean(mergePrios_[aliveEdge], mergePrios_[deadEdge], 
-                                    1, 1, settings_.p0);
+                                    sa, sd, settings_.p0);
     notMergePrios_[aliveEdge] = power_mean(notMergePrios_[aliveEdge] , notMergePrios_[deadEdge], 
-                                    1, 1, settings_.p1);
+                                    sa, sd, settings_.p1);
+
+
+    // const auto s = mergePrios_[aliveEdge] + notMergePrios_[aliveEdge];
+    // mergePrios_[aliveEdge] /= s;
+    // notMergePrios_[aliveEdge] /= s;
+
+
        
     //mergePrios_[aliveEdge]    = std::max(mergePrios_[aliveEdge], mergePrios_[deadEdge]);
     //notMergePrios_[aliveEdge] = std::max(notMergePrios_[aliveEdge] , notMergePrios_[deadEdge]);
