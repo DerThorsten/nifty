@@ -69,7 +69,9 @@ def gridRagStacked2D(labels,
                      numberOfLabels,
                      serialization=None,
                      numberOfThreads=-1,
+                     ignoreLabel=-1,
                      dtype='uint32'):
+
     labels = numpy.require(labels, dtype=dtype)
     assert labels.ndim == 3, "Stacked rag is only available for 3D labels"
     factory = gridRagStacked2D32 if dtype == numpy.dtype('uint32') \
@@ -77,10 +79,12 @@ def gridRagStacked2D(labels,
     if serialization is None:
         return factory(labels,
                        numberOfLabels=numberOfLabels,
+                       ignoreLabel=ignoreLabel,
                        numberOfThreads=numberOfThreads)
     else:
         return factory(labels,
                        numberOfLabels=numberOfLabels,
+                       ignoreLabel=ignoreLabel,
                        serialization=serialization)
 
 
@@ -126,6 +130,7 @@ if Configuration.WITH_HDF5:
     def gridRagStacked2DHdf5(labels,
                              numberOfLabels,
                              numberOfThreads=-1,
+                             ignoreLabel=-1,
                              serialization=None,
                              dtype='uint32'):
         assert labels.ndim == 3, "Stacked rag is only available for 3D labels"
@@ -134,9 +139,11 @@ if Configuration.WITH_HDF5:
         if serialization is None:
             return factory(labels,
                            numberOfLabels=numberOfLabels,
+                           ignoreLabel=ignoreLabel,
                            numberOfThreads=int(numberOfThreads))
         else:
             return factory(labels,
+                           ignoreLabel=ignoreLabel,
                            numberOfLabels=numberOfLabels,
                            serialization=serialization)
 
@@ -177,6 +184,7 @@ if Configuration.WITH_Z5:
     def gridRagStacked2DZ5(labels,
                            numberOfLabels,
                            numberOfThreads=-1,
+                           ignoreLabel=-1,
                            serialization=None,
                            dtype='uint32'):
 
@@ -194,9 +202,11 @@ if Configuration.WITH_Z5:
         if serialization is None:
             return factory(labelWrapper,
                            numberOfLabels=numberOfLabels,
+                           ignoreLabel=ignoreLabel,
                            numberOfThreads=int(numberOfThreads))
         else:
             return factory(labelWrapper,
+                           ignoreLabel=ignoreLabel,
                            numberOfLabels=numberOfLabels,
                            serialization=serialization)
 
@@ -234,6 +244,8 @@ if WITH_H5PY:
             attrs['factory'] = factory
             dtype = 'uint' + className[-2:]
             attrs['dtype'] = dtype
+            attrs['haveIgnoreLabel'] = rag.haveIgnoreLabel
+            attrs['ignoreLabel'] = rag.ignoreLabel
 
     def readStackedRagFromHdf5(labels, numberOfLabels, savePath):
         serialization = []
@@ -270,12 +282,12 @@ if WITH_H5PY:
             attrs = f.attrs
             factory = eval(attrs['factory'])
             dtype = attrs['dtype']
+            ignoreLabel = attrs['ignoreLabel'] if attrs['haveIgnoreLabel'] else -1
 
-        for ser in serialization:
-            print(ser.shape)
         serialization = numpy.concatenate(serialization)
 
         return factory(labels,
                        dtype=dtype,
                        numberOfLabels=numberOfLabels,
+                       ignoreLabel=ignoreLabel,
                        serialization=serialization.squeeze())

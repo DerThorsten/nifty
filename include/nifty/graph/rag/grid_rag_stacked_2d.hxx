@@ -39,7 +39,8 @@ public:
     typedef typename BaseType::LabelsProxy LabelsProxy;
     typedef typename BaseType::SettingsType SettingsType;
 
-    GridRagStacked2D(const LabelsProxy & labelsProxy, const SettingsType & settings = SettingsType())
+    GridRagStacked2D(const LabelsProxy & labelsProxy,
+                     const SettingsType & settings = SettingsType())
     :   BaseType(labelsProxy, settings, typename BaseType::DontComputeRag()),
         perSliceDataVec_(
             labelsProxy.shape()[0],
@@ -113,6 +114,13 @@ public:
 
     template<class ITER>
     void deserialize(ITER & iter);
+
+    // ignore label api
+    bool haveIgnoreLabel() const
+    {return BaseType::settings_.haveIgnoreLabel;}
+
+    uint64_t ignoreLabel() const
+    {return BaseType::settings_.ignoreLabel;}
 private:
 
     std::vector<PerSliceData> perSliceDataVec_;

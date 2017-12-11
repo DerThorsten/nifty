@@ -78,6 +78,39 @@ class TestRagStacked(TestRagBase):
                          (1, 5),
                          (2, 4),
                          (2, 5)]
+    # graph edges for ignore graphs
+    ignoreShouldEdges = [(1, 2),
+                         (1, 3),
+                         (2, 3),
+                         (3, 4),
+                         (3, 5),
+                         (4, 5)]
+    # not graph edges for ignore graphs
+    ignoreShouldNotEdges = [(0, 1),
+                            (0, 3),
+                            (0, 4),
+                            (0, 5),
+                            (1, 4),
+                            (1, 5),
+                            (2, 4),
+                            (2, 5)]
+
+    def ignore_array_test(self, array, ragFunction):
+        rag = ragFunction(array,
+                          numberOfLabels=self.bigLabels.max() + 1,
+                          ignoreLabel=0,
+                          numberOfThreads=1)
+
+        self.generic_rag_test(rag=rag,
+                              numberOfNodes=self.bigLabels.max() + 1,
+                              shouldEdges=self.ignoreShouldEdges,
+                              shouldNotEdges=self.ignoreShouldNotEdges,
+                              shape=self.bigShape)
+
+    def test_grid_rag_stacked_ignore(self):
+        array = numpy.zeros(self.bigShape, dtype='uint32')
+        array[:] = self.bigLabels
+        self.ignore_array_test(array, nrag.gridRagStacked2D)
 
     def small_array_test(self, array, ragFunction):
         rag = ragFunction(array,

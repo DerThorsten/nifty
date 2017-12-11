@@ -52,8 +52,6 @@ namespace graph{
 
         auto clsT = py::class_<GridRagType, BaseGraph>(ragModule, clsName.c_str());
         clsT
-            // export shape and acces to the labels proxy object
-            //.def_property_readonly("shape", [](const GridRagType & self){return self.shape();})
 
             //
             // export the per slice properties
@@ -137,12 +135,20 @@ namespace graph{
             })
 
             // export edgeLengths TODO remove this once / if we have removed this functionality
-            .def("edgeLengths",[](GridRagType & self) {
+            .def("edgeLengths",[](const GridRagType & self) {
                 xt::pytensor<uint64_t,1> out = xt::zeros<uint64_t>({self.numberOfEdges()});
                 const auto & edgeLens = self.edgeLengths();
                 for(int edge = 0; edge < self.numberOfEdges(); ++edge)
                     out(edge) = edgeLens[edge];
                 return out;
+            })
+
+            .def_property_readonly("haveIgnoreLabel", [](const GridRagType & self){
+                return self.haveIgnoreLabel();
+            })
+
+            .def_property_readonly("ignoreLabel", [](const GridRagType & self){
+                return self.ignoreLabel();
             })
         ;
 
@@ -152,18 +158,24 @@ namespace graph{
         ragModule.def(facName.c_str(),
             [](const LabelArrayType & labels,
                const int64_t numberOfLabels,
+               const int64_t ignoreLabel,
                const int numberOfThreads){
 
                 LabelsProxyType labelsProxy(labels, numberOfLabels);
 
                 auto s = typename  GridRagType::SettingsType();
                 s.numberOfThreads = numberOfThreads;
+                if(ignoreLabel >= 0) {
+                    s.haveIgnoreLabel = true;
+                    s.ignoreLabel = (uint64_t) ignoreLabel;
+                }
                 return new GridRagType(labelsProxy, s);
             },
             py::return_value_policy::take_ownership,
             py::keep_alive<0, 1>(),
             py::arg("labels").noconvert(),
             py::arg("numberOfLabels"),
+            py::arg_t<int>("ignoreLabel", -1),
             py::arg_t<int>("numberOfThreads", -1)
         );
 
@@ -171,24 +183,30 @@ namespace graph{
         ragModule.def(facName.c_str(),
             [](const LabelArrayType & labels,
                const int64_t numberOfLabels,
-               xt::pytensor<uint64_t, 1> serialization
+               xt::pytensor<uint64_t, 1> serialization,
+               const int64_t ignoreLabel
             ){
                 LabelsProxyType labelsProxy(labels, numberOfLabels);
 
                 auto startPtr = &serialization(0);
                 auto lastElement = &serialization(serialization.size()-1);
                 auto d = lastElement - startPtr + 1;
-                NIFTY_CHECK_OP(d,==,serialization.size(), "serialization must be contiguous");
+                NIFTY_CHECK_OP(d, ==, serialization.size(), "serialization must be contiguous");
 
                 auto s = typename GridRagType::SettingsType();
                 s.numberOfThreads = -1;
+                if(ignoreLabel >= 0) {
+                    s.haveIgnoreLabel = true;
+                    s.ignoreLabel = (uint64_t) ignoreLabel;
+                }
                 return new GridRagType(labelsProxy, startPtr, s);
             },
             py::return_value_policy::take_ownership,
             py::keep_alive<0, 1>(),
             py::arg("labels").noconvert(),
             py::arg("numberOfLabels"),
-            py::arg("serialization")
+            py::arg("serialization"),
+            py::arg_t<int>("ignoreLabel", -1)
         );
 
     }

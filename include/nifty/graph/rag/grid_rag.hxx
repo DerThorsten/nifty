@@ -41,13 +41,17 @@ public:
     struct SettingsType{
         SettingsType()
         :   numberOfThreads(-1),
-            blockShape()
+            blockShape(),
+            haveIgnoreLabel(false),
+            ignoreLabel(0)
         {
             for(auto d=0; d<DIM; ++d)
                 blockShape[d] = 100;
         }
         int numberOfThreads;
         array::StaticArray<int64_t, DIM> blockShape;
+        bool haveIgnoreLabel;
+        uint64_t ignoreLabel;
     };
 
     typedef GridRag<DIM, LABELS_PROXY> SelfType;

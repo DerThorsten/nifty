@@ -43,10 +43,8 @@ struct ComputeRag<GridRagStacked2D<LABELS_PROXY>> {
 
 
     template<class S>
-    static void computeRag(
-        RagType & rag,
-        const S & settings
-    ){
+    static void computeRag(RagType & rag,
+                           const S & settings){
         //std::cout<<"\nphase 0\n";
 
         typedef array::StaticArray<int64_t, 3> Coord;
@@ -70,6 +68,9 @@ struct ComputeRag<GridRagStacked2D<LABELS_PROXY>> {
 
         auto & perSliceDataVec = rag.perSliceDataVec_;
 
+        const auto haveIgnoreLabel = settings.haveIgnoreLabel;
+        const auto ignoreLabel = settings.ignoreLabel;
+
         /*
          * Parallel IO version
         */
@@ -86,11 +87,12 @@ struct ComputeRag<GridRagStacked2D<LABELS_PROXY>> {
                 auto & sliceData  = perSliceDataVec[sliceIndex];
                 auto & edgeLens   = edgeLenStorage[sliceIndex];
 
+
                 //
                 auto sliceLabelsFlat3DView = sliceLabelsStorage.getView(tid);
 
                 // fetch the data for the slice
-                const Coord blockBegin({sliceIndex,0L,0L});
+                const Coord blockBegin({sliceIndex, 0L, 0L});
                 const Coord blockEnd({sliceIndex+1, sliceShape2[0], sliceShape2[1]});
                 labelsProxy.readSubarray(blockBegin, blockEnd, sliceLabelsFlat3DView);
                 //
@@ -99,14 +101,24 @@ struct ComputeRag<GridRagStacked2D<LABELS_PROXY>> {
                 // do the thing
                 nifty::tools::forEachCoordinate(sliceShape2,[&](const Coord2 & coord){
                     const auto lU = xtensor::read(sliceLabels, coord.asStdArray());
+                    // if we have ignore labels, we check if this is an ignore label
+                    if(haveIgnoreLabel && lU == ignoreLabel) {
+                        return;
+                    }
+
                     sliceData.minInSliceNode = std::min(sliceData.minInSliceNode, lU);
                     sliceData.maxInSliceNode = std::max(sliceData.maxInSliceNode, lU);
-                    for(std::size_t axis=0; axis<2; ++axis){
+                    for(std::size_t axis=0; axis<2; ++axis) {
                         Coord2 coord2 = coord;
                         ++coord2[axis];
                         if(coord2[axis] < sliceShape2[axis]){
                             const auto lV = xtensor::read(sliceLabels, coord2.asStdArray());
+                            // if we have ignore labels, we check if this is an ignore label
+                            if(haveIgnoreLabel && lV == ignoreLabel) {
+                                return;
+                            }
                             if(lU != lV){
+
                                 sliceData.minInSliceNode = std::min(sliceData.minInSliceNode, lV);
                                 sliceData.maxInSliceNode = std::max(sliceData.maxInSliceNode, lV);
 
@@ -168,7 +180,7 @@ struct ComputeRag<GridRagStacked2D<LABELS_PROXY>> {
                 const auto endNode = sliceData.maxInSliceNode+1;
 
                 for(uint64_t u = startNode; u< endNode; ++u){
-                    for(auto & vAdj :  rag.nodes_[u]){
+                    for(auto & vAdj : rag.nodes_[u]){
                         const auto v = vAdj.node();
                         if(u < v){
                             // set the edge indices in this slice
@@ -199,7 +211,7 @@ struct ComputeRag<GridRagStacked2D<LABELS_PROXY>> {
             for(auto & edgeLen : edgeLenStorage)
                 edgeLen.clear();
 
-            for(auto startIndex : {0,1}){
+            for(auto startIndex : {0, 1}){
                 parallel::parallel_foreach(threadpool, numberOfSlices-1, [&](const int tid, const int64_t sliceAIndex){
 
                     // this seems super ugly...
@@ -229,6 +241,12 @@ struct ComputeRag<GridRagStacked2D<LABELS_PROXY>> {
                         nifty::tools::forEachCoordinate(sliceShape2,[&](const Coord2 & coord){
                             const auto lU = xtensor::read(sliceALabels, coord.asStdArray());
                             const auto lV = xtensor::read(sliceBLabels, coord.asStdArray());
+
+                            if(haveIgnoreLabel) {
+                                if(lV == ignoreLabel || lU == ignoreLabel) {
+                                    return;
+                                }
+                            }
 
                             // add up the len
                             // map insert cf.: http://stackoverflow.com/questions/97050/stdmap-insert-or-stdmap-find
