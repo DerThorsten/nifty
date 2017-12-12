@@ -11,7 +11,6 @@
 //#endif
 
 #include "nifty/graph/rag/grid_rag.hxx"
-#include "nifty/graph/rag/grid_rag_labels_proxy.hxx"
 #include "nifty/graph/rag/feature_accumulation/grid_rag_accumulate_flat.hxx"
 
 #include "xtensor-python/pytensor.hpp"

@@ -13,8 +13,8 @@
 #include "nifty/parallel/threadpool.hxx"
 #include "nifty/tools/timer.hxx"
 #include "nifty/tools/array_tools.hxx"
+#include "nifty/tools/block_access.hxx"
 
-//#include "nifty/graph/rag/grid_rag_labels_proxy.hxx"
 #include "nifty/graph/rag/detail_rag/compute_grid_rag.hxx"
 
 #include "xtensor/xtensor.hpp"

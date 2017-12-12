@@ -87,7 +87,7 @@ namespace graph{
     }
 
     void exportAccumulateAffinityFeatures(py::module & ragModule) {
-        typedef LabelsProxy<3, xt::pytensor<uint32_t, 3>> ExplicitPyLabels3D;
+        typedef xt::pytensor<uint32_t, 3> ExplicitPyLabels3D;
         typedef GridRag<3, ExplicitPyLabels3D> Rag3d;
         // FIXME FIXME we need `unravelIndex` functionality for this
         //exportAccumulateAffinityFeaturesT<Rag3d, 3>(ragModule);

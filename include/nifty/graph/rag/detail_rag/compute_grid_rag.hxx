@@ -10,10 +10,17 @@
 #include "nifty/array/arithmetic_array.hxx"
 #include "nifty/tools/for_each_block.hxx"
 
-#include "nifty/graph/rag/grid_rag_labels_proxy.hxx"
 #include "nifty/graph/undirected_list_graph.hxx"
 
 #include "nifty/xtensor/xtensor.hxx"
+
+#ifdef WITH_HDF5
+#include "nifty/hdf5/hdf5_array.hxx"
+#endif
+
+#ifdef WITH_Z5
+#include "nifty/z5/z5.hxx"
+#endif
 
 
 namespace nifty{

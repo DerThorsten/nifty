@@ -6,7 +6,6 @@
 
 #include "nifty/graph/rag/grid_rag.hxx"
 #include "nifty/graph/rag/grid_rag_stacked_2d.hxx"
-#include "nifty/graph/rag/grid_rag_labels_proxy.hxx"
 #include "nifty/graph/rag/feature_accumulation/grid_rag_accumulate_filters_stacked.hxx"
 
 #include "xtensor-python/pytensor.hpp"
