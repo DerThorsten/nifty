@@ -36,6 +36,9 @@ namespace graph{
         const auto & labels = labelsExp.derived_cast();
         const auto & data = dataExp.derived_cast();
 
+        const auto haveIgnoreLabel = rag.haveIgnoreLabel();
+        const auto ignoreLabel = rag.ignoreLabel();
+
         // set minmax for accumulator chains
         for(int64_t edge = 0; edge < accChainVec.size(); ++edge){
             accChainVec[edge].setHistogramOptions(histoOptions);
@@ -46,12 +49,26 @@ namespace graph{
         float fU, fV;
         VigraCoord vigraCoordU, vigraCoordV;
         nifty::tools::forEachCoordinate(sliceShape2, [&](const Coord2 coord){
+
             lU = xtensor::read(labels, coord.asStdArray());
+            // skip if we have the ignore label activated and
+            // if we hit an ignore label
+            if(haveIgnoreLabel && lU == ignoreLabel) {
+                return;
+            }
+
             for(int axis = 0; axis < 2; ++axis){
                 Coord2 coord2 = coord;
                 ++coord2[axis];
-                if( coord2[axis] < sliceShape2[axis]) {
+                if(coord2[axis] < sliceShape2[axis]) {
+
                     lV = xtensor::read(labels, coord2.asStdArray());
+                    // skip if we have the ignore label activated and
+                    // if we hit an ignore label
+                    if(haveIgnoreLabel && lV == ignoreLabel) {
+                        return;
+                    }
+
                     if(lU != lV) {
                         vigraCoordU[0] = sliceId;
                         vigraCoordV[0] = sliceId;
@@ -104,6 +121,9 @@ namespace graph{
         const auto & dataA = dataAExp.derived_cast();
         const auto & dataB = dataBExp.derived_cast();
 
+        const auto haveIgnoreLabel = rag.haveIgnoreLabel();
+        const auto ignoreLabel = rag.ignoreLabel();
+
         // set minmax for accumulator chains
         for(int64_t edge = 0; edge < accChainVec.size(); ++edge){
             accChainVec[edge].setHistogramOptions(histoOptions);
@@ -113,9 +133,19 @@ namespace graph{
         LabelType lU, lV;
         float fU, fV;
         nifty::tools::forEachCoordinate(sliceShape2, [&](const Coord2 coord){
+
             // labels are different for different slices by default!
             lU = xtensor::read(labelsA, coord.asStdArray());
             lV = xtensor::read(labelsB, coord.asStdArray());
+
+            // skip if we have the ignore label activated and
+            // if we hit an ignore label
+            if(haveIgnoreLabel) {
+                if(lU == ignoreLabel || lV == ignoreLabel) {
+                    return;
+                }
+            }
+
             vigraCoordU[0] = sliceIdA;
             vigraCoordV[0] = sliceIdB;
             for(int d = 1; d < 3; ++d){
