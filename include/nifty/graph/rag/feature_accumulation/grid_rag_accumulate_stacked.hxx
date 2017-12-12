@@ -173,20 +173,30 @@ namespace graph{
     void writeOverhangingChunks(const OVERHANG_STORAGE & overhangsFront,
                                 const OVERHANG_STORAGE & overhangsBack,
                                 OUTPUT & output,
-                                parallel::ThreadPool & threadpool) {
+                                parallel::ThreadPool & threadpool,
+                                const bool forZEdges) {
         const auto nSlices = overhangsFront.size();
         NIFTY_CHECK_OP(nSlices, ==, overhangsBack.size(), "len of overhangs must agree");
 
         // assemble and write the missing chunks in parallel
         parallel::parallel_foreach(threadpool, nSlices, [&](const int tid, const int64_t sliceId) {
 
-            // we skip id 0
+            // we skip slice 0, because there are no overhangs to assemble
             if(sliceId == 0) {
                 return;
             }
 
             const auto & storageFront = overhangsFront[sliceId];
             const auto & storageBack = overhangsBack[sliceId - 1];
+
+            // need to write last overhangs for z-edges
+            if(sliceId == nSlices - 1 && forZEdges) {
+                const auto & beginCoord = storageBack.begin;
+                const auto & endCoord = storageBack.end;
+                const auto & dataBack = storageBack.features;
+                tools::writeSubarray(output, beginCoord, endCoord, dataBack);
+                return;
+            }
 
             // make sure that both storages agree whether they have data
             NIFTY_CHECK_OP(storageFront.hasData, ==, storageBack.hasData, "both storages need to have or have not data");
@@ -195,19 +205,28 @@ namespace graph{
                 return;
             }
 
-            const auto & beginCoord = storageFront.begin;
-            const auto & endCoord = storageBack.end;
+            const auto & beginCoord = storageBack.begin;
+            const auto & endCoord = storageFront.end;
 
             const auto & dataFront = storageFront.features;
             const auto & dataBack = storageBack.features;
 
             // assemble the data
-            auto dataExp = xt::concatenate(xt::xtuple(dataFront, dataBack), 0);
+            auto dataExp = xt::concatenate(xt::xtuple(dataBack, dataFront), 0);
             auto data = xt::eval(dataExp);
 
             // write the chunk
             tools::writeSubarray(output, beginCoord, endCoord, data);
         });
+
+        // need to write the last overhangs for xy edges
+        if(!forZEdges) {
+            const auto & storageBack = overhangsBack[nSlices-1];
+            const auto & beginCoord = storageBack.begin;
+            const auto & endCoord = storageBack.end;
+            const auto & dataBack = storageBack.features;
+            tools::writeSubarray(output, beginCoord, endCoord, dataBack);
+        }
     }
 
 
@@ -328,7 +347,6 @@ namespace graph{
                         pass
                     );
                     fXY(accChainVec, sliceIdA, inEdgeOffset);
-                    std::cout << "done" << std::endl;
                 }
 
                 //
@@ -376,7 +394,6 @@ namespace graph{
                                                        zDirection,
                                                        pass);
                         fZ(accChainVec, sliceIdA, accOffset);
-                        std::cout << "done" << std::endl;
                     }
 
                     // accumulate the inner slice features for the last slice, which is never a lower slice
@@ -487,6 +504,7 @@ namespace graph{
                 const int64_t edgeEnd = edgeOffset + nEdges;
                 const int64_t overhangBegin = (edgeOffset % edgeChunkSize == 0) ? 0 : edgeChunkSize - (edgeOffset % edgeChunkSize);
                 const int64_t overhangEnd = edgeEnd % edgeChunkSize;
+
                 // find beginning and end for block-aligned edges in tmp features
                 // at the begin, we need to check
                 const int64_t edgeEndAlignedLocal = nEdges - overhangEnd;
@@ -580,11 +598,11 @@ namespace graph{
             // write the overhanging chunks to file
             // we only need to do this if we actually compute this feature type
             if(!keepZOnly) {
-                writeOverhangingChunks(storageXYFront, storageXYBack, edgeFeaturesOutXY, threadpool);
+                writeOverhangingChunks(storageXYFront, storageXYBack, edgeFeaturesOutXY, threadpool, false);
             }
 
             if(!keepXYOnly) {
-                writeOverhangingChunks(storageZFront, storageZBack, edgeFeaturesOutZ, threadpool);
+                writeOverhangingChunks(storageZFront, storageZBack, edgeFeaturesOutZ, threadpool, true);
             }
 
         } else {

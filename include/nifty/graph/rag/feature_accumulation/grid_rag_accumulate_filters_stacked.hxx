@@ -666,11 +666,11 @@ void accumulateEdgeFeaturesFromFilters(const GridRagStacked2D<LABELS_PROXY> & ra
         // write the overhanging chunks to file
         // we only need to do this if we actually compute this feature type
         if(!keepZOnly) {
-            writeOverhangingChunks(storageXYFront, storageXYBack, edgeFeaturesOutXY, threadpool);
+            writeOverhangingChunks(storageXYFront, storageXYBack, edgeFeaturesOutXY, threadpool, false);
         }
 
         if(!keepXYOnly) {
-            writeOverhangingChunks(storageZFront, storageZBack, edgeFeaturesOutZ, threadpool);
+            writeOverhangingChunks(storageZFront, storageZBack, edgeFeaturesOutZ, threadpool, true);
         }
 
     } else {
