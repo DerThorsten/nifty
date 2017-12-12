@@ -16,7 +16,8 @@
 #include "nifty/graph/agglo/agglomerative_clustering.hxx"
 
 
-#include "nifty/graph/agglo/cluster_policies/generalized_fixation_cluster_policy.hxx"
+#include "nifty/graph/agglo/cluster_policies/generalized_mean_fixation_cluster_policy.hxx"
+#include "nifty/graph/agglo/cluster_policies/rank_fixation_cluster_policy.hxx"
 #include "nifty/graph/agglo/cluster_policies/fixation_cluster_policy2.hxx"
 
 namespace py = pybind11;
@@ -86,62 +87,9 @@ namespace agglo{
     }
 
 
-    // template<class GRAPH, bool WITH_UCM>
-    // void exportFixationPolicy3(py::module & aggloModule) {
-        
-    //     typedef GRAPH GraphType;
-    //     const auto graphName = GraphName<GraphType>::name();
-    //     typedef nifty::marray::PyView<float, 1>   PyViewFloat1;
-    //     typedef nifty::marray::PyView<uint8_t, 1> PyViewUInt8_1;
-    //     const std::string withUcmStr =  WITH_UCM ? std::string("WithUcm") :  std::string() ;
-
-    //     {   
-    //         // name and type of cluster operator
-    //         typedef FixationClusterPolicy3<GraphType,WITH_UCM> ClusterPolicyType;
-    //         const auto clusterPolicyBaseName = std::string("FixationClusterPolicy3") +  withUcmStr;
-    //         const auto clusterPolicyClsName = clusterPolicyBaseName + graphName;
-    //         const auto clusterPolicyFacName = lowerFirst(clusterPolicyBaseName);
-
-    //         // the cluster operator cls
-    //         py::class_<ClusterPolicyType>(aggloModule, clusterPolicyClsName.c_str())
-    //             .def_property_readonly("mergePrios", &ClusterPolicyType::mergePrios)
-    //             .def_property_readonly("notMergePrios", &ClusterPolicyType::notMergePrios)
-    //             //.def_property_readonly("edgeSizes", &ClusterPolicyType::edgeSizes)
-    //         ;
-        
-
-    //         // factory
-    //         aggloModule.def(clusterPolicyFacName.c_str(),
-    //             [](
-    //                 const GraphType & graph,
-    //                 const PyViewFloat1 & mergePrios,
-    //                 const PyViewFloat1 & notMergePrios,
-    //                 const PyViewUInt8_1 & isMergeEdge,
-    //                 const PyViewFloat1 & edgeSizes,
-    //                 const uint64_t numberOfNodesStop
-    //             ){
-    //                 typename ClusterPolicyType::SettingsType s;
-    //                 s.numberOfNodesStop = numberOfNodesStop;
-    //                 auto ptr = new ClusterPolicyType(graph, mergePrios, notMergePrios, isMergeEdge, edgeSizes, s);
-    //                 return ptr;
-    //             },
-    //             py::return_value_policy::take_ownership,
-    //             py::keep_alive<0,1>(), // graph
-    //             py::arg("graph"),
-    //             py::arg("mergePrios"),
-    //             py::arg("notMergePrios"),
-    //             py::arg("isMergeEdge"),
-    //             py::arg("edgeSizes"),
-    //             py::arg("numberOfNodesStop") = 1
-    //         );
-
-    //         // export the agglomerative clustering functionality for this cluster operator
-    //         exportAgglomerativeClusteringTClusterPolicy<ClusterPolicyType>(aggloModule, clusterPolicyBaseName);
-    //     }
-    // }
 
     template<class GRAPH, bool WITH_UCM>
-    void exportGeneralizedFixationPolicy(py::module & aggloModule) {
+    void exportGeneralizedMeanFixationPolicy(py::module & aggloModule) {
         
         typedef GRAPH GraphType;
         const auto graphName = GraphName<GraphType>::name();
@@ -151,8 +99,8 @@ namespace agglo{
 
         {   
             // name and type of cluster operator
-            typedef GeneralizedFixationClusterPolicy<GraphType,WITH_UCM> ClusterPolicyType;
-            const auto clusterPolicyBaseName = std::string("GeneralizedFixationClusterPolicy") +  withUcmStr;
+            typedef GeneralizedMeanFixationClusterPolicy<GraphType,WITH_UCM> ClusterPolicyType;
+            const auto clusterPolicyBaseName = std::string("GeneralizedMeanFixationClusterPolicy") +  withUcmStr;
             const auto clusterPolicyClsName = clusterPolicyBaseName + graphName;
             const auto clusterPolicyFacName = lowerFirst(clusterPolicyBaseName);
 
@@ -203,6 +151,68 @@ namespace agglo{
         }
     }
 
+    template<class GRAPH, bool WITH_UCM>
+    void exportRankFixationPolicy(py::module & aggloModule) {
+        
+        typedef GRAPH GraphType;
+        const auto graphName = GraphName<GraphType>::name();
+        typedef nifty::marray::PyView<float, 1>   PyViewFloat1;
+        typedef nifty::marray::PyView<uint8_t, 1> PyViewUInt8_1;
+        const std::string withUcmStr =  WITH_UCM ? std::string("WithUcm") :  std::string() ;
+
+        {   
+            // name and type of cluster operator
+            typedef RankFixationClusterPolicy<GraphType,WITH_UCM> ClusterPolicyType;
+            const auto clusterPolicyBaseName = std::string("RankFixationClusterPolicy") +  withUcmStr;
+            const auto clusterPolicyClsName = clusterPolicyBaseName + graphName;
+            const auto clusterPolicyFacName = lowerFirst(clusterPolicyBaseName);
+
+            // the cluster operator cls
+            py::class_<ClusterPolicyType>(aggloModule, clusterPolicyClsName.c_str())
+                //.def_property_readonly("edgeSizes", &ClusterPolicyType::edgeSizes)
+            ;
+        
+
+            // factory
+            aggloModule.def(clusterPolicyFacName.c_str(),
+                [](
+                    const GraphType & graph,
+                    const PyViewFloat1 & mergePrios,
+                    const PyViewFloat1 & notMergePrios,
+                    const PyViewUInt8_1 & isLocalEdge,
+                    const PyViewFloat1 & edgeSizes,
+                    const double q0,
+                    const double q1,
+                    const bool zeroInit,
+                    const uint64_t numberOfNodesStop
+                ){
+                    typename ClusterPolicyType::SettingsType s;
+                    s.numberOfNodesStop = numberOfNodesStop;
+                    s.q0 = q0;
+                    s.q1 = q1;
+                    s.zeroInit = zeroInit;
+                    auto ptr = new ClusterPolicyType(graph, mergePrios, notMergePrios, isLocalEdge, edgeSizes, s);
+                    return ptr;
+                },
+                py::return_value_policy::take_ownership,
+                py::keep_alive<0,1>(), // graph
+                py::arg("graph"),
+                py::arg("mergePrios"),
+                py::arg("notMergePrios"),
+                py::arg("isMergeEdge"),
+                py::arg("edgeSizes"),
+                py::arg("q0") = 0.5,
+                py::arg("q1") = 0.5,
+                py::arg("zeroInit") = false,
+                py::arg("numberOfNodesStop") = 1
+            );
+
+            // export the agglomerative clustering functionality for this cluster operator
+            exportAgglomerativeClusteringTClusterPolicy<ClusterPolicyType>(aggloModule, clusterPolicyBaseName);
+        }
+    }
+
+
     void exportFixationAgglomerativeClustering(py::module & aggloModule) {
         {
             typedef PyUndirectedGraph GraphType;
@@ -214,8 +224,11 @@ namespace agglo{
             // exportFixationPolicy3<GraphType, false>(aggloModule);
             // exportFixationPolicy3<GraphType, true>(aggloModule);
 
-            exportGeneralizedFixationPolicy<GraphType, false>(aggloModule);
-            exportGeneralizedFixationPolicy<GraphType, true>(aggloModule);
+            exportGeneralizedMeanFixationPolicy<GraphType, false>(aggloModule);
+            exportGeneralizedMeanFixationPolicy<GraphType, true>(aggloModule);
+
+            exportRankFixationPolicy<GraphType, false>(aggloModule);
+            exportRankFixationPolicy<GraphType, true>(aggloModule);
         }
 
 
