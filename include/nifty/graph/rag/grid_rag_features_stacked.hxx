@@ -16,24 +16,24 @@
 namespace nifty{
 namespace graph{
 
-    template<class LABELS_PROXY, class LABELS, class NODE_MAP>
+    template<class GRAPH_LABELS, class LABELS, class NODE_MAP>
     void gridRagAccumulateLabels(
-        const GridRagStacked2D<LABELS_PROXY> & graph,
+        const GridRagStacked2D<GRAPH_LABELS> & graph,
         const LABELS & data,
         NODE_MAP & nodeMap,
         const int numberOfThreads = -1
     ){
 
-        typedef LABELS_PROXY LabelsProxyType;
-        typedef typename LABELS_PROXY::LabelType LabelType;
-        typedef typename LabelsProxyType::BlockStorageType LabelsBlockStorage;
+        typedef GRAPH_LABELS GraphLabels;
+        typedef typename GraphLabels::value_type LabelType;
+        typedef typename GridRagStacked2D<GraphLabels>::BlockStorageType LabelsBlockStorage;
         typedef typename tools::BlockStorage<typename LABELS::value_type> DataBlockStorage;
 
         typedef array::StaticArray<int64_t, 3> Coord;
         typedef array::StaticArray<int64_t, 2> Coord2;
 
-        const auto & labelsProxy = graph.labelsProxy();
-        const auto & shape = labelsProxy.shape();
+        const auto & labels = graph.labels();
+        const auto & shape = graph.shape();
         const auto & dataShape = data.shape();
 
         NIFTY_CHECK_OP(dataShape[0],==,shape[0], "Shape along z does not agree")
@@ -62,7 +62,7 @@ namespace graph{
             const Coord blockBegin({sliceIndex,0L,0L});
             const Coord blockEnd({sliceIndex+1, sliceShape2[0], sliceShape2[1]});
 
-            tools::readSubarray(labelsProxy, blockBegin, blockEnd, sliceLabelsFlat3DView);
+            tools::readSubarray(labels, blockBegin, blockEnd, sliceLabelsFlat3DView);
             tools::readSubarray(data, blockBegin, blockEnd, sliceDataFlat3DView);
 
             auto sliceLabels = xtensor::squeezedView(sliceLabelsFlat3DView);

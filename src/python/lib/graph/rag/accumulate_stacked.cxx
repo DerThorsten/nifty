@@ -135,7 +135,7 @@ namespace graph{
 
         //explicit
         {
-            typedef LabelsProxy<3, xt::pytensor<uint32_t, 3>> ExplicitPyLabels3D;
+            typedef xt::pytensor<uint32_t, 3> ExplicitPyLabels3D;
             typedef GridRagStacked2D<ExplicitPyLabels3D> StackedRagUInt32;
             typedef xt::pytensor<float, 3> FloatArray;
             typedef xt::pytensor<uint8_t, 3> UInt8Array;
@@ -146,10 +146,12 @@ namespace graph{
         // hdf5
         #ifdef WITH_HDF5
         {
-            typedef Hdf5Labels<3,uint32_t> LabelsUInt32;
+            typedef nifty::hdf5::Hdf5Array<uint32_t> LabelsUInt32;
             typedef GridRagStacked2D<LabelsUInt32> StackedRagUInt32;
-            typedef Hdf5Labels<3,uint64_t> LabelsUInt64;
+
+            typedef nifty::hdf5::Hdf5Array<uint64_t> LabelsUInt64;
             typedef GridRagStacked2D<LabelsUInt64> StackedRagUInt64;
+
             typedef nifty::hdf5::Hdf5Array<float> FloatArray;
             typedef nifty::hdf5::Hdf5Array<uint8_t> UInt8Array;
 
@@ -167,11 +169,12 @@ namespace graph{
         //z5
         #ifdef WITH_Z5
         {
-            typedef LabelsProxy<3, nifty::nz5::DatasetWrapper<uint32_t>> Z5Labels32;
-            typedef LabelsProxy<3, nifty::nz5::DatasetWrapper<uint64_t>> Z5Labels64;
+            typedef nifty::nz5::DatasetWrapper<uint32_t> Z5Labels32;
+            typedef nifty::nz5::DatasetWrapper<uint64_t> Z5Labels64;
 
             typedef GridRagStacked2D<Z5Labels32> StackedRagUInt32;
             typedef GridRagStacked2D<Z5Labels64> StackedRagUInt64;
+
             typedef nifty::nz5::DatasetWrapper<float> FloatArray;
             typedef nifty::nz5::DatasetWrapper<uint8_t> UInt8Array;
 

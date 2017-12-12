@@ -103,20 +103,20 @@ inline void accumulateBetweenSliceFeatures(ACC_CHAIN_VECTOR & accChainVec,
 }
 
 
-template<class EDGE_ACC_CHAIN, class LABELS_PROXY, class DATA, class F>
+template<class EDGE_ACC_CHAIN, class LABELS, class DATA, class F>
 void accumulateEdgeFeaturesFlatWithAccChain(
-    const GridRag<3, LABELS_PROXY> & rag,
+    const GridRag<3, LABELS> & rag,
     const DATA & data,
     const parallel::ParallelOptions & pOpts,
     parallel::ThreadPool & threadpool,
     F && f,
     const AccOptions & accOptions = AccOptions()
 ){
-    typedef LABELS_PROXY LabelsProxyType;
-    typedef typename LabelsProxyType::LabelType LabelType;
+    typedef LABELS LabelsType;
+    typedef typename LabelsType::value_type LabelType;
     typedef typename DATA::value_type DataType;
 
-    typedef typename LabelsProxyType::BlockStorageType LabelBlockStorage;
+    typedef typename GridRag<3, LabelsType>::BlockStorageType LabelBlockStorage;
     typedef tools::BlockStorage<DataType> DataBlockStorage;
 
     typedef array::StaticArray<int64_t, 3> Coord;
@@ -128,7 +128,7 @@ void accumulateEdgeFeaturesFlatWithAccChain(
     const size_t actualNumberOfThreads = pOpts.getActualNumThreads();
 
     const auto & shape = rag.shape();
-    const auto & labelsProxy = rag.labelsProxy();
+    const auto & labels = rag.labels();
 
     uint64_t numberOfSlices = shape[0];
 
@@ -187,7 +187,7 @@ void accumulateEdgeFeaturesFlatWithAccChain(
             Coord endA({sliceIdA+1, shape[1], shape[2]});
 
             auto labelsA = labelsAStorage.getView(tid);
-            labelsProxy.readSubarray(beginA, endA, labelsA);
+            tools::readSubarray(labels, beginA, endA, labelsA);
             auto labelsASqueezed = xtensor::squeezedView(labelsA);
 
             auto dataA = dataAStorage.getView(tid);
@@ -210,7 +210,7 @@ void accumulateEdgeFeaturesFlatWithAccChain(
 
             // read labels and data for upper slice
             auto labelsB = labelsBStorage.getView(tid);
-            labelsProxy.readSubarray(beginB, endB, labelsB);
+            tools::readSubarray(labels, beginB, endB, labelsB);
             auto labelsBSqueezed = xtensor::squeezedView(labelsB);
             auto dataB = dataBStorage.getView(tid);
             tools::readSubarray(data, beginB, endB, dataB);
@@ -259,9 +259,9 @@ void accumulateEdgeFeaturesFlatWithAccChain(
 
 
 // 9 features
-template<size_t DIM, class LABELS_PROXY, class DATA, class FEATURE_TYPE>
+template<size_t DIM, class LABELS, class DATA, class FEATURE_TYPE>
 void accumulateEdgeFeaturesFlat(
-    const GridRag<DIM, LABELS_PROXY> & rag,
+    const GridRag<DIM, LABELS> & rag,
     const DATA & data,
     const double minVal,
     const double maxVal,

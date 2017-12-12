@@ -3,12 +3,14 @@
 #include <vector>
 #include <cmath>
 
+#include "xtensor/xtensor.hpp"
+#include "xtensor/xeval.hpp"
+
 #include "nifty/tools/array_tools.hxx"
-#include "nifty/graph/rag/grid_rag_accumulate.hxx"
 
 #include "nifty/graph/rag/grid_rag_stacked_2d.hxx"
+#include "nifty/graph/rag/grid_rag_accumulate.hxx"
 
-#include "xtensor/xtensor.hpp"
 #include "nifty/xtensor/xtensor.hxx"
 
 namespace nifty{
@@ -167,10 +169,52 @@ namespace graph{
     }
 
 
+    template<class OUTPUT, class OVERHANG_STORAGE>
+    void writeOverhangingChunks(const OVERHANG_STORAGE & overhangsFront,
+                                const OVERHANG_STORAGE & overhangsBack,
+                                OUTPUT & output,
+                                parallel::ThreadPool & threadpool) {
+        const auto nSlices = overhangsFront.size();
+        NIFTY_CHECK_OP(nSlices, ==, overhangsBack.size(), "len of overhangs must agree");
+
+        // assemble and write the missing chunks in parallel
+        parallel::parallel_foreach(threadpool, nSlices, [&](const int tid, const int64_t sliceId) {
+
+            // we skip id 0
+            if(sliceId == 0) {
+                return;
+            }
+
+            const auto & storageFront = overhangsFront[sliceId];
+            const auto & storageBack = overhangsBack[sliceId - 1];
+
+            // make sure that both storages agree whether they have data
+            NIFTY_CHECK_OP(storageFront.hasData, ==, storageBack.hasData, "both storages need to have or have not data");
+            // if both do not have data, continue
+            if(!storageFront.hasData) {
+                return;
+            }
+
+            const auto & beginCoord = storageFront.begin;
+            const auto & endCoord = storageBack.end;
+
+            const auto & dataFront = storageFront.features;
+            const auto & dataBack = storageBack.features;
+
+            // assemble the data
+            auto dataExp = xt::concatenate(xt::xtuple(dataFront, dataBack), 0);
+            auto data = xt::eval(dataExp);
+
+            // write the chunk
+            tools::writeSubarray(output, beginCoord, endCoord, data);
+        });
+    }
+
+
     // accumulator with data
-    template<class EDGE_ACC_CHAIN, class LABELS_PROXY, class DATA, class F_XY, class F_Z>
+    template<class EDGE_ACC_CHAIN, class LABELS, class DATA, class F_XY, class F_Z>
     void accumulateEdgeFeaturesWithAccChain(
-        const GridRagStacked2D<LABELS_PROXY> & rag,
+        const GridRagStacked2D<LABELS> & rag,
         const DATA & data,
         const bool keepXYOnly,
         const bool keepZOnly,
@@ -181,12 +225,12 @@ namespace graph{
         const int zDirection
     ){
 
-        typedef LABELS_PROXY LabelsProxyType;
-        typedef typename LabelsProxyType::LabelType LabelType;
+        typedef LABELS LabelsType;
+        typedef typename LabelsType::value_type LabelType;
         typedef typename DATA::value_type DataType;
 
         typedef typename vigra::MultiArrayShape<3>::type   VigraCoord;
-        typedef typename LabelsProxyType::BlockStorageType LabelStorage;
+        typedef typename GridRagStacked2D<LabelsType>::BlockStorageType LabelStorage;
         typedef tools::BlockStorage<DataType> DataStorage;
         typedef tools::BlockStorage<float> DataCopyStorage;
 
@@ -195,8 +239,8 @@ namespace graph{
         typedef EDGE_ACC_CHAIN EdgeAccChainType;
         typedef std::vector<EdgeAccChainType> EdgeAccChainVectorType;
 
-        const auto & labelsProxy = rag.labelsProxy();
-        const auto & shape = labelsProxy.shape();
+        const auto & labels = rag.labels();
+        const auto & shape = rag.shape();
 
         const auto nThreads = pOpts.getActualNumThreads();
 
@@ -254,12 +298,7 @@ namespace graph{
                 Coord endA({sliceIdA+1, shape[1], shape[2]});
 
                 auto labelsA = labelsAStorage.getView(tid);
-                std::cout << "Reading labels" << std::endl;
-                std::cout << "From " << beginA << " to " << endA << std::endl;
-                std::cout << labelsProxy.shape()[0] << " " << labelsProxy.shape()[1] << " " << labelsProxy.shape()[2] << std::endl;
-                std::cout << labelsA.shape()[0] << " " << labelsA.shape()[1] << " " << labelsA.shape()[2] << std::endl;
-                labelsProxy.readSubarray(beginA, endA, labelsA);
-                std::cout << "done" << std::endl;
+                tools::readSubarray(labels, beginA, endA, labelsA);
                 auto labelsASqueezed = xtensor::squeezedView(labelsA);
 
                 auto dataA = dataAStorage.getView(tid);
@@ -274,7 +313,6 @@ namespace graph{
                 // only if not keepZOnly and if we have at least one edge in this slice
                 // (no edge can happend for defected slices)
                 if( rag.numberOfInSliceEdges(sliceIdA) > 0 && !keepZOnly) {
-                    std::cout << "Inner slice features" << std::endl;
                     auto inEdgeOffset = rag.inSliceEdgeOffset(sliceIdA);
                     // resize the current acc chain vector
                     EdgeAccChainVectorType accChainVec(rag.numberOfInSliceEdges(sliceIdA));
@@ -289,7 +327,7 @@ namespace graph{
                         dataACopy,
                         pass
                     );
-                    fXY(accChainVec, inEdgeOffset);
+                    fXY(accChainVec, sliceIdA, inEdgeOffset);
                     std::cout << "done" << std::endl;
                 }
 
@@ -308,7 +346,7 @@ namespace graph{
 
                     // read labels
                     auto labelsB = labelsBStorage.getView(tid);
-                    labelsProxy.readSubarray(beginB, endB, labelsB);
+                    tools::readSubarray(labels, beginB, endB, labelsB);
                     auto labelsBSqueezed = xtensor::squeezedView(labelsB);
                     // read data
                     auto dataB = dataBStorage.getView(tid);
@@ -319,7 +357,6 @@ namespace graph{
 
                     // acccumulate the between slice features
                     if(!keepXYOnly) {
-                        std::cout << "Between slice features" << std::endl;
                         auto betweenEdgeOffset = rag.betweenSliceEdgeOffset(sliceIdA);
                         auto accOffset = rag.betweenSliceEdgeOffset(sliceIdA) - rag.numberOfInSliceEdges();
                         // resize the current acc chain vector
@@ -338,7 +375,7 @@ namespace graph{
                                                        dataBCopy,
                                                        zDirection,
                                                        pass);
-                        fZ(accChainVec, accOffset);
+                        fZ(accChainVec, sliceIdA, accOffset);
                         std::cout << "done" << std::endl;
                     }
 
@@ -356,7 +393,7 @@ namespace graph{
                                                      rag,
                                                      dataBCopy,
                                                      pass);
-                        fXY(accChainVec, inEdgeOffset);
+                        fXY(accChainVec, sliceIdB, inEdgeOffset);
                     }
                 }
 
@@ -390,66 +427,224 @@ namespace graph{
             Quantiles         //7
         > SelectType;
         typedef acc::StandAloneAccumulatorChain<3, DataType, SelectType> AccChainType;
+        typedef array::StaticArray<int64_t, 2> FeatCoord;
 
         // threadpool
         nifty::parallel::ParallelOptions pOpts(numberOfThreads);
         nifty::parallel::ThreadPool threadpool(pOpts);
         const size_t actualNumberOfThreads = pOpts.getActualNumThreads();
 
-        // general accumulator function
-        auto accFunction = [&threadpool](
-            const std::vector<AccChainType> & edgeAccChainVec,
-            const uint64_t edgeOffset,
-            OUTPUT & edgeFeaturesOut
-        ){
-            using namespace vigra::acc;
-            typedef array::StaticArray<int64_t, 2> FeatCoord;
+        // use chunked or non-chunkeda accumulation
+        if(tools::isChunked(edgeFeaturesOutXY)) {
 
-            const uint64_t nEdges = edgeAccChainVec.size();
-            const uint64_t nStats = 9;
+            const auto & shape = rag.shape();
 
-            xt::xtensor<DataType, 2> featuresTemp({nEdges, nStats});
+            // the data for tmp storage of overhanging blocks
+            struct OverhangData {
+                xt::xtensor<DataType, 2> features;
+                FeatCoord begin; // global coordinate where the features begin
+                FeatCoord end;   // global coordinate where the features end
+                bool hasData;
+            };
 
-            for(auto edge = 0; edge < edgeAccChainVec.size(); ++edge) {
-                const auto & chain = edgeAccChainVec[edge];
-                const auto mean = get<acc::Mean>(chain);
-                const auto quantiles = get<Quantiles>(chain);
-                featuresTemp(edge, 0) = replaceIfNotFinite(mean,     0.0);
-                featuresTemp(edge, 1) = replaceIfNotFinite(get<acc::Variance>(chain), 0.0);
-                for(auto qi=0; qi<7; ++qi)
-                    featuresTemp(edge, 2+qi) = replaceIfNotFinite(quantiles[qi], mean);
+            // tmp storage for overhanging blocks
+            typedef std::vector<OverhangData> OverhangStorage;
+            // storages for overhangs front and back
+            // NOTE: we won't have overlapping writes here, so having just
+            // one big vector is enough
+            OverhangStorage storageXYFront(shape[0]);
+            OverhangStorage storageXYBack(shape[0]);
+
+            OverhangStorage storageZFront(shape[0]);
+            OverhangStorage storageZBack(shape[0]);
+
+            // general accumulator function
+            // chunking aware
+            auto accFunction = [](const std::vector<AccChainType> & edgeAccChainVec,
+                                  const size_t sliceId,
+                                  const size_t edgeOffset,
+                                  OUTPUT & edgeFeaturesOut,
+                                  OverhangStorage & storageFront,
+                                  OverhangStorage & storageBack){
+                using namespace vigra::acc;
+
+                const auto edgeChunkSize = tools::getChunkShape(edgeFeaturesOut)[0];
+
+                const auto nEdges = edgeAccChainVec.size();
+                const auto nFeats = 9;
+
+                xt::xtensor<DataType, 2> featuresTemp({nEdges, nFeats});
+                for(auto edge = 0; edge < edgeAccChainVec.size(); ++edge) {
+                    const auto & chain = edgeAccChainVec[edge];
+                    const auto mean = get<acc::Mean>(chain);
+                    const auto quantiles = get<Quantiles>(chain);
+                    featuresTemp(edge, 0) = replaceIfNotFinite(mean,     0.0);
+                    featuresTemp(edge, 1) = replaceIfNotFinite(get<acc::Variance>(chain), 0.0);
+                    for(auto qi=0; qi<7; ++qi)
+                        featuresTemp(edge, 2+qi) = replaceIfNotFinite(quantiles[qi], mean);
+                }
+
+                const int64_t edgeEnd = edgeOffset + nEdges;
+                const int64_t overhangBegin = (edgeOffset % edgeChunkSize == 0) ? 0 : edgeChunkSize - (edgeOffset % edgeChunkSize);
+                const int64_t overhangEnd = edgeEnd % edgeChunkSize;
+                // find beginning and end for block-aligned edges in tmp features
+                // at the begin, we need to check
+                const int64_t edgeEndAlignedLocal = nEdges - overhangEnd;
+                FeatCoord beginAlignedLocal{(int64_t)overhangBegin, 0L};
+                FeatCoord endAlignedLocal{(int64_t)edgeEndAlignedLocal, (int64_t)nFeats};
+
+                // get view to the aligned features
+                xt::slice_vector sliceAligned(featuresTemp);
+                xtensor::sliceFromRoi(sliceAligned, beginAlignedLocal, endAlignedLocal);
+                auto featuresAligned = xt::dynamic_view(featuresTemp, sliceAligned);
+
+                // find global beginning and end for block aligned edges
+                FeatCoord beginAlignedGlobal{int64_t(edgeOffset + overhangBegin), 0L};
+                FeatCoord endAlignedGlobal{int64_t(edgeEnd - overhangEnd), (int64_t)nFeats};
+
+                // write out blockaligned edges
+                tools::writeSubarray(edgeFeaturesOut, beginAlignedGlobal, endAlignedGlobal, featuresAligned);
+
+                // store non-blockaligned edges (if existing) locally for postprocessing
+                // check if we have overhanging data at the beginning
+                if(overhangBegin > 0) {
+                    auto & storage = storageFront[sliceId];
+                    storage.begin = FeatCoord{int64_t(edgeOffset), 0L};
+                    storage.end = FeatCoord{int64_t(edgeOffset + overhangBegin), int64_t(nFeats)};
+
+                    // write correct data ti the storage
+                    auto & storageFeats = storage.features;
+                    std::array<size_t, 2> storageBegin{0, 0};
+                    std::array<size_t, 2> storageShape{(size_t)overhangBegin, (size_t)nFeats};
+                    storageFeats.reshape(storageShape);
+
+                    xt::slice_vector slice(featuresTemp);
+                    xtensor::sliceFromOffset(slice, storageBegin, storageShape);
+                    const auto overhangView = xt::dynamic_view(featuresTemp, slice);
+                    storageFeats = overhangView;
+
+                    storage.hasData = true;
+                } else {
+                    storageFront[sliceId].hasData = false;
+                }
+
+                // check if we have overhanging data at the end
+                if(overhangEnd > 0) {
+                    auto & storage = storageBack[sliceId];
+                    storage.begin = FeatCoord{int64_t(edgeEnd - overhangEnd), 0L};
+                    storage.end = FeatCoord{int64_t(edgeEnd), int64_t(nFeats)};
+
+                    // write correct data ti the storage
+                    auto & storageFeats = storage.features;
+                    std::array<size_t, 2> storageBegin{(size_t)edgeEndAlignedLocal, 0};
+                    std::array<size_t, 2> storageShape{(size_t)overhangEnd, (size_t)nFeats};
+                    storageFeats.reshape(storageShape);
+
+                    xt::slice_vector slice(featuresTemp);
+                    xtensor::sliceFromOffset(slice, storageBegin, storageShape);
+                    const auto overhangView = xt::dynamic_view(featuresTemp, slice);
+                    storageFeats = overhangView;
+
+                    storage.hasData = true;
+                } else {
+                    storageBack[sliceId].hasData = false;
+                }
+            };
+
+            // instantiation of accumulators for xy / z edges
+            auto accFunctionXY = std::bind(accFunction,
+                    std::placeholders::_1,
+                    std::placeholders::_2,
+                    std::placeholders::_3,
+                    std::ref(edgeFeaturesOutXY),
+                    std::ref(storageXYFront),
+                    std::ref(storageXYBack));
+            auto accFunctionZ = std::bind(accFunction,
+                    std::placeholders::_1,
+                    std::placeholders::_2,
+                    std::placeholders::_3,
+                    std::ref(edgeFeaturesOutZ),
+                    std::ref(storageZFront),
+                    std::ref(storageZBack));
+
+            accumulateEdgeFeaturesWithAccChain<AccChainType>(rag,
+                                                             data,
+                                                             keepXYOnly,
+                                                             keepZOnly,
+                                                             pOpts,
+                                                             threadpool,
+                                                             accFunctionXY,
+                                                             accFunctionZ,
+                                                             zDirection);
+
+            // write the overhanging chunks to file
+            // we only need to do this if we actually compute this feature type
+            if(!keepZOnly) {
+                writeOverhangingChunks(storageXYFront, storageXYBack, edgeFeaturesOutXY, threadpool);
             }
 
-            FeatCoord begin({int64_t(edgeOffset),0L});
-            FeatCoord end({edgeOffset+nEdges, nStats});
+            if(!keepXYOnly) {
+                writeOverhangingChunks(storageZFront, storageZBack, edgeFeaturesOutZ, threadpool);
+            }
 
-            tools::writeSubarray(edgeFeaturesOut, begin, end, featuresTemp);
-        };
+        } else {
 
-        // instantiation of accumulators for xy / z edges
-        auto accFunctionXY = std::bind(accFunction,
-                std::placeholders::_1,
-                std::placeholders::_2,
-                std::ref(edgeFeaturesOutXY));
-        auto accFunctionZ = std::bind(accFunction,
-                std::placeholders::_1,
-                std::placeholders::_2,
-                std::ref(edgeFeaturesOutZ));
+            // accumulator function
+            // no chunk support
+            auto accFunction = [](const std::vector<AccChainType> & edgeAccChainVec,
+                                  const size_t sliceId,
+                                  const uint64_t edgeOffset,
+                                  OUTPUT & edgeFeaturesOut){
 
-        accumulateEdgeFeaturesWithAccChain<AccChainType>(
-            rag,
-            data,
-            keepXYOnly,
-            keepZOnly,
-            pOpts,
-            threadpool,
-            accFunctionXY,
-            accFunctionZ,
-            zDirection
-        );
+                using namespace vigra::acc;
+
+                const uint64_t nEdges = edgeAccChainVec.size();
+                const uint64_t nFeats = 9;
+
+                xt::xtensor<DataType, 2> featuresTemp({nEdges, nFeats});
+
+                for(auto edge = 0; edge < edgeAccChainVec.size(); ++edge) {
+                    const auto & chain = edgeAccChainVec[edge];
+                    const auto mean = get<acc::Mean>(chain);
+                    const auto quantiles = get<Quantiles>(chain);
+                    featuresTemp(edge, 0) = replaceIfNotFinite(mean,     0.0);
+                    featuresTemp(edge, 1) = replaceIfNotFinite(get<acc::Variance>(chain), 0.0);
+                    for(auto qi=0; qi<7; ++qi)
+                        featuresTemp(edge, 2+qi) = replaceIfNotFinite(quantiles[qi], mean);
+                }
+
+                FeatCoord begin({int64_t(edgeOffset),0L});
+                FeatCoord end({edgeOffset+nEdges, nFeats});
+
+                tools::writeSubarray(edgeFeaturesOut, begin, end, featuresTemp);
+            };
+
+            // instantiation of accumulators for xy / z edges
+            auto accFunctionXY = std::bind(accFunction,
+                    std::placeholders::_1,
+                    std::placeholders::_2,
+                    std::placeholders::_3,
+                    std::ref(edgeFeaturesOutXY));
+            auto accFunctionZ = std::bind(accFunction,
+                    std::placeholders::_1,
+                    std::placeholders::_2,
+                    std::placeholders::_3,
+                    std::ref(edgeFeaturesOutZ));
+
+            accumulateEdgeFeaturesWithAccChain<AccChainType>(rag,
+                                                             data,
+                                                             keepXYOnly,
+                                                             keepZOnly,
+                                                             pOpts,
+                                                             threadpool,
+                                                             accFunctionXY,
+                                                             accFunctionZ,
+                                                             zDirection);
+        }
     }
 
 
+    /*
     // FIXME we rely on the out vector coming in the right shape from python,
     // that is kindof hacky...
     template<class LABELS_PROXY>
@@ -601,6 +796,7 @@ namespace graph{
             skipEdgeOffset += skipEdgesInSlice;
         }
     }
+    */
 
 
 } // end namespace graph

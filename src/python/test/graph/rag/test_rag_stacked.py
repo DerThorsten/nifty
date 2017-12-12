@@ -1,4 +1,5 @@
 from __future__ import print_function
+import os
 import unittest
 import numpy
 import nifty
@@ -141,6 +142,7 @@ class TestRagStacked(TestRagBase):
     @unittest.skipUnless(nifty.Configuration.WITH_Z5, "skipping z5 tests")
     def test_grid_rag_z5_stacked2d(self):
         import z5py
+        import nifty.z5
         zfile = z5py.File(self.path, use_zarr_format=False)
         chunkShape = [1, 2, 1]
         array = zfile.create_dataset("data",
@@ -152,7 +154,8 @@ class TestRagStacked(TestRagBase):
         # we only pass the path and key to the dataset, because we
         # cannot properly link the python bindings for now
         # self.small_array_test(array, nrag.gridRagStacked2DZ5)
-        self.small_array_test((self.path, "data"), nrag.gridRagStacked2DZ5)
+        self.small_array_test(nifty.z5.datasetWrapper('uint32', os.path.join(self.path, 'data')),
+                              nrag.gridRagStacked2DZ5)
 
     def big_array_test(self, array, ragFunction):
         rag = ragFunction(array,
@@ -183,6 +186,7 @@ class TestRagStacked(TestRagBase):
     @unittest.skipUnless(nifty.Configuration.WITH_Z5, "skipping z5 tests")
     def test_grid_rag_z5_stacked2d_large(self):
         import z5py
+        import nifty.z5
         zfile = z5py.File(self.path, use_zarr_format=False)
         chunkShape = [1, 2, 1]
         array = zfile.create_dataset("data",
@@ -194,7 +198,8 @@ class TestRagStacked(TestRagBase):
         # we only pass the path and key to the dataset, because we
         # cannot properly link the python bindings for now
         # self.small_array_test(array, nrag.gridRagStacked2DZ5)
-        self.big_array_test((self.path, "data"), nrag.gridRagStacked2DZ5)
+        self.big_array_test(nifty.z5.datasetWrapper('uint32', os.path.join(self.path, 'data')),
+                            nrag.gridRagStacked2DZ5)
 
     def serialization_test(self, array, ragFunction):
         ragA = ragFunction(array,
@@ -246,6 +251,7 @@ class TestRagStacked(TestRagBase):
                          "skipping z5 serialization tests")
     def test_grid_rag_z5_serialize_deserialize(self):
         import z5py
+        import nifty.z5
         zfile = z5py.File(self.path, use_zarr_format=False)
         chunkShape = [1, 2, 1]
         array = zfile.create_dataset("data",
@@ -257,7 +263,8 @@ class TestRagStacked(TestRagBase):
         # we only pass the path and key to the dataset, because we
         # cannot properly link the python bindings for now
         # self.small_array_test(array, nrag.gridRagStacked2DZ5)
-        self.serialization_test((self.path, "data"), nrag.gridRagStacked2DZ5)
+        self.serialization_test(nifty.z5.datasetWrapper('uint32', os.path.join(self.path, "data")),
+                                nrag.gridRagStacked2DZ5)
 
 
 if __name__ == '__main__':

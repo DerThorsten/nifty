@@ -155,31 +155,23 @@ if Configuration.WITH_Z5:
                   numberOfThreads=-1,
                   dtype='uint32'):
 
-        # for z5 files, we pass a tuple containing the path to the file and the dataset key
-        assert len(labels) == 2
-        labelPath, labelKey = labels
-
-        # TODO we only need this, because we cannot link properly to the z5 python bindings
-        # TODO support more dtypes
-        labelWrapper = nifty.z5.datasetWrapper(dtype, os.path.join(labelPath, labelKey))
-        dim = len(labelWrapper.shape)
+        dim = len(labels.shape)
         blockShape_ = [100] * dim if blockShape is None else blockShape
 
         if dim == 2:
-            return gridRag2DZ5(labelWrapper,
+            return gridRag2DZ5(labels,
                                numberOfLabels=numberOfLabels,
                                blockShape=blockShape_,
                                numberOfThreads=int(numberOfThreads))
         elif dim == 3:
             factory = gridRag3DZ532 if dtype == numpy.dtype('uint32') \
                 else gridRag3DZ564
-            return factory(labelWrapper,
+            return factory(labels,
                            numberOfLabels=numberOfLabels,
                            blockShape=blockShape_,
                            numberOfThreads=int(numberOfThreads))
         else:
             raise RuntimeError("gridRagZ5 is only implemented for 2D and 3D not for %dD" % dim)
-
 
     def gridRagStacked2DZ5(labels,
                            numberOfLabels,
@@ -188,24 +180,18 @@ if Configuration.WITH_Z5:
                            serialization=None,
                            dtype='uint32'):
 
-        # for z5 files, we pass a tuple containing the path to the file and the dataset key
-        assert len(labels) == 2
-        labelPath, labelKey = labels
-
-        # TODO we only need this, because we cannot link properly to the z5 python bindings
-        labelWrapper = nifty.z5.datasetWrapper(dtype, os.path.join(labelPath, labelKey))
-        dim = len(labelWrapper.shape)
+        dim = len(labels.shape)
         assert dim == 3, "Stacked rag is only available for 3D labels"
 
         factory = gridRagStacked2DZ532 if dtype == numpy.dtype('uint32') \
             else gridRagStacked2DZ564
         if serialization is None:
-            return factory(labelWrapper,
+            return factory(labels,
                            numberOfLabels=numberOfLabels,
                            ignoreLabel=ignoreLabel,
                            numberOfThreads=int(numberOfThreads))
         else:
-            return factory(labelWrapper,
+            return factory(labels,
                            ignoreLabel=ignoreLabel,
                            numberOfLabels=numberOfLabels,
                            serialization=serialization)

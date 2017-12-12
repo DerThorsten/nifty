@@ -62,8 +62,8 @@ namespace graph{
 
 
     // accumulator with data
-    template<class EDGE_ACC_CHAIN, std::size_t DIM, class LABELS_PROXY, class DATA, class F>
-    void accumulateEdgeFeaturesWithAccChain(const GridRag<DIM, LABELS_PROXY> & rag,
+    template<class EDGE_ACC_CHAIN, std::size_t DIM, class LABELS, class DATA, class F>
+    void accumulateEdgeFeaturesWithAccChain(const GridRag<DIM, LABELS> & rag,
                                             const DATA & data,
                                             const array::StaticArray<int64_t, DIM> & blockShape,
                                             const parallel::ParallelOptions & pOpts,
@@ -71,10 +71,10 @@ namespace graph{
                                             F && f,
                                             const AccOptions & accOptions = AccOptions()){
 
-        typedef LABELS_PROXY LabelsProxyType;
+        typedef LABELS LabelsType;
         typedef typename DATA::value_type DataType;
         typedef typename vigra::MultiArrayShape<DIM>::type VigraCoord;
-        typedef typename LabelsProxyType::BlockStorageType LabelBlockStorage;
+        typedef typename GridRag<DIM, LabelsType>::BlockStorageType LabelBlockStorage;
         typedef tools::BlockStorage<DataType> DataBlockStorage;
 
         typedef array::StaticArray<int64_t, DIM> Coord;
@@ -136,7 +136,7 @@ namespace graph{
                 // read the labels block and the data block
                 auto labelsBlockView = labelsBlockStorage.getView(actualBlockShape, tid);
                 auto dataBlockView = dataBlockStorage.getView(actualBlockShape, tid);
-                tools::readSubarray(rag.labelsProxy(), blockBegin, blockEnd, labelsBlockView);
+                tools::readSubarray(rag.labels(), blockBegin, blockEnd, labelsBlockView);
                 tools::readSubarray(data, blockBegin, blockEnd, dataBlockView);
 
                 // loop over all coordinates in block
@@ -193,8 +193,8 @@ namespace graph{
 
 
     // accumulator with data
-    template<class EDGE_ACC_CHAIN, class NODE_ACC_CHAIN, std::size_t DIM, class LABELS_PROXY, class DATA, class F>
-    void accumulateEdgeAndNodeFeaturesWithAccChainSaveMemory(const GridRag<DIM, LABELS_PROXY> & rag,
+    template<class EDGE_ACC_CHAIN, class NODE_ACC_CHAIN, std::size_t DIM, class LABELS, class DATA, class F>
+    void accumulateEdgeAndNodeFeaturesWithAccChainSaveMemory(const GridRag<DIM, LABELS> & rag,
                                                              const DATA & data,
                                                              const array::StaticArray<int64_t, DIM> & blockShape,
                                                              const parallel::ParallelOptions & pOpts,
@@ -202,10 +202,10 @@ namespace graph{
                                                              F && f,
                                                              const AccOptions & accOptions = AccOptions()){
 
-        typedef LABELS_PROXY LabelsProxyType;
+        typedef LABELS LabelsType;
         typedef typename DATA::value_type DataType;
         typedef typename vigra::MultiArrayShape<DIM>::type  VigraCoord;
-        typedef typename LabelsProxyType::BlockStorageType LabelBlockStorage;
+        typedef typename GridRag<DIM, LabelsType>::BlockStorageType LabelBlockStorage;
         typedef tools::BlockStorage<DataType> DataBlockStorage;
 
         typedef array::StaticArray<int64_t, DIM> Coord;
@@ -279,7 +279,7 @@ namespace graph{
                 // read the labels block and the data block
                 auto labelsBlockView = labelsBlockStorage.getView(actualBlockShape, tid);
                 auto dataBlockView = dataBlockStorage.getView(actualBlockShape, tid);
-                tools::readSubarray(rag.labelsProxy(), blockBegin, blockEnd, labelsBlockView);
+                tools::readSubarray(rag.labels(), blockBegin, blockEnd, labelsBlockView);
                 tools::readSubarray(data, blockBegin, blockEnd, dataBlockView);
 
                 // loop over all coordinates in block
@@ -362,8 +362,8 @@ namespace graph{
 
 
     // accumulator with data
-    template<class EDGE_ACC_CHAIN, class NODE_ACC_CHAIN, std::size_t DIM, class LABELS_PROXY, class DATA, class F>
-    void accumulateEdgeAndNodeFeaturesWithAccChain(const GridRag<DIM, LABELS_PROXY> & rag,
+    template<class EDGE_ACC_CHAIN, class NODE_ACC_CHAIN, std::size_t DIM, class LABELS, class DATA, class F>
+    void accumulateEdgeAndNodeFeaturesWithAccChain(const GridRag<DIM, LABELS> & rag,
                                                    const DATA & data,
                                                    const array::StaticArray<int64_t, DIM> & blockShape,
                                                    const parallel::ParallelOptions & pOpts,
@@ -372,10 +372,10 @@ namespace graph{
                                                    const AccOptions & accOptions = AccOptions()){
         //std::cout<<"A\n";
 
-        typedef LABELS_PROXY LabelsProxyType;
+        typedef LABELS LabelsType;
         typedef typename DATA::value_type DataType;
         typedef typename vigra::MultiArrayShape<DIM>::type   VigraCoord;
-        typedef typename LabelsProxyType::BlockStorageType LabelBlockStorage;
+        typedef typename GridRag<DIM, LabelsType>::BlockStorageType LabelBlockStorage;
         typedef tools::BlockStorage<DataType> DataBlockStorage;
 
         typedef array::StaticArray<int64_t, DIM> Coord;
@@ -468,7 +468,7 @@ namespace graph{
                 auto dataBlockView = dataBlockStorage.getView(actualBlockShape, tid);
 
                 //std::cout<<"E4 1\n";
-                tools::readSubarray(rag.labelsProxy(), blockBegin, blockEnd, labelsBlockView);
+                tools::readSubarray(rag.labels(), blockBegin, blockEnd, labelsBlockView);
 
                 //std::cout<<"E4 2\n";
                 tools::readSubarray(data, blockBegin, blockEnd, dataBlockView);
@@ -549,16 +549,16 @@ namespace graph{
 
 
     // accumulate without data
-    template<class EDGE_ACC_CHAIN, class NODE_ACC_CHAIN, std::size_t DIM, class LABELS_PROXY, class F>
-    void accumulateEdgeAndNodeFeaturesWithAccChain(const GridRag<DIM, LABELS_PROXY> & rag,
+    template<class EDGE_ACC_CHAIN, class NODE_ACC_CHAIN, std::size_t DIM, class LABELS, class F>
+    void accumulateEdgeAndNodeFeaturesWithAccChain(const GridRag<DIM, LABELS> & rag,
                                                    const array::StaticArray<int64_t, DIM> & blockShape,
                                                    const parallel::ParallelOptions & pOpts,
                                                    parallel::ThreadPool & threadpool,
                                                    F && f){
 
-        typedef LABELS_PROXY LabelsProxyType;
+        typedef LABELS LabelsType;
         typedef typename vigra::MultiArrayShape<DIM>::type   VigraCoord;
-        typedef typename LabelsProxyType::BlockStorageType LabelBlockStorage;
+        typedef typename GridRag<DIM, LabelsType>::BlockStorageType LabelBlockStorage;
 
         typedef array::StaticArray<int64_t, DIM> Coord;
 
@@ -607,7 +607,7 @@ namespace graph{
 
                 // read the labels block and the data block
                 auto labelsBlockView = labelsBlockStorage.getView(actualBlockShape, tid);
-                tools::readSubarray(rag.labelsProxy(), blockBegin, blockEnd, labelsBlockView);
+                tools::readSubarray(rag.labels(), blockBegin, blockEnd, labelsBlockView);
 
                 // loop over all coordinates in block
                 nifty::tools::forEachCoordinate(nonOlBlockShape,[&](const Coord & coordU){
@@ -683,8 +683,8 @@ namespace graph{
 
 
     // accumulator with data
-    template<class NODE_ACC_CHAIN, std::size_t DIM, class LABELS_PROXY, class DATA, class F>
-    void accumulateNodeFeaturesWithAccChain(const GridRag<DIM, LABELS_PROXY> & rag,
+    template<class NODE_ACC_CHAIN, std::size_t DIM, class LABELS, class DATA, class F>
+    void accumulateNodeFeaturesWithAccChain(const GridRag<DIM, LABELS> & rag,
                                             const DATA & data,
                                             const array::StaticArray<int64_t, DIM> & blockShape,
                                             const parallel::ParallelOptions & pOpts,
@@ -692,10 +692,10 @@ namespace graph{
                                             F && f,
                                             const AccOptions & accOptions = AccOptions()){
 
-        typedef LABELS_PROXY LabelsProxyType;
+        typedef LABELS LabelsType;
         typedef typename DATA::value_type DataType;
         typedef typename vigra::MultiArrayShape<DIM>::type   VigraCoord;
-        typedef typename LabelsProxyType::BlockStorageType LabelBlockStorage;
+        typedef typename GridRag<DIM, LabelsType>::BlockStorageType LabelBlockStorage;
         typedef tools::BlockStorage<DataType> DataBlockStorage;
 
         typedef array::StaticArray<int64_t, DIM> Coord;
@@ -757,7 +757,7 @@ namespace graph{
                 // read the labels block and the data block
                 auto labelsBlockView = labelsBlockStorage.getView(actualBlockShape, tid);
                 auto dataBlockView = dataBlockStorage.getView(actualBlockShape, tid);
-                tools::readSubarray(rag.labelsProxy(), blockBegin, blockEnd, labelsBlockView);
+                tools::readSubarray(rag.labels(), blockBegin, blockEnd, labelsBlockView);
                 tools::readSubarray(data, blockBegin, blockEnd, dataBlockView);
 
                 // loop over all coordinates in block
@@ -799,16 +799,16 @@ namespace graph{
 
 
     // accumulate without data
-    template<class NODE_ACC_CHAIN, std::size_t DIM, class LABELS_PROXY, class F>
-    void accumulateNodeFeaturesWithAccChain(const GridRag<DIM, LABELS_PROXY> & rag,
+    template<class NODE_ACC_CHAIN, std::size_t DIM, class LABELS, class F>
+    void accumulateNodeFeaturesWithAccChain(const GridRag<DIM, LABELS> & rag,
                                             const array::StaticArray<int64_t, DIM> & blockShape,
                                             const parallel::ParallelOptions & pOpts,
                                             parallel::ThreadPool & threadpool,
                                             F && f){
 
-        typedef LABELS_PROXY LabelsProxyType;
+        typedef LABELS LabelsType;
         typedef typename vigra::MultiArrayShape<DIM>::type   VigraCoord;
-        typedef typename LabelsProxyType::BlockStorageType LabelBlockStorage;
+        typedef typename GridRag<DIM, LabelsType>::BlockStorageType LabelBlockStorage;
 
         typedef array::StaticArray<int64_t, DIM> Coord;
 
@@ -854,7 +854,7 @@ namespace graph{
 
                 // read the labels block and the data block
                 auto labelsBlockView = labelsBlockStorage.getView(actualBlockShape, tid);
-                tools::readSubarray(rag.labelsProxy(), blockBegin, blockEnd, labelsBlockView);
+                tools::readSubarray(rag.labels(), blockBegin, blockEnd, labelsBlockView);
 
                 // loop over all coordinates in block
                 nifty::tools::forEachCoordinate(nonOlBlockShape,[&](const Coord & coordU){
@@ -895,8 +895,8 @@ namespace graph{
     }
 
 
-    template<std::size_t DIM, class LABELS_PROXY, class DATA, class FEATURE_TYPE>
-    void accumulateMeanAndLength(const GridRag<DIM, LABELS_PROXY> & rag,
+    template<std::size_t DIM, class LABELS, class DATA, class FEATURE_TYPE>
+    void accumulateMeanAndLength(const GridRag<DIM, LABELS> & rag,
                                  const DATA & data,
                                  const array::StaticArray<int64_t, DIM> & blockShape,
                                  xt::xexpression<FEATURE_TYPE> & edgeFeaturesOutExp,
@@ -944,8 +944,8 @@ namespace graph{
 
 
 
-    template<std::size_t DIM, class LABELS_PROXY, class DATA, class FEATURE_TYPE>
-    void accumulateEdgeMeanAndLength(const GridRag<DIM, LABELS_PROXY> & rag,
+    template<std::size_t DIM, class LABELS, class DATA, class FEATURE_TYPE>
+    void accumulateEdgeMeanAndLength(const GridRag<DIM, LABELS> & rag,
                                      const DATA & data,
                                      const array::StaticArray<int64_t, DIM> & blockShape,
                                      xt::xexpression<FEATURE_TYPE> & outExp,
@@ -979,9 +979,9 @@ namespace graph{
 
 
     // 11 features
-    template<std::size_t DIM, class LABELS_PROXY, class DATA, class FEATURE_TYPE>
+    template<std::size_t DIM, class LABELS, class DATA, class FEATURE_TYPE>
     void accumulateStandartFeatures(
-        const GridRag<DIM, LABELS_PROXY> & rag,
+        const GridRag<DIM, LABELS> & rag,
         const DATA & data,
         const double minVal,
         const double maxVal,
@@ -1063,9 +1063,9 @@ namespace graph{
 
 
     // 11 features
-    template<std::size_t DIM, class LABELS_PROXY, class DATA, class FEATURE_TYPE>
+    template<std::size_t DIM, class LABELS, class DATA, class FEATURE_TYPE>
     void accumulateEdgeStandartFeatures(
-        const GridRag<DIM, LABELS_PROXY> & rag,
+        const GridRag<DIM, LABELS> & rag,
         const DATA & data,
         const double minVal,
         const double maxVal,
@@ -1127,8 +1127,8 @@ namespace graph{
     }
 
 
-    template<std::size_t DIM, class LABELS_PROXY, class DATA, class FEATURE_TYPE>
-    void accumulateNodeStandartFeatures(const GridRag<DIM, LABELS_PROXY> & rag,
+    template<std::size_t DIM, class LABELS, class DATA, class FEATURE_TYPE>
+    void accumulateNodeStandartFeatures(const GridRag<DIM, LABELS> & rag,
                                         const DATA & data,
                                         const double minVal,
                                         const double maxVal,
@@ -1190,9 +1190,9 @@ namespace graph{
     }
 
     // number of features = 1 + 3*DIM
-    template<std::size_t DIM, class LABELS_PROXY, class FEATURE_TYPE>
+    template<std::size_t DIM, class LABELS, class FEATURE_TYPE>
     void accumulateGeometricNodeFeatures(
-        const GridRag<DIM, LABELS_PROXY> & rag,
+        const GridRag<DIM, LABELS> & rag,
         const array::StaticArray<int64_t, DIM> & blockShape,
         xt::xexpression<FEATURE_TYPE> & nodeFeaturesOutExp,
         const int numberOfThreads = -1
@@ -1261,7 +1261,7 @@ namespace graph{
      * @param[in]  numberOfThreads  The number of threads
      *
      * @tparam     DIM              Dimension of the rag
-     * @tparam     LABELS_PROXY     Label Proxy type of the rag
+     * @tparam     LABELS     Label Proxy type of the rag
      * @tparam     FEATURE_TYPE     OutType of the features
      *
      * @detail
@@ -1270,8 +1270,8 @@ namespace graph{
      *
      *
      */
-    template<std::size_t DIM, class LABELS_PROXY, class FEATURE_TYPE>
-    void accumulateGeometricEdgeFeatures(const GridRag<DIM, LABELS_PROXY> & rag,
+    template<std::size_t DIM, class LABELS, class FEATURE_TYPE>
+    void accumulateGeometricEdgeFeatures(const GridRag<DIM, LABELS> & rag,
                                          const array::StaticArray<int64_t, DIM> & blockShape,
                                          xt::xexpression<FEATURE_TYPE> & edgeFeaturesOutExp,
                                          const int numberOfThreads = -1){

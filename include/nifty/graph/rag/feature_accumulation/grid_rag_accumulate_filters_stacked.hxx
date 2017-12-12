@@ -3,24 +3,13 @@
 #include <vector>
 #include <functional>
 
-#include "nifty/graph/rag/grid_rag.hxx"
-#include "nifty/graph/rag/grid_rag_stacked_2d.hxx"
 #include "nifty/parallel/threadpool.hxx"
-#include "nifty/features/fastfilters_wrapper.hxx"
 #include "vigra/accumulator.hxx"
-#include "nifty/graph/rag/grid_rag_accumulate.hxx"
 #include "nifty/tools/array_tools.hxx"
+#include "nifty/features/fastfilters_wrapper.hxx"
 
-#include "nifty/xtensor/xtensor.hxx"
-#include "xtensor/xeval.hpp"
+#include "nifty/graph/rag/feature_accumulation/grid_rag_accumulate_stacked.hxx"
 
-#ifdef WITH_HDF5
-#include "nifty/hdf5/hdf5_array.hxx"
-#endif
-
-#ifdef WITH_Z5
-#include "nifty/z5/z5.hxx"
-#endif
 
 namespace nifty{
 namespace graph{
@@ -263,8 +252,8 @@ inline void accumulateBetweenSliceFeatures(ACC_CHAIN_VECTOR & channelAccChainVec
 }
 
 
-template<class EDGE_ACC_CHAIN, class LABELS_PROXY, class DATA, class F_XY, class F_Z>
-void accumulateEdgeFeaturesFromFiltersWithAccChain(const GridRagStacked2D<LABELS_PROXY> & rag,
+template<class EDGE_ACC_CHAIN, class LABELS, class DATA, class F_XY, class F_Z>
+void accumulateEdgeFeaturesFromFiltersWithAccChain(const GridRagStacked2D<LABELS> & rag,
                                                    const DATA & data,
                                                    const bool keepXYOnly,
                                                    const bool keepZOnly,
@@ -273,11 +262,11 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(const GridRagStacked2D<LABELS
                                                    F_XY && fXY,
                                                    F_Z && fZ,
                                                    const int zDirection){
-    typedef LABELS_PROXY LabelsProxyType;
-    typedef typename LabelsProxyType::LabelType LabelType;
+    typedef LABELS LabelsType;
+    typedef typename LabelsType::value_type LabelType;
     typedef typename DATA::value_type DataType;
 
-    typedef typename LabelsProxyType::BlockStorageType LabelBlockStorage;
+    typedef typename GridRagStacked2D<LabelsType>::BlockStorageType LabelBlockStorage;
     typedef tools::BlockStorage<DataType> DataBlockStorage;
     typedef tools::BlockStorage<float> FilterBlockStorage;
 
@@ -292,7 +281,7 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(const GridRagStacked2D<LABELS
     const size_t actualNumberOfThreads = pOpts.getActualNumThreads();
 
     const auto & shape = rag.shape();
-    const auto & labelsProxy = rag.labelsProxy();
+    const auto & labels = rag.labels();
 
     // sigmas and filters to sigmas: TODO make accessible
     std::vector<double> sigmas({1.6,4.2,8.2});
@@ -379,7 +368,7 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(const GridRagStacked2D<LABELS
             Coord endA({sliceIdA+1, shape[1], shape[2]});
 
             auto labelsA = labelsAStorage.getView(tid);
-            labelsProxy.readSubarray(beginA, endA, labelsA);
+            tools::readSubarray(labels, beginA, endA, labelsA);
             auto labelsASqueezed = xtensor::squeezedView(labelsA);
 
             auto dataA = dataStorage.getView(tid);
@@ -427,7 +416,7 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(const GridRagStacked2D<LABELS
 
                 // read labels
                 auto labelsB = labelsBStorage.getView(tid);
-                labelsProxy.readSubarray(beginB, endB, labelsB);
+                tools::readSubarray(labels, beginB, endB, labelsB);
                 auto labelsBSqueezed = xtensor::squeezedView(labelsB);
                 // read data
                 auto dataB = dataStorage.getView(tid);
@@ -487,48 +476,6 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(const GridRagStacked2D<LABELS
         });
     }
     std::cout << "Slices done" << std::endl;
-}
-
-
-template<class OUTPUT, class OVERHANG_STORAGE>
-void writeOverhangingChunks(const OVERHANG_STORAGE & overhangsFront,
-                            const OVERHANG_STORAGE & overhangsBack,
-                            OUTPUT & output,
-                            parallel::ThreadPool & threadpool) {
-    const auto nSlices = overhangsFront.size();
-    NIFTY_CHECK_OP(nSlices, ==, overhangsBack.size(), "len of overhangs must agree");
-
-    // assemble and write the missing chunks in parallel
-    parallel::parallel_foreach(threadpool, nSlices, [&](const int tid, const int64_t sliceId) {
-
-        // we skip id 0
-        if(sliceId == 0) {
-            return;
-        }
-
-        const auto & storageFront = overhangsFront[sliceId];
-        const auto & storageBack = overhangsBack[sliceId - 1];
-
-        // make sure that both storages agree whether they have data
-        NIFTY_CHECK_OP(storageFront.hasData, ==, storageBack.hasData, "both storages need to have or have not data");
-        // if both do not have data, continue
-        if(!storageFront.hasData) {
-            return;
-        }
-
-        const auto & beginCoord = storageFront.begin;
-        const auto & endCoord = storageBack.end;
-
-        const auto & dataFront = storageFront.features;
-        const auto & dataBack = storageBack.features;
-
-        // assemble the data
-        auto dataExp = xt::concatenate(xt::xtuple(dataFront, dataBack), 0);
-        auto data = xt::eval(dataExp);
-
-        // write the chunk
-        tools::writeSubarray(output, beginCoord, endCoord, data);
-    });
 }
 
 

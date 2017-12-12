@@ -34,15 +34,14 @@ namespace graph{
     }
 
 
-    template<size_t DIM, class LABELS_PROXY>
+    template<size_t DIM, class LABELS>
     void exportGridRagT(py::module & ragModule,
                         const std::string & clsName,
                         const std::string & facName){
         // typedefs
         typedef UndirectedGraph<> BaseGraph;
-        typedef LABELS_PROXY LabelsProxyType;
-        typedef typename LabelsProxyType::LabelArrayType LabelArrayType;
-        typedef GridRag<DIM, LABELS_PROXY> GridRagType;
+        typedef LABELS LabelsType;
+        typedef GridRag<DIM, LABELS> GridRagType;
 
         // export the rag
         auto clsT = py::class_<GridRagType, BaseGraph>(ragModule, clsName.c_str());
@@ -53,12 +52,10 @@ namespace graph{
 
         // factories
         // from labels
-        ragModule.def(facName.c_str(),[](const LabelArrayType & labels,
+        ragModule.def(facName.c_str(),[](const LabelsType & labels,
                                          const int64_t numberOfLabels,
                                          const std::array<int64_t, DIM> blockShape,
                                          const int numberOfThreads){
-
-                LabelsProxyType labelsProxy(labels, numberOfLabels);
 
                 auto s = typename GridRagType::SettingsType();
                 for(int ii = 0; ii < DIM; ++ii) {
@@ -66,7 +63,7 @@ namespace graph{
                 }
 
                 s.numberOfThreads = numberOfThreads;
-                return new GridRagType(labelsProxy, s);
+                return new GridRagType(labels, numberOfLabels, s);
             },
             py::return_value_policy::take_ownership,
             py::keep_alive<0, 1>(),
@@ -77,22 +74,19 @@ namespace graph{
         );
 
         // from labels + serialization
-        ragModule.def(facName.c_str(),[](const LabelArrayType & labels,
+        ragModule.def(facName.c_str(),[](const LabelsType & labels,
                                          const int64_t numberOfLabels,
                                          xt::pytensor<uint64_t, 1> serialization){
-
-                LabelsProxyType labelsProxy(labels, numberOfLabels);
 
                 auto  startPtr = &serialization(0);
                 auto  lastElement = &serialization(serialization.size()-1);
                 auto d = lastElement - startPtr + 1;
 
-                NIFTY_CHECK_OP(d,==,serialization.size(), "serialization must be contiguous");
+                NIFTY_CHECK_OP(d, ==, serialization.size(), "serialization must be contiguous");
 
                 auto s = typename  GridRagType::SettingsType();
                 s.numberOfThreads = -1;
-                auto ptr = new GridRagType(labelsProxy, startPtr, s);
-                return ptr;
+                return new GridRagType(labels, numberOfLabels, startPtr, s);
             },
             py::return_value_policy::take_ownership,
             py::keep_alive<0, 1>(),
@@ -107,35 +101,34 @@ namespace graph{
     void exportGridRag(py::module & ragModule) {
 
         // export grid rag with in-memory labels
-        // TODO we could actually use pytensor, because the dimenstion is known at compile time
-        typedef LabelsProxy<2, xt::pytensor<uint32_t, 2>> ExplicitPyLabels2D;
+        typedef xt::pytensor<uint32_t, 2> ExplicitPyLabels2D;
         exportGridRagT<2, ExplicitPyLabels2D>(ragModule,
                                               "ExplicitLabelsGridRag2D",
                                               "explicitLabelsGridRag2D");
 
-        typedef LabelsProxy<3, xt::pytensor<uint32_t, 3>> ExplicitPyLabels3D32;
+        typedef xt::pytensor<uint32_t, 3> ExplicitPyLabels3D32;
         exportGridRagT<3, ExplicitPyLabels3D32>(ragModule,
                                                "ExplicitLabelsGridRag3D32",
                                                "explicitLabelsGridRag3D32");
 
-        typedef LabelsProxy<3, xt::pytensor<uint64_t, 3>> ExplicitPyLabels3D64;
+        typedef xt::pytensor<uint64_t, 3> ExplicitPyLabels3D64;
         exportGridRagT<3, ExplicitPyLabels3D64>(ragModule,
                                                 "ExplicitLabelsGridRag3D64",
                                                 "explicitLabelsGridRag3D64");
 
         // export grid rag with hdf5 labels
         #ifdef WITH_HDF5
-        typedef LabelsProxy<2, nifty::hdf5::Hdf5Array<uint32_t>> Hdf5Labels2D;
+        typedef nifty::hdf5::Hdf5Array<uint32_t> Hdf5Labels2D;
         exportGridRagT<2, Hdf5Labels2D>(ragModule,
                                         "GridRag2DHdf5",
                                         "gridRag2DHdf5");
 
-        typedef LabelsProxy<3, nifty::hdf5::Hdf5Array<uint32_t>> Hdf5Labels3D32;
+        typedef nifty::hdf5::Hdf5Array<uint32_t> Hdf5Labels3D32;
         exportGridRagT<3, Hdf5Labels3D32>(ragModule,
                                           "GridRag3DHdf532",
                                           "gridRag3DHdf532");
 
-        typedef LabelsProxy<3, nifty::hdf5::Hdf5Array<uint64_t>> Hdf5Labels3D64;
+        typedef nifty::hdf5::Hdf5Array<uint64_t> Hdf5Labels3D64;
         exportGridRagT<3, Hdf5Labels3D64>(ragModule,
                                           "GridRag3DHdf564",
                                           "gridRag3DHdf564");
@@ -143,19 +136,17 @@ namespace graph{
 
         // export with z5 labels
         #ifdef WITH_Z5
-        //typedef LabelsProxy<2, z5::DatasetTyped<uint32_t>> Z5Labels2D;
-        typedef LabelsProxy<2, nifty::nz5::DatasetWrapper<uint32_t>> Z5Labels2D;
+        typedef nifty::nz5::DatasetWrapper<uint32_t> Z5Labels2D;
         exportGridRagT<2, Z5Labels2D>(ragModule,
                                       "GridRag2DZ5",
                                       "gridRag2DZ5");
         //
-        //typedef LabelsProxy<3, z5::DatasetTyped<uint32_t>> Z5Labels3D;
-        typedef LabelsProxy<3, nifty::nz5::DatasetWrapper<uint32_t>> Z5Labels3D32;
+        typedef nifty::nz5::DatasetWrapper<uint32_t> Z5Labels3D32;
         exportGridRagT<3, Z5Labels3D32>(ragModule,
                                         "GridRag3DZ532",
                                         "gridRag3DZ532");
 
-        typedef LabelsProxy<3, nifty::nz5::DatasetWrapper<uint64_t>> Z5Labels3D64;
+        typedef nifty::nz5::DatasetWrapper<uint64_t> Z5Labels3D64;
         exportGridRagT<3, Z5Labels3D64>(ragModule,
                                         "GridRag3DZ564",
                                         "gridRag3DZ564");

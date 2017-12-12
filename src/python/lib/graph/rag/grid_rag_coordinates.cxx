@@ -110,10 +110,10 @@ namespace graph{
     }
 
     void exportGridRagCoordinates(py::module & module) {
-        typedef LabelsProxy<2, xt::pytensor<uint32_t, 2>> ExplicitPyLabels2D;
+        typedef xt::pytensor<uint32_t, 2> ExplicitPyLabels2D;
         typedef GridRag<2, ExplicitPyLabels2D> Rag2d;
 
-        typedef LabelsProxy<3, xt::pytensor<uint32_t, 3>> ExplicitPyLabels3D;
+        typedef xt::pytensor<uint32_t, 3> ExplicitPyLabels3D;
         typedef GridRag<3, ExplicitPyLabels3D> Rag3d;
 
         exportGridRagCoordinatesT<2, Rag2d>(module, "Explicit2d");
@@ -122,7 +122,7 @@ namespace graph{
         // hdf5
         #ifdef WITH_HDF5
         {
-            typedef Hdf5Labels<3,uint32_t> LabelsUInt32;
+            typedef nifty::hdf5::Hdf5Array<uint32_t> LabelsUInt32;
             typedef GridRagStacked2D<LabelsUInt32> StackedRagUInt32;
             exportGridRagCoordinatesT<3, StackedRagUInt32>(module, "StackedRag3d");
         }

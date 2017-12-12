@@ -20,7 +20,7 @@ namespace nifty{
 namespace graph{
 
 
-template<std::size_t DIM, class LABELS_PROXY>
+template<std::size_t DIM, class LABELS>
 class GridRag;
 
 
@@ -31,23 +31,22 @@ template<class GRID_RAG>
 struct ComputeRag;
 
 
-template<std::size_t DIM, class LABELS_PROXY>
-struct ComputeRag<GridRag<DIM, LABELS_PROXY>> {
+template<std::size_t DIM, class LABELS>
+struct ComputeRag<GridRag<DIM, LABELS>> {
 
-    typedef LABELS_PROXY LabelsProxyType;
-    typedef typename LabelsProxyType::LabelType LabelType;;
+    typedef LABELS LabelsType;
+    typedef typename LabelsType::value_type value_type;
 
     template<class S>
-    static void computeRag(GridRag<DIM, LabelsProxyType> & rag,
+    static void computeRag(GridRag<DIM, LabelsType> & rag,
                            const S & settings){
         //
         typedef array::StaticArray<int64_t, DIM> Coord;
 
-        const auto & labelsProxy = rag.labelsProxy();
-        const auto & shape = labelsProxy.shape();
+        const auto & labels = rag.labels();
+        const auto & shape = rag.shape();
 
-        const auto numberOfLabels = labelsProxy.numberOfLabels();
-        rag.assign(numberOfLabels);
+        rag.assign(rag.numberOfLabels());
 
         nifty::parallel::ParallelOptions pOpts(settings.numberOfThreads);
         nifty::parallel::ThreadPool threadpool(pOpts);
@@ -60,7 +59,7 @@ struct ComputeRag<GridRag<DIM, LABELS_PROXY>> {
         }
 
         struct PerThreadData{
-            xt::xtensor<LabelType, DIM> blockLabels;
+            xt::xtensor<value_type, DIM> blockLabels;
             std::vector< container::BoostFlatSet<uint64_t> > adjacency;
         };
 
@@ -70,7 +69,7 @@ struct ComputeRag<GridRag<DIM, LABELS_PROXY>> {
         std::vector<PerThreadData> perThreadDataVec(nThreads);
         parallel::parallel_foreach(threadpool, nThreads, [&](const int tid, const int i){
             perThreadDataVec[i].blockLabels.reshape(arrayShape);
-            perThreadDataVec[i].adjacency.resize(numberOfLabels);
+            perThreadDataVec[i].adjacency.resize(rag.numberOfLabels());
         });
 
         auto makeCoord2 = [](const Coord & coord,const std::size_t axis){
@@ -111,10 +110,7 @@ struct ComputeRag<GridRag<DIM, LABELS_PROXY>> {
             xtensor::sliceFromRoi(slice, zeroCoord, actualBlockShape);
             auto blockLabels = xt::dynamic_view(blockView, slice);
 
-            // TODO the lock should be unnecessary !
-            //mtx.lock();
-            labelsProxy.readSubarray(blockBegin, blockEnd, blockLabels);
-            //mtx.unlock();
+            tools::readSubarray(labels, blockBegin, blockEnd, blockLabels);
 
             auto & adjacency = perThreadDataVec[tid].adjacency;
             nifty::tools::forEachCoordinate(actualBlockShape,[&](const Coord & coord){

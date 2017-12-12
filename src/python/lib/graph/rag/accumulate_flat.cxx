@@ -55,7 +55,7 @@ namespace graph{
 
     void exportAccumulateFlat(py::module & ragModule) {
 
-        typedef LabelsProxy<3, xt::pytensor<uint32_t, 3>> ExplicitPyLabels3D;
+        typedef xt::pytensor<uint32_t, 3> ExplicitPyLabels3D;
         typedef GridRag<3, ExplicitPyLabels3D> Rag3d;
         exportAccumulateEdgeFeaturesFlatT<Rag3d, float>(ragModule);
 

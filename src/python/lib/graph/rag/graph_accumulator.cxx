@@ -117,10 +117,10 @@ namespace graph{
 
         // exportGridRagAccumulateLabels Explicit
         {
-            typedef LabelsProxy<2, xt::pytensor<uint32_t, 2>> ExplicitPyLabels2D;
+            typedef xt::pytensor<uint32_t, 2> ExplicitPyLabels2D;
             typedef GridRag<2, ExplicitPyLabels2D> ExplicitLabelsGridRag2D;
 
-            typedef LabelsProxy<3, xt::pytensor<uint32_t, 3>> ExplicitPyLabels3D;
+            typedef xt::pytensor<uint32_t, 3> ExplicitPyLabels3D;
             typedef GridRag<3, ExplicitPyLabels3D> ExplicitLabelsGridRag3D;
             // accumulate labels
             exportGridRagAccumulateLabelsT<ExplicitLabelsGridRag2D, uint32_t, 2>(ragModule);
@@ -129,7 +129,7 @@ namespace graph{
 
         // explicit stacked rag
         {
-            typedef LabelsProxy<3, xt::pytensor<uint32_t, 3>> ExplicitPyLabels3D;
+            typedef xt::pytensor<uint32_t, 3> ExplicitPyLabels3D;
             typedef GridRagStacked2D<ExplicitPyLabels3D> StackedRagUInt32;
 
             typedef xt::pytensor<uint32_t, 3> UInt32Array;
@@ -143,9 +143,9 @@ namespace graph{
         // hdf5 stacked rag
         #ifdef WITH_HDF5
         {
-            typedef Hdf5Labels<3,uint32_t> LabelsUInt32;
+            typedef nifty::hdf5::Hdf5Array<uint32_t> LabelsUInt32;
+            typedef nifty::hdf5::Hdf5Array<uint64_t> LabelsUInt64;
             typedef GridRagStacked2D<LabelsUInt32> StackedRagUInt32;
-            typedef Hdf5Labels<3,uint64_t> LabelsUInt64;
             typedef GridRagStacked2D<LabelsUInt64> StackedRagUInt64;
 
             typedef nifty::hdf5::Hdf5Array<uint32_t> UInt32Array;
@@ -166,8 +166,8 @@ namespace graph{
         //n5 stacked rag
         #ifdef WITH_Z5
         {
-            typedef LabelsProxy<3, nifty::nz5::DatasetWrapper<uint32_t>> Labels32;
-            typedef LabelsProxy<3, nifty::nz5::DatasetWrapper<uint64_t>> Labels64;
+            typedef nifty::nz5::DatasetWrapper<uint32_t> Labels32;
+            typedef nifty::nz5::DatasetWrapper<uint64_t> Labels64;
             typedef GridRagStacked2D<Labels32> StackedRagUInt32;
             typedef GridRagStacked2D<Labels64> StackedRagUInt64;
 

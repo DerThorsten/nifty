@@ -17,8 +17,8 @@
 namespace nifty{
 namespace graph{
 
-template<class LABELS_PROXY, class PIXEL_ARRAY, class NODE_MAP>
-void projectScalarNodeDataToPixels(const GridRagStacked2D<LABELS_PROXY> & graph,
+template<class LABELS, class PIXEL_ARRAY, class NODE_MAP>
+void projectScalarNodeDataToPixels(const GridRagStacked2D<LABELS> & graph,
                                    const NODE_MAP & nodeData,
                                    PIXEL_ARRAY & pixelData,
                                    const int numberOfThreads = -1){
@@ -26,12 +26,12 @@ void projectScalarNodeDataToPixels(const GridRagStacked2D<LABELS_PROXY> & graph,
     typedef array::StaticArray<int64_t, 2> Coord2;
     typedef typename PIXEL_ARRAY::value_type DataType;
 
-    const auto & labelsProxy = graph.labelsProxy();
-    const auto & shape = labelsProxy.shape();
+    const auto & labels = graph.labels();
+    const auto & shape = graph.shape();
 
-    typedef LABELS_PROXY LabelsProxyType;
-    typedef typename LABELS_PROXY::LabelType LabelType;
-    typedef typename LabelsProxyType::BlockStorageType LabelsBlockStorage;
+    typedef LABELS LabelsType;
+    typedef typename LabelsType::value_type LabelType;
+    typedef typename GridRagStacked2D<LabelsType>::BlockStorageType LabelsBlockStorage;
     typedef typename tools::BlockStorage<DataType> DataBlockStorage;
 
     nifty::parallel::ParallelOptions pOpts(numberOfThreads);
@@ -54,7 +54,7 @@ void projectScalarNodeDataToPixels(const GridRagStacked2D<LABELS_PROXY> & graph,
         const Coord blockBegin({sliceIndex,0L,0L});
         const Coord blockEnd({sliceIndex+1, sliceShape2[0], sliceShape2[1]});
 
-        tools::readSubarray(labelsProxy, blockBegin, blockEnd, sliceLabelsFlat3DView);
+        tools::readSubarray(labels, blockBegin, blockEnd, sliceLabelsFlat3DView);
 
         auto sliceLabels = xtensor::squeezedView(sliceLabelsFlat3DView);
         auto sliceData = xtensor::squeezedView(sliceDataFlat3DView);
@@ -71,12 +71,12 @@ void projectScalarNodeDataToPixels(const GridRagStacked2D<LABELS_PROXY> & graph,
 
 
 template<
-    class LABELS_PROXY,
+    class LABELS,
     class PIXEL_ARRAY,
     class NODE_MAP,
     class COORD
 >
-void projectScalarNodeDataInSubBlock(const GridRagStacked2D<LABELS_PROXY> & graph,
+void projectScalarNodeDataInSubBlock(const GridRagStacked2D<LABELS> & graph,
                                      const NODE_MAP & nodeData,
                                      PIXEL_ARRAY & pixelData,
                                      const COORD & blockBegin,
@@ -86,12 +86,12 @@ void projectScalarNodeDataInSubBlock(const GridRagStacked2D<LABELS_PROXY> & grap
     typedef array::StaticArray<int64_t, 2> Coord2;
     typedef typename PIXEL_ARRAY::value_type DataType;
 
-    const auto & labelsProxy = graph.labelsProxy();
-    const auto & shape = labelsProxy.shape();
+    const auto & labels = graph.labels();
+    const auto & shape = graph.shape();
 
-    typedef LABELS_PROXY LabelsProxyType;
-    typedef typename LABELS_PROXY::LabelType LabelType;
-    typedef typename LabelsProxyType::BlockStorageType LabelsBlockStorage;
+    typedef LABELS LabelsType;
+    typedef typename LabelsType::value_type LabelType;
+    typedef typename GridRagStacked2D<LabelsType>::BlockStorageType LabelsBlockStorage;
     typedef typename tools::BlockStorage<DataType> DataBlockStorage;
 
     nifty::parallel::ParallelOptions pOpts(numberOfThreads);
@@ -115,7 +115,7 @@ void projectScalarNodeDataInSubBlock(const GridRagStacked2D<LABELS_PROXY> & grap
         const Coord globalBegin({globalSliceIndex, blockBegin[1], blockBegin[2]});
         const Coord globalEnd(  {globalSliceIndex+1, blockEnd[1], blockEnd[2]});
 
-        tools::readSubarray(labelsProxy, globalBegin, globalEnd, sliceLabelsFlat3DView);
+        tools::readSubarray(labels, globalBegin, globalEnd, sliceLabelsFlat3DView);
 
         auto sliceLabels = sliceLabelsFlat3DView.squeezedView();
         auto sliceData = sliceDataFlat3DView.squeezedView();

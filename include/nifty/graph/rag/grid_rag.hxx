@@ -6,7 +6,6 @@
 #include <stack>
 #include <algorithm>
 
-//#include <parallel/algorithm>
 #include <unordered_set>
 
 #include "nifty/array/arithmetic_array.hxx"
@@ -15,15 +14,24 @@
 #include "nifty/tools/timer.hxx"
 #include "nifty/tools/array_tools.hxx"
 
-#include "nifty/graph/rag/grid_rag_labels_proxy.hxx"
+//#include "nifty/graph/rag/grid_rag_labels_proxy.hxx"
 #include "nifty/graph/rag/detail_rag/compute_grid_rag.hxx"
 
 #include "xtensor/xtensor.hpp"
 #include "nifty/xtensor/xtensor.hxx"
 
+#ifdef WITH_HDF5
+#include "nifty/hdf5/hdf5_array.hxx"
+#endif
+
+#ifdef WITH_Z5
+#include "nifty/z5/z5.hxx"
+#endif
+
 
 namespace nifty{
 namespace graph{
+
 
 template<class COORD>
 COORD makeCoord2(const COORD & coord,const size_t axis){
@@ -32,11 +40,18 @@ COORD makeCoord2(const COORD & coord,const size_t axis){
     return coord2;
 };
 
-template<size_t DIM, class LABELS_PROXY>
+
+template<size_t DIM, class LABELS>
 class GridRag : public UndirectedGraph<>{
 public:
     struct DontComputeRag{};
-    typedef LABELS_PROXY LabelsProxy;
+    typedef LABELS LabelsType;
+    typedef typename LabelsType::value_type value_type;
+    typedef array::StaticArray<int64_t, DIM> ShapeType;
+    typedef GridRag<DIM, LABELS> SelfType;
+    typedef tools::BlockStorage<value_type> BlockStorageType;
+
+    friend class detail_rag::ComputeRag< SelfType >;
 
     struct SettingsType{
         SettingsType()
@@ -49,46 +64,64 @@ public:
                 blockShape[d] = 100;
         }
         int numberOfThreads;
-        array::StaticArray<int64_t, DIM> blockShape;
+        ShapeType blockShape;
         bool haveIgnoreLabel;
         uint64_t ignoreLabel;
     };
 
-    typedef GridRag<DIM, LABELS_PROXY> SelfType;
-    typedef array::StaticArray<int64_t, DIM> ShapeType;
 
-    friend class detail_rag::ComputeRag< SelfType >;
-
-
-    GridRag(const LabelsProxy & labelsProxy, const SettingsType & settings = SettingsType())
+    GridRag(const LabelsType & labels,
+            const std::size_t numberOfLabels,
+            const SettingsType & settings = SettingsType())
     :   settings_(settings),
-        labelsProxy_(std::make_unique<LabelsProxy>(labelsProxy))
-   {
+        numberOfLabels_(numberOfLabels),
+        labels_(std::make_unique<LabelsType>(labels)) {
+
+        // get the shape
+        const auto & tmpShape = labels.shape();
+        for(int d = 0; d < DIM; ++d) {
+            shape_[d] = tmpShape[d];
+        }
+
+        // compute the rag
         detail_rag::ComputeRag<SelfType>::computeRag(*this, settings_);
     }
 
     template<class ITER>
-    GridRag(const LabelsProxy & labelsProxy,
+    GridRag(const LabelsType & labels,
+            const std::size_t numberOfLabels,
             ITER serializationBegin,
             const SettingsType & settings = SettingsType())
     :   settings_(settings),
-        labelsProxy_(std::make_unique<LabelsProxy>(labelsProxy)) {
+        numberOfLabels_(numberOfLabels),
+        labels_(std::make_unique<LabelsType>(std::move(labels))) {
+
+        // get the shape
+        const auto & tmpShape = labels.shape();
+        for(int d = 0; d < DIM; ++d) {
+            shape_[d] = tmpShape[d];
+        }
+
+        // deserialize
         this->deserialize(serializationBegin);
     }
 
-    const LabelsProxy & labelsProxy() const {
-        return *labelsProxy_;
+    const LabelsType & labels() const {
+        return *labels_;
     }
 
-    const ShapeType & shape() const{
-        return labelsProxy_->shape();
+    const ShapeType & shape() const {
+        return shape_;
+    }
+
+    const std::size_t numberOfLabels() const {
+        return numberOfLabels_;
     }
 
     UndirectedGraph<> extractSubgraphFromRoi(const ShapeType & begin,
                                              const ShapeType & end,
                                              std::vector<int64_t> & innerEdgesOut) const {
-        typedef typename LABELS_PROXY::LabelType LabelType;
-        typedef typename xt::xtensor<LabelType, DIM>::shape_type ArrayShapeType;
+        typedef typename xt::xtensor<value_type, DIM>::shape_type ArrayShapeType;
         innerEdgesOut.clear();
 
         ShapeType subShape;
@@ -97,14 +130,14 @@ public:
             subShape[d] = end[d] - begin[d];
             subArrayShape[d] = subShape[d];
         }
-        xt::xtensor<LabelType, DIM> subLabels(subArrayShape);
+        xt::xtensor<value_type, DIM> subLabels(subArrayShape);
 
-        tools::readSubarray(*labelsProxy_, begin, end, subLabels);
+        tools::readSubarray(*labels_, begin, end, subLabels);
 
-        std::vector<LabelType> uniqueNodes;
+        std::vector<value_type> uniqueNodes;
         tools::uniques(subLabels, uniqueNodes);
 
-        std::map<LabelType, LabelType> globalToLocalNodes;
+        std::map<value_type, value_type> globalToLocalNodes;
         for(int ii = 0; ii < uniqueNodes.size(); ++ii) {
             globalToLocalNodes[uniqueNodes[ii]] = ii;
         }
@@ -145,15 +178,27 @@ public:
     }
 
 protected:
-    GridRag(const LabelsProxy & labelsProxy, const SettingsType & settings, const DontComputeRag)
+    GridRag(const LabelsType & labels,
+            const std::size_t numberOfLabels,
+            const SettingsType & settings,
+            const DontComputeRag)
     :   settings_(settings),
-        labelsProxy_(std::make_unique<LabelsProxy>(labelsProxy)){
+        numberOfLabels_(numberOfLabels),
+        labels_(std::make_unique<LabelsType>(labels)) {
+
+        // get the shape
+        const auto & tmpShape = labels.shape();
+        for(int d = 0; d < DIM; ++d) {
+            shape_[d] = tmpShape[d];
+        }
     }
 
 protected:
-    typedef std::unique_ptr<LabelsProxy> StorageType;
+    typedef std::unique_ptr<LabelsType> StorageType;
     SettingsType settings_;
-    StorageType labelsProxy_;
+    std::size_t numberOfLabels_;
+    StorageType labels_;
+    ShapeType shape_;
 };
 
 } // end namespace graph

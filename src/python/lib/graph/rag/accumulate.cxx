@@ -2,12 +2,7 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/numpy.h>
 
-#ifdef WITH_HDF5
-#include "nifty/hdf5/hdf5_array.hxx"
-#endif
-
 #include "nifty/graph/rag/grid_rag.hxx"
-#include "nifty/graph/rag/grid_rag_labels_proxy.hxx"
 #include "nifty/graph/rag/grid_rag_accumulate.hxx"
 
 #include "xtensor-python/pytensor.hpp"
@@ -34,8 +29,8 @@ namespace graph{
             xt::pytensor<DATA_T, DIM+1> affinities,
             xt::pytensor<int, 2> offsets
         ){
-            const auto & labels = rag.labelsProxy().labels();
-            const auto & shape = rag.labelsProxy().shape();
+            const auto & labels = rag.labels();
+            const auto & shape = rag.shape();
 
             xt::pytensor<DATA_T, 1> accAff = xt::zeros<DATA_T>({(int64_t) rag.edgeIdUpperBound()+1});
             xt::pytensor<DATA_T, 1> counter = xt::zeros<DATA_T>({(int64_t) rag.edgeIdUpperBound()+1});
@@ -402,10 +397,10 @@ namespace graph{
 
         //explicit
         {
-            typedef LabelsProxy<2, xt::pytensor<uint32_t, 2>> ExplicitPyLabels2D;
+            typedef xt::pytensor<uint32_t, 2> ExplicitPyLabels2D;
             typedef GridRag<2, ExplicitPyLabels2D> Rag2d;
 
-            typedef LabelsProxy<3, xt::pytensor<uint32_t, 3>> ExplicitPyLabels3D;
+            typedef xt::pytensor<uint32_t, 3> ExplicitPyLabels3D;
             typedef GridRag<3, ExplicitPyLabels3D> Rag3d;
 
             exportAccumulateEdgeMeanAndLength<2, Rag2d, float>(ragModule);
@@ -430,7 +425,8 @@ namespace graph{
             exportAccumulateGeometricEdgeFeatures<3, Rag3d, float>(ragModule);
 
             #ifdef WITH_HDF5
-            typedef GridRag<3, Hdf5Labels<3, uint32_t>> RagH53d;
+            typedef nifty::hdf5::Hdf5Array<uint32_t> H5Labels
+            typedef GridRag<3, H5Labels> RagH53d;
             //exportAccumulateMeanAndLengthHdf5<3,RagH53d, float>(ragModule);
             exportAccumulateStandartFeaturesHdf5<3, RagH53d, uint8_t>(ragModule);
             #endif

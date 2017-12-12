@@ -10,16 +10,16 @@ namespace nifty{
 namespace graph{
 
 
-template<class LABEL_PROXY>
-class GridRagStacked2D : public GridRag<3, LABEL_PROXY> {
+template<class LABELS>
+class GridRagStacked2D : public GridRag<3, LABELS> {
 
-    typedef GridRag<3, LABEL_PROXY > BaseType;
-    typedef GridRagStacked2D< LABEL_PROXY > SelfType;
-    typedef typename LABEL_PROXY::LabelType LabelType;
+    typedef GridRag<3, LABELS > BaseType;
+    typedef GridRagStacked2D<LABELS> SelfType;
+    typedef typename LABELS::value_type value_type;
     friend class detail_rag::ComputeRag<SelfType>;
 
     struct PerSliceData{
-        PerSliceData(const LabelType numberOfLabels)
+        PerSliceData(const value_type numberOfLabels)
         :   numberOfInSliceEdges(0),
             numberOfToNextSliceEdges(0),
             inSliceEdgeOffset(0),
@@ -31,20 +31,22 @@ class GridRagStacked2D : public GridRag<3, LABEL_PROXY> {
         uint64_t numberOfToNextSliceEdges;
         uint64_t inSliceEdgeOffset;
         uint64_t toNextSliceEdgeOffset;
-        LabelType minInSliceNode;
-        LabelType maxInSliceNode;
+        value_type minInSliceNode;
+        value_type maxInSliceNode;
     };
 
 public:
-    typedef typename BaseType::LabelsProxy LabelsProxy;
+    typedef typename BaseType::LabelsType LabelsType;
     typedef typename BaseType::SettingsType SettingsType;
+    typedef typename BaseType::BlockStorageType BlockStorageType;
 
-    GridRagStacked2D(const LabelsProxy & labelsProxy,
+    GridRagStacked2D(const LabelsType & labels,
+                     const std::size_t numberOfLabels,
                      const SettingsType & settings = SettingsType())
-    :   BaseType(labelsProxy, settings, typename BaseType::DontComputeRag()),
+    :   BaseType(labels, numberOfLabels, settings, typename BaseType::DontComputeRag()),
         perSliceDataVec_(
-            labelsProxy.shape()[0],
-            PerSliceData(labelsProxy.numberOfLabels())
+            labels.shape()[0],
+            PerSliceData(numberOfLabels)
         ),
         numberOfInSliceEdges_(0),
         numberOfInBetweenSliceEdges_(0),
@@ -54,13 +56,14 @@ public:
     }
 
     template<class ITER>
-    GridRagStacked2D(const LabelsProxy & labelsProxy,
-            ITER serializationBegin,
-            const SettingsType & settings = SettingsType())
-    :   BaseType(labelsProxy, settings, typename BaseType::DontComputeRag()),
+    GridRagStacked2D(const LabelsType & labels,
+                     const std::size_t numberOfLabels,
+                     ITER serializationBegin,
+                     const SettingsType & settings = SettingsType())
+    :   BaseType(labels, numberOfLabels, settings, typename BaseType::DontComputeRag()),
         perSliceDataVec_(
-            labelsProxy.shape()[0],
-            PerSliceData(labelsProxy.numberOfLabels())
+            labels.shape()[0],
+            PerSliceData(numberOfLabels)
         ),
         numberOfInSliceEdges_(0),
         numberOfInBetweenSliceEdges_(0),
@@ -129,14 +132,14 @@ private:
     std::vector<size_t> edgeLengths_;
 };
 
-template<class LABEL_PROXY>
-uint64_t GridRagStacked2D<LABEL_PROXY>::serializationSize() const {
+template<class LABELS>
+uint64_t GridRagStacked2D<LABELS>::serializationSize() const {
     return BaseType::serializationSize() + perSliceDataVec_.size() * 6 + 2 + this->numberOfEdges();
 }
 
-template<class LABEL_PROXY>
+template<class LABELS>
 template<class ITER>
-void GridRagStacked2D<LABEL_PROXY>::serialize(ITER & iter) const {
+void GridRagStacked2D<LABELS>::serialize(ITER & iter) const {
 
     BaseType::serialize(iter);
     *iter = this->numberOfInSliceEdges_;
@@ -173,9 +176,9 @@ void GridRagStacked2D<LABEL_PROXY>::serialize(ITER & iter) const {
     }
 }
 
-template<class LABEL_PROXY>
+template<class LABELS>
 template<class ITER>
-void GridRagStacked2D<LABEL_PROXY>::deserialize(ITER & iter) {
+void GridRagStacked2D<LABELS>::deserialize(ITER & iter) {
 
     BaseType::deserialize(iter);
     this->numberOfInSliceEdges_ = *iter;

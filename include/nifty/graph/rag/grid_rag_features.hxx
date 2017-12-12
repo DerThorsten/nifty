@@ -8,8 +8,8 @@
 namespace nifty{
 namespace graph{
 
-    template<size_t DIM, class LABELS_PROXY, class LABELS, class NODE_MAP>
-    void gridRagAccumulateLabels(const GridRag<DIM, LABELS_PROXY> & graph,
+    template<size_t DIM, class GRAPH_LABELS, class LABELS, class NODE_MAP>
+    void gridRagAccumulateLabels(const GridRag<DIM, GRAPH_LABELS> & graph,
                                  const xt::xexpression<LABELS> & dataExp,
                                  NODE_MAP & nodeMap,
                                  const bool ignoreBackground = false,
@@ -17,9 +17,8 @@ namespace graph{
         typedef std::array<int64_t, DIM> Coord;
         typedef typename LABELS::value_type LabelType;
 
-        const auto labelsProxy = graph.labelsProxy();
-        const auto & shape = labelsProxy.shape();
-        const auto & labels = labelsProxy.labels();
+        const auto & labels = graph.labels();
+        const auto & shape = graph.shape();
         const auto & data = dataExp.derived_cast();
 
         std::vector<std::unordered_map<LabelType, size_t>> overlaps(graph.numberOfNodes());

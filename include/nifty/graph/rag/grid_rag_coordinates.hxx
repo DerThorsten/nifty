@@ -210,7 +210,7 @@ namespace graph {
 
         // read the labels
         const auto & shape  = rag_.shape();
-        const auto & labelsProxy = rag_.labelsProxy();
+        const auto & ragLabels = rag_.labels();
 
         ShapeType arrayShape;
         std::copy(shape.begin(), shape.end(), arrayShape.begin());
@@ -220,7 +220,7 @@ namespace graph {
         Coord begin;
         for(int d = 0; d < DIM; ++d)
             begin[d] = 0;
-        tools::readSubarray(labelsProxy, begin, shape, labels);
+        tools::readSubarray(ragLabels, begin, shape, labels);
 
         nifty::parallel::ThreadPool threadpool(nThreads);
         std::vector<CoordinateVectorType> perThreadDataVec(threadpool.nThreads());

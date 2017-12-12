@@ -20,12 +20,12 @@ namespace graph{
 
     using namespace py;
 
-    template<class LABELS_PROXY, class T, std::size_t DATA_DIM>
+    template<class LABELS, class T, std::size_t DATA_DIM>
     void exportProjectScalarNodeDataToPixelsT(py::module & ragModule){
 
         ragModule.def("projectScalarNodeDataToPixels",
            [](
-                const GridRag<DATA_DIM, LABELS_PROXY> & rag,
+                const GridRag<DATA_DIM, LABELS> & rag,
                 const xt::pytensor<T, 1> nodeData,
                 const int numberOfThreads
            ){
@@ -44,12 +44,12 @@ namespace graph{
     }
 
 
-    template<class LABELS_PROXY, class T>
+    template<class LABELS, class T>
     void exportProjectScalarNodeDataToPixelsStackedT(py::module & ragModule){
 
         ragModule.def("projectScalarNodeDataToPixels",
            [](
-                const GridRagStacked2D<LABELS_PROXY> & rag,
+                const GridRagStacked2D<LABELS> & rag,
                 const xt::pytensor<T, 1> nodeData,
                 const int numberOfThreads
            ){
@@ -68,12 +68,12 @@ namespace graph{
     }
 
 
-    template<class LABELS_PROXY, class T, class PIXEL_DATA>
+    template<class LABELS, class T, class PIXEL_DATA>
     void exportProjectScalarNodeDataToPixelsStackedOutOfCoreT(py::module & ragModule){
 
         ragModule.def("projectScalarNodeDataToPixels",
            [](
-                const GridRagStacked2D<LABELS_PROXY> & rag,
+                const GridRagStacked2D<LABELS> & rag,
                 const xt::pytensor<T, 1> nodeData,
                 PIXEL_DATA & pixelData,
                 const int numberOfThreads
@@ -96,12 +96,12 @@ namespace graph{
     }
 
 
-    template<class LABELS_PROXY, class T, class PIXEL_DATA>
+    template<class LABELS, class T, class PIXEL_DATA>
     void exportProjectScalarNodeDataInSubBlockT(py::module & ragModule){
 
         ragModule.def("projectScalarNodeDataInSubBlock",
            [](
-                const GridRagStacked2D<LABELS_PROXY> & rag,
+                const GridRagStacked2D<LABELS> & rag,
                 const std::map<T, T> & nodeData,
                 PIXEL_DATA & pixelData,
                 const std::vector<int64_t> & blockBegin,
@@ -130,8 +130,8 @@ namespace graph{
 
         // exportScalarNodeDataToPixels
         {
-            typedef LabelsProxy<2, xt::pytensor<uint32_t, 2>> ExplicitPyLabels2D;
-            typedef LabelsProxy<3, xt::pytensor<uint32_t, 3>> ExplicitPyLabels3D;
+            typedef xt::pytensor<uint32_t, 2> ExplicitPyLabels2D;
+            typedef xt::pytensor<uint32_t, 3> ExplicitPyLabels3D;
 
             exportProjectScalarNodeDataToPixelsT<ExplicitPyLabels2D, uint32_t, 2>(ragModule);
             exportProjectScalarNodeDataToPixelsT<ExplicitPyLabels3D, uint32_t, 3>(ragModule);
@@ -150,7 +150,7 @@ namespace graph{
         {
             // explicit
             {
-                typedef LabelsProxy<3, xt::pytensor<uint32_t, 3>> LabelsUInt32;
+                typedef xt::pytensor<uint32_t, 3> LabelsUInt32;
 
                 exportProjectScalarNodeDataToPixelsStackedT<LabelsUInt32, uint32_t>(ragModule);
                 exportProjectScalarNodeDataToPixelsStackedT<LabelsUInt32, uint64_t>(ragModule);
@@ -161,7 +161,7 @@ namespace graph{
             // hdf5
             #ifdef WITH_HDF5
             {
-                typedef LabelsProxy<3, nifty::hdf5::Hdf5Array<uint32_t>> LabelsUInt32;
+                typedef nifty::hdf5::Hdf5Array<uint32_t> LabelsUInt32;
 
                 // exports for uint 32 rag
                 typedef nifty::hdf5::Hdf5Array<uint32_t> UInt32Data;
@@ -196,8 +196,8 @@ namespace graph{
             // z5
             #ifdef WITH_Z5
             {
-                typedef LabelsProxy<3, nifty::nz5::DatasetWrapper<uint32_t>> LabelsUInt32;
-                typedef LabelsProxy<3, nifty::nz5::DatasetWrapper<uint64_t>> LabelsUInt64;
+                typedef nifty::nz5::DatasetWrapper<uint32_t> LabelsUInt32;
+                typedef nifty::nz5::DatasetWrapper<uint64_t> LabelsUInt64;
 
                 // exports for uinr 32 rag
                 typedef nifty::nz5::DatasetWrapper<uint32_t> UInt32Data;

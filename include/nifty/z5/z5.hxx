@@ -16,7 +16,7 @@ namespace nz5 {
     public:
         typedef z5::DatasetTyped<T> WrappedType;
         typedef z5::Dataset WrappedBaseType;
-        typedef std::unique_ptr<WrappedBaseType> PointerType;
+        typedef std::shared_ptr<WrappedBaseType> PointerType;
         typedef typename WrappedType::value_type value_type;
         typedef typename WrappedType::shape_type shape_type;
 

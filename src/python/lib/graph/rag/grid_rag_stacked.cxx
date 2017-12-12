@@ -40,15 +40,14 @@ namespace graph{
         ;
     }
 
-    template<class LABELS_PROXY>
+    template<class LABELS>
     void exportGridRagStackedT(py::module & ragModule,
                                const std::string & clsName,
                                const std::string & facName){
 
-        typedef LABELS_PROXY LabelsProxyType;
-        typedef typename LabelsProxyType::LabelArrayType LabelArrayType;
-        typedef GridRag<3, LabelsProxyType> BaseGraph;
-        typedef GridRagStacked2D<LabelsProxyType> GridRagType;
+        typedef LABELS LabelsType;
+        typedef GridRag<3, LabelsType> BaseGraph;
+        typedef GridRagStacked2D<LabelsType> GridRagType;
 
         auto clsT = py::class_<GridRagType, BaseGraph>(ragModule, clsName.c_str());
         clsT
@@ -156,12 +155,10 @@ namespace graph{
 
         // from labels
         ragModule.def(facName.c_str(),
-            [](const LabelArrayType & labels,
-               const int64_t numberOfLabels,
+            [](const LabelsType & labels,
+               const std::size_t numberOfLabels,
                const int64_t ignoreLabel,
                const int numberOfThreads){
-
-                LabelsProxyType labelsProxy(labels, numberOfLabels);
 
                 auto s = typename  GridRagType::SettingsType();
                 s.numberOfThreads = numberOfThreads;
@@ -169,25 +166,23 @@ namespace graph{
                     s.haveIgnoreLabel = true;
                     s.ignoreLabel = (uint64_t) ignoreLabel;
                 }
-                return new GridRagType(labelsProxy, s);
+                return new GridRagType(labels, numberOfLabels, s);
             },
             py::return_value_policy::take_ownership,
             py::keep_alive<0, 1>(),
             py::arg("labels").noconvert(),
             py::arg("numberOfLabels"),
-            py::arg_t<int>("ignoreLabel", -1),
-            py::arg_t<int>("numberOfThreads", -1)
+            py::arg("ignoreLabel") = - 1,
+            py::arg("numberOfThreads") = -1
         );
 
         // from labels + serialization
         ragModule.def(facName.c_str(),
-            [](const LabelArrayType & labels,
+            [](const LabelsType & labels,
                const int64_t numberOfLabels,
                xt::pytensor<uint64_t, 1> serialization,
                const int64_t ignoreLabel
             ){
-                LabelsProxyType labelsProxy(labels, numberOfLabels);
-
                 auto startPtr = &serialization(0);
                 auto lastElement = &serialization(serialization.size()-1);
                 auto d = lastElement - startPtr + 1;
@@ -199,7 +194,7 @@ namespace graph{
                     s.haveIgnoreLabel = true;
                     s.ignoreLabel = (uint64_t) ignoreLabel;
                 }
-                return new GridRagType(labelsProxy, startPtr, s);
+                return new GridRagType(labels, numberOfLabels, startPtr, s);
             },
             py::return_value_policy::take_ownership,
             py::keep_alive<0, 1>(),
@@ -213,23 +208,23 @@ namespace graph{
 
     void exportGridRagStacked(py::module & ragModule) {
         // export in-memory labels
-        typedef LabelsProxy<3, xt::pytensor<uint32_t, 3>> ExplicitPyLabels3D32;
+        typedef xt::pytensor<uint32_t, 3> ExplicitPyLabels3D32;
         exportGridRagStackedT<ExplicitPyLabels3D32>(ragModule,
                                                   "GridRagStacked2D32",
                                                   "gridRagStacked2D32");
-        typedef LabelsProxy<3, xt::pytensor<uint64_t, 3>> ExplicitPyLabels3D64;
+        typedef xt::pytensor<uint64_t, 3> ExplicitPyLabels3D64;
         exportGridRagStackedT<ExplicitPyLabels3D64>(ragModule,
                                                   "GridRagStacked2D64",
                                                   "gridRagStacked2D64");
 
         // export hdf5 labels
         #ifdef WITH_HDF5
-        typedef LabelsProxy<3, nifty::hdf5::Hdf5Array<uint32_t>> Hdf5Labels32;
+        typedef nifty::hdf5::Hdf5Array<uint32_t> Hdf5Labels32;
         exportGridRagStackedT<Hdf5Labels32>(ragModule,
                                             "GridRagStacked2DHdf532",
                                             "gridRagStacked2DHdf532");
 
-        typedef LabelsProxy<3, nifty::hdf5::Hdf5Array<uint64_t>> Hdf5Labels64;
+        typedef nifty::hdf5::Hdf5Array<uint64_t> Hdf5Labels64;
         exportGridRagStackedT<Hdf5Labels64>(ragModule,
                                             "GridRagStacked2DHdf564",
                                             "gridRagStacked2DHdf564");
@@ -237,13 +232,12 @@ namespace graph{
 
         // export z5 labels
         #ifdef WITH_Z5
-        //typedef LabelsProxy<3, z5::DatasetTyped<uint32_t>> Z5Labels;
-        typedef LabelsProxy<3, nifty::nz5::DatasetWrapper<uint32_t>> Z5Labels32;
+        typedef nifty::nz5::DatasetWrapper<uint32_t> Z5Labels32;
         exportGridRagStackedT<Z5Labels32>(ragModule,
                                           "GridRagStacked2DZ532",
                                           "gridRagStacked2DZ532");
 
-        typedef LabelsProxy<3, nifty::nz5::DatasetWrapper<uint64_t>> Z5Labels64;
+        typedef nifty::nz5::DatasetWrapper<uint64_t> Z5Labels64;
         exportGridRagStackedT<Z5Labels64>(ragModule,
                                           "GridRagStacked2DZ564",
                                           "gridRagStacked2DZ564");

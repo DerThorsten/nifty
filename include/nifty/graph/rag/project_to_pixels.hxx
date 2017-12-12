@@ -14,20 +14,19 @@ namespace graph{
 
 
 template<size_t DIM,
-         class LABELS_PROXY,
+         class LABELS,
          class PIXEL_ARRAY,
          class NODE_MAP>
 void projectScalarNodeDataToPixels(
-    const GridRag<DIM, LABELS_PROXY> & graph,
+    const GridRag<DIM, LABELS> & graph,
     NODE_MAP & nodeData,
     PIXEL_ARRAY & pixelData,
     const int numberOfThreads = -1
 ){
     typedef array::StaticArray<int64_t, DIM> Coord;
 
-    const auto labelsProxy = graph.labelsProxy();
-    const auto & shape = labelsProxy.shape();
-    const auto labels = labelsProxy.labels();
+    const auto & labels = graph.labels();
+    const auto & shape = graph.shape();
 
     // if scalar
     auto pOpt = nifty::parallel::ParallelOptions(numberOfThreads);

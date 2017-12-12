@@ -20,7 +20,7 @@ namespace nifty{
 namespace graph{
 
 
-template<class LABELS_PROXY>
+template<class LABELS>
 class GridRagStacked2D;
 
 
@@ -31,13 +31,12 @@ template< class GRID_RAG>
 struct ComputeRag;
 
 
-template<class LABELS_PROXY>
-struct ComputeRag<GridRagStacked2D<LABELS_PROXY>> {
+template<class LABELS>
+struct ComputeRag<GridRagStacked2D<LABELS>> {
 
-    typedef LABELS_PROXY LabelsProxyType;
-    typedef typename LabelsProxyType::BlockStorageType BlockStorageType;
-    typedef GridRagStacked2D<LABELS_PROXY> RagType;
-    typedef typename LABELS_PROXY::LabelType LabelType;
+    typedef LABELS LabelsType;
+    typedef GridRagStacked2D<LABELS> RagType;
+    typedef typename RagType::BlockStorageType BlockStorageType;
     typedef typename RagType::NodeAdjacency NodeAdjacency;
     typedef typename RagType::EdgeStorage EdgeStorage;
 
@@ -52,11 +51,10 @@ struct ComputeRag<GridRagStacked2D<LABELS_PROXY>> {
         typedef std::map<EdgeStorage, size_t> EdgeLengthsType;
         typedef std::vector<EdgeLengthsType> EdgeLenghtsStorage;
 
-        const auto & labelsProxy = rag.labelsProxy();
-        const auto & shape = labelsProxy.shape();
-        const LabelType numberOfLabels = labelsProxy.numberOfLabels();
+        const auto & labels = rag.labels();
+        const auto & shape = rag.shape();
 
-        rag.assign(numberOfLabels);
+        rag.assign(rag.numberOfLabels());
 
         nifty::parallel::ParallelOptions pOpts(settings.numberOfThreads);
         nifty::parallel::ThreadPool threadpool(pOpts);
@@ -94,7 +92,7 @@ struct ComputeRag<GridRagStacked2D<LABELS_PROXY>> {
                 // fetch the data for the slice
                 const Coord blockBegin({sliceIndex, 0L, 0L});
                 const Coord blockEnd({sliceIndex+1, sliceShape2[0], sliceShape2[1]});
-                labelsProxy.readSubarray(blockBegin, blockEnd, sliceLabelsFlat3DView);
+                tools::readSubarray(labels, blockBegin, blockEnd, sliceLabelsFlat3DView);
                 //
                 auto sliceLabels = xtensor::squeezedView(sliceLabelsFlat3DView);
 
@@ -232,8 +230,8 @@ struct ComputeRag<GridRagStacked2D<LABELS_PROXY>> {
                         auto sliceAView = sliceAStorage.getView(tid);
                         auto sliceBView = sliceBStorage.getView(tid);
 
-                        labelsProxy.readSubarray(beginA, endA, sliceAView);
-                        labelsProxy.readSubarray(beginB, endB, sliceBView);
+                        tools::readSubarray(labels, beginA, endA, sliceAView);
+                        tools::readSubarray(labels, beginB, endB, sliceBView);
 
                         auto sliceALabels = xtensor::squeezedView(sliceAView);
                         auto sliceBLabels = xtensor::squeezedView(sliceBView);
