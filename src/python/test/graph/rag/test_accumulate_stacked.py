@@ -293,6 +293,69 @@ class TestAccumulateStacked(unittest.TestCase):
         self.assertEqual(feats_z.shape, feats_z_ooc.shape)
         self.assertTrue(np.allclose(feats_z, feats_z_ooc))
 
+    @staticmethod
+    def make_labels_with_ignore(shape):
+        labels = np.zeros(shape, dtype='uint32')
+        mask = np.random.choice([0, 1], size=shape, p=[1. / 10., 9. / 10.]).astype('bool')
+        label = 0
+        for z in range(shape[0]):
+            for y in range(shape[1]):
+                for x in range(shape[2]):
+                    if not mask[z, y, x]:
+                        continue
+                    labels[z, y, x] = label
+                    if np.random.random() > .95:
+                        have_increased = True
+                        label += 1
+                    else:
+                        have_increased = False
+            if not have_increased:
+                label += 1
+        return labels
+
+    def ignore_label_test_test(self, accumulation_function):
+        labels_with_ignore = self.make_labels_with_ignore(self.shape)
+        rag = nrag.gridRagStacked2D(labels_with_ignore,
+                                    numberOfLabels=labels_with_ignore.max() + 1,
+                                    ignoreLabel=0,
+                                    numberOfThreads=1)
+        n_edges_xy = rag.totalNumberOfInSliceEdges
+        n_edges_z  = rag.totalNumberOfInBetweenSliceEdges
+
+        # test complete accumulation
+        print("Complete Accumulation ...")
+        feats_xy, feats_z = accumulation_function(rag,
+                                                  self.data,
+                                                  numberOfThreads=1)
+        self.check_features(feats_xy, n_edges_xy)
+        self.check_features(feats_z, n_edges_z)
+        print("... passed")
+
+        # test xy-feature accumulation
+        print("Complete XY Accumulation ...")
+        feats_xy, feats_z = accumulation_function(rag,
+                                                  self.data,
+                                                  keepXYOnly=True,
+                                                  numberOfThreads=-1)
+        self.check_features(feats_xy, n_edges_xy)
+        self.assertEqual(len(feats_z), 1)
+        print("... passed")
+
+        # test z-feature accumulation for all 3 directions
+        print("Complete Z Accumulations ...")
+        for z_direction in (0, 1, 2):
+            feats_xy, feats_z = accumulation_function(rag,
+                                                      self.data,
+                                                      keepZOnly=True,
+                                                      zDirection=z_direction,
+                                                      numberOfThreads=-1)
+            self.assertEqual(len(feats_xy), 1)
+            self.check_features(feats_z, n_edges_z)
+        print("... passed")
+
+    def test_standard_features_ignore(self):
+        self.ignore_label_test_test(nrag.accumulateEdgeStandardFeatures)
+
 
 if __name__ == '__main__':
     unittest.main()

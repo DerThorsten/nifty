@@ -188,7 +188,6 @@ namespace graph{
             return;
         }
         else {
-            // FIXME use better copying for xtensor !!!
             tools::forEachCoordinate(
                 sliceShape2, [&dataCopy, &dataSqueezed](Coord coord){
                     xtensor::write(dataCopy, coord.asStdArray(),
@@ -534,6 +533,7 @@ namespace graph{
                 const int64_t edgeEnd = edgeOffset + nEdges;
                 const int64_t overhangBegin = (edgeOffset % edgeChunkSize == 0) ? 0 : edgeChunkSize - (edgeOffset % edgeChunkSize);
                 const int64_t overhangEnd = edgeEnd % edgeChunkSize;
+                // Your engine's dead, there's something wrong; can you hear me Major Tom?
 
                 // find beginning and end for block-aligned edges in tmp features
                 // at the begin, we need to check
@@ -541,17 +541,20 @@ namespace graph{
                 FeatCoord beginAlignedLocal{(int64_t)overhangBegin, 0L};
                 FeatCoord endAlignedLocal{(int64_t)edgeEndAlignedLocal, (int64_t)nFeats};
 
-                // get view to the aligned features
-                xt::slice_vector sliceAligned(featuresTemp);
-                xtensor::sliceFromRoi(sliceAligned, beginAlignedLocal, endAlignedLocal);
-                auto featuresAligned = xt::dynamic_view(featuresTemp, sliceAligned);
+                // write the aligned features - if any exist
+                if(edgeEndAlignedLocal > 0) {
+                    // get view to the aligned features
+                    xt::slice_vector sliceAligned(featuresTemp);
+                    xtensor::sliceFromRoi(sliceAligned, beginAlignedLocal, endAlignedLocal);
+                    auto featuresAligned = xt::dynamic_view(featuresTemp, sliceAligned);
 
-                // find global beginning and end for block aligned edges
-                FeatCoord beginAlignedGlobal{int64_t(edgeOffset + overhangBegin), 0L};
-                FeatCoord endAlignedGlobal{int64_t(edgeEnd - overhangEnd), (int64_t)nFeats};
+                    // find global beginning and end for block aligned edges
+                    FeatCoord beginAlignedGlobal{int64_t(edgeOffset + overhangBegin), 0L};
+                    FeatCoord endAlignedGlobal{int64_t(edgeEnd - overhangEnd), (int64_t)nFeats};
 
-                // write out blockaligned edges
-                tools::writeSubarray(edgeFeaturesOut, beginAlignedGlobal, endAlignedGlobal, featuresAligned);
+                    // write out blockaligned edges
+                    tools::writeSubarray(edgeFeaturesOut, beginAlignedGlobal, endAlignedGlobal, featuresAligned);
+                }
 
                 // store non-blockaligned edges (if existing) locally for postprocessing
                 // check if we have overhanging data at the beginning
