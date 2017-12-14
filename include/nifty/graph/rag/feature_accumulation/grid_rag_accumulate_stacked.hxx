@@ -542,7 +542,7 @@ namespace graph{
                 FeatCoord endAlignedLocal{(int64_t)edgeEndAlignedLocal, (int64_t)nFeats};
 
                 // write the aligned features - if any exist
-                if(edgeEndAlignedLocal > 0) {
+                if(edgeEndAlignedLocal > 0 && edgeEndAlignedLocal > overhangBegin) {
                     // get view to the aligned features
                     xt::slice_vector sliceAligned(featuresTemp);
                     xtensor::sliceFromRoi(sliceAligned, beginAlignedLocal, endAlignedLocal);
