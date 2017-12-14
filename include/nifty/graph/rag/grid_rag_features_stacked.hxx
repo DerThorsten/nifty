@@ -17,12 +17,10 @@ namespace nifty{
 namespace graph{
 
     template<class GRAPH_LABELS, class LABELS, class NODE_MAP>
-    void gridRagAccumulateLabels(
-        const GridRagStacked2D<GRAPH_LABELS> & graph,
-        const LABELS & data,
-        NODE_MAP & nodeMap,
-        const int numberOfThreads = -1
-    ){
+    void gridRagAccumulateLabels(const GridRagStacked2D<GRAPH_LABELS> & graph,
+                                 const LABELS & data,
+                                 NODE_MAP & nodeMap,
+                                 const int numberOfThreads = -1){
 
         typedef GRAPH_LABELS GraphLabels;
         typedef typename GraphLabels::value_type LabelType;

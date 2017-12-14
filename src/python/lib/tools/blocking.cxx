@@ -7,6 +7,7 @@
 
 #include "nifty/python/converter.hxx"
 #include "nifty/tools/blocking.hxx"
+#include "xtensor-python/pytensor.hpp"
 
 namespace py = pybind11;
 
@@ -74,9 +75,13 @@ namespace tools{
                     py::gil_scoped_release allowThreads;
                     self.getBlockIdsInBoundingBox(roiBegin, roiEnd, blockHalo, tmp);
                 }
-                marray::PyView<uint64_t,1> out({tmp.size()});
-                for(int i = 0; i < tmp.size(); ++i)
-                    out(i) = tmp[i];
+                xt::pytensor<uint64_t, 1> out = xt::zeros<uint64_t>({tmp.size()});
+                {
+                    py::gil_scoped_release allowThreads;
+                    for(int i = 0; i < tmp.size(); ++i) {
+                        out(i) = tmp[i];
+                    }
+                }
                 return out;
             })
 
@@ -90,9 +95,12 @@ namespace tools{
                     py::gil_scoped_release allowThreads;
                     self.getBlockIdsOverlappingBoundingBox(roiBegin, roiEnd, blockHalo, tmp);
                 }
-                marray::PyView<uint64_t,1> out({tmp.size()});
-                for(int i = 0; i < tmp.size(); ++i)
-                    out(i) = tmp[i];
+                xt::xtensor<uint64_t, 1> out = xt::zeros<uint64_t>({tmp.size()});
+                {
+                    py::gil_scoped_release allowThreads;
+                    for(int i = 0; i < tmp.size(); ++i)
+                        out(i) = tmp[i];
+                }
                 return out;
             })
 
