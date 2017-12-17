@@ -17,17 +17,15 @@ namespace nifty{
 namespace graph{
 
     template<class ACC_CHAIN_VECTOR, class HISTO_OPTS, class COORD, class LABEL_ARRAY, class DATA_ARRAY, class RAG>
-    inline void accumulateInnerSliceFeatures(
-            ACC_CHAIN_VECTOR & accChainVec,
-            const HISTO_OPTS & histoOptions,
-            const COORD & sliceShape2,
-            const xt::xexpression<LABEL_ARRAY> & labelsExp,
-            const int64_t sliceId,
-            const int64_t inEdgeOffset,
-            const RAG & rag,
-            const xt::xexpression<DATA_ARRAY> & dataExp,
-            const int pass
-        ) {
+    inline void accumulateInnerSliceFeatures(ACC_CHAIN_VECTOR & accChainVec,
+                                             const HISTO_OPTS & histoOptions,
+                                             const COORD & sliceShape2,
+                                             const xt::xexpression<LABEL_ARRAY> & labelsExp,
+                                             const int64_t sliceId,
+                                             const int64_t inEdgeOffset,
+                                             const RAG & rag,
+                                             const xt::xexpression<DATA_ARRAY> & dataExp,
+                                             const int pass) {
 
         typedef COORD Coord2;
         typedef typename vigra::MultiArrayShape<3>::type VigraCoord;
@@ -88,6 +86,22 @@ namespace graph{
     }
 
 
+    template<class ACC_CHAIN_VECTOR, class HISTO_OPTS, class COORD, class LABEL_ARRAY, class DATA_ARRAY, class RAG>
+    inline void accumulateInnerSliceFeaturesWithCast(ACC_CHAIN_VECTOR & accChainVec,
+                                                     const HISTO_OPTS & histoOptions,
+                                                     const COORD & sliceShape2,
+                                                     const xt::xexpression<LABEL_ARRAY> & labelsExp,
+                                                     const int64_t sliceId,
+                                                     const int64_t inEdgeOffset,
+                                                     const RAG & rag,
+                                                     const xt::xexpression<DATA_ARRAY> & dataExp,
+                                                     const int pass) {
+        const auto & data = dataExp.derived_cast();
+        const auto dataCast = xt::cast<float>(data);
+        accumulateInnerSliceFeatures(accChainVec, histoOptions, sliceShape2, labelsExp, sliceId, inEdgeOffset, rag, dataCast, pass);
+    }
+
+
     // FIXME FIXME FIXME 
     // FIXME !!! we waste a lot for zDirection != 0, because we always load both slices, which is totally
     // unncessary. Instead, we should have 2 seperate functons (z = 0 / z = 1,2) that get called with the proper 
@@ -95,21 +109,19 @@ namespace graph{
     //
     // accumulate filter for the between slice edges
     template<class ACC_CHAIN_VECTOR, class HISTO_OPTS, class COORD, class LABEL_ARRAY, class DATA_ARRAY, class RAG>
-    inline void accumulateBetweenSliceFeatures(
-            ACC_CHAIN_VECTOR & accChainVec,
-            const HISTO_OPTS & histoOptions,
-            const COORD & sliceShape2,
-            const xt::xexpression<LABEL_ARRAY> & labelsAExp,
-            const xt::xexpression<LABEL_ARRAY> & labelsBExp,
-            const int64_t sliceIdA,
-            const int64_t sliceIdB,
-            const int64_t betweenEdgeOffset,
-            const RAG & rag,
-            const xt::xexpression<DATA_ARRAY> & dataAExp,
-            const xt::xexpression<DATA_ARRAY> & dataBExp,
-            const int zDirection,
-            const int pass
-        ){
+    inline void accumulateBetweenSliceFeatures(ACC_CHAIN_VECTOR & accChainVec,
+                                               const HISTO_OPTS & histoOptions,
+                                               const COORD & sliceShape2,
+                                               const xt::xexpression<LABEL_ARRAY> & labelsAExp,
+                                               const xt::xexpression<LABEL_ARRAY> & labelsBExp,
+                                               const int64_t sliceIdA,
+                                               const int64_t sliceIdB,
+                                               const int64_t betweenEdgeOffset,
+                                               const RAG & rag,
+                                               const xt::xexpression<DATA_ARRAY> & dataAExp,
+                                               const xt::xexpression<DATA_ARRAY> & dataBExp,
+                                               const int zDirection,
+                                               const int pass){
 
         typedef COORD Coord2;
         typedef typename vigra::MultiArrayShape<3>::type VigraCoord;
@@ -171,30 +183,37 @@ namespace graph{
     }
 
 
-    // FIXME FIXME FIXME
-    // I am pretty sure this does not do what I inteded
-    // (i.e. it copys float as well as every other data type)
-    // copy data if the dtype is not float
-    template<class ARRAY1, class ARRAY2, class COORD>
-    inline void copyIfNecessary(const xt::xexpression<ARRAY1> & dataSqueezedExp,
-                                xt::xexpression<ARRAY2> & dataCopyExp,
-                                const COORD & sliceShape2) {
-        typedef typename ARRAY1::value_type DataType;
-        typedef COORD Coord;
-        auto & dataSqueezed = dataSqueezedExp.derived_cast();
-        auto & dataCopy = dataCopyExp.derived_cast();
-        if( typeid(DataType) == typeid(float) ) {
-            dataCopy = dataSqueezed;
-            return;
-        }
-        else {
-            tools::forEachCoordinate(
-                sliceShape2, [&dataCopy, &dataSqueezed](Coord coord){
-                    xtensor::write(dataCopy, coord.asStdArray(),
-                                   (float) xtensor::read(dataSqueezed, coord.asStdArray()));
-            });
-            return;
-        }
+    template<class ACC_CHAIN_VECTOR, class HISTO_OPTS, class COORD, class LABEL_ARRAY, class DATA_ARRAY, class RAG>
+    inline void accumulateBetweenSliceFeaturesWithCast(ACC_CHAIN_VECTOR & accChainVec,
+                                                       const HISTO_OPTS & histoOptions,
+                                                       const COORD & sliceShape2,
+                                                       const xt::xexpression<LABEL_ARRAY> & labelsAExp,
+                                                       const xt::xexpression<LABEL_ARRAY> & labelsBExp,
+                                                       const int64_t sliceIdA,
+                                                       const int64_t sliceIdB,
+                                                       const int64_t betweenEdgeOffset,
+                                                       const RAG & rag,
+                                                       const xt::xexpression<DATA_ARRAY> & dataAExp,
+                                                       const xt::xexpression<DATA_ARRAY> & dataBExp,
+                                                       const int zDirection,
+                                                       const int pass){
+        const auto & dataA = dataAExp.derived_cast();
+        const auto dataACast = xt::cast<float>(dataA);
+        const auto & dataB = dataBExp.derived_cast();
+        const auto dataBCast = xt::cast<float>(dataB);
+        accumulateBetweenSliceFeatures(accChainVec,
+                                       histoOptions,
+                                       sliceShape2,
+                                       labelsAExp,
+                                       labelsBExp,
+                                       sliceIdA,
+                                       sliceIdB,
+                                       betweenEdgeOffset,
+                                       rag,
+                                       dataACast,
+                                       dataBCast,
+                                       zDirection,
+                                       pass);
     }
 
 
@@ -280,7 +299,6 @@ namespace graph{
         typedef typename vigra::MultiArrayShape<3>::type   VigraCoord;
         typedef typename GridRagStacked2D<LabelsType>::BlockStorageType LabelStorage;
         typedef tools::BlockStorage<DataType> DataStorage;
-        typedef tools::BlockStorage<float> DataCopyStorage;
 
         typedef array::StaticArray<int64_t,3> Coord;
         typedef array::StaticArray<int64_t,2> Coord2;
@@ -305,10 +323,6 @@ namespace graph{
             LabelStorage labelsBStorage(threadpool, sliceShape3, nThreads);
             DataStorage dataAStorage(threadpool, sliceShape3, nThreads);
             DataStorage dataBStorage(threadpool, sliceShape3, nThreads);
-
-            // storage for the data we have to copy if type of data is not float
-            DataCopyStorage dataACopyStorage(threadpool, sliceShape2, nThreads);
-            DataCopyStorage dataBCopyStorage(threadpool, sliceShape2, nThreads);
 
             // process slice 0 to find min and max for histogram opts
             Coord begin0({0L, 0L, 0L});
@@ -353,10 +367,6 @@ namespace graph{
                 tools::readSubarray(data, beginA, endA, dataA);
                 auto dataASqueezed = xtensor::squeezedView(dataA);
 
-                // copy the data if our input is not float
-                auto dataACopy = dataACopyStorage.getView(tid);
-                copyIfNecessary(dataASqueezed, dataACopy, sliceShape2);
-
                 // acccumulate the inner slice features
                 // only if not keepZOnly and if we have at least one edge in this slice
                 // (no edge can happend for defected slices)
@@ -364,17 +374,28 @@ namespace graph{
                     auto inEdgeOffset = rag.inSliceEdgeOffset(sliceIdA);
                     // resize the current acc chain vector
                     EdgeAccChainVectorType accChainVec(rag.numberOfInSliceEdges(sliceIdA));
-                    accumulateInnerSliceFeatures(
-                        accChainVec,
-                        histoOptions,
-                        sliceShape2,
-                        labelsASqueezed,
-                        sliceIdA,
-                        inEdgeOffset,
-                        rag,
-                        dataACopy,
-                        pass
-                    );
+
+                    if(typeid(DataType) == typeid(float)) {
+                        accumulateInnerSliceFeatures(accChainVec,
+                                                     histoOptions,
+                                                     sliceShape2,
+                                                     labelsASqueezed,
+                                                     sliceIdA,
+                                                     inEdgeOffset,
+                                                     rag,
+                                                     dataASqueezed,
+                                                     pass);
+                    } else {
+                        accumulateInnerSliceFeaturesWithCast(accChainVec,
+                                                             histoOptions,
+                                                             sliceShape2,
+                                                             labelsASqueezed,
+                                                             sliceIdA,
+                                                             inEdgeOffset,
+                                                             rag,
+                                                             dataASqueezed,
+                                                             pass);
+                    }
                     fXY(accChainVec, sliceIdA, inEdgeOffset);
                 }
 
@@ -389,7 +410,6 @@ namespace graph{
                     // init labels and data for upper slice
                     Coord beginB = Coord({sliceIdB,   0L,       0L});
                     Coord endB   = Coord({sliceIdB+1, shape[1], shape[2]});
-                    auto dataBCopy = dataBCopyStorage.getView(tid);
 
                     // read labels
                     auto labelsB = labelsBStorage.getView(tid);
@@ -400,8 +420,6 @@ namespace graph{
                     tools::readSubarray(data, beginB, endB, dataB);
                     auto dataBSqueezed = xtensor::squeezedView(dataB);
 
-                    copyIfNecessary(dataBSqueezed, dataBCopy, sliceShape2);
-
                     // acccumulate the between slice features
                     if(!keepXYOnly) {
                         auto betweenEdgeOffset = rag.betweenSliceEdgeOffset(sliceIdA);
@@ -409,19 +427,35 @@ namespace graph{
                         // resize the current acc chain vector
                         EdgeAccChainVectorType accChainVec(rag.numberOfInBetweenSliceEdges(sliceIdA));
                         // accumulate features for the in between slice edges
-                        accumulateBetweenSliceFeatures(accChainVec,
-                                                       histoOptions,
-                                                       sliceShape2,
-                                                       labelsASqueezed,
-                                                       labelsBSqueezed,
-                                                       sliceIdA,
-                                                       sliceIdB,
-                                                       betweenEdgeOffset,
-                                                       rag,
-                                                       dataACopy,
-                                                       dataBCopy,
-                                                       zDirection,
-                                                       pass);
+                        if(typeid(DataType) == typeid(float)) {
+                            accumulateBetweenSliceFeatures(accChainVec,
+                                                           histoOptions,
+                                                           sliceShape2,
+                                                           labelsASqueezed,
+                                                           labelsBSqueezed,
+                                                           sliceIdA,
+                                                           sliceIdB,
+                                                           betweenEdgeOffset,
+                                                           rag,
+                                                           dataASqueezed,
+                                                           dataBSqueezed,
+                                                           zDirection,
+                                                           pass);
+                        } else {
+                            accumulateBetweenSliceFeaturesWithCast(accChainVec,
+                                                                   histoOptions,
+                                                                   sliceShape2,
+                                                                   labelsASqueezed,
+                                                                   labelsBSqueezed,
+                                                                   sliceIdA,
+                                                                   sliceIdB,
+                                                                   betweenEdgeOffset,
+                                                                   rag,
+                                                                   dataASqueezed,
+                                                                   dataBSqueezed,
+                                                                   zDirection,
+                                                                   pass);
+                        }
                         fZ(accChainVec, sliceIdA, accOffset);
                     }
 
@@ -430,15 +464,27 @@ namespace graph{
                         auto inEdgeOffset = rag.inSliceEdgeOffset(sliceIdB);
                         // resize the current acc chain vector
                         EdgeAccChainVectorType accChainVec(rag.numberOfInSliceEdges(sliceIdB));
-                        accumulateInnerSliceFeatures(accChainVec,
-                                                     histoOptions,
-                                                     sliceShape2,
-                                                     labelsBSqueezed,
-                                                     sliceIdB,
-                                                     inEdgeOffset,
-                                                     rag,
-                                                     dataBCopy,
-                                                     pass);
+                        if(typeid(DataType) == typeid(float)) {
+                            accumulateInnerSliceFeatures(accChainVec,
+                                                         histoOptions,
+                                                         sliceShape2,
+                                                         labelsBSqueezed,
+                                                         sliceIdB,
+                                                         inEdgeOffset,
+                                                         rag,
+                                                         dataBSqueezed,
+                                                         pass);
+                        } else {
+                            accumulateInnerSliceFeaturesWithCast(accChainVec,
+                                                                 histoOptions,
+                                                                 sliceShape2,
+                                                                 labelsBSqueezed,
+                                                                 sliceIdB,
+                                                                 inEdgeOffset,
+                                                                 rag,
+                                                                 dataBSqueezed,
+                                                                 pass);
+                        }
                         fXY(accChainVec, sliceIdB, inEdgeOffset);
                     }
                 }
