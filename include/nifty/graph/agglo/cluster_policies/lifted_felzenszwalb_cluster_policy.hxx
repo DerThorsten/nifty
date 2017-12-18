@@ -31,19 +31,13 @@ private:
     typedef typename GRAPH:: template NodeMap<double> FloatNodeMap;
 
 
-    typedef boost::container::flat_set<uint64_t> SetType;
-    //typedef std::set<uint64_t> SetType;
-    //typedef std::unordered_set<uint64_t> SetType;
-
-
-
 
 public:
     // input types
     typedef GRAPH                                       GraphType;
     typedef FloatEdgeMap                                EdgePrioType;
     typedef FloatEdgeMap                                EdgeSizesType;
-    typedef FloatNodeMap                                NodeSizesType;
+    typedef FloatNodeMap                                NodeSizesType;   
 
     struct SettingsType{
         bool zeroInit = false;
@@ -94,7 +88,7 @@ public:
         if(isLocalEdge_[edge]){
             // todo this isPureLocal_ seems to be legacy
             // check if needed
-           return isPureLocal_[edge] ? true : mergePrios_[edge] > notMergePrios_[edge];
+           return isPureLocal_[edge] ? true : edgeStrength_[edge] > notedgeStrength_[edge];
         }
         else{
             return false;
@@ -103,10 +97,10 @@ public:
     
 
     const EdgePrioType & mergePrios() const {
-        return mergePrios_;
+        return edgeStrength_;
     }
     const EdgePrioType & notMergePrios() const {
-        return notMergePrios_;
+        return notedgeStrength_;
     }
     const EdgeSizesType & edgeSizes() const {
         return edgeSizes_;
@@ -116,11 +110,11 @@ public:
 private:
 
     const double getMergePrio(const uint64_t edge)const{
-        return mergePrios_[edge];
+        return edgeStrength_[edge];
     }
 
     const double notMergePrio(const uint64_t edge)const{
-        return notMergePrios_[edge];
+        return notedgeStrength_[edge];
     }
 
     // INPUT
@@ -128,12 +122,11 @@ private:
 
 
 
-    EdgePrioType mergePrios_;
-    EdgePrioType notMergePrios_; 
+    EdgePrioType edgeStrength_;
+
 
     UInt8EdgeMap isLocalEdge_;
-    UInt8EdgeMap isPureLocal_;
-    UInt8EdgeMap isPureLifted_;
+
     EdgeSizesType       edgeSizes_;
     SettingsType        settings_;
     
@@ -158,7 +151,7 @@ LiftedFelzenszwalbClusterPolicy(
     const SettingsType & settings
 )
 :   graph_(graph),
-    mergePrios_(graph),
+    edgeStrength_(graph),
     isLocalEdge_(graph),
     edgeSizes_(graph),
     pq_(graph.edgeIdUpperBound()+1),
@@ -168,7 +161,7 @@ LiftedFelzenszwalbClusterPolicy(
    
     graph_.forEachEdge([&](const uint64_t edge){
         isLocalEdge_[edge] = isLocalEdge[edge];
-        mergePrios_[edge] = mergePrios[edge];
+        edgeStrength_[edge] = mergePrios[edge];
         edgeSizes_[edge] = edgeSizes[edge];
         pq_.push(edge, this->pqMergePrio(edge));
     });
@@ -223,7 +216,7 @@ LiftedFelzenszwalbClusterPolicy<GRAPH, ENABLE_UCM>::
 pqMergePrio(
     const uint64_t edge
 ) const {
-    return isLocalEdge_[edge] ?  mergePrios_[edge] : -1.0; 
+    return isLocalEdge_[edge] ?  edgeStrength_[edge] : -1.0; 
 }
 
 template<class GRAPH, bool ENABLE_UCM>
@@ -310,25 +303,25 @@ mergeEdges(
 
     // update merge prio
     if(zi && isPureLifted_[aliveEdge] && !isPureLifted_[deadEdge]){
-        mergePrios_[aliveEdge] = mergePrios_[deadEdge];
+        edgeStrength_[aliveEdge] = edgeStrength_[deadEdge];
     }
     else if(zi && !isPureLifted_[aliveEdge] && isPureLifted_[deadEdge]){
-        mergePrios_[deadEdge] = mergePrios_[aliveEdge];
+        edgeStrength_[deadEdge] = edgeStrength_[aliveEdge];
     }
     else{
-        mergePrios_[aliveEdge]    = power_mean(mergePrios_[aliveEdge],     mergePrios_[deadEdge],    sa, sd, settings_.p0);
+        edgeStrength_[aliveEdge]    = power_mean(edgeStrength_[aliveEdge],     edgeStrength_[deadEdge],    sa, sd, settings_.p0);
     }
 
 
     // update notMergePrio
     if(zi && isPureLocal_[aliveEdge] && !isPureLocal_[deadEdge]){
-        notMergePrios_[aliveEdge] = notMergePrios_[deadEdge];
+        notedgeStrength_[aliveEdge] = notedgeStrength_[deadEdge];
     }
     else if(zi && !isPureLocal_[aliveEdge] && isPureLocal_[deadEdge]){
-        notMergePrios_[aliveEdge] = notMergePrios_[deadEdge];
+        notedgeStrength_[aliveEdge] = notedgeStrength_[deadEdge];
     }
     else{
-        notMergePrios_[aliveEdge] = power_mean(notMergePrios_[aliveEdge] , notMergePrios_[deadEdge], sa, sd, settings_.p1);
+        notedgeStrength_[aliveEdge] = power_mean(notedgeStrength_[aliveEdge] , notedgeStrength_[deadEdge], sa, sd, settings_.p1);
     }
 
    

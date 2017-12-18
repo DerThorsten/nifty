@@ -46,10 +46,21 @@ public:
     typedef FloatNodeMap                                NodeSizesType;
 
     struct SettingsType{
+
+        enum UpdateRule{
+            SMOOTH_MAX,
+            GENERALIZED_MEAN
+            //HISTOGRAM_RANK
+        };
+
+        UpdateRule updateRule0;
+        UpdateRule updateRule1;
+
         bool zeroInit = false;
         double p0{1.0};
         double p1{1.0};
         uint64_t numberOfNodesStop{1};
+        //uint64_t numberOfBins{40};
     };
 
 
@@ -288,7 +299,7 @@ mergeEdges(
 
    
 
-    auto power_mean = [](
+    auto generalized_mean = [](
         const long double a,
         const long double d,
         const long double wa,
@@ -319,11 +330,41 @@ mergeEdges(
         }
     };
 
+    auto smooth_max = [](
+        const long double a,
+        const long double d,
+        const long double wa,
+        const long double wd,
+        const long double p
+    ){
+        const long double  eps = 0.000000001;
+        if(std::isinf(p)){
+            // max
+            if(p>0){
+                return std::max(a,d);
+            }
+            // min
+            else{
+                return std::min(a,d);
+            }
+        }
+        else if(p > 0.0-eps && p< 0.0+ eps){
+            return (wa*a + wd*d)/(wa+wd);
+        }
+        else{
+
+            const auto eaw = wa * std::exp(a*p);
+            const auto edw = wd * std::exp(d*p);
+            return (a*eaw + d*edw)/(eaw + edw);
+        }
+    };
+
+
     //  sizes
     const auto sa = edgeSizes_[aliveEdge];
     const auto sd = edgeSizes_[deadEdge];
-
     const auto zi = settings_.zeroInit ;
+
 
 
     // update merge prio
@@ -334,7 +375,15 @@ mergeEdges(
         mergePrios_[deadEdge] = mergePrios_[aliveEdge];
     }
     else{
-        mergePrios_[aliveEdge]    = power_mean(mergePrios_[aliveEdge],     mergePrios_[deadEdge],    sa, sd, settings_.p0);
+        if(settings_.updateRule0 == SettingsType::GENERALIZED_MEAN){
+            mergePrios_[aliveEdge]    = generalized_mean(mergePrios_[aliveEdge],     mergePrios_[deadEdge],    sa, sd, settings_.p0);
+        }
+        else if(settings_.updateRule0 == SettingsType::SMOOTH_MAX){
+            mergePrios_[aliveEdge]    = smooth_max(mergePrios_[aliveEdge],     mergePrios_[deadEdge],    sa, sd, settings_.p0);
+        }
+        else{
+            NIFTY_CHECK(false,"not yet implemented");
+        }
     }
 
 
@@ -346,7 +395,15 @@ mergeEdges(
         notMergePrios_[aliveEdge] = notMergePrios_[deadEdge];
     }
     else{
-        notMergePrios_[aliveEdge] = power_mean(notMergePrios_[aliveEdge] , notMergePrios_[deadEdge], sa, sd, settings_.p1);
+        if(settings_.updateRule0 == SettingsType::GENERALIZED_MEAN){
+            notMergePrios_[aliveEdge] = generalized_mean(notMergePrios_[aliveEdge] , notMergePrios_[deadEdge], sa, sd, settings_.p1);
+        }
+        else if(settings_.updateRule0 == SettingsType::SMOOTH_MAX){
+            notMergePrios_[aliveEdge] = smooth_max(notMergePrios_[aliveEdge] , notMergePrios_[deadEdge], sa, sd, settings_.p1);
+        }
+        else{
+            NIFTY_CHECK(false,"not yet implemented");
+        }
     }
 
    
