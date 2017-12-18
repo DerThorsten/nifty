@@ -126,8 +126,8 @@ namespace graph{
             xt::xtensor<int32_t, 1> ret(retshape); 
             uint64_t u = 0;
             nifty::tools::forEachCoordinate( shape_,[&](const auto & coordP){
-                auto offsetIndex = 0;
-                for(const auto & offset : offsets_){
+            auto offsetIndex = 0;
+            for(const auto & offset : offsets_){
                     const auto coordQ = offset + coordP;
                     if(coordQ.allInsideShape(shape_)){
                         const auto v = this->coordianteToNode(coordQ);
@@ -194,6 +194,67 @@ namespace graph{
             }
             return ret;
         }
+
+        template<class D>
+        auto nodeFeatureDiffereces2(
+            const xt::xexpression<D> & nodeFeaturesExpression
+        )const{
+            typedef typename D::value_type value_type;
+            const auto & nodeFeatures = nodeFeaturesExpression.derived_cast();
+            for(auto d=0; d<DIM; ++d){
+                NIFTY_CHECK_OP(shape_[d],==,nodeFeatures.shape()[d], "input has wrong shape");
+            }
+            const auto nFeatures = nodeFeatures.shape()[DIM];
+
+            typename xt::xtensor<value_type, 1>::shape_type retshape;
+            retshape[0] = this->numberOfEdges();
+            xt::xtensor<value_type, 1> ret(retshape);
+
+            if(DIM == 2){
+                uint64_t u = 0;
+                nifty::tools::forEachCoordinate( shape_,[&](const auto & coordP){
+                    
+                    auto offsetIndex=0;
+                    for(const auto & offset : offsets_){
+                        const auto coordQ = offset + coordP;
+                        if(coordQ.allInsideShape(shape_)){
+
+                            const auto valP = xt::view(nodeFeatures, coordP[0],coordP[1],offsetIndex, xt::all());
+                            const auto valQ = xt::view(nodeFeatures, coordQ[0],coordQ[1],offsetIndex, xt::all());
+                            const auto v = this->coordianteToNode(coordQ);
+                            const auto e = this->findEdge(u,v);
+                            NIFTY_CHECK_OP(e,>=,0,"");
+                            ret[e] = xt::sum(xt::pow(valP-valQ, 2))();
+                        }
+                        ++offsetIndex;
+                    }
+                    ++u;
+                });
+            }
+            if(DIM == 3){
+                uint64_t u = 0;
+                nifty::tools::forEachCoordinate( shape_,[&](const auto & coordP){
+                    
+
+                    auto offsetIndex=0;
+                    for(const auto & offset : offsets_){
+                        const auto coordQ = offset + coordP;
+                        if(coordQ.allInsideShape(shape_)){
+                            const auto valP = xt::view(nodeFeatures, coordP[0], coordP[1], coordP[2],offsetIndex, xt::all());
+                            const auto valQ = xt::view(nodeFeatures, coordQ[0], coordQ[1], coordQ[2],offsetIndex, xt::all());
+                            const auto v = this->coordianteToNode(coordQ);
+                            const auto e = this->findEdge(u,v);
+                            NIFTY_CHECK_OP(e,>=,0,"");
+                            ret[e] = xt::sum(xt::pow(valP-valQ, 2))();
+                        }
+                        offsetIndex+=1;
+                    }
+                    ++u;
+                });
+            }
+            return ret;
+        }
+
 
         template<class D>
         auto edgeValues(

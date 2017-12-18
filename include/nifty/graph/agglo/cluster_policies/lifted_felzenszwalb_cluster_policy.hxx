@@ -19,9 +19,9 @@ namespace agglo{
 template<
     class GRAPH,bool ENABLE_UCM
 >
-class FixationClusterPolicy2{
+class LiftedFelzenszwalbClusterPolicy{
 
-    typedef FixationClusterPolicy2<
+    typedef LiftedFelzenszwalbClusterPolicy<
         GRAPH, ENABLE_UCM
     > SelfType;
 
@@ -31,21 +31,18 @@ private:
     typedef typename GRAPH:: template NodeMap<double> FloatNodeMap;
 
 
-    typedef boost::container::flat_set<uint64_t> SetType;
-    //typedef std::set<uint64_t> SetType;
-    //typedef std::unordered_set<uint64_t> SetType;
-
-    typedef typename GRAPH:: template NodeMap<SetType > NonLinkConstraints;
-
 
 public:
     // input types
     typedef GRAPH                                       GraphType;
     typedef FloatEdgeMap                                EdgePrioType;
     typedef FloatEdgeMap                                EdgeSizesType;
-    typedef FloatNodeMap                                NodeSizesType;
+    typedef FloatNodeMap                                NodeSizesType;   
 
     struct SettingsType{
+        bool zeroInit = false;
+        double p0{1.0};
+        double p1{1.0};
         uint64_t numberOfNodesStop{1};
     };
 
@@ -62,10 +59,9 @@ private:
 
 public:
 
-    template<class MERGE_PRIOS, class NOT_MERGE_PRIOS, class IS_LOCAL_EDGE, class EDGE_SIZES>
-    FixationClusterPolicy2(const GraphType &, 
+    template<class MERGE_PRIOS, class IS_LOCAL_EDGE, class EDGE_SIZES>
+    LiftedFelzenszwalbClusterPolicy(const GraphType &, 
                               const MERGE_PRIOS & , 
-                              const NOT_MERGE_PRIOS &,
                               const IS_LOCAL_EDGE &,
                               const EDGE_SIZES & , 
                               const SettingsType & settings = SettingsType());
@@ -92,7 +88,7 @@ public:
         if(isLocalEdge_[edge]){
             // todo this isPureLocal_ seems to be legacy
             // check if needed
-           return isPureLocal_[edge] ? true : mergePrios_[edge] > notMergePrios_[edge];
+           return isPureLocal_[edge] ? true : edgeStrength_[edge] > notedgeStrength_[edge];
         }
         else{
             return false;
@@ -101,10 +97,10 @@ public:
     
 
     const EdgePrioType & mergePrios() const {
-        return mergePrios_;
+        return edgeStrength_;
     }
     const EdgePrioType & notMergePrios() const {
-        return notMergePrios_;
+        return notedgeStrength_;
     }
     const EdgeSizesType & edgeSizes() const {
         return edgeSizes_;
@@ -112,17 +108,24 @@ public:
 
     
 private:
+
+    const double getMergePrio(const uint64_t edge)const{
+        return edgeStrength_[edge];
+    }
+
+    const double notMergePrio(const uint64_t edge)const{
+        return notedgeStrength_[edge];
+    }
+
     // INPUT
     const GraphType &   graph_;
 
 
-    NonLinkConstraints nonLinkConstraints_;
 
-    EdgePrioType mergePrios_;
-    EdgePrioType notMergePrios_; 
+    EdgePrioType edgeStrength_;
+
 
     UInt8EdgeMap isLocalEdge_;
-    UInt8EdgeMap isPureLocal_;
 
     EdgeSizesType       edgeSizes_;
     SettingsType        settings_;
@@ -138,40 +141,27 @@ private:
 
 
 template<class GRAPH, bool ENABLE_UCM>
-template<class MERGE_PRIOS, class NOT_MERGE_PRIOS, class IS_LOCAL_EDGE,class EDGE_SIZES>
-inline FixationClusterPolicy2<GRAPH, ENABLE_UCM>::
-FixationClusterPolicy2(
+template<class MERGE_PRIOS, class IS_LOCAL_EDGE,class EDGE_SIZES>
+inline LiftedFelzenszwalbClusterPolicy<GRAPH, ENABLE_UCM>::
+LiftedFelzenszwalbClusterPolicy(
     const GraphType & graph,
     const MERGE_PRIOS & mergePrios,
-    const NOT_MERGE_PRIOS & notMergePrios,
     const IS_LOCAL_EDGE & isLocalEdge,
     const EDGE_SIZES      & edgeSizes,
     const SettingsType & settings
 )
 :   graph_(graph),
-    nonLinkConstraints_(graph),
-    mergePrios_(graph),
-    notMergePrios_(graph),
+    edgeStrength_(graph),
     isLocalEdge_(graph),
-    isPureLocal_(graph),
     edgeSizes_(graph),
     pq_(graph.edgeIdUpperBound()+1),
     settings_(settings),
     edgeContractionGraph_(graph, *this)
 {
-    //std::cout<<"constructor\n";
+   
     graph_.forEachEdge([&](const uint64_t edge){
         isLocalEdge_[edge] = isLocalEdge[edge];
-
-        if(isLocalEdge_[edge]){
-            notMergePrios_[edge] = 0.0;
-            mergePrios_[edge] = mergePrios[edge];
-        }
-        else{
-            notMergePrios_[edge] = notMergePrios[edge];
-            mergePrios_[edge] = 0.0;
-        }
-        isPureLocal_[edge] = isLocalEdge[edge];
+        edgeStrength_[edge] = mergePrios[edge];
         edgeSizes_[edge] = edgeSizes[edge];
         pq_.push(edge, this->pqMergePrio(edge));
     });
@@ -179,14 +169,14 @@ FixationClusterPolicy2(
 
 template<class GRAPH, bool ENABLE_UCM>
 inline std::pair<uint64_t, double> 
-FixationClusterPolicy2<GRAPH, ENABLE_UCM>::
+LiftedFelzenszwalbClusterPolicy<GRAPH, ENABLE_UCM>::
 edgeToContractNext() const {    
     return std::pair<uint64_t, double>(edgeToContractNext_,edgeToContractNextMergePrio_) ;
 }
 
 template<class GRAPH, bool ENABLE_UCM>
 inline bool 
-FixationClusterPolicy2<GRAPH, ENABLE_UCM>::
+LiftedFelzenszwalbClusterPolicy<GRAPH, ENABLE_UCM>::
 isDone()     {
     if(edgeContractionGraph_.numberOfNodes() <= settings_.numberOfNodesStop){
         //std::cout<<"done a1\n";
@@ -222,16 +212,16 @@ isDone()     {
 
 template<class GRAPH, bool ENABLE_UCM>
 inline double 
-FixationClusterPolicy2<GRAPH, ENABLE_UCM>::
+LiftedFelzenszwalbClusterPolicy<GRAPH, ENABLE_UCM>::
 pqMergePrio(
     const uint64_t edge
 ) const {
-    return isLocalEdge_[edge] ?  double(mergePrios_[edge]) : -1.0; 
+    return isLocalEdge_[edge] ?  edgeStrength_[edge] : -1.0; 
 }
 
 template<class GRAPH, bool ENABLE_UCM>
 inline void 
-FixationClusterPolicy2<GRAPH, ENABLE_UCM>::
+LiftedFelzenszwalbClusterPolicy<GRAPH, ENABLE_UCM>::
 contractEdge(
     const uint64_t edgeToContract
 ){
@@ -240,39 +230,25 @@ contractEdge(
 }
 
 template<class GRAPH, bool ENABLE_UCM>
-inline typename FixationClusterPolicy2<GRAPH, ENABLE_UCM>::EdgeContractionGraphType & 
-FixationClusterPolicy2<GRAPH, ENABLE_UCM>::
+inline typename LiftedFelzenszwalbClusterPolicy<GRAPH, ENABLE_UCM>::EdgeContractionGraphType & 
+LiftedFelzenszwalbClusterPolicy<GRAPH, ENABLE_UCM>::
 edgeContractionGraph(){
     return edgeContractionGraph_;
 }
 
 template<class GRAPH, bool ENABLE_UCM>
 inline void 
-FixationClusterPolicy2<GRAPH, ENABLE_UCM>::
+LiftedFelzenszwalbClusterPolicy<GRAPH, ENABLE_UCM>::
 mergeNodes(
     const uint64_t aliveNode, 
     const uint64_t deadNode
 ){
-    //std::cout<<"    merge nodes: a/d "<<aliveNode<<" "<<deadNode<<" \n"; 
-    /*
-    auto  & aliveNodeNlc = nonLinkConstraints_[aliveNode];
-    const auto & deadNodeNlc = nonLinkConstraints_[deadNode];
-    aliveNodeNlc.insert(deadNodeNlc.begin(), deadNodeNlc.end());
-    for(const auto v : deadNodeNlc){
-        auto & nlc = nonLinkConstraints_[v];
-
-        // best way to change values in set... 
-        nlc.erase(deadNode);
-        nlc.insert(aliveNode);
-    }
-    aliveNodeNlc.erase(deadNode);
-    */
 
 }
 
 template<class GRAPH, bool ENABLE_UCM>
 inline void 
-FixationClusterPolicy2<GRAPH, ENABLE_UCM>::
+LiftedFelzenszwalbClusterPolicy<GRAPH, ENABLE_UCM>::
 mergeEdges(
     const uint64_t aliveEdge, 
     const uint64_t deadEdge
@@ -282,23 +258,85 @@ mergeEdges(
     NIFTY_CHECK(pq_.contains(aliveEdge),"");
     NIFTY_CHECK(pq_.contains(deadEdge),"");
     
-    isPureLocal_[aliveEdge] = isPureLocal_[aliveEdge] && isPureLocal_[deadEdge];
+
     pq_.deleteItem(deadEdge);
+
+   
+
+    auto power_mean = [](
+        const long double a,
+        const long double d,
+        const long double wa,
+        const long double wd,
+        const long double p
+    ){
+        const long double  eps = 0.000000001;
+        if(std::isinf(p)){
+            // max
+            if(p>0){
+                return std::max(a,d);
+            }
+            // min
+            else{
+                return std::min(a,d);
+            }
+        }
+        else if(p > 1.0-eps && p< 1.0+ eps){
+            return (wa*a + wd*d)/(wa+wd);
+        }
+        else{
+            const auto wad = wa+wd;
+            const auto nwa = wa/wad;
+            const auto nwd = wd/wad;
+            const auto sa = nwa * std::pow(a, p);
+            const auto sd = nwd * std::pow(d, p);
+            return std::pow(sa+sd, 1.0/p);
+        }
+    };
+
+    //  sizes
     const auto sa = edgeSizes_[aliveEdge];
     const auto sd = edgeSizes_[deadEdge];
-    const auto s = sa + sd;
 
+    const auto zi = settings_.zeroInit ;
+
+
+    // update merge prio
+    if(zi && isPureLifted_[aliveEdge] && !isPureLifted_[deadEdge]){
+        edgeStrength_[aliveEdge] = edgeStrength_[deadEdge];
+    }
+    else if(zi && !isPureLifted_[aliveEdge] && isPureLifted_[deadEdge]){
+        edgeStrength_[deadEdge] = edgeStrength_[aliveEdge];
+    }
+    else{
+        edgeStrength_[aliveEdge]    = power_mean(edgeStrength_[aliveEdge],     edgeStrength_[deadEdge],    sa, sd, settings_.p0);
+    }
+
+
+    // update notMergePrio
+    if(zi && isPureLocal_[aliveEdge] && !isPureLocal_[deadEdge]){
+        notedgeStrength_[aliveEdge] = notedgeStrength_[deadEdge];
+    }
+    else if(zi && !isPureLocal_[aliveEdge] && isPureLocal_[deadEdge]){
+        notedgeStrength_[aliveEdge] = notedgeStrength_[deadEdge];
+    }
+    else{
+        notedgeStrength_[aliveEdge] = power_mean(notedgeStrength_[aliveEdge] , notedgeStrength_[deadEdge], sa, sd, settings_.p1);
+    }
+
+   
+    
+
+    edgeSizes_[aliveEdge] = sa + sd;
 
     const auto deadIsLocalEdge = isLocalEdge_[deadEdge];
     auto & aliveIsLocalEdge = isLocalEdge_[aliveEdge];
-    
     aliveIsLocalEdge = deadIsLocalEdge || aliveIsLocalEdge;
 
-    mergePrios_[aliveEdge]    = std::max(mergePrios_[aliveEdge]    , mergePrios_[deadEdge]);
-    notMergePrios_[aliveEdge] = std::max(notMergePrios_[aliveEdge] , notMergePrios_[deadEdge]);
-       
-    
-    // update prios
+    isPureLocal_[aliveEdge] = isPureLocal_[aliveEdge] && isPureLocal_[deadEdge];
+    isPureLifted_[aliveEdge] = isPureLifted_[aliveEdge] && isPureLifted_[deadEdge];
+
+
     
     pq_.push(aliveEdge, this->pqMergePrio(aliveEdge));
     
@@ -307,7 +345,7 @@ mergeEdges(
 
 template<class GRAPH, bool ENABLE_UCM>
 inline void 
-FixationClusterPolicy2<GRAPH, ENABLE_UCM>::
+LiftedFelzenszwalbClusterPolicy<GRAPH, ENABLE_UCM>::
 contractEdgeDone(
     const uint64_t edgeToContract
 ){

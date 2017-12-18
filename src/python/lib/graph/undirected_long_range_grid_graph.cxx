@@ -74,6 +74,12 @@ namespace graph{
         ){
             return g.nodeFeatureDiffereces(nodeFeatures);
         })
+        .def("nodeFeatureDiffereces2", [](
+            const GraphType & g,
+            xt::pytensor<float, DIM+2> nodeFeatures
+        ){
+            return g.nodeFeatureDiffereces2(nodeFeatures);
+        })
         .def("edgeValues", [](
             const GraphType & g,
             xt::pytensor<float, DIM+1> nodeFeatures

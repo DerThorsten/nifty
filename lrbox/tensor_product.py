@@ -58,7 +58,7 @@ if __name__ == "__main__":
     affF = "/home/tbeier/nice_probs/isbi_%s_offsetsV4_3d_meantda_damws2deval_final.h5"%mode
     affF = h5py.File(affF)
     aff = affF['data'][:,0:1,0:200,0:200]
-    assert aff.shape[0] == n_offsets
+    #assert aff.shape[0] == n_offsets
     affF.close()
     shape = aff.shape[1:4]
 
@@ -79,20 +79,25 @@ if __name__ == "__main__":
 
 
     def do_stuff(A):
-        return A
+        #return A
         A_init = A.copy()
         Q = A.copy()
         I = scipy.sparse.identity(A.shape[0])
-
-        for x in range(2):
+        AT = A.T
+        for x in range(1):
             print("x",x)
-            Q = A.dot(Q).dot(A.T) + I
-            Q.eliminate_zeros()
-            Q = Q[Q.getnnz(1)>0.0001]
+
+            AQ = A.dot(Q)
+            #AQ.eliminate_zeros()
+            #AQ = AQ[AQ.getnnz(1)>0.0001]
+            Q = AQ.dot(AT)  + I
+            #Q.eliminate_zeros()
+            #Q = Q[Q.getnnz(1)>0.0001]
         return Q
 
 
-        
+    pylab.imshow(raw[0,:,:])
+    #pylab.show()
 
     g, affinities, offset_index = makeLongRangGridGraph(shape=shape,offsets=offsets, affinities=aff    )
     uv = g.uvIds()
@@ -109,10 +114,10 @@ if __name__ == "__main__":
     
     real_aff = 1.0 - affinities
 
-    non_zero = numpy.where(real_aff>0.00001)[0]
-    real_aff = real_aff[non_zero]
-    u = u[non_zero]
-    v = v[non_zero]
+    # non_zero = numpy.where(real_aff>0.00001)[0]
+    # real_aff = real_aff[non_zero]
+    # u = u[non_zero]
+    # v = v[non_zero]
 
     real_aff2 = numpy.concatenate([real_aff,real_aff])
     r = numpy.concatenate([u,v])
@@ -122,39 +127,90 @@ if __name__ == "__main__":
     from sklearn.preprocessing import normalize
     A = normalize(A, norm='l1', axis=0)
     A *= 0.99999999
-
-
     B = do_stuff(A)
-    print("get vals")
-    vals = B[uv[:,0],uv[:,1]]
-    vals = numpy.asarray(vals)
-    print(type(vals))
-    #vals = vals.todense()
-
-    print(vals) 
 
 
+    non_lifted_e = numpy.where(isLiftedEdge==False)[0]
+    nlu = u[non_lifted_e]
+    nlv = v[non_lifted_e]
+    non_lifted_uv = numpy.array((nlu,nlv)).T
+    if True:
+        new_uv = B.nonzero()
+        #print(new_uv).shape()
+        vals = B[new_uv]
+        vals = numpy.asarray(vals).squeeze()
+        new_g = nifty.graph.UndirectedGraph(n_pixels)
 
-    print("affminmax", vals.min(), vals.max())
+        print(vals.shape, new_uv[0].shape)
+
+        where = numpy.where(new_uv[0] <  new_uv[1])[0 ]
+        new_uv =new_uv[0][where],new_uv[1][where]
+        vals = vals[where]
+
+        new_g.insertEdges(numpy.array(new_uv).T)
+        
+        edgeSizes = numpy.ones(new_g.numberOfEdges, dtype='float32')
+        nodeSizes = numpy.ones(new_g.numberOfNodes, dtype='float32')
+        isLiftedEdge = numpy.ones(new_g.numberOfEdges, dtype="int")
+
+        print("non_lifted_uv",non_lifted_uv.shape,non_lifted_uv.dtype)
+        e = new_g.findEdges(non_lifted_uv.astype('int'))
+        isLiftedEdge[e] = False
+
+        vals = numpy.require(vals, dtype='float32').squeeze()
+
+        vals -= vals.min()
+        vals /= vals.max()
+        vals = 1.0 - vals
 
 
-    edgeSizes = numpy.ones(g.numberOfEdges, dtype='float32')
-    nodeSizes = numpy.ones(g.numberOfNodes, dtype='float32')
-    vals = numpy.require(vals, dtype='float32').squeeze()
 
-    vals -= vals.min()
-    vals /= vals.max()
-    vals = 1.0 - vals
+        print(vals.min(),vals.max())
+        clusterPolicy = nifty.graph.agglo.liftedGraphEdgeWeightedClusterPolicy(graph=new_g,
+            edgeIndicators=vals, edgeSizes=edgeSizes, isLiftedEdge=isLiftedEdge,  nodeSizes=nodeSizes,
+            stopConditionType="numberOfNodes",stopNodeNumber=100)
 
-    print(vals.min(),vals.max())
-    clusterPolicy = nifty.graph.agglo.liftedGraphEdgeWeightedClusterPolicy(graph=g,
-        edgeIndicators=affinities, edgeSizes=edgeSizes, isLiftedEdge=isLiftedEdge,  nodeSizes=nodeSizes)
+        # run agglomerative clustering
+        agglomerativeClustering = nifty.graph.agglo.agglomerativeClustering(clusterPolicy) 
+        agglomerativeClustering.run(True,10000)
+        nodeSeg = agglomerativeClustering.result()
+
+    else:
+
+        print("get vals")
+        vals = B[uv[:,0],uv[:,1]]
+        vals = numpy.asarray(vals)
+        print(type(vals))
+        #vals = vals.todense()
+
+        print(vals) 
 
 
-    # run agglomerative clustering
-    agglomerativeClustering = nifty.graph.agglo.agglomerativeClustering(clusterPolicy) 
-    agglomerativeClustering.run(True,1)
-    nodeSeg = agglomerativeClustering.result()
+
+        print("affminmax", vals.min(), vals.max())
+
+
+        edgeSizes = numpy.ones(g.numberOfEdges, dtype='float32')
+        nodeSizes = numpy.ones(g.numberOfNodes, dtype='float32')
+        vals = numpy.require(vals, dtype='float32').squeeze()
+
+        vals -= vals.min()
+        vals /= vals.max()
+        vals = 1.0 - vals
+
+
+
+
+        print(vals.min(),vals.max())
+        clusterPolicy = nifty.graph.agglo.liftedGraphEdgeWeightedClusterPolicy(graph=g,
+            edgeIndicators=vals, edgeSizes=edgeSizes, isLiftedEdge=isLiftedEdge,  nodeSizes=nodeSizes,
+            stopConditionType="numberOfNodes",stopNodeNumber=100)
+
+
+        # run agglomerative clustering
+        agglomerativeClustering = nifty.graph.agglo.agglomerativeClustering(clusterPolicy) 
+        agglomerativeClustering.run(True,10000)
+        nodeSeg = agglomerativeClustering.result()
 
 
     nodeSeg = nodeSeg.reshape(shape)

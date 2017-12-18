@@ -40,7 +40,14 @@ public:
     typedef FloatNodeMap                                 NodeSizesType;
 
     struct SettingsType{
+        enum StopConditionType{
+            NODE_NUMBER,
+            PRIORITY
+        };
 
+        StopConditionType stopConditionType;
+        uint64_t stopNodeNumber;
+        double   stopPriority;
     };
     typedef EdgeContractionGraph<GraphType, SelfType>    EdgeContractionGraphType;
 
@@ -164,17 +171,17 @@ template<class GRAPH, bool ENABLE_UCM>
 inline bool 
 LiftedGraphEdgeWeightedClusterPolicy<GRAPH, ENABLE_UCM>::
 isDone() const {
-    if(edgeContractionGraph_.numberOfNodes() <= 100){
+
+    if(pq_.empty() || edgeContractionGraph_.numberOfEdges() == 0){
         return true;
     }
     else{
-        return false;
-    }
-    if(pq_.topPriority() > 0.5){
-       return true;
-    }
-    else{
-       return pq_.empty();
+        if(settings_.stopConditionType == SettingsType::NODE_NUMBER){
+            return edgeContractionGraph_.numberOfNodes() <= settings_.stopNodeNumber;
+        }
+        else{
+            return pq_.topPriority() > settings_.stopPriority;
+        }
     }
 }
 

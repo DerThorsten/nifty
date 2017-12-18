@@ -36,7 +36,12 @@ namespace lifted_multicut{
                 xt::pytensor<float,DIM+1> weights,
                 xt::pytensor<int,  2> offsets
             ) { 
-                return new ObjType(weights, offsets);
+                ObjType * a;
+                {
+                    py::gil_scoped_release allowThreads;
+                    a = new ObjType(weights, offsets);
+                }
+                return a;
             }),
                 py::arg("weights"),
                 py::arg("offsets")
@@ -47,7 +52,11 @@ namespace lifted_multicut{
                 const ObjType & self,
                 const xt::pytensor<int, DIM> & labels
             ){
-                return self.evaluate(labels);
+                double v=0.0;
+                {
+                    v =  self.evaluate(labels);
+                }
+                return v;
             },
                 py::arg("labels")
             )
@@ -58,7 +67,12 @@ namespace lifted_multicut{
                 xt::pytensor<uint64_t,  DIM> labels,
                 const bool verbose
             ){
-                return self.optimize(factory, labels, verbose);
+                xt::xtensor<uint64_t, DIM> res;
+                {
+                    py::gil_scoped_release allowThreads;
+                    res =  self.optimize(factory, labels, verbose);
+                }
+                return res;
             },
                 py::arg("factory"),
                 py::arg("labels"),
@@ -87,7 +101,12 @@ namespace lifted_multicut{
                 const ObjType & objective,
                 CCLmcFactoryBaseSharedPtr solver_factory
             ) { 
-                return new CCFusionType(objective,solver_factory);
+                CCFusionType * ret;
+                {
+                    py::gil_scoped_release allowThreads;
+                    ret =  new CCFusionType(objective,solver_factory);
+                }
+                return ret;
             }),
                 py::arg("objective"),
                 py::arg("solver_factory"),
@@ -99,13 +118,23 @@ namespace lifted_multicut{
                 xt::pytensor<uint64_t,  DIM> labels_a,
                 xt::pytensor<uint64_t,  DIM> labels_b
             ){
-                return self.fuse(labels_a, labels_b);
+                xt::xtensor<uint64_t, DIM> res;
+                {
+                    py::gil_scoped_release allowThreads;
+                    res =  self.fuse(labels_a, labels_b);
+                }
+                return  res;
             })
             .def("fuse",[](
                 CCFusionType & self,
                 xt::pytensor<uint64_t,  DIM+1> labels
             ){
-                return self.fuse(labels);
+                xt::xtensor<uint64_t, DIM> res;
+                {
+                    py::gil_scoped_release allowThreads;
+                    res =  self.fuse(labels);
+                }
+                return res;
             })
 
         ;

@@ -405,8 +405,8 @@ namespace lifted_multicut{
             const auto & labels_a = e_labels_a.derived_cast();
             const auto & labels_b = e_labels_b.derived_cast();
 
-            typename xt::xtensor<int, DIM>::shape_type reshape{size_t(shape[0]), size_t(shape[1])};
-            auto res = xt::xtensor<int, DIM, xt::layout_type::row_major>(reshape);
+            typename xt::xtensor<uint64_t, DIM>::shape_type reshape{size_t(shape[0]), size_t(shape[1])};
+            auto res = xt::xtensor<uint64_t, DIM, xt::layout_type::row_major>(reshape);
 
 
             this->merge_ufd(e_labels_a, e_labels_b);
@@ -457,8 +457,8 @@ namespace lifted_multicut{
 
 
 
-            typename xt::xtensor<int, DIM>::shape_type reshape{size_t(shape[0]), size_t(shape[1])};
-            auto res = xt::xtensor<int, DIM, xt::layout_type::row_major>(reshape);
+            typename xt::xtensor<uint64_t, DIM>::shape_type reshape{size_t(shape[0]), size_t(shape[1])};
+            auto res = xt::xtensor<uint64_t, DIM, xt::layout_type::row_major>(reshape);
 
 
             this->merge_ufd2(e_labels);
@@ -601,7 +601,7 @@ namespace lifted_multicut{
 
         template<class F>
         auto do_it(
-            xt::xtensor<int, DIM, xt::layout_type::row_major> & res,
+            xt::xtensor<uint64_t, DIM, xt::layout_type::row_major> & res,
             F && f
         ){
 

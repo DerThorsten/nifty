@@ -44,6 +44,23 @@ public:
         needsReset_ = true;
         return ufd_.numberOfSets() - offset_;
     }
+    template<class EDGE_LABELS>
+    uint64_t buildFromEdgeLabels(
+        const EDGE_LABELS & edgeLabels
+    ){
+        if(needsReset_)
+            this->reset();
+        for(auto edge : graph_.edges()){
+            if(edgeLabels[edge] == 0){
+                const auto u = graph_.u(edge);
+                const auto v = graph_.v(edge);
+                ufd_.merge(u,v); 
+            }
+        }
+        needsReset_ = true;
+        return ufd_.numberOfSets() - offset_;
+    }
+
 
     template<class SUBGRAPH_MASK>
     uint64_t build(const SUBGRAPH_MASK & mask){
