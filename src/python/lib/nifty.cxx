@@ -120,6 +120,14 @@ PYBIND11_PLUGIN(_nifty) {
             #endif
         }
         )
+        .def_property_readonly_static("WITH_FASTFILTERS", [](py::object /* self */) { 
+            #ifdef  WITH_FASTFILTERS
+            return true;
+            #else
+            return false;
+            #endif
+        }
+        )
 
         ;
     return module.ptr();

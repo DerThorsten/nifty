@@ -8,8 +8,8 @@ import nifty.graph.rag as nrag
 
 
 class TestAccumulateStacked(unittest.TestCase):
-    # shape = (10, 256, 256)
-    shape = (3, 128, 128)
+    shape = (10, 256, 256)
+    # shape = (3, 128, 128)
 
     @staticmethod
     def make_labels(shape):
@@ -48,7 +48,7 @@ class TestAccumulateStacked(unittest.TestCase):
     def accumulation_in_core_test(self, accumulation_function):
         rag = nrag.gridRagStacked2D(self.labels,
                                     numberOfLabels=self.n_labels,
-                                    numberOfThreads=1)
+                                    numberOfThreads=-1)
         n_edges_xy = rag.totalNumberOfInSliceEdges
         n_edges_z  = rag.totalNumberOfInBetweenSliceEdges
 
@@ -56,7 +56,7 @@ class TestAccumulateStacked(unittest.TestCase):
         print("Complete Accumulation ...")
         feats_xy, feats_z = accumulation_function(rag,
                                                   self.data,
-                                                  numberOfThreads=1)
+                                                  numberOfThreads=-1)
         self.check_features(feats_xy, n_edges_xy)
         self.check_features(feats_z, n_edges_z)
         print("... passed")
@@ -86,9 +86,9 @@ class TestAccumulateStacked(unittest.TestCase):
     def test_standard_features_in_core(self):
         self.accumulation_in_core_test(nrag.accumulateEdgeStandardFeatures)
 
-    # FIXME this segfaults in fastfilter wrapper
-    def _test_features_from_filters_in_core(self):
-        self.accumulation_in_core_test(nrag.accumulateEdgeFeatresFromFilters)
+    @unittest.skipUnless(nifty.Configuration.WITH_FASTFILTERS, "skipping fastfilter tests")
+    def test_features_from_filters_in_core(self):
+        self.accumulation_in_core_test(nrag.accumulateEdgeFeaturesFromFilters)
 
     def accumulation_z5_test(self, accumulation_function, n_feats):
         import z5py
@@ -202,7 +202,10 @@ class TestAccumulateStacked(unittest.TestCase):
     def test_z5_standard_features(self):
         self.accumulation_z5_test(nrag.accumulateEdgeStandardFeatures, n_feats=9)
 
-    # TODO z5 filter test
+    @unittest.skipUnless(nifty.Configuration.WITH_Z5 and nifty.Configuration.WITH_FASTFILTERS,
+                         "skipping z5 fastfilter tests")
+    def test_z5_features_from_filters(self):
+        self.accumulation_z5_test(nrag.accumulateEdgeFeaturesFromFilters, n_feats=9 * 12)
 
     @unittest.skipUnless(nifty.Configuration.WITH_Z5, "skipping z5 tests")
     def test_in_vs_out_of_core(self):

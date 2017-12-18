@@ -124,13 +124,12 @@ namespace detail_fastfilters {
         void inline operator()(const fastfilters_array2d_t & ff,
                                xt::xexpression<ARRAY> & outExp,
                                const double sigma) const {
-            std::cout << "Here" << std::endl;
             auto & out = outExp.derived_cast();
             fastfilters_array2d_t ff_out;
             detail_fastfilters::convertXtensor2ff(out, ff_out);
-            if( !fastfilters_fir_gaussian2d(&ff, 0, sigma, &ff_out, &opt_) )
+            if(!fastfilters_fir_gaussian2d(&ff, 0, sigma, &ff_out, &opt_)) {
                 throw std::runtime_error("GaussianSmoothing 2d failed.");
-            std::cout << "There" << std::endl;
+            }
         }
 
         template<class ARRAY>
@@ -403,10 +402,11 @@ namespace detail_fastfilters {
                         const bool presmooth = false) const {
             Coord shapeSingleChannel, shapeMultiChannel, base;
             applyCommon(in, out, shapeSingleChannel, shapeMultiChannel, base);
-            if(presmooth)
+            if(presmooth) {
                 applyFiltersSequentialWithPresmoothing(in, out, shapeSingleChannel, shapeMultiChannel, base);
-            else
+            } else {
                 applyFiltersSequential(in, out, shapeSingleChannel, shapeMultiChannel, base);
+            }
         }
 
         // apply filters in parallel
@@ -539,8 +539,9 @@ namespace detail_fastfilters {
             FastfiltersArrayType ff;
             detail_fastfilters::convertXtensor2ff(in, ff);
             Coord preBase;
-            for(int d = 0; d < DIM; ++d)
+            for(int d = 0; d < DIM; ++d) {
                 preBase[d] = 0;
+            }
 
             ShapeType arrayShape;
             std::copy(shapeSingleChannel.begin(), shapeSingleChannel.end(), arrayShape.begin());
@@ -555,7 +556,7 @@ namespace detail_fastfilters {
             int64_t channelStart = 0;
             for( size_t jj = 0; jj < filtersToSigmas_.size(); ++jj ) {
                 for( size_t ii = 0; ii < sigmas_.size(); ++ii ) {
-                    if(!filtersToSigmas_[jj][ii]){
+                    if(!filtersToSigmas_[jj][ii]) {
                         continue;
                     }
                     Coord channelBase = base;
@@ -583,7 +584,8 @@ namespace detail_fastfilters {
                     auto preView = xt::dynamic_view(preSmoothed, slice);
                     auto squeezedPreView = xtensor::squeezedView(preView);
                     gs_(ff, squeezedPreView, sigmaNeedForPre);
-                    detail_fastfilters::convertXtensor2ff(preView, ff); // write presmoothed into the ff array
+                    // write presmoothed into the ff array
+                    detail_fastfilters::convertXtensor2ff(squeezedPreView, ff);
                     sigmaPre = sigmaPreDesired;
                     sigmaNeed = std::sqrt(sigma*sigma - sigmaPre*sigmaPre);
                 }
@@ -646,7 +648,7 @@ namespace detail_fastfilters {
                 const auto sigma = filterIdAndSigmas[fid].second;
                 const auto & viewBase = bases[fid];
                 const auto & viewShape = (numberOfChannels(filterId) == 1)  ? shapeSingleChannel : shapeMultiChannel;
-                std::cout << "Apply Filter from " << viewBase << " with shape " << viewShape << std::endl;
+                //std::cout << "Apply Filter from " << viewBase << " with shape " << viewShape << std::endl;
                 xt::slice_vector slice(out);
                 xtensor::sliceFromOffset(slice, viewBase, viewShape);
                 auto view = xt::dynamic_view(out, slice);
