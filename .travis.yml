@@ -188,7 +188,7 @@ matrix:
         - source activate dev
         - conda install -c anaconda cmake=3.2
         - conda install gcc
-        - conda install -c conda-forge glpk
+        - conda install -c conda-forge glpk pybind11 xtensor xtensor-python
         - conda install futures;
 
       script:
@@ -286,6 +286,7 @@ matrix:
         #
         - conda create -q -n dev python=$CONDA_PYTHON_VERSION numpy nose boost hdf5 scikit-image
         - source activate dev
+        - conda install -c conda-forge glpk pybind11 xtensor xtensor-python
         - conda install -c anaconda cmake=3.2
         - conda install -c rdonnelly gcc-6=6.1.0;
         - conda install -c conda-forge glpk
@@ -385,6 +386,7 @@ matrix:
         #
         - conda create -q -n dev python=$CONDA_PYTHON_VERSION numpy nose boost hdf5 scikit-image
         - source activate dev
+        - conda install -c conda-forge glpk pybind11 xtensor xtensor-python
         - conda install -c anaconda cmake=3.2
         - conda install gcc;
         - conda install -c conda-forge glpk
