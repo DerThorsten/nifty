@@ -232,6 +232,7 @@ matrix:
                 -DGLPK_INCLUDE_DIR=$ENV_INCLUDE 
                 -DBoost_INCLUDE_DIR=$ENV_INCLUDE  
                 -DPYTHON_EXECUTABLE=$ENV_BIN/python$CONDA_PYTHON_VERSION
+                -DPYTHON_NUMPY_INCLUDE_DIR=/home/travis/miniconda/envs/dev/lib/python$CONDA_PYTHON_VERSION/site-packages/numpy/core/include
                 -DPYTHON_MODULE_INSTALL_DIR=/home/travis/miniconda/envs/dev/lib/python$CONDA_PYTHON_VERSION/site-packages/
 
         ###############################################
@@ -332,6 +333,7 @@ matrix:
                 -DGLPK_INCLUDE_DIR=$ENV_INCLUDE 
                 -DBoost_INCLUDE_DIR=$ENV_INCLUDE  
                 -DPYTHON_EXECUTABLE=$ENV_BIN/python$CONDA_PYTHON_VERSION
+                -DPYTHON_NUMPY_INCLUDE_DIR=/home/travis/miniconda/envs/dev/lib/python$CONDA_PYTHON_VERSION/site-packages/numpy/core/include
                 -DPYTHON_MODULE_INSTALL_DIR=/home/travis/miniconda/envs/dev/lib/python$CONDA_PYTHON_VERSION/site-packages/
 
         ###############################################
@@ -433,6 +435,7 @@ matrix:
                 -DGLPK_INCLUDE_DIR=$ENV_INCLUDE 
                 -DBoost_INCLUDE_DIR=$ENV_INCLUDE  
                 -DPYTHON_EXECUTABLE=$ENV_BIN/python$CONDA_PYTHON_VERSION
+                -DPYTHON_NUMPY_INCLUDE_DIR=/home/travis/miniconda/envs/dev/lib/python$CONDA_PYTHON_VERSION/site-packages/numpy/core/include
                 #-DPYTHON_MODULE_INSTALL_DIR=/home/travis/miniconda/envs/dev/lib/python$CONDA_PYTHON_VERSION/site-packages/
 
         ###############################################
