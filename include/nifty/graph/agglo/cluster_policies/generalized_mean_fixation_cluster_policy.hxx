@@ -53,8 +53,8 @@ public:
             //HISTOGRAM_RANK
         };
 
-        UpdateRule updateRule0;
-        UpdateRule updateRule1;
+        UpdateRule updateRule0{GENERALIZED_MEAN};
+        UpdateRule updateRule1{GENERALIZED_MEAN};
 
         bool zeroInit = false;
         double p0{1.0};
@@ -143,7 +143,7 @@ private:
     EdgePrioType mergePrios_;
     EdgePrioType notMergePrios_; 
 
-    UInt8EdgeMap isLocalEdge_;
+3    UInt8EdgeMap isLocalEdge_;
     UInt8EdgeMap isPureLocal_;
     UInt8EdgeMap isPureLifted_;
     EdgeSizesType       edgeSizes_;
