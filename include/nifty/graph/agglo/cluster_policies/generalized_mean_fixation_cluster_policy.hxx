@@ -143,7 +143,7 @@ private:
     EdgePrioType mergePrios_;
     EdgePrioType notMergePrios_; 
 
-3    UInt8EdgeMap isLocalEdge_;
+    UInt8EdgeMap isLocalEdge_;
     UInt8EdgeMap isPureLocal_;
     UInt8EdgeMap isPureLifted_;
     EdgeSizesType       edgeSizes_;

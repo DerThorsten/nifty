@@ -48,7 +48,7 @@ public:
         StopConditionType stopConditionType;
         uint64_t stopNodeNumber;
         double   stopPriority;
-        double   quantile
+        double   quantile{0.5};
     };
     typedef EdgeContractionGraph<GraphType, SelfType>    EdgeContractionGraphType;
 
