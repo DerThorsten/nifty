@@ -3,6 +3,7 @@ addPythonModule(
         nifty/graph/agglo  
     SOURCES
         agglo.cxx
+        merge_rules.cxx
         agglomerative_clustering.cxx
         fixation_agglomerative_clustering.cxx
         lifted_agglomerative_clustering.cxx

@@ -13,7 +13,8 @@ PYBIND11_DECLARE_HOLDER_TYPE(T, std::shared_ptr<T>);
 namespace nifty{
 namespace graph{
 namespace agglo{
-
+    
+    void exportMergeRules(py::module &);    
     void exportAgglomerativeClustering(py::module &);    
     void exportFixationAgglomerativeClustering(py::module &);    
     void exportLiftedAgglomerativeClusteringPolicy(py::module &);    
@@ -34,7 +35,7 @@ PYBIND11_PLUGIN(_agglo) {
     py::module aggloModule("_agglo", "agglo submodule of nifty.graph");
     
     using namespace nifty::graph::agglo;
-
+    exportMergeRules(aggloModule);
     exportAgglomerativeClustering(aggloModule);
     exportFixationAgglomerativeClustering(aggloModule);
     exportLiftedAgglomerativeClusteringPolicy(aggloModule);

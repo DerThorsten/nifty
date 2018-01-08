@@ -16,6 +16,10 @@ struct EdgeWeightedClusterPolicySettings{
 };
 
 
+bool isNegativeInf(const double val){
+    return val < 0 && std::isinf(val);
+}
+
 
 
 
