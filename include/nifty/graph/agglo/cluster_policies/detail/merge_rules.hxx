@@ -10,13 +10,20 @@ namespace merge_rules{
 
 
 
-    struct ArithmeticMeanSettings{};
+    struct ArithmeticMeanSettings{
+        auto name()const{
+            return std::string("ArithmeticMean");
+        }
+    };
     template<class G, class T>
     class ArithmeticMeanEdgeMap{
     public:
 
-        static auto name(){
+        static auto staticName(){
             return std::string("ArithmeticMean");
+        }
+        auto name()const{
+            return staticName();
         }
 
         typedef G GraphType;
@@ -80,13 +87,19 @@ namespace merge_rules{
 
     struct GeneralizedMeanSettings{
         double p = {1.0};
+        auto name()const{
+            return std::string("GeneralizedMean") + std::string("[q=") + std::to_string(p) + std::string("]");
+        }
     };
     template<class G, class T>
     class  GeneralizedMeanEdgeMap{
     public:
 
-        static auto name(){
+        static auto staticName(){
             return std::string("GeneralizedMean");
+        }
+        auto name()const{
+            return staticName() + std::string("[p=]") + std::to_string(settings_.p);
         }
 
         typedef G GraphType;
@@ -168,17 +181,121 @@ namespace merge_rules{
     };
 
 
+    struct SmoothMaxSettings{
+        double p = {1.0};
+        auto name()const{
+            return std::string("SmoothMax") + std::string("[q=") + std::to_string(p) + std::string("]");
+        }
+    };
+    template<class G, class T>
+    class  SmoothMaxEdgeMap{
+    public:
+
+        static auto staticName(){
+            return std::string("SmoothMax");
+        }
+        auto name()const{
+            return staticName() + std::string("[q=") + std::to_string(settings_.p) + std::string("]");
+        }
+        typedef G GraphType;
+        typedef typename GraphType:: template EdgeMap<T> MeanEdgeMapType;
+        typedef typename GraphType:: template EdgeMap<T> SizeEdgeMapType;
+
+        typedef SmoothMaxSettings SettingsType;
+
+        template<class VALUES, class WEIGHTS>
+         SmoothMaxEdgeMap(
+            const GraphType & g,
+            const VALUES & values, 
+            const WEIGHTS & weights,
+            const SettingsType & settings = SettingsType()
+        ):  values_(g),
+            weights_(g),
+            settings_(settings)
+        {
+            for(auto edge : g.edges()){
+
+                values_[edge] = values[edge];
+                weights_[edge] = weights[edge];
+            }
+        }
+
+        void merge(const uint64_t aliveEdge, const uint64_t deadEdge){
+
+            auto & value  = values_[aliveEdge];
+            auto & weight = weights_[aliveEdge];
+            const auto & ovalue  =  values_[deadEdge];
+            const auto & oweight = weights_[deadEdge];
+
+            const auto p = settings_.p;
+            const static auto eps = 0.0000001;
+
+            if(std::isinf(p)){
+                if(p>0){
+                    weight = std::max(weight, oweight);
+                }
+                else{
+                    weight = std::min(weight, oweight);
+                }
+            }
+            else if((p > 0.0-eps) && (p < 0.0 + eps)){
+                value *= weight;
+                value += oweight*ovalue;
+                weight += oweight;
+                value /= weight;
+            }
+            else{
+                const auto sa = (weight ) * std::exp(value*p);
+                const auto sd = (oweight) * std::exp(ovalue*p);
+
+                value =  (value*sa + ovalue*sd)/(sa+sd);
+                weight = weight + oweight;
+            }
+        }
+
+        void setValueFrom(const uint64_t targetEdge, const uint64_t sourceEdge){
+            values_[targetEdge] = values_[sourceEdge];
+        }
+        void setFrom(const uint64_t targetEdge, const uint64_t sourceEdge){
+            values_[targetEdge] = values_[sourceEdge];
+            weights_[targetEdge] = weights_[sourceEdge];
+        }
+
+        void set(const uint64_t targetEdge, const T & value, const T &  weight){
+            values_[targetEdge] = value;
+            weights_[targetEdge] = weight;
+        }
+        
+        T operator[](const uint64_t edge)const{
+            return values_[edge];
+        }
+    private:
+        MeanEdgeMapType values_;
+        SizeEdgeMapType weights_;
+        SettingsType settings_;
+    };
+
     struct RankOrderSettings{
         double q = {0.5};
         uint16_t numberOfBins = {50};
+
+        auto name()const{
+            std::stringstream ss;
+            ss<<"RankOrderEdgeMap [q="<<q<<" #bins="<<numberOfBins<<"]";
+            return ss.str();
+        }
     };
     template<class G, class T>
     class  RankOrderEdgeMap{
     public:
-        static auto name(){
+        static auto staticName(){
             return std::string("RankOrderEdgeMap");
         }
-
+        auto name()const{
+            std::stringstream ss;
+            ss<<staticName()<<" [q="<<settings_.q<<" #bins="<<settings_.numberOfBins<<"]";
+            return ss.str();
+        }
         typedef G GraphType;
         typedef nifty::histogram::Histogram<double, double>          HistogramType;
         typedef typename GraphType:: template EdgeMap<HistogramType> HistogramEdgeMapType;
@@ -243,16 +360,22 @@ namespace merge_rules{
     };
 
 
-    struct MaxSettings{};
+    struct MaxSettings{
+        auto name()const{
+            return std::string("Max");
+        }
+    };
     template<class G, class T>
     class MaxEdgeMap{
     public:
 
 
-        static auto name(){
+        static auto staticName(){
             return std::string("Max");
         }
-
+        auto name()const{
+            return staticName();
+        }
         typedef G GraphType;
         typedef typename GraphType:: template EdgeMap<T> MaxEdgeMapType;
         typedef typename GraphType:: template EdgeMap<T> SizeEdgeMapType;
@@ -293,16 +416,22 @@ namespace merge_rules{
         MaxEdgeMapType values_;
     };
 
-    struct MinSettings{};
+    struct MinSettings{
+        auto name()const{
+            return std::string("Min");
+        }
+    };
     template<class G, class T>
     class MinEdgeMap{
     public:
 
 
-        static auto name(){
+        static auto staticName(){
             return std::string("Min");
         }
-
+        auto name()const{
+            return staticName();
+        }
         typedef G GraphType;
         typedef typename GraphType:: template EdgeMap<T> MinEdgeMapType;
         typedef typename GraphType:: template EdgeMap<T> SizeEdgeMapType;

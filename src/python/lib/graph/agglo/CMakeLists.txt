@@ -6,6 +6,7 @@ addPythonModule(
         merge_rules.cxx
         agglomerative_clustering.cxx
         fixation_agglomerative_clustering.cxx
+        dual_agglomerative_clustering.cxx
         lifted_agglomerative_clustering.cxx
         generalized_long_range_cluster_policy.cxx
 )

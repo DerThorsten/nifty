@@ -25,6 +25,9 @@ def updatRule(name, **kwargs):
     elif name in ['gmean', 'generalized_mean']:
         p = kwargs.get('p',1.0)
         return GeneralizedMeanSettings(p=float(p))
+    elif name in ['smax', 'smooth_max']:
+        p = kwargs.get('p',0.0)
+        return SmoothMaxSettings(p=float(p))
     elif name in ['rank','quantile', 'rank_order']:
         q = kwargs.get('q',0.5)
         numberOfBins = kwargs.get('numberOfBins',40)

@@ -20,12 +20,28 @@ namespace agglo{
 
         py::class_<merge_rules::ArithmeticMeanSettings>(aggloModule, "ArithmeticMeanSettings")
             .def(py::init<>())
+            .def("__str__",[](const merge_rules::ArithmeticMeanSettings & self){
+                return self.name();
+            })
         ;
 
         py::class_<merge_rules::GeneralizedMeanSettings>(aggloModule, "GeneralizedMeanSettings")
             .def(py::init<double>(),
                 py::arg("p")=1.0
             )
+            .def("__str__",[](const merge_rules::GeneralizedMeanSettings & self){
+                return self.name();
+            })
+        ;
+
+
+        py::class_<merge_rules::SmoothMaxSettings>(aggloModule, "SmoothMaxSettings")
+            .def(py::init<double>(),
+                py::arg("p")=1.0
+            )
+            .def("__str__",[](const merge_rules::SmoothMaxSettings & self){
+                return self.name();
+            })
         ;
 
         py::class_<merge_rules::RankOrderSettings>(aggloModule, "RankOrderSettings")
@@ -33,14 +49,23 @@ namespace agglo{
                 py::arg("q")=0.5,
                 py::arg("numberOfBins")=50
             )
+            .def("__str__",[](const merge_rules::RankOrderSettings & self){
+                return self.name();
+            })
         ;
 
         py::class_<merge_rules::MaxSettings>(aggloModule, "MaxSettings")
             .def(py::init<>())
+            .def("__str__",[](const merge_rules::MaxSettings & self){
+                return self.name();
+            })
         ;
 
         py::class_<merge_rules::MinSettings>(aggloModule, "MinSettings")
             .def(py::init<>())
+            .def("__str__",[](const merge_rules::MinSettings & self){
+                return self.name();
+            })
         ;
     }
 
