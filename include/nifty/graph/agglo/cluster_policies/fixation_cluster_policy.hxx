@@ -27,8 +27,8 @@ class FixationClusterPolicy{
 
 private:    
     typedef typename GRAPH:: template EdgeMap<uint8_t> UInt8EdgeMap;
-    typedef typename GRAPH:: template EdgeMap<double> FloatEdgeMap;
-    typedef typename GRAPH:: template NodeMap<double> FloatNodeMap;
+    typedef typename GRAPH:: template EdgeMap<float> FloatEdgeMap;
+    typedef typename GRAPH:: template NodeMap<float> FloatNodeMap;
 
 
     typedef ACC_0 Acc0Type;
@@ -54,6 +54,14 @@ public:
         //uint64_t numberOfBins{40};
     };
 
+    enum class EdgeStates : uint8_t { 
+        PURE_LOCAL = 0, 
+        LOCAL = 1,
+        LIFTED = 2,
+        PURE_LIFTED = 3
+    };
+
+
 
     typedef EdgeContractionGraph<GraphType, SelfType>   EdgeContractionGraphType;
 
@@ -63,7 +71,7 @@ private:
     // internal types
 
 
-    typedef nifty::tools::ChangeablePriorityQueue< double , std::greater<double> > QueueType;
+    typedef nifty::tools::ChangeablePriorityQueue< float , std::greater<float> > QueueType;
 
 public:
 
@@ -94,8 +102,12 @@ public:
     void contractEdgeDone(const uint64_t edgeToContract);
 
     bool isMergeAllowed(const uint64_t edge){
-        if(isLocalEdge_[edge]){
-           return isPureLocal_[edge] ? true : acc0_[edge] > acc1_[edge];
+        const auto  s = edgeState_[edge];
+        if(s == EdgeStates::PURE_LOCAL){
+            return true;
+        }
+        else if(s == EdgeStates::LOCAL){
+            return acc0_[edge] > acc1_[edge];
         }
         else{
             return false;
@@ -113,9 +125,8 @@ private:
     ACC_0 acc0_;
     ACC_1 acc1_;
 
-    UInt8EdgeMap isLocalEdge_;
-    UInt8EdgeMap isPureLocal_;
-    UInt8EdgeMap isPureLifted_;
+    typename GRAPH:: template EdgeMap<EdgeStates>  edgeState_;
+
     SettingsType        settings_;
     
     // INTERNAL
@@ -141,9 +152,7 @@ FixationClusterPolicy(
 :   graph_(graph),
     acc0_(graph, mergePrios,    edgeSizes, settings.updateRule0),
     acc1_(graph, notMergePrios, edgeSizes, settings.updateRule1),
-    isLocalEdge_(graph),
-    isPureLocal_(graph),
-    isPureLifted_(graph),
+    edgeState_(graph),
     pq_(graph.edgeIdUpperBound()+1),
     settings_(settings),
     edgeContractionGraph_(graph, *this)
@@ -152,12 +161,11 @@ FixationClusterPolicy(
     graph_.forEachEdge([&](const uint64_t edge){
 
         const auto loc = isLocalEdge[edge];
-        isLocalEdge_[edge] = loc;
-        isPureLocal_[edge] = loc;
-        isPureLifted_[edge] = !loc;
+
+        edgeState_[edge] = (loc ? EdgeStates::PURE_LOCAL : EdgeStates::PURE_LIFTED);
 
         if(settings_.zeroInit){
-            if(isLocalEdge_[edge]) 
+            if(loc) 
                 acc1_.set(edge, 0.0, edgeSizes[edge]);
             else
                 acc0_.set(edge, 0.0, edgeSizes[edge]);
@@ -189,7 +197,7 @@ FixationClusterPolicy<GRAPH, ACC_0, ACC_1,ENABLE_UCM>::isDone(
 
             const auto nextActioneEdge = pq_.top();
 
-            NIFTY_ASSERT(isLocalEdge_[nextActioneEdge]);
+        
 
             if(this->isMergeAllowed(nextActioneEdge)){
                 edgeToContractNext_ = nextActioneEdge;
@@ -211,7 +219,13 @@ FixationClusterPolicy<GRAPH, ACC_0, ACC_1,ENABLE_UCM>::
 pqMergePrio(
     const uint64_t edge
 ) const {
-    return isLocalEdge_[edge] ?  acc0_[edge] : -1.0*std::numeric_limits<double>::infinity(); 
+    const auto s = edgeState_[edge];
+    if(s == EdgeStates::LOCAL || s==EdgeStates::PURE_LOCAL){
+        return  acc0_[edge];
+    }
+    else{
+        return -1.0*std::numeric_limits<double>::infinity(); 
+    }
 }
 
 template<class GRAPH, class ACC_0, class ACC_1, bool ENABLE_UCM>
@@ -254,26 +268,38 @@ mergeEdges(
     pq_.deleteItem(deadEdge);
    
     // update merge prio
-    if(settings_.zeroInit  && isPureLifted_[aliveEdge] && !isPureLifted_[deadEdge])
+    
+    auto & sa = edgeState_[aliveEdge];
+    const auto  sd = edgeState_[deadEdge];
+
+    if(settings_.zeroInit  && sa == EdgeStates::PURE_LIFTED &&  sd != EdgeStates::PURE_LIFTED)
         acc0_.setValueFrom(aliveEdge, deadEdge);
     else
         acc0_.merge(aliveEdge, deadEdge);
 
     // update notMergePrio
-    if(settings_.zeroInit  && isPureLocal_[aliveEdge] && !isPureLocal_[deadEdge])
+    if(settings_.zeroInit  && sa == EdgeStates::PURE_LOCAL && sd !=  EdgeStates::PURE_LOCAL)
         acc1_.setValueFrom(aliveEdge, deadEdge);
     else
         acc1_.merge(aliveEdge, deadEdge);
     
 
-
-
-    const auto deadIsLocalEdge = isLocalEdge_[deadEdge];
-    auto & aliveIsLocalEdge = isLocalEdge_[aliveEdge];
-    aliveIsLocalEdge = deadIsLocalEdge || aliveIsLocalEdge;
-
-    isPureLocal_[aliveEdge] = isPureLocal_[aliveEdge] && isPureLocal_[deadEdge];
-    isPureLifted_[aliveEdge] = isPureLifted_[aliveEdge] && isPureLifted_[deadEdge];
+    // update state
+    if(sa == EdgeStates::PURE_LIFTED &&  sd == EdgeStates::PURE_LIFTED){
+        sa =  EdgeStates::PURE_LIFTED;
+    }
+    else if(sa == EdgeStates::PURE_LOCAL &&  sd == EdgeStates::PURE_LOCAL){
+        sa = EdgeStates::PURE_LOCAL;
+    }
+    else if(
+        sa == EdgeStates::PURE_LOCAL ||  sa == EdgeStates::LOCAL ||
+        sd == EdgeStates::PURE_LOCAL ||  sd == EdgeStates::LOCAL 
+    ){
+        sa = EdgeStates::LOCAL;
+    }
+    else{
+        sa = EdgeStates::LIFTED;
+    }
 
 
     pq_.push(aliveEdge, this->pqMergePrio(aliveEdge));

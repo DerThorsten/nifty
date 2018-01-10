@@ -169,12 +169,20 @@ namespace lifted_multicut{
         void insertLiftedEdgesBfs(const std::size_t maxDistance, DIST_VEC_TYPE & distVec){
 
             BreadthFirstSearch<GraphType> bfs(graph_);
+
             graph_.forEachNode([&](const uint64_t sourceNode){
-                bfs.graphNeighbourhood(sourceNode, maxDistance, [&](const uint64_t targetNode, const uint64_t dist){
-                    if(this->setCost(sourceNode, targetNode, 0.0).second){
-                        distVec.push_back(dist);
+
+                bfs.graphNeighbourhood(sourceNode, maxDistance, 
+
+                    [&](const uint64_t targetNode, const uint64_t dist){
+
+                        if(this->setCost(sourceNode, targetNode, 0.0).second){
+                            distVec.push_back(dist);
+                        }
                     }
-                });
+
+                );
+
             });
         }
 

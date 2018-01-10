@@ -109,12 +109,12 @@ namespace agglo{
     void exportfixationClusterPolicyOuter(py::module & aggloModule) {
         typedef GRAPH GraphType;
 
-        typedef merge_rules::ArithmeticMeanEdgeMap<GraphType, double >  ArithmeticMeanAcc;
-        typedef merge_rules::GeneralizedMeanEdgeMap<GraphType, double > GeneralizedMeanAcc;
-        typedef merge_rules::SmoothMaxEdgeMap<GraphType, double >       SmoothMaxAcc;
-        typedef merge_rules::RankOrderEdgeMap<GraphType, double >       RankOrderAcc;
-        typedef merge_rules::MaxEdgeMap<GraphType, double >             MaxAcc;
-        typedef merge_rules::MinEdgeMap<GraphType, double >             MinAcc;
+        typedef merge_rules::ArithmeticMeanEdgeMap<GraphType, float >  ArithmeticMeanAcc;
+        typedef merge_rules::GeneralizedMeanEdgeMap<GraphType, float > GeneralizedMeanAcc;
+        typedef merge_rules::SmoothMaxEdgeMap<GraphType, float >       SmoothMaxAcc;
+        typedef merge_rules::RankOrderEdgeMap<GraphType, float >       RankOrderAcc;
+        typedef merge_rules::MaxEdgeMap<GraphType, float >             MaxAcc;
+        typedef merge_rules::MinEdgeMap<GraphType, float >             MinAcc;
         
 
         exportfixationClusterPolicyTT<GraphType, ACC_0, ArithmeticMeanAcc,  false>(aggloModule);
@@ -132,12 +132,12 @@ namespace agglo{
 
 
 
-            typedef merge_rules::ArithmeticMeanEdgeMap<GraphType, double >  ArithmeticMeanAcc;
-            typedef merge_rules::GeneralizedMeanEdgeMap<GraphType, double > GeneralizedMeanAcc;
-            typedef merge_rules::SmoothMaxEdgeMap<GraphType, double >       SmoothMaxAcc;
-            typedef merge_rules::RankOrderEdgeMap<GraphType, double >       RankOrderAcc;
-            typedef merge_rules::MaxEdgeMap<GraphType, double >             MaxAcc;
-            typedef merge_rules::MinEdgeMap<GraphType, double >             MinAcc;
+            typedef merge_rules::ArithmeticMeanEdgeMap<GraphType, float >  ArithmeticMeanAcc;
+            typedef merge_rules::GeneralizedMeanEdgeMap<GraphType, float > GeneralizedMeanAcc;
+            typedef merge_rules::SmoothMaxEdgeMap<GraphType, float >       SmoothMaxAcc;
+            typedef merge_rules::RankOrderEdgeMap<GraphType, float >       RankOrderAcc;
+            typedef merge_rules::MaxEdgeMap<GraphType, float >             MaxAcc;
+            typedef merge_rules::MinEdgeMap<GraphType, float >             MinAcc;
 
 
             exportfixationClusterPolicyOuter<GraphType, ArithmeticMeanAcc >(aggloModule);
