@@ -73,6 +73,7 @@ namespace graph{
                     return std::make_tuple(innerEdgesVec, outerEdgesVec, subgraph);
                 }
             )
+            .def("shrinkToFit",&GraphType::shrinkToFit)
         ;
 
         graphModule.def("longRangeGridGraph3D",

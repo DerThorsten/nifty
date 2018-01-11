@@ -3,6 +3,9 @@
 #include <string>
 #include <nifty/histogram/histogram.hxx>
 
+
+#include <nifty/nifty.hxx>
+
 namespace nifty{
 namespace graph{
 namespace agglo{
@@ -28,7 +31,7 @@ namespace merge_rules{
 
         typedef G GraphType;
         typedef typename GraphType:: template EdgeMap<T> MeanEdgeMapType;
-        typedef typename GraphType:: template EdgeMap<T> SizeEdgeMapType;
+        typedef typename GraphType:: template EdgeMap<nifty::float16_t> SizeEdgeMapType;
 
         typedef ArithmeticMeanSettings SettingsType;
 
@@ -104,7 +107,7 @@ namespace merge_rules{
 
         typedef G GraphType;
         typedef typename GraphType:: template EdgeMap<T> MeanEdgeMapType;
-        typedef typename GraphType:: template EdgeMap<T> SizeEdgeMapType;
+        typedef typename GraphType:: template EdgeMap<nifty::float16_t> SizeEdgeMapType;
 
         typedef GeneralizedMeanSettings SettingsType;
 
@@ -199,7 +202,7 @@ namespace merge_rules{
         }
         typedef G GraphType;
         typedef typename GraphType:: template EdgeMap<T> MeanEdgeMapType;
-        typedef typename GraphType:: template EdgeMap<T> SizeEdgeMapType;
+        typedef typename GraphType:: template EdgeMap<nifty::float16_t> SizeEdgeMapType;
 
         typedef SmoothMaxSettings SettingsType;
 
@@ -378,7 +381,7 @@ namespace merge_rules{
         }
         typedef G GraphType;
         typedef typename GraphType:: template EdgeMap<T> MaxEdgeMapType;
-        typedef typename GraphType:: template EdgeMap<T> SizeEdgeMapType;
+        typedef typename GraphType:: template EdgeMap<nifty::float16_t> SizeEdgeMapType;
 
         typedef MaxSettings SettingsType;
 
@@ -434,7 +437,7 @@ namespace merge_rules{
         }
         typedef G GraphType;
         typedef typename GraphType:: template EdgeMap<T> MinEdgeMapType;
-        typedef typename GraphType:: template EdgeMap<T> SizeEdgeMapType;
+        typedef typename GraphType:: template EdgeMap<nifty::float16_t> SizeEdgeMapType;
 
         typedef MinSettings SettingsType;
 

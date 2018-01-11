@@ -1,8 +1,15 @@
 #pragma once
 
 #include "nifty/nifty_config.hxx"
+#include <nifty/external/half.hpp>
 
-// just an entry point for cmake (or others) to find that library
+
+
 namespace nifty{
+
+    typedef half_float::half float16_t;
+    typedef float            float32_t;
+    typedef half_float::half float64_t;
+
 }
 
