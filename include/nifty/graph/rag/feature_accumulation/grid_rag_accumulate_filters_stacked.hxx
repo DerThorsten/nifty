@@ -33,9 +33,9 @@ inline void calculateFilters(const xt::xexpression<DATA_ARRAY> & dataExp,
     auto & filter = filterExp.derived_cast();
 
     if( typeid(DataType) == typeid(float) ) {
-        std::cout << "Calculating filters mulithreaded w/o copy ..." << std::endl;
+        //std::cout << "Calculating filters mulithreaded w/o copy ..." << std::endl;
         f(data, filter, threadpool);
-        std::cout << "done" << std::endl;
+        //std::cout << "done" << std::endl;
     }
     else {
         // copy the data
@@ -48,9 +48,9 @@ inline void calculateFilters(const xt::xexpression<DATA_ARRAY> & dataExp,
             xtensor::write(dataTmp, coord.asStdArray(),
                            (float) xtensor::read(data, coord.asStdArray()));
         });
-        std::cout << "Calculating filters mulithreaded w/ copy ..." << std::endl;
+        //std::cout << "Calculating filters mulithreaded w/ copy ..." << std::endl;
         f(dataTmp, filter, threadpool);
-        std::cout << "done" << std::endl;
+        //std::cout << "done" << std::endl;
     }
 }
 
@@ -70,9 +70,9 @@ inline void calculateFilters(const xt::xexpression<DATA_ARRAY> & dataExp,
     auto & filter = filterExp.derived_cast();
 
     if( typeid(DataType) == typeid(float) ) {
-        std::cout << "Calculating filters singlethreaded w/ copy ..." << std::endl;
+        //std::cout << "Calculating filters singlethreaded w/o copy ..." << std::endl;
         f(data, filter, preSmooth);
-        std::cout << "done" << std::endl;
+        //std::cout << "done" << std::endl;
     }
     else {
         // copy the data
@@ -85,9 +85,9 @@ inline void calculateFilters(const xt::xexpression<DATA_ARRAY> & dataExp,
             xtensor::write(dataTmp, coord.asStdArray(),
                            (float) xtensor::read(data, coord.asStdArray()));
         });
-        std::cout << "Calculating filters singlethreaded w/o copy ..." << std::endl;
+        //std::cout << "Calculating filters singlethreaded w/o copy ..." << std::endl;
         f(dataTmp, filter, preSmooth);
-        std::cout << "done" << std::endl;
+        //std::cout << "done" << std::endl;
     }
 }
 
@@ -180,6 +180,7 @@ inline void accumulateBetweenSliceFeatures(ACC_CHAIN_VECTOR & channelAccChainVec
                                            const int64_t sliceIdB,
                                            const int64_t betweenEdgeOffset,
                                            const RAG & rag,
+                                           // FIXME dirty hack
                                            const xt::xexpression<FEATURE_ARRAY> & filterAExp,
                                            const xt::xexpression<FEATURE_ARRAY> & filterBExp,
                                            const int zDirection){
@@ -190,6 +191,7 @@ inline void accumulateBetweenSliceFeatures(ACC_CHAIN_VECTOR & channelAccChainVec
     const auto & labelsA = labelsAExp.derived_cast();
     const auto & labelsB = labelsBExp.derived_cast();
 
+    // FIXME dirty hack
     const auto & filterA = filterAExp.derived_cast();
     const auto & filterB = filterBExp.derived_cast();
 
@@ -228,6 +230,19 @@ inline void accumulateBetweenSliceFeatures(ACC_CHAIN_VECTOR & channelAccChainVec
             vigraCoordV[d] = coord[d-1];
         }
         const auto edge = rag.findEdge(lU,lV) - betweenEdgeOffset;
+
+        // FIXME THIS SHOULD NOT HAPPEN
+        if(edge == -1) {
+            std::cout << "Edge not found !!!! " << lU << " " << lV << std::endl;
+            return;
+        }
+
+        // FIXME dirty hack
+        //for(int c = 0; c < numberOfChannels; ++c) {
+        //    fV = filterB(c, coord[0], coord[1]);
+        //    channelAccChainVec[edge][c].updatePassN(fV, vigraCoordV, pass);
+        //}
+
         if(zDirection==0) { // 0 -> take into account z and z + 1
             for(int c = 0; c < numberOfChannels; ++c) {
                 fU = filterA(c, coord[0], coord[1]);
@@ -299,6 +314,17 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(const GridRagStacked2D<LABELS
     Coord sliceShape3({1L, shape[1], shape[2]});
     Coord filterShape({int64_t(numberOfChannels), shape[1], shape[2]});
 
+    // keep track of slices that were already processed
+    std::string filename;
+    if(keepXYOnly) {
+        filename = "/groups/saalfeld/home/papec/Work/feats_from_filts_slice_list_XY.txt";
+    } else if(keepZOnly) {
+        filename = "/groups/saalfeld/home/papec/Work/feats_from_filts_slice_list_Z.txt";
+    } else {
+        filename = "/groups/saalfeld/home/papec/Work/feats_from_filts_slice_list.txt";
+    }
+    std::ofstream slicesOut(filename);
+
     // filter computation and accumulation
     // FIXME we only support 1 pass for now
     //for(auto pass = 1; pass <= channelAccChainVector.front().front().passesRequired(); ++pass) {
@@ -310,12 +336,11 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(const GridRagStacked2D<LABELS
         // allocate some in every thread
         LabelBlockStorage  labelsAStorage(threadpool, sliceShape3, actualNumberOfThreads);
         LabelBlockStorage  labelsBStorage(threadpool, sliceShape3, actualNumberOfThreads);
+        // FIXME dirty hack
         FilterBlockStorage filterAStorage(threadpool, filterShape, actualNumberOfThreads);
         FilterBlockStorage filterBStorage(threadpool, filterShape, actualNumberOfThreads);
         // we only need one data storage
         DataBlockStorage   dataStorage(threadpool, sliceShape3, actualNumberOfThreads);
-        // storage for the data we have to copy if type of data is not float
-        //FilterBlockStorage dataCopyStorage(threadpool, sliceShape2, actualNumberOfThreads);
 
         // process slice 0 to find min and max for histogram opts
         Coord begin0({0L, 0L, 0L});
@@ -324,7 +349,9 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(const GridRagStacked2D<LABELS
         auto data0 = dataStorage.getView(0);
         tools::readSubarray(data, begin0, end0, data0);
         auto data0Squeezed = xtensor::squeezedView(data0);
+        // FIXME dirty hack
         auto filter0 = filterAStorage.getView(0);
+        //auto filter0 = filterBStorage.getView(0);
 
         // apply filters in parallel
         calculateFilters(data0Squeezed,
@@ -371,6 +398,7 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(const GridRagStacked2D<LABELS
             tools::readSubarray(labels, beginA, endA, labelsA);
             auto labelsASqueezed = xtensor::squeezedView(labelsA);
 
+            // FIXME dirty hack
             auto dataA = dataStorage.getView(tid);
             tools::readSubarray(data, beginA, endA, dataA);
             auto dataASqueezed = xtensor::squeezedView(dataA);
@@ -448,6 +476,7 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(const GridRagStacked2D<LABELS
                                                    sliceIdB,
                                                    betweenEdgeOffset,
                                                    rag,
+                                                   // FIXME dirty hack
                                                    filterA,
                                                    filterB,
                                                    zDirection);
@@ -473,6 +502,7 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(const GridRagStacked2D<LABELS
                     fXY(channelAccChainVec, sliceIdB, inEdgeOffset);
                 }
             }
+            slicesOut << sliceIdA << std::endl;
         });
     }
     std::cout << "Slices done" << std::endl;
@@ -587,7 +617,68 @@ void accumulateEdgeFeaturesFromFilters(const GridRagStacked2D<LABELS_PROXY> & ra
             // find global beginning and end for block aligned edges
             FeatCoord beginAlignedGlobal{int64_t(edgeOffset + overhangBegin), 0L};
             FeatCoord endAlignedGlobal{int64_t(edgeEnd - overhangEnd), (int64_t)nFeats};
+                
+            // write the aligned features - if any exist
+            if(edgeEndAlignedLocal > 0 && edgeEndAlignedLocal > overhangBegin) {
+                // get view to the aligned features
+                xt::slice_vector sliceAligned(featuresTemp);
+                xtensor::sliceFromRoi(sliceAligned, beginAlignedLocal, endAlignedLocal);
+                auto featuresAligned = xt::dynamic_view(featuresTemp, sliceAligned);
 
+                // find global beginning and end for block aligned edges
+                FeatCoord beginAlignedGlobal{int64_t(edgeOffset + overhangBegin), 0L};
+                FeatCoord endAlignedGlobal{int64_t(edgeEnd - overhangEnd), (int64_t)nFeats};
+
+                // write out blockaligned edges
+                tools::writeSubarray(edgeFeaturesOut, beginAlignedGlobal, endAlignedGlobal, featuresAligned);
+            }
+
+            // store non-blockaligned edges (if existing) locally for postprocessing
+            // check if we have overhanging data at the beginning
+            if(overhangBegin > 0) {
+                auto & storage = storageFront[sliceId];
+                storage.begin = FeatCoord{int64_t(edgeOffset), 0L};
+                storage.end = FeatCoord{int64_t(edgeOffset + overhangBegin), int64_t(nFeats)};
+
+                // write correct data ti the storage
+                auto & storageFeats = storage.features;
+                std::array<size_t, 2> storageBegin{0, 0};
+                std::array<size_t, 2> storageShape{(size_t)overhangBegin, (size_t)nFeats};
+                storageFeats.reshape(storageShape);
+
+                xt::slice_vector slice(featuresTemp);
+                xtensor::sliceFromOffset(slice, storageBegin, storageShape);
+                const auto overhangView = xt::dynamic_view(featuresTemp, slice);
+                storageFeats = overhangView;
+
+                storage.hasData = true;
+            } else {
+                storageFront[sliceId].hasData = false;
+            }
+
+            // check if we have overhanging data at the end
+            if(overhangEnd > 0) {
+                auto & storage = storageBack[sliceId];
+                storage.begin = FeatCoord{int64_t(edgeEnd - overhangEnd), 0L};
+                storage.end = FeatCoord{int64_t(edgeEnd), int64_t(nFeats)};
+
+                // write correct data ti the storage
+                auto & storageFeats = storage.features;
+                std::array<size_t, 2> storageBegin{(size_t)edgeEndAlignedLocal, 0};
+                std::array<size_t, 2> storageShape{(size_t)overhangEnd, (size_t)nFeats};
+                storageFeats.reshape(storageShape);
+
+                xt::slice_vector slice(featuresTemp);
+                xtensor::sliceFromOffset(slice, storageBegin, storageShape);
+                const auto overhangView = xt::dynamic_view(featuresTemp, slice);
+                storageFeats = overhangView;
+
+                storage.hasData = true;
+            } else {
+                storageBack[sliceId].hasData = false;
+            }
+
+            /*
             // write out blockaligned edges
             tools::writeSubarray(edgeFeaturesOut, beginAlignedGlobal, endAlignedGlobal, featuresAligned);
 
@@ -635,6 +726,7 @@ void accumulateEdgeFeaturesFromFilters(const GridRagStacked2D<LABELS_PROXY> & ra
             } else {
                 storageBack[sliceId].hasData = false;
             }
+            */
         };
 
         // instantiation of accumulators for xy / z edges
