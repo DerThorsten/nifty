@@ -314,16 +314,18 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(const GridRagStacked2D<LABELS
     Coord sliceShape3({1L, shape[1], shape[2]});
     Coord filterShape({int64_t(numberOfChannels), shape[1], shape[2]});
 
+    // FIXME this does not really help, because slices are not completely processed
+    // due to writing out of overhanging chunks
     // keep track of slices that were already processed
-    std::string filename;
-    if(keepXYOnly) {
-        filename = "/groups/saalfeld/home/papec/Work/feats_from_filts_slice_list_XY.txt";
-    } else if(keepZOnly) {
-        filename = "/groups/saalfeld/home/papec/Work/feats_from_filts_slice_list_Z.txt";
-    } else {
-        filename = "/groups/saalfeld/home/papec/Work/feats_from_filts_slice_list.txt";
-    }
-    std::ofstream slicesOut(filename);
+    // std::string filename;
+    // if(keepXYOnly) {
+    //     filename = "/groups/saalfeld/home/papec/Work/feats_from_filts_slice_list_XY.txt";
+    // } else if(keepZOnly) {
+    //     filename = "/groups/saalfeld/home/papec/Work/feats_from_filts_slice_list_Z.txt";
+    // } else {
+    //     filename = "/groups/saalfeld/home/papec/Work/feats_from_filts_slice_list.txt";
+    // }
+    // std::ofstream slicesOut(filename);
 
     // filter computation and accumulation
     // FIXME we only support 1 pass for now
@@ -502,7 +504,6 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(const GridRagStacked2D<LABELS
                     fXY(channelAccChainVec, sliceIdB, inEdgeOffset);
                 }
             }
-            slicesOut << sliceIdA << std::endl;
         });
     }
     std::cout << "Slices done" << std::endl;

@@ -24,15 +24,15 @@ namespace tools{
         }
 
         const VectorType & begin() const {
-            return begin_;  
+            return begin_;
         }
 
         const VectorType & end() const {
-            return end_;  
+            return end_;
         }
 
         VectorType shape() const {
-            return end_ - begin_;  
+            return end_ - begin_;
         }
 
     private:
@@ -58,23 +58,22 @@ namespace tools{
         :   outerBlock_(outerBlock),
             innerBlock_(innerBlock),
             innerBlockLocal_(){
-    
-            
+
             const auto lBegin = innerBlock.begin()  - outerBlock.begin();
             const auto lEnd = lBegin  + innerBlock_.shape();
             innerBlockLocal_ = BlockType(lBegin, lEnd);
         }
 
         const BlockType & outerBlock() const {
-            return outerBlock_;  
+            return outerBlock_;
         }
 
         const BlockType & innerBlock() const {
-            return innerBlock_;  
+            return innerBlock_;
         }
 
         const BlockType & innerBlockLocal() const {
-            return innerBlockLocal_;  
+            return innerBlockLocal_;
         }
 
 
@@ -110,7 +109,7 @@ namespace tools{
             blocksPerAxis_(),
             blocksPerAxisStrides_(),
             numberOfBlocks_(1){
-        
+
             for(size_t d=0; d<DIM; ++d){
                 const auto dimSize = roiEnd_[d] - (roiBegin_[d] - blockShift_[d]);
                 const auto bs = blockShape_[d];
@@ -118,33 +117,39 @@ namespace tools{
                 blocksPerAxis_[d] = bpa;
                 numberOfBlocks_ *= bpa;
             }
-            
+
             blocksPerAxisStrides_[DIM - 1] = 1;
             for(int64_t d = DIM-2; d>=0; --d){
                 blocksPerAxisStrides_[d] = blocksPerAxisStrides_[d+1] * blocksPerAxis_[d+1];
             }
         }
 
+        int64_t getNeighborId(const uint64_t blockId, const unsigned axis, const bool lower) const {
+            auto stride = blocksPerAxisStrides_[axis];
+            int64_t neighborId = blockId + (lower ? -stride : stride);
+            return (neighborId < numberOfBlocks_) ? (neighborId > 0 ? neighborId : -1) : -1;
+        }
+
         const VectorType & roiBegin() const {
-            return roiBegin_;  
+            return roiBegin_;
         }
 
         const VectorType & roiEnd() const {
-            return roiEnd_;  
+            return roiEnd_;
         }
 
         const VectorType & blockShape() const {
-            return blockShape_;  
+            return blockShape_;
         }
 
         const VectorType & blockShift() const {
-            return blockShift_;  
+            return blockShift_;
         }
 
         const VectorType & blocksPerAxis() const {
-            return blocksPerAxis_;  
+            return blocksPerAxis_;
         }
-        
+
         const size_t numberOfBlocks()const{
             return numberOfBlocks_;
         }
@@ -156,7 +161,6 @@ namespace tools{
             uint64_t index = blockIndex;
             VectorType beginCoord, endCoord;
             for(auto d=0; d<DIM; ++d){
-
 
                 const int64_t blockCoordAtD = index / blocksPerAxisStrides_[d];
                 index -= blockCoordAtD*blocksPerAxisStrides_[d];
@@ -364,7 +368,7 @@ namespace tools{
 
 
         BlockWithHaloType getBlockWithHalo(
-            const uint64_t blockIndex, 
+            const uint64_t blockIndex,
             const VectorType & halo
         )const{
             return this->getBlockWithHalo(blockIndex, halo, halo);
@@ -372,7 +376,7 @@ namespace tools{
 
 
         BlockWithHaloType addHalo(
-            const BlockType innerBlock, 
+            const BlockType innerBlock,
             const VectorType & haloBegin,
             const VectorType & haloEnd
         )const{
@@ -387,14 +391,15 @@ namespace tools{
         }
 
 
-        
+
         BlockWithHaloType addHalo(
-            const BlockType innerBlock,  
+            const BlockType innerBlock,
             const VectorType & halo
         )const{
             return this->addHalo(innerBlock, halo, halo);
-        } 
-        
+        }
+
+
     private:
 
         // given from user

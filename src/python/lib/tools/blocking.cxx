@@ -160,6 +160,16 @@ namespace tools{
                 },
                 py::arg("block"),py::arg("haloBegin"),py::arg("haloEnd")
             )
+            .def("getNeighborId", [](
+                    const BlockingType & self,
+                    const uint64_t blockId,
+                    const unsigned axis,
+                    const bool lower
+            ){
+                return self.getNeighborId(blockId, axis, lower);
+             },
+             py::arg("blockId"), py::arg("axis"), py::arg("lower")
+            )
         ;
     }
 
