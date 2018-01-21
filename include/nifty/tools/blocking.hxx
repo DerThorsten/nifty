@@ -127,7 +127,7 @@ namespace tools{
         int64_t getNeighborId(const uint64_t blockId, const unsigned axis, const bool lower) const {
             auto stride = blocksPerAxisStrides_[axis];
             int64_t neighborId = blockId + (lower ? -stride : stride);
-            return (neighborId < numberOfBlocks_) ? (neighborId > 0 ? neighborId : -1) : -1;
+            return (neighborId < numberOfBlocks_) ? (neighborId >= 0 ? neighborId : -1) : -1;
         }
 
         const VectorType & roiBegin() const {
