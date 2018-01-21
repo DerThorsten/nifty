@@ -100,7 +100,7 @@ class TestBlocking(unittest.TestCase):
 
     def testNeighbors(self):
         blocking = nt.blocking(roiBegin=[0, 0, 0],
-                               roiEnd=[10, 10, 10],
+                               roiEnd=[40, 35, 17],
                                blockShape=[5, 5, 5])
         neighbors = {}
         for block_id in range(blocking.numberOfBlocks):
@@ -108,10 +108,36 @@ class TestBlocking(unittest.TestCase):
                                            axis=i // 2,
                                            lower=bool(i % 2)) for i in range(6)]
             neighbors[block_id] = [nbr for nbr in nbrs if nbr != -1]
+
         for block_id in range(blocking.numberOfBlocks):
             nbrs = neighbors[block_id]
             for nbr_id in nbrs:
                 self.assertTrue(block_id in neighbors[nbr_id])
+
+    def testNeighborsToyExample(self):
+        blocking = nt.blocking(roiBegin=[0, 0],
+                               roiEnd=[10, 10],
+                               blockShape=[5, 5])
+
+        neighbors = {}
+        for b in range(blocking.numberOfBlocks):
+            nbrs = [blocking.getNeighborId(b, i // 2, bool(i % 2)) for i in range(4)]
+            nbrs = [nbr for nbr in nbrs if nbr != -1]
+            self.assertEqual(len(nbrs), 2)
+            nbrs.sort()
+            neighbors[b] = nbrs
+
+        self.assertEqual(neighbors[0][0], 1)
+        self.assertEqual(neighbors[0][1], 2)
+
+        self.assertEqual(neighbors[1][0], 0)
+        self.assertEqual(neighbors[1][1], 3)
+
+        self.assertEqual(neighbors[2][0], 0)
+        self.assertEqual(neighbors[2][1], 3)
+
+        self.assertEqual(neighbors[3][0], 1)
+        self.assertEqual(neighbors[3][1], 2)
 
 
 if __name__ == '__main__':

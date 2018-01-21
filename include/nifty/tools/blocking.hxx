@@ -125,9 +125,21 @@ namespace tools{
         }
 
         int64_t getNeighborId(const uint64_t blockId, const unsigned axis, const bool lower) const {
-            auto stride = blocksPerAxisStrides_[axis];
+
+            const auto blockPosAtAxis = getBlockAxisPosition(blockId, axis);
+
+            // we don't have lower neighbors for the lowest block in axis
+            // and we don't have upper neighbor for the highest block in axis
+            if(lower && blockPosAtAxis == 0) {
+                return -1;
+            } else if(!lower && blockPosAtAxis == blocksPerAxis_[axis] - 1) {
+                return -1;
+            }
+
+            const auto stride = blocksPerAxisStrides_[axis];
             int64_t neighborId = blockId + (lower ? -stride : stride);
-            return (neighborId < numberOfBlocks_) ? (neighborId >= 0 ? neighborId : -1) : -1;
+            //return (neighborId < numberOfBlocks_) ? (neighborId >= 0 ? neighborId : -1) : -1;
+            return neighborId;
         }
 
         const VectorType & roiBegin() const {
@@ -225,7 +237,7 @@ namespace tools{
         }
 
 
-        // get all block ids taht have overlap with the roi
+        // get all block ids that have overlap with the roi
         void getBlockIdsOverlappingBoundingBox(
                 const VectorType & roiBegin,
                 const VectorType & roiEnd,
@@ -326,7 +338,7 @@ namespace tools{
                         globalOverlapEnd[d] = endA[d];
                     }
                 }
-            
+
             }
             else { // otherwise return that no overlap was found
                 return false;
@@ -401,6 +413,20 @@ namespace tools{
 
 
     private:
+
+        uint64_t getBlockAxisPosition(const uint64_t blockId, const unsigned axis) const {
+            // get the position of the block in this axis
+            uint64_t index = blockId;
+            int64_t blockPosAtAxis;
+            for(auto d = 0; d < DIM; ++d) {
+                blockPosAtAxis = index / blocksPerAxisStrides_[d];
+                index -= blockPosAtAxis * blocksPerAxisStrides_[d];
+                if(d == axis){
+                    break;
+                }
+            }
+            return blockPosAtAxis;
+        }
 
         // given from user
         VectorType roiBegin_;
