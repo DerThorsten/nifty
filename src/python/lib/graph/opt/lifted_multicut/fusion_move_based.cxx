@@ -102,18 +102,18 @@ namespace lifted_multicut{
         { // watershed factory
             typedef WatershedProposalGenerator<ObjectiveType> ProposalGeneratorType;
             typedef typename ProposalGeneratorType::SettingsType PGenSettigns;
-            typedef typename PGenSettigns::SeedingStrategie SeedingStrategie;
+            typedef typename PGenSettigns::SeedingStrategy SeedingStrategy;
             auto pGenSettigns = exportProposalGenerator<ProposalGeneratorType>(liftedMulticutModule, "WatershedProposalGenerator");
 
-            py::enum_<SeedingStrategie>(pGenSettigns, "SeedingStrategie")
-                .value("SEED_FROM_LIFTED", SeedingStrategie::SEED_FROM_LIFTED)
-                .value("SEED_FROM_LOCAL", SeedingStrategie::SEED_FROM_LOCAL)
-                .value("SEED_FROM_BOTH", SeedingStrategie::SEED_FROM_BOTH)
+            py::enum_<SeedingStrategy>(pGenSettigns, "SeedingStrategy")
+                .value("SEED_FROM_LIFTED", SeedingStrategy::SEED_FROM_LIFTED)
+                .value("SEED_FROM_LOCAL", SeedingStrategy::SEED_FROM_LOCAL)
+                .value("SEED_FROM_BOTH", SeedingStrategy::SEED_FROM_BOTH)
             ;
 
             pGenSettigns
                 .def(py::init<>())
-                .def_readwrite("seedingStrategie", &PGenSettigns::seedingStrategie)
+                .def_readwrite("seedingStrategy", &PGenSettigns::seedingStrategy)
                 .def_readwrite("sigma", &PGenSettigns::sigma)
                 .def_readwrite("numberOfSeeds", &PGenSettigns::numberOfSeeds)
             ;

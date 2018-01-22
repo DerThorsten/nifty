@@ -31,13 +31,13 @@ namespace lifted_multicut{
         struct SettingsType{
 
 
-            enum SeedingStrategie{
+            enum SeedingStrategy{
                 SEED_FROM_LIFTED,
                 SEED_FROM_LOCAL,
                 SEED_FROM_BOTH
             };
 
-            SeedingStrategie seedingStrategie{SEED_FROM_LIFTED};
+            SeedingStrategy seedingStrategy{SEED_FROM_LIFTED};
             double sigma{1.0};
             double numberOfSeeds{0.1};
         };
@@ -71,7 +71,7 @@ namespace lifted_multicut{
                 graphEdgeWeights_[graphEdge] = weights[edge];
             });
 
-            if(settings_.seedingStrategie == SettingsType::SEED_FROM_LIFTED){
+            if(settings_.seedingStrategy == SettingsType::SEED_FROM_LIFTED){
                 objective_.forEachLiftedeEdge([&](const uint64_t edge){
                     if(weights[edge] < 0.0){
                         negativeEdges_.push_back(edge);
@@ -87,7 +87,7 @@ namespace lifted_multicut{
                     });
                 }
             }
-            else if(settings_.seedingStrategie == SettingsType::SEED_FROM_LOCAL){
+            else if(settings_.seedingStrategy == SettingsType::SEED_FROM_LOCAL){
                 objective_.forEachGraphEdge([&](const uint64_t edge){
                     if(weights[edge] < 0.0){
                         negativeEdges_.push_back(edge);
@@ -103,7 +103,7 @@ namespace lifted_multicut{
                     });
                 }
             }
-            else if(settings_.seedingStrategie == SettingsType::SEED_FROM_BOTH){
+            else if(settings_.seedingStrategy == SettingsType::SEED_FROM_BOTH){
                 objective_.liftedGraph().forEachEdge([&](const uint64_t edge){
                     if(weights[edge] < 0.0){
                         negativeEdges_.push_back(edge);

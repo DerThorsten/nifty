@@ -140,7 +140,7 @@ def __extendLiftedMulticutObj(objectiveCls, objectiveName):
 
 
     def watershedProposalGenerator(sigma=1.0, numberOfSeeds=0.1,
-                                   seedingStrategie='SEED_FROM_LIFTED'):
+                                   seedingStrategy='SEED_FROM_LIFTED'):
         """factory function for a watershed based proposal generator for fusion move based
         lifted multicuts.
 
@@ -168,20 +168,20 @@ def __extendLiftedMulticutObj(objectiveCls, objectiveName):
 
         # map string to enum
         stringToEnum = {
-            'SEED_FROM_LIFTED' : pGenSettings.SeedingStrategie.SEED_FROM_LIFTED,
-            'SEED_FROM_LOCAL' : pGenSettings.SeedingStrategie.SEED_FROM_LOCAL,
-            'SEED_FROM_BOTH' : pGenSettings.SeedingStrategie.SEED_FROM_BOTH,
+            'SEED_FROM_LIFTED' : pGenSettings.SeedingStrategy.SEED_FROM_LIFTED,
+            'SEED_FROM_LOCAL' : pGenSettings.SeedingStrategy.SEED_FROM_LOCAL,
+            'SEED_FROM_BOTH' : pGenSettings.SeedingStrategy.SEED_FROM_BOTH,
         }
         try:
             enumVal = stringToEnum[seedingStrategy]
         except:
-            raise RuntimeError("unkown seedingStrategie '%s': must be either"\
+            raise RuntimeError("unkown seedingStrategy '%s': must be either"\
                                "'SEED_FROM_LIFTED','SEED_FROM_LOCAL' or "\
                                " 'SEED_FROM_BOTH' "%str(seedingStrategy))
 
         pGenSettings.sigma = float(sigma)
         pGenSettings.numberOfSeeds = float(numberOfSeeds)
-        pGenSettings.seedingStrategie = enumVal
+        pGenSettings.seedingStrategy = enumVal
 
         return pGenCls(pGenSettings)
 
