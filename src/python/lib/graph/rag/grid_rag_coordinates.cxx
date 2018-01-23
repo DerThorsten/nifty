@@ -65,7 +65,7 @@ namespace graph{
                 typedef typename xt::pytensor<uint32_t, DIM>::shape_type ShapeType;
                 ShapeType shape;
                 std::copy(self.rag().shape().begin(), self.rag().shape().end(), shape.begin());
-                xt::pytensor<uint32_t, DIM> out(shape);
+                xt::pytensor<uint32_t, DIM> out = xt::zeros<uint32_t>(shape);
 
                 self.edgesToVolume(edgeValues, out, edgeDirection, ignoreValue, numberOfThreads);
                 return out;
