@@ -21,6 +21,7 @@ namespace tools{
     void exportEdgeMapping(py::module &);
     void exportSleep(py::module &);
     void exportChangeablePriorityQueue(py::module &);
+    void exportMapDictionaryToArray(py::module &);
 }
 }
 
@@ -44,4 +45,5 @@ PYBIND11_MODULE(_tools, toolsModule) {
     exportEdgeMapping(toolsModule);
     exportSleep(toolsModule);
     exportChangeablePriorityQueue(toolsModule);
+    exportMapDictionaryToArray(toolsModule);
 }

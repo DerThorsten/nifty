@@ -11,6 +11,7 @@ addPythonModule(
         nodes_to_blocks.cxx
         edge_mapping.cxx
         sleep.cxx
+        map_dict.cxx
     LIBRRARIES
         ${HDF5_LIBRARIES}
         ${Z5_COMPRESSION_LIBRARIES}
