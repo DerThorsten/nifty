@@ -25,14 +25,6 @@ namespace tools{
 
         }, py::arg("data"), py::arg("dict"), py::arg("haveIgnoreValue")=false, py::arg("ignoreValue")=0);
 
-
-        toolsModule.def("mapLabelingToArray",
-        [](xt::pytensor<T, DIM> & data, xt::pytensor<T, 1> labeling, bool haveIgnoreValue, T ignoreValue){
-
-            py::gil_scoped_release allowThreads;
-            mapLabelingToArray<DIM>(data, labeling, haveIgnoreValue, ignoreValue);
-
-        }, py::arg("data"), py::arg("labeling"), py::arg("haveIgnoreValue")=false, py::arg("ignoreValue")=0);
     }
 
 

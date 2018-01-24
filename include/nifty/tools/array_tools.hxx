@@ -268,33 +268,5 @@ namespace tools {
     }
 
 
-    template<unsigned DIM, class T, class ARRAY, class LABELING>
-    inline void mapLabelingToArray(xt::xexpression<ARRAY> & arrayExp, const xt::xexpression<LABELING> & labelingExp,
-                                   bool haveIgnoreValue=false, T ignoreValue=0) {
-        typedef array::StaticArray<int64_t, DIM> Coord;
-        auto & array = arrayExp.derived_cast();
-        const auto & labeling = labelingExp.derived_cast();
-
-        Coord shape;
-        for(int i = 0; i < DIM; ++i) {
-            shape[i] = array.shape()[i];
-        }
-
-        if(haveIgnoreValue) {
-            forEachCoordinate(shape, [&](const Coord & coord){
-                T val = xtensor::read(array, coord.asStdArray());
-                if(val != ignoreValue) {
-                    xtensor::write(array, coord.asStdArray(), labeling(val));
-                }
-            });
-        } else {
-            forEachCoordinate(shape, [&](const Coord & coord){
-                T val = xtensor::read(array, coord.asStdArray());
-                xtensor::write(array, coord.asStdArray(), labeling(val));
-            });
-        }
-    }
-
-
 } // namespace tools
 } // namespace nifty

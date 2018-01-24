@@ -56,16 +56,10 @@ def rand_choice(probs, choose_from=None):
 
 
 
-
 def take(relabeling, toRelabel):
     shape = toRelabel.shape
     toRelabelFlat = toRelabel.ravel()
-
-    resFlat = _tools._take(relabeling, toRelabelFlat)
-    return resFlat.reshape(shape)
-
-
-
+    return _tools._take(relabeling, toRelabelFlat).reshape(shape)
 
 
 
@@ -91,7 +85,7 @@ def blocking(roiBegin, roiEnd, blockShape, blockShift=None):
         blockingCls = Blocking3d
     else:
         raise RuntimeError("only 2d and 3d blocking is implemented currently")
-        
+
     return blockingCls(
         [int(v) for v in roiBegin],
         [int(v) for v in roiEnd],
@@ -129,8 +123,8 @@ def parallelForEach(iterable, f, nWorkers=cpu_count() ,
                 with lock:
                     done[0] += 1
                     bar.update(done[0])
-            parallelForEach(iterable=iterable, 
-                            f=fTilde, 
+            parallelForEach(iterable=iterable,
+                            f=fTilde,
                             nWorkers=nWorkers,
                             showBar=False,
                             size=None)
