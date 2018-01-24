@@ -165,10 +165,12 @@ FixationClusterPolicy(
         edgeState_[edge] = (loc ? EdgeStates::PURE_LOCAL : EdgeStates::PURE_LIFTED);
 
         if(settings_.zeroInit){
-            if(loc) 
+            if(loc){
                 acc1_.set(edge, 0.0, edgeSizes[edge]);
-            else
+            }
+            else{
                 acc0_.set(edge, 0.0, edgeSizes[edge]);
+            }
         }
 
         pq_.push(edge, this->pqMergePrio(edge));
@@ -278,7 +280,7 @@ mergeEdges(
         acc0_.merge(aliveEdge, deadEdge);
 
     // update notMergePrio
-    if(settings_.zeroInit  && sa == EdgeStates::PURE_LOCAL && sd !=  EdgeStates::PURE_LOCAL)
+    if(settings_.zeroInit  && sa == EdgeStates::PURE_LOCAL &&  sd !=  EdgeStates::PURE_LOCAL)
         acc1_.setValueFrom(aliveEdge, deadEdge);
     else
         acc1_.merge(aliveEdge, deadEdge);
@@ -297,7 +299,9 @@ mergeEdges(
     ){
         sa = EdgeStates::LOCAL;
     }
-    else{
+    else if(sa == EdgeStates::PURE_LIFTED ||  sa == EdgeStates::LIFTED  &&
+            sd == EdgeStates::PURE_LIFTED ||  sd == EdgeStates::LIFTED )
+    {
         sa = EdgeStates::LIFTED;
     }
 
