@@ -88,23 +88,6 @@ struct ComputeRag<GridRag<DIM, LABELS>> {
         const Coord overlapBegin(0), overlapEnd(1);
         const Coord zeroCoord(0);
 
-        std::mutex mtx;
-        auto doneBlocks = 0;
-        auto nBlocks = 0;
-
-        nifty::parallel::ThreadPool stSp(nifty::parallel::ParallelOptions(1));
-        tools::parallelForEachBlockWithOverlap(stSp, shape, settings.blockShape, overlapBegin, overlapEnd,
-        [&](
-            const int tid,
-            const Coord & blockCoreBegin, const Coord & blockCoreEnd,
-            const Coord & blockBegin, const Coord & blockEnd
-        ){
-            nBlocks += 1;
-        });
-
-
-        std::cout << "nBlocks "<< nBlocks << "\n";
-
         tools::parallelForEachBlockWithOverlap(threadpool, shape, settings.blockShape, overlapBegin, overlapEnd,
         [&](
             const int tid,
@@ -133,12 +116,6 @@ struct ComputeRag<GridRag<DIM, LABELS>> {
                     }
                 }
             });
-            mtx.lock();
-                doneBlocks += 1;
-                std::cout<<doneBlocks<<" / "<<nBlocks<<" "<<100.0*float(doneBlocks+1)/float(nBlocks)<<"\n";
-            mtx.unlock();
-
-
         });
 
         rag.mergeAdjacencies(perThreadDataVec, threadpool);
