@@ -31,7 +31,35 @@ namespace distributed {
            py::arg("roiBegin"), py::arg("roiEnd"),
            py::arg("pathToGraph"), py::arg("keyToGraph"));
 
-    }
 
+        module.def("mergeSubgraphs", [](
+            const std::string & pathToGraph,
+            const std::string & blockGroup,
+            const std::string & blockPrefix,
+            const std::vector<size_t> & blockIds,
+            const std::string & outKey
+        ) {
+            py::gil_scoped_release allowThreads;
+            mergeSubgraphs(pathToGraph, blockGroup,
+                           blockPrefix, blockIds, outKey);
+        }, py::arg("pathToGraph"), py::arg("blockGroup"),
+           py::arg("blockPrefix"), py::arg("blockIds"),
+           py::arg("outKey"));
+        
+        
+        module.def("mapEdgeIds", [](
+            const std::string & pathToGraph,
+            const std::string & graphGroup,
+            const std::string & blockGroup,
+            const std::string & blockPrefix,
+            const std::vector<size_t> & blockIds
+        ) {
+            py::gil_scoped_release allowThreads;
+            mapEdgeIds(pathToGraph, graphGroup, blockGroup, blockPrefix, blockIds);
+        }, py::arg("pathToGraph"), py::arg("graphGroup"), py::arg("blockGroup"),
+           py::arg("blockPrefix"), py::arg("blockIds"));
+
+    }
+    
 }
 }
