@@ -4,6 +4,7 @@
 #include <set>
 
 #include "xtensor/xtensor.hpp"
+
 #include "z5/multiarray/xtensor_access.hxx"
 #include "z5/dataset_factory.hxx"
 #include "z5/groups.hxx"
@@ -34,9 +35,16 @@ namespace distributed {
                              NodeSet & nodes,
                              EdgeSet & edges) {
 
+        // typedefs and helper functions
         typedef nifty::array::StaticArray<int64_t, 3> CoordType;
         typedef xt::xtensor<uint64_t, 3> Tensor3;
         typedef typename Tensor3::shape_type Shape3Type;
+
+        auto makeCoord2 = [](const CoordType & coord, CoordType & coord2, const size_t axis){
+            coord2 = coord;
+            coord2[axis] += 1;
+        };
+
         // open the n5 label dataset
         auto path = fs::path(pathToLabels);
         path /= keyToLabels;
@@ -44,7 +52,7 @@ namespace distributed {
 
         // load the roi
         Shape3Type shape;
-        CoordType blockShape;
+        CoordType blockShape, coord2;
 
         for(int axis = 0; axis < 3; ++axis) {
             shape[axis] = roiEnd[axis] - roiBegin[axis];
@@ -57,19 +65,13 @@ namespace distributed {
         // we want ordered iteration over nodes and edges in the end,
         // so we use a normal set instead of an unordered one
 
-        auto makeCoord2 = [](const CoordType & coord, const size_t axis){
-            CoordType coord2 = coord;
-            coord2[axis] += 1;
-            return coord2;
-        };
-
         uint64_t lU, lV;
         nifty::tools::forEachCoordinate(blockShape,[&](const CoordType & coord) {
 
             lU = xtensor::read(labels, coord.asStdArray());
-            nodes.insert(lV);
+            nodes.insert(lU);
             for(size_t axis = 0; axis < 3; ++axis){
-                const auto coord2 = makeCoord2(coord, axis);
+                makeCoord2(coord, coord2, axis);
                 if(coord2[axis] < blockShape[axis]){
                     lV = xtensor::read(labels, coord2.asStdArray());
                     if(lU != lV){
@@ -104,9 +106,9 @@ namespace distributed {
         extractGraphFromRoi(pathToLabels, keyToLabels,
                             roiBegin, roiEnd,
                             nodes, edges);
-
         size_t nNodes = nodes.size();
         size_t nEdges = edges.size();
+
 
         // create the graph group
         auto graphPath = fs::path(pathToGraph);
@@ -123,7 +125,7 @@ namespace distributed {
         Tensor1 nodeSer(nodeSerShape);
         size_t i = 0;
         for(const auto node : nodes) {
-            nodeSer[i] = node;
+            nodeSer(i) = node;
             ++i;
         }
         z5::multiarray::writeSubarray<uint64_t>(dsNodes, nodeSer, zero1Coord.begin());
@@ -134,8 +136,8 @@ namespace distributed {
         Tensor2 edgeSer(edgeSerShape);
         i = 0;
         for(const auto & edge : edges) {
-            edgeSer[i, 0] = edge.first;
-            edgeSer[i, 1] = edge.second;
+            edgeSer(i, 0) = edge.first;
+            edgeSer(i, 1) = edge.second;
             ++i;
         }
         z5::multiarray::writeSubarray<uint64_t>(dsEdges, edgeSer, zero2Coord.begin());

@@ -2,6 +2,7 @@
 #include <pybind11/stl.h>
 
 #include "nifty/distributed/region_graph.hxx"
+#include "nifty/python/converter.hxx"
 
 namespace py = pybind11;
 
