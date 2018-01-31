@@ -18,31 +18,29 @@ namespace fs = boost::filesystem;
 namespace nifty {
 namespace distributed {
 
+    // TODO don't really know, maybe we should still use unordered sets
+    // and just copy to normal set or vector for sorted iteration
+    // TODO figure out whether to use ordered or unordered map
+    typedef std::set<uint64_t> NodeSet;
+    typedef std::set<std::pair<uint64_t, uint64_t>> EdgeSet;
+
+
+    // TODO
     template<class COORD>
-    void computeMergeableRegionGraph(const std::string & pathToLabels,
-                                     const std::string & keyToLabels,
-                                     const COORD & roiBegin,
-                                     const COORD & roiEnd,
-                                     const std::string & pathToGraph,
-                                     const std::string & keyToRoi) {
-        // typedefs
-        typedef xt::xtensor<uint64_t, 1> Tensor1;
-        typedef xt::xtensor<uint64_t, 2> Tensor2;
-        typedef xt::xtensor<uint64_t, 3> Tensor3;
-        typedef typename Tensor1::shape_type Shape1Type;
-        typedef typename Tensor2::shape_type Shape2Type;
-        typedef typename Tensor3::shape_type Shape3Type;
+    void extractGraphFromRoi(const std::string & pathToLabels,
+                             const std::string & keyToLabels,
+                             const COORD & roiBegin,
+                             const COORD & roiEnd,
+                             NodeSet & nodes,
+                             EdgeSet & edges) {
+
         typedef nifty::array::StaticArray<int64_t, 3> CoordType;
-
-        std::vector<size_t> zero1Coord({0});
-        std::vector<size_t> zero2Coord({0, 0});
-
-
+        typedef xt::xtensor<uint64_t, 3> Tensor3;
+        typedef typename Tensor3::shape_type Shape3Type;
         // open the n5 label dataset
         auto path = fs::path(pathToLabels);
         path /= keyToLabels;
         auto ds = z5::openDataset(path.string());
-
 
         // load the roi
         Shape3Type shape;
@@ -58,10 +56,6 @@ namespace distributed {
         // iterate over the the roi and extract all graph nodes and edges
         // we want ordered iteration over nodes and edges in the end,
         // so we use a normal set instead of an unordered one
-        // TODO don't really know, maybe we should still use unordered sets
-        // and just copy to normal set or vector for sorted iteration
-        std::set<uint64_t> nodes;
-        std::set<std::pair<uint64_t, uint64_t>> edges;
 
         auto makeCoord2 = [](const CoordType & coord, const size_t axis){
             CoordType coord2 = coord;
@@ -85,9 +79,34 @@ namespace distributed {
             }
         });
 
+    }
+
+
+    template<class COORD>
+    void computeMergeableRegionGraph(const std::string & pathToLabels,
+                                     const std::string & keyToLabels,
+                                     const COORD & roiBegin,
+                                     const COORD & roiEnd,
+                                     const std::string & pathToGraph,
+                                     const std::string & keyToRoi) {
+        // typedefs
+        typedef xt::xtensor<uint64_t, 1> Tensor1;
+        typedef xt::xtensor<uint64_t, 2> Tensor2;
+        typedef typename Tensor1::shape_type Shape1Type;
+        typedef typename Tensor2::shape_type Shape2Type;
+
+        std::vector<size_t> zero1Coord({0});
+        std::vector<size_t> zero2Coord({0, 0});
+
+        // extract graph nodes and edges from roi
+        NodeSet nodes;
+        EdgeSet edges;
+        extractGraphFromRoi(pathToLabels, keyToLabels,
+                            roiBegin, roiEnd,
+                            nodes, edges);
+
         size_t nNodes = nodes.size();
         size_t nEdges = edges.size();
-
 
         // create the graph group
         auto graphPath = fs::path(pathToGraph);
