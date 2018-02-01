@@ -74,7 +74,7 @@ namespace distributed {
             py::gil_scoped_release allowThreads;
             mapEdgeIds(pathToGraph, graphGroup, blockGroup, blockPrefix, numberOfBlocks, numberOfThreads);
         }, py::arg("pathToGraph"), py::arg("graphGroup"), py::arg("blockGroup"),
-           py::arg("blockPrefix"), py::arg("blockIds"), py::arg("numberOfThreads")=1);
+           py::arg("blockPrefix"), py::arg("numberOfBlocks"), py::arg("numberOfThreads")=1);
 
     }
 
