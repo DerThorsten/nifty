@@ -83,7 +83,7 @@ namespace tools{
                     }
                 }
                 return out;
-            })
+            }, py::arg("roiBegin"), py::arg("roiEnd"), py::arg("blockHalo"))
 
             .def("getBlockIdsOverlappingBoundingBox", [](const BlockingType & self,
                 const VectorType roiBegin,
@@ -102,7 +102,7 @@ namespace tools{
                         out(i) = tmp[i];
                 }
                 return out;
-            })
+            }, py::arg("roiBegin"), py::arg("roiEnd"), py::arg("blockHalo"))
 
             .def("getLocalOverlaps", [](
                 const BlockingType & self,
