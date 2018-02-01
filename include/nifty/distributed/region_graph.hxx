@@ -469,7 +469,7 @@ namespace distributed {
             std::vector<size_t> idShape = {edgeIds.size()};
             auto idView = xt::adapt(edgeIds, idShape);
             z5::handle::Group block(blockPath.string());
-            auto dsIds = z5::createDataset(block, "edgeIds", "uint64", idShape, idShape, false);
+            auto dsIds = z5::createDataset(block, "edgeIds", "int64", idShape, idShape, false);
             z5::multiarray::writeSubarray<EdgeIndexType>(dsIds, idView, zero1Coord.begin());
         });
     }
