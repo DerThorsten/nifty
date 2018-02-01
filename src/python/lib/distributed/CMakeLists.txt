@@ -4,7 +4,8 @@ addPythonModule(
         nifty/distributed
     SOURCES
         distributed.cxx
-        region_graph.cxx
+        graph_extraction.cxx
+        distributed_graph.cxx
     LIBRRARIES
         ${FASTFILTERS_LIBRARY}
         ${Z5_COMPRESSION_LIBRARIES}

@@ -15,7 +15,8 @@ PYBIND11_DECLARE_HOLDER_TYPE(T, std::shared_ptr<T>);
 namespace nifty{
 namespace distributed{
 
-    void exportRegionGraph(py::module &);
+    void exportGraphExtraction(py::module &);
+    void exportDistributedGraph(py::module &);
 
 }
 }
@@ -31,6 +32,7 @@ PYBIND11_MODULE(_distributed, module) {
     module.doc() = "distributed submodule of nifty";
 
     using namespace nifty::distributed;
-    exportRegionGraph(module);
+    exportGraphExtraction(module);
+    exportDistributedGraph(module);
 }
 

@@ -1,7 +1,7 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
 
-#include "nifty/distributed/region_graph.hxx"
+#include "nifty/distributed/graph_extraction.hxx"
 #include "nifty/python/converter.hxx"
 
 namespace py = pybind11;
@@ -10,7 +10,7 @@ namespace nifty {
 namespace distributed {
 
 
-    void exportRegionGraph(py::module & module) {
+    void exportGraphExtraction(py::module & module) {
 
         typedef nifty::array::StaticArray<int64_t, 3> CoordinateType;
         module.def("computeMergeableRegionGraph", [](

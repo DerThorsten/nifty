@@ -3,7 +3,7 @@
 #include <unordered_map>
 #include <boost/functional/hash.hpp>
 
-#include "nifty/distributed/region_graph.hxx"
+#include "nifty/distributed/graph_extraction.hxx"
 
 
 namespace nifty {
@@ -29,7 +29,7 @@ namespace distributed {
         // TODO we should support extraction from multiple ROI's at some point
 
         Graph(const std::string & blockPath) {
-            loadEdges(blockPath, edges_);
+            loadEdges(blockPath, edges_, 0);
             initGraph();
         }
 
@@ -37,32 +37,33 @@ namespace distributed {
 
         // Find edge-id corresponding to the nodes u, v
         // returns -1 if no such edge exists
-        EdgeType findEdge(NodeType u, NodeType v) const {
+        EdgeIndexType findEdge(NodeType u, NodeType v) const {
             // find the node iterator
             auto uIt = nodes_.find(u);
             // don't find the u node -> return -1
             if(uIt == nodes_.end()) {
                 return -1;
             }
-            auto vIt = uIt->find(v);
+            // check if v is in the adjacency of u
+            auto vIt = uIt->second.find(v);
             // v node is not in u's adjacency -> return -1
-            if(vIt == uIt->end()) {
+            if(vIt == uIt->second.end()) {
                 return -1;
             }
             // otherwise we have found the edge and return the edge id
-            return uIt->second();
+            return vIt->second;
         }
 
         // number of nodes and edges
-        size_t numberOfNodes() const {return NodeStorage.size();}
-        size_t numberOfEdges() const {return EdgeStorage.size();}
+        size_t numberOfNodes() const {return nodes_.size();}
+        size_t numberOfEdges() const {return edges_.size();}
 
     private:
         // init the graph from the edges
         void initGraph() {
             // iterate over the edges we have
             NodeType u, v;
-            EdgeIdexType edgeId;
+            EdgeIndexType edgeId;
             for(const auto & edge : edges_) {
                 u = edge.first;
                 v = edge.second;
@@ -71,17 +72,19 @@ namespace distributed {
                 auto uIt = nodes_.find(u);
                 if(uIt == nodes_.end()) {
                     // if u is not in the nodes vector yet, insert it
-                    uIt = nodes_.insert(std::make_pair(u, NodeStorage()));
+                    nodes_.insert(std::make_pair(u, NodeAdjacency{{v, edgeId}}));
+                } else {
+                    uIt->second[v] = edgeId;
                 }
-                *(uIt)[v] = edgeId;
 
                 // insert u in the v adjacency
                 auto vIt = nodes_.find(v);
                 if(vIt == nodes_.end()) {
                     // if v is not in the nodes vector yet, insert it
-                    vIt = nodes_.insert(std::make_pair(v, NodeStorage()));
+                    nodes_.insert(std::make_pair(v, NodeAdjacency{{u, edgeId}}));
+                } else {
+                    vIt->second[u] = edgeId;
                 }
-                *(vIt)[u] = edgeId;
 
                 // increase the edge id
                 ++edgeId;

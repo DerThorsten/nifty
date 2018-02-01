@@ -398,7 +398,7 @@ namespace distributed {
     }
 
 
-    void mergeSubgraphs(const std::string & pathToGraph,
+    inline void mergeSubgraphs(const std::string & pathToGraph,
                         const std::string & blockGroup,
                         const std::string & blockPrefix,
                         const std::vector<size_t> & blockIds,
@@ -434,7 +434,7 @@ namespace distributed {
     }
 
 
-    void mapEdgeIds(const std::string & pathToGraph,
+    inline void mapEdgeIds(const std::string & pathToGraph,
                     const std::string & graphKey,
                     const std::string & blockGroup,
                     const std::string & blockPrefix,
@@ -507,7 +507,7 @@ namespace distributed {
     }
 
 
-    void mapEdgeIds(const std::string & pathToGraph,
+    inline void mapEdgeIds(const std::string & pathToGraph,
                     const std::string & graphKey,
                     const std::string & blockGroup,
                     const std::string & blockPrefix,
