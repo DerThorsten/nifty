@@ -37,16 +37,18 @@ namespace distributed {
             const std::string & blockGroup,
             const std::string & blockPrefix,
             const std::vector<size_t> & blockIds,
-            const std::string & outKey
+            const std::string & outKey,
+            const int numberOfThreads
         ) {
             py::gil_scoped_release allowThreads;
             mergeSubgraphs(pathToGraph, blockGroup,
-                           blockPrefix, blockIds, outKey);
+                           blockPrefix, blockIds,
+                           outKey, numberOfThreads);
         }, py::arg("pathToGraph"), py::arg("blockGroup"),
            py::arg("blockPrefix"), py::arg("blockIds"),
-           py::arg("outKey"));
-        
-        
+           py::arg("outKey"), py::arg("numberOfThreads")=1);
+
+
         module.def("mapEdgeIds", [](
             const std::string & pathToGraph,
             const std::string & graphGroup,
@@ -60,6 +62,6 @@ namespace distributed {
            py::arg("blockPrefix"), py::arg("blockIds"));
 
     }
-    
+
 }
 }

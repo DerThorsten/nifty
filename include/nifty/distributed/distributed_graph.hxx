@@ -13,7 +13,7 @@ namespace distributed {
     // that can be constructed from the distributed region graph outputs
     // We use this instead of the nifty graph api, because we need to support
     // non-dense node indices
-    class SimpleGraph {
+    class Graph {
         typedef uint64_t NodeType;
         typedef int64_t EdgeType;
         // NodeAdjacency: maps nodes that are adjacent to a given node to the corresponding
@@ -29,7 +29,7 @@ namespace distributed {
     public:
 
         // TODO API
-        SimpleGraph();
+        Graph();
 
     private:
         NodeStorage nodes_;

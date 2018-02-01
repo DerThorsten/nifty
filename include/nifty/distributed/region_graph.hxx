@@ -233,30 +233,18 @@ namespace distributed {
     }
 
 
-    // TODO we should have a multi threaded version of this
-    void mergeSubgraphs(const std::string & pathToGraph,
-                        const std::string & blockGroup,
-                        const std::string & blockPrefix,
-                        const std::vector<size_t> & blockIds,
-                        const std::string & outKey) {
-                        // const int numberOfThreads=1) {
-
-        // TODO we should try unordered sets again here
-        NodeSet nodes;
-        EdgeSet edges;
-
-        // iterate over the blocks and insert the nodes and edges
-        auto graphPath = fs::path(pathToGraph);
-        graphPath /= blockGroup;
-        fs::path blockPath;
-        std::string blockKey;
-
+    inline void mergeSubgraphsSingleThreaded(const fs::path & graphPath,
+                                             const std::string & blockPrefix,
+                                             const std::vector<size_t> & blockIds,
+                                             NodeSet & nodes,
+                                             EdgeSet & edges,
+                                             std::vector<size_t> & roiBegin,
+                                             std::vector<size_t> & roiEnd) {
         nlohmann::json j;
         const std::vector<std::string> keys({"roiBegin", "roiEnd"});
 
-        // FIXME should use some max uint value here
-        std::vector<size_t> roiBegin({10000000, 10000000, 10000000});
-        std::vector<size_t> roiEnd({0, 0, 0});
+        fs::path blockPath;
+        std::string blockKey;
 
         for(size_t blockId : blockIds) {
 
@@ -279,8 +267,127 @@ namespace distributed {
 
             for(int axis = 0; axis < 3; ++axis) {
                 roiBegin[axis] = std::min(roiBegin[axis], static_cast<size_t>(blockBegin[axis]));
-                roiBegin[axis] = std::max(roiEnd[axis], static_cast<size_t>(blockEnd[axis]));
+                roiEnd[axis] = std::max(roiEnd[axis], static_cast<size_t>(blockEnd[axis]));
             }
+        }
+
+    }
+
+
+    inline void mergeSubgraphsMultiThreaded(const fs::path & graphPath,
+                                            const std::string & blockPrefix,
+                                            const std::vector<size_t> & blockIds,
+                                            NodeSet & nodes,
+                                            EdgeSet & edges,
+                                            std::vector<size_t> & roiBegin,
+                                            std::vector<size_t> & roiEnd,
+                                            const int numberOfThreads) {
+        // construct threadpool
+        nifty::parallel::ThreadPool threadpool(numberOfThreads);
+        auto nThreads = threadpool.nThreads();
+
+        // initialize thread data
+        struct PerThreadData {
+            std::vector<size_t> roiBegin;
+            std::vector<size_t> roiEnd;
+            NodeSet nodes;
+            EdgeSet edges;
+        };
+        std::vector<PerThreadData> threadData(nThreads);
+        for(int t = 0; t < nThreads; ++t) {
+            // FIXME should use some max uint value here
+            threadData[t].roiBegin = std::vector<size_t>({10000000, 10000000, 10000000});
+            threadData[t].roiEnd = std::vector<size_t>({0, 0, 0});
+        }
+
+        // merge nodes and edges multi threaded
+        size_t nBlocks = blockIds.size();
+        const std::vector<std::string> keys({"roiBegin", "roiEnd"});
+        nifty::parallel::parallel_foreach(threadpool, nBlocks, [&](const int tid, const int blockIndex){
+
+            // get the thread data
+            auto blockId = blockIds[blockIndex];
+            auto * threadNodes = &threadData[tid].nodes;
+            auto * threadEdges = &threadData[tid].edges;
+            // for thread 0, we use the input sets instead of our thread data
+            // to avoid one sequential merge in the end
+            if(tid == 0) {
+                threadNodes = &nodes;
+                threadEdges = &edges;
+            }
+            auto & threadBegin = threadData[tid].roiBegin;
+            auto & threadEnd = threadData[tid].roiEnd;
+
+            // open the group associated with the sub-graph corresponding to this block
+            std::string blockKey = blockPrefix + std::to_string(blockId);
+            fs::path blockPath = graphPath;
+            blockPath /= blockKey;
+
+            // load nodes and edgees
+            loadNodes(blockPath.string(), *threadNodes);
+            loadEdges(blockPath.string(), *threadEdges);
+
+            // read the rois from attributes
+            nlohmann::json j;
+            z5::handle::Group group(blockPath.string());
+            z5::readAttributes(group, keys, j);
+
+            // merge the rois
+            const auto & blockBegin = j[keys[0]];
+            const auto & blockEnd = j[keys[1]];
+
+            for(int axis = 0; axis < 3; ++axis) {
+                threadBegin[axis] = std::min(threadBegin[axis], static_cast<size_t>(blockBegin[axis]));
+                threadEnd[axis] = std::max(threadEnd[axis], static_cast<size_t>(blockEnd[axis]));
+            }
+        });
+
+        // merge into final nodes and edges
+        // (note that thread 0 was already used for the input nodes and edges)
+        for(int tid = 1; tid < nThreads; ++tid) {
+            nodes.insert(threadData[tid].nodes.begin(), threadData[tid].nodes.end());
+            edges.insert(threadData[tid].edges.begin(), threadData[tid].edges.end());
+        }
+
+        // merge the rois
+        for(int tid = 0; tid < nThreads; ++tid) {
+            const auto & threadBegin = threadData[tid].roiBegin;
+            const auto & threadEnd = threadData[tid].roiEnd;
+            for(int axis = 0; axis < 3; ++axis) {
+                roiBegin[axis] = std::min(roiBegin[axis], static_cast<size_t>(threadBegin[axis]));
+                roiEnd[axis] = std::max(roiEnd[axis], static_cast<size_t>(threadEnd[axis]));
+            }
+        }
+    }
+
+
+    void mergeSubgraphs(const std::string & pathToGraph,
+                        const std::string & blockGroup,
+                        const std::string & blockPrefix,
+                        const std::vector<size_t> & blockIds,
+                        const std::string & outKey,
+                        const int numberOfThreads=1) {
+        // TODO we should try unordered sets again here
+        NodeSet nodes;
+        EdgeSet edges;
+
+        // FIXME should use some max uint value here
+        std::vector<size_t> roiBegin({10000000, 10000000, 10000000});
+        std::vector<size_t> roiEnd({0, 0, 0});
+
+        // iterate over the blocks and insert the nodes and edges
+        auto graphPath = fs::path(pathToGraph);
+        graphPath /= blockGroup;
+
+        if(numberOfThreads == 1) {
+            mergeSubgraphsSingleThreaded(graphPath, blockPrefix, blockIds,
+                                         nodes, edges,
+                                         roiBegin, roiEnd);
+        } else {
+            mergeSubgraphsMultiThreaded(graphPath, blockPrefix,
+                                        blockIds, nodes, edges,
+                                        roiBegin, roiEnd,
+                                        numberOfThreads);
         }
 
         // serialize the merged graph
