@@ -72,10 +72,22 @@ namespace distributed {
 
 
     template<class EDGES>
-    inline void loadEdges(const std::string & graphPath, EDGES & edges) {
+    inline bool loadEdges(const std::string & graphPath, EDGES & edges) {
         const std::vector<size_t> zero2Coord({0, 0});
-        // get handle and dataset
+        const std::vector<std::string> keys = {"numberOfEdges"};
+
+        // get handle and check if we have edges
         z5::handle::Group graph(graphPath);
+        nlohmann::json j;
+        z5::readAttributes(graph, keys, j);
+        size_t numberOfEdges = j[keys[0]];
+
+        // don't do anything, if we don't have edges
+        if(numberOfEdges == 0) {
+            return false;
+        }
+
+        // get edge dataset
         auto edgeDs = z5::openDataset(graph, "edges");
         // read the edges and inset them into the edge set
         Shape2Type edgeShape({edgeDs->shape(0), 2});
@@ -84,14 +96,28 @@ namespace distributed {
         for(size_t edgeId = 0; edgeId < edgeShape[0]; ++edgeId) {
             edges.insert(std::make_pair(tmpEdges(edgeId, 0), tmpEdges(edgeId, 1)));
         }
+        return true;
     }
 
 
-    inline void loadEdges(const std::string & graphPath, std::vector<EdgeType> & edges, const size_t offset) {
+    inline bool loadEdges(const std::string & graphPath, std::vector<EdgeType> & edges, const size_t offset) {
         const std::vector<size_t> zero2Coord({0, 0});
-        // get handle and dataset
+        const std::vector<std::string> keys = {"numberOfEdges"};
+
+        // get handle and check if we have edges
         z5::handle::Group graph(graphPath);
+        nlohmann::json j;
+        z5::readAttributes(graph, keys, j);
+        size_t numberOfEdges = j[keys[0]];
+
+        // don't do anything, if we don't have edges
+        if(numberOfEdges == 0) {
+            return false;
+        }
+
+        // get edge dataset
         auto edgeDs = z5::openDataset(graph, "edges");
+
         // read the edges and inset them into the edge set
         Shape2Type edgeShape({edgeDs->shape(0), 2});
         Tensor2 tmpEdges(edgeShape);
@@ -100,6 +126,7 @@ namespace distributed {
         for(size_t edgeId = 0; edgeId < edgeShape[0]; ++edgeId) {
             edges[edgeId + offset] = std::make_pair(tmpEdges(edgeId, 0), tmpEdges(edgeId, 1));
         }
+        return true;
     }
 
 
@@ -138,17 +165,19 @@ namespace distributed {
         }
         z5::multiarray::writeSubarray<NodeType>(dsNodes, nodeSer, zero1Coord.begin());
 
-        std::vector<size_t> edgeShape({nEdges, 2});
-        auto dsEdges = z5::createDataset(group, "edges", "uint64", edgeShape, edgeShape, false);
-        Shape2Type edgeSerShape({nEdges, 2});
-        Tensor2 edgeSer(edgeSerShape);
-        i = 0;
-        for(const auto & edge : edges) {
-            edgeSer(i, 0) = edge.first;
-            edgeSer(i, 1) = edge.second;
-            ++i;
+        if(nEdges > 0) {
+            std::vector<size_t> edgeShape({nEdges, 2});
+            auto dsEdges = z5::createDataset(group, "edges", "uint64", edgeShape, edgeShape, false);
+            Shape2Type edgeSerShape({nEdges, 2});
+            Tensor2 edgeSer(edgeSerShape);
+            i = 0;
+            for(const auto & edge : edges) {
+                edgeSer(i, 0) = edge.first;
+                edgeSer(i, 1) = edge.second;
+                ++i;
+            }
+            z5::multiarray::writeSubarray<NodeType>(dsEdges, edgeSer, zero2Coord.begin());
         }
-        z5::multiarray::writeSubarray<NodeType>(dsEdges, edgeSer, zero2Coord.begin());
 
         // serialize metadata (number of edges and nodes and position of the block)
         nlohmann::json attrs;
@@ -443,7 +472,10 @@ namespace distributed {
 
             // load the block edges
             std::vector<EdgeType> blockEdges;
-            loadEdges(blockPath.string(), blockEdges, 0);
+            bool haveEdges = loadEdges(blockPath.string(), blockEdges, 0);
+            if(!haveEdges) {
+                return;
+            }
 
             // label the local edges acccording to the global edge ids
             std::vector<EdgeIndexType> edgeIds(blockEdges.size());
