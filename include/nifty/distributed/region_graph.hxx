@@ -21,6 +21,17 @@ namespace fs = boost::filesystem;
 namespace nifty {
 namespace distributed {
 
+
+    ///
+    // graph typedefs at nifty.distributed level
+    ///
+
+    typedef uint64_t NodeType;
+    typedef int64_t EdgeIndexType;
+
+    typedef std::pair<NodeType, NodeType> EdgeType;
+    typedef boost::hash<EdgeType> EdgeHash;
+
     // Perfoemance for extraction of 50 x 512 x 512 cube (real labels)
     // (including some overhead (python cals, serializing the graph, etc.))
     // using normal set:    1.8720 s
@@ -28,19 +39,16 @@ namespace distributed {
     // Note that we would need an additional sort to make the unordered set result correct.
     // As we do not see an improvement, stick with the set for now.
     // But for operations on larger edge / node sets, we should benchmark the unordered set again
-    typedef std::pair<uint64_t, uint64_t> EdgeStorage;
-    // typedef boost::hash<EdgeStorage> StorageHash;
-
-    typedef std::set<uint64_t> NodeSet;
-    typedef std::set<EdgeStorage> EdgeSet;
-    //typedef std::unordered_set<EdgeStorage, StorageHash> EdgeSet;
+    typedef std::set<NodeType> NodeSet;
+    typedef std::set<EdgeType> EdgeSet;
+    //typedef std::unordered_set<EdgeType, EdgeHash> EdgeSet;
 
     // xtensor typedefs
-    typedef xt::xtensor<uint64_t, 1> Tensor1;
-    typedef xt::xtensor<uint64_t, 2> Tensor2;
+    typedef xt::xtensor<NodeType, 1> Tensor1;
+    typedef xt::xtensor<NodeType, 2> Tensor2;
     typedef typename Tensor1::shape_type Shape1Type;
     typedef typename Tensor2::shape_type Shape2Type;
-    typedef xt::xtensor<uint64_t, 3> Tensor3;
+    typedef xt::xtensor<NodeType, 3> Tensor3;
     typedef typename Tensor3::shape_type Shape3Type;
 
 
@@ -58,7 +66,7 @@ namespace distributed {
         // read the nodes and inset them into the node set
         Shape1Type nodeShape({nodeDs->shape(0)});
         Tensor1 tmpNodes(nodeShape);
-        z5::multiarray::readSubarray<uint64_t>(nodeDs, tmpNodes, zero1Coord.begin());
+        z5::multiarray::readSubarray<NodeType>(nodeDs, tmpNodes, zero1Coord.begin());
         nodes.insert(tmpNodes.begin(), tmpNodes.end());
     }
 
@@ -72,14 +80,14 @@ namespace distributed {
         // read the edges and inset them into the edge set
         Shape2Type edgeShape({edgeDs->shape(0), 2});
         Tensor2 tmpEdges(edgeShape);
-        z5::multiarray::readSubarray<uint64_t>(edgeDs, tmpEdges, zero2Coord.begin());
+        z5::multiarray::readSubarray<NodeType>(edgeDs, tmpEdges, zero2Coord.begin());
         for(size_t edgeId = 0; edgeId < edgeShape[0]; ++edgeId) {
             edges.insert(std::make_pair(tmpEdges(edgeId, 0), tmpEdges(edgeId, 1)));
         }
     }
 
 
-    inline void loadEdges(const std::string & graphPath, std::vector<EdgeStorage> & edges, const size_t offset) {
+    inline void loadEdges(const std::string & graphPath, std::vector<EdgeType> & edges, const size_t offset) {
         const std::vector<size_t> zero2Coord({0, 0});
         // get handle and dataset
         z5::handle::Group graph(graphPath);
@@ -87,7 +95,7 @@ namespace distributed {
         // read the edges and inset them into the edge set
         Shape2Type edgeShape({edgeDs->shape(0), 2});
         Tensor2 tmpEdges(edgeShape);
-        z5::multiarray::readSubarray<uint64_t>(edgeDs, tmpEdges, zero2Coord.begin());
+        z5::multiarray::readSubarray<NodeType>(edgeDs, tmpEdges, zero2Coord.begin());
         edges.resize(edges.size() + edgeShape[0]);
         for(size_t edgeId = 0; edgeId < edgeShape[0]; ++edgeId) {
             edges[edgeId + offset] = std::make_pair(tmpEdges(edgeId, 0), tmpEdges(edgeId, 1));
@@ -128,7 +136,7 @@ namespace distributed {
             nodeSer(i) = node;
             ++i;
         }
-        z5::multiarray::writeSubarray<uint64_t>(dsNodes, nodeSer, zero1Coord.begin());
+        z5::multiarray::writeSubarray<NodeType>(dsNodes, nodeSer, zero1Coord.begin());
 
         std::vector<size_t> edgeShape({nEdges, 2});
         auto dsEdges = z5::createDataset(group, "edges", "uint64", edgeShape, edgeShape, false);
@@ -140,7 +148,7 @@ namespace distributed {
             edgeSer(i, 1) = edge.second;
             ++i;
         }
-        z5::multiarray::writeSubarray<uint64_t>(dsEdges, edgeSer, zero2Coord.begin());
+        z5::multiarray::writeSubarray<NodeType>(dsEdges, edgeSer, zero2Coord.begin());
 
         // serialize metadata (number of edges and nodes and position of the block)
         nlohmann::json attrs;
@@ -188,13 +196,13 @@ namespace distributed {
             blockShape[axis] = shape[axis];
         }
         Tensor3 labels(shape);
-        z5::multiarray::readSubarray<uint64_t>(ds, labels, roiBegin.begin());
+        z5::multiarray::readSubarray<NodeType>(ds, labels, roiBegin.begin());
 
         // iterate over the the roi and extract all graph nodes and edges
         // we want ordered iteration over nodes and edges in the end,
         // so we use a normal set instead of an unordered one
 
-        uint64_t lU, lV;
+        NodeType lU, lV;
         nifty::tools::forEachCoordinate(blockShape,[&](const CoordType & coord) {
 
             lU = xtensor::read(labels, coord.asStdArray());
@@ -397,42 +405,48 @@ namespace distributed {
     }
 
 
-    // TODO multi-threaded - this one is easy
     void mapEdgeIds(const std::string & pathToGraph,
                     const std::string & graphKey,
                     const std::string & blockGroup,
                     const std::string & blockPrefix,
-                    const std::vector<size_t> & blockIds) {
-                    // const int numberOfThreads=1) {
+                    const std::vector<size_t> & blockIds,
+                    const int numberOfThreads=1) {
 
         const std::vector<size_t> zero1Coord({0});
         // we load the edges into a vector, because
         // it will be sorted by construction and we can take
         // advantage of O(logN) search with std::lower_bound
-        std::vector<EdgeStorage> edges;
+        std::vector<EdgeType> edges;
         fs::path graphPath(pathToGraph);
         graphPath /= graphKey;
         loadEdges(graphPath.string(), edges, 0);
 
-        // iterate over the blocks and insert the nodes and edges
+        // open the top group of all the graph blocks
         auto blockTopPath = fs::path(pathToGraph);
         blockTopPath /= blockGroup;
-        fs::path blockPath;
-        std::string blockKey;
 
-        for(size_t blockId : blockIds) {
+        // iterate over the blocks and insert the nodes and edges
+        // construct threadpool
+        nifty::parallel::ThreadPool threadpool(numberOfThreads);
+        auto nThreads = threadpool.nThreads();
+        size_t nBlocks = blockIds.size();
+
+        // handle all the blocks in parallel
+        nifty::parallel::parallel_foreach(threadpool, nBlocks, [&](const int tid, const int blockIndex){
+
+            auto blockId = blockIds[blockIndex];
 
             // open the group associated with the sub-graph corresponding to this block
-            blockKey = blockPrefix + std::to_string(blockId);
-            blockPath = blockTopPath;
+            const std::string blockKey = blockPrefix + std::to_string(blockId);
+            fs::path blockPath = blockTopPath;
             blockPath /= blockKey;
 
             // load the block edges
-            std::vector<EdgeStorage> blockEdges;
+            std::vector<EdgeType> blockEdges;
             loadEdges(blockPath.string(), blockEdges, 0);
 
             // label the local edges acccording to the global edge ids
-            std::vector<size_t> edgeIds(blockEdges.size());
+            std::vector<EdgeIndexType> edgeIds(blockEdges.size());
 
             // find the first local edge in the global edges
             auto edgeIt = std::lower_bound(edges.begin(), edges.end(), blockEdges[0]);
@@ -440,8 +454,8 @@ namespace distributed {
             // it is guaranteed that all local edges are 'above' the lowest we just found,
             // hence we start searching from this edge, and always try to increase the
             // edge iterator by one before searching again, because edges are likely to be close spatially
-            for(size_t localEdgeId = 0; localEdgeId < blockEdges.size(); ++localEdgeId) {
-                const auto & edge = *edgeIt;
+            for(EdgeIndexType localEdgeId = 0; localEdgeId < blockEdges.size(); ++localEdgeId) {
+                const EdgeType & edge = *edgeIt;
                 if(blockEdges[localEdgeId] == edge) {
                     edgeIds[localEdgeId] = std::distance(edges.begin(), edgeIt);
                     ++edgeIt;
@@ -456,10 +470,20 @@ namespace distributed {
             auto idView = xt::adapt(edgeIds, idShape);
             z5::handle::Group block(blockPath.string());
             auto dsIds = z5::createDataset(block, "edgeIds", "uint64", idShape, idShape, false);
-            z5::multiarray::writeSubarray<uint64_t>(dsIds, idView, zero1Coord.begin());
-        }
+            z5::multiarray::writeSubarray<EdgeIndexType>(dsIds, idView, zero1Coord.begin());
+        });
+    }
 
 
+    void mapEdgeIds(const std::string & pathToGraph,
+                    const std::string & graphKey,
+                    const std::string & blockGroup,
+                    const std::string & blockPrefix,
+                    const size_t numberOfBlocks,
+                    const int numberOfThreads=1) {
+        std::vector<size_t> blockIds(numberOfBlocks);
+        std::iota(blockIds.begin(), blockIds.end(), 0);
+        mapEdgeIds(pathToGraph, graphKey, blockGroup, blockPrefix, blockIds, numberOfThreads);
     }
 
 }
