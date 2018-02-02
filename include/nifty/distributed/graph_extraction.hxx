@@ -51,6 +51,9 @@ namespace distributed {
     typedef xt::xtensor<NodeType, 3> Tensor3;
     typedef typename Tensor3::shape_type Shape3Type;
 
+    // nifty typedef
+    typedef nifty::array::StaticArray<int64_t, 3> CoordType;
+
 
     ///
     // helper functions (we might turn this into detail namespace ?!)
@@ -68,6 +71,20 @@ namespace distributed {
         Tensor1 tmpNodes(nodeShape);
         z5::multiarray::readSubarray<NodeType>(nodeDs, tmpNodes, zero1Coord.begin());
         nodes.insert(tmpNodes.begin(), tmpNodes.end());
+    }
+
+
+    inline void loadEdgeIndices(const std::string & graphPath, std::vector<EdgeIndexType> & edgeIndices) {
+        const std::vector<size_t> zero1Coord({0});
+        // get handle and dataset
+        z5::handle::Group graph(graphPath);
+        auto idDs = z5::openDataset(graph, "edgeIds");
+        // read the nodes and inset them into the node set
+        Shape1Type idShape({idDs->shape(0)});
+        xt::xtensor<EdgeIndexType, 1> tmpIds(idShape);
+        z5::multiarray::readSubarray<EdgeIndexType>(idDs, tmpIds, zero1Coord.begin());
+        edgeIndices.resize(idShape[0]);
+        std::copy(tmpIds.begin(), tmpIds.end(), edgeIndices.begin());
     }
 
 
@@ -190,6 +207,12 @@ namespace distributed {
     }
 
 
+    inline void makeCoord2(const CoordType & coord, CoordType & coord2, const size_t axis) {
+        coord2 = coord;
+        coord2[axis] += 1;
+    };
+
+
     ///
     // Workflow functions
     ///
@@ -202,14 +225,6 @@ namespace distributed {
                              const COORD & roiEnd,
                              NodeSet & nodes,
                              EdgeSet & edges) {
-
-        // typedefs and helper functions
-        typedef nifty::array::StaticArray<int64_t, 3> CoordType;
-
-        auto makeCoord2 = [](const CoordType & coord, CoordType & coord2, const size_t axis){
-            coord2 = coord;
-            coord2[axis] += 1;
-        };
 
         // open the n5 label dataset
         auto path = fs::path(pathToLabels);
