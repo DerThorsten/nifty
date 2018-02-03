@@ -52,6 +52,26 @@ namespace distributed {
            py::arg("blockIds"), py::arg("offsets"), py::arg("tmpFeatureStorage"),
            py::arg("dataMin")=0., py::arg("dataMax")=1.);
 
+
+        module.def("mergeFeatureBlocks", [](const std::string & graphBlockPrefix,
+                                            const std::string & featureBlockPrefix,
+                                            const std::string & featuresOut,
+                                            const size_t numberOfBlocks,
+                                            const size_t edgeIdBegin,
+                                            const size_t edgeIdEnd,
+                                            const int numberOfThreads) {
+            py::gil_scoped_release allowThreads;
+            mergeFeatureBlocks(graphBlockPrefix,
+                               featureBlockPrefix,
+                               featuresOut,
+                               numberOfBlocks,
+                               edgeIdBegin,
+                               edgeIdEnd,
+                               numberOfThreads);
+
+        }, py::arg("graphBlockPrefix"), py::arg("featureBlockPrefix"),
+           py::arg("featuresOut"), py::arg("numberOfBLocks"), py::arg("edgeIdBegin"),
+           py::arg("edgeIdEnd"), py::arg("numberOfThreads")=1);
     }
 
 

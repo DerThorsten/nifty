@@ -397,143 +397,53 @@ namespace distributed {
     }
 
 
-    /*
-    // merge with the output features
-    inline void mergeEdgeFeatures(xt::xtensor<float, 2> & featuresOut,
-                                  xt::xtensor<float, 2> & featuresTmp,
-                                  const std::vector<EdgeIndexType> & blockEdgeIndices,
-                                  const std::unordered_map<EdgeIndexType, EdgeIndexType> & toLocalIndices,
-                                  std::vector<bool> & edgesWithFeatures) {
+    inline void mergeFeaturesForSingleEdge(xt::xtensor<float, 2> & tmpFeatures, xt::xtensor<float, 2> & targetFeatures,
+                                           const EdgeIndexType tmpId, const EdgeIndexType targetId,
+                                           std::vector<bool> & hasFeatures) {
+        if(hasFeatures[targetId]) {
 
-        const size_t nEdges = blockEdgeIndices.size();
-        EdgeIndexType localEdge, globalEdge;
+            // index 9 is the count
+            auto nSamplesA = targetFeatures(targetId, 9);
+            auto nSamplesB = tmpFeatures(tmpId, 9);
+            auto nSamplesTot = nSamplesA + nSamplesB;
+            auto ratioA = nSamplesA / nSamplesTot;
+            auto ratioB = nSamplesB / nSamplesTot;
 
-        for(EdgeIndexType localId = 0; localId < nEdges; ++localId) {
-            // get the global and local edge id for this (block local) id
-            globalEdge = blockEdgeIndices[localId];
-            localEdge = toLocalIndices.at(globalEdge);
+            // merge the mean
+            float meanA = targetFeatures(targetId, 0);
+            float meanB = tmpFeatures(tmpId, 0);
+            float newMean = ratioA * meanA + ratioB * meanB;
+            targetFeatures(targetId, 0) = newMean;
 
-            // check if this edge already has features
-            // if yes, merge
-            // otherwise just write the features and change the flag
-            if(edgesWithFeatures[localEdge]) {
+            // merge the variance (feature id 1)
+            // see https://stackoverflow.com/questions/1480626/merging-two-statistical-result-sets
+            float varA = targetFeatures(targetId, 1);
+            float varB = tmpFeatures(tmpId, 1);
+            targetFeatures(targetId, 1) = ratioA * (varA + (meanA - newMean) * (meanA - newMean));
+            targetFeatures(targetId, 1) += ratioB * (varB + (meanB - newMean) * (meanB - newMean));
 
-                // TODO refactor in function ?!
+            // merge the min (feature id 2)
+            targetFeatures(targetId, 2) = std::min(targetFeatures(targetId, 2), tmpFeatures(tmpId, 2));
 
-                // index 9 is the count
-                auto nSamplesA = featuresOut(localEdge, 9);
-                auto nSamplesB = featuresTmp(localId, 9);
-                auto nSamplesTot = nSamplesA + nSamplesB;
-                auto ratioA = nSamplesA / nSamplesTot;
-                auto ratioB = nSamplesB / nSamplesTot;
-
-                // merge the mean
-                float meanA = featuresOut(localEdge, 0);
-                float meanB = featuresTmp(localId, 0);
-                float newMean = ratioA * meanA + ratioB * meanB;
-                featuresOut(localEdge, 0) = newMean;
-
-                // merge the variance (feature id 1)
-                // see https://stackoverflow.com/questions/1480626/merging-two-statistical-result-sets
-                float varA = featuresOut(localEdge, 1);
-                float varB = featuresTmp(localId, 1);
-                featuresOut(localEdge, 1) = ratioA * (varA + (meanA - newMean) * (meanA - newMean));
-                featuresOut(localEdge, 1) += ratioB * (varB + (meanB - newMean) * (meanB - newMean));
-
-                // merge the min (feature id 2)
-                featuresOut(localEdge, 2) = std::min(featuresOut(localEdge, 2), featuresTmp(localId, 2));
-
-                // merge the quantiles (not min and max !) via weighted average
-                // this is not correct, but the best we can do for now
-                for(size_t featId = 3; featId < 8; ++featId) {
-                    featuresOut(localEdge, featId) =  ratioA * featuresOut(localEdge, featId) + ratioB * featuresTmp(localId, featId);
-                }
-
-                // merge the max (feature id 8)
-                featuresOut(localEdge, 8) = std::max(featuresOut(localEdge, 8), featuresTmp(localId, 8));
-                // merge the count (feature id 9)
-                featuresOut(localEdge, 9) = nSamplesTot;
-
-            } else {
-
-                for(size_t featId = 0; featId < 10; ++featId) {
-                    featuresOut(localEdge, featId) = featuresTmp(localId, featId);
-                }
-                edgesWithFeatures[localEdge] = true;
+            // merge the quantiles (not min and max !) via weighted average
+            // this is not correct, but the best we can do for now
+            for(size_t featId = 3; featId < 8; ++featId) {
+                targetFeatures(targetId, featId) =  ratioA * targetFeatures(targetId, featId) + ratioB * tmpFeatures(tmpId, featId);
             }
+
+            // merge the max (feature id 8)
+            targetFeatures(targetId, 8) = std::max(targetFeatures(targetId, 8), tmpFeatures(tmpId, 8));
+            // merge the count (feature id 9)
+            targetFeatures(targetId, 9) = nSamplesTot;
+
+        } else {
+
+            for(size_t featId = 0; featId < 10; ++featId) {
+                targetFeatures(targetId, featId) = tmpFeatures(tmpId, featId);
+            }
+            hasFeatures[targetId] = true;
         }
-
-
     }
-
-
-    inline void mergeFeatureBlocksSingleThreaded(const std::string & groupPath,
-                                                 const std::string & blockPrefix,
-                                                 const std::string & featureTmpStorageIn,
-                                                 const std::string & featureStorageOut,
-                                                 const std::vector<size_t> & blockIds) {
-
-
-        // extract the unique edge indices
-        std::vector<EdgeIndexType> toGlobalIndices(edgeIndicesSet.begin(), edgeIndicesSet.end());
-        const size_t nEdges = toGlobalIndices.size();
-
-        // get mapping of edge indices to dense local index
-        std::unordered_map<EdgeIndexType, EdgeIndexType> toLocalIndices;
-        for(EdgeIndexType ii = 0; ii < nEdges; ++ii) {
-            toLocalIndices[toGlobalIndices[ii]] = ii;
-        }
-
-        // iterate over the feature blocks and merge the edge features
-
-        // merged features and tmp features
-        Shape2Type outShape = {nEdges, 10};
-        xt::xtensor<float, 2> featuresOut(outShape);
-
-        Shape2Type tmpShape = {edgeIndicesPerBlock[0].size(), 10};
-        xt::xtensor<float, 2> featuresTmp(tmpShape);
-
-        // set that stores whether an edge has features already
-        std::vector<bool> edgesWithFeatures(nEdges, false);
-
-        fs::path featureStorage(featureTmpStorageIn);
-        fs::path blockFeaturePath;
-        localBlockId = 0;
-        for(auto blockId: blockIds) {
-
-            // get this block edge indices and the current number of edges
-            const auto & blockEdgeIndices = edgeIndicesPerBlock[localBlockId];
-            const size_t nEdgesBlock = blockEdgeIndices.size();
-            // continue if we don't have edges in this block
-            if(nEdgesBlock == 0) {
-                continue;
-            }
-
-            // path to this block features
-            blockFeaturePath = featureStorage;
-            blockFeaturePath /= blockPrefix + std::to_string(blockId);
-
-
-            // merge with the output features
-            mergeEdgeFeatures(featuresOut, featuresTmp,
-                              blockEdgeIndices, toLocalIndices,
-                              edgesWithFeatures);
-
-            ++localBlockId;
-            if(localBlockId >= nBlocks) {
-                continue;
-            }
-
-            // resize the tmp features if necessary
-            const size_t nNext = edgeIndicesPerBlock[localBlockId].size();
-            if(nNext != nEdgesBlock) {
-
-            }
-        }
-
-        // serialize the extracted edge features
-    }
-    */
 
 
     inline void mergeEdgeFeaturesForBlocks(const std::string & graphBlockPrefix,
@@ -541,7 +451,7 @@ namespace distributed {
                                            const size_t edgeIdBegin,
                                            const size_t edgeIdEnd,
                                            const std::vector<size_t> & blockIds,
-                                           ThreadPool & threadpool,
+                                           nifty::parallel::ThreadPool & threadpool,
                                            const std::string & featuresOut) {
         //
         const size_t nEdges = edgeIdEnd - edgeIdBegin;
@@ -554,21 +464,24 @@ namespace distributed {
             xt::xtensor<float, 2> features;
             xt::xtensor<float, 2> tmpFeatures;
             std::vector<bool> edgeHasFeatures;
-        }
+        };
         std::vector<PerThreadData> perThreadDataVector(nThreads);
         nifty::parallel::parallel_foreach(threadpool, nThreads, [&](const int t, const int tId){
             auto & ptd = perThreadDataVector[tId];
-            ptd.features = xt::xtensor(fShape);
-            ptd.tmpFeatures = xt::xtensor(tmpInit);
+            ptd.features = xt::xtensor<float, 2>(fShape);
+            ptd.tmpFeatures = xt::xtensor<float, 2>(tmpInit);
             ptd.edgeHasFeatures = std::vector<bool>(nEdges, false);
         });
 
         // iterate over the block ids
-        const size_t nBlocks = blockIds.size()
+        const size_t nBlocks = blockIds.size();
         nifty::parallel::parallel_foreach(threadpool, nBlocks, [&](const int tId, const int blockIndex){
 
             auto blockId = blockIds[blockIndex];
             auto & perThreadData = perThreadDataVector[tId];
+            auto & features = perThreadData.features;
+            auto & hasFeatures = perThreadData.edgeHasFeatures;
+            auto & blockFeatures = perThreadData.tmpFeatures;
 
             // load edge ids for the block
             const std::string blockGraphPath = graphBlockPrefix + std::to_string(blockId);
@@ -587,11 +500,10 @@ namespace distributed {
             // load features for the block
             // first resize the tmp features, if necessary
             const std::string blockFeaturePath = featureBlockPrefix + std::to_string(blockId);
-            auto & tmpFeatures = perThreadData.tmpFeatures;
-            if(tmpFeatures.shape()[0] != nEdgesBlock) {
-                tmpFeatures.reshape({nEdgesBlock, 10});
+            if(blockFeatures.shape()[0] != nEdgesBlock) {
+                blockFeatures.reshape({nEdgesBlock, 10});
             }
-            loadBlockFeatures(blockFeaturePath, featuresTmp);
+            loadBlockFeatures(blockFeaturePath, blockFeatures);
 
             // iterate over the edges in this block and merge edge features if they are in our edge range
             for(EdgeIndexType edgeId : blockEdgeIndices) {
@@ -601,17 +513,29 @@ namespace distributed {
                     // and in the dense edge range
                     auto rangeEdgeId = edgeId - edgeIdBegin;
                     auto blockEdgeId = toDenseBlockId[edgeId];
-                    // TODO implement this
-                    // mergeSingleEdgeFeatures(rangeEdgeId, blockEdgeId, );
+                    mergeFeaturesForSingleEdge(blockFeatures, features, blockEdgeId, rangeEdgeId, hasFeatures);
                 }
             }
 
         });
 
         // merge features for each edge
+        auto & features = perThreadDataVector[0].features;
+        auto & hasFeatureVector = perThreadDataVector[0].edgeHasFeatures;
+        nifty::parallel::parallel_foreach(threadpool, nEdges, [&](const int tId, const EdgeIndexType edgeId){
+            for(int threadId = 1; threadId < nThreads; ++threadId) {
+                auto & perThreadData = perThreadDataVector[threadId];
+                if(perThreadData.edgeHasFeatures[edgeId]) {
+                    mergeFeaturesForSingleEdge(features, perThreadData.features, edgeId, edgeId, hasFeatureVector);
+                }
+            }
+        });
 
+        // TODO we coudl parallelize this over the out chunks
         // serialize the edge features
-
+        auto dsOut = z5::openDataset(featuresOut);
+        const std::vector<size_t> zero2Coord({0, 0});
+        z5::multiarray::writeSubarray<float>(dsOut, features, zero2Coord.begin());
     }
 
 
@@ -625,7 +549,7 @@ namespace distributed {
         const size_t nThreads = threadpool.nThreads();
         std::vector<std::set<size_t>> perThreadData(nThreads);
 
-        nifty::parallle::parallel_foreach(threadpool, nBlocks, [&](const int tId, const int blockId) {
+        nifty::parallel::parallel_foreach(threadpool, numberOfBlocks, [&](const int tId, const int blockId) {
 
             const std::string blockPath = graphBlockPrefix + std::to_string(blockId);
             std::vector<EdgeIndexType> blockEdgeIndices;
@@ -638,8 +562,8 @@ namespace distributed {
             // (and thus if it is relevant) by a simple range check
 
             auto minmax = std::minmax_element(blockEdgeIndices.begin(), blockEdgeIndices.end());
-            EdgeIndexType blockMinEdge = minmax.first;
-            EdgeIndexType blockMaxEdge = minmax.second;
+            EdgeIndexType blockMinEdge = *minmax.first;
+            EdgeIndexType blockMaxEdge = *minmax.second;
 
             // TODO these things might be off by one index ...
             // range check
@@ -664,7 +588,7 @@ namespace distributed {
 
         // write to the out vector
         blockIds.resize(blockIdsSet.size());
-        std::copy(blockIdsSet.begin(), blockIdsSet.end(), blockIds);
+        std::copy(blockIdsSet.begin(), blockIdsSet.end(), blockIds.begin());
     }
 
 
@@ -675,6 +599,8 @@ namespace distributed {
                                    const size_t edgeIdBegin,
                                    const size_t edgeIdEnd,
                                    const int numberOfThreads=1) {
+        // construct threadpool
+        nifty::parallel::ThreadPool threadpool(numberOfThreads);
 
         // find the relevant blocks, that have overlap with our edge ids
         std::vector<size_t> blockIds;
@@ -686,10 +612,8 @@ namespace distributed {
         mergeEdgeFeaturesForBlocks(graphBlockPrefix, featureBlockPrefix,
                                    edgeIdBegin, edgeIdEnd,
                                    blockIds,
-                                   threadPool, featuresOut);
+                                   threadpool, featuresOut);
     }
-
-
 
 
 }
