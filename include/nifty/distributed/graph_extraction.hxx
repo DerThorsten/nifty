@@ -74,6 +74,20 @@ namespace distributed {
     }
 
 
+    inline void loadNodes(const std::string & graphPath, std::vector<NodeType> & nodes, const size_t offset) {
+        const std::vector<size_t> zero1Coord({0});
+        // get handle and dataset
+        z5::handle::Group graph(graphPath);
+        auto nodeDs = z5::openDataset(graph, "nodes");
+        // read the nodes and inset them into the node set
+        Shape1Type nodeShape({nodeDs->shape(0)});
+        Tensor1 tmpNodes(nodeShape);
+        z5::multiarray::readSubarray<NodeType>(nodeDs, tmpNodes, zero1Coord.begin());
+        nodes.resize(nodes.size() + nodeShape[0]);
+        std::copy(tmpNodes.begin(), tmpNodes.end(), nodes.begin() + offset);
+    }
+
+
     inline void loadEdgeIndices(const std::string & graphPath, std::vector<EdgeIndexType> & edgeIndices) {
         const std::vector<size_t> zero1Coord({0});
         // get handle and dataset
