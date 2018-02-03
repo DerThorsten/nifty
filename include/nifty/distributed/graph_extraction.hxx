@@ -74,10 +74,22 @@ namespace distributed {
     }
 
 
-    inline void loadEdgeIndices(const std::string & graphPath, std::vector<EdgeIndexType> & edgeIndices) {
+    inline bool loadEdgeIndices(const std::string & graphPath, std::vector<EdgeIndexType> & edgeIndices) {
         const std::vector<size_t> zero1Coord({0});
-        // get handle and dataset
+        const std::vector<std::string> keys = {"numberOfEdges"};
+        
+        // get handle and check if we have edges
         z5::handle::Group graph(graphPath);
+        nlohmann::json j;
+        z5::readAttributes(graph, keys, j);
+        size_t numberOfEdges = j[keys[0]];
+
+        // don't do anything, if we don't have edges
+        if(numberOfEdges == 0) {
+            return false;
+        }
+        
+        // get id dataset
         auto idDs = z5::openDataset(graph, "edgeIds");
         // read the nodes and inset them into the node set
         Shape1Type idShape({idDs->shape(0)});
@@ -85,6 +97,7 @@ namespace distributed {
         z5::multiarray::readSubarray<EdgeIndexType>(idDs, tmpIds, zero1Coord.begin());
         edgeIndices.resize(idShape[0]);
         std::copy(tmpIds.begin(), tmpIds.end(), edgeIndices.begin());
+        return true;
     }
 
 
