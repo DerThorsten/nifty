@@ -470,38 +470,39 @@ extractSubgraphFromNodes(
         std::vector<EDGE_INTERANL_TYPE> & innerEdgesOut,
         std::vector<EDGE_INTERANL_TYPE> & outerEdgesOut) const {
 
-    std::map<NodeInteralType,NodeInteralType> globalToLocalNodes;
-    for(size_t i = 0; i < nodeList.size(); ++i)
-        globalToLocalNodes.insert( std::make_pair(nodeList[i], NodeInteralType(i)) );
+    std::unordered_map<NodeInteralType, NodeInteralType> nodeMapping;
+    for(size_t i = 0; i < nodeList.size(); ++i) {
+        // globalToLocalNodes.insert( std::make_pair(nodeList[i], NodeInteralType(i)) );
+        nodeMapping[nodeList[i]] = i;
+    }
 
     for(auto u : nodeList) {
         for(auto adjacencyIt = this->adjacencyBegin(u); adjacencyIt != this->adjacencyEnd(u); ++adjacencyIt) {
             auto v = adjacencyIt->node();
             auto e = adjacencyIt->edge();
-            if( std::find(nodeList.begin(), nodeList.end(), v) != nodeList.end() )
-                innerEdgesOut.push_back(e);
-            else
+            // we do the look-up in the node-mapping instead of the node-list, because it's a hash-map
+            // (and thus faster than vector lookup)
+            if(nodeMapping.find(v) != nodeMapping.end()) {
+                // we will encounter inner edges twice, so we only add them for u < v
+                if(u < v) {
+                    innerEdgesOut.push_back(e);
+                }
+            }
+            else {
+                // outer edges occur only once by construction
                 outerEdgesOut.push_back(e);
+            }
         }
     }
 
-    // make the edges unique
-    std::sort(innerEdgesOut.begin(),innerEdgesOut.end());
-    auto last = std::unique(innerEdgesOut.begin(), innerEdgesOut.end());
-    innerEdgesOut.erase( last, innerEdgesOut.end() );
-
-    std::sort(outerEdgesOut.begin(),outerEdgesOut.end());
-    last = std::unique(outerEdgesOut.begin(), outerEdgesOut.end());
-    outerEdgesOut.erase( last, outerEdgesOut.end() );
-
     // get number of nodes
     uint64_t numberOfNodes = nodeList.size();
-    UndirectedGraph<EdgeInternalType,NodeInteralType> subgraphOut(numberOfNodes);
+    UndirectedGraph<EdgeInternalType, NodeInteralType> subgraphOut(numberOfNodes);
 
     // get the local uv - ids
     for(std::size_t i = 0; i < innerEdgesOut.size(); ++i) {
         auto uv = this->uv(innerEdgesOut[i]);
-        subgraphOut.insertEdge(globalToLocalNodes[uv.first], globalToLocalNodes[uv.second]);
+        subgraphOut.insertEdge(nodeMapping[uv.first], nodeMapping[uv.second]);
     }
 
     return subgraphOut;
