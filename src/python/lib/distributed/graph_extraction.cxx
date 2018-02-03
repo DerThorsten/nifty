@@ -2,6 +2,7 @@
 #include <pybind11/stl.h>
 
 #include "nifty/distributed/graph_extraction.hxx"
+#include "nifty/distributed/graph_tools.hxx"
 #include "nifty/python/converter.hxx"
 
 namespace py = pybind11;
@@ -75,6 +76,38 @@ namespace distributed {
             mapEdgeIds(pathToGraph, graphGroup, blockGroup, blockPrefix, numberOfBlocks, numberOfThreads);
         }, py::arg("pathToGraph"), py::arg("graphGroup"), py::arg("blockGroup"),
            py::arg("blockPrefix"), py::arg("numberOfBlocks"), py::arg("numberOfThreads")=1);
+
+
+        module.def("loadAsUndirectedGraphWithRelabeling", []( const std::string & pathToGraph) {
+            nifty::graph::UndirectedGraph<> g;
+            std::unordered_map<NodeType, NodeType> relabeling;
+            {
+                py::gil_scoped_release allowThreads;
+                loadNiftyGraph(pathToGraph, g, relabeling, true);
+            }
+            return std::make_pair(g, relabeling);
+        }, py::arg("pathToGraph"));
+
+
+        module.def("loadAsUndirectedGraph", [](const std::string & pathToGraph) {
+            nifty::graph::UndirectedGraph<> g;
+            std::unordered_map<NodeType, NodeType> relabeling;
+            {
+                py::gil_scoped_release allowThreads;
+                loadNiftyGraph(pathToGraph, g, relabeling, false);
+            }
+            return g;
+        }, py::arg("pathToGraph"));
+
+
+        module.def("loadNodes", [](const std::string & pathToGraph) {
+            std::vector<uint64_t> nodes;
+            {
+                py::gil_scoped_release allowThreads;
+                loadNodes(pathToGraph, nodes, 0);
+            }
+            return nodes;
+        }, py::arg("pathToGraph"));
 
     }
 

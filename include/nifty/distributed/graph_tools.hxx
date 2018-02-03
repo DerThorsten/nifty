@@ -8,9 +8,9 @@ namespace distributed {
 
 
     inline void loadNiftyGraph(const std::string & graphPath,
-                               nifty::graph::UndirectedGraph & g,
+                               nifty::graph::UndirectedGraph<> & g,
                                std::unordered_map<NodeType, NodeType> & relabeling,
-                               bool relabelNodes=true) {
+                               const bool relabelNodes=true) {
         std::vector<NodeType> nodes;
         loadNodes(graphPath, nodes, 0);
         const size_t nNodes = nodes.size();
@@ -21,8 +21,7 @@ namespace distributed {
 
         if(relabelNodes) {
             g.assign(nNodes, nEdges);
-            relabeling.resize(nNodes);
-            for(size_t ii = 0; ii < nNods; ++ii) {
+            for(size_t ii = 0; ii < nNodes; ++ii) {
                 relabeling[nodes[ii]] = ii;
             }
 
@@ -40,7 +39,6 @@ namespace distributed {
         }
 
     }
-
 
 }
 }
