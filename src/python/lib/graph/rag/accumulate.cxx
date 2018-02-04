@@ -124,10 +124,10 @@ namespace graph{
             const int numberOfThreads
         ){
 
-            xt::pytensor<DATA_T, 2> out({int64_t(rag.edgeIdUpperBound()+1), int64_t(2)});
+            typename xt::pytensor<DATA_T, 2>::shape_type ShapeType shape = {int64_t(rag.edgeIdUpperBound()+1), int64_t(2)};
+            xt::pytensor<DATA_T, 2> out(shape);
             {
                 py::gil_scoped_release allowThreads;
-                array::StaticArray<int64_t, DIM> blockShape_;
                 accumulateEdgeMeanAndLength(rag, data, blockShape, out, numberOfThreads);
             }
             return out;
@@ -154,7 +154,6 @@ namespace graph{
             xt::pytensor<DATA_T, 2> out({int64_t(rag.edgeIdUpperBound()+1), int64_t(17)});
             {
                 py::gil_scoped_release allowThreads;
-                array::StaticArray<int64_t, DIM> blockShape_;
                 accumulateGeometricEdgeFeatures(rag, blockShape, out, numberOfThreads);
             }
             return out;
@@ -184,7 +183,6 @@ namespace graph{
             NumpyArrayType nodeOut({int64_t(rag.nodeIdUpperBound()+1), int64_t(2)});
             {
                 py::gil_scoped_release allowThreads;
-                array::StaticArray<int64_t, DIM> blockShape_;
                 accumulateMeanAndLength(rag, data, blockShape, edgeOut, nodeOut, numberOfThreads);
             }
             return OutType(edgeOut, nodeOut);;
@@ -216,7 +214,6 @@ namespace graph{
             NumpyArrayType nodeOut({int64_t(rag.nodeIdUpperBound()+1), int64_t(2)});
             {
                 py::gil_scoped_release allowThreads;
-                array::StaticArray<int64_t, DIM> blockShape_;
                 accumulateMeanAndLength(rag, data, blockShape, edgeOut, nodeOut, numberOfThreads);
             }
             return OutType(edgeOut, nodeOut);;
@@ -252,7 +249,6 @@ namespace graph{
             NumpyArrayType nodeOut({int64_t(rag.nodeIdUpperBound()+1), int64_t(9)});
             {
                 py::gil_scoped_release allowThreads;
-                array::StaticArray<int64_t, DIM> blockShape_;
                 accumulateStandartFeatures(rag, data, minVal, maxVal, blockShape, edgeOut, nodeOut, numberOfThreads);
             }
             return OutType(edgeOut, nodeOut);
@@ -286,7 +282,6 @@ namespace graph{
             NumpyArrayType nodeOut({int64_t(rag.nodeIdUpperBound()+1), int64_t(9)});
             {
                 py::gil_scoped_release allowThreads;
-                array::StaticArray<int64_t, DIM> blockShape_;
                 accumulateStandartFeatures(rag, data, minVal, maxVal, blockShape, edgeOut, nodeOut, numberOfThreads);
             }
             return OutType(edgeOut, nodeOut);
